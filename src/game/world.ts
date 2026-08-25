@@ -3073,39 +3073,24 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   const ottomanGate = (x, z, yaw) => {
     const rx = Math.cos(yaw);
     const rz = -Math.sin(yaw);
-    const fx = Math.sin(yaw);
-    const fz = Math.cos(yaw);
-    for (const s of [-16, 16]) {
-      const t = new THREE.Mesh(new THREE.BoxGeometry(10, 16, 11), stone);
+    const side = 18;
+    for (const s of [-side, side]) {
+      const t = new THREE.Mesh(new THREE.BoxGeometry(9, 16, 10), stone);
       t.position.set(x + rx * s, 8, z + rz * s);
       t.rotation.y = yaw;
       add(t);
+      hit(x + rx * s, z + rz * s, 6, 4.8, 5.2);
     }
-    const lintel = new THREE.Mesh(new THREE.BoxGeometry(36, 5.8, 11.2), stone);
-    lintel.position.set(x, 18.4, z);
+    const lintel = new THREE.Mesh(new THREE.BoxGeometry(38, 5.4, 10.4), stone);
+    lintel.position.set(x, 18.2, z);
     lintel.rotation.y = yaw;
     add(lintel);
-    for (const s of [-15, -5, 5, 15]) {
-      const mer = new THREE.Mesh(new THREE.BoxGeometry(3.4, 2.3, 11.6), stone);
-      mer.position.set(x + rx * s, 22.2, z + rz * s);
+    for (const s of [-16, -6, 6, 16]) {
+      const mer = new THREE.Mesh(new THREE.BoxGeometry(3.4, 2.2, 10.8), stone);
+      mer.position.set(x + rx * s, 21.8, z + rz * s);
       mer.rotation.y = yaw;
       add(mer);
     }
-    const hole = new THREE.Mesh(new THREE.BoxGeometry(9.2, 11.4, 4.4), darkArch);
-    hole.position.set(x + fx * 3.4, 6, z + fz * 3.4);
-    hole.rotation.y = yaw;
-    add(hole);
-    const dogleg = new THREE.Mesh(new THREE.BoxGeometry(22, 14, 8), stone);
-    dogleg.position.set(x + fx * 14, 7, z + fz * 14);
-    dogleg.rotation.y = yaw + Math.PI / 2;
-    add(dogleg);
-    const hole2 = new THREE.Mesh(new THREE.BoxGeometry(8.4, 10, 3.6), darkArch);
-    hole2.position.set(x + fx * 14 + rx * 6, 5.4, z + fz * 14 + rz * 6);
-    hole2.rotation.y = yaw + Math.PI / 2;
-    add(hole2);
-    hit(x + rx * 16, z + rz * 16, 4);
-    hit(x - rx * 16, z - rz * 16, 4);
-    hit(x + fx * 16, z + fz * 16, 4);
   };
   const placeDome = (dmx, dmz) => {
     const oct = new THREE.Mesh(new THREE.CylinderGeometry(11.4, 11.4, 8.4, 8), cream);
@@ -4482,8 +4467,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const kt = jer(31.7784, 35.2346);
     const mill = jer(31.7715, 35.2247);
     const olives = jer(31.7848, 35.2462);
-    merlonWall(jg.x + 22, jg.z + 48, 54, 0.2, 13);
-    merlonWall(jg.x + 46, jg.z + 28, 48, 1.1, 12);
+    merlonWall(jg.x + 38, jg.z + 62, 54, 0.2, 13);
+    merlonWall(jg.x + 62, jg.z + 42, 48, 1.1, 12);
     const gi = Math.max(0, Math.min(built.samples.length - 1, Math.floor(built.samples.length * 0.46)));
     const gs = built.samples[gi];
     ottomanGate(gs.x, gs.z, Math.atan2(gs.tx, gs.tz));
@@ -4537,10 +4522,10 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     ymcaCap.rotation.y = Math.PI / 4;
     ymcaCap.position.set(ymcaP.x, 35, ymcaP.z);
     add(ymcaCap);
-    hit(aq.x, aq.z, 10);
-    hit(sepul.x, sepul.z, 9);
-    hit(hurva.x, hurva.z, 7);
-    hit(ymcaP.x, ymcaP.z, 8);
+    hit(aq.x, aq.z, 10, 14, 8);
+    hit(sepul.x, sepul.z, 9, 9, 8);
+    hit(hurva.x, hurva.z, 7, 6.4, 6.4);
+    hit(ymcaP.x, ymcaP.z, 8, 9, 6);
     const kn = jer(31.7766, 35.2054);
     const knesset = new THREE.Mesh(new THREE.BoxGeometry(36, 8.4, 22), stone);
     knesset.position.set(kn.x, 5.2, kn.z);
