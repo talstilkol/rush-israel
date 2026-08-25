@@ -2767,33 +2767,37 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const rz = -Math.sin(yaw);
     const fx = Math.sin(yaw);
     const fz = Math.cos(yaw);
-    for (const s of [-11, 11]) {
-      const t = new THREE.Mesh(new THREE.BoxGeometry(11, 18, 10), stone);
-      t.position.set(x + rx * s, 9, z + rz * s);
+    for (const s of [-12, 12]) {
+      const t = new THREE.Mesh(new THREE.BoxGeometry(10, 16, 11), stone);
+      t.position.set(x + rx * s, 8, z + rz * s);
       t.rotation.y = yaw;
       add(t);
     }
-    const lintel = new THREE.Mesh(new THREE.BoxGeometry(34, 6.5, 10.4), stone);
-    lintel.position.set(x, 20.2, z);
+    const lintel = new THREE.Mesh(new THREE.BoxGeometry(36, 5.8, 11.2), stone);
+    lintel.position.set(x, 18.4, z);
     lintel.rotation.y = yaw;
     add(lintel);
-    for (const s of [
-      -14,
-      -5,
-      5,
-      14
-    ]) {
-      const mer = new THREE.Mesh(new THREE.BoxGeometry(3.6, 2.4, 10.8), stone);
-      mer.position.set(x + rx * s, 24, z + rz * s);
+    for (const s of [-15, -5, 5, 15]) {
+      const mer = new THREE.Mesh(new THREE.BoxGeometry(3.4, 2.3, 11.6), stone);
+      mer.position.set(x + rx * s, 22.2, z + rz * s);
       mer.rotation.y = yaw;
       add(mer);
     }
-    const hole = new THREE.Mesh(new THREE.BoxGeometry(10, 12, 4.2), darkArch);
-    hole.position.set(x + fx * 3.2, 6.4, z + fz * 3.2);
+    const hole = new THREE.Mesh(new THREE.BoxGeometry(9.2, 11.4, 4.4), darkArch);
+    hole.position.set(x + fx * 3.4, 6, z + fz * 3.4);
     hole.rotation.y = yaw;
     add(hole);
-    hit(x + rx * 11, z + rz * 11, 5.2);
-    hit(x - rx * 11, z - rz * 11, 5.2);
+    const dogleg = new THREE.Mesh(new THREE.BoxGeometry(22, 14, 8), stone);
+    dogleg.position.set(x + fx * 14, 7, z + fz * 14);
+    dogleg.rotation.y = yaw + Math.PI / 2;
+    add(dogleg);
+    const hole2 = new THREE.Mesh(new THREE.BoxGeometry(8.4, 10, 3.6), darkArch);
+    hole2.position.set(x + fx * 14 + rx * 6, 5.4, z + fz * 14 + rz * 6);
+    hole2.rotation.y = yaw + Math.PI / 2;
+    add(hole2);
+    hit(x + rx * 12, z + rz * 12, 5);
+    hit(x - rx * 12, z - rz * 12, 5);
+    hit(x + fx * 14, z + fz * 14, 5);
   };
   const placeDome = (dmx, dmz) => {
     const oct = new THREE.Mesh(new THREE.CylinderGeometry(11.4, 11.4, 8.4, 8), cream);
@@ -3439,58 +3443,85 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       roughness: 0.82
     });
     bag.push(ochre, ochreDark, lime);
-    const ck = tlv(32.0554, 34.7566);
-    const tower = new THREE.Mesh(new THREE.BoxGeometry(6.2, 28, 6.2), ochre);
-    tower.position.set(ck.x, 15.2, ck.z);
+    const ck = tlv(32.0547, 34.7568);
+    const tower = new THREE.Mesh(new THREE.BoxGeometry(4.8, 26, 4.8), ochre);
+    tower.position.set(ck.x, 14.2, ck.z);
     add(tower);
-    const base = new THREE.Mesh(new THREE.BoxGeometry(9.4, 4.2, 9.4), ochreDark);
-    base.position.set(ck.x, 2.1, ck.z);
+    const base = new THREE.Mesh(new THREE.BoxGeometry(7.6, 3.6, 7.6), ochreDark);
+    base.position.set(ck.x, 1.8, ck.z);
     add(base);
-    const plaza = new THREE.Mesh(new THREE.CylinderGeometry(14, 14, 0.2, 16), ochreDark);
-    plaza.position.set(ck.x, 0.12, ck.z);
+    const plaza = new THREE.Mesh(new THREE.CylinderGeometry(16, 16, 0.18, 20), ochreDark);
+    plaza.position.set(ck.x - 6, 0.1, ck.z);
     add(plaza);
-    const balcony = new THREE.Mesh(new THREE.BoxGeometry(7.4, 0.28, 7.4), lime);
-    balcony.position.set(ck.x, 19.6, ck.z);
+    const balcony = new THREE.Mesh(new THREE.BoxGeometry(5.8, 0.24, 5.8), lime);
+    balcony.position.set(ck.x, 18.8, ck.z);
     add(balcony);
     for (let lvl = 0; lvl < 4; lvl++) {
       for (const a of [0, Math.PI / 2, Math.PI, 3 * Math.PI / 2]) {
-        const arch = new THREE.Mesh(new THREE.BoxGeometry(1.7, 2.5, 0.35), darkArch);
-        arch.position.set(ck.x + Math.sin(a) * 3.05, 5.2 + lvl * 4.4, ck.z + Math.cos(a) * 3.05);
-        arch.lookAt(ck.x, 5.2 + lvl * 4.4, ck.z);
+        const arch = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 0.85, 0.32, 10, 1, false, 0, Math.PI), darkArch);
+        arch.rotation.z = Math.PI / 2;
+        arch.position.set(ck.x + Math.sin(a) * 2.45, 4.8 + lvl * 3.6, ck.z + Math.cos(a) * 2.45);
+        arch.rotation.y = a;
         add(arch);
       }
     }
+    const clockC = document.createElement("canvas");
+    clockC.width = clockC.height = 256;
+    const cg = clockC.getContext("2d");
+    if (cg) {
+      cg.fillStyle = "#f4eee0";
+      cg.beginPath();
+      cg.arc(128, 128, 120, 0, Math.PI * 2);
+      cg.fill();
+      cg.strokeStyle = "#2a2418";
+      cg.lineWidth = 8;
+      cg.stroke();
+      cg.fillStyle = "#2a2418";
+      for (let i = 0; i < 12; i++) {
+        const a = i / 12 * Math.PI * 2 - Math.PI / 2;
+        cg.beginPath();
+        cg.arc(128 + Math.cos(a) * 96, 128 + Math.sin(a) * 96, i % 3 === 0 ? 6 : 3.5, 0, Math.PI * 2);
+        cg.fill();
+      }
+      cg.strokeStyle = "#1a1814";
+      cg.lineWidth = 7;
+      cg.beginPath();
+      cg.moveTo(128, 128);
+      cg.lineTo(128, 58);
+      cg.stroke();
+      cg.lineWidth = 5;
+      cg.beginPath();
+      cg.moveTo(128, 128);
+      cg.lineTo(178, 128);
+      cg.stroke();
+    }
+    const clockTex = new THREE.CanvasTexture(clockC);
+    clockTex.colorSpace = THREE.SRGBColorSpace;
     const faceMat = new THREE.MeshStandardMaterial({
-      color: 15657176,
-      roughness: 0.5,
+      map: clockTex,
+      roughness: 0.45,
       emissive: 3351050,
-      emissiveIntensity: isNight ? 0.85 : 0.12
+      emissiveIntensity: isNight ? 0.55 : 0.08
     });
     emitList.push({
       mat: faceMat,
-      night: 0.85,
-      day: 0.12
+      night: 0.55,
+      day: 0.08
     });
-    const handMat = new THREE.MeshBasicMaterial({ color: 1708556 });
-    bag.push(handMat);
+    bag.push(clockTex);
     for (let i = 0; i < 4; i++) {
       const a = i * Math.PI / 2;
-      const face = new THREE.Mesh(new THREE.CircleGeometry(1.15, 20), faceMat);
-      face.position.set(ck.x + Math.sin(a) * 3.16, 24.4, ck.z + Math.cos(a) * 3.16);
-      face.lookAt(ck.x + Math.sin(a) * 8, 24.4, ck.z + Math.cos(a) * 8);
+      const face = new THREE.Mesh(new THREE.CircleGeometry(1.05, 22), faceMat);
+      face.position.set(ck.x + Math.sin(a) * 2.46, 22.6, ck.z + Math.cos(a) * 2.46);
+      face.lookAt(ck.x + Math.sin(a) * 8, 22.6, ck.z + Math.cos(a) * 8);
       add(face);
-      const hour = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.62, 0.06), handMat);
-      hour.position.copy(face.position);
-      hour.lookAt(ck.x, 24.4, ck.z);
-      hour.translateY(0.18);
-      add(hour);
     }
-    const cap = new THREE.Mesh(new THREE.ConeGeometry(4.6, 7.2, 4), ochreDark);
+    const cap = new THREE.Mesh(new THREE.ConeGeometry(3.6, 6.4, 4), ochreDark);
     cap.rotation.y = Math.PI / 4;
-    cap.position.set(ck.x, 32.8, ck.z);
+    cap.position.set(ck.x, 30.4, ck.z);
     add(cap);
-    const finial = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.12, 3.2, 6), ochreDark);
-    finial.position.set(ck.x, 37, ck.z);
+    const finial = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.11, 2.8, 6), ochreDark);
+    finial.position.set(ck.x, 34.2, ck.z);
     add(finial);
     const mq = tlv(32.0558, 34.7574);
     const mosque = new THREE.Mesh(new THREE.BoxGeometry(16, 8, 14), ochre);
@@ -3654,10 +3685,13 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       const house = new THREE.Mesh(new THREE.BoxGeometry(h.w, h.h, h.d), h.col);
       house.position.set(p.x, 1.6 + h.h * 0.5, p.z);
       add(house);
-      const r = new THREE.Mesh(new THREE.ConeGeometry(Math.max(h.w, h.d) * 0.62, 1.8, 4), terracotta);
-      r.rotation.y = Math.PI / 4;
-      r.position.set(p.x, 1.6 + h.h + 0.9, p.z);
+      const r = new THREE.Mesh(new THREE.BoxGeometry(h.w + 0.4, 0.28, h.d + 0.4), terracotta);
+      r.position.set(p.x, 1.6 + h.h + 0.16, p.z);
       add(r);
+      const door = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.28, 10, 1, false, 0, Math.PI), darkArch);
+      door.rotation.z = Math.PI / 2;
+      door.position.set(p.x, 2.4, p.z + h.d * 0.51);
+      add(door);
       hit(p.x, p.z, 4);
     }
     const awnCols = [10762792, 12880440, 6961698, 12085296];
@@ -4203,6 +4237,17 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const market = new THREE.Mesh(new THREE.BoxGeometry(20, 5, 10), terracotta);
     market.position.set(my.x - 16, 4, my.z + 12);
     add(market);
+    for (let i = 0; i < 10; i++) {
+      const stall = new THREE.Mesh(new THREE.BoxGeometry(3.4, 2.6, 2.8), i % 2 ? terracotta : cream);
+      stall.position.set(my.x - 22 + i * 4.2, 1.4, my.z + 18);
+      add(stall);
+      const awn = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.12, 3.2), new THREE.MeshStandardMaterial({
+        color: i % 3 === 0 ? 0xc45c3a : i % 3 === 1 ? 0x2a6a38 : 0x1a4a8a,
+        roughness: 0.88
+      }));
+      awn.position.set(my.x - 22 + i * 4.2, 2.85, my.z + 18);
+      add(awn);
+    }
     const millBase = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 4.2, 9, 12), stone);
     millBase.position.set(mill.x, 4.6, mill.z);
     add(millBase);
@@ -4238,12 +4283,12 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       flatShading: true
     });
     bag.push(hillM);
-    for (let i = 0; i < 12; i++) {
-      const a = i / 12 * Math.PI * 2 + 0.4;
-      const r = 220 + i % 4 * 50;
-      const h = 24 + i % 5 * 12;
-      const hill = new THREE.Mesh(new THREE.ConeGeometry(30 + i % 3 * 8, h, 5), hillM);
-      hill.position.set(jg.x + Math.cos(a) * r, h * 0.18, jg.z + Math.sin(a) * r);
+    for (let i = 0; i < 18; i++) {
+      const a = i / 18 * Math.PI * 2 + 0.3;
+      const r = 260 + i % 5 * 70;
+      const h = 38 + i % 6 * 18;
+      const hill = new THREE.Mesh(new THREE.ConeGeometry(48 + i % 4 * 12, h, 6), hillM);
+      hill.position.set(jg.x + Math.cos(a) * r, h * 0.22, jg.z + Math.sin(a) * r);
       add(hill);
     }
     glowAt(jg.x + 18, 16, jg.z + 40, 16769184, 28, 24);
