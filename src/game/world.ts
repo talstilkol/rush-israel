@@ -5638,6 +5638,20 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       pushRamp(eastX, c.z + 30, 0, 1, zLen, 7.2, deckY, 0.6, ic.he, ic.en);
       pushRamp(c.x, c.z, 1, 0, 30, 7.6, deckY, deckY, ic.he, ic.en);
     }
+    for (const ic of [
+      { lat: 32.0735, he: "השלום", en: "HaShalom" },
+      { lat: 32.0837, he: "סבידור מרכז", en: "Savidor Center" },
+    ]) {
+      const p = tlv(ic.lat, 34.795);
+      const near = nearestIndex(built.samples, p.x, p.z, 0);
+      const sm = built.samples[near.index];
+      const rc = built.width / 2 + 4;
+      pushRamp(sm.x + sm.rx * rc, sm.z + sm.rz * rc, sm.tx, sm.tz, 46, 6.4, 0.4, 8.6, ic.he, ic.en);
+      const wing = new THREE.Mesh(new THREE.BoxGeometry(16, 0.85, 20), conc);
+      wing.position.set(sm.x + sm.rx * (rc + 14), 8.7, sm.z + sm.rz * (rc + 14));
+      wing.rotation.y = Math.atan2(sm.tx, sm.tz);
+      add(wing);
+    }
     const railMat = new THREE.MeshStandardMaterial({
       color: 9080984,
       metalness: 0.72,
