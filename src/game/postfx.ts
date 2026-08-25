@@ -41,8 +41,19 @@ const GRADE = {
       col *= mix(shadowTint, highTint, smoothstep(0.14, 0.78, lum));
       col *= mix(1.0, 1.06, uNight * (1.0 - lum) * 0.35);
 
+      float k = smoothstep(0.18, 0.92, uSpeed);
+      vec2 smear = c * r * k * mix(0.018, 0.038, uBoost);
+      if (k > 0.02) {
+        vec3 a = texture2D(tDiffuse, uv + smear).rgb;
+        vec3 b = texture2D(tDiffuse, uv + smear * 1.7).rgb;
+        col = mix(col, (col + a + b) / 3.0, k * 0.55);
+        float cr = texture2D(tDiffuse, uv + smear * 0.55).r;
+        float cb = texture2D(tDiffuse, uv - smear * 0.55).b;
+        col = mix(col, vec3(cr, col.g, cb), k * 0.2);
+      }
+
       float vig = smoothstep(1.22, 0.28, r);
-      col *= mix(1.0, vig, mix(0.04, 0.12, uNight));
+      col *= mix(1.0, vig, mix(0.05, 0.2, k) + uNight * 0.08);
 
       float f = uFilter;
       if (f > 0.5) {
@@ -143,7 +154,7 @@ export function createPost(
       smaa?.setSize(w, h);
     },
     setDrive(speed01, boost) {
-      grade.uniforms.uSpeed.value = speed01 * 0.2;
+      grade.uniforms.uSpeed.value = speed01;
       grade.uniforms.uBoost.value = boost ? 1 : 0;
     },
     setNight(next: boolean) {
