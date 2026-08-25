@@ -126,19 +126,45 @@ function paint(color: number): THREE.MeshPhysicalMaterial {
   const flake = flakeMap();
   return new THREE.MeshPhysicalMaterial({
     color,
-    metalness: 0.78,
-    roughness: 0.16,
+    metalness: 0.82,
+    roughness: 0.12,
     roughnessMap: flake ?? undefined,
     bumpMap: flake ?? undefined,
-    bumpScale: 0.016,
+    bumpScale: 0.028,
     clearcoat: 1,
-    clearcoatRoughness: 0.08,
-    envMapIntensity: 1.85,
-    sheen: 0.22,
-    sheenColor: c.clone().multiplyScalar(0.4),
-    sheenRoughness: 0.35,
+    clearcoatRoughness: 0.06,
+    clearcoatNormalMap: flake ?? undefined,
+    clearcoatNormalScale: new THREE.Vector2(0.18, 0.18),
+    envMapIntensity: 2.25,
+    sheen: 0.28,
+    sheenColor: c.clone().multiplyScalar(0.45),
+    sheenRoughness: 0.28,
     specularIntensity: 1,
+    iridescence: 0.12,
+    iridescenceIOR: 1.3,
+    iridescenceThicknessRange: [80, 320],
   });
+}
+
+let BEAM: THREE.CanvasTexture | null = null;
+function beamCookie() {
+  if (BEAM) return BEAM;
+  if (typeof document === "undefined") return null;
+  const size = 256;
+  const c = document.createElement("canvas");
+  c.width = c.height = size;
+  const ctx = c.getContext("2d")!;
+  const g = ctx.createRadialGradient(size * 0.5, size * 0.62, 6, size * 0.5, size * 0.5, size * 0.48);
+  g.addColorStop(0, "rgba(255,248,220,1)");
+  g.addColorStop(0.22, "rgba(255,236,190,0.7)");
+  g.addColorStop(0.55, "rgba(255,210,140,0.18)");
+  g.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, size, size);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.NoColorSpace;
+  BEAM = tex;
+  return tex;
 }
 
 type Layout = {
@@ -436,10 +462,13 @@ export function createCarVisual(
 
   const spots: THREE.SpotLight[] = [];
   if (lit) {
+    const cookie = beamCookie();
     for (const sx of [-hx, hx]) {
-      const spot = new THREE.SpotLight(0xfff1c8, 150, 52, 0.38, 0.42, 1.25);
+      const spot = new THREE.SpotLight(0xfff1c8, 28, 46, 0.46, 0.55, 1.35);
       spot.position.set(sx, headY, headZ);
-      spot.target.position.set(sx * 0.18, 0.02, 16);
+      spot.target.position.set(sx * 0.08, -1.15, 22);
+      if (cookie) spot.map = cookie;
+      spot.castShadow = false;
       group.add(spot, spot.target);
       spots.push(spot);
     }
@@ -523,13 +552,13 @@ export function applyDamage(vis: CarVisual, dmg: number, dirt = 0) {
 }
 
 export function setCarLights(vis: CarVisual, night: boolean) {
-  for (const s of vis.spots) s.intensity = night ? 160 : 0;
-  vis.bodyMat.envMapIntensity = night ? 2.05 : 1.7;
+  for (const s of vis.spots) s.intensity = night ? 240 : 36;
+  vis.bodyMat.envMapIntensity = night ? 2.35 : 2.15;
   for (const h of vis.headLights) {
-    (h.material as THREE.MeshPhysicalMaterial).emissiveIntensity = night ? 4.4 : 0.22;
+    (h.material as THREE.MeshPhysicalMaterial).emissiveIntensity = night ? 5.2 : 0.85;
   }
   for (const g of vis.headGlows) {
-    (g.material as THREE.MeshBasicMaterial).opacity = night ? 0.7 : 0.06;
+    (g.material as THREE.MeshBasicMaterial).opacity = night ? 0.78 : 0.16;
     g.visible = true;
   }
 }

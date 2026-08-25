@@ -357,17 +357,36 @@ export class RaceEngine {
       return vis;
     });
 
-    const blobGeo = new THREE.CircleGeometry(1.85, 18);
+    const blobTex = (() => {
+      const c = document.createElement("canvas");
+      c.width = c.height = 128;
+      const ctx = c.getContext("2d")!;
+      const g = ctx.createRadialGradient(64, 64, 6, 64, 64, 62);
+      g.addColorStop(0, "rgba(0,0,0,0.78)");
+      g.addColorStop(0.38, "rgba(0,0,0,0.38)");
+      g.addColorStop(0.72, "rgba(0,0,0,0.1)");
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, 128, 128);
+      const t = new THREE.CanvasTexture(c);
+      t.colorSpace = THREE.NoColorSpace;
+      return t;
+    })();
+    const blobGeo = new THREE.PlaneGeometry(3.6, 2.05);
     blobGeo.rotateX(-Math.PI / 2);
     const blobMat = new THREE.MeshBasicMaterial({
-      color: 0x050608,
+      map: blobTex,
       transparent: true,
-      opacity: this.opts.night ? 0.32 : 0.5,
+      opacity: this.opts.night ? 0.28 : 0.52,
       depthWrite: false,
+      polygonOffset: true,
+      polygonOffsetFactor: -1,
+      polygonOffsetUnits: -1,
     });
     this.blobs = this.racers.map(() => {
       const m = new THREE.Mesh(blobGeo, blobMat);
       m.renderOrder = 1;
+      m.frustumCulled = false;
       this.scene.add(m);
       return m;
     });
@@ -1586,11 +1605,12 @@ export class RaceEngine {
       const blob = this.blobs[i];
       if (blob) {
         const sun = this.world.sunDir;
-        blob.position.set(c.x - sun.x * 0.55, c.y + 0.045, c.z - sun.z * 0.55);
-        const stretch = 1 + Math.abs(c.speed) * 0.012;
-        blob.scale.set(stretch * 1.15, 1, 0.95 + Math.abs(c.speed) * 0.006);
+        blob.position.set(c.x - sun.x * 0.7, c.y + 0.038, c.z - sun.z * 0.7);
+        const stretch = 1.05 + Math.abs(c.speed) * 0.014;
+        blob.scale.set(stretch, 1, 0.92 + Math.abs(c.speed) * 0.008);
         blob.rotation.y = c.yaw;
         blob.visible = !c.eliminated;
+        (blob.material as THREE.MeshBasicMaterial).opacity = this.world.night ? 0.26 : 0.5;
       }
     }
     for (let i = 0; i < this.traffic.length; i++) {
