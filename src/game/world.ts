@@ -436,6 +436,75 @@ function foamTex() {
   tex.colorSpace = THREE.SRGBColorSpace;
   return tex;
 }
+function tiSignTex(kind) {
+  const c = document.createElement("canvas");
+  c.width = 256;
+  c.height = 256;
+  const ctx = c.getContext("2d");
+  ctx.clearRect(0, 0, 256, 256);
+  if (kind === "stop") {
+    ctx.fillStyle = "#c8102e";
+    ctx.beginPath();
+    const r = 118;
+    for (let i = 0; i < 8; i++) {
+      const a = (Math.PI / 8) + i * Math.PI / 4;
+      const x = 128 + Math.cos(a) * r;
+      const y = 128 + Math.sin(a) * r;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 14;
+    ctx.stroke();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 52px sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("עצור", 128, 128);
+  } else if (kind === "yield") {
+    ctx.fillStyle = "#c8102e";
+    ctx.beginPath();
+    ctx.moveTo(128, 28);
+    ctx.lineTo(228, 220);
+    ctx.lineTo(28, 220);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.moveTo(128, 58);
+    ctx.lineTo(200, 200);
+    ctx.lineTo(56, 200);
+    ctx.closePath();
+    ctx.fill();
+  } else if (kind === "none") {
+    ctx.fillStyle = "#c8102e";
+    ctx.beginPath();
+    ctx.arc(128, 128, 110, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(38, 112, 180, 32);
+  } else {
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.arc(128, 128, 118, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = "#c8102e";
+    ctx.lineWidth = 22;
+    ctx.stroke();
+    ctx.fillStyle = "#111111";
+    ctx.font = "bold 120px sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    const n = kind === "speed90" ? "90" : kind === "speed80" ? "80" : "50";
+    ctx.fillText(n, 128, 138);
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 4;
+  return tex;
+}
 function waterNormalTex() {
   const size = 256;
   const c = document.createElement("canvas");
@@ -1341,6 +1410,64 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   }));
   group.add(new THREE.Mesh(keep(buildShoulder(built, 1)), shoulderMat));
   group.add(new THREE.Mesh(keep(buildShoulder(built, -1)), shoulderMat));
+  {
+    const highway = def.theme === "highway" || def.id === "ayalon" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6";
+    const kinds = highway ? ["speed90", "speed80", "none"] : ["stop", "speed50", "yield"];
+    const maps = {};
+    for (const k of ["stop", "yield", "none", "speed50", "speed80", "speed90"]) maps[k] = keep(tiSignTex(k));
+    const poleM = keep(new THREE.MeshStandardMaterial({ color: 0x8a9098, roughness: 0.55, metalness: 0.4 }));
+    const poleG = keep(new THREE.CylinderGeometry(0.07, 0.09, 3.2, 6));
+    poleG.translate(0, 1.6, 0);
+    const nSign = highway ? 10 : 14;
+    const stepS = Math.max(3, Math.floor(built.samples.length / nSign));
+    let si = 0;
+    for (let i = 8; i < built.samples.length - 8 && si < nSign; i += stepS) {
+      const s = built.samples[i];
+      const kind = kinds[si % kinds.length];
+      const side = si % 2 ? 1 : -1;
+      const off = built.width / 2 + 1.85;
+      const px = s.x + s.rx * off * side;
+      const pz = s.z + s.rz * off * side;
+      const yaw = Math.atan2(s.tx, s.tz) + (side > 0 ? 0 : Math.PI);
+      const pole = new THREE.Mesh(poleG, poleM);
+      pole.position.set(px, s.y, pz);
+      group.add(pole);
+      const face = new THREE.Mesh(
+        new THREE.PlaneGeometry(kind === "stop" || kind === "yield" ? 1.15 : 0.95, kind === "stop" || kind === "yield" ? 1.15 : 0.95),
+        new THREE.MeshBasicMaterial({ map: maps[kind], transparent: true, depthWrite: false, fog: false }),
+      );
+      face.position.set(px, s.y + 3.05, pz);
+      face.rotation.y = yaw;
+      group.add(face);
+      si++;
+    }
+    if (!highway) {
+      const boxM = keep(new THREE.MeshStandardMaterial({ color: 0x1a1c18, roughness: 0.5 }));
+      const redM = keep(new THREE.MeshBasicMaterial({ color: 0xff2a2a }));
+      const yelM = keep(new THREE.MeshBasicMaterial({ color: 0xffc428 }));
+      const grnM = keep(new THREE.MeshBasicMaterial({ color: isNight ? 0x3dff6a : 0x1a8a38 }));
+      for (const t of [0.22, 0.71]) {
+        const s = samp(built, Math.floor(t * segsOf(built)));
+        const off = built.width / 2 + 1.7;
+        const px = s.x + s.rx * off;
+        const pz = s.z + s.rz * off;
+        const pole = new THREE.Mesh(poleG, poleM);
+        pole.position.set(px, s.y, pz);
+        group.add(pole);
+        const head = new THREE.Mesh(new THREE.BoxGeometry(0.38, 1.05, 0.28), boxM);
+        head.position.set(px, s.y + 3.35, pz);
+        group.add(head);
+        const lamp = (y, mat) => {
+          const m = new THREE.Mesh(new THREE.SphereGeometry(0.12, 8, 6), mat);
+          m.position.set(px, s.y + y, pz + s.tz * 0.16);
+          group.add(m);
+        };
+        lamp(3.62, redM);
+        lamp(3.35, yelM);
+        lamp(3.08, grnM);
+      }
+    }
+  }
   const railMat = keep(new THREE.MeshStandardMaterial({
     color: 10134186,
     metalness: 0.72,
