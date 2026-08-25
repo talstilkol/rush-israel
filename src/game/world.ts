@@ -6948,25 +6948,25 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     ];
     for (let i = 0; i < village.length; i++) {
       const p = her(village[i].lat, village[i].lon);
-      const house = new THREE.Mesh(new THREE.BoxGeometry(6.4, 4.8, 7.4), stone);
-      house.position.set(p.x, 6.4, p.z);
+      const house = new THREE.Mesh(new THREE.BoxGeometry(6.4, 4.2, 7.4), stone);
+      house.position.set(p.x + 22, 5.2, p.z + 18);
       add(house);
-      const rf = new THREE.Mesh(new THREE.ConeGeometry(5.4, 2.8, 4), i % 2 ? terracotta : white);
+      const rf = new THREE.Mesh(new THREE.ConeGeometry(5.4, 2.8, 4), snowM);
       rf.rotation.y = Math.PI / 4;
-      rf.position.set(p.x, 10.2, p.z);
+      rf.position.set(p.x + 22, 8.8, p.z + 18);
       add(rf);
-      const snowRf = new THREE.Mesh(new THREE.ConeGeometry(5.6, 1.2, 4), snowM);
-      snowRf.rotation.y = Math.PI / 4;
-      snowRf.position.set(p.x, 11.4, p.z);
-      add(snowRf);
     }
     const lodgeY = def.elevation(0.9);
-    const lodge = new THREE.Mesh(new THREE.BoxGeometry(18, 8, 12), cream);
-    lodge.position.set(peak.x - 18, lodgeY + 4.2, peak.z - 8);
+    const lodge = new THREE.Mesh(new THREE.BoxGeometry(16, 5.4, 10), rock);
+    lodge.position.set(peak.x - 32, lodgeY + 2.8, peak.z - 24);
     add(lodge);
-    const roof = new THREE.Mesh(new THREE.ConeGeometry(12, 6.2, 4), white);
-    roof.position.set(peak.x - 18, lodgeY + 11, peak.z - 8);
+    const roof = new THREE.Mesh(new THREE.ConeGeometry(11, 5.4, 4), snowM);
+    roof.position.set(peak.x - 32, lodgeY + 8.4, peak.z - 24);
     add(roof);
+    const snowField = new THREE.Mesh(new THREE.CircleGeometry(110, 22), snowM);
+    snowField.rotation.x = -Math.PI / 2;
+    snowField.position.set(peak.x + 18, def.elevation(1) + 0.35, peak.z + 28);
+    add(snowField);
     const mid = her(33.294, 35.778);
     const midY = def.elevation(0.55);
     for (let i = 0; i < 12; i++) {
