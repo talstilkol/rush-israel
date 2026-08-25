@@ -31,7 +31,7 @@ function makeMats(night: boolean): Mats {
       envMapIntensity: 1.6,
       clearcoat: 0.8,
       emissive: 0x1a4a66,
-      emissiveIntensity: night ? 0.28 : 0,
+      emissiveIntensity: night ? 0.55 : 0,
     }),
     darkGlass: new THREE.MeshPhysicalMaterial({
       color: 0x1a2830,
@@ -39,7 +39,7 @@ function makeMats(night: boolean): Mats {
       metalness: 0.7,
       envMapIntensity: 1.2,
       emissive: 0xffc070,
-      emissiveIntensity: night ? 0.35 : 0,
+      emissiveIntensity: night ? 0.7 : 0,
     }),
     shutter: new THREE.MeshStandardMaterial({ color: 0x3a5a78, roughness: 0.55 }),
     brick: new THREE.MeshStandardMaterial({ color: 0x8a5a42, roughness: 0.86, envMapIntensity: 0.3 }),

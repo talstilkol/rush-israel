@@ -725,21 +725,21 @@ function aimLight(isNight, sun, azimuth, out) {
 function applyLights(isNight, hemi, dir, fill, ambient, lightAim, flareCol, lensflare) {
   hemi.color.setHex(isNight ? 0x6a88b0 : 0xa8c8e8);
   hemi.groundColor.setHex(isNight ? 0x2a241c : 0x6a5a48);
-  hemi.intensity = isNight ? 0.62 : 0.46;
+  hemi.intensity = isNight ? 0.72 : 0.46;
   dir.color.setHex(isNight ? 0xc8d4e8 : 0xfff0d0);
-  dir.intensity = isNight ? 0.28 : 0.52;
+  dir.intensity = isNight ? 0.42 : 0.52;
   dir.position.copy(lightAim).multiplyScalar(95);
   flareCol.setHex(isNight ? 16760944 : 16767136);
   if (lensflare) lensflare.visible = false;
   fill.color.setHex(isNight ? 0xffc070 : 0xc4d8f0);
-  fill.intensity = isNight ? 0.42 : 0.16;
+  fill.intensity = isNight ? 0.52 : 0.16;
   if (isNight) fill.position.set(8, 22, -10);
   else {
     fill.position.copy(lightAim).multiplyScalar(-50);
     fill.position.y = Math.abs(fill.position.y) + 30;
   }
-  ambient.color.setHex(isNight ? 0x3a4860 : 0xb0c4d8);
-  ambient.intensity = isNight ? 0.36 : 0.18;
+  ambient.color.setHex(isNight ? 0x4a6080 : 0xb0c4d8);
+  ambient.intensity = isNight ? 0.48 : 0.18;
 }
 function windowEmitTexture() {
   const c = document.createElement("canvas");
@@ -750,8 +750,8 @@ function windowEmitTexture() {
   ctx.fillRect(0, 0, 256, 512);
   const cols = 5;
   const rows = 10;
-  for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) if (hash01(x, y, 11) > 0.4) {
-    ctx.fillStyle = hash01(x, y, 13) > 0.72 ? "#8fd4ff" : "#ffd089";
+  for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) if (hash01(x, y, 11) > 0.28) {
+    ctx.fillStyle = hash01(x, y, 13) > 0.62 ? "#9ae0ff" : "#ffd089";
     ctx.fillRect(16 + x * 48, 48 + y * 44, 24, 26);
   }
   const tex = new THREE.CanvasTexture(c);
@@ -2001,7 +2001,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   const haloMat = keep(new THREE.MeshBasicMaterial({
     color: 16760944,
     transparent: true,
-    opacity: isNight ? 0.52 : 0,
+    opacity: isNight ? 0.62 : 0,
     blending: 2,
     depthWrite: false
   }));
@@ -2029,6 +2029,28 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     halos.setMatrixAt(i, _dummy.matrix);
   }
   if (lampCount) group.add(poles, bulbs, halos);
+  const poolGeo = keep(new THREE.CircleGeometry(4.8, 18));
+  poolGeo.rotateX(-Math.PI / 2);
+  const poolMat = keep(new THREE.MeshBasicMaterial({
+    color: 0xffc070,
+    transparent: true,
+    opacity: isNight ? 0.24 : 0,
+    blending: 2,
+    depthWrite: false
+  }));
+  const pools = new THREE.InstancedMesh(poolGeo, poolMat, Math.max(1, lampCount));
+  pools.renderOrder = 2;
+  for (let i = 0; i < lampCount; i++) {
+    const s = built.samples[i * 10 % built.samples.length];
+    const p = lampPos[i];
+    _dummy.position.set(p.x, s.y + 0.055, p.z);
+    _dummy.scale.set(1, 1, 1);
+    _dummy.rotation.set(0, 0, 0);
+    _dummy.updateMatrix();
+    pools.setMatrixAt(i, _dummy.matrix);
+  }
+  pools.visible = isNight && lampCount > 0;
+  if (lampCount) group.add(pools);
   const natureTrack = def.id === "ramon" || def.id === "hermon" || def.theme === "carmel" || def.theme === "desert" || def.theme === "snow" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6";
   const crowdN = natureTrack ? 0 : shadows ? 72 : 28;
   const bodyGeo = keep(new THREE.BoxGeometry(0.42, 0.95, 0.32));
@@ -2140,11 +2162,14 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     group.add(post);
   }
   const nightLights = [];
-  if (shadows) for (let i = 0; i < 3; i++) {
-    const pl = new THREE.PointLight(16758880, isNight ? 90 : 0, 28, 2);
-    pl.position.copy(lampPos[i] ?? new THREE.Vector3());
-    group.add(pl);
-    nightLights.push(pl);
+  if (shadows) for (let i = 0; i < 5; i++) {
+    const src = lampPos[i] ?? new THREE.Vector3();
+    const spot = new THREE.SpotLight(0xffc070, isNight ? 140 : 0, 28, 0.78, 0.7, 1.35);
+    spot.position.copy(src);
+    spot.target.position.set(src.x, src.y - 5.2, src.z);
+    spot.castShadow = false;
+    group.add(spot, spot.target);
+    nightLights.push(spot);
   }
   const puddleGeo = keep(new THREE.CircleGeometry(1.8, 10));
   puddleGeo.rotateX(-Math.PI / 2);
@@ -2375,6 +2400,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     for (let i = 0; i < nightLights.length; i++) {
       const src = lampPos[ranked[i]?.i ?? 0];
       nightLights[i].position.copy(src);
+      nightLights[i].target.position.set(src.x, src.y - 5.2, src.z);
     }
   };
   const groundMat = ground.material;
@@ -2408,7 +2434,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   };
   const _dayHemi = new THREE.Color(9356520);
   const _mornHemi = new THREE.Color(13162734);
-  const _nightHemi = new THREE.Color(4016728);
+  const _nightHemi = new THREE.Color(0x6a88b0);
   const _dayDir = new THREE.Color(16773852);
   const _mornDir = new THREE.Color(16769200);
   const _nightDir = new THREE.Color(12898524);
@@ -2432,12 +2458,12 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     if (n > 0.5) {
       hemi.color.copy(_nightHemi);
       dir.color.copy(_nightDir);
-      hemi.intensity = 0.38;
-      dir.intensity = 0.38;
-      fill.color.setHex(16747066);
-      fill.intensity = 0.22;
-      ambient.color.setHex(2366484);
-      ambient.intensity = 0.22;
+      hemi.intensity = 0.7;
+      dir.intensity = 0.46;
+      fill.color.setHex(16758880);
+      fill.intensity = 0.4;
+      ambient.color.setHex(0x3a5070);
+      ambient.intensity = 0.42;
     } else if (morning) {
       hemi.color.copy(_mornHemi);
       dir.color.copy(_mornDir);
@@ -2482,7 +2508,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     sunMesh.position.copy(lightAim).multiplyScalar(900);
     sunHalo.position.copy(sunMesh.position);
     sunHaloMat.opacity = morning ? 0.38 : 0.26;
-    haloMat.opacity = n > 0.45 ? 0.48 : 0;
+    haloMat.opacity = n > 0.45 ? 0.58 : 0;
     haloMat.needsUpdate = true;
     applyWet();
     groundMat.color.setHex(n > 0.5 ? 3815474 : groundCol);
@@ -2503,14 +2529,17 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     }
     bMat.map = n > 0.48 ? facadeNight : facadeDay;
     bMat.emissive.setHex(n > 0.4 ? 16763e3 : 0);
-    bMat.emissiveIntensity = n * (def.theme === "manhattan" ? 2.6 : 1.35);
+    bMat.emissiveIntensity = n * (def.theme === "manhattan" ? 3.2 : 1.85);
     bMat.metalness = lerp(0.08, 0.16, n);
-    bMat.envMapIntensity = lerp(0.5, 0.95, n);
+    bMat.envMapIntensity = lerp(0.5, 1.15, n);
     bMat.needsUpdate = true;
     bulbMat.emissive.setHex(n > 0.4 ? 16760944 : 2236962);
-    bulbMat.emissiveIntensity = lerp(0.08, 5.4, n);
+    bulbMat.emissiveIntensity = lerp(0.08, 7.2, n);
+    haloMat.opacity = n > 0.4 ? 0.22 + n * 0.42 : 0;
+    pools.visible = n > 0.4 && lampCount > 0;
+    poolMat.opacity = n > 0.4 ? 0.12 + n * 0.16 : 0;
     neonGroup.visible = n > 0.32;
-    for (const pl of nightLights) pl.intensity = n * 90;
+    for (const pl of nightLights) pl.intensity = n * 150;
     for (const pl of neonLights) pl.intensity = n * 42;
     for (const g of landmarkGlows) g.light.intensity = n * g.on;
     for (const e of emitList) e.mat.emissiveIntensity = lerp(e.day, e.night, n);

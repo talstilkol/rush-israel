@@ -236,7 +236,7 @@ export class RaceEngine {
     this.renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = opts.night ? 1.12 : 0.48;
+    this.renderer.toneMappingExposure = opts.night ? 1.22 : 0.48;
 
     const soft = isSoftwareGL(this.renderer);
     this.soft = soft;
@@ -249,8 +249,8 @@ export class RaceEngine {
     const desert = this.trackDef.theme === "desert" || opts.trackId === "ramon";
     const snow = this.trackDef.theme === "snow" || opts.trackId === "hermon";
     const skyDay = desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
-    const skyNight = 0x101828;
-    this.fog = new THREE.FogExp2(opts.night ? skyNight : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc, opts.night ? 0.00032 : desert ? 0.00006 : 0.00005);
+    const skyNight = 0x182436;
+    this.fog = new THREE.FogExp2(opts.night ? skyNight : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc, opts.night ? 0.00016 : desert ? 0.00006 : 0.00005);
     this.scene.fog = this.fog;
     this.scene.background = new THREE.Color(opts.night ? skyNight : skyDay);
 
@@ -785,16 +785,16 @@ export class RaceEngine {
     this.world.setClock(this.clock);
     const n = nightAmt(this.clock);
     const morning = n <= 0.5 && this.clock < 0.38;
-    this.renderer.toneMappingExposure = n > 0.5 ? 1.12 : morning ? 0.55 : 0.48;
+    this.renderer.toneMappingExposure = n > 0.5 ? 1.22 : morning ? 0.55 : 0.48;
     const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
     const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
-    const sky = n > 0.5 ? 0x101828 : morning ? 0x4aa8d8 : desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
-    this.fog.color.setHex(n > 0.5 ? 0x121c2c : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc);
-    this.fog.density = n > 0.5 ? 0.00032 : desert ? 0.00006 : 0.00005;
+    const sky = n > 0.5 ? 0x182436 : morning ? 0x4aa8d8 : desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
+    this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc);
+    this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.00005;
     this.scene.fog = this.fog;
     this.scene.background = new THREE.Color(sky);
     this.applyAltitudeLook();
-    this.scene.environmentIntensity = n > 0.5 ? 0.42 : 0.32;
+    this.scene.environmentIntensity = n > 0.5 ? 0.68 : 0.32;
     this.post.setNight(n > 0.5);
     const lamps = n > 0.42;
     for (const vis of this.visuals) setCarLights(vis, lamps);
@@ -911,12 +911,12 @@ export class RaceEngine {
       } else {
         this.world.setClock(this.clock);
         const morning = n <= 0.5 && this.clock < 0.38;
-        this.renderer.toneMappingExposure = n > 0.5 ? 1.12 : morning ? 0.55 : 0.48;
+        this.renderer.toneMappingExposure = n > 0.5 ? 1.22 : morning ? 0.55 : 0.48;
         const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
         const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
-        const sky = n > 0.5 ? 0x101828 : morning ? 0x4aa8d8 : desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
-        this.fog.color.setHex(n > 0.5 ? 0x121c2c : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc);
-        this.fog.density = n > 0.5 ? 0.00032 : desert ? 0.00006 : 0.00005;
+        const sky = n > 0.5 ? 0x182436 : morning ? 0x4aa8d8 : desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
+        this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc);
+        this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.00005;
         this.scene.background = new THREE.Color(sky);
         this.applyAltitudeLook();
       }
