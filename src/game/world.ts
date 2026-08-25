@@ -6083,25 +6083,25 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       add(barrel);
     }
     const sg = hwy1(31.815, 35.023);
+    const sgNear = nearestIndex(built.samples, sg.x, sg.z, 0);
+    const sgs = built.samples[sgNear.index];
+    const sgyaw = Math.atan2(sgs.tx, sgs.tz);
+    placeTunnel(sg.x, sg.z, sgyaw, 28, built.width * 0.55, 9.2, sgs.y);
     for (const side of [-1, 1]) {
       const wall = new THREE.Mesh(new THREE.BoxGeometry(4.2, 3.6, 64), stone);
-      wall.position.set(sg.x + side * 22, 2.2, sg.z);
+      wall.position.set(sg.x + sgs.rx * side * 22, 2.2 + sgs.y, sg.z + sgs.rz * side * 22);
       add(wall);
       for (let k = 0; k < 8; k++) {
         const mer = new THREE.Mesh(new THREE.BoxGeometry(3.2, 1.4, 4.2), stone);
-        mer.position.set(sg.x + side * 22, 4.6, sg.z - 28 + k * 8);
+        mer.position.set(sg.x + sgs.rx * side * 22, 4.6 + sgs.y, sg.z + sgs.rz * side * 22 + sgs.tz * (-28 + k * 8));
         add(mer);
       }
     }
-    const over = new THREE.Mesh(new THREE.BoxGeometry(36, 1.4, 10), stone);
-    over.position.set(sg.x, 8.4, sg.z);
+    const over = new THREE.Mesh(new THREE.BoxGeometry(built.width + 10, 1.4, 12), stone);
+    over.position.set(sg.x, sgs.y + 9.6, sg.z);
+    over.rotation.y = sgyaw;
     add(over);
-    for (const side of [-1, 1]) {
-      const pier = new THREE.Mesh(new THREE.BoxGeometry(3.2, 8.2, 3.2), stone);
-      pier.position.set(sg.x + side * 20, 4.2, sg.z);
-      add(pier);
-    }
-    const cs = hwy1(31.8106, 35.0368);
+    const cs = hwy1(31.8094, 35.0388);
     const keepB = new THREE.Mesh(new THREE.BoxGeometry(18, 14, 16), stone);
     keepB.position.set(cs.x, 18, cs.z);
     add(keepB);
@@ -6118,11 +6118,10 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const hill = new THREE.Mesh(new THREE.ConeGeometry(18, 12, 7), olive);
     hill.position.set(cs.x, 4, cs.z);
     add(hill);
-    hit(lt.x, lt.z, 14);
-    hit(lt.x - 10, lt.z - 2, 6);
-    hit(yad.x, yad.z, 12);
-    hit(sg.x, sg.z, 6);
-    hit(cs.x, cs.z, 16);
+    hit(lt.x, lt.z, 12);
+    hit(lt.x - 10, lt.z - 2, 5);
+    hit(yad.x, yad.z, 10);
+    hit(cs.x, cs.z, 12);
   }
   if (def.id === "herzliya") {
     const mar = hzl(32.1635, 34.7965);
