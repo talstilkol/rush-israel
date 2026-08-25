@@ -141,6 +141,8 @@ export type CarDef = {
   drag: number;
   mass: number;
   body: "gt" | "hatch" | "rally" | "super" | "muscle" | "ev";
+  /** Claimed 0–100 km/h in seconds. Drive pull is scaled to this. */
+  zeroTo100: number;
   nitroDrain?: number;
   nitroStart?: number;
   kit?: "police" | "taxi";

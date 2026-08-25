@@ -16,6 +16,7 @@ export const CARS: CarDef[] = [
     drag: 0.55,
     mass: 1.12,
     body: "gt",
+    zeroTo100: 8.4,
   },
   {
     id: "carmel",
@@ -32,6 +33,7 @@ export const CARS: CarDef[] = [
     drag: 0.58,
     mass: 0.96,
     body: "hatch",
+    zeroTo100: 6.6,
   },
   {
     id: "kfir",
@@ -49,6 +51,7 @@ export const CARS: CarDef[] = [
     mass: 1.34,
     body: "muscle",
     nitroStart: 0.28,
+    zeroTo100: 4.9,
   },
   {
     id: "negev",
@@ -65,6 +68,7 @@ export const CARS: CarDef[] = [
     drag: 0.5,
     mass: 1.24,
     body: "rally",
+    zeroTo100: 5.8,
   },
   {
     id: "yam",
@@ -81,6 +85,7 @@ export const CARS: CarDef[] = [
     drag: 0.4,
     mass: 0.94,
     body: "super",
+    zeroTo100: 3.5,
   },
 ];
 
