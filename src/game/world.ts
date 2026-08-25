@@ -5572,65 +5572,68 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     }
   }
   if (def.id === "caesarea") {
-    const aq = cae(32.5075, 34.8998);
-    const archGeo = new THREE.BoxGeometry(2.4, 9.2, 1.6);
-    const capGeo = new THREE.BoxGeometry(3.4, 1.15, 2.4);
-    const spanGeo = new THREE.BoxGeometry(2.6, 1.3, 8.2);
+    const aq = cae(32.5078, 34.8976);
+    const sandA = new THREE.MeshStandardMaterial({ color: 0xe2d2b0, roughness: 0.96 });
+    bag.push(sandA);
+    const beach = new THREE.Mesh(new THREE.PlaneGeometry(80, 160), sandA);
+    beach.rotation.x = -Math.PI / 2;
+    beach.position.set(aq.x - 8, 0.04, aq.z);
+    add(beach);
+    const archGeo = new THREE.BoxGeometry(3.2, 10.4, 2.2);
+    const capGeo = new THREE.BoxGeometry(4.2, 1.2, 3.2);
+    const spanGeo = new THREE.BoxGeometry(3.4, 1.4, 7.2);
     for (let tier = 0; tier < 2; tier++) {
-      const y0 = tier * 9.4;
-      for (let i = 0; i < 16; i++) {
-        const z = aq.z - 48 + i * 8;
+      const y0 = tier * 10.6;
+      for (let i = 0; i < 22; i++) {
+        const z = aq.z - 70 + i * 7.2;
         const pierA = new THREE.Mesh(archGeo, stone);
-        pierA.position.set(aq.x, 4.5 + y0, z);
+        pierA.position.set(aq.x, 5.2 + y0, z);
         add(pierA);
         const cap = new THREE.Mesh(capGeo, stone);
-        cap.position.set(aq.x, 9.2 + y0, z);
+        cap.position.set(aq.x, 10.6 + y0, z);
         add(cap);
-        if (i < 15) {
+        if (i < 21) {
           const span = new THREE.Mesh(spanGeo, stone);
-          span.position.set(aq.x, 8 + y0, z + 4);
+          span.position.set(aq.x, 9.2 + y0, z + 3.6);
           add(span);
+          const hole = new THREE.Mesh(new THREE.CylinderGeometry(2.1, 2.1, 3.6, 12, 1, false, 0, Math.PI), darkArch);
+          hole.rotation.z = Math.PI / 2;
+          hole.position.set(aq.x, 4.4 + y0, z + 3.6);
+          add(hole);
         }
       }
     }
-    const hp = cae(32.4995, 34.8915);
-    const hippo = new THREE.Mesh(new THREE.TorusGeometry(28, 1.35, 8, 36), stone);
-    hippo.scale.set(1.6, 1, 1);
+    const channel = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.7, 154), stone);
+    channel.position.set(aq.x, 21.6, aq.z);
+    add(channel);
+    const hp = cae(32.4988, 34.8896);
+    const hippo = new THREE.Mesh(new THREE.TorusGeometry(32, 1.5, 8, 40), stone);
+    hippo.scale.set(1.55, 1, 1);
     hippo.rotation.x = Math.PI / 2;
     hippo.position.set(hp.x, 0.95, hp.z);
     add(hippo);
-    const spine = new THREE.Mesh(new THREE.BoxGeometry(4, 1.4, 36), stone);
-    spine.position.set(hp.x, 0.8, hp.z);
+    const spine = new THREE.Mesh(new THREE.BoxGeometry(4.4, 1.5, 42), stone);
+    spine.position.set(hp.x, 0.85, hp.z);
     add(spine);
-    const th = cae(32.497, 34.8912);
-    const theater = new THREE.Mesh(new THREE.CylinderGeometry(14, 22, 9, 20, 1, true, 0, Math.PI * 1.2), stone);
-    theater.position.set(th.x, 5.2, th.z);
+    const th = cae(32.4962, 34.8894);
+    const theater = new THREE.Mesh(new THREE.CylinderGeometry(15, 24, 10, 22, 1, true, 0, Math.PI * 1.2), stone);
+    theater.position.set(th.x, 5.4, th.z);
     theater.rotation.y = 0.6;
     add(theater);
-    for (let r = 0; r < 6; r++) {
-      const seat = new THREE.Mesh(new THREE.TorusGeometry(9 + r * 2.2, 0.5, 6, 20, Math.PI * 1.15), stone);
+    for (let r = 0; r < 7; r++) {
+      const seat = new THREE.Mesh(new THREE.TorusGeometry(10 + r * 2.15, 0.48, 6, 22, Math.PI * 1.15), stone);
       seat.rotation.x = Math.PI / 2;
       seat.rotation.z = 0.6;
-      seat.position.set(th.x, 1.1 + r * 1.25, th.z);
+      seat.position.set(th.x, 1.15 + r * 1.2, th.z);
       add(seat);
     }
-    const stage = new THREE.Mesh(new THREE.BoxGeometry(22, 1.2, 6), stone);
+    const stage = new THREE.Mesh(new THREE.BoxGeometry(24, 1.2, 6.4), stone);
     stage.position.set(th.x + 4, 0.7, th.z + 8);
     add(stage);
-    const darkArch2 = new THREE.MeshStandardMaterial({
-      color: 1840656,
-      roughness: 0.95
-    });
-    bag.push(darkArch2);
-    for (let i = 0; i < 15; i++) {
-      const hole = new THREE.Mesh(new THREE.BoxGeometry(1.6, 4.6, 5.8), darkArch2);
-      hole.position.set(aq.x, 3.8, aq.z - 44 + i * 8);
-      add(hole);
-    }
-    hit(aq.x, aq.z, 8);
-    hit(hp.x, hp.z, 18);
-    hit(th.x, th.z, 16);
-    const cit = cae(32.5012, 34.8918);
+    hit(aq.x, aq.z, 6);
+    hit(hp.x, hp.z, 16);
+    hit(th.x, th.z, 14);
+    const cit = cae(32.5014, 34.8902);
     const citKeep = new THREE.Mesh(new THREE.BoxGeometry(18, 14, 18), stone);
     citKeep.position.set(cit.x, 7.2, cit.z);
     add(citKeep);
