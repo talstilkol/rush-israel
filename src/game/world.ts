@@ -3978,23 +3978,23 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     for (const hg of [
       {
         lat: 32.0958,
-        lon: 34.7724
+        lon: 34.7712
       },
       {
         lat: 32.0964,
-        lon: 34.7725
+        lon: 34.7713
       },
       {
         lat: 32.097,
-        lon: 34.7726
+        lon: 34.7714
       },
       {
         lat: 32.0976,
-        lon: 34.7727
+        lon: 34.7715
       },
       {
         lat: 32.0982,
-        lon: 34.7728
+        lon: 34.7716
       }
     ]) {
       const p = tlv(hg.lat, hg.lon);
@@ -4016,9 +4016,9 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     hook.position.set(hp.x + 2, 18, hp.z + 30);
     add(hook);
     const rd = tlv(32.1035, 34.7788);
-    const aRd = tlv(32.1014, 34.7778);
-    const bRd = tlv(32.1044, 34.78);
-    const rdYaw = Math.atan2(bRd.x - aRd.x, bRd.z - aRd.z);
+    const rdNear = nearestIndex(built.samples, rd.x, rd.z, 0);
+    const rs = built.samples[rdNear.index];
+    const rdYaw = Math.atan2(rs.tx, rs.tz);
     const ochre = new THREE.MeshStandardMaterial({
       color: 13213808,
       roughness: 0.8,
@@ -4042,9 +4042,9 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       roughness: 0.48
     });
     bag.push(ochre, ochreDark, conc, redBand, whiteBand);
-    placeTunnel(rd.x, rd.z, rdYaw, 64, 16, 7.8);
+    placeTunnel(rs.x, rs.z, rdYaw, 72, built.width * 0.58, 8.2, rs.y);
     const hall = new THREE.Mesh(new THREE.BoxGeometry(34, 11, 42), ochre);
-    hall.position.set(rd.x, 13.3, rd.z);
+    hall.position.set(rs.x, rs.y + 13.4, rs.z);
     hall.rotation.y = rdYaw;
     add(hall);
     const rx = Math.cos(rdYaw);
@@ -4053,13 +4053,13 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const fz = Math.cos(rdYaw);
     for (const lr of [-1, 1]) {
       const clad = new THREE.Mesh(new THREE.BoxGeometry(1.2, 8.2, 58), ochre);
-      clad.position.set(rd.x + rx * 17.4 * lr, 4.1, rd.z + rz * 17.4 * lr);
+      clad.position.set(rs.x + rx * 17.4 * lr, rs.y + 4.1, rs.z + rz * 17.4 * lr);
       clad.rotation.y = rdYaw;
       add(clad);
     }
     for (const side of [-1, 1]) {
-      const ex2 = rd.x + fx * 32 * side;
-      const ez = rd.z + fz * 32 * side;
+      const ex2 = rs.x + fx * 32 * side;
+      const ez = rs.z + fz * 32 * side;
       for (const lr of [-1, 1]) {
         const pier = new THREE.Mesh(new THREE.BoxGeometry(5.2, 8.6, 2.6), ochreDark);
         pier.position.set(ex2 + rx * 18.6 * lr, 4.3, ez + rz * 18.6 * lr);
@@ -4077,24 +4077,24 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     }
     for (const side of [-1, 1]) for (let c = 0; c < 8; c++) {
       const win = new THREE.Mesh(new THREE.BoxGeometry(2.2, 3.4, 0.35), darkGlass);
-      win.position.set(rd.x + rx * side * 17.2 + fx * (c * 4.4 - 14), 14.6, rd.z + rz * side * 17.2 + fz * (c * 4.4 - 14));
+      win.position.set(rs.x + rx * side * 17.2 + fx * (c * 4.4 - 14), rs.y + 14.6, rs.z + rz * side * 17.2 + fz * (c * 4.4 - 14));
       win.rotation.y = rdYaw;
       add(win);
     }
     const tower = new THREE.Mesh(new THREE.BoxGeometry(12, 20, 14), ochreDark);
-    tower.position.set(rd.x - rx * 28, 17.8, rd.z - rz * 28);
+    tower.position.set(rs.x - rx * 28, rs.y + 17.8, rs.z - rz * 28);
     tower.rotation.y = rdYaw;
     add(tower);
     const wingL = new THREE.Mesh(new THREE.BoxGeometry(14, 9, 16), ochre);
-    wingL.position.set(rd.x - rx * 30, 12.4, rd.z - rz * 30);
+    wingL.position.set(rs.x - rx * 30, rs.y + 12.4, rs.z - rz * 30);
     wingL.rotation.y = rdYaw;
     add(wingL);
     const wingR = new THREE.Mesh(new THREE.BoxGeometry(14, 9, 16), ochre);
-    wingR.position.set(rd.x + rx * 30, 12.4, rd.z + rz * 30);
+    wingR.position.set(rs.x + rx * 30, rs.y + 12.4, rs.z + rz * 30);
     wingR.rotation.y = rdYaw;
     add(wingR);
     const cornice = new THREE.Mesh(new THREE.BoxGeometry(36, 0.7, 44), cream);
-    cornice.position.set(rd.x, 18.9, rd.z);
+    cornice.position.set(rs.x, rs.y + 18.9, rs.z);
     cornice.rotation.y = rdYaw;
     add(cornice);
     const chimP = tlv(32.1046, 34.7766);
@@ -4153,8 +4153,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     add(expoRoof);
     glowAt(chimP.x, 98, chimP.z, 16724016, 48, 40);
     glowAt(hp.x, 10, hp.z, 16760944, 24, 22);
-    hit(rd.x - rx * 30, rd.z - rz * 30, 8);
-    hit(rd.x + rx * 30, rd.z + rz * 30, 8);
+    hit(rs.x - rx * 30, rs.z - rz * 30, 8);
+    hit(rs.x + rx * 30, rs.z + rz * 30, 8);
     hit(chimP.x, chimP.z, 5);
     hit(chim2P.x, chim2P.z, 4);
     hit(ex.x, ex.z, 14);
