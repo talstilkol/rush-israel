@@ -473,43 +473,81 @@ function facadeTexture(theme, night) {
   c.width = 256;
   c.height = 512;
   const ctx = c.getContext("2d");
-  ctx.fillStyle = theme === "stone" ? "#cbb79a" : theme === "desert" ? "#d8b48a" : theme === "carmel" ? "#d9d2c6" : theme === "jaffa" ? "#d2b48c" : theme === "port" ? "#b8b0a4" : theme === "highway" ? "#d8e0e8" : theme === "manhattan" ? "#3a4652" : theme === "park" ? "#e6ddd0" : theme === "snow" ? "#e8eef4" : "#efe8dc";
+  const stone = theme === "stone";
+  const jaffa = theme === "jaffa";
+  const hwy = theme === "highway" || theme === "manhattan";
+  const bau = theme === "bauhaus" || !stone && !jaffa && !hwy && theme !== "desert" && theme !== "port";
+  ctx.fillStyle = stone ? "#c4b090" : jaffa ? "#c4a070" : hwy ? "#1a3040" : theme === "desert" ? "#d4b48c" : theme === "port" ? "#b0a898" : "#e8e0d4";
   ctx.fillRect(0, 0, 256, 512);
-  ctx.fillStyle = "rgba(0,0,0,0.14)";
-  ctx.fillRect(0, 430, 256, 82);
-  ctx.fillStyle = theme === "stone" || theme === "jaffa" ? "#b79f7e" : theme === "highway" ? "#c8d0d8" : theme === "manhattan" ? "#2a343c" : "#e2dacb";
-  ctx.fillRect(0, 0, 256, 28);
-  const cols = theme === "manhattan" ? 6 : 5;
-  const rows = theme === "manhattan" ? 14 : 10;
-  for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
-    const lit = night && hash01(x, y, theme.length) > (theme === "manhattan" ? 0.32 : 0.42);
-    const wx = 12 + x * (theme === "manhattan" ? 40 : 48);
-    const wy = 40 + y * (theme === "manhattan" ? 32 : 44);
-    const ww = theme === "manhattan" ? 28 : 24;
-    const wh = theme === "manhattan" ? 22 : 26;
-    ctx.fillStyle = "rgba(0,0,0,0.28)";
-    ctx.fillRect(wx - 2, wy - 2, ww + 4, wh + 4);
-    if (lit) {
-      const glow = ctx.createLinearGradient(wx, wy, wx, wy + wh);
-      if (theme === "manhattan" && hash01(x, y, 9) > 0.45) {
-        glow.addColorStop(0, "#d8e8ff");
-        glow.addColorStop(1, "#7aa0c8");
-      } else {
-        glow.addColorStop(0, "#ffe7b0");
-        glow.addColorStop(1, "#e8b45a");
+  if (stone) {
+    for (let y = 0; y < 512; y += 28) {
+      ctx.fillStyle = y % 56 === 0 ? "#b8a07c" : "#d0be9c";
+      ctx.fillRect(0, y, 256, 26);
+      ctx.fillStyle = "#8a7860";
+      ctx.fillRect(0, y + 26, 256, 2);
+      for (let x = (y / 28 % 2) * 40; x < 256; x += 80) {
+        ctx.fillStyle = "#6a5844";
+        ctx.fillRect(x + 18, y + 6, 18, 16);
+        if (night && hash01(x, y) > 0.62) {
+          ctx.fillStyle = "#ffe2a0";
+          ctx.fillRect(x + 18, y + 6, 18, 16);
+        }
       }
-      ctx.fillStyle = glow;
-    } else ctx.fillStyle = theme === "stone" || theme === "jaffa" ? "#6a5a44" : theme === "port" ? "#4a5048" : theme === "manhattan" ? "#1c2830" : "#5e6c78";
-    ctx.fillRect(wx, wy, ww, wh);
-    if (theme === "bauhaus") {
-      ctx.fillStyle = "#d7d0c4";
-      ctx.fillRect(wx - 3, wy + 26, 30, 5);
     }
-    if (theme === "highway" || theme === "manhattan") {
-      ctx.fillStyle = "rgba(180,210,230,0.45)";
-      ctx.fillRect(wx, wy, ww, wh);
+  } else if (jaffa) {
+    for (let y = 20; y < 490; y += 72) {
+      for (let x = 8; x < 250; x += 64) {
+        ctx.fillStyle = hash01(x, y) > 0.5 ? "#d2b080" : "#b89060";
+        ctx.fillRect(x, y, 52, 58);
+        ctx.fillStyle = "#2a2018";
+        ctx.beginPath();
+        ctx.arc(x + 26, y + 36, 12, Math.PI, 0);
+        ctx.lineTo(x + 38, y + 52);
+        ctx.lineTo(x + 14, y + 52);
+        ctx.fill();
+        if (night && hash01(x, y, 2) > 0.55) {
+          ctx.fillStyle = "#ffd080";
+          ctx.beginPath();
+          ctx.arc(x + 26, y + 36, 10, Math.PI, 0);
+          ctx.fill();
+        }
+      }
     }
+  } else if (hwy) {
+    ctx.fillStyle = "#0e2430";
+    ctx.fillRect(0, 0, 256, 512);
+    for (let y = 0; y < 512; y += 36) {
+      ctx.fillStyle = "#6a90a0";
+      ctx.fillRect(0, y, 256, 2);
+      for (let x = 4; x < 252; x += 32) {
+        const lit = night && hash01(x, y, 3) > 0.4;
+        ctx.fillStyle = lit ? "#c8e8f8" : "#1a4050";
+        ctx.fillRect(x + 4, y + 6, 22, 26);
+      }
+    }
+    for (let x = 0; x < 256; x += 32) {
+      ctx.fillStyle = "#8ab0c0";
+      ctx.fillRect(x, 0, 2, 512);
+    }
+  } else {
+    ctx.fillStyle = "#efe8dc";
+    ctx.fillRect(0, 0, 256, 512);
+    for (let y = 12; y < 500; y += 56) {
+      ctx.fillStyle = "#d8d0c4";
+      ctx.fillRect(0, y + 40, 256, 8);
+      ctx.fillStyle = night ? "#3a444c" : "#5a6870";
+      ctx.fillRect(8, y + 10, 240, 22);
+      for (let x = 12; x < 240; x += 28) {
+        const lit = night && hash01(x, y, 4) > 0.48;
+        ctx.fillStyle = lit ? "#ffe8b0" : bau ? "#9aa8b0" : "#70808a";
+        ctx.fillRect(x, y + 12, 18, 18);
+      }
+    }
+    ctx.fillStyle = "#c8c0b4";
+    ctx.fillRect(0, 0, 256, 22);
   }
+  ctx.fillStyle = "rgba(0,0,0,0.16)";
+  ctx.fillRect(0, 480, 256, 32);
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
