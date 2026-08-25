@@ -11,6 +11,7 @@ export type CarVisual = {
   headGlows: THREE.Mesh[];
   bodyMat: THREE.MeshPhysicalMaterial;
   spots: THREE.SpotLight[];
+  headPool?: THREE.Mesh;
   baseColor: THREE.Color;
   bumper?: THREE.Mesh;
   dents: THREE.Mesh[];
@@ -27,13 +28,13 @@ function flakeMap() {
   const c = document.createElement("canvas");
   c.width = c.height = size;
   const ctx = c.getContext("2d")!;
-  ctx.fillStyle = "#6a6a6a";
+  ctx.fillStyle = "#7a7a7a";
   ctx.fillRect(0, 0, size, size);
-  for (let i = 0; i < 2800; i++) {
+  for (let i = 0; i < 4200; i++) {
     const x = hash01(i, 1) * size;
     const y = hash01(i, 2) * size;
-    const s = hash01(i, 3) * 1.4 + 0.3;
-    ctx.fillStyle = hash01(i, 4) > 0.55 ? "#e8e4dc" : hash01(i, 5) > 0.5 ? "#c8d4e8" : "#d4c4a0";
+    const s = hash01(i, 3) * 1.6 + 0.25;
+    ctx.fillStyle = hash01(i, 4) > 0.5 ? "#f4f0e8" : hash01(i, 5) > 0.5 ? "#dce6f4" : "#e8d8b0";
     ctx.fillRect(x, y, s, s);
   }
   const tex = new THREE.CanvasTexture(c);
@@ -127,15 +128,15 @@ function paint(color: number): THREE.MeshPhysicalMaterial {
   return new THREE.MeshPhysicalMaterial({
     color,
     metalness: 0.82,
-    roughness: 0.12,
+    roughness: 0.1,
     roughnessMap: flake ?? undefined,
     bumpMap: flake ?? undefined,
-    bumpScale: 0.028,
+    bumpScale: 0.045,
     clearcoat: 1,
-    clearcoatRoughness: 0.06,
+    clearcoatRoughness: 0.045,
     clearcoatNormalMap: flake ?? undefined,
-    clearcoatNormalScale: new THREE.Vector2(0.18, 0.18),
-    envMapIntensity: 2.25,
+    clearcoatNormalScale: new THREE.Vector2(0.28, 0.28),
+    envMapIntensity: 2.6,
     sheen: 0.28,
     sheenColor: c.clone().multiplyScalar(0.45),
     sheenRoughness: 0.28,
@@ -482,17 +483,29 @@ export function createCarVisual(
   }
 
   const spots: THREE.SpotLight[] = [];
+  let headPool: THREE.Mesh | undefined;
   if (lit) {
     const cookie = beamCookie();
     for (const sx of [-hx, hx]) {
-      const spot = new THREE.SpotLight(0xfff1c8, 28, 46, 0.46, 0.55, 1.35);
+      const spot = new THREE.SpotLight(0xfff1c8, 36, 38, 0.34, 0.72, 1.15);
       spot.position.set(sx, headY, headZ);
-      spot.target.position.set(sx * 0.08, -1.15, 22);
+      spot.target.position.set(sx * 0.12, -0.42, 14);
       if (cookie) spot.map = cookie;
       spot.castShadow = false;
       group.add(spot, spot.target);
       spots.push(spot);
     }
+    const poolMat = new THREE.MeshBasicMaterial({
+      color: 0xffe8b8,
+      transparent: true,
+      opacity: 0,
+      depthWrite: false,
+    });
+    headPool = new THREE.Mesh(new THREE.CircleGeometry(3.6, 18), poolMat);
+    headPool.rotation.x = -Math.PI / 2;
+    headPool.position.set(0, 0.05, 9.2);
+    headPool.renderOrder = 2;
+    group.add(headPool);
     const dash = put(new THREE.BoxGeometry(L.W * 0.7, 0.2, 0.5), dark, 0, cabinY - 0.12, L.cabinZ + L.cabinL * 0.28);
     dash.castShadow = false;
     const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.16, 0.03, 8, 16), dark);
@@ -555,6 +568,7 @@ export function createCarVisual(
     headGlows: [gL, gR],
     bodyMat,
     spots,
+    headPool,
     baseColor: new THREE.Color(color),
     bumper,
     dents,
@@ -582,14 +596,18 @@ export function applyDamage(vis: CarVisual, dmg: number, dirt = 0) {
 }
 
 export function setCarLights(vis: CarVisual, night: boolean) {
-  for (const s of vis.spots) s.intensity = night ? 240 : 36;
-  vis.bodyMat.envMapIntensity = night ? 2.35 : 2.15;
+  for (const s of vis.spots) s.intensity = night ? 260 : 28;
+  vis.bodyMat.envMapIntensity = night ? 2.55 : 2.6;
   for (const h of vis.headLights) {
     (h.material as THREE.MeshPhysicalMaterial).emissiveIntensity = night ? 5.2 : 0.85;
   }
   for (const g of vis.headGlows) {
     (g.material as THREE.MeshBasicMaterial).opacity = night ? 0.78 : 0.16;
     g.visible = true;
+  }
+  if (vis.headPool) {
+    (vis.headPool.material as THREE.MeshBasicMaterial).opacity = night ? 0.28 : 0;
+    vis.headPool.visible = night;
   }
 }
 
