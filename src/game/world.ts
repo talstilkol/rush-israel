@@ -5680,7 +5680,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     });
     const peach = new THREE.MeshStandardMaterial({ color: 15255720, roughness: 0.7 });
     bag.push(salt, peach);
-    const herods = dsea(31.1992, 35.3658);
+    const herods = dsea(31.1992, 35.3682);
     const herBase = new THREE.Mesh(new THREE.BoxGeometry(22, 8, 14), cream);
     herBase.position.set(herods.x, 4, herods.z);
     add(herBase);
@@ -5696,20 +5696,20 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const herTower = new THREE.Mesh(new THREE.BoxGeometry(12, 18, 10), cream);
     herTower.position.set(herods.x, 17, herods.z);
     add(herTower);
-    const dan = dsea(31.2016, 35.3664);
+    const dan = dsea(31.2016, 35.3688);
     const danM = new THREE.Mesh(new THREE.BoxGeometry(16, 28, 11), darkGlass);
     danM.position.set(dan.x, 14, dan.z);
     add(danM);
     const danWing = new THREE.Mesh(new THREE.BoxGeometry(22, 8, 14), cream);
     danWing.position.set(dan.x, 4, dan.z);
     add(danWing);
-    const iso = dsea(31.2034, 35.367);
+    const iso = dsea(31.2034, 35.3692);
     for (let i = 0; i < 4; i++) {
       const step = new THREE.Mesh(new THREE.BoxGeometry(20 - i * 3.2, 6, 12 - i * 1.4), white);
       step.position.set(iso.x, 3.2 + i * 6.2, iso.z);
       add(step);
     }
-    const lot = dsea(31.1974, 35.3652);
+    const lot = dsea(31.1974, 35.3678);
     const lotM = new THREE.Mesh(new THREE.BoxGeometry(26, 12, 12), peach);
     lotM.position.set(lot.x, 6, lot.z);
     add(lotM);
@@ -5721,18 +5721,34 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const pool = new THREE.Mesh(new THREE.BoxGeometry(18, 0.28, 8), cyan);
     pool.position.set(lot.x, 0.2, lot.z + 12);
     add(pool);
-    const leoD = dsea(31.2052, 35.3676);
+    for (let i = 0; i < 6; i++) {
+      const ux = lot.x - 8 + i * 3.2;
+      const uz = lot.z + 18;
+      const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.08, 2.4, 5), wood);
+      pole.position.set(ux, 1.2, uz);
+      add(pole);
+      const umb = new THREE.Mesh(new THREE.ConeGeometry(1.6, 0.35, 8), i % 2 ? white : peach);
+      umb.position.set(ux, 2.4, uz);
+      add(umb);
+    }
+    const leoD = dsea(31.2052, 35.3696);
     const leoM = new THREE.Mesh(new THREE.BoxGeometry(14, 20, 10), cream);
     leoM.position.set(leoD.x, 10, leoD.z);
     add(leoM);
     const leoBand = new THREE.Mesh(new THREE.BoxGeometry(15, 2.2, 11), terracotta);
     leoBand.position.set(leoD.x, 16, leoD.z);
     add(leoBand);
-    const eb = dsea(31.201, 35.362);
+    const eb = dsea(31.201, 35.372);
     for (let i = 0; i < 8; i++) {
       const terrace = new THREE.Mesh(new THREE.CylinderGeometry(6 + i * 3.2, 8 + i * 3.2, 0.55, 16), salt);
-      terrace.position.set(eb.x + 48, 0.12 + i * 0.08, eb.z + 20);
+      terrace.position.set(eb.x, 0.12 + i * 0.08, eb.z + i * 4);
       add(terrace);
+    }
+    for (let i = 0; i < 10; i++) {
+      const pan = new THREE.Mesh(new THREE.BoxGeometry(22 + i % 3 * 6, 0.12, 14), salt);
+      const p = dsea(31.186 + i * 0.004, 35.3705);
+      pan.position.set(p.x, 0.08, p.z);
+      add(pan);
     }
     const moab = new THREE.MeshStandardMaterial({ color: 11565650, roughness: 0.95, flatShading: true });
     bag.push(moab);
