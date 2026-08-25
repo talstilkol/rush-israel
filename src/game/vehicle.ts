@@ -24,6 +24,7 @@ export type CarSnap = {
   yaw: number;
   vx: number;
   vz: number;
+  vy?: number;
   speed: number;
   progress: number;
   sampleIndex: number;
@@ -66,6 +67,7 @@ export class ArcadeCar {
   yaw = 0;
   vx = 0;
   vz = 0;
+  vy = 0;
   speed = 0;
   drifting = false;
   driftCharge = 0;
@@ -134,6 +136,7 @@ export class ArcadeCar {
     this.yaw = Math.atan2(-s.tx, -s.tz);
     this.vx = 0;
     this.vz = 0;
+    this.vy = 0;
     this.speed = 0;
     this.progress = t;
     this.sampleIndex = Math.floor(t * track.samples.length) % track.samples.length;
@@ -419,9 +422,20 @@ export class ArcadeCar {
     const near = nearestIndex(track.samples, this.x, this.z, this.sampleIndex, track.closed);
     this.sampleIndex = near.index;
     const s = track.samples[near.index];
-    this.y = s.y;
     const rp = probeRamp(this.x, this.z, ramps);
-    if (rp) this.y = rp.y;
+    const groundY = rp ? rp.y : s.y;
+    const err = groundY - this.y;
+    this.vy += err * 52 * dt;
+    this.vy *= Math.exp(-16 * dt);
+    this.y += this.vy * dt;
+    if (this.y < groundY - 0.12) {
+      this.y = groundY - 0.12;
+      this.vy = Math.max(0, this.vy);
+    }
+    if (this.y > groundY + 0.5) {
+      this.y = groundY + 0.5;
+      this.vy = Math.min(0, this.vy);
+    }
     const dist = near.dist;
     const half = track.width / 2;
     const alley = nearestStreet(this.x, this.z, streets);
@@ -576,6 +590,7 @@ export class ArcadeCar {
     this.yaw = Math.atan2(-s.tx, -s.tz);
     this.vx = 0;
     this.vz = 0;
+    this.vy = 0;
     this.speed = 0;
     this.offTrackT = 0;
     this.progress = s.t;
@@ -589,6 +604,7 @@ export class ArcadeCar {
       yaw: this.yaw,
       vx: this.vx,
       vz: this.vz,
+      vy: this.vy,
       speed: this.speed,
       progress: this.progress,
       sampleIndex: this.sampleIndex,
@@ -618,6 +634,7 @@ export class ArcadeCar {
     this.yaw = s.yaw;
     this.vx = s.vx;
     this.vz = s.vz;
+    this.vy = s.vy ?? 0;
     this.speed = s.speed;
     this.progress = s.progress;
     this.sampleIndex = s.sampleIndex;

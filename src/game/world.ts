@@ -1411,6 +1411,8 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   group.add(new THREE.Mesh(keep(buildShoulder(built, 1)), shoulderMat));
   group.add(new THREE.Mesh(keep(buildShoulder(built, -1)), shoulderMat));
   {
+    const skipSigns = def.theme === "desert" || def.theme === "snow" || def.id === "ramon" || def.id === "hermon" || def.id === "masada" || def.id === "deadsea";
+    if (!skipSigns) {
     const highway = def.theme === "highway" || def.id === "ayalon" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6";
     const kinds = highway ? ["speed90", "speed80", "none"] : ["stop", "speed50", "yield"];
     const maps = {};
@@ -1466,6 +1468,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
         lamp(3.35, yelM);
         lamp(3.08, grnM);
       }
+    }
     }
   }
   const railMat = keep(new THREE.MeshStandardMaterial({
