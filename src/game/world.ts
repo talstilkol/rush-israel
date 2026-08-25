@@ -3319,9 +3319,9 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     add(bridge2);
     glowAt(cx, rH + 6, cz, 8308968, 62 * s, 54 * s);
     glowAt(triX, tH + 6, triZ, 8308968, 52 * s, 48 * s);
-    hit(cx, cz, 11 * s);
-    hit(triX, triZ, 11 * s);
-    hit(sqX, sqZ, 10 * s);
+    hit(cx, cz, 9 * s, 8.8 * s, 8.8 * s);
+    hit(triX, triZ, 9 * s, 8.2 * s, 8.2 * s);
+    hit(sqX, sqZ, 8 * s, 7.6 * s, 7.6 * s);
   };
   const placeCityGate = (s) => {
     const p = tlv(32.0832, 34.8027);
@@ -5304,7 +5304,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   }
   if (def.id === "ayalon") {
     tlv(32.0744, 34.7932);
-    placeAzrieli(1.05);
+    placeAzrieli(1.42);
     placeToHa(1, 32.0695, 34.7894);
     placeCityGate(1);
     const glassHi = (lat, lon, w, d, h, mat, rot = 0) => {
