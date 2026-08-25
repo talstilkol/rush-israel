@@ -43,6 +43,54 @@ function rumblePad(mag: number) {
   }
 }
 
+function paintSky(night: boolean, desert: boolean, snow: boolean) {
+  const w = 1024;
+  const h = 512;
+  const c = document.createElement("canvas");
+  c.width = w;
+  c.height = h;
+  const g = c.getContext("2d")!;
+  const zen = night ? "#0a1424" : desert ? "#4aa8dc" : snow ? "#8ec4e4" : "#2a86d0";
+  const hor = night ? "#1c2c40" : desert ? "#e0d0b0" : snow ? "#d8e8f4" : "#c8dcec";
+  const grd = g.createLinearGradient(0, 0, 0, h);
+  grd.addColorStop(0, zen);
+  grd.addColorStop(0.42, night ? "#152030" : "#5aa8d8");
+  grd.addColorStop(0.72, hor);
+  grd.addColorStop(1, night ? "#101820" : "#d8e4ec");
+  g.fillStyle = grd;
+  g.fillRect(0, 0, w, h);
+  if (!night) {
+    g.fillStyle = "rgba(255,255,255,0.22)";
+    for (const [x, y, rw, rh] of [
+      [120, 90, 220, 36],
+      [480, 70, 280, 42],
+      [780, 110, 180, 28],
+      [300, 140, 160, 24],
+    ] as [number, number, number, number][]) {
+      g.beginPath();
+      g.ellipse(x, y, rw, rh, 0, 0, Math.PI * 2);
+      g.fill();
+    }
+    g.fillStyle = "rgba(255,244,210,0.95)";
+    g.beginPath();
+    g.arc(820, 70, 28, 0, Math.PI * 2);
+    g.fill();
+  } else {
+    g.fillStyle = "rgba(255,255,240,0.85)";
+    for (let i = 0; i < 80; i++) {
+      const x = hash01(i, 1) * w;
+      const y = hash01(i, 2) * h * 0.55;
+      const s = 0.6 + hash01(i, 3) * 1.4;
+      g.fillRect(x, y, s, s);
+    }
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.mapping = THREE.EquirectangularReflectionMapping;
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 4;
+  return tex;
+}
+
 function isSoftwareGL(renderer: THREE.WebGLRenderer) {
   const gl = renderer.getContext();
   const info = gl.getExtension("WEBGL_debug_renderer_info");
@@ -114,6 +162,7 @@ export class RaceEngine {
   private last = 0;
   private trauma = 0;
   private fog = new THREE.FogExp2(0x0c1018, 0.005);
+  private skyTex: THREE.CanvasTexture | null = null;
   private hood = false;
   private hudTimer = 0;
   private hoodEdge = false;
@@ -788,11 +837,12 @@ export class RaceEngine {
     this.renderer.toneMappingExposure = n > 0.5 ? 1.22 : morning ? 0.55 : 0.48;
     const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
     const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
-    const sky = n > 0.5 ? 0x182436 : morning ? 0x4aa8d8 : desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
     this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc);
     this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.00005;
     this.scene.fog = this.fog;
-    this.scene.background = new THREE.Color(sky);
+    this.skyTex?.dispose();
+    this.skyTex = paintSky(n > 0.5, desert, snow);
+    this.scene.background = this.skyTex;
     this.applyAltitudeLook();
     this.scene.environmentIntensity = n > 0.5 ? 0.68 : 0.32;
     this.post.setNight(n > 0.5);
@@ -2013,6 +2063,7 @@ export class RaceEngine {
       this.world.dispose();
       this.post.dispose();
       this.envRT.dispose();
+      this.skyTex?.dispose();
       this.sparks.geometry.dispose();
       (this.sparks.material as THREE.Material).dispose();
       if (this.blobs[0]) {

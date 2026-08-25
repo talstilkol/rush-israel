@@ -35,8 +35,8 @@ export type World = {
 var _dummy = new THREE.Object3D();
 var _color = new THREE.Color();
 function asphaltTexture(lanes = 2) {
-  const w = 512;
-  const h = 512;
+  const w = 1024;
+  const h = 1024;
   const c = document.createElement("canvas");
   c.width = w;
   c.height = h;
@@ -622,9 +622,10 @@ function buildEdgeLine(built, side, inset = 0.28, hw = 0.28, yOff = 0.08) {
 }
 function laneCountFor(def) {
   if (def.id === "ayalon") return 8;
-  if (def.id === "telaviv" || def.id === "namal" || def.id === "gushdan") return 4;
+  if (def.id === "telaviv" || def.id === "namal" || def.id === "gushdan" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6") return 4;
   if (def.theme === "highway") return 4;
-  return 2;
+  if (def.id === "rothschild" || def.id === "hayarkon" || def.id === "jerusalem") return 3;
+  return 3;
 }
 function buildCurb(built, side) {
   const d0 = built.width / 2;
