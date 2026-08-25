@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.output/
+.vinxi/
+.nitro/
+.cache/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+screenshots/
+artifacts/
+attachments/
+AGENTS.md
+AGENTS.project.md
+startup.sh

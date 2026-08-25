@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Heebo", "Noto Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  --color-bg: #0a0c0e;
+  --color-surface: #14181c;
+  --color-surface-2: #1c2228;
+  --color-fg: #f2eee8;
+  --color-muted: #8b959e;
+  --color-subtle: #5c656d;
+  --color-border: #2a3238;
+  --color-accent: #6ec8c4;
+  --color-accent-fg: #06201f;
+  --color-danger: #d45b4a;
+  --color-ok: #7dba7a;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.boot-eta-viewport {
+  height: 1.2em;
+  overflow: hidden;
+}
+
+.boot-eta-strip {
+  animation-name: boot-eta-roll;
+  animation-fill-mode: forwards;
+}
+
+.boot-eta-line {
+  display: block;
+  height: 1.2em;
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.2em;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+}
+
+.boot-eta-static {
+  display: none;
+}
+
+.boot-bar-fill {
+  transform: scaleX(0.04);
+  transform-origin: left;
+  animation-name: boot-bar-fill;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+[dir="rtl"] .boot-bar-fill {
+  transform-origin: right;
+}
+
+@keyframes boot-eta-roll {
+  to {
+    transform: translateY(calc(-100% + 1.2em));
+  }
+}
+
+@keyframes boot-bar-fill {
+  from {
+    transform: scaleX(0.04);
+  }
+  to {
+    transform: scaleX(0.97);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-eta-static {
+    display: block;
+  }
+  .boot-eta-viewport {
+    display: none;
+  }
+  .boot-bar-fill {
+    animation: none !important;
+    transform: scaleX(0.45);
+  }
+}
