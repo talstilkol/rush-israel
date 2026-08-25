@@ -3358,26 +3358,29 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   };
   const placeToHa = (s, lat = 32.0713, lon = 34.7886) => {
     const p = tlv(lat, lon);
-    const n = 11;
-    for (let i = 0; i < n; i++) {
-      const t = i / (n - 1);
-      const w = (6.2 + t * 14.8) * s;
-      const y = 3.4 * s + i * (4.7 * s);
-      const floor = new THREE.Mesh(new THREE.BoxGeometry(w, 4.2 * s, w), tohaGlass);
-      floor.position.set(p.x, y, p.z);
-      floor.rotation.y = Math.PI / 4 + t * 0.38;
-      add(floor);
-    }
-    const cap = new THREE.Mesh(new THREE.BoxGeometry(22 * s, 3.2 * s, 22 * s), paleGlass);
-    cap.position.set(p.x, 56 * s, p.z);
-    cap.rotation.y = Math.PI / 4 + 0.38;
+    const n = 16;
+    const stack = (ox, oz, twist) => {
+      for (let i = 0; i < n; i++) {
+        const t = i / (n - 1);
+        const w = (7.2 + t * 12.4) * s;
+        const y = 4.2 * s + i * (5.35 * s);
+        const floor = new THREE.Mesh(new THREE.BoxGeometry(w, 4.9 * s, w * 0.7), tohaGlass);
+        floor.position.set(p.x + ox, y, p.z + oz);
+        floor.rotation.y = twist + t * 0.52;
+        add(floor);
+      }
+    };
+    stack(-7.4 * s, 0, Math.PI / 5);
+    stack(7.6 * s, 3.2 * s, -Math.PI / 6);
+    const cap = new THREE.Mesh(new THREE.BoxGeometry(24 * s, 3.4 * s, 18 * s), paleGlass);
+    cap.position.set(p.x, 92 * s, p.z + 1.4 * s);
+    cap.rotation.y = 0.2;
     add(cap);
-    const base = new THREE.Mesh(new THREE.BoxGeometry(16 * s, 4.2 * s, 16 * s), cream);
-    base.position.set(p.x, 2.1 * s, p.z);
-    base.rotation.y = Math.PI / 4;
+    const base = new THREE.Mesh(new THREE.BoxGeometry(22 * s, 4.4 * s, 18 * s), cream);
+    base.position.set(p.x, 2.2 * s, p.z);
     add(base);
-    glowAt(p.x, 50 * s, p.z, 13166847, 36 * s, 34 * s);
-    hit(p.x, p.z, 11 * s);
+    glowAt(p.x, 86 * s, p.z, 13166847, 40 * s, 36 * s);
+    hit(p.x, p.z, 12 * s, 14 * s, 12 * s);
   };
   const placeTlvTowers = (s) => {
     placeCityGate(s);
@@ -5305,7 +5308,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   if (def.id === "ayalon") {
     tlv(32.0744, 34.7932);
     placeAzrieli(1.42);
-    placeToHa(1, 32.0695, 34.7894);
+    placeToHa(1.28, 32.0695, 34.7894);
     placeCityGate(1);
     const glassHi = (lat, lon, w, d, h, mat, rot = 0) => {
       const p = tlv(lat, lon);
