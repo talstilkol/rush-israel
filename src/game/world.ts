@@ -28,6 +28,7 @@ export type World = {
   setClock: (clock: number) => any;
   clock: number;
   setWeather: (w: any) => any;
+  setLod?: (tier: "low" | "mid" | "high") => void;
   weather: any;
   dispose: () => void;
 };
@@ -988,6 +989,10 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   let isNight = night;
   let clock = night ? 0.9 : 0.5;
   let wx = weather;
+  let lodCrowns = null;
+  let lodTrunks = null;
+  let lodBills = null;
+  let lodShads = null;
   const preset = skyFor(def, isNight, wx);
   const sky = new Sky();
   sky.visible = false;
@@ -2096,6 +2101,8 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   const trunks = new THREE.InstancedMesh(trunkGeo, trunkMat, treeSpots.length);
   const pineLayers = pine ? 3 : 1;
   const crowns = new THREE.InstancedMesh(crownGeo, frondMat, pine || stoneHill || acacia ? treeSpots.length * pineLayers : treeSpots.length * (ficusStreet ? 6 : 5));
+  lodTrunks = trunks;
+  lodCrowns = crowns;
   trunks.castShadow = shadows;
   crowns.castShadow = shadows;
   let ci = 0;
@@ -2202,6 +2209,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     bills.count = bi;
     bills.instanceMatrix.needsUpdate = true;
     group.add(bills);
+    lodBills = bills;
   }
   if (snowCaps) {
     snowCaps.count = si;
@@ -2228,6 +2236,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     }
     shads.instanceMatrix.needsUpdate = true;
     group.add(shads);
+    lodShads = shads;
   }
   if (def.theme === "desert" || def.id === "ramon") {
     const rockGeo = keep(new THREE.DodecahedronGeometry(1.2, 0));
@@ -2828,6 +2837,17 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     wx = w;
     return setClock(clock);
   };
+  const setLod = (tier) => {
+    const hi = tier === "high";
+    const mid = tier === "mid";
+    if (lodCrowns) {
+      lodCrowns.visible = hi || mid;
+      lodCrowns.castShadow = hi;
+    }
+    if (lodTrunks) lodTrunks.castShadow = hi;
+    if (lodBills) lodBills.visible = true;
+    if (lodShads) lodShads.visible = hi || mid;
+  };
   applyWet();
   return {
     group,
@@ -2854,6 +2874,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       return clock;
     },
     setWeather,
+    setLod,
     dispose() {
       for (const d of bag) d.dispose();
     }

@@ -324,6 +324,7 @@ export class RaceEngine {
     this.opts.onBoot?.(0.18);
 
     this.world = createWorld(this.trackDef, this.built, shadows, this.opts.night, this.weather);
+    this.world.setLod?.(this.quality);
     if (this.disposed) {
       this.world.dispose();
       return;
@@ -752,6 +753,7 @@ export class RaceEngine {
     if (this.quality === "low") this.post.setTier("low");
     else if (!(this.post as { composer?: unknown }).composer) this.upgradeGraphics();
     else this.post.setTier(this.quality);
+    this.world.setLod?.(this.quality);
     this.onResize();
   }
 
