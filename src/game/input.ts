@@ -13,6 +13,9 @@ export class GameInput {
   throttleOverride: number | null = null;
   brakeOverride: number | null = null;
   paused = false;
+  private steerFilt = 0;
+  private thrFilt = 0;
+  private lastPoll = 0;
   private canvas: HTMLElement;
   private unbind: (() => void)[] = [];
 
@@ -75,6 +78,23 @@ export class GameInput {
     if (this.steerOverride !== null) steer = this.steerOverride;
     if (this.throttleOverride !== null) throttle = this.throttleOverride;
     if (this.brakeOverride !== null) brake = this.brakeOverride;
+
+    const now = typeof performance !== "undefined" ? performance.now() : 0;
+    const dt = this.lastPoll ? Math.min(0.05, (now - this.lastPoll) / 1000) : 0.016;
+    this.lastPoll = now;
+    if (this.steerOverride !== null) this.steerFilt = steer;
+    else {
+      const k = Math.abs(steer) < 0.05 ? 11 : 6.5;
+      this.steerFilt += (steer - this.steerFilt) * Math.min(1, k * dt);
+      if (Math.abs(this.steerFilt) < 0.01) this.steerFilt = 0;
+      steer = this.steerFilt;
+    }
+    if (this.throttleOverride !== null) this.thrFilt = throttle;
+    else {
+      const k = throttle > this.thrFilt ? 5.5 : 8;
+      this.thrFilt += (throttle - this.thrFilt) * Math.min(1, k * dt);
+      throttle = this.thrFilt;
+    }
 
     const drift =
       this.touchDrift ||
