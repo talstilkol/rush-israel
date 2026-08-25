@@ -47,6 +47,7 @@ export function estimateLoadMs(trackId: TrackId, quality: Quality, night: boolea
   if (typeof prev === "number" && prev > 250 && prev < 60000) return Math.round(prev * 1.04);
   let ms = 1100;
   if (quality === "high") ms += 400;
+  else if (quality === "mid") ms += 180;
   if (night) ms += 200;
   if (HEAVY.has(trackId)) ms += 400;
   return ms;

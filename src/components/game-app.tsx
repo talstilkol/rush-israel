@@ -420,6 +420,15 @@ export function GameApp() {
 							},
 							children: t("נמוכה", "Low")
 						}), /* @__PURE__ */ jsx(Button, {
+							variant: quality === "mid" ? "primary" : "outline",
+							className: "flex-1",
+							onClick: () => {
+								setQuality("mid");
+								setQualitySave("mid");
+								engineRef.current?.applyQuality("mid");
+							},
+							children: t("בינונית", "Mid")
+						}), /* @__PURE__ */ jsx(Button, {
 							variant: quality === "high" ? "primary" : "outline",
 							className: "flex-1",
 							onClick: () => {
@@ -851,12 +860,17 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 							type: "button",
 							className: cn("min-h-10 flex-1 rounded-md border text-sm", quality === "low" ? "border-fg bg-fg text-bg" : "border-border"),
 							onClick: () => setQualityMode("low"),
-							children: t("איכות נמוכה", "Low quality")
+							children: t("נמוכה", "Low")
+						}), /* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", quality === "mid" ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setQualityMode("mid"),
+							children: t("בינונית", "Mid")
 						}), /* @__PURE__ */ jsx("button", {
 							type: "button",
 							className: cn("min-h-10 flex-1 rounded-md border text-sm", quality === "high" ? "border-fg bg-fg text-bg" : "border-border"),
 							onClick: () => setQualityMode("high"),
-							children: t("איכות גבוהה", "High quality")
+							children: t("גבוהה", "High")
 						})]
 					}),
 					/* @__PURE__ */ jsxs("div", {

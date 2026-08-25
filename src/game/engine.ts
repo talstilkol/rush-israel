@@ -210,6 +210,8 @@ export class RaceEngine {
   private opts: Options;
   private canvas: HTMLCanvasElement;
   private lite = false;
+  private quality: Quality = "high";
+  private droppedTier = false;
   private soft = false;
   private mode: RaceMode = "circuit";
   private totalLaps = 3;
@@ -277,11 +279,13 @@ export class RaceEngine {
     this.weather = opts.weather ?? "clear";
 
     const mobile = canvas.clientWidth < 700 || /Mobi|Android/i.test(navigator.userAgent);
-    this.lite = mobile || opts.quality === "low";
+    this.quality = opts.quality === "low" || opts.quality === "mid" ? opts.quality : "high";
+    this.lite = this.quality === "low";
     this.fovExtra = opts.fovExtra ?? 0;
 
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: !mobile, alpha: false, powerPreference: "high-performance" });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1) * (this.lite ? 1 : 0.85));
+    const scale = this.quality === "low" ? 1 : this.quality === "mid" ? 0.75 : 0.85;
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1) * scale);
     this.renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -341,6 +345,7 @@ export class RaceEngine {
       setNight() {},
       setFilter() {},
       setBudget() {},
+      setTier() {},
       render: () => this.renderer.render(this.scene, this.camera),
       dispose() {},
     });
@@ -348,7 +353,7 @@ export class RaceEngine {
     this.envRT = new THREE.WebGLRenderTarget(1, 1);
     this.post = fallbackPost();
 
-    if (!soft && !this.lite) {
+    if (!soft && this.quality !== "low") {
       requestAnimationFrame(() => this.upgradeGraphics());
     }
 
@@ -719,6 +724,7 @@ export class RaceEngine {
       const post = createPost(this.renderer, this.scene, this.camera, this.world.night, this.lite);
       this.post.dispose();
       this.post = post;
+      this.post.setTier(this.droppedTier && this.quality === "high" ? "mid" : this.quality);
       this.onResize();
     } catch {
       /* keep direct render */
@@ -735,12 +741,16 @@ export class RaceEngine {
   }
 
   applyQuality(q: Quality) {
-    this.lite = q === "low" || this.soft;
+    this.quality = q === "low" || q === "mid" ? q : "high";
+    this.lite = this.quality === "low" || this.soft;
+    this.droppedTier = false;
     const mobile = typeof navigator !== "undefined" && /mobi|android|iphone|ipad/i.test(navigator.userAgent);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.lite || mobile ? 1 : 1) * (this.lite ? 1 : 0.85));
-    if (this.lite) this.post.setBudget(true);
+    const scale = this.lite ? 1 : this.quality === "mid" ? 0.75 : 0.85;
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1) * scale);
+    this.renderer.shadowMap.enabled = this.quality !== "low" && !this.soft;
+    if (this.quality === "low") this.post.setTier("low");
     else if (!(this.post as { composer?: unknown }).composer) this.upgradeGraphics();
-    else this.post.setBudget(false);
+    else this.post.setTier(this.quality);
     this.onResize();
   }
 
@@ -923,6 +933,15 @@ export class RaceEngine {
     let dt = (now - this.last) / 1000;
     this.last = now;
     dt = Math.min(dt, 0.1);
+    if (!this.soft && this.quality === "high" && !this.droppedTier) {
+      if (dt > 0.033) this.slowFrames++;
+      else this.slowFrames = Math.max(0, this.slowFrames - 2);
+      if (this.slowFrames > 45) {
+        this.post.setTier("mid");
+        this.droppedTier = true;
+        this.slowFrames = 0;
+      }
+    }
 
     const hoodDown = this.input.keys.has("KeyC") || this.input.keys.has("KeyV") || !!navigator.getGamepads?.()?.[0]?.buttons[3]?.pressed;
     if (hoodDown && !this.hoodEdge && !this.photo) {

@@ -109,7 +109,9 @@ export function setNightSave(night: boolean) {
 }
 
 export function getQuality(): Quality {
-  return load().quality === "low" ? "low" : "high";
+  const q = load().quality;
+  if (q === "low" || q === "mid") return q;
+  return "high";
 }
 
 export function setQualitySave(quality: Quality) {

@@ -103,6 +103,7 @@ export type PostStack = {
   setNight: (night: boolean) => void;
   setFilter: (f: number) => void;
   setBudget: (lite: boolean) => void;
+  setTier: (q: "low" | "mid" | "high") => void;
   render: () => void;
   dispose: () => void;
 };
@@ -142,6 +143,7 @@ export function createPost(
   composer.addPass(new OutputPass());
 
   let useComposer = !lite;
+  let tier: "low" | "mid" | "high" = lite ? "low" : "high";
 
   return {
     composer,
@@ -160,8 +162,8 @@ export function createPost(
     setNight(next: boolean) {
       night = next;
       grade.uniforms.uNight.value = next ? 1 : 0;
-      bloom.enabled = next && useComposer;
-      bloom.strength = next && useComposer ? 0.11 : 0;
+      bloom.enabled = next && tier === "high";
+      bloom.strength = next && tier === "high" ? 0.11 : 0;
       bloom.radius = next ? 0.2 : 0.06;
       bloom.threshold = next ? 0.84 : 0.96;
     },
@@ -169,11 +171,15 @@ export function createPost(
       grade.uniforms.uFilter.value = f;
     },
     setBudget(nextLite: boolean) {
-      lite = nextLite;
-      useComposer = !nextLite;
-      if (smaa) smaa.enabled = !nextLite;
-      bloom.enabled = night && !nextLite;
-      bloom.strength = nextLite ? 0 : night ? 0.11 : 0;
+      this.setTier(nextLite ? "low" : "high");
+    },
+    setTier(q: "low" | "mid" | "high") {
+      tier = q;
+      lite = q === "low";
+      useComposer = q !== "low";
+      if (smaa) smaa.enabled = q === "high";
+      bloom.enabled = night && q === "high";
+      bloom.strength = night && q === "high" ? 0.11 : 0;
     },
     render() {
       if (useComposer) composer.render();
