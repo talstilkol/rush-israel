@@ -409,6 +409,33 @@ function groundTexture(hex) {
   tex.repeat.set(90, 90);
   return tex;
 }
+function foamTex() {
+  const w = 64;
+  const h = 256;
+  const c = document.createElement("canvas");
+  c.width = w;
+  c.height = h;
+  const ctx = c.getContext("2d");
+  const img = ctx.createImageData(w, h);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const i = (y * w + x) * 4;
+    const edge = 1 - Math.abs(x / w - 0.5) * 2;
+    const n = hash01(x, y, 7);
+    const band = 0.45 + Math.sin(y * 0.21) * 0.2 + n * 0.4;
+    const a = clamp(edge * band * 1.4, 0, 1);
+    img.data[i] = 245;
+    img.data[i + 1] = 248;
+    img.data[i + 2] = 252;
+    img.data[i + 3] = a * 220;
+  }
+  ctx.putImageData(img, 0, 0);
+  const tex = new THREE.CanvasTexture(c);
+  tex.wrapS = THREE.ClampToEdgeWrapping;
+  tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(1, 8);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
 function waterNormalTex() {
   const size = 256;
   const c = document.createElement("canvas");
@@ -1393,7 +1420,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
         clearcoatRoughness: 0.06,
         ior: 1.33,
         normalMap: nrm,
-        normalScale: new THREE.Vector2(0.85, 0.85)
+        normalScale: new THREE.Vector2(1.15, 1.15)
       }));
       if (isNight) mat.color.multiplyScalar(0.65);
       const mesh = new THREE.Mesh(keep(new THREE.PlaneGeometry(Math.max(body.w * 1.4, 900), Math.max(body.d, 1600), 8, 8)), mat);
@@ -1413,16 +1440,14 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     sand.rotation.x = -Math.PI / 2;
     sand.position.set(sandBody.x + sandBody.w * 0.28, -0.18, sandBody.z);
     if (def.theme !== "manhattan" && def.theme !== "park") group.add(sand);
-    const foam = new THREE.Mesh(keep(new THREE.PlaneGeometry(sandBody.w * 0.09, sandBody.d * 0.92)), keep(new THREE.MeshPhysicalMaterial({
-      color: 15398136,
-      roughness: 0.32,
-      metalness: 0.04,
+    const foam = new THREE.Mesh(keep(new THREE.PlaneGeometry(sandBody.w * 0.14, sandBody.d * 0.92)), keep(new THREE.MeshBasicMaterial({
+      map: keep(foamTex()),
       transparent: true,
-      opacity: 0.42,
-      envMapIntensity: 0.9
+      opacity: 0.82,
+      depthWrite: false
     })));
     foam.rotation.x = -Math.PI / 2;
-    foam.position.set(sandBody.x + sandBody.w * 0.16, -0.04, sandBody.z);
+    foam.position.set(sandBody.x + sandBody.w * 0.14, -0.03, sandBody.z);
     if (def.theme !== "manhattan" && def.theme !== "park") group.add(foam);
   }
   for (const zone of def.clearZones ?? []) {
@@ -1960,6 +1985,36 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   crowns.count = ci;
   crowns.instanceMatrix.needsUpdate = true;
   if (treeSpots.length) group.add(trunks, crowns);
+  if (treeSpots.length && def.theme !== "desert" && def.id !== "timessquare") {
+    const nBill = Math.min(36, treeSpots.length);
+    const billG = keep(new THREE.PlaneGeometry(6.4, 7.6));
+    const billM = keep(new THREE.MeshBasicMaterial({
+      map: keep(foliageTexture()),
+      transparent: true,
+      alphaTest: 0.32,
+      side: THREE.DoubleSide,
+      depthWrite: false
+    }));
+    const bills = new THREE.InstancedMesh(billG, billM, nBill * 2);
+    let bi = 0;
+    const stepB = Math.max(1, Math.floor(treeSpots.length / nBill));
+    for (let i = 0; i < treeSpots.length && bi < nBill * 2; i += stepB) {
+      const t = treeSpots[i];
+      const ox = t.x + (i % 2 ? 16 : -16);
+      const oz = t.z + (i % 3 ? 10 : -10);
+      _dummy.position.set(ox, t.y + 3.6, oz);
+      _dummy.scale.set(1, 1, 1);
+      _dummy.rotation.set(0, 0.4, 0);
+      _dummy.updateMatrix();
+      bills.setMatrixAt(bi++, _dummy.matrix);
+      _dummy.rotation.set(0, 0.4 + Math.PI / 2, 0);
+      _dummy.updateMatrix();
+      bills.setMatrixAt(bi++, _dummy.matrix);
+    }
+    bills.count = bi;
+    bills.instanceMatrix.needsUpdate = true;
+    group.add(bills);
+  }
   if (snowCaps) {
     snowCaps.count = si;
     snowCaps.instanceMatrix.needsUpdate = true;
