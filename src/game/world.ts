@@ -3480,6 +3480,14 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   };
   if (def.id === "hayarkon") {
     const hi = tlv(32.0893, 34.7694);
+    {
+      const n = nearestIndex(built.samples, hi.x, hi.z, 0);
+      if (n.dist < built.width / 2 + 10) {
+        const s = built.samples[n.index];
+        hi.x = s.x + s.rx * (built.width / 2 + 24);
+        hi.z = s.z + s.rz * (built.width / 2 + 24);
+      }
+    }
     const hilton = new THREE.Mesh(new THREE.CylinderGeometry(20, 21, 34, 20, 1, false, 0.55, 2.05), white);
     hilton.position.set(hi.x, 17, hi.z);
     hilton.rotation.y = -0.35;
@@ -3608,6 +3616,30 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       mast.position.set(mar.x - 30 - i % 2 * 7, 5.2, mar.z - 22 + i * 7);
       add(mast);
     }
+    const rd = tlv(32.1044, 34.7794);
+    {
+      const n = nearestIndex(built.samples, rd.x, rd.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        rd.x = s.x + s.rx * (built.width / 2 + 26);
+        rd.z = s.z + s.rz * (built.width / 2 + 26);
+      }
+    }
+    const brick = new THREE.MeshStandardMaterial({ color: 9067074, roughness: 0.9 });
+    bag.push(brick);
+    const rdHall = new THREE.Mesh(new THREE.BoxGeometry(32, 14, 18), brick);
+    rdHall.position.set(rd.x, 7, rd.z);
+    add(rdHall);
+    for (const ox of [-7, 7]) {
+      const stack = new THREE.Mesh(new THREE.CylinderGeometry(2.1, 2.6, 42, 12), cream);
+      stack.position.set(rd.x + ox, 28, rd.z);
+      add(stack);
+      const lip = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.2, 1.4, 12), brick);
+      lip.position.set(rd.x + ox, 49.2, rd.z);
+      add(lip);
+    }
+    hit(rd.x, rd.z, 12, 16, 10);
+    glowAt(rd.x, 48, rd.z, 16764000, 28, 22);
     const umbMat = new THREE.MeshStandardMaterial({
       color: 15920864,
       roughness: 0.7
