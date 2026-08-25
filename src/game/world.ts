@@ -7453,6 +7453,33 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     rocks.count = rii;
     rocks.instanceMatrix.needsUpdate = true;
     group.add(rocks);
+    {
+      const cPos = [];
+      const cIdx = [];
+      const nC = segsOf(built);
+      for (let i = 0; i <= nC; i++) {
+        const s = samp(built, i);
+        const vs = s.rx * (floor.x - s.x) + s.rz * (floor.z - s.z) >= 0 ? 1 : -1;
+        const ms = -vs;
+        const d = built.width / 2 + 9.5;
+        const y0 = s.y - 4;
+        const y1 = s.y + 62 + Math.min(36, s.y * 0.35);
+        cPos.push(s.x + s.rx * d * ms, y0, s.z + s.rz * d * ms);
+        cPos.push(s.x + s.rx * d * ms, y1, s.z + s.rz * d * ms);
+      }
+      for (let i = 0; i < nC; i++) {
+        const a = i * 2;
+        cIdx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
+      }
+      const cGeo = new THREE.BufferGeometry();
+      cGeo.setAttribute("position", new THREE.Float32BufferAttribute(cPos, 3));
+      cGeo.setIndex(cIdx);
+      cGeo.computeVertexNormals();
+      bag.push(cGeo);
+      const wall = new THREE.Mesh(cGeo, rust);
+      wall.receiveShadow = true;
+      add(wall);
+    }
     for (let i = 0; i < 22; i++) {
       const a = i / 22 * Math.PI * 2 + 0.15;
       const mtn = new THREE.Mesh(new THREE.ConeGeometry(62 + i % 5 * 18, 78 + i % 4 * 28, 6), i % 3 === 0 ? darkRock : i % 3 === 1 ? rust : tan);
@@ -7474,21 +7501,19 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     }
     const lk = ram(30.6132, 34.801);
     const lookY = def.elevation(0.02);
-    const look = new THREE.Mesh(new THREE.BoxGeometry(16, 2.2, 7), cream);
-    look.position.set(lk.x + 8, lookY + 1.2, lk.z - 4);
-    add(look);
-    const deck = new THREE.Mesh(new THREE.BoxGeometry(20, 0.28, 14), cream);
-    deck.position.set(lk.x + 8, lookY + 2.4, lk.z - 14);
+    const deck = new THREE.Mesh(new THREE.BoxGeometry(18, 0.32, 12), creamRock);
+    deck.position.set(lk.x + 8, lookY + 0.2, lk.z - 10);
     add(deck);
-    const glassR = new THREE.Mesh(new THREE.BoxGeometry(20, 1.2, 0.12), paleGlass);
-    glassR.position.set(lk.x + 8, lookY + 3.1, lk.z - 21);
-    add(glassR);
-    const shade = new THREE.Mesh(new THREE.BoxGeometry(10, 0.22, 7), cream);
-    shade.position.set(lk.x + 8, lookY + 5, lk.z - 4);
-    add(shade);
-    for (const sx of [-4.5, 4.5]) {
-      const post = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 4.4, 6), cream);
-      post.position.set(lk.x + 8 + sx, lookY + 3.2, lk.z - 4);
+    const railM = new THREE.MeshStandardMaterial({ color: 0x6a5848, roughness: 0.7, metalness: 0.2 });
+    bag.push(railM);
+    for (const z of [-16, -4]) {
+      const bar = new THREE.Mesh(new THREE.BoxGeometry(18, 0.08, 0.08), railM);
+      bar.position.set(lk.x + 8, lookY + 1.15, lk.z + z);
+      add(bar);
+    }
+    for (const sx of [-8, 0, 8]) {
+      const post = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.08, 1.15, 6), railM);
+      post.position.set(lk.x + 8 + sx, lookY + 0.7, lk.z - 16);
       add(post);
     }
     const cut = ram(30.5992, 34.806);
