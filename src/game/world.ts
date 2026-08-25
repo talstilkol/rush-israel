@@ -998,7 +998,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       const hw = built.width / 2 + 1.2;
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 42 + Math.min(36, s.y * 0.35) : def.id === "hermon" ? s.y + 28 + s.y * 0.15 : def.theme === "carmel" ? s.y + 14 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 68 + Math.min(48, s.y * 0.4) : def.id === "hermon" ? s.y + 36 + s.y * 0.22 : def.theme === "carmel" ? s.y + 22 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
@@ -6442,10 +6442,25 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       mtn.scale.set(1.6, 2.2, 1.5);
       add(mtn);
     }
-    const peakCone = new THREE.Mesh(new THREE.DodecahedronGeometry(22, 0), snowM);
-    peakCone.position.set(peak.x + 18, def.elevation(1) + 10, peak.z + 36);
-    peakCone.scale.set(1.8, 2.6, 1.7);
+    const peakCone = new THREE.Mesh(new THREE.DodecahedronGeometry(34, 0), snowM);
+    peakCone.position.set(peak.x + 22, def.elevation(1) + 22, peak.z + 48);
+    peakCone.scale.set(2.4, 3.2, 2.2);
     add(peakCone);
+    for (let k = 0; k < 6; k++) {
+      const a = k / 6 * Math.PI * 2;
+      const shoulder = new THREE.Mesh(new THREE.DodecahedronGeometry(16, 0), k % 2 ? snowM : rock);
+      shoulder.position.set(peak.x + 22 + Math.cos(a) * 48, def.elevation(1) + 6, peak.z + 48 + Math.sin(a) * 36);
+      shoulder.scale.set(1.6, 2.1, 1.5);
+      add(shoulder);
+    }
+    for (let i = 2; i < built.samples.length - 2; i += 2) {
+      const s = built.samples[i];
+      const towardPeak = s.rx * (peak.x - s.x) + s.rz * (peak.z - s.z) >= 0 ? 1 : -1;
+      const berm = new THREE.Mesh(new THREE.BoxGeometry(7.4, 1.6, 4.2), snowM);
+      berm.position.set(s.x + s.rx * (built.width / 2 + 3.2) * towardPeak, s.y + 0.7, s.z + s.rz * (built.width / 2 + 3.2) * towardPeak);
+      berm.rotation.y = Math.atan2(s.tx, s.tz);
+      add(berm);
+    }
     const nSlope = Math.min(40, built.samples.length);
     const stepS = Math.max(1, Math.floor(built.samples.length / nSlope));
     for (let i = 0; i < built.samples.length; i += stepS) {
@@ -6977,36 +6992,42 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     rocks.count = rii;
     rocks.instanceMatrix.needsUpdate = true;
     group.add(rocks);
-    for (let i = 0; i < 16; i++) {
-      const a = i / 16 * Math.PI * 2 + 0.2;
-      const mtn = new THREE.Mesh(new THREE.ConeGeometry(48 + i % 4 * 14, 58 + i % 3 * 22, 6), i % 3 === 0 ? darkRock : i % 3 === 1 ? sand : tan);
-      mtn.position.set(floor.x + Math.cos(a) * 520, 22, floor.z + Math.sin(a) * 380);
+    for (let i = 0; i < 22; i++) {
+      const a = i / 22 * Math.PI * 2 + 0.15;
+      const mtn = new THREE.Mesh(new THREE.ConeGeometry(62 + i % 5 * 18, 78 + i % 4 * 28, 6), i % 3 === 0 ? darkRock : i % 3 === 1 ? rust : tan);
+      mtn.position.set(floor.x + Math.cos(a) * 480, 28, floor.z + Math.sin(a) * 340);
       add(mtn);
     }
-    for (let i = 0; i < 36; i++) {
-      const a = i / 36 * Math.PI * 2;
-      const boulder = new THREE.Mesh(new THREE.DodecahedronGeometry(2.2 + i % 5 * 1.1, 0), i % 2 ? dust : darkRock);
-      boulder.position.set(floor.x + Math.cos(a) * (50 + i % 7 * 28), 1.4, floor.z + Math.sin(a) * (40 + i % 6 * 22));
-      boulder.rotation.set(i * 0.4, i * 0.7, i * 0.2);
-      add(boulder);
+    const strata = [creamRock, tan, rust, band, sand];
+    for (let i = 1; i < built.samples.length - 1; i += 3) {
+      const s = built.samples[i];
+      const vs = s.rx * (floor.x - s.x) + s.rz * (floor.z - s.z) >= 0 ? 1 : -1;
+      const ms = -vs;
+      for (let layer = 0; layer < 5; layer++) {
+        const slab = new THREE.Mesh(new THREE.BoxGeometry(16, 3.6, 10), strata[layer]);
+        const d = built.width / 2 + 7 + layer * 2.8;
+        slab.position.set(s.x + s.rx * d * ms, s.y + 2.2 + layer * 3.5, s.z + s.rz * d * ms);
+        slab.rotation.y = Math.atan2(s.tx, s.tz);
+        add(slab);
+      }
     }
     const lk = ram(30.6132, 34.801);
     const lookY = def.elevation(0.02);
-    const look = new THREE.Mesh(new THREE.BoxGeometry(18, 2.6, 8), cream);
-    look.position.set(lk.x + 10, lookY + 1.4, lk.z - 6);
+    const look = new THREE.Mesh(new THREE.BoxGeometry(16, 2.2, 7), cream);
+    look.position.set(lk.x + 8, lookY + 1.2, lk.z - 4);
     add(look);
-    const deck = new THREE.Mesh(new THREE.BoxGeometry(22, 0.35, 12), white);
-    deck.position.set(lk.x + 10, lookY + 2.8, lk.z - 12);
+    const deck = new THREE.Mesh(new THREE.BoxGeometry(20, 0.28, 14), cream);
+    deck.position.set(lk.x + 8, lookY + 2.4, lk.z - 14);
     add(deck);
-    const rail = new THREE.Mesh(new THREE.BoxGeometry(22, 1.1, 0.18), cream);
-    rail.position.set(lk.x + 10, lookY + 3.5, lk.z - 18);
-    add(rail);
-    const shade = new THREE.Mesh(new THREE.BoxGeometry(12, 0.25, 8), cream);
-    shade.position.set(lk.x + 10, lookY + 5.4, lk.z - 6);
+    const glassR = new THREE.Mesh(new THREE.BoxGeometry(20, 1.2, 0.12), paleGlass);
+    glassR.position.set(lk.x + 8, lookY + 3.1, lk.z - 21);
+    add(glassR);
+    const shade = new THREE.Mesh(new THREE.BoxGeometry(10, 0.22, 7), cream);
+    shade.position.set(lk.x + 8, lookY + 5, lk.z - 4);
     add(shade);
-    for (const sx of [-5, 5]) {
-      const post = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.22, 4.8, 6), cream);
-      post.position.set(lk.x + 10 + sx, lookY + 3.4, lk.z - 6);
+    for (const sx of [-4.5, 4.5]) {
+      const post = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 4.4, 6), cream);
+      post.position.set(lk.x + 8 + sx, lookY + 3.2, lk.z - 4);
       add(post);
     }
     const cut = ram(30.5992, 34.806);
@@ -7029,8 +7050,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       bush.position.set(floor.x + i % 9 * 28 - 90, 1.4, floor.z + Math.floor(i / 9) * 34 - 30);
       add(bush);
     }
-    glowAt(lk.x + 10, lookY + 5, lk.z - 6, 16763e3, 24, 20);
-    hit(lk.x + 10, lk.z - 6, 4);
+    glowAt(lk.x + 8, lookY + 5, lk.z - 4, 16763e3, 24, 20);
+    hit(lk.x + 8, lk.z - 4, 4);
     hit(cut.x - crx * 22, cut.z - crz * 22, 10);
     hit(cut.x + crx * 22, cut.z + crz * 22, 10);
   }
