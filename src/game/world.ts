@@ -329,6 +329,31 @@ function foliageTexture() {
   tex.repeat.set(2, 2);
   return tex;
 }
+function barkTexture() {
+  const size = 128;
+  const c = document.createElement("canvas");
+  c.width = c.height = size;
+  const ctx = c.getContext("2d");
+  ctx.fillStyle = "#4a3424";
+  ctx.fillRect(0, 0, size, size);
+  const img = ctx.getImageData(0, 0, size, size);
+  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
+    const i = (y * size + x) * 4;
+    const ridge = Math.sin(x * 0.55) * 18 + hash01(x, y) * 22 - 10;
+    const crack = Math.abs(Math.sin(x * 1.2 + y * 0.08)) < 0.08 ? -28 : 0;
+    img.data[i] = clamp(74 + ridge + crack, 28, 120);
+    img.data[i + 1] = clamp(48 + ridge * 0.6 + crack, 18, 88);
+    img.data[i + 2] = clamp(28 + ridge * 0.3, 10, 52);
+    img.data[i + 3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  const tex = new THREE.CanvasTexture(c);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.anisotropy = 4;
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.repeat.set(1, 3);
+  return tex;
+}
 function sidewalkTexture() {
   const size = 256;
   const c = document.createElement("canvas");
@@ -573,7 +598,7 @@ function buildSidewalk(built, side) {
   geo.computeVertexNormals();
   return geo;
 }
-function buildEdgeLine(built, side, inset = 0.28, hw = 0.28) {
+function buildEdgeLine(built, side, inset = 0.28, hw = 0.28, yOff = 0.08) {
   const d = built.width / 2 - inset;
   const pos = [];
   const idx = [];
@@ -582,8 +607,8 @@ function buildEdgeLine(built, side, inset = 0.28, hw = 0.28) {
     const s = samp(built, i);
     const cx = s.x + s.rx * d * side;
     const cz = s.z + s.rz * d * side;
-    pos.push(cx - s.rx * hw, s.y + 0.08, cz - s.rz * hw);
-    pos.push(cx + s.rx * hw, s.y + 0.08, cz + s.rz * hw);
+    pos.push(cx - s.rx * hw, s.y + yOff, cz - s.rz * hw);
+    pos.push(cx + s.rx * hw, s.y + yOff, cz + s.rz * hw);
   }
   for (let i = 0; i < n; i++) {
     const a = i * 2;
@@ -614,7 +639,7 @@ function buildCurb(built, side) {
     const rx = s.rx * side;
     const rz = s.rz * side;
     pos.push(s.x + rx * d0, s.y + 0.06, s.z + rz * d0);
-    pos.push(s.x + rx * d1, s.y + 0.42, s.z + rz * d1);
+    pos.push(s.x + rx * d1, s.y + 0.58, s.z + rz * d1);
     uv.push(0, v, 1, v);
   }
   for (let i = 0; i < n; i++) {
@@ -1021,8 +1046,8 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     polygonOffsetFactor: -2,
     polygonOffsetUnits: -2
   }));
-  group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1)), edgeMat));
-  group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1)), edgeMat));
+  group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.16, 0.46)), edgeMat));
+  group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.16, 0.46)), edgeMat));
   {
     const yMat = keep(new THREE.MeshBasicMaterial({
       color: 0xffc400,
@@ -1134,8 +1159,8 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   group.add(new THREE.Mesh(keep(buildCurb(built, 1)), curbMat));
   group.add(new THREE.Mesh(keep(buildCurb(built, -1)), curbMat));
   {
-    const eyeGeo = keep(new THREE.BoxGeometry(0.12, 0.06, 0.2));
-    const eyeMat = keep(new THREE.MeshBasicMaterial({ color: 0xffe28a, fog: false }));
+    const eyeGeo = keep(new THREE.BoxGeometry(0.2, 0.09, 0.32));
+    const eyeMat = keep(new THREE.MeshBasicMaterial({ color: 0xfff2b0, fog: false }));
     const eyeN = Math.min(320, Math.max(24, Math.floor(built.samples.length / 1.5)));
     const eyes = new THREE.InstancedMesh(eyeGeo, eyeMat, eyeN);
     let ei = 0;
@@ -1145,7 +1170,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       const d = built.width / 2 - 0.4;
       for (const side of [1, -1]) {
         if (ei >= eyeN) break;
-        _dummy.position.set(s.x + s.rx * d * side, s.y + 0.1, s.z + s.rz * d * side);
+        _dummy.position.set(s.x + s.rx * d * side, s.y + 0.14, s.z + s.rz * d * side);
         _dummy.scale.set(1, 1, 1);
         _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
         _dummy.updateMatrix();
@@ -1165,6 +1190,9 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   if (def.theme !== "desert" && def.theme !== "snow" && def.id !== "rothschild" && def.theme !== "stone" && def.theme !== "jaffa" && def.theme !== "carmel") {
     group.add(new THREE.Mesh(keep(buildJersey(built, 1)), jerseyMat));
     group.add(new THREE.Mesh(keep(buildJersey(built, -1)), jerseyMat));
+    const capMat = keep(new THREE.MeshBasicMaterial({ color: 0xf4f0ea, fog: false }));
+    group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, -0.78, 0.14, 1.16)), capMat));
+    group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, -0.78, 0.14, 1.16)), capMat));
   }
   const walkTex = keep(sidewalkTexture());
   walkTex.repeat.set(1, 8);
@@ -1748,13 +1776,14 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   const stoneHill = def.theme === "stone";
   const pine = def.theme === "carmel" || def.id === "hermon" || def.id === "hw1";
   const acacia = def.theme === "desert" && def.id !== "ramon";
-  const ficusStreet = def.theme === "bauhaus" && def.id !== "rothschild" && def.id !== "ayalon" && def.id !== "hayarkon" && def.id !== "netanya" && def.id !== "gushdan";
+  const ficusStreet = (def.theme === "bauhaus" || def.id === "telaviv" || def.id === "namal" || def.id === "hayarkon") && def.id !== "ayalon" && def.id !== "rothschild";
   const trunkGeo = keep(new THREE.CylinderGeometry(pine ? 0.22 : acacia ? 0.16 : stoneHill ? 0.14 : ficusStreet ? 0.42 : deciduous ? 0.22 : 0.16, pine ? 0.38 : acacia ? 0.28 : stoneHill ? 0.22 : ficusStreet ? 0.62 : deciduous ? 0.34 : 0.26, pine ? 7.4 : acacia ? 3.6 : stoneHill ? 3.2 : ficusStreet ? 7.2 : deciduous ? 5.2 : 4.6, 8));
   trunkGeo.translate(0, pine ? 3.7 : acacia ? 1.8 : stoneHill ? 1.6 : ficusStreet ? 3.6 : deciduous ? 2.6 : 2.3, 0);
   const trunkMat = keep(new THREE.MeshStandardMaterial({
-    color: pine ? 3811868 : acacia ? 6965800 : stoneHill ? 4864040 : 5913124,
+    map: keep(barkTexture()),
+    color: pine ? 0x6a5840 : acacia ? 0x8a6a48 : stoneHill ? 0x6e5840 : 0x8a6a4e,
     roughness: 0.92,
-    envMapIntensity: 0.15
+    envMapIntensity: 0.18
   }));
   const crownGeo = keep(pine || stoneHill ? new THREE.ConeGeometry(pine ? 2.15 : 1.15, pine ? 5.6 : 7.6, 8) : acacia ? new THREE.ConeGeometry(3.4, 1.6, 8) : new THREE.IcosahedronGeometry(ficusStreet ? 2.2 : 1.7, 0));
   const frondMat = keep(new THREE.MeshStandardMaterial({
@@ -1814,7 +1843,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   }
   const trunks = new THREE.InstancedMesh(trunkGeo, trunkMat, treeSpots.length);
   const pineLayers = pine ? 3 : 1;
-  const crowns = new THREE.InstancedMesh(crownGeo, frondMat, pine || stoneHill || acacia ? treeSpots.length * pineLayers : treeSpots.length * (ficusStreet ? 5 : 3));
+  const crowns = new THREE.InstancedMesh(crownGeo, frondMat, pine || stoneHill || acacia ? treeSpots.length * pineLayers : treeSpots.length * (ficusStreet ? 6 : 5));
   trunks.castShadow = shadows;
   crowns.castShadow = shadows;
   let ci = 0;
@@ -1865,55 +1894,18 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     } else {
       const top = t.y + (ficusStreet ? 7.4 : deciduous ? 5 : 4.4) * h;
       const blobs = ficusStreet ? [
-        [
-          0,
-          top,
-          0,
-          1.15
-        ],
-        [
-          1.8,
-          top - 0.4,
-          0.5,
-          0.82
-        ],
-        [
-          -1.6,
-          top - 0.5,
-          -0.4,
-          0.78
-        ],
-        [
-          0.3,
-          top - 0.2,
-          -1.7,
-          0.74
-        ],
-        [
-          -0.5,
-          top + 0.3,
-          1.5,
-          0.7
-        ]
+        [0, top, 0, 1.22],
+        [1.9, top - 0.35, 0.55, 0.88],
+        [-1.7, top - 0.45, -0.45, 0.84],
+        [0.35, top - 0.15, -1.85, 0.8],
+        [-0.55, top + 0.35, 1.65, 0.76],
+        [0.2, top + 1.05, 0.15, 0.7]
       ] : [
-        [
-          0,
-          top,
-          0,
-          1
-        ],
-        [
-          1.05,
-          top - 0.55,
-          0.35,
-          0.72
-        ],
-        [
-          -0.85,
-          top - 0.7,
-          -0.55,
-          0.68
-        ]
+        [0, top, 0, 1.08],
+        [1.25, top - 0.45, 0.4, 0.78],
+        [-1.05, top - 0.6, -0.5, 0.74],
+        [0.45, top - 0.25, -1.15, 0.7],
+        [-0.35, top + 0.55, 0.85, 0.66]
       ];
       for (const [ox, oy, oz, sc] of blobs) {
         _dummy.position.set(t.x + ox, oy, t.z + oz);
