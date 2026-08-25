@@ -62,9 +62,11 @@ function load(): SaveData {
 
 function write(data: SaveData) {
   try {
-    localStorage.setItem(KEY, JSON.stringify(data));
+    const raw = JSON.stringify(data);
+    localStorage.setItem(KEY, raw);
+    if (localStorage.getItem(KEY) !== raw) throw new Error("save mismatch");
   } catch {
-    /* quota */
+    /* quota or verify fail */
   }
 }
 
@@ -73,6 +75,7 @@ export function getBest(id: TrackId) {
 }
 
 export function recordBest(id: TrackId, time: number) {
+  if (!Number.isFinite(time) || time < 8) return false;
   const data = load();
   const prev = data.best[id];
   if (prev == null || time < prev) {
@@ -231,6 +234,7 @@ export function getGhost(id: TrackId) {
 }
 
 export function recordGhost(id: TrackId, time: number, frames: GhostFrame[]) {
+  if (!Number.isFinite(time) || time < 8) return false;
   if (frames.length < 8) return false;
   const all = loadGhosts();
   const prev = all[id];

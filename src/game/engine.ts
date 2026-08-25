@@ -269,6 +269,7 @@ export class RaceEngine {
   private booted = false;
   private tickId = 0;
   private timeVoided = false;
+  private qaForcedFinish = false;
   private glLost = false;
 
   constructor(canvas: HTMLCanvasElement, opts: Options) {
@@ -1013,7 +1014,7 @@ export class RaceEngine {
       this.acc -= FIXED;
       steps++;
     }
-    this.timeVoided = false;
+    if (this.acc >= FIXED && steps >= MAX_CATCHUP_STEPS) this.timeVoided = true;
 
     this.world.tick(now, this.player.x, this.player.z);
     this.nowSec = now / 1000;
@@ -1476,6 +1477,11 @@ export class RaceEngine {
     if (this.mode === "knockout" && this.player.eliminated) {
       place = this.racers.filter((r) => !r.eliminated).length + 1;
     }
+    const eligible =
+      !this.timeVoided &&
+      !this.qaForcedFinish &&
+      Number.isFinite(this.totalTime) &&
+      this.totalTime >= 8;
     const resultDraft: RaceResult = {
       place,
       totalTime: this.totalTime,
@@ -1492,10 +1498,11 @@ export class RaceEngine {
       cash: 0,
       ghostBeaten: false,
       line: finishLine(place, this.busted, this.opts.langHe, this.rivalIdx),
+      eligible,
     };
-    this.cashWon = racePayout(resultDraft);
+    this.cashWon = eligible ? racePayout(resultDraft) : 0;
     resultDraft.cash = this.cashWon;
-    if (!this.busted) {
+    if (eligible && !this.busted) {
       this.ghostBeaten = recordGhost(this.opts.trackId, this.totalTime, this.ghostBuf);
       resultDraft.ghostBeaten = this.ghostBeaten;
     }
@@ -2011,7 +2018,10 @@ export class RaceEngine {
       getCycle: () => this.autoCycle,
       isReplay: () => this.replaying,
       skipReplay: () => this.skipReplay(),
-      finishNow: () => this.endRace(),
+      finishNow: () => {
+        this.qaForcedFinish = true;
+        this.endRace();
+      },
       enterPhoto: () => this.enterPhoto(),
       exitPhoto: () => this.exitPhoto(),
       isRewinding: () => this.rewinding,

@@ -150,17 +150,18 @@ export function GameApp() {
 				onHud: setHud,
 				onRestore: () => setRaceKey((k) => k + 1),
 				onFinish: (r) => {
-					const isBest = recordBest(r.trackId, r.totalTime);
+					const ok = r.eligible !== false;
+					const isBest = ok ? recordBest(r.trackId, r.totalTime) : false;
 					setRecord(isBest);
 					const ev = r.eventId ? getEvent(r.eventId) : null;
-					const got = ev ? starsFor(ev, r) : r.place === 1 ? 3 : r.place === 2 ? 2 : r.place === 3 ? 1 : 0;
+					const got = !ok ? 0 : ev ? starsFor(ev, r) : r.place === 1 ? 3 : r.place === 2 ? 2 : r.place === 3 ? 1 : 0;
 					setEarned(got);
-					if (r.eventId) recordEventStars(r.eventId, got);
-					if (r.eventId?.startsWith("daily-")) markDailyDone(r.eventId.slice(6));
-					if (r.eventId?.startsWith("weekly-")) markWeeklyDone(r.eventId.slice(7));
+					if (ok && r.eventId) recordEventStars(r.eventId, got);
+					if (ok && r.eventId?.startsWith("daily-")) markDailyDone(r.eventId.slice(6));
+					if (ok && r.eventId?.startsWith("weekly-")) markWeeklyDone(r.eventId.slice(7));
 					setStarTotal(totalStars());
-					const pay = r.cash || racePayout(r);
-					setCash(addCash(pay));
+					const pay = ok ? (r.cash || racePayout(r)) : 0;
+					setCash(ok ? addCash(pay) : getCash());
 					setResult(r);
 				},
 			});

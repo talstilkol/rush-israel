@@ -251,6 +251,7 @@ export type RaceResult = {
   cash: number;
   ghostBeaten: boolean;
   line: string;
+  eligible?: boolean;
 };
 
 export type Sample = {
