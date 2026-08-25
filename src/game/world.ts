@@ -5146,8 +5146,14 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       const p = tlv(uh.lat, uh.lon);
       const nearH = nearestIndex(built.samples, p.x, p.z, 0);
       if (nearH.dist < built.width / 2 + 7) continue;
-      const col = houseCols[uh.col % houseCols.length];
-      const body = new THREE.Mesh(new THREE.BoxGeometry(uh.w, uh.h, uh.d), col);
+      const kinds = ["white", "gold", "white", "teal"];
+      const facade = new THREE.MeshStandardMaterial({
+        map: curtainTexture(kinds[uh.col % 4]),
+        roughness: 0.78,
+        color: 15789528
+      });
+      bag.push(facade);
+      const body = new THREE.Mesh(new THREE.BoxGeometry(uh.w, uh.h, uh.d), facade);
       body.position.set(p.x, uh.h * 0.5, p.z);
       add(body);
       const cornice = new THREE.Mesh(new THREE.BoxGeometry(uh.w + 0.7, 0.35, uh.d + 0.5), uh.col % 2 ? terracotta : cream);
@@ -5168,7 +5174,19 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         win.position.set(p.x + uh.d * 0.51, 2.4 + fl * 2.8, p.z + wx);
         add(win);
       }
-      hit(p.x, p.z, 5.5);
+      hit(p.x, p.z, 5.5, uh.w * 0.48, uh.d * 0.48);
+    }
+    const indy = tlv(32.0629, 34.7695);
+    if (nearestIndex(built.samples, indy.x, indy.z, 0).dist > built.width / 2 + 6) {
+      const indyM = new THREE.MeshStandardMaterial({ map: curtainTexture("white"), roughness: 0.8, color: 16118744 });
+      bag.push(indyM);
+      const indyB = new THREE.Mesh(new THREE.BoxGeometry(14.2, 8.4, 11.2), indyM);
+      indyB.position.set(indy.x, 4.2, indy.z);
+      add(indyB);
+      const indyRoof = new THREE.Mesh(new THREE.BoxGeometry(15.2, 0.45, 12), white);
+      indyRoof.position.set(indy.x, 8.7, indy.z);
+      add(indyRoof);
+      hit(indy.x, indy.z, 7, 7.2, 5.8);
     }
     const pg = tlv(32.0648, 34.7752);
     const pgBody = new THREE.Mesh(new THREE.BoxGeometry(9.2, 16.5, 9.2), cream);
