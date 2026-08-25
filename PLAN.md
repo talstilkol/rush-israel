@@ -128,7 +128,7 @@
 
 | # | פריט | סטטוס | ציון 100? | אמת |
 |---|---|---|---|---|
-| B1 | 4 גלגלים Pacejka | **PARTIAL** | לא | `stepWheels` קיים. **ה־yaw הראשי עדיין kinematic** |
+| B1 | 4 גלגלים Pacejka | **PARTIAL** | לא | מעל ~8m/s: 34% kinematic seed + torque גלגלים. Pacejka לבד מת אפס-slip — בלי seed אין פנייה |
 | B2 | Y לא נעול לספליין | **PARTIAL** | לא | קפיץ/שיכוך מעל groundY. אין אוויר/6DoF |
 | B3 | תאוצה ריאלית | **PARTIAL** | לא | drag+launch. עדיין קטנוע |
 | B4 | הגה אנלוגי | **PARTIAL** | לא | גיימפד אנלוגי; מקלדת slew ~150ms. אין FFB |

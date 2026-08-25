@@ -389,8 +389,10 @@ export class ArcadeCar {
       yawT += ox * wrz * Fy - oz * wrx * Fy;
     }
     const speedFactor = clamp(speedAbs / 7.5, 0, 1) * (1 - 0.4 * clamp(speedAbs / 38, 0, 1));
-    const kin = steerIn * 1.72 * speedFactor * reverse * (wantDrift ? 1.32 : 1) * (0.92 + front * 0.16);
-    this.yawRate = kin + (yawT / iz) * 6.2;
+    const crawl = 1 - clamp((speedAbs - 4) / 6, 0, 1);
+    const kin = steerIn * 1.7 * clamp(speedAbs / 6.5, 0, 1) * reverse * (wantDrift ? 1.28 : 1) * (0.92 + front * 0.16);
+    const tire = (yawT / iz) * 80;
+    this.yawRate = kin * (0.34 + crawl * 0.66) + tire;
     const latNow = this.vx * rx + this.vz * rz;
     const slipAng = Math.atan2(latNow, Math.max(2.4, speedAbs));
     const esc = escYaw(slipAng, this.yawRate, this.assists.esc && racing, wantDrift);
@@ -412,7 +414,7 @@ export class ArcadeCar {
     this.slip = slip;
     const peak = Math.max(0.12, Math.abs(pacejka(slip, grip)));
     lat *= Math.exp(-peak * 8.4 * dt);
-    const spin = lat * (slip > 0.3 ? 0.07 : -0.016);
+    const spin = lat * (slip > 0.3 ? 0.028 : -0.006);
     this.yaw = wrapPi(this.yaw + spin * dt);
     this.vx = fx * this.speed + rx * lat;
     this.vz = fz * this.speed + rz * lat;
