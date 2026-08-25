@@ -398,17 +398,33 @@ export function createCarVisual(
   if (kind === "super") {
     put(new THREE.BoxGeometry(L.W * 0.95, 0.05, 0.42), accentMat, 0, cabinY + 0.22, -half + 0.12);
     put(new THREE.BoxGeometry(L.W * 0.98, 0.04, 0.38), accentMat, 0, L.wheelY * 0.42, half - 0.02);
+    put(new THREE.BoxGeometry(L.W * 1.02, 0.08, 0.55), accentMat, 0, cabinY + 0.28, -half + 0.28);
+    for (const sx of [-1, 1]) {
+      put(new THREE.BoxGeometry(0.18, 0.22, 0.55), black, sx * L.W * 0.48, bodyY + 0.06, L.cabinZ + 0.15);
+    }
   } else if (kind === "muscle") {
     put(new THREE.BoxGeometry(0.9, 0.1, 0.7), bodyMat, 0, bodyY + L.bodyH * 0.55, half - L.hoodL * 0.5);
     put(new THREE.BoxGeometry(L.W * 0.7, 0.05, 0.28), accentMat, 0, cabinY + 0.18, -half + 0.2);
+    put(new THREE.BoxGeometry(L.W * 0.92, 0.08, 0.12), chrome, 0, L.wheelY * 0.62, half - 0.01);
   } else if (kind === "rally") {
     put(new THREE.BoxGeometry(1.2, 0.05, 1.4), dark, 0, cabinY + L.cabinH * 0.55, L.cabinZ);
     put(new THREE.BoxGeometry(1.1, 0.08, 0.08), emitHead, 0, bodyY + 0.16, half + 0.04);
     put(new THREE.CylinderGeometry(0.06, 0.06, 0.5, 8), dark, -L.W * 0.38, cabinY, L.cabinZ + 0.4);
+    for (const sx of [-0.28, 0, 0.28]) {
+      const lamp = put(new THREE.CylinderGeometry(0.08, 0.08, 0.1, 10), emitHead, sx, cabinY + L.cabinH * 0.62, L.cabinZ + 0.35);
+      lamp.rotation.x = Math.PI / 2;
+    }
+    for (const sx of [-1, 1]) {
+      put(new THREE.BoxGeometry(0.16, 0.22, 0.9), dark, sx * (L.W * 0.52), L.wheelY + 0.08, L.wb * 0.22);
+    }
   } else if (kind === "hatch" && TAXI_COLORS.has(color)) {
     put(new THREE.BoxGeometry(0.4, 0.14, 0.2), new THREE.MeshStandardMaterial({ color: 0xf2eee8, emissive: 0xf2eee8, emissiveIntensity: 0.4 }), 0, cabinY + L.cabinH * 0.58, L.cabinZ + 0.1);
-  } else if (kind !== "hatch") {
+  } else if (kind === "hatch") {
+    put(new THREE.BoxGeometry(L.W * 0.72, 0.05, 0.28), dark, 0, cabinY + L.cabinH * 0.48, L.cabinZ - L.cabinL * 0.48);
+  } else {
     put(new THREE.BoxGeometry(1.5, 0.04, 0.26), accentMat, 0, cabinY + 0.08, -half + 0.22);
+    put(new THREE.BoxGeometry(L.W * 0.02, 0.06, L.L * 0.62), chrome, L.W * 0.46, bodyY + 0.12, 0);
+    put(new THREE.BoxGeometry(L.W * 0.02, 0.06, L.L * 0.62), chrome, -L.W * 0.46, bodyY + 0.12, 0);
   }
 
   if (tune && tune.livery > 0) applyLivery(bodyMat, color, tune.livery);
@@ -427,27 +443,32 @@ export function createCarVisual(
   hubGeo.rotateZ(Math.PI / 2);
   const discGeo = new THREE.CylinderGeometry(L.wheelR * 0.7, L.wheelR * 0.7, 0.035, 22);
   discGeo.rotateZ(Math.PI / 2);
-  const spokeGeo = new THREE.BoxGeometry(0.028, L.wheelR * 0.82, 0.035);
+  const spokeN = kind === "super" ? 10 : kind === "rally" ? 5 : kind === "muscle" ? 5 : kind === "hatch" ? 6 : 7;
+  const spokeGeo = new THREE.BoxGeometry(kind === "super" ? 0.022 : 0.028, L.wheelR * (kind === "super" ? 0.88 : 0.82), 0.035);
   const offsets: [number, number, number][] = [
     [-L.track / 2, L.wheelY, L.wb / 2],
     [L.track / 2, L.wheelY, L.wb / 2],
     [-L.track / 2, L.wheelY, -L.wb / 2],
     [L.track / 2, L.wheelY, -L.wb / 2],
   ];
-  for (const [x, y, z] of offsets) {
+  for (let wi = 0; wi < offsets.length; wi++) {
+    const [x, y, z] = offsets[wi];
     put(well, dark, x + Math.sign(x) * 0.01, y, z);
     const arch = put(lip, bodyMat, x + Math.sign(x) * 0.04, y, z, 0, 0, Math.sign(x) > 0 ? 0 : Math.PI);
     arch.rotation.x = -Math.PI / 2;
     const pivot = new THREE.Group();
     const spin = new THREE.Group();
-    spin.add(new THREE.Mesh(tire, rubber));
+    const rearFat = kind === "muscle" && wi >= 2 ? 1.28 : kind === "super" && wi >= 2 ? 1.18 : 1;
+    const tireM = new THREE.Mesh(tire, rubber);
+    tireM.scale.x = rearFat;
+    spin.add(tireM);
     spin.add(new THREE.Mesh(tread, rubber));
     spin.add(new THREE.Mesh(sidewall, rubber));
     spin.add(new THREE.Mesh(hubGeo, rim));
     spin.add(new THREE.Mesh(discGeo, disc));
-    for (let k = 0; k < 7; k++) {
+    for (let k = 0; k < spokeN; k++) {
       const sp = new THREE.Mesh(spokeGeo, rim);
-      sp.rotation.z = (k / 7) * Math.PI;
+      sp.rotation.z = (k / spokeN) * Math.PI;
       spin.add(sp);
     }
     pivot.add(spin);
@@ -512,6 +533,15 @@ export function createCarVisual(
   scratch.rotation.y = Math.PI / 2;
   scratch.position.set(L.W * 0.48, bodyY, 0.15);
   group.add(scratch);
+
+  const blob = new THREE.Mesh(
+    new THREE.CircleGeometry(L.W * 0.72, 16),
+    new THREE.MeshBasicMaterial({ color: 0x0a0c10, transparent: true, opacity: 0.32, depthWrite: false }),
+  );
+  blob.rotation.x = -Math.PI / 2;
+  blob.position.y = 0.03;
+  blob.renderOrder = -1;
+  group.add(blob);
 
   void houseL;
   void houseR;

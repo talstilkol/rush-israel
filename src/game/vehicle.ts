@@ -190,7 +190,7 @@ export class ArcadeCar {
     }
     const mass = Math.max(0.7, stats.mass || 1);
     const torque = ev ? 1.06 - n * 0.2 : [1.22, 1.08, 0.98, 0.88, 0.8][this.gear - 1] ?? 1;
-    const downforce = 1 + clamp(n, 0, 1) * 0.1;
+    const downforce = 1 + clamp(n, 0, 1) * (stats.body === "super" ? 0.24 : stats.body === "rally" ? 0.07 : 0.1);
 
     this.wheelsLocked = false;
     this.absActive = false;
@@ -200,9 +200,9 @@ export class ArcadeCar {
     const vAbs = Math.abs(v);
     const aero = stats.drag * 0.00155 * vAbs * vAbs;
     const surf = SURFACE_SPEC[this.surfaceKind] ?? SURFACE_SPEC.asphalt;
-    const rolling = vAbs > 0.2 ? (1.15 + (this.onTrack ? 0 : 3.4)) * surf.roll * wx.roll : 0;
+    const rolling = vAbs > 0.2 ? (1.15 + (this.onTrack ? 0 : stats.body === "rally" ? 1.15 : 3.4)) * surf.roll * wx.roll : 0;
     const driveCurve = Math.max(0.05, 1 - clamp(vAbs / Math.max(8, maxSpeed), 0, 1) ** 2.35);
-    const launch = vAbs < 8 ? 0.55 + vAbs * 0.056 : 1;
+    const launch = vAbs < 8 ? (stats.body === "super" ? 0.4 : stats.body === "muscle" ? 0.46 : stats.body === "hatch" ? 0.62 : 0.55) + vAbs * 0.056 : 1;
     const fx = -Math.sin(this.yaw);
     const fz = -Math.cos(this.yaw);
     const rx = Math.cos(this.yaw);
@@ -304,7 +304,7 @@ export class ArcadeCar {
     this.yawRate += esc.yaw * turn * speedFactor;
     this.yaw = wrapPi(this.yaw + this.yawRate * dt);
 
-    let grip = this.onTrack ? stats.grip : stats.grip * 0.4;
+    let grip = this.onTrack ? stats.grip : stats.grip * (stats.body === "rally" ? 0.78 : 0.4);
     grip *= this.weatherGrip * this.surfaceGrip * downforce * profile.gripMul * wx.lat * surf.lat;
     grip *= 1 - this.damage * 0.22;
     grip *= 0.84 + front * 0.28;
@@ -394,7 +394,7 @@ export class ArcadeCar {
       this.surfaceGrip = this.baseGrip * (lat01 > 0.72 && this.weatherGrip < 0.95 ? 0.86 : 1);
     }
 
-    if (!this.onTrack) this.speed *= Math.exp(-(this.roam ? 0.9 : 2.6) * dt);
+    if (!this.onTrack) this.speed *= Math.exp(-(this.roam ? 0.9 : this.stats.body === "rally" ? 1.15 : 2.6) * dt);
 
     for (const c of colliders) {
       const dx = this.x - c.x;
