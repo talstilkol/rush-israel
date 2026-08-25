@@ -2046,6 +2046,9 @@ export class RaceEngine {
       setThrottle: (v: number) => {
         this.input.throttleOverride = v;
       },
+      setCarId: (id: string) => {
+        this.player.stats = getCar(id);
+      },
       skipCountdown: () => {
         this.countdown = 0;
         this.racing = true;
@@ -2157,6 +2160,7 @@ declare global {
       setSteer?: (v: number) => void;
       setKeys?: (codes: string[]) => void;
       setThrottle?: (v: number) => void;
+      setCarId?: (id: string) => void;
       skipCountdown?: () => void;
       resetStart?: () => void;
       setProgress?: (t: number) => void;
