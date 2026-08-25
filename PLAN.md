@@ -1,274 +1,201 @@
-# RUSH — ביקורת כנה מול דוח הקודקס + התוכנית הוובית
-**תאריך:** 2026-08-26 00:27 IDT  
-**מה שנבדק:** הקוד ב־`/workspace` עכשיו, לא הזיכרון מהשיחה.
+# RUSH — ביקורת כנה (2026-08-26 00:44)
 
-מקרא: **DONE** = בקוד, רץ, נבדק נסיעה. **PARTIAL** = התחלה, לא המפרט. **NOT DONE** = לא נגענו. **FAKED** = סומן V / נכתב "הושלם" בלי לעמוד במפרט.
+מקרא: **DONE** = בקוד, רץ, נבדק. **PARTIAL** = התחלה, לא המפרט. **NOT DONE** = לא נגענו. **FAKED** = סומן V בלי לעמוד במפרט.
 
-**שום פריט מול GT7 / Unreal 5 / GIS לא בציון 100.**  
-מה שכן 100 מול מפרט זעיר: Esc, 120Hz loop, GitHub, דילוג גריד NYC בישראל.
+**שום פריט מול GT7 / Unreal / GIS לא בציון 100.**  
+100 מול מפרט זעיר בלבד: Esc, 120Hz, GitHub, דילוג NYC בישראל, כרטיסים בלי JPEG, Ayalon `open`.
 
-אין Unreal בסנדבוקס. אין OSM/DEM בארכיון. זה עדיין Three.js.
+אין Unreal בסנדבוקס. אין OSM/DEM. זה Three.js.
 
 ---
 
 ## 0. פסק דין
 
-הדוח צודק. זה **אב־טיפוס WebGL**. הגלים האחרונים שיפרו פרוצדורה (שער קשת, מצוק רמון, מתלה Y, AABB, תמרורים על בד). הם **לא** סגרו GIS, 6DoF, HDRI, או CI.
+אב־טיפוס WebGL. מאז הביקורת הקודמת: DEV-hook, envelope שיאים, כרטיסי צבע, איילון A→B 28מ׳, yaw היבריד, צלליות (עזריאלי/ToHa/רכבת/רוטשילד/יפו/רידינג).  
+**לא נסגרו:** סוד OAuth, GIS, 6DoF, HDRI, CI, vehicle lab, Unreal.
 
-| תחום (מול PC/Console בדוח) | דוח | עכשיו | שינוי אמיתי |
+| תחום | דוח | עכשיו | אמת |
 |---|---:|---:|---|
-| GIS / רחובות | 1 | 1 | נקודות lat/lon ידניות. אין מקור |
-| גרפיקת עולם | 2 | 2.2 | כביש specular, מצוק, LOD איכות |
-| רכב/חומרים | 2 | 2.3 | תא hood, flakes, הגה מסתובב |
-| תאורה | 2 | 2.1 | ACES + כיפה. אין HDRI |
-| פיזיקה | 2 | 2.4 | 4 מגע yaw + קפיץ Y. עדיין kinematic |
+| GIS | 1 | 1 | lat/lon ידני |
+| גרפיקה | 2 | 2.4 | צלליות טובות יותר. פרימיטיבים |
+| רכב | 2 | 2.3 | flakes + תא. לא סריקה |
+| תאורה | 2 | 2.1 | ACES, אין HDRI |
+| פיזיקה | 2 | 2.5 | היבריד 34% kin מעל 8m/s |
 | AI | 2 | 2 | לא נגענו |
-| תקינות מרוץ | 1 | 2 | `timeVoided` דביק. `__controlsTest` עדיין ב־shipping |
-| ביצועים | 3 | 3.2 | Low/Mid/High + LOD עצים |
-| קוד/QA | 3 | 3 | `world.ts` / `game-app` עדיין `@ts-nocheck` |
-| UX | 3 | 3.5 | Esc, תפריט קצר |
+| תקינות | 1 | 2.4 | timeVoided + DEV hook. סוד עדיין בקוד |
+| ביצועים | 3 | 3.2 | Low/Mid/High |
+| קוד | 3 | 3 | `@ts-nocheck` world/game-app |
+| UX | 3 | 3.6 | Esc + כרטיסי צבע |
 | Audio | 2 | 2 | oscillators |
 
 ---
 
-## 1. דוח הקודקס — 24 שעות / שבוע / חודש
+## 1. Codex 24ש׳ / שבוע / חודש
 
-### 24 השעות הראשונות (סעיף 21)
-
-| # | משימה | סטטוס | ציון 100? | אמת |
+| # | משימה | סטטוס | 100? | אמת |
 |---|---|---|---|---|
-| 24.1 | לסובב סוד OAuth | **NOT DONE** | לא | `PREVIEW_CLIENT_SECRET` עדיין hardcoded ב־`src/lib/auth/preview.ts:20-21` |
-| 24.2 | לחסום `__controlsTest` מ־shipping | **PARTIAL** | לא | `exposeControls()` רק `import.meta.env.DEV`. ב־production build אין hook. ב־vite dev נשאר לבדיקות |
-| 24.3 | לבטל records כשזמן לא אמין | **PARTIAL** | לא | `timeVoided` + מינ׳ 8ש׳ + מקס׳ 45ד׳ + `eligible:false` נחסם. אין חתימה קריפטוגרפית |
-| 24.4 | להפסיק טענות "רחובות אמיתיים" + תמונות לא־runtime | **PARTIAL** | לא | כרטיסים ומסך בחירה הם **צבע theme**, לא JPEG שיווקי. הטקסט בתיאורי מסלול עדיין יכול להישמע כמו GPS |
-| 24.5 | לשמר artifact/logs | **NOT DONE** | לא | אין תיקיית evidence חתומה בריפו |
+| 24.1 | סובב OAuth | **NOT DONE** | לא | `preview.ts` hardcoded |
+| 24.2 | חסום `__controlsTest` מ־shipping | **PARTIAL** | לא | רק `import.meta.env.DEV`. **ה־preview החי (vite dev) עדיין עם finishNow** |
+| 24.3 | records רק זמן אמין | **PARTIAL** | לא | 8–2700ש׳ + eligible. אין חתימה |
+| 24.4 | בלי JPEG מטעה / בלי "רחובות אמיתיים" | **PARTIAL** | לא | UI = צבע theme. תיאורי מסלול עדיין נשמעים כמו GPS |
+| 24.5 | artifacts חתומים | **NOT DONE** | לא | |
+| W1.1 | CI ירוק בלי nocheck | **NOT DONE** | לא | |
+| W1.2 | save טרנזקציה | **NOT DONE** | לא | localStorage |
+| W1.3 | damage lifecycle | **PARTIAL** | לא | |
+| W1.4 | GPU soak | **PARTIAL** | לא | dispose כן, soak לא |
+| W1.5 | record envelope חתום | **PARTIAL** | לא | |
+| W1.6 | perf + security headers | **NOT DONE** | לא | |
+| M1 | Unreal brief | **NOT DONE** | לא | אי אפשר כאן |
+| M2 | freeze 52 | **FAKED** | לא | המשכנו לגעת באיילון/רוטשילד/יפו/הירקון/רמון/חרמון/כרמל/ירושלים |
+| M3 | legal manifest | **NOT DONE** | לא | |
+| M4 | CRS gates | **NOT DONE** | לא | |
+| M5 | vehicle lab + road compiler | **NOT DONE** | לא | |
 
-### השבוע הראשון
+איסורי הדוח: לא port ל־Unreal (**נכון**). לא לידרבורד (**נכון**). כן הרחבנו ArcadeCar. כן פולי לפרימיטיבים.
 
-| # | משימה | סטטוס | ציון 100? |
+---
+
+## 2. Unreal / GIS (שלבים 0–6 בדוח)
+
+**הכל NOT DONE** חוץ מפיזיקה חלקית למעלה. אין UE5, cooker, ITM, World Partition, Lumen, Chaos Vehicle lab.
+
+---
+
+## 3. תוכנית ווב — אחת־אחת
+
+### A גרפיקה
+
+| # | פריט | סטטוס | 100? |
 |---|---|---|---|
-| W1.1 | CI ירוק (lint+test+typecheck בלי nocheck) | **NOT DONE** | lint נכשל בדוח; `@ts-nocheck` על world/game-app |
-| W1.2 | schema/transaction לשמירה | **NOT DONE** | localStorage כמו קודם |
-| W1.3 | damage lifecycle מלא | **PARTIAL** | dents/scratch. אין אזורים/CCD |
-| W1.4 | GPU dispose + soak | **PARTIAL** | bag.dispose. אין soak 100 מחזורים |
-| W1.5 | record key/envelope | **PARTIAL** | מינ׳ 8ש׳ + timeVoided. אין חתימה |
-| W1.6 | baseline perf + security headers | **NOT DONE** | |
+| A1 HDRI וולומטרי | **PARTIAL** | לא — קנבס |
+| A2 ACES+GI | **PARTIAL** | לא — ACES בלי GI |
+| A3 Cascades | **PARTIAL** | לא — צל אחד + blob |
+| A4 Bloom חלש | **DONE** מול "חלש" | כן זעיר |
+| A5 אופק | **PARTIAL** | לא — כיפה+קונוסים |
+| A6 אספלט סריקה | **PARTIAL** | לא — canvas 1024 |
+| A7 SSR | **PARTIAL** | לא — puddles/skid |
+| A8 רוחב מציאות | **PARTIAL** | לא — איילון 28=8×3.5. שאר המסלולים לא |
+| A9 מכוניות סרוקות | **PARTIAL** | לא — extrusion |
+| A10 תא | **PARTIAL** | לא — קופסאות |
+| A11 פנסים | **PARTIAL** | לא |
+| A12 אפס גנריים | **PARTIAL** | לא — ישראל בלי NYC grid. סמלים=תיבות |
+| A13 סמלים מדויקים | **PARTIAL** | לא — צללית מזוהה |
+| A14 ת״י | **PARTIAL** | לא — canvas, לא GIS |
+| A15 עצים 3 LOD מרחק | **PARTIAL** | לא — לפי איכות |
+| A16 DEM | **NOT DONE** | לא |
+| A17 ים | **PARTIAL** | לא |
+| A18 פוסט Asphalt | **PARTIAL** | לא |
 
-### החודש הראשון
+### B פיזיקה
 
-| # | משימה | סטטוס |
-|---|---|---|
-| M1 | החלטת Unreal + product brief | **NOT DONE** — אי אפשר כאן |
-| M2 | freeze 52 מסלולים | **FAKED** — המשכנו לגעת בכולם במקום corridor אחד |
-| M3 | legal/data manifest | **NOT DONE** |
-| M4 | CRS + accuracy gates | **NOT DONE** |
-| M5 | vehicle lab + road compiler | **NOT DONE** |
+| # | פריט | סטטוס | 100? |
+|---|---|---|---|
+| B1 4×Pacejka | **PARTIAL** | לא — 34% kin seed מעל 8m/s |
+| B2 Y חופשי | **PARTIAL** | לא — קפיץ |
+| B3 תאוצה | **PARTIAL** | לא — אין 0–100 מדיד |
+| B4 הגה אנלוגי | **PARTIAL** | לא — slew, אין FFB |
+| B5 OBB | **PARTIAL** | לא — AABB |
+| B6 60fps יציב | **PARTIAL** | לא |
 
-### מה שהדוח אמר לא לעשות — ועשינו חלקית
+### C ישראל
 
-| איסור | מה קרה |
+| # | פריט | סטטוס | 100? | אמת עכשיו |
+|---|---|---|---|---|
+| C1 איילון | **PARTIAL** | לא | A→B, 28מ׳, נגד, 2 רמפות, רכבת דו-קומתית זזה. לא GIS, לא 6 מחלפים סקר |
+| C2 עזריאלי/ToHa/גייט | **PARTIAL** | לא | 3 צורות גבוהות + ToHa תאומים. פרימיטיבים |
+| C3 רוטשילד | **PARTIAL** | לא | פיקוס + curtain באוהאוס + היכל ליד. לא חזית מצולמת |
+| C4 הירקון מלונות | **PARTIAL** | לא | הילטון מוסט. לא שחזור |
+| C5 רידינג | **PARTIAL** | לא | ארובות+לבנים בהירקון. מנהרה במסלול namal |
+| C6 יפו | **PARTIAL** | לא | שעון מוסט + כורכר. לא סמטאות OSM |
+| C7 ירושלים | **PARTIAL** | לא | קשת עבירה. אין אבן/DEM |
+| C8 רמון/חרמון/כרמל | **PARTIAL** | לא | מצוק, שלג, אורנים. פרימיטיבים |
+
+### D / G
+
+| # | סטטוס |
 |---|---|
-| לא להוסיף מסלולים | לא הוספנו כרטיסים חדשים. **כן** ליטשנו 52 הקיימים |
-| לא לשפר thumbnails לפני runtime | **NOT DONE** לתקן — ה־JPEGs עדיין שיווקיים |
-| לא להעלות פולי לפרימיטיבים כאסטרטגיה | **עשינו בדיוק את זה** (מצוק, אורנים, תא) |
-| לא להרחיב ArcadeCar לפני החלפת ליבה | **עשינו** — stepWheels היברידי על אותה ליבה |
-| לא port ל־Unreal | **נכון** — לא ניסינו |
-| לא data בלי provenance | **נכון** — אין import GIS, גם אין provenance |
-| לא לידרבורד | **נכון** |
-
----
-
-## 2. שלבי Unreal / GIS מהדוח (0–6)
-
-כל אלה **NOT DONE**. אין UE5, אין cooker, אין ITM.
-
-| ID | משימה | סטטוס |
-|---|---|---|
-| GEO-01..09 | CRS, manifest, OSM, lane compiler, DEM, שלטים מנתונים, world cells, QA map | **NOT DONE** |
-| PHY-01 | 6DoF chassis + inertia tensor | **NOT DONE** |
-| PHY-02 | 4 גלגלים + spring/damper/anti-roll | **PARTIAL** — 4 מגע yaw + קפיץ Y. אין נסיעת מתלה אמיתית, אין anti-roll |
-| PHY-03 | combined-slip + load | **PARTIAL** — Pacejka פשוט לכל גלגל, yaw עדיין kinematic-ראשי |
-| PHY-04 | drivetrain (clutch/gears/diff) | **PARTIAL** — הילוך מספרי. אין clutch/diff |
-| PHY-05 | ABS/TCS/ESC per-wheel telemetry | **PARTIAL** — מודולציה. אין טלמטריית גלגל |
-| PHY-06 | convex/CCD damage | **PARTIAL** — AABB בניין, עיגול לשאר |
-| PHY-07 | vehicle lab 0–100/skidpad | **NOT DONE** |
-| PHY-08 | 10k-tick hash determinism | **NOT DONE** |
-| VS-01..16 | terrain/rail, asphalt scan, interchanges, hero art, rain linked, traffic MVP, audio MVP... | **NOT DONE** |
-| A4-01..10 | 3–5 רכבים מאומתים, online, career, cloud | **NOT DONE** (וגם אסור לפי המשתמש: בלי אונליין/גאראז') |
-| Beta/console | **NOT DONE** | |
-
----
-
-## 3. התוכנית הוובית (A / B / C / G) — אחת־אחת
-
-### גרפיקה A
-
-| # | פריט | סטטוס | ציון 100? | אמת |
-|---|---|---|---|---|
-| A1 | HDRI + עננים וולומטריים | **PARTIAL** | לא | קנבס equirect סטטי |
-| A2 | ACES + GI | **PARTIAL** | לא | ACES כן. אין GI |
-| A3 | Cascades + contact | **PARTIAL** | לא | blob + צל 2K אחד |
-| A4 | Bloom חלש | **DONE** מול "חלש" | כן מול המפרט הזעיר | |
-| A5 | אופק / הרים | **PARTIAL** | לא | כיפה 8km. קונוסים נשארו |
-| A6 | אספלט פוטוגרמטריה | **PARTIAL** | לא | canvas 1024 + UV נתיבים |
-| A7 | Puddles / skid / SSR | **PARTIAL** | לא | puddles+skid. אין SSR |
-| A8 | רוחב כביש לפי מציאות | **PARTIAL** | לא | איילון 52 / 8 פסים. שאר המסלולים שגויים |
-| A9 | מכוניות סרוקות | **PARTIAL** | לא | 5 extrusion + flakes |
-| A10 | תא נהג | **PARTIAL** | לא | מושבים/דאש/הגה. קופסאות, לא סריקה |
-| A11 | פנסים על הכביש | **PARTIAL** | לא | SpotLight + כתם |
-| A12 | אפס בניינים גנריים | **PARTIAL** | לא | InstancedMesh ישראל=0. סמלים עדיין תיבות |
-| A13 | סמלים מדויקים | **PARTIAL** | לא | צללית. לא שחזור |
-| A14 | תמרורי ת״י / רמזורים | **PARTIAL** | לא | עצור/50/80/90/רמזור על עמוד. **לא GIS, לא מיקום אמת** |
-| A15 | עצים 3 LOD לפי מרחק | **PARTIAL** | לא | Low מכבה כתרים. אין 3 רשתות לפי מטרים |
-| A16 | DEM ישראל | **NOT DONE** | לא | ספליין + סינוס |
-| A17 | ים אמיתי | **PARTIAL** | לא | מישור + normal + קצף |
-| A18 | פוסט כמו Asphalt | **PARTIAL** | לא | SMAA+bloom+grade |
-
-### פיזיקה B
-
-| # | פריט | סטטוס | ציון 100? | אמת |
-|---|---|---|---|---|
-| B1 | 4 גלגלים Pacejka | **PARTIAL** | לא | מעל ~8m/s: 34% kinematic seed + torque גלגלים. Pacejka לבד מת אפס-slip — בלי seed אין פנייה |
-| B2 | Y לא נעול לספליין | **PARTIAL** | לא | קפיץ/שיכוך מעל groundY. אין אוויר/6DoF |
-| B3 | תאוצה ריאלית | **PARTIAL** | לא | drag+launch. עדיין קטנוע |
-| B4 | הגה אנלוגי | **PARTIAL** | לא | גיימפד אנלוגי; מקלדת slew ~150ms. אין FFB |
-| B5 | OBB התנגשות | **PARTIAL** | לא | **AABB** לבניין (hx/hz). לא מסובב. עיגול לרכב |
-| B6 | 0 רצוד 60fps | **PARTIAL** | לא | watchdog. Composer עדיין יקר ב־High |
-
-### ישראל C
-
-| # | פריט | סטטוס | ציון 100? | אמת |
-|---|---|---|---|---|
-| C1 | איילון 8+8+רכבת+6 מחלפים | **PARTIAL** | לא | **פתוח A→B**, width 28 (8×3.5), נגד+ג'רזי. עדיין לא GIS, לא 6 מחלפים אמיתיים, לא רכבת חיה מדויקת |
-| C2 | עזריאלי/ToHa/סיטי גייט | **PARTIAL** | לא | צללית תיבות |
-| C3 | רוטשילד פיקוס/באוהאוס | **PARTIAL** | לא | פיקוס כן. בתים צבע |
-| C4 | הירקון מלונות | **PARTIAL** | לא | שמות, לא שחזור |
-| C5 | רידינג מנהרה | **PARTIAL** | לא | מנהרה על הספליין |
-| C6 | יפו שעון/נמל | **PARTIAL** | לא | שעון+כורכר |
-| C7 | ירושלים שער/כותל/כיפה | **PARTIAL** | לא | שער **קשת עבירה** (תוקן dogleg). כיפה/כותל דלים. אין DEM |
-| C8 | רמון/חרמון/כרמל טבע | **PARTIAL** | לא | מצוק רמון, שלג חרמון, אורני כרמל. עדיין פרימיטיבים |
-
-### מוצר D
-
-| # | פריט | סטטוס |
-|---|---|---|
-| D1 | UI מינימלי + Esc | **DONE** מול המפרט המינימלי |
-| D2 | i18n he/en/ar | **PARTIAL** |
-| D3 | תמונות כרטיס = runtime | **NOT DONE** |
-
-### G0–G9
-
-| G | מפרט | סטטוס |
-|---|---|---|
-| G0 3 פרופילים + composer כבוי ב־Low | **PARTIAL** — Low/Mid/High קיימים. לא מדוד 16.6ms |
-| G1 shader כביש + planar | **PARTIAL** |
-| G2 HDRI + fog גובה | **PARTIAL** |
-| G3 flakes + probe + LOD2 רכב | **PARTIAL** — flakes כן. LOD2 רכב לא |
-| G4 blob + cascade | **PARTIAL** — blob כן |
-| G5 אטלס 16 חזיתות | **PARTIAL** — 4 שפות |
-| G6 8 מנורות + cookies | **PARTIAL** |
-| G7 LOD עצים + foam | **PARTIAL** |
-| G8 smear | **DONE** מול "מריחה בקצוות" |
+| D1 Esc | **DONE** זעיר |
+| D2 i18n | **PARTIAL** |
+| D3 כרטיס=runtime | **PARTIAL** — צבע, לא צילום משחק |
+| G0–G7 | **PARTIAL** |
+| G8 smear | **DONE** זעיר |
 | G9 WebGPU | **NOT DONE** |
 
 ---
 
-## 4. מה *כן* נכון אחרי הגלים האחרונים (לא 100)
+## 4. מה שעובד בנסיעה (לא 100)
 
-עובד בנסיעת Playwright:
-
-- A/D עם yaw > 0.03
-- `timeVoided` דביק ב־catchup
-- איילון נגד+ג'רזי
-- שער יפו בלי קיר על הספליין (על המסלול אחרי 2ש׳)
-- רמון Y≈92 בתצפית; כרמל Y≈46; חרמון Y≈4 בהתחלה
-- תמרורים קריאים בעברית
-- תא hood עם הגה
-- AABB בניין
-
-אלה **תיקוני פרוטוטיפ**. הדוח דרש מקור GIS ומנוע רכב. זה לא זה.
+- A/D Δyaw>0.03
+- איילון פתוח, על המסלול
+- שער יפו קשת
+- רכבת זזה
+- כרטיסים בלי `/tracks/*.jpg`
+- `__controlsTest` לא ב־`vite build`
 
 ---
 
-## 5. תוכנית ביצוע מפורטת — להשלים את *הכל*
+## 5. רשימת משימות להשלמת *הכל*
 
 שתי מסילות. בלי לערבב.
 
-### מסילה W — מה שאפשר בסנדבוקס (יעד: Asphalt-like ב־Three.js)
+### מסילה W — סנדבוקס (יעד Asphalt-like)
 
-#### W0 — P0 אבטחה ותקינות (חובה לפני עוד ארט) — 1–2 ימים
-1. לסובב/להוציא `PREVIEW_CLIENT_SECRET` מ־source; רק env.
-2. `__controlsTest` רק `import.meta.env.DEV`.
-3. `recordBest` דורש `!timeVoided && duration>=8 && !qaForcedFinish`; מפתח כולל build hash.
-4. להחליף JPEG שיווקי בכרטיסים בצילום runtime או בצבע+שם בלבד.
-5. להוריד מהעותק "רחובות אמיתיים / GPS מדויק" → "מסלול בהשראת".
-6. CI: typecheck בלי nocheck על קבצים חדשים; lint על `src/game/physics.ts` + `vehicle.ts`.
+#### W0 שנשאר (P0) — לפני עוד ארט
+1. **NOT DONE** הוצאת `PREVIEW_CLIENT_SECRET` ל־env בלבד; רוטציה.
+2. **PARTIAL** `__controlsTest` גם לא ב־vite dev של הפריוויו הציבורי — דגל `VITE_QA=1` בבילד בדיקות בלבד.
+3. **PARTIAL** envelope: `physicsVersion` + hash בשיא; reject אם לא תואם.
+4. **PARTIAL** להחליף תיאורי "כביש 20 / GPS" ב־"בהשראת".
+5. **NOT DONE** CI: lint על physics+vehicle; אסור nocheck חדש.
+6. **NOT DONE** soak GPU 100 מחזורי תפריט↔מרוץ.
 
-#### W1 — יציבות פריים — 1 יום
-1. Low: אין composer, אין צל, pixelRatio 1, כתרי עצים כבויים (כבר חלקית).
-2. אם fps<50: כיבוי planar → bloom → צל. בלי קפיצה באמצע פריים.
-3. מדידת ms: גיאומטריה / צל / פוסט — לוג ב־DEV.
+#### W1 פריים
+1. מדידת ms ב־DEV (גיאומטריה/צל/פוסט).
+2. אם fps<50: כיבוי planar→bloom→צל, בלי קפיצה.
 
-#### W2 — כביש (הצילום) — 2 ימים
-1. Shader כביש ייעודי (albedo+rough+spec), לא MeshPhysical גנרי.
-2. Planar RT 256 רק 24מ׳, High+לילה.
-3. איילון: שני meshes 8 נתיבים + מסילה באמצע, בלי U ויזואלי בקצה (קיר/יציאה במקום קשת).
-4. רוחב נתיב ≈3.5 יחידות, לא 9.
+#### W2 כביש
+1. Shader כביש ייעודי.
+2. Planar 256 High+לילה בלבד.
+3. שאר המסלולים: `laneWidth≈3.5` לא `width/lanes` של 9.
 
-#### W3 — רכב מדיד — 3 ימים
-1. להחליף kinematic yaw ב־tire yaw כשהמהירות > 8m/s (ה־kin רק לזחילה).
-2. 0–100 מטרה מול מספר כתוב לכל אחד מ־5 הדגמים; טסט Playwright.
-3. 4 גלגלים: עומס קדמי/אחורי מ־pitch; Fy לכל גלגל; **בלי** double-count עם integrateMotion.
-4. Y: ground + spring. אם אין מגע 12ms → נפילה (איירבורן מינימלי).
-5. AABB נשאר לבניין; barrier capsule; רכב מעגל רך.
+#### W3 רכב מדיד
+1. **FAKED אם "tire-only"** — להשאיר seed גלוי בטלמטריה.
+2. **NOT DONE** 0–100 כתוב לכל 5 דגמים + טסט.
+3. ביטול double-count `integrateMotion.spin` מול `stepWheels`.
+4. איירבורן אם אין מגע 12ms.
+5. OBB מסובב לבניין (לא AABB).
 
-#### W4 — Corridor אחד: איילון רוקח–השלום — 5 ימים
-**הקפאת כל שאר המסלולים.** רק המקטע הזה מקבל ארט:
-1. עזריאלי משולש+עגול+מרובע בגבהים שונים, מחוץ לנתיב.
-2. ToHa / סיטי גייט / סבידור כצלליות ייחודיות.
-3. 2 מחלפים עבירים (לא 6 מזויפים).
-4. רכבת: mesh + תנועה על המסילה, לא AI על הכביש.
-5. QA: צילום מול תמונת ייחוס; "נראה כמו איילון" / לא.
+#### W4 איילון — סגירת corridor
+1. QA צילום מול ייחוס (השלום): "נראה כמו איילון" / לא. **NOT DONE**
+2. הקפאה אמיתית: לא לגעת במסלול אחר עד שהצילום עובר.
+3. סבידור כמבנה ייחודי, לא עוד cream box.
+4. 4 המחלפים הוויזואליים: להוריד או להפוך לגשרים בלי רמפה-כפולה.
 
-#### W5 — אחרי שאיילון עובר צילום
-בסדר הזה בלבד, כל אחד עם רשימת 8 סמלים + offset מהספליין:
-1. רוטשילד (פיקוס+באוהאוס)
-2. יפו (שעון+נמל)
-3. ירושלים A→B (שער עביר + אבן; בלי dogleg)
-4. רמון (מדבר+מצוק; אפס cream)
-5. חרמון (שלג+עלייה)
-6. כרמל (יער+ירידה)
+#### W5 מסלולים (רק אחרי W4 QA)
+כל אחד: 8 סמלים + offset + AABB + צילום.
+1. רוטשילד — חזיתות מצולמות / יותר וריאציה. עדיין PARTIAL.
+2. יפו — סמטאות, לא 8 קוביות.
+3. ירושלים — אבן + שיפוע.
+4. רמון — ירידה פיזיקלית מדידה.
+5. חרמון — קו עצים/שלג לפי Y.
+6. כרמל — בהאאי כצללית לא טרסות-קופסה.
 
-#### W6 — שמחוץ לסקופ המשתמש (לא לעשות)
-אונליין, גאראז׳, קריירה, 50 מכוניות, Unreal-in-browser, WebGPU לפני W2.
+#### W6 מחוץ לסקופ (לא לעשות)
+אונליין, גאראז׳, 50 מכוניות, Unreal-in-browser, WebGPU לפני W2.
 
-### מסילה U — production (מחוץ לסנדבוקס, חודשים)
-
-העתק מדויק של שלבי הדוח 2–6. **לא יתבצע כאן.**
-
-1. Unreal 5.8 greenfield. לא port של `world.ts`.
-2. CRS EPSG:2039 + SourceManifest לכל שכבה.
-3. מקטע איילון מ־GIS מורשה, לא מ־TypeScript.
-4. Chaos Vehicle / 4-wheel lab ±5%.
-5. Hero car scan מורשה.
-6. Vertical slice gates מפרק 16 בדוח.
-
-בלי צוות GIS+physics+art — המסילה הזו לא קיימת. פרומפט לא מחליף אותה.
+### מסילה U — מחוץ לסנדבוקס (חודשים, צוות)
+העתק שלבי הדוח GEO-01..VS-16. **לא יתבצע כאן.**  
+Unreal 5.8 greenfield, EPSG:2039, מקטע איילון מ־GIS מורשה, Chaos Vehicle ±5%.
 
 ---
 
-## 6. סדר הביצוע הבא בפועל (אם ממשיכים `המשך`)
+## 6. סדר אם ממשיכים `המשך`
 
-לא Unreal. לא מסלול 53.
-
-1. **W0.2** — `__controlsTest` רק ב־DEV  
-2. **W0.3** — record envelope חתום יותר  
-3. **W0.4** — כרטיסים בלי JPEG מטעה  
-4. **W2.3** — איילון בלי U בקצה + נתיב 3.5  
-5. **W3.1** — yaw מגלגלים מעל 8m/s  
-
-אם מבקשים "השלם את דוח הקודקס עד הסוף" בתוך הסנדבוקס — זו בקשה שאי־אפשר למלא. אפשר רק W0–W5.
+1. W0.1 סוד  
+2. W0.2 QA רק עם `VITE_QA`  
+3. W3.2 0–100 מדיד  
+4. W4.1 צילום איילון מול ייחוס  
+5. **הקפאה** — בלי עוד עצים/מסלולים
 
 ---
 
-**שורה אחת:** סומנו הרבה V. כמעט כולם **PARTIAL**. P0 של הקודקס (סוד, QA hook, מצג שווא, GIS, 6DoF) **לא בוצעו**. הגלים האחרונים הם polish לפרוטוטיפ, לא החלפת שיטה.
+**שורה אחת:** רוב ה־V עדיין **PARTIAL**. P0 (סוד, GIS, 6DoF, CI) **לא בוצעו**. הגלים האחרונים הם צלליות פרוצדורליות, לא החלפת שיטה.
