@@ -12,6 +12,7 @@ export type CarVisual = {
   bodyMat: THREE.MeshPhysicalMaterial;
   spots: THREE.SpotLight[];
   headPool?: THREE.Mesh;
+  steerWheel?: THREE.Object3D;
   baseColor: THREE.Color;
   bumper?: THREE.Mesh;
   dents: THREE.Mesh[];
@@ -506,13 +507,31 @@ export function createCarVisual(
     headPool.position.set(0, 0.05, 9.2);
     headPool.renderOrder = 2;
     group.add(headPool);
-    const dash = put(new THREE.BoxGeometry(L.W * 0.7, 0.2, 0.5), dark, 0, cabinY - 0.12, L.cabinZ + L.cabinL * 0.28);
-    dash.castShadow = false;
-    const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.16, 0.03, 8, 16), dark);
-    wheel.rotation.x = 0.55;
-    wheel.position.set(0.28, cabinY - 0.02, L.cabinZ + L.cabinL * 0.18);
-    group.add(wheel);
   }
+
+  const leather = new THREE.MeshStandardMaterial({ color: 0x1a1614, roughness: 0.78, metalness: 0.04 });
+  put(new THREE.BoxGeometry(L.W * 0.7, 0.06, L.cabinL * 0.62), leather, 0, L.wheelY + 0.36, L.cabinZ);
+  put(new THREE.BoxGeometry(0.4, 0.22, 0.4), leather, 0.24, L.wheelY + 0.5, L.cabinZ - 0.04);
+  put(new THREE.BoxGeometry(0.4, 0.42, 0.09), leather, 0.24, L.wheelY + 0.7, L.cabinZ - 0.22);
+  put(new THREE.BoxGeometry(0.4, 0.22, 0.4), leather, -0.24, L.wheelY + 0.5, L.cabinZ - 0.04);
+  const dash = put(new THREE.BoxGeometry(L.W * 0.76, 0.2, 0.4), dark, 0, cabinY - 0.16, L.cabinZ + L.cabinL * 0.3);
+  dash.castShadow = false;
+  put(new THREE.BoxGeometry(0.42, 0.07, 0.14), new THREE.MeshStandardMaterial({ color: 0x0c1014, emissive: 0x1a3a4a, emissiveIntensity: 0.55, roughness: 0.35 }), 0, cabinY - 0.02, L.cabinZ + L.cabinL * 0.36);
+  put(new THREE.BoxGeometry(0.05, L.cabinH * 0.62, 0.05), dark, L.W * 0.34, cabinY, L.cabinZ + L.cabinL * 0.32);
+  put(new THREE.BoxGeometry(0.05, L.cabinH * 0.62, 0.05), dark, -L.W * 0.34, cabinY, L.cabinZ + L.cabinL * 0.32);
+  const col = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.04, 0.26, 8), dark);
+  col.rotation.x = 1.05;
+  col.position.set(0.26, cabinY - 0.1, L.cabinZ + L.cabinL * 0.2);
+  group.add(col);
+  const steerWheel = new THREE.Group();
+  const rimW = new THREE.Mesh(new THREE.TorusGeometry(0.17, 0.026, 8, 18), dark);
+  rimW.rotation.x = Math.PI / 2;
+  steerWheel.add(rimW);
+  steerWheel.add(new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.018, 0.035), dark));
+  steerWheel.add(new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.018, 0.2), dark));
+  steerWheel.position.set(0.26, cabinY - 0.02, L.cabinZ + L.cabinL * 0.14);
+  steerWheel.rotation.x = 0.55;
+  group.add(steerWheel);
 
   let policeMats: CarVisual["police"];
   if (police) {
@@ -569,6 +588,7 @@ export function createCarVisual(
     bodyMat,
     spots,
     headPool,
+    steerWheel,
     baseColor: new THREE.Color(color),
     bumper,
     dents,
@@ -643,6 +663,7 @@ export function updateCarVisual(
   for (const s of vis.spins) s.rotateX(spin);
   if (vis.wheels[0]) vis.wheels[0].rotation.y = steer * 0.38;
   if (vis.wheels[1]) vis.wheels[1].rotation.y = steer * 0.38;
+  if (vis.steerWheel) vis.steerWheel.rotation.z = -steer * 0.9;
 
   const braking = brake > 0.15 || speed < -1;
   for (const m of vis.brakeLights) {
