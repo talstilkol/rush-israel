@@ -1228,7 +1228,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.62, 0.09)), yMat));
     group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.62, 0.09)), yMat));
     if (def.id === "ayalon") {
-      const gap = 18;
+      const gap = 12;
       const oppOff = built.width + gap;
       const opp = new THREE.Mesh(keep(buildOffsetRoad(built, oppOff)), roadMat);
       opp.receiveShadow = true;

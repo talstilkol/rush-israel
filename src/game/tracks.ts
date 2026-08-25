@@ -866,46 +866,26 @@ export const TRACKS: TrackDef[] = [
     city: "telaviv",
     cityHe: "תל אביב",
     cityEn: "Tel Aviv",
-    lengthHint: "3 הקפות · כביש 20",
-    description: "השלום ועזריאלי, תוהה ואלקטרה, מידטאון, משה אביב והבורסה.",
-    descriptionEn: "Hashalom and Azrieli, ToHa and Electra, Midtown, Moshe Aviv and the Diamond Exchange.",
+    lengthHint: "נסיעה אחת · דרום לצפון",
+    description: "קיבוץ גלויות עד האוניברסיטה, נגד אחד. לא מפה GIS — בהשראת כביש 20.",
+    descriptionEn: "Kibbutz Galuyot to the university, one carriageway. Not GIS — inspired by Highway 20.",
     image: "/tracks/ayalon.jpg",
-    width: 52,
+    width: 28,
     seed: 2020,
     theme: "highway",
+    open: true,
     ground: 0x6a6e72,
     sand: 0xb0a898,
     sky: { ...TLV_BLUE, fogDensity: 0.0009 },
     water: { x: tlv(32.078, 34.796).x, z: tlv(32.078, 34.796).z, w: 14, d: 2800, color: 0x2a5860 },
-    checkpointCount: 12,
+    checkpointCount: 8,
     points: (() => {
       const west = 34.795;
-      const east = 34.7971;
-      const lats: number[] = [];
-      for (let lat = 32.052; lat <= 32.106; lat += 0.002) lats.push(Number(lat.toFixed(4)));
       const pts: { x: number; z: number }[] = [];
-      for (const lat of lats) pts.push(tlv(lat, west));
-      pts.push(
-        tlv(32.1068, 34.795),
-        tlv(32.1078, 34.7954),
-        tlv(32.1084, 34.796),
-        tlv(32.1078, 34.7967),
-        tlv(32.1068, 34.7972),
-      );
-      for (let i = lats.length - 1; i >= 0; i--) pts.push(tlv(lats[i], east));
-      pts.push(
-        tlv(32.0514, 34.7972),
-        tlv(32.0504, 34.7967),
-        tlv(32.0498, 34.796),
-        tlv(32.0504, 34.7954),
-        tlv(32.0514, 34.795),
-      );
+      for (let lat = 32.052; lat <= 32.106; lat += 0.002) pts.push(tlv(Number(lat.toFixed(4)), west));
       return pts;
     })(),
-    elevation: (t) => {
-      const u = t < 0.5 ? t * 2 : (1 - t) * 2;
-      return 0.5 + 1.7 * Math.sin(u * Math.PI) + 0.85 * Math.sin(u * Math.PI * 5);
-    },
+    elevation: (t) => 0.5 + 1.7 * Math.sin(t * Math.PI) + 0.85 * Math.sin(t * Math.PI * 5),
     streets: [
       { from: 0.0, to: 0.12, he: "קיבוץ גלויות", en: "Kibbutz Galuyot" },
       { from: 0.12, to: 0.22, he: "ההגנה", en: "HaHagana" },
