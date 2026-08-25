@@ -3460,7 +3460,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       roughness: 0.82
     });
     bag.push(ochre, ochreDark, lime);
-    const ck = tlv(32.0547, 34.7568);
+    const ck = tlv(32.0556, 34.7558);
     const tower = new THREE.Mesh(new THREE.BoxGeometry(4.8, 26, 4.8), ochre);
     tower.position.set(ck.x, 14.2, ck.z);
     add(tower);
@@ -3540,7 +3540,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const finial = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.11, 2.8, 6), ochreDark);
     finial.position.set(ck.x, 34.2, ck.z);
     add(finial);
-    const mq = tlv(32.0558, 34.7574);
+    const mq = tlv(32.0564, 34.7568);
     const mosque = new THREE.Mesh(new THREE.BoxGeometry(16, 8, 14), ochre);
     mosque.position.set(mq.x, 4, mq.z);
     add(mosque);
@@ -3699,6 +3699,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     ];
     for (const h of oldHouses) {
       const p = tlv(h.lat, h.lon);
+      const nearH = nearestIndex(built.samples, p.x, p.z, 0);
+      if (nearH.dist < built.width / 2 + 6) continue;
       const house = new THREE.Mesh(new THREE.BoxGeometry(h.w, h.h, h.d), h.col);
       house.position.set(p.x, 1.6 + h.h * 0.5, p.z);
       add(house);
@@ -3793,11 +3795,15 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(ck.x, 26, ck.z, 16770736, 36, 28);
     glowAt(ch.x - 2, 30, ch.z - 8, 16771272, 28, 24);
     glowAt(pt.x, 6, pt.z, 16763e3, 24, 22);
-    hit(ck.x, ck.z, 4.5);
-    hit(ch.x, ch.z, 7);
-    hit(mq.x, mq.z, 7);
-    hit(pt.x, pt.z, 6);
-    hit(lightH.x, lightH.z, 3);
+    const skipJ = (x, z, r) => {
+      const n = nearestIndex(built.samples, x, z, 0);
+      if (n.dist > built.width / 2 + 5) hit(x, z, r);
+    };
+    skipJ(ck.x, ck.z, 4.5);
+    skipJ(ch.x, ch.z, 7);
+    skipJ(mq.x, mq.z, 7);
+    skipJ(pt.x, pt.z, 6);
+    skipJ(lightH.x, lightH.z, 3);
   }
   if (def.id === "telaviv") {
     const az = tlv(32.0744, 34.7938);
