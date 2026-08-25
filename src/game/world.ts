@@ -3256,6 +3256,18 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const danRoof = new THREE.Mesh(new THREE.BoxGeometry(10, 2.2, 28), cream);
     danRoof.position.set(danP.x, 29.2, danP.z);
     add(danRoof);
+    const carP = tlv(32.0866, 34.7706);
+    for (let i = 0; i < 5; i++) {
+      const w = 16 - i * 1.4;
+      const slab = new THREE.Mesh(new THREE.BoxGeometry(w, 5.2, 22 - i * 1.1), i % 2 ? white : cream);
+      slab.position.set(carP.x, 2.8 + i * 5.4, carP.z);
+      add(slab);
+    }
+    const carHat = new THREE.Mesh(new THREE.BoxGeometry(8.4, 2.2, 12), cream);
+    carHat.position.set(carP.x, 28.4, carP.z);
+    add(carHat);
+    hit(carP.x, carP.z, 9);
+    glowAt(carP.x, 26, carP.z, 16777200, 22, 18);
     const poolP = tlv(32.0848, 34.768);
     const pool = new THREE.Mesh(new THREE.BoxGeometry(18, 0.25, 9), cyan);
     pool.position.set(poolP.x, 0.2, poolP.z);

@@ -1106,7 +1106,7 @@ export class RaceEngine {
       this.trauma = Math.min(1, this.trauma + this.player.impact * 0.7);
       this.freeze = 0.012;
       this.impactCd = 0.22;
-      this.player.damage = Math.min(1, this.player.damage + this.player.impact * 0.18);
+      this.player.damage = Math.min(1, this.player.damage + this.player.impact * (this.player.lastHit === "building" ? 0.08 : 0.04));
       applyDamage(this.visuals[0], this.player.damage, this.player.dirt);
       rumblePad(this.player.impact);
       if (this.mode === "heat") this.bustAcc = Math.min(2.7, this.bustAcc + 0.38);

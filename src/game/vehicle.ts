@@ -75,6 +75,7 @@ export class ArcadeCar {
   nitroPulse = false;
   pitch = 0;
   impact = 0;
+  lastHit: "building" | "barrier" | "car" | "" = "";
   onTrack = true;
   sideStreet = "";
   sideStreetEn = "";
@@ -158,6 +159,7 @@ export class ArcadeCar {
 
   step(dt: number, input: InputState, track: BuiltTrack, racing: boolean, colliders: Collider[] = [], streets: StreetRibbon[] = [], ramps: Ramp[] = []) {
     this.impact = 0;
+    this.lastHit = "";
     this.nitroPulse = false;
     if (this.finished || this.eliminated) {
       this.speed *= Math.exp(-2.2 * dt);
@@ -409,28 +411,31 @@ export class ArcadeCar {
       if (into < 0) {
         const hit = -into;
         const kind = c.kind ?? "barrier";
+        this.lastHit = kind;
+        const fx = -Math.sin(this.yaw);
+        const fz = -Math.cos(this.yaw);
         if (kind === "building") {
           this.vx -= nx * into;
           this.vz -= nz * into;
-          this.speed *= hit > 8 ? 0.04 : hit > 4 ? 0.1 : 0.18;
-          this.damage = clamp(this.damage + hit * 0.07, 0, 1);
-          if (hit > 3) this.impact = Math.max(this.impact, Math.min(1, hit / 8));
+          this.speed *= hit > 10 ? 0.02 : hit > 5 ? 0.07 : 0.14;
+          this.yaw = wrapPi(this.yaw + (nx * fz - nz * fx) * 0.12 * Math.min(1, hit / 9));
+          this.damage = clamp(this.damage + hit * 0.085, 0, 1);
+          if (hit > 2.5) this.impact = Math.max(this.impact, Math.min(1, hit / 7));
         } else if (kind === "car") {
-          this.vx -= nx * into * 0.72;
-          this.vz -= nz * into * 0.72;
-          this.speed *= hit > 14 ? 0.62 : hit > 7 ? 0.78 : 0.9;
-          this.damage = clamp(this.damage + hit * 0.022, 0, 1);
-          if (hit > 5) this.impact = Math.max(this.impact, Math.min(0.55, hit / 20));
-        } else {
-          this.vx -= nx * into * 1.12;
-          this.vz -= nz * into * 1.12;
-          const fx = -Math.sin(this.yaw);
-          const fz = -Math.cos(this.yaw);
+          this.vx -= nx * into * 0.68;
+          this.vz -= nz * into * 0.68;
           this.speed = this.vx * fx + this.vz * fz;
-          if (hit > 10) {
-            this.speed *= 0.86;
-            this.damage = clamp(this.damage + hit * 0.01, 0, 1);
-            this.impact = Math.max(this.impact, Math.min(0.4, hit / 28));
+          this.speed *= hit > 14 ? 0.58 : hit > 7 ? 0.76 : 0.88;
+          this.damage = clamp(this.damage + hit * 0.02, 0, 1);
+          if (hit > 4) this.impact = Math.max(this.impact, Math.min(0.55, hit / 20));
+        } else {
+          this.vx -= nx * into * 1.08;
+          this.vz -= nz * into * 1.08;
+          this.speed = this.vx * fx + this.vz * fz;
+          this.speed *= hit > 12 ? 0.78 : 0.92;
+          if (hit > 9) {
+            this.damage = clamp(this.damage + hit * 0.008, 0, 1);
+            this.impact = Math.max(this.impact, Math.min(0.38, hit / 30));
           }
         }
       }
