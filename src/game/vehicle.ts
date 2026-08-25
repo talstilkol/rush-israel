@@ -294,17 +294,8 @@ export class ArcadeCar {
     this.roll = expSmooth(this.roll, rollTgt, 7, dt);
     const front = clamp(0.5 + this.pitch * 0.42, 0.32, 0.7);
 
-    const speedFactor = clamp(speedAbs / 8, 0, 1) * (1 - 0.48 * clamp(speedAbs / Math.max(12, maxSpeed), 0, 1));
     const reverse = this.speed >= 0 ? 1 : -1;
     const wantDrift = racing && input.drift && speedAbs > 9 && Math.abs(input.steer) > 0.18;
-    const turn = stats.turnRate * (wantDrift ? 1.38 : 1) * (1 + this.pitch * 0.16) * (0.92 + front * 0.16);
-    this.yawRate = input.steer * turn * speedFactor * reverse;
-    const latNow = this.vx * rx + this.vz * rz;
-    const slipAng = Math.atan2(latNow, Math.max(2.4, Math.abs(this.speed)));
-    const esc = escYaw(slipAng, this.yawRate, this.assists.esc && racing, wantDrift);
-    this.escActive = esc.active;
-    this.yawRate += esc.yaw * turn * speedFactor;
-    this.yaw = wrapPi(this.yaw + this.yawRate * dt);
 
     let grip = this.onTrack ? stats.grip : stats.grip * (stats.body === "rally" ? 0.78 : 0.4);
     grip *= this.weatherGrip * this.surfaceGrip * downforce * profile.gripMul * wx.lat * surf.lat;
@@ -314,6 +305,8 @@ export class ArcadeCar {
     grip *= hydroplane(speedAbs, wx.hydro);
     if (this.wheelsLocked) grip *= 0.42;
     if (wantDrift) grip = Math.min(grip, 0.22 + (1 - front) * 0.12);
+
+    this.stepWheels(dt, input.steer, grip, speedAbs, fx, fz, rx, rz, racing, reverse, wantDrift, front, mass);
 
     this.integrateMotion(dt, track, grip, colliders, streets, ramps);
 
@@ -349,6 +342,60 @@ export class ArcadeCar {
       this.dirt = clamp(this.dirt, 0, 1);
     }
     if (this.offTrackT > 3.2) this.respawn(track);
+  }
+
+  private stepWheels(
+    dt: number,
+    steerIn: number,
+    grip: number,
+    speedAbs: number,
+    fx: number,
+    fz: number,
+    rx: number,
+    rz: number,
+    racing: boolean,
+    reverse: number,
+    wantDrift: boolean,
+    front: number,
+    mass: number,
+  ) {
+    const wb = 2.55;
+    const ht = 0.76;
+    const iz = mass * 2.85;
+    const maxSteer = 0.5 * (1 - 0.4 * clamp(speedAbs / 36, 0, 1));
+    const steer = (racing ? steerIn : 0) * maxSteer * reverse;
+    const longs = [wb * 0.5, wb * 0.5, -wb * 0.5, -wb * 0.5];
+    const lats = [-ht, ht, -ht, ht];
+    const steers = [steer, steer, 0, 0];
+    const loads = [front * 0.5, front * 0.5, (1 - front) * 0.5, (1 - front) * 0.5];
+    let yawT = 0;
+    for (let i = 0; i < 4; i++) {
+      const heading = this.yaw + steers[i];
+      const wrx = Math.cos(heading);
+      const wrz = -Math.sin(heading);
+      const ox = fx * longs[i] + rx * lats[i];
+      const oz = fz * longs[i] + rz * lats[i];
+      const wvx = this.vx - this.yawRate * oz;
+      const wvz = this.vz + this.yawRate * ox;
+      const wfx = -Math.sin(heading);
+      const wfz = -Math.cos(heading);
+      const vLong = wvx * wfx + wvz * wfz;
+      const vLat = wvx * wrx + wvz * wrz;
+      const sa = Math.atan2(vLat, Math.max(2.2, Math.abs(vLong)));
+      const Fy = -pacejka(sa, Math.max(0.08, grip * loads[i] * 4));
+      yawT += ox * wrz * Fy - oz * wrx * Fy;
+    }
+    const speedFactor = clamp(speedAbs / 7.5, 0, 1) * (1 - 0.4 * clamp(speedAbs / 38, 0, 1));
+    const kin = steerIn * 1.72 * speedFactor * reverse * (wantDrift ? 1.32 : 1) * (0.92 + front * 0.16);
+    this.yawRate = kin + (yawT / iz) * 6.2;
+    const latNow = this.vx * rx + this.vz * rz;
+    const slipAng = Math.atan2(latNow, Math.max(2.4, speedAbs));
+    const esc = escYaw(slipAng, this.yawRate, this.assists.esc && racing, wantDrift);
+    this.escActive = esc.active;
+    this.yawRate += esc.yaw * 1.55 * speedFactor;
+    this.yaw = wrapPi(this.yaw + this.yawRate * dt);
+    this.vx = fx * this.speed + rx * latNow;
+    this.vz = fz * this.speed + rz * latNow;
   }
 
   private integrateMotion(dt: number, track: BuiltTrack, grip: number, colliders: Collider[] = [], streets: StreetRibbon[] = [], ramps: Ramp[] = []) {
