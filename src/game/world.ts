@@ -998,7 +998,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       const hw = built.width / 2 + 1.2;
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 68 + Math.min(48, s.y * 0.4) : def.id === "hermon" ? s.y + 36 + s.y * 0.22 : def.theme === "carmel" ? s.y + 22 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 68 + Math.min(48, s.y * 0.4) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 36 + s.y * 0.22 : def.theme === "carmel" ? s.y + 22 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
@@ -7350,57 +7350,69 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   }
   if (def.id === "masada") {
     const ft = mas(31.3157, 35.3538);
-    const plateau = new THREE.Mesh(new THREE.BoxGeometry(52, 9, 28), stone);
-    plateau.position.set(ft.x, 22, ft.z);
+    const mesaRock = new THREE.MeshStandardMaterial({
+      color: 0xa08058,
+      roughness: 0.96,
+      flatShading: true
+    });
+    const mesaDark = new THREE.MeshStandardMaterial({
+      color: 0x6e5438,
+      roughness: 0.97,
+      flatShading: true
+    });
+    bag.push(mesaRock, mesaDark);
+    const mesa = new THREE.Mesh(new THREE.CylinderGeometry(38, 52, 44, 8), mesaRock);
+    mesa.position.set(ft.x, 22, ft.z);
+    add(mesa);
+    const plateau = new THREE.Mesh(new THREE.CylinderGeometry(34, 36, 3.2, 8), stone);
+    plateau.position.set(ft.x, 45.2, ft.z);
     add(plateau);
-    const cliff = new THREE.Mesh(new THREE.BoxGeometry(56, 18, 32), stone);
-    cliff.position.set(ft.x, 8, ft.z);
-    add(cliff);
-    for (const [dx, dz, sx, sz] of [
-      [
-        0,
-        -15,
-        50,
-        2.6
-      ],
-      [
-        0,
-        15,
-        50,
-        2.6
-      ],
-      [
-        -25,
-        0,
-        2.6,
-        28
-      ],
-      [
-        25,
-        0,
-        2.6,
-        28
-      ]
-    ]) {
-      const rampart = new THREE.Mesh(new THREE.BoxGeometry(sx, 4.8, sz), stone);
-      rampart.position.set(ft.x + dx, 28.2, ft.z + dz);
-      add(rampart);
+    for (let i = 0; i < 8; i++) {
+      const a = i / 8 * Math.PI * 2 + Math.PI / 8;
+      const spur = new THREE.Mesh(new THREE.BoxGeometry(18, 16, 10), i % 2 ? mesaDark : mesaRock);
+      spur.position.set(ft.x + Math.cos(a) * 40, 14, ft.z + Math.sin(a) * 28);
+      spur.rotation.y = a;
+      add(spur);
     }
-    for (let i = 0; i < 10; i++) {
-      const merlon = new THREE.Mesh(new THREE.BoxGeometry(2.4, 1.6, 2.8), stone);
-      merlon.position.set(ft.x - 22 + i * 5, 31.4, ft.z - 15);
+    for (let i = 0; i < 12; i++) {
+      const a = i / 12 * Math.PI * 2;
+      const merlon = new THREE.Mesh(new THREE.BoxGeometry(4.2, 2.4, 2.2), stone);
+      merlon.position.set(ft.x + Math.cos(a) * 32, 48.2, ft.z + Math.sin(a) * 24);
+      merlon.rotation.y = a;
       add(merlon);
     }
-    const keepM = new THREE.Mesh(new THREE.BoxGeometry(16, 10, 12), stone);
-    keepM.position.set(ft.x, 32, ft.z);
-    add(keepM);
-    for (let i = 0; i < 4; i++) {
-      const terrace = new THREE.Mesh(new THREE.BoxGeometry(18 - i * 3.2, 2.4, 9), stone);
-      terrace.position.set(ft.x, 16 - i * 4.6, ft.z + 20 + i * 7);
-      add(terrace);
+    const store = new THREE.Mesh(new THREE.BoxGeometry(28, 4.2, 8), stone);
+    store.position.set(ft.x - 4, 48.4, ft.z - 6);
+    add(store);
+    for (let i = 0; i < 5; i++) {
+      const hall = new THREE.Mesh(new THREE.BoxGeometry(5.2, 3.6, 14), stone);
+      hall.position.set(ft.x - 16 + i * 7, 48.2, ft.z + 8);
+      add(hall);
     }
-    glowAt(ft.x, 36, ft.z, 16769184, 36, 28);
+    const np = mas(31.3172, 35.3536);
+    for (let i = 0; i < 3; i++) {
+      const w = 16 - i * 3.2;
+      const terrace = new THREE.Mesh(new THREE.BoxGeometry(w, 3.4, 8 - i * 0.8), stone);
+      terrace.position.set(np.x, 42 - i * 9, np.z + 8 + i * 7);
+      add(terrace);
+      const colN = 4 - i;
+      for (let c = 0; c < colN; c++) {
+        const col = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.42, 4.8, 8), cream);
+        col.position.set(np.x - w * 0.32 + c * (w * 0.64 / Math.max(1, colN - 1)), 45.2 - i * 9, np.z + 8 + i * 7);
+        add(col);
+      }
+    }
+    const vis = mas(31.3102, 35.3648);
+    const vc = new THREE.Mesh(new THREE.BoxGeometry(14, 4.2, 10), cream);
+    vc.position.set(vis.x, 2.2, vis.z);
+    add(vc);
+    const vcRoof = new THREE.Mesh(new THREE.BoxGeometry(15, 0.4, 11), terracotta);
+    vcRoof.position.set(vis.x, 4.4, vis.z);
+    add(vcRoof);
+    glowAt(ft.x, 50, ft.z, 16769184, 40, 32);
     hit(ft.x, ft.z, 22);
+    hit(np.x, np.z + 12, 6);
+    hit(vis.x, vis.z, 6);
   }
   if (def.id === "batyam") {
     const promenade = bym(32.017, 34.741);
