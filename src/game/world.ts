@@ -5269,11 +5269,19 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         rail.position.set(c.x, 10.3, c.z + side);
         add(rail);
       }
-      for (const px of [c.x - 8, c.x + 8]) {
-        const col = new THREE.Mesh(new THREE.BoxGeometry(1.6, deckY, 1.6), conc);
+      for (const px of [c.x - 22, c.x + 22]) {
+        const col = new THREE.Mesh(new THREE.BoxGeometry(1.8, deckY, 1.8), conc);
         col.position.set(px, deckY * 0.5, c.z);
         add(col);
-        hit(px, c.z, 1.6);
+        hit(px, c.z, 1.4);
+      }
+      for (const lx of [-28, -10, 10, 28]) {
+        const post = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.16, 3.4, 6), conc);
+        post.position.set(c.x + lx, deckY + 2.2, c.z + 6.4);
+        add(post);
+        const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.28, 8, 6), new THREE.MeshBasicMaterial({ color: 0xffc070 }));
+        lamp.position.set(c.x + lx, deckY + 3.9, c.z + 6.4);
+        add(lamp);
       }
       const signMat = mkSign(ic.he);
       const sign = new THREE.Mesh(new THREE.PlaneGeometry(18, 4.2), signMat);
@@ -5449,12 +5457,24 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         col.position.set(p.x + sx, 3.1, p.z + k * (platLen / (colN * 2 + 1.2)));
         add(col);
       }
-      const hallP = tlv(st.lat, st.kind === "uni" ? 34.7986 : 34.7934);
-      const hallW = st.kind === "savidor" ? 26 : st.kind === "shalom" ? 22 : 16;
-      const hallH = st.kind === "hagana" ? 6.2 : 8.8;
-      const hall = new THREE.Mesh(new THREE.BoxGeometry(hallW, hallH, st.kind === "savidor" ? 36 : 22), st.kind === "hagana" ? conc : cream);
+      const hallP = tlv(st.lat, st.kind === "uni" ? 34.7988 : 34.7932);
+      const nearHall = nearestIndex(built.samples, hallP.x, hallP.z, 0);
+      const hallW = st.kind === "savidor" ? 28 : st.kind === "shalom" ? 24 : st.kind === "hagana" ? 18 : 16;
+      const hallH = st.kind === "hagana" ? 6.4 : st.kind === "uni" ? 7.2 : 9.2;
+      const hallMat = st.kind === "hagana" ? conc : st.kind === "uni" ? terracotta : cream;
+      const hall = new THREE.Mesh(new THREE.BoxGeometry(hallW, hallH, st.kind === "savidor" ? 40 : 24), hallMat);
       hall.position.set(hallP.x, hallH * 0.5, hallP.z);
       add(hall);
+      if (st.kind === "savidor") {
+        const wing = new THREE.Mesh(new THREE.BoxGeometry(18, 5.2, 22), cream);
+        wing.position.set(hallP.x + 16, 2.6, hallP.z);
+        add(wing);
+      }
+      if (st.kind === "uni") {
+        const shed = new THREE.Mesh(new THREE.BoxGeometry(14, 3.2, 18), cream);
+        shed.position.set(hallP.x, 2, hallP.z + 16);
+        add(shed);
+      }
       if (st.kind === "shalom") {
         const glassWall = new THREE.Mesh(new THREE.BoxGeometry(0.4, 7.2, 20), glassRoof);
         glassWall.position.set(hallP.x + 10, 5.2, hallP.z);
@@ -5471,16 +5491,11 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         over.rotation.y = Math.atan2(hallP.x - p.x, hallP.z - p.z);
         add(over);
       }
-      if (st.kind === "uni") {
-        const shed = new THREE.Mesh(new THREE.BoxGeometry(14, 3.2, 18), cream);
-        shed.position.set(hallP.x, 2, hallP.z);
-        add(shed);
-      }
       const stSign = new THREE.Mesh(new THREE.PlaneGeometry(18, 4.2), mkSign("\u05EA\u05D7\u05E0\u05EA " + st.he));
       stSign.position.set(hallP.x, hallH + 3.2, hallP.z);
       stSign.rotation.y = Math.PI / 2;
       add(stSign);
-      hit(hallP.x, hallP.z, 8);
+      if (nearHall.dist > built.width / 2 + 10) hit(hallP.x, hallP.z, 8);
     }
     const makeTrain = (phase, trackX) => {
       const g = new THREE.Group();
