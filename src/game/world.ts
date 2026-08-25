@@ -615,6 +615,35 @@ function buildRoad(built) {
   geo.computeVertexNormals();
   return geo;
 }
+function buildOffsetRoad(built, offset) {
+  const hw = built.width / 2;
+  const pos = [];
+  const uv = [];
+  const nrm = [];
+  const idx = [];
+  const n = segsOf(built);
+  for (let i = 0; i <= n; i++) {
+    const s = samp(built, i);
+    const v = (i === n ? built.length : s.s) / 6;
+    const cx = s.x + s.rx * offset;
+    const cz = s.z + s.rz * offset;
+    pos.push(cx - s.rx * hw, s.y + 0.04, cz - s.rz * hw);
+    pos.push(cx + s.rx * hw, s.y + 0.04, cz + s.rz * hw);
+    uv.push(0, v, 1, v);
+    nrm.push(0, 1, 0, 0, 1, 0);
+  }
+  for (let i = 0; i < n; i++) {
+    const a = i * 2;
+    idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
+  geo.setAttribute("normal", new THREE.Float32BufferAttribute(nrm, 3));
+  geo.setIndex(idx);
+  geo.computeVertexNormals();
+  return geo;
+}
 function buildCenterLine(built) {
   const hw = 0.22;
   const pos = [];
@@ -663,15 +692,15 @@ function buildSidewalk(built, side) {
   geo.computeVertexNormals();
   return geo;
 }
-function buildEdgeLine(built, side, inset = 0.28, hw = 0.28, yOff = 0.08) {
+function buildEdgeLine(built, side, inset = 0.28, hw = 0.28, yOff = 0.08, centerOff = 0) {
   const d = built.width / 2 - inset;
   const pos = [];
   const idx = [];
   const n = segsOf(built);
   for (let i = 0; i <= n; i++) {
     const s = samp(built, i);
-    const cx = s.x + s.rx * d * side;
-    const cz = s.z + s.rz * d * side;
+    const cx = s.x + s.rx * (d * side + centerOff);
+    const cz = s.z + s.rz * (d * side + centerOff);
     pos.push(cx - s.rx * hw, s.y + yOff, cz - s.rz * hw);
     pos.push(cx + s.rx * hw, s.y + yOff, cz + s.rz * hw);
   }
@@ -1095,12 +1124,12 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     bumpMap: roadMaps.bumpMap,
     bumpScale: 0.22,
     color: 0xffffff,
-    roughness: 0.34,
-    metalness: 0.14,
-    envMapIntensity: 0.88,
-    clearcoat: 0.4,
-    clearcoatRoughness: 0.22,
-    reflectivity: 0.38
+    roughness: 0.28,
+    metalness: 0.16,
+    envMapIntensity: 1.05,
+    clearcoat: 0.48,
+    clearcoatRoughness: 0.18,
+    reflectivity: 0.46
   }));
   const road = new THREE.Mesh(keep(buildRoad(built)), roadMat);
   road.receiveShadow = true;
@@ -1124,6 +1153,35 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     }));
     group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.62, 0.09)), yMat));
     group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.62, 0.09)), yMat));
+    if (def.id === "ayalon") {
+      const gap = 18;
+      const oppOff = built.width + gap;
+      const opp = new THREE.Mesh(keep(buildOffsetRoad(built, oppOff)), roadMat);
+      opp.receiveShadow = true;
+      group.add(opp);
+      group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.16, 0.46, 0.08, oppOff)), edgeMat));
+      group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.16, 0.46, 0.08, oppOff)), edgeMat));
+      group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.62, 0.09, 0.08, oppOff)), yMat));
+      group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.62, 0.09, 0.08, oppOff)), yMat));
+      const jerG = keep(new THREE.BoxGeometry(0.42, 0.85, 2.4));
+      const jerM = keep(new THREE.MeshStandardMaterial({ color: 0xc8c4bc, roughness: 0.82 }));
+      const nJer = 160;
+      const jers = new THREE.InstancedMesh(jerG, jerM, nJer);
+      let ji = 0;
+      const midOff = built.width / 2 + gap * 0.5;
+      const stepJ = Math.max(1, Math.floor(built.samples.length / nJer));
+      for (let i = 0; i < built.samples.length && ji < nJer; i += stepJ) {
+        const s = built.samples[i];
+        _dummy.position.set(s.x + s.rx * midOff, s.y + 0.48, s.z + s.rz * midOff);
+        _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
+        _dummy.scale.set(1, 1, 1);
+        _dummy.updateMatrix();
+        jers.setMatrixAt(ji++, _dummy.matrix);
+      }
+      jers.count = ji;
+      jers.instanceMatrix.needsUpdate = true;
+      group.add(jers);
+    }
   }
   {
     const chevGeo = keep(new THREE.BufferGeometry());
@@ -2514,11 +2572,11 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       roadMat.clearcoatRoughness = 0.26;
     } else {
       roadMat.color.setHex(0xffffff);
-      roadMat.roughness = 0.34;
-      roadMat.metalness = 0.14;
-      roadMat.envMapIntensity = 0.88;
-      roadMat.clearcoat = 0.4;
-      roadMat.clearcoatRoughness = 0.22;
+      roadMat.roughness = 0.28;
+      roadMat.metalness = 0.16;
+      roadMat.envMapIntensity = 1.05;
+      roadMat.clearcoat = 0.48;
+      roadMat.clearcoatRoughness = 0.18;
     }
   };
   const _dayHemi = new THREE.Color(9356520);
