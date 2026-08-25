@@ -5854,27 +5854,36 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const makeTrain = (phase, trackX) => {
       const g = new THREE.Group();
       for (let c = 0; c < 6; c++) {
-        const body = new THREE.Mesh(new THREE.BoxGeometry(2.8, 3.3, 17.2), silver);
-        body.position.set(0, 2.15, -c * 18.2);
+        const body = new THREE.Mesh(new THREE.BoxGeometry(2.9, 4.1, 17.2), silver);
+        body.position.set(0, 2.55, -c * 18.2);
         g.add(body);
-        const band = new THREE.Mesh(new THREE.BoxGeometry(2.86, 0.45, 17.3), purpleStripe);
-        band.position.set(0, 1.45, -c * 18.2);
+        const band = new THREE.Mesh(new THREE.BoxGeometry(2.96, 0.5, 17.3), purpleStripe);
+        band.position.set(0, 1.55, -c * 18.2);
         g.add(band);
-        const band2 = new THREE.Mesh(new THREE.BoxGeometry(2.86, 0.22, 17.3), redStripe);
-        band2.position.set(0, 1.72, -c * 18.2);
+        const band2 = new THREE.Mesh(new THREE.BoxGeometry(2.96, 0.22, 17.3), redStripe);
+        band2.position.set(0, 1.88, -c * 18.2);
         g.add(band2);
+        const deck = new THREE.Mesh(new THREE.BoxGeometry(2.92, 0.12, 17.1), bandMat);
+        deck.position.set(0, 3.15, -c * 18.2);
+        g.add(deck);
         for (let w = 0; w < 5; w++) {
-          const win = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1.05, 2.1), darkGlass);
-          win.position.set(1.42, 2.55, -c * 18.2 - 6 + w * 3);
+          const win = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.85, 2.1), darkGlass);
+          win.position.set(1.46, 2.35, -c * 18.2 - 6 + w * 3);
           g.add(win);
+          const win2 = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.7, 2.1), darkGlass);
+          win2.position.set(1.46, 3.65, -c * 18.2 - 6 + w * 3);
+          g.add(win2);
         }
       }
-      const nose = new THREE.Mesh(new THREE.BoxGeometry(2.6, 3, 4.4), silver);
-      nose.position.set(0, 2.1, 10.4);
+      const nose = new THREE.Mesh(new THREE.BoxGeometry(2.7, 3.4, 4.6), silver);
+      nose.position.set(0, 2.4, 10.4);
       g.add(nose);
-      const lightL = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.4, 0.2), new THREE.MeshBasicMaterial({ color: 16774344 }));
-      lightL.position.set(-0.8, 1.4, 12.6);
+      const lightL = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.42, 0.2), new THREE.MeshBasicMaterial({ color: 16774344 }));
+      lightL.position.set(-0.85, 1.5, 12.7);
       g.add(lightL);
+      const lightR = lightL.clone();
+      lightR.position.x = 0.85;
+      g.add(lightR);
       group.add(g);
       const pts = railPts.map((p) => {
         const ox = Math.cos(p.yaw) * trackX;
@@ -5889,7 +5898,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       movers.push({
         mesh: g,
         pts,
-        speed: 0.032,
+        speed: 0.05,
         phase
       });
     };
