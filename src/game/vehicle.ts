@@ -460,17 +460,39 @@ export class ArcadeCar {
     if (!this.onTrack) this.speed *= Math.exp(-(this.roam ? 0.9 : this.stats.body === "rally" ? 1.15 : 2.6) * dt);
 
     for (const c of colliders) {
-      const dx = this.x - c.x;
-      const dz = this.z - c.z;
-      const d = Math.hypot(dx, dz);
-      if (d >= c.r || d < 0.0001) continue;
-      const nx = dx / d;
-      const nz = dz / d;
-      this.x = c.x + nx * c.r;
-      this.z = c.z + nz * c.r;
+      const carR = 1.05;
+      let nx = 0;
+      let nz = 0;
+      let hitD = 0;
+      if (c.hx != null && c.hz != null) {
+        const dx = this.x - c.x;
+        const dz = this.z - c.z;
+        const px = c.hx + carR - Math.abs(dx);
+        const pz = c.hz + carR - Math.abs(dz);
+        if (px <= 0 || pz <= 0) continue;
+        if (px < pz) {
+          nx = dx < 0 ? -1 : 1;
+          this.x = c.x + nx * (c.hx + carR);
+          hitD = px;
+        } else {
+          nz = dz < 0 ? -1 : 1;
+          this.z = c.z + nz * (c.hz + carR);
+          hitD = pz;
+        }
+      } else {
+        const dx = this.x - c.x;
+        const dz = this.z - c.z;
+        const d = Math.hypot(dx, dz);
+        if (d >= c.r || d < 0.0001) continue;
+        nx = dx / d;
+        nz = dz / d;
+        this.x = c.x + nx * c.r;
+        this.z = c.z + nz * c.r;
+        hitD = c.r - d;
+      }
       const into = this.vx * nx + this.vz * nz;
       if (into < 0) {
-        const hit = -into;
+        const hit = Math.max(-into, hitD);
         const kind = c.kind ?? "barrier";
         this.lastHit = kind;
         const fx = -Math.sin(this.yaw);

@@ -59,7 +59,7 @@ export type TrackId =
 export type HandlingMode = "arcade" | "simcade";
 export type AssistFlags = { abs: boolean; tcs: boolean; esc: boolean };
 export type Quality = "low" | "mid" | "high";
-export type Collider = { x: number; z: number; r: number; kind?: "building" | "barrier" | "car" };
+export type Collider = { x: number; z: number; r: number; kind?: "building" | "barrier" | "car"; hx?: number; hz?: number };
 export type Ramp = {
   x: number;
   z: number;

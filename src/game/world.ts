@@ -2878,11 +2878,13 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       on
     });
   };
-  const hit = (x, z, r) => {
+  const hit = (x, z, r, hx, hz) => {
     colliders.push({
       x,
       z,
       r,
+      hx: hx ?? r * 0.72,
+      hz: hz ?? r * 0.72,
       kind: "building"
     });
   };
@@ -5270,7 +5272,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       m.position.set(p.x, h * 0.5, p.z);
       m.rotation.y = rot;
       add(m);
-      hit(p.x, p.z, Math.max(5, Math.min(12, (w + d) * 0.26)));
+      hit(p.x, p.z, Math.max(5, Math.min(12, (w + d) * 0.26)), w * 0.42, d * 0.42);
       return p;
     };
     const slabTower = (lat, lon, w, d, h, mat, step = 3.1) => {
