@@ -6,6 +6,7 @@ import { Sky } from "three/examples/jsm/objects/Sky.js";
 import { mulberry32, lerp, clamp, hash01 } from "./math";
 import { nearestIndex } from "./spline";
 import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, her, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, ram, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
+import { scatterStreetBuildings } from "./buildings";
 import { addNycLandmarks } from "./nyc-landmarks";
 import { generateStreets, nearestStreet } from "./streets";
 
@@ -7611,4 +7612,10 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(8, 8, 12, 16771264, 22, 20);
     hit(52, 40, 10);
   }
+  scatterStreetBuildings(def, built, add, hit, isNight, (x, z) => {
+    for (const c of colliders) {
+      if (Math.hypot(c.x - x, c.z - z) < (c.r ?? 6) + 14) return true;
+    }
+    return false;
+  });
 }

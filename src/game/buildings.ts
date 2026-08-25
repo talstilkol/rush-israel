@@ -158,33 +158,85 @@ function jaffa(add: BuildFn, hit: (x: number, z: number, r: number) => void, mat
     hit(x, z, Math.max(w, d) * 0.36);
 }
 
-function glassTower(add: BuildFn, hit: (x: number, z: number, r: number) => void, mats: Mats, x: number, y: number, z: number, yaw: number, h: number, seed: number) {
-  const profile = seed % 4;
-  const w = 9 + (seed % 3);
+function eclectic(add: BuildFn, hit: (x: number, z: number, r: number) => void, mats: Mats, x: number, y: number, z: number, yaw: number, h: number, seed: number) {
+  const w = 7.2 + (seed % 4) * 0.9;
+  const d = 8.4 + (seed % 3) * 0.5;
+  const plaster = seed % 2 === 0 ? mats.cream : mats.plaster;
+  const body = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), plaster);
+  body.position.set(x, y + h * 0.5, z);
+  body.rotation.y = yaw;
+  add(body);
+  const roof = new THREE.Mesh(new THREE.BoxGeometry(w + 0.8, 0.42, d + 0.8), mats.terracotta);
+  roof.position.set(x, y + h + 0.18, z);
+  roof.rotation.y = yaw;
+  add(roof);
+  const fx = Math.sin(yaw);
+  const fz = Math.cos(yaw);
+  const ped = new THREE.Mesh(new THREE.BoxGeometry(w * 0.42, 0.22, 1.6), mats.stone);
+  ped.position.set(x + fx * (d * 0.5 + 0.7), y + 3.4, z + fz * (d * 0.5 + 0.7));
+  ped.rotation.y = yaw;
+  add(ped);
+  const col = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.18, 3.1, 8), mats.stone);
+  col.position.set(x + fx * (d * 0.5 + 0.85), y + 1.7, z + fz * (d * 0.5 + 0.85));
+  add(col);
+  if (seed % 3 !== 1) {
+    const attic = new THREE.Mesh(new THREE.BoxGeometry(w * 0.55, 1.6, d * 0.4), mats.white);
+    attic.position.set(x, y + h + 1.1, z);
+    attic.rotation.y = yaw;
+    add(attic);
+  }
+  windows(add, x, y, z, yaw, w, Math.max(2, Math.floor(h / 2.6)), mats.darkGlass, d);
+  hit(x, z, Math.max(w, d) * 0.36);
+}
+
+function highwayTower(add: BuildFn, hit: (x: number, z: number, r: number) => void, mats: Mats, x: number, y: number, z: number, yaw: number, h: number, seed: number) {
+  const profile = seed % 5;
+  const w = 10 + (seed % 4) * 1.4;
   if (profile === 0) {
-    const m = new THREE.Mesh(new THREE.CylinderGeometry(w * 0.42, w * 0.48, h, 20), mats.glass);
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w * 0.72, h, w * 0.72), mats.glass);
     m.position.set(x, y + h * 0.5, z);
+    m.rotation.y = yaw + 0.2;
     add(m);
+    const cap = new THREE.Mesh(new THREE.BoxGeometry(w * 0.5, h * 0.12, w * 0.5), mats.darkGlass);
+    cap.position.set(x, y + h + h * 0.06, z);
+    cap.rotation.y = yaw + 0.2;
+    add(cap);
   } else if (profile === 1) {
-    const m = new THREE.Mesh(new THREE.CylinderGeometry(w * 0.48, w * 0.52, h, 3), mats.glass);
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(w * 0.38, w * 0.44, h, 12), mats.glass);
     m.position.set(x, y + h * 0.5, z);
-    m.rotation.y = yaw + 0.4;
     add(m);
+    const hat = new THREE.Mesh(new THREE.CylinderGeometry(w * 0.5, w * 0.28, 4.2, 12), mats.metal);
+    hat.position.set(x, y + h + 2, z);
+    add(hat);
   } else if (profile === 2) {
-    const m = new THREE.Mesh(new THREE.CylinderGeometry(w * 0.28, w * 0.55, h, 12), mats.glass);
-    m.position.set(x, y + h * 0.5, z);
-    add(m);
-  } else {
-    const m = new THREE.Mesh(new THREE.BoxGeometry(w * 0.7, h, w * 0.7), mats.glass);
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w * 0.55, h, w * 0.95), mats.darkGlass);
     m.position.set(x, y + h * 0.5, z);
     m.rotation.y = yaw;
     add(m);
-    const band = new THREE.Mesh(new THREE.BoxGeometry(w * 0.78, 0.35, w * 0.78), mats.metal);
-    band.position.set(x, y + h * 0.62, z);
-    band.rotation.y = yaw;
-    add(band);
+    for (let k = 1; k < 5; k++) {
+      const band = new THREE.Mesh(new THREE.BoxGeometry(w * 0.62, 0.28, w * 1.02), mats.metal);
+      band.position.set(x, y + (h * k) / 5, z);
+      band.rotation.y = yaw;
+      add(band);
+    }
+  } else if (profile === 3) {
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(w * 0.48, w * 0.52, h, 3), mats.glass);
+    m.position.set(x, y + h * 0.5, z);
+    m.rotation.y = yaw + 0.35;
+    add(m);
+  } else {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w * 0.85, h, w * 0.5), mats.white);
+    m.position.set(x, y + h * 0.5, z);
+    m.rotation.y = yaw;
+    add(m);
+    const glass = new THREE.Mesh(new THREE.BoxGeometry(w * 0.7, h * 0.92, 0.2), mats.glass);
+    const fx = Math.sin(yaw);
+    const fz = Math.cos(yaw);
+    glass.position.set(x + fx * (w * 0.26), y + h * 0.5, z + fz * (w * 0.26));
+    glass.rotation.y = yaw;
+    add(glass);
   }
-  hit(x, z, w * 0.38);
+  hit(x, z, w * 0.34);
 }
 
 function motzaSign(add: BuildFn, he: string, x: number, y: number, z: number, yaw: number) {
@@ -223,43 +275,38 @@ export function scatterStreetBuildings(
   add: BuildFn,
   hit: (x: number, z: number, r: number) => void,
   night: boolean,
+  blocked?: (x: number, z: number) => boolean,
 ) {
-  return;
   if (def.city === "nyc") return;
+  const id = def.id;
+  if (id !== "ayalon" && id !== "rothschild") return;
 
   const mats = makeMats(night);
-  const kind: "bauhaus" | "jerusalem" | "jaffa" | "glass" =
-    def.theme === "stone" ? "jerusalem" : def.theme === "jaffa" ? "jaffa" : def.theme === "highway" && (def.id === "telaviv" || def.id === "gushdan") ? "glass" : "bauhaus";
-
   const nSamp = built.samples.length;
-  const step = Math.max(5, Math.floor(nSamp / 14));
-  let lastH = 0;
-  let n = 0;
+  const maxN = id === "ayalon" ? 20 : id === "rothschild" ? 26 : 16;
+  const step = Math.max(4, Math.floor(nSamp / (maxN + 3)));
   const hw = built.width / 2;
-  const startSkip = Math.floor(nSamp * 0.12);
-  for (let i = startSkip; i < nSamp - 5 && n < 24; i += step) {
+  const startSkip = Math.floor(nSamp * (id === "ayalon" ? 0.08 : 0.05));
+  let n = 0;
+  let lastH = 0;
+  for (let i = startSkip; i < nSamp - 4 && n < maxN; i += step) {
     const s = built.samples[i];
     const side = n % 2 === 0 ? 1 : -1;
-    const d = hw + 22 + (n % 3) * 2.2;
+    const d = hw + (id === "ayalon" ? 26 + (n % 3) * 3.2 : id === "rothschild" ? 11.5 + (n % 3) * 1.4 : 16 + (n % 3) * 2);
     const x = s.x + s.rx * d * side;
     const z = s.z + s.rz * d * side;
+    if (blocked?.(x, z)) continue;
     const yaw = Math.atan2(s.rx * side, s.rz * side);
-    let h = 7.2 + ((i * 13 + def.seed + n * 7) % 10);
-    if (kind === "glass") h = 22 + ((n * 11 + def.seed) % 28);
-    if (Math.abs(h - lastH) < 1.5) h += 2.6;
+    const seed = (i * 17 + def.seed + n * 31) | 0;
+    let h: number;
+    if (id === "ayalon") h = 28 + (seed % 54);
+    else if (id === "rothschild") h = 8.4 + (seed % 9);
+    else h = 12 + (seed % 22);
+    if (Math.abs(h - lastH) < 2.4) h += 3.8;
     lastH = h;
-    const seed = i + n * 3 + def.seed;
-    if (kind === "jerusalem") jerusalem(add, hit, mats, x, s.y, z, yaw, h, seed);
-    else if (kind === "jaffa") jaffa(add, hit, mats, x, s.y, z, yaw, Math.min(h, 11), seed);
-    else if (kind === "glass") {
-      if (n % 3 === 0) glassTower(add, hit, mats, x, s.y, z, yaw, h, seed);
-      else bauhaus(add, hit, mats, x, s.y, z, yaw, Math.min(h, 16), seed);
-    } else bauhaus(add, hit, mats, x, s.y, z, yaw, h, seed);
-    if (n % 5 === 0) {
-      const sx = s.x + s.rx * (hw + 3.2) * side;
-      const sz = s.z + s.rz * (hw + 3.2) * side;
-      motzaSign(add, def.pois?.[n % (def.pois.length || 1)]?.he ?? def.cityHe, sx, s.y, sz, yaw);
-    }
+    if (id === "ayalon") highwayTower(add, hit, mats, x, s.y, z, yaw, h, seed);
+    else if (seed % 2 === 0) bauhaus(add, hit, mats, x, s.y, z, yaw, h, seed);
+    else eclectic(add, hit, mats, x, s.y, z, yaw, Math.min(h, 14), seed);
     n++;
   }
 }
