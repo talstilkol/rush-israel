@@ -162,7 +162,7 @@ export function createPost(
       useComposer = !nextLite;
       if (smaa) smaa.enabled = !nextLite;
       bloom.enabled = night && !nextLite;
-      bloom.strength = nextLite ? 0 : night ? 0.22 : 0;
+      bloom.strength = nextLite ? 0 : night ? 0.11 : 0;
     },
     render() {
       if (useComposer) composer.render();

@@ -41,7 +41,7 @@ function asphaltTexture(lanes = 2) {
   c.width = w;
   c.height = h;
   const ctx = c.getContext("2d");
-  ctx.fillStyle = "#1c1e20";
+  ctx.fillStyle = "#121416";
   ctx.fillRect(0, 0, w, h);
   const img = ctx.getImageData(0, 0, w, h);
   const rough = ctx.createImageData(w, h);
@@ -53,13 +53,13 @@ function asphaltTexture(lanes = 2) {
     const tar = Math.sin(x * 0.21) * Math.cos(y * 0.17) * 6 + Math.sin((x + y) * 0.08) * 3;
     const grit = hash01(x, y) * 14 - 5;
     const seam = ((x + y * 3) % 64 < 2 ? -8 : 0) + ((y * 2 + x) % 91 < 1 ? -5 : 0);
-    const v = clamp(28 + pebble * 0.7 + tar + grit + seam, 18, 64);
+    const v = clamp(16 + pebble * 0.55 + tar * 0.7 + grit + seam, 10, 42);
     lum[y * w + x] = v;
     img.data[i] = v;
     img.data[i + 1] = v * 0.97;
     img.data[i + 2] = v * 0.92;
     img.data[i + 3] = 255;
-    const r = clamp(140 + (64 - v) * 2.4 + hash01(x, y, 3) * 18, 70, 245);
+    const r = clamp(90 + (42 - v) * 2.8 + hash01(x, y, 3) * 16, 48, 220);
     rough.data[i] = rough.data[i + 1] = rough.data[i + 2] = r;
     rough.data[i + 3] = 255;
   }
@@ -80,14 +80,14 @@ function asphaltTexture(lanes = 2) {
       for (let x = a; x <= z; x++) paintPx(x, y, r, g, b);
     }
   };
-  stripe(0, 10, 236, 236, 232, false);
-  stripe(w - 11, w - 1, 236, 236, 232, false);
-  stripe(14, 20, 232, 188, 24, false);
-  stripe(w - 21, w - 15, 232, 188, 24, false);
+  stripe(0, 12, 248, 248, 244, false);
+  stripe(w - 13, w - 1, 248, 248, 244, false);
+  stripe(16, 24, 242, 196, 28, false);
+  stripe(w - 25, w - 17, 242, 196, 28, false);
   const nL = Math.max(2, lanes);
   for (let lane = 1; lane < nL; lane++) {
     const cx = Math.round(lane / nL * w);
-    stripe(cx - 2, cx + 2, 228, 226, 214, true);
+    stripe(cx - 2, cx + 2, 240, 238, 228, true);
   }
   for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
     const i = (y * w + x) * 4;
@@ -1028,14 +1028,14 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     map: roadMaps.map,
     roughnessMap: roadMaps.roughnessMap,
     bumpMap: roadMaps.bumpMap,
-    bumpScale: 0.16,
+    bumpScale: 0.22,
     color: 0xffffff,
-    roughness: 0.58,
-    metalness: 0.06,
-    envMapIntensity: 0.42,
-    clearcoat: 0.14,
-    clearcoatRoughness: 0.42,
-    reflectivity: 0.22
+    roughness: 0.34,
+    metalness: 0.14,
+    envMapIntensity: 0.88,
+    clearcoat: 0.4,
+    clearcoatRoughness: 0.22,
+    reflectivity: 0.38
   }));
   const road = new THREE.Mesh(keep(buildRoad(built)), roadMat);
   road.receiveShadow = true;
@@ -2418,11 +2418,11 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       roadMat.clearcoatRoughness = 0.26;
     } else {
       roadMat.color.setHex(0xffffff);
-      roadMat.roughness = 0.56;
-      roadMat.metalness = 0.06;
-      roadMat.envMapIntensity = 0.42;
-      roadMat.clearcoat = 0.14;
-      roadMat.clearcoatRoughness = 0.42;
+      roadMat.roughness = 0.34;
+      roadMat.metalness = 0.14;
+      roadMat.envMapIntensity = 0.88;
+      roadMat.clearcoat = 0.4;
+      roadMat.clearcoatRoughness = 0.22;
     }
   };
   const _dayHemi = new THREE.Color(9356520);

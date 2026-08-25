@@ -281,7 +281,7 @@ export class RaceEngine {
     this.fovExtra = opts.fovExtra ?? 0;
 
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: !mobile, alpha: false, powerPreference: "high-performance" });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1.15));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1) * (this.lite ? 1 : 0.85));
     this.renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -737,7 +737,7 @@ export class RaceEngine {
   applyQuality(q: Quality) {
     this.lite = q === "low" || this.soft;
     const mobile = typeof navigator !== "undefined" && /mobi|android|iphone|ipad/i.test(navigator.userAgent);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.lite || mobile ? 1 : 1.15));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.lite || mobile ? 1 : 1) * (this.lite ? 1 : 0.85));
     if (this.lite) this.post.setBudget(true);
     else if (!(this.post as { composer?: unknown }).composer) this.upgradeGraphics();
     else this.post.setBudget(false);
