@@ -1990,8 +1990,15 @@ export class RaceEngine {
     });
   }
 
+  private qaHookAllowed() {
+    if (import.meta.env.VITE_QA === "1") return true;
+    if (!import.meta.env.DEV) return false;
+    if (typeof location === "undefined") return false;
+    return location.hostname === "127.0.0.1" || location.hostname === "localhost";
+  }
+
   private exposeControls() {
-    if (!import.meta.env.DEV) return;
+    if (!this.qaHookAllowed()) return;
     window.__controlsTest = {
       getYaw: () => this.player.yaw,
       getSpeed: () => this.player.speed,
@@ -2107,7 +2114,7 @@ export class RaceEngine {
       this.clearRoadblock();
     }
     this.renderer.dispose();
-    if (import.meta.env.DEV) delete window.__controlsTest;
+    if (this.qaHookAllowed()) delete window.__controlsTest;
   }
 }
 

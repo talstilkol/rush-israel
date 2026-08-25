@@ -35,7 +35,7 @@
 | # | משימה | סטטוס | 100? | אמת |
 |---|---|---|---|---|
 | 24.1 | סובב OAuth | **PARTIAL** | לא | הסוד **הוסר מהמקור**. אין רוטציה בברוקר — אם אין env, login כבוי |
-| 24.2 | חסום `__controlsTest` מ־shipping | **PARTIAL** | לא | רק `import.meta.env.DEV`. **ה־preview החי (vite dev) עדיין עם finishNow** |
+| 24.2 | חסום `__controlsTest` מ־shipping | **PARTIAL** | לא | `VITE_QA=1` או DEV+localhost בלבד. **grok-sandbox.com בלי hook**. finishNow עדיין קיים ב־127.0.0.1 |
 | 24.3 | records רק זמן אמין | **PARTIAL** | לא | 8–2700ש׳ + eligible. אין חתימה |
 | 24.4 | בלי JPEG מטעה / בלי "רחובות אמיתיים" | **PARTIAL** | לא | UI = צבע theme. תיאורי מסלול עדיין נשמעים כמו GPS |
 | 24.5 | artifacts חתומים | **NOT DONE** | לא | |
