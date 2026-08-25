@@ -3184,7 +3184,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     hit(x, z, 8);
   };
   if (def.id === "hayarkon") {
-    const hi = tlv(32.0893, 34.7732);
+    const hi = tlv(32.0893, 34.7694);
     const hilton = new THREE.Mesh(new THREE.CylinderGeometry(20, 21, 34, 20, 1, false, 0.55, 2.05), white);
     hilton.position.set(hi.x, 17, hi.z);
     hilton.rotation.y = -0.35;
@@ -3214,7 +3214,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     }
     hiltonWins.instanceMatrix.needsUpdate = true;
     group.add(hiltonWins);
-    const op = tlv(32.0768, 34.769);
+    const op = tlv(32.0768, 34.7662);
     const operaBase = new THREE.Mesh(new THREE.CylinderGeometry(11, 12.4, 6, 20), cream);
     operaBase.position.set(op.x, 3, op.z);
     add(operaBase);
@@ -3240,7 +3240,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const crown = new THREE.Mesh(new THREE.CylinderGeometry(9.2, 5.2, 5.4, 18), white);
     crown.position.set(op.x, 50.2, op.z);
     add(crown);
-    const danP = tlv(32.0814, 34.7704);
+    const danP = tlv(32.0814, 34.7672);
     const dan = new THREE.Mesh(new THREE.BoxGeometry(12, 28, 38), white);
     dan.position.set(danP.x, 14, danP.z);
     add(dan);
@@ -3257,7 +3257,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const danRoof = new THREE.Mesh(new THREE.BoxGeometry(10, 2.2, 28), cream);
     danRoof.position.set(danP.x, 29.2, danP.z);
     add(danRoof);
-    const carP = tlv(32.0866, 34.7706);
+    const carP = tlv(32.0866, 34.7678);
     for (let i = 0; i < 5; i++) {
       const w = 16 - i * 1.4;
       const slab = new THREE.Mesh(new THREE.BoxGeometry(w, 5.2, 22 - i * 1.1), i % 2 ? white : cream);
@@ -3279,7 +3279,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const poolHall = new THREE.Mesh(new THREE.BoxGeometry(10, 4.2, 8), white);
     poolHall.position.set(poolP.x + 8, 2.1, poolP.z);
     add(poolHall);
-    const mar = tlv(32.0938, 34.7708);
+    const mar = tlv(32.0938, 34.7688);
     const breakw = new THREE.Mesh(new THREE.BoxGeometry(4.2, 1.4, 52), stone);
     breakw.position.set(mar.x - 36, 0.5, mar.z);
     add(breakw);
@@ -3358,7 +3358,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const lawn = new THREE.Mesh(new THREE.BoxGeometry(70, 0.12, 110), lawnMat);
     lawn.position.set(clore.x, 0.06, clore.z);
     add(lawn);
-    const carl = tlv(32.0865, 34.7728);
+    const carl = tlv(32.0865, 34.7688);
     const carlA = new THREE.Mesh(new THREE.BoxGeometry(11, 44, 11), white);
     carlA.position.set(carl.x, 22, carl.z);
     add(carlA);
@@ -3373,7 +3373,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const skyb = new THREE.Mesh(new THREE.BoxGeometry(16, 2.2, 5), paleGlass);
     skyb.position.set(carl.x + 7, 24, carl.z + 2);
     add(skyb);
-    const yam = tlv(32.0795, 34.7696);
+    const yam = tlv(32.0795, 34.7668);
     const yamT = new THREE.Mesh(new THREE.CylinderGeometry(4.6, 5.2, 46, 12), white);
     yamT.position.set(yam.x, 23, yam.z);
     add(yamT);
@@ -3390,7 +3390,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const davidTop = new THREE.Mesh(new THREE.BoxGeometry(20, 8, 12), cream);
     davidTop.position.set(dav.x, 31, dav.z);
     add(davidTop);
-    const sher = tlv(32.083, 34.7716);
+    const sher = tlv(32.083, 34.7674);
     const sheraton = new THREE.Mesh(new THREE.BoxGeometry(16, 22, 10), peach);
     sheraton.position.set(sher.x, 11, sher.z);
     add(sheraton);
@@ -3407,26 +3407,30 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const dolInner = new THREE.Mesh(new THREE.CylinderGeometry(8, 9.5, 2.4, 16, 1, true), stone);
     dolInner.position.set(dol.x, 1.2, dol.z);
     add(dolInner);
-    const smH = tlv(32.0639, 34.7704);
+    const smH = tlv(32.0639, 34.7688);
     const smHM = new THREE.Mesh(new THREE.BoxGeometry(16, 62, 10), cream);
     smHM.position.set(smH.x, 31, smH.z);
     add(smHM);
     const smMastH = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.32, 16, 6), bandMat);
     smMastH.position.set(smH.x, 70, smH.z);
     add(smMastH);
-    hit(smH.x, smH.z, 8);
     glowAt(hi.x, 36, hi.z, 16769200, 38, 36);
     glowAt(op.x, 50, op.z, 16771264, 32, 32);
-    hit(hi.x, hi.z, 16);
-    hit(op.x, op.z, 10);
-    hit(danP.x, danP.z, 14);
-    hit(carl.x, carl.z, 10);
-    hit(carl.x + 14, carl.z + 4, 8);
-    hit(yam.x, yam.z, 6);
-    hit(dav.x, dav.z, 14);
-    hit(sher.x, sher.z, 8);
-    hit(dol.x, dol.z, 10);
-    hit(mar.x, mar.z, 10);
+    const skipRoad = (x, z, r) => {
+      const n = nearestIndex(built.samples, x, z, 0);
+      if (n.dist > built.width / 2 + 6) hit(x, z, r);
+    };
+    skipRoad(smH.x, smH.z, 8);
+    skipRoad(hi.x, hi.z, 16);
+    skipRoad(op.x, op.z, 10);
+    skipRoad(danP.x, danP.z, 14);
+    skipRoad(carl.x, carl.z, 10);
+    skipRoad(carl.x + 14, carl.z + 4, 8);
+    skipRoad(yam.x, yam.z, 6);
+    skipRoad(dav.x, dav.z, 14);
+    skipRoad(sher.x, sher.z, 8);
+    skipRoad(dol.x, dol.z, 10);
+    skipRoad(mar.x, mar.z, 10);
     const rdH = tlv(32.1044, 34.7776);
     const chimH = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 5.2, 78, 16), cream);
     chimH.position.set(rdH.x, 39, rdH.z);
