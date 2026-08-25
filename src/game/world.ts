@@ -4804,6 +4804,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       }
     ]) {
       const p = tlv(uh.lat, uh.lon);
+      const nearH = nearestIndex(built.samples, p.x, p.z, 0);
+      if (nearH.dist < built.width / 2 + 7) continue;
       const col = houseCols[uh.col % houseCols.length];
       const body = new THREE.Mesh(new THREE.BoxGeometry(uh.w, uh.h, uh.d), col);
       body.position.set(p.x, uh.h * 0.5, p.z);
@@ -4828,7 +4830,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       }
       hit(p.x, p.z, 5.5);
     }
-    const pg = tlv(32.0645, 34.7744);
+    const pg = tlv(32.0648, 34.7752);
     const pgBody = new THREE.Mesh(new THREE.BoxGeometry(9.2, 16.5, 9.2), cream);
     pgBody.position.set(pg.x, 8.3, pg.z);
     add(pgBody);
@@ -4847,8 +4849,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const pgCap = new THREE.Mesh(new THREE.SphereGeometry(0.7, 8, 6), terracotta);
     pgCap.position.set(pg.x, 20.4, pg.z);
     add(pgCap);
-    hit(pg.x, pg.z, 6);
-    const hb = tlv(32.0732, 34.7816);
+    const hb = tlv(32.0734, 34.7826);
     const plaza = new THREE.Mesh(new THREE.CircleGeometry(22, 24), walkM);
     plaza.rotation.x = -Math.PI / 2;
     plaza.position.set(hb.x, 0.12, hb.z);
@@ -4890,7 +4891,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const hbLid = new THREE.Mesh(new THREE.CylinderGeometry(10.4, 9.2, 1.4, 20), white);
     hbLid.position.set(hb.x, 16.6, hb.z);
     add(hbLid);
-    const ind = tlv(32.0629, 34.7686);
+    const ind = tlv(32.0624, 34.7682);
     const hall = new THREE.Mesh(new THREE.BoxGeometry(16, 8.4, 11.4), cream);
     hall.position.set(ind.x, 4.6, ind.z);
     add(hall);
@@ -4961,6 +4962,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     hit(hb.x, hb.z, 10);
     hit(ind.x, ind.z, 8);
     hit(me.x, me.z, 6);
+    const nearPg = nearestIndex(built.samples, pg.x, pg.z, 0);
+    if (nearPg.dist > built.width / 2 + 6) hit(pg.x, pg.z, 6);
   }
   if (def.id === "ayalon") {
     tlv(32.0744, 34.7932);
