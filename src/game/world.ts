@@ -4625,46 +4625,81 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const leafM = new THREE.MeshStandardMaterial({ color: 4025140, roughness: 0.88, flatShading: true });
     const wallM = new THREE.MeshStandardMaterial({ color: 9076848, roughness: 0.9, flatShading: true });
     bag.push(pineM, barkM, cypressM, leafM, wallM);
+    const bx = bg.x + 26;
+    const bz = bg.z + 18;
     for (let i = 0; i < 18; i++) {
       const terrace = new THREE.Mesh(new THREE.BoxGeometry(38 - i * 1.15, 1.05, 12), new THREE.MeshStandardMaterial({
         color: i % 2 ? 13623492 : 15262936,
         roughness: 0.85,
         envMapIntensity: 0.35
       }));
-      terrace.position.set(bg.x, 46 - i * 2.15, bg.z + i * 6.4);
+      terrace.position.set(bx, 46 - i * 2.15, bz + i * 6.4);
       add(terrace);
       const stair = new THREE.Mesh(new THREE.BoxGeometry(5.2, 0.4, 7.4), cream);
-      stair.position.set(bg.x, 46.4 - i * 2.15, bg.z + i * 6.4);
+      stair.position.set(bx, 46.4 - i * 2.15, bz + i * 6.4);
       add(stair);
       if (i % 2 === 0) for (const side of [-14, 14]) {
         const cypress = new THREE.Mesh(new THREE.ConeGeometry(1.1, 5.4, 7), cypressM);
-        cypress.position.set(bg.x + side, 49.2 - i * 2.15, bg.z + i * 6.4);
+        cypress.position.set(bx + side, 49.2 - i * 2.15, bz + i * 6.4);
         add(cypress);
       }
       const hedge = new THREE.Mesh(new THREE.BoxGeometry(34 - i * 1.1, 0.55, 0.7), leafM);
-      hedge.position.set(bg.x, 46.7 - i * 2.15, bg.z + i * 6.4 + 5.4);
+      hedge.position.set(bx, 46.7 - i * 2.15, bz + i * 6.4 + 5.4);
       add(hedge);
     }
     const shrine = new THREE.Mesh(new THREE.CylinderGeometry(8.2, 9.1, 13, 8), cream);
-    shrine.position.set(bg.x, 54, bg.z - 8);
+    shrine.position.set(bx, 54, bz - 8);
     add(shrine);
     for (let i = 0; i < 18; i++) {
       const a = i / 18 * Math.PI * 2;
       const col = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.42, 12, 8), cream);
-      col.position.set(bg.x + Math.cos(a) * 10.2, 54, bg.z - 8 + Math.sin(a) * 10.2);
+      col.position.set(bx + Math.cos(a) * 10.2, 54, bz - 8 + Math.sin(a) * 10.2);
       add(col);
     }
     const shrineDome = new THREE.Mesh(new THREE.SphereGeometry(8.4, 24, 16, 0, Math.PI * 2, 0, Math.PI / 2), gold);
-    shrineDome.position.set(bg.x, 60.4, bg.z - 8);
+    shrineDome.position.set(bx, 60.4, bz - 8);
     add(shrineDome);
     const shrineLantern = new THREE.Mesh(new THREE.CylinderGeometry(0.9, 1.5, 3.6, 8), gold);
-    shrineLantern.position.set(bg.x, 69.2, bg.z - 8);
+    shrineLantern.position.set(bx, 69.2, bz - 8);
     add(shrineLantern);
     const shrineTip = new THREE.Mesh(new THREE.SphereGeometry(0.7, 10, 8), gold);
-    shrineTip.position.set(bg.x, 71.4, bg.z - 8);
+    shrineTip.position.set(bx, 71.4, bz - 8);
     add(shrineTip);
-    glowAt(bg.x, 69, bg.z - 8, 16763972, 56, 42);
-    hit(bg.x, bg.z - 8, 11);
+    glowAt(bx, 69, bz - 8, 16763972, 56, 42);
+    hit(bx, bz - 8, 11, 10, 10);
+    const pineTrunkG = new THREE.CylinderGeometry(0.22, 0.36, 8.4, 7);
+    pineTrunkG.translate(0, 4.2, 0);
+    const pineCrownG = new THREE.ConeGeometry(2.2, 6.4, 7);
+    const nPine = Math.min(90, built.samples.length * 2);
+    const pTrunks = new THREE.InstancedMesh(pineTrunkG, barkM, nPine);
+    const pCrowns = new THREE.InstancedMesh(pineCrownG, pineM, nPine);
+    let pi = 0;
+    const stepP = Math.max(1, Math.floor(built.samples.length / 40));
+    for (let i = 1; i < built.samples.length - 1 && pi < nPine; i += stepP) {
+      const s = built.samples[i];
+      const vs = s.rx * (bg.x - s.x) + s.rz * (bg.z - s.z) >= 0 ? 1 : -1;
+      const ms = vs;
+      for (const extra of [11, 20, 32]) {
+        if (pi >= nPine) break;
+        const d = built.width / 2 + extra;
+        const px = s.x + s.rx * d * ms;
+        const pz = s.z + s.rz * d * ms;
+        _dummy.position.set(px, s.y, pz);
+        _dummy.scale.set(1, 1 + (i % 4) * 0.12, 1);
+        _dummy.rotation.set(0, i * 0.7, 0);
+        _dummy.updateMatrix();
+        pTrunks.setMatrixAt(pi, _dummy.matrix);
+        _dummy.position.set(px, s.y + 8.2, pz);
+        _dummy.updateMatrix();
+        pCrowns.setMatrixAt(pi, _dummy.matrix);
+        pi++;
+      }
+    }
+    pTrunks.count = pi;
+    pCrowns.count = pi;
+    pTrunks.instanceMatrix.needsUpdate = true;
+    pCrowns.instanceMatrix.needsUpdate = true;
+    group.add(pTrunks, pCrowns);
     const rockMat = new THREE.MeshStandardMaterial({
       color: 6969928,
       roughness: 0.95,
