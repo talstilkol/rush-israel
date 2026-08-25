@@ -5310,7 +5310,12 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       roughness: 0.45,
       metalness: 0.2
     });
-    bag.push(railMat, tieMat, ballast, platMat, glassRoof, silver, redStripe);
+    const purpleStripe = new THREE.MeshStandardMaterial({
+      color: 0x4a1a6a,
+      roughness: 0.42,
+      metalness: 0.22
+    });
+    bag.push(railMat, tieMat, ballast, platMat, glassRoof, silver, redStripe, purpleStripe);
     const midLon = 34.79605;
     const railPts = [];
     const lats = [];
@@ -5383,6 +5388,11 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     group.add(ties, rails);
     for (const st of [
       {
+        lat: 32.0525,
+        he: "\u05E7\u05D9\u05D1\u05D5\u05E5 \u05D2\u05DC\u05D5\u05D9\u05D5\u05EA",
+        kind: "galuyot"
+      },
+      {
         lat: 32.0547,
         he: "\u05D4\u05D4\u05D2\u05E0\u05D4",
         kind: "hagana"
@@ -5404,7 +5414,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       }
     ]) {
       const p = tlv(st.lat, midLon);
-      const platLen = st.kind === "savidor" ? 110 : st.kind === "shalom" ? 96 : 78;
+      const platLen = st.kind === "savidor" ? 110 : st.kind === "shalom" ? 96 : st.kind === "galuyot" ? 70 : 78;
       const plat2 = new THREE.Mesh(new THREE.BoxGeometry(11, 0.7, platLen), platMat);
       plat2.position.set(p.x, 0.55, p.z);
       add(plat2);
@@ -5463,9 +5473,12 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         const body = new THREE.Mesh(new THREE.BoxGeometry(2.8, 3.3, 17.2), silver);
         body.position.set(0, 2.15, -c * 18.2);
         g.add(body);
-        const band = new THREE.Mesh(new THREE.BoxGeometry(2.86, 0.45, 17.3), redStripe);
+        const band = new THREE.Mesh(new THREE.BoxGeometry(2.86, 0.45, 17.3), purpleStripe);
         band.position.set(0, 1.45, -c * 18.2);
         g.add(band);
+        const band2 = new THREE.Mesh(new THREE.BoxGeometry(2.86, 0.22, 17.3), redStripe);
+        band2.position.set(0, 1.72, -c * 18.2);
+        g.add(band2);
         for (let w = 0; w < 5; w++) {
           const win = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1.05, 2.1), darkGlass);
           win.position.set(1.42, 2.55, -c * 18.2 - 6 + w * 3);
@@ -5498,6 +5511,53 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     };
     makeTrain(0, -2.4);
     makeTrain(0.48, 2.4);
+    const arrowC = document.createElement("canvas");
+    arrowC.width = 64;
+    arrowC.height = 96;
+    const ag = arrowC.getContext("2d");
+    if (ag) {
+      ag.fillStyle = "#1a6a38";
+      ag.fillRect(0, 0, 64, 96);
+      ag.fillStyle = "#ffffff";
+      ag.beginPath();
+      ag.moveTo(32, 10);
+      ag.lineTo(54, 42);
+      ag.lineTo(40, 42);
+      ag.lineTo(40, 86);
+      ag.lineTo(24, 86);
+      ag.lineTo(24, 42);
+      ag.lineTo(10, 42);
+      ag.closePath();
+      ag.fill();
+    }
+    const arrowTex = new THREE.CanvasTexture(arrowC);
+    arrowTex.colorSpace = THREE.SRGBColorSpace;
+    bag.push(arrowTex);
+    const arrowMat = new THREE.MeshBasicMaterial({ map: arrowTex, side: 2 });
+    for (const lat of [32.058, 32.068, 32.078, 32.092]) {
+      for (const lon of [34.795, 34.7971]) {
+      const p = tlv(lat, lon);
+      const near = nearestIndex(built.samples, p.x, p.z, 0);
+      const s = built.samples[near.index];
+      const hw = built.width / 2 + 1.8;
+      for (const side of [-1, 1]) {
+        const post = new THREE.Mesh(new THREE.BoxGeometry(0.7, 9.2, 0.7), conc);
+        post.position.set(s.x + s.rx * hw * side, s.y + 4.6, s.z + s.rz * hw * side);
+        add(post);
+      }
+      const beam = new THREE.Mesh(new THREE.BoxGeometry(built.width + 2.4, 0.7, 1.15), conc);
+      beam.position.set(s.x, s.y + 9.3, s.z);
+      beam.rotation.y = Math.atan2(s.rx, s.rz);
+      add(beam);
+      for (let i = 0; i < 8; i++) {
+        const off = -built.width / 2 + 3.2 + i * (built.width - 6.4) / 7;
+        const ar = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 4.6), arrowMat);
+        ar.position.set(s.x + s.rx * off, s.y + 7.4, s.z + s.rz * off);
+        ar.rotation.y = Math.atan2(s.tx, s.tz);
+        add(ar);
+      }
+      }
+    }
   }
   if (def.id === "caesarea") {
     const aq = cae(32.5075, 34.8998);
