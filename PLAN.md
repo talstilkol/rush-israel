@@ -38,7 +38,7 @@
 | # | משימה | סטטוס | ציון 100? | אמת |
 |---|---|---|---|---|
 | 24.1 | לסובב סוד OAuth | **NOT DONE** | לא | `PREVIEW_CLIENT_SECRET` עדיין hardcoded ב־`src/lib/auth/preview.ts:20-21` |
-| 24.2 | לחסום `__controlsTest` מ־shipping | **NOT DONE** | לא | `engine.ts` עדיין שם `window.__controlsTest` |
+| 24.2 | לחסום `__controlsTest` מ־shipping | **PARTIAL** | לא | `exposeControls()` רק `import.meta.env.DEV`. ב־production build אין hook. ב־vite dev נשאר לבדיקות |
 | 24.3 | לבטל records כשזמן לא אמין | **PARTIAL** | לא | `timeVoided` + מינ׳ 8ש׳. אין envelope חתום, אין הפרדת QA |
 | 24.4 | להפסיק טענות "רחובות אמיתיים" + תמונות לא־runtime | **NOT DONE** | לא | כרטיסים עדיין JPEG שיווקיים; טקסט עדיין "רחובות אמיתיים" |
 | 24.5 | לשמר artifact/logs | **NOT DONE** | לא | אין תיקיית evidence חתומה בריפו |

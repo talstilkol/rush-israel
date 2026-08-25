@@ -1991,6 +1991,7 @@ export class RaceEngine {
   }
 
   private exposeControls() {
+    if (!import.meta.env.DEV) return;
     window.__controlsTest = {
       getYaw: () => this.player.yaw,
       getSpeed: () => this.player.speed,
@@ -2106,7 +2107,7 @@ export class RaceEngine {
       this.clearRoadblock();
     }
     this.renderer.dispose();
-    delete window.__controlsTest;
+    if (import.meta.env.DEV) delete window.__controlsTest;
   }
 }
 
