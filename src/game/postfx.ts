@@ -188,9 +188,9 @@ export function createPost(
 
 export function bakeEnv(renderer: THREE.WebGLRenderer, night = false) {
   const tmp = new THREE.Scene();
-  tmp.background = new THREE.Color(night ? 0x152032 : 0x2f8fd4);
-  tmp.add(new THREE.HemisphereLight(night ? 0x4a6080 : 0xd4eaf8, night ? 0x1a1410 : 0xb89868, night ? 0.55 : 1.15));
-  const sun = new THREE.DirectionalLight(night ? 0xa8c0e0 : 0xffe8c4, night ? 0.32 : 1.15);
+  tmp.background = new THREE.Color(night ? 0x182436 : 0x3a9ae0);
+  tmp.add(new THREE.HemisphereLight(night ? 0x4a6080 : 0xc8e8ff, night ? 0x1a1410 : 0xb89868, night ? 0.55 : 1.2));
+  const sun = new THREE.DirectionalLight(night ? 0xa8c0e0 : 0xffe8c4, night ? 0.32 : 1.2);
   sun.position.set(6, 14, 4);
   tmp.add(sun);
   if (!night) {

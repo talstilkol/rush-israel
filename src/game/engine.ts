@@ -304,7 +304,7 @@ export class RaceEngine {
     this.scene.background = new THREE.Color(opts.night ? skyNight : skyDay);
 
     const mountain = opts.trackId === "ramon" || opts.trackId === "hermon" || opts.trackId === "scopus" || opts.trackId === "jerusalem" || this.trackDef.theme === "carmel";
-    this.camera = new THREE.PerspectiveCamera(68, canvas.clientWidth / Math.max(1, canvas.clientHeight), 0.28, mountain ? 10000 : 8000);
+    this.camera = new THREE.PerspectiveCamera(68, canvas.clientWidth / Math.max(1, canvas.clientHeight), 0.28, mountain ? 12000 : 10000);
 
     this.opts.onBoot?.(0.12);
     canvas.addEventListener("webglcontextlost", this.onContextLost);

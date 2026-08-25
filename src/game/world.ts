@@ -1000,7 +1000,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     side: THREE.BackSide,
     toneMapped: false
   }));
-  const skyDome = new THREE.Mesh(keep(new THREE.SphereGeometry(4800, 48, 24)), skyDomeMat);
+  const skyDome = new THREE.Mesh(keep(new THREE.SphereGeometry(8200, 40, 20)), skyDomeMat);
   skyDome.frustumCulled = false;
   skyDome.renderOrder = -2000;
   group.add(skyDome);
@@ -1025,7 +1025,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     depthWrite: false,
     toneMapped: false
   }));
-  const dome = new THREE.Mesh(keep(new THREE.SphereGeometry(5200, 24, 10, 0, Math.PI * 2, 0, Math.PI * 0.54)), domeMat);
+  const dome = new THREE.Mesh(keep(new THREE.SphereGeometry(8600, 24, 10, 0, Math.PI * 2, 0, Math.PI * 0.54)), domeMat);
   dome.position.y = -80;
   dome.frustumCulled = false;
   group.add(dome);
@@ -2435,6 +2435,9 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   };
   const tick = (now, x, z) => {
     const t = now * 1e-3;
+    skyDome.position.set(x, 0, z);
+    dome.position.x = x;
+    dome.position.z = z;
     for (const mv of movers) {
       if (mv.pts.length < 2) continue;
       const f = ((t * mv.speed + mv.phase) % 1 + 1) % 1 * (mv.pts.length - 1);
