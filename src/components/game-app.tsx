@@ -64,6 +64,20 @@ import { copy, dirFor, langShort, nextLang, type Lang } from "@/game/i18n";
 import { cn } from "@/lib/utils";
 import type { AssistFlags, CarId, HandlingMode, Quality, RaceMode, TrackId, Weather } from "@/game/types";
 
+function themeWash(theme: string, night: boolean) {
+	if (night) return "#12151a";
+	if (theme === "desert") return "#8a6240";
+	if (theme === "snow") return "#6a7a8c";
+	if (theme === "stone") return "#6a5a48";
+	if (theme === "carmel") return "#2a4030";
+	if (theme === "jaffa") return "#6a4838";
+	if (theme === "highway") return "#2a3038";
+	if (theme === "bauhaus") return "#4a4038";
+	if (theme === "park") return "#2a4838";
+	if (theme === "port") return "#243848";
+	return "#243040";
+}
+
 export function GameApp() {
 	const [screen, setScreen] = useState("title");
 	const [trackId, setTrackId] = useState("telaviv");
@@ -151,7 +165,7 @@ export function GameApp() {
 				onRestore: () => setRaceKey((k) => k + 1),
 				onFinish: (r) => {
 					const ok = r.eligible !== false;
-					const isBest = ok ? recordBest(r.trackId, r.totalTime) : false;
+					const isBest = ok ? recordBest(r.trackId, r.totalTime, { eligible: true }) : false;
 					setRecord(isBest);
 					const ev = r.eventId ? getEvent(r.eventId) : null;
 					const got = !ok ? 0 : ev ? starsFor(ev, r) : r.place === 1 ? 3 : r.place === 2 ? 2 : r.place === 3 ? 1 : 0;
@@ -820,11 +834,10 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 	return /* @__PURE__ */ jsxs("div", {
 		className: "relative flex h-full min-h-0 flex-col",
 		children: [
-			/* @__PURE__ */ jsx("img", {
-				src: track.image,
-				alt: "",
-				className: cn("absolute inset-0 h-full w-full object-cover transition duration-500", night ? "brightness-50 contrast-125 saturate-75" : "brightness-110"),
-				crossOrigin: "anonymous"
+			/* @__PURE__ */ jsx("div", {
+				className: "absolute inset-0 h-full w-full transition duration-500",
+				style: { background: themeWash(track.theme, night) },
+				"aria-hidden": true
 			}),
 			/* @__PURE__ */ jsx("div", { className: "pointer-events-none absolute inset-0 bg-bg/72" }),
 			/* @__PURE__ */ jsxs("header", {
@@ -1065,11 +1078,10 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 										children: [/* @__PURE__ */ jsxs("span", {
 											className: "relative block",
 											children: [
-												/* @__PURE__ */ jsx("img", {
-													src: tr.image,
-													alt: "",
-													className: cn("h-32 w-full object-cover transition duration-500", night ? "brightness-50 contrast-125 saturate-75" : "brightness-110"),
-													crossOrigin: "anonymous"
+												/* @__PURE__ */ jsx("span", {
+													className: "block h-24 w-full",
+													style: { background: themeWash(tr.theme, night) },
+													"aria-hidden": true
 												}),
 												night ? /* @__PURE__ */ jsx("span", { className: "pointer-events-none absolute inset-0 bg-bg/35" }) : null,
 												/* @__PURE__ */ jsxs("span", {

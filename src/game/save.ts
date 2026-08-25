@@ -74,8 +74,9 @@ export function getBest(id: TrackId) {
   return load().best[id] ?? null;
 }
 
-export function recordBest(id: TrackId, time: number) {
-  if (!Number.isFinite(time) || time < 8) return false;
+export function recordBest(id: TrackId, time: number, opts?: { eligible?: boolean }) {
+  if (opts?.eligible === false) return false;
+  if (!Number.isFinite(time) || time < 8 || time > 2700) return false;
   const data = load();
   const prev = data.best[id];
   if (prev == null || time < prev) {
