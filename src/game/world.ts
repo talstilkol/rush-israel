@@ -997,15 +997,18 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   const lanes = laneCountFor(def);
   const roadMaps = asphaltTexture(lanes);
   bag.push(roadMaps.map, roadMaps.roughnessMap, roadMaps.bumpMap);
-  const roadMat = keep(new THREE.MeshStandardMaterial({
+  const roadMat = keep(new THREE.MeshPhysicalMaterial({
     map: roadMaps.map,
     roughnessMap: roadMaps.roughnessMap,
     bumpMap: roadMaps.bumpMap,
-    bumpScale: 0.18,
+    bumpScale: 0.16,
     color: 0xffffff,
-    roughness: 0.92,
-    metalness: 0,
-    envMapIntensity: 0.12
+    roughness: 0.58,
+    metalness: 0.06,
+    envMapIntensity: 0.42,
+    clearcoat: 0.14,
+    clearcoatRoughness: 0.42,
+    reflectivity: 0.22
   }));
   const road = new THREE.Mesh(keep(buildRoad(built)), roadMat);
   road.receiveShadow = true;
@@ -1198,17 +1201,17 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   let mirror = null;
   if (shadows) {
     const res = 512;
-    mirror = new Reflector(new THREE.PlaneGeometry(36, 36), {
+    mirror = new Reflector(new THREE.PlaneGeometry(72, 72), {
       clipBias: 3e-3,
       textureWidth: res,
       textureHeight: res,
-      color: isNight ? 4870748 : 8949912
+      color: isNight ? 0x4a5568 : 0x8aa0b4
     });
     mirror.rotation.x = -Math.PI / 2;
-    mirror.position.y = 0.028;
+    mirror.position.y = 0.026;
     const mmat = mirror.material;
     mmat.transparent = true;
-    mmat.opacity = isNight ? 0.42 : 0.16;
+    mmat.opacity = isNight ? 0.38 : 0.14;
     group.add(mirror);
     bag.push({ dispose() {
       mirror?.dispose();
@@ -2308,11 +2311,13 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   };
   const followMirror = (x, z, yaw) => {
     if (!mirror) return;
-    mirror.visible = wx === "rain" || wx === "storm" || isNight;
-    mirror.position.set(x, 0.03, z);
+    mirror.visible = true;
+    mirror.position.set(x, 0.026, z);
     const col = mirror.material;
+    const wet = wx === "rain" || wx === "storm";
+    col.opacity = wet ? (isNight ? 0.58 : 0.36) : isNight ? 0.34 : 0.13;
     if (col.uniforms?.color) {
-      const c = wx !== "clear" ? isNight ? 6977672 : 10135728 : isNight ? 3818576 : 8029324;
+      const c = wet ? (isNight ? 0x6a7388 : 0x9aabbc) : isNight ? 0x3a4558 : 0x88a0b4;
       col.uniforms.color.value.setHex(c);
     }
   };
@@ -2377,21 +2382,27 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     const n = nightAmt(clock);
     puddles.visible = wx === "rain" || wx === "storm" || wx === "clear" && n > 0.35;
     if (wx === "rain" || wx === "storm") {
-      roadMat.color.setHex(n > 0.5 ? 0x6a7280 : 0x9aa0a8);
-      roadMat.roughness = wx === "storm" ? 0.18 : 0.26;
-      roadMat.metalness = wx === "storm" ? 0.22 : 0.14;
-      roadMat.envMapIntensity = n > 0.5 ? 0.85 : 0.55;
+      roadMat.color.setHex(n > 0.5 ? 0x8a929c : 0xb4bcc4);
+      roadMat.roughness = wx === "storm" ? 0.16 : 0.22;
+      roadMat.metalness = wx === "storm" ? 0.18 : 0.12;
+      roadMat.envMapIntensity = n > 0.5 ? 0.95 : 0.7;
+      roadMat.clearcoat = 0.55;
+      roadMat.clearcoatRoughness = 0.18;
       puddleMat.opacity = wx === "storm" ? 0.9 : 0.78;
     } else if (n > 0.45) {
-      roadMat.color.setHex(0xc8ccd4);
-      roadMat.roughness = 0.34;
+      roadMat.color.setHex(0xc4c8d0);
+      roadMat.roughness = 0.28;
       roadMat.metalness = 0.1;
-      roadMat.envMapIntensity = 0.62;
+      roadMat.envMapIntensity = 0.72;
+      roadMat.clearcoat = 0.38;
+      roadMat.clearcoatRoughness = 0.26;
     } else {
       roadMat.color.setHex(0xffffff);
-      roadMat.roughness = 0.9;
-      roadMat.metalness = 0.02;
-      roadMat.envMapIntensity = 0.12;
+      roadMat.roughness = 0.56;
+      roadMat.metalness = 0.06;
+      roadMat.envMapIntensity = 0.42;
+      roadMat.clearcoat = 0.14;
+      roadMat.clearcoatRoughness = 0.42;
     }
   };
   const _dayHemi = new THREE.Color(9356520);
@@ -2472,8 +2483,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     sunHaloMat.opacity = morning ? 0.38 : 0.26;
     haloMat.opacity = n > 0.45 ? 0.48 : 0;
     haloMat.needsUpdate = true;
-    roadMat.color.setHex(n > 0.5 ? 9080984 : 16777215);
-    roadMat.needsUpdate = true;
+    applyWet();
     groundMat.color.setHex(n > 0.5 ? 3815474 : groundCol);
     groundMat.envMapIntensity = lerp(0.14, 0.08, n);
     domeMat.color.setHex(n > 0.5 ? 923688 : clock < 0.38 ? 5942748 : 3839696);

@@ -299,7 +299,7 @@ export class RaceEngine {
     this.envRT = new THREE.WebGLRenderTarget(1, 1);
     this.post = fallbackPost();
 
-    if (!soft) {
+    if (!soft && !this.lite) {
       requestAnimationFrame(() => this.upgradeGraphics());
     }
 
@@ -670,7 +670,9 @@ export class RaceEngine {
     this.lite = q === "low" || this.soft;
     const mobile = typeof navigator !== "undefined" && /mobi|android|iphone|ipad/i.test(navigator.userAgent);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.lite || mobile ? 1 : 1.15));
-    this.post.setBudget(this.lite);
+    if (this.lite) this.post.setBudget(true);
+    else if (!(this.post as { composer?: unknown }).composer) this.upgradeGraphics();
+    else this.post.setBudget(false);
     this.onResize();
   }
 

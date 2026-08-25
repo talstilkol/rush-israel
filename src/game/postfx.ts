@@ -106,19 +106,20 @@ export function createPost(
   const size = new THREE.Vector2();
   renderer.getDrawingBufferSize(size);
   const rt = new THREE.WebGLRenderTarget(size.x, size.y, {
-    type: THREE.HalfFloatType,
+    type: lite ? THREE.UnsignedByteType : THREE.HalfFloatType,
     depthBuffer: true,
   });
   const composer = new EffectComposer(renderer, rt);
   composer.addPass(new RenderPass(scene, camera));
 
-  const bloomStrength = night ? (lite ? 0.2 : 0.24) : 0.018;
+  const bloomStrength = night && !lite ? 0.22 : 0;
   const bloom = new UnrealBloomPass(
     size,
     bloomStrength,
-    night ? 0.28 : 0.12,
-    night ? 0.72 : 0.9,
+    night ? 0.28 : 0.08,
+    night ? 0.72 : 0.96,
   );
+  bloom.enabled = night && !lite;
   composer.addPass(bloom);
 
   const smaa = lite ? undefined : new SMAAPass();
@@ -128,6 +129,8 @@ export function createPost(
   grade.uniforms.uNight.value = night ? 1 : 0;
   composer.addPass(grade);
   composer.addPass(new OutputPass());
+
+  let useComposer = !lite;
 
   return {
     composer,
@@ -144,8 +147,10 @@ export function createPost(
       grade.uniforms.uBoost.value = boost ? 1 : 0;
     },
     setNight(next: boolean) {
+      night = next;
       grade.uniforms.uNight.value = next ? 1 : 0;
-      bloom.strength = next ? (lite ? 0.2 : 0.24) : 0.018;
+      bloom.enabled = next && useComposer;
+      bloom.strength = next && useComposer ? 0.22 : 0;
       bloom.radius = next ? 0.32 : 0.08;
       bloom.threshold = next ? 0.68 : 0.94;
     },
@@ -154,11 +159,14 @@ export function createPost(
     },
     setBudget(nextLite: boolean) {
       lite = nextLite;
+      useComposer = !nextLite;
       if (smaa) smaa.enabled = !nextLite;
-      bloom.strength = nextLite ? 0.02 : night ? 0.2 : 0.05;
+      bloom.enabled = night && !nextLite;
+      bloom.strength = nextLite ? 0 : night ? 0.22 : 0;
     },
     render() {
-      composer.render();
+      if (useComposer) composer.render();
+      else renderer.render(scene, camera);
     },
     dispose() {
       composer.dispose();
