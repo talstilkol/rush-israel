@@ -2932,12 +2932,12 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const roundP = tlv(32.07455, 34.79195);
     const cx = roundP.x;
     const cz = roundP.z;
-    const rH = 94 * s;
-    const round = new THREE.Mesh(new THREE.CylinderGeometry(8.4 * s, 8.9 * s, rH, 40), azGlass);
+    const rH = 108 * s;
+    const round = new THREE.Mesh(new THREE.CylinderGeometry(8.6 * s, 9.1 * s, rH, 40), azGlass);
     round.position.set(cx, rH * 0.5, cz);
     add(round);
     for (let y = 5 * s; y < rH - 3 * s; y += 2.55 * s) {
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(8.55 * s, 0.09 * s, 5, 28), bandMat);
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(8.75 * s, 0.09 * s, 5, 28), bandMat);
       ring.rotation.x = Math.PI / 2;
       ring.position.set(cx, y, cz);
       add(ring);
@@ -2945,20 +2945,23 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     for (let i = 0; i < 16; i++) {
       const a = i / 16 * Math.PI * 2;
       const mull = new THREE.Mesh(new THREE.BoxGeometry(0.18 * s, rH * 0.92, 0.18 * s), bandMat);
-      mull.position.set(cx + Math.cos(a) * 8.55 * s, rH * 0.5, cz + Math.sin(a) * 8.55 * s);
+      mull.position.set(cx + Math.cos(a) * 8.75 * s, rH * 0.5, cz + Math.sin(a) * 8.75 * s);
       add(mull);
     }
-    const saucer = new THREE.Mesh(new THREE.CylinderGeometry(12.6 * s, 8.8 * s, 3.6 * s, 32), bandMat);
-    saucer.position.set(cx, rH + 1.4 * s, cz);
+    const saucerUnd = new THREE.Mesh(new THREE.CylinderGeometry(15.4 * s, 9.2 * s, 2.2 * s, 32), bandMat);
+    saucerUnd.position.set(cx, rH + 0.6 * s, cz);
+    add(saucerUnd);
+    const saucer = new THREE.Mesh(new THREE.CylinderGeometry(15.8 * s, 14.2 * s, 1.6 * s, 32), paleGlass);
+    saucer.position.set(cx, rH + 2.4 * s, cz);
     add(saucer);
-    const saucerGlass = new THREE.Mesh(new THREE.SphereGeometry(8.2 * s, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.48), paleGlass);
-    saucerGlass.position.set(cx, rH + 3.6 * s, cz);
+    const saucerGlass = new THREE.Mesh(new THREE.SphereGeometry(8.6 * s, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.48), paleGlass);
+    saucerGlass.position.set(cx, rH + 3.2 * s, cz);
     add(saucerGlass);
-    const saucerRim = new THREE.Mesh(new THREE.TorusGeometry(10.4 * s, 0.28 * s, 6, 28), bandMat);
+    const saucerRim = new THREE.Mesh(new THREE.TorusGeometry(14.6 * s, 0.38 * s, 6, 32), bandMat);
     saucerRim.rotation.x = Math.PI / 2;
-    saucerRim.position.set(cx, rH + 3.2 * s, cz);
+    saucerRim.position.set(cx, rH + 2.5 * s, cz);
     add(saucerRim);
-    const tH = 86 * s;
+    const tH = 96 * s;
     const triP = tlv(32.07425, 34.79285);
     const triX = triP.x;
     const triZ = triP.z;
@@ -2976,7 +2979,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     triCap.position.set(triX, tH + 6 * s, triZ);
     triCap.rotation.y = 0.52;
     add(triCap);
-    const sH = 78 * s;
+    const sH = 86 * s;
     const sqP = tlv(32.07485, 34.79145);
     const sqX = sqP.x;
     const sqZ = sqP.z;
@@ -2998,19 +3001,25 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     sqMast.position.set(sqX, sH + 18 * s, sqZ);
     add(sqMast);
     const mallP = tlv(32.0744, 34.7922);
-    const pod = new THREE.Mesh(new THREE.BoxGeometry(42 * s, 8.2 * s, 36 * s), white);
-    pod.position.set(mallP.x, 4.1 * s, mallP.z);
+    const pod = new THREE.Mesh(new THREE.BoxGeometry(46 * s, 8.6 * s, 38 * s), white);
+    pod.position.set(mallP.x, 4.3 * s, mallP.z);
     add(pod);
-    const atrium = new THREE.Mesh(new THREE.CylinderGeometry(13 * s, 13 * s, 11.5 * s, 24), paleGlass);
-    atrium.position.set(mallP.x, 5.6 * s, mallP.z);
+    const atrium = new THREE.Mesh(new THREE.CylinderGeometry(15 * s, 15 * s, 13 * s, 28), paleGlass);
+    atrium.position.set(mallP.x, 6.4 * s, mallP.z);
     add(atrium);
-    const atriumRim = new THREE.Mesh(new THREE.TorusGeometry(13.2 * s, 0.4 * s, 6, 24), bandMat);
+    const atriumRim = new THREE.Mesh(new THREE.TorusGeometry(15.2 * s, 0.45 * s, 6, 28), bandMat);
     atriumRim.rotation.x = Math.PI / 2;
-    atriumRim.position.set(mallP.x, 11.4 * s, mallP.z);
+    atriumRim.position.set(mallP.x, 13 * s, mallP.z);
     add(atriumRim);
-    const bridge = new THREE.Mesh(new THREE.BoxGeometry(20 * s, 1.4 * s, 5.4 * s), paleGlass);
-    bridge.position.set((cx + triX) * 0.5, 28 * s, (cz + triZ) * 0.5);
+    const atriumDome = new THREE.Mesh(new THREE.SphereGeometry(15 * s, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.42), paleGlass);
+    atriumDome.position.set(mallP.x, 13.2 * s, mallP.z);
+    add(atriumDome);
+    const bridge = new THREE.Mesh(new THREE.BoxGeometry(22 * s, 1.6 * s, 5.6 * s), paleGlass);
+    bridge.position.set((cx + triX) * 0.5, 32 * s, (cz + triZ) * 0.5);
     add(bridge);
+    const bridge2 = new THREE.Mesh(new THREE.BoxGeometry(18 * s, 1.5 * s, 5.2 * s), paleGlass);
+    bridge2.position.set((cx + sqX) * 0.5, 30 * s, (cz + sqZ) * 0.5);
+    add(bridge2);
     glowAt(cx, rH + 6, cz, 8308968, 62 * s, 54 * s);
     glowAt(triX, tH + 6, triZ, 8308968, 52 * s, 48 * s);
     hit(cx, cz, 11 * s);
@@ -4037,28 +4046,28 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     cornice.position.set(rd.x, 18.9, rd.z);
     cornice.rotation.y = rdYaw;
     add(cornice);
-    const chimP = tlv(32.1044, 34.7776);
-    const chim = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 5.2, 78, 16), conc);
-    chim.position.set(chimP.x, 45.4, chimP.z);
+    const chimP = tlv(32.1046, 34.7766);
+    const chim = new THREE.Mesh(new THREE.CylinderGeometry(3.8, 5.6, 92, 16), conc);
+    chim.position.set(chimP.x, 52.4, chimP.z);
     add(chim);
-    const chimGal = new THREE.Mesh(new THREE.CylinderGeometry(4.6, 3.8, 2.4, 16), conc);
-    chimGal.position.set(chimP.x, 85.2, chimP.z);
+    const chimGal = new THREE.Mesh(new THREE.CylinderGeometry(5.2, 4.2, 2.8, 16), conc);
+    chimGal.position.set(chimP.x, 99.2, chimP.z);
     add(chimGal);
-    const chimTop = new THREE.Mesh(new THREE.CylinderGeometry(3.8, 3.4, 3.2, 16), conc);
-    chimTop.position.set(chimP.x, 87.8, chimP.z);
+    const chimTop = new THREE.Mesh(new THREE.CylinderGeometry(4.2, 3.6, 3.6, 16), conc);
+    chimTop.position.set(chimP.x, 102.2, chimP.z);
     add(chimTop);
-    for (let i = 0; i < 5; i++) {
-      const band = new THREE.Mesh(new THREE.CylinderGeometry(3.55, 3.7, 2.6, 14), i % 2 ? redBand : whiteBand);
-      band.position.set(chimP.x, 72.4 + i * 2.8, chimP.z);
+    for (let i = 0; i < 16; i++) {
+      const band = new THREE.Mesh(new THREE.CylinderGeometry(4.05, 4.2, 3.2, 14), i % 2 ? redBand : whiteBand);
+      band.position.set(chimP.x, 28 + i * 4.4, chimP.z);
       add(band);
     }
-    const chim2P = tlv(32.1048, 34.777);
-    const chim2 = new THREE.Mesh(new THREE.CylinderGeometry(2.4, 3.4, 46, 12), conc);
-    chim2.position.set(chim2P.x, 29.4, chim2P.z);
+    const chim2P = tlv(32.1052, 34.776);
+    const chim2 = new THREE.Mesh(new THREE.CylinderGeometry(2.8, 3.8, 62, 12), conc);
+    chim2.position.set(chim2P.x, 37.4, chim2P.z);
     add(chim2);
-    for (let i = 0; i < 4; i++) {
-      const band2 = new THREE.Mesh(new THREE.CylinderGeometry(2.55, 2.65, 2.2, 12), i % 2 ? redBand : whiteBand);
-      band2.position.set(chim2P.x, 44.2 + i * 2.4, chim2P.z);
+    for (let i = 0; i < 12; i++) {
+      const band2 = new THREE.Mesh(new THREE.CylinderGeometry(3, 3.1, 2.6, 12), i % 2 ? redBand : whiteBand);
+      band2.position.set(chim2P.x, 18 + i * 3.4, chim2P.z);
       add(band2);
     }
     const beach = tlv(32.102, 34.774);
@@ -4091,7 +4100,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const expoRoof = new THREE.Mesh(new THREE.SphereGeometry(16, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2), glass);
     expoRoof.position.set(ex.x, 6, ex.z);
     add(expoRoof);
-    glowAt(chimP.x, 84, chimP.z, 16724016, 40, 36);
+    glowAt(chimP.x, 98, chimP.z, 16724016, 48, 40);
     glowAt(hp.x, 10, hp.z, 16760944, 24, 22);
     hit(rd.x - rx * 30, rd.z - rz * 30, 8);
     hit(rd.x + rx * 30, rd.z + rz * 30, 8);
@@ -4812,45 +4821,74 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     hbRing.rotation.x = Math.PI / 2;
     hbRing.position.set(hb.x, 15.4, hb.z);
     add(hbRing);
+    for (let k = 0; k < 5; k++) {
+      const rib = new THREE.Mesh(new THREE.TorusGeometry(9.7, 0.22, 5, 20), cream);
+      rib.rotation.x = Math.PI / 2;
+      rib.position.set(hb.x, 3.2 + k * 2.6, hb.z);
+      add(rib);
+    }
+    const hbLid = new THREE.Mesh(new THREE.CylinderGeometry(10.4, 9.2, 1.4, 20), white);
+    hbLid.position.set(hb.x, 16.6, hb.z);
+    add(hbLid);
     const ind = tlv(32.0629, 34.7686);
-    const hall = new THREE.Mesh(new THREE.BoxGeometry(16, 8, 11), cream);
-    hall.position.set(ind.x, 4.4, ind.z);
+    const hall = new THREE.Mesh(new THREE.BoxGeometry(16, 8.4, 11.4), cream);
+    hall.position.set(ind.x, 4.6, ind.z);
     add(hall);
-    const balcony = new THREE.Mesh(new THREE.BoxGeometry(14, 0.28, 2.4), cream);
-    balcony.position.set(ind.x, 5.6, ind.z + 6.2);
+    const balcony = new THREE.Mesh(new THREE.BoxGeometry(14.4, 0.28, 2.6), cream);
+    balcony.position.set(ind.x, 5.8, ind.z + 6.4);
     add(balcony);
-    const railIH = new THREE.Mesh(new THREE.BoxGeometry(14, 0.7, 0.12), white);
-    railIH.position.set(ind.x, 6.1, ind.z + 7.3);
+    const railIH = new THREE.Mesh(new THREE.BoxGeometry(14.4, 0.72, 0.12), white);
+    railIH.position.set(ind.x, 6.3, ind.z + 7.5);
     add(railIH);
-    for (const sx of [
-      -5.4,
-      -1.8,
-      1.8,
-      5.4
-    ]) {
-      const col = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.44, 6, 10), white);
-      col.position.set(ind.x + sx, 3.4, ind.z + 5.8);
+    for (const sx of [-5.4, -1.8, 1.8, 5.4]) {
+      const col = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.44, 6.2, 10), white);
+      col.position.set(ind.x + sx, 3.5, ind.z + 5.9);
       add(col);
     }
-    const eaves = new THREE.Mesh(new THREE.BoxGeometry(17.2, 0.5, 12), terracotta);
-    eaves.position.set(ind.x, 8.8, ind.z);
-    add(eaves);
-    const flagPole = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 7, 6), white);
-    flagPole.position.set(ind.x, 13.2, ind.z);
-    add(flagPole);
-    const flagW = new THREE.Mesh(new THREE.BoxGeometry(2.8, 1.7, 0.08), white);
-    flagW.position.set(ind.x + 1.4, 16, ind.z);
-    add(flagW);
-    const blue = new THREE.MeshStandardMaterial({
-      color: 14520,
-      roughness: 0.55
-    });
-    bag.push(blue);
-    for (const dy of [-0.55, 0.55]) {
-      const stripe = new THREE.Mesh(new THREE.BoxGeometry(2.8, 0.24, 0.1), blue);
-      stripe.position.set(ind.x + 1.4, 16 + dy, ind.z);
-      add(stripe);
+    for (const [wx, wy] of [[-4.2, 3.2], [0, 3.2], [4.2, 3.2], [-4.2, 6.4], [0, 6.4], [4.2, 6.4]]) {
+      const win = new THREE.Mesh(new THREE.PlaneGeometry(1.6, 1.9), darkGlass);
+      win.position.set(ind.x + wx, wy, ind.z + 5.75);
+      add(win);
     }
+    const eaves = new THREE.Mesh(new THREE.BoxGeometry(17.6, 0.5, 12.4), terracotta);
+    eaves.position.set(ind.x, 9, ind.z);
+    add(eaves);
+    const roofIH = new THREE.Mesh(new THREE.ConeGeometry(11.2, 3.4, 4), terracotta);
+    roofIH.rotation.y = Math.PI / 4;
+    roofIH.position.set(ind.x, 11.1, ind.z);
+    add(roofIH);
+    const flagPole = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 8.4, 6), white);
+    flagPole.position.set(ind.x, 14.6, ind.z);
+    add(flagPole);
+    const flagC = document.createElement("canvas");
+    flagC.width = 256;
+    flagC.height = 160;
+    const fg = flagC.getContext("2d");
+    if (fg) {
+      fg.fillStyle = "#f7f7f7";
+      fg.fillRect(0, 0, 256, 160);
+      fg.fillStyle = "#0038b8";
+      fg.fillRect(0, 22, 256, 22);
+      fg.fillRect(0, 116, 256, 22);
+      fg.strokeStyle = "#0038b8";
+      fg.lineWidth = 8;
+      fg.beginPath();
+      const cxF = 128, cyF = 80, rF = 28;
+      for (let i = 0; i < 6; i++) {
+        const a = -Math.PI / 2 + i * Math.PI / 3;
+        const x = cxF + Math.cos(a) * rF;
+        const y = cyF + Math.sin(a) * rF;
+        if (i === 0) fg.moveTo(x, y);
+        else fg.lineTo(x, y);
+      }
+      fg.closePath();
+      fg.stroke();
+    }
+    const flagTex = new THREE.CanvasTexture(flagC);
+    flagTex.colorSpace = THREE.SRGBColorSpace;
+    const flagW = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 2.1), new THREE.MeshBasicMaterial({ map: flagTex, side: 2 }));
+    flagW.position.set(ind.x + 1.7, 17.4, ind.z);
+    add(flagW);
     const me = tlv(32.0658, 34.7768);
     const meier = new THREE.Mesh(new THREE.BoxGeometry(8.2, 70, 8.2), white);
     meier.position.set(me.x, 35, me.z);
