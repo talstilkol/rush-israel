@@ -112,12 +112,12 @@ export function createPost(
   const composer = new EffectComposer(renderer, rt);
   composer.addPass(new RenderPass(scene, camera));
 
-  const bloomStrength = night && !lite ? 0.22 : 0;
+  const bloomStrength = night && !lite ? 0.11 : 0;
   const bloom = new UnrealBloomPass(
     size,
     bloomStrength,
-    night ? 0.28 : 0.08,
-    night ? 0.72 : 0.96,
+    night ? 0.2 : 0.06,
+    night ? 0.84 : 0.96,
   );
   bloom.enabled = night && !lite;
   composer.addPass(bloom);
@@ -150,9 +150,9 @@ export function createPost(
       night = next;
       grade.uniforms.uNight.value = next ? 1 : 0;
       bloom.enabled = next && useComposer;
-      bloom.strength = next && useComposer ? 0.22 : 0;
-      bloom.radius = next ? 0.32 : 0.08;
-      bloom.threshold = next ? 0.68 : 0.94;
+      bloom.strength = next && useComposer ? 0.11 : 0;
+      bloom.radius = next ? 0.2 : 0.06;
+      bloom.threshold = next ? 0.84 : 0.96;
     },
     setFilter(f: number) {
       grade.uniforms.uFilter.value = f;

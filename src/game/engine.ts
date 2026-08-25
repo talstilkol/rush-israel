@@ -285,7 +285,7 @@ export class RaceEngine {
     this.renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = opts.night ? 1.22 : 0.48;
+    this.renderer.toneMappingExposure = opts.night ? 1.12 : 0.5;
 
     const soft = isSoftwareGL(this.renderer);
     this.soft = soft;
@@ -421,12 +421,12 @@ export class RaceEngine {
       t.colorSpace = THREE.NoColorSpace;
       return t;
     })();
-    const blobGeo = new THREE.PlaneGeometry(3.6, 2.05);
+    const blobGeo = new THREE.PlaneGeometry(4.4, 2.4);
     blobGeo.rotateX(-Math.PI / 2);
     const blobMat = new THREE.MeshBasicMaterial({
       map: blobTex,
       transparent: true,
-      opacity: this.opts.night ? 0.28 : 0.52,
+      opacity: this.opts.night ? 0.32 : 0.64,
       depthWrite: false,
       polygonOffset: true,
       polygonOffsetFactor: -1,
@@ -834,7 +834,7 @@ export class RaceEngine {
     this.world.setClock(this.clock);
     const n = nightAmt(this.clock);
     const morning = n <= 0.5 && this.clock < 0.38;
-    this.renderer.toneMappingExposure = n > 0.5 ? 1.22 : morning ? 0.55 : 0.48;
+    this.renderer.toneMappingExposure = n > 0.5 ? 1.12 : morning ? 0.56 : 0.5;
     const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
     const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
     this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc);
@@ -923,16 +923,6 @@ export class RaceEngine {
     let dt = (now - this.last) / 1000;
     this.last = now;
     dt = Math.min(dt, 0.1);
-    if (!this.lite && !this.soft) {
-      if (dt > 0.028) this.slowFrames++;
-      else this.slowFrames = Math.max(0, this.slowFrames - 1);
-      if (this.slowFrames > 28) {
-        this.renderer.setPixelRatio(1);
-        this.post.setBudget(true);
-        this.lite = true;
-        this.slowFrames = 0;
-      }
-    }
 
     const hoodDown = this.input.keys.has("KeyC") || this.input.keys.has("KeyV") || !!navigator.getGamepads?.()?.[0]?.buttons[3]?.pressed;
     if (hoodDown && !this.hoodEdge && !this.photo) {
@@ -961,7 +951,7 @@ export class RaceEngine {
       } else {
         this.world.setClock(this.clock);
         const morning = n <= 0.5 && this.clock < 0.38;
-        this.renderer.toneMappingExposure = n > 0.5 ? 1.22 : morning ? 0.55 : 0.48;
+        this.renderer.toneMappingExposure = n > 0.5 ? 1.12 : morning ? 0.56 : 0.5;
         const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
         const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
         const sky = n > 0.5 ? 0x182436 : morning ? 0x4aa8d8 : desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
@@ -1660,7 +1650,7 @@ export class RaceEngine {
         blob.scale.set(stretch, 1, 0.92 + Math.abs(c.speed) * 0.008);
         blob.rotation.y = c.yaw;
         blob.visible = !c.eliminated;
-        (blob.material as THREE.MeshBasicMaterial).opacity = this.world.night ? 0.26 : 0.5;
+        (blob.material as THREE.MeshBasicMaterial).opacity = this.world.night ? 0.3 : 0.62;
       }
     }
     for (let i = 0; i < this.traffic.length; i++) {
