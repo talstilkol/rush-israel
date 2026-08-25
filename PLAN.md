@@ -12,7 +12,7 @@
 ## 0. פסק דין
 
 אב־טיפוס WebGL. מאז הביקורת הקודמת: DEV-hook, envelope שיאים, כרטיסי צבע, איילון A→B 28מ׳, yaw היבריד, צלליות (עזריאלי/ToHa/רכבת/רוטשילד/יפו/רידינג).  
-**לא נסגרו:** סוד OAuth, GIS, 6DoF, HDRI, CI, vehicle lab, Unreal.
+**לא נסגרו:** רוטציית ברוקר, GIS, 6DoF, HDRI, CI, vehicle lab, Unreal.
 
 | תחום | דוח | עכשיו | אמת |
 |---|---:|---:|---|
@@ -22,7 +22,7 @@
 | תאורה | 2 | 2.1 | ACES, אין HDRI |
 | פיזיקה | 2 | 2.5 | היבריד 34% kin מעל 8m/s |
 | AI | 2 | 2 | לא נגענו |
-| תקינות | 1 | 2.4 | timeVoided + DEV hook. סוד עדיין בקוד |
+| תקינות | 1 | 2.6 | timeVoided + DEV hook. סוד לא בקוד; אין רוטציה בברוקר |
 | ביצועים | 3 | 3.2 | Low/Mid/High |
 | קוד | 3 | 3 | `@ts-nocheck` world/game-app |
 | UX | 3 | 3.6 | Esc + כרטיסי צבע |
@@ -34,7 +34,7 @@
 
 | # | משימה | סטטוס | 100? | אמת |
 |---|---|---|---|---|
-| 24.1 | סובב OAuth | **NOT DONE** | לא | `preview.ts` hardcoded |
+| 24.1 | סובב OAuth | **PARTIAL** | לא | הסוד **הוסר מהמקור**. אין רוטציה בברוקר — אם אין env, login כבוי |
 | 24.2 | חסום `__controlsTest` מ־shipping | **PARTIAL** | לא | רק `import.meta.env.DEV`. **ה־preview החי (vite dev) עדיין עם finishNow** |
 | 24.3 | records רק זמן אמין | **PARTIAL** | לא | 8–2700ש׳ + eligible. אין חתימה |
 | 24.4 | בלי JPEG מטעה / בלי "רחובות אמיתיים" | **PARTIAL** | לא | UI = צבע theme. תיאורי מסלול עדיין נשמעים כמו GPS |
@@ -141,7 +141,7 @@
 ### מסילה W — סנדבוקס (יעד Asphalt-like)
 
 #### W0 שנשאר (P0) — לפני עוד ארט
-1. **NOT DONE** הוצאת `PREVIEW_CLIENT_SECRET` ל־env בלבד; רוטציה.
+1. **PARTIAL** סוד לא ב־source. רוטציה בברוקר — לא כאן.
 2. **PARTIAL** `__controlsTest` גם לא ב־vite dev של הפריוויו הציבורי — דגל `VITE_QA=1` בבילד בדיקות בלבד.
 3. **PARTIAL** envelope: `physicsVersion` + hash בשיא; reject אם לא תואם.
 4. **PARTIAL** להחליף תיאורי "כביש 20 / GPS" ב־"בהשראת".
