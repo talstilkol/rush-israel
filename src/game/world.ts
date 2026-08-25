@@ -5971,7 +5971,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     beach.rotation.x = -Math.PI / 2;
     beach.position.set(cl.x - 36, 0.04, cl.z);
     add(beach);
-    const leo = net(32.3282, 34.8502);
+    const leo = net(32.3282, 34.8492);
     const leonardo = new THREE.Mesh(new THREE.BoxGeometry(14, 42, 12), white);
     leonardo.position.set(leo.x, 21, leo.z);
     add(leonardo);
@@ -5983,7 +5983,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const leoCap = new THREE.Mesh(new THREE.BoxGeometry(10, 4.2, 8), paleGlass);
     leoCap.position.set(leo.x, 44, leo.z);
     add(leoCap);
-    const isr = net(32.3266, 34.8506);
+    const isr = net(32.3266, 34.8494);
     const isrotel = new THREE.Mesh(new THREE.CylinderGeometry(6.4, 7.2, 48, 12), white);
     isrotel.position.set(isr.x, 24, isr.z);
     add(isrotel);
@@ -5996,7 +5996,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const isrHat = new THREE.Mesh(new THREE.CylinderGeometry(8, 5.2, 5.4, 12), cream);
     isrHat.position.set(isr.x, 50.4, isr.z);
     add(isrHat);
-    const pr = net(32.3316, 34.8498);
+    const pr = net(32.3316, 34.8488);
     const princess = new THREE.Mesh(new THREE.BoxGeometry(28, 16, 12), white);
     princess.position.set(pr.x, 8, pr.z);
     add(princess);
@@ -6008,7 +6008,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       bal.position.set(pr.x, y, pr.z);
       add(bal);
     }
-    const sea = net(32.3338, 34.8496);
+    const sea = net(32.3338, 34.8486);
     const seasons = new THREE.Mesh(new THREE.BoxGeometry(12, 32, 14), paleGlass);
     seasons.position.set(sea.x, 16, sea.z);
     seasons.rotation.y = 0.12;
@@ -6016,6 +6016,18 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const seaSlab = new THREE.Mesh(new THREE.BoxGeometry(16, 8, 16), cream);
     seaSlab.position.set(sea.x, 4, sea.z);
     add(seaSlab);
+    const lift = net(32.3324, 34.8484);
+    const liftT = new THREE.Mesh(new THREE.BoxGeometry(4.2, 18, 4.2), white);
+    liftT.position.set(lift.x, 9, lift.z);
+    add(liftT);
+    const liftC = new THREE.Mesh(new THREE.BoxGeometry(3.4, 3.2, 3.4), paleGlass);
+    liftC.position.set(lift.x, 8.4, lift.z);
+    add(liftC);
+    for (let i = 0; i < 12; i++) {
+      const step = new THREE.Mesh(new THREE.BoxGeometry(6.4, 0.28, 2.2), stone);
+      step.position.set(lift.x - 6, 14 - i * 1.15, lift.z - 2 - i * 1.4);
+      add(step);
+    }
     const herzl = net(32.329, 34.858);
     for (let i = 0; i < 4; i++) {
       const shop = new THREE.Mesh(new THREE.BoxGeometry(7.2, 8 + i % 2 * 2.4, 8), i % 2 ? cream : white);
