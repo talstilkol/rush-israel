@@ -51,7 +51,7 @@ import { RendererFacade } from "../rendering/RendererFacade";
 import { profileFromLegacy } from "../rendering/QualityProfile";
 import { FOG, fogKey, LOOKS, lookFromFlags } from "../rendering/EnvironmentState";
 import { ResourceRegistry } from "../rendering/ResourceRegistry";
-import { DynamicQualityController } from "../rendering/DynamicQualityController";
+import { DynamicQualityController, gfxPassFlags } from "../rendering/DynamicQualityController";
 import { MESH_STREAMING } from "./stream-flag";
 
 const FIXED = PHYSICS_DT;
@@ -1051,17 +1051,17 @@ export class RaceEngine {
 
   private applyGfxStep() {
     const s = this.dyn.step;
+    const f = gfxPassFlags(s);
     this.droppedTier = s > 0;
-    this.world.setPlanar(s < 1);
-    this.post.setBloom(s < 2);
-    this.csmMuted = s >= 3;
+    this.world.setPlanar(f.planar);
+    this.post.setBloom(f.bloom);
+    this.csmMuted = !f.csm;
     const base = this.lite ? 1 : this.quality === "mid" ? 0.75 : 0.85;
-    const extra = Math.max(0, s - 3);
-    const scale = Math.max(0.5, base * Math.pow(0.85, extra));
+    const scale = Math.max(0.5, base * Math.pow(0.85, f.pixelExtra));
     const mobile = typeof navigator !== "undefined" && /mobi|android|iphone|ipad/i.test(navigator.userAgent);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1) * scale);
     this.onResize();
-    if (import.meta.env.DEV) console.info("[gfx]", s, "planar", s < 1, "bloom", s < 2, "csm", s < 3, "px", scale.toFixed(2));
+    if (import.meta.env.DEV) console.info("[gfx]", s, "planar", f.planar, "bloom", f.bloom, "csm", f.csm, "px", scale.toFixed(2));
   }
 
   private shouldPresent(now: number) {

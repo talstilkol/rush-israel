@@ -1,4 +1,15 @@
 /** 21.6: drop planar → bloom → CSM → pixelScale. Raise after 5s under 16ms. */
+
+export function gfxPassFlags(step: number) {
+  const s = Math.max(0, step);
+  return {
+    planar: s < 1,
+    bloom: s < 2,
+    csm: s < 3,
+    pixelExtra: Math.max(0, s - 3),
+  };
+}
+
 export class DynamicQualityController {
   step = 0;
   private over = 0;
