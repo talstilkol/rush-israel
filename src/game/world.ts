@@ -5438,6 +5438,22 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       pushRamp(eastX, c.z - 30, 0, 1, zLen, 7.2, 0.6, deckY, ic.he, ic.en);
       pushRamp(eastX, c.z + 30, 0, 1, zLen, 7.2, deckY, 0.6, ic.he, ic.en);
       pushRamp(c.x, c.z, 1, 0, 30, 7.6, deckY, deckY, ic.he, ic.en);
+      if (ic.en === "Kibbutz Galuyot") {
+        pushRamp(westX - 20, c.z, 0, 1, 84, 6.4, 0.6, 7.2, ic.he, ic.en);
+        pushRamp(eastX + 20, c.z, 0, 1, 84, 6.4, 7.2, 0.6, ic.he, ic.en);
+        const d = 0.7071;
+        pushRamp(c.x - 24, c.z - 24, d, d, 54, 6.2, 0.6, deckY, ic.he, ic.en);
+        pushRamp(c.x + 24, c.z + 24, d, d, 54, 6.2, deckY, 0.6, ic.he, ic.en);
+        const loop = new THREE.Mesh(new THREE.TorusGeometry(26, 3.2, 8, 28), rampAsphalt);
+        loop.rotation.x = Math.PI / 2;
+        loop.position.set(westX - 10, 3.8, c.z);
+        add(loop);
+      }
+      if (ic.en === "LaGuardia") {
+        const d = 0.7071;
+        pushRamp(c.x - 18, c.z + 18, d, -d, 44, 6.2, 0.6, deckY, ic.he, ic.en);
+        pushRamp(c.x + 18, c.z - 18, d, -d, 44, 6.2, deckY, 0.6, ic.he, ic.en);
+      }
     }
     for (const ic of [
       { lat: 32.0735, he: "השלום", en: "HaShalom" },

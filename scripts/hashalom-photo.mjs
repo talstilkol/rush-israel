@@ -39,6 +39,7 @@ for (const [fn, name] of [
   ["frameSavidor", "hashalom-savidor.png"],
   ["frameHagana", "hashalom-hagana.png"],
   ["frameUniversity", "hashalom-university.png"],
+  ["frameGaluyot", "hashalom-galuyot.png"],
 ]) {
   await p.evaluate((f) => window.__controlsTest[f](), fn);
   await p.waitForTimeout(500);
