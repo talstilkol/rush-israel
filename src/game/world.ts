@@ -3364,115 +3364,123 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const roundP = tlv(32.07455, 34.79195);
     const cx = roundP.x;
     const cz = roundP.z;
-    const rH = 108 * s;
-    const round = new THREE.Mesh(new THREE.CylinderGeometry(8.6 * s, 9.1 * s, rH, 40), azGlass);
+    const rH = 121 * s;
+    const round = new THREE.Mesh(new THREE.CylinderGeometry(8.2 * s, 9.4 * s, rH, 48), azGlass);
     round.position.set(cx, rH * 0.5, cz);
     add(round);
-    for (let y = 5 * s; y < rH - 3 * s; y += 2.55 * s) {
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(8.75 * s, 0.09 * s, 5, 28), bandMat);
+    for (let y = 4.4 * s; y < rH - 2.4 * s; y += 2.35 * s) {
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(8.55 * s + (y / rH) * 0.35 * s, 0.07 * s, 5, 32), bandMat);
       ring.rotation.x = Math.PI / 2;
       ring.position.set(cx, y, cz);
       add(ring);
     }
-    for (let i = 0; i < 16; i++) {
-      const a = i / 16 * Math.PI * 2;
-      const mull = new THREE.Mesh(new THREE.BoxGeometry(0.18 * s, rH * 0.92, 0.18 * s), bandMat);
-      mull.position.set(cx + Math.cos(a) * 8.75 * s, rH * 0.5, cz + Math.sin(a) * 8.75 * s);
+    for (let i = 0; i < 20; i++) {
+      const a = i / 20 * Math.PI * 2;
+      const mull = new THREE.Mesh(new THREE.BoxGeometry(0.16 * s, rH * 0.94, 0.16 * s), bandMat);
+      mull.position.set(cx + Math.cos(a) * 8.7 * s, rH * 0.5, cz + Math.sin(a) * 8.7 * s);
       add(mull);
     }
-    const saucerUnd = new THREE.Mesh(new THREE.CylinderGeometry(15.4 * s, 9.2 * s, 2.2 * s, 32), bandMat);
-    saucerUnd.position.set(cx, rH + 0.6 * s, cz);
+    const saucerUnd = new THREE.Mesh(new THREE.CylinderGeometry(17.2 * s, 9.4 * s, 2.6 * s, 36), bandMat);
+    saucerUnd.position.set(cx, rH + 0.4 * s, cz);
     add(saucerUnd);
-    const saucer = new THREE.Mesh(new THREE.CylinderGeometry(15.8 * s, 14.2 * s, 1.6 * s, 32), paleGlass);
-    saucer.position.set(cx, rH + 2.4 * s, cz);
+    const saucer = new THREE.Mesh(new THREE.CylinderGeometry(17.8 * s, 15.6 * s, 1.8 * s, 36), paleGlass);
+    saucer.position.set(cx, rH + 2.6 * s, cz);
     add(saucer);
-    const saucerGlass = new THREE.Mesh(new THREE.SphereGeometry(8.6 * s, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.48), paleGlass);
-    saucerGlass.position.set(cx, rH + 3.2 * s, cz);
+    const saucerGlass = new THREE.Mesh(new THREE.SphereGeometry(9.4 * s, 28, 14, 0, Math.PI * 2, 0, Math.PI * 0.5), paleGlass);
+    saucerGlass.position.set(cx, rH + 3.4 * s, cz);
     add(saucerGlass);
-    const saucerRim = new THREE.Mesh(new THREE.TorusGeometry(14.6 * s, 0.38 * s, 6, 32), bandMat);
+    const saucerRim = new THREE.Mesh(new THREE.TorusGeometry(16.4 * s, 0.42 * s, 6, 36), bandMat);
     saucerRim.rotation.x = Math.PI / 2;
-    saucerRim.position.set(cx, rH + 2.5 * s, cz);
+    saucerRim.position.set(cx, rH + 2.7 * s, cz);
     add(saucerRim);
-    const tH = 96 * s;
+    const saucerRim2 = new THREE.Mesh(new THREE.TorusGeometry(12.2 * s, 0.28 * s, 6, 28), bandMat);
+    saucerRim2.rotation.x = Math.PI / 2;
+    saucerRim2.position.set(cx, rH + 3.6 * s, cz);
+    add(saucerRim2);
+    const tH = 110 * s;
     const triP = tlv(32.07425, 34.79285);
     const triX = triP.x;
     const triZ = triP.z;
-    const tri = new THREE.Mesh(new THREE.CylinderGeometry(9.2 * s, 10.6 * s, tH, 3), azTriGlass);
+    const tri = new THREE.Mesh(new THREE.CylinderGeometry(8.8 * s, 10.8 * s, tH, 3), azTriGlass);
     tri.position.set(triX, tH * 0.5, triZ);
     tri.rotation.y = 0.52;
     add(tri);
     for (let i = 0; i < 3; i++) {
       const a = 0.52 + i * ((Math.PI * 2) / 3) + Math.PI / 3;
-      const r = 9.4 * s;
-      const post = new THREE.Mesh(new THREE.BoxGeometry(0.55 * s, tH * 0.96, 0.55 * s), bandMat);
+      const r = 9.2 * s;
+      const post = new THREE.Mesh(new THREE.BoxGeometry(0.62 * s, tH * 0.96, 0.62 * s), bandMat);
       post.position.set(triX + Math.cos(a) * r, tH * 0.5, triZ + Math.sin(a) * r);
       add(post);
     }
-    for (let y = 7 * s; y < tH - 5 * s; y += 6.4 * s) {
-      const band = new THREE.Mesh(new THREE.CylinderGeometry(9.5 * s, 10 * s, 0.5 * s, 3), bandMat);
+    for (let y = 6 * s; y < tH - 4 * s; y += 5.6 * s) {
+      const band = new THREE.Mesh(new THREE.CylinderGeometry(9.2 * s, 10.2 * s, 0.45 * s, 3), bandMat);
       band.position.set(triX, y, triZ);
       band.rotation.y = 0.52;
       add(band);
     }
-    const triCap = new THREE.Mesh(new THREE.CylinderGeometry(1.6 * s, 9 * s, 16 * s, 3), paleGlass);
-    triCap.position.set(triX, tH + 6 * s, triZ);
+    const triCap = new THREE.Mesh(new THREE.CylinderGeometry(1.4 * s, 8.6 * s, 18 * s, 3), paleGlass);
+    triCap.position.set(triX, tH + 7 * s, triZ);
     triCap.rotation.y = 0.52;
     add(triCap);
-    const sH = 86 * s;
+    const sH = 100 * s;
     const sqP = tlv(32.07485, 34.79145);
     const sqX = sqP.x;
     const sqZ = sqP.z;
-    const sq = new THREE.Mesh(new THREE.BoxGeometry(14.8 * s, sH, 14.8 * s), azSqGlass);
+    const sq = new THREE.Mesh(new THREE.BoxGeometry(15.2 * s, sH, 15.2 * s), azSqGlass);
     sq.position.set(sqX, sH * 0.5, sqZ);
     add(sq);
-    for (let i = 0; i < 8; i++) {
-      const o = -6.4 * s + i * 1.82 * s;
-      const mx = new THREE.Mesh(new THREE.BoxGeometry(0.16 * s, sH * 0.96, 0.16 * s), bandMat);
-      mx.position.set(sqX + o, sH * 0.5, sqZ + 7.45 * s);
+    for (let i = 0; i < 9; i++) {
+      const o = -6.8 * s + i * 1.7 * s;
+      const mx = new THREE.Mesh(new THREE.BoxGeometry(0.14 * s, sH * 0.96, 0.14 * s), bandMat);
+      mx.position.set(sqX + o, sH * 0.5, sqZ + 7.65 * s);
       add(mx);
       const mx2 = mx.clone();
-      mx2.position.z = sqZ - 7.45 * s;
+      mx2.position.z = sqZ - 7.65 * s;
       add(mx2);
-      const mz = new THREE.Mesh(new THREE.BoxGeometry(0.16 * s, sH * 0.96, 0.16 * s), bandMat);
-      mz.position.set(sqX + 7.45 * s, sH * 0.5, sqZ + o);
+      const mz = new THREE.Mesh(new THREE.BoxGeometry(0.14 * s, sH * 0.96, 0.14 * s), bandMat);
+      mz.position.set(sqX + 7.65 * s, sH * 0.5, sqZ + o);
       add(mz);
       const mz2 = mz.clone();
-      mz2.position.x = sqX - 7.45 * s;
+      mz2.position.x = sqX - 7.65 * s;
       add(mz2);
     }
-    for (let y = 6 * s; y < sH - 4 * s; y += 3.1 * s) {
-      const slab = new THREE.Mesh(new THREE.BoxGeometry(15.4 * s, 0.22 * s, 15.4 * s), bandMat);
+    for (let y = 5.5 * s; y < sH - 3 * s; y += 2.9 * s) {
+      const slab = new THREE.Mesh(new THREE.BoxGeometry(15.8 * s, 0.2 * s, 15.8 * s), bandMat);
       slab.position.set(sqX, y, sqZ);
       add(slab);
     }
-    const sq2 = new THREE.Mesh(new THREE.BoxGeometry(11.4 * s, 8 * s, 11.4 * s), paleGlass);
-    sq2.position.set(sqX, sH + 3.6 * s, sqZ);
+    const sq2 = new THREE.Mesh(new THREE.BoxGeometry(11.6 * s, 8.4 * s, 11.6 * s), paleGlass);
+    sq2.position.set(sqX, sH + 3.8 * s, sqZ);
     add(sq2);
-    const sq3 = new THREE.Mesh(new THREE.BoxGeometry(8.2 * s, 6 * s, 8.2 * s), azSqGlass);
-    sq3.position.set(sqX, sH + 10.4 * s, sqZ);
+    const sq3 = new THREE.Mesh(new THREE.BoxGeometry(8.4 * s, 6.2 * s, 8.4 * s), azSqGlass);
+    sq3.position.set(sqX, sH + 10.8 * s, sqZ);
     add(sq3);
-    const sqMast = new THREE.Mesh(new THREE.CylinderGeometry(0.22 * s, 0.35 * s, 10 * s, 6), bandMat);
-    sqMast.position.set(sqX, sH + 18 * s, sqZ);
+    const sqMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2 * s, 0.32 * s, 12 * s, 6), bandMat);
+    sqMast.position.set(sqX, sH + 20 * s, sqZ);
     add(sqMast);
     const mallP = tlv(32.0744, 34.7922);
-    const pod = new THREE.Mesh(new THREE.BoxGeometry(46 * s, 8.6 * s, 38 * s), white);
-    pod.position.set(mallP.x, 4.3 * s, mallP.z);
+    const pod = new THREE.Mesh(new THREE.BoxGeometry(52 * s, 9.2 * s, 42 * s), white);
+    pod.position.set(mallP.x, 4.6 * s, mallP.z);
     add(pod);
-    const atrium = new THREE.Mesh(new THREE.CylinderGeometry(15 * s, 15 * s, 13 * s, 28), paleGlass);
-    atrium.position.set(mallP.x, 6.4 * s, mallP.z);
+    const atrium = new THREE.Mesh(new THREE.CylinderGeometry(16.4 * s, 16.4 * s, 14 * s, 32), paleGlass);
+    atrium.position.set(mallP.x, 7 * s, mallP.z);
     add(atrium);
-    const atriumRim = new THREE.Mesh(new THREE.TorusGeometry(15.2 * s, 0.45 * s, 6, 28), bandMat);
+    const atriumRim = new THREE.Mesh(new THREE.TorusGeometry(16.6 * s, 0.48 * s, 6, 32), bandMat);
     atriumRim.rotation.x = Math.PI / 2;
-    atriumRim.position.set(mallP.x, 13 * s, mallP.z);
+    atriumRim.position.set(mallP.x, 14.1 * s, mallP.z);
     add(atriumRim);
-    const atriumDome = new THREE.Mesh(new THREE.SphereGeometry(15 * s, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.42), paleGlass);
-    atriumDome.position.set(mallP.x, 13.2 * s, mallP.z);
+    const atriumDome = new THREE.Mesh(new THREE.SphereGeometry(16.4 * s, 28, 14, 0, Math.PI * 2, 0, Math.PI * 0.42), paleGlass);
+    atriumDome.position.set(mallP.x, 14.2 * s, mallP.z);
     add(atriumDome);
-    const bridge = new THREE.Mesh(new THREE.BoxGeometry(22 * s, 1.6 * s, 5.6 * s), paleGlass);
-    bridge.position.set((cx + triX) * 0.5, 32 * s, (cz + triZ) * 0.5);
+    const spanTri = Math.max(8 * s, Math.hypot(cx - triX, cz - triZ));
+    const bridge = new THREE.Mesh(new THREE.BoxGeometry(spanTri, 1.7 * s, 5.8 * s), paleGlass);
+    bridge.position.set((cx + triX) * 0.5, 34 * s, (cz + triZ) * 0.5);
+    bridge.rotation.y = Math.atan2(triX - cx, triZ - cz);
     add(bridge);
-    const bridge2 = new THREE.Mesh(new THREE.BoxGeometry(18 * s, 1.5 * s, 5.2 * s), paleGlass);
-    bridge2.position.set((cx + sqX) * 0.5, 30 * s, (cz + sqZ) * 0.5);
+    const spanSq = Math.max(8 * s, Math.hypot(cx - sqX, cz - sqZ));
+    const bridge2 = new THREE.Mesh(new THREE.BoxGeometry(spanSq, 1.6 * s, 5.4 * s), paleGlass);
+    bridge2.position.set((cx + sqX) * 0.5, 31 * s, (cz + sqZ) * 0.5);
+    bridge2.rotation.y = Math.atan2(sqX - cx, sqZ - cz);
     add(bridge2);
     glowAt(cx, rH + 6, cz, 8308968, 62 * s, 54 * s);
     glowAt(triX, tH + 6, triZ, 8308968, 52 * s, 48 * s);

@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Crowd InstancedMesh not allocated on Israel quality slices.
+Azrieli heights ~187:169:154 ratio. Skybridges aim at towers. Still primitives, not a scan.
