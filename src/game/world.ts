@@ -3515,16 +3515,16 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       add(sl);
     }
     for (const ox of [-4.9 * s, 4.9 * s]) {
-      const pillar = new THREE.Mesh(new THREE.BoxGeometry(4.4 * s, 24 * s, 14.4 * s), gateGlass);
-      pillar.position.set(p.x + ox, h + 12 * s, p.z);
+      const pillar = new THREE.Mesh(new THREE.BoxGeometry(4.6 * s, 28 * s, 14.4 * s), gateGlass);
+      pillar.position.set(p.x + ox, h + 14 * s, p.z);
       add(pillar);
     }
-    const lintel = new THREE.Mesh(new THREE.BoxGeometry(15.2 * s, 5.6 * s, 15 * s), bandMat);
-    lintel.position.set(p.x, h + 26 * s, p.z);
+    const lintel = new THREE.Mesh(new THREE.BoxGeometry(15.6 * s, 6.2 * s, 15.2 * s), bandMat);
+    lintel.position.set(p.x, h + 30 * s, p.z);
     add(lintel);
-    const gateHole = new THREE.Mesh(new THREE.BoxGeometry(5.6 * s, 14 * s, 15.2 * s), paleGlass);
-    gateHole.position.set(p.x, h + 10 * s, p.z);
-    add(gateHole);
+    const lintelGlass = new THREE.Mesh(new THREE.BoxGeometry(15.2 * s, 3.2 * s, 14.6 * s), paleGlass);
+    lintelGlass.position.set(p.x, h + 28.2 * s, p.z);
+    add(lintelGlass);
     for (const [sx, sz] of [[-6.2, -6.2], [6.2, -6.2], [-6.2, 6.2], [6.2, 6.2]]) {
       const pin = new THREE.Mesh(new THREE.BoxGeometry(1.5 * s, 10 * s, 1.5 * s), bandMat);
       pin.position.set(p.x + sx * s, h + 32 * s, p.z + sz * s);
