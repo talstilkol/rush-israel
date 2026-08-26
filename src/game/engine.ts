@@ -139,6 +139,9 @@ export class RaceEngine {
   private world!: World;
   private post!: PostStack;
   private envRT!: THREE.WebGLRenderTarget;
+  private probeRT: THREE.WebGLCubeRenderTarget | null = null;
+  private probeCam: THREE.CubeCamera | null = null;
+  private probeTick = 0;
   private built;
   private trackDef;
   private player!: ArcadeCar;
@@ -415,6 +418,10 @@ export class RaceEngine {
       this.scene.add(vis.group);
       return vis;
     });
+    if (!soft && this.quality !== "low") {
+      this.probeRT = new THREE.WebGLCubeRenderTarget(96);
+      this.probeCam = new THREE.CubeCamera(1.2, 220, this.probeRT);
+    }
 
     const blobTex = (() => {
       const c = document.createElement("canvas");
@@ -922,6 +929,22 @@ export class RaceEngine {
     this.fog.density = lerp(0.00016, 0.00048, u);
     this.fog.color.lerp(new THREE.Color(0xd8c4a0), u * 0.4);
   }
+
+  private updateProbe() {
+    if (!this.probeCam || !this.probeRT || this.soft) return;
+    this.probeTick++;
+    if (this.probeTick % 8 !== 1) return;
+    const vis = this.visuals[0];
+    if (vis) vis.group.visible = false;
+    this.probeCam.position.set(this.player.x, this.player.y + 1.05, this.player.z);
+    this.probeCam.update(this.renderer, this.scene);
+    if (vis) {
+      vis.group.visible = true;
+      vis.bodyMat.envMap = this.probeRT.texture;
+      vis.bodyMat.envMapIntensity = nightAmt(this.clock) > 0.5 ? 0.8 : 1.2;
+    }
+  }
+
   private onContextLost = (e: Event) => {
     e.preventDefault();
     this.glLost = true;
@@ -1035,6 +1058,7 @@ export class RaceEngine {
     this.nowSec = now / 1000;
     this.present(dt);
     this.world.followShadows(this.player.x, this.player.y, this.player.z);
+    this.updateProbe();
     const spd = clamp(Math.abs(this.player.speed) / 52, 0, 1);
     this.post.setDrive(spd, this.player.boostT > 0);
     this.post.render();
@@ -2131,6 +2155,7 @@ export class RaceEngine {
       this.world.dispose();
       this.post.dispose();
       this.envRT.dispose();
+      this.probeRT?.dispose();
       this.skyTex?.dispose();
       this.sparks.geometry.dispose();
       (this.sparks.material as THREE.Material).dispose();

@@ -39,7 +39,7 @@ Verdict labels: DONE (real, working, verified) | PARTIAL | FAKED | NOT DONE.
 | Night actually night | PARTIAL | Dimmed 2026-08-26; canvas sky + discs |
 | HDRI environment | NOT DONE | `bakeEnv()` tiny PMREM scene |
 | CSM | PARTIAL | Second tight directional map (±18m). Not three.js `CSM` class, not 3 cascades |
-| Reflection probes | NOT DONE | Scene env cubemap only |
+| Reflection probes | PARTIAL | CubeCamera 96px on player paint every 8 frames. Not world probes |
 | Volumetrics / SSGI | NOT DONE | — |
 
 ## Codex §5–7 renderer

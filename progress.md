@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Near+far shadow maps. Not the Three.js CSM module. Not WebGPU.
+Player CubeCamera 96px. Not world probes, not SSR.
