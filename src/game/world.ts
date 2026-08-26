@@ -9,7 +9,7 @@ import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, 
 import { scatterStreetBuildings } from "./buildings";
 import { addNycLandmarks } from "./nyc-landmarks";
 import { generateStreets, nearestStreet } from "./streets";
-import { getJaffaClock } from "./clock-assets";
+import { getIsraelFlag } from "./flag-assets";
 import { getBakedRoad } from "./road-assets";
 import { getSkyDay, getSkyNight } from "./sky-assets";
 
@@ -5435,15 +5435,6 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const ihPole = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.09, 7.6, 6), bandMat);
     ihPole.position.set(ind.x + 7.2, 8.6, ind.z + 4.2);
     add(ihPole);
-    const ihFlag = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 1.4), new THREE.MeshBasicMaterial({ color: 0xf4f6f8, side: THREE.DoubleSide }));
-    ihFlag.position.set(ind.x + 8.4, 11.4, ind.z + 4.2);
-    add(ihFlag);
-    const ihStripe = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 0.26), new THREE.MeshBasicMaterial({ color: 0x0038b8, side: THREE.DoubleSide }));
-    ihStripe.position.set(ind.x + 8.41, 11.82, ind.z + 4.2);
-    add(ihStripe);
-    const ihStripe2 = ihStripe.clone();
-    ihStripe2.position.y = 10.98;
-    add(ihStripe2);
     const roofIH = new THREE.Mesh(new THREE.ConeGeometry(11.2, 3.4, 4), terracotta);
     roofIH.rotation.y = Math.PI / 4;
     roofIH.position.set(ind.x, 11.1, ind.z);
@@ -5451,33 +5442,11 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const flagPole = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 8.4, 6), white);
     flagPole.position.set(ind.x, 14.6, ind.z);
     add(flagPole);
-    const flagC = document.createElement("canvas");
-    flagC.width = 256;
-    flagC.height = 160;
-    const fg = flagC.getContext("2d");
-    if (fg) {
-      fg.fillStyle = "#f7f7f7";
-      fg.fillRect(0, 0, 256, 160);
-      fg.fillStyle = "#0038b8";
-      fg.fillRect(0, 22, 256, 22);
-      fg.fillRect(0, 116, 256, 22);
-      fg.strokeStyle = "#0038b8";
-      fg.lineWidth = 8;
-      fg.beginPath();
-      const cxF = 128, cyF = 80, rF = 28;
-      for (let i = 0; i < 6; i++) {
-        const a = -Math.PI / 2 + i * Math.PI / 3;
-        const x = cxF + Math.cos(a) * rF;
-        const y = cyF + Math.sin(a) * rF;
-        if (i === 0) fg.moveTo(x, y);
-        else fg.lineTo(x, y);
-      }
-      fg.closePath();
-      fg.stroke();
-    }
-    const flagTex = new THREE.CanvasTexture(flagC);
-    flagTex.colorSpace = THREE.SRGBColorSpace;
-    const flagW = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 2.1), new THREE.MeshBasicMaterial({ map: flagTex, side: 2 }));
+    const flagTex = getIsraelFlag();
+    const flagW = new THREE.Mesh(
+      new THREE.PlaneGeometry(3.4, 2.1),
+      new THREE.MeshBasicMaterial({ map: flagTex ?? undefined, color: flagTex ? 0xffffff : 0xf4f6f8, side: THREE.DoubleSide }),
+    );
     flagW.position.set(ind.x + 1.7, 17.4, ind.z);
     add(flagW);
     const me = tlv(32.0658, 34.7768);

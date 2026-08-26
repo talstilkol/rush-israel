@@ -21,7 +21,8 @@
     "bake:asphalt": "node scripts/bake-asphalt.mjs",
     "bake:sky": "node scripts/bake-sky.mjs",
     "bake:car": "node scripts/bake-car.mjs",
-    "bake:clock": "node scripts/bake-clock.mjs"
+    "bake:clock": "node scripts/bake-clock.mjs",
+    "bake:flag": "node scripts/bake-flag.mjs"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.4",
