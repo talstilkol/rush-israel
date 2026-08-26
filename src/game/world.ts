@@ -4842,8 +4842,15 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       add(col);
     }
     const shrineDome = new THREE.Mesh(new THREE.SphereGeometry(8.4, 24, 16, 0, Math.PI * 2, 0, Math.PI / 2), gold);
-    shrineDome.position.set(bx, 60.4, bz - 8);
+    shrineDome.position.set(bx, 61.6, bz - 8);
     add(shrineDome);
+    const drum = new THREE.Mesh(new THREE.CylinderGeometry(8.6, 8.9, 2.6, 18), cream);
+    drum.position.set(bx, 60.4, bz - 8);
+    add(drum);
+    const drumGold = new THREE.Mesh(new THREE.TorusGeometry(8.55, 0.22, 6, 18), gold);
+    drumGold.rotation.x = Math.PI / 2;
+    drumGold.position.set(bx, 61.5, bz - 8);
+    add(drumGold);
     const shrineLantern = new THREE.Mesh(new THREE.CylinderGeometry(0.9, 1.5, 3.6, 8), gold);
     shrineLantern.position.set(bx, 69.2, bz - 8);
     add(shrineLantern);
