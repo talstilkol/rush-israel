@@ -39,6 +39,29 @@ const mix = await p.evaluate(() => window.__controlsTest.getKinMix?.() ?? -1);
 const spd = await p.evaluate(() => window.__controlsTest.getSpeed());
 if (spd < 12) throw new Error("never reached 12 m/s v=" + spd);
 if (mix > 0.001) throw new Error("crawl still on at speed kinMix=" + mix);
+const corridor = await p.evaluate(() => {
+  const t = window.__controlsTest;
+  t.resetStart();
+  t.skipCountdown();
+  t.setDamage(0);
+  t.setSteer(0);
+  t.setThrottle(1);
+  t.setKeys(["KeyW"]);
+  const x0 = t.getX();
+  const z0 = t.getZ();
+  let dist = 0;
+  let dmg = 0;
+  for (let i = 0; i < 500; i++) {
+    t.advanceTime(50);
+    dist = Math.hypot(t.getX() - x0, t.getZ() - z0);
+    dmg = t.getDamage();
+    if (dmg > 0.04) return { ok: false, dist, dmg, on: t.getOnTrack() };
+    if (dist >= 200) return { ok: true, dist, dmg, on: t.getOnTrack() };
+  }
+  return { ok: false, dist, dmg, on: t.getOnTrack() };
+});
+if (!corridor.ok) throw new Error("ayalon 200m hit " + JSON.stringify(corridor));
+if (!corridor.on) throw new Error("ayalon 200m left track");
 const y0 = await p.evaluate(() => window.__controlsTest.getYaw());
 await p.evaluate(() => window.__controlsTest.setSteer(1));
 await p.waitForTimeout(260);
