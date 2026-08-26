@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Composer RT leased. Dead motza canvas removed. Codex not finished.
+`npm run qa:drive` smoke exists. Unused sky canvas field removed. Codex not finished.

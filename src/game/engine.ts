@@ -146,7 +146,6 @@ export class RaceEngine {
   private last = 0;
   private trauma = 0;
   private fog = new THREE.FogExp2(0x0c1018, 0.005);
-  private skyTex: THREE.CanvasTexture | null = null;
   private hood = false;
   private hudTimer = 0;
   private hoodEdge = false;
@@ -2224,7 +2223,6 @@ export class RaceEngine {
       this.csm = null;
       this.world.dispose();
       this.leases.disposeAll();
-      this.skyTex?.dispose();
       this.sparks.geometry.dispose();
       (this.sparks.material as THREE.Material).dispose();
       if (this.blobs[0]) {

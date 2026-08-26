@@ -37,7 +37,7 @@ Do **not** bake more procedural PNGs. Do **not** add cities.
 Rothschild / Reading / Jaffa / Jerusalem / Ramon / Hermon / Carmel: 15 GPS + still + zero generic boxes.
 
 ## G — Ship
-- [ ] Golden CI
+- [x] Golden CI — **PARTIAL** (`npm run qa:drive` smoke; no pixel compare)
 - [ ] WebGL2 CI
 - [ ] WebGPU CI if D1
 - [ ] Strip `?qa=1`

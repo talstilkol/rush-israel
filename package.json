@@ -18,6 +18,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "qa:ayalon": "node scripts/capture-golden.mjs",
+    "qa:drive": "node scripts/drive-smoke.mjs",
     "bake:asphalt": "node scripts/bake-asphalt.mjs",
     "bake:sky": "node scripts/bake-sky.mjs",
     "bake:car": "node scripts/bake-car.mjs",
