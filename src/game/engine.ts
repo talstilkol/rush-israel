@@ -356,19 +356,20 @@ export class RaceEngine {
     }
     this.clock = this.opts.night ? 0.9 : 0.5;
     this.scene.add(this.world.group);
-    if (!this.soft && this.quality === "high" && this.renderer.shadowMap.enabled) {
+    if (!this.soft && this.quality !== "low" && this.renderer.shadowMap.enabled) {
       this.world.dir.castShadow = false;
       this.world.dirNear.castShadow = false;
+      const high = this.quality === "high";
       this.csm = new CSM({
         camera: this.camera,
         parent: this.scene,
-        cascades: 2,
-        maxFar: 160,
+        cascades: high ? 3 : 1,
+        maxFar: high ? 160 : 90,
         mode: "practical",
-        shadowMapSize: 1024,
+        shadowMapSize: high ? 1024 : 512,
         lightIntensity: 1.25,
         lightNear: 1,
-        lightFar: 280,
+        lightFar: high ? 280 : 140,
         lightMargin: 28,
         shadowBias: -0.00008,
       });
@@ -2199,6 +2200,7 @@ export class RaceEngine {
       getGear: () => this.player.gear,
       getSteer: () => this.input.poll().steer,
       getKinMix: () => this.player.kinMix,
+      getCsmCascades: () => this.csm?.lights.length ?? 0,
       getCycle: () => this.autoCycle,
       isReplay: () => this.replaying,
       skipReplay: () => this.skipReplay(),
@@ -2685,6 +2687,7 @@ declare global {
       getGear?: () => number;
       getSteer?: () => number;
       getKinMix?: () => number;
+      getCsmCascades?: () => number;
       getCycle?: () => boolean;
       isReplay?: () => boolean;
       skipReplay?: () => void;

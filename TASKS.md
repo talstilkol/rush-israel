@@ -77,7 +77,7 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 ## Phase 7 — Renderer
 - [ ] 7.1 WebGPU **game** flag — **NOT DONE** (probe ≠ renderer)
 - [ ] 7.2 TSL — **NOT DONE**
-- [ ] 7.3 CSM 3/1/0 — **PARTIAL** (2 High)
+- [x] 7.3 CSM 3/1/0 — **DONE** (tiny: High 3@1024, Mid 1@512, Low 0 at boot; applyQuality does not rebuild; no photo)
 - [ ] 7.4 SMAA / no fake TAA — **PARTIAL** (SMAA yes, TRAA no)
 - [x] 7.5 No SSGI — **DONE** (constraint)
 
@@ -123,6 +123,7 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 2.12. `4.5` airborne CI — **DONE** (tiny: `qa:airborne` in `qa`).
 2.13. `4.1` crawl=0 above 12 m/s — **DONE** (tiny: `qa:drive`; kinematic mix still on below ~10 m/s).
 2.14. `21.15` KTX2 honesty — **DONE** (tiny: uncompressed blob gated; removed unused GLTF KTX2Loader; still 0 UASTC).
+2.15. `8.4` CSM 3/1/0 at boot — **DONE** (tiny: High 3@1024, Mid 1@512; not rebuilt in applyQuality).
 
 ### 3. After Hashalom still arrives
 3.1. Pose-lock `hashalom` in `goldenCameras.ts` to match the still.  
