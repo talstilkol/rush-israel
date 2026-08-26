@@ -926,7 +926,7 @@ export class RaceEngine {
     }
     if (this.trackDef.id === "scopus") {
       const u = clamp(this.player.y / 52, 0, 1);
-      this.fog.density = lerp(0.00016, 0.00028, u);
+      this.fog.density = lerp(0.00008, 0.00016, u);
       this.fog.color.lerp(new THREE.Color(0xd0dce8), u * 0.25);
       return;
     }

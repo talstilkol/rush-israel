@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Baháʼí shrine: drum + gold torus under the dome. Still primitives.
+Scopus: thinner fog + extra hill ring. Still cones, not DEM.

@@ -7479,6 +7479,12 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       hill.position.set(sc.x + Math.cos(a) * 220, 10, sc.z + Math.sin(a) * 190);
       add(hill);
     }
+    for (let i = 0; i < 10; i++) {
+      const a = i / 10 * Math.PI * 2 + 0.2;
+      const hill = new THREE.Mesh(new THREE.ConeGeometry(48 + i % 3 * 14, 36 + i % 4 * 16, 5), hillM);
+      hill.position.set(sc.x + Math.cos(a) * 380, 14, sc.z + Math.sin(a) * 340);
+      add(hill);
+    }
     for (let i = 0; i < 32; i++) {
       const t = 0.06 + i / 32 * 0.85;
       const p = jer(31.7866 + t * 5e-3, 35.2344 + t * 0.01 + Math.sin(i) * 18e-4);
