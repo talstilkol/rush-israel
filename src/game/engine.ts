@@ -1825,8 +1825,8 @@ export class RaceEngine {
     const rz = -Math.sin(p.yaw);
     const dir = this.lookBack ? -1 : 1;
     const mode = this.lookBack ? 0 : this.camMode;
-    let follow = 11.4 + clamp(Math.abs(p.speed) / 16, 0, 4.8);
-    let height = 3.85;
+    let follow = 7.4 + clamp(Math.abs(p.speed) / 22, 0, 2.2);
+    let height = 1.92;
     let side = 0;
     if (mode === 1) {
       follow = 0.18;
@@ -1875,11 +1875,11 @@ export class RaceEngine {
       this.cam.y + Math.cos(this.tickId * 1.17) * shake * 0.08,
       this.cam.z + Math.sin(this.tickId * 0.91) * shake * 0.14,
     );
-    const lookAhead = mode === 3 ? 0.2 : mode === 1 ? 9 : 22 + clamp(Math.abs(p.speed) / 8, 0, 22);
-    this.look.set(p.x + fx * lookAhead * dir, p.y + (mode === 3 ? 0.4 : mode === 1 ? 0.98 : 0.85), p.z + fz * lookAhead * dir);
+    const lookAhead = mode === 3 ? 0.2 : mode === 1 ? 9 : 8 + clamp(Math.abs(p.speed) / 14, 0, 8);
+    this.look.set(p.x + fx * lookAhead * dir, p.y + (mode === 3 ? 0.4 : mode === 1 ? 0.98 : 0.62), p.z + fz * lookAhead * dir);
     this.camera.lookAt(this.look);
     const fov =
-      (mode === 1 ? 64 : mode === 2 ? 78 : mode === 3 ? 52 : 60 + clamp(Math.abs(p.speed) / 9, 0, 12) + (p.boostT > 0 || p.drafting ? 4 : 0)) +
+      (mode === 1 ? 64 : mode === 2 ? 78 : mode === 3 ? 52 : 58 + clamp(Math.abs(p.speed) / 14, 0, 8) + (p.boostT > 0 || p.drafting ? 3 : 0)) +
       this.fovExtra;
     if (Math.abs(this.camera.fov - fov) > 0.2) {
       this.camera.fov = fov;
