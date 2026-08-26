@@ -2,4 +2,4 @@
 
 **~11%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Electra: vertical ribs. Still a box.
+Midtown: skybridge between the two slabs. Still boxes.
