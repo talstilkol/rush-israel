@@ -2050,8 +2050,8 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     tanks.setMatrixAt(i, _dummy.matrix);
   }
   group.add(tanks);
-  if ((def.city === "nyc" || def.theme === "carmel" || def.theme === "stone" || def.id === "ramon" || def.id === "hermon" || def.id === "hw1") && def.id !== "deadsea" && def.id !== "hayarkon" && def.id !== "ayalon") {
-    const natureHill = def.theme === "jaffa" || def.theme === "carmel" || def.id === "ramon" || def.id === "hermon" || def.theme === "stone" || def.id === "hw1";
+  if ((def.city === "nyc" || def.theme === "carmel" || def.theme === "stone" || def.id === "hermon" || def.id === "hw1") && def.id !== "deadsea" && def.id !== "hayarkon" && def.id !== "ayalon" && def.id !== "ramon") {
+    const natureHill = def.theme === "jaffa" || def.theme === "carmel" || def.id === "hermon" || def.theme === "stone" || def.id === "hw1";
     const farN = def.theme === "manhattan" ? 48 : natureHill ? 44 : 36;
     const farGeo = keep(natureHill ? new THREE.ConeGeometry(1, 1, 6) : new THREE.BoxGeometry(1, 1, 1));
     if (!natureHill) farGeo.translate(0, 0.5, 0);
