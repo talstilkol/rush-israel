@@ -240,6 +240,8 @@ export type HudState = {
   kinMix: number;
   drawCalls: number;
   triangles: number;
+  geometries: number;
+  textures: number;
 };
 
 export type RaceResult = {

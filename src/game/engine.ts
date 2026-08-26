@@ -2155,6 +2155,8 @@ export class RaceEngine {
       kinMix: this.player.kinMix,
       drawCalls: this.renderer.info.render.calls,
       triangles: this.renderer.info.render.triangles,
+      geometries: this.renderer.info.memory.geometries,
+      textures: this.renderer.info.memory.textures,
     });
   }
 

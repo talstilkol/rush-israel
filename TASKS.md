@@ -106,14 +106,15 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 ### 1. Wait for the user (cannot code)
 1.1. User sends or approves a **real Hashalom photo** (6.1 / 5.1).  
 1.2. Until then: **no more Ayalon towers**. Lock hash must stop moving.  
-1.3. If user types `המשך` without a still: next code slice is **0.2 or 0.4 or 3.5**, not another building.
+1.3. If user types `המשך` without a still: next code slice is **2.2.2 drop order** or **21.4 NYC import**, not another building.
 
 ### 2. Integrity leftovers (can code without still)
-2.1. `0.4` Remove `@ts-nocheck` from `world.ts` and `game-app.tsx` (or split files until `tsc` clean).  
-2.2. `0.2` Prove `npm run check:qa` fails if `finishNow` in prod bundle; add to default `qa:ci` if missing.  
-2.3. `3.5` Put `qa:accel` into `qa:ci`; commit the 5-car 0–100 table (±15% extrusion, labeled).  
-2.4. `9.2` Put `qa:golden` into `qa:ci` **after** baselines are user-ok. Until then keep it manual.  
-2.5. `1.4` Lease CSM shadow maps in ResourceRegistry.
+2.1. `0.4` nocheck — **DONE**.
+2.2. `0.2` prod hook — **DONE**.
+2.3. `3.5` accel CI — **DONE**.
+2.4. `9.2` Put `qa:golden` into `qa:ci` **after** baselines are user-ok. Until then keep it manual.
+2.5. `1.4` CSM lease — **DONE**.
+2.6. `2.1.2` QA HUD dc/tri/geo/tex — **DONE** (tiny: no Ayalon High screenshot).
 
 ### 3. After Hashalom still arrives
 3.1. Pose-lock `hashalom` in `goldenCameras.ts` to match the still.  
