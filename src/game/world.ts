@@ -4552,6 +4552,34 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       add(jib);
     }
     hit(pt.x, pt.z, 8);
+    const sm = hai(32.8272, 34.9698);
+    let smx = sm.x;
+    let smz = sm.z;
+    {
+      const n = nearestIndex(built.samples, smx, smz, 0);
+      if (n.dist < built.width / 2 + 16) {
+        const s = built.samples[n.index];
+        smx = s.x + s.rx * (built.width / 2 + 28);
+        smz = s.z + s.rz * (built.width / 2 + 28);
+      }
+    }
+    const church = new THREE.Mesh(new THREE.BoxGeometry(16, 9, 22), cream);
+    church.position.set(smx, 4.5, smz);
+    add(church);
+    const nave = new THREE.Mesh(new THREE.BoxGeometry(10, 6, 8), cream);
+    nave.position.set(smx, 12, smz);
+    add(nave);
+    const smDome = new THREE.Mesh(new THREE.SphereGeometry(5.2, 14, 10, 0, Math.PI * 2, 0, Math.PI / 2), terracotta);
+    smDome.position.set(smx, 15.4, smz);
+    add(smDome);
+    const bell = new THREE.Mesh(new THREE.BoxGeometry(4.2, 18, 4.2), cream);
+    bell.position.set(smx + 8, 9, smz + 8);
+    add(bell);
+    const bellCap = new THREE.Mesh(new THREE.ConeGeometry(3.2, 4.4, 4), terracotta);
+    bellCap.rotation.y = Math.PI / 4;
+    bellCap.position.set(smx + 8, 20.2, smz + 8);
+    add(bellCap);
+    hit(smx, smz, 10, 9, 12);
     const rust = new THREE.MeshStandardMaterial({ color: 9071176, roughness: 0.7, metalness: 0.2 });
     bag.push(rust);
     for (let i = 0; i < 4; i++) {

@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Kotel: larger herodian blocks, pushed off the carriageway. Still boxes.
+Carmel: Stella Maris church silhouette off the road. Still primitives.
