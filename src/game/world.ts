@@ -9,7 +9,6 @@ import type { Collider, Ramp, SkyPreset, TrackDef, Weather } from "./types";
 import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, her, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, ram, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
 import { scatterStreetBuildings } from "./buildings";
 import { LOOKS, lookFromFlags } from "../rendering/EnvironmentState";
-import { addNycLandmarks } from "./nyc-landmarks";
 import { generateStreets, nearestStreet } from "./streets";
 import { bindRoadCompile } from "./roadShader";
 import { getLaneArrow } from "./arrow-assets";
@@ -2068,7 +2067,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const colliders: Collider[] = [];
   const movers: Mover[] = [];
   addLandmarks(group, def, bag, shadows, isNight, landmarkGlows, emitList, colliders, movers, ramps, streets, built);
-  addNycLandmarks(group, def, bag, shadows, isNight, landmarkGlows, emitList, colliders);
+  if (def.city === "nyc") {
+    const nycLand = await import("./nyc-landmarks");
+    nycLand.addNycLandmarks(group, def, bag, shadows, isNight, landmarkGlows, emitList, colliders);
+  }
   const edgeStep = Math.max(3, Math.floor(built.samples.length / 360));
   const wallD = built.width / 2 + 1.55;
   for (let i = 0; i < built.samples.length; i += edgeStep) {
