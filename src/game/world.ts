@@ -4379,10 +4379,20 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       envMapIntensity: 0.4
     });
     bag.push(kotelMat);
-    for (let row = 0; row < 6; row++) for (let col = 0; col < 7; col++) {
+    let kx = kt.x;
+    let kz = kt.z + 18;
+    {
+      const n = nearestIndex(built.samples, kx, kz, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        kx = s.x + s.rx * (built.width / 2 + 24);
+        kz = s.z + s.rz * (built.width / 2 + 24);
+      }
+    }
+    for (let row = 0; row < 8; row++) for (let col = 0; col < 10; col++) {
       const bw = 3.6 + (col + row) % 3 * 0.45;
       const block = new THREE.Mesh(new THREE.BoxGeometry(bw, 1.85, 3.5), kotelMat);
-      block.position.set(kt.x - 12 + col * 4.1 + row % 2 * 0.7, 1.1 + row * 1.95, kt.z + 18);
+      block.position.set(kx - 18 + col * 4.1 + row % 2 * 0.7, 1.1 + row * 1.95, kz);
       add(block);
     }
     for (let i = 0; i < 10; i++) {
@@ -4411,7 +4421,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(dm.x, 18, dm.z, 16765040, 32, 26);
     hit(jg.x + 18, jg.z + 40, 6);
     hit(td.x + 28, td.z + 36, 10);
-    hit(kt.x, kt.z + 18, 8);
+    hit(kx, kz, 10, 22, 6);
     hit(kd.x - 28, kd.z - 22, 8);
     hit(mill.x, mill.z, 5);
   }
