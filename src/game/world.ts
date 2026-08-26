@@ -2785,17 +2785,41 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const round = new THREE.Mesh(new THREE.CylinderGeometry(8.2 * s, 9.4 * s, rH, 48), azGlass);
     round.position.set(cx, rH * 0.5, cz);
     add(round);
-    for (let y = 4.4 * s; y < rH - 2.4 * s; y += 2.35 * s) {
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(8.55 * s + (y / rH) * 0.35 * s, 0.07 * s, 5, 32), bandMat);
-      ring.rotation.x = Math.PI / 2;
-      ring.position.set(cx, y, cz);
-      add(ring);
+    {
+      const ringYs = [];
+      for (let y = 4.4 * s; y < rH - 2.4 * s; y += 2.35 * s) ringYs.push(y);
+      const ringGeo = new THREE.TorusGeometry(8.55 * s, 0.07 * s, 5, 24);
+      const rings = new THREE.InstancedMesh(ringGeo, bandMat, ringYs.length);
+      rings.frustumCulled = false;
+      for (let i = 0; i < ringYs.length; i++) {
+        const sc = 1 + ringYs[i] / rH * 0.041;
+        _dummy.position.set(cx, ringYs[i], cz);
+        _dummy.rotation.set(Math.PI / 2, 0, 0);
+        _dummy.scale.set(sc, sc, 1);
+        _dummy.updateMatrix();
+        rings.setMatrixAt(i, _dummy.matrix);
+      }
+      rings.instanceMatrix.needsUpdate = true;
+      rings.castShadow = shadows;
+      group.add(rings);
+      bag.push(ringGeo);
     }
-    for (let i = 0; i < 20; i++) {
-      const a = i / 20 * Math.PI * 2;
-      const mull = new THREE.Mesh(new THREE.BoxGeometry(0.16 * s, rH * 0.94, 0.16 * s), bandMat);
-      mull.position.set(cx + Math.cos(a) * 8.7 * s, rH * 0.5, cz + Math.sin(a) * 8.7 * s);
-      add(mull);
+    {
+      const mullGeo = new THREE.BoxGeometry(0.16 * s, rH * 0.94, 0.16 * s);
+      const mulls = new THREE.InstancedMesh(mullGeo, bandMat, 20);
+      mulls.frustumCulled = false;
+      for (let i = 0; i < 20; i++) {
+        const a = i / 20 * Math.PI * 2;
+        _dummy.position.set(cx + Math.cos(a) * 8.7 * s, rH * 0.5, cz + Math.sin(a) * 8.7 * s);
+        _dummy.rotation.set(0, 0, 0);
+        _dummy.scale.set(1, 1, 1);
+        _dummy.updateMatrix();
+        mulls.setMatrixAt(i, _dummy.matrix);
+      }
+      mulls.instanceMatrix.needsUpdate = true;
+      mulls.castShadow = shadows;
+      group.add(mulls);
+      bag.push(mullGeo);
     }
     const saucerUnd = new THREE.Mesh(new THREE.CylinderGeometry(17.2 * s, 9.4 * s, 2.6 * s, 36), bandMat);
     saucerUnd.position.set(cx, rH + 0.4 * s, cz);
@@ -2829,11 +2853,23 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       post.position.set(triX + Math.cos(a) * r, tH * 0.5, triZ + Math.sin(a) * r);
       add(post);
     }
-    for (let y = 6 * s; y < tH - 4 * s; y += 5.6 * s) {
-      const band = new THREE.Mesh(new THREE.CylinderGeometry(9.2 * s, 10.2 * s, 0.45 * s, 3), bandMat);
-      band.position.set(triX, y, triZ);
-      band.rotation.y = 0.52;
-      add(band);
+    {
+      const bandYs = [];
+      for (let y = 6 * s; y < tH - 4 * s; y += 5.6 * s) bandYs.push(y);
+      const bandGeo = new THREE.CylinderGeometry(9.2 * s, 10.2 * s, 0.45 * s, 3);
+      const bands = new THREE.InstancedMesh(bandGeo, bandMat, bandYs.length);
+      bands.frustumCulled = false;
+      for (let i = 0; i < bandYs.length; i++) {
+        _dummy.position.set(triX, bandYs[i], triZ);
+        _dummy.rotation.set(0, 0.52, 0);
+        _dummy.scale.set(1, 1, 1);
+        _dummy.updateMatrix();
+        bands.setMatrixAt(i, _dummy.matrix);
+      }
+      bands.instanceMatrix.needsUpdate = true;
+      bands.castShadow = shadows;
+      group.add(bands);
+      bag.push(bandGeo);
     }
     const triCap = new THREE.Mesh(new THREE.CylinderGeometry(1.4 * s, 8.6 * s, 18 * s, 3), paleGlass);
     triCap.position.set(triX, tH + 7 * s, triZ);
@@ -2846,25 +2882,50 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const sq = new THREE.Mesh(new THREE.BoxGeometry(15.2 * s, sH, 15.2 * s), azSqGlass);
     sq.position.set(sqX, sH * 0.5, sqZ);
     add(sq);
-    for (let i = 0; i < 9; i++) {
-      const o = -6.8 * s + i * 1.7 * s;
-      const mx = new THREE.Mesh(new THREE.BoxGeometry(0.14 * s, sH * 0.96, 0.14 * s), bandMat);
-      mx.position.set(sqX + o, sH * 0.5, sqZ + 7.65 * s);
-      add(mx);
-      const mx2 = mx.clone();
-      mx2.position.z = sqZ - 7.65 * s;
-      add(mx2);
-      const mz = new THREE.Mesh(new THREE.BoxGeometry(0.14 * s, sH * 0.96, 0.14 * s), bandMat);
-      mz.position.set(sqX + 7.65 * s, sH * 0.5, sqZ + o);
-      add(mz);
-      const mz2 = mz.clone();
-      mz2.position.x = sqX - 7.65 * s;
-      add(mz2);
+    {
+      const mullGeo = new THREE.BoxGeometry(0.14 * s, sH * 0.96, 0.14 * s);
+      const mulls = new THREE.InstancedMesh(mullGeo, bandMat, 36);
+      mulls.frustumCulled = false;
+      let mi = 0;
+      for (let i = 0; i < 9; i++) {
+        const o = -6.8 * s + i * 1.7 * s;
+        const spots = [
+          [sqX + o, sH * 0.5, sqZ + 7.65 * s],
+          [sqX + o, sH * 0.5, sqZ - 7.65 * s],
+          [sqX + 7.65 * s, sH * 0.5, sqZ + o],
+          [sqX - 7.65 * s, sH * 0.5, sqZ + o],
+        ];
+        for (const p of spots) {
+          _dummy.position.set(p[0], p[1], p[2]);
+          _dummy.rotation.set(0, 0, 0);
+          _dummy.scale.set(1, 1, 1);
+          _dummy.updateMatrix();
+          mulls.setMatrixAt(mi++, _dummy.matrix);
+        }
+      }
+      mulls.count = mi;
+      mulls.instanceMatrix.needsUpdate = true;
+      mulls.castShadow = shadows;
+      group.add(mulls);
+      bag.push(mullGeo);
     }
-    for (let y = 5.5 * s; y < sH - 3 * s; y += 2.9 * s) {
-      const slab = new THREE.Mesh(new THREE.BoxGeometry(15.8 * s, 0.2 * s, 15.8 * s), bandMat);
-      slab.position.set(sqX, y, sqZ);
-      add(slab);
+    {
+      const slabYs = [];
+      for (let y = 5.5 * s; y < sH - 3 * s; y += 2.9 * s) slabYs.push(y);
+      const slabGeo = new THREE.BoxGeometry(15.8 * s, 0.2 * s, 15.8 * s);
+      const slabs = new THREE.InstancedMesh(slabGeo, bandMat, slabYs.length);
+      slabs.frustumCulled = false;
+      for (let i = 0; i < slabYs.length; i++) {
+        _dummy.position.set(sqX, slabYs[i], sqZ);
+        _dummy.rotation.set(0, 0, 0);
+        _dummy.scale.set(1, 1, 1);
+        _dummy.updateMatrix();
+        slabs.setMatrixAt(i, _dummy.matrix);
+      }
+      slabs.instanceMatrix.needsUpdate = true;
+      slabs.castShadow = shadows;
+      group.add(slabs);
+      bag.push(slabGeo);
     }
     const sq2 = new THREE.Mesh(new THREE.BoxGeometry(11.6 * s, 8.4 * s, 11.6 * s), paleGlass);
     sq2.position.set(sqX, sH + 3.8 * s, sqZ);
@@ -2911,25 +2972,50 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const body = new THREE.Mesh(new THREE.BoxGeometry(14.4 * s, h, 14.4 * s), gateGlass);
     body.position.set(p.x, h * 0.5, p.z);
     add(body);
-    for (let i = 0; i < 7; i++) {
-      const o = -6.2 * s + i * 2.05 * s;
-      const mx = new THREE.Mesh(new THREE.BoxGeometry(0.14 * s, h * 0.96, 0.14 * s), bandMat);
-      mx.position.set(p.x + o, h * 0.5, p.z + 7.25 * s);
-      add(mx);
-      const mx2 = mx.clone();
-      mx2.position.z = p.z - 7.25 * s;
-      add(mx2);
-      const mz = new THREE.Mesh(new THREE.BoxGeometry(0.14 * s, h * 0.96, 0.14 * s), bandMat);
-      mz.position.set(p.x + 7.25 * s, h * 0.5, p.z + o);
-      add(mz);
-      const mz2 = mz.clone();
-      mz2.position.x = p.x - 7.25 * s;
-      add(mz2);
+    {
+      const mullGeo = new THREE.BoxGeometry(0.14 * s, h * 0.96, 0.14 * s);
+      const mulls = new THREE.InstancedMesh(mullGeo, bandMat, 28);
+      mulls.frustumCulled = false;
+      let mi = 0;
+      for (let i = 0; i < 7; i++) {
+        const o = -6.2 * s + i * 2.05 * s;
+        const spots = [
+          [p.x + o, h * 0.5, p.z + 7.25 * s],
+          [p.x + o, h * 0.5, p.z - 7.25 * s],
+          [p.x + 7.25 * s, h * 0.5, p.z + o],
+          [p.x - 7.25 * s, h * 0.5, p.z + o],
+        ];
+        for (const q of spots) {
+          _dummy.position.set(q[0], q[1], q[2]);
+          _dummy.rotation.set(0, 0, 0);
+          _dummy.scale.set(1, 1, 1);
+          _dummy.updateMatrix();
+          mulls.setMatrixAt(mi++, _dummy.matrix);
+        }
+      }
+      mulls.count = mi;
+      mulls.instanceMatrix.needsUpdate = true;
+      mulls.castShadow = shadows;
+      group.add(mulls);
+      bag.push(mullGeo);
     }
-    for (let y = 8 * s; y < h - 6 * s; y += 3.05 * s) {
-      const sl = new THREE.Mesh(new THREE.BoxGeometry(14.9 * s, 0.16 * s, 14.9 * s), bandMat);
-      sl.position.set(p.x, y, p.z);
-      add(sl);
+    {
+      const slabYs = [];
+      for (let y = 8 * s; y < h - 6 * s; y += 3.05 * s) slabYs.push(y);
+      const slabGeo = new THREE.BoxGeometry(14.9 * s, 0.16 * s, 14.9 * s);
+      const slabs = new THREE.InstancedMesh(slabGeo, bandMat, slabYs.length);
+      slabs.frustumCulled = false;
+      for (let i = 0; i < slabYs.length; i++) {
+        _dummy.position.set(p.x, slabYs[i], p.z);
+        _dummy.rotation.set(0, 0, 0);
+        _dummy.scale.set(1, 1, 1);
+        _dummy.updateMatrix();
+        slabs.setMatrixAt(i, _dummy.matrix);
+      }
+      slabs.instanceMatrix.needsUpdate = true;
+      slabs.castShadow = shadows;
+      group.add(slabs);
+      bag.push(slabGeo);
     }
     for (const ox of [-4.9 * s, 4.9 * s]) {
       const pillar = new THREE.Mesh(new THREE.BoxGeometry(4.6 * s, 28 * s, 14.4 * s), gateGlass);
