@@ -39,7 +39,7 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 - [x] 1.4 Lease CSM maps in ResourceRegistry — **DONE** (tiny: `retain("csm")` + `release` on engine dispose; GPU free not measured)
 
 ## Phase 2 — Road
-- [ ] 2.1 Dry/wet **shader** — **PARTIAL** (MeshPhysical + PNG + uWet)
+- [x] 2.1 Dry/wet **shader** — **DONE** (tiny: `uWet` darkens + roughness; MeshPhysical cap, no SSR)
 - [ ] 2.2 Planar follow — **PARTIAL** (768 + yaw)
 - [ ] 2.3 3.5m / 8-lane **UV** — **PARTIAL** (width 28; dashes are meshes)
 - [x] 2.4 Dynamic-import NYC canvas — **DONE** (tiny)
@@ -96,7 +96,7 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 - [ ] 9.5 13/13 gates — **NOT DONE** (**2/13**)
 
 ## Codex §25 (same truth)
-1 hero **PARTIAL** · 2 real road **FAKED** · 3 lighting **PARTIAL** · 4 KTX2 **PARTIAL** · 5 cells **NOT DONE** · 6 wet **PARTIAL** · 7 WebGPU **NOT DONE** · 8 CSM **PARTIAL** · 9 TRAA **NOT DONE** · 10 SSGI **NOT DONE** (constraint off = OK)
+1 hero **PARTIAL** · 2 real road **FAKED** · 3 lighting **PARTIAL** · 4 KTX2 **PARTIAL** · 5 cells **NOT DONE** · 6 wet **PARTIAL** (shader roughness, no SSR) · 7 WebGPU **NOT DONE** · 8 CSM **PARTIAL** · 9 TRAA **NOT DONE** · 10 SSGI **NOT DONE** (constraint off = OK)
 
 ---
 
@@ -128,6 +128,7 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 2.16. `5.4.5` Ayalon 200m no building hit — **DONE** (tiny: in `qa:drive`; OBB still not on every landmark).
 2.17. `5.5` CCD 2-cut above 25 m/s — **DONE** (tiny).
 2.18. `5.2` 4-corner ride — **DONE** (tiny: spline samples + ramp probe; twist unloads grip).
+2.19. `2.1` wet roughness in road shader — **DONE** (tiny: no SSR).
 
 ### 3. After Hashalom still arrives
 3.1. Pose-lock `hashalom` in `goldenCameras.ts` to match the still.  

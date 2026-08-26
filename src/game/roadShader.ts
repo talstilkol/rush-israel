@@ -24,6 +24,13 @@ export function injectRoadLanes(shader: { fragmentShader: string; uniforms: Reco
       diffuseColor.rgb *= mix(1.0, 0.88, wet);
     }`,
   );
+  if (!shader.fragmentShader.includes("RUSH_WET_R")) {
+    shader.fragmentShader = shader.fragmentShader.replace(
+      "#include <roughnessmap_fragment>",
+      `#include <roughnessmap_fragment>
+      roughnessFactor = mix(roughnessFactor, 0.14, uWet); // RUSH_WET_R`,
+    );
+  }
   shader.fragmentShader = "uniform float uLanes;\nuniform float uWet;\n" + shader.fragmentShader;
 }
 
