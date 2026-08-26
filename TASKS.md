@@ -83,6 +83,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 - [x] 7.3 CSM 3/1/0 — **DONE** (tiny)
 - [ ] 7.4 SMAA / no fake TAA — **PARTIAL**
 - [x] 7.5 No SSGI — **DONE** (constraint)
+- [x] 7.6 Night fill — **DONE** (tiny: hemi/dir/ambient + headlamps; not HDRI)
 
 ## Phase 8 — Assets
 - [ ] 8.1 UASTC — **PARTIAL**

@@ -397,9 +397,9 @@ function applyLights(
 ) {
   hemi.color.setHex(isNight ? 0x6a88b0 : 0xa8c8e8);
   hemi.groundColor.setHex(isNight ? 0x2a241c : 0x4a5248);
-  hemi.intensity = isNight ? 0.24 : 0.82;
+  hemi.intensity = isNight ? 0.42 : 0.82;
   dir.color.setHex(isNight ? 0xc8d4e8 : 0xfff0d0);
-  dir.intensity = isNight ? 0.18 : 1.45;
+  dir.intensity = isNight ? 0.32 : 1.45;
   dir.position.copy(lightAim).multiplyScalar(95);
   flareCol.setHex(isNight ? 16760944 : 16767136);
   if (lensflare) lensflare.visible = false;
@@ -411,7 +411,7 @@ function applyLights(
     fill.position.y = Math.abs(fill.position.y) + 30;
   }
   ambient.color.setHex(isNight ? 0x4a6080 : 0xb0c4d8);
-  ambient.intensity = isNight ? 0.12 : 0.32;
+  ambient.intensity = isNight ? 0.22 : 0.32;
 }
 function starField() {
   const n = 1100;
