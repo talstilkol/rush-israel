@@ -38,7 +38,7 @@ V only where the *small* spec is 100.
 
 ## Phase 4 — Physics
 - [ ] 4.1 Tire-only yaw — **PARTIAL** (`kin * crawl + tire`)
-- [ ] 4.2 4-post Y — **NOT DONE** (spline spring)
+- [x] 4.2 4-post Y — **PARTIAL** (snap on ramps; spline spring off-ramp; `qa:ramp` green)
 - [ ] 4.3 Never say DEM — **PARTIAL** (no DEM in code; copy fuzzy)
 - [ ] 4.4 OBB all landmarks — **PARTIAL**
 - [ ] 4.5 Airborne 12ms — **NOT DONE**
