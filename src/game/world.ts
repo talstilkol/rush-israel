@@ -24,7 +24,7 @@ import { getHerodian } from "./stone-assets";
 import { getJaffaClock } from "./clock-assets";
 import { getIsraelFlag } from "./flag-assets";
 import { getFoliage, getBark } from "./tree-assets";
-import { getBakedRoad } from "./road-assets";
+import { getAyalonRoad, getBakedRoad } from "./road-assets";
 import { getSkyDay, getSkyNight } from "./sky-assets";
 
 export type World = {
@@ -5522,9 +5522,14 @@ function addLandmarks(
     };
     placeRailStop(32.0547, 34.7982, 0.78);
     placeRailStop(32.1035, 34.79815, 0.9);
+    const kit = getAyalonRoad();
     const rampAsphalt = new THREE.MeshStandardMaterial({
-      color: 6053990,
-      roughness: 0.9,
+      map: kit?.map ?? null,
+      roughnessMap: kit?.roughnessMap ?? null,
+      bumpMap: kit?.bumpMap ?? null,
+      bumpScale: kit ? 0.18 : 0,
+      color: kit ? 0xc8ccce : 6053990,
+      roughness: 0.78,
       envMapIntensity: 0.12
     });
     const conc = new THREE.MeshStandardMaterial({
@@ -5621,7 +5626,7 @@ function addLandmarks(
         const col = new THREE.Mesh(new THREE.BoxGeometry(1.8, deckY, 1.8), conc);
         col.position.set(px, deckY * 0.5, pz);
         add(col);
-        hit(px, pz, 1.4);
+        hitRoad(px, pz, 1.4, 0.95, 0.95);
       }
       for (const lx of [-28, -10, 10, 28]) {
         const post = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.16, 3.4, 6), conc);
