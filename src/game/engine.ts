@@ -24,6 +24,7 @@ import { getTrack, nearestPoi, nightAmt, streetName, todLabel } from "./tracks";
 import type { AssistFlags, CarId, Collider, HandlingMode, HudState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting, type CarSnap } from "./vehicle";
 import { createWorld, type World } from "./world";
+import { loadGround } from "./ground-assets";
 import { loadSidewalk } from "./walk-assets";
 import { loadCurtains } from "./facade-assets";
 import { loadCurbs } from "./curb-assets";
@@ -342,6 +343,7 @@ export class RaceEngine {
     await loadCurbs();
     await loadCurtains();
     await loadSidewalk();
+    await loadGround();
     if (this.trackDef.id === "oldjaffa") await loadJaffaClock();
     if (this.trackDef.id === "rothschild") await loadIsraelFlag();
     if (this.trackDef.id === "jerusalem" || this.trackDef.id === "scopus" || this.trackDef.id === "walls") await loadHerodian();
