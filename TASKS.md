@@ -54,7 +54,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 ## Phase 3 — Car
 - [ ] 3.1 Authored GT — **NOT DONE** (**FAKED** if "hero scan")
 - [ ] 3.2 Flake **shader** — **NOT DONE** (flake.png)
-- [ ] 3.3 Hood windshield — **PARTIAL**
+- [x] 3.3 Hood windshield — **DONE** (tiny: 3.6cm glass boxes + cabin fill; not authored glass)
 - [x] 3.4 Mix % HUD — **DONE** (tiny)
 - [x] 3.5 0–100 CI — **DONE** (tiny: extrusion)
 

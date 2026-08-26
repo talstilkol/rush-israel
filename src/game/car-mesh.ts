@@ -223,8 +223,9 @@ export function createCarVisual(
     metalness: 0,
     roughness: 0.04,
     transparent: true,
-    opacity: 0.42,
-    transmission: 0.35,
+    opacity: 0.55,
+    transmission: 0.52,
+    thickness: 0.12,
     ior: 1.45,
     envMapIntensity: 1.6,
   });
@@ -286,11 +287,15 @@ export function createCarVisual(
   const brakeR = put(new THREE.BoxGeometry(0.46, 0.1, 0.05), emitBrake, hx, tailY, tailZ);
   const brakeC = put(new THREE.BoxGeometry(0.7, 0.035, 0.03), emitBrake, 0, cabinY + L.cabinH * 0.08, L.cabinZ - L.cabinL * 0.42);
 
+  const cabinFill = new THREE.MeshStandardMaterial({ color: 0x0a0c10, roughness: 0.92, metalness: 0.04 });
+  put(new THREE.BoxGeometry(L.W * 0.62, L.cabinH * 0.48, L.cabinL * 0.52), cabinFill, 0, cabinY - 0.06, L.cabinZ);
+
   const glassW = L.W * 0.68;
-  put(new THREE.PlaneGeometry(glassW, L.cabinH * 0.72), glass, 0, cabinY + 0.02, L.cabinZ + L.cabinL * 0.42, -0.62);
-  put(new THREE.PlaneGeometry(glassW * 0.96, L.cabinH * 0.58), glass, 0, cabinY, L.cabinZ - L.cabinL * 0.42, 0.52);
-  put(new THREE.PlaneGeometry(L.cabinL * 0.62, L.cabinH * 0.48), glass, -L.W * 0.445, cabinY, L.cabinZ, 0, Math.PI / 2);
-  put(new THREE.PlaneGeometry(L.cabinL * 0.62, L.cabinH * 0.48), glass, L.W * 0.445, cabinY, L.cabinZ, 0, -Math.PI / 2);
+  const pane = (w: number, h: number) => new THREE.BoxGeometry(w, h, 0.036);
+  put(pane(glassW, L.cabinH * 0.72), glass, 0, cabinY + 0.02, L.cabinZ + L.cabinL * 0.42, -0.62);
+  put(pane(glassW * 0.96, L.cabinH * 0.58), glass, 0, cabinY, L.cabinZ - L.cabinL * 0.42, 0.52);
+  put(pane(L.cabinL * 0.62, L.cabinH * 0.48), glass, -L.W * 0.445, cabinY, L.cabinZ, 0, Math.PI / 2);
+  put(pane(L.cabinL * 0.62, L.cabinH * 0.48), glass, L.W * 0.445, cabinY, L.cabinZ, 0, -Math.PI / 2);
 
   put(new THREE.BoxGeometry(0.18, 0.1, 0.14), black, -L.W * 0.48, cabinY + 0.01, L.cabinZ + L.cabinL * 0.18);
   put(new THREE.BoxGeometry(0.18, 0.1, 0.14), black, L.W * 0.48, cabinY + 0.01, L.cabinZ + L.cabinL * 0.18);
