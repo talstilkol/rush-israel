@@ -1,5 +1,5 @@
 # Progress — honest %
 
-**~10%** of the Web graphics plan. Ship gates **0/13**.
+**~10%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Night dry asphalt: roughness 0.28 / clearcoat 0.42. Still PhysicalMaterial, not SSR.
+See [MASTER_PLAN_AUDIT.md](MASTER_PLAN_AUDIT.md). Chat checkmarks that said WebGPU / GIS / hero GLB / CSM / SSR / 100-cycle soak were **FAKED**.
