@@ -1,6 +1,13 @@
 import { clamp } from "./math";
 import type { InputState } from "./types";
 
+/** 21.18 / Codex 65: analog stick, no FFB. */
+export function padCurve(x: number, dead = 0.12, exp = 1.6) {
+  if (Math.abs(x) <= dead) return 0;
+  const s = x < 0 ? -1 : 1;
+  return s * Math.pow(Math.abs(x), exp);
+}
+
 export class GameInput {
   keys = new Set<string>();
   touchSteer = 0;
@@ -66,9 +73,9 @@ export class GameInput {
     const pads = typeof navigator !== "undefined" ? navigator.getGamepads?.() : null;
     const gp = pads?.[0];
     if (gp) {
-      const ax = gp.axes[0] ?? 0;
-      const dead = Math.abs(ax) < 0.12 ? 0 : ax;
-      steer -= dead;
+      steer -= padCurve(gp.axes[0] ?? 0);
+      const ay = gp.axes[1] ?? 0;
+      if (ay < -0.08) throttle = Math.max(throttle, padCurve(-ay, 0.08, 1.4));
       const rt = gp.buttons[7]?.value ?? 0;
       const lt = gp.buttons[6]?.value ?? 0;
       if (rt > 0.05) throttle = Math.max(throttle, rt);
