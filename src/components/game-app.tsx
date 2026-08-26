@@ -398,6 +398,14 @@ export function GameApp() {
 						},
 						children: [/* @__PURE__ */ jsx(Play, { className: "size-4" }), t("המשך", "Resume")]
 					}),
+					/* @__PURE__ */ jsxs(Button, {
+						variant: "outline",
+						onClick: () => {
+							engineRef.current?.restartRace();
+							setPaused(false);
+						},
+						children: [/* @__PURE__ */ jsx(RotateCcw, { className: "size-4" }), t("התחל מחדש", "Restart")]
+					}),
 					/* @__PURE__ */ jsx(Button, {
 						variant: "outline",
 						onClick: () => {

@@ -31,6 +31,7 @@
     "qa:accel": "node scripts/accel-smoke.mjs",
     "qa:webgl2": "node scripts/webgl2-smoke.mjs",
     "qa:soak": "node scripts/soak-menu-race.mjs",
+    "qa:damage": "node scripts/damage-smoke.mjs",
     "bake:asphalt": "node scripts/bake-asphalt.mjs",
     "bake:sky": "node scripts/bake-sky.mjs",
     "bake:car": "node scripts/bake-car.mjs",

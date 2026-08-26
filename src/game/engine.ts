@@ -820,6 +820,18 @@ export class RaceEngine {
     return this.paused;
   }
 
+  /** Codex 64: restart zeros damage. Esc/pause does not. */
+  restartRace() {
+    this.placeGrid();
+    this.player.damage = 0;
+    this.player.dirt = 0;
+    if (this.visuals[0]) applyDamage(this.visuals[0], 0, 0);
+    this.countdown = 0;
+    this.racing = true;
+    this.player.finished = false;
+    this.paused = false;
+  }
+
   toggleMute() {
     this.audio.setMuted(!this.audio.isMuted());
     return this.audio.isMuted();
@@ -2190,13 +2202,7 @@ export class RaceEngine {
         this.racing = true;
       },
       resetStart: () => {
-        for (let i = 0; i < this.racers.length; i++) {
-          const t = i === 0 ? 0.03 : (0.03 - 0.012 * i + 1) % 1;
-          this.racers[i].spawn(this.built, t, i === 0 ? (this.trackDef.id === "rothschild" ? -7.2 : 0) : this.racers[i].aiOffset);
-        }
-        this.input.steerOverride = 0;
-        this.countdown = 0;
-        this.racing = true;
+        this.restartRace();
       },
       setProgress: (t: number) => {
         this.player.spawn(this.built, t, 0);
