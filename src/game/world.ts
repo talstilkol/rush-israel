@@ -5186,12 +5186,21 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       clearcoatRoughness: 0.12
     });
     bag.push(ibmGlass);
+    const ibmGeo = new THREE.BoxGeometry(1, 7.2, 1);
+    const ibmSlabs = new THREE.InstancedMesh(ibmGeo, ibmGlass, 6);
+    ibmSlabs.frustumCulled = false;
     for (let i = 0; i < 6; i++) {
       const w = 20 - i * 2.2;
-      const slab = new THREE.Mesh(new THREE.BoxGeometry(w, 7.2, w), ibmGlass);
-      slab.position.set(ibm.x, 4.2 + i * 8, ibm.z);
-      add(slab);
+      _dummy.position.set(ibm.x, 4.2 + i * 8, ibm.z);
+      _dummy.rotation.set(0, 0, 0);
+      _dummy.scale.set(w, 1, w);
+      _dummy.updateMatrix();
+      ibmSlabs.setMatrixAt(i, _dummy.matrix);
     }
+    ibmSlabs.instanceMatrix.needsUpdate = true;
+    ibmSlabs.castShadow = shadows;
+    group.add(ibmSlabs);
+    bag.push(ibmGeo);
     hit(ibm.x, ibm.z, 10);
     const yovel = tlv(32.0788, 34.7916);
     const yovGlass = new THREE.MeshPhysicalMaterial({
@@ -5205,12 +5214,21 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const yov = new THREE.Mesh(new THREE.CylinderGeometry(7.2, 8.1, 92, 18), yovGlass);
     yov.position.set(yovel.x, 46, yovel.z);
     add(yov);
-    for (let y = 8; y < 88; y += 4.2) {
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(7.6, 0.12, 5, 18), bandMat);
-      ring.rotation.x = Math.PI / 2;
-      ring.position.set(yovel.x, y, yovel.z);
-      add(ring);
+    const yovRingYs = [];
+    for (let y = 8; y < 88; y += 4.2) yovRingYs.push(y);
+    const yovRingGeo = new THREE.TorusGeometry(7.6, 0.12, 5, 18);
+    const yovRings = new THREE.InstancedMesh(yovRingGeo, bandMat, yovRingYs.length);
+    yovRings.frustumCulled = false;
+    for (let i = 0; i < yovRingYs.length; i++) {
+      _dummy.position.set(yovel.x, yovRingYs[i], yovel.z);
+      _dummy.rotation.set(Math.PI / 2, 0, 0);
+      _dummy.scale.set(1, 1, 1);
+      _dummy.updateMatrix();
+      yovRings.setMatrixAt(i, _dummy.matrix);
     }
+    yovRings.instanceMatrix.needsUpdate = true;
+    group.add(yovRings);
+    bag.push(yovRingGeo);
     const yovCrown = new THREE.Mesh(new THREE.CylinderGeometry(9.4, 6.2, 9, 18), bandMat);
     yovCrown.position.set(yovel.x, 96, yovel.z);
     add(yovCrown);
@@ -5254,6 +5272,34 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     mallR.position.set(mall.x, 16.6, mall.z);
     add(mallR);
     hit(mall.x, mall.z, 18);
+    const sav = tlv(32.0837, 34.79835);
+    const savHall = new THREE.Mesh(new THREE.BoxGeometry(46, 11.4, 22), cream);
+    savHall.position.set(sav.x, 5.7, sav.z);
+    add(savHall);
+    const savOrange = new THREE.MeshStandardMaterial({ color: 0xc45a1a, roughness: 0.55 });
+    bag.push(savOrange);
+    const savStripe = new THREE.Mesh(new THREE.BoxGeometry(46.2, 1.1, 0.4), savOrange);
+    savStripe.position.set(sav.x, 10.4, sav.z + 11.1);
+    add(savStripe);
+    const savRoof = new THREE.Mesh(new THREE.CylinderGeometry(12.4, 12.4, 48, 16, 1, true, 0, Math.PI), white);
+    savRoof.rotation.z = Math.PI / 2;
+    savRoof.position.set(sav.x, 12.8, sav.z);
+    add(savRoof);
+    const platGeo = new THREE.BoxGeometry(8.4, 0.45, 52);
+    const savPlats = new THREE.InstancedMesh(platGeo, white, 3);
+    savPlats.frustumCulled = false;
+    [-11, 0, 11].forEach((ox, i) => {
+      _dummy.position.set(sav.x + ox, 1.1, sav.z - 18);
+      _dummy.rotation.set(0, 0, 0);
+      _dummy.scale.set(1, 1, 1);
+      _dummy.updateMatrix();
+      savPlats.setMatrixAt(i, _dummy.matrix);
+    });
+    savPlats.instanceMatrix.needsUpdate = true;
+    group.add(savPlats);
+    bag.push(platGeo);
+    glowAt(sav.x, 14, sav.z, 0xff8844, 28, 24);
+    hit(sav.x, sav.z, 16, 24, 14);
     const rampAsphalt = new THREE.MeshStandardMaterial({
       color: 6053990,
       roughness: 0.9,
