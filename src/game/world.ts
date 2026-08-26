@@ -5640,6 +5640,25 @@ function addLandmarks(
       const sign2 = sign.clone();
       sign2.rotation.y = 0;
       add(sign2);
+      const spd = getSign("speed90");
+      if (spd) {
+        const nS = nearestIndex(built.samples, c.x, c.z, 0);
+        const smS = built.samples[nS.index];
+        const yawS = Math.atan2(smS.tx, smS.tz);
+        const offS = built.width / 2 + 4.2;
+        const sx = smS.x + smS.rx * offS;
+        const sz = smS.z + smS.rz * offS;
+        const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 3.4, 6), conc);
+        pole.position.set(sx, 1.7, sz);
+        add(pole);
+        const plate = new THREE.Mesh(
+          new THREE.PlaneGeometry(1.6, 1.6),
+          new THREE.MeshBasicMaterial({ map: spd, transparent: true, fog: false }),
+        );
+        plate.position.set(sx, 3.5, sz);
+        plate.rotation.y = yawS + Math.PI;
+        add(plate);
+      }
       const zLen = 52;
       pushRamp(westX, c.z - 30, 0, 1, zLen, 7.2, 0.6, deckY, ic.he, ic.en);
       pushRamp(westX, c.z + 30, 0, 1, zLen, 7.2, deckY, 0.6, ic.he, ic.en);
