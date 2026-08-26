@@ -5662,6 +5662,14 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   }
   if (def.id === "caesarea") {
     const aq = cae(32.5078, 34.8976);
+    {
+      const n = nearestIndex(built.samples, aq.x, aq.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        aq.x = s.x + s.rx * (built.width / 2 + 28);
+        aq.z = s.z + s.rz * (built.width / 2 + 28);
+      }
+    }
     const sandA = new THREE.MeshStandardMaterial({ color: 0xe2d2b0, roughness: 0.96 });
     bag.push(sandA);
     const beach = new THREE.Mesh(new THREE.PlaneGeometry(80, 160), sandA);
@@ -5867,7 +5875,16 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const ochreH = new THREE.MeshStandardMaterial({ color: 12093784, roughness: 0.88, envMapIntensity: 0.28 });
     const ochreD = new THREE.MeshStandardMaterial({ color: 9398336, roughness: 0.9 });
     bag.push(ochreH, ochreD);
-    const sea = acr(32.9198, 35.0676);
+    const offAcre = (p, pad = 26) => {
+      const n = nearestIndex(built.samples, p.x, p.z, 0);
+      if (n.dist < built.width / 2 + 10) {
+        const s = built.samples[n.index];
+        p.x = s.x + s.rx * (built.width / 2 + pad);
+        p.z = s.z + s.rz * (built.width / 2 + pad);
+      }
+      return p;
+    };
+    const sea = offAcre(acr(32.9198, 35.0676), 32);
     const wall = new THREE.Mesh(new THREE.BoxGeometry(110, 12, 5.4), stone);
     wall.position.set(sea.x, 6, sea.z);
     add(wall);
@@ -5904,7 +5921,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       add(door);
       hit(p.x, p.z, 3.4);
     }
-    const kh = acr(32.9206, 35.0688);
+    const kh = offAcre(acr(32.9206, 35.0688), 28);
     const khan = new THREE.Mesh(new THREE.BoxGeometry(26, 7.6, 26), stone);
     khan.position.set(kh.x, 3.8, kh.z);
     add(khan);

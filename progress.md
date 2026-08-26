@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Dead Sea hotels pushed off the carriageway. Still boxes.
+Acre walls and Caesarea aqueduct off the carriageway. Still primitives.
