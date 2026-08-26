@@ -495,14 +495,16 @@ export function createCarVisual(
       spots.push(spot);
     }
     const poolMat = new THREE.MeshBasicMaterial({
-      color: 0xffe8b8,
+      color: 0xffe4b0,
       transparent: true,
       opacity: 0,
       depthWrite: false,
+      blending: THREE.AdditiveBlending,
     });
-    headPool = new THREE.Mesh(new THREE.CircleGeometry(3.6, 18), poolMat);
+    headPool = new THREE.Mesh(new THREE.CircleGeometry(5.4, 22), poolMat);
     headPool.rotation.x = -Math.PI / 2;
-    headPool.position.set(0, 0.05, 9.2);
+    headPool.position.set(0, 0.06, 8.6);
+    headPool.scale.set(0.72, 1, 1.8);
     headPool.renderOrder = 2;
     group.add(headPool);
   }
@@ -615,7 +617,7 @@ export function applyDamage(vis: CarVisual, dmg: number, dirt = 0) {
 
 export function setCarLights(vis: CarVisual, night: boolean) {
   for (const s of vis.spots) s.intensity = night ? 260 : 28;
-  vis.bodyMat.envMapIntensity = night ? 2.55 : 2.6;
+  vis.bodyMat.envMapIntensity = night ? 1.15 : 1.4;
   for (const h of vis.headLights) {
     (h.material as THREE.MeshPhysicalMaterial).emissiveIntensity = night ? 5.2 : 0.85;
   }
@@ -624,7 +626,7 @@ export function setCarLights(vis: CarVisual, night: boolean) {
     g.visible = true;
   }
   if (vis.headPool) {
-    (vis.headPool.material as THREE.MeshBasicMaterial).opacity = night ? 0.28 : 0;
+    (vis.headPool.material as THREE.MeshBasicMaterial).opacity = night ? 0.48 : 0;
     vis.headPool.visible = night;
   }
 }
