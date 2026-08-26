@@ -2484,6 +2484,23 @@ export class RaceEngine {
         };
         this.pushHud();
       },
+      frameSarona: () => {
+        const p = tlv(32.0714, 34.7866);
+        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const s = this.built.samples[n.index];
+        this.enterPhoto();
+        this.photoHide = true;
+        this.photoLock = {
+          px: s.x,
+          py: 40,
+          pz: s.z,
+          lx: p.x,
+          ly: 120,
+          lz: p.z,
+          fov: 30,
+        };
+        this.pushHud();
+      },
       getPhotoLock: () => this.photoLock,
       setNight: (n: boolean) => this.setNight(n),
       webgpuTried: () => this.webgpuTried,
@@ -2678,6 +2695,7 @@ declare global {
       frameGaluyot?: () => void;
       framePlatinum?: () => void;
       frameTau?: () => void;
+      frameSarona?: () => void;
       getPhotoLock?: () => { px: number; py: number; pz: number; lx: number; ly: number; lz: number; fov: number } | null;
       setNight?: (n: boolean) => void;
       webgpuTried?: () => boolean;
