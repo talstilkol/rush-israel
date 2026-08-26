@@ -3588,39 +3588,45 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     sarona2.position.set(saronaX, 107 * s, saronaZ);
     add(sarona2);
     const md = tlv(32.0806, 34.7926);
-    const midA = new THREE.Mesh(new THREE.BoxGeometry(10.4 * s, 78 * s, 12.4 * s), darkGlass);
-    midA.position.set(md.x - 6 * s, 39 * s, md.z);
+    const midA = new THREE.Mesh(new THREE.BoxGeometry(11.2 * s, 96 * s, 13.2 * s), darkGlass);
+    midA.position.set(md.x - 7.2 * s, 48 * s, md.z);
     add(midA);
-    const midB = new THREE.Mesh(new THREE.BoxGeometry(10.4 * s, 70 * s, 12.4 * s), darkGlass);
-    midB.position.set(md.x + 6 * s, 35 * s, md.z);
+    const midB = new THREE.Mesh(new THREE.BoxGeometry(11.2 * s, 86 * s, 13.2 * s), darkGlass);
+    midB.position.set(md.x + 7.2 * s, 43 * s, md.z);
     add(midB);
-    const sky = new THREE.Mesh(new THREE.BoxGeometry(14 * s, 3.4 * s, 7.2 * s), paleGlass);
-    sky.position.set(md.x, 52 * s, md.z);
+    const sky = new THREE.Mesh(new THREE.BoxGeometry(16.4 * s, 3.6 * s, 7.6 * s), paleGlass);
+    sky.position.set(md.x, 78 * s, md.z);
     add(sky);
-    hit(md.x, md.z, 12 * s, 16 * s, 8 * s);
+    const skyLow = new THREE.Mesh(new THREE.BoxGeometry(16.4 * s, 2.6 * s, 6.8 * s), paleGlass);
+    skyLow.position.set(md.x, 28 * s, md.z);
+    add(skyLow);
+    hit(md.x, md.z, 13 * s, 18 * s, 9 * s);
     const el = tlv(32.0699, 34.7918);
-    const electra = new THREE.Mesh(new THREE.BoxGeometry(12.6 * s, 84 * s, 12.6 * s), darkGlass);
-    electra.position.set(el.x, 42 * s, el.z);
+    const electra = new THREE.Mesh(new THREE.BoxGeometry(13.2 * s, 102 * s, 13.2 * s), darkGlass);
+    electra.position.set(el.x, 51 * s, el.z);
     add(electra);
-    for (let i = 0; i < 6; i++) {
-      const o = -5.2 * s + i * 2.08 * s;
-      const mx = new THREE.Mesh(new THREE.BoxGeometry(0.18 * s, 82 * s, 0.18 * s), bandMat);
-      mx.position.set(el.x + o, 42 * s, el.z + 6.35 * s);
+    for (let i = 0; i < 7; i++) {
+      const o = -5.6 * s + i * 1.86 * s;
+      const mx = new THREE.Mesh(new THREE.BoxGeometry(0.16 * s, 100 * s, 0.16 * s), bandMat);
+      mx.position.set(el.x + o, 51 * s, el.z + 6.65 * s);
       add(mx);
       const mx2 = mx.clone();
-      mx2.position.z = el.z - 6.35 * s;
+      mx2.position.z = el.z - 6.65 * s;
       add(mx2);
     }
-    for (let y = 8 * s; y < 78 * s; y += 3.1 * s) {
-      const sl = new THREE.Mesh(new THREE.BoxGeometry(13.1 * s, 0.16 * s, 13.1 * s), bandMat);
+    for (let y = 8 * s; y < 96 * s; y += 2.9 * s) {
+      const sl = new THREE.Mesh(new THREE.BoxGeometry(13.7 * s, 0.14 * s, 13.7 * s), bandMat);
       sl.position.set(el.x, y, el.z);
       add(sl);
     }
-    const elCrown = new THREE.Mesh(new THREE.BoxGeometry(13.6 * s, 4.2 * s, 13.6 * s), bandMat);
-    elCrown.position.set(el.x, 86 * s, el.z);
+    const elCrown = new THREE.Mesh(new THREE.BoxGeometry(14.4 * s, 5.2 * s, 14.4 * s), bandMat);
+    elCrown.position.set(el.x, 105 * s, el.z);
     add(elCrown);
-    const elMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2 * s, 0.38 * s, 22 * s, 8), bandMat);
-    elMast.position.set(el.x, 100 * s, el.z);
+    const elCrown2 = new THREE.Mesh(new THREE.BoxGeometry(10.2 * s, 4.4 * s, 10.2 * s), paleGlass);
+    elCrown2.position.set(el.x, 110 * s, el.z);
+    add(elCrown2);
+    const elMast = new THREE.Mesh(new THREE.CylinderGeometry(0.18 * s, 0.36 * s, 28 * s, 8), bandMat);
+    elMast.position.set(el.x, 126 * s, el.z);
     add(elMast);
     hit(el.x, el.z, 8 * s);
     const sm = tlv(32.0639, 34.7704);
