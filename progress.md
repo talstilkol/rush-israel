@@ -2,4 +2,4 @@
 
 **~11%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Baked PNG asphalt + sky for Ayalon. Still gradients/procedural, not HDRI/photogrammetry.
+GT body loads via GLTFLoader (`/game/car-gt.gltf`). Same extrude, now a file. Not a scanned hero car.

@@ -22,7 +22,7 @@ Verdict labels: DONE (real, working, verified) | PARTIAL | FAKED | NOT DONE.
 
 | Item | Status | Evidence |
 |---|---|---|
-| Hero car glTF | NOT DONE | `car-mesh.ts` ExtrudeGeometry |
+| Hero car glTF | PARTIAL | `public/game/car-gt.gltf` + GLTFLoader. Same extrude, not a scan |
 | KTX2 / Meshopt pipeline | NOT DONE | lockfile has meshoptimizer via three; no loader, no `.glb/.ktx2` in repo |
 | One photogrammetry road strip | PARTIAL | Baked PNG (`public/game/asphalt-8.png`) — still procedural, not a scan |
 | Authored facades | NOT DONE | `canvasInventory.ts` lists all sites `runtime` |

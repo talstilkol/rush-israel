@@ -25,6 +25,7 @@ import type { AssistFlags, CarId, Collider, HandlingMode, HudState, Quality, Rac
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting, type CarSnap } from "./vehicle";
 import { createWorld, type World } from "./world";
 import { loadAyalonRoad } from "./road-assets";
+import { loadCarGt } from "./car-assets";
 import { getSkyDay, getSkyNight, loadSky } from "./sky-assets";
 import { RenderTelemetry } from "../rendering/RenderTelemetry";
 import { AYALON_GOLDEN } from "../world/goldenCameras";
@@ -322,6 +323,7 @@ export class RaceEngine {
     this.opts.onBoot?.(0.18);
     await loadSky();
     if (this.trackDef.id === "ayalon") await loadAyalonRoad();
+    await loadCarGt();
     if (this.disposed) return;
 
     this.world = createWorld(this.trackDef, this.built, shadows, this.opts.night, this.weather);

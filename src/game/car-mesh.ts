@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import type { CarDef, Tune } from "./types";
 import { hash01 } from "./math";
+import { cloneCarGtBody } from "./car-assets";
 
 export type CarVisual = {
   group: THREE.Group;
@@ -310,7 +311,7 @@ export function createCarVisual(
 ): CarVisual {
   const group = new THREE.Group();
   const L = layout(kind);
-  const bodyMat = paint(color);
+  let bodyMat = paint(color);
   const accentMat = paint(accent);
   accentMat.roughness = 0.28;
   const dark = new THREE.MeshPhysicalMaterial({ color: 0x121418, metalness: 0.42, roughness: 0.46, envMapIntensity: 0.65 });
@@ -345,7 +346,13 @@ export function createCarVisual(
 
   const half = L.L / 2;
   const bodyY = L.wheelY + L.bodyH * 0.22;
-  put(bodyGeo(kind, L.W * 0.9), bodyMat, 0, 0, 0);
+  const baked = kind === "gt" ? cloneCarGtBody(color, shadows) : undefined;
+  if (baked) {
+    group.add(baked);
+    bodyMat = baked.material as THREE.MeshPhysicalMaterial;
+  } else {
+    put(bodyGeo(kind, L.W * 0.9), bodyMat, 0, 0, 0);
+  }
 
   const cabinY = L.wheelY + L.bodyH * 0.55 + L.cabinH * 0.42;
   put(new THREE.BoxGeometry(L.W * 0.58, L.cabinH * 0.28, L.cabinL * 0.48), dark, 0, cabinY - 0.12, L.cabinZ);
