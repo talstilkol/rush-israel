@@ -1005,12 +1005,12 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   const dir = new THREE.DirectionalLight();
   dir.castShadow = shadows;
   dir.shadow.mapSize.set(shadows ? 2048 : 512, shadows ? 2048 : 512);
-  dir.shadow.camera.near = 4;
-  dir.shadow.camera.far = 160;
-  dir.shadow.camera.left = -42;
-  dir.shadow.camera.right = 42;
-  dir.shadow.camera.top = 42;
-  dir.shadow.camera.bottom = -42;
+  dir.shadow.camera.near = 8;
+  dir.shadow.camera.far = 220;
+  dir.shadow.camera.left = -58;
+  dir.shadow.camera.right = 58;
+  dir.shadow.camera.top = 58;
+  dir.shadow.camera.bottom = -58;
   dir.shadow.bias = -6e-5;
   dir.shadow.normalBias = 0.022;
   dir.shadow.radius = isNight ? 0.55 : 0.85;
@@ -2632,8 +2632,8 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   const followShadows = (x, y, z) => {
     if (!dir.castShadow) return;
     dir.target.position.set(x, y, z);
-    const dist = 90;
-    dir.position.set(x + lightAim.x * dist, y + Math.max(36, lightAim.y * dist), z + lightAim.z * dist);
+    const dist = 72;
+    dir.position.set(x + lightAim.x * dist, y + Math.max(28, lightAim.y * dist), z + lightAim.z * dist);
     dir.target.updateMatrixWorld();
     dir.shadow.camera.updateProjectionMatrix();
   };

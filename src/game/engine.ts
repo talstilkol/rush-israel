@@ -424,7 +424,7 @@ export class RaceEngine {
       t.colorSpace = THREE.NoColorSpace;
       return t;
     })();
-    const blobGeo = new THREE.PlaneGeometry(4.4, 2.4);
+    const blobGeo = new THREE.PlaneGeometry(5.4, 2.8);
     blobGeo.rotateX(-Math.PI / 2);
     const blobMat = new THREE.MeshBasicMaterial({
       map: blobTex,
@@ -1679,7 +1679,7 @@ export class RaceEngine {
         blob.scale.set(stretch, 1, 0.92 + Math.abs(c.speed) * 0.008);
         blob.rotation.y = c.yaw;
         blob.visible = !c.eliminated;
-        (blob.material as THREE.MeshBasicMaterial).opacity = this.world.night ? 0.3 : 0.62;
+        (blob.material as THREE.MeshBasicMaterial).opacity = this.world.night ? 0.34 : 0.72;
       }
     }
     for (let i = 0; i < this.traffic.length; i++) {
