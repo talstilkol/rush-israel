@@ -742,7 +742,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 190 : def.id === "hermon" ? 120 : def.theme === "carmel" ? 110 : 78;
+    const outer = def.id === "ramon" ? 190 : def.id === "hermon" ? 160 : def.theme === "carmel" ? 110 : 78;
     let valleyX = 0;
     let valleyZ = 0;
     let invertSide = false;
@@ -767,7 +767,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       const hw = built.width / 2 + 1.2;
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 96 + Math.min(70, s.y * 0.55) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 36 + s.y * 0.22 : def.theme === "carmel" ? s.y + 22 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 96 + Math.min(70, s.y * 0.55) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 58 + s.y * 0.38 : def.theme === "carmel" ? s.y + 22 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
@@ -6648,7 +6648,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       const s = built.samples[i];
       const towardPeak = s.rx * (peak.x - s.x) + s.rz * (peak.z - s.z) >= 0 ? 1 : -1;
       const berm = new THREE.Mesh(new THREE.BoxGeometry(7.4, 1.6, 4.2), snowM);
-      berm.position.set(s.x + s.rx * (built.width / 2 + 3.2) * towardPeak, s.y + 0.7, s.z + s.rz * (built.width / 2 + 3.2) * towardPeak);
+      berm.position.set(s.x + s.rx * (built.width / 2 + 6.4) * towardPeak, s.y + 0.7, s.z + s.rz * (built.width / 2 + 6.4) * towardPeak);
       berm.rotation.y = Math.atan2(s.tx, s.tz);
       add(berm);
     }
@@ -6678,6 +6678,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     ];
     for (let i = 0; i < village.length; i++) {
       const p = her(village[i].lat, village[i].lon);
+      const n = nearestIndex(built.samples, p.x, p.z, 0);
+      if (n.dist < built.width / 2 + 10) continue;
       const house = new THREE.Mesh(new THREE.BoxGeometry(6.4, 4.2, 7.4), stone);
       house.position.set(p.x + 22, 5.2, p.z + 18);
       add(house);
