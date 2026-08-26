@@ -5122,7 +5122,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     }
     const ficusN = 72;
     const trunkG = new THREE.CylinderGeometry(0.55, 0.95, 7.6, 8);
-    const leafG = new THREE.IcosahedronGeometry(2.15, 0);
+    const leafG = new THREE.IcosahedronGeometry(2.35, 1);
     bag.push(trunkG, leafG);
     const trunks = new THREE.InstancedMesh(trunkG, trunkM, ficusN);
     const leaves = new THREE.InstancedMesh(leafG, leafM, 432);
@@ -5177,7 +5177,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         for (let k = 0; k < 6; k++) {
           _dummy.position.set(fx + offs[k][0], s.y + 8.2 + offs[k][1], fz + offs[k][2]);
           const sc = 1.05 + k % 3 * 0.18;
-          _dummy.scale.set(sc, 0.72 + k % 2 * 0.12, sc);
+          _dummy.scale.set(sc, sc * 0.92, sc);
           _dummy.updateMatrix();
           leaves.setMatrixAt(li++, _dummy.matrix);
         }
