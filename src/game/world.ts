@@ -1118,8 +1118,8 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   }
   let mirror = null;
   if (shadows) {
-    const res = 512;
-    mirror = new Reflector(new THREE.PlaneGeometry(72, 72), {
+    const res = 768;
+    mirror = new Reflector(new THREE.PlaneGeometry(36, 64), {
       clipBias: 3e-3,
       textureWidth: res,
       textureHeight: res,
@@ -1129,7 +1129,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     mirror.position.y = 0.026;
     const mmat = mirror.material;
     mmat.transparent = true;
-    mmat.opacity = isNight ? 0.38 : 0.14;
+    mmat.opacity = isNight ? 0.32 : 0.16;
     group.add(mirror);
     bag.push({ dispose() {
       mirror?.dispose();
@@ -2266,10 +2266,11 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   const followMirror = (x, z, yaw) => {
     if (!mirror) return;
     mirror.visible = true;
-    mirror.position.set(x, 0.026, z);
+    mirror.position.set(x, 0.028, z);
+    mirror.rotation.set(-Math.PI / 2, yaw, 0);
     const col = mirror.material;
     const wet = wx === "rain" || wx === "storm";
-    col.opacity = wet ? (isNight ? 0.58 : 0.36) : isNight ? 0.34 : 0.13;
+    col.opacity = wet ? (isNight ? 0.52 : 0.32) : isNight ? 0.28 : 0.16;
     if (col.uniforms?.color) {
       const c = wet ? (isNight ? 0x6a7388 : 0x9aabbc) : isNight ? 0x3a4558 : 0x88a0b4;
       col.uniforms.color.value.setHex(c);
@@ -2356,11 +2357,11 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       roadMat.clearcoatRoughness = 0.22;
     } else {
       roadMat.color.setHex(0xb4b8bc);
-      roadMat.roughness = 0.62;
+      roadMat.roughness = 0.5;
       roadMat.metalness = 0;
-      roadMat.envMapIntensity = 0.32;
-      roadMat.clearcoat = 0.12;
-      roadMat.clearcoatRoughness = 0.55;
+      roadMat.envMapIntensity = 0.38;
+      roadMat.clearcoat = 0.2;
+      roadMat.clearcoatRoughness = 0.42;
     }
   };
   const _dayHemi = new THREE.Color(9356520);
