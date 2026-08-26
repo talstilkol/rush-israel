@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-/** G1-05 soak. Default 8 cycles — not 100. Prints heap if exposed. */
+/** G1-05 / Codex 71: 20 menu→race cycles, textures delta ≤2. */
 import { chromium } from "playwright";
 
-const CYCLES = Number(process.env.SOAK_CYCLES || 8);
-const url = process.env.SOAK_URL || "http://127.0.0.1:8080/";
+const CYCLES = Number(process.env.SOAK_CYCLES || 20);
+const url = process.env.SOAK_URL || "http://127.0.0.1:8080/?qa=1";
 
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
@@ -32,19 +32,26 @@ async function driveOnce() {
   });
   if (!ok) throw new Error("no ayalon");
   await page.waitForFunction(() => !!window.__controlsTest, { timeout: 28000 });
+  const mem = await page.evaluate(() => window.__controlsTest.getMemory?.() ?? { textures: 0, geometries: 0 });
   await page.keyboard.press("Escape");
   await page.waitForTimeout(250);
   await page.evaluate(() =>
     [...document.querySelectorAll("button")].find((n) => /מסך ראשי|Main menu/.test(n.textContent || ""))?.click(),
   );
   await page.waitForTimeout(500);
+  return mem;
 }
 
 await toTitle();
+let first = { textures: 0, geometries: 0 };
+let last = first;
 for (let i = 0; i < CYCLES; i++) {
-  await driveOnce();
+  last = await driveOnce();
+  if (i === 0) first = last;
   if (errs.length) throw new Error(errs.join("\n"));
-  console.log("cycle", i + 1, "/", CYCLES);
+  console.log("cycle", i + 1, "/", CYCLES, "tex", last.textures, "geo", last.geometries);
 }
 await browser.close();
-console.log("soak ok", CYCLES);
+const dTex = last.textures - first.textures;
+if (dTex > 2) throw new Error("texture leak " + dTex + " " + JSON.stringify({ first, last }));
+console.log("soak ok", CYCLES, "dTex", dTex, first, last);

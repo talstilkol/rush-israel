@@ -52,6 +52,7 @@ import { profileFromLegacy } from "../rendering/QualityProfile";
 import { FOG, fogKey, LOOKS, lookFromFlags } from "../rendering/EnvironmentState";
 import { ResourceRegistry } from "../rendering/ResourceRegistry";
 import { DynamicQualityController } from "../rendering/DynamicQualityController";
+import { MESH_STREAMING } from "./stream-flag";
 
 const FIXED = PHYSICS_DT;
 
@@ -311,6 +312,7 @@ export class RaceEngine {
     await new Promise<void>((r) => requestAnimationFrame(() => r()));
     if (this.disposed) return;
     this.opts.onBoot?.(0.18);
+    if (MESH_STREAMING) throw new Error("mesh streaming is off until cells");
     if (typeof location !== "undefined" && new URLSearchParams(location.search).get("webgpu") === "1") {
       this.webgpuTried = true;
       const probe = await RendererFacade.probeWebGPU();
@@ -2248,6 +2250,10 @@ export class RaceEngine {
       webgpuOk: () => this.webgpuOk,
       webgpuReason: () => this.webgpuReason,
       blobKtx2: () => blobIsKtx2(),
+      getMemory: () => ({
+        textures: this.renderer.info.memory.textures,
+        geometries: this.renderer.info.memory.geometries,
+      }),
       advanceTime: (ms: number) => {
         const steps = Math.max(0, Math.floor(ms / (FIXED * 1000)));
         for (let i = 0; i < steps && i < 600; i++) this.fixed(FIXED);
@@ -2420,6 +2426,7 @@ declare global {
       webgpuOk?: () => boolean;
       webgpuReason?: () => string;
       blobKtx2?: () => boolean;
+      getMemory?: () => { textures: number; geometries: number };
     };
     render_game_to_text?: () => string;
   }
