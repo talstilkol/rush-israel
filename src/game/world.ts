@@ -3214,21 +3214,45 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(p.x, h + 4 * s, p.z, 0xd4c4a0, 32 * s, 28 * s);
     hit(p.x, p.z, 16 * s, 22 * s, 20 * s);
   };
+  const placeShalomMeir = (s) => {
+    const p = tlv(32.0639, 34.7704);
+    const h = 82 * s;
+    const body = new THREE.Mesh(new THREE.BoxGeometry(16.4 * s, h, 10.6 * s), cream);
+    body.position.set(p.x, h * 0.5, p.z);
+    add(body);
+    const muralMat = new THREE.MeshStandardMaterial({ color: 0x1c4a78, roughness: 0.7, envMapIntensity: 0.4 });
+    bag.push(muralMat);
+    const mural = new THREE.Mesh(new THREE.BoxGeometry(0.22 * s, h * 0.58, 9.6 * s), muralMat);
+    mural.position.set(p.x + 8.3 * s, h * 0.42, p.z);
+    add(mural);
+    const bandGeo = new THREE.BoxGeometry(16.9 * s, 0.22 * s, 11.1 * s);
+    const n = 12;
+    const bands = new THREE.InstancedMesh(bandGeo, bandMat, n);
+    bands.frustumCulled = false;
+    for (let i = 0; i < n; i++) {
+      _dummy.position.set(p.x, 6 * s + i * (h - 12 * s) / (n - 1), p.z);
+      _dummy.rotation.set(0, 0, 0);
+      _dummy.scale.set(1, 1, 1);
+      _dummy.updateMatrix();
+      bands.setMatrixAt(i, _dummy.matrix);
+    }
+    bands.instanceMatrix.needsUpdate = true;
+    group.add(bands);
+    bag.push(bandGeo);
+    const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.2 * s, 0.34 * s, 22 * s, 6), bandMat);
+    mast.position.set(p.x, h + 10 * s, p.z);
+    add(mast);
+    glowAt(p.x, h + 6 * s, p.z, 0xf2ece0, 28 * s, 24 * s);
+    hit(p.x, p.z, 9 * s, 10 * s, 7 * s);
+  };
   const placeTlvTowers = (s) => {
     placeCityGate(s);
     placeToHa(s);
     placeSarona(s);
     placeHakirya(s);
+    placeShalomMeir(s);
     placeMidtown(s);
     placeElectra(s);
-    const sm = tlv(32.0639, 34.7704);
-    const shalom = new THREE.Mesh(new THREE.BoxGeometry(15 * s, 56 * s, 9.4 * s), cream);
-    shalom.position.set(sm.x, 28 * s, sm.z);
-    add(shalom);
-    const shalomMast = new THREE.Mesh(new THREE.CylinderGeometry(0.18 * s, 0.28 * s, 18 * s, 6), bandMat);
-    shalomMast.position.set(sm.x, 65 * s, sm.z);
-    add(shalomMast);
-    hit(sm.x, sm.z, 7 * s);
   };
   const placeNycSkyline = (ox, oz, s) => {
     const wtcH = 118 * s;
@@ -5244,6 +5268,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     placeElectra(1.2);
     placeSarona(1.32);
     placeHakirya(1.1);
+    placeShalomMeir(1.15);
     const ibm = tlv(32.0856, 34.7987);
     const ibmGlass = new THREE.MeshPhysicalMaterial({
       color: 0x3a6e7a,
