@@ -114,6 +114,7 @@ export class ArcadeCar {
   dirt = 0;
   airborne = false;
   airMs = 0;
+  rideCompress = 0;
   wasCurb = false;
   comboMul = 1;
   wheelsLocked = false;
@@ -167,6 +168,7 @@ export class ArcadeCar {
     this.wrongWayT = 0;
     this.airborne = false;
     this.airMs = 0;
+    this.rideCompress = 0;
     this.wasCurb = false;
   }
 
@@ -315,6 +317,7 @@ export class ArcadeCar {
     grip *= this.weatherGrip * this.surfaceGrip * downforce * profile.gripMul * wx.lat * surf.lat;
     grip *= 1 - this.damage * 0.22;
     grip *= 0.84 + front * 0.28;
+    grip *= 1 - this.rideCompress * 1.6;
     grip *= 1 / (1 + (speedAbs / 32) ** 2);
     grip *= hydroplane(speedAbs, wx.hydro);
     if (this.wheelsLocked) grip *= 0.42;
@@ -444,7 +447,27 @@ export class ArcadeCar {
     this.sampleIndex = near.index;
     const s = track.samples[near.index];
     const rp = probeRamp(this.x, this.z, ramps);
-    const groundY = rp ? rp.y : s.y;
+    const wb = 1.25;
+    const tr = 0.72;
+    const corners = [
+      [this.x + fx * wb + rx * tr, this.z + fz * wb + rz * tr],
+      [this.x + fx * wb - rx * tr, this.z + fz * wb - rz * tr],
+      [this.x - fx * wb + rx * tr, this.z - fz * wb + rz * tr],
+      [this.x - fx * wb - rx * tr, this.z - fz * wb - rz * tr],
+    ];
+    let ySum = 0;
+    let yMin = 1e9;
+    let yMax = -1e9;
+    for (const [cx, cz] of corners) {
+      const cRp = probeRamp(cx, cz, ramps);
+      const y = cRp ? cRp.y : track.samples[nearestIndex(track.samples, cx, cz, near.index, track.closed).index].y;
+      ySum += y;
+      if (y < yMin) yMin = y;
+      if (y > yMax) yMax = y;
+    }
+    const avgY = ySum * 0.25;
+    this.rideCompress = clamp(yMax - yMin, 0, 0.12);
+    const groundY = rp ? rp.y : avgY;
     const dist = near.dist;
     const half = track.width / 2;
     const lat01 = dist / Math.max(0.5, half);
