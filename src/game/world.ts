@@ -1919,6 +1919,36 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   }
   pools.visible = isNight && lampCount > 0;
   if (lampCount) group.add(pools);
+  if (def.id === "ayalon" && lampCount) {
+    const oppOff = built.width + 18;
+    const poles2 = new THREE.InstancedMesh(poleGeo, poleMat, lampCount);
+    const bulbs2 = new THREE.InstancedMesh(bulbGeo, bulbMat, lampCount);
+    const pools2 = new THREE.InstancedMesh(poolGeo, poolMat, lampCount);
+    pools2.renderOrder = 2;
+    const d = oppOff + built.width / 2 + 2.7;
+    for (let i = 0; i < lampCount; i++) {
+      const s = built.samples[(i * 10 + 5) % built.samples.length];
+      const lx = s.x + s.rx * d;
+      const lz = s.z + s.rz * d;
+      _dummy.position.set(lx, s.y, lz);
+      _dummy.scale.set(1, 1, 1);
+      _dummy.rotation.set(0, 0, 0);
+      _dummy.updateMatrix();
+      poles2.setMatrixAt(i, _dummy.matrix);
+      _dummy.position.y = s.y + 5.15;
+      _dummy.updateMatrix();
+      bulbs2.setMatrixAt(i, _dummy.matrix);
+      _dummy.position.y = s.y + 0.055;
+      _dummy.scale.set(1.35, 1, 1.15);
+      _dummy.updateMatrix();
+      pools2.setMatrixAt(i, _dummy.matrix);
+    }
+    poles2.instanceMatrix.needsUpdate = true;
+    bulbs2.instanceMatrix.needsUpdate = true;
+    pools2.instanceMatrix.needsUpdate = true;
+    pools2.visible = isNight;
+    group.add(poles2, bulbs2, pools2);
+  }
   const natureTrack = def.id === "ramon" || def.id === "hermon" || def.theme === "carmel" || def.theme === "desert" || def.theme === "snow" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6";
   const crowdN = natureTrack || def.id === "ayalon" || def.id === "rothschild" || def.id === "hayarkon" || def.id === "oldjaffa" || def.id === "jerusalem" ? 0 : shadows ? 72 : 28;
   if (crowdN) {

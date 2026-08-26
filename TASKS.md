@@ -83,7 +83,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 - [x] 7.3 CSM 3/1/0 — **DONE** (tiny)
 - [ ] 7.4 SMAA / no fake TAA — **PARTIAL**
 - [x] 7.5 No SSGI — **DONE** (constraint)
-- [x] 7.6 Night fill — **DONE** (tiny: hemi/dir/ambient + headlamps; not HDRI)
+- [x] 7.6 Night fill — **DONE** (tiny: hemi/dir/ambient + headlamps + opposite Ayalon lamps; not HDRI)
 - [x] 7.7 Day sun — **DONE** (tiny: dir 1.12 / hemi 0.68; ACES table untouched)
 
 ## Phase 8 — Assets
