@@ -24,7 +24,8 @@
     "bake:clock": "node scripts/bake-clock.mjs",
     "bake:flag": "node scripts/bake-flag.mjs",
     "bake:trees": "node scripts/bake-trees.mjs",
-    "bake:herodian": "node scripts/bake-herodian.mjs"
+    "bake:herodian": "node scripts/bake-herodian.mjs",
+    "bake:curb": "node scripts/bake-curb.mjs"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.4",

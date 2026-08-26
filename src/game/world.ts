@@ -9,6 +9,7 @@ import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, 
 import { scatterStreetBuildings } from "./buildings";
 import { addNycLandmarks } from "./nyc-landmarks";
 import { generateStreets, nearestStreet } from "./streets";
+import { getCurb } from "./curb-assets";
 import { getHerodian } from "./stone-assets";
 import { getJaffaClock } from "./clock-assets";
 import { getIsraelFlag } from "./flag-assets";
@@ -297,6 +298,8 @@ function curtainTexture(kind = "blue") {
   return tex;
 }
 function curbTexture(kind) {
+  const baked = getCurb(kind);
+  if (baked) return baked;
   const c = document.createElement("canvas");
   c.width = 16;
   c.height = 64;
@@ -996,7 +999,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   const group = new THREE.Group();
   const bag = [];
   const keep = (d) => {
-    if (d === getFoliage() || d === getBark() || d === getSkyDay() || d === getSkyNight() || d === getJaffaClock() || d === getIsraelFlag() || d === getHerodian()) return d;
+    if (d === getFoliage() || d === getBark() || d === getSkyDay() || d === getSkyNight() || d === getJaffaClock() || d === getIsraelFlag() || d === getHerodian() || d === getCurb("city") || d === getCurb("stone") || d === getCurb("dirt") || d === getCurb("sand")) return d;
     bag.push(d);
     return d;
   };
