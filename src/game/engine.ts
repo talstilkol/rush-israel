@@ -2149,6 +2149,20 @@ export class RaceEngine {
       setCarId: (id: string) => {
         this.player.stats = getCar(id);
       },
+      setAssists: (a: { abs?: boolean; tcs?: boolean; esc?: boolean }) => {
+        this.player.assists = {
+          abs: !!a.abs,
+          tcs: !!a.tcs,
+          esc: !!a.esc,
+        };
+      },
+      setNitro: (v: number) => {
+        this.player.nitro = v;
+        this.player.boostT = 0;
+      },
+      setDamage: (v: number) => {
+        this.player.damage = v;
+      },
       skipCountdown: () => {
         this.countdown = 0;
         this.racing = true;
@@ -2351,6 +2365,9 @@ declare global {
       setKeys?: (codes: string[]) => void;
       setThrottle?: (v: number) => void;
       setCarId?: (id: string) => void;
+      setAssists?: (a: { abs?: boolean; tcs?: boolean; esc?: boolean }) => void;
+      setNitro?: (v: number) => void;
+      setDamage?: (v: number) => void;
       skipCountdown?: () => void;
       resetStart?: () => void;
       setProgress?: (t: number) => void;
