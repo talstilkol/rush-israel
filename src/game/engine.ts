@@ -9,6 +9,7 @@ import { GameInput } from "./input";
 import { clamp, expSmooth, lerp, hash01, hashStr } from "./math";
 import { hasAiPack, hasCops, MODE_LAPS } from "./modes";
 import { bakeEnv, createPost, type PostStack } from "./postfx";
+import { CSM } from "three/examples/jsm/csm/CSM.js";
 import {
   DEFAULT_ASSISTS,
   MAX_ACCUMULATOR,
@@ -209,6 +210,7 @@ export class RaceEngine {
   private wanted = 1;
   private escaping = false;
   private extraHits: Collider[] = [];
+  private csm: CSM | null = null;
   private blockGroup: THREE.Group | null = null;
   private blockT = -1;
   private blockCd = 0;
@@ -339,6 +341,24 @@ export class RaceEngine {
     }
     this.clock = this.opts.night ? 0.9 : 0.5;
     this.scene.add(this.world.group);
+    if (!this.soft && this.quality === "high" && this.renderer.shadowMap.enabled) {
+      this.world.dir.castShadow = false;
+      this.world.dirNear.castShadow = false;
+      this.csm = new CSM({
+        camera: this.camera,
+        parent: this.scene,
+        cascades: 2,
+        maxFar: 160,
+        mode: "practical",
+        shadowMapSize: 1024,
+        lightIntensity: 1.25,
+        lightNear: 1,
+        lightFar: 280,
+        lightMargin: 28,
+        shadowBias: -0.00008,
+      });
+      this.bindCsm();
+    }
 
     const fallbackPost = (): PostStack => ({
       composer: null as unknown as PostStack["composer"],
@@ -515,8 +535,10 @@ export class RaceEngine {
     this.spawnRain();
     this.spawnGhost();
     this.placeGrid();
+    this.bindCsm();
     this.snapCamera(true);
     this.world.followShadows(this.player.x, this.player.y, this.player.z);
+    this.updateCsm();
 
     this.onResize = this.onResize.bind(this);
     window.addEventListener("resize", this.onResize);
@@ -1054,6 +1076,7 @@ export class RaceEngine {
     this.nowSec = now / 1000;
     this.present(dt);
     this.world.followShadows(this.player.x, this.player.y, this.player.z);
+    this.updateCsm();
     this.updateProbe();
     const spd = clamp(Math.abs(this.player.speed) / 52, 0, 1);
     this.post.setDrive(spd, this.player.boostT > 0);
@@ -1809,6 +1832,7 @@ export class RaceEngine {
 
     this.snapCamera(false, dt);
     this.world.followShadows(this.player.x, this.player.y, this.player.z);
+    this.updateCsm();
     this.world.followMirror(this.player.x, this.player.z, this.player.yaw);
 
     if (this.rainMesh && this.rainPos) {
@@ -2139,6 +2163,32 @@ export class RaceEngine {
       });
   }
 
+  private bindCsm() {
+    if (!this.csm) return;
+    this.scene.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      const m = mesh.material;
+      if (!m) return;
+      const list = Array.isArray(m) ? m : [m];
+      for (const mat of list) {
+        if (!mat) continue;
+        const std = mat as THREE.MeshStandardMaterial;
+        if (std.isMeshStandardMaterial || (mat as THREE.MeshPhysicalMaterial).isMeshPhysicalMaterial) {
+          this.csm!.setupMaterial(mat);
+        }
+      }
+    });
+  }
+
+  private updateCsm() {
+    if (!this.csm) return;
+    this.csm.lightDirection.copy(this.world.sunDir).multiplyScalar(-1).normalize();
+    const n = nightAmt(this.clock);
+    const I = n > 0.5 ? 0.16 : 1.22;
+    for (const L of this.csm.lights) L.intensity = I;
+    this.csm.update();
+  }
+
   dispose() {
     this.disposed = true;
     this.renderer.setAnimationLoop(null);
@@ -2148,6 +2198,9 @@ export class RaceEngine {
     if (this.booted) {
       this.input.dispose();
       this.audio.dispose();
+      this.csm?.remove();
+      this.csm?.dispose();
+      this.csm = null;
       this.world.dispose();
       this.post.dispose();
       this.envRT.dispose();

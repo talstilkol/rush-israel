@@ -30,6 +30,7 @@ export type World = {
   sun: THREE.Vector3;
   sky: Sky;
   dir: THREE.DirectionalLight;
+  dirNear: THREE.DirectionalLight;
   waterMesh?: THREE.Mesh;
   night: boolean;
   colliders: any[];
@@ -2243,7 +2244,12 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     }
   }
   const followShadows = (x, y, z) => {
-    if (!dir.castShadow) return;
+    if (!dir.castShadow) {
+      dir.intensity = 0;
+      dirNear.intensity = 0;
+      dirNear.visible = false;
+      return;
+    }
     dir.target.position.set(x, y, z);
     const dist = 72;
     dir.position.set(x + lightAim.x * dist, y + Math.max(28, lightAim.y * dist), z + lightAim.z * dist);
@@ -2495,6 +2501,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     sun,
     sky,
     dir,
+    dirNear,
     waterMesh,
     colliders,
     streets,
