@@ -2456,51 +2456,53 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   if (lampCount) group.add(pools);
   const natureTrack = def.id === "ramon" || def.id === "hermon" || def.theme === "carmel" || def.theme === "desert" || def.theme === "snow" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6";
   const crowdN = natureTrack || def.id === "ayalon" || def.id === "rothschild" || def.id === "hayarkon" || def.id === "oldjaffa" || def.id === "jerusalem" ? 0 : shadows ? 72 : 28;
-  const bodyGeo = keep(new THREE.BoxGeometry(0.42, 0.95, 0.32));
-  const headGeo = keep(new THREE.SphereGeometry(0.16, 6, 5));
-  const crowdMat = keep(new THREE.MeshStandardMaterial({
-    color: 2764340,
-    roughness: 0.85,
-    metalness: 0.05
-  }));
-  const shirtMat = keep(new THREE.MeshStandardMaterial({
-    color: 7260356,
-    roughness: 0.7
-  }));
-  const crowdBodies = new THREE.InstancedMesh(bodyGeo, crowdMat, Math.max(1, crowdN));
-  const shirts = new THREE.InstancedMesh(bodyGeo, shirtMat, Math.max(1, Math.floor(crowdN / 3)));
-  const heads = new THREE.InstancedMesh(headGeo, keep(new THREE.MeshStandardMaterial({
-    color: 12886138,
-    roughness: 0.7
-  })), Math.max(1, crowdN));
-  let shirtI = 0;
-  for (let i = 0; i < crowdN; i++) {
-    const s = built.samples[(i * 11 + 4) % built.samples.length];
-    const side = i % 2 === 0 ? 1 : -1;
-    const d = built.width / 2 + 2.35 + i % 5 * 0.18;
-    const x = s.x + s.rx * d * side;
-    const z = s.z + s.rz * d * side;
-    const y = s.y + 0.55;
-    const yaw = Math.atan2(-s.rx * side, -s.rz * side);
-    _dummy.position.set(x, y, z);
-    _dummy.rotation.set(0, yaw, 0);
-    _dummy.scale.set(1, 0.9 + i % 4 * 0.08, 1);
-    _dummy.updateMatrix();
-    crowdBodies.setMatrixAt(i, _dummy.matrix);
-    _dummy.position.y = y + 0.62;
-    _dummy.scale.set(1, 1, 1);
-    _dummy.updateMatrix();
-    heads.setMatrixAt(i, _dummy.matrix);
-    if (i % 3 === 0 && shirtI < shirts.count) {
+  if (crowdN) {
+    const bodyGeo = keep(new THREE.BoxGeometry(0.42, 0.95, 0.32));
+    const headGeo = keep(new THREE.SphereGeometry(0.16, 6, 5));
+    const crowdMat = keep(new THREE.MeshStandardMaterial({
+      color: 2764340,
+      roughness: 0.85,
+      metalness: 0.05
+    }));
+    const shirtMat = keep(new THREE.MeshStandardMaterial({
+      color: 7260356,
+      roughness: 0.7
+    }));
+    const crowdBodies = new THREE.InstancedMesh(bodyGeo, crowdMat, crowdN);
+    const shirts = new THREE.InstancedMesh(bodyGeo, shirtMat, Math.max(1, Math.floor(crowdN / 3)));
+    const heads = new THREE.InstancedMesh(headGeo, keep(new THREE.MeshStandardMaterial({
+      color: 12886138,
+      roughness: 0.7
+    })), crowdN);
+    let shirtI = 0;
+    for (let i = 0; i < crowdN; i++) {
+      const s = built.samples[(i * 11 + 4) % built.samples.length];
+      const side = i % 2 === 0 ? 1 : -1;
+      const d = built.width / 2 + 2.35 + i % 5 * 0.18;
+      const x = s.x + s.rx * d * side;
+      const z = s.z + s.rz * d * side;
+      const y = s.y + 0.55;
+      const yaw = Math.atan2(-s.rx * side, -s.rz * side);
       _dummy.position.set(x, y, z);
-      _dummy.scale.set(1.05, 0.92, 1.05);
+      _dummy.rotation.set(0, yaw, 0);
+      _dummy.scale.set(1, 0.9 + i % 4 * 0.08, 1);
       _dummy.updateMatrix();
-      shirts.setMatrixAt(shirtI, _dummy.matrix);
-      shirtI += 1;
+      crowdBodies.setMatrixAt(i, _dummy.matrix);
+      _dummy.position.y = y + 0.62;
+      _dummy.scale.set(1, 1, 1);
+      _dummy.updateMatrix();
+      heads.setMatrixAt(i, _dummy.matrix);
+      if (i % 3 === 0 && shirtI < shirts.count) {
+        _dummy.position.set(x, y, z);
+        _dummy.scale.set(1.05, 0.92, 1.05);
+        _dummy.updateMatrix();
+        shirts.setMatrixAt(shirtI, _dummy.matrix);
+        shirtI += 1;
+      }
     }
+    shirts.count = shirtI;
+    group.add(crowdBodies, shirts, heads);
   }
-  shirts.count = shirtI;
-  if (crowdN) group.add(crowdBodies, shirts, heads);
   const boardGeo = keep(new THREE.BoxGeometry(8.5, 4.2, 0.22));
   const postGeo = keep(new THREE.BoxGeometry(0.22, 5.4, 0.22));
   const postMat = keep(new THREE.MeshStandardMaterial({
