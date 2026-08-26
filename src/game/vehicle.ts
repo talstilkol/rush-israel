@@ -470,18 +470,29 @@ export class ArcadeCar {
       if (c.hx != null && c.hz != null) {
         const dx = this.x - c.x;
         const dz = this.z - c.z;
-        const px = c.hx + carR - Math.abs(dx);
-        const pz = c.hz + carR - Math.abs(dz);
+        const yaw = c.yaw ?? 0;
+        const cy = Math.cos(yaw);
+        const sy = Math.sin(yaw);
+        let lx = dx * cy - dz * sy;
+        let lz = dx * sy + dz * cy;
+        const px = c.hx + carR - Math.abs(lx);
+        const pz = c.hz + carR - Math.abs(lz);
         if (px <= 0 || pz <= 0) continue;
+        let nxl = 0;
+        let nzl = 0;
         if (px < pz) {
-          nx = dx < 0 ? -1 : 1;
-          this.x = c.x + nx * (c.hx + carR);
+          nxl = lx < 0 ? -1 : 1;
+          lx = nxl * (c.hx + carR);
           hitD = px;
         } else {
-          nz = dz < 0 ? -1 : 1;
-          this.z = c.z + nz * (c.hz + carR);
+          nzl = lz < 0 ? -1 : 1;
+          lz = nzl * (c.hz + carR);
           hitD = pz;
         }
+        this.x = c.x + lx * cy + lz * sy;
+        this.z = c.z - lx * sy + lz * cy;
+        nx = nxl * cy + nzl * sy;
+        nz = -nxl * sy + nzl * cy;
       } else {
         const dx = this.x - c.x;
         const dz = this.z - c.z;

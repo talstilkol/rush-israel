@@ -2540,13 +2540,14 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       on
     });
   };
-  const hit = (x, z, r, hx, hz) => {
+  const hit = (x, z, r, hx, hz, yaw) => {
     colliders.push({
       x,
       z,
       r,
       hx: hx ?? r * 0.72,
       hz: hz ?? r * 0.72,
+      yaw: yaw ?? 0,
       kind: "building"
     });
   };
@@ -2624,8 +2625,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       const t = (i + 0.5) / nHit - 0.5;
       const wx = cx + fx * t * len;
       const wz = cz + fz * t * len;
-      hit(wx - rx * (half + 0.4), wz - rz * (half + 0.4), 1.05);
-      hit(wx + rx * (half + 0.4), wz + rz * (half + 0.4), 1.05);
+      hit(wx - rx * (half + 0.4), wz - rz * (half + 0.4), 1.05, 0.55, 2.4, yaw);
+      hit(wx + rx * (half + 0.4), wz + rz * (half + 0.4), 1.05, 0.55, 2.4, yaw);
     }
   };
   const stone = new THREE.MeshStandardMaterial({
@@ -2720,7 +2721,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       t.position.set(x + rx * s, 8, z + rz * s);
       t.rotation.y = yaw;
       add(t);
-      hit(x + rx * s, z + rz * s, 6, 4.8, 5.2);
+      hit(x + rx * s, z + rz * s, 6, 4.8, 5.2, yaw);
     }
     const lintel = new THREE.Mesh(new THREE.BoxGeometry(38, 5.4, 10.4), stone);
     lintel.position.set(x, 18.2, z);

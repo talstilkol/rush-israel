@@ -255,7 +255,6 @@ export function createCarVisual(
   }
 
   const cabinY = L.wheelY + L.bodyH * 0.55 + L.cabinH * 0.42;
-  put(new THREE.BoxGeometry(L.W * 0.58, L.cabinH * 0.28, L.cabinL * 0.48), dark, 0, cabinY - 0.12, L.cabinZ);
 
   put(new THREE.BoxGeometry(L.W * 0.98, 0.16, 0.2), dark, 0, L.wheelY * 0.5, half - 0.01);
   const bumper = put(new THREE.BoxGeometry(L.W * 0.94, 0.18, 0.22), dark, 0, L.wheelY * 0.55, -half + 0.03);

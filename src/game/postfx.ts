@@ -177,7 +177,7 @@ export function createPost(
       tier = q;
       lite = q === "low";
       useComposer = q !== "low";
-      if (smaa) smaa.enabled = q === "high";
+      if (smaa) smaa.enabled = q !== "low";
       bloom.enabled = night && q === "high";
       bloom.strength = night && q === "high" ? 0.11 : 0;
     },
