@@ -87,192 +87,33 @@ function sidewalkTexture() {
 }
 function groundTexture(hex) {
   const baked = getGroundNoise();
-  if (baked) return baked;
-  const size = 256;
-  const c = document.createElement("canvas");
-  c.width = c.height = size;
-  const ctx = c.getContext("2d");
-  ctx.fillStyle = `#${new THREE.Color(hex).getHexString()}`;
-  ctx.fillRect(0, 0, size, size);
-  const img = ctx.getImageData(0, 0, size, size);
-  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
-    const i = (y * size + x) * 4;
-    const n = Math.sin(x * 0.08) * Math.cos(y * 0.07) * 12 + (hash01(x, y, 3) - 0.5) * 20 | 0;
-    img.data[i] = Math.max(0, img.data[i] + n);
-    img.data[i + 1] = Math.max(0, img.data[i + 1] + n);
-    img.data[i + 2] = Math.max(0, img.data[i + 2] + n * 0.7);
-  }
-  ctx.putImageData(img, 0, 0);
-  const tex = new THREE.CanvasTexture(c);
-  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.repeat.set(90, 90);
-  return tex;
+  if (!baked) throw new Error("ground texture missing");
+  return baked;
 }
 function foamTex() {
   const baked = getFoam();
-  if (baked) return baked;
-  const w = 64;
-  const h = 256;
-  const c = document.createElement("canvas");
-  c.width = w;
-  c.height = h;
-  const ctx = c.getContext("2d");
-  const img = ctx.createImageData(w, h);
-  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
-    const i = (y * w + x) * 4;
-    const edge = 1 - Math.abs(x / w - 0.5) * 2;
-    const n = hash01(x, y, 7);
-    const band = 0.45 + Math.sin(y * 0.21) * 0.2 + n * 0.4;
-    const a = clamp(edge * band * 1.4, 0, 1);
-    img.data[i] = 245;
-    img.data[i + 1] = 248;
-    img.data[i + 2] = 252;
-    img.data[i + 3] = a * 220;
-  }
-  ctx.putImageData(img, 0, 0);
-  const tex = new THREE.CanvasTexture(c);
-  tex.wrapS = THREE.ClampToEdgeWrapping;
-  tex.wrapT = THREE.RepeatWrapping;
-  tex.repeat.set(1, 8);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  return tex;
+  if (!baked) throw new Error("foam texture missing");
+  return baked;
 }
 function tiSignTex(kind) {
   const baked = getSign(kind);
-  if (baked) return baked;
-  const c = document.createElement("canvas");
-  c.width = 256;
-  c.height = 256;
-  const ctx = c.getContext("2d");
-  ctx.clearRect(0, 0, 256, 256);
-  if (kind === "stop") {
-    ctx.fillStyle = "#c8102e";
-    ctx.beginPath();
-    const r = 118;
-    for (let i = 0; i < 8; i++) {
-      const a = (Math.PI / 8) + i * Math.PI / 4;
-      const x = 128 + Math.cos(a) * r;
-      const y = 128 + Math.sin(a) * r;
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-    ctx.fill();
-    ctx.strokeStyle = "#ffffff";
-    ctx.lineWidth = 14;
-    ctx.stroke();
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 52px sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText("עצור", 128, 128);
-  } else if (kind === "yield") {
-    ctx.fillStyle = "#c8102e";
-    ctx.beginPath();
-    ctx.moveTo(128, 28);
-    ctx.lineTo(228, 220);
-    ctx.lineTo(28, 220);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = "#ffffff";
-    ctx.beginPath();
-    ctx.moveTo(128, 58);
-    ctx.lineTo(200, 200);
-    ctx.lineTo(56, 200);
-    ctx.closePath();
-    ctx.fill();
-  } else if (kind === "none") {
-    ctx.fillStyle = "#c8102e";
-    ctx.beginPath();
-    ctx.arc(128, 128, 110, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(38, 112, 180, 32);
-  } else {
-    ctx.fillStyle = "#ffffff";
-    ctx.beginPath();
-    ctx.arc(128, 128, 118, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = "#c8102e";
-    ctx.lineWidth = 22;
-    ctx.stroke();
-    ctx.fillStyle = "#111111";
-    ctx.font = "bold 120px sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    const n = kind === "speed90" ? "90" : kind === "speed80" ? "80" : "50";
-    ctx.fillText(n, 128, 138);
-  }
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 4;
-  return tex;
+  if (!baked) throw new Error("sign texture missing");
+  return baked;
 }
 function waterNormalTex() {
   const baked = getWaterNormal();
-  if (baked) return baked;
-  const size = 256;
-  const c = document.createElement("canvas");
-  c.width = c.height = size;
-  const ctx = c.getContext("2d");
-  const img = ctx.createImageData(size, size);
-  const h = (x, y) => Math.sin(x * 0.11) * Math.cos(y * 0.09) * 0.55 + Math.sin(x * 0.29 + y * 0.17) * 0.28;
-  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
-    const dx = h(x + 1, y) - h(x - 1, y);
-    const dy = h(x, y + 1) - h(x, y - 1);
-    let nx = -dx * 3.4;
-    let ny = -dy * 3.4;
-    let nz = 1;
-    const len = Math.hypot(nx, ny, nz) || 1;
-    nx /= len;
-    ny /= len;
-    nz /= len;
-    const i = (y * size + x) * 4;
-    img.data[i] = (nx * 0.5 + 0.5) * 255;
-    img.data[i + 1] = (ny * 0.5 + 0.5) * 255;
-    img.data[i + 2] = (nz * 0.5 + 0.5) * 255;
-    img.data[i + 3] = 255;
-  }
-  ctx.putImageData(img, 0, 0);
-  const tex = new THREE.CanvasTexture(c);
-  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  tex.repeat.set(48, 28);
-  tex.anisotropy = 4;
-  return tex;
+  if (!baked) throw new Error("water normal missing");
+  return baked;
 }
 function checkerTexture() {
   const baked = getChecker();
-  if (baked) return baked;
-  const c = document.createElement("canvas");
-  c.width = 16;
-  c.height = 4;
-  const ctx = c.getContext("2d");
-  for (let y = 0; y < 4; y++) for (let x = 0; x < 16; x++) {
-    ctx.fillStyle = (x + y) % 2 === 0 ? "#f4f1ea" : "#16181c";
-    ctx.fillRect(x, y, 1, 1);
-  }
-  const tex = new THREE.CanvasTexture(c);
-  tex.magFilter = THREE.NearestFilter;
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.repeat.set(1, 1);
-  return tex;
+  if (!baked) throw new Error("checker texture missing");
+  return baked;
 }
 function flareTex(size, inner, outer) {
-  if (size >= 128 && getFlare0()) return getFlare0();
-  if (size < 128 && getFlare1()) return getFlare1();
-  const c = document.createElement("canvas");
-  c.width = c.height = size;
-  const ctx = c.getContext("2d");
-  const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-  g.addColorStop(0, inner);
-  g.addColorStop(0.18, outer);
-  g.addColorStop(1, "rgba(0,0,0,0)");
-  ctx.fillStyle = g;
-  ctx.fillRect(0, 0, size, size);
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  return tex;
+  const baked = size >= 128 ? getFlare0() : getFlare1();
+  if (!baked) throw new Error("flare texture missing");
+  return baked;
 }
 function facadeTexture(theme, night) {
   const c = document.createElement("canvas");
@@ -5756,31 +5597,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     };
     makeTrain(0, built.width / 2 + 6);
     makeTrain(0.48, built.width / 2 + 8.4);
-    const arrowTex = getLaneArrow() ?? (() => {
-      const arrowC = document.createElement("canvas");
-      arrowC.width = 64;
-      arrowC.height = 96;
-      const ag = arrowC.getContext("2d");
-      if (ag) {
-        ag.fillStyle = "#1a6a38";
-        ag.fillRect(0, 0, 64, 96);
-        ag.fillStyle = "#ffffff";
-        ag.beginPath();
-        ag.moveTo(32, 10);
-        ag.lineTo(54, 42);
-        ag.lineTo(40, 42);
-        ag.lineTo(40, 86);
-        ag.lineTo(24, 86);
-        ag.lineTo(24, 42);
-        ag.lineTo(10, 42);
-        ag.closePath();
-        ag.fill();
-      }
-      const t = new THREE.CanvasTexture(arrowC);
-      t.colorSpace = THREE.SRGBColorSpace;
-      bag.push(t);
-      return t;
-    })();
+    const arrowTex = getLaneArrow();
+    if (!arrowTex) throw new Error("lane arrow missing");
     const arrowMat = new THREE.MeshBasicMaterial({ map: arrowTex, side: 2 });
     for (const lat of [32.058, 32.068, 32.078, 32.092]) {
       for (const lon of [34.795, 34.7971]) {

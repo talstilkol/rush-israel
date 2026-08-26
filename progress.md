@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Dead sky-equirect canvas removed. Baked textures throw if missing instead of drawing.
+More baked textures fail closed. Facades, Hebrew signs, NYC LED still canvas.

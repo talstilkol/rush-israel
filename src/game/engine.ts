@@ -419,21 +419,8 @@ export class RaceEngine {
       this.probeCam = new THREE.CubeCamera(1.2, 220, this.probeRT);
     }
 
-    const blobTex = getBlob() ?? (() => {
-      const c = document.createElement("canvas");
-      c.width = c.height = 128;
-      const ctx = c.getContext("2d")!;
-      const g = ctx.createRadialGradient(64, 64, 6, 64, 64, 62);
-      g.addColorStop(0, "rgba(0,0,0,0.78)");
-      g.addColorStop(0.38, "rgba(0,0,0,0.38)");
-      g.addColorStop(0.72, "rgba(0,0,0,0.1)");
-      g.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, 128, 128);
-      const t = new THREE.CanvasTexture(c);
-      t.colorSpace = THREE.NoColorSpace;
-      return t;
-    })();
+    const blobTex = getBlob();
+    if (!blobTex) throw new Error("blob texture missing");
     const blobGeo = new THREE.PlaneGeometry(5.4, 2.8);
     blobGeo.rotateX(-Math.PI / 2);
     const blobMat = new THREE.MeshBasicMaterial({
