@@ -4269,7 +4269,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     merlonWall(jg.x + 62, jg.z + 42, 48, 1.1, 12);
     const gi = Math.max(0, Math.min(built.samples.length - 1, Math.floor(built.samples.length * 0.46)));
     const gs = built.samples[gi];
-    ottomanGate(gs.x, gs.z, Math.atan2(gs.tx, gs.tz));
+    const gOff = built.width / 2 + 20;
+    ottomanGate(gs.x + gs.rx * gOff, gs.z + gs.rz * gOff, Math.atan2(gs.tx, gs.tz));
     const citadel = new THREE.Mesh(new THREE.BoxGeometry(22, 13, 22), stone);
     citadel.position.set(td.x + 28, 7.5, td.z + 36);
     add(citadel);

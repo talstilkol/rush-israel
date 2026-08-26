@@ -669,8 +669,8 @@ export const TRACKS: TrackDef[] = [
       jer(31.7834, 35.2446),
     ],
     elevation: (t) => {
-      if (t < 0.42) return 14 - t * 26;
-      return 3.1 + Math.pow((t - 0.42) / 0.58, 1.12) * 36;
+      if (t < 0.42) return 24 - t * 52;
+      return 2.2 + Math.pow((t - 0.42) / 0.58, 1.15) * 54;
     },
     streets: [
       { from: 0.0, to: 0.18, he: "מחנה יהודה", en: "Mahane Yehuda" },
