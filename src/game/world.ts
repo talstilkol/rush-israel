@@ -5226,24 +5226,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       mesh.receiveShadow = true;
       add(mesh);
     };
-    const mkSign = (he) => {
-      const c = document.createElement("canvas");
-      c.width = 512;
-      c.height = 128;
-      const g = c.getContext("2d");
-      if (!g) return greenSign;
-      g.fillStyle = "#1a6a38";
-      g.fillRect(0, 0, 512, 128);
-      g.fillStyle = "#ffffff";
-      g.font = "600 52px sans-serif";
-      g.textAlign = "center";
-      g.textBaseline = "middle";
-      g.fillText(he, 256, 64);
-      const tex = new THREE.CanvasTexture(c);
-      tex.colorSpace = THREE.SRGBColorSpace;
-      bag.push(tex);
-      return new THREE.MeshBasicMaterial({ map: tex });
-    };
+    const mkSign = (_he) => greenSign;
     for (const ic of [
       {
         lat: 32.0525,
