@@ -92,25 +92,32 @@ export function facadeTexture(theme: string, night: boolean) {
 }
 
 export function windowEmitTexture() {
-  const c = document.createElement("canvas");
-  c.width = 256;
-  c.height = 512;
-  const ctx = c.getContext("2d");
-  if (!ctx) throw new Error("2d");
-  ctx.fillStyle = "#000000";
-  ctx.fillRect(0, 0, 256, 512);
-  const cols = 5;
-  const rows = 10;
-  for (let y = 0; y < rows; y++)
-    for (let x = 0; x < cols; x++)
-      if (hash01(x, y, 11) > 0.28) {
-        ctx.fillStyle = hash01(x, y, 13) > 0.62 ? "#9ae0ff" : "#ffd089";
-        ctx.fillRect(16 + x * 48, 48 + y * 44, 24, 26);
+  const w = 256;
+  const h = 512;
+  const data = new Uint8Array(w * h * 4);
+  const paint = (x0: number, y0: number, x1: number, y1: number, r: number, g: number, b: number) => {
+    for (let y = y0; y < y1; y++)
+      for (let x = x0; x < x1; x++) {
+        const i = (y * w + x) * 4;
+        data[i] = r;
+        data[i + 1] = g;
+        data[i + 2] = b;
+        data[i + 3] = 255;
       }
-  const tex = new THREE.CanvasTexture(c);
+  };
+  paint(0, 0, w, h, 0, 0, 0);
+  for (let y = 0; y < 10; y++)
+    for (let x = 0; x < 5; x++)
+      if (hash01(x, y, 11) > 0.28) {
+        const cool = hash01(x, y, 13) > 0.62;
+        paint(16 + x * 48, 48 + y * 44, 40 + x * 48, 74 + y * 44, cool ? 0x9a : 0xff, cool ? 0xe0 : 0xd0, cool ? 0xff : 0x89);
+      }
+  const tex = new THREE.DataTexture(data, w, h);
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
   tex.anisotropy = 4;
+  tex.flipY = true;
+  tex.needsUpdate = true;
   return tex;
 }
 
