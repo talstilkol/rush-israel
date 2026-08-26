@@ -5622,13 +5622,20 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     add(tauDome);
     hit(tau.x, tau.z, 9);
     const hs = tlv(32.0735, 34.79605);
-    const tube = new THREE.Mesh(new THREE.CylinderGeometry(3.1, 3.1, 102, 20, 1, true), paleGlass);
+    const tubeLen = built.width + 42;
+    const tube = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 3.4, tubeLen, 24, 1, true), paleGlass);
     tube.rotation.z = Math.PI / 2;
-    tube.position.set(hs.x, 15.4, hs.z);
+    tube.position.set(hs.x, 15.6, hs.z);
     add(tube);
-    const tubeFloor = new THREE.Mesh(new THREE.BoxGeometry(102, 0.28, 4.6), paleGlass);
-    tubeFloor.position.set(hs.x, 13.7, hs.z);
+    const tubeFloor = new THREE.Mesh(new THREE.BoxGeometry(tubeLen, 0.32, 5.2), white);
+    tubeFloor.position.set(hs.x, 13.6, hs.z);
     add(tubeFloor);
+    for (let i = 0; i < 14; i++) {
+      const rib = new THREE.Mesh(new THREE.TorusGeometry(3.55, 0.16, 6, 18), white);
+      rib.rotation.z = Math.PI / 2;
+      rib.position.set(hs.x - tubeLen * 0.5 + (i / 13) * tubeLen, 15.6, hs.z);
+      add(rib);
+    }
     const mall = tlv(32.1004, 34.7996);
     const mallM = new THREE.Mesh(new THREE.BoxGeometry(42, 16, 28), cream);
     mallM.position.set(mall.x, 8, mall.z);
