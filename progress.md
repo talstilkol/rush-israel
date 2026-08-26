@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Shore foam is a baked PNG. Still a drawing.
+Traffic signs baked (stop/yield/none/50/80/90). Drawn, no "עצור" glyph.

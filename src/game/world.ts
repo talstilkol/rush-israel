@@ -9,6 +9,7 @@ import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, 
 import { scatterStreetBuildings } from "./buildings";
 import { addNycLandmarks } from "./nyc-landmarks";
 import { generateStreets, nearestStreet } from "./streets";
+import { getSign } from "./sign-assets";
 import { getFoam } from "./foam-assets";
 import { getGroundNoise } from "./ground-assets";
 import { getSidewalk } from "./walk-assets";
@@ -467,6 +468,8 @@ function foamTex() {
   return tex;
 }
 function tiSignTex(kind) {
+  const baked = getSign(kind);
+  if (baked) return baked;
   const c = document.createElement("canvas");
   c.width = 256;
   c.height = 256;
@@ -1011,7 +1014,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   const group = new THREE.Group();
   const bag = [];
   const keep = (d) => {
-    if (d === getFoliage() || d === getBark() || d === getSkyDay() || d === getSkyNight() || d === getJaffaClock() || d === getIsraelFlag() || d === getHerodian() || d === getCurb("city") || d === getCurb("stone") || d === getCurb("dirt") || d === getCurb("sand") || d === getCurtain("blue") || d === getCurtain("teal") || d === getCurtain("dark") || d === getCurtain("gold") || d === getCurtain("white") || d === getSidewalk() || d === getGroundNoise() || d === getFoam()) return d;
+    if (d === getFoliage() || d === getBark() || d === getSkyDay() || d === getSkyNight() || d === getJaffaClock() || d === getIsraelFlag() || d === getHerodian() || d === getCurb("city") || d === getCurb("stone") || d === getCurb("dirt") || d === getCurb("sand") || d === getCurtain("blue") || d === getCurtain("teal") || d === getCurtain("dark") || d === getCurtain("gold") || d === getCurtain("white") || d === getSidewalk() || d === getGroundNoise() || d === getFoam() || d === getSign("stop") || d === getSign("yield") || d === getSign("none") || d === getSign("speed50") || d === getSign("speed80") || d === getSign("speed90")) return d;
     bag.push(d);
     return d;
   };
