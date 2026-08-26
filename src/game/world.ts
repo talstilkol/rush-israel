@@ -77,18 +77,18 @@ function asphaltTexture(lanes = 2) {
     const a = Math.max(0, Math.min(x0, x1));
     const z = Math.min(w - 1, Math.max(x0, x1));
     for (let y = 0; y < h; y++) {
-      if (dashed && (y % 64) > 32) continue;
+      if (dashed && (y % 48) > 22) continue;
       for (let x = a; x <= z; x++) paintPx(x, y, r, g, b);
     }
   };
-  stripe(0, 12, 248, 248, 244, false);
-  stripe(w - 13, w - 1, 248, 248, 244, false);
-  stripe(16, 24, 242, 196, 28, false);
-  stripe(w - 25, w - 17, 242, 196, 28, false);
+  stripe(0, 16, 252, 252, 248, false);
+  stripe(w - 17, w - 1, 252, 252, 248, false);
+  stripe(20, 32, 248, 196, 28, false);
+  stripe(w - 33, w - 21, 248, 196, 28, false);
   const nL = Math.max(2, lanes);
   for (let lane = 1; lane < nL; lane++) {
     const cx = Math.round(lane / nL * w);
-    stripe(cx - 2, cx + 2, 240, 238, 228, true);
+    stripe(cx - 4, cx + 4, 248, 246, 236, true);
   }
   for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
     const i = (y * w + x) * 4;
