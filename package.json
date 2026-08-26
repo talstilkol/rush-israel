@@ -15,6 +15,7 @@
     "typecheck": "tsc --noEmit",
     "check:auth": "node scripts/check-auth-invariant.mjs",
     "check:qa": "node scripts/check-qa-hook.mjs",
+    "check:secrets": "node scripts/secrets-check.mjs",
     "test": "node --test 'scripts/**/*.test.mjs'",
     "lint": "eslint .",
     "format": "prettier --write .",
