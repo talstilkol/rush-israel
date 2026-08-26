@@ -1,10 +1,11 @@
-// @ts-nocheck
 import * as THREE from "three";
 import { Lensflare, LensflareElement } from "three/examples/jsm/objects/Lensflare.js";
 import { Reflector } from "three/examples/jsm/objects/Reflector.js";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 import { mulberry32, lerp, clamp, hash01 } from "./math";
 import { nearestIndex } from "./spline";
+import type { BuiltTrack } from "./spline";
+import type { Collider, Ramp, SkyPreset, TrackDef, Weather } from "./types";
 import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, her, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, ram, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
 import { scatterStreetBuildings } from "./buildings";
 import { LOOKS, lookFromFlags } from "../rendering/EnvironmentState";
@@ -35,9 +36,9 @@ export type World = {
   dirNear: THREE.DirectionalLight;
   waterMesh?: THREE.Mesh;
   night: boolean;
-  colliders: any[];
+  colliders: Collider[];
   streets: any[];
-  ramps: any[];
+  ramps: Ramp[];
   followShadows: (x: number, y: number, z: number) => void;
   followMirror: (x: number, z: number, yaw: number) => void;
   setPlanar: (on: boolean) => void;
@@ -48,9 +49,14 @@ export type World = {
   clock: number;
   setWeather: (w: any) => any;
   setLod?: (tier: "low" | "mid" | "high") => void;
-  weather: any;
+  weather: Weather;
   dispose: () => void;
 };
+
+type Disposable = { dispose: () => void };
+type Glow = { light: THREE.PointLight; on: number };
+type Emit = { mat: THREE.MeshStandardMaterial; night: number; day: number };
+type Mover = { pts: { x: number; y: number; z: number; yaw: number }[]; speed: number; phase: number; mesh: THREE.Object3D };
 
 var _dummy = new THREE.Object3D();
 var _color = new THREE.Color();
@@ -69,7 +75,7 @@ function curtainTexture(kind = "blue") {
   if (!baked) throw new Error("curtain texture missing");
   return baked;
 }
-function curbTexture(kind) {
+function curbTexture(kind: string) {
   const baked = getCurb(kind);
   if (!baked) throw new Error("curb texture missing");
   return baked;
@@ -89,7 +95,7 @@ function sidewalkTexture() {
   if (!baked) throw new Error("sidewalk texture missing");
   return baked;
 }
-function groundTexture(hex) {
+function groundTexture(_hex: number) {
   const baked = getGroundNoise();
   if (!baked) throw new Error("ground texture missing");
   return baked;
@@ -99,7 +105,7 @@ function foamTex() {
   if (!baked) throw new Error("foam texture missing");
   return baked;
 }
-function tiSignTex(kind) {
+function tiSignTex(kind: string) {
   const baked = getSign(kind);
   if (!baked) throw new Error("sign texture missing");
   return baked;
@@ -114,19 +120,19 @@ function checkerTexture() {
   if (!baked) throw new Error("checker texture missing");
   return baked;
 }
-function flareTex(size, inner, outer) {
+function flareTex(size: number, ..._rest: unknown[]) {
   const baked = size >= 128 ? getFlare0() : getFlare1();
   if (!baked) throw new Error("flare texture missing");
   return baked;
 }
-function segsOf(built) {
+function segsOf(built: BuiltTrack) {
   return built.closed ? built.samples.length : Math.max(1, built.samples.length - 1);
 }
-function samp(built, i) {
+function samp(built: BuiltTrack, i: number) {
   const n = built.samples.length;
   return built.samples[built.closed ? i % n : Math.min(i, n - 1)];
 }
-function buildRoad(built) {
+function buildRoad(built: BuiltTrack) {
   const hw = built.width / 2;
   const pos = [];
   const uv = [];
@@ -153,7 +159,7 @@ function buildRoad(built) {
   geo.computeVertexNormals();
   return geo;
 }
-function buildOffsetRoad(built, offset) {
+function buildOffsetRoad(built: BuiltTrack, offset: number) {
   const hw = built.width / 2;
   const pos = [];
   const uv = [];
@@ -182,7 +188,7 @@ function buildOffsetRoad(built, offset) {
   geo.computeVertexNormals();
   return geo;
 }
-function buildCenterLine(built) {
+function buildCenterLine(built: BuiltTrack) {
   const hw = 0.22;
   const pos = [];
   const idx = [];
@@ -203,7 +209,7 @@ function buildCenterLine(built) {
   geo.computeVertexNormals();
   return geo;
 }
-function buildSidewalk(built, side) {
+function buildSidewalk(built: BuiltTrack, side: number) {
   const d0 = built.width / 2 + 0.42;
   const d1 = d0 + 3.2;
   const pos = [];
@@ -230,7 +236,7 @@ function buildSidewalk(built, side) {
   geo.computeVertexNormals();
   return geo;
 }
-function buildEdgeLine(built, side, inset = 0.28, hw = 0.28, yOff = 0.08, centerOff = 0) {
+function buildEdgeLine(built: BuiltTrack, side: number, inset = 0.28, hw = 0.28, yOff = 0.08, centerOff = 0) {
   const d = built.width / 2 - inset;
   const pos = [];
   const idx = [];
@@ -252,14 +258,14 @@ function buildEdgeLine(built, side, inset = 0.28, hw = 0.28, yOff = 0.08, center
   geo.computeVertexNormals();
   return geo;
 }
-function laneCountFor(def) {
+function laneCountFor(def: TrackDef) {
   if (def.id === "ayalon") return 8;
   if (def.id === "telaviv" || def.id === "namal" || def.id === "gushdan" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6") return 4;
   if (def.theme === "highway") return 4;
   if (def.id === "rothschild" || def.id === "hayarkon" || def.id === "jerusalem") return 3;
   return 3;
 }
-function buildCurb(built, side) {
+function buildCurb(built: BuiltTrack, side: number) {
   const d0 = built.width / 2;
   const d1 = d0 + 0.55;
   const pos = [];
@@ -286,7 +292,7 @@ function buildCurb(built, side) {
   geo.computeVertexNormals();
   return geo;
 }
-function buildJersey(built, side) {
+function buildJersey(built: BuiltTrack, side: number) {
   const d0 = built.width / 2 + 0.62;
   const d1 = d0 + 0.42;
   const pos = [];
@@ -309,7 +315,7 @@ function buildJersey(built, side) {
   geo.computeVertexNormals();
   return geo;
 }
-function buildRail(built, side) {
+function buildRail(built: BuiltTrack, side: number) {
   const samples = built.samples;
   const d = built.width / 2 + 0.48;
   const pos = [];
@@ -332,7 +338,7 @@ function buildRail(built, side) {
   geo.computeVertexNormals();
   return geo;
 }
-function buildShoulder(built, side) {
+function buildShoulder(built: BuiltTrack, side: number) {
   const samples = built.samples;
   const d0 = built.width / 2 + 3.95;
   const d1 = d0 + 8.5;
@@ -360,7 +366,7 @@ function buildShoulder(built, side) {
   geo.computeVertexNormals();
   return geo;
 }
-function applySky(sky, sun, preset) {
+function applySky(sky: Sky, sun: THREE.Vector3, preset: SkyPreset) {
   const phi = THREE.MathUtils.degToRad(90 - preset.elevation);
   const theta = THREE.MathUtils.degToRad(preset.azimuth);
   sun.setFromSphericalCoords(1, phi, theta);
@@ -371,7 +377,7 @@ function applySky(sky, sun, preset) {
   su["mieDirectionalG"].value = preset.mieDirectionalG;
   su["sunPosition"].value.copy(sun);
 }
-function aimLight(isNight, sun, azimuth, out) {
+function aimLight(isNight: boolean, sun: THREE.Vector3, azimuth: number, out: THREE.Vector3) {
   if (!isNight) {
     out.copy(sun);
     return;
@@ -380,7 +386,16 @@ function aimLight(isNight, sun, azimuth, out) {
   const theta = THREE.MathUtils.degToRad(azimuth + 172);
   out.setFromSphericalCoords(1, phi, theta);
 }
-function applyLights(isNight, hemi, dir, fill, ambient, lightAim, flareCol, lensflare) {
+function applyLights(
+  isNight: boolean,
+  hemi: THREE.HemisphereLight,
+  dir: THREE.DirectionalLight,
+  fill: THREE.DirectionalLight,
+  ambient: THREE.AmbientLight,
+  lightAim: THREE.Vector3,
+  flareCol: THREE.Color,
+  lensflare: Lensflare | null,
+) {
   hemi.color.setHex(isNight ? 0x6a88b0 : 0xa8c8e8);
   hemi.groundColor.setHex(isNight ? 0x2a241c : 0x4a5248);
   hemi.intensity = isNight ? 0.24 : 0.82;
@@ -427,11 +442,11 @@ function starField() {
     mat
   };
 }
-export async function createWorld(def, built, shadows, night, weather = "clear") {
+export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boolean, night: boolean, weather: Weather = "clear") {
   const group = new THREE.Group();
-  const bag = [];
-  const shared = new Set(
-    [
+  const bag: Disposable[] = [];
+  const shared = new Set<Disposable>();
+  for (const tex of [
       getFoliage(),
       getBark(),
       getSkyDay(),
@@ -462,9 +477,10 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
       getFlare0(),
       getFlare1(),
       getLaneArrow(),
-    ].filter(Boolean),
-  );
-  const keep = (d) => {
+  ]) {
+    if (tex) shared.add(tex);
+  }
+  const keep = <T extends Disposable>(d: T): T => {
     if (shared.has(d)) return d;
     bag.push(d);
     return d;
@@ -472,7 +488,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
   const rng = mulberry32(def.seed);
   let isNight = night;
   let clock = night ? 0.9 : 0.5;
-  let wx = weather;
+  let wx: Weather = weather;
   let lodCrowns = null;
   let lodTrunks = null;
   let lodBills = null;
@@ -520,7 +536,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
   const ambient = new THREE.AmbientLight(16777215, 0.1);
   group.add(ambient);
   const flareCol = new THREE.Color();
-  let lensflare;
+  let lensflare: Lensflare | null = null;
   if (shadows) {
     const flare0 = keep(flareTex(128, "rgba(255,248,230,0.95)", "rgba(255,210,140,0.28)"));
     const flare1 = keep(flareTex(64, "rgba(255,180,90,0.45)", "rgba(255,120,40,0)"));
@@ -828,7 +844,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
   const zebraGeo = keep(new THREE.BoxGeometry(0.42, 0.035, 2.4));
   const zebraMat = keep(new THREE.MeshBasicMaterial({ color: 16250094 }));
   const stopGeo = keep(new THREE.BoxGeometry(built.width * 0.92, 0.04, 0.38));
-  const paintAt = (t, cross) => {
+  const paintAt = (t: number, cross: boolean) => {
     const idx = Math.min(built.samples.length - 1, Math.floor(t * built.samples.length));
     const s = built.samples[idx];
     const yaw = Math.atan2(s.tx, s.tz);
@@ -951,7 +967,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     if (!skipSigns) {
     const highway = def.theme === "highway" || def.id === "ayalon" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6";
     const kinds = highway ? ["speed90", "speed80", "none"] : ["stop", "speed50", "yield"];
-    const maps = {};
+    const maps: Record<string, THREE.Texture> = {};
     for (const k of ["stop", "yield", "none", "speed50", "speed80", "speed90"]) maps[k] = keep(tiSignTex(k));
     const poleM = keep(new THREE.MeshStandardMaterial({ color: 0x8a9098, roughness: 0.55, metalness: 0.4 }));
     const poleG = keep(new THREE.CylinderGeometry(0.07, 0.09, 3.2, 6));
@@ -995,7 +1011,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
         const head = new THREE.Mesh(new THREE.BoxGeometry(0.38, 1.05, 0.28), boxM);
         head.position.set(px, s.y + 3.35, pz);
         group.add(head);
-        const lamp = (y, mat) => {
+        const lamp = (y: number, mat: THREE.Material) => {
           const m = new THREE.Mesh(new THREE.SphereGeometry(0.12, 8, 6), mat);
           m.position.set(px, s.y + y, pz + s.tz * 0.16);
           group.add(m);
@@ -1017,7 +1033,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     group.add(new THREE.Mesh(keep(buildRail(built, 1)), railMat));
     group.add(new THREE.Mesh(keep(buildRail(built, -1)), railMat));
   }
-  let mirror = null;
+  let mirror: Reflector | null = null;
   let planarOk = true;
   if (shadows) {
     const res = 768;
@@ -1029,7 +1045,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     });
     mirror.rotation.x = -Math.PI / 2;
     mirror.position.y = 0.026;
-    const mmat = mirror.material;
+    const mmat = mirror.material as THREE.ShaderMaterial;
     mmat.transparent = true;
     mmat.opacity = isNight ? 0.32 : 0.16;
     group.add(mirror);
@@ -1040,7 +1056,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
   }
   const bodies = def.waters?.length ? def.waters : def.water ? [def.water] : [];
   const streets = generateStreets(def, built, bodies);
-  const ramps = [];
+  const ramps: Ramp[] = [];
   const railPostGeo = keep(new THREE.CylinderGeometry(0.08, 0.1, 0.78, 5));
   railPostGeo.translate(0, 0.4, 0);
   const railPostMat = keep(new THREE.MeshStandardMaterial({
@@ -1129,8 +1145,8 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     group.add(stripes);
   }
   let waterMesh;
-  const waterMeshes = [];
-  const waterMats = [];
+  const waterMeshes: THREE.Mesh[] = [];
+  const waterMats: THREE.MeshPhysicalMaterial[] = [];
   if (bodies.length) {
     const nrm = keep(waterNormalTex());
     for (const body of bodies) {
@@ -1210,11 +1226,11 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
   const minZ = def.id === "manhattan" ? -200 : -200;
   const maxZ = def.id === "manhattan" ? 200 : 200;
   const gap = def.theme === "desert" || def.theme === "highway" || def.theme === "snow" ? 18 : def.theme === "port" ? 16 : def.theme === "jaffa" ? 11 : def.theme === "manhattan" ? canyon ? 9 : 14 : def.theme === "park" ? 16 : 13;
-  const inWater2 = (jx, jz) => {
+  const inWater2 = (jx: number, jz: number) => {
     for (const w of bodies) if (Math.abs(jx - w.x) < w.w * 0.42 && Math.abs(jz - w.z) < w.d * 0.42) return true;
     return false;
   };
-  const inClear2 = (jx, jz) => {
+  const inClear2 = (jx: number, jz: number) => {
     for (const z of def.clearZones ?? []) if (Math.abs(jx - z.x) < z.w * 0.5 && Math.abs(jz - z.z) < z.d * 0.5) return true;
     return false;
   };
@@ -1538,12 +1554,13 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
   }
   group.add(tanks);
   if ((def.city === "nyc" || def.theme === "carmel" || def.theme === "stone" || def.id === "hermon" || def.id === "hw1") && def.id !== "deadsea" && def.id !== "hayarkon" && def.id !== "ayalon" && def.id !== "ramon") {
-    const natureHill = def.theme === "jaffa" || def.theme === "carmel" || def.id === "hermon" || def.theme === "stone" || def.id === "hw1";
+    const tid = def.id as string;
+    const natureHill = def.theme === "jaffa" || def.theme === "carmel" || tid === "hermon" || def.theme === "stone" || tid === "hw1";
     const farN = def.theme === "manhattan" ? 48 : natureHill ? 44 : 36;
     const farGeo = keep(natureHill ? new THREE.ConeGeometry(1, 1, 6) : new THREE.BoxGeometry(1, 1, 1));
     if (!natureHill) farGeo.translate(0, 0.5, 0);
     const farMat = keep(new THREE.MeshStandardMaterial({
-      color: isNight ? 1713202 : def.id === "ramon" ? 11565642 : def.id === "hermon" ? 15265524 : def.theme === "carmel" || def.id === "hw1" ? 4020788 : def.theme === "stone" ? 12890250 : 12103844,
+      color: isNight ? 1713202 : tid === "ramon" ? 11565642 : tid === "hermon" ? 15265524 : def.theme === "carmel" || tid === "hw1" ? 4020788 : def.theme === "stone" ? 12890250 : 12103844,
       roughness: 0.92,
       metalness: 0.04,
       envMapIntensity: isNight ? 0.35 : 0.22,
@@ -1552,10 +1569,10 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     const far = new THREE.InstancedMesh(farGeo, farMat, farN);
     for (let i = 0; i < farN; i++) {
       const a = i / farN * Math.PI * 2 + 0.07;
-      const r = def.id === "ramon" || def.id === "hermon" ? span * 1.45 + i % 6 * 70 : def.theme === "stone" || def.id === "hw1" ? span * 1.55 + i % 6 * 55 : span * 1.15 + i % 6 * 28;
-      const h = def.id === "ramon" ? 52 + i % 6 * 22 : def.id === "hermon" ? 64 + i % 5 * 26 : def.theme === "carmel" || def.id === "hw1" ? 38 + i % 6 * 16 : def.theme === "stone" ? 36 + i % 5 * 18 : 22 + i % 8 * 16 + (def.theme === "manhattan" ? 28 : 0);
+      const r = tid === "ramon" || tid === "hermon" ? span * 1.45 + i % 6 * 70 : def.theme === "stone" || tid === "hw1" ? span * 1.55 + i % 6 * 55 : span * 1.15 + i % 6 * 28;
+      const h = tid === "ramon" ? 52 + i % 6 * 22 : tid === "hermon" ? 64 + i % 5 * 26 : def.theme === "carmel" || tid === "hw1" ? 38 + i % 6 * 16 : def.theme === "stone" ? 36 + i % 5 * 18 : 22 + i % 8 * 16 + (def.theme === "manhattan" ? 28 : 0);
       _dummy.position.set(Math.cos(a) * r, natureHill ? h * 0.18 : 0, Math.sin(a) * r);
-      _dummy.scale.set(def.id === "ramon" ? 42 + i % 4 * 14 : def.id === "hermon" ? 38 + i % 4 * 12 : def.theme === "carmel" || def.id === "hw1" ? 32 + i % 4 * 12 : def.theme === "stone" ? 38 + i % 4 * 14 : 16 + i % 4 * 7, h, def.id === "ramon" ? 36 : def.id === "hermon" ? 32 : def.theme === "carmel" || def.id === "hw1" ? 28 : def.theme === "stone" ? 32 : 12 + i % 3 * 5);
+      _dummy.scale.set(tid === "ramon" ? 42 + i % 4 * 14 : tid === "hermon" ? 38 + i % 4 * 12 : def.theme === "carmel" || tid === "hw1" ? 32 + i % 4 * 12 : def.theme === "stone" ? 38 + i % 4 * 14 : 16 + i % 4 * 7, h, tid === "ramon" ? 36 : tid === "hermon" ? 32 : def.theme === "carmel" || tid === "hw1" ? 28 : def.theme === "stone" ? 32 : 12 + i % 3 * 5);
       _dummy.rotation.set(0, a, 0);
       _dummy.updateMatrix();
       far.setMatrixAt(i, _dummy.matrix);
@@ -1826,7 +1843,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
   const poles = new THREE.InstancedMesh(poleGeo, poleMat, Math.max(1, lampCount));
   const bulbs = new THREE.InstancedMesh(bulbGeo, bulbMat, Math.max(1, lampCount));
   const halos = new THREE.InstancedMesh(haloGeo, haloMat, Math.max(1, lampCount));
-  const lampPos = [];
+  const lampPos: THREE.Vector3[] = [];
   for (let i = 0; i < lampCount; i++) {
     const s = built.samples[i * 10 % built.samples.length];
     const side = i % 2 === 0 ? 1 : -1;
@@ -1946,7 +1963,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
       t: "TLV"
     }
   ];
-  if (def.city === "nyc") for (let i = 0; i < ads.length; i++) {
+  if (def.city === "nyc" && nycMod) for (let i = 0; i < ads.length; i++) {
     const ad = ads[i];
     const tex = keep(nycMod.adBoardTexture(ad.bg, ad.fg, ad.t));
     const mat = keep(new THREE.MeshStandardMaterial({
@@ -1968,7 +1985,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     post.position.set(x, s.y + 2.6, z);
     group.add(post);
   }
-  const nightLights = [];
+  const nightLights: THREE.SpotLight[] = [];
   if (shadows) for (let i = 0; i < 5; i++) {
     const src = lampPos[i] ?? new THREE.Vector3();
     const spot = new THREE.SpotLight(0xffc070, isNight ? 140 : 0, 28, 0.78, 0.7, 1.35);
@@ -1991,7 +2008,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     opacity: 0.78
   }));
   const puddleN = 26;
-  const puddlePos = [];
+  const puddlePos: { x: number; y: number; z: number; sx: number; sz: number; rot: number }[] = [];
   const puddles = new THREE.InstancedMesh(puddleGeo, puddleMat, puddleN);
   for (let i = 0; i < puddleN; i++) {
     const s = built.samples[Math.floor(i / puddleN * built.samples.length) % built.samples.length];
@@ -2032,7 +2049,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     neonGroup.add(mesh);
   }
   group.add(neonGroup);
-  const neonLights = [];
+  const neonLights: THREE.PointLight[] = [];
   if (shadows) for (let i = 0; i < Math.min(2, neonGroup.children.length); i++) {
     const src = neonGroup.children[i * 2];
     const col = neonMats[i % 3].color;
@@ -2041,15 +2058,15 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     group.add(pl);
     neonLights.push(pl);
   }
-  const landmarkGlows = [];
-  const emitList = [];
+  const landmarkGlows: Glow[] = [];
+  const emitList: Emit[] = [];
   emitList.push({
-    mat: facadeWinMat,
+    mat: facadeWinMat as THREE.MeshStandardMaterial,
     night: 0.82,
     day: 0.02
   });
-  const colliders = [];
-  const movers = [];
+  const colliders: Collider[] = [];
+  const movers: Mover[] = [];
   addLandmarks(group, def, bag, shadows, isNight, landmarkGlows, emitList, colliders, movers, ramps, streets, built);
   addNycLandmarks(group, def, bag, shadows, isNight, landmarkGlows, emitList, colliders);
   const edgeStep = Math.max(3, Math.floor(built.samples.length / 360));
@@ -2134,7 +2151,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
       group.add(light);
     }
   }
-  const followShadows = (x, y, z) => {
+  const followShadows = (x: number, y: number, z: number) => {
     if (!dir.castShadow) {
       dir.intensity = 0;
       dirNear.intensity = 0;
@@ -2154,12 +2171,12 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     dirNear.color.copy(dir.color);
     dirNear.visible = dir.castShadow;
   };
-  const followMirror = (x, z, yaw) => {
+  const followMirror = (x: number, z: number, yaw: number) => {
     if (!mirror || !planarOk) return;
     mirror.visible = true;
     mirror.position.set(x, 0.028, z);
     mirror.rotation.set(-Math.PI / 2, yaw, 0);
-    const col = mirror.material;
+    const col = mirror.material as THREE.ShaderMaterial;
     const wet = wx === "rain" || wx === "storm";
     col.opacity = wet ? (isNight ? 0.52 : 0.32) : isNight ? 0.28 : 0.16;
     if (col.uniforms?.color) {
@@ -2167,7 +2184,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
       col.uniforms.color.value.setHex(c);
     }
   };
-  const tick = (now, x, z) => {
+  const tick = (now: number, x: number, z: number) => {
     const t = now * 1e-3;
     skyDome.position.set(x, 0, z);
     dome.position.x = x;
@@ -2212,7 +2229,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     }
     puddles.instanceMatrix.needsUpdate = true;
     if (mirror) {
-      const mmat = mirror.material;
+      const mmat = mirror.material as THREE.ShaderMaterial;
       mmat.opacity = wx !== "clear" ? 0.28 + wetAmt * 0.35 : lerp(0.1, 0.4, nightAmt(clock));
     }
     if (nightAmt(clock) < 0.4 || nightLights.length === 0 || lampPos.length === 0) return;
@@ -2268,14 +2285,14 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
   const _mornDir = new THREE.Color(16769200);
   const _nightDir = new THREE.Color(12898524);
   const _moon = new THREE.Vector3();
-  const setClock = (nextClock) => {
+  const setClock = (nextClock: number) => {
     clock = (nextClock % 1 + 1) % 1;
     const n = nightAmt(clock);
     isNight = n > 0.48;
     const morning = n <= 0.5 && clock < 0.38;
     const next = skyAt(def, clock, wx);
     applySky(sky, sun, next);
-    skyDomeMat.map = n > 0.5 ? skyNightMap : skyDayMap;
+    skyDomeMat.map = n > 0.5 ? skyNightMap ?? null : skyDayMap ?? null;
     skyDomeMat.needsUpdate = true;
     if (n < 0.58) lightAim.copy(sun);
     else {
@@ -2377,12 +2394,12 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     applyWet();
     return next;
   };
-  const setTime = (nextNight) => setClock(nextNight ? 0.9 : 0.5);
-  const setWeather = (w) => {
+  const setTime = (nextNight: boolean) => setClock(nextNight ? 0.9 : 0.5);
+  const setWeather = (w: Weather) => {
     wx = w;
     return setClock(clock);
   };
-  const setLod = (tier) => {
+  const setLod = (tier: "low" | "mid" | "high") => {
     const hi = tier === "high";
     const mid = tier === "mid";
     if (lodCrowns) {
@@ -2412,7 +2429,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     },
     followShadows,
     followMirror,
-    setPlanar(on) {
+    setPlanar(on: boolean) {
       planarOk = !!on;
       if (mirror) mirror.visible = planarOk;
     },
@@ -2430,16 +2447,30 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     }
   };
 }
-function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, colliders, movers, ramps, streets, built) {
-  const add = (mesh) => {
-    mesh.castShadow = shadows;
-    mesh.receiveShadow = true;
+function addLandmarks(
+  group: THREE.Group,
+  def: TrackDef,
+  bag: Disposable[],
+  shadows: boolean,
+  isNight: boolean,
+  glows: Glow[],
+  emitList: Emit[],
+  colliders: Collider[],
+  movers: Mover[],
+  ramps: Ramp[],
+  streets: unknown[],
+  built: BuiltTrack,
+) {
+  const add = (mesh: THREE.Mesh | THREE.Object3D) => {
+    (mesh as THREE.Mesh).castShadow = shadows;
+    (mesh as THREE.Mesh).receiveShadow = true;
     group.add(mesh);
-    bag.push(mesh.geometry);
-    if (Array.isArray(mesh.material)) mesh.material.forEach((m) => bag.push(m));
-    else bag.push(mesh.material);
+    if ("geometry" in mesh && mesh.geometry) bag.push(mesh.geometry);
+    const mat = "material" in mesh ? mesh.material : null;
+    if (Array.isArray(mat)) mat.forEach((m: THREE.Material) => bag.push(m));
+    else if (mat) bag.push(mat);
   };
-  const glowAt = (x, y, z, color, on, dist) => {
+  const glowAt = (x: number, y: number, z: number, color: number, on: number, dist: number) => {
     if (!shadows || glows.length >= 4) return;
     const pl = new THREE.PointLight(color, isNight ? on : 0, dist, 2);
     pl.position.set(x, y, z);
@@ -2449,7 +2480,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       on
     });
   };
-  const hit = (x, z, r, hx, hz, yaw) => {
+  const hit = (x: number, z: number, r: number, hx?: number, hz?: number, yaw?: number) => {
     colliders.push({
       x,
       z,
@@ -2460,7 +2491,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       kind: "building"
     });
   };
-  const placeTunnel = (cx, cz, yaw, len, half, h, y0 = 0) => {
+  const placeTunnel = (cx: number, cz: number, yaw: number, len: number, half: number, h: number, y0 = 0) => {
     const fx = Math.sin(yaw);
     const fz = Math.cos(yaw);
     const rx = Math.cos(yaw);
@@ -2594,7 +2625,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     roughness: 0.96
   });
   bag.push(darkArch);
-  const merlonWall = (x, z, len, yaw, h = 12) => {
+  const merlonWall = (x: number, z: number, len: number, yaw: number, h = 12) => {
     const wall = new THREE.Mesh(new THREE.BoxGeometry(len, h, 4.4), stone);
     wall.position.set(x, h * 0.5, z);
     wall.rotation.y = yaw;
@@ -2609,7 +2640,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     }
     hit(x, z, Math.min(7, Math.max(3.5, len * 0.1)));
   };
-  const minaret = (x, z, h = 26) => {
+  const minaret = (x: number, z: number, h = 26) => {
     const shaft = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.65, h, 10), stone);
     shaft.position.set(x, h * 0.5, z);
     add(shaft);
@@ -2621,7 +2652,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     add(cap);
     hit(x, z, 4);
   };
-  const ottomanGate = (x, z, yaw) => {
+  const ottomanGate = (x: number, z: number, yaw: number) => {
     const rx = Math.cos(yaw);
     const rz = -Math.sin(yaw);
     const side = 18;
@@ -2647,7 +2678,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       add(mer);
     }
   };
-  const placeDome = (dmx, dmz) => {
+  const placeDome = (dmx: number, dmz: number) => {
     const oct = new THREE.Mesh(new THREE.CylinderGeometry(11.4, 11.4, 8.4, 8), cream);
     oct.position.set(dmx, 9.2, dmz);
     add(oct);
@@ -2734,7 +2765,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   const gateTex = curtainTexture("dark");
   const tohaTex = curtainTexture("gold");
   bag.push(winTex, triTex, sqTex, gateTex, tohaTex);
-  const mkGlass = (map, color, nightEmi) => new THREE.MeshPhysicalMaterial({
+  const mkGlass = (map: THREE.Texture, color: number, nightEmi: number) => new THREE.MeshPhysicalMaterial({
     map,
     color,
     roughness: 0.12,
@@ -2780,7 +2811,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     night: 0.24,
     day: 0
   });
-  const placeAzrieli = (s) => {
+  const placeAzrieli = (s: number) => {
     const azBand = new THREE.MeshStandardMaterial({
       color: 0xece8e0,
       metalness: 0.28,
@@ -2932,7 +2963,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     hit(triX, triZ, 9 * s, 8.2 * s, 8.2 * s);
     hit(sqX, sqZ, 8 * s, 7.6 * s, 7.6 * s);
   };
-  const placeCityGate = (s) => {
+  const placeCityGate = (s: number) => {
     const p = tlv(32.0832, 34.8027);
     const h = 168 * s;
     const yaw = Math.PI / 4;
@@ -2968,7 +2999,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(p.x, h + 24 * s, p.z, 11065584, 52 * s, 46 * s);
     hit(p.x, p.z, 11 * s, 10 * s, 10 * s, yaw);
   };
-  const placeToHa = (s, lat = 32.0713, lon = 34.7886) => {
+  const placeToHa = (s: number, lat = 32.0713, lon = 34.7886) => {
     const p = tlv(lat, lon);
     const n = 22;
     const floorGeo = new THREE.BoxGeometry(1, 4.7 * s, 0.62);
@@ -2979,7 +3010,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     lips.frustumCulled = false;
     let fi = 0;
     let li = 0;
-    const stack = (ox, oz, twist0, twistDir) => {
+    const stack = (ox: number, oz: number, twist0: number, twistDir: number) => {
       for (let i = 0; i < n; i++) {
         const t = i / (n - 1);
         const w = (6.4 + t * 14.8) * s;
@@ -3019,7 +3050,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(p.x, 110 * s, p.z, 13166847, 46 * s, 40 * s);
     hit(p.x, p.z, 13 * s, 15 * s, 13 * s);
   };
-  const placeMidtown = (s) => {
+  const placeMidtown = (s: number) => {
     const md = tlv(32.0806, 34.7926);
     const navy = new THREE.MeshPhysicalMaterial({
       color: 0x1c2c3c,
@@ -3073,7 +3104,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(md.x, 90 * s, md.z, 0x6688aa, 40 * s, 36 * s);
     hit(md.x, md.z, 14 * s, 18 * s, 10 * s);
   };
-  const placeElectra = (s) => {
+  const placeElectra = (s: number) => {
     const el = tlv(32.0699, 34.7918);
     const teal = new THREE.MeshPhysicalMaterial({
       color: 0x4a7a92,
@@ -3134,7 +3165,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(el.x, h + 8 * s, el.z, 0x88c0d8, 36 * s, 32 * s);
     hit(el.x, el.z, 9 * s);
   };
-  const placeSarona = (s) => {
+  const placeSarona = (s: number) => {
     const p = tlv(32.0714, 34.7866);
     const h = 178 * s;
     const glass = new THREE.MeshPhysicalMaterial({
@@ -3175,7 +3206,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(p.x, h + 4 * s, p.z, 0xe8f2fa, 44 * s, 40 * s);
     hit(p.x, p.z, 12 * s, 8 * s, 14 * s, 0.18);
   };
-  const placeHakirya = (s) => {
+  const placeHakirya = (s: number) => {
     const p = tlv(32.0756, 34.7878);
     const khaki = new THREE.MeshStandardMaterial({
       color: 0xb89a6e,
@@ -3214,7 +3245,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(p.x, h + 4 * s, p.z, 0xd4c4a0, 32 * s, 28 * s);
     hit(p.x, p.z, 16 * s, 22 * s, 20 * s);
   };
-  const placeShalomMeir = (s) => {
+  const placeShalomMeir = (s: number) => {
     const p = tlv(32.0639, 34.7704);
     const h = 82 * s;
     const body = new THREE.Mesh(new THREE.BoxGeometry(16.4 * s, h, 10.6 * s), cream);
@@ -3245,7 +3276,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(p.x, h + 6 * s, p.z, 0xf2ece0, 28 * s, 24 * s);
     hit(p.x, p.z, 9 * s, 10 * s, 7 * s);
   };
-  const placeTlvTowers = (s) => {
+  const placeTlvTowers = (s: number) => {
     placeCityGate(s);
     placeToHa(s);
     placeSarona(s);
@@ -3254,7 +3285,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     placeMidtown(s);
     placeElectra(s);
   };
-  const placeNycSkyline = (ox, oz, s) => {
+  const placeNycSkyline = (ox: number, oz: number, s: number) => {
     const wtcH = 118 * s;
     const wtc = new THREE.Mesh(new THREE.BoxGeometry(14 * s, wtcH, 14 * s), paleGlass);
     wtc.position.set(ox, wtcH * 0.5, oz);
@@ -3287,7 +3318,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     hit(ox, oz, 10 * s);
     hit(ox + 32 * s, oz + 28 * s, 9 * s);
   };
-  const placeGothicTower = (x, z, h) => {
+  const placeGothicTower = (x: number, z: number, h: number) => {
     const body = new THREE.Mesh(new THREE.BoxGeometry(10, h, 8), stone);
     body.position.set(x, h * 0.5, z);
     add(body);
@@ -3577,7 +3608,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     add(smMastH);
     glowAt(hi.x, 36, hi.z, 16769200, 38, 36);
     glowAt(op.x, 50, op.z, 16771264, 32, 32);
-    const skipRoad = (x, z, r) => {
+    const skipRoad = (x: number, z: number, r: number) => {
       const n = nearestIndex(built.samples, x, z, 0);
       if (n.dist > built.width / 2 + 6) hit(x, z, r);
     };
@@ -3972,7 +4003,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(ck.x, 26, ck.z, 16770736, 36, 28);
     glowAt(ch.x - 2, 30, ch.z - 8, 16771272, 28, 24);
     glowAt(pt.x, 6, pt.z, 16763e3, 24, 22);
-    const skipJ = (x, z, r) => {
+    const skipJ = (x: number, z: number, r: number) => {
       const n = nearestIndex(built.samples, x, z, 0);
       if (n.dist > built.width / 2 + 5) hit(x, z, r);
     };
@@ -4897,7 +4928,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       medIdx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
       walkIdx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
     }
-    const mkRibbon = (pos, idx, mat) => {
+    const mkRibbon = (pos: number[], idx: number[], mat: THREE.Material) => {
       const g = new THREE.BufferGeometry();
       g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
       g.setIndex(idx);
@@ -5431,7 +5462,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     bag.push(platGeo);
     glowAt(sav.x, 14, sav.z, 0xff8844, 28, 24);
     hit(sav.x, sav.z, 16, 24, 14);
-    const placeRailStop = (lat, lon, sc) => {
+    const placeRailStop = (lat: number, lon: number, sc: number) => {
       const p = tlv(lat, lon);
       const hall = new THREE.Mesh(new THREE.BoxGeometry(28 * sc, 8.2 * sc, 14 * sc), cream);
       hall.position.set(p.x, 4.1 * sc, p.z);
@@ -5460,7 +5491,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       roughness: 0.55
     });
     bag.push(rampAsphalt, conc, greenSign);
-    const pushRamp = (x, z, sx, sz, len, half, y0, y12, he, en) => {
+    const pushRamp = (x: number, z: number, sx: number, sz: number, len: number, half: number, y0: number, y12: number, he: string, en: string) => {
       ramps.push({
         x,
         z,
@@ -5491,7 +5522,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       mesh.receiveShadow = true;
       add(mesh);
     };
-    const mkSign = (_he) => greenSign;
+    const mkSign = (_he: string) => greenSign;
     for (const ic of [
       {
         lat: 32.0525,
@@ -5642,7 +5673,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     });
     bag.push(railMat, tieMat, ballast, platMat, glassRoof, silver, redStripe, purpleStripe);
     const midLon = 34.79605;
-    const railPts = [];
+    const railPts: { x: number; y: number; z: number; yaw: number }[] = [];
     const lats = [];
     for (let lat = 32.051; lat <= 32.107; lat += 12e-4) lats.push(lat);
     for (let i = 0; i < lats.length; i++) {
@@ -5814,7 +5845,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       add(stSign);
       if (nearHall.dist > built.width / 2 + 10) hit(hallP.x, hallP.z, 8);
     }
-    const makeTrain = (phase, trackX) => {
+    const makeTrain = (phase: number, trackX: number) => {
       const g = new THREE.Group();
       for (let c = 0; c < 6; c++) {
         const body = new THREE.Mesh(new THREE.BoxGeometry(2.9, 4.1, 17.2), silver);
@@ -6024,7 +6055,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     });
     const peach = new THREE.MeshStandardMaterial({ color: 15255720, roughness: 0.7 });
     bag.push(salt, peach);
-    const offSea = (p, pad = 24) => {
+    const offSea = (p: { x: number; z: number }, pad = 24) => {
       const n = nearestIndex(built.samples, p.x, p.z, 0);
       if (n.dist < built.width / 2 + 10) {
         const s = built.samples[n.index];
@@ -6122,7 +6153,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const ochreH = new THREE.MeshStandardMaterial({ color: 12093784, roughness: 0.88, envMapIntensity: 0.28 });
     const ochreD = new THREE.MeshStandardMaterial({ color: 9398336, roughness: 0.9 });
     bag.push(ochreH, ochreD);
-    const offAcre = (p, pad = 26) => {
+    const offAcre = (p: { x: number; z: number }, pad = 26) => {
       const n = nearestIndex(built.samples, p.x, p.z, 0);
       if (n.dist < built.width / 2 + 10) {
         const s = built.samples[n.index];
@@ -7423,7 +7454,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const dm = jer(31.778, 35.2354);
     const kt = jer(31.7767, 35.2342);
     const c = jer(31.7778, 35.2318);
-    const inset = (p, d = 26) => {
+    const inset = (p: { x: number; z: number }, d = 26) => {
       const dx = c.x - p.x;
       const dz = c.z - p.z;
       const l = Math.hypot(dx, dz) || 1;

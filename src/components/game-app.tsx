@@ -1,5 +1,4 @@
-// @ts-nocheck
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type Dispatch, type ReactNode, type RefObject, type SetStateAction } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import {
   Flag,
@@ -22,7 +21,7 @@ import { CarShowroom } from "@/components/car-showroom";
 import { TouchControls } from "@/components/touch-controls";
 import { BootOverlay } from "@/components/boot-overlay";
 import { CARS } from "@/game/cars";
-import { chapters, dailyEvent, getEvent, maxStars, starsFor, weeklyEvent } from "@/game/career";
+import { chapters, dailyEvent, getEvent, maxStars, starsFor, weeklyEvent, CAR_UNLOCK } from "@/game/career";
 import { applyTune, LIVERIES, LIVERY_COST, nextCost, PAINT_COST, PAINTS, racePayout } from "@/game/garage";
 import { formatTime } from "@/game/math";
 import { MODE_INFO, RACE_MODES } from "@/game/modes";
@@ -32,6 +31,7 @@ import {
   allEventStars,
   getAssists,
   getCash,
+  getDamage,
   getFov,
   getHandling,
   getLang,
@@ -61,7 +61,8 @@ import { CITY_FILTERS, TRACKS, isDriveable } from "@/game/tracks";
 import { estimateLoadMs, recordLoadMs } from "@/game/load-eta";
 import { copy, dirFor, langShort, nextLang, type Lang } from "@/game/i18n";
 import { cn } from "@/lib/utils";
-import type { AssistFlags, CarId, HandlingMode, Quality, RaceMode, TrackId, Weather } from "@/game/types";
+import type { AssistFlags, CarDef, CarId, HandlingMode, HudState, Quality, RaceMode, RaceResult, TrackDef, TrackId, Tune, Weather } from "@/game/types";
+import type { RaceEngine } from "@/game/engine";
 
 function themeWash(theme: string, night: boolean) {
 	if (night) return "#12151a";
@@ -79,32 +80,32 @@ function themeWash(theme: string, night: boolean) {
 
 export function GameApp() {
 	const [screen, setScreen] = useState("title");
-	const [trackId, setTrackId] = useState("telaviv");
-	const [carId, setCarId] = useState("sabra");
-	const [hud, setHud] = useState(null);
-	const [result, setResult] = useState(null);
+	const [trackId, setTrackId] = useState<TrackId>("telaviv");
+	const [carId, setCarId] = useState<CarId>("sabra");
+	const [hud, setHud] = useState<HudState | null>(null);
+	const [result, setResult] = useState<RaceResult | null>(null);
 	const [paused, setPaused] = useState(false);
 	const [muted, setMuted] = useState(false);
 	const [night, setNight] = useState(false);
-	const [quality, setQuality] = useState("high");
+	const [quality, setQuality] = useState<Quality>("high");
 	const [fov, setFov] = useState(0);
-	const [lang, setLang] = useState("he");
+	const [lang, setLang] = useState<Lang>("he");
 	const langHe = lang === "he";
-	const [handling, setHandling] = useState("simcade");
-	const [assists, setAssists] = useState({ abs: true, tcs: true, esc: true });
+	const [handling, setHandling] = useState<HandlingMode>("simcade");
+	const [assists, setAssists] = useState<AssistFlags>({ abs: true, tcs: true, esc: true });
 	const [record, setRecord] = useState(false);
 	const [raceKey, setRaceKey] = useState(0);
-	const [mode, setMode] = useState("circuit");
-	const [eventId, setEventId] = useState(null);
+	const [mode, setMode] = useState<RaceMode>("circuit");
+	const [eventId, setEventId] = useState<string | null>(null);
 	const [earned, setEarned] = useState(0);
 	const [starTotal, setStarTotal] = useState(0);
-	const [weather, setWeather] = useState("clear");
+	const [weather, setWeather] = useState<Weather>("clear");
 	const [cash, setCash] = useState(500);
 	const [tuneTick, setTuneTick] = useState(0);
-	const [boot, setBoot] = useState(null);
-	const canvasRef = useRef(null);
-	const engineRef = useRef(null);
-	const mapRef = useRef(null);
+	const [boot, setBoot] = useState<{ etaMs: number } | null>(null);
+	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const engineRef = useRef<RaceEngine | null>(null);
+	const mapRef = useRef<HTMLCanvasElement>(null);
 	useEffect(() => {
 		setMuted(getMuted());
 		setNight(getNight());
@@ -140,7 +141,7 @@ export function GameApp() {
 		const canvas = canvasRef.current;
 		if (!canvas) return;
 		let cancelled = false;
-		let inst = null;
+		let inst: RaceEngine | null = null;
 		const t0 = performance.now();
 		setHud(null);
 		void (async () => {
@@ -214,7 +215,7 @@ export function GameApp() {
 	]);
 	useEffect(() => {
 		if (screen !== "race") return;
-		const onKey = (e) => {
+		const onKey = (e: KeyboardEvent) => {
 			if (e.code === "KeyN") {
 				if (result) return;
 				const next = !night;
@@ -266,8 +267,8 @@ export function GameApp() {
 		const sx = (w - 32) / Math.max(1, maxX - minX);
 		const sz = (ht - 32) / Math.max(1, maxZ - minZ);
 		const s = Math.min(sx, sz);
-		const mx = (x) => pad + (x - minX) * s;
-		const mz = (z) => pad + (z - minZ) * s;
+		const mx = (x: number) => pad + (x - minX) * s;
+		const mz = (z: number) => pad + (z - minZ) * s;
 		ctx.strokeStyle = "#3d484c";
 		ctx.lineWidth = 7;
 		ctx.lineJoin = "round";
@@ -312,9 +313,9 @@ export function GameApp() {
 			}
 		}
 	}, [hud]);
-	const t = (he, en, ar) => copy(lang, he, en, ar);
-	const track = TRACKS.find((x) => x.id === trackId);
-	const car = CARS.find((x) => x.id === carId);
+	const t = (he: string, en: string, ar?: string) => copy(lang, he, en, ar);
+	const track = TRACKS.find((x) => x.id === trackId) ?? TRACKS[0]!;
+	const car = CARS.find((x) => x.id === carId) ?? CARS[0]!;
 	const toggleNight = () => {
 		const next = !night;
 		setNight(next);
@@ -524,12 +525,12 @@ export function GameApp() {
 			lang,
 			cycleLang,
 			muted,
-			setMuted: (m) => {
+			setMuted: (m: boolean) => {
 				setMuted(m);
 				setMutedSave(m);
 			},
 			night,
-			setNightMode: (n) => {
+			setNightMode: (n: boolean) => {
 				setNight(n);
 				setNightSave(n);
 			},
@@ -537,12 +538,12 @@ export function GameApp() {
 			track,
 			car,
 			quality,
-			setQualityMode: (q) => {
+			setQualityMode: (q: Quality) => {
 				setQuality(q);
 				setQualitySave(q);
 			},
 			fov,
-			setFovMode: (v) => {
+			setFovMode: (v: number) => {
 				setFov(v);
 				setFovSave(v);
 				engineRef.current?.setFovExtra(v);
@@ -557,17 +558,17 @@ export function GameApp() {
 			cash,
 			setCash,
 			handling,
-			setHandlingMode: (h) => {
+			setHandlingMode: (h: HandlingMode) => {
 				setHandling(h);
 				setHandlingSave(h);
 			},
 			assists,
-			setAssistsMode: (a) => {
+			setAssistsMode: (a: AssistFlags) => {
 				setAssists(a);
 				setAssistsSave(a);
 			},
 			onTuned: () => setTuneTick((n) => n + 1),
-			startCareer: (id) => {
+			startCareer: (id: string) => {
 				const ev = getEvent(id);
 				if (!ev) return;
 				if (totalStars() < ev.unlockStars) return;
@@ -583,10 +584,10 @@ export function GameApp() {
 		})
 	});
 }
-function clamp01(v) {
+function clamp01(v: number) {
 	return Math.max(0, Math.min(1, Number(v) || 0));
 }
-function Overlay({ children }) {
+function Overlay({ children }: { children: ReactNode }) {
 	return /* @__PURE__ */ jsx("div", {
 		className: "absolute inset-0 z-40 flex items-center justify-center bg-bg/70 p-4",
 		children: /* @__PURE__ */ jsx("div", {
@@ -595,7 +596,23 @@ function Overlay({ children }) {
 		})
 	});
 }
-function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSkipReplay, onPhotoFilter, onPhotoHide, onPhotoExit, onPhotoSave }) {
+type CopyFn = (he: string, en: string, ar?: string) => string;
+type HudProps = {
+	hud: HudState;
+	langHe: boolean;
+	mapRef: RefObject<HTMLCanvasElement | null>;
+	onPause: () => void;
+	onMute: () => void;
+	muted: boolean;
+	night: boolean;
+	onNight: () => void;
+	onSkipReplay: () => void;
+	onPhotoFilter: () => void;
+	onPhotoHide: () => void;
+	onPhotoExit: () => void;
+	onPhotoSave: () => void;
+};
+function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSkipReplay, onPhotoFilter, onPhotoHide, onPhotoExit, onPhotoSave }: HudProps) {
 	if (hud.photo) {
 		if (hud.photoHide) return null;
 		return /* @__PURE__ */ jsxs("div", {
@@ -779,7 +796,44 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 		]
 	});
 }
-function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe, lang, cycleLang, muted, setMuted, night, setNightMode, t, track, car, quality, setQualityMode, fov, setFovMode, mode, setMode, starTotal, eventId, setEventId, weather, setWeatherMode, cash, setCash, handling, setHandlingMode, assists, setAssistsMode, onTuned, startCareer }) {
+type MenuProps = {
+	screen: string;
+	setScreen: Dispatch<SetStateAction<string>>;
+	trackId: TrackId;
+	setTrackId: Dispatch<SetStateAction<TrackId>>;
+	carId: CarId;
+	setCarId: Dispatch<SetStateAction<CarId>>;
+	langHe: boolean;
+	lang: Lang;
+	cycleLang: () => void;
+	muted: boolean;
+	setMuted: (m: boolean) => void;
+	night: boolean;
+	setNightMode: (n: boolean) => void;
+	t: CopyFn;
+	track: TrackDef;
+	car: CarDef;
+	quality: Quality;
+	setQualityMode: (q: Quality) => void;
+	fov: number;
+	setFovMode: (v: number) => void;
+	mode: RaceMode;
+	setMode: Dispatch<SetStateAction<RaceMode>>;
+	starTotal: number;
+	eventId: string | null;
+	setEventId: Dispatch<SetStateAction<string | null>>;
+	weather: Weather;
+	setWeatherMode: Dispatch<SetStateAction<Weather>>;
+	cash: number;
+	setCash: Dispatch<SetStateAction<number>>;
+	handling: HandlingMode;
+	setHandlingMode: (h: HandlingMode) => void;
+	assists: AssistFlags;
+	setAssistsMode: (a: AssistFlags) => void;
+	onTuned: () => void;
+	startCareer: (id: string) => void;
+};
+function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe, lang, cycleLang, muted, setMuted, night, setNightMode, t, track, car, quality, setQualityMode, fov, setFovMode, mode, setMode, starTotal, eventId, setEventId, weather, setWeatherMode, cash, setCash, handling, setHandlingMode, assists, setAssistsMode, onTuned, startCareer }: MenuProps) {
 	const [cityFilter, setCityFilter] = useState("telaviv");
 	const [showSet, setShowSet] = useState(false);
 	allBests();
@@ -868,7 +922,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 						min: 0,
 						max: 12,
 						value: fov,
-						onChange: (e) => setFovMode(Number(e.target.value)),
+						onChange: (e: { target: { value: string } }) => setFovMode(Number(e.target.value)),
 						className: "mt-1 w-full accent-current"
 					}),
 					/* @__PURE__ */ jsx("p", {
@@ -891,7 +945,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 					}),
 					/* @__PURE__ */ jsxs("div", {
 						className: "mt-2 flex gap-2",
-						children: ["abs", "tcs", "esc"].map((k) => /* @__PURE__ */ jsx("button", {
+						children: (["abs", "tcs", "esc"] as const).map((k) => /* @__PURE__ */ jsx("button", {
 							type: "button",
 							className: cn("min-h-10 flex-1 rounded-md border text-xs font-medium uppercase tracking-widest", assists[k] ? "border-fg bg-fg text-bg" : "border-border"),
 							onClick: () => setAssistsMode({ ...assists, [k]: !assists[k] }),
@@ -1216,7 +1270,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 		]
 	});
 }
-function CareerPanel({ langHe, t, starTotal, onBack, onStart }) {
+function CareerPanel({ langHe, t, starTotal, onBack, onStart }: { langHe: boolean; t: CopyFn; starTotal: number; onBack: () => void; onStart: (id: string) => void }) {
 	const earned = allEventStars();
 	return /* @__PURE__ */ jsxs("div", {
 		className: "mx-auto w-full max-w-3xl",
@@ -1308,11 +1362,11 @@ function CareerPanel({ langHe, t, starTotal, onBack, onStart }) {
 		]
 	});
 }
-function GaragePanel({ langHe, t, carId, setCarId, cash, setCash, onBack, onTuned }) {
-	const car = CARS.find((c) => c.id === carId);
+function GaragePanel({ langHe, t, carId, setCarId, cash, setCash, onBack, onTuned }: { langHe: boolean; t: CopyFn; carId: CarId; setCarId: Dispatch<SetStateAction<CarId>>; cash: number; setCash: Dispatch<SetStateAction<number>>; onBack: () => void; onTuned: () => void }) {
+	const car = CARS.find((c) => c.id === carId) ?? CARS[0]!;
 	const tune = getTune(carId);
 	const tuned = applyTune(car, tune);
-	const buy = (kind) => {
+	const buy = (kind: "engine" | "tires" | "nitro") => {
 		const cost = nextCost(kind, tune[kind]);
 		if (cost == null) return;
 		if (!spendCash(cost)) return;
@@ -1323,7 +1377,7 @@ function GaragePanel({ langHe, t, carId, setCarId, cash, setCash, onBack, onTune
 		setCash(getCash());
 		onTuned();
 	};
-	const buyPaint = (id) => {
+	const buyPaint = (id: number) => {
 		if (id === tune.paint) return;
 		if (id !== 0 && !spendCash(450)) return;
 		setTune(carId, {
@@ -1333,7 +1387,7 @@ function GaragePanel({ langHe, t, carId, setCarId, cash, setCash, onBack, onTune
 		setCash(getCash());
 		onTuned();
 	};
-	const buyLivery = (id) => {
+	const buyLivery = (id: number) => {
 		if (id === (tune.livery ?? 0)) return;
 		if (id !== 0 && !spendCash(700)) return;
 		setTune(carId, {
@@ -1400,7 +1454,7 @@ function GaragePanel({ langHe, t, carId, setCarId, cash, setCash, onBack, onTune
 						className: "text-sm font-medium",
 						children: langHe ? car.nameHe : car.nameEn
 					}),
-					[
+					([
 						[
 							"engine",
 							t("מנוע", "Engine"),
@@ -1416,7 +1470,7 @@ function GaragePanel({ langHe, t, carId, setCarId, cash, setCash, onBack, onTune
 							t("ניטרו", "Nitro"),
 							t("מיכל וצריכה", "Tank and drain")
 						]
-					].map(([key, label, hint]) => {
+					] as const).map(([key, label, hint]) => {
 						const lvl = tune[key];
 						const cost = nextCost(key, lvl);
 						return /* @__PURE__ */ jsxs("div", {

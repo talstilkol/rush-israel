@@ -29,7 +29,7 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 - [x] 0.1 Inspired copy — **DONE**
 - [ ] 0.2 Prod: no `?qa=1` without `VITE_QA` — **PARTIAL** (`check:qa` exists)
 - [x] 0.3 Record hash — **DONE** (tiny) — *was wrongly listed NOT DONE*
-- [ ] 0.4 No `@ts-nocheck` in `world.ts` / `game-app.tsx` — **NOT DONE**
+- [x] 0.4 No `@ts-nocheck` in `world.ts` / `game-app.tsx` — **DONE** (`tsc --noEmit` clean; generated `routeTree.gen.ts` still nocheck)
 - [x] 0.5 Honest README — **DONE**
 
 ## Phase 1 — G0 frame
