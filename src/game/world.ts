@@ -3460,11 +3460,17 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const saP = tlv(32.0714, 34.7866);
     const saronaX = saP.x;
     const saronaZ = saP.z;
-    const sarona = new THREE.Mesh(new THREE.BoxGeometry(9.8 * s, 98 * s, 9.8 * s), glass);
+    const sarona = new THREE.Mesh(new THREE.CylinderGeometry(5.1 * s, 5.5 * s, 98 * s, 8), glass);
     sarona.position.set(saronaX, 49 * s, saronaZ);
     add(sarona);
-    const sarona2 = new THREE.Mesh(new THREE.BoxGeometry(7.6 * s, 20 * s, 7.6 * s), paleGlass);
-    sarona2.position.set(saronaX, 108 * s, saronaZ);
+    for (let i = 0; i < 8; i++) {
+      const a = (i / 8) * Math.PI * 2 + Math.PI / 8;
+      const post = new THREE.Mesh(new THREE.BoxGeometry(0.22 * s, 96 * s, 0.22 * s), bandMat);
+      post.position.set(saronaX + Math.cos(a) * 5.25 * s, 49 * s, saronaZ + Math.sin(a) * 5.25 * s);
+      add(post);
+    }
+    const sarona2 = new THREE.Mesh(new THREE.CylinderGeometry(3.6 * s, 4.6 * s, 18 * s, 8), paleGlass);
+    sarona2.position.set(saronaX, 107 * s, saronaZ);
     add(sarona2);
     const md = tlv(32.0806, 34.7926);
     const midA = new THREE.Mesh(new THREE.BoxGeometry(10.4 * s, 78 * s, 12.4 * s), darkGlass);
