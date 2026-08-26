@@ -104,6 +104,7 @@ export type PostStack = {
   setFilter: (f: number) => void;
   setBudget: (lite: boolean) => void;
   setTier: (q: "low" | "mid" | "high") => void;
+  setBloom: (on: boolean) => void;
   render: () => void;
   dispose: () => void;
 };
@@ -180,6 +181,10 @@ export function createPost(
       if (smaa) smaa.enabled = q !== "low";
       bloom.enabled = night && q === "high";
       bloom.strength = night && q === "high" ? 0.11 : 0;
+    },
+    setBloom(on: boolean) {
+      bloom.enabled = on && night && tier === "high";
+      bloom.strength = bloom.enabled ? 0.11 : 0;
     },
     render() {
       if (useComposer) composer.render();

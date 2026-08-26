@@ -38,6 +38,7 @@ export type World = {
   ramps: any[];
   followShadows: (x: number, y: number, z: number) => void;
   followMirror: (x: number, z: number, yaw: number) => void;
+  setPlanar: (on: boolean) => void;
   sunDir: THREE.Vector3;
   tick: (now: number, x: number, z: number) => void;
   setTime: (night: boolean) => any;
@@ -1044,6 +1045,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     group.add(new THREE.Mesh(keep(buildRail(built, -1)), railMat));
   }
   let mirror = null;
+  let planarOk = true;
   if (shadows) {
     const res = 768;
     mirror = new Reflector(new THREE.PlaneGeometry(36, 64), {
@@ -2180,7 +2182,7 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     dirNear.visible = dir.castShadow;
   };
   const followMirror = (x, z, yaw) => {
-    if (!mirror) return;
+    if (!mirror || !planarOk) return;
     mirror.visible = true;
     mirror.position.set(x, 0.028, z);
     mirror.rotation.set(-Math.PI / 2, yaw, 0);
@@ -2431,6 +2433,10 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     },
     followShadows,
     followMirror,
+    setPlanar(on) {
+      planarOk = !!on;
+      if (mirror) mirror.visible = planarOk;
+    },
     sunDir: lightAim,
     tick,
     setTime,

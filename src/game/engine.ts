@@ -195,7 +195,8 @@ export class RaceEngine {
   private lite = false;
   private quality: Quality = "high";
   private droppedTier = false;
-  private dyn = new DynamicQualityController(22);
+  private dyn = new DynamicQualityController();
+  private csmMuted = false;
   private soft = false;
   private mode: RaceMode = "circuit";
   private totalLaps = 3;
@@ -371,6 +372,7 @@ export class RaceEngine {
       setFilter() {},
       setBudget() {},
       setTier() {},
+      setBloom() {},
       render: () => this.renderer.render(this.scene, this.camera),
       dispose() {},
     });
@@ -767,7 +769,8 @@ export class RaceEngine {
       this.post.dispose();
       this.post = post;
       this.leases.retain("post", () => this.post.dispose());
-      this.post.setTier(this.droppedTier && this.quality === "high" ? "mid" : this.quality);
+      this.post.setTier(this.quality);
+      this.applyGfxStep();
       this.onResize();
     } catch {
       /* keep direct render */
@@ -787,6 +790,8 @@ export class RaceEngine {
     this.quality = q === "low" || q === "mid" ? q : "high";
     this.lite = this.quality === "low" || this.soft;
     this.droppedTier = false;
+    this.dyn.reset();
+    this.csmMuted = false;
     const mobile = typeof navigator !== "undefined" && /mobi|android|iphone|ipad/i.test(navigator.userAgent);
     const scale = this.lite ? 1 : this.quality === "mid" ? 0.75 : 0.85;
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1) * scale);
@@ -795,6 +800,7 @@ export class RaceEngine {
     else if (!(this.post as { composer?: unknown }).composer) this.upgradeGraphics();
     else this.post.setTier(this.quality);
     this.world.setLod?.(this.quality);
+    this.applyGfxStep();
     this.onResize();
   }
 
@@ -987,6 +993,21 @@ export class RaceEngine {
     this.opts.onRestore?.();
   };
 
+  private applyGfxStep() {
+    const s = this.dyn.step;
+    this.droppedTier = s > 0;
+    this.world.setPlanar(s < 1);
+    this.post.setBloom(s < 2);
+    this.csmMuted = s >= 3;
+    const base = this.lite ? 1 : this.quality === "mid" ? 0.75 : 0.85;
+    const extra = Math.max(0, s - 3);
+    const scale = Math.max(0.5, base * Math.pow(0.85, extra));
+    const mobile = typeof navigator !== "undefined" && /mobi|android|iphone|ipad/i.test(navigator.userAgent);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1) * scale);
+    this.onResize();
+    if (import.meta.env.DEV) console.info("[gfx]", s, "planar", s < 1, "bloom", s < 2, "csm", s < 3, "px", scale.toFixed(2));
+  }
+
   private onResize() {
     const w = this.canvas.clientWidth;
     const h = Math.max(1, this.canvas.clientHeight);
@@ -1006,12 +1027,10 @@ export class RaceEngine {
     this.last = now;
     dt = Math.min(dt, 0.1);
     this.telem.push(dt * 1000);
-    if (!this.soft && this.quality === "high" && !this.droppedTier) {
+    if (!this.soft && this.quality !== "low") {
       const snap = this.telem.snapshot();
-      if (this.dyn.note(snap.p95, snap.n)) {
-        this.post.setTier("mid");
-        this.droppedTier = true;
-      }
+      const act = this.dyn.note(snap.p95, dt);
+      if (act) this.applyGfxStep();
     }
 
     const hoodDown = this.input.keys.has("KeyC") || this.input.keys.has("KeyV") || !!navigator.getGamepads?.()?.[0]?.buttons[3]?.pressed;
@@ -2210,6 +2229,10 @@ export class RaceEngine {
 
   private updateCsm() {
     if (!this.csm) return;
+    if (this.csmMuted) {
+      for (const L of this.csm.lights) L.intensity = 0;
+      return;
+    }
     this.csm.lightDirection.copy(this.world.sunDir).multiplyScalar(-1).normalize();
     const n = nightAmt(this.clock);
     const I = n > 0.5 ? 0.16 : 1.22;

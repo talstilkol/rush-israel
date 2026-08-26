@@ -19,7 +19,7 @@ V only where the *small* spec is 100.
 
 ## Phase 1 — G0 frame
 - [x] 1.1 HUD ms + draw calls — **PARTIAL** (p95 + dc + kinMix on `?qa=1`)
-- [ ] 1.2 fps<50 cascade — **PARTIAL** (composer tier; not planar→CSM)
+- [x] 1.2 fps<50 cascade — **DONE** (tiny: planar→bloom→CSM mute→pixelScale, hysteresis 5s)
 - [ ] 1.3 Low 60 on phone — **NOT DONE**
 - [ ] 1.4 Lease CSM maps — **NOT DONE**
 
