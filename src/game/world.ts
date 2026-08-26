@@ -55,277 +55,35 @@ function asphaltTexture(lanes = 2) {
   if (!kit) throw new Error("baked asphalt missing");
   return kit;
 }
-function skyEquirect(isNight, def) {
-  const W = 2048;
-  const H = 1024;
-  const c = document.createElement("canvas");
-  c.width = W;
-  c.height = H;
-  const ctx = c.getContext("2d");
-  const desert = def.theme === "desert" || def.id === "ramon";
-  const snow = def.theme === "snow" || def.id === "hermon";
-  const zen = isNight ? [10, 16, 32] : desert ? [78, 168, 214] : snow ? [118, 178, 218] : [48, 142, 214];
-  const hor = isNight ? [28, 38, 56] : desert ? [214, 196, 168] : snow ? [198, 220, 236] : [176, 214, 236];
-  const bot = isNight ? [14, 18, 26] : desert ? [168, 140, 104] : snow ? [210, 222, 230] : [118, 148, 108];
-  for (let y = 0; y < H; y++) {
-    const t = y / H;
-    let r;
-    let g;
-    let b;
-    if (t < 0.46) {
-      const k = t / 0.46;
-      const u = k * k;
-      r = zen[0] + (hor[0] - zen[0]) * u;
-      g = zen[1] + (hor[1] - zen[1]) * u;
-      b = zen[2] + (hor[2] - zen[2]) * u;
-    } else if (t < 0.55) {
-      const u = (t - 0.46) / 0.09;
-      r = hor[0] + (bot[0] - hor[0]) * u;
-      g = hor[1] + (bot[1] - hor[1]) * u;
-      b = hor[2] + (bot[2] - hor[2]) * u;
-    } else {
-      r = bot[0];
-      g = bot[1];
-      b = bot[2];
-    }
-    ctx.fillStyle = `rgb(${r | 0},${g | 0},${b | 0})`;
-    ctx.fillRect(0, y, W, 1);
-  }
-  if (!isNight) {
-    const sx = W * 0.68;
-    const sy = H * 0.34;
-    const glow = ctx.createRadialGradient(sx, sy, 2, sx, sy, 140);
-    glow.addColorStop(0, "rgba(255,252,236,1)");
-    glow.addColorStop(0.08, "rgba(255,236,180,0.85)");
-    glow.addColorStop(0.28, "rgba(255,210,120,0.28)");
-    glow.addColorStop(1, "rgba(180,210,255,0)");
-    ctx.fillStyle = glow;
-    ctx.fillRect(sx - 140, sy - 140, 280, 280);
-    ctx.globalAlpha = 0.42;
-    for (let i = 0; i < 14; i++) {
-      const x = hash01(i, 3) * W;
-      const y = 70 + hash01(i, 5) * H * 0.28;
-      const rw = 70 + hash01(i, 7) * 180;
-      const rh = 16 + hash01(i, 9) * 26;
-      ctx.fillStyle = hash01(i, 11) > 0.55 ? "#f7fafc" : "#e8eef4";
-      ctx.beginPath();
-      ctx.ellipse(x, y, rw, rh, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.ellipse(x + rw * 0.35, y + 6, rw * 0.55, rh * 0.8, 0, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    ctx.globalAlpha = 1;
-  } else {
-    ctx.fillStyle = "#f2f0e4";
-    const mx = W * 0.28;
-    const my = H * 0.22;
-    ctx.beginPath();
-    ctx.arc(mx, my, 18, 0, Math.PI * 2);
-    ctx.fill();
-    const halo = ctx.createRadialGradient(mx, my, 18, mx, my, 70);
-    halo.addColorStop(0, "rgba(220,224,240,0.35)");
-    halo.addColorStop(1, "rgba(220,224,240,0)");
-    ctx.fillStyle = halo;
-    ctx.fillRect(mx - 70, my - 70, 140, 140);
-    ctx.fillStyle = "#dce6f4";
-    for (let i = 0; i < 80; i++) {
-      const x = hash01(i, 21) * W;
-      const y = hash01(i, 23) * H * 0.45;
-      const s = 0.6 + hash01(i, 25) * 1.4;
-      ctx.globalAlpha = 0.35 + hash01(i, 27) * 0.55;
-      ctx.fillRect(x, y, s, s);
-    }
-    ctx.globalAlpha = 1;
-  }
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 4;
-  tex.mapping = THREE.EquirectangularReflectionMapping;
-  return tex;
-}
 function herodianTexture() {
   const baked = getHerodian();
-  if (baked) return baked;
-  const c = document.createElement("canvas");
-  c.width = 256;
-  c.height = 256;
-  const ctx = c.getContext("2d");
-  ctx.fillStyle = "#8a7a62";
-  ctx.fillRect(0, 0, 256, 256);
-  for (let row = 0; row < 8; row++) {
-    const h = 32;
-    const off = row % 2 ? 20 : 0;
-    for (let col = -1; col < 6; col++) {
-      const x = col * 48 + off;
-      const y = row * h;
-      ctx.fillStyle = row % 3 === 0 ? "#c4b496" : "#b8a482";
-      ctx.fillRect(x + 2, y + 2, 44, 28);
-      ctx.fillStyle = "rgba(40,32,22,0.28)";
-      ctx.fillRect(x + 2, y + h - 6, 44, 3);
-    }
-  }
-  const tex = new THREE.CanvasTexture(c);
-  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  tex.anisotropy = 8;
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.repeat.set(3, 2);
-  return tex;
+  if (!baked) throw new Error("herodian texture missing");
+  return baked;
 }
 function curtainTexture(kind = "blue") {
   const baked = getCurtain(kind);
-  if (baked) return baked;
-  const c = document.createElement("canvas");
-  c.width = 256;
-  c.height = 1024;
-  const ctx = c.getContext("2d");
-  const palettes = {
-    blue: { wall: "#163848", frame: "#8eb4c4", lit: "#d8f0fa", dim: "#1c4860", dark: "#0a2030", accent: "#2a6078" },
-    teal: { wall: "#14383c", frame: "#7ab0b0", lit: "#c8f0f0", dim: "#1a5050", dark: "#0a2828", accent: "#2a6868" },
-    dark: { wall: "#101418", frame: "#6a7480", lit: "#c8dce8", dim: "#1a2830", dark: "#080c10", accent: "#243038" },
-    gold: { wall: "#3a3220", frame: "#c4a878", lit: "#f4ead0", dim: "#4a4030", dark: "#18140c", accent: "#6a5840" },
-    white: { wall: "#d8d2c8", frame: "#8a8680", lit: "#f4f8fc", dim: "#c4c8cc", dark: "#3a4048", accent: "#b0aaa0" }
-  };
-  const p = palettes[kind] || palettes.blue;
-  ctx.fillStyle = p.wall;
-  ctx.fillRect(0, 0, 256, 1024);
-  const floorH = 32;
-  const colW = 28;
-  for (let y = 0; y < 1024; y += floorH) {
-    ctx.fillStyle = p.accent;
-    ctx.fillRect(0, y, 256, 4);
-    ctx.fillStyle = p.frame;
-    ctx.fillRect(0, y, 256, 2);
-    for (let x = 2; x < 254; x += colW) {
-      const r = hash01(kind.charCodeAt(0), x, y);
-      ctx.fillStyle = r > 0.68 ? p.lit : r > 0.38 ? p.dim : p.dark;
-      ctx.fillRect(x + 3, y + 7, colW - 7, floorH - 12);
-    }
-  }
-  ctx.fillStyle = p.frame;
-  for (let x = 0; x < 256; x += colW) ctx.fillRect(x, 0, 2, 1024);
-  ctx.fillStyle = p.dark;
-  ctx.fillRect(0, 980, 256, 44);
-  for (let x = 8; x < 248; x += 40) {
-    ctx.fillStyle = p.lit;
-    ctx.fillRect(x, 992, 22, 24);
-  }
-  const tex = new THREE.CanvasTexture(c);
-  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  tex.anisotropy = 8;
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.repeat.set(2, 8);
-  return tex;
+  if (!baked) throw new Error("curtain texture missing");
+  return baked;
 }
 function curbTexture(kind) {
   const baked = getCurb(kind);
-  if (baked) return baked;
-  const c = document.createElement("canvas");
-  c.width = 16;
-  c.height = 64;
-  const ctx = c.getContext("2d");
-  const a = kind === "stone" ? "#efe4c8" : kind === "dirt" ? "#7a5a38" : kind === "sand" ? "#d0b080" : "#f7f2ea";
-  const b = kind === "stone" ? "#c4ae88" : kind === "dirt" ? "#4a3624" : kind === "sand" ? "#a88858" : "#e0141c";
-  for (let i = 0; i < 4; i++) {
-    ctx.fillStyle = i % 2 === 0 ? a : b;
-    ctx.fillRect(0, i * 16, 16, 16);
-  }
-  const tex = new THREE.CanvasTexture(c);
-  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 8;
-  tex.repeat.set(1, 1);
-  return tex;
+  if (!baked) throw new Error("curb texture missing");
+  return baked;
 }
 function foliageTexture() {
   const baked = getFoliage();
-  if (baked) return baked;
-  const size = 128;
-  const c = document.createElement("canvas");
-  c.width = c.height = size;
-  const ctx = c.getContext("2d");
-  ctx.fillStyle = "#1c5a24";
-  ctx.fillRect(0, 0, size, size);
-  const img = ctx.getImageData(0, 0, size, size);
-  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
-    const i = (y * size + x) * 4;
-    const n = hash01(x, y) * 40 - 12;
-    const vein = Math.abs(Math.sin(x * 0.4 + y * 0.15)) < 0.12 ? -18 : 0;
-    const g = clamp(88 + n + vein, 36, 140);
-    img.data[i] = 18 + n * 0.2;
-    img.data[i + 1] = g;
-    img.data[i + 2] = 22 + n * 0.15;
-    img.data[i + 3] = 255;
-  }
-  ctx.putImageData(img, 0, 0);
-  const tex = new THREE.CanvasTexture(c);
-  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  tex.anisotropy = 4;
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.repeat.set(2, 2);
-  return tex;
+  if (!baked) throw new Error("foliage texture missing");
+  return baked;
 }
 function barkTexture() {
   const baked = getBark();
-  if (baked) return baked;
-  const size = 128;
-  const c = document.createElement("canvas");
-  c.width = c.height = size;
-  const ctx = c.getContext("2d");
-  ctx.fillStyle = "#4a3424";
-  ctx.fillRect(0, 0, size, size);
-  const img = ctx.getImageData(0, 0, size, size);
-  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
-    const i = (y * size + x) * 4;
-    const ridge = Math.sin(x * 0.55) * 18 + hash01(x, y) * 22 - 10;
-    const crack = Math.abs(Math.sin(x * 1.2 + y * 0.08)) < 0.08 ? -28 : 0;
-    img.data[i] = clamp(74 + ridge + crack, 28, 120);
-    img.data[i + 1] = clamp(48 + ridge * 0.6 + crack, 18, 88);
-    img.data[i + 2] = clamp(28 + ridge * 0.3, 10, 52);
-    img.data[i + 3] = 255;
-  }
-  ctx.putImageData(img, 0, 0);
-  const tex = new THREE.CanvasTexture(c);
-  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  tex.anisotropy = 4;
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.repeat.set(1, 3);
-  return tex;
+  if (!baked) throw new Error("bark texture missing");
+  return baked;
 }
 function sidewalkTexture() {
   const baked = getSidewalk();
-  if (baked) return baked;
-  const size = 256;
-  const c = document.createElement("canvas");
-  c.width = c.height = size;
-  const ctx = c.getContext("2d");
-  ctx.fillStyle = "#d8d2c8";
-  ctx.fillRect(0, 0, size, size);
-  const img = ctx.getImageData(0, 0, size, size);
-  for (let i = 0; i < img.data.length; i += 4) {
-    const n = (hash01(i, 17) - 0.5) * 18;
-    img.data[i] += n;
-    img.data[i + 1] += n;
-    img.data[i + 2] += n;
-  }
-  ctx.putImageData(img, 0, 0);
-  ctx.strokeStyle = "rgba(90,86,80,0.35)";
-  ctx.lineWidth = 3;
-  for (let i = 0; i <= 4; i++) {
-    ctx.beginPath();
-    ctx.moveTo(i * size / 4, 0);
-    ctx.lineTo(i * size / 4, size);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(0, i * size / 4);
-    ctx.lineTo(size, i * size / 4);
-    ctx.stroke();
-  }
-  const tex = new THREE.CanvasTexture(c);
-  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 4;
-  return tex;
+  if (!baked) throw new Error("sidewalk texture missing");
+  return baked;
 }
 function groundTexture(hex) {
   const baked = getGroundNoise();
