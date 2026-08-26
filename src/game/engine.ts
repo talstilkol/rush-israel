@@ -26,6 +26,9 @@ import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput,
 import { createWorld, type World } from "./world";
 import { RenderTelemetry } from "../rendering/RenderTelemetry";
 import { AYALON_GOLDEN } from "../world/goldenCameras";
+import { RendererFacade } from "../rendering/RendererFacade";
+import { profileFromLegacy } from "../rendering/QualityProfile";
+import { ResourceRegistry } from "../rendering/ResourceRegistry";
 
 const FIXED = PHYSICS_DT;
 
@@ -134,6 +137,8 @@ type Options = {
 
 export class RaceEngine {
   private renderer: THREE.WebGLRenderer;
+  private gfx!: RendererFacade;
+  private leases = new ResourceRegistry();
   private scene: THREE.Scene;
   private camera: THREE.PerspectiveCamera;
   private input!: GameInput;
@@ -273,7 +278,7 @@ export class RaceEngine {
   private timeVoided = false;
   private qaForcedFinish = false;
   private glLost = false;
-  private telem = new RenderTelemetry();
+  private telem: RenderTelemetry;
 
   constructor(canvas: HTMLCanvasElement, opts: Options) {
     this.canvas = canvas;
@@ -287,14 +292,10 @@ export class RaceEngine {
     this.lite = this.quality === "low";
     this.fovExtra = opts.fovExtra ?? 0;
 
-    this.renderer = new THREE.WebGLRenderer({ canvas, antialias: !mobile, alpha: false, powerPreference: "high-performance" });
-    const scale = this.quality === "low" ? 1 : this.quality === "mid" ? 0.75 : 0.85;
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1) * scale);
-    this.renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
-    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
-    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = opts.night ? 1.12 : 0.68;
-    this.telem.backend = this.renderer.capabilities.isWebGL2 ? "webgl2" : "webgl1";
+    this.gfx = RendererFacade.init(canvas, profileFromLegacy(this.quality));
+    this.renderer = this.gfx.gl;
+    this.telem = this.gfx.telem;
+    this.gfx.setEnvironment(opts.night ? 1.12 : 0.68);
 
     const soft = isSoftwareGL(this.renderer);
     this.soft = soft;
@@ -851,7 +852,7 @@ export class RaceEngine {
     this.world.setClock(this.clock);
     const n = nightAmt(this.clock);
     const morning = n <= 0.5 && this.clock < 0.38;
-    this.renderer.toneMappingExposure = n > 0.5 ? 1.12 : morning ? 0.72 : 0.68;
+    this.gfx.setEnvironment(n > 0.5 ? 1.12 : morning ? 0.72 : 0.68);
     const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
     const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
     this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc);
@@ -925,7 +926,7 @@ export class RaceEngine {
   private onResize() {
     const w = this.canvas.clientWidth;
     const h = Math.max(1, this.canvas.clientHeight);
-    this.renderer.setSize(w, h, false);
+    this.gfx.resize(w, h, this.renderer.getPixelRatio());
     this.camera.aspect = w / h;
     this.camera.updateProjectionMatrix();
     const size = new THREE.Vector2();
@@ -978,7 +979,7 @@ export class RaceEngine {
       } else {
         this.world.setClock(this.clock);
         const morning = n <= 0.5 && this.clock < 0.38;
-        this.renderer.toneMappingExposure = n > 0.5 ? 1.12 : morning ? 0.72 : 0.68;
+        this.gfx.setEnvironment(n > 0.5 ? 1.12 : morning ? 0.72 : 0.68);
         const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
         const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
         const sky = n > 0.5 ? 0x182436 : morning ? 0x4aa8d8 : desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
@@ -2141,7 +2142,8 @@ export class RaceEngine {
       }
       this.clearRoadblock();
     }
-    this.renderer.dispose();
+    this.leases.disposeAll();
+    this.gfx.dispose();
     if (this.qaHookAllowed()) {
       delete window.__controlsTest;
       delete window.render_game_to_text;
