@@ -376,7 +376,7 @@ export class RaceEngine {
       dispose() {},
     });
 
-    this.envRT = new THREE.WebGLRenderTarget(1, 1);
+    this.setEnvRT(new THREE.WebGLRenderTarget(1, 1));
     this.post = fallbackPost();
 
     if (!soft && this.quality !== "low") {
@@ -438,6 +438,10 @@ export class RaceEngine {
     });
     if (!soft && this.quality !== "low") {
       this.probeRT = new THREE.WebGLCubeRenderTarget(96);
+      this.leases.retain("probe-rt", () => {
+        this.probeRT?.dispose();
+        this.probeRT = null;
+      });
       this.probeCam = new THREE.CubeCamera(1.2, 220, this.probeRT);
     }
 
@@ -751,8 +755,7 @@ export class RaceEngine {
     if (this.disposed) return;
     try {
       const env = bakeEnv(this.renderer, this.world.night);
-      this.envRT.dispose();
-      this.envRT = env;
+      this.setEnvRT(env);
       this.scene.environment = env.texture;
       this.scene.environmentIntensity = this.world.night ? 0.52 : 0.88;
     } catch {
@@ -919,8 +922,7 @@ export class RaceEngine {
     }
     try {
       const env = bakeEnv(this.renderer, this.world.night);
-      this.envRT.dispose();
-      this.envRT = env;
+      this.setEnvRT(env);
       this.scene.environment = env.texture;
     } catch {
       /* keep previous env */
@@ -2174,6 +2176,12 @@ export class RaceEngine {
       });
   }
 
+  private setEnvRT(rt: THREE.WebGLRenderTarget) {
+    this.leases.release("env-rt");
+    this.envRT = rt;
+    this.leases.retain("env-rt", () => this.envRT.dispose());
+  }
+
   private bindCsm() {
     if (!this.csm) return;
     this.scene.traverse((o) => {
@@ -2214,8 +2222,6 @@ export class RaceEngine {
       this.csm = null;
       this.world.dispose();
       this.post.dispose();
-      this.envRT.dispose();
-      this.probeRT?.dispose();
       this.leases.disposeAll();
       this.skyTex?.dispose();
       this.sparks.geometry.dispose();
