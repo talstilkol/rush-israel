@@ -1,45 +1,45 @@
-# Execution plan — remaining Codex (honest)
+# Remaining work — none of these are 100
 
-Do **not** bake more procedural PNGs. Do **not** add cities. Stop when a gate is green.
+Do **not** bake more procedural PNGs. Do **not** add cities.
 
-## A — Ayalon vertical slice (gate 1)
-- [ ] A1 One real road strip (photo/GIS) or officially drop the claim
-- [ ] A2 Azrieli: measured footprint + glass curtain photos, not primitives
-- [ ] A3 8+8 lanes + rail median measured against aerial
-- [ ] A4 Screenshot QA vs reference photo (human: “that’s Azrieli”)
+## A — Ayalon (gate 1) — all open
+- [ ] A1 Photo/GIS road strip or drop the claim
+- [ ] A2 Azrieli measured + photo glass (now: primitives, ratio only)
+- [ ] A3 Aerial-measured 8+8+rail (now: 8-lane UV + 18m gap, not measured)
+- [ ] A4 Human QA vs reference still
 
 ## B — Hero car (gate 2)
-- [ ] B1 One external glTF (not extrude)
-- [ ] B2 Paint shader flakes, not `flake.png` dots
-- [ ] B3 Four wheel meshes + steer
-- [ ] B4 Hide cabin or model a cockpit
+- [ ] B1 External glTF, not extrude
+- [ ] B2 Shader flakes, not flake.png
+- [x] B3 Four wheel meshes + steer — **PARTIAL** (meshes+steer+visual travel; not physics)
+- [ ] B4 Cockpit or hide cabin
 
 ## C — Physics (gate 3)
-- [ ] C1 Per-wheel Pacejka + load
-- [ ] C2 Suspension travel → Y
-- [ ] C3 Grade from height samples (Ramon/Hermon/Jerusalem)
-- [ ] C4 OBB buildings vs cylinder
+- [x] C1 Per-wheel Pacejka — **PARTIAL** (4 slip angles, still spline)
+- [x] C2 Suspension Y — **PARTIAL** (visual only)
+- [x] C3 Grade*g — **PARTIAL** (Ramon/Hermon elevation exists; not DEM)
+- [x] C4 AABB hx/hz — **PARTIAL** (not rotated OBB)
 
-## D — Renderer (gates 4–7)
-- [ ] D1 Optional `WebGPURenderer` with WebGL fallback (game still runs)
-- [ ] D2 TSL road + car only
-- [ ] D3 Three.js CSM
-- [ ] D4 SMAA default; TRAA after budget
-- [ ] D5 No SSGI until A+B pass
+## D — Renderer
+- [ ] D1 WebGPURenderer optional
+- [ ] D2 TSL road+car
+- [ ] D3 Three CSM
+- [ ] D4 SMAA default; TRAA later
+- [ ] D5 No SSGI until A+B
 
-## E — Asset pipe (gate 8)
-- [ ] E1 Actual `.ktx2` for asphalt/sky
-- [ ] E2 Delete runtime canvas fallbacks
-- [ ] E3 Shipping path: zero `document.createElement("canvas")` except probe
-- [ ] E4 Lease every RT in ResourceRegistry
+## E — Assets
+- [ ] E1 Real `.ktx2` (blocked: no KTX-Software)
+- [ ] E2 Delete canvas fallbacks
+- [ ] E3 Shipping: zero canvas except probe
+- [ ] E4 Lease every RT
 
-## F — Rest of Israel (after A is green)
-Rothschild → Hayarkon/Reading → Jaffa → Jerusalem A→B → Ramon A→B → Hermon A→B → Carmel.  
-Each: 15 GPS landmarks + reference still + zero generic boxes.
+## F — Israel after A is green
+Rothschild / Reading / Jaffa / Jerusalem / Ramon / Hermon / Carmel:  
+15 GPS + reference still + zero generic boxes. Today: silhouette only.
 
 ## G — Ship
-- [ ] Playwright golden cameras
+- [ ] Golden cameras CI
 - [ ] Forced WebGL2 CI
-- [ ] WebGPU CI if D1 lives
-- [ ] Strip `?qa=1` from shipping
-- [ ] 13/13 gates green (today **0/13**)
+- [ ] WebGPU CI if D1
+- [ ] Strip `?qa=1`
+- [ ] **0/13 gates green**

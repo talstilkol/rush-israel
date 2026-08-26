@@ -1,72 +1,60 @@
-# Codex audit — 26 Aug 2026 (honest)
+# Codex audit — 26 Aug 2026 late morning (honest)
 
-**~12%.** Ship gates **0/13**. Not GT7. Not Asphalt Legends.
+**~12%.** Ship gates **0/13**. Not GT7. Not Asphalt.
 
-Statuses: DONE / PARTIAL / FAKED / NOT DONE.
-
-## 1. Strategy layers
-| Item | Status | Evidence |
+## 1. Strategy
+| Item | Status | 100? |
 |---|---|---|
-| Ultra WebGPU | NOT DONE | no `WebGPURenderer` in `src/` |
-| Balanced WebGPU/WebGL2 | PARTIAL | quality profiles + SMAA on High |
-| Compat WebGL2 | PARTIAL | Low skips composer |
-| Photo/Cinematic mode | NOT DONE | no Photo Mode |
+| Ultra WebGPU | NOT DONE | no |
+| Balanced WebGPU/WebGL2 | PARTIAL | no — SMAA High only |
+| Compat WebGL2 | PARTIAL | no |
+| Photo Mode | NOT DONE | no |
 
-## 2–10. Renderer / lighting / assets
-| Item | Status | Evidence |
-|---|---|---|
-| RendererFacade | PARTIAL | WebGL only (`RendererFacade.ts`) |
-| CapabilityProbe | PARTIAL | probes WebGPU, does not switch backend |
-| Color / ACES | PARTIAL | `ColorPipeline` + dielectric; no HDRI |
-| LookDev presets | PARTIAL | golden/rain flags; not calibrated |
-| glTF cars | PARTIAL | 5 Meshopt GLB ~6.5KB extrudes |
-| KTX2 textures | NOT DONE | loader hooked; **zero `.ktx2` files** |
-| Meshopt | DONE | cars load `.glb` meshopt |
-| ResourceRegistry | PARTIAL | exists; not all RTs leased |
-| DynamicQuality | PARTIAL | exists; not device-validated 60fps |
-| World cells / HLOD | NOT DONE | |
-| OSM / DEM / GIS | NOT DONE | GPS-ish constants only |
-| Photogrammetry road | FAKED if marked done | baked procedural PNG |
-| 2D baked sky | PARTIAL | `sky-day.png` / `sky-night.png`; not HDRI |
-| Dual directional shadows | PARTIAL | not Three.js CSM |
-| CubeCamera probe | PARTIAL | 96px every 8 frames |
-| SMAA | PARTIAL | High only |
-| TRAA / TAAU | NOT DONE | |
-| SSGI / volumetrics | NOT DONE | |
-| Planar road reflector | PARTIAL | |
-| Blob shadow | PARTIAL | radial PNG |
-| Flake paint | PARTIAL | noise PNG, not flakes |
-| CI WebGPU+WebGL | NOT DONE | no `.github/` |
+## 25. Top ten
+| # | Item | Status | 100? |
+|---|---|---|---|
+| 1 | Hero car | PARTIAL | no — extrude GLB Meshopt |
+| 2 | Real road | FAKED if checked | procedural PNG |
+| 3 | Physical lighting | PARTIAL | dielectric, no HDRI |
+| 4 | glTF/KTX2/Meshopt | PARTIAL | Meshopt DONE; **zero .ktx2** |
+| 5 | World cells | NOT DONE | |
+| 6 | Wet road | PARTIAL | |
+| 7 | WebGPU+TSL | NOT DONE | |
+| 8 | CSM+probes | PARTIAL | 2 dir lights, CubeCamera 96 |
+| 9 | TRAA | NOT DONE | SMAA only |
+| 10 | SSGI/weather | NOT DONE | |
 
 ## G0–G6
 | Item | Status |
 |---|---|
-| G0 Low direct-to-screen | DONE |
+| G0 Low→screen | DONE |
 | G1 road specular | PARTIAL |
-| G3 car paint + probe | PARTIAL |
+| G3 flakes+probe | PARTIAL |
 | G4 blob | PARTIAL |
-| G5 facade atlas (photos) | FAKED | curtain drawings |
-| G6 headlight cookie | PARTIAL | `beam.png` |
+| G5 facade photos | FAKED |
+| G6 headlights | PARTIAL |
 
-## P0–P5 Israel
+## P0–P5
 | Item | Status |
 |---|---|
-| P0 road mesh + UV lanes | PARTIAL |
-| P1 HDRI | NOT DONE (2D sky instead) |
-| P2 5 cars | PARTIAL (extrude) |
-| P3 4-wheel physics | PARTIAL (Pacejka on spline) |
-| P4 Ayalon landmarks | PARTIAL | silhouette only: Azrieli ratio, ToHa twist, City Gate hole, Savidor vault, Midtown twins, thick ramps, IR nose, HaShalom tube. **Not scans.** |
-| P4 Rothschild / Hayarkon / Jaffa / Jerusalem / Ramon / Hermon / Carmel | PARTIAL | identity, not photogrammetry |
-| P4 zero generic buildings (Ayalon) | PARTIAL | NYC scatter/crowd/ads off |
-| P5 minimal UI + Esc | DONE |
+| P0 road mesh | PARTIAL |
+| P1 HDRI | NOT DONE (2D sky) |
+| P2 5 cars | PARTIAL |
+| P3 4-wheel physics | PARTIAL — Pacejka + visual travel. Not 4 independent dampers |
+| P4 Ayalon | PARTIAL — silhouettes + 18m median. Not GIS |
+| P4 Rothschild | PARTIAL — ficus/Habima/Independence Hall primitives |
+| P4 Hayarkon/Reading | PARTIAL — plant off-road, chimneys stay |
+| P4 Jaffa | PARTIAL — clock + vault boxes |
+| P4 Jerusalem/Ramon/Hermon/Carmel | PARTIAL |
+| P5 UI+Esc | DONE |
 | P5 60fps soak | NOT DONE |
-| P5 real track-card photos | NOT DONE |
+| P5 real track photos | NOT DONE |
 
-## Runtime canvas (still present = not 100)
-Fallbacks remain in `world.ts`, `engine.ts` (`paintSky`), `car-mesh.ts`, `nyc-landmarks.ts`, `buildings.ts` (Hebrew signs), `mkSign`.
+## Still canvas in src (~28 createElement)
+Fallbacks + mkSign + NYC LED + buildings motza. **E3 NOT DONE.**
 
-## What changed since last audit (still not a % bump)
-Azrieli height ratio, ToHa diamonds, City Gate hole, Savidor vault, Midtown/Electra, thick ramps, IR nose, HaShalom ribs. All primitives.
+## Since last audit (did not raise %)
+Median 18m, pitch visual, wheel travel visual, Rothschild ficus/Habima, Reading off-road, Jaffa vaults. All primitives.
 
-## Ship gates (all red)
-Hero car scan, real road segment, physical lighting, KTX2 content, world cells, wet road, WebGPU, CSM, TRAA, weather/SSGI, GIS Israel, golden-camera CI, no canvas in shipping.
+## FAKED if anyone ticked
+Photogrammetry · GIS · WebGPU · KTX2 files · “no generic buildings” globally · world-class graphics.
