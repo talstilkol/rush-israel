@@ -264,7 +264,7 @@ function laneCountFor(def: TrackDef) {
   if (def.id === "rothschild" || def.id === "hayarkon" || def.id === "jerusalem") return 3;
   return 3;
 }
-function buildCurb(built: BuiltTrack, side: number) {
+function buildCurb(built: BuiltTrack, side: number, centerOff = 0) {
   const d0 = built.width / 2;
   const d1 = d0 + 0.55;
   const pos = [];
@@ -276,8 +276,8 @@ function buildCurb(built: BuiltTrack, side: number) {
     const v = (i === n ? built.length : s.s) / 2.4;
     const rx = s.rx * side;
     const rz = s.rz * side;
-    pos.push(s.x + rx * d0, s.y + 0.06, s.z + rz * d0);
-    pos.push(s.x + rx * d1, s.y + 0.58, s.z + rz * d1);
+    pos.push(s.x + rx * d0 + s.rx * centerOff, s.y + 0.06, s.z + rz * d0 + s.rz * centerOff);
+    pos.push(s.x + rx * d1 + s.rx * centerOff, s.y + 0.58, s.z + rz * d1 + s.rz * centerOff);
     uv.push(0, v, 1, v);
   }
   for (let i = 0; i < n; i++) {
@@ -931,6 +931,11 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   }));
   group.add(new THREE.Mesh(keep(buildCurb(built, 1)), curbMat));
   group.add(new THREE.Mesh(keep(buildCurb(built, -1)), curbMat));
+  if (def.id === "ayalon") {
+    const oppOff = built.width + 18;
+    group.add(new THREE.Mesh(keep(buildCurb(built, 1, oppOff)), curbMat));
+    group.add(new THREE.Mesh(keep(buildCurb(built, -1, oppOff)), curbMat));
+  }
   {
     const eyeGeo = keep(new THREE.BoxGeometry(0.2, 0.09, 0.32));
     const eyeMat = keep(new THREE.MeshBasicMaterial({ color: 0xfff2b0, fog: false }));
