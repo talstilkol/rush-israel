@@ -742,7 +742,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 150 : def.id === "hermon" ? 120 : def.theme === "carmel" ? 110 : 78;
+    const outer = def.id === "ramon" ? 190 : def.id === "hermon" ? 120 : def.theme === "carmel" ? 110 : 78;
     let valleyX = 0;
     let valleyZ = 0;
     let invertSide = false;
@@ -767,7 +767,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       const hw = built.width / 2 + 1.2;
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 68 + Math.min(48, s.y * 0.4) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 36 + s.y * 0.22 : def.theme === "carmel" ? s.y + 22 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 96 + Math.min(70, s.y * 0.55) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 36 + s.y * 0.22 : def.theme === "carmel" ? s.y + 22 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
@@ -7199,7 +7199,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         const ms = -vs;
         const d = built.width / 2 + 9.5;
         const y0 = s.y - 4;
-        const y1 = s.y + 62 + Math.min(36, s.y * 0.35);
+        const y1 = s.y + 88 + Math.min(48, s.y * 0.4);
         cPos.push(s.x + s.rx * d * ms, y0, s.z + s.rz * d * ms);
         cPos.push(s.x + s.rx * d * ms, y1, s.z + s.rz * d * ms);
       }
