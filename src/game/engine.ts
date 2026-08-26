@@ -337,7 +337,7 @@ export class RaceEngine {
     await loadRoadFor(this.trackDef.id);
     await loadBlob();
     await loadFlake();
-    await loadCars();
+    await loadCars(this.renderer);
     await loadTreeMaps();
     await loadCurbs();
     await loadCurtains();

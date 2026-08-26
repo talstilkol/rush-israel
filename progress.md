@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Blob shadow is a baked PNG. Still a radial, not a contact shadow.
+GLTFLoader has KTX2 + Meshopt hooked. Current car files are still uncompressed JSON glTF.
