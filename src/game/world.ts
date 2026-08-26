@@ -7121,7 +7121,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const roof = new THREE.Mesh(new THREE.ConeGeometry(11, 5.4, 4), snowM);
     roof.position.set(peak.x - 32, lodgeY + 8.4, peak.z - 24);
     add(roof);
-    const snowField = new THREE.Mesh(new THREE.CircleGeometry(110, 22), snowM);
+    const snowField = new THREE.Mesh(new THREE.CircleGeometry(168, 24), snowM);
     snowField.rotation.x = -Math.PI / 2;
     snowField.position.set(peak.x + 18, def.elevation(1) + 0.35, peak.z + 28);
     add(snowField);
