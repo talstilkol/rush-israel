@@ -914,7 +914,7 @@ function aimLight(isNight, sun, azimuth, out) {
 }
 function applyLights(isNight, hemi, dir, fill, ambient, lightAim, flareCol, lensflare) {
   hemi.color.setHex(isNight ? 0x6a88b0 : 0xa8c8e8);
-  hemi.groundColor.setHex(isNight ? 0x2a241c : 0x6a5a48);
+  hemi.groundColor.setHex(isNight ? 0x2a241c : 0x4a5248);
   hemi.intensity = isNight ? 0.72 : 0.82;
   dir.color.setHex(isNight ? 0xc8d4e8 : 0xfff0d0);
   dir.intensity = isNight ? 0.42 : 1.45;
@@ -1109,13 +1109,13 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   group.add(skyDome);
   let span = 420;
   for (const s of built.samples) span = Math.max(span, Math.hypot(s.x, s.z));
-  const groundCol = def.theme === "desert" ? def.sand : def.theme === "stone" ? 12890250 : def.theme === "carmel" ? 4874808 : def.theme === "snow" ? 15265524 : def.theme === "jaffa" ? 12098164 : 5920332;
+  const groundCol = def.id === "ayalon" ? 0x3a4046 : def.theme === "desert" ? def.sand : def.theme === "stone" ? 12890250 : def.theme === "carmel" ? 4874808 : def.theme === "snow" ? 15265524 : def.theme === "jaffa" ? 12098164 : 5920332;
   const ground = new THREE.Mesh(keep(new THREE.PlaneGeometry(Math.max(def.id === "scopus" || def.id === "hermon" || def.id === "ramon" ? 2800 : 1200, span * (def.id === "scopus" ? 4.2 : 2.8)), Math.max(def.id === "scopus" || def.id === "hermon" || def.id === "ramon" ? 2800 : 1200, span * (def.id === "scopus" ? 4.2 : 2.8)))), keep(new THREE.MeshStandardMaterial({
     map: keep(groundTexture(def.ground)),
     color: groundCol,
     roughness: 0.97,
-    metalness: 0.02,
-    envMapIntensity: 0.18
+    metalness: 0,
+    envMapIntensity: 0.1
   })));
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = -0.4;
