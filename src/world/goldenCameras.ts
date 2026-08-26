@@ -4,7 +4,7 @@
  */
 export type GoldenCam = {
   id: string;
-  look: "summer14" | "golden" | "nightrain" | "rain";
+  look: "summer14" | "golden" | "night" | "nightrain" | "rain";
   t: number;
   he: string;
   en: string;

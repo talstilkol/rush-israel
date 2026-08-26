@@ -7,6 +7,7 @@ import { mulberry32, lerp, clamp, hash01 } from "./math";
 import { nearestIndex } from "./spline";
 import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, her, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, ram, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
 import { scatterStreetBuildings } from "./buildings";
+import { LOOKS, lookFromFlags } from "../rendering/EnvironmentState";
 import { addNycLandmarks } from "./nyc-landmarks";
 import { generateStreets, nearestStreet } from "./streets";
 import { bindRoadCompile } from "./roadShader";
@@ -2255,7 +2256,9 @@ export async function createWorld(def, built, shadows, night, weather = "clear")
     }
     if (roadMat.userData.uWet) {
       const n2 = nightAmt(clock);
-      roadMat.userData.uWet.value = wx === "rain" || wx === "storm" ? 1 : n2 > 0.45 ? 0.35 : 0;
+      const morning = n2 <= 0.5 && clock < 0.38;
+      const look = lookFromFlags(n2 > 0.5, wx, morning);
+      roadMat.userData.uWet.value = LOOKS[look].wetness;
     }
   };
   const _dayHemi = new THREE.Color(9356520);

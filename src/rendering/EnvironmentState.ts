@@ -1,5 +1,5 @@
-/** G4-01 stub / LookDev ids. No HDRI, no calibrated luminance. */
-export type LookId = "summer14" | "golden" | "nightrain" | "rain";
+/** LookDev + fog table (Codex 53 / 56). No HDRI, no calibrated luminance. */
+export type LookId = "summer14" | "golden" | "night" | "nightrain" | "rain";
 
 export type EnvironmentState = {
   look: LookId;
@@ -12,13 +12,33 @@ export type EnvironmentState = {
 export const LOOKS: Record<LookId, EnvironmentState> = {
   summer14: { look: "summer14", exposure: 0.68, wetness: 0, night: 0, vis: 1 },
   golden: { look: "golden", exposure: 0.78, wetness: 0, night: 0.12, vis: 1 },
+  night: { look: "night", exposure: 1.05, wetness: 0.08, night: 1, vis: 0.85 },
   nightrain: { look: "nightrain", exposure: 1.05, wetness: 0.65, night: 1, vis: 0.72 },
   rain: { look: "rain", exposure: 0.62, wetness: 1, night: 0.08, vis: 0.55 },
 };
 
-export function lookFromFlags(night: boolean, weather: string): LookId {
-  if (weather === "rain" && night) return "nightrain";
-  if (weather === "rain") return "rain";
-  if (night) return "nightrain";
+export function lookFromFlags(night: boolean, weather: string, morning = false): LookId {
+  if ((weather === "rain" || weather === "storm") && night) return "nightrain";
+  if (weather === "rain" || weather === "storm") return "rain";
+  if (night) return "night";
+  if (morning) return "golden";
   return "summer14";
+}
+
+export type FogKey = "city" | "desert" | "snow" | "carmel" | "stone";
+
+export const FOG: Record<FogKey, { day: number; night: number; far: number; dayCol: number; nightCol: number }> = {
+  city: { day: 0.000012, night: 0.00016, far: 10000, dayCol: 0x6eb4dc, nightCol: 0x1a2838 },
+  desert: { day: 0.00006, night: 0.00012, far: 12000, dayCol: 0xb8a888, nightCol: 0x1a2838 },
+  snow: { day: 0.00004, night: 0.0001, far: 12000, dayCol: 0xc8dcec, nightCol: 0x1a2838 },
+  carmel: { day: 0.00002, night: 0.0001, far: 12000, dayCol: 0x6eb4dc, nightCol: 0x1a2838 },
+  stone: { day: 0.00003, night: 0.00012, far: 8000, dayCol: 0xc4b49a, nightCol: 0x1a2838 },
+};
+
+export function fogKey(theme: string, id: string): FogKey {
+  if (id === "ramon" || theme === "desert") return "desert";
+  if (id === "hermon" || theme === "snow") return "snow";
+  if (theme === "carmel") return "carmel";
+  if (theme === "stone" || id === "jerusalem" || id === "scopus") return "stone";
+  return "city";
 }

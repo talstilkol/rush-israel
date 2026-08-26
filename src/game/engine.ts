@@ -49,7 +49,7 @@ import { RenderTelemetry } from "../rendering/RenderTelemetry";
 import { AYALON_GOLDEN } from "../world/goldenCameras";
 import { RendererFacade } from "../rendering/RendererFacade";
 import { profileFromLegacy } from "../rendering/QualityProfile";
-import { LOOKS, lookFromFlags } from "../rendering/EnvironmentState";
+import { FOG, fogKey, LOOKS, lookFromFlags } from "../rendering/EnvironmentState";
 import { ResourceRegistry } from "../rendering/ResourceRegistry";
 import { DynamicQualityController } from "../rendering/DynamicQualityController";
 
@@ -277,8 +277,6 @@ export class RaceEngine {
     this.gfx = RendererFacade.init(canvas, profileFromLegacy(this.quality));
     this.renderer = this.gfx.gl;
     this.telem = this.gfx.telem;
-    this.gfx.setEnvironment(opts.night ? 1.12 : 0.68);
-
     const soft = isSoftwareGL(this.renderer);
     this.soft = soft;
     if (soft) this.lite = true;
@@ -287,16 +285,16 @@ export class RaceEngine {
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     this.scene = new THREE.Scene();
-    const desert = this.trackDef.theme === "desert" || opts.trackId === "ramon";
-    const snow = this.trackDef.theme === "snow" || opts.trackId === "hermon";
-    const skyDay = desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
+    const spec = FOG[fogKey(this.trackDef.theme, opts.trackId)];
+    const skyDay = this.trackDef.theme === "desert" || opts.trackId === "ramon" ? 0x4aa8dc : this.trackDef.theme === "snow" || opts.trackId === "hermon" ? 0x6eb0d8 : 0x2f8fd4;
     const skyNight = 0x182436;
-    this.fog = new THREE.FogExp2(opts.night ? skyNight : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x6eb4dc, opts.night ? 0.00016 : desert ? 0.00006 : 0.000012);
+    this.gfx.setEnvironment(opts.night ? LOOKS.night.exposure : LOOKS.summer14.exposure);
+    this.fog = new THREE.FogExp2(opts.night ? spec.nightCol : spec.dayCol, opts.night ? spec.night : spec.day);
     this.scene.fog = this.fog;
     this.scene.background = new THREE.Color(opts.night ? skyNight : skyDay);
 
-    const mountain = opts.trackId === "ramon" || opts.trackId === "hermon" || opts.trackId === "scopus" || opts.trackId === "jerusalem" || this.trackDef.theme === "carmel";
-    this.camera = new THREE.PerspectiveCamera(68, canvas.clientWidth / Math.max(1, canvas.clientHeight), 0.28, mountain ? 12000 : 10000);
+    const mountain = spec.far >= 12000 || opts.trackId === "scopus" || opts.trackId === "jerusalem";
+    this.camera = new THREE.PerspectiveCamera(68, canvas.clientWidth / Math.max(1, canvas.clientHeight), 0.28, spec.far);
 
     this.opts.onBoot?.(0.12);
     canvas.addEventListener("webglcontextlost", this.onContextLost);
@@ -899,25 +897,29 @@ export class RaceEngine {
     this.applyClockSky(false);
   }
 
+  private applyLook() {
+    const n = nightAmt(this.clock);
+    const morning = n <= 0.5 && this.clock < 0.38;
+    const look = lookFromFlags(n > 0.5, this.weather, morning);
+    this.gfx.setEnvironment(LOOKS[look].exposure);
+    const spec = FOG[fogKey(this.trackDef.theme, this.trackDef.id)];
+    this.fog.color.setHex(n > 0.5 ? spec.nightCol : spec.dayCol);
+    this.fog.density = n > 0.5 ? spec.night : spec.day;
+    this.scene.fog = this.fog;
+    this.applyAltitudeLook();
+  }
+
   private applyClockSky(rebake: boolean) {
     if (this.disposed) return;
     this.world.setClock(this.clock);
     const n = nightAmt(this.clock);
-    const morning = n <= 0.5 && this.clock < 0.38;
-    const look = morning && this.weather !== "rain" ? "golden" : lookFromFlags(n > 0.5, this.weather);
-    this.gfx.setEnvironment(LOOKS[look].exposure);
-    const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
-    const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
-    this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x6eb4dc);
-    this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.000012;
-    this.scene.fog = this.fog;
+    this.applyLook();
     const baked = n > 0.5 ? getSkyNight() : getSkyDay();
     if (baked) {
       this.scene.background = baked;
     } else {
       this.scene.background = new THREE.Color(n > 0.5 ? 0x0a1424 : 0x1a74c4);
     }
-    this.applyAltitudeLook();
     this.scene.environmentIntensity = n > 0.5 ? 0.28 : 0.88;
     this.post.setNight(n > 0.5);
     const lamps = n > 0.42;
@@ -939,33 +941,34 @@ export class RaceEngine {
   }
 
   private applyAltitudeLook() {
+    const spec = FOG[fogKey(this.trackDef.theme, this.trackDef.id)];
     if (this.trackDef.id !== "ramon" && this.trackDef.id !== "hermon" && this.trackDef.id !== "jerusalem" && this.trackDef.id !== "scopus" && this.trackDef.theme !== "carmel") return;
     const n = nightAmt(this.clock);
     if (n > 0.5) return;
     if (this.trackDef.id === "hermon") {
       const u = clamp(this.player.y / 110, 0, 1);
-      this.fog.density = lerp(0.00004, 0.0001, u);
+      this.fog.density = lerp(spec.day, spec.night * 0.62, u);
       this.fog.color.lerp(new THREE.Color(0xc8d8e8), u * 0.28);
       return;
     }
     if (this.trackDef.id === "scopus") {
       const u = clamp(this.player.y / 52, 0, 1);
-      this.fog.density = lerp(0.00003, 0.00006, u);
+      this.fog.density = lerp(spec.day, spec.night * 0.5, u);
       this.fog.color.lerp(new THREE.Color(0xd0dce8), u * 0.2);
       return;
     }
     if (this.trackDef.id === "jerusalem") {
       const u = clamp(this.player.y / 54, 0, 1);
-      this.fog.density = lerp(0.00005, 0.00004, u);
+      this.fog.density = lerp(spec.day, spec.day * 0.85, u);
       return;
     }
     if (this.trackDef.theme === "carmel") {
       const u = clamp(this.player.y / 48, 0, 1);
-      this.fog.density = lerp(0.00005, 0.0001, u);
+      this.fog.density = lerp(spec.day, spec.night * 0.7, u);
       return;
     }
     const u = clamp(1 - this.player.y / 110, 0, 1);
-    this.fog.density = lerp(0.00005, 0.00014, u);
+    this.fog.density = lerp(spec.day, spec.night * 0.9, u);
     this.fog.color.lerp(new THREE.Color(0xd8c4a0), u * 0.4);
   }
 
@@ -1060,15 +1063,7 @@ export class RaceEngine {
         this.clockBake = 0;
       } else {
         this.world.setClock(this.clock);
-        const morning = n <= 0.5 && this.clock < 0.38;
-        this.gfx.setEnvironment(n > 0.5 ? 1.12 : morning ? 0.72 : 0.68);
-        const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
-        const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
-        const sky = n > 0.5 ? 0x182436 : morning ? 0x4aa8d8 : desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
-        this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x4a98cc);
-        this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.000028;
-        this.scene.background = new THREE.Color(sky);
-        this.applyAltitudeLook();
+        this.applyLook();
       }
     }
 
