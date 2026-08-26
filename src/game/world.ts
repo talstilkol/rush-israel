@@ -397,9 +397,9 @@ function applyLights(
 ) {
   hemi.color.setHex(isNight ? 0x6a88b0 : 0xa8c8e8);
   hemi.groundColor.setHex(isNight ? 0x2a241c : 0x4a5248);
-  hemi.intensity = isNight ? 0.42 : 0.82;
+  hemi.intensity = isNight ? 0.42 : 0.68;
   dir.color.setHex(isNight ? 0xc8d4e8 : 0xfff0d0);
-  dir.intensity = isNight ? 0.32 : 1.45;
+  dir.intensity = isNight ? 0.32 : 1.12;
   dir.position.copy(lightAim).multiplyScalar(95);
   flareCol.setHex(isNight ? 16760944 : 16767136);
   if (lensflare) lensflare.visible = false;
@@ -5645,6 +5645,14 @@ function addLandmarks(
       const sign2 = sign.clone();
       sign2.rotation.y = 0;
       add(sign2);
+      for (const gx of [-8, 8]) {
+        const gpost = new THREE.Mesh(new THREE.BoxGeometry(0.35, 4.6, 0.35), conc);
+        gpost.position.set(c.x + gx, 11.7, c.z);
+        add(gpost);
+      }
+      const gbar = new THREE.Mesh(new THREE.BoxGeometry(18.4, 0.28, 0.28), conc);
+      gbar.position.set(c.x, 13.95, c.z);
+      add(gbar);
       const spd = getSign("speed90");
       if (spd) {
         const nS = nearestIndex(built.samples, c.x, c.z, 0);

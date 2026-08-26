@@ -70,7 +70,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 ## Phase 5 — Ayalon freeze (GATE 1)
 - [ ] 5.1 Hashalom **user** still — **NOT DONE** (**blocks freeze**)
 - [ ] 5.2 Azrieli photo glass — **NOT DONE**
-- [ ] 5.3 Savidor + ramps + named towers — **PARTIAL** (tiny: ramps asphalt-8; columns OBB; speed90; no fake torus; named towers still blocked)
+- [ ] 5.3 Savidor + ramps + named towers — **PARTIAL** (tiny: ramps asphalt-8; columns OBB; speed90; gantry; no fake torus; named towers still blocked)
 - [x] 5.4 Opposite carriageway — **DONE** (tiny: reverse chevrons + wear + curbs; not GIS 8+8)
 - [ ] 5.5 Freeze sources — **NOT DONE** (**FAKED** if claimed frozen)
 
@@ -84,6 +84,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 - [ ] 7.4 SMAA / no fake TAA — **PARTIAL**
 - [x] 7.5 No SSGI — **DONE** (constraint)
 - [x] 7.6 Night fill — **DONE** (tiny: hemi/dir/ambient + headlamps; not HDRI)
+- [x] 7.7 Day sun — **DONE** (tiny: dir 1.12 / hemi 0.68; ACES table untouched)
 
 ## Phase 8 — Assets
 - [ ] 8.1 UASTC — **PARTIAL**
