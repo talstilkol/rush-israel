@@ -55,7 +55,7 @@ function pngRgba(w, h, data) {
 }
 
 const W = 512;
-const lanes = 8;
+function bakeLanes(lanes) {
 const img = Buffer.alloc(W * W * 4);
 const rough = Buffer.alloc(W * W * 4);
 const bump = Buffer.alloc(W * W * 4);
@@ -116,7 +116,10 @@ for (let y = 0; y < W; y++)
     bump[i + 3] = 255;
   }
 
-writeFileSync(join(dir, "asphalt-8.png"), pngRgba(W, W, img));
-writeFileSync(join(dir, "asphalt-8-rough.png"), pngRgba(W, W, rough));
-writeFileSync(join(dir, "asphalt-8-bump.png"), pngRgba(W, W, bump));
+writeFileSync(join(dir, `asphalt-${lanes}.png`), pngRgba(W, W, img));
+writeFileSync(join(dir, `asphalt-${lanes}-rough.png`), pngRgba(W, W, rough));
+writeFileSync(join(dir, `asphalt-${lanes}-bump.png`), pngRgba(W, W, bump));
+}
+bakeLanes(8);
+bakeLanes(3);
 console.log("baked", dir);

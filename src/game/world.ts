@@ -9,7 +9,7 @@ import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, 
 import { scatterStreetBuildings } from "./buildings";
 import { addNycLandmarks } from "./nyc-landmarks";
 import { generateStreets, nearestStreet } from "./streets";
-import { getAyalonRoad } from "./road-assets";
+import { getBakedRoad } from "./road-assets";
 import { getSkyDay, getSkyNight } from "./sky-assets";
 
 export type World = {
@@ -38,10 +38,8 @@ export type World = {
 var _dummy = new THREE.Object3D();
 var _color = new THREE.Color();
 function asphaltTexture(lanes = 2) {
-  if (lanes >= 8) {
-    const kit = getAyalonRoad();
-    if (kit) return kit;
-  }
+  const kit = getBakedRoad(lanes);
+  if (kit) return kit;
   const w = 1024;
   const h = 1024;
   const c = document.createElement("canvas");
@@ -1211,7 +1209,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   }
   const lanes = laneCountFor(def);
   const roadMaps = asphaltTexture(lanes);
-  if (!(lanes >= 8 && getAyalonRoad())) bag.push(roadMaps.map, roadMaps.roughnessMap, roadMaps.bumpMap);
+  if (!getBakedRoad(lanes)) bag.push(roadMaps.map, roadMaps.roughnessMap, roadMaps.bumpMap);
   const roadMat = keep(new THREE.MeshPhysicalMaterial({
     map: roadMaps.map,
     roughnessMap: roadMaps.roughnessMap,

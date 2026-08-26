@@ -6,10 +6,15 @@ export type RoadKit = {
   bumpMap: THREE.Texture;
 };
 
-let ayalon: RoadKit | undefined;
+const kits = new Map<number, RoadKit>();
+
+export function getBakedRoad(lanes: number): RoadKit | undefined {
+  const n = lanes >= 8 ? 8 : lanes >= 3 ? 3 : 0;
+  return n ? kits.get(n) : undefined;
+}
 
 export function getAyalonRoad(): RoadKit | undefined {
-  return ayalon;
+  return kits.get(8);
 }
 
 function prep(tex: THREE.Texture, srgb: boolean) {
@@ -21,19 +26,28 @@ function prep(tex: THREE.Texture, srgb: boolean) {
   return tex;
 }
 
-/** Ayalon 8-lane PNG. Still a baked procedural, not photogrammetry. */
-export async function loadAyalonRoad() {
-  if (ayalon) return ayalon;
+async function loadLane(n: number) {
+  if (kits.has(n)) return kits.get(n)!;
   const L = new THREE.TextureLoader();
   const [map, roughnessMap, bumpMap] = await Promise.all([
-    L.loadAsync("/game/asphalt-8.png"),
-    L.loadAsync("/game/asphalt-8-rough.png"),
-    L.loadAsync("/game/asphalt-8-bump.png"),
+    L.loadAsync(`/game/asphalt-${n}.png`),
+    L.loadAsync(`/game/asphalt-${n}-rough.png`),
+    L.loadAsync(`/game/asphalt-${n}-bump.png`),
   ]);
-  ayalon = {
+  const kit = {
     map: prep(map, true),
     roughnessMap: prep(roughnessMap, false),
     bumpMap: prep(bumpMap, false),
   };
-  return ayalon;
+  kits.set(n, kit);
+  return kit;
+}
+
+/** Baked procedural PNGs. Not photogrammetry. */
+export async function loadAyalonRoad() {
+  return loadLane(8);
+}
+
+export async function loadCityRoad() {
+  return loadLane(3);
 }
