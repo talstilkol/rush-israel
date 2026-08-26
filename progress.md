@@ -2,6 +2,4 @@
 
 **~9%** of the Web graphics plan. Ship gates **0/13**.
 
-HUD stripped to time / speed / street. Compass, mini-map, P2, rival, nitro gone.
-
-Not GIS. Not WebGPU. Not GT7.
+Dry asphalt: env 0.32, roughness 0.62 — no more white wash. Still canvas texture, not photogrammetry.

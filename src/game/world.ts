@@ -1197,13 +1197,13 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     roughnessMap: roadMaps.roughnessMap,
     bumpMap: roadMaps.bumpMap,
     bumpScale: 0.22,
-    color: 0xffffff,
-    roughness: 0.42,
+    color: 0xb4b8bc,
+    roughness: 0.62,
     metalness: 0,
-    envMapIntensity: 1.05,
-    clearcoat: 0.48,
-    clearcoatRoughness: 0.18,
-    reflectivity: 0.46
+    envMapIntensity: 0.32,
+    clearcoat: 0.12,
+    clearcoatRoughness: 0.55,
+    reflectivity: 0.18
   }));
   const road = new THREE.Mesh(keep(buildRoad(built)), roadMat);
   road.receiveShadow = true;
@@ -2710,12 +2710,12 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       roadMat.clearcoat = 0.38;
       roadMat.clearcoatRoughness = 0.26;
     } else {
-      roadMat.color.setHex(0xffffff);
-      roadMat.roughness = 0.42;
+      roadMat.color.setHex(0xb4b8bc);
+      roadMat.roughness = 0.62;
       roadMat.metalness = 0;
-      roadMat.envMapIntensity = 1.05;
-      roadMat.clearcoat = 0.48;
-      roadMat.clearcoatRoughness = 0.18;
+      roadMat.envMapIntensity = 0.32;
+      roadMat.clearcoat = 0.12;
+      roadMat.clearcoatRoughness = 0.55;
     }
   };
   const _dayHemi = new THREE.Color(9356520);
