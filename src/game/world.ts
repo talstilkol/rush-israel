@@ -2745,9 +2745,9 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     emissive: 1722982,
     emissiveIntensity: isNight ? nightEmi : 0
   });
-  const azGlass = mkGlass(winTex, 9090248, 0.38);
-  const azTriGlass = mkGlass(triTex, 6984616, 0.32);
-  const azSqGlass = mkGlass(sqTex, 4473924, 0.28);
+  const azGlass = mkGlass(winTex, 0x4e9a82, 0.38);
+  const azTriGlass = mkGlass(triTex, 0x8b6b4a, 0.32);
+  const azSqGlass = mkGlass(sqTex, 0x6a8aaa, 0.28);
   const gateGlass = mkGlass(gateTex, 1710618, 0.3);
   const tohaGlass = mkGlass(tohaTex, 12105908, 0.24);
   bag.push(darkGlass, paleGlass, bandMat, azGlass, azTriGlass, azSqGlass, gateGlass, tohaGlass);
@@ -2781,6 +2781,13 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     day: 0
   });
   const placeAzrieli = (s) => {
+    const azBand = new THREE.MeshStandardMaterial({
+      color: 0xece8e0,
+      metalness: 0.28,
+      roughness: 0.32,
+      envMapIntensity: 1.05
+    });
+    bag.push(azBand);
     const roundP = tlv(32.07455, 34.79195);
     const cx = roundP.x;
     const cz = roundP.z;
@@ -2792,7 +2799,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       const ringYs = [];
       for (let y = 4.4 * s; y < rH - 2.4 * s; y += 2.35 * s) ringYs.push(y);
       const ringGeo = new THREE.TorusGeometry(8.55 * s, 0.07 * s, 5, 24);
-      const rings = new THREE.InstancedMesh(ringGeo, bandMat, ringYs.length);
+      const rings = new THREE.InstancedMesh(ringGeo, azBand, ringYs.length);
       rings.frustumCulled = false;
       for (let i = 0; i < ringYs.length; i++) {
         const sc = 1 + ringYs[i] / rH * 0.041;
@@ -2807,7 +2814,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       group.add(rings);
       bag.push(ringGeo);
     }
-    const saucerUnd = new THREE.Mesh(new THREE.CylinderGeometry(17.2 * s, 9.4 * s, 2.6 * s, 36), bandMat);
+    const saucerUnd = new THREE.Mesh(new THREE.CylinderGeometry(17.2 * s, 9.4 * s, 2.6 * s, 36), azBand);
     saucerUnd.position.set(cx, rH + 0.4 * s, cz);
     add(saucerUnd);
     const saucer = new THREE.Mesh(new THREE.CylinderGeometry(17.8 * s, 15.6 * s, 1.8 * s, 36), paleGlass);
@@ -2816,11 +2823,11 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const saucerGlass = new THREE.Mesh(new THREE.SphereGeometry(9.4 * s, 28, 14, 0, Math.PI * 2, 0, Math.PI * 0.5), paleGlass);
     saucerGlass.position.set(cx, rH + 3.4 * s, cz);
     add(saucerGlass);
-    const saucerRim = new THREE.Mesh(new THREE.TorusGeometry(16.4 * s, 0.42 * s, 6, 36), bandMat);
+    const saucerRim = new THREE.Mesh(new THREE.TorusGeometry(16.4 * s, 0.42 * s, 6, 36), azBand);
     saucerRim.rotation.x = Math.PI / 2;
     saucerRim.position.set(cx, rH + 2.7 * s, cz);
     add(saucerRim);
-    const saucerRim2 = new THREE.Mesh(new THREE.TorusGeometry(12.2 * s, 0.28 * s, 6, 28), bandMat);
+    const saucerRim2 = new THREE.Mesh(new THREE.TorusGeometry(12.2 * s, 0.28 * s, 6, 28), azBand);
     saucerRim2.rotation.x = Math.PI / 2;
     saucerRim2.position.set(cx, rH + 3.6 * s, cz);
     add(saucerRim2);
@@ -2835,7 +2842,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     for (let i = 0; i < 3; i++) {
       const a = 0.52 + i * ((Math.PI * 2) / 3) + Math.PI / 3;
       const r = 9.2 * s;
-      const post = new THREE.Mesh(new THREE.BoxGeometry(0.62 * s, tH * 0.96, 0.62 * s), bandMat);
+      const post = new THREE.Mesh(new THREE.BoxGeometry(0.62 * s, tH * 0.96, 0.62 * s), azBand);
       post.position.set(triX + Math.cos(a) * r, tH * 0.5, triZ + Math.sin(a) * r);
       add(post);
     }
@@ -2843,7 +2850,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       const bandYs = [];
       for (let y = 6 * s; y < tH - 4 * s; y += 5.6 * s) bandYs.push(y);
       const bandGeo = new THREE.CylinderGeometry(9.2 * s, 10.2 * s, 0.45 * s, 3);
-      const bands = new THREE.InstancedMesh(bandGeo, bandMat, bandYs.length);
+      const bands = new THREE.InstancedMesh(bandGeo, azBand, bandYs.length);
       bands.frustumCulled = false;
       for (let i = 0; i < bandYs.length; i++) {
         _dummy.position.set(triX, bandYs[i], triZ);
@@ -2872,7 +2879,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       const slabYs = [];
       for (let y = 5.5 * s; y < sH - 3 * s; y += 2.9 * s) slabYs.push(y);
       const slabGeo = new THREE.BoxGeometry(15.8 * s, 0.35 * s, 15.8 * s);
-      const slabs = new THREE.InstancedMesh(slabGeo, bandMat, slabYs.length);
+      const slabs = new THREE.InstancedMesh(slabGeo, azBand, slabYs.length);
       slabs.frustumCulled = false;
       for (let i = 0; i < slabYs.length; i++) {
         _dummy.position.set(sqX, slabYs[i], sqZ);
@@ -2892,7 +2899,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const sq3 = new THREE.Mesh(new THREE.BoxGeometry(8.4 * s, 6.2 * s, 8.4 * s), azSqGlass);
     sq3.position.set(sqX, sH + 10.8 * s, sqZ);
     add(sq3);
-    const sqMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2 * s, 0.32 * s, 12 * s, 6), bandMat);
+    const sqMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2 * s, 0.32 * s, 12 * s, 6), azBand);
     sqMast.position.set(sqX, sH + 20 * s, sqZ);
     add(sqMast);
     const mallP = tlv(32.0744, 34.7922);
@@ -2902,7 +2909,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const atrium = new THREE.Mesh(new THREE.CylinderGeometry(16.4 * s, 16.4 * s, 14 * s, 32), paleGlass);
     atrium.position.set(mallP.x, 7 * s, mallP.z);
     add(atrium);
-    const atriumRim = new THREE.Mesh(new THREE.TorusGeometry(16.6 * s, 0.48 * s, 6, 32), bandMat);
+    const atriumRim = new THREE.Mesh(new THREE.TorusGeometry(16.6 * s, 0.48 * s, 6, 32), azBand);
     atriumRim.rotation.x = Math.PI / 2;
     atriumRim.position.set(mallP.x, 14.1 * s, mallP.z);
     add(atriumRim);
