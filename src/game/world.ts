@@ -5674,35 +5674,11 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         en
       });
       const yaw = Math.atan2(sx, sz);
-      const pos = new Float32Array([
-        -half,
-        y0,
-        -len * 0.5,
-        half,
-        y0,
-        -len * 0.5,
-        -half,
-        y12,
-        len * 0.5,
-        half,
-        y12,
-        len * 0.5
-      ]);
-      const geo = new THREE.BufferGeometry();
-      geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-      geo.setIndex([
-        0,
-        1,
-        2,
-        1,
-        3,
-        2
-      ]);
-      geo.computeVertexNormals();
-      bag.push(geo);
-      const mesh = new THREE.Mesh(geo, rampAsphalt);
-      mesh.position.set(x, 0, z);
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(half * 2, 0.95, len), rampAsphalt);
+      mesh.position.set(x, (y0 + y12) * 0.5, z);
+      mesh.rotation.order = "YXZ";
       mesh.rotation.y = yaw;
+      mesh.rotation.x = -Math.atan2(y12 - y0, len);
       mesh.receiveShadow = true;
       add(mesh);
     };
@@ -5760,11 +5736,12 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       const westX = tlv(ic.lat, 34.79405).x;
       const eastX = tlv(ic.lat, 34.798).x;
       const deckY = 9.4;
-      const deck = new THREE.Mesh(new THREE.BoxGeometry(72, 1.15, 16), conc);
+      const span = built.width + 28;
+      const deck = new THREE.Mesh(new THREE.BoxGeometry(span, 1.15, 16), conc);
       deck.position.set(c.x, deckY, c.z);
       add(deck);
       for (const side of [-7.8, 7.8]) {
-        const rail = new THREE.Mesh(new THREE.BoxGeometry(72, 1.15, 0.22), white);
+        const rail = new THREE.Mesh(new THREE.BoxGeometry(span, 1.15, 0.22), white);
         rail.position.set(c.x, 10.3, c.z + side);
         add(rail);
       }

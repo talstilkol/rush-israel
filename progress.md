@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Midtown: twin slabs + two skybridges. Electra taller crown. Still boxes.
+Interchange ramps are thick boxes; decks span Ayalon width. Not GIS ramps.
