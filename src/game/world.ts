@@ -3737,15 +3737,23 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     }
     const brick = new THREE.MeshStandardMaterial({ color: 9067074, roughness: 0.9 });
     bag.push(brick);
-    const rdHall = new THREE.Mesh(new THREE.BoxGeometry(32, 14, 18), brick);
-    rdHall.position.set(rd.x, 7, rd.z);
+    const rdHall = new THREE.Mesh(new THREE.BoxGeometry(36, 12, 20), brick);
+    rdHall.position.set(rd.x, 6, rd.z);
     add(rdHall);
-    for (const ox of [-7, 7]) {
-      const stack = new THREE.Mesh(new THREE.CylinderGeometry(2.1, 2.6, 42, 12), cream);
-      stack.position.set(rd.x + ox, 28, rd.z);
+    const rdHall2 = new THREE.Mesh(new THREE.BoxGeometry(22, 8, 14), cream);
+    rdHall2.position.set(rd.x + 8, 4, rd.z + 12);
+    add(rdHall2);
+    for (const ox of [-8, 8]) {
+      const stack = new THREE.Mesh(new THREE.CylinderGeometry(2.15, 2.7, 52, 14), brick);
+      stack.position.set(rd.x + ox, 32, rd.z);
       add(stack);
-      const lip = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.2, 1.4, 12), brick);
-      lip.position.set(rd.x + ox, 49.2, rd.z);
+      for (let b = 0; b < 5; b++) {
+        const ring = new THREE.Mesh(new THREE.CylinderGeometry(2.35, 2.5, 1.7, 14), white);
+        ring.position.set(rd.x + ox, 14 + b * 8, rd.z);
+        add(ring);
+      }
+      const lip = new THREE.Mesh(new THREE.CylinderGeometry(2.6, 2.2, 1.6, 14), brick);
+      lip.position.set(rd.x + ox, 58.4, rd.z);
       add(lip);
     }
     hit(rd.x, rd.z, 12, 16, 10);
