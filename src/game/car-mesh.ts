@@ -416,6 +416,7 @@ export function createCarVisual(
     }
     pivot.add(spin);
     pivot.position.set(x, y, z);
+    pivot.userData.y0 = y;
     pivot.traverse((o) => {
       if ((o as THREE.Mesh).isMesh) o.castShadow = shadows;
     });
@@ -606,6 +607,12 @@ export function updateCarVisual(
   for (const s of vis.spins) s.rotateX(spin);
   if (vis.wheels[0]) vis.wheels[0].rotation.y = steer * 0.38;
   if (vis.wheels[1]) vis.wheels[1].rotation.y = steer * 0.38;
+  const travel = 0.14;
+  const ys = vis.wheels.map((w) => (w.userData.y0 as number) ?? w.position.y);
+  if (vis.wheels[0]) vis.wheels[0].position.y = ys[0] + (-pitch + bank) * travel;
+  if (vis.wheels[1]) vis.wheels[1].position.y = ys[1] + (-pitch - bank) * travel;
+  if (vis.wheels[2]) vis.wheels[2].position.y = ys[2] + (pitch + bank) * travel;
+  if (vis.wheels[3]) vis.wheels[3].position.y = ys[3] + (pitch - bank) * travel;
   if (vis.steerWheel) vis.steerWheel.rotation.z = -steer * 0.9;
 
   const braking = brake > 0.15 || speed < -1;
