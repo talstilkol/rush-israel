@@ -71,7 +71,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 - [ ] 5.1 Hashalom **user** still — **NOT DONE** (**blocks freeze**)
 - [ ] 5.2 Azrieli photo glass — **NOT DONE**
 - [ ] 5.3 Savidor + ramps + named towers — **PARTIAL**
-- [ ] 5.4 Opposite carriageway — **PARTIAL**
+- [x] 5.4 Opposite carriageway — **DONE** (tiny: reverse chevrons + wear; not GIS 8+8)
 - [ ] 5.5 Freeze sources — **NOT DONE** (**FAKED** if claimed frozen)
 
 ## Phase 6 — Israel (illegal until 5.5)

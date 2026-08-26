@@ -838,6 +838,22 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     chevs.count = ci2;
     chevs.instanceMatrix.needsUpdate = true;
     group.add(chevs);
+    if (def.id === "ayalon") {
+      const oppOff = built.width + 18;
+      const chevs2 = new THREE.InstancedMesh(chevGeo, chevMat, chevN);
+      let cj = 0;
+      for (let i = 2; i < built.samples.length - 2 && cj < chevN; i += stepC) {
+        const s = built.samples[i];
+        _dummy.position.set(s.x + s.rx * oppOff, s.y + 0.06, s.z + s.rz * oppOff);
+        _dummy.scale.set(chevS, 1, chevS);
+        _dummy.rotation.set(0, Math.atan2(s.tx, s.tz) + Math.PI, 0);
+        _dummy.updateMatrix();
+        chevs2.setMatrixAt(cj++, _dummy.matrix);
+      }
+      chevs2.count = cj;
+      chevs2.instanceMatrix.needsUpdate = true;
+      group.add(chevs2);
+    }
   }
   const urban = def.theme === "bauhaus" || def.theme === "stone" || def.theme === "jaffa" || def.id === "telaviv" || def.id === "rothschild" || def.id === "hayarkon";
   const zebraGeo = keep(new THREE.BoxGeometry(0.42, 0.035, 2.4));
@@ -890,6 +906,23 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   wear.count = wearI;
   wear.instanceMatrix.needsUpdate = true;
   group.add(wear);
+  if (def.id === "ayalon") {
+    const oppOff = built.width + 18;
+    const wear2 = new THREE.InstancedMesh(wearGeo, wearMat, wearN);
+    let w2 = 0;
+    const stepW = Math.max(2, Math.floor(built.samples.length / wearN));
+    for (let i = 0; i < built.samples.length && w2 < wearN; i += stepW) {
+      const s = built.samples[i];
+      _dummy.position.set(s.x + s.rx * (oppOff - rightLane), s.y + 0.05, s.z + s.rz * (oppOff - rightLane));
+      _dummy.scale.set(1, 1, 1);
+      _dummy.rotation.set(0, Math.atan2(s.tx, s.tz) + Math.PI, 0);
+      _dummy.updateMatrix();
+      wear2.setMatrixAt(w2++, _dummy.matrix);
+    }
+    wear2.count = w2;
+    wear2.instanceMatrix.needsUpdate = true;
+    group.add(wear2);
+  }
   const curbTex = keep(curbTexture(def.theme === "stone" ? "stone" : def.theme === "desert" ? "sand" : def.theme === "carmel" || def.theme === "snow" ? "dirt" : "city"));
   const curbMat = keep(new THREE.MeshStandardMaterial({
     map: curbTex,
