@@ -55,7 +55,8 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 - [x] 4.1 Tire-only yaw at speed — **DONE** (tiny: crawl=0 when speed>12; `qa:drive` asserts `getKinMix`)
 - [x] 4.2 4-post Y — **DONE** (tiny: 4 spline/ramp corners, travel twist ≤0.12m unloads grip; still not 6DoF / DEM)
 - [ ] 4.3 Never say DEM — **PARTIAL** (code ok; keep copy honest)
-- [x] 4.4 Ayalon 200m no building hit — **DONE** (tiny: `qa:drive` corridor; most `hit()` still circles)
+- [x] 4.4 Ayalon 200m no building hit — **DONE** (tiny: `qa:drive` corridor)
+- [x] 4.4b Ayalon landmark yaw OBB — **DONE** (tiny: Azrieli/Savidor cluster; other tracks still yaw=0)
 - [x] 4.5 Airborne 12ms — **DONE** (tiny: ramp not airborne; 2.2m drop is; `qa:airborne` in `qa`)
 - [x] 5.5 CCD 2-cut above 25 m/s — **DONE** (tiny: not PhysX; 120Hz already <12ms)
 
@@ -130,6 +131,7 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 2.18. `5.2` 4-corner ride — **DONE** (tiny: spline samples + ramp probe; twist unloads grip).
 2.19. `2.1` wet roughness in road shader — **DONE** (tiny: no SSR).
 2.20. `8.4` CSM 3/1/0 on quality menu — **DONE** (tiny: hide extra lights; no setupMaterial rebuild).
+2.21. `5.4.2` Ayalon landmark yaw OBB — **DONE** (tiny: Hashalom/Savidor cluster; not every track).
 
 ### 3. After Hashalom still arrives
 3.1. Pose-lock `hashalom` in `goldenCameras.ts` to match the still.  

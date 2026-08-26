@@ -2493,6 +2493,11 @@ function addLandmarks(
       kind: "building"
     });
   };
+  const roadYaw = (x: number, z: number) => {
+    const s = built.samples[nearestIndex(built.samples, x, z, 0).index];
+    return Math.atan2(s.tx, s.tz);
+  };
+  const hitRoad = (x: number, z: number, r: number, hx?: number, hz?: number) => hit(x, z, r, hx, hz, roadYaw(x, z));
   const placeTunnel = (cx: number, cz: number, yaw: number, len: number, half: number, h: number, y0 = 0) => {
     const fx = Math.sin(yaw);
     const fz = Math.cos(yaw);
@@ -4149,12 +4154,12 @@ function addLandmarks(
     const discCut = new THREE.Mesh(new THREE.BoxGeometry(8, 20, 10), paleGlass);
     discCut.position.set(ds.x + 4, 48, ds.z);
     add(discCut);
-    hit(ds.x, ds.z, 7);
+    hitRoad(ds.x, ds.z, 7);
     glowAt(az.x, 110, az.z, 8308968, 70, 60);
-    hit(az.x + 17.08, az.z, 16, 22, 14, Math.atan2(built.samples[nearestIndex(built.samples, az.x, az.z, 0).index].tx, built.samples[nearestIndex(built.samples, az.x, az.z, 0).index].tz));
-    hit(saT.x, saT.z, 8);
-    hit(ky.x, ky.z, 10);
-    hit(el.x, el.z, 8);
+    hitRoad(az.x + 17.08, az.z, 16, 22, 14);
+    hitRoad(saT.x, saT.z, 8);
+    hitRoad(ky.x, ky.z, 10);
+    hitRoad(el.x, el.z, 8);
     const dz = tlv(32.0753, 34.7748);
     const dzPodium = new THREE.Mesh(new THREE.CylinderGeometry(18, 20, 8, 24), cream);
     dzPodium.position.set(dz.x, 4, dz.z);
@@ -4169,7 +4174,7 @@ function addLandmarks(
     dzRamp.rotation.x = Math.PI / 2;
     dzRamp.position.set(dz.x, 2.4, dz.z);
     add(dzRamp);
-    hit(dz.x, dz.z, 16);
+    hitRoad(dz.x, dz.z, 16);
     const fib = tlv(32.063, 34.7795);
     const fibM = new THREE.Mesh(new THREE.CylinderGeometry(8.4, 9.2, 78, 3), darkGlass);
     fibM.position.set(fib.x, 39, fib.z);
@@ -4179,7 +4184,7 @@ function addLandmarks(
     fibCap.position.set(fib.x, 83, fib.z);
     fibCap.rotation.y = 0.4;
     add(fibCap);
-    hit(fib.x, fib.z, 8);
+    hitRoad(fib.x, fib.z, 8);
     const yooA = tlv(32.0854, 34.7966);
     const yooB = tlv(32.0858, 34.7972);
     const y1 = new THREE.Mesh(new THREE.BoxGeometry(11, 82, 11), paleGlass);
@@ -4188,8 +4193,8 @@ function addLandmarks(
     const y2 = new THREE.Mesh(new THREE.BoxGeometry(11, 74, 11), glass);
     y2.position.set(yooB.x, 37, yooB.z);
     add(y2);
-    hit(yooA.x, yooA.z, 7);
-    hit(yooB.x, yooB.z, 7);
+    hitRoad(yooA.x, yooA.z, 7);
+    hitRoad(yooB.x, yooB.z, 7);
     const sm = tlv(32.0639, 34.7704);
     const smM = new THREE.Mesh(new THREE.BoxGeometry(16, 62, 10), cream);
     smM.position.set(sm.x, 31, sm.z);
@@ -4197,7 +4202,7 @@ function addLandmarks(
     const smMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.32, 16, 6), bandMat);
     smMast.position.set(sm.x, 70, sm.z);
     add(smMast);
-    hit(sm.x, sm.z, 8);
+    hitRoad(sm.x, sm.z, 8);
   }
   if (def.id === "namal") {
     const hangarMat = new THREE.MeshStandardMaterial({
@@ -5435,7 +5440,7 @@ function addLandmarks(
     const mallR = new THREE.Mesh(new THREE.BoxGeometry(46, 1.8, 32), white);
     mallR.position.set(mall.x, 16.6, mall.z);
     add(mallR);
-    hit(mall.x, mall.z, 18);
+    hitRoad(mall.x, mall.z, 18);
     const sav = tlv(32.0837, 34.79835);
     const savHall = new THREE.Mesh(new THREE.BoxGeometry(46, 11.4, 22), cream);
     savHall.position.set(sav.x, 5.7, sav.z);
@@ -5463,7 +5468,7 @@ function addLandmarks(
     group.add(savPlats);
     bag.push(platGeo);
     glowAt(sav.x, 14, sav.z, 0xff8844, 28, 24);
-    hit(sav.x, sav.z, 16, 24, 14);
+    hitRoad(sav.x, sav.z, 16, 24, 14);
     const placeRailStop = (lat: number, lon: number, sc: number) => {
       const p = tlv(lat, lon);
       const hall = new THREE.Mesh(new THREE.BoxGeometry(28 * sc, 8.2 * sc, 14 * sc), cream);
