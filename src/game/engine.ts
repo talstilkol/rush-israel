@@ -40,7 +40,7 @@ import { loadHerodian } from "./stone-assets";
 import { loadJaffaClock } from "./clock-assets";
 import { loadIsraelFlag } from "./flag-assets";
 import { loadTreeMaps } from "./tree-assets";
-import { loadBlob, getBlob } from "./blob-assets";
+import { loadBlob, getBlob, blobIsKtx2 } from "./blob-assets";
 import { loadFlake } from "./flake-assets";
 import { loadCars } from "./car-assets";
 import { loadRoadFor } from "./road-assets";
@@ -321,7 +321,7 @@ export class RaceEngine {
     await loadSky();
     await loadRoadFor(this.trackDef.id);
     await loadBeam();
-    await loadBlob();
+    await loadBlob(this.renderer);
     await loadFlake();
     await loadCars(this.renderer);
     await loadTreeMaps();
@@ -2247,6 +2247,7 @@ export class RaceEngine {
       webgpuTried: () => this.webgpuTried,
       webgpuOk: () => this.webgpuOk,
       webgpuReason: () => this.webgpuReason,
+      blobKtx2: () => blobIsKtx2(),
       advanceTime: (ms: number) => {
         const steps = Math.max(0, Math.floor(ms / (FIXED * 1000)));
         for (let i = 0; i < steps && i < 600; i++) this.fixed(FIXED);
@@ -2267,6 +2268,7 @@ export class RaceEngine {
         webgpuTried: this.webgpuTried,
         webgpuOk: this.webgpuOk,
         webgpuReason: this.webgpuReason,
+        blobKtx2: blobIsKtx2(),
       });
   }
 
@@ -2416,6 +2418,7 @@ declare global {
       webgpuTried?: () => boolean;
       webgpuOk?: () => boolean;
       webgpuReason?: () => string;
+      blobKtx2?: () => boolean;
     };
     render_game_to_text?: () => string;
   }
