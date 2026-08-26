@@ -2211,6 +2211,15 @@ export class RaceEngine {
       },
       getY: () => this.player.y,
       getAirborne: () => this.player.airborne,
+      getColliders: () =>
+        this.world.colliders.map((c) => ({
+          x: c.x,
+          z: c.z,
+          r: c.r,
+          kind: c.kind ?? "building",
+        })),
+      getTrackWidth: () => this.built.width,
+      getNearestDist: (x: number, z: number) => nearestIndex(this.built.samples, x, z, 0).dist,
       getSide: () => this.player.sideStreet,
       getRamps: () =>
         this.world.ramps.map((r) => ({
@@ -2418,6 +2427,9 @@ declare global {
       setProgress?: (t: number) => void;
       getY?: () => number;
       getAirborne?: () => boolean;
+      getColliders?: () => { x: number; z: number; r: number; kind: string }[];
+      getTrackWidth?: () => number;
+      getNearestDist?: (x: number, z: number) => number;
       getSide?: () => string;
       getRamps?: () => { x: number; z: number; sx: number; sz: number; len: number; y0: number; y1: number; he: string }[];
       teleport?: (x: number, z: number, yaw: number, y?: number) => void;

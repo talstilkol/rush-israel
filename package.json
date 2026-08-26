@@ -33,6 +33,8 @@
     "qa:soak": "node scripts/soak-menu-race.mjs",
     "qa:damage": "node scripts/damage-smoke.mjs",
     "qa:airborne": "node scripts/airborne-smoke.mjs",
+    "qa:ayalon-lock": "node scripts/ayalon-hash.mjs",
+    "qa:colliders": "node scripts/collider-offset-smoke.mjs",
     "bake:asphalt": "node scripts/bake-asphalt.mjs",
     "bake:sky": "node scripts/bake-sky.mjs",
     "bake:car": "node scripts/bake-car.mjs",
