@@ -5676,10 +5676,6 @@ function addLandmarks(
         const d = 0.7071;
         pushRamp(c.x - 24, c.z - 24, d, d, 54, 6.2, 0.6, deckY, ic.he, ic.en);
         pushRamp(c.x + 24, c.z + 24, d, d, 54, 6.2, deckY, 0.6, ic.he, ic.en);
-        const loop = new THREE.Mesh(new THREE.TorusGeometry(26, 3.2, 8, 28), rampAsphalt);
-        loop.rotation.x = Math.PI / 2;
-        loop.position.set(westX - 10, 3.8, c.z);
-        add(loop);
       }
       if (ic.en === "LaGuardia") {
         const d = 0.7071;
