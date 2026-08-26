@@ -24,7 +24,7 @@ import { getTrack, nearestPoi, nightAmt, streetName, todLabel } from "./tracks";
 import type { AssistFlags, CarId, Collider, HandlingMode, HudState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting, type CarSnap } from "./vehicle";
 import { createWorld, type World } from "./world";
-import { loadAyalonRoad, loadCityRoad } from "./road-assets";
+import { loadRoadFor } from "./road-assets";
 import { loadCarGt } from "./car-assets";
 import { getSkyDay, getSkyNight, loadSky } from "./sky-assets";
 import { RenderTelemetry } from "../rendering/RenderTelemetry";
@@ -325,8 +325,7 @@ export class RaceEngine {
     if (this.disposed) return;
     this.opts.onBoot?.(0.18);
     await loadSky();
-    if (this.trackDef.id === "ayalon") await loadAyalonRoad();
-    else await loadCityRoad();
+    await loadRoadFor(this.trackDef.id);
     await loadCarGt();
     if (this.disposed) return;
 

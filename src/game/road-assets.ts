@@ -9,7 +9,7 @@ export type RoadKit = {
 const kits = new Map<number, RoadKit>();
 
 export function getBakedRoad(lanes: number): RoadKit | undefined {
-  const n = lanes >= 8 ? 8 : lanes >= 3 ? 3 : 0;
+  const n = lanes >= 8 ? 8 : lanes >= 4 ? 4 : lanes >= 3 ? 3 : 0;
   return n ? kits.get(n) : undefined;
 }
 
@@ -49,5 +49,15 @@ export async function loadAyalonRoad() {
 }
 
 export async function loadCityRoad() {
+  return loadLane(3);
+}
+
+export async function loadHwyRoad() {
+  return loadLane(4);
+}
+
+export async function loadRoadFor(trackId: string) {
+  if (trackId === "ayalon") return loadLane(8);
+  if (trackId === "hw1" || trackId === "hw2" || trackId === "hw6" || trackId === "hw40" || trackId === "hw90") return loadLane(4);
   return loadLane(3);
 }

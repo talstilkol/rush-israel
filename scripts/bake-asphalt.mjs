@@ -121,5 +121,6 @@ writeFileSync(join(dir, `asphalt-${lanes}-rough.png`), pngRgba(W, W, rough));
 writeFileSync(join(dir, `asphalt-${lanes}-bump.png`), pngRgba(W, W, bump));
 }
 bakeLanes(8);
+bakeLanes(4);
 bakeLanes(3);
 console.log("baked", dir);

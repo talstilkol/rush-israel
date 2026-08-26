@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Baked 3-lane asphalt PNGs for city tracks. Still procedural, not photogrammetry.
+Road kits: 8 / 4 / 3 lane baked PNGs. Still procedural.
