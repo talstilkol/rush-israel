@@ -120,6 +120,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 2.31. `10.12` leak soak — **DONE** (tiny: `qa:soak-smoke` 2 cycles in `qa`; 20-cycle stays `qa:soak` manual).
 2.32. `8.2` canvas allowlist CI — **DONE** (tiny: `check:canvas` in `qa:ci`; probe dummy only).
 2.33. `1.1` inspired + no-DEM CI — **DONE** (tiny: `check:copy` in `qa:ci`).
+2.34. `1.3` records unit tests in `qa:ci` — **DONE** (tiny).
 
 ### 3. After Hashalom still
 3.1. Pose-lock `hashalom` camera.  
