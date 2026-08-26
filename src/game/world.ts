@@ -5413,15 +5413,32 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     placeToHa(1.28, 32.0695, 34.7894);
     placeCityGate(1);
     const ibm = tlv(32.0856, 34.7987);
+    const ibmGlass = new THREE.MeshPhysicalMaterial({
+      color: 0x3a6e7a,
+      roughness: 0.14,
+      metalness: 0,
+      envMapIntensity: 1.5,
+      clearcoat: 1,
+      clearcoatRoughness: 0.12
+    });
+    bag.push(ibmGlass);
     for (let i = 0; i < 6; i++) {
       const w = 20 - i * 2.2;
-      const slab = new THREE.Mesh(new THREE.BoxGeometry(w, 7.2, w), paleGlass);
+      const slab = new THREE.Mesh(new THREE.BoxGeometry(w, 7.2, w), ibmGlass);
       slab.position.set(ibm.x, 4.2 + i * 8, ibm.z);
       add(slab);
     }
     hit(ibm.x, ibm.z, 10);
     const yovel = tlv(32.0788, 34.7916);
-    const yov = new THREE.Mesh(new THREE.CylinderGeometry(7.2, 8.1, 92, 18), paleGlass);
+    const yovGlass = new THREE.MeshPhysicalMaterial({
+      color: 0x5a7088,
+      roughness: 0.12,
+      metalness: 0,
+      envMapIntensity: 1.45,
+      clearcoat: 1
+    });
+    bag.push(yovGlass);
+    const yov = new THREE.Mesh(new THREE.CylinderGeometry(7.2, 8.1, 92, 18), yovGlass);
     yov.position.set(yovel.x, 46, yovel.z);
     add(yov);
     for (let y = 8; y < 88; y += 4.2) {
