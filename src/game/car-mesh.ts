@@ -479,10 +479,11 @@ export function createCarVisual(
 
   const blob = new THREE.Mesh(
     new THREE.CircleGeometry(L.W * 0.72, 16),
-    new THREE.MeshBasicMaterial({ color: 0x0a0c10, transparent: true, opacity: 0.32, depthWrite: false }),
+    new THREE.MeshBasicMaterial({ color: 0x0a0c10, transparent: true, opacity: 0, depthWrite: false }),
   );
   blob.rotation.x = -Math.PI / 2;
-  blob.position.y = 0.03;
+  blob.position.y = 0.04;
+  blob.visible = false;
   blob.renderOrder = -1;
   group.add(blob);
 
