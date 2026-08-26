@@ -600,7 +600,7 @@ export function updateCarVisual(
     surface === "curb" ? Math.sin((vis.group.userData.t as number) * 3.4) * 0.032 : surface === "sand" ? Math.sin((vis.group.userData.t as number) * 1.8) * 0.022 : 0;
   vis.group.position.set(x, y + 0.02 + hop, z);
   vis.group.rotation.order = "YXZ";
-  vis.group.rotation.set(pitch * 0.16, yaw + Math.PI, bank);
+  vis.group.rotation.set(pitch * 0.55, yaw + Math.PI, bank);
 
   const spin = (speed / 0.33) * dt;
   for (const s of vis.spins) s.rotateX(spin);

@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-See MASTER_PLAN_AUDIT.md. Ayalon opposite carriageway median gap 18m (still not GIS).
+Car pitch follows grade more (0.16→0.55). KTX2 encode blocked: no KTX-Software CLI.
