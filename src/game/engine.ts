@@ -811,7 +811,7 @@ export class RaceEngine {
     this.lite = this.quality === "low" || this.soft;
     this.droppedTier = false;
     this.dyn.reset();
-    this.csmMuted = false;
+    this.csmMuted = this.quality === "low" || this.soft;
     const mobile = typeof navigator !== "undefined" && /mobi|android|iphone|ipad/i.test(navigator.userAgent);
     const scale = this.lite ? 1 : this.quality === "mid" ? 0.75 : 0.85;
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1) * scale);
@@ -820,6 +820,7 @@ export class RaceEngine {
     else if (!(this.post as { composer?: unknown }).composer) this.upgradeGraphics();
     else this.post.setTier(this.quality);
     this.world.setLod?.(this.quality);
+    this.trimCsm();
     this.applyGfxStep();
     this.onResize();
   }
@@ -1056,13 +1057,14 @@ export class RaceEngine {
     this.droppedTier = s > 0;
     this.world.setPlanar(f.planar);
     this.post.setBloom(f.bloom);
-    this.csmMuted = !f.csm;
+    this.csmMuted = !f.csm || this.quality === "low" || this.soft;
     const base = this.lite ? 1 : this.quality === "mid" ? 0.75 : 0.85;
     const scale = Math.max(0.5, base * Math.pow(0.85, f.pixelExtra));
     const mobile = typeof navigator !== "undefined" && /mobi|android|iphone|ipad/i.test(navigator.userAgent);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1) * scale);
     this.onResize();
     if (import.meta.env.DEV) console.info("[gfx]", s, "planar", f.planar, "bloom", f.bloom, "csm", f.csm, "px", scale.toFixed(2));
+    this.trimCsm();
   }
 
   private shouldPresent(now: number) {
@@ -2200,7 +2202,7 @@ export class RaceEngine {
       getGear: () => this.player.gear,
       getSteer: () => this.input.poll().steer,
       getKinMix: () => this.player.kinMix,
-      getCsmCascades: () => this.csm?.lights.length ?? 0,
+      getCsmCascades: () => this.csmWanted(),
       getCycle: () => this.autoCycle,
       isReplay: () => this.replaying,
       skipReplay: () => this.skipReplay(),
@@ -2604,16 +2606,33 @@ export class RaceEngine {
     });
   }
 
+  private csmWanted() {
+    if (this.soft || this.quality === "low" || this.csmMuted) return 0;
+    return this.quality === "high" ? 3 : 1;
+  }
+
+  private trimCsm() {
+    if (!this.csm) return;
+    const n = this.csmWanted();
+    this.csm.lights.forEach((L, i) => {
+      L.visible = i < n;
+    });
+  }
+
   private updateCsm() {
     if (!this.csm) return;
-    if (this.csmMuted) {
+    const n = this.csmWanted();
+    if (n === 0) {
       for (const L of this.csm.lights) L.intensity = 0;
       return;
     }
     this.csm.lightDirection.copy(this.world.sunDir).multiplyScalar(-1).normalize();
-    const n = nightAmt(this.clock);
-    const I = n > 0.5 ? 0.16 : 1.22;
-    for (const L of this.csm.lights) L.intensity = I;
+    const night = nightAmt(this.clock);
+    const I = night > 0.5 ? 0.16 : 1.22;
+    this.csm.lights.forEach((L, i) => {
+      L.visible = i < n;
+      L.intensity = i < n ? I : 0;
+    });
     this.csm.update();
   }
 

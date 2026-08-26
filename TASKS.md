@@ -78,7 +78,7 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 ## Phase 7 — Renderer
 - [ ] 7.1 WebGPU **game** flag — **NOT DONE** (probe ≠ renderer)
 - [ ] 7.2 TSL — **NOT DONE**
-- [x] 7.3 CSM 3/1/0 — **DONE** (tiny: High 3@1024, Mid 1@512, Low 0 at boot; applyQuality does not rebuild; no photo)
+- [x] 7.3 CSM 3/1/0 — **DONE** (tiny: High 3, Mid 1, Low 0 via light visibility; no rebuild)
 - [ ] 7.4 SMAA / no fake TAA — **PARTIAL** (SMAA yes, TRAA no)
 - [x] 7.5 No SSGI — **DONE** (constraint)
 
@@ -129,6 +129,7 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 2.17. `5.5` CCD 2-cut above 25 m/s — **DONE** (tiny).
 2.18. `5.2` 4-corner ride — **DONE** (tiny: spline samples + ramp probe; twist unloads grip).
 2.19. `2.1` wet roughness in road shader — **DONE** (tiny: no SSR).
+2.20. `8.4` CSM 3/1/0 on quality menu — **DONE** (tiny: hide extra lights; no setupMaterial rebuild).
 
 ### 3. After Hashalom still arrives
 3.1. Pose-lock `hashalom` in `goldenCameras.ts` to match the still.  
