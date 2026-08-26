@@ -17,7 +17,8 @@
     "test": "node --test 'scripts/**/*.test.mjs'",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "qa:ayalon": "node scripts/capture-golden.mjs"
+    "qa:ayalon": "node scripts/capture-golden.mjs",
+    "bake:asphalt": "node scripts/bake-asphalt.mjs"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.4",

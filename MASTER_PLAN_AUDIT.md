@@ -24,7 +24,7 @@ Verdict labels: DONE (real, working, verified) | PARTIAL | FAKED | NOT DONE.
 |---|---|---|
 | Hero car glTF | NOT DONE | `car-mesh.ts` ExtrudeGeometry |
 | KTX2 / Meshopt pipeline | NOT DONE | lockfile has meshoptimizer via three; no loader, no `.glb/.ktx2` in repo |
-| One photogrammetry road strip | NOT DONE | `asphaltTexture()` canvas 1024 |
+| One photogrammetry road strip | PARTIAL | Baked PNG (`public/game/asphalt-8.png`) — still procedural, not a scan |
 | Authored facades | NOT DONE | `canvasInventory.ts` lists all sites `runtime` |
 | GIS / OSM / DEM Israel | NOT DONE | Spline + GPS-ish `tlv()` offsets |
 | Zero generic buildings (Ayalon) | PARTIAL | Instanced scatter skipped; remaining landmarks are primitives |

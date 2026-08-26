@@ -148,6 +148,8 @@ export function GameApp() {
 			await new Promise((r) => setTimeout(r, 48));
 			if (cancelled) return;
 			const { RaceEngine } = await import("@/game/engine");
+			const { loadAyalonRoad } = await import("@/game/road-assets");
+			if (trackId === "ayalon") await loadAyalonRoad();
 			if (cancelled) return;
 			inst = new RaceEngine(canvas, {
 				trackId,

@@ -2,4 +2,4 @@
 
 **~10%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Phase A: `npm run qa:ayalon` is a real gate (g01/g05/g07/g08 + steer + webgl2). Still no GLB/GIS/WebGPU.
+Ayalon asphalt is a baked PNG (still procedural, not a scan). Other tracks still runtime canvas.
