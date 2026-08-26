@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Wheels offset on pitch/roll (visual travel). Not independent suspension physics.
+Rothschild ficus: thicker trunks, 8-blob canopy, wider median. Still icosahedrons, not scans.

@@ -5164,8 +5164,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const medIdx = [];
     const walkPos = [];
     const walkIdx = [];
-    const medHalf = 4.4;
-    const pathHalf = 1.35;
+    const medHalf = 5.0;
+    const pathHalf = 1.5;
     for (let i = 0; i <= n; i++) {
       const s = built.samples[i % n];
       const y = s.y + 0.08;
@@ -5212,12 +5212,12 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         kind: "barrier"
       });
     }
-    const ficusN = 72;
-    const trunkG = new THREE.CylinderGeometry(0.55, 0.95, 7.6, 8);
-    const leafG = new THREE.IcosahedronGeometry(2.35, 1);
+    const ficusN = 80;
+    const trunkG = new THREE.CylinderGeometry(0.72, 1.18, 9.4, 10);
+    const leafG = new THREE.IcosahedronGeometry(2.7, 1);
     bag.push(trunkG, leafG);
     const trunks = new THREE.InstancedMesh(trunkG, trunkM, ficusN);
-    const leaves = new THREE.InstancedMesh(leafG, leafM, 432);
+    const leaves = new THREE.InstancedMesh(leafG, leafM, 640);
     trunks.castShadow = shadows;
     leaves.castShadow = shadows;
     let ti = 0;
@@ -5225,51 +5225,29 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const stepF = Math.max(1, Math.floor(n / 36));
     for (let i = 2; i < n && ti < ficusN; i += stepF) {
       const s = built.samples[i];
-      for (const d of [-2.6, 2.6]) {
+      for (const d of [-3.05, 3.05]) {
         if (ti >= ficusN) break;
         const fx = s.x + s.rx * d;
         const fz = s.z + s.rz * d;
-        _dummy.position.set(fx, s.y + 3.8, fz);
+        _dummy.position.set(fx, s.y + 4.7, fz);
         _dummy.scale.set(1, 1, 1);
         _dummy.rotation.set(0, i * 0.7 % 6, 0);
         _dummy.updateMatrix();
         trunks.setMatrixAt(ti, _dummy.matrix);
         const offs = [
-          [
-            0,
-            0.2,
-            0
-          ],
-          [
-            1.8,
-            -0.2,
-            0.5
-          ],
-          [
-            -1.7,
-            0.1,
-            0.4
-          ],
-          [
-            0.5,
-            0.3,
-            -1.7
-          ],
-          [
-            -0.6,
-            -0.1,
-            1.6
-          ],
-          [
-            0.2,
-            1.4,
-            0.2
-          ]
+          [0, 0.5, 0],
+          [2.4, 0.15, 0.7],
+          [-2.3, 0.25, 0.55],
+          [0.7, 0.55, -2.3],
+          [-0.8, 0.15, 2.2],
+          [1.6, 1.8, 1.2],
+          [-1.7, 1.7, -1.1],
+          [0.15, 2.5, 0.25],
         ];
-        for (let k = 0; k < 6; k++) {
-          _dummy.position.set(fx + offs[k][0], s.y + 8.2 + offs[k][1], fz + offs[k][2]);
-          const sc = 1.05 + k % 3 * 0.18;
-          _dummy.scale.set(sc, sc * 0.92, sc);
+        for (let k = 0; k < 8; k++) {
+          _dummy.position.set(fx + offs[k][0], s.y + 10.2 + offs[k][1], fz + offs[k][2]);
+          const sc = 1.12 + (k % 3) * 0.2;
+          _dummy.scale.set(sc, sc * 0.88, sc);
           _dummy.updateMatrix();
           leaves.setMatrixAt(li++, _dummy.matrix);
         }
