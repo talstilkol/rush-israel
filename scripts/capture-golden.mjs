@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /** Phase A gate: Ayalon g01/g05/g07/g08 + JSON. Not an art pass. */
 import { chromium } from "playwright";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, stat } from "node:fs/promises";
 
 const out = process.env.GOLDEN_DIR || "/workspace/golden-baseline";
 await mkdir(out, { recursive: true });
@@ -47,6 +47,10 @@ if (dump.telem?.backend && dump.telem.backend !== "webgl2" && dump.telem.backend
   throw new Error("backend " + dump.telem.backend);
 }
 await writeFile(`${out}/ayalon-dump.json`, JSON.stringify(dump, null, 2));
+for (const f of ["ayalon-day-g01.png", "ayalon-day-g05.png", "ayalon-day-g07.png", "ayalon-night-g08.png"]) {
+  const s = await stat(`${out}/${f}`);
+  if (s.size < 20000) throw new Error("tiny golden " + f + " " + s.size);
+}
 await page.evaluate(() => {
   const t = window.__controlsTest;
   t.resetStart();

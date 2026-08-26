@@ -24,7 +24,7 @@ Do **not** bake more procedural PNGs. Do **not** add cities.
 - [ ] D1 WebGPURenderer
 - [ ] D2 TSL
 - [x] D3 CSM — **PARTIAL** (2 cascades @1024 High; not 4-split TRAA)
-- [ ] D4 SMAA default; TRAA later
+- [x] D4 SMAA default; TRAA later — **PARTIAL** (SMAA mid/high; no TRAA)
 - [ ] D5 No SSGI until A+B
 
 ## E — Assets

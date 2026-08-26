@@ -4447,9 +4447,9 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     let bz = bg.z + 18;
     {
       const n = nearestIndex(built.samples, bx, bz, 0);
-      if (n.dist < built.width / 2 + 28) {
+      if (n.dist < built.width / 2 + 36) {
         const s = built.samples[n.index];
-        const off = built.width / 2 + 42;
+        const off = built.width / 2 + 58;
         bx = s.x + s.rx * off;
         bz = s.z + s.rz * off;
       }

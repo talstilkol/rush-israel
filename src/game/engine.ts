@@ -2174,6 +2174,8 @@ export class RaceEngine {
         progress: +this.player.progress.toFixed(3),
         onTrack: this.player.onTrack,
         telem: this.telem.snapshot(),
+        csm: !!this.csm,
+        photo: this.photo,
       });
   }
 
