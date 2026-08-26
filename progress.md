@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Rothschild ficus crowns denser (icosahedron detail 2). Not photogrammetry. Codex not finished.
+Audit 13:47 IDT: most TASKS V are PARTIAL. WebGPU/GIS/HDRI/KTX2/hero scan = NOT DONE. Codex not finished.
