@@ -4,7 +4,7 @@
 **Three.js:** `0.185.1` — WebGPU דורש `await renderer.init()` (לא אופציונלי).  
 **יעד ריאלי:** Asphalt-like בדפדפן. לא GT7, לא Unreal, לא GIS.  
 **אחוז נוכחי:** ~12%. שערי שחרור: 0/13.  
-**מקורות API:** [WebGPURenderer](https://threejs.org/docs/pages/WebGPURenderer.html) · [WebGPU post](https://threejs.org/manual/en/webgpu-postprocessing.html) · [TSL](https://threejs.org/docs/TSL.html) · [KTX2](https://registry.khronos.org/glTF/) · [TAARenderPass — אין reprojection](https://threejs.org/docs/pages/TAARenderPass.html)
+**החלטות טכנולוגיה:** [TECH_RESEARCH.md](/workspace/TECH_RESEARCH.md) — נעול 26.8.2026. לא לפתוח WebGPU/AgX/Rapier/SSR בלי לשנות את המחקר במפורש.
 
 מספור: `שלב.תת-שלב.משימה.תת-משימה.פרט`. מספרים בלבד.
 
