@@ -2,4 +2,4 @@
 
 **~9%** of the Web graphics plan. Ship gates **0/13**.
 
-Dry asphalt: env 0.32, roughness 0.62 — no more white wash. Still canvas texture, not photogrammetry.
+Azrieli/ToHa glass is dielectric now (metalness 0). Silhouettes, not scans.

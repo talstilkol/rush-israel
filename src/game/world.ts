@@ -3151,18 +3151,18 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   const darkGlass = new THREE.MeshPhysicalMaterial({
     color: 3822696,
     roughness: 0.08,
-    metalness: 0.9,
-    envMapIntensity: 2.15,
+    metalness: 0,
+    envMapIntensity: 1.6,
     clearcoat: 1,
-    clearcoatRoughness: 0.06,
+    clearcoatRoughness: 0.08,
     emissive: 663600,
     emissiveIntensity: isNight ? 0.28 : 0
   });
   const paleGlass = new THREE.MeshPhysicalMaterial({
     color: 12110036,
     roughness: 0.1,
-    metalness: 0.82,
-    envMapIntensity: 1.9,
+    metalness: 0,
+    envMapIntensity: 1.4,
     clearcoat: 0.9,
     emissive: 1716288,
     emissiveIntensity: isNight ? 0.22 : 0
@@ -3182,11 +3182,11 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   const mkGlass = (map, color, nightEmi) => new THREE.MeshPhysicalMaterial({
     map,
     color,
-    roughness: 0.11,
-    metalness: 0.74,
-    envMapIntensity: 1.85,
+    roughness: 0.12,
+    metalness: 0,
+    envMapIntensity: 1.45,
     clearcoat: 1,
-    clearcoatRoughness: 0.08,
+    clearcoatRoughness: 0.1,
     emissive: 1722982,
     emissiveIntensity: isNight ? nightEmi : 0
   });
