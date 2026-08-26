@@ -46,7 +46,7 @@ export async function loadCars(renderer?: THREE.WebGLRenderer) {
   const kinds = ["gt", "hatch", "muscle", "rally", "super"] as const;
   await Promise.all(
     kinds.map(async (k) => {
-      const gltf = await loader.loadAsync(`/game/car-${k}.gltf`);
+      const gltf = await loader.loadAsync(`/game/car-${k}.glb`);
       templates.set(k, gltf.scene);
     }),
   );

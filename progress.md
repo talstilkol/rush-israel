@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-GLTFLoader has KTX2 + Meshopt hooked. Current car files are still uncompressed JSON glTF.
+Cars load as meshopt GLB (~6.5KB). Still extrudes, not scans. No KTX2 textures yet.
