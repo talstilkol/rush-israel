@@ -2732,12 +2732,12 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       roadMat.clearcoatRoughness = 0.18;
       puddleMat.opacity = wx === "storm" ? 0.9 : 0.78;
     } else if (n > 0.45) {
-      roadMat.color.setHex(0xc4c8d0);
-      roadMat.roughness = 0.34;
+      roadMat.color.setHex(0x9aa0a8);
+      roadMat.roughness = 0.28;
       roadMat.metalness = 0;
-      roadMat.envMapIntensity = 0.72;
-      roadMat.clearcoat = 0.38;
-      roadMat.clearcoatRoughness = 0.26;
+      roadMat.envMapIntensity = 0.82;
+      roadMat.clearcoat = 0.42;
+      roadMat.clearcoatRoughness = 0.22;
     } else {
       roadMat.color.setHex(0xb4b8bc);
       roadMat.roughness = 0.62;

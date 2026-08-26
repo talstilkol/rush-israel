@@ -2,4 +2,4 @@
 
 **~10%** of the Web graphics plan. Ship gates **0/13**.
 
-Street-lamp ground pools are larger. Still discs, not real IES lights.
+Night dry asphalt: roughness 0.28 / clearcoat 0.42. Still PhysicalMaterial, not SSR.
