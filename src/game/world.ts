@@ -3498,6 +3498,15 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     skipRoad(dol.x, dol.z, 10);
     skipRoad(mar.x, mar.z, 10);
     const rdH = tlv(32.1044, 34.7776);
+    {
+      const n = nearestIndex(built.samples, rdH.x, rdH.z, 0);
+      const s = built.samples[n.index];
+      placeTunnel(s.x, s.z, Math.atan2(s.tx, s.tz), 44, built.width * 0.62, 7.2, s.y);
+      if (n.dist < built.width / 2 + 12) {
+        rdH.x = s.x + s.rx * (built.width / 2 + 26);
+        rdH.z = s.z + s.rz * (built.width / 2 + 26);
+      }
+    }
     const chimH = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 5.2, 78, 16), cream);
     chimH.position.set(rdH.x, 39, rdH.z);
     add(chimH);
@@ -3509,7 +3518,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       bandH.position.set(rdH.x, 66 + i * 2.8, rdH.z);
       add(bandH);
     }
-    hit(rdH.x, rdH.z, 5);
+    skipRoad(rdH.x, rdH.z, 5);
   }
   if (def.id === "oldjaffa") {
     const ochre = new THREE.MeshStandardMaterial({
