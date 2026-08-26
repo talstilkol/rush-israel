@@ -6620,6 +6620,24 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     peakCone.position.set(peak.x + 22, def.elevation(1) + 22, peak.z + 48);
     peakCone.scale.set(2.4, 3.2, 2.2);
     add(peakCone);
+    const liftA = her(33.2924, 35.7802);
+    const liftB = her(33.3084, 35.7876);
+    const postGeo = new THREE.CylinderGeometry(0.35, 0.5, 14, 8);
+    const postA = new THREE.Mesh(postGeo, rock);
+    postA.position.set(liftA.x, 7, liftA.z);
+    add(postA);
+    const postB = new THREE.Mesh(postGeo, rock);
+    postB.position.set(liftB.x, def.elevation(0.92) + 7, liftB.z);
+    add(postB);
+    const dx = liftB.x - liftA.x;
+    const dy = (def.elevation(0.92) + 13) - 13;
+    const dz = liftB.z - liftA.z;
+    const cableLen = Math.hypot(dx, dy, dz) || 1;
+    const cable = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, cableLen, 6), bandMat);
+    cable.position.set((liftA.x + liftB.x) * 0.5, 13 + dy * 0.5, (liftA.z + liftB.z) * 0.5);
+    cable.rotation.z = Math.atan2(dx, dy || 1);
+    cable.rotation.x = Math.atan2(dz, Math.hypot(dx, dy) || 1);
+    add(cable);
     for (let k = 0; k < 6; k++) {
       const a = k / 6 * Math.PI * 2;
       const shoulder = new THREE.Mesh(new THREE.DodecahedronGeometry(16, 0), k % 2 ? snowM : rock);
