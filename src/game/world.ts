@@ -1035,11 +1035,12 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   let mirror: Reflector | null = null;
   let planarOk = true;
   if (shadows) {
-    const res = 768;
+    /** Codex 3.4: planar RT cap until Ayalon High p95 is measured on a user GPU. Do not raise. */
+    const PLANAR_RT = 768;
     mirror = new Reflector(new THREE.PlaneGeometry(36, 64), {
       clipBias: 3e-3,
-      textureWidth: res,
-      textureHeight: res,
+      textureWidth: PLANAR_RT,
+      textureHeight: PLANAR_RT,
       color: isNight ? 0x4a5568 : 0x8aa0b4
     });
     mirror.rotation.x = -Math.PI / 2;
@@ -2498,6 +2499,10 @@ function addLandmarks(
     return Math.atan2(s.tx, s.tz);
   };
   const hitRoad = (x: number, z: number, r: number, hx?: number, hz?: number) => hit(x, z, r, hx, hz, roadYaw(x, z));
+  const towerHit = (x: number, z: number, r: number, hx?: number, hz?: number, yaw?: number) => {
+    if (def.id === "ayalon") hitRoad(x, z, r, hx, hz);
+    else hit(x, z, r, hx, hz, yaw);
+  };
   const placeTunnel = (cx: number, cz: number, yaw: number, len: number, half: number, h: number, y0 = 0) => {
     const fx = Math.sin(yaw);
     const fz = Math.cos(yaw);
@@ -2966,9 +2971,9 @@ function addLandmarks(
     add(bridge2);
     glowAt(cx, rH + 6, cz, 8308968, 62 * s, 54 * s);
     glowAt(triX, tH + 6, triZ, 8308968, 52 * s, 48 * s);
-    hit(cx, cz, 9 * s, 8.8 * s, 8.8 * s);
-    hit(triX, triZ, 9 * s, 8.2 * s, 8.2 * s);
-    hit(sqX, sqZ, 8 * s, 7.6 * s, 7.6 * s);
+    towerHit(cx, cz, 9 * s, 8.8 * s, 8.8 * s);
+    towerHit(triX, triZ, 9 * s, 8.2 * s, 8.2 * s);
+    towerHit(sqX, sqZ, 8 * s, 7.6 * s, 7.6 * s);
   };
   const placeCityGate = (s: number) => {
     const p = tlv(32.0832, 34.8027);
@@ -3004,7 +3009,7 @@ function addLandmarks(
     mast.position.set(p.x, h + 40 * s, p.z);
     add(mast);
     glowAt(p.x, h + 24 * s, p.z, 11065584, 52 * s, 46 * s);
-    hit(p.x, p.z, 11 * s, 10 * s, 10 * s, yaw);
+    towerHit(p.x, p.z, 11 * s, 10 * s, 10 * s, yaw);
   };
   const placeToHa = (s: number, lat = 32.0713, lon = 34.7886) => {
     const p = tlv(lat, lon);
@@ -3055,7 +3060,7 @@ function addLandmarks(
     base.position.set(p.x, 2.4 * s, p.z);
     add(base);
     glowAt(p.x, 110 * s, p.z, 13166847, 46 * s, 40 * s);
-    hit(p.x, p.z, 13 * s, 15 * s, 13 * s);
+    towerHit(p.x, p.z, 13 * s, 15 * s, 13 * s);
   };
   const placeMidtown = (s: number) => {
     const md = tlv(32.0806, 34.7926);
@@ -3109,7 +3114,7 @@ function addLandmarks(
     group.add(skies);
     bag.push(skyGeo);
     glowAt(md.x, 90 * s, md.z, 0x6688aa, 40 * s, 36 * s);
-    hit(md.x, md.z, 14 * s, 18 * s, 10 * s);
+    towerHit(md.x, md.z, 14 * s, 18 * s, 10 * s);
   };
   const placeElectra = (s: number) => {
     const el = tlv(32.0699, 34.7918);
@@ -3170,7 +3175,7 @@ function addLandmarks(
     elMast.position.set(el.x, h + 24 * s, el.z);
     add(elMast);
     glowAt(el.x, h + 8 * s, el.z, 0x88c0d8, 36 * s, 32 * s);
-    hit(el.x, el.z, 9 * s);
+    towerHit(el.x, el.z, 9 * s);
   };
   const placeSarona = (s: number) => {
     const p = tlv(32.0714, 34.7866);
@@ -3211,7 +3216,7 @@ function addLandmarks(
     cap.rotation.y = 0.18;
     add(cap);
     glowAt(p.x, h + 4 * s, p.z, 0xe8f2fa, 44 * s, 40 * s);
-    hit(p.x, p.z, 12 * s, 8 * s, 14 * s, 0.18);
+    towerHit(p.x, p.z, 12 * s, 8 * s, 14 * s, 0.18);
   };
   const placeHakirya = (s: number) => {
     const p = tlv(32.0756, 34.7878);
@@ -3250,7 +3255,7 @@ function addLandmarks(
     group.add(halls);
     bag.push(hallGeo);
     glowAt(p.x, h + 4 * s, p.z, 0xd4c4a0, 32 * s, 28 * s);
-    hit(p.x, p.z, 16 * s, 22 * s, 20 * s);
+    towerHit(p.x, p.z, 16 * s, 22 * s, 20 * s);
   };
   const placeShalomMeir = (s: number) => {
     const p = tlv(32.0639, 34.7704);
@@ -3281,7 +3286,7 @@ function addLandmarks(
     mast.position.set(p.x, h + 10 * s, p.z);
     add(mast);
     glowAt(p.x, h + 6 * s, p.z, 0xf2ece0, 28 * s, 24 * s);
-    hit(p.x, p.z, 9 * s, 10 * s, 7 * s);
+    towerHit(p.x, p.z, 9 * s, 10 * s, 7 * s);
   };
   const placeTlvTowers = (s: number) => {
     placeCityGate(s);

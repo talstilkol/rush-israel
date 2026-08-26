@@ -112,7 +112,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 ### 2. Integrity leftovers still open (no still)
 2.24. `8.2` NYC facade + ads off canvas — **DONE** (tiny: DataTexture + 5x7 glyphs; not baked PNG).  
 2.25. `5.4` yaw OBB remaining Ayalon (IBM/Yovel/Platinum/TAU/rail) — **DONE** (tiny).  
-2.26. `2.2` planar 768 — document as cap or raise RT (needs GPU budget).  
+2.26. `2.2` planar 768 cap — **DONE** (tiny: `PLANAR_RT` locked; not raised). Ayalon `place*` hits use `towerHit` → road yaw.  
 2.27. `4.4` other tracks still yaw=0 — do **not** until freeze.  
 2.28. `9.2` golden in `qa:ci` — **forbidden** until user-ok stills.  
 2.29. `1.3` phone 60Hz — needs user device.  
