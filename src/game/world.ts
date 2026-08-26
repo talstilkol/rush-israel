@@ -915,21 +915,21 @@ function aimLight(isNight, sun, azimuth, out) {
 function applyLights(isNight, hemi, dir, fill, ambient, lightAim, flareCol, lensflare) {
   hemi.color.setHex(isNight ? 0x6a88b0 : 0xa8c8e8);
   hemi.groundColor.setHex(isNight ? 0x2a241c : 0x4a5248);
-  hemi.intensity = isNight ? 0.72 : 0.82;
+  hemi.intensity = isNight ? 0.24 : 0.82;
   dir.color.setHex(isNight ? 0xc8d4e8 : 0xfff0d0);
-  dir.intensity = isNight ? 0.42 : 1.45;
+  dir.intensity = isNight ? 0.18 : 1.45;
   dir.position.copy(lightAim).multiplyScalar(95);
   flareCol.setHex(isNight ? 16760944 : 16767136);
   if (lensflare) lensflare.visible = false;
   fill.color.setHex(isNight ? 0xffc070 : 0xc4d8f0);
-  fill.intensity = isNight ? 0.52 : 0.28;
+  fill.intensity = isNight ? 0.38 : 0.28;
   if (isNight) fill.position.set(8, 22, -10);
   else {
     fill.position.copy(lightAim).multiplyScalar(-50);
     fill.position.y = Math.abs(fill.position.y) + 30;
   }
   ambient.color.setHex(isNight ? 0x4a6080 : 0xb0c4d8);
-  ambient.intensity = isNight ? 0.48 : 0.32;
+  ambient.intensity = isNight ? 0.12 : 0.32;
 }
 function windowEmitTexture() {
   const c = document.createElement("canvas");
@@ -2773,12 +2773,12 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     if (n > 0.5) {
       hemi.color.copy(_nightHemi);
       dir.color.copy(_nightDir);
-      hemi.intensity = 0.7;
-      dir.intensity = 0.46;
+      hemi.intensity = 0.24;
+      dir.intensity = 0.18;
       fill.color.setHex(16758880);
-      fill.intensity = 0.4;
+      fill.intensity = 0.38;
       ambient.color.setHex(0x3a5070);
-      ambient.intensity = 0.42;
+      ambient.intensity = 0.12;
     } else if (morning) {
       hemi.color.copy(_mornHemi);
       dir.color.copy(_mornDir);

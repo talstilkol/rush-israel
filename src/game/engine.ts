@@ -840,7 +840,7 @@ export class RaceEngine {
   setNight(night: boolean) {
     if (this.disposed) return;
     this.clock = night ? 0.9 : 0.5;
-    this.applyClockSky(true);
+    this.applyClockSky(false);
   }
 
   private applyClockSky(rebake: boolean) {
@@ -859,7 +859,7 @@ export class RaceEngine {
     this.skyTex = paintSky(n > 0.5, desert, snow);
     this.scene.background = this.skyTex;
     this.applyAltitudeLook();
-    this.scene.environmentIntensity = n > 0.5 ? 0.68 : 0.88;
+    this.scene.environmentIntensity = n > 0.5 ? 0.28 : 0.88;
     this.post.setNight(n > 0.5);
     const lamps = n > 0.42;
     for (const vis of this.visuals) setCarLights(vis, lamps);
