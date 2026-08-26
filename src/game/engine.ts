@@ -426,7 +426,7 @@ export class RaceEngine {
         r.stats.color,
         r.stats.accent,
         shadows,
-        i === 0 && !soft,
+        i === 0 && !soft && this.quality === "high",
         r.stats.body,
         r.stats.kit === "police",
         i === 0 ? this.opts.tune : undefined,
@@ -689,7 +689,7 @@ export class RaceEngine {
       cop.assists = { abs: true, tcs: true, esc: true };
       cop.spawn(this.built, (0.86 - i * 0.04 + 1) % 1, cop.aiOffset);
       this.cops.push(cop);
-      const vis = createCarVisual(color, accent, false, !this.soft, "gt", true);
+      const vis = createCarVisual(color, accent, false, false, "gt", true);
       setCarLights(vis, this.opts.night);
       this.scene.add(vis.group);
       this.copVis.push(vis);
@@ -1423,7 +1423,7 @@ export class RaceEngine {
     cop.surfaceGrip = cop.baseGrip;
     cop.spawn(this.built, (this.player.progress - 0.1 - i * 0.03 + 1) % 1, cop.aiOffset);
     this.cops.push(cop);
-    const vis = createCarVisual(color, accent, false, !this.soft, "gt", true);
+    const vis = createCarVisual(color, accent, false, false, "gt", true);
     setCarLights(vis, this.world.night);
     this.scene.add(vis.group);
     this.copVis.push(vis);

@@ -60,6 +60,9 @@ function beamCookie() {
   if (BEAM) return BEAM;
   const baked = getBeam();
   if (baked) {
+    baked.wrapS = THREE.ClampToEdgeWrapping;
+    baked.wrapT = THREE.ClampToEdgeWrapping;
+    baked.colorSpace = THREE.NoColorSpace;
     BEAM = baked;
     return baked;
   }
@@ -393,11 +396,12 @@ export function createCarVisual(
   if (lit) {
     const cookie = beamCookie();
     for (const sx of [-hx, hx]) {
-      const spot = new THREE.SpotLight(0xfff1c8, 36, 38, 0.34, 0.72, 1.15);
+      const spot = new THREE.SpotLight(0xfff1c8, 0, 38, 0.42, 0.72, 1.15);
       spot.position.set(sx, headY, headZ);
       spot.target.position.set(sx * 0.12, -0.42, 14);
       if (cookie) spot.map = cookie;
       spot.castShadow = false;
+      spot.intensity = 0;
       group.add(spot, spot.target);
       spots.push(spot);
     }
@@ -523,7 +527,15 @@ export function applyDamage(vis: CarVisual, dmg: number, dirt = 0) {
 }
 
 export function setCarLights(vis: CarVisual, night: boolean) {
-  for (const s of vis.spots) s.intensity = night ? 260 : 28;
+  const on = night;
+  for (const s of vis.spots) {
+    s.intensity = on ? 1.8 : 0;
+    s.visible = on;
+    if (!s.map) {
+      const c = beamCookie();
+      if (c) s.map = c;
+    }
+  }
   vis.bodyMat.envMapIntensity = night ? 1.15 : 1.4;
   for (const h of vis.headLights) {
     (h.material as THREE.MeshPhysicalMaterial).emissiveIntensity = night ? 5.2 : 0.85;
@@ -533,7 +545,7 @@ export function setCarLights(vis: CarVisual, night: boolean) {
     g.visible = true;
   }
   if (vis.headPool) {
-    (vis.headPool.material as THREE.MeshBasicMaterial).opacity = night ? 0.48 : 0;
+    (vis.headPool.material as THREE.MeshBasicMaterial).opacity = night ? 0.34 : 0;
     vis.headPool.visible = night;
   }
 }
