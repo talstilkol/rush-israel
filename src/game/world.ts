@@ -1198,8 +1198,8 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     bumpMap: roadMaps.bumpMap,
     bumpScale: 0.22,
     color: 0xffffff,
-    roughness: 0.28,
-    metalness: 0.16,
+    roughness: 0.42,
+    metalness: 0,
     envMapIntensity: 1.05,
     clearcoat: 0.48,
     clearcoatRoughness: 0.18,
@@ -2696,23 +2696,23 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     puddles.visible = wx === "rain" || wx === "storm" || wx === "clear" && n > 0.35;
     if (wx === "rain" || wx === "storm") {
       roadMat.color.setHex(n > 0.5 ? 0x8a929c : 0xb4bcc4);
-      roadMat.roughness = wx === "storm" ? 0.16 : 0.22;
-      roadMat.metalness = wx === "storm" ? 0.18 : 0.12;
+      roadMat.roughness = wx === "storm" ? 0.14 : 0.2;
+      roadMat.metalness = 0;
       roadMat.envMapIntensity = n > 0.5 ? 0.95 : 0.7;
       roadMat.clearcoat = 0.55;
       roadMat.clearcoatRoughness = 0.18;
       puddleMat.opacity = wx === "storm" ? 0.9 : 0.78;
     } else if (n > 0.45) {
       roadMat.color.setHex(0xc4c8d0);
-      roadMat.roughness = 0.28;
-      roadMat.metalness = 0.1;
+      roadMat.roughness = 0.34;
+      roadMat.metalness = 0;
       roadMat.envMapIntensity = 0.72;
       roadMat.clearcoat = 0.38;
       roadMat.clearcoatRoughness = 0.26;
     } else {
       roadMat.color.setHex(0xffffff);
-      roadMat.roughness = 0.28;
-      roadMat.metalness = 0.16;
+      roadMat.roughness = 0.42;
+      roadMat.metalness = 0;
       roadMat.envMapIntensity = 1.05;
       roadMat.clearcoat = 0.48;
       roadMat.clearcoatRoughness = 0.18;
