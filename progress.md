@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Dashed lane marks as instanced quads (Ayalon skips the median). Not a road shader. Codex not finished.
+Audit 13:56 IDT: still no WebGPU/GIS/HDRI/KTX2/hero/Ayalon freeze. Codex not finished.

@@ -1,10 +1,12 @@
-# Codex audit — 26 Aug 2026 13:47 IDT (brutal)
+# Codex audit — 26 Aug 2026 13:56 IDT (brutal)
 
 **~12% of the Web graphics master plan. Ship gates 0/13. Not GT7. Not Asphalt. Not Unreal.**
 
-Legend: **DONE** = in code, runs, verified against a *small* spec. **PARTIAL** = started, not the spec. **NOT DONE** = not touched. **FAKED** = a V that does not match the spec.
+Legend: **DONE** = in code, runs, verified against a *small* spec. **PARTIAL** = started, not the spec. **NOT DONE** = not touched. **FAKED** = a V / claim that does not match the spec.
 
-Nothing GIS / photogrammetry / WebGPU / HDRI / scanned car is 100.
+Nothing GIS / photogrammetry / WebGPU / HDRI / scanned car / KTX2 shipping is 100.
+
+Delta since 13:47: NYC canvases left `world.ts`; `?qa=1` p95; highway yaw tire+ESC; Ayalon piers off spline; dashed lane quads. **None of those close a ship gate.**
 
 ---
 
@@ -12,124 +14,109 @@ Nothing GIS / photogrammetry / WebGPU / HDRI / scanned car is 100.
 
 | Item | Status | 100? | Evidence |
 |---|---|---|---|
-| 1.1 Ultra WebGPU | **NOT DONE** | no | `RendererFacade` is `WebGLRenderer` only |
-| 1.1 Balanced WebGPU/WebGL2 | **PARTIAL** | no | Mid = SMAA, no WebGPU |
-| 1.1 Compat WebGL2 | **PARTIAL** | no | Low skips composer; still WebGL |
-| 1.1 Photo/Cinematic WebGPU | **PARTIAL** | no | Orbit cam + pixel-ratio bump. Same WebGL shaders |
-| Stay in Web, no Unreal | **DONE** (constraint) | yes | Three.js only |
+| Ultra WebGPU | **NOT DONE** | no | `RendererFacade` = `WebGLRenderer` |
+| Balanced WebGPU/WebGL2 | **PARTIAL** | no | Mid SMAA, no WebGPU |
+| Compat WebGL2 | **PARTIAL** | no | Low skips composer |
+| Photo/Cinematic WebGPU | **PARTIAL** | no | orbit + DPR, same WebGL |
+| Stay on Web | **DONE** (constraint) | yes | Three.js only |
 
-## Codex §25 — if you can fund only ten
+## Codex §25 top ten
 
 | # | Item | Status | 100? |
 |---|---|---|---|
-| 1 | Hero car (scanned glTF) | **PARTIAL** | exported extrusion `.glb`, not a scan |
-| 2 | One real road segment | **FAKED** if claimed real | procedural PNG + spline |
-| 3 | Color/exposure/physical lighting | **PARTIAL** | ACES-ish, no HDRI, no GI |
-| 4 | glTF/KTX2/Meshopt pipeline | **PARTIAL** | Meshopt+KTX2Loader wired; **0 `.ktx2` files** |
-| 5 | World cells + LOD/HLOD | **NOT DONE** | no cells, no streaming |
-| 6 | Dry/wet road material | **PARTIAL** | roughness/clearcoat/planar, not photogrammetry |
-| 7 | WebGPURenderer + TSL + fallback | **NOT DONE** | comment only |
-| 8 | CSM + reflection probes | **PARTIAL** | Three CSM 2×1024 High; cube probe 96px |
-| 9 | TRAA/TAAU | **NOT DONE** | SMAA only; TAARenderPass not used (no reprojection) |
-| 10 | Weather/SSGI/volumetrics | **NOT DONE** | rain points; no SSGI (kept off on purpose) |
+| 1 | Hero scanned glTF | **PARTIAL** | 5 extruded `.glb` |
+| 2 | One real road | **FAKED** if claimed real | PNG + spline |
+| 3 | Physical lighting | **PARTIAL** | ACES, no HDRI |
+| 4 | glTF/KTX2/Meshopt | **PARTIAL** | Meshopt yes, **0 `.ktx2`** |
+| 5 | World cells | **NOT DONE** | |
+| 6 | Dry/wet road | **PARTIAL** | roughness + planar + dashes |
+| 7 | WebGPU+TSL | **NOT DONE** | |
+| 8 | CSM + probes | **PARTIAL** | 2×1024 High; cube 96 |
+| 9 | TRAA | **NOT DONE** | SMAA only |
+| 10 | SSGI/volumetrics | **NOT DONE** | rain points; SSGI kept off |
 
-## G0–G6 (mobile graphics track)
+## G0–G6
 
-| ID | Status | 100? | Truth |
-|---|---|---|---|
-| G0 perf / Low→screen | **PARTIAL** | no | Low skips composer; no measured 16.6ms budget |
-| G1 road shader + planar | **PARTIAL** | no | MeshPhysical + Reflector 768 follow-yaw |
-| G2 HDRI sky | **NOT DONE** | no | baked PNG gradient, Sky() unused |
-| G3 car paint flakes | **PARTIAL** | no | `flake.png` maps, not a flake shader |
-| G4 blob shadow | **PARTIAL** | no | baked blob plane |
-| G5 facade atlas Ayalon/Rothschild | **FAKED** if claimed | no | Israel skips generic facades; remaining canvases are NYC |
-| G6 headlight cookies on road | **PARTIAL** | no | spots exist; not a road cookie atlas |
+| ID | Status | 100? |
+|---|---|---|
+| G0 perf | **PARTIAL** | p95 on `?qa=1`; no 16.6ms budget, no phone 60 |
+| G1 road shader | **PARTIAL** | MeshPhysical + Reflector + **instanced dashes** (not UV shader) |
+| G2 HDRI | **NOT DONE** | baked PNG sky |
+| G3 flakes | **PARTIAL** | `flake.png` maps |
+| G4 blob | **PARTIAL** | blob plane |
+| G5 facade atlas | **FAKED** if claimed | Israel skips; NYC still canvases |
+| G6 headlight cookies | **PARTIAL** | spots, no cookie atlas |
 
-## P0–P5 (user priorities)
+## P0–P5
 
 | Item | Status | 100? |
 |---|---|---|
-| P0 road as mesh + UV lanes | **PARTIAL** | ribbon mesh + baked albedo, not GIS lanes |
-| P1 HDRI + ACES | **PARTIAL** | ACES tone map; no HDRI |
-| P2 5 car meshes | **PARTIAL** | 5 extruded glTF clones |
-| P3 4-wheel physics | **PARTIAL** | Pacejka + 34% kinematic mix; spline Y |
-| P4 Ayalon landmarks | **PARTIAL** | silhouettes; not measured glass |
-| P4 Rothschild | **PARTIAL** | median + denser ficus icosahedra |
-| P4 Hayarkon/Reading | **PARTIAL** | Hilton offset, chimney offset, overpass |
-| P4 Jaffa | **PARTIAL** | clock offset, vaults |
-| P4 Jerusalem A→B | **PARTIAL** | gate off-road, fake hills, thinner fog |
-| P4 Ramon A→B | **PARTIAL** | desert primitives, spline elevation |
-| P4 Hermon A→B | **PARTIAL** | snow primitives, spline elevation |
-| P4 Carmel | **PARTIAL** | Baháʼí offset, not gardens scan |
-| P5 UI minimal + Esc | **DONE** (tiny spec) | title → track → race; Esc overlay |
-| P5 60fps soak | **NOT DONE** | no 30-min GPU soak signed |
-| P5 real track stills | **NOT DONE** | cards are still not photo-matched |
+| P0 road mesh + UV lanes | **PARTIAL** | ribbon + dashes, not GIS UV |
+| P1 HDRI+ACES | **PARTIAL** | ACES only |
+| P2 5 cars | **PARTIAL** | extrusion clones |
+| P3 4-wheel | **PARTIAL** | Pacejka + **crawl kinematic**; spline Y |
+| P4 Ayalon | **PARTIAL** | silhouettes, piers offset, ramps exist, **no still QA** |
+| P4 Rothschild | **PARTIAL** | ficus icosahedra |
+| P4 Hayarkon/Reading | **PARTIAL** | overpass + chimney offset |
+| P4 Jaffa | **PARTIAL** | |
+| P4 Jerusalem | **PARTIAL** | |
+| P4 Ramon/Hermon/Carmel | **PARTIAL** | primitives + spline hills |
+| P5 Esc UI | **DONE** (tiny) | |
+| P5 60fps soak | **NOT DONE** | |
+| P5 photo stills | **NOT DONE** | |
 
-## TASKS.md checkboxes (the V list)
+## Phase 0–9 (TASKS execution plan)
 
-| ID | Checkbox | Honest | 100? |
-|---|---|---|---|
-| A1 GIS road | unchecked | **NOT DONE** | |
-| A2 Azrieli measured | unchecked | **NOT DONE** | primitives + ratios |
-| A3 Aerial 8+8+rail | unchecked | **PARTIAL** | one carriageway 28m + offset clone + rail; not aerial |
-| A4 Human QA vs still | unchecked | **NOT DONE** | |
-| B1 External scanned glTF | unchecked | **NOT DONE** | we exported our own extrusion |
-| B2 Shader flakes | unchecked | **PARTIAL** | texture, not shader |
-| B3 Wheels+steer | V PARTIAL | **PARTIAL** | wheels rotate; not a rig |
-| B4 Cockpit | unchecked | **PARTIAL** | dash boxes always on; not a cabin LOD |
-| C1 Pacejka | V PARTIAL | **PARTIAL** | formula used; mixed with kinematic yaw |
-| C2 Suspension Y | V PARTIAL | **PARTIAL** | spring on spline, not 4-post |
-| C3 Grade*g | V PARTIAL | **PARTIAL** | spline slope, not DEM |
-| C4 OBB | V PARTIAL | **PARTIAL** | yaw box on tunnels/gates; most hits still AABB |
-| D1 WebGPURenderer | unchecked | **NOT DONE** | |
-| D2 TSL | unchecked | **NOT DONE** | |
-| D3 CSM | V PARTIAL | **PARTIAL** | 2 cascades @1024 High only |
-| D4 SMAA / TRAA | V PARTIAL | **PARTIAL** | SMAA mid/high; no TRAA |
-| D5 No SSGI | V kept | **DONE** (constraint) | we did not add SSGI |
-| E1 .ktx2 | unchecked | **NOT DONE** | loader wired, **zero files** |
-| E2 Canvas fallbacks | V PARTIAL | **PARTIAL** | leftover: world facade/window/ads, nyc billboard, probe |
-| E3 Zero canvas except probe | unchecked | **NOT DONE** | |
-| E4 Lease RTs | V PARTIAL | **PARTIAL** | env+probe+composer; not CSM maps |
-| F Israel 15 GPS+still | unchecked | **PARTIAL** | GPS-ish points, no still QA |
-| G Golden CI | V PARTIAL | **PARTIAL** | capture + size>20KB; no pixel diff |
-| G WebGL2 CI | V PARTIAL | **PARTIAL** | `qa:webgl2` gets a context; not a matrix |
-| G WebGPU CI | unchecked | **NOT DONE** | |
-| G Strip `?qa=1` | unchecked | **NOT DONE** | hook lives in DEV/localhost |
-| G 13 ship gates | 0/13 | **NOT DONE** | |
-
-## PLAN.md 24h / week / month
-
-| Item | Status | 100? |
+| ID | Status | 100? |
 |---|---|---|
-| 24.1 Rotate OAuth secret | **PARTIAL** | removed from source, not rotated at broker |
-| 24.2 Block QA hook in preview | **PARTIAL** | localhost/`VITE_QA` only; still on 127.0.0.1 |
-| 24.3 Honest records | **PARTIAL** | no signed hash |
-| 24.4 No false GIS claims | **PARTIAL** | some copy says inspired; many names still sound real |
-| 24.5 Artifacts | **NOT DONE** | |
-| W1.1 CI without nocheck | **NOT DONE** | `world.ts`, `game-app.tsx` still `@ts-nocheck` |
-| W1.2 Save transactions | **NOT DONE** | localStorage |
-| W1.3 Damage lifecycle | **PARTIAL** | dents; no CCD |
-| W1.4 GPU soak | **NOT DONE** | dispose exists; no signed 30min |
-| W1.5 Signed envelope | **NOT DONE** | |
-| W1.6 Perf headers | **NOT DONE** | |
-| M1 Unreal brief | **NOT DONE** | cannot here |
-| M2 Freeze 52 tracks | **FAKED** | we kept editing tracks |
-| M3 Legal | **NOT DONE** | |
-| M4 CRS EPSG:2039 | **NOT DONE** | |
-| M5 Vehicle lab | **PARTIAL** | no CI 0–100 |
+| 0.1 Inspired copy | **PARTIAL** | some cards; not all |
+| 0.2 Strip qa from prod | **NOT DONE** | hook on localhost/`VITE_QA` |
+| 0.3 Record hash | **NOT DONE** | |
+| 0.4 Ban nocheck | **NOT DONE** | `world.ts`, `game-app.tsx` still |
+| 0.5 Honest README | **PARTIAL** | |
+| 1.1 DEV HUD | **PARTIAL** | p95 only, no draw calls |
+| 1.2 fps<50 cascade | **PARTIAL** | drops composer tier, not planar→CSM list |
+| 1.3 Low 60 on phone | **NOT DONE** | |
+| 1.4 Lease CSM maps | **NOT DONE** | env/probe/composer only |
+| 2.1 Road shader | **NOT DONE** | dashes are meshes |
+| 2.2 Planar follow | **PARTIAL** | 768 + yaw |
+| 2.3 3.5m lanes | **PARTIAL** | Ayalon 28m=8×3.5 implied |
+| 2.4 NYC canvas out of world | **PARTIAL** | gone from `world.ts`; module still imported; `nyc-canvas.ts`+`nyc-landmarks.ts` remain |
+| 3.1 Authored GT | **NOT DONE** | |
+| 3.2 Flake shader | **NOT DONE** | |
+| 3.3 Hood cabin | **PARTIAL** | dash boxes always on |
+| 3.4 Mix telemetry | **NOT DONE** | |
+| 3.5 0–100 CI | **NOT DONE** | |
+| 4.1 Tire yaw | **PARTIAL** | `kin * crawl + tire` — highway tire-only |
+| 4.2 4-post | **NOT DONE** | spline spring |
+| 4.3 No DEM claim | **PARTIAL** | code ok; copy still fuzzy |
+| 4.4 OBB all landmarks | **PARTIAL** | some yaw boxes |
+| 4.5 Airborne 12ms | **NOT DONE** | |
+| 5.1 Hashalom still | **NOT DONE** | **blocks freeze** |
+| 5.2 Azrieli photo glass | **NOT DONE** | primitives |
+| 5.3 Interchanges | **PARTIAL** | ramps + piers off-road |
+| 5.4 Opposite carriageway | **PARTIAL** | visual clone |
+| 5.5 Freeze Ayalon | **NOT DONE** | we keep editing it |
+| 6.x Israel slices | **PARTIAL** | started; **must wait 5.5** |
+| 7.1 WebGPU flag | **NOT DONE** | |
+| 7.2 TSL | **NOT DONE** | |
+| 7.3 CSM 3/1/0 | **PARTIAL** | 2 High only |
+| 7.4 SMAA | **PARTIAL** | mid/high; no TRAA |
+| 7.5 No SSGI | **DONE** (constraint) | |
+| 8.1 KTX2 files | **NOT DONE** | 0 files |
+| 8.2 Zero canvas | **NOT DONE** | 3 sites + probe |
+| 8.3 Meshopt | **DONE** (tiny) | cars load meshopt |
+| 8.4 World cells | **NOT DONE** | |
+| 9.1 smokes | **PARTIAL** | `qa:drive`, `qa:webgl2` |
+| 9.2 Pixel golden | **NOT DONE** | size>20KB only |
+| 9.3 WebGPU CI | **NOT DONE** | |
+| 9.4 Strip hook prod | **NOT DONE** | |
+| 9.5 13 gates | **NOT DONE** | **0/13** |
 
-## FAKED if anyone checked V on
+## Tiny specs that are 100
 
-- Photogrammetry / “real streets” / GIS / OSM / DEM
-- WebGPURenderer / TSL / TRAA / SSGI / Lumen / Nanite
-- KTX2 shipping assets
-- Scanned hero car
-- World-class / GT7 / Asphalt parity
-- Freeze-52
-- Secret rotation at the broker
-- E2 “all canvases gone”
-- Photo Mode as cinematic renderer
+Esc overlay. 120Hz timestep exists. GitHub. No NYC generic boxes on Israel tracks. Bloom weak. Road `metalness=0`. SSGI not added. `qa:drive` / `qa:webgl2` run here. Meshopt decoder on car glTF. `world.ts` has **zero** `createElement("canvas")`.
 
-## Tiny specs that *are* 100
+## FAKED if V on
 
-Esc overlay. Physics timestep 120Hz exists. GitHub repo. NYC generic boxes skipped in Israel. Bloom kept weak. Road `metalness = 0`. SSGI not added. `qa:drive` and `qa:webgl2` smokes run here.
+GIS / real streets / photogrammetry / DEM / WebGPU / TSL / TRAA / shipping KTX2 / scanned hero / freeze-52 / broker secret rotation / “all canvases gone” / cinematic Photo Mode / “road shader done” (dashes ≠ shader) / Ayalon freeze.
