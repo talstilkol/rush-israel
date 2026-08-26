@@ -3175,10 +3175,50 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(p.x, h + 4 * s, p.z, 0xe8f2fa, 44 * s, 40 * s);
     hit(p.x, p.z, 12 * s, 8 * s, 14 * s, 0.18);
   };
+  const placeHakirya = (s) => {
+    const p = tlv(32.0756, 34.7878);
+    const khaki = new THREE.MeshStandardMaterial({
+      color: 0xb89a6e,
+      roughness: 0.62,
+      envMapIntensity: 0.45
+    });
+    bag.push(khaki);
+    const h = 96 * s;
+    const matcal = new THREE.Mesh(new THREE.BoxGeometry(14.4 * s, h, 18.6 * s), khaki);
+    matcal.position.set(p.x, h * 0.5, p.z);
+    add(matcal);
+    const cap = new THREE.Mesh(new THREE.BoxGeometry(15.2 * s, 4.2 * s, 19.4 * s), cream);
+    cap.position.set(p.x, h + 1.8 * s, p.z);
+    add(cap);
+    const hallGeo = new THREE.BoxGeometry(1, 1, 1);
+    const halls = new THREE.InstancedMesh(hallGeo, cream, 6);
+    halls.frustumCulled = false;
+    const spec = [
+      [22, 6, 8, 16, 8, 10],
+      [-20, 5.2, 12, 14, 6.4, 12],
+      [16, 4.4, -16, 18, 5.2, 9],
+      [-14, 7, -18, 12, 9.2, 14],
+      [28, 3.8, -8, 10, 4.6, 16],
+      [-26, 4.8, 4, 12, 5.8, 8],
+    ];
+    spec.forEach((h, i) => {
+      _dummy.position.set(p.x + h[0] * s, h[1] * s, p.z + h[2] * s);
+      _dummy.rotation.set(0, i * 0.12, 0);
+      _dummy.scale.set(h[3] * s, h[4] * s * 2, h[5] * s);
+      _dummy.updateMatrix();
+      halls.setMatrixAt(i, _dummy.matrix);
+    });
+    halls.instanceMatrix.needsUpdate = true;
+    group.add(halls);
+    bag.push(hallGeo);
+    glowAt(p.x, h + 4 * s, p.z, 0xd4c4a0, 32 * s, 28 * s);
+    hit(p.x, p.z, 16 * s, 22 * s, 20 * s);
+  };
   const placeTlvTowers = (s) => {
     placeCityGate(s);
     placeToHa(s);
     placeSarona(s);
+    placeHakirya(s);
     placeMidtown(s);
     placeElectra(s);
     const sm = tlv(32.0639, 34.7704);
@@ -5203,6 +5243,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     placeMidtown(1.15);
     placeElectra(1.2);
     placeSarona(1.32);
+    placeHakirya(1.1);
     const ibm = tlv(32.0856, 34.7987);
     const ibmGlass = new THREE.MeshPhysicalMaterial({
       color: 0x3a6e7a,
