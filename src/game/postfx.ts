@@ -208,7 +208,7 @@ export function bakeEnv(renderer: THREE.WebGLRenderer, night = false) {
     tmp.add(disc);
     const ground = new THREE.Mesh(
       new THREE.CircleGeometry(22, 24),
-      new THREE.MeshLambertMaterial({ color: 0xc4b090 }),
+      new THREE.MeshLambertMaterial({ color: 0x3a4248 }),
     );
     ground.rotation.x = -Math.PI / 2;
     ground.position.y = -2.2;

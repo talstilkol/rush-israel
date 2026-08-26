@@ -1,5 +1,5 @@
 # Progress — honest %
 
-**~9%** of the Web graphics plan. Ship gates **0/13**.
+**~10%** of the Web graphics plan. Ship gates **0/13**.
 
-Ayalon median rails + trains offset to the barrier, not the driving lanes. Still boxes, not GIS.
+Day IBL: blue sky + dark ground, intensity 0.88. Car picks up sky. Still a tiny PMREM scene, not HDRI.

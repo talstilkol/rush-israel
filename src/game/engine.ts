@@ -718,7 +718,7 @@ export class RaceEngine {
       this.envRT.dispose();
       this.envRT = env;
       this.scene.environment = env.texture;
-      this.scene.environmentIntensity = this.world.night ? 0.52 : 0.36;
+      this.scene.environmentIntensity = this.world.night ? 0.52 : 0.88;
     } catch {
       /* keep fallback */
     }
@@ -859,7 +859,7 @@ export class RaceEngine {
     this.skyTex = paintSky(n > 0.5, desert, snow);
     this.scene.background = this.skyTex;
     this.applyAltitudeLook();
-    this.scene.environmentIntensity = n > 0.5 ? 0.68 : 0.32;
+    this.scene.environmentIntensity = n > 0.5 ? 0.68 : 0.88;
     this.post.setNight(n > 0.5);
     const lamps = n > 0.42;
     for (const vis of this.visuals) setCarLights(vis, lamps);
