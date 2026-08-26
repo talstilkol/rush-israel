@@ -4655,6 +4655,14 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   }
   if (def.id === "eilat") {
     const mar = eil(29.5482, 34.9542);
+    {
+      const n = nearestIndex(built.samples, mar.x, mar.z, 0);
+      if (n.dist < built.width / 2 + 10) {
+        const s = built.samples[n.index];
+        mar.x = s.x + s.rx * (built.width / 2 + 24);
+        mar.z = s.z + s.rz * (built.width / 2 + 24);
+      }
+    }
     const nb = eil(29.5585, 34.96);
     for (let i = 0; i < 7; i++) {
       const mtn = new THREE.Mesh(new THREE.ConeGeometry(18 + i * 3, 22 + i * 6, 5), new THREE.MeshStandardMaterial({
@@ -6284,6 +6292,14 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   }
   if (def.id === "herzliya") {
     const mar = hzl(32.1635, 34.7965);
+    {
+      const n = nearestIndex(built.samples, mar.x, mar.z, 0);
+      if (n.dist < built.width / 2 + 10) {
+        const s = built.samples[n.index];
+        mar.x = s.x + s.rx * (built.width / 2 + 26);
+        mar.z = s.z + s.rz * (built.width / 2 + 26);
+      }
+    }
     const breakw = new THREE.Mesh(new THREE.BoxGeometry(6, 1.6, 72), stone);
     breakw.position.set(mar.x - 42, 0.7, mar.z);
     add(breakw);
@@ -6643,6 +6659,14 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     });
     bag.push(basalt, grass);
     const kz = gol(32.992, 35.689);
+    {
+      const n = nearestIndex(built.samples, kz.x, kz.z, 0);
+      if (n.dist < built.width / 2 + 16) {
+        const s = built.samples[n.index];
+        kz.x = s.x + s.rx * (built.width / 2 + 34);
+        kz.z = s.z + s.rz * (built.width / 2 + 34);
+      }
+    }
     for (let i = 0; i < 8; i++) {
       const hill = new THREE.Mesh(new THREE.ConeGeometry(16 + i * 2, 18 + i * 3.4, 6), i % 2 ? grass : basalt);
       hill.position.set(kz.x + 36 + i % 4 * 18, 9, kz.z - 24 + Math.floor(i / 2) * 26);
