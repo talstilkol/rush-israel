@@ -5976,6 +5976,21 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         const wing = new THREE.Mesh(new THREE.BoxGeometry(18, 5.2, 22), cream);
         wing.position.set(hallP.x + 16, 2.6, hallP.z);
         add(wing);
+        const vault = new THREE.Mesh(new THREE.CylinderGeometry(15, 15, 38, 22, 1, true, Math.PI, Math.PI), paleGlass);
+        vault.rotation.z = Math.PI / 2;
+        vault.position.set(hallP.x, hallH + 1.6, hallP.z);
+        add(vault);
+        for (let i = 0; i < 6; i++) {
+          const rib = new THREE.Mesh(new THREE.TorusGeometry(15.1, 0.2, 6, 18, Math.PI), bandMat);
+          rib.rotation.z = Math.PI / 2;
+          rib.position.set(hallP.x - 16 + i * 6.4, hallH + 1.6, hallP.z);
+          add(rib);
+        }
+        const spanS = Math.hypot(hallP.x - p.x, hallP.z - p.z);
+        const foot = new THREE.Mesh(new THREE.BoxGeometry(Math.max(10, spanS), 1.35, 5.6), paleGlass);
+        foot.position.set((hallP.x + p.x) * 0.5, 10.6, (hallP.z + p.z) * 0.5);
+        foot.rotation.y = Math.atan2(p.x - hallP.x, p.z - hallP.z);
+        add(foot);
       }
       if (st.kind === "uni") {
         const shed = new THREE.Mesh(new THREE.BoxGeometry(14, 3.2, 18), cream);
