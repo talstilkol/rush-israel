@@ -6007,6 +6007,14 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   }
   if (def.id === "beersheva") {
     const ch = bsv(31.252, 34.791);
+    {
+      const n = nearestIndex(built.samples, ch.x, ch.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        ch.x = s.x + s.rx * (built.width / 2 + 26);
+        ch.z = s.z + s.rz * (built.width / 2 + 26);
+      }
+    }
     const hall = new THREE.Mesh(new THREE.BoxGeometry(9.2, 32, 9.2), cream);
     hall.position.set(ch.x, 16, ch.z);
     add(hall);
@@ -6038,6 +6046,14 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   }
   if (def.id === "netanya") {
     const sq = net(32.3318, 34.8565);
+    {
+      const n = nearestIndex(built.samples, sq.x, sq.z, 0);
+      if (n.dist < built.width / 2 + 10) {
+        const s = built.samples[n.index];
+        sq.x = s.x + s.rx * (built.width / 2 + 22);
+        sq.z = s.z + s.rz * (built.width / 2 + 22);
+      }
+    }
     const plaza = new THREE.Mesh(new THREE.CylinderGeometry(16, 16, 0.18, 28), stone);
     plaza.position.set(sq.x, 0.12, sq.z);
     add(plaza);
