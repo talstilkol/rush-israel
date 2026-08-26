@@ -2088,7 +2088,7 @@ export class RaceEngine {
 
   private qaHookAllowed() {
     if (import.meta.env.VITE_QA === "1") return true;
-    if (typeof location !== "undefined") {
+    if (import.meta.env.DEV && typeof location !== "undefined") {
       const h = location.hostname;
       if (h === "127.0.0.1" || h === "localhost") return true;
     }
@@ -2096,6 +2096,7 @@ export class RaceEngine {
   }
 
   private exposeControls() {
+    if (import.meta.env.PROD && import.meta.env.VITE_QA !== "1") return;
     if (!this.qaHookAllowed()) return;
     window.__controlsTest = {
       getYaw: () => this.player.yaw,

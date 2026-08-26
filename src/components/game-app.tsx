@@ -168,7 +168,7 @@ export function GameApp() {
 				onRestore: () => setRaceKey((k) => k + 1),
 				onFinish: (r) => {
 					const ok = r.eligible !== false;
-					const isBest = ok ? recordBest(r.trackId, r.totalTime, { eligible: true }) : false;
+					const isBest = ok ? recordBest(r.trackId, r.totalTime, { eligible: true, carId }) : false;
 					setRecord(isBest);
 					const ev = r.eventId ? getEvent(r.eventId) : null;
 					const got = !ok ? 0 : ev ? starsFor(ev, r) : r.place === 1 ? 3 : r.place === 2 ? 2 : r.place === 3 ? 1 : 0;

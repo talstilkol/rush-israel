@@ -2,10 +2,13 @@ import type { AssistFlags, CarId, HandlingMode, Quality, TrackId, Tune } from ".
 import type { Lang } from "./i18n";
 import { CAR_UNLOCK } from "./career";
 import { emptyTune, type GhostFrame } from "./garage";
+import { PHYSICS_VERSION } from "./physics";
+import { isLiveRecord, recordPayload, sha256hex, type TimedRecord } from "./records";
 
 const KEY = "rush-v1";
 const LEGACY = "tlv-rush-v1";
 const GHOST_KEY = "rush-ghosts-v1";
+const REC_KEY = "rush.records.v3";
 
 type SaveData = {
   version: 3;
@@ -74,17 +77,45 @@ export function getBest(id: TrackId) {
   return load().best[id] ?? null;
 }
 
-export function recordBest(id: TrackId, time: number, opts?: { eligible?: boolean }) {
+export function recordBest(id: TrackId, time: number, opts?: { eligible?: boolean; carId?: CarId }) {
   if (opts?.eligible === false) return false;
   if (!Number.isFinite(time) || time < 8 || time > 2700) return false;
   const data = load();
   const prev = data.best[id];
-  if (prev == null || time < prev) {
+  const better = prev == null || time < prev;
+  if (better) {
     data.best[id] = time;
     write(data);
-    return true;
   }
-  return false;
+  const carId = opts?.carId ?? "sabra";
+  void persistTimed({ t: time, trackId: id, carId, physicsVersion: PHYSICS_VERSION, hash: "" });
+  return better;
+}
+
+async function persistTimed(rec: TimedRecord) {
+  try {
+    rec.hash = await sha256hex(recordPayload(rec.trackId, rec.carId, rec.t, rec.physicsVersion));
+    const all = loadTimed().filter((r) => isLiveRecord(r, PHYSICS_VERSION));
+    all.push(rec);
+    localStorage.setItem(REC_KEY, JSON.stringify(all));
+  } catch {
+    /* quota / crypto */
+  }
+}
+
+function loadTimed(): TimedRecord[] {
+  try {
+    const raw = localStorage.getItem(REC_KEY);
+    if (!raw) return [];
+    const p = JSON.parse(raw) as TimedRecord[];
+    return Array.isArray(p) ? p : [];
+  } catch {
+    return [];
+  }
+}
+
+export function liveRecords() {
+  return loadTimed().filter((r) => isLiveRecord(r, PHYSICS_VERSION));
 }
 
 export function getMuted() {
