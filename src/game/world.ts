@@ -3917,6 +3917,11 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const tower = new THREE.Mesh(new THREE.BoxGeometry(4.8, 26, 4.8), ochre);
     tower.position.set(ck.x, 14.2, ck.z);
     add(tower);
+    for (let y = 6.2; y < 24; y += 4.4) {
+      const band = new THREE.Mesh(new THREE.BoxGeometry(5.15, 0.32, 5.15), lime);
+      band.position.set(ck.x, y, ck.z);
+      add(band);
+    }
     const base = new THREE.Mesh(new THREE.BoxGeometry(7.6, 3.6, 7.6), ochreDark);
     base.position.set(ck.x, 1.8, ck.z);
     add(base);
