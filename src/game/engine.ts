@@ -198,6 +198,7 @@ export class RaceEngine {
   private droppedTier = false;
   private dyn = new DynamicQualityController();
   private csmMuted = false;
+  private lastPresent = 0;
   private soft = false;
   private mode: RaceMode = "circuit";
   private totalLaps = 3;
@@ -1012,6 +1013,11 @@ export class RaceEngine {
     if (import.meta.env.DEV) console.info("[gfx]", s, "planar", s < 1, "bloom", s < 2, "csm", s < 3, "px", scale.toFixed(2));
   }
 
+  private shouldPresent(now: number) {
+    if (this.quality !== "low" && !this.lite) return true;
+    return now - this.lastPresent >= 1000 / 30;
+  }
+
   private onResize() {
     const w = this.canvas.clientWidth;
     const h = Math.max(1, this.canvas.clientHeight);
@@ -1103,6 +1109,15 @@ export class RaceEngine {
 
     this.world.tick(now, this.player.x, this.player.z);
     this.nowSec = now / 1000;
+    if (!this.shouldPresent(now)) {
+      this.hudTimer += dt;
+      if (this.hudTimer > 0.08) {
+        this.hudTimer = 0;
+        this.pushHud();
+      }
+      return;
+    }
+    this.lastPresent = now;
     this.present(dt);
     this.world.followShadows(this.player.x, this.player.y, this.player.z);
     this.updateCsm();
