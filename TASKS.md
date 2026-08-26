@@ -31,7 +31,7 @@ Do **not** bake more procedural PNGs. Do **not** add cities.
 - [ ] E1 `.ktx2` (no KTX-Software)
 - [x] E2 Canvas fallbacks — **PARTIAL** (7 left)
 - [ ] E3 Zero canvas except probe
-- [x] E4 Lease RTs — **PARTIAL** (env + probe; not every composer RT)
+- [x] E4 Lease RTs — **PARTIAL** (env + probe + composer; not CSM internals)
 
 ## F — Israel after A green
 Rothschild / Reading / Jaffa / Jerusalem / Ramon / Hermon / Carmel: 15 GPS + still + zero generic boxes.

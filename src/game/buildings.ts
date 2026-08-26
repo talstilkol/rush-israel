@@ -239,36 +239,6 @@ function highwayTower(add: BuildFn, hit: (x: number, z: number, r: number) => vo
   hit(x, z, w * 0.34);
 }
 
-function motzaSign(add: BuildFn, he: string, x: number, y: number, z: number, yaw: number) {
-  const pole = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.08, 0.1, 3.4, 6),
-    new THREE.MeshStandardMaterial({ color: 0x2a2e32, metalness: 0.55, roughness: 0.4 }),
-  );
-  pole.position.set(x, y + 1.7, z);
-  add(pole);
-  const c = document.createElement("canvas");
-  c.width = 512;
-  c.height = 128;
-  const g = c.getContext("2d");
-  if (!g) return;
-  g.fillStyle = "#1a6a38";
-  g.fillRect(0, 0, 512, 128);
-  g.strokeStyle = "#ffffff";
-  g.lineWidth = 10;
-  g.strokeRect(8, 8, 496, 112);
-  g.fillStyle = "#ffffff";
-  g.font = "600 48px sans-serif";
-  g.textAlign = "center";
-  g.textBaseline = "middle";
-  g.fillText(he, 256, 64);
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  const board = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 0.9), new THREE.MeshBasicMaterial({ map: tex }));
-  board.position.set(x, y + 3.5, z);
-  board.rotation.y = yaw + Math.PI;
-  add(board);
-}
-
 export function scatterStreetBuildings(
   def: TrackDef,
   built: BuiltTrack,

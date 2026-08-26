@@ -764,8 +764,10 @@ export class RaceEngine {
     if (this.disposed) return;
     try {
       const post = createPost(this.renderer, this.scene, this.camera, this.world.night, this.lite);
+      this.leases.release("post");
       this.post.dispose();
       this.post = post;
+      this.leases.retain("post", () => this.post.dispose());
       this.post.setTier(this.droppedTier && this.quality === "high" ? "mid" : this.quality);
       this.onResize();
     } catch {
@@ -2221,7 +2223,6 @@ export class RaceEngine {
       this.csm?.dispose();
       this.csm = null;
       this.world.dispose();
-      this.post.dispose();
       this.leases.disposeAll();
       this.skyTex?.dispose();
       this.sparks.geometry.dispose();
