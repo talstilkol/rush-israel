@@ -2042,7 +2042,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       t: "TLV"
     }
   ];
-  if (!natureTrack && def.id !== "ayalon" && def.id !== "rothschild" && def.id !== "hayarkon" && def.id !== "oldjaffa" && def.id !== "jerusalem") for (let i = 0; i < ads.length; i++) {
+  if (def.city === "nyc") for (let i = 0; i < ads.length; i++) {
     const ad = ads[i];
     const boardCanvas = document.createElement("canvas");
     boardCanvas.width = 512;
