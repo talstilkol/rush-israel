@@ -592,7 +592,7 @@ export class RaceEngine {
     this.banter = introLine(ev, this.opts.langHe);
     this.banterT = 5.5;
 
-    this.exposeControls();
+    if (import.meta.env.DEV || import.meta.env.VITE_QA === "1") this.exposeControls();
     this.pushHud();
     this.booted = true;
     this.opts.onBoot?.(1);
@@ -2644,7 +2644,7 @@ export class RaceEngine {
     }
     this.leases.disposeAll();
     this.gfx.dispose();
-    if (this.qaHookAllowed()) {
+    if (import.meta.env.DEV || import.meta.env.VITE_QA === "1") {
       delete window.__controlsTest;
       delete window.render_game_to_text;
     }
