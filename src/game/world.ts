@@ -2807,23 +2807,6 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       group.add(rings);
       bag.push(ringGeo);
     }
-    {
-      const mullGeo = new THREE.BoxGeometry(0.16 * s, rH * 0.94, 0.16 * s);
-      const mulls = new THREE.InstancedMesh(mullGeo, bandMat, 20);
-      mulls.frustumCulled = false;
-      for (let i = 0; i < 20; i++) {
-        const a = i / 20 * Math.PI * 2;
-        _dummy.position.set(cx + Math.cos(a) * 8.7 * s, rH * 0.5, cz + Math.sin(a) * 8.7 * s);
-        _dummy.rotation.set(0, 0, 0);
-        _dummy.scale.set(1, 1, 1);
-        _dummy.updateMatrix();
-        mulls.setMatrixAt(i, _dummy.matrix);
-      }
-      mulls.instanceMatrix.needsUpdate = true;
-      mulls.castShadow = shadows;
-      group.add(mulls);
-      bag.push(mullGeo);
-    }
     const saucerUnd = new THREE.Mesh(new THREE.CylinderGeometry(17.2 * s, 9.4 * s, 2.6 * s, 36), bandMat);
     saucerUnd.position.set(cx, rH + 0.4 * s, cz);
     add(saucerUnd);
@@ -2886,36 +2869,9 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     sq.position.set(sqX, sH * 0.5, sqZ);
     add(sq);
     {
-      const mullGeo = new THREE.BoxGeometry(0.14 * s, sH * 0.96, 0.14 * s);
-      const mulls = new THREE.InstancedMesh(mullGeo, bandMat, 36);
-      mulls.frustumCulled = false;
-      let mi = 0;
-      for (let i = 0; i < 9; i++) {
-        const o = -6.8 * s + i * 1.7 * s;
-        const spots = [
-          [sqX + o, sH * 0.5, sqZ + 7.65 * s],
-          [sqX + o, sH * 0.5, sqZ - 7.65 * s],
-          [sqX + 7.65 * s, sH * 0.5, sqZ + o],
-          [sqX - 7.65 * s, sH * 0.5, sqZ + o],
-        ];
-        for (const p of spots) {
-          _dummy.position.set(p[0], p[1], p[2]);
-          _dummy.rotation.set(0, 0, 0);
-          _dummy.scale.set(1, 1, 1);
-          _dummy.updateMatrix();
-          mulls.setMatrixAt(mi++, _dummy.matrix);
-        }
-      }
-      mulls.count = mi;
-      mulls.instanceMatrix.needsUpdate = true;
-      mulls.castShadow = shadows;
-      group.add(mulls);
-      bag.push(mullGeo);
-    }
-    {
       const slabYs = [];
       for (let y = 5.5 * s; y < sH - 3 * s; y += 2.9 * s) slabYs.push(y);
-      const slabGeo = new THREE.BoxGeometry(15.8 * s, 0.2 * s, 15.8 * s);
+      const slabGeo = new THREE.BoxGeometry(15.8 * s, 0.35 * s, 15.8 * s);
       const slabs = new THREE.InstancedMesh(slabGeo, bandMat, slabYs.length);
       slabs.frustumCulled = false;
       for (let i = 0; i < slabYs.length; i++) {
