@@ -1878,7 +1878,7 @@ export const TRACKS: TrackDef[] = [
       her(33.3084, 35.7876),
       her(33.3112, 35.79),
     ],
-    elevation: (t) => 5 + 78 * Math.pow(t, 1.12),
+    elevation: (t) => 4 + 110 * Math.pow(t, 1.18),
     streets: [
       { from: 0.0, to: 0.16, he: "מג׳דל שמס", en: "Majdal Shams" },
       { from: 0.16, to: 0.36, he: "הסרפנטינות", en: "Switchbacks" },
@@ -2459,10 +2459,10 @@ export const TRACKS: TrackDef[] = [
       ram(30.5722, 34.7974),
     ],
     elevation: (t) => {
-      if (t < 0.08) return 92;
-      if (t > 0.88) return 2.2;
-      const u = (t - 0.08) / 0.8;
-      return 92 * Math.pow(1 - u, 1.12) + 2.2;
+      if (t < 0.08) return 118;
+      if (t > 0.9) return 1.8;
+      const u = (t - 0.08) / 0.82;
+      return 118 * Math.pow(1 - u, 1.18) + 1.8;
     },
     streets: [
       { from: 0.0, to: 0.14, he: "התצפית", en: "The Lookout" },

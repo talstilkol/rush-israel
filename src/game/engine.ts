@@ -900,9 +900,9 @@ export class RaceEngine {
     const n = nightAmt(this.clock);
     if (n > 0.5) return;
     if (this.trackDef.id === "hermon") {
-      const u = clamp(this.player.y / 84, 0, 1);
-      this.fog.density = lerp(0.00018, 0.00055, u);
-      this.fog.color.lerp(new THREE.Color(0xc8d8e8), u * 0.35);
+      const u = clamp(this.player.y / 110, 0, 1);
+      this.fog.density = lerp(0.00004, 0.0001, u);
+      this.fog.color.lerp(new THREE.Color(0xc8d8e8), u * 0.28);
       return;
     }
     if (this.trackDef.id === "scopus") {
@@ -918,11 +918,11 @@ export class RaceEngine {
     }
     if (this.trackDef.theme === "carmel") {
       const u = clamp(this.player.y / 48, 0, 1);
-      this.fog.density = lerp(0.00018, 0.0003, u);
+      this.fog.density = lerp(0.00005, 0.0001, u);
       return;
     }
-    const u = clamp(1 - this.player.y / 72, 0, 1);
-    this.fog.density = lerp(0.00016, 0.00048, u);
+    const u = clamp(1 - this.player.y / 110, 0, 1);
+    this.fog.density = lerp(0.00005, 0.00014, u);
     this.fog.color.lerp(new THREE.Color(0xd8c4a0), u * 0.4);
   }
 
