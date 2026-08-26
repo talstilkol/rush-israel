@@ -820,4 +820,105 @@
 **סוף חלק ג׳. תכנות אסור.**  
 חסר רק קלט משתמש: צילום השלום, אופציונלית `.hdr`, אופציונלית glTF hero. שאר הקודקס ממוספר.
 
+---
+
+## 32. סשן 21.1 — טקסט מדויק (כשיהיה אושר)
+
+32.1. קובץ: `src/game/tracks.ts` בלבד.  
+32.2. סיומת חובה לכל `description` שאין בה `בהשראת` או `לא GIS`:  
+32.2.1. עברית: ` בהשראת המקום, לא מפה ולא GIS.`  
+32.2.2. אנגלית `descriptionEn`: ` Inspired by the place — not a map, not GIS.`  
+32.3. היום 5 כרטיסים כבר עם בהשראת (ayalon, haifa, hw1, hw6, hw2). **לא** לשכפל את המשפט שם.  
+32.4. שאר ~51 הכרטיסים מקבלים את הסיומת בסוף המחרוזת הקיימת. לא לשכתב את השמות.  
+32.5. NYC: אותה סיומת באנגלית; עברית זהה.  
+32.6. שער: `grep -L` לא רלוונטי; שער: כל `description:` מכיל `בהשראת` או `לא GIS`.  
+32.7. אסור לגעת ב-`world.ts` בסשן הזה.
+
+---
+
+## 33. פרופילי איכות — נעילת שדות
+
+קיים `QualityProfile.ts`. למפות ל-8.4 בלי להמציא שדות חדשים עד שצריך `csmCascades`.
+
+33.1. `compat` (Low): pixelScale 1, shadows 0, composer false, bloom false, planar false, 30fps. אין CSM.  
+33.2. `balanced` (Mid): pixelScale 0.75, shadows 1, composer true, bloom false, planar false, 60fps. CSM = 1×512 כשיופעל.  
+33.3. `high`: pixelScale 0.85, shadows 1, composer true, bloom true, planar true, 60fps. CSM = 2×1024.  
+33.4. `ultra`: כמו high + pixelScale 1. **לא** WebGPU אוטומטי.  
+33.5. `photo`: כמו high, targetFps 30, DPR bump ב-engine (כבר). לא renderer שני.  
+33.6. שדה חדש מותר רק בסשן 8.4: `csmCascades: 0|1|2|3`. עד אז shadows=0/1 כמו היום.
+
+---
+
+## 34. לילה — מספרים
+
+34.1. שמש: intensity ≤0.18 בלילה מלא (CSM lights כבר 0.18 בקוד).  
+34.2. חשיפה: 0.15–0.28. לא 0.  
+34.3. פנסי רחוב: PointLight dist קצר, לא למלא את העולם.  
+34.4. histogram שער 15.5.2.  
+34.5. אסור bloom חזק שמלבן את המסך.
+
+---
+
+## 35. NYC — הקפאה נפרדת
+
+35.1. לא שער 1. לא Phase 6.  
+35.2. עד 6.5 איילון: אסור לערוך `nyc-landmarks.ts` / `nyc-canvas.ts` חוץ מ-21.4 (dynamic import).  
+35.3. אחרי freeze: NYC נשאר canvas עד 9.2 או יוצא מבילד ישראל.
+
+---
+
+## 36. מפת קבצים (מי נוגע במה)
+
+36.1. 21.1 → `tracks.ts`  
+36.2. 21.2 → `engine.ts` `qaHookAllowed` + סקריפט bundle  
+36.3. 21.3 → `vehicle.ts` (ערך crawl) + HUD ב-`types.ts`/`game-app.tsx`  
+36.4. 21.4 → `world.ts` import דינמי בלבד  
+36.5. 21.5–21.6 → `RenderTelemetry.ts` `DynamicQualityController.ts` `engine.ts`  
+36.6. 21.7 → `world.ts` roadMat + `engine.ts` CSM chain  
+36.7. 21.8 → `scripts/` טסט רמפה + `vehicle.ts` אם Y שבור  
+36.8. 21.10 → בלוק עזריאלי ב-`world.ts` בלבד  
+36.9. אסור: `career.ts`, multiplayer, garage, אונליין.
+
+---
+
+## 37. Soak
+
+37.1. 20 מחזורי תפריט→איילון→Esc→תפריט.  
+37.2. מדידה: `renderer.info.memory.textures` אחרי 2 ואחרי 20. הפרש ≤2 (probe/env reuse).  
+37.3. סקריפט קיים `soak-menu-race.mjs` — לא להמציא עוד אחד עד שבור.
+
+---
+
+## 38. סיכונים
+
+38.1. CSM דורס שיידר כביש → 3.1.1 שרשור.  
+38.2. WebGPU שובר composer/Reflector → 8.1, דגל בלבד.  
+38.3. פסי עזריאלי = 80+ calls → 26.2.5 InstancedMesh.  
+38.4. Pacejka crouch → 5.1 לא להרוג crawl.  
+38.5. בלי צילום השלום → תקועים ב-21.8 לעד. זה מקובל.  
+38.6. Kenney כ-hero → FAKED. 24.1.
+
+---
+
+## 39. מה לא ייכתב יותר במסמך (סגור)
+
+39.1. אונליין, גאראז׳, 50 מכוניות, Unreal, GIS.  
+39.2. TRAA על WebGL.  
+39.3. Canvas PNG חדשים.  
+39.4. ערים חדשות.
+
+---
+
+## 40. סטטוס מסמך
+
+40.1. חלק א׳–ד׳ = תוכנית הביצוע לקודקס הווב.  
+40.2. `המשך` נוסף יוסיף רק אם יש חור ממוספר. אחרת: לחזור על 31 — מחכים ל-**אושר**.  
+40.3. HEAD תכנון: לראות git log של `EXECUTION_PLAN.md` בלבד.
+
+---
+
+**סוף חלק ד׳. אין קוד.**  
+הצעד הבא האמיתי אחרי **אושר**: 32 / 21.1 על `tracks.ts` בלבד.
+
+
 
