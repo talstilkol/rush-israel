@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import type { CarDef, Tune } from "./types";
 import { hash01 } from "./math";
-import { cloneCarGtBody } from "./car-assets";
+import { cloneCarBody } from "./car-assets";
 
 export type CarVisual = {
   group: THREE.Group;
@@ -346,7 +346,7 @@ export function createCarVisual(
 
   const half = L.L / 2;
   const bodyY = L.wheelY + L.bodyH * 0.22;
-  const baked = kind === "gt" ? cloneCarGtBody(color, shadows) : undefined;
+  const baked = cloneCarBody(kind, color, shadows);
   if (baked) {
     group.add(baked);
     bodyMat = baked.material as THREE.MeshPhysicalMaterial;

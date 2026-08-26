@@ -1,14 +1,12 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import type { CarDef } from "./types";
 
-let template: THREE.Object3D | undefined;
+const templates = new Map<string, THREE.Object3D>();
 
-export function hasCarGt() {
-  return !!template;
-}
-
-/** Cloned GT body. Same extrude as before, via GLTFLoader. Not a scan. */
-export function cloneCarGtBody(color: number, shadows: boolean): THREE.Mesh | undefined {
+/** Cloned extruded body from glTF. Not a scan. */
+export function cloneCarBody(kind: CarDef["body"], color: number, shadows: boolean): THREE.Mesh | undefined {
+  const template = templates.get(kind) ?? templates.get("gt");
   if (!template) return;
   let src: THREE.Mesh | undefined;
   template.traverse((o) => {
@@ -25,9 +23,22 @@ export function cloneCarGtBody(color: number, shadows: boolean): THREE.Mesh | un
   return mesh;
 }
 
+export function cloneCarGtBody(color: number, shadows: boolean) {
+  return cloneCarBody("gt", color, shadows);
+}
+
 export async function loadCarGt() {
-  if (template) return;
+  return loadCars();
+}
+
+export async function loadCars() {
+  if (templates.size) return;
   const loader = new GLTFLoader();
-  const gltf = await loader.loadAsync("/game/car-gt.gltf");
-  template = gltf.scene;
+  const kinds = ["gt", "hatch", "muscle", "rally", "super"] as const;
+  await Promise.all(
+    kinds.map(async (k) => {
+      const gltf = await loader.loadAsync(`/game/car-${k}.gltf`);
+      templates.set(k, gltf.scene);
+    }),
+  );
 }
