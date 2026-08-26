@@ -26,6 +26,7 @@ import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput,
 import { createWorld, type World } from "./world";
 import { loadJaffaClock } from "./clock-assets";
 import { loadIsraelFlag } from "./flag-assets";
+import { loadTreeMaps } from "./tree-assets";
 import { loadCars } from "./car-assets";
 import { loadRoadFor } from "./road-assets";
 import { getSkyDay, getSkyNight, loadSky } from "./sky-assets";
@@ -329,6 +330,7 @@ export class RaceEngine {
     await loadSky();
     await loadRoadFor(this.trackDef.id);
     await loadCars();
+    await loadTreeMaps();
     if (this.trackDef.id === "oldjaffa") await loadJaffaClock();
     if (this.trackDef.id === "rothschild") await loadIsraelFlag();
     if (this.disposed) return;

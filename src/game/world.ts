@@ -9,7 +9,9 @@ import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, 
 import { scatterStreetBuildings } from "./buildings";
 import { addNycLandmarks } from "./nyc-landmarks";
 import { generateStreets, nearestStreet } from "./streets";
+import { getJaffaClock } from "./clock-assets";
 import { getIsraelFlag } from "./flag-assets";
+import { getFoliage, getBark } from "./tree-assets";
 import { getBakedRoad } from "./road-assets";
 import { getSkyDay, getSkyNight } from "./sky-assets";
 
@@ -310,6 +312,8 @@ function curbTexture(kind) {
   return tex;
 }
 function foliageTexture() {
+  const baked = getFoliage();
+  if (baked) return baked;
   const size = 128;
   const c = document.createElement("canvas");
   c.width = c.height = size;
@@ -336,6 +340,8 @@ function foliageTexture() {
   return tex;
 }
 function barkTexture() {
+  const baked = getBark();
+  if (baked) return baked;
   const size = 128;
   const c = document.createElement("canvas");
   c.width = c.height = size;
@@ -987,6 +993,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   const group = new THREE.Group();
   const bag = [];
   const keep = (d) => {
+    if (d === getFoliage() || d === getBark() || d === getSkyDay() || d === getSkyNight() || d === getJaffaClock() || d === getIsraelFlag()) return d;
     bag.push(d);
     return d;
   };
