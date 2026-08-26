@@ -1,0 +1,72 @@
+{
+  "physicsVersion": 3,
+  "track": "ayalon",
+  "note": "extrusion glTF, not a scanned hero. ±15% vs claimed zeroTo100.",
+  "runs": [
+    {
+      "carId": "sabra",
+      "t": [
+        9.6,
+        9.6,
+        9.6
+      ],
+      "mean": 9.6,
+      "target": 8.4,
+      "tol": 0.15,
+      "model": "extrusion",
+      "ok": true
+    },
+    {
+      "carId": "carmel",
+      "t": [
+        7.05,
+        7.05,
+        7.05
+      ],
+      "mean": 7.05,
+      "target": 6.6,
+      "tol": 0.15,
+      "model": "extrusion",
+      "ok": true
+    },
+    {
+      "carId": "kfir",
+      "t": [
+        4.45,
+        4.45,
+        4.45
+      ],
+      "mean": 4.45,
+      "target": 4.9,
+      "tol": 0.15,
+      "model": "extrusion",
+      "ok": true
+    },
+    {
+      "carId": "negev",
+      "t": [
+        5.8,
+        5.8,
+        5.8
+      ],
+      "mean": 5.8,
+      "target": 5.8,
+      "tol": 0.15,
+      "model": "extrusion",
+      "ok": true
+    },
+    {
+      "carId": "yam",
+      "t": [
+        3.05,
+        3.05,
+        3.05
+      ],
+      "mean": 3.05,
+      "target": 3.5,
+      "tol": 0.15,
+      "model": "extrusion",
+      "ok": true
+    }
+  ]
+}

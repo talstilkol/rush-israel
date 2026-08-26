@@ -49,7 +49,7 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 - [ ] 3.2 Flake **shader** — **NOT DONE** (`flake.png`)
 - [ ] 3.3 Hood windshield — **PARTIAL**
 - [x] 3.4 Mix % HUD — **DONE** (tiny)
-- [ ] 3.5 0–100 CI ±15% in `qa:ci` — **PARTIAL** (`qa:accel` exists, not wired)
+- [x] 3.5 0–100 CI ±15% in `qa` — **DONE** (tiny: extrusion, not hero; table in `golden-baseline/accel.json`)
 
 ## Phase 4 — Physics
 - [ ] 4.1 Tire-only yaw — **PARTIAL** (`kin * crawl + tire`)
