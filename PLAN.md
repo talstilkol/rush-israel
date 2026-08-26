@@ -171,9 +171,10 @@ GEO-01..VS-16 מהדוח. Unreal 5.8, EPSG:2039, Chaos Vehicle ±5%. **לא כא
 
 ## 5. סדר `המשך` הבא
 
-1. W0.4 תיאורים "בהשראת" (טקסט, לא ארט)
-2. W4.1 צילום איילון מול ייחוס — כנה: כנראה ייכשל
-3. **הקפאה** — בלי עוד עצים
+G0 Sprint 1 **PARTIAL**: telemetry, 12 מצלמות, probe, inventory, exposure 0.68, three pinned.  
+לא: WebGPURenderer, TSL, GIS, hero GLB, CI forced-WebGL.
+
+הבא: G1-01 RendererFacade דק סביב WebGLRenderer הקיים — בלי להחליף world.ts.
 
 ---
 
