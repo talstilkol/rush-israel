@@ -122,6 +122,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 2.33. `1.1` inspired + no-DEM CI — **DONE** (tiny: `check:copy` in `qa:ci`).
 2.34. `1.3` records unit tests in `qa:ci` — **DONE** (tiny).
 2.35. `5.1` physics unit tests in `qa:ci` — **DONE** (tiny: Pacejka/ABS/TCS/120Hz).
+2.36. `7.5` SSGI-off in `qa:ci` — **DONE** (tiny).
 
 ### 3. After Hashalom still
 3.1. Pose-lock `hashalom` camera.  
