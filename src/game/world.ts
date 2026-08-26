@@ -5383,51 +5383,6 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     placeAzrieli(1.42);
     placeToHa(1.28, 32.0695, 34.7894);
     placeCityGate(1);
-    const glassHi = (lat, lon, w, d, h, mat, rot = 0) => {
-      const p = tlv(lat, lon);
-      const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
-      m.position.set(p.x, h * 0.5, p.z);
-      m.rotation.y = rot;
-      add(m);
-      hit(p.x, p.z, Math.max(5, Math.min(12, (w + d) * 0.26)), w * 0.42, d * 0.42);
-      return p;
-    };
-    const slabTower = (lat, lon, w, d, h, mat, step = 3.1) => {
-      const p = glassHi(lat, lon, w, d, h, mat);
-      for (let y = 6; y < h - 4; y += step) {
-        const sl = new THREE.Mesh(new THREE.BoxGeometry(w + 0.45, 0.18, d + 0.45), bandMat);
-        sl.position.set(p.x, y, p.z);
-        add(sl);
-      }
-      return p;
-    };
-    const elP = slabTower(32.0699, 34.7934, 14.2, 14.2, 86, azSqGlass, 3.05);
-    const elMast = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.4, 22, 8), bandMat);
-    elMast.position.set(elP.x, 100, elP.z);
-    add(elMast);
-    slabTower(32.0672, 34.7931, 12.2, 13.4, 76, glass, 3.2);
-    slabTower(32.0664, 34.7935, 11.6, 12.8, 71, glass, 3.2);
-    const sa = slabTower(32.071, 34.7928, 11.4, 11.4, 83, glass, 3.4);
-    const sa2 = new THREE.Mesh(new THREE.BoxGeometry(8.2, 18, 8.2), paleGlass);
-    sa2.position.set(sa.x, 94, sa.z);
-    add(sa2);
-    const kir = slabTower(32.073, 34.7927, 15.2, 11.2, 68, cream, 3.6);
-    const kirHat = new THREE.Mesh(new THREE.BoxGeometry(17, 5.6, 13), bandMat);
-    kirHat.position.set(kir.x, 72, kir.z);
-    add(kirHat);
-    slabTower(32.0806, 34.793, 11.2, 13.4, 99, gateGlass, 3);
-    slabTower(32.0814, 34.7934, 11.2, 13.4, 91, gateGlass, 3);
-    const leo = tlv(32.0822, 34.7992);
-    const leoM = new THREE.Mesh(new THREE.CylinderGeometry(7.8, 8.4, 79, 12), paleGlass);
-    leoM.position.set(leo.x, 39.5, leo.z);
-    add(leoM);
-    const leoHat = new THREE.Mesh(new THREE.CylinderGeometry(9, 6.6, 5.4, 12), cream);
-    leoHat.position.set(leo.x, 82, leo.z);
-    add(leoHat);
-    hit(leo.x, leo.z, 8);
-    slabTower(32.0818, 34.7986, 12, 12, 64, glass, 3.15);
-    slabTower(32.081, 34.799, 11, 11, 57, glass, 3.15);
-    slabTower(32.0845, 34.7994, 13, 11.4, 73, darkGlass, 3.2);
     const ibm = tlv(32.0856, 34.7987);
     for (let i = 0; i < 6; i++) {
       const w = 20 - i * 2.2;
@@ -5450,45 +5405,6 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     yovCrown.position.set(yovel.x, 96, yovel.z);
     add(yovCrown);
     hit(yovel.x, yovel.z, 8);
-    const saA = tlv(32.0714, 34.7866);
-    const saB = tlv(32.0718, 34.7872);
-    const saTwA = new THREE.Mesh(new THREE.BoxGeometry(11.2, 96, 11.2), paleGlass);
-    saTwA.position.set(saA.x, 48, saA.z);
-    add(saTwA);
-    const saTwB = new THREE.Mesh(new THREE.BoxGeometry(10.4, 84, 10.4), glass);
-    saTwB.position.set(saB.x, 42, saB.z);
-    add(saTwB);
-    const saCapA = new THREE.Mesh(new THREE.BoxGeometry(8.2, 14, 8.2), paleGlass);
-    saCapA.position.set(saA.x, 103, saA.z);
-    add(saCapA);
-    hit(saA.x, saA.z, 7);
-    hit(saB.x, saB.z, 7);
-    const yooA = tlv(32.0854, 34.8018);
-    const yooB = tlv(32.0859, 34.8026);
-    const y1 = new THREE.Mesh(new THREE.BoxGeometry(10.4, 86, 10.4), paleGlass);
-    y1.position.set(yooA.x, 43, yooA.z);
-    add(y1);
-    const y2 = new THREE.Mesh(new THREE.BoxGeometry(10.4, 78, 10.4), glass);
-    y2.position.set(yooB.x, 39, yooB.z);
-    add(y2);
-    hit(yooA.x, yooA.z, 6);
-    hit(yooB.x, yooB.z, 6);
-    const alonA = tlv(32.0662, 34.7922);
-    const alonB = tlv(32.0668, 34.7928);
-    const al1 = new THREE.Mesh(new THREE.BoxGeometry(12.6, 108, 12.6), paleGlass);
-    al1.position.set(alonA.x, 54, alonA.z);
-    add(al1);
-    const al1Cap = new THREE.Mesh(new THREE.BoxGeometry(8.4, 12, 8.4), paleGlass);
-    al1Cap.position.set(alonA.x, 114, alonA.z);
-    add(al1Cap);
-    const al2 = new THREE.Mesh(new THREE.BoxGeometry(12.2, 96, 12.2), glass);
-    al2.position.set(alonB.x, 48, alonB.z);
-    add(al2);
-    const al2Cap = new THREE.Mesh(new THREE.BoxGeometry(13.4, 4.2, 13.4), bandMat);
-    al2Cap.position.set(alonB.x, 98, alonB.z);
-    add(al2Cap);
-    hit(alonA.x, alonA.z, 8);
-    hit(alonB.x, alonB.z, 8);
     const plat = tlv(32.0842, 34.8036);
     const platM = new THREE.Mesh(new THREE.CylinderGeometry(6.4, 7.2, 88, 8), darkGlass);
     platM.position.set(plat.x, 44, plat.z);
@@ -5497,36 +5413,6 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     platHat.position.set(plat.x, 91, plat.z);
     add(platHat);
     hit(plat.x, plat.z, 7);
-    const town = tlv(32.0726, 34.792);
-    const townM = new THREE.Mesh(new THREE.BoxGeometry(16.4, 72, 14.2), paleGlass);
-    townM.position.set(town.x, 36, town.z);
-    add(townM);
-    for (let y = 8; y < 68; y += 3.6) {
-      const sl = new THREE.Mesh(new THREE.BoxGeometry(17, 0.16, 14.8), bandMat);
-      sl.position.set(town.x, y, town.z);
-      add(sl);
-    }
-    hit(town.x, town.z, 8);
-    const bursa = [
-      { lat: 32.0836, lon: 34.8012, w: 13, d: 11, h: 72, mat: darkGlass },
-      { lat: 32.0844, lon: 34.8018, w: 9.4, d: 9.4, h: 54, mat: glass, round: true },
-      { lat: 32.0828, lon: 34.8006, w: 11, d: 12, h: 61, mat: cream },
-      { lat: 32.0848, lon: 34.8024, w: 10, d: 10, h: 48, mat: paleGlass },
-      { lat: 32.0822, lon: 34.8016, w: 14, d: 10, h: 38, mat: cream }
-    ];
-    for (const b of bursa) {
-      const p = tlv(b.lat, b.lon);
-      if (b.round) {
-        const tw = new THREE.Mesh(new THREE.CylinderGeometry(b.w * 0.48, b.w * 0.52, b.h, 12), b.mat);
-        tw.position.set(p.x, b.h * 0.5, p.z);
-        add(tw);
-      } else {
-        const tw = new THREE.Mesh(new THREE.BoxGeometry(b.w, b.h, b.d), b.mat);
-        tw.position.set(p.x, b.h * 0.5, p.z);
-        add(tw);
-      }
-      hit(p.x, p.z, 6);
-    }
     const tau = tlv(32.1124, 34.8046);
     const tauLib = new THREE.Mesh(new THREE.CylinderGeometry(10, 11.4, 14, 20), cream);
     tauLib.position.set(tau.x, 7, tau.z);
@@ -5551,9 +5437,6 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     mallR.position.set(mall.x, 16.6, mall.z);
     add(mallR);
     hit(mall.x, mall.z, 18);
-    glassHi(32.0568, 34.793, 24, 15, 19, cream, 0.12);
-    glassHi(32.0612, 34.7931, 15, 15, 33, darkGlass);
-    glassHi(32.0884, 34.7933, 14, 12, 27, cream);
     const rampAsphalt = new THREE.MeshStandardMaterial({
       color: 6053990,
       roughness: 0.9,

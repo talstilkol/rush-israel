@@ -57,27 +57,15 @@ function paintSky(night: boolean, desert: boolean, snow: boolean) {
   c.width = w;
   c.height = h;
   const g = c.getContext("2d")!;
-  const zen = night ? "#0a1424" : desert ? "#4aa8dc" : snow ? "#8ec4e4" : "#2a86d0";
-  const hor = night ? "#1c2c40" : desert ? "#e0d0b0" : snow ? "#d8e8f4" : "#c8dcec";
+  const zen = night ? "#0a1424" : desert ? "#4aa8dc" : snow ? "#8ec4e4" : "#1a74c4";
+  const hor = night ? "#1c2c40" : desert ? "#c8b090" : snow ? "#b8d4e8" : "#6eb4e0";
   const grd = g.createLinearGradient(0, 0, 0, h);
   grd.addColorStop(0, zen);
-  grd.addColorStop(0.42, night ? "#152030" : "#5aa8d8");
-  grd.addColorStop(0.72, hor);
-  grd.addColorStop(1, night ? "#101820" : "#d8e4ec");
+  grd.addColorStop(0.55, night ? "#152030" : desert ? "#7ec0d8" : "#3d98d4");
+  grd.addColorStop(1, hor);
   g.fillStyle = grd;
   g.fillRect(0, 0, w, h);
   if (!night) {
-    g.fillStyle = "rgba(255,255,255,0.22)";
-    for (const [x, y, rw, rh] of [
-      [120, 90, 220, 36],
-      [480, 70, 280, 42],
-      [780, 110, 180, 28],
-      [300, 140, 160, 24],
-    ] as [number, number, number, number][]) {
-      g.beginPath();
-      g.ellipse(x, y, rw, rh, 0, 0, Math.PI * 2);
-      g.fill();
-    }
     g.fillStyle = "rgba(255,244,210,0.95)";
     g.beginPath();
     g.arc(820, 70, 28, 0, Math.PI * 2);
@@ -312,7 +300,7 @@ export class RaceEngine {
     const snow = this.trackDef.theme === "snow" || opts.trackId === "hermon";
     const skyDay = desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
     const skyNight = 0x182436;
-    this.fog = new THREE.FogExp2(opts.night ? skyNight : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc, opts.night ? 0.00016 : desert ? 0.00006 : 0.00005);
+    this.fog = new THREE.FogExp2(opts.night ? skyNight : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x4a98cc, opts.night ? 0.00016 : desert ? 0.00006 : 0.000028);
     this.scene.fog = this.fog;
     this.scene.background = new THREE.Color(opts.night ? skyNight : skyDay);
 
@@ -864,8 +852,8 @@ export class RaceEngine {
     this.gfx.setEnvironment(LOOKS[look].exposure);
     const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
     const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
-    this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc);
-    this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.00005;
+    this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x4a98cc);
+    this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.000028;
     this.scene.fog = this.fog;
     this.skyTex?.dispose();
     this.skyTex = paintSky(n > 0.5, desert, snow);
@@ -990,8 +978,8 @@ export class RaceEngine {
         const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
         const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
         const sky = n > 0.5 ? 0x182436 : morning ? 0x4aa8d8 : desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
-        this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc);
-        this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.00005;
+        this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x4a98cc);
+        this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.000028;
         this.scene.background = new THREE.Color(sky);
         this.applyAltitudeLook();
       }

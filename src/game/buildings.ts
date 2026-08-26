@@ -26,8 +26,8 @@ function makeMats(night: boolean): Mats {
     terracotta: new THREE.MeshStandardMaterial({ color: 0xa45a3a, roughness: 0.84, envMapIntensity: 0.25 }),
     glass: new THREE.MeshPhysicalMaterial({
       color: 0x6aa0b4,
-      roughness: 0.1,
-      metalness: 0.82,
+      roughness: 0.08,
+      metalness: 0,
       envMapIntensity: 1.6,
       clearcoat: 0.8,
       emissive: 0x1a4a66,
@@ -35,8 +35,8 @@ function makeMats(night: boolean): Mats {
     }),
     darkGlass: new THREE.MeshPhysicalMaterial({
       color: 0x1a2830,
-      roughness: 0.12,
-      metalness: 0.7,
+      roughness: 0.1,
+      metalness: 0,
       envMapIntensity: 1.2,
       emissive: 0xffc070,
       emissiveIntensity: night ? 0.7 : 0,
@@ -278,34 +278,29 @@ export function scatterStreetBuildings(
   blocked?: (x: number, z: number) => boolean,
 ) {
   if (def.city === "nyc") return;
-  const id = def.id;
-  if (id !== "ayalon" && id !== "rothschild") return;
+  if (def.id !== "rothschild") return;
 
   const mats = makeMats(night);
   const nSamp = built.samples.length;
-  const maxN = id === "ayalon" ? 20 : id === "rothschild" ? 26 : 16;
+  const maxN = 26;
   const step = Math.max(4, Math.floor(nSamp / (maxN + 3)));
   const hw = built.width / 2;
-  const startSkip = Math.floor(nSamp * (id === "ayalon" ? 0.08 : 0.05));
+  const startSkip = Math.floor(nSamp * 0.05);
   let n = 0;
   let lastH = 0;
   for (let i = startSkip; i < nSamp - 4 && n < maxN; i += step) {
     const s = built.samples[i];
     const side = n % 2 === 0 ? 1 : -1;
-    const d = hw + (id === "ayalon" ? 26 + (n % 3) * 3.2 : id === "rothschild" ? 11.5 + (n % 3) * 1.4 : 16 + (n % 3) * 2);
+    const d = hw + 11.5 + (n % 3) * 1.4;
     const x = s.x + s.rx * d * side;
     const z = s.z + s.rz * d * side;
     if (blocked?.(x, z)) continue;
     const yaw = Math.atan2(s.rx * side, s.rz * side);
     const seed = (i * 17 + def.seed + n * 31) | 0;
-    let h: number;
-    if (id === "ayalon") h = 28 + (seed % 54);
-    else if (id === "rothschild") h = 8.4 + (seed % 9);
-    else h = 12 + (seed % 22);
+    let h = 8.4 + (seed % 9);
     if (Math.abs(h - lastH) < 2.4) h += 3.8;
     lastH = h;
-    if (id === "ayalon") highwayTower(add, hit, mats, x, s.y, z, yaw, h, seed);
-    else if (seed % 2 === 0) bauhaus(add, hit, mats, x, s.y, z, yaw, h, seed);
+    if (seed % 2 === 0) bauhaus(add, hit, mats, x, s.y, z, yaw, h, seed);
     else eclectic(add, hit, mats, x, s.y, z, yaw, Math.min(h, 14), seed);
     n++;
   }
