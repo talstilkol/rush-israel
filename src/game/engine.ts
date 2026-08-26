@@ -372,6 +372,11 @@ export class RaceEngine {
         lightMargin: 28,
         shadowBias: -0.00008,
       });
+      this.leases.retain("csm", () => {
+        this.csm?.remove();
+        this.csm?.dispose();
+        this.csm = null;
+      });
       this.bindCsm();
     }
 
@@ -2617,9 +2622,7 @@ export class RaceEngine {
     if (this.booted) {
       this.input.dispose();
       this.audio.dispose();
-      this.csm?.remove();
-      this.csm?.dispose();
-      this.csm = null;
+      this.leases.release("csm");
       this.world.dispose();
       this.leases.disposeAll();
       this.sparks.geometry.dispose();

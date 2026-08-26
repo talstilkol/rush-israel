@@ -36,7 +36,7 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 - [x] 1.1 HUD ms + draw calls — **DONE** (tiny)
 - [x] 1.2 fps<50 cascade — **DONE** (tiny)
 - [ ] 1.3 Low 60 on phone — **NOT DONE** (needs user machine)
-- [ ] 1.4 Lease CSM maps in ResourceRegistry — **NOT DONE**
+- [x] 1.4 Lease CSM maps in ResourceRegistry — **DONE** (tiny: `retain("csm")` + `release` on engine dispose; GPU free not measured)
 
 ## Phase 2 — Road
 - [ ] 2.1 Dry/wet **shader** — **PARTIAL** (MeshPhysical + PNG + uWet)
