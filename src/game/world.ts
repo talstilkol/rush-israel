@@ -4424,8 +4424,17 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const leafM = new THREE.MeshStandardMaterial({ color: 4025140, roughness: 0.88, flatShading: true });
     const wallM = new THREE.MeshStandardMaterial({ color: 9076848, roughness: 0.9, flatShading: true });
     bag.push(pineM, barkM, cypressM, leafM, wallM);
-    const bx = bg.x + 26;
-    const bz = bg.z + 18;
+    let bx = bg.x + 26;
+    let bz = bg.z + 18;
+    {
+      const n = nearestIndex(built.samples, bx, bz, 0);
+      if (n.dist < built.width / 2 + 28) {
+        const s = built.samples[n.index];
+        const off = built.width / 2 + 42;
+        bx = s.x + s.rx * off;
+        bz = s.z + s.rz * off;
+      }
+    }
     for (let i = 0; i < 18; i++) {
       const terrace = new THREE.Mesh(new THREE.BoxGeometry(38 - i * 1.15, 1.05, 12), new THREE.MeshStandardMaterial({
         color: i % 2 ? 13623492 : 15262936,
@@ -4440,6 +4449,10 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       if (i % 2 === 0) for (const side of [-14, 14]) {
         const cypress = new THREE.Mesh(new THREE.ConeGeometry(1.1, 5.4, 7), cypressM);
         cypress.position.set(bx + side, 49.2 - i * 2.15, bz + i * 6.4);
+        add(cypress);
+      } else for (const side of [-10, 10]) {
+        const cypress = new THREE.Mesh(new THREE.ConeGeometry(0.9, 4.2, 7), cypressM);
+        cypress.position.set(bx + side, 48.6 - i * 2.15, bz + i * 6.4);
         add(cypress);
       }
       const hedge = new THREE.Mesh(new THREE.BoxGeometry(34 - i * 1.1, 0.55, 0.7), leafM);
