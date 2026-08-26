@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-/** 9.1: blob.ktx2 must load on High without pageerror. */
+/** blob.ktx2 is uncompressed RGBA (vkFormat 43), not UASTC. Must load on High. */
 import { chromium } from "playwright";
 import { readFileSync } from "node:fs";
 
 const buf = readFileSync("/workspace/public/game/blob.ktx2");
 const mag = Buffer.from([0xab, 0x4b, 0x54, 0x58, 0x20, 0x32, 0x30, 0xbb, 0x0d, 0x0a, 0x1a, 0x0a]);
 if (!buf.subarray(0, 12).equals(mag)) throw new Error("bad ktx2 magic");
+const vk = buf.readUInt32LE(12);
+if (vk !== 43) throw new Error("expected uncompressed R8G8B8A8_SRGB vk=43 got " + vk);
 
 const url = process.env.SMOKE_URL ?? "http://127.0.0.1:8080/?qa=1";
 const b = await chromium.launch({ headless: true });
@@ -30,4 +32,4 @@ if (errs.length) throw new Error("boot " + errs.join("\n"));
 const ok = await p.evaluate(() => window.__controlsTest.blobKtx2?.() === true);
 await b.close();
 if (!ok) throw new Error("blob.ktx2 not used");
-console.log("ktx2-smoke ok");
+console.log("ktx2-smoke ok uncompressed vk=43");

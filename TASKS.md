@@ -82,7 +82,7 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 - [x] 7.5 No SSGI — **DONE** (constraint)
 
 ## Phase 8 — Assets
-- [ ] 8.1 UASTC `.ktx2` atlases — **PARTIAL** (1 uncompressed blob.ktx2 — **FAKED** if pipeline)
+- [ ] 8.1 UASTC `.ktx2` atlases — **PARTIAL** (uncompressed `blob.ktx2` vk=43 loads; car GLBs Meshopt only — no fake KTX2Loader)
 - [ ] 8.2 Zero canvas except probe — **NOT DONE**
 - [x] 8.3 Meshopt cars — **DONE** (tiny)
 - [ ] 8.4 256m cells — **NOT DONE**
@@ -122,6 +122,7 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 2.11. `21.12` collider offset CI — **DONE** (tiny: Ayalon buildings ≥ width/2+12; no `landmark-gps.ts` yet).
 2.12. `4.5` airborne CI — **DONE** (tiny: `qa:airborne` in `qa`).
 2.13. `4.1` crawl=0 above 12 m/s — **DONE** (tiny: `qa:drive`; kinematic mix still on below ~10 m/s).
+2.14. `21.15` KTX2 honesty — **DONE** (tiny: uncompressed blob gated; removed unused GLTF KTX2Loader; still 0 UASTC).
 
 ### 3. After Hashalom still arrives
 3.1. Pose-lock `hashalom` in `goldenCameras.ts` to match the still.  

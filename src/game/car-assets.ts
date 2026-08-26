@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
 import type { CarDef } from "./types";
 
@@ -33,16 +32,10 @@ export async function loadCarGt() {
   return loadCars();
 }
 
-export async function loadCars(renderer?: THREE.WebGLRenderer) {
+export async function loadCars(_renderer?: THREE.WebGLRenderer) {
   if (templates.size) return;
   const loader = new GLTFLoader();
   loader.setMeshoptDecoder(MeshoptDecoder);
-  if (renderer) {
-    const ktx = new KTX2Loader();
-    ktx.setTranscoderPath("/basis/");
-    ktx.detectSupport(renderer);
-    loader.setKTX2Loader(ktx);
-  }
   const kinds = ["gt", "hatch", "muscle", "rally", "super"] as const;
   await Promise.all(
     kinds.map(async (k) => {

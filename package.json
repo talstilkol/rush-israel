@@ -17,7 +17,7 @@
     "check:qa": "node scripts/check-qa-hook.mjs",
     "check:secrets": "node scripts/secrets-check.mjs",
     "test": "node --test 'scripts/**/*.test.mjs'",
-    "qa": "npm run qa:drive && npm run qa:ramp && npm run qa:webgl2 && npm run qa:accel && npm run qa:colliders && npm run qa:airborne",
+    "qa": "npm run qa:drive && npm run qa:ramp && npm run qa:webgl2 && npm run qa:accel && npm run qa:colliders && npm run qa:airborne && npm run qa:ktx2",
     "qa:ci": "npm run typecheck && npm run qa && npm run check:qa && npm run check:secrets",
     "lint": "eslint .",
     "format": "prettier --write .",
