@@ -1,5 +1,5 @@
 # Progress — honest %
 
-**~11%** of the Codex Web graphics plan. Ship gates **0/13**.
+**~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Midtown: skybridge between the two slabs. Still boxes.
+Near+far shadow maps. Not the Three.js CSM module. Not WebGPU.

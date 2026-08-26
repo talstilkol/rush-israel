@@ -38,7 +38,7 @@ Verdict labels: DONE (real, working, verified) | PARTIAL | FAKED | NOT DONE.
 | Day sun usable | PARTIAL | dir 1.45, still one light, no CSM |
 | Night actually night | PARTIAL | Dimmed 2026-08-26; canvas sky + discs |
 | HDRI environment | NOT DONE | `bakeEnv()` tiny PMREM scene |
-| CSM | NOT DONE | One directional 2K map, frustum ±58 |
+| CSM | PARTIAL | Second tight directional map (±18m). Not three.js `CSM` class, not 3 cascades |
 | Reflection probes | NOT DONE | Scene env cubemap only |
 | Volumetrics / SSGI | NOT DONE | — |
 

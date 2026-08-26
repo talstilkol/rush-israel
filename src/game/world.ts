@@ -1023,6 +1023,20 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   dir.shadow.blurSamples = 4;
   group.add(dir);
   group.add(dir.target);
+  const dirNear = new THREE.DirectionalLight();
+  dirNear.castShadow = shadows;
+  dirNear.shadow.mapSize.set(shadows ? 1024 : 256, shadows ? 1024 : 256);
+  dirNear.shadow.camera.near = 2;
+  dirNear.shadow.camera.far = 90;
+  dirNear.shadow.camera.left = -18;
+  dirNear.shadow.camera.right = 18;
+  dirNear.shadow.camera.top = 18;
+  dirNear.shadow.camera.bottom = -18;
+  dirNear.shadow.bias = -4e-5;
+  dirNear.shadow.normalBias = 0.018;
+  dirNear.intensity = shadows ? 0.04 : 0;
+  group.add(dirNear);
+  group.add(dirNear.target);
   const fill = new THREE.DirectionalLight();
   group.add(fill);
   const ambient = new THREE.AmbientLight(16777215, 0.1);
@@ -2652,6 +2666,13 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     dir.position.set(x + lightAim.x * dist, y + Math.max(28, lightAim.y * dist), z + lightAim.z * dist);
     dir.target.updateMatrixWorld();
     dir.shadow.camera.updateProjectionMatrix();
+    dirNear.target.position.set(x, y, z);
+    const distN = 42;
+    dirNear.position.set(x + lightAim.x * distN, y + Math.max(18, lightAim.y * distN), z + lightAim.z * distN);
+    dirNear.target.updateMatrixWorld();
+    dirNear.shadow.camera.updateProjectionMatrix();
+    dirNear.color.copy(dir.color);
+    dirNear.visible = dir.castShadow;
   };
   const followMirror = (x, z, yaw) => {
     if (!mirror) return;
