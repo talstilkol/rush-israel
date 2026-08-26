@@ -545,6 +545,21 @@ export class RaceEngine {
     } catch {
       /* warmup is best-effort */
     }
+    if (this.trackDef.id === "ayalon" && !this.soft && this.quality !== "low") {
+      try {
+        const rt = new THREE.WebGLCubeRenderTarget(128);
+        const cam = new THREE.CubeCamera(4, 400, rt);
+        cam.position.set(this.player.x, this.player.y + 26, this.player.z);
+        for (const v of this.visuals) v.group.visible = false;
+        cam.update(this.renderer, this.scene);
+        for (const v of this.visuals) v.group.visible = true;
+        this.scene.environment = rt.texture;
+        this.scene.environmentIntensity = this.world.night ? 0.42 : 0.7;
+        this.leases.retain("ayalon-env", () => rt.dispose());
+      } catch {
+        /* probe is optional */
+      }
+    }
     this.renderer.setAnimationLoop(() => this.frame());
 
     this.rivalIdx = (this.opts.eventId?.length ?? 1) % 4;
@@ -2156,6 +2171,7 @@ export class RaceEngine {
       this.post.dispose();
       this.envRT.dispose();
       this.probeRT?.dispose();
+      this.leases.disposeAll();
       this.skyTex?.dispose();
       this.sparks.geometry.dispose();
       (this.sparks.material as THREE.Material).dispose();
