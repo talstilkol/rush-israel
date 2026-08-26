@@ -4006,7 +4006,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     add(discCut);
     hit(ds.x, ds.z, 7);
     glowAt(az.x, 110, az.z, 8308968, 70, 60);
-    hit(az.x + 17.08, az.z, 16);
+    hit(az.x + 17.08, az.z, 16, 22, 14, Math.atan2(built.samples[nearestIndex(built.samples, az.x, az.z, 0).index].tx, built.samples[nearestIndex(built.samples, az.x, az.z, 0).index].tz));
     hit(saT.x, saT.z, 8);
     hit(ky.x, ky.z, 10);
     hit(el.x, el.z, 8);
@@ -4253,7 +4253,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     hit(rs.x + rx * 30, rs.z + rz * 30, 8);
     hit(chimP.x, chimP.z, 5);
     hit(chim2P.x, chim2P.z, 4);
-    hit(plantX, plantZ, 16, 18, 22);
+    hit(plantX, plantZ, 16, 18, 22, rdYaw);
     hit(ex.x, ex.z, 14);
     hit(hp.x, hp.z + 40, 12);
   }

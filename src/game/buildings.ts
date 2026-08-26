@@ -278,7 +278,7 @@ export function scatterStreetBuildings(
   blocked?: (x: number, z: number) => boolean,
 ) {
   if (def.city === "nyc") return;
-  if (def.id !== "rothschild") return;
+  return;
 
   const mats = makeMats(night);
   const nSamp = built.samples.length;
