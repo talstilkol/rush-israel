@@ -4836,11 +4836,11 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       });
     }
     const ficusN = 80;
-    const trunkG = new THREE.CylinderGeometry(0.72, 1.18, 9.4, 10);
-    const leafG = new THREE.IcosahedronGeometry(2.7, 1);
+    const trunkG = new THREE.CylinderGeometry(0.78, 1.28, 10.2, 12);
+    const leafG = new THREE.IcosahedronGeometry(3.1, 2);
     bag.push(trunkG, leafG);
     const trunks = new THREE.InstancedMesh(trunkG, trunkM, ficusN);
-    const leaves = new THREE.InstancedMesh(leafG, leafM, 640);
+    const leaves = new THREE.InstancedMesh(leafG, leafM, 800);
     trunks.castShadow = shadows;
     leaves.castShadow = shadows;
     let ti = 0;
@@ -4852,23 +4852,25 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         if (ti >= ficusN) break;
         const fx = s.x + s.rx * d;
         const fz = s.z + s.rz * d;
-        _dummy.position.set(fx, s.y + 4.7, fz);
+        _dummy.position.set(fx, s.y + 5.1, fz);
         _dummy.scale.set(1, 1, 1);
         _dummy.rotation.set(0, i * 0.7 % 6, 0);
         _dummy.updateMatrix();
         trunks.setMatrixAt(ti, _dummy.matrix);
         const offs = [
-          [0, 0.5, 0],
-          [2.4, 0.15, 0.7],
-          [-2.3, 0.25, 0.55],
-          [0.7, 0.55, -2.3],
-          [-0.8, 0.15, 2.2],
-          [1.6, 1.8, 1.2],
-          [-1.7, 1.7, -1.1],
-          [0.15, 2.5, 0.25],
+          [0, 0.6, 0],
+          [2.6, 0.2, 0.8],
+          [-2.5, 0.3, 0.6],
+          [0.8, 0.6, -2.5],
+          [-0.9, 0.2, 2.4],
+          [1.8, 2.0, 1.3],
+          [-1.9, 1.9, -1.2],
+          [0.2, 2.8, 0.3],
+          [2.1, 1.4, -1.6],
+          [-2.0, 1.5, 1.7],
         ];
-        for (let k = 0; k < 8; k++) {
-          _dummy.position.set(fx + offs[k][0], s.y + 10.2 + offs[k][1], fz + offs[k][2]);
+        for (let k = 0; k < 10; k++) {
+          _dummy.position.set(fx + offs[k][0], s.y + 11.0 + offs[k][1], fz + offs[k][2]);
           const sc = 1.12 + (k % 3) * 0.2;
           _dummy.scale.set(sc, sc * 0.88, sc);
           _dummy.updateMatrix();
