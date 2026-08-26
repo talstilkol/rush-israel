@@ -1,4 +1,4 @@
-/** 21.7: UV lane marks on MeshPhysicalMaterial. Chain after CSM onBeforeCompile. */
+/** UV lane marks. Chain AFTER CSM onBeforeCompile. uv.y in the mesh is meters/6. */
 export function injectRoadLanes(shader: { fragmentShader: string; uniforms: Record<string, { value: unknown }> }, lanes: number) {
   if (shader.fragmentShader.includes("RUSH_LANES")) return;
   shader.uniforms.uLanes = { value: lanes };
@@ -12,11 +12,14 @@ export function injectRoadLanes(shader: { fragmentShader: string; uniforms: Reco
       float lanes = uLanes;
       float edge = max(smoothstep(0.018, 0.0, ru.x), smoothstep(0.982, 1.0, ru.x));
       diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.93, 0.93, 0.94), edge * 0.9);
-      float dash = step(0.42, fract(ru.y * 0.52));
+      float meters = ru.y * 6.0;
+      float dash = step(0.45, fract(meters / 8.0));
       float laneU = ru.x * lanes;
-      float inner = 1.0 - smoothstep(0.016, 0.038, abs(fract(laneU) - 0.5));
-      float skipMid = lanes >= 7.5 ? (1.0 - smoothstep(0.018, 0.055, abs(ru.x - 0.5))) : 0.0;
-      diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.94), inner * dash * (1.0 - skipMid) * 0.72);
+      float k = floor(laneU + 0.5);
+      float skipEdge = step(k, 0.5) + step(lanes - 0.5, k);
+      float skipMid = lanes >= 7.5 ? (1.0 - smoothstep(0.02, 0.06, abs(ru.x - 0.5))) : 0.0;
+      float bound = 1.0 - smoothstep(0.018, 0.04, abs(fract(laneU + 0.5) - 0.5));
+      diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.94), bound * dash * (1.0 - skipEdge) * (1.0 - skipMid) * 0.78);
       float wet = uWet;
       diffuseColor.rgb *= mix(1.0, 0.88, wet);
     }`,

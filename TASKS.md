@@ -106,7 +106,7 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 ### 1. Wait for the user (cannot code)
 1.1. User sends or approves a **real Hashalom photo** (6.1 / 5.1).  
 1.2. Until then: **no more Ayalon towers**. Lock hash must stop moving.  
-1.3. If user types `המשך` without a still: next code slice is **21.7 road shader**, not another building.
+1.3. If user types `המשך` without a still: next code slice is **integrity leftover** (not another building). Freeze still blocked.
 
 ### 2. Integrity leftovers (can code without still)
 2.1. `0.4` nocheck — **DONE**.
@@ -117,6 +117,7 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 2.6. `2.1.2` QA HUD dc/tri/geo/tex — **DONE** (tiny: no Ayalon High screenshot).
 2.7. `2.2.2` drop order planar→bloom→CSM→pixelScale — **DONE** (tiny: unit test; no 90-frame browser soak).
 2.8. `21.4` NYC `import()` — **DONE** (tiny: own chunks; engine still has export-name glue; `adBoardTexture` not in index).
+2.9. `21.7` road UV dashes — **DONE** (tiny: dashes at lane boundaries, 8m period, CSM chain tested; white/yellow edge meshes kept; no photo QA).
 
 ### 3. After Hashalom still arrives
 3.1. Pose-lock `hashalom` in `goldenCameras.ts` to match the still.  
