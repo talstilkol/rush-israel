@@ -1771,16 +1771,17 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     grass.receiveShadow = true;
     group.add(grass);
   }
-  const facadeDay = keep(facadeTexture(def.theme, false));
-  const facadeNight = keep(facadeTexture(def.theme, true));
-  const facadeEmit = keep(windowEmitTexture());
+  const needFacade = def.city === "nyc";
+  const facadeDay = needFacade ? keep(facadeTexture(def.theme, false)) : null;
+  const facadeNight = needFacade ? keep(facadeTexture(def.theme, true)) : null;
+  const facadeEmit = needFacade ? keep(windowEmitTexture()) : null;
   const bGeo = keep(new THREE.BoxGeometry(1, 1, 1));
   bGeo.translate(0, 0.5, 0);
   const bMat = keep(new THREE.MeshStandardMaterial({
-    map: def.theme === "jaffa" ? null : isNight ? facadeNight : facadeDay,
-    emissive: new THREE.Color(def.theme === "jaffa" ? 0 : isNight ? 16763e3 : 0),
-    emissiveMap: def.theme === "jaffa" ? null : facadeEmit,
-    emissiveIntensity: def.theme === "jaffa" ? 0 : isNight ? def.theme === "manhattan" ? 2.6 : 1.35 : 0,
+    map: !needFacade || def.theme === "jaffa" ? null : isNight ? facadeNight : facadeDay,
+    emissive: new THREE.Color(!needFacade || def.theme === "jaffa" ? 0 : isNight ? 16763e3 : 0),
+    emissiveMap: !needFacade || def.theme === "jaffa" ? null : facadeEmit,
+    emissiveIntensity: !needFacade || def.theme === "jaffa" ? 0 : isNight ? def.theme === "manhattan" ? 2.6 : 1.35 : 0,
     roughness: def.theme === "jaffa" ? 0.86 : 0.68,
     metalness: isNight ? 0.16 : 0.08,
     envMapIntensity: isNight ? 0.95 : 0.5
@@ -2937,12 +2938,14 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       mat.roughness = lerp(0.08, 0.03, n);
       mat.opacity = lerp(0.82, 0.9, n);
     }
-    bMat.map = n > 0.48 ? facadeNight : facadeDay;
-    bMat.emissive.setHex(n > 0.4 ? 16763e3 : 0);
-    bMat.emissiveIntensity = n * (def.theme === "manhattan" ? 3.2 : 1.85);
-    bMat.metalness = lerp(0.08, 0.16, n);
-    bMat.envMapIntensity = lerp(0.5, 1.15, n);
-    bMat.needsUpdate = true;
+    if (needFacade) {
+      bMat.map = n > 0.48 ? facadeNight : facadeDay;
+      bMat.emissive.setHex(n > 0.4 ? 16763e3 : 0);
+      bMat.emissiveIntensity = n * (def.theme === "manhattan" ? 3.2 : 1.85);
+      bMat.metalness = lerp(0.08, 0.16, n);
+      bMat.envMapIntensity = lerp(0.5, 1.15, n);
+      bMat.needsUpdate = true;
+    }
     bulbMat.emissive.setHex(n > 0.4 ? 16760944 : 2236962);
     bulbMat.emissiveIntensity = lerp(0.08, 7.2, n);
     haloMat.opacity = n > 0.4 ? 0.22 + n * 0.42 : 0;

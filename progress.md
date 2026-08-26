@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Lens-flare sprites baked. Shared textures skipped on dispose via a Set.
+Israel tracks skip NYC facade canvases. Generic boxes still exist on NYC tracks.
