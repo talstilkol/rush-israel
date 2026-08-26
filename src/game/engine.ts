@@ -28,6 +28,7 @@ import { RenderTelemetry } from "../rendering/RenderTelemetry";
 import { AYALON_GOLDEN } from "../world/goldenCameras";
 import { RendererFacade } from "../rendering/RendererFacade";
 import { profileFromLegacy } from "../rendering/QualityProfile";
+import { LOOKS, lookFromFlags } from "../rendering/EnvironmentState";
 import { ResourceRegistry } from "../rendering/ResourceRegistry";
 
 const FIXED = PHYSICS_DT;
@@ -852,7 +853,8 @@ export class RaceEngine {
     this.world.setClock(this.clock);
     const n = nightAmt(this.clock);
     const morning = n <= 0.5 && this.clock < 0.38;
-    this.gfx.setEnvironment(n > 0.5 ? 1.12 : morning ? 0.72 : 0.68);
+    const look = morning && this.weather !== "rain" ? "golden" : lookFromFlags(n > 0.5, this.weather);
+    this.gfx.setEnvironment(LOOKS[look].exposure);
     const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
     const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
     this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x5aa0cc);
