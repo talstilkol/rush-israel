@@ -6029,6 +6029,18 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       const nose = new THREE.Mesh(new THREE.BoxGeometry(2.7, 3.4, 4.6), silver);
       nose.position.set(0, 2.4, 10.4);
       g.add(nose);
+      const yellow = new THREE.Mesh(new THREE.BoxGeometry(2.74, 0.7, 4.65), new THREE.MeshStandardMaterial({ color: 0xe2a818, roughness: 0.45 }));
+      yellow.position.set(0, 1.15, 10.4);
+      g.add(yellow);
+      const screen = new THREE.Mesh(new THREE.BoxGeometry(2.2, 1.15, 0.12), darkGlass);
+      screen.position.set(0, 3.05, 12.68);
+      g.add(screen);
+      const panArm = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.6, 0.12), bandMat);
+      panArm.position.set(0, 5.4, -2);
+      g.add(panArm);
+      const panBar = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.08, 0.08), bandMat);
+      panBar.position.set(0, 6.2, -2);
+      g.add(panBar);
       const lightL = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.42, 0.2), new THREE.MeshBasicMaterial({ color: 16774344 }));
       lightL.position.set(-0.85, 1.5, 12.7);
       g.add(lightL);
