@@ -5769,7 +5769,16 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     });
     const peach = new THREE.MeshStandardMaterial({ color: 15255720, roughness: 0.7 });
     bag.push(salt, peach);
-    const herods = dsea(31.1992, 35.3682);
+    const offSea = (p, pad = 24) => {
+      const n = nearestIndex(built.samples, p.x, p.z, 0);
+      if (n.dist < built.width / 2 + 10) {
+        const s = built.samples[n.index];
+        p.x = s.x + s.rx * (built.width / 2 + pad);
+        p.z = s.z + s.rz * (built.width / 2 + pad);
+      }
+      return p;
+    };
+    const herods = offSea(dsea(31.1992, 35.3682), 28);
     const herBase = new THREE.Mesh(new THREE.BoxGeometry(22, 8, 14), cream);
     herBase.position.set(herods.x, 4, herods.z);
     add(herBase);
@@ -5785,20 +5794,20 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const herTower = new THREE.Mesh(new THREE.BoxGeometry(12, 18, 10), cream);
     herTower.position.set(herods.x, 17, herods.z);
     add(herTower);
-    const dan = dsea(31.2016, 35.3688);
+    const dan = offSea(dsea(31.2016, 35.3688), 26);
     const danM = new THREE.Mesh(new THREE.BoxGeometry(16, 28, 11), darkGlass);
     danM.position.set(dan.x, 14, dan.z);
     add(danM);
     const danWing = new THREE.Mesh(new THREE.BoxGeometry(22, 8, 14), cream);
     danWing.position.set(dan.x, 4, dan.z);
     add(danWing);
-    const iso = dsea(31.2034, 35.3692);
+    const iso = offSea(dsea(31.2034, 35.3692), 26);
     for (let i = 0; i < 4; i++) {
       const step = new THREE.Mesh(new THREE.BoxGeometry(20 - i * 3.2, 6, 12 - i * 1.4), white);
       step.position.set(iso.x, 3.2 + i * 6.2, iso.z);
       add(step);
     }
-    const lot = dsea(31.1974, 35.3678);
+    const lot = offSea(dsea(31.1974, 35.3678), 26);
     const lotM = new THREE.Mesh(new THREE.BoxGeometry(26, 12, 12), peach);
     lotM.position.set(lot.x, 6, lot.z);
     add(lotM);
