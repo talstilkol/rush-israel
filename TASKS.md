@@ -118,6 +118,8 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 2.7. `2.2.2` drop order planar→bloom→CSM→pixelScale — **DONE** (tiny: unit test; no 90-frame browser soak).
 2.8. `21.4` NYC `import()` — **DONE** (tiny: own chunks; engine still has export-name glue; `adBoardTexture` not in index).
 2.9. `21.7` road UV dashes — **DONE** (tiny: dashes at lane boundaries, 8m period, CSM chain tested; white/yellow edge meshes kept; no photo QA).
+2.10. `21.8` HaShalom ramp Y — **DONE** (`qa:ramp` already in `qa`; span 3.12m).
+2.11. `21.12` collider offset CI — **DONE** (tiny: Ayalon buildings ≥ width/2+12; no `landmark-gps.ts` yet).
 
 ### 3. After Hashalom still arrives
 3.1. Pose-lock `hashalom` in `goldenCameras.ts` to match the still.  
