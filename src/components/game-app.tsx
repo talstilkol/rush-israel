@@ -657,14 +657,6 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 				className: cn("pointer-events-none absolute inset-0", hud.heat > .7 ? "shadow-[inset_0_0_90px_var(--color-danger)]" : "shadow-[inset_0_0_70px_var(--color-accent)]"),
 				style: { opacity: .25 + hud.heat * .45 }
 			}) : null,
-			hud.countdown <= 0 && !hud.finished && !hud.replay ? /* @__PURE__ */ jsx("div", {
-				className: "pointer-events-none absolute top-[18%] left-1/2 z-20 -translate-x-1/2",
-				children: /* @__PURE__ */ jsx("div", {
-					className: cn("flex h-10 w-10 items-center justify-center rounded-full border bg-surface/80 text-lg", hud.wrongWay ? "border-danger text-danger" : "border-border text-accent"),
-					style: { transform: `rotate(${hud.navAngle}rad)` },
-					children: "▲"
-				})
-			}) : null,
 			/* @__PURE__ */ jsxs("div", {
 				className: "flex items-start justify-between gap-3",
 				children: [
@@ -680,24 +672,12 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 							/* @__PURE__ */ jsxs("p", {
 								className: "mt-1 flex items-baseline gap-3 text-fg",
 								children: [
-									hud.mode !== "roam" && hud.mode !== "time" && hud.mode !== "drift" ? /* @__PURE__ */ jsxs("span", {
-										className: "text-2xl font-semibold tabular-nums leading-none",
-										children: ["P", hud.position]
-									}) : null,
 									/* @__PURE__ */ jsx("span", {
 										className: "text-lg font-semibold tabular-nums leading-none",
 										children: formatTime(hud.lapTime)
-									}),
-									hud.bestLap > 0 ? /* @__PURE__ */ jsx("span", {
-										className: "text-xs tabular-nums text-muted",
-										children: formatTime(hud.bestLap)
-									}) : null
+									})
 								]
-							}),
-							hud.rivalName ? /* @__PURE__ */ jsx("p", {
-								className: "mt-1 max-w-[14rem] truncate text-xs text-muted",
-								children: `${hud.rivalName} ${hud.rivalGap >= 0 ? "+" : "−"}${Math.abs(hud.rivalGap).toFixed(1)}s`
-							}) : null
+							})
 						]
 					}) : /* @__PURE__ */ jsx("span", {}),
 					/* @__PURE__ */ jsx("button", {
@@ -754,15 +734,6 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 				]
 			}) : null,
 			/* @__PURE__ */ jsx("div", {
-				className: "absolute bottom-28 start-4 md:bottom-6",
-				children: /* @__PURE__ */ jsx("canvas", {
-					ref: mapRef,
-					width: 176,
-					height: 176,
-					className: "rounded-md border border-border"
-				})
-			}),
-			/* @__PURE__ */ jsx("div", {
 				className: "absolute bottom-28 end-4 md:bottom-6",
 				children: /* @__PURE__ */ jsxs("div", {
 					className: "min-w-[11.5rem] rounded-lg border border-border bg-surface/80 px-3 py-2",
@@ -785,43 +756,9 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 											children: Math.round(hud.speedKmh)
 										})
 									]
-								}),
-								/* @__PURE__ */ jsxs("span", {
-									className: "text-end",
-									children: [
-										/* @__PURE__ */ jsx("span", {
-											className: "block text-[10px] uppercase tracking-widest text-muted",
-											children: langHe ? "הילוך" : "Gear"
-										}),
-										/* @__PURE__ */ jsx("span", {
-											className: "text-2xl font-semibold tabular-nums leading-none",
-											children: hud.gear
-										})
-									]
 								})
 							]
-						}),
-						/* @__PURE__ */ jsx("div", {
-							className: "mt-2 h-1 overflow-hidden rounded-full bg-border",
-							children: /* @__PURE__ */ jsx("div", {
-								className: "h-full bg-accent",
-								style: { width: `${Math.round(clamp01(hud.rpm) * 100)}%` }
-							})
-						}),
-						/* @__PURE__ */ jsx("div", {
-							className: "mt-1 h-1 overflow-hidden rounded-full bg-border",
-							children: /* @__PURE__ */ jsx("div", {
-								className: cn("h-full", hud.boosting ? "bg-accent" : "bg-fg/70"),
-								style: { width: `${Math.round(clamp01(hud.nitro) * 100)}%` }
-							})
-						}),
-						hud.damage > 0.08 ? /* @__PURE__ */ jsx("div", {
-							className: "mt-1 h-1 overflow-hidden rounded-full bg-border",
-							children: /* @__PURE__ */ jsx("div", {
-								className: "h-full bg-danger",
-								style: { width: `${Math.round(clamp01(hud.damage) * 100)}%` }
-							})
-						}) : null
+						})
 					]
 				})
 			})
