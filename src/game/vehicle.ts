@@ -47,6 +47,7 @@ export type CarSnap = {
 };
 
 function probeRamp(x: number, z: number, ramps: Ramp[]) {
+  let best: { r: Ramp; y: number; dyds: number } | null = null;
   for (const r of ramps) {
     const dx = x - r.x;
     const dz = z - r.z;
@@ -54,10 +55,12 @@ function probeRamp(x: number, z: number, ramps: Ramp[]) {
     const across = dx * r.sz - dz * r.sx;
     if (Math.abs(along) <= r.len * 0.5 && Math.abs(across) <= r.half) {
       const t = clamp(along / r.len + 0.5, 0, 1);
-      return { r, y: r.y0 + (r.y1 - r.y0) * t, dyds: (r.y1 - r.y0) / r.len };
+      const y = r.y0 + (r.y1 - r.y0) * t;
+      const dyds = (r.y1 - r.y0) / r.len;
+      if (!best || y > best.y) best = { r, y, dyds };
     }
   }
-  return null;
+  return best;
 }
 
 export class ArcadeCar {
@@ -431,17 +434,22 @@ export class ArcadeCar {
     const s = track.samples[near.index];
     const rp = probeRamp(this.x, this.z, ramps);
     const groundY = rp ? rp.y : s.y;
-    const err = groundY - this.y;
-    this.vy += err * 52 * dt;
-    this.vy *= Math.exp(-16 * dt);
-    this.y += this.vy * dt;
-    if (this.y < groundY - 0.12) {
-      this.y = groundY - 0.12;
-      this.vy = Math.max(0, this.vy);
-    }
-    if (this.y > groundY + 0.5) {
-      this.y = groundY + 0.5;
-      this.vy = Math.min(0, this.vy);
+    if (rp) {
+      this.y = groundY;
+      this.vy = 0;
+    } else {
+      const err = groundY - this.y;
+      this.vy += err * 52 * dt;
+      this.vy *= Math.exp(-16 * dt);
+      this.y += this.vy * dt;
+      if (this.y < groundY - 0.12) {
+        this.y = groundY - 0.12;
+        this.vy = Math.max(0, this.vy);
+      }
+      if (this.y > groundY + 0.5) {
+        this.y = groundY + 0.5;
+        this.vy = Math.min(0, this.vy);
+      }
     }
     const dist = near.dist;
     const half = track.width / 2;

@@ -2167,6 +2167,30 @@ export class RaceEngine {
         this.racing = true;
       },
       getY: () => this.player.y,
+      getSide: () => this.player.sideStreet,
+      getRamps: () =>
+        this.world.ramps.map((r) => ({
+          x: r.x,
+          z: r.z,
+          sx: r.sx,
+          sz: r.sz,
+          len: r.len,
+          y0: r.y0,
+          y1: r.y1,
+          he: r.he,
+        })),
+      teleport: (x: number, z: number, yaw: number, y = 1) => {
+        this.player.x = x;
+        this.player.z = z;
+        this.player.y = y;
+        this.player.yaw = yaw;
+        this.player.vx = 0;
+        this.player.vz = 0;
+        this.player.vy = 0;
+        this.player.speed = 14;
+        this.countdown = 0;
+        this.racing = true;
+      },
       getTick: () => this.tickId,
       isTimeVoided: () => this.timeVoided,
       isGlLost: () => this.glLost,
@@ -2330,6 +2354,9 @@ declare global {
       resetStart?: () => void;
       setProgress?: (t: number) => void;
       getY?: () => number;
+      getSide?: () => string;
+      getRamps?: () => { x: number; z: number; sx: number; sz: number; len: number; y0: number; y1: number; he: string }[];
+      teleport?: (x: number, z: number, yaw: number, y?: number) => void;
       getTick?: () => number;
       isTimeVoided?: () => boolean;
       isGlLost?: () => boolean;

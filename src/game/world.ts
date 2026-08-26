@@ -5276,7 +5276,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       const p = tlv(ic.lat, 34.795);
       const near = nearestIndex(built.samples, p.x, p.z, 0);
       const sm = built.samples[near.index];
-      const rc = built.width / 2 + 4;
+      const rc = built.width / 2 + 22;
       pushRamp(sm.x + sm.rx * rc, sm.z + sm.rz * rc, sm.tx, sm.tz, 46, 6.4, 0.4, 8.6, ic.he, ic.en);
       const wing = new THREE.Mesh(new THREE.BoxGeometry(16, 0.85, 20), conc);
       wing.position.set(sm.x + sm.rx * (rc + 14), 8.7, sm.z + sm.rz * (rc + 14));

@@ -19,6 +19,7 @@
     "format": "prettier --write .",
     "qa:ayalon": "node scripts/capture-golden.mjs",
     "qa:drive": "node scripts/drive-smoke.mjs",
+    "qa:ramp": "node scripts/ramp-smoke.mjs",
     "qa:webgl2": "node scripts/webgl2-smoke.mjs",
     "bake:asphalt": "node scripts/bake-asphalt.mjs",
     "bake:sky": "node scripts/bake-sky.mjs",
