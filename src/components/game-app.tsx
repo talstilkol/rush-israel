@@ -657,7 +657,7 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 		children: [
 			typeof location !== "undefined" && /(?:^|[?&])qa=1(?:&|$)/.test(location.search) ? /* @__PURE__ */ jsxs("p", {
 				className: "pointer-events-none absolute start-3 top-3 z-20 font-mono text-[10px] text-muted",
-				children: [hud.backend, " · p95 ", Math.round(hud.msP95 || 0), "ms"]
+				children: [hud.backend, " · p95 ", Math.round(hud.msP95 || 0), "ms · dc ", hud.drawCalls || 0, " · kin ", Number(hud.kinMix || 0).toFixed(2)]
 			}) : null,
 			hud.mode === "heat" && hud.heat > .12 ? /* @__PURE__ */ jsx("div", {
 				className: cn("pointer-events-none absolute inset-0", hud.heat > .7 ? "shadow-[inset_0_0_90px_var(--color-danger)]" : "shadow-[inset_0_0_70px_var(--color-accent)]"),

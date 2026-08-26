@@ -328,7 +328,7 @@ export class RaceEngine {
     if (this.trackDef.id === "jerusalem" || this.trackDef.id === "scopus" || this.trackDef.id === "walls") await loadHerodian();
     if (this.disposed) return;
 
-    this.world = createWorld(this.trackDef, this.built, shadows, this.opts.night, this.weather);
+    this.world = await createWorld(this.trackDef, this.built, shadows, this.opts.night, this.weather);
     this.world.setLod?.(this.quality);
     if (this.disposed) {
       this.world.dispose();
@@ -2060,15 +2060,18 @@ export class RaceEngine {
       physicsHz: PHYSICS_HZ,
       msP95: this.telem.snapshot().p95,
       backend: this.telem.backend,
+      kinMix: this.player.kinMix,
+      drawCalls: this.renderer.info.render.calls,
+      triangles: this.renderer.info.render.triangles,
     });
   }
 
   private qaHookAllowed() {
-    if (typeof location !== "undefined") {
-      if (new URLSearchParams(location.search).has("qa")) return true;
-      if (location.hostname === "127.0.0.1" || location.hostname === "localhost") return true;
-    }
     if (import.meta.env.VITE_QA === "1") return true;
+    if (typeof location !== "undefined") {
+      const h = location.hostname;
+      if (h === "127.0.0.1" || h === "localhost") return true;
+    }
     return false;
   }
 
@@ -2100,6 +2103,7 @@ export class RaceEngine {
       getSurface: () => this.player.surfaceGrip,
       getGear: () => this.player.gear,
       getSteer: () => this.input.poll().steer,
+      getKinMix: () => this.player.kinMix,
       getCycle: () => this.autoCycle,
       isReplay: () => this.replaying,
       skipReplay: () => this.skipReplay(),
@@ -2284,6 +2288,7 @@ declare global {
       getSurface?: () => number;
       getGear?: () => number;
       getSteer?: () => number;
+      getKinMix?: () => number;
       getCycle?: () => boolean;
       isReplay?: () => boolean;
       skipReplay?: () => void;

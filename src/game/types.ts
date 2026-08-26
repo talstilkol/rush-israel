@@ -237,6 +237,9 @@ export type HudState = {
   physicsHz: number;
   msP95: number;
   backend: string;
+  kinMix: number;
+  drawCalls: number;
+  triangles: number;
 };
 
 export type RaceResult = {

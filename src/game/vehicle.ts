@@ -105,6 +105,7 @@ export class ArcadeCar {
   gear = 1;
   rpm = 0;
   yawRate = 0;
+  kinMix = 0;
   surfaceKind: "asphalt" | "curb" | "sand" = "asphalt";
   baseGrip = 1;
   dirt = 0;
@@ -391,6 +392,7 @@ export class ArcadeCar {
     }
     const speedFactor = clamp(speedAbs / 7.5, 0, 1) * (1 - 0.4 * clamp(speedAbs / 38, 0, 1));
     const crawl = 1 - clamp((speedAbs - 4) / 6, 0, 1);
+    this.kinMix = crawl;
     const kin = steerIn * 1.7 * clamp(speedAbs / 6.5, 0, 1) * reverse * (wantDrift ? 1.28 : 1) * (0.92 + front * 0.16);
     const tire = (yawT / iz) * 80;
     // Below ~10 m/s Pacejka is too weak to turn; crawl keeps kinematic yaw.

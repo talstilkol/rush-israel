@@ -8,7 +8,6 @@ import { nearestIndex } from "./spline";
 import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, her, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, ram, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
 import { scatterStreetBuildings } from "./buildings";
 import { addNycLandmarks } from "./nyc-landmarks";
-import { adBoardTexture, facadeTexture, windowEmitTexture } from "./nyc-canvas";
 import { generateStreets, nearestStreet } from "./streets";
 import { getLaneArrow } from "./arrow-assets";
 import { getFlare0, getFlare1 } from "./flare-assets";
@@ -425,7 +424,7 @@ function starField() {
     mat
   };
 }
-export function createWorld(def, built, shadows, night, weather = "clear") {
+export async function createWorld(def, built, shadows, night, weather = "clear") {
   const group = new THREE.Group();
   const bag = [];
   const shared = new Set(
@@ -1213,9 +1212,10 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     group.add(grass);
   }
   const needFacade = def.city === "nyc";
-  const facadeDay = needFacade ? keep(facadeTexture(def.theme, false)) : null;
-  const facadeNight = needFacade ? keep(facadeTexture(def.theme, true)) : null;
-  const facadeEmit = needFacade ? keep(windowEmitTexture()) : null;
+  const nycMod = needFacade ? await import("./nyc-canvas") : null;
+  const facadeDay = nycMod ? keep(nycMod.facadeTexture(def.theme, false)) : null;
+  const facadeNight = nycMod ? keep(nycMod.facadeTexture(def.theme, true)) : null;
+  const facadeEmit = nycMod ? keep(nycMod.windowEmitTexture()) : null;
   const bGeo = keep(new THREE.BoxGeometry(1, 1, 1));
   bGeo.translate(0, 0.5, 0);
   const bMat = keep(new THREE.MeshStandardMaterial({
@@ -1973,7 +1973,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   ];
   if (def.city === "nyc") for (let i = 0; i < ads.length; i++) {
     const ad = ads[i];
-    const tex = keep(adBoardTexture(ad.bg, ad.fg, ad.t));
+    const tex = keep(nycMod.adBoardTexture(ad.bg, ad.fg, ad.t));
     const mat = keep(new THREE.MeshStandardMaterial({
       map: tex,
       emissive: new THREE.Color(ad.fg),

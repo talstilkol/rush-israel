@@ -1,8 +1,8 @@
 # RUSH
 
-סימולטור נהיגה תלת־ממדי של ישראל — תל אביב, ירושלים, איילון, כבישי הארץ.
+אב-טיפוס Three.js WebGL. לא סימולטור מדידה, לא GIS, לא Unreal.
 
-3D Israel driving game (Hebrew UI). Three.js + Vite.
+Three.js WebGL driving prototype inspired by Israeli places.
 
 ## הרצה
 
@@ -15,10 +15,10 @@ npm run dev
 
 ## מחסנית
 
-- Three.js (WebGL)
+- Three.js 0.185 WebGL (לא WebGPU כברירת מחדל)
 - Vite + React
-- פיזיקה סימקייד 120Hz
-- מסלולים לפי ערים אמיתיות בישראל
+- פיזיקה simcade 120Hz
+- מסלולים **בהשראת** ערים בישראל — לא מפה, לא GIS
 
 ## רישיון
 

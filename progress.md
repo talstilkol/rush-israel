@@ -1,5 +1,6 @@
 # Progress — honest %
 
-**~12%** of the Codex Web graphics plan. Ship gates **0/13**.
+**~13%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Every TASKS line now has DONE/PARTIAL/NOT DONE/FAKED. Two V only: 7.5 SSGI-off, 8.3 Meshopt. Codex not finished.
+Executed 21.1–21.5: inspired copy, localhost-only QA hook, kinMix HUD, NYC dynamic import, draw-calls HUD.
+Still no WebGPU/GIS/HDRI/hero/Ayalon freeze.

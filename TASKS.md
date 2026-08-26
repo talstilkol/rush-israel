@@ -11,14 +11,14 @@ V only where the *small* spec is 100.
 ---
 
 ## Phase 0 — Stop lying
-- [ ] 0.1 Inspired copy — **PARTIAL** (some cards; not all)
-- [ ] 0.2 Prod: no `?qa=1` — **NOT DONE** (localhost/`VITE_QA` still)
+- [x] 0.1 Inspired copy — **DONE** (suffix on all 56 cards)
+- [ ] 0.2 Prod: no `?qa=1` — **PARTIAL** (localhost / `VITE_QA=1` only; not grok host)
 - [ ] 0.3 Record hash — **NOT DONE**
 - [ ] 0.4 No `@ts-nocheck` — **NOT DONE** (`world.ts`, `game-app.tsx`)
-- [ ] 0.5 Honest README — **PARTIAL**
+- [x] 0.5 Honest README — **DONE** (tiny)
 
 ## Phase 1 — G0 frame
-- [ ] 1.1 HUD ms + draw calls — **PARTIAL** (p95 on `?qa=1` only)
+- [x] 1.1 HUD ms + draw calls — **PARTIAL** (p95 + dc + kinMix on `?qa=1`)
 - [ ] 1.2 fps<50 cascade — **PARTIAL** (composer tier; not planar→CSM)
 - [ ] 1.3 Low 60 on phone — **NOT DONE**
 - [ ] 1.4 Lease CSM maps — **NOT DONE**
@@ -27,13 +27,13 @@ V only where the *small* spec is 100.
 - [ ] 2.1 Dry/wet **shader** — **NOT DONE** (dashes = meshes; **FAKED** if called a shader)
 - [ ] 2.2 Planar follow — **PARTIAL** (768 + yaw)
 - [ ] 2.3 3.5m / 8-lane UV — **PARTIAL** (Ayalon width 28; no UV lanes)
-- [ ] 2.4 Dynamic-import NYC canvas — **PARTIAL** (out of `world.ts`; still statically imported)
+- [x] 2.4 Dynamic-import NYC canvas — **DONE** (tiny: `await import` only if `city===nyc`)
 
 ## Phase 3 — Car
 - [ ] 3.1 Authored GT — **NOT DONE** (extrusion glTF — **FAKED** if "hero scan")
 - [ ] 3.2 Flake shader — **NOT DONE** (`flake.png`)
 - [ ] 3.3 Hood windshield — **PARTIAL** (dash boxes always on)
-- [ ] 3.4 Mix % HUD — **NOT DONE**
+- [x] 3.4 Mix % HUD — **DONE** (tiny: `kin` on `?qa=1`)
 - [ ] 3.5 0–100 CI ±15% — **NOT DONE**
 
 ## Phase 4 — Physics

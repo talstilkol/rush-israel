@@ -1,6 +1,7 @@
 # RUSH — תוכנית ביצוע ממוספרת (קודקס)
 
-**מצב:** תכנון בלבד. אסור לתכנת עד שהמסמך הזה שלם ואושר.  
+**מצב:** אושר לביצוע. רץ 21.1→21.4.  
+**Three.js:** `0.185.1` — WebGPU דורש `await renderer.init()` (לא אופציונלי).  
 **יעד ריאלי:** Asphalt-like בדפדפן. לא GT7, לא Unreal, לא GIS.  
 **אחוז נוכחי:** ~12%. שערי שחרור: 0/13.  
 **מקורות API:** [WebGPURenderer](https://threejs.org/docs/pages/WebGPURenderer.html) · [WebGPU post](https://threejs.org/manual/en/webgpu-postprocessing.html) · [TSL](https://threejs.org/docs/TSL.html) · [KTX2](https://registry.khronos.org/glTF/) · [TAARenderPass — אין reprojection](https://threejs.org/docs/pages/TAARenderPass.html)
@@ -304,7 +305,7 @@
 
 ### 8.1. ממצאי מחקר (חובה לקרוא לפני מימוש)
 8.1.1. `WebGPURenderer` מ-`three/webgpu`. ברירת מחדל: WebGPU, נפילה ל-WebGL2. `forceWebGL: true` ל-CI.  
-8.1.2. חלק מהמדריכים דורשים `await renderer.init()`. לבדוק את גרסת `three` ב-`package.json` לפני כתיבה.  
+8.1.2. `three@0.185.1`. WebGPU: `await renderer.init()` חובה לפני render. `forceWebGL: true` ל-CI.  
 8.1.3. TSL / NodeMaterial **רק** על `WebGPURenderer`.  
 8.1.4. `EffectComposer` (WebGL) **לא** עובד עם `WebGPURenderer`. פוסט = `pass()` / TSL מ-`three/tsl` + addons.  
 8.1.5. יש `traa` אמיתי ב-`three/addons/tsl/display/TRAANode.js` (velocity). זה **לא** `TAARenderPass`.  
