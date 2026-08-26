@@ -1,5 +1,8 @@
 import { hash01 } from "./math";
 
+/** Codex 70: Web Audio oscillators only. Mute is Esc settings. */
+export const AUDIO_BACKEND = "oscillator" as const;
+
 export const RADIO = [
   { id: 0, he: "פאלס 101", en: "Pulse 101" },
   { id: 1, he: "גל ים", en: "Yam FM" },

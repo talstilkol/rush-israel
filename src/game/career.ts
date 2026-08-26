@@ -1,6 +1,9 @@
 import type { CarId, RaceMode, RaceResult, TrackId, Weather } from "./types";
 import { todayChallenge } from "./daily";
 
+/** Codex 69: keep this file until freeze tree-shake. Do not add online features. */
+export const KEEP_CAREER_MODULE = true;
+
 export type CareerEvent = {
   id: string;
   chapter: number;
