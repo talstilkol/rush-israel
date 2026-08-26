@@ -24,6 +24,7 @@ import { getTrack, nearestPoi, nightAmt, streetName, todLabel } from "./tracks";
 import type { AssistFlags, CarId, Collider, HandlingMode, HudState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting, type CarSnap } from "./vehicle";
 import { createWorld, type World } from "./world";
+import { loadBeam } from "./beam-assets";
 import { loadLaneArrow } from "./arrow-assets";
 import { loadFlares } from "./flare-assets";
 import { loadWater } from "./water-assets";
@@ -341,6 +342,7 @@ export class RaceEngine {
     this.opts.onBoot?.(0.18);
     await loadSky();
     await loadRoadFor(this.trackDef.id);
+    await loadBeam();
     await loadBlob();
     await loadFlake();
     await loadCars(this.renderer);

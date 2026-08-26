@@ -2,6 +2,7 @@ import * as THREE from "three";
 import type { CarDef, Tune } from "./types";
 import { hash01 } from "./math";
 import { cloneCarBody } from "./car-assets";
+import { getBeam } from "./beam-assets";
 import { getFlake } from "./flake-assets";
 
 export type CarVisual = {
@@ -54,82 +55,6 @@ function flakeMap() {
   return tex;
 }
 
-function hex(n: number) {
-  return `#${n.toString(16).padStart(6, "0")}`;
-}
-
-function applyLivery(mat: THREE.MeshPhysicalMaterial, color: number, id: number) {
-  if (typeof document === "undefined" || id <= 0) return;
-  const w = 512;
-  const h = 256;
-  const c = document.createElement("canvas");
-  c.width = w;
-  c.height = h;
-  const g = c.getContext("2d");
-  if (!g) return;
-  g.fillStyle = hex(color);
-  g.fillRect(0, 0, w, h);
-  if (id === 1) {
-    g.fillStyle = "#f4f0ea";
-    g.fillRect(228, 0, 22, h);
-    g.fillRect(262, 0, 22, h);
-    g.fillStyle = "#121418";
-    g.fillRect(250, 0, 12, h);
-  } else if (id === 2) {
-    g.fillStyle = "#c45c3a";
-    g.beginPath();
-    g.moveTo(0, 36);
-    g.lineTo(w, 150);
-    g.lineTo(w, 198);
-    g.lineTo(0, 84);
-    g.fill();
-    g.fillStyle = "#2a8f8a";
-    g.fillRect(0, 210, w, 16);
-  } else if (id === 3) {
-    const s = 28;
-    for (let y = 0; y < h; y += s) {
-      for (let x = 0; x < w; x += s) {
-        g.fillStyle = ((x + y) / s) % 2 === 0 ? "#111214" : "#f0c400";
-        g.fillRect(x, y, s, s);
-      }
-    }
-    g.fillStyle = hex(color);
-    g.fillRect(160, 0, 192, h);
-  } else if (id === 4) {
-    g.fillStyle = "#e24a12";
-    g.beginPath();
-    g.moveTo(0, h);
-    g.lineTo(80, 40);
-    g.lineTo(140, h);
-    g.lineTo(210, 20);
-    g.lineTo(280, h);
-    g.lineTo(340, 70);
-    g.lineTo(400, h);
-    g.closePath();
-    g.fill();
-  } else if (id === 5) {
-    g.strokeStyle = "#d4a017";
-    g.lineWidth = 8;
-    g.beginPath();
-    g.moveTo(0, 48);
-    g.lineTo(w, 48);
-    g.stroke();
-  } else if (id === 6) {
-    g.fillStyle = "#121418";
-    g.fillRect(0, 0, w / 2, h);
-    g.fillStyle = "#c45c3a";
-    g.fillRect(w / 2, 0, w / 2, h);
-    g.fillStyle = "#f2eee8";
-    g.fillRect(w / 2 - 8, 0, 16, h);
-  }
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 4;
-  mat.map = tex;
-  mat.color.set(0xffffff);
-  mat.needsUpdate = true;
-}
-
 function paint(color: number): THREE.MeshPhysicalMaterial {
   const c = new THREE.Color(color);
   const flake = flakeMap();
@@ -151,9 +76,14 @@ function paint(color: number): THREE.MeshPhysicalMaterial {
   });
 }
 
-let BEAM: THREE.CanvasTexture | null = null;
+let BEAM: THREE.Texture | null = null;
 function beamCookie() {
   if (BEAM) return BEAM;
+  const baked = getBeam();
+  if (baked) {
+    BEAM = baked;
+    return baked;
+  }
   if (typeof document === "undefined") return null;
   const size = 256;
   const c = document.createElement("canvas");
@@ -440,7 +370,7 @@ export function createCarVisual(
     put(new THREE.BoxGeometry(L.W * 0.02, 0.06, L.L * 0.62), chrome, -L.W * 0.46, bodyY + 0.12, 0);
   }
 
-  if (tune && tune.livery > 0) applyLivery(bodyMat, color, tune.livery);
+
 
   const well = new THREE.CylinderGeometry(L.wheelR + 0.04, L.wheelR + 0.04, 0.12, 18);
   well.rotateZ(Math.PI / 2);
