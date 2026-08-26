@@ -2,4 +2,4 @@
 
 **~10%** of the Web graphics plan. Ship gates **0/13**.
 
-Night headlight pool on the asphalt (additive disc). Not a real projector cookie.
+Street-lamp ground pools are larger. Still discs, not real IES lights.

@@ -2341,12 +2341,12 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     halos.setMatrixAt(i, _dummy.matrix);
   }
   if (lampCount) group.add(poles, bulbs, halos);
-  const poolGeo = keep(new THREE.CircleGeometry(4.8, 18));
+  const poolGeo = keep(new THREE.CircleGeometry(7.2, 20));
   poolGeo.rotateX(-Math.PI / 2);
   const poolMat = keep(new THREE.MeshBasicMaterial({
     color: 0xffc070,
     transparent: true,
-    opacity: isNight ? 0.24 : 0,
+    opacity: isNight ? 0.42 : 0,
     blending: 2,
     depthWrite: false
   }));
@@ -2356,7 +2356,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     const s = built.samples[i * 10 % built.samples.length];
     const p = lampPos[i];
     _dummy.position.set(p.x, s.y + 0.055, p.z);
-    _dummy.scale.set(1, 1, 1);
+    _dummy.scale.set(1.35, 1, 1.15);
     _dummy.rotation.set(0, 0, 0);
     _dummy.updateMatrix();
     pools.setMatrixAt(i, _dummy.matrix);
@@ -2852,7 +2852,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
     bulbMat.emissiveIntensity = lerp(0.08, 7.2, n);
     haloMat.opacity = n > 0.4 ? 0.22 + n * 0.42 : 0;
     pools.visible = n > 0.4 && lampCount > 0;
-    poolMat.opacity = n > 0.4 ? 0.12 + n * 0.16 : 0;
+    poolMat.opacity = n > 0.4 ? 0.2 + n * 0.28 : 0;
     neonGroup.visible = n > 0.32;
     for (const pl of nightLights) pl.intensity = n * 150;
     for (const pl of neonLights) pl.intensity = n * 42;
