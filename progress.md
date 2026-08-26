@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Jaffa clock tower: limestone bands. Still a box + cone, not a scan.
+Jaffa Gate: pyramid pediment on the lintel. A torus arch blocked the road and was removed.

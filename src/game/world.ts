@@ -3139,6 +3139,10 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     lintel.position.set(x, 18.2, z);
     lintel.rotation.y = yaw;
     add(lintel);
+    const ped = new THREE.Mesh(new THREE.ConeGeometry(5.8, 3.6, 4), stone);
+    ped.rotation.y = yaw + Math.PI / 4;
+    ped.position.set(x, 23.6, z);
+    add(ped);
     for (const s of [-16, -6, 6, 16]) {
       const mer = new THREE.Mesh(new THREE.BoxGeometry(3.4, 2.2, 10.8), stone);
       mer.position.set(x + rx * s, 21.8, z + rz * s);
