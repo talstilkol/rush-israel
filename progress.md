@@ -1,19 +1,19 @@
 # Progress — honest %
 
-## Of this Web graphics master plan
-**~7%.** Not done. Not close to “world-leading”.
+## Web graphics master plan: **~8%**
+
+Section 24 ship gates: **0 / 13**.  
+Unreal/GIS: **0%**.
 
 | Stage | Honest |
 |---|---|
-| G0 | ~50% of G0 — 4 runtime PNGs exist; **art gate fail** (boxes, not Ayalon) |
-| G1 | ~25% — Facade wrap, compile warmup, soak 8 |
+| G0 | ~50% of G0 (PNGs fail art) |
+| G1 | ~35% of G1 — facade, P95 drop, lazy `import()` engine, soak 8 |
 | G2–G6 | 0% |
-| Section 24 ship gates | **0 / 13** |
 
 ## This wave
-- `renderer.compile` before the loop
-- `golden-baseline/ayalon-day-g01|g05|g07.png` + `ayalon-night-g08.png`
-- Night shot is still washed; not LookDev
+- `DynamicQualityController` drops High→Mid when P95>22ms after 45 frames
+- RaceEngine loaded only on race screen (menu still imports cars/career)
 
 ## Not
-WebGPU, TSL, GIS, hero GLB, 12×4 golden suite, 100 soak.
+WebGPU, TSL, GIS, hero GLB, 100 soak, golden art pass.

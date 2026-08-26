@@ -30,6 +30,7 @@ import { RendererFacade } from "../rendering/RendererFacade";
 import { profileFromLegacy } from "../rendering/QualityProfile";
 import { LOOKS, lookFromFlags } from "../rendering/EnvironmentState";
 import { ResourceRegistry } from "../rendering/ResourceRegistry";
+import { DynamicQualityController } from "../rendering/DynamicQualityController";
 
 const FIXED = PHYSICS_DT;
 
@@ -187,7 +188,7 @@ export class RaceEngine {
   private combo = 0;
   private comboHold = 0;
   private lastDrifting = false;
-  private slowFrames = 0;
+
   private poiGot = new Set<number>();
   private wrongBeep = 0;
   private driftBonus = "";
@@ -220,6 +221,7 @@ export class RaceEngine {
   private lite = false;
   private quality: Quality = "high";
   private droppedTier = false;
+  private dyn = new DynamicQualityController(22);
   private soft = false;
   private mode: RaceMode = "circuit";
   private totalLaps = 3;
@@ -950,12 +952,10 @@ export class RaceEngine {
     dt = Math.min(dt, 0.1);
     this.telem.push(dt * 1000);
     if (!this.soft && this.quality === "high" && !this.droppedTier) {
-      if (dt > 0.033) this.slowFrames++;
-      else this.slowFrames = Math.max(0, this.slowFrames - 2);
-      if (this.slowFrames > 45) {
+      const snap = this.telem.snapshot();
+      if (this.dyn.note(snap.p95, snap.n)) {
         this.post.setTier("mid");
         this.droppedTier = true;
-        this.slowFrames = 0;
       }
     }
 

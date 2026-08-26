@@ -23,7 +23,6 @@ import { TouchControls } from "@/components/touch-controls";
 import { BootOverlay } from "@/components/boot-overlay";
 import { CARS } from "@/game/cars";
 import { chapters, dailyEvent, getEvent, maxStars, starsFor, weeklyEvent } from "@/game/career";
-import { RaceEngine } from "@/game/engine";
 import { applyTune, LIVERIES, LIVERY_COST, nextCost, PAINT_COST, PAINTS, racePayout } from "@/game/garage";
 import { formatTime } from "@/game/math";
 import { MODE_INFO, RACE_MODES } from "@/game/modes";
@@ -147,6 +146,8 @@ export function GameApp() {
 		void (async () => {
 			await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
 			await new Promise((r) => setTimeout(r, 48));
+			if (cancelled) return;
+			const { RaceEngine } = await import("@/game/engine");
 			if (cancelled) return;
 			inst = new RaceEngine(canvas, {
 				trackId,
