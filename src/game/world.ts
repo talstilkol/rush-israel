@@ -3019,6 +3019,121 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     glowAt(p.x, 110 * s, p.z, 13166847, 46 * s, 40 * s);
     hit(p.x, p.z, 13 * s, 15 * s, 13 * s);
   };
+  const placeMidtown = (s) => {
+    const md = tlv(32.0806, 34.7926);
+    const navy = new THREE.MeshPhysicalMaterial({
+      color: 0x1c2c3c,
+      roughness: 0.1,
+      metalness: 0,
+      envMapIntensity: 1.55,
+      clearcoat: 1,
+      clearcoatRoughness: 0.1
+    });
+    bag.push(navy);
+    const hA = 108 * s;
+    const hB = 94 * s;
+    const a = new THREE.Mesh(new THREE.BoxGeometry(12.4 * s, hA, 14.6 * s), navy);
+    a.position.set(md.x - 8.2 * s, hA * 0.5, md.z);
+    add(a);
+    const b = new THREE.Mesh(new THREE.BoxGeometry(12.4 * s, hB, 14.6 * s), navy);
+    b.position.set(md.x + 8.2 * s, hB * 0.5, md.z);
+    add(b);
+    const bandGeo = new THREE.BoxGeometry(12.9 * s, 0.22 * s, 15.1 * s);
+    const nBand = 18;
+    const bands = new THREE.InstancedMesh(bandGeo, bandMat, nBand * 2);
+    bands.frustumCulled = false;
+    let bi = 0;
+    for (const [ox, h] of [[-8.2 * s, hA], [8.2 * s, hB]]) {
+      for (let i = 0; i < nBand; i++) {
+        const y = 6 * s + i * (h - 12 * s) / (nBand - 1);
+        _dummy.position.set(md.x + ox, y, md.z);
+        _dummy.rotation.set(0, 0, 0);
+        _dummy.scale.set(1, 1, 1);
+        _dummy.updateMatrix();
+        bands.setMatrixAt(bi++, _dummy.matrix);
+      }
+    }
+    bands.count = bi;
+    bands.instanceMatrix.needsUpdate = true;
+    group.add(bands);
+    bag.push(bandGeo);
+    const skyGeo = new THREE.BoxGeometry(18.6 * s, 3.2 * s, 7.2 * s);
+    const skies = new THREE.InstancedMesh(skyGeo, paleGlass, 3);
+    skies.frustumCulled = false;
+    [26, 54, 82].forEach((y, i) => {
+      _dummy.position.set(md.x, y * s, md.z);
+      _dummy.rotation.set(0, 0, 0);
+      _dummy.scale.set(1, 1, 1);
+      _dummy.updateMatrix();
+      skies.setMatrixAt(i, _dummy.matrix);
+    });
+    skies.instanceMatrix.needsUpdate = true;
+    group.add(skies);
+    bag.push(skyGeo);
+    glowAt(md.x, 90 * s, md.z, 0x6688aa, 40 * s, 36 * s);
+    hit(md.x, md.z, 14 * s, 18 * s, 10 * s);
+  };
+  const placeElectra = (s) => {
+    const el = tlv(32.0699, 34.7918);
+    const teal = new THREE.MeshPhysicalMaterial({
+      color: 0x4a7a92,
+      roughness: 0.1,
+      metalness: 0,
+      envMapIntensity: 1.5,
+      clearcoat: 1,
+      clearcoatRoughness: 0.1
+    });
+    bag.push(teal);
+    const h = 118 * s;
+    const body = new THREE.Mesh(new THREE.BoxGeometry(14.2 * s, h, 14.2 * s), teal);
+    body.position.set(el.x, h * 0.5, el.z);
+    add(body);
+    const slabYs = [];
+    for (let y = 5 * s; y < h - 4 * s; y += 3.1 * s) slabYs.push(y);
+    const slabGeo = new THREE.BoxGeometry(14.8 * s, 0.2 * s, 14.8 * s);
+    const slabs = new THREE.InstancedMesh(slabGeo, bandMat, slabYs.length);
+    slabs.frustumCulled = false;
+    for (let i = 0; i < slabYs.length; i++) {
+      _dummy.position.set(el.x, slabYs[i], el.z);
+      _dummy.rotation.set(0, 0, 0);
+      _dummy.scale.set(1, 1, 1);
+      _dummy.updateMatrix();
+      slabs.setMatrixAt(i, _dummy.matrix);
+    }
+    slabs.instanceMatrix.needsUpdate = true;
+    slabs.castShadow = shadows;
+    group.add(slabs);
+    bag.push(slabGeo);
+    const mullGeo = new THREE.BoxGeometry(0.16 * s, h * 0.96, 0.16 * s);
+    const mulls = new THREE.InstancedMesh(mullGeo, bandMat, 14);
+    mulls.frustumCulled = false;
+    let mi = 0;
+    for (let i = 0; i < 7; i++) {
+      const o = -5.8 * s + i * 1.93 * s;
+      for (const z of [el.z + 7.15 * s, el.z - 7.15 * s]) {
+        _dummy.position.set(el.x + o, h * 0.5, z);
+        _dummy.rotation.set(0, 0, 0);
+        _dummy.scale.set(1, 1, 1);
+        _dummy.updateMatrix();
+        mulls.setMatrixAt(mi++, _dummy.matrix);
+      }
+    }
+    mulls.count = mi;
+    mulls.instanceMatrix.needsUpdate = true;
+    group.add(mulls);
+    bag.push(mullGeo);
+    const elCrown = new THREE.Mesh(new THREE.BoxGeometry(15.4 * s, 5.4 * s, 15.4 * s), bandMat);
+    elCrown.position.set(el.x, h + 3.2 * s, el.z);
+    add(elCrown);
+    const elCrown2 = new THREE.Mesh(new THREE.BoxGeometry(10.6 * s, 4.6 * s, 10.6 * s), paleGlass);
+    elCrown2.position.set(el.x, h + 8.2 * s, el.z);
+    add(elCrown2);
+    const elMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2 * s, 0.4 * s, 32 * s, 8), bandMat);
+    elMast.position.set(el.x, h + 24 * s, el.z);
+    add(elMast);
+    glowAt(el.x, h + 8 * s, el.z, 0x88c0d8, 36 * s, 32 * s);
+    hit(el.x, el.z, 9 * s);
+  };
   const placeTlvTowers = (s) => {
     placeCityGate(s);
     placeToHa(s);
@@ -3037,48 +3152,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const sarona2 = new THREE.Mesh(new THREE.CylinderGeometry(3.6 * s, 4.6 * s, 18 * s, 8), paleGlass);
     sarona2.position.set(saronaX, 107 * s, saronaZ);
     add(sarona2);
-    const md = tlv(32.0806, 34.7926);
-    const midA = new THREE.Mesh(new THREE.BoxGeometry(11.2 * s, 96 * s, 13.2 * s), darkGlass);
-    midA.position.set(md.x - 7.2 * s, 48 * s, md.z);
-    add(midA);
-    const midB = new THREE.Mesh(new THREE.BoxGeometry(11.2 * s, 86 * s, 13.2 * s), darkGlass);
-    midB.position.set(md.x + 7.2 * s, 43 * s, md.z);
-    add(midB);
-    const sky = new THREE.Mesh(new THREE.BoxGeometry(16.4 * s, 3.6 * s, 7.6 * s), paleGlass);
-    sky.position.set(md.x, 78 * s, md.z);
-    add(sky);
-    const skyLow = new THREE.Mesh(new THREE.BoxGeometry(16.4 * s, 2.6 * s, 6.8 * s), paleGlass);
-    skyLow.position.set(md.x, 28 * s, md.z);
-    add(skyLow);
-    hit(md.x, md.z, 13 * s, 18 * s, 9 * s);
-    const el = tlv(32.0699, 34.7918);
-    const electra = new THREE.Mesh(new THREE.BoxGeometry(13.2 * s, 102 * s, 13.2 * s), darkGlass);
-    electra.position.set(el.x, 51 * s, el.z);
-    add(electra);
-    for (let i = 0; i < 7; i++) {
-      const o = -5.6 * s + i * 1.86 * s;
-      const mx = new THREE.Mesh(new THREE.BoxGeometry(0.16 * s, 100 * s, 0.16 * s), bandMat);
-      mx.position.set(el.x + o, 51 * s, el.z + 6.65 * s);
-      add(mx);
-      const mx2 = mx.clone();
-      mx2.position.z = el.z - 6.65 * s;
-      add(mx2);
-    }
-    for (let y = 8 * s; y < 96 * s; y += 2.9 * s) {
-      const sl = new THREE.Mesh(new THREE.BoxGeometry(13.7 * s, 0.14 * s, 13.7 * s), bandMat);
-      sl.position.set(el.x, y, el.z);
-      add(sl);
-    }
-    const elCrown = new THREE.Mesh(new THREE.BoxGeometry(14.4 * s, 5.2 * s, 14.4 * s), bandMat);
-    elCrown.position.set(el.x, 105 * s, el.z);
-    add(elCrown);
-    const elCrown2 = new THREE.Mesh(new THREE.BoxGeometry(10.2 * s, 4.4 * s, 10.2 * s), paleGlass);
-    elCrown2.position.set(el.x, 110 * s, el.z);
-    add(elCrown2);
-    const elMast = new THREE.Mesh(new THREE.CylinderGeometry(0.18 * s, 0.36 * s, 28 * s, 8), bandMat);
-    elMast.position.set(el.x, 126 * s, el.z);
-    add(elMast);
-    hit(el.x, el.z, 8 * s);
+    placeMidtown(s);
+    placeElectra(s);
     const sm = tlv(32.0639, 34.7704);
     const shalom = new THREE.Mesh(new THREE.BoxGeometry(15 * s, 56 * s, 9.4 * s), cream);
     shalom.position.set(sm.x, 28 * s, sm.z);
@@ -3088,7 +3163,6 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     add(shalomMast);
     hit(saronaX, saronaZ, 8 * s);
     hit(sm.x, sm.z, 7 * s);
-    hit(md.x, md.z, 8 * s);
   };
   const placeNycSkyline = (ox, oz, s) => {
     const wtcH = 118 * s;
@@ -5100,6 +5174,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     placeAzrieli(1.42);
     placeToHa(1.28, 32.0695, 34.7894);
     placeCityGate(1);
+    placeMidtown(1.15);
+    placeElectra(1.2);
     const ibm = tlv(32.0856, 34.7987);
     const ibmGlass = new THREE.MeshPhysicalMaterial({
       color: 0x3a6e7a,

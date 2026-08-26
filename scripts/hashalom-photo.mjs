@@ -34,6 +34,8 @@ const shots = [`${out}/hashalom-azrieli.png`];
 for (const [fn, name] of [
   ["frameToHa", "hashalom-toha.png"],
   ["frameCityGate", "hashalom-citygate.png"],
+  ["frameMidtown", "hashalom-midtown.png"],
+  ["frameElectra", "hashalom-electra.png"],
 ]) {
   await p.evaluate((f) => window.__controlsTest[f](), fn);
   await p.waitForTimeout(500);
