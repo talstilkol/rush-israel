@@ -199,6 +199,9 @@ export class RaceEngine {
   private dyn = new DynamicQualityController();
   private csmMuted = false;
   private lastPresent = 0;
+  private webgpuTried = false;
+  private webgpuOk = false;
+  private webgpuReason = "";
   private soft = false;
   private mode: RaceMode = "circuit";
   private totalLaps = 3;
@@ -308,6 +311,13 @@ export class RaceEngine {
     await new Promise<void>((r) => requestAnimationFrame(() => r()));
     if (this.disposed) return;
     this.opts.onBoot?.(0.18);
+    if (typeof location !== "undefined" && new URLSearchParams(location.search).get("webgpu") === "1") {
+      this.webgpuTried = true;
+      const probe = await RendererFacade.probeWebGPU();
+      this.webgpuOk = probe.ok;
+      this.webgpuReason = probe.reason;
+      console.info("[gfx] webgpu", probe.ok ? "ok" : "fail", probe.reason);
+    }
     await loadSky();
     await loadRoadFor(this.trackDef.id);
     await loadBeam();
@@ -2234,6 +2244,9 @@ export class RaceEngine {
         return true;
       },
       setNight: (n: boolean) => this.setNight(n),
+      webgpuTried: () => this.webgpuTried,
+      webgpuOk: () => this.webgpuOk,
+      webgpuReason: () => this.webgpuReason,
       advanceTime: (ms: number) => {
         const steps = Math.max(0, Math.floor(ms / (FIXED * 1000)));
         for (let i = 0; i < steps && i < 600; i++) this.fixed(FIXED);
@@ -2251,6 +2264,9 @@ export class RaceEngine {
         telem: this.telem.snapshot(),
         csm: !!this.csm,
         photo: this.photo,
+        webgpuTried: this.webgpuTried,
+        webgpuOk: this.webgpuOk,
+        webgpuReason: this.webgpuReason,
       });
   }
 
@@ -2397,6 +2413,9 @@ declare global {
       exportTelemetry?: () => { n: number; p50: number; p95: number; p99: number; last: number; backend: string };
       gotoGolden?: (id: string) => boolean;
       setNight?: (n: boolean) => void;
+      webgpuTried?: () => boolean;
+      webgpuOk?: () => boolean;
+      webgpuReason?: () => string;
     };
     render_game_to_text?: () => string;
   }

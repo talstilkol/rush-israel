@@ -5,7 +5,8 @@ import { applyColorPipeline } from "./ColorPipeline";
 
 /**
  * G1-01: the game talks to this, not to passes/RTs.
- * Today the backend is WebGLRenderer only. WebGPU is not wired.
+ * Game canvas stays WebGLRenderer. ?webgpu=1 only probes three/webgpu (Codex 76).
+ * Reflector / composer / CSM.js / onBeforeCompile are not on this path.
  */
 export class RendererFacade {
   readonly gl: THREE.WebGLRenderer;
@@ -27,6 +28,31 @@ export class RendererFacade {
     applyColorPipeline(gl);
     gfx.telem.backend = gl.capabilities.isWebGL2 ? "webgl2" : "webgl1";
     return gfx;
+  }
+
+  /** Dummy canvas. Never attaches to the game. Whole probe capped at 4s. */
+  static async probeWebGPU(): Promise<{ ok: boolean; reason: string }> {
+    const run = async () => {
+      const gpu = (navigator as Navigator & { gpu?: { requestAdapter: () => Promise<unknown> } }).gpu;
+      if (!gpu) throw new Error("no navigator.gpu");
+      const { WebGPURenderer } = await import("three/webgpu");
+      const c = document.createElement("canvas");
+      const r = new WebGPURenderer({ canvas: c, antialias: false, powerPreference: "high-performance" });
+      await r.init();
+      r.dispose();
+      return { ok: true as const, reason: "init" };
+    };
+    try {
+      return await Promise.race([
+        run(),
+        new Promise<{ ok: false; reason: string }>((resolve) =>
+          setTimeout(() => resolve({ ok: false, reason: "webgpu init timeout" }), 4000),
+        ),
+      ]);
+    } catch (e) {
+      console.info("[gfx] webgpu fail", e);
+      return { ok: false, reason: e instanceof Error ? e.message : "fail" };
+    }
   }
 
   private constructor(gl: THREE.WebGLRenderer, profile: QualityProfile) {

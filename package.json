@@ -20,6 +20,7 @@
     "format": "prettier --write .",
     "qa:ayalon": "node scripts/capture-golden.mjs",
     "qa:golden": "node scripts/pixel-golden.mjs",
+    "qa:webgpu": "node scripts/webgpu-smoke.mjs",
     "qa:drive": "node scripts/drive-smoke.mjs",
     "qa:ramp": "node scripts/ramp-smoke.mjs",
     "qa:accel": "node scripts/accel-smoke.mjs",
