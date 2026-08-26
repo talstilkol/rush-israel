@@ -25,6 +25,7 @@ import { getTrack, nearestPoi, nightAmt, streetName, todLabel } from "./tracks";
 import type { AssistFlags, CarId, Collider, HandlingMode, HudState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting, type CarSnap } from "./vehicle";
 import { createWorld, type World } from "./world";
+import { bindRoadCompile } from "./roadShader";
 import { loadBeam } from "./beam-assets";
 import { loadLaneArrow } from "./arrow-assets";
 import { loadFlares } from "./flare-assets";
@@ -2222,6 +2223,7 @@ export class RaceEngine {
         const std = mat as THREE.MeshStandardMaterial;
         if (std.isMeshStandardMaterial || (mat as THREE.MeshPhysicalMaterial).isMeshPhysicalMaterial) {
           this.csm!.setupMaterial(mat);
+          bindRoadCompile(mat as { userData: { lanes?: number } });
         }
       }
     });

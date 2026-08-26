@@ -24,7 +24,7 @@ V only where the *small* spec is 100.
 - [ ] 1.4 Lease CSM maps — **NOT DONE**
 
 ## Phase 2 — Road
-- [ ] 2.1 Dry/wet **shader** — **NOT DONE** (dashes = meshes; **FAKED** if called a shader)
+- [x] 2.1 Dry/wet **shader** — **PARTIAL** (UV dashes + uWet; still MeshPhysical + PNG, chained after CSM)
 - [ ] 2.2 Planar follow — **PARTIAL** (768 + yaw)
 - [ ] 2.3 3.5m / 8-lane UV — **PARTIAL** (Ayalon width 28; no UV lanes)
 - [x] 2.4 Dynamic-import NYC canvas — **DONE** (tiny: `await import` only if `city===nyc`)
