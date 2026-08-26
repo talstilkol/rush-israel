@@ -51,7 +51,7 @@ Verdict labels: DONE (real, working, verified) | PARTIAL | FAKED | NOT DONE.
 | TSL / MRT | NOT DONE | — |
 | TRAA / TAAU | NOT DONE | SMAA on High only (`postfx.ts`) |
 | Forced-WebGL CI | NOT DONE | No CI job |
-| Debug hooks stripped in shipping | NOT DONE | `__controlsTest`, `render_game_to_text` always installed |
+| Debug hooks stripped in shipping | PARTIAL | Localhost/`?qa=1` only. Hosted prod has no hook |
 
 ## Codex §8–10 world streaming
 

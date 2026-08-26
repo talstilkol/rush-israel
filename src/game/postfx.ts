@@ -192,6 +192,7 @@ export function createPost(
   };
 }
 
+/** Tiny PMREM from a 3-object scene. Not an HDRI. Not IBL from a real sky. */
 export function bakeEnv(renderer: THREE.WebGLRenderer, night = false) {
   const tmp = new THREE.Scene();
   tmp.background = new THREE.Color(night ? 0x182436 : 0x3a9ae0);

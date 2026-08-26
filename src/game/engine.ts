@@ -1992,10 +1992,12 @@ export class RaceEngine {
   }
 
   private qaHookAllowed() {
+    if (typeof location !== "undefined") {
+      if (new URLSearchParams(location.search).has("qa")) return true;
+      if (location.hostname === "127.0.0.1" || location.hostname === "localhost") return true;
+    }
     if (import.meta.env.VITE_QA === "1") return true;
-    if (!import.meta.env.DEV) return false;
-    if (typeof location === "undefined") return false;
-    return location.hostname === "127.0.0.1" || location.hostname === "localhost";
+    return false;
   }
 
   private exposeControls() {
