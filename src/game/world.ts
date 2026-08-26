@@ -5332,7 +5332,7 @@ function addLandmarks(
     ibmSlabs.castShadow = shadows;
     group.add(ibmSlabs);
     bag.push(ibmGeo);
-    hit(ibm.x, ibm.z, 10);
+    hitRoad(ibm.x, ibm.z, 10);
     const yovel = tlv(32.0788, 34.7916);
     const yovGlass = new THREE.MeshPhysicalMaterial({
       color: 0x5a7088,
@@ -5363,7 +5363,7 @@ function addLandmarks(
     const yovCrown = new THREE.Mesh(new THREE.CylinderGeometry(9.4, 6.2, 9, 18), bandMat);
     yovCrown.position.set(yovel.x, 96, yovel.z);
     add(yovCrown);
-    hit(yovel.x, yovel.z, 8);
+    hitRoad(yovel.x, yovel.z, 8);
     const plat = tlv(32.0842, 34.8036);
     const platM = new THREE.Mesh(new THREE.CylinderGeometry(6.4, 7.4, 108, 8), darkGlass);
     platM.position.set(plat.x, 54, plat.z);
@@ -5388,7 +5388,7 @@ function addLandmarks(
     platHat.position.set(plat.x, 112, plat.z);
     platHat.rotation.y = 0.28;
     add(platHat);
-    hit(plat.x, plat.z, 8);
+    hitRoad(plat.x, plat.z, 8);
     const tau = tlv(32.1124, 34.8046);
     const tauLib = new THREE.Mesh(new THREE.CylinderGeometry(10, 11.4, 14, 20), cream);
     tauLib.position.set(tau.x, 7, tau.z);
@@ -5417,7 +5417,7 @@ function addLandmarks(
     group.add(halls);
     bag.push(hallGeo);
     glowAt(tau.x, 16, tau.z, 0xf2e8d0, 28, 22);
-    hit(tau.x, tau.z, 22, 28, 24);
+    hitRoad(tau.x, tau.z, 22, 28, 24);
     const hs = tlv(32.0735, 34.79605);
     const tubeLen = built.width + 42;
     const tube = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 3.4, tubeLen, 24, 1, true), paleGlass);
@@ -5480,7 +5480,7 @@ function addLandmarks(
       const canopy = new THREE.Mesh(new THREE.BoxGeometry(30 * sc, 0.35 * sc, 16 * sc), white);
       canopy.position.set(p.x, 8.6 * sc, p.z);
       add(canopy);
-      hit(p.x, p.z, 10 * sc, 15 * sc, 9 * sc);
+      hitRoad(p.x, p.z, 10 * sc, 15 * sc, 9 * sc);
     };
     placeRailStop(32.0547, 34.7982, 0.78);
     placeRailStop(32.1035, 34.79815, 0.9);
