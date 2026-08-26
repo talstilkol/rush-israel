@@ -5,19 +5,37 @@ type Disposable = { dispose: () => void };
 type Glow = { light: THREE.PointLight; on: number };
 type Emit = { mat: THREE.MeshStandardMaterial; night: number; day: number };
 
+function hslRgb(h: number, s: number, l: number) {
+  const sat = s / 100;
+  const lit = l / 100;
+  const a = sat * Math.min(lit, 1 - lit);
+  const f = (n: number) => {
+    const k = (n + h / 30) % 12;
+    return lit - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+  };
+  return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)] as const;
+}
+
 function ledTexture(hue: number) {
-  const c = document.createElement("canvas");
-  c.width = 128;
-  c.height = 256;
-  const ctx = c.getContext("2d")!;
-  ctx.fillStyle = `hsl(${hue} 70% 18%)`;
-  ctx.fillRect(0, 0, 128, 256);
-  for (let i = 0; i < 18; i++) {
-    ctx.fillStyle = `hsl(${(hue + i * 17) % 360} 85% ${38 + (i % 4) * 10}%)`;
-    ctx.fillRect(8, 8 + i * 13, 112, 11);
-  }
-  const tex = new THREE.CanvasTexture(c);
+  const w = 128;
+  const h = 256;
+  const data = new Uint8Array(w * h * 4);
+  const paint = (x0: number, y0: number, x1: number, y1: number, rgb: readonly [number, number, number]) => {
+    for (let y = y0; y < y1; y++)
+      for (let x = x0; x < x1; x++) {
+        const i = (y * w + x) * 4;
+        data[i] = rgb[0];
+        data[i + 1] = rgb[1];
+        data[i + 2] = rgb[2];
+        data[i + 3] = 255;
+      }
+  };
+  paint(0, 0, w, h, hslRgb(hue, 70, 18));
+  for (let i = 0; i < 18; i++) paint(8, 8 + i * 13, 120, 19 + i * 13, hslRgb((hue + i * 17) % 360, 85, 38 + (i % 4) * 10));
+  const tex = new THREE.DataTexture(data, w, h);
   tex.colorSpace = THREE.SRGBColorSpace;
+  tex.flipY = true;
+  tex.needsUpdate = true;
   return tex;
 }
 

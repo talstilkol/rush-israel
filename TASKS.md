@@ -85,7 +85,7 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 
 ## Phase 8 — Assets
 - [ ] 8.1 UASTC `.ktx2` atlases — **PARTIAL** (uncompressed `blob.ktx2` vk=43 loads; car GLBs Meshopt only — no fake KTX2Loader)
-- [ ] 8.2 Zero canvas except probe — **NOT DONE**
+- [ ] 8.2 Zero canvas except probe — **PARTIAL** (NYC facade/ads still canvas; LED billboard is DataTexture; probe allowed)
 - [x] 8.3 Meshopt cars — **DONE** (tiny)
 - [ ] 8.4 256m cells — **NOT DONE**
 
@@ -132,6 +132,7 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 2.19. `2.1` wet roughness in road shader — **DONE** (tiny: no SSR).
 2.20. `8.4` CSM 3/1/0 on quality menu — **DONE** (tiny: hide extra lights; no setupMaterial rebuild).
 2.21. `5.4.2` Ayalon landmark yaw OBB — **DONE** (tiny: Hashalom/Savidor cluster; not every track).
+2.22. `8.2` NYC LED billboard off canvas — **DONE** (tiny: DataTexture, not baked PNG; nyc-canvas remains).
 
 ### 3. After Hashalom still arrives
 3.1. Pose-lock `hashalom` in `goldenCameras.ts` to match the still.  
