@@ -52,7 +52,7 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 - [x] 3.5 0–100 CI ±15% in `qa` — **DONE** (tiny: extrusion, not hero; table in `golden-baseline/accel.json`)
 
 ## Phase 4 — Physics
-- [ ] 4.1 Tire-only yaw — **PARTIAL** (`kin * crawl + tire`)
+- [x] 4.1 Tire-only yaw at speed — **DONE** (tiny: crawl=0 when speed>12; `qa:drive` asserts `getKinMix`)
 - [ ] 4.2 4-post Y — **PARTIAL** (ramp snap; spline spring)
 - [ ] 4.3 Never say DEM — **PARTIAL** (code ok; keep copy honest)
 - [ ] 4.4 OBB all landmarks — **PARTIAL**
@@ -121,6 +121,7 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 2.10. `21.8` HaShalom ramp Y — **DONE** (`qa:ramp` already in `qa`; span 3.12m).
 2.11. `21.12` collider offset CI — **DONE** (tiny: Ayalon buildings ≥ width/2+12; no `landmark-gps.ts` yet).
 2.12. `4.5` airborne CI — **DONE** (tiny: `qa:airborne` in `qa`).
+2.13. `4.1` crawl=0 above 12 m/s — **DONE** (tiny: `qa:drive`; kinematic mix still on below ~10 m/s).
 
 ### 3. After Hashalom still arrives
 3.1. Pose-lock `hashalom` in `goldenCameras.ts` to match the still.  

@@ -29,12 +29,16 @@ await p.waitForFunction(() => !!window.__controlsTest, { timeout: 35000 });
 if (errs.length) throw new Error("race " + errs.join("\n"));
 await p.evaluate(() => {
   const t = window.__controlsTest;
-  t.skipCountdown();
   t.resetStart();
+  t.skipCountdown();
   t.setThrottle(1);
   t.setKeys(["KeyW"]);
+  for (let i = 0; i < 240 && (t.getSpeed() ?? 0) < 12; i++) t.advanceTime(50);
 });
-await p.waitForFunction(() => (window.__controlsTest.getSpeed() ?? 0) > 5, { timeout: 16000 });
+const mix = await p.evaluate(() => window.__controlsTest.getKinMix?.() ?? -1);
+const spd = await p.evaluate(() => window.__controlsTest.getSpeed());
+if (spd < 12) throw new Error("never reached 12 m/s v=" + spd);
+if (mix > 0.001) throw new Error("crawl still on at speed kinMix=" + mix);
 const y0 = await p.evaluate(() => window.__controlsTest.getYaw());
 await p.evaluate(() => window.__controlsTest.setSteer(1));
 await p.waitForTimeout(260);
