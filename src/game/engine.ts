@@ -907,13 +907,13 @@ export class RaceEngine {
     }
     if (this.trackDef.id === "scopus") {
       const u = clamp(this.player.y / 52, 0, 1);
-      this.fog.density = lerp(0.00008, 0.00016, u);
-      this.fog.color.lerp(new THREE.Color(0xd0dce8), u * 0.25);
+      this.fog.density = lerp(0.00003, 0.00006, u);
+      this.fog.color.lerp(new THREE.Color(0xd0dce8), u * 0.2);
       return;
     }
     if (this.trackDef.id === "jerusalem") {
-      const u = clamp(this.player.y / 42, 0, 1);
-      this.fog.density = lerp(0.00022, 0.00014, u);
+      const u = clamp(this.player.y / 54, 0, 1);
+      this.fog.density = lerp(0.00005, 0.00004, u);
       return;
     }
     if (this.trackDef.theme === "carmel") {
