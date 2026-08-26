@@ -25,11 +25,11 @@ Do **not** bake more procedural PNGs. Do **not** add cities.
 - [ ] D2 TSL
 - [x] D3 CSM — **PARTIAL** (2 cascades @1024 High; not 4-split TRAA)
 - [x] D4 SMAA default; TRAA later — **PARTIAL** (SMAA mid/high; no TRAA)
-- [ ] D5 No SSGI until A+B
+- [x] D5 No SSGI until A+B — kept (no GTAO/SSR/SSGI)
 
 ## E — Assets
 - [ ] E1 `.ktx2` (no KTX-Software)
-- [x] E2 Canvas fallbacks — **PARTIAL** (7 left)
+- [x] E2 Canvas fallbacks — **PARTIAL** (NYC facade/windows/ads + probe)
 - [ ] E3 Zero canvas except probe
 - [x] E4 Lease RTs — **PARTIAL** (env + probe + composer; not CSM internals)
 
@@ -38,7 +38,7 @@ Rothschild / Reading / Jaffa / Jerusalem / Ramon / Hermon / Carmel: 15 GPS + sti
 
 ## G — Ship
 - [x] Golden CI — **PARTIAL** (`npm run qa:drive` smoke; no pixel compare)
-- [ ] WebGL2 CI
+- [x] WebGL2 CI — **PARTIAL** (`npm run qa:webgl2`)
 - [ ] WebGPU CI if D1
 - [ ] Strip `?qa=1`
 - [ ] **0/13 gates**
