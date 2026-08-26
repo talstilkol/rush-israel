@@ -804,23 +804,19 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     }
   }
   {
-    const chevGeo = keep(new THREE.BufferGeometry());
-    chevGeo.setAttribute("position", new THREE.Float32BufferAttribute([
-      0,
-      0.12,
-      2.4,
-      -1.55,
-      0.12,
-      -1.2,
-      1.55,
-      0.12,
-      -1.2
-    ], 3));
-    chevGeo.computeVertexNormals();
+    const arrowTex = getLaneArrow();
+    const chevGeo = keep(new THREE.PlaneGeometry(2.8, 3.6));
+    chevGeo.rotateX(-Math.PI / 2);
     const chevMat = keep(new THREE.MeshBasicMaterial({
-      color: 16773248,
-      side: 2,
-      fog: false
+      map: arrowTex ?? undefined,
+      color: arrowTex ? 0xffffff : 16773248,
+      transparent: !!arrowTex,
+      depthWrite: false,
+      polygonOffset: true,
+      polygonOffsetFactor: -2,
+      polygonOffsetUnits: -2,
+      fog: false,
+      side: THREE.DoubleSide,
     }));
     const chevN = Math.min(28, Math.max(8, Math.floor(built.samples.length / 14)));
     const chevs = new THREE.InstancedMesh(chevGeo, chevMat, chevN);

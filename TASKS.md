@@ -48,7 +48,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 ## Phase 2 — Road
 - [x] 2.1 Wet shader — **DONE** (tiny: uWet roughness; no SSR)
 - [ ] 2.2 Planar follow — **PARTIAL** (768 + yaw)
-- [x] 2.3 3.5m / 8-lane UV dashes — **DONE** (tiny: shader; edge meshes remain)
+- [x] 2.3 3.5m / 8-lane UV dashes — **DONE** (tiny: shader + lane-arrow.png chevrons; street stripe boxes remain)
 - [x] 2.4 NYC dynamic import — **DONE** (tiny)
 
 ## Phase 3 — Car

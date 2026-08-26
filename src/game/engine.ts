@@ -336,7 +336,7 @@ export class RaceEngine {
     await loadSigns();
     await loadWater();
     await loadFlares();
-    if (this.trackDef.id === "ayalon") await loadLaneArrow();
+    await loadLaneArrow();
     if (this.trackDef.id === "oldjaffa") await loadJaffaClock();
     if (this.trackDef.id === "rothschild") await loadIsraelFlag();
     if (this.trackDef.id === "jerusalem" || this.trackDef.id === "scopus" || this.trackDef.id === "walls") await loadHerodian();
