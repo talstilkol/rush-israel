@@ -5222,11 +5222,15 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         rail.position.set(c.x, 10.3, c.z + side);
         add(rail);
       }
-      for (const px of [c.x - 22, c.x + 22]) {
+      for (const side of [-1, 1]) {
+        const n = nearestIndex(built.samples, c.x, c.z, 0);
+        const sm = built.samples[n.index];
+        const px = sm.x + sm.rx * (built.width / 2 + 12) * side;
+        const pz = sm.z + sm.rz * (built.width / 2 + 12) * side;
         const col = new THREE.Mesh(new THREE.BoxGeometry(1.8, deckY, 1.8), conc);
-        col.position.set(px, deckY * 0.5, c.z);
+        col.position.set(px, deckY * 0.5, pz);
         add(col);
-        hit(px, c.z, 1.4);
+        hit(px, pz, 1.4);
       }
       for (const lx of [-28, -10, 10, 28]) {
         const post = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.16, 3.4, 6), conc);
