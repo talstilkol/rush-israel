@@ -715,6 +715,38 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.16, 0.46)), edgeMat));
   group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.16, 0.46)), edgeMat));
   {
+    const dashG = keep(new THREE.BoxGeometry(0.1, 0.035, 3.2));
+    const dashM = keep(new THREE.MeshBasicMaterial({
+      color: 0xeeeee8,
+      fog: false,
+      polygonOffset: true,
+      polygonOffsetFactor: -3,
+      polygonOffsetUnits: -3
+    }));
+    const maxD = 640;
+    const dashes = new THREE.InstancedMesh(dashG, dashM, maxD);
+    let di = 0;
+    const hw = built.width / 2;
+    const step = Math.max(1, Math.floor(built.samples.length / 90));
+    for (let i = 0; i < built.samples.length && di < maxD; i += step) {
+      const s = built.samples[i];
+      if (Math.floor(s.s / 4.4) % 2) continue;
+      for (let ln = 1; ln < lanes; ln++) {
+        if (lanes >= 8 && ln === lanes / 2) continue;
+        if (di >= maxD) break;
+        const lat = -hw + ln / lanes * built.width;
+        _dummy.position.set(s.x + s.rx * lat, s.y + 0.07, s.z + s.rz * lat);
+        _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
+        _dummy.scale.set(1, 1, 1);
+        _dummy.updateMatrix();
+        dashes.setMatrixAt(di++, _dummy.matrix);
+      }
+    }
+    dashes.count = di;
+    dashes.instanceMatrix.needsUpdate = true;
+    group.add(dashes);
+  }
+  {
     const yMat = keep(new THREE.MeshBasicMaterial({
       color: 0xffc400,
       fog: false,
