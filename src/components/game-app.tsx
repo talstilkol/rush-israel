@@ -1034,7 +1034,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 							}),
 							/* @__PURE__ */ jsx("p", {
 								className: "mt-1 text-sm text-muted",
-								children: t("בחר עיר ומסלול — וסע.", "Pick a city and a track — then drive.")
+								children: t("בהשראת המקומות — לא מפה, לא GIS. בחר וסע.", "Inspired by the places — not a map, not GIS. Pick and drive.")
 							}),
 							/* @__PURE__ */ jsx("div", {
 								className: "mt-4 flex flex-wrap gap-2",

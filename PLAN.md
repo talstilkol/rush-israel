@@ -38,7 +38,7 @@
 | 24.1 סובב OAuth | **PARTIAL** | לא | הוסר מהמקור. **לא** סובבנו בברוקר |
 | 24.2 חסום QA hook | **PARTIAL** | לא | `VITE_QA` או DEV+localhost. **אין** על grok-sandbox.com. `finishNow` חי ב־127.0.0.1 |
 | 24.3 records אמינים | **PARTIAL** | לא | 8–2700ש׳ + eligible. אין hash |
-| 24.4 בלי מצג שווא | **PARTIAL** | לא | כרטיסים=צבע. תיאורים עדיין "כביש 20" |
+| 24.4 בלי מצג שווא | **PARTIAL** | לא | כותרת מסלולים: "בהשראת, לא GIS". כרטיסי כביש 1/2/6/כרמל תוקנו. שאר התיאורים עדיין נשמעים כמו מקומות |
 | 24.5 artifacts | **NOT DONE** | לא | |
 | W1.1 CI בלי nocheck | **NOT DONE** | לא | |
 | W1.2 save טרנזקציה | **NOT DONE** | לא | localStorage |
