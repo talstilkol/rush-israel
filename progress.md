@@ -1,11 +1,7 @@
 # Progress — honest %
 
-**~9%** of the Web graphics master plan. Ship gates **0/13**.
+**~9%** of the Web graphics plan. Ship gates **0/13**.
 
-## This wave
-- Day sun 0.52→1.45 (clock was crushing lights back to 0.68)
-- Car paint dielectric + clearcoat (not chrome)
-- Glass metalness 0
+Tried GT wheel-arch extrusion this wave — it self-intersected and looked like a wire cage. **Reverted.** Chase shot restored.
 
-## Still not
-WebGPU, GIS, hero GLB, GT7. Screenshot is better; still a prototype.
+Still no WebGPU, GIS, or hero GLB.

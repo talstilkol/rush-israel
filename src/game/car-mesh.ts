@@ -276,7 +276,7 @@ function bodyGeo(kind: CarDef["body"], width: number) {
     bevelEnabled: true,
     bevelThickness: 0.09,
     bevelSize: 0.07,
-    bevelSegments: 3,
+    bevelSegments: 4,
     steps: 1,
   });
   g.translate(0, 0, -width / 2);
