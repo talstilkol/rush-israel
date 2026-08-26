@@ -61,7 +61,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 ## Phase 4 — Physics
 - [x] 4.1 Tire yaw at speed — **DONE** (tiny)
 - [x] 4.2 4-post Y — **DONE** (tiny: not 6DoF)
-- [ ] 4.3 Never say DEM — **PARTIAL** (code ok)
+- [x] 4.3 Never say DEM — **DONE** (tiny: zero `DEM` in `src/`)
 - [x] 4.4 200m corridor — **DONE** (tiny)
 - [x] 4.4b Ayalon yaw OBB cluster — **DONE** (tiny)
 - [x] 4.5 Airborne 12ms — **DONE** (tiny)
@@ -117,7 +117,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 2.28. `9.2` golden in `qa:ci` — **forbidden** until user-ok stills.  
 2.29. `1.3` phone 60Hz — needs user device.  
 2.30. `10.9` p95 Playwright — needs real GPU.  
-2.31. `10.12` 20× leak soak — script exists (`qa:soak`); not in `qa`.
+2.31. `10.12` leak soak — **DONE** (tiny: `qa:soak-smoke` 2 cycles in `qa`; 20-cycle stays `qa:soak` manual).
 
 ### 3. After Hashalom still
 3.1. Pose-lock `hashalom` camera.  
