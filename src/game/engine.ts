@@ -31,6 +31,7 @@ import { loadHerodian } from "./stone-assets";
 import { loadJaffaClock } from "./clock-assets";
 import { loadIsraelFlag } from "./flag-assets";
 import { loadTreeMaps } from "./tree-assets";
+import { loadBlob, getBlob } from "./blob-assets";
 import { loadFlake } from "./flake-assets";
 import { loadCars } from "./car-assets";
 import { loadRoadFor } from "./road-assets";
@@ -334,6 +335,7 @@ export class RaceEngine {
     this.opts.onBoot?.(0.18);
     await loadSky();
     await loadRoadFor(this.trackDef.id);
+    await loadBlob();
     await loadFlake();
     await loadCars();
     await loadTreeMaps();
@@ -439,7 +441,7 @@ export class RaceEngine {
       this.probeCam = new THREE.CubeCamera(1.2, 220, this.probeRT);
     }
 
-    const blobTex = (() => {
+    const blobTex = getBlob() ?? (() => {
       const c = document.createElement("canvas");
       c.width = c.height = 128;
       const ctx = c.getContext("2d")!;

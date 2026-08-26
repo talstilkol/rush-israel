@@ -28,7 +28,8 @@
     "bake:curb": "node scripts/bake-curb.mjs",
     "bake:curtain": "node scripts/bake-curtain.mjs",
     "bake:sidewalk": "node scripts/bake-sidewalk.mjs",
-    "bake:flake": "node scripts/bake-flake.mjs"
+    "bake:flake": "node scripts/bake-flake.mjs",
+    "bake:blob": "node scripts/bake-blob.mjs"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.4",
