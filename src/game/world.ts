@@ -5437,6 +5437,18 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const eaves = new THREE.Mesh(new THREE.BoxGeometry(17.6, 0.5, 12.4), terracotta);
     eaves.position.set(ind.x, 9, ind.z);
     add(eaves);
+    const ihPole = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.09, 7.6, 6), bandMat);
+    ihPole.position.set(ind.x + 7.2, 8.6, ind.z + 4.2);
+    add(ihPole);
+    const ihFlag = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 1.4), new THREE.MeshBasicMaterial({ color: 0xf4f6f8, side: THREE.DoubleSide }));
+    ihFlag.position.set(ind.x + 8.4, 11.4, ind.z + 4.2);
+    add(ihFlag);
+    const ihStripe = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 0.26), new THREE.MeshBasicMaterial({ color: 0x0038b8, side: THREE.DoubleSide }));
+    ihStripe.position.set(ind.x + 8.41, 11.82, ind.z + 4.2);
+    add(ihStripe);
+    const ihStripe2 = ihStripe.clone();
+    ihStripe2.position.y = 10.98;
+    add(ihStripe2);
     const roofIH = new THREE.Mesh(new THREE.ConeGeometry(11.2, 3.4, 4), terracotta);
     roofIH.rotation.y = Math.PI / 4;
     roofIH.position.set(ind.x, 11.1, ind.z);
