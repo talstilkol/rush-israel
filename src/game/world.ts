@@ -5234,13 +5234,30 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     add(yovCrown);
     hit(yovel.x, yovel.z, 8);
     const plat = tlv(32.0842, 34.8036);
-    const platM = new THREE.Mesh(new THREE.CylinderGeometry(6.4, 7.2, 88, 8), darkGlass);
-    platM.position.set(plat.x, 44, plat.z);
+    const platM = new THREE.Mesh(new THREE.CylinderGeometry(6.4, 7.4, 108, 8), darkGlass);
+    platM.position.set(plat.x, 54, plat.z);
+    platM.rotation.y = 0.28;
     add(platM);
-    const platHat = new THREE.Mesh(new THREE.CylinderGeometry(8, 5.4, 6.2, 8), bandMat);
-    platHat.position.set(plat.x, 91, plat.z);
+    const platBandYs = [];
+    for (let y = 8; y < 100; y += 5.2) platBandYs.push(y);
+    const platBandGeo = new THREE.CylinderGeometry(6.7, 7.3, 0.28, 8);
+    const platBands = new THREE.InstancedMesh(platBandGeo, bandMat, platBandYs.length);
+    platBands.frustumCulled = false;
+    for (let i = 0; i < platBandYs.length; i++) {
+      _dummy.position.set(plat.x, platBandYs[i], plat.z);
+      _dummy.rotation.set(0, 0.28, 0);
+      _dummy.scale.set(1, 1, 1);
+      _dummy.updateMatrix();
+      platBands.setMatrixAt(i, _dummy.matrix);
+    }
+    platBands.instanceMatrix.needsUpdate = true;
+    group.add(platBands);
+    bag.push(platBandGeo);
+    const platHat = new THREE.Mesh(new THREE.CylinderGeometry(8.4, 5.2, 7.2, 8), bandMat);
+    platHat.position.set(plat.x, 112, plat.z);
+    platHat.rotation.y = 0.28;
     add(platHat);
-    hit(plat.x, plat.z, 7);
+    hit(plat.x, plat.z, 8);
     const tau = tlv(32.1124, 34.8046);
     const tauLib = new THREE.Mesh(new THREE.CylinderGeometry(10, 11.4, 14, 20), cream);
     tauLib.position.set(tau.x, 7, tau.z);
@@ -5248,7 +5265,28 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const tauDome = new THREE.Mesh(new THREE.SphereGeometry(8.4, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), white);
     tauDome.position.set(tau.x, 14.4, tau.z);
     add(tauDome);
-    hit(tau.x, tau.z, 9);
+    const hallGeo = new THREE.BoxGeometry(1, 1, 1);
+    const halls = new THREE.InstancedMesh(hallGeo, cream, 5);
+    halls.frustumCulled = false;
+    const hallSpec = [
+      [18, 5.2, 8, 14, 6.4, 10],
+      [-16, 4.4, -10, 12, 5.6, 9],
+      [8, 6.2, -18, 10, 8.4, 16],
+      [-22, 3.8, 14, 16, 4.8, 8],
+      [24, 3.2, 12, 8, 4.2, 14],
+    ];
+    hallSpec.forEach((h, i) => {
+      _dummy.position.set(tau.x + h[0], h[1], tau.z + h[2]);
+      _dummy.rotation.set(0, i * 0.35, 0);
+      _dummy.scale.set(h[3], h[4] * 2, h[5]);
+      _dummy.updateMatrix();
+      halls.setMatrixAt(i, _dummy.matrix);
+    });
+    halls.instanceMatrix.needsUpdate = true;
+    group.add(halls);
+    bag.push(hallGeo);
+    glowAt(tau.x, 16, tau.z, 0xf2e8d0, 28, 22);
+    hit(tau.x, tau.z, 22, 28, 24);
     const hs = tlv(32.0735, 34.79605);
     const tubeLen = built.width + 42;
     const tube = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 3.4, tubeLen, 24, 1, true), paleGlass);

@@ -2450,6 +2450,40 @@ export class RaceEngine {
         };
         this.pushHud();
       },
+      framePlatinum: () => {
+        const p = tlv(32.0842, 34.8036);
+        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const s = this.built.samples[n.index];
+        this.enterPhoto();
+        this.photoHide = true;
+        this.photoLock = {
+          px: s.x,
+          py: 36,
+          pz: s.z,
+          lx: p.x,
+          ly: 80,
+          lz: p.z,
+          fov: 34,
+        };
+        this.pushHud();
+      },
+      frameTau: () => {
+        const p = tlv(32.1124, 34.8046);
+        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const s = this.built.samples[n.index];
+        this.enterPhoto();
+        this.photoHide = true;
+        this.photoLock = {
+          px: s.x,
+          py: 22,
+          pz: s.z,
+          lx: p.x,
+          ly: 14,
+          lz: p.z,
+          fov: 40,
+        };
+        this.pushHud();
+      },
       getPhotoLock: () => this.photoLock,
       setNight: (n: boolean) => this.setNight(n),
       webgpuTried: () => this.webgpuTried,
@@ -2642,6 +2676,8 @@ declare global {
       frameHagana?: () => void;
       frameUniversity?: () => void;
       frameGaluyot?: () => void;
+      framePlatinum?: () => void;
+      frameTau?: () => void;
       getPhotoLock?: () => { px: number; py: number; pz: number; lx: number; ly: number; lz: number; fov: number } | null;
       setNight?: (n: boolean) => void;
       webgpuTried?: () => boolean;
