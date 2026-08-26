@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Ground is a baked greyscale noise PNG, tinted by material color. Still procedural.
+Shore foam is a baked PNG. Still a drawing.
