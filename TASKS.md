@@ -86,7 +86,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 
 ## Phase 8 — Assets
 - [ ] 8.1 UASTC — **PARTIAL**
-- [ ] 8.2 Zero canvas except probe — **PARTIAL** (NYC facade+ads)
+- [x] 8.2 Zero canvas except probe — **DONE** (tiny: NYC DataTexture; probe + WebGPU dummy remain; not baked PNG)
 - [x] 8.3 Meshopt — **DONE** (tiny)
 - [ ] 8.4 256m cells — **NOT DONE**
 
@@ -95,7 +95,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 - [ ] 9.2 Pixel-diff in qa:ci — **NOT DONE** (keep manual until user stills)
 - [ ] 9.3 WebGPU CI game path — **NOT DONE**
 - [x] 9.4 Strip prod hook — **DONE** (tiny)
-- [ ] 9.5 13/13 gates — **NOT DONE** (2/13 ship; 7 tiny infra)
+- [ ] 9.5 13/13 gates — **NOT DONE** (2/13 ship; 10.8 canvas tiny-closer, still not 13)
 
 ## Codex §25
 1 hero **PARTIAL** · 2 real road **FAKED** · 3 lighting **PARTIAL** · 4 KTX2 **PARTIAL** · 5 cells **NOT DONE** · 6 wet **PARTIAL** · 7 WebGPU **NOT DONE** · 8 CSM **PARTIAL** · 9 TRAA **NOT DONE** · 10 SSGI off **OK**
@@ -110,7 +110,7 @@ Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
 1.3. `המשך` without a still → integrity leftover only. Freeze blocked.
 
 ### 2. Integrity leftovers still open (no still)
-2.24. `8.2` NYC facade + ads off canvas (bake PNG or DataTexture).  
+2.24. `8.2` NYC facade + ads off canvas — **DONE** (tiny: DataTexture + 5x7 glyphs; not baked PNG).  
 2.25. `5.4` yaw OBB for remaining Ayalon `hit()` not in Hashalom/Savidor cluster.  
 2.26. `2.2` planar 768 — document as cap or raise RT (needs GPU budget).  
 2.27. `4.4` other tracks still yaw=0 — do **not** until freeze.  
