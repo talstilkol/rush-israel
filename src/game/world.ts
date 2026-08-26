@@ -5300,6 +5300,21 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     bag.push(platGeo);
     glowAt(sav.x, 14, sav.z, 0xff8844, 28, 24);
     hit(sav.x, sav.z, 16, 24, 14);
+    const placeRailStop = (lat, lon, sc) => {
+      const p = tlv(lat, lon);
+      const hall = new THREE.Mesh(new THREE.BoxGeometry(28 * sc, 8.2 * sc, 14 * sc), cream);
+      hall.position.set(p.x, 4.1 * sc, p.z);
+      add(hall);
+      const stripe = new THREE.Mesh(new THREE.BoxGeometry(28.2 * sc, 0.85 * sc, 0.32 * sc), savOrange);
+      stripe.position.set(p.x, 7.8 * sc, p.z + 7 * sc);
+      add(stripe);
+      const canopy = new THREE.Mesh(new THREE.BoxGeometry(30 * sc, 0.35 * sc, 16 * sc), white);
+      canopy.position.set(p.x, 8.6 * sc, p.z);
+      add(canopy);
+      hit(p.x, p.z, 10 * sc, 15 * sc, 9 * sc);
+    };
+    placeRailStop(32.0547, 34.7982, 0.78);
+    placeRailStop(32.1035, 34.79815, 0.9);
     const rampAsphalt = new THREE.MeshStandardMaterial({
       color: 6053990,
       roughness: 0.9,
