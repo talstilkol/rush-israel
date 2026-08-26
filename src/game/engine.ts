@@ -300,7 +300,7 @@ export class RaceEngine {
     const snow = this.trackDef.theme === "snow" || opts.trackId === "hermon";
     const skyDay = desert ? 0x4aa8dc : snow ? 0x6eb0d8 : 0x2f8fd4;
     const skyNight = 0x182436;
-    this.fog = new THREE.FogExp2(opts.night ? skyNight : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x4a98cc, opts.night ? 0.00016 : desert ? 0.00006 : 0.000028);
+    this.fog = new THREE.FogExp2(opts.night ? skyNight : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x6eb4dc, opts.night ? 0.00016 : desert ? 0.00006 : 0.000012);
     this.scene.fog = this.fog;
     this.scene.background = new THREE.Color(opts.night ? skyNight : skyDay);
 
@@ -852,8 +852,8 @@ export class RaceEngine {
     this.gfx.setEnvironment(LOOKS[look].exposure);
     const desert = this.trackDef.theme === "desert" || this.trackDef.id === "ramon";
     const snow = this.trackDef.theme === "snow" || this.trackDef.id === "hermon";
-    this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x4a98cc);
-    this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.000028;
+    this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x6eb4dc);
+    this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.000012;
     this.scene.fog = this.fog;
     this.skyTex?.dispose();
     this.skyTex = paintSky(n > 0.5, desert, snow);
