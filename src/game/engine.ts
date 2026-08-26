@@ -2058,6 +2058,8 @@ export class RaceEngine {
       escActive: this.player.escActive,
       slipRatio: this.player.slipRatio,
       physicsHz: PHYSICS_HZ,
+      msP95: this.telem.snapshot().p95,
+      backend: this.telem.backend,
     });
   }
 

@@ -8,6 +8,7 @@ import { nearestIndex } from "./spline";
 import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, her, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, ram, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
 import { scatterStreetBuildings } from "./buildings";
 import { addNycLandmarks } from "./nyc-landmarks";
+import { adBoardTexture, facadeTexture, windowEmitTexture } from "./nyc-canvas";
 import { generateStreets, nearestStreet } from "./streets";
 import { getLaneArrow } from "./arrow-assets";
 import { getFlare0, getFlare1 } from "./flare-assets";
@@ -115,92 +116,6 @@ function flareTex(size, inner, outer) {
   const baked = size >= 128 ? getFlare0() : getFlare1();
   if (!baked) throw new Error("flare texture missing");
   return baked;
-}
-function facadeTexture(theme, night) {
-  const c = document.createElement("canvas");
-  c.width = 256;
-  c.height = 512;
-  const ctx = c.getContext("2d");
-  const stone = theme === "stone";
-  const jaffa = theme === "jaffa";
-  const hwy = theme === "highway" || theme === "manhattan";
-  const bau = theme === "bauhaus" || !stone && !jaffa && !hwy && theme !== "desert" && theme !== "port";
-  ctx.fillStyle = stone ? "#c4b090" : jaffa ? "#c4a070" : hwy ? "#1a3040" : theme === "desert" ? "#d4b48c" : theme === "port" ? "#b0a898" : "#e8e0d4";
-  ctx.fillRect(0, 0, 256, 512);
-  if (stone) {
-    for (let y = 0; y < 512; y += 28) {
-      ctx.fillStyle = y % 56 === 0 ? "#b8a07c" : "#d0be9c";
-      ctx.fillRect(0, y, 256, 26);
-      ctx.fillStyle = "#8a7860";
-      ctx.fillRect(0, y + 26, 256, 2);
-      for (let x = (y / 28 % 2) * 40; x < 256; x += 80) {
-        ctx.fillStyle = "#6a5844";
-        ctx.fillRect(x + 18, y + 6, 18, 16);
-        if (night && hash01(x, y) > 0.62) {
-          ctx.fillStyle = "#ffe2a0";
-          ctx.fillRect(x + 18, y + 6, 18, 16);
-        }
-      }
-    }
-  } else if (jaffa) {
-    for (let y = 20; y < 490; y += 72) {
-      for (let x = 8; x < 250; x += 64) {
-        ctx.fillStyle = hash01(x, y) > 0.5 ? "#d2b080" : "#b89060";
-        ctx.fillRect(x, y, 52, 58);
-        ctx.fillStyle = "#2a2018";
-        ctx.beginPath();
-        ctx.arc(x + 26, y + 36, 12, Math.PI, 0);
-        ctx.lineTo(x + 38, y + 52);
-        ctx.lineTo(x + 14, y + 52);
-        ctx.fill();
-        if (night && hash01(x, y, 2) > 0.55) {
-          ctx.fillStyle = "#ffd080";
-          ctx.beginPath();
-          ctx.arc(x + 26, y + 36, 10, Math.PI, 0);
-          ctx.fill();
-        }
-      }
-    }
-  } else if (hwy) {
-    ctx.fillStyle = "#0e2430";
-    ctx.fillRect(0, 0, 256, 512);
-    for (let y = 0; y < 512; y += 36) {
-      ctx.fillStyle = "#6a90a0";
-      ctx.fillRect(0, y, 256, 2);
-      for (let x = 4; x < 252; x += 32) {
-        const lit = night && hash01(x, y, 3) > 0.4;
-        ctx.fillStyle = lit ? "#c8e8f8" : "#1a4050";
-        ctx.fillRect(x + 4, y + 6, 22, 26);
-      }
-    }
-    for (let x = 0; x < 256; x += 32) {
-      ctx.fillStyle = "#8ab0c0";
-      ctx.fillRect(x, 0, 2, 512);
-    }
-  } else {
-    ctx.fillStyle = "#efe8dc";
-    ctx.fillRect(0, 0, 256, 512);
-    for (let y = 12; y < 500; y += 56) {
-      ctx.fillStyle = "#d8d0c4";
-      ctx.fillRect(0, y + 40, 256, 8);
-      ctx.fillStyle = night ? "#3a444c" : "#5a6870";
-      ctx.fillRect(8, y + 10, 240, 22);
-      for (let x = 12; x < 240; x += 28) {
-        const lit = night && hash01(x, y, 4) > 0.48;
-        ctx.fillStyle = lit ? "#ffe8b0" : bau ? "#9aa8b0" : "#70808a";
-        ctx.fillRect(x, y + 12, 18, 18);
-      }
-    }
-    ctx.fillStyle = "#c8c0b4";
-    ctx.fillRect(0, 0, 256, 22);
-  }
-  ctx.fillStyle = "rgba(0,0,0,0.16)";
-  ctx.fillRect(0, 480, 256, 32);
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  tex.anisotropy = 8;
-  return tex;
 }
 function segsOf(built) {
   return built.closed ? built.samples.length : Math.max(1, built.samples.length - 1);
@@ -481,25 +396,6 @@ function applyLights(isNight, hemi, dir, fill, ambient, lightAim, flareCol, lens
   }
   ambient.color.setHex(isNight ? 0x4a6080 : 0xb0c4d8);
   ambient.intensity = isNight ? 0.12 : 0.32;
-}
-function windowEmitTexture() {
-  const c = document.createElement("canvas");
-  c.width = 256;
-  c.height = 512;
-  const ctx = c.getContext("2d");
-  ctx.fillStyle = "#000000";
-  ctx.fillRect(0, 0, 256, 512);
-  const cols = 5;
-  const rows = 10;
-  for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) if (hash01(x, y, 11) > 0.28) {
-    ctx.fillStyle = hash01(x, y, 13) > 0.62 ? "#9ae0ff" : "#ffd089";
-    ctx.fillRect(16 + x * 48, 48 + y * 44, 24, 26);
-  }
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  tex.anisotropy = 4;
-  return tex;
 }
 function starField() {
   const n = 1100;
@@ -2045,19 +1941,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   ];
   if (def.city === "nyc") for (let i = 0; i < ads.length; i++) {
     const ad = ads[i];
-    const boardCanvas = document.createElement("canvas");
-    boardCanvas.width = 512;
-    boardCanvas.height = 256;
-    const bctx = boardCanvas.getContext("2d");
-    bctx.fillStyle = ad.bg;
-    bctx.fillRect(0, 0, 512, 256);
-    bctx.fillStyle = ad.fg;
-    bctx.font = "bold 92px sans-serif";
-    bctx.textAlign = "center";
-    bctx.textBaseline = "middle";
-    bctx.fillText(ad.t, 256, 128);
-    const tex = keep(new THREE.CanvasTexture(boardCanvas));
-    tex.colorSpace = THREE.SRGBColorSpace;
+    const tex = keep(adBoardTexture(ad.bg, ad.fg, ad.t));
     const mat = keep(new THREE.MeshStandardMaterial({
       map: tex,
       emissive: new THREE.Color(ad.fg),

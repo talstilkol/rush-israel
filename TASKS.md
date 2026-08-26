@@ -97,8 +97,8 @@ Unreal 5.8. OSM/DEM/EPSG:2039. Scanned cars. Nanite/Lumen/RT. Broker secret rota
 
 ## Next coding slice (do in order)
 
-1. Move NYC canvases out of `world.ts` (Phase 2.4).  
-2. DEV ms HUD (1.1).  
+1. ~~Move NYC canvases out of `world.ts`~~ — **PARTIAL** (`nyc-canvas.ts`; Israel still imports the module).  
+2. DEV ms HUD (1.1) — **PARTIAL** (`?qa=1` p95).  
 3. Ayalon freeze QA still (5.1) — **block other map work**.  
 4. Tire-only yaw or label arcade (4.1).  
 5. Stop.

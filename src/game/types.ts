@@ -235,6 +235,8 @@ export type HudState = {
   escActive: boolean;
   slipRatio: number;
   physicsHz: number;
+  msP95: number;
+  backend: string;
 };
 
 export type RaceResult = {
