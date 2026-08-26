@@ -24,6 +24,8 @@ import { getTrack, nearestPoi, nightAmt, streetName, todLabel } from "./tracks";
 import type { AssistFlags, CarId, Collider, HandlingMode, HudState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting, type CarSnap } from "./vehicle";
 import { createWorld, type World } from "./world";
+import { loadAyalonRoad } from "./road-assets";
+import { getSkyDay, getSkyNight, loadSky } from "./sky-assets";
 import { RenderTelemetry } from "../rendering/RenderTelemetry";
 import { AYALON_GOLDEN } from "../world/goldenCameras";
 import { RendererFacade } from "../rendering/RendererFacade";
@@ -318,6 +320,9 @@ export class RaceEngine {
     await new Promise<void>((r) => requestAnimationFrame(() => r()));
     if (this.disposed) return;
     this.opts.onBoot?.(0.18);
+    await loadSky();
+    if (this.trackDef.id === "ayalon") await loadAyalonRoad();
+    if (this.disposed) return;
 
     this.world = createWorld(this.trackDef, this.built, shadows, this.opts.night, this.weather);
     this.world.setLod?.(this.quality);
@@ -855,9 +860,14 @@ export class RaceEngine {
     this.fog.color.setHex(n > 0.5 ? 0x1a2838 : desert ? 0xb8a888 : snow ? 0xc8dcec : 0x6eb4dc);
     this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.000012;
     this.scene.fog = this.fog;
-    this.skyTex?.dispose();
-    this.skyTex = paintSky(n > 0.5, desert, snow);
-    this.scene.background = this.skyTex;
+    const baked = n > 0.5 ? getSkyNight() : getSkyDay();
+    if (baked && !desert && !snow) {
+      this.scene.background = baked;
+    } else {
+      this.skyTex?.dispose();
+      this.skyTex = paintSky(n > 0.5, desert, snow);
+      this.scene.background = this.skyTex;
+    }
     this.applyAltitudeLook();
     this.scene.environmentIntensity = n > 0.5 ? 0.28 : 0.88;
     this.post.setNight(n > 0.5);

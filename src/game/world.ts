@@ -10,6 +10,7 @@ import { scatterStreetBuildings } from "./buildings";
 import { addNycLandmarks } from "./nyc-landmarks";
 import { generateStreets, nearestStreet } from "./streets";
 import { getAyalonRoad } from "./road-assets";
+import { getSkyDay, getSkyNight } from "./sky-assets";
 
 export type World = {
   group: THREE.Group;
@@ -1099,8 +1100,8 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   sunHalo.visible = !isNight;
   sunHalo.frustumCulled = false;
   group.add(sunHalo);
-  const skyDayMap = keep(skyEquirect(false, def));
-  const skyNightMap = keep(skyEquirect(true, def));
+  const skyDayMap = getSkyDay() || keep(skyEquirect(false, def));
+  const skyNightMap = getSkyNight() || keep(skyEquirect(true, def));
   const skyDomeMat = keep(new THREE.MeshBasicMaterial({
     map: isNight ? skyNightMap : skyDayMap,
     fog: false,

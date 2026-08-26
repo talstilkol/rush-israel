@@ -18,7 +18,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "qa:ayalon": "node scripts/capture-golden.mjs",
-    "bake:asphalt": "node scripts/bake-asphalt.mjs"
+    "bake:asphalt": "node scripts/bake-asphalt.mjs",
+    "bake:sky": "node scripts/bake-sky.mjs"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.4",
