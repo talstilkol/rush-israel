@@ -1255,6 +1255,25 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       jers.count = ji;
       jers.instanceMatrix.needsUpdate = true;
       group.add(jers);
+      const railG = keep(new THREE.BoxGeometry(0.14, 0.1, 3.4));
+      const railM = keep(new THREE.MeshStandardMaterial({ color: 0x9aa0a6, metalness: 0.72, roughness: 0.28 }));
+      const nRail = 220;
+      const rails = new THREE.InstancedMesh(railG, railM, nRail * 2);
+      let ri = 0;
+      const stepR = Math.max(1, Math.floor(built.samples.length / nRail));
+      for (let i = 0; i < built.samples.length && ri < nRail * 2; i += stepR) {
+        const s = built.samples[i];
+        for (const lane of [-1.15, 1.15]) {
+          _dummy.position.set(s.x + s.rx * (midOff + lane), s.y + 0.16, s.z + s.rz * (midOff + lane));
+          _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
+          _dummy.scale.set(1, 1, 1);
+          _dummy.updateMatrix();
+          rails.setMatrixAt(ri++, _dummy.matrix);
+        }
+      }
+      rails.count = ri;
+      rails.instanceMatrix.needsUpdate = true;
+      group.add(rails);
     }
   }
   {
@@ -5861,8 +5880,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         phase
       });
     };
-    makeTrain(0, -2.4);
-    makeTrain(0.48, 2.4);
+    makeTrain(0, built.width / 2 + 6);
+    makeTrain(0.48, built.width / 2 + 8.4);
     const arrowC = document.createElement("canvas");
     arrowC.width = 64;
     arrowC.height = 96;
