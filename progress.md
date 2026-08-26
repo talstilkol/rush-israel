@@ -1,21 +1,19 @@
 # Progress — honest %
 
-## Of this Web graphics master plan (G0–G6 / 12 sprints)
-**~6%.** Not 50. Not 20.
+## Of this Web graphics master plan
+**~7%.** Not done. Not close to “world-leading”.
 
 | Stage | Honest |
 |---|---|
-| G0 baseline | ~40% of G0 (no golden screenshots, canvas still runtime) |
-| G1 facade | ~25% of G1 (wrap only, no WebGPU, soak **8** not 100) |
-| G2 hero GLB | 0% |
-| G3 GIS cells | 0% |
-| G4 TRAA/CSM/SSGI | LookDev table only |
-| G5/G6 release | 0% |
+| G0 | ~50% of G0 — 4 runtime PNGs exist; **art gate fail** (boxes, not Ayalon) |
+| G1 | ~25% — Facade wrap, compile warmup, soak 8 |
+| G2–G6 | 0% |
 | Section 24 ship gates | **0 / 13** |
 
-## Done this wave
-- EnvironmentState 4 looks drive exposure
-- Soak 8 menu↔race cycles (`scripts/soak-menu-race.mjs`) — **not 100**
+## This wave
+- `renderer.compile` before the loop
+- `golden-baseline/ayalon-day-g01|g05|g07.png` + `ayalon-night-g08.png`
+- Night shot is still washed; not LookDev
 
-## Still not
-WebGPURenderer, TSL materials, CSM, TRAA, GIS, hero car GLB, 100-cycle soak, CI matrix.
+## Not
+WebGPU, TSL, GIS, hero GLB, 12×4 golden suite, 100 soak.

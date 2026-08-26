@@ -536,6 +536,11 @@ export class RaceEngine {
     requestAnimationFrame(() => this.onResize());
 
     this.last = performance.now();
+    try {
+      this.renderer.compile(this.scene, this.camera);
+    } catch {
+      /* warmup is best-effort */
+    }
     this.renderer.setAnimationLoop(() => this.frame());
 
     this.rivalIdx = (this.opts.eventId?.length ?? 1) % 4;
@@ -2093,6 +2098,7 @@ export class RaceEngine {
         this.racing = true;
         return true;
       },
+      setNight: (n: boolean) => this.setNight(n),
       advanceTime: (ms: number) => {
         const steps = Math.max(0, Math.floor(ms / (FIXED * 1000)));
         for (let i = 0; i < steps && i < 600; i++) this.fixed(FIXED);
@@ -2103,7 +2109,7 @@ export class RaceEngine {
         track: this.trackDef.id,
         quality: this.quality,
         weather: this.weather,
-        night: this.opts.night,
+        night: nightAmt(this.clock) > 0.5,
         speed: +this.player.speed.toFixed(2),
         progress: +this.player.progress.toFixed(3),
         onTrack: this.player.onTrack,
@@ -2208,6 +2214,7 @@ declare global {
       getVis?: () => number;
       exportTelemetry?: () => { n: number; p50: number; p95: number; p99: number; last: number; backend: string };
       gotoGolden?: (id: string) => boolean;
+      setNight?: (n: boolean) => void;
     };
     render_game_to_text?: () => string;
   }
