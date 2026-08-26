@@ -2,6 +2,7 @@ import * as THREE from "three";
 import type { CarDef, Tune } from "./types";
 import { hash01 } from "./math";
 import { cloneCarBody } from "./car-assets";
+import { getFlake } from "./flake-assets";
 
 export type CarVisual = {
   group: THREE.Group;
@@ -21,10 +22,15 @@ export type CarVisual = {
   police?: { red: THREE.MeshPhysicalMaterial; blue: THREE.MeshPhysicalMaterial };
 };
 
-let FLAKE: THREE.CanvasTexture | null = null;
+let FLAKE: THREE.Texture | null = null;
 
 function flakeMap() {
   if (FLAKE) return FLAKE;
+  const baked = getFlake();
+  if (baked) {
+    FLAKE = baked;
+    return baked;
+  }
   if (typeof document === "undefined") return null;
   const size = 256;
   const c = document.createElement("canvas");

@@ -31,6 +31,7 @@ import { loadHerodian } from "./stone-assets";
 import { loadJaffaClock } from "./clock-assets";
 import { loadIsraelFlag } from "./flag-assets";
 import { loadTreeMaps } from "./tree-assets";
+import { loadFlake } from "./flake-assets";
 import { loadCars } from "./car-assets";
 import { loadRoadFor } from "./road-assets";
 import { getSkyDay, getSkyNight, loadSky } from "./sky-assets";
@@ -333,6 +334,7 @@ export class RaceEngine {
     this.opts.onBoot?.(0.18);
     await loadSky();
     await loadRoadFor(this.trackDef.id);
+    await loadFlake();
     await loadCars();
     await loadTreeMaps();
     await loadCurbs();
