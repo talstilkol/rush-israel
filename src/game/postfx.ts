@@ -6,6 +6,9 @@ import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
 import { SMAAPass } from "three/examples/jsm/postprocessing/SMAAPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 
+/** Codex 78: no SSGI/volumetric GI. Fog is Exp2 in engine. Rain is Points. */
+export const SSGI_OFF = true;
+
 const GRADE = {
   uniforms: {
     tDiffuse: { value: null as THREE.Texture | null },

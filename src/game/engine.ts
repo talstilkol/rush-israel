@@ -8,7 +8,7 @@ import { CARS, getCar, RIVALS } from "./cars";
 import { GameInput } from "./input";
 import { clamp, expSmooth, lerp, hash01, hashStr } from "./math";
 import { hasAiPack, hasCops, MODE_LAPS } from "./modes";
-import { bakeEnv, createPost, type PostStack } from "./postfx";
+import { bakeEnv, createPost, SSGI_OFF, type PostStack } from "./postfx";
 import { CSM } from "three/examples/jsm/csm/CSM.js";
 import {
   DEFAULT_ASSISTS,
@@ -2269,6 +2269,7 @@ export class RaceEngine {
         webgpuOk: this.webgpuOk,
         webgpuReason: this.webgpuReason,
         blobKtx2: blobIsKtx2(),
+        ssgiOff: SSGI_OFF,
       });
   }
 
