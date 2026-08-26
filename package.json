@@ -26,7 +26,8 @@
     "bake:trees": "node scripts/bake-trees.mjs",
     "bake:herodian": "node scripts/bake-herodian.mjs",
     "bake:curb": "node scripts/bake-curb.mjs",
-    "bake:curtain": "node scripts/bake-curtain.mjs"
+    "bake:curtain": "node scripts/bake-curtain.mjs",
+    "bake:sidewalk": "node scripts/bake-sidewalk.mjs"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.4",
