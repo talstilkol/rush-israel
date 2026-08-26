@@ -128,23 +128,19 @@ function paint(color: number): THREE.MeshPhysicalMaterial {
   const flake = flakeMap();
   return new THREE.MeshPhysicalMaterial({
     color,
-    metalness: 0.82,
-    roughness: 0.1,
+    metalness: 0.06,
+    roughness: 0.22,
     roughnessMap: flake ?? undefined,
     bumpMap: flake ?? undefined,
-    bumpScale: 0.045,
+    bumpScale: 0.04,
     clearcoat: 1,
-    clearcoatRoughness: 0.045,
+    clearcoatRoughness: 0.06,
     clearcoatNormalMap: flake ?? undefined,
-    clearcoatNormalScale: new THREE.Vector2(0.28, 0.28),
-    envMapIntensity: 2.6,
-    sheen: 0.28,
-    sheenColor: c.clone().multiplyScalar(0.45),
-    sheenRoughness: 0.28,
-    specularIntensity: 1,
-    iridescence: 0.12,
-    iridescenceIOR: 1.3,
-    iridescenceThicknessRange: [80, 320],
+    clearcoatNormalScale: new THREE.Vector2(0.22, 0.22),
+    envMapIntensity: 1.4,
+    sheen: 0.18,
+    sheenColor: c.clone().multiplyScalar(0.35),
+    sheenRoughness: 0.35,
   });
 }
 
@@ -319,12 +315,14 @@ export function createCarVisual(
   accentMat.roughness = 0.28;
   const dark = new THREE.MeshPhysicalMaterial({ color: 0x121418, metalness: 0.42, roughness: 0.46, envMapIntensity: 0.65 });
   const glass = new THREE.MeshPhysicalMaterial({
-    color: 0x152028,
-    metalness: 0.15,
-    roughness: 0.05,
+    color: 0x1a2830,
+    metalness: 0,
+    roughness: 0.04,
     transparent: true,
-    opacity: 0.58,
-    envMapIntensity: 1.8,
+    opacity: 0.42,
+    transmission: 0.35,
+    ior: 1.45,
+    envMapIntensity: 1.6,
   });
   const rubber = new THREE.MeshStandardMaterial({ color: 0x121214, metalness: 0.06, roughness: 0.82 });
   const rim = new THREE.MeshPhysicalMaterial({ color: 0xc8d0d6, metalness: 0.94, roughness: 0.14, clearcoat: 0.6, envMapIntensity: 1.4 });

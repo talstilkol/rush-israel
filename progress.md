@@ -1,14 +1,11 @@
 # Progress — honest %
 
-## Web graphics master plan: **~8%**
-Section 24 ship gates: **0/13**. This is not GT7.
+**~9%** of the Web graphics master plan. Ship gates **0/13**.
 
-## This wave (real)
-- Ayalon: no generic `highwayTower` scatter
-- Removed clone slab/bursa boxes; kept Azrieli / ToHa / City Gate / Yovel / IBM
-- Day sky is blue (no white horizon wash)
-- Asphalt metalness 0 (already)
-- Glass on remaining street mats is dielectric
+## This wave
+- Day sun 0.52→1.45 (clock was crushing lights back to 0.68)
+- Car paint dielectric + clearcoat (not chrome)
+- Glass metalness 0
 
-## Still
-Procedural silhouettes, no GIS, no hero GLB, no WebGPU.
+## Still not
+WebGPU, GIS, hero GLB, GT7. Screenshot is better; still a prototype.
