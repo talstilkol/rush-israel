@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import type { CarDef, Tune } from "./types";
-import { hash01 } from "./math";
 import { cloneCarBody } from "./car-assets";
 import { getBeam } from "./beam-assets";
 import { getFlake } from "./flake-assets";
@@ -32,27 +31,7 @@ function flakeMap() {
     FLAKE = baked;
     return baked;
   }
-  if (typeof document === "undefined") return null;
-  const size = 256;
-  const c = document.createElement("canvas");
-  c.width = c.height = size;
-  const ctx = c.getContext("2d")!;
-  ctx.fillStyle = "#7a7a7a";
-  ctx.fillRect(0, 0, size, size);
-  for (let i = 0; i < 4200; i++) {
-    const x = hash01(i, 1) * size;
-    const y = hash01(i, 2) * size;
-    const s = hash01(i, 3) * 1.6 + 0.25;
-    ctx.fillStyle = hash01(i, 4) > 0.5 ? "#f4f0e8" : hash01(i, 5) > 0.5 ? "#dce6f4" : "#e8d8b0";
-    ctx.fillRect(x, y, s, s);
-  }
-  const tex = new THREE.CanvasTexture(c);
-  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  tex.repeat.set(8, 4);
-  tex.anisotropy = 4;
-  tex.colorSpace = THREE.NoColorSpace;
-  FLAKE = tex;
-  return tex;
+  return null;
 }
 
 function paint(color: number): THREE.MeshPhysicalMaterial {
@@ -84,22 +63,7 @@ function beamCookie() {
     BEAM = baked;
     return baked;
   }
-  if (typeof document === "undefined") return null;
-  const size = 256;
-  const c = document.createElement("canvas");
-  c.width = c.height = size;
-  const ctx = c.getContext("2d")!;
-  const g = ctx.createRadialGradient(size * 0.5, size * 0.62, 6, size * 0.5, size * 0.5, size * 0.48);
-  g.addColorStop(0, "rgba(255,248,220,1)");
-  g.addColorStop(0.22, "rgba(255,236,190,0.7)");
-  g.addColorStop(0.55, "rgba(255,210,140,0.18)");
-  g.addColorStop(1, "rgba(0,0,0,0)");
-  ctx.fillStyle = g;
-  ctx.fillRect(0, 0, size, size);
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.NoColorSpace;
-  BEAM = tex;
-  return tex;
+  return null;
 }
 
 type Layout = {

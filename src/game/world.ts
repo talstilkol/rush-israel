@@ -51,99 +51,9 @@ export type World = {
 var _dummy = new THREE.Object3D();
 var _color = new THREE.Color();
 function asphaltTexture(lanes = 2) {
-  const kit = getBakedRoad(lanes);
-  if (kit) return kit;
-  const w = 1024;
-  const h = 1024;
-  const c = document.createElement("canvas");
-  c.width = w;
-  c.height = h;
-  const ctx = c.getContext("2d");
-  ctx.fillStyle = "#121416";
-  ctx.fillRect(0, 0, w, h);
-  const img = ctx.getImageData(0, 0, w, h);
-  const rough = ctx.createImageData(w, h);
-  const bump = ctx.createImageData(w, h);
-  const lum = new Float32Array(w * h);
-  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
-    const i = (y * w + x) * 4;
-    const pebble = (x * 19 + y * 11) % 17 + (x * 7 + y * 3) % 9;
-    const tar = Math.sin(x * 0.21) * Math.cos(y * 0.17) * 6 + Math.sin((x + y) * 0.08) * 3;
-    const grit = hash01(x, y) * 14 - 5;
-    const seam = ((x + y * 3) % 64 < 2 ? -8 : 0) + ((y * 2 + x) % 91 < 1 ? -5 : 0);
-    const v = clamp(16 + pebble * 0.55 + tar * 0.7 + grit + seam, 10, 42);
-    lum[y * w + x] = v;
-    img.data[i] = v;
-    img.data[i + 1] = v * 0.97;
-    img.data[i + 2] = v * 0.92;
-    img.data[i + 3] = 255;
-    const r = clamp(90 + (42 - v) * 2.8 + hash01(x, y, 3) * 16, 48, 220);
-    rough.data[i] = rough.data[i + 1] = rough.data[i + 2] = r;
-    rough.data[i + 3] = 255;
-  }
-  const paintPx = (x, y, r, g, b) => {
-    if (x < 0 || x >= w || y < 0 || y >= h) return;
-    const i = (y * w + x) * 4;
-    img.data[i] = r;
-    img.data[i + 1] = g;
-    img.data[i + 2] = b;
-    img.data[i + 3] = 255;
-    rough.data[i] = rough.data[i + 1] = rough.data[i + 2] = 40;
-  };
-  const stripe = (x0, x1, r, g, b, dashed) => {
-    const a = Math.max(0, Math.min(x0, x1));
-    const z = Math.min(w - 1, Math.max(x0, x1));
-    for (let y = 0; y < h; y++) {
-      if (dashed && (y % 48) > 22) continue;
-      for (let x = a; x <= z; x++) paintPx(x, y, r, g, b);
-    }
-  };
-  stripe(0, 16, 252, 252, 248, false);
-  stripe(w - 17, w - 1, 252, 252, 248, false);
-  stripe(20, 32, 248, 196, 28, false);
-  stripe(w - 33, w - 21, 248, 196, 28, false);
-  const nL = Math.max(2, lanes);
-  for (let lane = 1; lane < nL; lane++) {
-    const cx = Math.round(lane / nL * w);
-    stripe(cx - 4, cx + 4, 248, 246, 236, true);
-  }
-  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
-    const i = (y * w + x) * 4;
-    const xl = lum[y * w + ((x + w - 1) % w)];
-    const xr = lum[y * w + ((x + 1) % w)];
-    const yu = lum[((y + h - 1) % h) * w + x];
-    const yd = lum[((y + 1) % h) * w + x];
-    bump.data[i] = clamp(128 + (xl - xr) * 3.2, 0, 255);
-    bump.data[i + 1] = clamp(128 + (yu - yd) * 3.2, 0, 255);
-    bump.data[i + 2] = 255;
-    bump.data[i + 3] = 255;
-  }
-  ctx.putImageData(img, 0, 0);
-  const map = new THREE.CanvasTexture(c);
-  map.wrapS = THREE.ClampToEdgeWrapping;
-  map.wrapT = THREE.RepeatWrapping;
-  map.anisotropy = 16;
-  map.colorSpace = THREE.SRGBColorSpace;
-  map.repeat.set(1, 1);
-  const rc = document.createElement("canvas");
-  rc.width = w;
-  rc.height = h;
-  rc.getContext("2d").putImageData(rough, 0, 0);
-  const roughnessMap = new THREE.CanvasTexture(rc);
-  roughnessMap.wrapS = THREE.ClampToEdgeWrapping;
-  roughnessMap.wrapT = THREE.RepeatWrapping;
-  roughnessMap.anisotropy = 8;
-  roughnessMap.colorSpace = THREE.NoColorSpace;
-  const bc = document.createElement("canvas");
-  bc.width = w;
-  bc.height = h;
-  bc.getContext("2d").putImageData(bump, 0, 0);
-  const bumpMap = new THREE.CanvasTexture(bc);
-  bumpMap.wrapS = THREE.ClampToEdgeWrapping;
-  bumpMap.wrapT = THREE.RepeatWrapping;
-  bumpMap.anisotropy = 8;
-  bumpMap.colorSpace = THREE.NoColorSpace;
-  return { map, roughnessMap, bumpMap };
+  const kit = getBakedRoad(lanes) || getBakedRoad(8) || getBakedRoad(4) || getBakedRoad(3);
+  if (!kit) throw new Error("baked asphalt missing");
+  return kit;
 }
 function skyEquirect(isNight, def) {
   const W = 2048;
@@ -1184,10 +1094,11 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
   sunHalo.visible = !isNight;
   sunHalo.frustumCulled = false;
   group.add(sunHalo);
-  const skyDayMap = getSkyDay() || keep(skyEquirect(false, def));
-  const skyNightMap = getSkyNight() || keep(skyEquirect(true, def));
+  const skyDayMap = getSkyDay();
+  const skyNightMap = getSkyNight();
   const skyDomeMat = keep(new THREE.MeshBasicMaterial({
-    map: isNight ? skyNightMap : skyDayMap,
+    map: isNight ? skyNightMap ?? undefined : skyDayMap ?? undefined,
+    color: (isNight ? skyNightMap : skyDayMap) ? 0xffffff : isNight ? 0x0a1424 : 0x1a74c4,
     fog: false,
     depthWrite: false,
     side: THREE.BackSide,
