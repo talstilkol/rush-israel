@@ -112,6 +112,9 @@ export class ArcadeCar {
   surfaceKind: "asphalt" | "curb" | "sand" = "asphalt";
   baseGrip = 1;
   dirt = 0;
+  airborne = false;
+  airMs = 0;
+  wasCurb = false;
   comboMul = 1;
   wheelsLocked = false;
   driftAngle = 0;
@@ -162,6 +165,9 @@ export class ArcadeCar {
     this.finished = false;
     this.eliminated = false;
     this.wrongWayT = 0;
+    this.airborne = false;
+    this.airMs = 0;
+    this.wasCurb = false;
   }
 
   step(dt: number, input: InputState, track: BuiltTrack, racing: boolean, colliders: Collider[] = [], streets: StreetRibbon[] = [], ramps: Ramp[] = []) {
@@ -434,25 +440,37 @@ export class ArcadeCar {
     const s = track.samples[near.index];
     const rp = probeRamp(this.x, this.z, ramps);
     const groundY = rp ? rp.y : s.y;
+    const dist = near.dist;
+    const half = track.width / 2;
+    const lat01 = dist / Math.max(0.5, half);
+    const onCurbBand = !rp && lat01 > 0.9 && lat01 < 1.08;
     if (rp) {
       this.y = groundY;
       this.vy = 0;
+      this.airborne = false;
+      this.airMs = 0;
+      this.wasCurb = false;
     } else {
-      const err = groundY - this.y;
-      this.vy += err * 52 * dt;
-      this.vy *= Math.exp(-16 * dt);
+      if (onCurbBand && !this.wasCurb && speedAbs > 10) this.vy += 3.6;
+      this.wasCurb = onCurbBand;
+      this.vy -= 18 * dt;
       this.y += this.vy * dt;
-      if (this.y < groundY - 0.12) {
-        this.y = groundY - 0.12;
-        this.vy = Math.max(0, this.vy);
-      }
-      if (this.y > groundY + 0.5) {
-        this.y = groundY + 0.5;
-        this.vy = Math.min(0, this.vy);
+      if (this.y <= groundY + 0.04) {
+        this.y = groundY;
+        if (this.vy < 0) this.vy = 0;
+        this.airborne = false;
+        this.airMs = 0;
+      } else {
+        if (this.y > groundY + 0.55) this.airMs += dt * 1000;
+        else this.airMs = 0;
+        this.airborne = this.airMs >= 12;
+        const ceil = this.vy > 2 || this.airborne ? groundY + 8 : groundY + 0.85;
+        if (this.y > ceil) {
+          this.y = ceil;
+          this.vy = Math.min(0, this.vy);
+        }
       }
     }
-    const dist = near.dist;
-    const half = track.width / 2;
     const alley = nearestStreet(this.x, this.z, streets);
     const onAlley = !!(alley && alley.dist < alley.street.half * 1.05);
     const onRamp = !!rp;
@@ -460,7 +478,6 @@ export class ArcadeCar {
     this.onTrack = onMain || onAlley || onRamp || (this.roam && dist < half * 2.6);
     this.sideStreet = onRamp ? rp.r.he : onAlley && !onMain ? alley!.street.he : "";
     this.sideStreetEn = onRamp ? rp.r.en : onAlley && !onMain ? alley!.street.en : "";
-    const lat01 = dist / Math.max(0.5, half);
     if (!this.onTrack) {
       this.surfaceKind = "sand";
       this.surfaceGrip = this.baseGrip * 0.54;

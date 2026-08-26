@@ -2210,6 +2210,7 @@ export class RaceEngine {
         this.racing = true;
       },
       getY: () => this.player.y,
+      getAirborne: () => this.player.airborne,
       getSide: () => this.player.sideStreet,
       getRamps: () =>
         this.world.ramps.map((r) => ({
@@ -2231,6 +2232,8 @@ export class RaceEngine {
         this.player.vz = 0;
         this.player.vy = 0;
         this.player.speed = 14;
+        this.player.airborne = false;
+        this.player.airMs = 0;
         this.countdown = 0;
         this.racing = true;
       },
@@ -2414,6 +2417,7 @@ declare global {
       resetStart?: () => void;
       setProgress?: (t: number) => void;
       getY?: () => number;
+      getAirborne?: () => boolean;
       getSide?: () => string;
       getRamps?: () => { x: number; z: number; sx: number; sz: number; len: number; y0: number; y1: number; he: string }[];
       teleport?: (x: number, z: number, yaw: number, y?: number) => void;
