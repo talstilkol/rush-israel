@@ -7428,6 +7428,14 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   }
   if (def.id === "nazareth") {
     const ba = naz(32.7014, 35.2962);
+    {
+      const n = nearestIndex(built.samples, ba.x, ba.z, 0);
+      if (n.dist < built.width / 2 + 16) {
+        const s = built.samples[n.index];
+        ba.x = s.x + s.rx * (built.width / 2 + 32);
+        ba.z = s.z + s.rz * (built.width / 2 + 32);
+      }
+    }
     const darkStone = new THREE.MeshStandardMaterial({
       color: 9075304,
       roughness: 0.82,
@@ -7507,6 +7515,14 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   }
   if (def.id === "tzfat") {
     const ct = tzf(32.967, 35.495);
+    {
+      const n = nearestIndex(built.samples, ct.x, ct.z, 0);
+      if (n.dist < built.width / 2 + 14) {
+        const s = built.samples[n.index];
+        ct.x = s.x + s.rx * (built.width / 2 + 28);
+        ct.z = s.z + s.rz * (built.width / 2 + 28);
+      }
+    }
     const cit = new THREE.Mesh(new THREE.CylinderGeometry(8.4, 9.6, 14, 8), stone);
     cit.position.set(ct.x, 9, ct.z);
     add(cit);
