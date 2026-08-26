@@ -432,8 +432,13 @@ export class ArcadeCar {
     this.yaw = wrapPi(this.yaw + spin * dt);
     this.vx = fx * this.speed + rx * lat;
     this.vz = fz * this.speed + rz * lat;
-    this.x += this.vx * dt;
-    this.z += this.vz * dt;
+    const cuts = speedAbs > 25 ? 2 : 1;
+    const h = dt / cuts;
+    for (let s = 0; s < cuts; s++) {
+      this.x += this.vx * h;
+      this.z += this.vz * h;
+      this.hitColliders(colliders);
+    }
 
     const near = nearestIndex(track.samples, this.x, this.z, this.sampleIndex, track.closed);
     this.sampleIndex = near.index;
@@ -491,6 +496,57 @@ export class ArcadeCar {
 
     if (!this.onTrack) this.speed *= Math.exp(-(this.roam ? 0.9 : this.stats.body === "rally" ? 1.15 : 2.6) * dt);
 
+    if (onAlley && !onMain && alley) {
+      const keep = alley.street.half + 1.35;
+      if (alley.dist > keep) {
+        const nx = (this.x - alley.qx) / (alley.dist || 1);
+        const nz = (this.z - alley.qz) / (alley.dist || 1);
+        this.x = alley.qx + nx * keep;
+        this.z = alley.qz + nz * keep;
+        const out = this.vx * nx + this.vz * nz;
+        if (out > 0) {
+          this.vx -= nx * out * 1.2;
+          this.vz -= nz * out * 1.2;
+          this.speed *= 0.88;
+        }
+      }
+    } else if (!onRamp) {
+      const wall = half + 0.35;
+      if (dist > wall) {
+        const nx = (this.x - s.x) / (dist || 1);
+        const nz = (this.z - s.z) / (dist || 1);
+        this.x = s.x + nx * wall;
+        this.z = s.z + nz * wall;
+        const out = this.vx * nx + this.vz * nz;
+        if (out > 0) {
+          this.vx -= nx * out;
+          this.vz -= nz * out;
+          const fx = -Math.sin(this.yaw);
+          const fz = -Math.cos(this.yaw);
+          this.speed = this.vx * fx + this.vz * fz;
+          if (out > 8) {
+            this.speed *= 0.9;
+            this.impact = Math.max(this.impact, Math.min(0.35, out / 36));
+            this.damage = clamp(this.damage + out * 0.004, 0, 1);
+          }
+        }
+      }
+    }
+
+    if (dist > 92) {
+      const nx = (this.x - s.x) / (dist || 1);
+      const nz = (this.z - s.z) / (dist || 1);
+      this.x = s.x + nx * 92;
+      this.z = s.z + nz * 92;
+    }
+    const prev = this.progress;
+    this.progress = s.t;
+    if (forwardDelta(prev, this.progress, track.closed) < -0.002 && Math.abs(this.speed) > 4 && onMain) this.wrongWayT += dt;
+    else this.wrongWayT = Math.max(0, this.wrongWayT - dt * 1.4);
+  }
+
+  /** 5.5: resolve once per CCD cut. Not PhysX. */
+  private hitColliders(colliders: Collider[]) {
     for (const c of colliders) {
       const carR = 1.05;
       let nx = 0;
@@ -566,54 +622,6 @@ export class ArcadeCar {
         }
       }
     }
-
-    if (onAlley && !onMain && alley) {
-      const keep = alley.street.half + 1.35;
-      if (alley.dist > keep) {
-        const nx = (this.x - alley.qx) / (alley.dist || 1);
-        const nz = (this.z - alley.qz) / (alley.dist || 1);
-        this.x = alley.qx + nx * keep;
-        this.z = alley.qz + nz * keep;
-        const out = this.vx * nx + this.vz * nz;
-        if (out > 0) {
-          this.vx -= nx * out * 1.2;
-          this.vz -= nz * out * 1.2;
-          this.speed *= 0.88;
-        }
-      }
-    } else if (!onRamp) {
-      const wall = half + 0.35;
-      if (dist > wall) {
-        const nx = (this.x - s.x) / (dist || 1);
-        const nz = (this.z - s.z) / (dist || 1);
-        this.x = s.x + nx * wall;
-        this.z = s.z + nz * wall;
-        const out = this.vx * nx + this.vz * nz;
-        if (out > 0) {
-          this.vx -= nx * out;
-          this.vz -= nz * out;
-          const fx = -Math.sin(this.yaw);
-          const fz = -Math.cos(this.yaw);
-          this.speed = this.vx * fx + this.vz * fz;
-          if (out > 8) {
-            this.speed *= 0.9;
-            this.impact = Math.max(this.impact, Math.min(0.35, out / 36));
-            this.damage = clamp(this.damage + out * 0.004, 0, 1);
-          }
-        }
-      }
-    }
-
-    if (dist > 92) {
-      const nx = (this.x - s.x) / (dist || 1);
-      const nz = (this.z - s.z) / (dist || 1);
-      this.x = s.x + nx * 92;
-      this.z = s.z + nz * 92;
-    }
-    const prev = this.progress;
-    this.progress = s.t;
-    if (forwardDelta(prev, this.progress, track.closed) < -0.002 && Math.abs(this.speed) > 4 && onMain) this.wrongWayT += dt;
-    else this.wrongWayT = Math.max(0, this.wrongWayT - dt * 1.4);
   }
 
   consumeCheckpoints(track: BuiltTrack, prevProgress: number) {

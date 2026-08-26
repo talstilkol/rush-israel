@@ -57,6 +57,7 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 - [ ] 4.3 Never say DEM — **PARTIAL** (code ok; keep copy honest)
 - [x] 4.4 Ayalon 200m no building hit — **DONE** (tiny: `qa:drive` corridor; most `hit()` still circles)
 - [x] 4.5 Airborne 12ms — **DONE** (tiny: ramp not airborne; 2.2m drop is; `qa:airborne` in `qa`)
+- [x] 5.5 CCD 2-cut above 25 m/s — **DONE** (tiny: not PhysX; 120Hz already <12ms)
 
 ## Phase 5 — Ayalon freeze (GATE 1)
 - [ ] 5.1 Hashalom **user** still — **NOT DONE** (**blocks freeze**)
@@ -125,6 +126,7 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 2.14. `21.15` KTX2 honesty — **DONE** (tiny: uncompressed blob gated; removed unused GLTF KTX2Loader; still 0 UASTC).
 2.15. `8.4` CSM 3/1/0 at boot — **DONE** (tiny: High 3@1024, Mid 1@512; not rebuilt in applyQuality).
 2.16. `5.4.5` Ayalon 200m no building hit — **DONE** (tiny: in `qa:drive`; OBB still not on every landmark).
+2.17. `5.5` CCD 2-cut above 25 m/s — **DONE** (tiny).
 
 ### 3. After Hashalom still arrives
 3.1. Pose-lock `hashalom` in `goldenCameras.ts` to match the still.  
