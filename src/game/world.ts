@@ -3538,29 +3538,36 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   };
   const placeToHa = (s, lat = 32.0713, lon = 34.7886) => {
     const p = tlv(lat, lon);
-    const n = 16;
-    const stack = (ox, oz, twist) => {
+    const n = 22;
+    const stack = (ox, oz, twist0, twistDir) => {
       for (let i = 0; i < n; i++) {
         const t = i / (n - 1);
-        const w = (7.2 + t * 12.4) * s;
-        const y = 4.2 * s + i * (5.35 * s);
-        const floor = new THREE.Mesh(new THREE.BoxGeometry(w, 4.9 * s, w * 0.7), tohaGlass);
-        floor.position.set(p.x + ox, y, p.z + oz);
-        floor.rotation.y = twist + t * 0.52;
+        const w = (6.4 + t * 14.8) * s;
+        const y = 3.8 * s + i * (5.15 * s);
+        const floor = new THREE.Mesh(new THREE.BoxGeometry(w, 4.7 * s, w * 0.62), tohaGlass);
+        floor.position.set(p.x + ox + Math.sin(t * 1.1) * 1.6 * s * twistDir, y, p.z + oz);
+        floor.rotation.y = twist0 + t * 0.95 * twistDir + Math.PI / 4;
         add(floor);
+        if (i % 2 === 0) {
+          const lip = new THREE.Mesh(new THREE.BoxGeometry(w + 0.6 * s, 0.22 * s, w * 0.62 + 0.5 * s), bandMat);
+          lip.position.copy(floor.position);
+          lip.position.y = y + 2.2 * s;
+          lip.rotation.y = floor.rotation.y;
+          add(lip);
+        }
       }
     };
-    stack(-7.4 * s, 0, Math.PI / 5);
-    stack(7.6 * s, 3.2 * s, -Math.PI / 6);
-    const cap = new THREE.Mesh(new THREE.BoxGeometry(24 * s, 3.4 * s, 18 * s), paleGlass);
-    cap.position.set(p.x, 92 * s, p.z + 1.4 * s);
-    cap.rotation.y = 0.2;
+    stack(-8.2 * s, -1.2 * s, Math.PI / 5, 1);
+    stack(8.4 * s, 2.8 * s, -Math.PI / 6, -1);
+    const cap = new THREE.Mesh(new THREE.BoxGeometry(28 * s, 3.2 * s, 16 * s), paleGlass);
+    cap.position.set(p.x, 118 * s, p.z + 1.2 * s);
+    cap.rotation.y = Math.PI / 4;
     add(cap);
-    const base = new THREE.Mesh(new THREE.BoxGeometry(22 * s, 4.4 * s, 18 * s), cream);
-    base.position.set(p.x, 2.2 * s, p.z);
+    const base = new THREE.Mesh(new THREE.BoxGeometry(24 * s, 4.8 * s, 20 * s), cream);
+    base.position.set(p.x, 2.4 * s, p.z);
     add(base);
-    glowAt(p.x, 86 * s, p.z, 13166847, 40 * s, 36 * s);
-    hit(p.x, p.z, 12 * s, 14 * s, 12 * s);
+    glowAt(p.x, 110 * s, p.z, 13166847, 46 * s, 40 * s);
+    hit(p.x, p.z, 13 * s, 15 * s, 13 * s);
   };
   const placeTlvTowers = (s) => {
     placeCityGate(s);
