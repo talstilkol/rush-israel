@@ -9,6 +9,7 @@ import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, 
 import { scatterStreetBuildings } from "./buildings";
 import { addNycLandmarks } from "./nyc-landmarks";
 import { generateStreets, nearestStreet } from "./streets";
+import { getLaneArrow } from "./arrow-assets";
 import { getFlare0, getFlare1 } from "./flare-assets";
 import { getWaterNormal, getChecker } from "./water-assets";
 import { getSign } from "./sign-assets";
@@ -1052,6 +1053,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       getChecker(),
       getFlare0(),
       getFlare1(),
+      getLaneArrow(),
     ].filter(Boolean),
   );
   const keep = (d) => {
@@ -6038,28 +6040,31 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     };
     makeTrain(0, built.width / 2 + 6);
     makeTrain(0.48, built.width / 2 + 8.4);
-    const arrowC = document.createElement("canvas");
-    arrowC.width = 64;
-    arrowC.height = 96;
-    const ag = arrowC.getContext("2d");
-    if (ag) {
-      ag.fillStyle = "#1a6a38";
-      ag.fillRect(0, 0, 64, 96);
-      ag.fillStyle = "#ffffff";
-      ag.beginPath();
-      ag.moveTo(32, 10);
-      ag.lineTo(54, 42);
-      ag.lineTo(40, 42);
-      ag.lineTo(40, 86);
-      ag.lineTo(24, 86);
-      ag.lineTo(24, 42);
-      ag.lineTo(10, 42);
-      ag.closePath();
-      ag.fill();
-    }
-    const arrowTex = new THREE.CanvasTexture(arrowC);
-    arrowTex.colorSpace = THREE.SRGBColorSpace;
-    bag.push(arrowTex);
+    const arrowTex = getLaneArrow() ?? (() => {
+      const arrowC = document.createElement("canvas");
+      arrowC.width = 64;
+      arrowC.height = 96;
+      const ag = arrowC.getContext("2d");
+      if (ag) {
+        ag.fillStyle = "#1a6a38";
+        ag.fillRect(0, 0, 64, 96);
+        ag.fillStyle = "#ffffff";
+        ag.beginPath();
+        ag.moveTo(32, 10);
+        ag.lineTo(54, 42);
+        ag.lineTo(40, 42);
+        ag.lineTo(40, 86);
+        ag.lineTo(24, 86);
+        ag.lineTo(24, 42);
+        ag.lineTo(10, 42);
+        ag.closePath();
+        ag.fill();
+      }
+      const t = new THREE.CanvasTexture(arrowC);
+      t.colorSpace = THREE.SRGBColorSpace;
+      bag.push(t);
+      return t;
+    })();
     const arrowMat = new THREE.MeshBasicMaterial({ map: arrowTex, side: 2 });
     for (const lat of [32.058, 32.068, 32.078, 32.092]) {
       for (const lon of [34.795, 34.7971]) {

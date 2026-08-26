@@ -34,7 +34,8 @@
     "bake:foam": "node scripts/bake-foam.mjs",
     "bake:signs": "node scripts/bake-signs.mjs",
     "bake:water": "node scripts/bake-water.mjs",
-    "bake:flare": "node scripts/bake-flare.mjs"
+    "bake:flare": "node scripts/bake-flare.mjs",
+    "bake:arrow": "node scripts/bake-arrow.mjs"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.4",
