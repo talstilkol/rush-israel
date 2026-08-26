@@ -31,6 +31,18 @@ await p.screenshot({ path: `${out}/hashalom-azrieli.png` });
 await p.evaluate(() => window.__controlsTest.exitPhoto());
 
 const shots = [`${out}/hashalom-azrieli.png`];
+for (const [fn, name] of [
+  ["frameToHa", "hashalom-toha.png"],
+  ["frameCityGate", "hashalom-citygate.png"],
+]) {
+  await p.evaluate((f) => window.__controlsTest[f](), fn);
+  await p.waitForTimeout(500);
+  const file = `${out}/${name}`;
+  await p.screenshot({ path: file });
+  shots.push(file);
+  await p.evaluate(() => window.__controlsTest.exitPhoto());
+}
+
 for (const id of ["g04", "g05", "g06"]) {
   const ok = await p.evaluate((gid) => window.__controlsTest.gotoGolden(gid), id);
   if (!ok) throw new Error("missing golden " + id);

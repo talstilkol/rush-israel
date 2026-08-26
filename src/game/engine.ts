@@ -2314,6 +2314,40 @@ export class RaceEngine {
         };
         this.pushHud();
       },
+      frameToHa: () => {
+        const p = tlv(32.0695, 34.7894);
+        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const s = this.built.samples[n.index];
+        this.enterPhoto();
+        this.photoHide = true;
+        this.photoLock = {
+          px: s.x,
+          py: 36,
+          pz: s.z,
+          lx: p.x,
+          ly: 70,
+          lz: p.z,
+          fov: 32,
+        };
+        this.pushHud();
+      },
+      frameCityGate: () => {
+        const p = tlv(32.0832, 34.8027);
+        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const s = this.built.samples[n.index];
+        this.enterPhoto();
+        this.photoHide = true;
+        this.photoLock = {
+          px: s.x,
+          py: 42,
+          pz: s.z,
+          lx: p.x,
+          ly: 110,
+          lz: p.z,
+          fov: 30,
+        };
+        this.pushHud();
+      },
       getPhotoLock: () => this.photoLock,
       setNight: (n: boolean) => this.setNight(n),
       webgpuTried: () => this.webgpuTried,
@@ -2498,6 +2532,8 @@ declare global {
       gotoGolden?: (id: string) => boolean;
       frameWorld?: (x: number, z: number, y?: number) => void;
       frameAzrieli?: () => void;
+      frameToHa?: () => void;
+      frameCityGate?: () => void;
       getPhotoLock?: () => { px: number; py: number; pz: number; lx: number; ly: number; lz: number; fov: number } | null;
       setNight?: (n: boolean) => void;
       webgpuTried?: () => boolean;

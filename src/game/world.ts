@@ -2748,8 +2748,8 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   const azGlass = mkGlass(winTex, 0x4e9a82, 0.38);
   const azTriGlass = mkGlass(triTex, 0x8b6b4a, 0.32);
   const azSqGlass = mkGlass(sqTex, 0x6a8aaa, 0.28);
-  const gateGlass = mkGlass(gateTex, 1710618, 0.3);
-  const tohaGlass = mkGlass(tohaTex, 12105908, 0.24);
+  const gateGlass = mkGlass(gateTex, 0xc8d4dc, 0.3);
+  const tohaGlass = mkGlass(tohaTex, 0xc9a45a, 0.24);
   bag.push(darkGlass, paleGlass, bandMat, azGlass, azTriGlass, azSqGlass, gateGlass, tohaGlass);
   emitList.push({
     mat: darkGlass,
@@ -2934,46 +2934,21 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   };
   const placeCityGate = (s) => {
     const p = tlv(32.0832, 34.8027);
-    const h = 118 * s;
-    const body = new THREE.Mesh(new THREE.BoxGeometry(14.4 * s, h, 14.4 * s), gateGlass);
+    const h = 168 * s;
+    const yaw = Math.PI / 4;
+    const body = new THREE.Mesh(new THREE.BoxGeometry(16.2 * s, h, 16.2 * s), gateGlass);
     body.position.set(p.x, h * 0.5, p.z);
+    body.rotation.y = yaw;
     add(body);
     {
-      const mullGeo = new THREE.BoxGeometry(0.14 * s, h * 0.96, 0.14 * s);
-      const mulls = new THREE.InstancedMesh(mullGeo, bandMat, 28);
-      mulls.frustumCulled = false;
-      let mi = 0;
-      for (let i = 0; i < 7; i++) {
-        const o = -6.2 * s + i * 2.05 * s;
-        const spots = [
-          [p.x + o, h * 0.5, p.z + 7.25 * s],
-          [p.x + o, h * 0.5, p.z - 7.25 * s],
-          [p.x + 7.25 * s, h * 0.5, p.z + o],
-          [p.x - 7.25 * s, h * 0.5, p.z + o],
-        ];
-        for (const q of spots) {
-          _dummy.position.set(q[0], q[1], q[2]);
-          _dummy.rotation.set(0, 0, 0);
-          _dummy.scale.set(1, 1, 1);
-          _dummy.updateMatrix();
-          mulls.setMatrixAt(mi++, _dummy.matrix);
-        }
-      }
-      mulls.count = mi;
-      mulls.instanceMatrix.needsUpdate = true;
-      mulls.castShadow = shadows;
-      group.add(mulls);
-      bag.push(mullGeo);
-    }
-    {
       const slabYs = [];
-      for (let y = 8 * s; y < h - 6 * s; y += 3.05 * s) slabYs.push(y);
-      const slabGeo = new THREE.BoxGeometry(14.9 * s, 0.16 * s, 14.9 * s);
+      for (let y = 10 * s; y < h - 8 * s; y += 6.2 * s) slabYs.push(y);
+      const slabGeo = new THREE.BoxGeometry(16.8 * s, 0.28 * s, 16.8 * s);
       const slabs = new THREE.InstancedMesh(slabGeo, bandMat, slabYs.length);
       slabs.frustumCulled = false;
       for (let i = 0; i < slabYs.length; i++) {
         _dummy.position.set(p.x, slabYs[i], p.z);
-        _dummy.rotation.set(0, 0, 0);
+        _dummy.rotation.set(0, yaw, 0);
         _dummy.scale.set(1, 1, 1);
         _dummy.updateMatrix();
         slabs.setMatrixAt(i, _dummy.matrix);
@@ -2983,51 +2958,57 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       group.add(slabs);
       bag.push(slabGeo);
     }
-    for (const ox of [-4.9 * s, 4.9 * s]) {
-      const pillar = new THREE.Mesh(new THREE.BoxGeometry(4.6 * s, 28 * s, 14.4 * s), gateGlass);
-      pillar.position.set(p.x + ox, h + 14 * s, p.z);
-      add(pillar);
-    }
-    const lintel = new THREE.Mesh(new THREE.BoxGeometry(15.6 * s, 6.2 * s, 15.2 * s), bandMat);
-    lintel.position.set(p.x, h + 30 * s, p.z);
-    add(lintel);
-    const lintelGlass = new THREE.Mesh(new THREE.BoxGeometry(15.2 * s, 3.2 * s, 14.6 * s), paleGlass);
-    lintelGlass.position.set(p.x, h + 28.2 * s, p.z);
-    add(lintelGlass);
-    for (const [sx, sz] of [[-6.2, -6.2], [6.2, -6.2], [-6.2, 6.2], [6.2, 6.2]]) {
-      const pin = new THREE.Mesh(new THREE.BoxGeometry(1.5 * s, 10 * s, 1.5 * s), bandMat);
-      pin.position.set(p.x + sx * s, h + 32 * s, p.z + sz * s);
-      add(pin);
-    }
-    const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.22 * s, 0.48 * s, 34 * s, 8), bandMat);
-    mast.position.set(p.x, h + 46 * s, p.z);
+    const crown = new THREE.Mesh(new THREE.BoxGeometry(11.4 * s, 18 * s, 11.4 * s), paleGlass);
+    crown.position.set(p.x, h + 8 * s, p.z);
+    crown.rotation.y = yaw;
+    add(crown);
+    const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.22 * s, 0.55 * s, 48 * s, 8), bandMat);
+    mast.position.set(p.x, h + 40 * s, p.z);
     add(mast);
     glowAt(p.x, h + 24 * s, p.z, 11065584, 52 * s, 46 * s);
-    hit(p.x, p.z, 10 * s);
+    hit(p.x, p.z, 11 * s, 10 * s, 10 * s, yaw);
   };
   const placeToHa = (s, lat = 32.0713, lon = 34.7886) => {
     const p = tlv(lat, lon);
     const n = 22;
+    const floorGeo = new THREE.BoxGeometry(1, 4.7 * s, 0.62);
+    const floors = new THREE.InstancedMesh(floorGeo, tohaGlass, n * 2);
+    floors.frustumCulled = false;
+    const lipGeo = new THREE.BoxGeometry(1, 0.22 * s, 0.72);
+    const lips = new THREE.InstancedMesh(lipGeo, bandMat, n);
+    lips.frustumCulled = false;
+    let fi = 0;
+    let li = 0;
     const stack = (ox, oz, twist0, twistDir) => {
       for (let i = 0; i < n; i++) {
         const t = i / (n - 1);
         const w = (6.4 + t * 14.8) * s;
         const y = 3.8 * s + i * (5.15 * s);
-        const floor = new THREE.Mesh(new THREE.BoxGeometry(w, 4.7 * s, w * 0.62), tohaGlass);
-        floor.position.set(p.x + ox + Math.sin(t * 1.1) * 1.6 * s * twistDir, y, p.z + oz);
-        floor.rotation.y = twist0 + t * 0.95 * twistDir + Math.PI / 4;
-        add(floor);
-        if (i % 2 === 0) {
-          const lip = new THREE.Mesh(new THREE.BoxGeometry(w + 0.6 * s, 0.22 * s, w * 0.62 + 0.5 * s), bandMat);
-          lip.position.copy(floor.position);
-          lip.position.y = y + 2.2 * s;
-          lip.rotation.y = floor.rotation.y;
-          add(lip);
+        const yaw = twist0 + t * 0.95 * twistDir + Math.PI / 4;
+        const x = p.x + ox + Math.sin(t * 1.1) * 1.6 * s * twistDir;
+        const z = p.z + oz;
+        _dummy.position.set(x, y, z);
+        _dummy.rotation.set(0, yaw, 0);
+        _dummy.scale.set(w, 1, w);
+        _dummy.updateMatrix();
+        floors.setMatrixAt(fi++, _dummy.matrix);
+        if (i % 2 === 0 && li < n) {
+          _dummy.position.set(x, y + 2.2 * s, z);
+          _dummy.scale.set(w + 0.6 * s, 1, w + 0.4 * s);
+          _dummy.updateMatrix();
+          lips.setMatrixAt(li++, _dummy.matrix);
         }
       }
     };
     stack(-8.2 * s, -1.2 * s, Math.PI / 5, 1);
     stack(8.4 * s, 2.8 * s, -Math.PI / 6, -1);
+    floors.count = fi;
+    lips.count = li;
+    floors.instanceMatrix.needsUpdate = true;
+    lips.instanceMatrix.needsUpdate = true;
+    floors.castShadow = shadows;
+    group.add(floors, lips);
+    bag.push(floorGeo, lipGeo);
     const cap = new THREE.Mesh(new THREE.BoxGeometry(28 * s, 3.2 * s, 16 * s), paleGlass);
     cap.position.set(p.x, 118 * s, p.z + 1.2 * s);
     cap.rotation.y = Math.PI / 4;
