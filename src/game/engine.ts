@@ -24,8 +24,9 @@ import { getTrack, nearestPoi, nightAmt, streetName, todLabel } from "./tracks";
 import type { AssistFlags, CarId, Collider, HandlingMode, HudState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting, type CarSnap } from "./vehicle";
 import { createWorld, type World } from "./world";
-import { loadRoadFor } from "./road-assets";
+import { loadJaffaClock } from "./clock-assets";
 import { loadCars } from "./car-assets";
+import { loadRoadFor } from "./road-assets";
 import { getSkyDay, getSkyNight, loadSky } from "./sky-assets";
 import { RenderTelemetry } from "../rendering/RenderTelemetry";
 import { AYALON_GOLDEN } from "../world/goldenCameras";
@@ -327,6 +328,7 @@ export class RaceEngine {
     await loadSky();
     await loadRoadFor(this.trackDef.id);
     await loadCars();
+    if (this.trackDef.id === "oldjaffa") await loadJaffaClock();
     if (this.disposed) return;
 
     this.world = createWorld(this.trackDef, this.built, shadows, this.opts.night, this.weather);

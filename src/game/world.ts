@@ -9,6 +9,7 @@ import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, 
 import { scatterStreetBuildings } from "./buildings";
 import { addNycLandmarks } from "./nyc-landmarks";
 import { generateStreets, nearestStreet } from "./streets";
+import { getJaffaClock } from "./clock-assets";
 import { getBakedRoad } from "./road-assets";
 import { getSkyDay, getSkyNight } from "./sky-assets";
 
@@ -3944,40 +3945,10 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
         add(arch);
       }
     }
-    const clockC = document.createElement("canvas");
-    clockC.width = clockC.height = 256;
-    const cg = clockC.getContext("2d");
-    if (cg) {
-      cg.fillStyle = "#f4eee0";
-      cg.beginPath();
-      cg.arc(128, 128, 120, 0, Math.PI * 2);
-      cg.fill();
-      cg.strokeStyle = "#2a2418";
-      cg.lineWidth = 8;
-      cg.stroke();
-      cg.fillStyle = "#2a2418";
-      for (let i = 0; i < 12; i++) {
-        const a = i / 12 * Math.PI * 2 - Math.PI / 2;
-        cg.beginPath();
-        cg.arc(128 + Math.cos(a) * 96, 128 + Math.sin(a) * 96, i % 3 === 0 ? 6 : 3.5, 0, Math.PI * 2);
-        cg.fill();
-      }
-      cg.strokeStyle = "#1a1814";
-      cg.lineWidth = 7;
-      cg.beginPath();
-      cg.moveTo(128, 128);
-      cg.lineTo(128, 58);
-      cg.stroke();
-      cg.lineWidth = 5;
-      cg.beginPath();
-      cg.moveTo(128, 128);
-      cg.lineTo(178, 128);
-      cg.stroke();
-    }
-    const clockTex = new THREE.CanvasTexture(clockC);
-    clockTex.colorSpace = THREE.SRGBColorSpace;
+    const clockTex = getJaffaClock();
     const faceMat = new THREE.MeshStandardMaterial({
-      map: clockTex,
+      map: clockTex ?? undefined,
+      color: clockTex ? 0xffffff : 0xf4eee0,
       roughness: 0.45,
       emissive: 3351050,
       emissiveIntensity: isNight ? 0.55 : 0.08
@@ -3987,7 +3958,7 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       night: 0.55,
       day: 0.08
     });
-    bag.push(clockTex);
+    bag.push(faceMat);
     for (let i = 0; i < 4; i++) {
       const a = i * Math.PI / 2;
       const face = new THREE.Mesh(new THREE.CircleGeometry(1.05, 22), faceMat);
