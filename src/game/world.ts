@@ -4080,9 +4080,18 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
       const house = new THREE.Mesh(new THREE.BoxGeometry(6.2 + i % 3, h, 5.4 + i % 2), i % 2 ? ochre : ochreDark);
       house.position.set(hx, h * 0.5, hz);
       add(house);
+      const vault = new THREE.Mesh(new THREE.CylinderGeometry(2.4 + i % 2 * 0.4, 2.4 + i % 2 * 0.4, 6.4 + i % 3, 10, 1, false, 0, Math.PI), ochreDark);
+      vault.rotation.z = Math.PI / 2;
+      vault.position.set(hx, h + 0.9, hz);
+      add(vault);
       const arch = new THREE.Mesh(new THREE.BoxGeometry(1.6, 2.2, 0.3), darkArch);
       arch.position.set(hx, 1.2, hz + 2.8);
       add(arch);
+      if (i % 3 === 0) {
+        const dome = new THREE.Mesh(new THREE.SphereGeometry(1.6, 10, 8, 0, Math.PI * 2, 0, Math.PI / 2), lime);
+        dome.position.set(hx, h + 2.4, hz);
+        add(dome);
+      }
       hit(hx, hz, 3.4, 3.2, 2.8);
     }
     const mq = tlv(32.0564, 34.7568);

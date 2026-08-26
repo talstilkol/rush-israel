@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Reading plant moved off the carriageway. Chimneys stay. Tunnel stays. Still primitives.
+Jaffa houses: barrel vaults + some domes. Still boxes, not kurkar photogrammetry.
