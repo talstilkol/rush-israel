@@ -34,10 +34,28 @@ function flakeMap() {
   return null;
 }
 
+function bindPaintFlakes(mat: THREE.MeshPhysicalMaterial) {
+  const prev = mat.onBeforeCompile;
+  mat.onBeforeCompile = (shader, renderer) => {
+    prev?.call(mat, shader, renderer);
+    shader.fragmentShader = shader.fragmentShader.replace(
+      "#include <opaque_fragment>",
+      `
+      outgoingLight += pow(max(dot(normal, normalize(vViewPosition)), 0.0), 72.0)
+        * step(0.973, fract(sin(dot(normal.xy * 48.0, vec2(12.9898, 78.233))) * 43758.5453))
+        * 0.4;
+      #include <opaque_fragment>
+      `,
+    );
+  };
+  const prevKey = mat.customProgramCacheKey?.bind(mat);
+  mat.customProgramCacheKey = () => `${prevKey?.() ?? ""}|paint-flake-v1`;
+}
+
 function paint(color: number): THREE.MeshPhysicalMaterial {
   const c = new THREE.Color(color);
   const flake = flakeMap();
-  return new THREE.MeshPhysicalMaterial({
+  const mat = new THREE.MeshPhysicalMaterial({
     color,
     metalness: 0.06,
     roughness: 0.22,
@@ -53,6 +71,8 @@ function paint(color: number): THREE.MeshPhysicalMaterial {
     sheenColor: c.clone().multiplyScalar(0.35),
     sheenRoughness: 0.35,
   });
+  bindPaintFlakes(mat);
+  return mat;
 }
 
 let BEAM: THREE.Texture | null = null;
@@ -254,6 +274,7 @@ export function createCarVisual(
   if (baked) {
     group.add(baked);
     bodyMat = baked.material as THREE.MeshPhysicalMaterial;
+    bindPaintFlakes(bodyMat);
   } else {
     put(bodyGeo(kind, L.W * 0.9), bodyMat, 0, 0, 0);
   }
