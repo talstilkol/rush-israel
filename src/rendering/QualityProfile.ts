@@ -1,4 +1,4 @@
-/** G0-06: serializable quality schema. Ultra/photo are reserved, not implemented. */
+/** G0-06: quality schema. Photo mode raises pixel ratio; not a cinematic renderer. */
 export const PROFILE_VERSION = 1;
 
 export type ProfileId = "compat" | "balanced" | "high" | "ultra" | "photo";

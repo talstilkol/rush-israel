@@ -249,6 +249,8 @@ export class RaceEngine {
   private photoPitch = 0.22;
   private photoDist = 8;
   private photoFilter = 0;
+  private drivePR = 1;
+  private driveExposure = 1;
   private filterNames = ["none", "warm", "neon", "mono", "film", "blockbuster", "bleach", "polaroid"];
   private filterHe = ["ללא", "חם", "ניאון", "שחור-לבן", "פילם", "הוליווד", "בליץ'", "פולארויד"];
   ready: Promise<void>;
@@ -813,6 +815,12 @@ export class RaceEngine {
     this.photoPitch = 0.22;
     this.photoDist = 8;
     this.photoHide = false;
+    this.drivePR = this.renderer.getPixelRatio();
+    this.driveExposure = this.renderer.toneMappingExposure;
+    const cap = Math.min(window.devicePixelRatio || 1, 1.35);
+    this.renderer.setPixelRatio(Math.max(this.drivePR, cap));
+    this.renderer.toneMappingExposure = this.driveExposure * 1.05;
+    this.onResize();
     this.pushHud();
   }
 
@@ -820,6 +828,9 @@ export class RaceEngine {
     this.photo = false;
     this.photoHide = false;
     this.post.setFilter(0);
+    this.renderer.setPixelRatio(this.drivePR);
+    this.renderer.toneMappingExposure = this.driveExposure;
+    this.onResize();
     this.pushHud();
   }
 

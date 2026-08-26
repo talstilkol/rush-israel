@@ -23,7 +23,7 @@ Do **not** bake more procedural PNGs. Do **not** add cities.
 ## D — Renderer
 - [ ] D1 WebGPURenderer
 - [ ] D2 TSL
-- [ ] D3 CSM
+- [x] D3 CSM — **PARTIAL** (2 cascades @1024 High; not 4-split TRAA)
 - [ ] D4 SMAA default; TRAA later
 - [ ] D5 No SSGI until A+B
 

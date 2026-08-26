@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Road reflector follows the car and uses yaw. Not SSR. Codex not finished.
+Photo mode raises pixel ratio. Not a cinematic renderer. Codex not finished.
