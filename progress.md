@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-`world.ts` has no runtime canvas. NYC canvases live in `nyc-canvas.ts`. qa HUD shows p95. Not E2-complete.
+Highway yaw is tire+ESC, not a 34% blend. Crawl still kinematic. Not Pacejka-complete. Codex not finished.
