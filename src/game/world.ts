@@ -7573,6 +7573,14 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
   }
   if (def.id === "masada") {
     const ft = mas(31.3157, 35.3538);
+    {
+      const n = nearestIndex(built.samples, ft.x, ft.z, 0);
+      if (n.dist < built.width / 2 + 40) {
+        const s = built.samples[n.index];
+        ft.x = s.x + s.rx * (built.width / 2 + 58);
+        ft.z = s.z + s.rz * (built.width / 2 + 58);
+      }
+    }
     const mesaRock = new THREE.MeshStandardMaterial({
       color: 0xa08058,
       roughness: 0.96,
