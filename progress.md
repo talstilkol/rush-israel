@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Generic crowd boxes off on the Israel quality slices.
+All themes use baked 2D sky. Desert/snow no longer paint a runtime canvas.

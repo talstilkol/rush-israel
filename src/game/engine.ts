@@ -915,7 +915,7 @@ export class RaceEngine {
     this.fog.density = n > 0.5 ? 0.00016 : desert ? 0.00006 : 0.000012;
     this.scene.fog = this.fog;
     const baked = n > 0.5 ? getSkyNight() : getSkyDay();
-    if (baked && !desert && !snow) {
+    if (baked) {
       this.scene.background = baked;
     } else {
       this.skyTex?.dispose();
