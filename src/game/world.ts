@@ -1237,8 +1237,18 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.16, 0.46, 0.08, oppOff)), edgeMat));
       group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.62, 0.09, 0.08, oppOff)), yMat));
       group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.62, 0.09, 0.08, oppOff)), yMat));
-      const jerG = keep(new THREE.BoxGeometry(0.42, 0.85, 2.4));
-      const jerM = keep(new THREE.MeshStandardMaterial({ color: 0xc8c4bc, roughness: 0.82 }));
+      const jerSh = new THREE.Shape();
+      jerSh.moveTo(-0.3, 0);
+      jerSh.lineTo(0.3, 0);
+      jerSh.lineTo(0.14, 0.38);
+      jerSh.lineTo(0.08, 0.88);
+      jerSh.lineTo(-0.08, 0.88);
+      jerSh.lineTo(-0.14, 0.38);
+      jerSh.closePath();
+      const jerG = keep(new THREE.ExtrudeGeometry(jerSh, { depth: 2.6, bevelEnabled: false }));
+      jerG.translate(0, 0, -1.3);
+      jerG.computeVertexNormals();
+      const jerM = keep(new THREE.MeshStandardMaterial({ color: 0xc8c4bc, roughness: 0.82, metalness: 0 }));
       const nJer = 160;
       const jers = new THREE.InstancedMesh(jerG, jerM, nJer);
       let ji = 0;
@@ -1246,7 +1256,7 @@ export function createWorld(def, built, shadows, night, weather = "clear") {
       const stepJ = Math.max(1, Math.floor(built.samples.length / nJer));
       for (let i = 0; i < built.samples.length && ji < nJer; i += stepJ) {
         const s = built.samples[i];
-        _dummy.position.set(s.x + s.rx * midOff, s.y + 0.48, s.z + s.rz * midOff);
+        _dummy.position.set(s.x + s.rx * midOff, s.y + 0.06, s.z + s.rz * midOff);
         _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
         _dummy.scale.set(1, 1, 1);
         _dummy.updateMatrix();

@@ -2,4 +2,4 @@
 
 **~10%** of the Web graphics plan. Ship gates **0/13**.
 
-Ayalon lane paint is thicker. Still a canvas UV, not decals/photogrammetry.
+Ayalon median uses a Jersey-barrier profile instead of a box. Still instanced, not a scan.
