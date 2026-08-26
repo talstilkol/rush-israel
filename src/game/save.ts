@@ -3,12 +3,11 @@ import type { Lang } from "./i18n";
 import { CAR_UNLOCK } from "./career";
 import { emptyTune, type GhostFrame } from "./garage";
 import { PHYSICS_VERSION } from "./physics";
-import { isLiveRecord, recordPayload, sha256hex, type TimedRecord } from "./records";
+import { isLiveRecord, recordPayload, sha256hex, writeRecords, REC_KEY, type TimedRecord } from "./records";
 
 const KEY = "rush-v1";
 const LEGACY = "tlv-rush-v1";
 const GHOST_KEY = "rush-ghosts-v1";
-const REC_KEY = "rush.records.v3";
 
 type SaveData = {
   version: 3;
@@ -97,7 +96,7 @@ async function persistTimed(rec: TimedRecord) {
     rec.hash = await sha256hex(recordPayload(rec.trackId, rec.carId, rec.t, rec.physicsVersion));
     const all = loadTimed().filter((r) => isLiveRecord(r, PHYSICS_VERSION));
     all.push(rec);
-    localStorage.setItem(REC_KEY, JSON.stringify(all));
+    writeRecords(all);
   } catch {
     /* quota / crypto */
   }
