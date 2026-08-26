@@ -24,7 +24,13 @@ await p.evaluate(() => {
 await p.waitForFunction(() => !!window.__controlsTest, { timeout: 35000 });
 await p.evaluate(() => window.__controlsTest.skipCountdown());
 
-const shots = [];
+await p.evaluate(() => window.__controlsTest.frameAzrieli());
+await p.waitForTimeout(600);
+const lock = await p.evaluate(() => window.__controlsTest.getPhotoLock?.());
+await p.screenshot({ path: `${out}/hashalom-azrieli.png` });
+await p.evaluate(() => window.__controlsTest.exitPhoto());
+
+const shots = [`${out}/hashalom-azrieli.png`];
 for (const id of ["g04", "g05", "g06"]) {
   const ok = await p.evaluate((gid) => window.__controlsTest.gotoGolden(gid), id);
   if (!ok) throw new Error("missing golden " + id);
@@ -66,7 +72,7 @@ for (const f of shots) {
 }
 await writeFile(
   `${out}/hashalom-photo.json`,
-  JSON.stringify({ ramp, live, shots: shots.map((s) => s.split("/").pop()) }, null, 2),
+  JSON.stringify({ ramp, live, lock, shots: shots.map((s) => s.split("/").pop()) }, null, 2),
 );
 await b.close();
 console.log("hashalom-photo ok", live.side, "y", +live.y.toFixed(2));

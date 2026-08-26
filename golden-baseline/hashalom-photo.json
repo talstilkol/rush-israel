@@ -6,12 +6,22 @@
     "he": "השלום"
   },
   "live": {
-    "y": 5.526373870457189,
-    "side": "השלום",
+    "y": 4.12,
+    "side": "",
     "airborne": false,
-    "progress": 0.4025641025641026
+    "progress": 0.52
+  },
+  "lock": {
+    "px": 1061.4374999999397,
+    "py": 48,
+    "pz": -50.09400000023919,
+    "lx": 931.9421249998644,
+    "ly": 95,
+    "lz": -22.542300000036448,
+    "fov": 28
   },
   "shots": [
+    "hashalom-azrieli.png",
     "hashalom-g04.png",
     "hashalom-g05.png",
     "hashalom-g06.png",

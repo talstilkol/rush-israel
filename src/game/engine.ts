@@ -21,7 +21,7 @@ import {
 } from "./physics";
 import { getDamage, getGhost, recordGhost, setDamage } from "./save";
 import { buildTrack, nearestIndex, sampleAtT } from "./spline";
-import { getTrack, nearestPoi, nightAmt, streetName, todLabel } from "./tracks";
+import { getTrack, nearestPoi, nightAmt, streetName, todLabel, tlv } from "./tracks";
 import type { AssistFlags, CarId, Collider, HandlingMode, HudState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting, type CarSnap } from "./vehicle";
 import { createWorld, type World } from "./world";
@@ -255,6 +255,7 @@ export class RaceEngine {
   private photoPitch = 0.22;
   private photoDist = 8;
   private photoFilter = 0;
+  private photoLock: { px: number; py: number; pz: number; lx: number; ly: number; lz: number; fov: number } | null = null;
   private drivePR = 1;
   private driveExposure = 1;
   private filterNames = ["none", "warm", "neon", "mono", "film", "blockbuster", "bleach", "polaroid"];
@@ -794,6 +795,7 @@ export class RaceEngine {
   }
 
   setPaused(p: boolean) {
+    if (this.photoLock && !p) return;
     this.paused = p;
     if (!p && this.photo) this.exitPhoto();
   }
@@ -849,6 +851,7 @@ export class RaceEngine {
     this.photoPitch = 0.22;
     this.photoDist = 8;
     this.photoHide = false;
+    this.photoLock = null;
     this.drivePR = this.renderer.getPixelRatio();
     this.driveExposure = this.renderer.toneMappingExposure;
     const cap = Math.min(window.devicePixelRatio || 1, 1.35);
@@ -861,10 +864,29 @@ export class RaceEngine {
   exitPhoto() {
     this.photo = false;
     this.photoHide = false;
+    this.photoLock = null;
     this.post.setFilter(0);
     this.renderer.setPixelRatio(this.drivePR);
     this.renderer.toneMappingExposure = this.driveExposure;
     this.onResize();
+    this.pushHud();
+  }
+
+  frameWorld(x: number, z: number, y = 52, camY = 22, back = 28, fov = 40) {
+    this.enterPhoto();
+    this.photoHide = true;
+    const n = nearestIndex(this.built.samples, x, z, 0);
+    const s = this.built.samples[n.index];
+    this.player.spawn(this.built, n.index / Math.max(1, this.built.samples.length - 1), 0);
+    this.photoLock = {
+      px: s.x - s.tx * back,
+      py: camY,
+      pz: s.z - s.tz * back,
+      lx: x,
+      ly: y,
+      lz: z,
+      fov,
+    };
     this.pushHud();
   }
 
@@ -1728,6 +1750,17 @@ export class RaceEngine {
   }
 
   private stepPhoto(dt: number) {
+    if (this.photoLock) {
+      const L = this.photoLock;
+      this.camera.position.set(L.px, L.py, L.pz);
+      this.camera.lookAt(L.lx, L.ly, L.lz);
+      if (Math.abs(this.camera.fov - L.fov) > 0.2) {
+        this.camera.fov = L.fov;
+        this.camera.updateProjectionMatrix();
+      }
+      this.post.setFilter(this.photoFilter);
+      return;
+    }
     const inp = this.input.poll();
     this.photoYaw += inp.steer * 1.55 * dt;
     this.photoPitch = clamp(this.photoPitch + (inp.throttle - inp.brake) * 0.7 * dt, -0.4, 0.85);
@@ -2263,6 +2296,25 @@ export class RaceEngine {
         this.racing = true;
         return true;
       },
+      frameWorld: (x: number, z: number, y?: number) => this.frameWorld(x, z, y),
+      frameAzrieli: () => {
+        const p = tlv(32.07455, 34.79195);
+        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const s = this.built.samples[n.index];
+        this.enterPhoto();
+        this.photoHide = true;
+        this.photoLock = {
+          px: s.x,
+          py: 48,
+          pz: s.z,
+          lx: p.x,
+          ly: 95,
+          lz: p.z,
+          fov: 28,
+        };
+        this.pushHud();
+      },
+      getPhotoLock: () => this.photoLock,
       setNight: (n: boolean) => this.setNight(n),
       webgpuTried: () => this.webgpuTried,
       webgpuOk: () => this.webgpuOk,
@@ -2444,6 +2496,9 @@ declare global {
       getVis?: () => number;
       exportTelemetry?: () => { n: number; p50: number; p95: number; p99: number; last: number; backend: string };
       gotoGolden?: (id: string) => boolean;
+      frameWorld?: (x: number, z: number, y?: number) => void;
+      frameAzrieli?: () => void;
+      getPhotoLock?: () => { px: number; py: number; pz: number; lx: number; ly: number; lz: number; fov: number } | null;
       setNight?: (n: boolean) => void;
       webgpuTried?: () => boolean;
       webgpuOk?: () => boolean;
