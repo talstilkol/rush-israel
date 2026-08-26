@@ -56,7 +56,7 @@ V only where the *small* spec is 100. Full evidence: [MASTER_PLAN_AUDIT.md](/wor
 - [ ] 4.2 4-post Y — **PARTIAL** (ramp snap; spline spring)
 - [ ] 4.3 Never say DEM — **PARTIAL** (code ok; keep copy honest)
 - [ ] 4.4 OBB all landmarks — **PARTIAL**
-- [ ] 4.5 Airborne 12ms — **NOT DONE**
+- [x] 4.5 Airborne 12ms — **DONE** (tiny: ramp not airborne; 2.2m drop is; `qa:airborne` in `qa`)
 
 ## Phase 5 — Ayalon freeze (GATE 1)
 - [ ] 5.1 Hashalom **user** still — **NOT DONE** (**blocks freeze**)
@@ -120,6 +120,7 @@ Stop coding landmarks. Do **exactly** this order. Do not skip 1.
 2.9. `21.7` road UV dashes — **DONE** (tiny: dashes at lane boundaries, 8m period, CSM chain tested; white/yellow edge meshes kept; no photo QA).
 2.10. `21.8` HaShalom ramp Y — **DONE** (`qa:ramp` already in `qa`; span 3.12m).
 2.11. `21.12` collider offset CI — **DONE** (tiny: Ayalon buildings ≥ width/2+12; no `landmark-gps.ts` yet).
+2.12. `4.5` airborne CI — **DONE** (tiny: `qa:airborne` in `qa`).
 
 ### 3. After Hashalom still arrives
 3.1. Pose-lock `hashalom` in `goldenCameras.ts` to match the still.  
@@ -148,4 +149,4 @@ Unreal, OSM/DEM, scanned cars, Nanite/Lumen/RT, TRAA-on-WebGL, SSGI, 50 cars, on
 
 ## Next slice if the user says `המשך` with no photo
 
-**2.1 (`0.4` nocheck)** — not another landmark.
+Integrity leftovers without a still are CI/docs only. **Do not** add landmarks. Freeze still blocked.
