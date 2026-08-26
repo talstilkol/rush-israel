@@ -3318,6 +3318,21 @@ function addLandmarks(group, def, bag, shadows, isNight, glows, emitList, collid
     const sq = new THREE.Mesh(new THREE.BoxGeometry(14.8 * s, sH, 14.8 * s), azSqGlass);
     sq.position.set(sqX, sH * 0.5, sqZ);
     add(sq);
+    for (let i = 0; i < 8; i++) {
+      const o = -6.4 * s + i * 1.82 * s;
+      const mx = new THREE.Mesh(new THREE.BoxGeometry(0.16 * s, sH * 0.96, 0.16 * s), bandMat);
+      mx.position.set(sqX + o, sH * 0.5, sqZ + 7.45 * s);
+      add(mx);
+      const mx2 = mx.clone();
+      mx2.position.z = sqZ - 7.45 * s;
+      add(mx2);
+      const mz = new THREE.Mesh(new THREE.BoxGeometry(0.16 * s, sH * 0.96, 0.16 * s), bandMat);
+      mz.position.set(sqX + 7.45 * s, sH * 0.5, sqZ + o);
+      add(mz);
+      const mz2 = mz.clone();
+      mz2.position.x = sqX - 7.45 * s;
+      add(mz2);
+    }
     for (let y = 6 * s; y < sH - 4 * s; y += 3.1 * s) {
       const slab = new THREE.Mesh(new THREE.BoxGeometry(15.4 * s, 0.22 * s, 15.4 * s), bandMat);
       slab.position.set(sqX, y, sqZ);
