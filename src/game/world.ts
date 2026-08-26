@@ -9,6 +9,7 @@ import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, 
 import { scatterStreetBuildings } from "./buildings";
 import { addNycLandmarks } from "./nyc-landmarks";
 import { generateStreets, nearestStreet } from "./streets";
+import { getFlare0, getFlare1 } from "./flare-assets";
 import { getWaterNormal, getChecker } from "./water-assets";
 import { getSign } from "./sign-assets";
 import { getFoam } from "./foam-assets";
@@ -589,6 +590,8 @@ function checkerTexture() {
   return tex;
 }
 function flareTex(size, inner, outer) {
+  if (size >= 128 && getFlare0()) return getFlare0();
+  if (size < 128 && getFlare1()) return getFlare1();
   const c = document.createElement("canvas");
   c.width = c.height = size;
   const ctx = c.getContext("2d");
@@ -1018,8 +1021,41 @@ function starField() {
 export function createWorld(def, built, shadows, night, weather = "clear") {
   const group = new THREE.Group();
   const bag = [];
+  const shared = new Set(
+    [
+      getFoliage(),
+      getBark(),
+      getSkyDay(),
+      getSkyNight(),
+      getJaffaClock(),
+      getIsraelFlag(),
+      getHerodian(),
+      getCurb("city"),
+      getCurb("stone"),
+      getCurb("dirt"),
+      getCurb("sand"),
+      getCurtain("blue"),
+      getCurtain("teal"),
+      getCurtain("dark"),
+      getCurtain("gold"),
+      getCurtain("white"),
+      getSidewalk(),
+      getGroundNoise(),
+      getFoam(),
+      getSign("stop"),
+      getSign("yield"),
+      getSign("none"),
+      getSign("speed50"),
+      getSign("speed80"),
+      getSign("speed90"),
+      getWaterNormal(),
+      getChecker(),
+      getFlare0(),
+      getFlare1(),
+    ].filter(Boolean),
+  );
   const keep = (d) => {
-    if (d === getFoliage() || d === getBark() || d === getSkyDay() || d === getSkyNight() || d === getJaffaClock() || d === getIsraelFlag() || d === getHerodian() || d === getCurb("city") || d === getCurb("stone") || d === getCurb("dirt") || d === getCurb("sand") || d === getCurtain("blue") || d === getCurtain("teal") || d === getCurtain("dark") || d === getCurtain("gold") || d === getCurtain("white") || d === getSidewalk() || d === getGroundNoise() || d === getFoam() || d === getSign("stop") || d === getSign("yield") || d === getSign("none") || d === getSign("speed50") || d === getSign("speed80") || d === getSign("speed90") || d === getWaterNormal() || d === getChecker()) return d;
+    if (shared.has(d)) return d;
     bag.push(d);
     return d;
   };

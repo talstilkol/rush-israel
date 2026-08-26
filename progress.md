@@ -2,4 +2,4 @@
 
 **~12%** of the Codex Web graphics plan. Ship gates **0/13**.
 
-Water normal + finish checker baked. Still procedural, not ocean sim.
+Lens-flare sprites baked. Shared textures skipped on dispose via a Set.
