@@ -36,7 +36,7 @@
 1.2.4. SMAA Mid/High — **DONE** (tiny: SMAAPass; לא TAA).  
 1.2.5. CSM High 3 / Mid 1 / Low 0 — **DONE** (tiny).  
 1.2.6. לילה/יום — **DONE** (tiny). לא HDRI.  
-1.2.9. Codex 21: שמירת צילום מסומנת PHOTO MODE · RUSH — **DONE** (tiny: watermark על PNG; HUD כבר כותב מצב צילום).
+1.2.10. Codex 74 Cache-Control ל־`/game` ו־`/basis` — **DONE** (tiny: plugin קיים + Nitro middleware + smoke).
 
 ### 1.3 אחרי תמונת השלום
 1.3.1. Pose-lock מצלמת השלום.  
