@@ -651,7 +651,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   ground.receiveShadow = true;
   group.add(ground);
   const domeMat = keep(new THREE.MeshBasicMaterial({
-    color: isNight ? 923688 : def.theme === "desert" || def.id === "ramon" ? 4892892 : def.theme === "snow" || def.id === "hermon" ? 8304860 : 3839696,
+    color: isNight ? 0x0e1a2c : def.theme === "desert" || def.id === "ramon" ? 0x87b4d8 : def.theme === "snow" || def.id === "hermon" ? 0xb8d4f0 : 0x4a9ad8,
     side: 1,
     fog: false,
     depthWrite: false,
@@ -2457,7 +2457,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     applyWet();
     groundMat.color.setHex(n > 0.5 ? 0x4a5058 : groundCol);
     groundMat.envMapIntensity = lerp(0.14, 0.08, n);
-    domeMat.color.setHex(n > 0.5 ? 923688 : clock < 0.38 ? 5942748 : 3839696);
+    domeMat.color.setHex(n > 0.5 ? 0x0e1a2c : clock < 0.38 ? 0x6aaee0 : 0x4a9ad8);
     walkStd.color.setHex(n > 0.5 ? 9078400 : 12892324);
     walkStd.envMapIntensity = lerp(0.22, 0.16, n);
     shoulderMat.color.setHex(n > 0.5 ? 4867128 : def.sand);
