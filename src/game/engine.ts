@@ -906,9 +906,22 @@ export class RaceEngine {
     if (!this.snapPhoto) return;
     this.snapPhoto = false;
     try {
+      const src = this.renderer.domElement;
+      const c = document.createElement("canvas");
+      c.width = src.width;
+      c.height = src.height;
+      const ctx = c.getContext("2d");
+      if (!ctx) return;
+      ctx.drawImage(src, 0, 0);
+      const size = Math.max(13, Math.round(c.width / 78));
+      ctx.font = `${size}px ui-sans-serif, system-ui, sans-serif`;
+      ctx.fillStyle = "rgba(255,255,255,0.7)";
+      ctx.textAlign = "right";
+      ctx.textBaseline = "bottom";
+      ctx.fillText("PHOTO MODE · RUSH", c.width - 18, c.height - 16);
       const a = document.createElement("a");
-      a.href = this.renderer.domElement.toDataURL("image/png");
-      a.download = `rush-${Date.now()}.png`;
+      a.href = c.toDataURL("image/png");
+      a.download = `rush-photo-${Date.now()}.png`;
       a.click();
     } catch {
       /* ignore */
