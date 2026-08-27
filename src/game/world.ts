@@ -5698,14 +5698,21 @@ function addLandmarks(
       rib.position.set(hs.x + hsS.rx * t * tubeLen, hsS.y + 15.6, hs.z + hsS.rz * t * tubeLen);
       add(rib);
     }
-    const mall = tlv(32.1004, 34.7996);
+    const mallHint = tlv(32.1004, 34.7996);
+    const mallNear = nearestIndex(built.samples, mallHint.x, mallHint.z, 0);
+    const mallS = built.samples[mallNear.index];
+    const mallLat = built.width + 18 + built.width / 2 + 32;
+    const mall = { x: mallS.x + mallS.rx * mallLat, z: mallS.z + mallS.rz * mallLat };
+    const mallYaw = Math.atan2(mallS.tx, mallS.tz);
     const mallM = new THREE.Mesh(new THREE.BoxGeometry(42, 16, 28), cream);
-    mallM.position.set(mall.x, 8, mall.z);
+    mallM.position.set(mall.x, mallS.y + 8, mall.z);
+    mallM.rotation.y = mallYaw;
     add(mallM);
     const mallR = new THREE.Mesh(new THREE.BoxGeometry(46, 1.8, 32), white);
-    mallR.position.set(mall.x, 16.6, mall.z);
+    mallR.position.set(mall.x, mallS.y + 16.6, mall.z);
+    mallR.rotation.y = mallYaw;
     add(mallR);
-    hitRoad(mall.x, mall.z, 18);
+    if (mallNear.dist > built.width / 2 + 10) hit(mall.x, mall.z, 20);
     const kit = getAyalonRoad();
     const rampAsphalt = new THREE.MeshPhysicalMaterial({
       map: kit?.map ?? null,
