@@ -5771,19 +5771,6 @@ function addLandmarks(
       wing.rotation.y = Math.atan2(sm.tx, sm.tz);
       add(wing);
     }
-    const railMat = new THREE.MeshStandardMaterial({
-      color: 9080984,
-      metalness: 0.72,
-      roughness: 0.32
-    });
-    const tieMat = new THREE.MeshStandardMaterial({
-      color: 4864556,
-      roughness: 0.92
-    });
-    const ballast = new THREE.MeshStandardMaterial({
-      color: 5920852,
-      roughness: 0.96
-    });
     const platMat = new THREE.MeshStandardMaterial({
       color: 13157564,
       roughness: 0.7
@@ -5811,77 +5798,9 @@ function addLandmarks(
       roughness: 0.42,
       metalness: 0.22
     });
-    bag.push(railMat, tieMat, ballast, platMat, glassRoof, silver, redStripe, purpleStripe);
+    bag.push(platMat, glassRoof, silver, redStripe, purpleStripe);
     const midLon = 34.79605;
-    const railPts: { x: number; y: number; z: number; yaw: number }[] = [];
-    const lats = [];
-    for (let lat = 32.051; lat <= 32.107; lat += 12e-4) lats.push(lat);
-    for (let i = 0; i < lats.length; i++) {
-      const p = tlv(lats[i], midLon);
-      const n = tlv(lats[Math.min(lats.length - 1, i + 1)], midLon);
-      const yaw = Math.atan2(n.x - p.x, n.z - p.z);
-      railPts.push({
-        x: p.x,
-        y: 0.4,
-        z: p.z,
-        yaw
-      });
-    }
-    const bedPos = [];
-    const bedIdx = [];
-    const bedW = 8;
-    for (let i = 0; i < railPts.length; i++) {
-      const p = railPts[i];
-      const rx = Math.cos(p.yaw);
-      const rz = -Math.sin(p.yaw);
-      bedPos.push(p.x - rx * bedW, 0.08, p.z - rz * bedW);
-      bedPos.push(p.x + rx * bedW, 0.08, p.z + rz * bedW);
-    }
-    for (let i = 0; i < railPts.length - 1; i++) {
-      const a = i * 2;
-      bedIdx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-    }
-    const bedGeo = new THREE.BufferGeometry();
-    bedGeo.setAttribute("position", new THREE.Float32BufferAttribute(bedPos, 3));
-    bedGeo.setIndex(bedIdx);
-    bedGeo.computeVertexNormals();
-    bag.push(bedGeo);
-    add(new THREE.Mesh(bedGeo, ballast));
-    const tieG = new THREE.BoxGeometry(9.4, 0.22, 0.42);
-    const railG = new THREE.BoxGeometry(0.18, 0.16, 6.4);
-    bag.push(tieG, railG);
-    const ties = new THREE.InstancedMesh(tieG, tieMat, 420);
-    const rails = new THREE.InstancedMesh(railG, railMat, 1680);
-    let ti = 0;
-    let ri = 0;
-    const gauge = [
-      -3.3,
-      -1.1,
-      1.1,
-      3.3
-    ];
-    for (let i = 0; i < railPts.length; i += 2) {
-      const p = railPts[i];
-      if (ti < 420) {
-        _dummy.position.set(p.x, 0.28, p.z);
-        _dummy.rotation.set(0, p.yaw, 0);
-        _dummy.scale.set(1, 1, 1);
-        _dummy.updateMatrix();
-        ties.setMatrixAt(ti++, _dummy.matrix);
-      }
-      for (const g of gauge) {
-        if (ri >= 1680) break;
-        _dummy.position.set(p.x + Math.cos(p.yaw) * g, 0.42, p.z - Math.sin(p.yaw) * g);
-        _dummy.rotation.set(0, p.yaw, 0);
-        _dummy.updateMatrix();
-        rails.setMatrixAt(ri++, _dummy.matrix);
-      }
-    }
-    ties.count = ti;
-    rails.count = ri;
-    ties.instanceMatrix.needsUpdate = true;
-    rails.instanceMatrix.needsUpdate = true;
-    group.add(ties, rails);
+    const midOff = built.width / 2 + 9;
     for (const st of [
       {
         lat: 32.0525,
@@ -5909,25 +5828,34 @@ function addLandmarks(
         kind: "uni"
       }
     ]) {
-      const p = tlv(st.lat, midLon);
+      const hint = tlv(st.lat, midLon);
+      const near = nearestIndex(built.samples, hint.x, hint.z, 0);
+      const s = built.samples[near.index];
+      const p = { x: s.x + s.rx * midOff, z: s.z + s.rz * midOff };
+      const py = s.y;
+      const yaw = Math.atan2(s.tx, s.tz);
       const platLen = st.kind === "savidor" ? 110 : st.kind === "shalom" ? 96 : st.kind === "galuyot" ? 70 : 78;
       const plat2 = new THREE.Mesh(new THREE.BoxGeometry(11, 0.7, platLen), platMat);
-      plat2.position.set(p.x, 0.55, p.z);
+      plat2.position.set(p.x, py + 0.55, p.z);
+      plat2.rotation.y = yaw;
       add(plat2);
       const yellow = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.08, platLen), new THREE.MeshBasicMaterial({ color: 15778816 }));
-      yellow.position.set(p.x + 5.2, 0.96, p.z);
+      yellow.position.set(p.x + s.rx * 5.2, py + 0.96, p.z + s.rz * 5.2);
+      yellow.rotation.y = yaw;
       add(yellow);
       const yellow2 = yellow.clone();
-      yellow2.position.x = p.x - 5.2;
+      yellow2.position.set(p.x - s.rx * 5.2, py + 0.96, p.z - s.rz * 5.2);
       add(yellow2);
       const canopyW = st.kind === "uni" ? 12 : 14;
       const canopy = new THREE.Mesh(new THREE.BoxGeometry(canopyW, st.kind === "hagana" ? 0.35 : 0.45, platLen * 0.92), st.kind === "shalom" ? glassRoof : silver);
-      canopy.position.set(p.x, st.kind === "hagana" ? 5.4 : 6.6, p.z);
+      canopy.position.set(p.x, py + (st.kind === "hagana" ? 5.4 : 6.6), p.z);
+      canopy.rotation.y = yaw;
       add(canopy);
       const colN = st.kind === "savidor" ? 7 : 5;
       for (const sx of [-4.6, 4.6]) for (let k = -colN; k <= colN; k++) {
         const col = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.24, 5.4, 6), cream);
-        col.position.set(p.x + sx, 3.1, p.z + k * (platLen / (colN * 2 + 1.2)));
+        const along = k * (platLen / (colN * 2 + 1.2));
+        col.position.set(p.x + s.rx * sx + s.tx * along, py + 3.1, p.z + s.rz * sx + s.tz * along);
         add(col);
       }
       const hallP = tlv(st.lat, st.kind === "uni" ? 34.7988 : 34.7932);
