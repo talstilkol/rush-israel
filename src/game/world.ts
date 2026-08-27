@@ -5563,7 +5563,14 @@ function addLandmarks(
     placeSarona(1.32);
     placeHakirya(1.1);
     placeShalomMeir(1.15);
-    const ibm = tlv(32.0856, 34.7987);
+    const parkOff = (lat: number, lon: number, extra: number, east: boolean) => {
+      const hint = tlv(lat, lon);
+      const n = nearestIndex(built.samples, hint.x, hint.z, 0);
+      const s = built.samples[n.index];
+      const latOff = east ? built.width + 18 + built.width / 2 + extra : -(built.width / 2 + extra);
+      return { x: s.x + s.rx * latOff, z: s.z + s.rz * latOff, y: s.y };
+    };
+    const ibm = parkOff(32.0856, 34.7987, 36, true);
     const ibmGlass = new THREE.MeshPhysicalMaterial({
       color: 0x3a6e7a,
       roughness: 0.14,
@@ -5588,8 +5595,8 @@ function addLandmarks(
     ibmSlabs.castShadow = shadows;
     group.add(ibmSlabs);
     bag.push(ibmGeo);
-    hitRoad(ibm.x, ibm.z, 10);
-    const yovel = tlv(32.0788, 34.7916);
+    hit(ibm.x, ibm.z, 12);
+    const yovel = parkOff(32.0788, 34.7916, 30, false);
     const yovGlass = new THREE.MeshPhysicalMaterial({
       color: 0x5a7088,
       roughness: 0.12,
@@ -5619,8 +5626,8 @@ function addLandmarks(
     const yovCrown = new THREE.Mesh(new THREE.CylinderGeometry(9.4, 6.2, 9, 18), bandMat);
     yovCrown.position.set(yovel.x, 96, yovel.z);
     add(yovCrown);
-    hitRoad(yovel.x, yovel.z, 8);
-    const plat = tlv(32.0842, 34.8036);
+    hit(yovel.x, yovel.z, 10);
+    const plat = parkOff(32.0842, 34.8036, 42, true);
     const platM = new THREE.Mesh(new THREE.CylinderGeometry(6.4, 7.4, 108, 8), darkGlass);
     platM.position.set(plat.x, 54, plat.z);
     platM.rotation.y = 0.28;
@@ -5644,8 +5651,8 @@ function addLandmarks(
     platHat.position.set(plat.x, 112, plat.z);
     platHat.rotation.y = 0.28;
     add(platHat);
-    hitRoad(plat.x, plat.z, 8);
-    const tau = tlv(32.1124, 34.8046);
+    hit(plat.x, plat.z, 10);
+    const tau = parkOff(32.1124, 34.8046, 48, true);
     const tauLib = new THREE.Mesh(new THREE.CylinderGeometry(10, 11.4, 14, 20), cream);
     tauLib.position.set(tau.x, 7, tau.z);
     add(tauLib);
@@ -5673,7 +5680,7 @@ function addLandmarks(
     group.add(halls);
     bag.push(hallGeo);
     glowAt(tau.x, 16, tau.z, 0xf2e8d0, 28, 22);
-    hitRoad(tau.x, tau.z, 22, 28, 24);
+    hit(tau.x, tau.z, 22);
     const hsHint = tlv(32.0735, 34.79605);
     const hsNear = nearestIndex(built.samples, hsHint.x, hsHint.z, 0);
     const hsS = built.samples[hsNear.index];
