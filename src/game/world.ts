@@ -5645,19 +5645,28 @@ function addLandmarks(
     bag.push(hallGeo);
     glowAt(tau.x, 16, tau.z, 0xf2e8d0, 28, 22);
     hitRoad(tau.x, tau.z, 22, 28, 24);
-    const hs = tlv(32.0735, 34.79605);
+    const hsHint = tlv(32.0735, 34.79605);
+    const hsNear = nearestIndex(built.samples, hsHint.x, hsHint.z, 0);
+    const hsS = built.samples[hsNear.index];
+    const hsMid = built.width / 2 + 9;
+    const hs = { x: hsS.x + hsS.rx * hsMid, z: hsS.z + hsS.rz * hsMid };
     const tubeLen = built.width + 42;
+    const across = Math.atan2(hsS.rx, hsS.rz);
     const tube = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 3.4, tubeLen, 24, 1, true), paleGlass);
-    tube.rotation.z = Math.PI / 2;
-    tube.position.set(hs.x, 15.6, hs.z);
+    tube.rotation.order = "YZX";
+    tube.rotation.set(0, across, Math.PI / 2);
+    tube.position.set(hs.x, hsS.y + 15.6, hs.z);
     add(tube);
     const tubeFloor = new THREE.Mesh(new THREE.BoxGeometry(tubeLen, 0.32, 5.2), white);
-    tubeFloor.position.set(hs.x, 13.6, hs.z);
+    tubeFloor.position.set(hs.x, hsS.y + 13.6, hs.z);
+    tubeFloor.rotation.y = across;
     add(tubeFloor);
     for (let i = 0; i < 14; i++) {
+      const t = i / 13 - 0.5;
       const rib = new THREE.Mesh(new THREE.TorusGeometry(3.55, 0.16, 6, 18), white);
-      rib.rotation.z = Math.PI / 2;
-      rib.position.set(hs.x - tubeLen * 0.5 + (i / 13) * tubeLen, 15.6, hs.z);
+      rib.rotation.order = "YZX";
+      rib.rotation.set(0, across, Math.PI / 2);
+      rib.position.set(hs.x + hsS.rx * t * tubeLen, hsS.y + 15.6, hs.z + hsS.rz * t * tubeLen);
       add(rib);
     }
     const mall = tlv(32.1004, 34.7996);
