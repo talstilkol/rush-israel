@@ -26,6 +26,7 @@ import { getIsraelFlag } from "./flag-assets";
 import { getFoliage, getBark } from "./tree-assets";
 import { getAyalonRoad, getBakedRoad } from "./road-assets";
 import { getSkyDay, getSkyNight } from "./sky-assets";
+import { getBlob } from "./blob-assets";
 
 export type World = {
   group: THREE.Group;
@@ -473,6 +474,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       getSidewalk(),
       getGroundNoise(),
       getFoam(),
+      getBlob(),
       getSign("stop"),
       getSign("yield"),
       getSign("none"),
@@ -890,9 +892,14 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     paintAt(0.5, true);
   }
   const wearMat = keep(new THREE.MeshBasicMaterial({
-    color: 1842720,
+    map: getBlob() ?? undefined,
+    color: getBlob() ? 0x2a2c30 : 1842720,
     transparent: true,
-    opacity: 0.28
+    opacity: 0.34,
+    depthWrite: false,
+    polygonOffset: true,
+    polygonOffsetFactor: -1,
+    polygonOffsetUnits: -1,
   }));
   const wearGeo = keep(new THREE.BoxGeometry(Math.max(1.6, built.width / Math.max(2, lanes) * 0.55), 0.02, 4.2));
   const wearN = Math.min(180, Math.floor(built.length / 8));
