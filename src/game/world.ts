@@ -1336,6 +1336,28 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     foam.position.set(sandBody.x + sandBody.w * 0.14, -0.03, sandBody.z);
     if (def.theme !== "manhattan" && def.theme !== "park") group.add(foam);
   }
+  if (def.id === "ayalon") {
+    const nrm = keep(waterNormalTex());
+    const canalMat = keep(new THREE.MeshPhysicalMaterial({
+      color: isNight ? 0x1a3a48 : 0x2a6a78,
+      roughness: 0.06,
+      metalness: 0.06,
+      transparent: true,
+      opacity: 0.84,
+      envMapIntensity: isNight ? 2.2 : 1.5,
+      clearcoat: 1,
+      clearcoatRoughness: 0.08,
+      ior: 1.33,
+      normalMap: nrm,
+      normalScale: new THREE.Vector2(0.9, 0.9)
+    }));
+    const canalOff = -built.width / 2 - 10;
+    const canal = new THREE.Mesh(keep(buildStrip(built, canalOff, 6, -0.16)), canalMat);
+    canal.receiveShadow = true;
+    group.add(canal);
+    waterMeshes.push(canal);
+    waterMats.push(canalMat);
+  }
   for (const zone of def.clearZones ?? []) {
     const grass = new THREE.Mesh(keep(new THREE.PlaneGeometry(zone.w, zone.d)), keep(new THREE.MeshStandardMaterial({
       color: def.theme === "park" || def.id === "manhattan" ? 3828292 : def.ground,
