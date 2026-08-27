@@ -188,6 +188,31 @@ function buildOffsetRoad(built: BuiltTrack, offset: number) {
   geo.computeVertexNormals();
   return geo;
 }
+function buildStrip(built: BuiltTrack, centerOff: number, half: number, y = 0.02) {
+  const pos = [];
+  const uv = [];
+  const idx = [];
+  const n = segsOf(built);
+  for (let i = 0; i <= n; i++) {
+    const s = samp(built, i);
+    const v = (i === n ? built.length : s.s) / 8;
+    const cx = s.x + s.rx * centerOff;
+    const cz = s.z + s.rz * centerOff;
+    pos.push(cx - s.rx * half, s.y + y, cz - s.rz * half);
+    pos.push(cx + s.rx * half, s.y + y, cz + s.rz * half);
+    uv.push(0, v, 1, v);
+  }
+  for (let i = 0; i < n; i++) {
+    const a = i * 2;
+    idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
+  geo.setIndex(idx);
+  geo.computeVertexNormals();
+  return geo;
+}
 function buildCenterLine(built: BuiltTrack) {
   const hw = 0.22;
   const pos = [];
@@ -769,6 +794,18 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.16, 0.46, 0.08, oppOff)), edgeMat));
       group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.62, 0.09, 0.08, oppOff)), yMat));
       group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.62, 0.09, 0.08, oppOff)), yMat));
+      const midOff = built.width / 2 + gap * 0.5;
+      const bedMap = keep(groundTexture(0));
+      bedMap.wrapS = bedMap.wrapT = THREE.RepeatWrapping;
+      bedMap.repeat.set(6, 80);
+      const bed = new THREE.Mesh(keep(buildStrip(built, midOff, gap * 0.48)), keep(new THREE.MeshStandardMaterial({
+        map: bedMap,
+        color: 0x6a6860,
+        roughness: 0.96,
+        metalness: 0
+      })));
+      bed.receiveShadow = true;
+      group.add(bed);
       const jerSh = new THREE.Shape();
       jerSh.moveTo(-0.3, 0);
       jerSh.lineTo(0.3, 0);
@@ -784,7 +821,6 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const nJer = 160;
       const jers = new THREE.InstancedMesh(jerG, jerM, nJer);
       let ji = 0;
-      const midOff = built.width / 2 + gap * 0.5;
       const stepJ = Math.max(1, Math.floor(built.samples.length / nJer));
       for (let i = 0; i < built.samples.length && ji < nJer; i += stepJ) {
         const s = built.samples[i];
