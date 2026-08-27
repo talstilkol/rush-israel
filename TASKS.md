@@ -36,7 +36,7 @@
 1.2.4. SMAA Mid/High — **DONE** (tiny: SMAAPass; לא TAA).  
 1.2.5. CSM High 3 / Mid 1 / Low 0 — **DONE** (tiny).  
 1.2.6. לילה/יום — **DONE** (tiny). לא HDRI.  
-1.2.13. כתרי עצים: כרטיסי `foliage.png` עם alpha במקום איקוסהדרון — **DONE** (tiny). לא רוטשילד (אחרי הקפאה).
+1.2.14. דקלים: עלי `foliage.png` במקום BoxGeometry — **DONE** (tiny).
 
 ### 1.3 אחרי תמונת השלום
 1.3.1. Pose-lock מצלמת השלום.  

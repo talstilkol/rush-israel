@@ -1270,19 +1270,21 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   };
   if ((def.id === "hayarkon" || def.id === "namal" || def.id === "netanya" || def.id === "herzliya" || def.id === "eilat" || def.id === "batyam" || def.id === "ashkelon" || def.id === "nahariya" || def.id === "oldjaffa" || def.id === "gushdan") && bodies.length) {
     const trunkGeo2 = keep(new THREE.CylinderGeometry(0.16, 0.34, 8.2, 8));
-    const bark = keep(foliageTexture());
     const trunkMat2 = keep(new THREE.MeshStandardMaterial({
+      map: keep(barkTexture()),
       color: 0x5a4030,
       roughness: 0.92
     }));
-    const leafTex = bark;
-    const frondGeo = keep(new THREE.BoxGeometry(0.22, 0.045, 3.2));
-    frondGeo.translate(0, 0, 1.4);
+    const frondGeo = keep(new THREE.PlaneGeometry(1.35, 3.8));
+    frondGeo.translate(0, -1.55, 0);
     const crownMat = keep(new THREE.MeshStandardMaterial({
-      map: leafTex,
-      color: 0x2a6a28,
-      roughness: 0.78,
-      flatShading: true
+      map: keep(foliageTexture()),
+      color: 0x3a7a32,
+      roughness: 0.72,
+      transparent: true,
+      alphaTest: 0.28,
+      side: THREE.DoubleSide,
+      depthWrite: true
     }));
     const capGeo = keep(new THREE.SphereGeometry(0.55, 8, 6));
     const palmN = 28;
@@ -1314,8 +1316,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       for (let f = 0; f < 10; f++) {
         const a = f / 10 * Math.PI * 2;
         _dummy.position.set(px, s.y + 8.05, pz);
-        _dummy.scale.set(0.85 + f % 3 * 0.1, 1, 0.95);
-        _dummy.rotation.set(0.85, a, 0.12);
+        _dummy.scale.set(0.95 + f % 3 * 0.08, 1, 1);
+        _dummy.rotation.set(1.12, a, 0.08);
         _dummy.updateMatrix();
         fronds.setMatrixAt(fc, _dummy.matrix);
         fc++;
