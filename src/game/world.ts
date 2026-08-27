@@ -710,7 +710,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     map: roadMaps.map,
     roughnessMap: roadMaps.roughnessMap,
     bumpMap: roadMaps.bumpMap,
-    bumpScale: 0.22,
+    bumpScale: 0.36,
     color: 0xb4b8bc,
     roughness: 0.48,
     metalness: 0,
@@ -1589,6 +1589,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     tanks.setMatrixAt(i, _dummy.matrix);
   }
   group.add(tanks);
+  let farMesh: THREE.InstancedMesh | null = null;
   if ((def.city === "nyc" || def.theme === "carmel" || def.theme === "stone" || def.id === "hermon" || def.id === "hw1") && def.id !== "deadsea" && def.id !== "hayarkon" && def.id !== "ayalon" && def.id !== "ramon") {
     const tid = def.id as string;
     const natureHill = def.theme === "jaffa" || def.theme === "carmel" || tid === "hermon" || def.theme === "stone" || tid === "hw1";
@@ -1614,6 +1615,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       far.setMatrixAt(i, _dummy.matrix);
     }
     far.instanceMatrix.needsUpdate = true;
+    farMesh = far;
     group.add(far);
   }
   const deciduous = nyc;
@@ -2494,6 +2496,9 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     if (lodTrunks) lodTrunks.castShadow = hi;
     if (lodBills) lodBills.visible = true;
     if (lodShads) lodShads.visible = hi || mid;
+    tanks.visible = hi || mid;
+    tanks.castShadow = hi;
+    if (farMesh) farMesh.visible = hi || mid;
   };
   applyWet();
   return {
