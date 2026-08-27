@@ -406,21 +406,21 @@ function applyLights(
 ) {
   hemi.color.setHex(isNight ? 0x6a88b0 : 0xa8c8e8);
   hemi.groundColor.setHex(isNight ? 0x2a241c : 0x4a5248);
-  hemi.intensity = isNight ? 0.42 : 0.68;
+  hemi.intensity = isNight ? 0.52 : 0.68;
   dir.color.setHex(isNight ? 0xc8d4e8 : 0xfff0d0);
-  dir.intensity = isNight ? 0.32 : 1.12;
+  dir.intensity = isNight ? 0.38 : 1.12;
   dir.position.copy(lightAim).multiplyScalar(95);
   flareCol.setHex(isNight ? 16760944 : 16767136);
   if (lensflare) lensflare.visible = false;
   fill.color.setHex(isNight ? 0xffc070 : 0xc4d8f0);
-  fill.intensity = isNight ? 0.38 : 0.28;
+  fill.intensity = isNight ? 0.48 : 0.28;
   if (isNight) fill.position.set(8, 22, -10);
   else {
     fill.position.copy(lightAim).multiplyScalar(-50);
     fill.position.y = Math.abs(fill.position.y) + 30;
   }
   ambient.color.setHex(isNight ? 0x4a6080 : 0xb0c4d8);
-  ambient.intensity = isNight ? 0.22 : 0.32;
+  ambient.intensity = isNight ? 0.28 : 0.32;
 }
 function starField() {
   const n = 1100;
@@ -502,6 +502,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   let lodTrunks = null;
   let lodBills = null;
   let lodShads = null;
+  const lodWear: THREE.InstancedMesh[] = [];
   const preset = skyFor(def, isNight, wx);
   const sky = new Sky();
   sky.visible = false;
@@ -917,6 +918,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   wear.count = wearI;
   wear.instanceMatrix.needsUpdate = true;
   group.add(wear);
+  lodWear.push(wear);
   if (def.id === "ayalon") {
     const oppOff = built.width + 18;
     const wear2 = new THREE.InstancedMesh(wearGeo, wearMat, wearN);
@@ -933,6 +935,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     wear2.count = w2;
     wear2.instanceMatrix.needsUpdate = true;
     group.add(wear2);
+    lodWear.push(wear2);
   }
   const curbTex = keep(curbTexture(def.theme === "stone" ? "stone" : def.theme === "desert" ? "sand" : def.theme === "carmel" || def.theme === "snow" ? "dirt" : "city"));
   const curbMat = keep(new THREE.MeshStandardMaterial({
@@ -2414,17 +2417,17 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     if (n > 0.5) {
       hemi.color.copy(_nightHemi);
       dir.color.copy(_nightDir);
-      hemi.intensity = 0.24;
-      dir.intensity = 0.18;
+      hemi.intensity = 0.52;
+      dir.intensity = 0.38;
       fill.color.setHex(16758880);
-      fill.intensity = 0.38;
+      fill.intensity = 0.48;
       ambient.color.setHex(0x3a5070);
-      ambient.intensity = 0.12;
+      ambient.intensity = 0.28;
     } else if (morning) {
       hemi.color.copy(_mornHemi);
       dir.color.copy(_mornDir);
       hemi.intensity = 0.7;
-      dir.intensity = 1.15;
+      dir.intensity = 1.12;
       fill.color.setHex(16760976);
       fill.intensity = 0.28;
       ambient.color.setHex(13682872);
@@ -2432,8 +2435,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     } else {
       hemi.color.copy(_dayHemi);
       dir.color.copy(_dayDir);
-      hemi.intensity = 0.82;
-      dir.intensity = 1.45;
+      hemi.intensity = 0.68;
+      dir.intensity = 1.12;
       fill.color.setHex(10139856);
       fill.intensity = 0.28;
       ambient.color.setHex(11057352);
@@ -2522,6 +2525,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     tanks.visible = hi || mid;
     tanks.castShadow = hi;
     if (farMesh) farMesh.visible = hi || mid;
+    for (const w of lodWear) w.visible = hi || mid;
   };
   applyWet();
   return {
