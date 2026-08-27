@@ -1,164 +1,116 @@
-# Remaining work — none of A1–G are 100
+# RUSH — רשימת משימות קדימה (איפוס 27.8.2026)
 
-Do **not** bake more procedural PNGs. Do **not** add cities. Do **not** claim GIS.  
-**Block:** any non-Ayalon map work until **6.1 + 6.5** are green.
+**אחוז כנה:** ~13% מתוכנית קודקס. שערי שחרור 2/13.  
+**יעד:** משחק WebGL שנראה כמו Asphalt במובייל. לא GT7. לא Unreal. לא GIS.  
+**מקור אמת:** [EXECUTION_PLAN.md](/workspace/EXECUTION_PLAN.md) · [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md)
 
-Overall **~13%**. Ship **2/13** (infra). Target: Asphalt-like WebGL, not GT7.
-
-Status: **DONE** | **PARTIAL** | **NOT DONE** | **FAKED**.  
-Full audit: [MASTER_PLAN_AUDIT.md](/workspace/MASTER_PLAN_AUDIT.md).
-
----
-
-## Already 100 for the *tiny* spec (do not redo)
-
-- 1.1 Inspired suffix on 56 cards + honest README (no card screenshot stored)
-- 1.3 PHYSICS_VERSION=3 + SHA-256 records
-- 1.4 no nocheck in world.ts / game-app.tsx
-- 2.1 QA HUD p95 + dc/tri/geo/tex + kin
-- 2.2 fps cascade planar→bloom→CSM→pixelScale
-- 2.4 CSM lease
-- 3.6 NYC `await import`
-- 4.5 kin mix HUD
-- 4.6 0–100 CI extrusion
-- 5.1 crawl=0 above 12 m/s
-- 5.2 4-corner ride (not 6DoF)
-- 5.5 CCD 2-cut (not PhysX)
-- 8.4 CSM 3/1/0 visibility
-- 8.6 SSGI off
-- 9.3 Meshopt cars
-- 10.10 Esc · 10.11 Hebrew+inspired
-- UV dashes in road shader (TASKS 2.3 was stale "meshes")
+סטטוס: **DONE** | **PARTIAL** | **NOT DONE** | **FAKED** | **BLOCKED**.  
+כל V חייב מפרט זעיר + בדיקה שרצה. אחרת זה לא 100.
 
 ---
 
-## Phase 0 — Stop lying
-- [x] 0.1 Inspired copy — **DONE** (tiny; 1.1.3 screenshot **NOT DONE**)
-- [x] 0.2 Prod hook — **DONE** (tiny)
-- [x] 0.3 Record hash — **DONE** (tiny)
-- [x] 0.4 No `@ts-nocheck` in world/game-app — **DONE** (generated routeTree still nocheck)
-- [x] 0.5 Honest README — **DONE**
+## 0. חוקים שלא זזים
 
-## Phase 1 — G0
-- [x] 1.1 HUD — **DONE** (tiny)
-- [x] 1.2 fps cascade — **DONE** (tiny)
-- [ ] 1.3 Low 60 on phone — **NOT DONE**
-- [x] 1.4 CSM lease — **DONE** (tiny)
-
-## Phase 2 — Road
-- [x] 2.1 Wet shader — **DONE** (tiny: uWet roughness; no SSR)
-- [ ] 2.2 Planar follow — **PARTIAL** (768 + yaw)
-- [x] 2.3 3.5m / 8-lane UV dashes — **DONE** (tiny: shader + lane-arrow.png chevrons; street stripe boxes remain)
-- [x] 2.4 NYC dynamic import — **DONE** (tiny)
-
-## Phase 3 — Car
-- [ ] 3.1 Authored GT — **NOT DONE** (**FAKED** if "hero scan")
-- [x] 3.2 Flake **shader** — **DONE** (tiny: onBeforeCompile sparkles; flake.png still bump, not a flake BRDF)
-- [x] 3.3 Hood windshield — **DONE** (tiny: 3.6cm glass boxes + cabin fill; not authored glass)
-- [x] 3.4 Mix % HUD — **DONE** (tiny)
-- [x] 3.5 0–100 CI — **DONE** (tiny: extrusion)
-
-## Phase 4 — Physics
-- [x] 4.1 Tire yaw at speed — **DONE** (tiny)
-- [x] 4.2 4-post Y — **DONE** (tiny: not 6DoF)
-- [x] 4.3 Never say DEM — **DONE** (tiny: zero `DEM` in `src/`)
-- [x] 4.4 200m corridor — **DONE** (tiny)
-- [x] 4.4b Ayalon yaw OBB cluster — **DONE** (tiny)
-- [x] 4.5 Airborne 12ms — **DONE** (tiny)
-- [x] 5.5 CCD — **DONE** (tiny)
-
-## Phase 5 — Ayalon freeze (GATE 1)
-- [ ] 5.1 Hashalom **user** still — **NOT DONE** (**blocks freeze**)
-- [ ] 5.2 Azrieli photo glass — **NOT DONE**
-- [ ] 5.3 Savidor + ramps + named towers — **PARTIAL** (tiny: ramps asphalt-8; columns OBB; speed90; gantry; no fake torus; named towers still blocked)
-- [x] 5.4 Opposite carriageway — **DONE** (tiny: reverse chevrons + wear + curbs; not GIS 8+8)
-- [ ] 5.5 Freeze sources — **NOT DONE** (**FAKED** if claimed frozen)
-
-## Phase 6 — Israel (illegal until 5.5)
-- [ ] 6.1–6.7 Rothschild…Carmel — **PARTIAL** each
-
-## Phase 7 — Renderer
-- [ ] 7.1 WebGPU **game** flag — **NOT DONE**
-- [ ] 7.2 TSL — **NOT DONE**
-- [x] 7.3 CSM 3/1/0 — **DONE** (tiny)
-- [ ] 7.4 SMAA / no fake TAA — **PARTIAL**
-- [x] 7.5 No SSGI — **DONE** (constraint)
-- [x] 7.6 Night fill — **DONE** (tiny: hemi/dir/ambient + headlamps + opposite Ayalon lamps; not HDRI)
-- [x] 7.7 Day sun — **DONE** (tiny: dir 1.12 / hemi 0.68; ACES table untouched)
-
-## Phase 8 — Assets
-- [ ] 8.1 UASTC — **PARTIAL**
-- [x] 8.2 Zero canvas except probe — **DONE** (tiny: NYC DataTexture; probe + WebGPU dummy remain; not baked PNG)
-- [x] 8.3 Meshopt — **DONE** (tiny)
-- [ ] 8.4 256m cells — **NOT DONE**
-
-## Phase 9 — Ship
-- [x] 9.1 qa:drive + qa:webgl2 in qa — **DONE** (tiny; not matrix CI)
-- [ ] 9.2 Pixel-diff in qa:ci — **NOT DONE** (keep manual until user stills)
-- [ ] 9.3 WebGPU CI game path — **NOT DONE**
-- [x] 9.4 Strip prod hook — **DONE** (tiny)
-- [ ] 9.5 13/13 gates — **NOT DONE** (2/13 ship; 10.8 canvas tiny-closer, still not 13)
-
-## Codex §25
-1 hero **PARTIAL** · 2 real road **FAKED** · 3 lighting **PARTIAL** · 4 KTX2 **PARTIAL** · 5 cells **NOT DONE** · 6 wet **PARTIAL** · 7 WebGPU **NOT DONE** · 8 CSM **PARTIAL** · 9 TRAA **NOT DONE** · 10 SSGI off **OK**
+0.1. בלי OSM / DEM / "רחובות אמיתיים" / פוטוגרמטריה / רכב סרוק.  
+0.2. בלי ערים חדשות. בלי PNG פרוצדורלי חדש.  
+0.3. בלי העמקת מסלול חוץ מאיילון עד **1.5 הקפאה**.  
+0.4. בלי Unreal / Nanite / Lumen / RT / TRAA-על-WebGL / SSGI.  
+0.5. בלי אונליין, גאראז׳, 50 מכוניות.  
+0.6. בלי מגדל חדש בלי תמונת השלום מהמשתמש.  
+0.7. סשן מימוש = פריט אחד מהתור למטה.
 
 ---
 
-# Execution queue — do in this order. Do not skip 1.
+## 1. תור ביצוע (רק זה. לפי הסדר)
 
-### 1. Wait for the user (cannot code)
-1.1. Real Hashalom photo (6.1).  
-1.2. Until then: **no Ayalon towers**.  
-1.3. `המשך` without a still → integrity leftover only. Freeze blocked.
+### 1.1 BLOCKED — מחכים למשתמש
+1.1.1. תמונת השלום אמיתית מהמשחק (לא AI, לא golden-baseline של הסוכן).  
+1.1.2. עד אז: **אסור** מגדלים בשמות חדשים. **אסור** הקפאת איילון.  
+1.1.3. טלפון 60fps — צריך מכשיר משתמש.  
+1.1.4. p95 GPU אמיתי — צריך GPU אמיתי, לא הסנדבוקס.
 
-### 2. Integrity leftovers still open (no still)
-2.24. `8.2` NYC facade + ads off canvas — **DONE** (tiny: DataTexture + 5x7 glyphs; not baked PNG).  
-2.25. `5.4` yaw OBB remaining Ayalon (IBM/Yovel/Platinum/TAU/rail) — **DONE** (tiny).  
-2.26. `2.2` planar 768 cap — **DONE** (tiny: `PLANAR_RT` locked; not raised). Ayalon `place*` hits use `towerHit` → road yaw.  
-2.27. `4.4` other tracks still yaw=0 — do **not** until freeze.  
-2.28. `9.2` golden in `qa:ci` — **forbidden** until user-ok stills.  
-2.29. `1.3` phone 60Hz — needs user device.  
-2.30. `10.9` p95 Playwright — needs real GPU.  
-2.31. `10.12` leak soak — **DONE** (tiny: `qa:soak-smoke` 2 cycles in `qa`; 20-cycle stays `qa:soak` manual).
-2.32. `8.2` canvas allowlist CI — **DONE** (tiny: `check:canvas` in `qa:ci`; probe dummy only).
-2.33. `1.1` inspired + no-DEM CI — **DONE** (tiny: `check:copy` in `qa:ci`).
-2.34. `1.3` records unit tests in `qa:ci` — **DONE** (tiny).
-2.35. `5.1` physics unit tests in `qa:ci` — **DONE** (tiny: Pacejka/ABS/TCS/120Hz).
-2.36. `7.5` SSGI-off in `qa:ci` — **DONE** (tiny).
-2.37. `7.1`/`7.2` SMAA + WebGL default in `qa:ci` — **DONE** (tiny).
-2.38. Leftover queue without a still is **exhausted** except 2.27–2.30 (blocked).
+### 1.2 עכשיו — גרפיקה בלי מגדלים
+1.2.1. קוביית סביבה ב-boot **לכל** מסלול (לא רק איילון) — **בתור הזה**.  
+1.2.2. כביש: envMap מהסצנה (MeshPhysical כבר קורא `scene.environment`) + `uWet`. אין SSR.  
+1.2.3. רפלקטור מישורי 768 + yaw — לא להעלות RT.  
+1.2.4. SMAA Mid/High — קיים; לא TAA.  
+1.2.5. CSM High 3 / Mid 1 / Low 0 — קיים זעיר.  
+1.2.6. לילה/יום — מולא זעיר. לא HDRI.
 
-### 3. After Hashalom still
-3.1. Pose-lock `hashalom` camera.  
-3.2. QA existing Azrieli bands vs still (still primitives).  
-3.3. No new named towers.  
-3.4. Freeze: `AYALON_LOCK` stops moving; Ayalon block read-only.  
-3.5. Commit `golden: freeze ayalon` with user ACK.
+### 1.3 אחרי תמונת השלום
+1.3.1. Pose-lock מצלמת השלום.  
+1.3.2. QA עזריאלי מול הסטיל (פרימיטיבים קיימים).  
+1.3.3. בלי מגדלים חדשים.  
+1.3.4. `AYALON_LOCK` נעול + commit `golden: freeze ayalon` עם ACK.
 
-### 4. After freeze — Israel 7.x (one track per session)
-4.1. `src/game/landmark-gps.ts`.  
-4.2. Rothschild → Hayarkon → Jaffa → Jerusalem → Ramon → Hermon → Carmel.  
-4.3. Each: 8 GPS + collider offset + one golden pose. No new cities.
+### 1.4 אחרי הקפאה — ישראל (מסלול אחד לסשן)
+1.4.1. `landmark-gps.ts` לכל מסלול.  
+1.4.2. רוטשילד → הירקון → יפו → ירושלים → רמון → חרמון → כרמל.  
+1.4.3. לכל אחד: 8 GPS + אופסט מתנגש + pose זהב אחד. בלי ערים חדשות.
 
-### 5. After one Israel slice looks like a game
-5.1. Do **not** switch default to WebGPU.  
-5.2. Wet: MeshPhysical is the cap unless TSL on WebGPU.  
-5.3. KTX2: UASTC atlases **or** delete the loader claim.  
-5.4. Strip NYC canvas.  
-5.5. World cells 256m only if drawCalls > budget.  
-5.6. Hero glTF if user supplies license.
+### 1.5 אחרי שסלייס ישראל נראה כמו משחק
+1.5.1. **לא** לעבור ברירת מחדל ל-WebGPU.  
+1.5.2. UASTC אטלס **או** להסיר טענת KTX2 (`blob.ktx2` היום לא UASTC).  
+1.5.3. תאי עולם 256m רק אם drawCalls מעל תקציב.  
+1.5.4. רכב hero glTF רק אם המשתמש נותן רישיון.  
+1.5.5. TSL כביש רק אחרי WebGPU אופציונלי ירוק.
 
-### 6. Never in this sandbox
-Unreal, OSM/DEM, scanned cars, Nanite/Lumen/RT, TRAA-on-WebGL, SSGI, 50 cars, online, garage, "we finished the master plan", "#1 in the world".
+### 1.6 שחרור
+1.6.1. Pixel-diff ב-CI רק אחרי סטילים מאושרים.  
+1.6.2. WebGPU CI לנתיב משחק — רק אם 1.5.1 קיים.  
+1.6.3. 13/13 שערים. היום 2/13.
 
 ---
 
-## Launch / #1 remaining (honest)
+## 2. מה כבר 100 למפרט הזעיר (לא לגעת)
 
-**Launch as a web toy:** freeze Ayalon vs user still, 60fps High, zero canvas in Israel, hood glass, flake shader or drop claim, soak leak, golden CI after user-ok.
+- עותק "בהשראת" + README כנה  
+- PHYSICS_VERSION + hash שיאים  
+- בלי nocheck ב-world/game-app  
+- HUD p95 + cascade planar→bloom→CSM→pixelScale  
+- CSM lease + 3/1/0  
+- NYC dynamic import + DataTexture (לא PNG)  
+- Pacejka + tire yaw + 4-post Y + CCD + 200m corridor  
+- UV dashes + lane-arrow.png  
+- Meshopt 5 רכבים extruded (לא סריקה)  
+- Esc / עברית  
+- SSGI כבוי  
+- Low מציג ≤30fps (`shouldPresent`)  
+- כביש MeshPhysical + bump/rough PNG  
+- פתיתי צבע onBeforeCompile  
+- לילה מולא + פנסים בצד הנגדי באיילון  
+- שמש יום 1.12  
+- גנטרי + שלטי 90 במחלפים  
+- בלי טבעת מזויפת בגלויות  
 
-**#1 in the world:** not achievable here. Needs scanned cars, photogrammetry, Unreal/custom engine, art team. Do not write that as a task.
+---
 
-## Next if `המשך` and no photo
+## 3. פתוח — סטטוס כנה
 
-`2.24` NYC facade/ads off canvas. No landmarks. Freeze still blocked.
+| ID | פריט | סטטוס | 100? |
+|---|---|---|---|
+| 1.1.1 | סטיל השלום מהמשתמש | **BLOCKED** | no |
+| 1.3.4 | הקפאת איילון | **NOT DONE** | no |
+| 5.2 | זכוכית עזריאלי מול תמונה | **NOT DONE** | no |
+| 5.3 | מגדלים בשמות | **PARTIAL** / **BLOCKED** | no |
+| 3.1 | רכב hero סרוק | **NOT DONE** (**FAKED** אם "סריקה") | no |
+| 7.1 | WebGPU כרנדרר משחק | **NOT DONE** | no |
+| 7.2 | TSL | **NOT DONE** | no |
+| 8.1 | UASTC | **PARTIAL** (blob.ktx2 לא דחוס) | no |
+| 8.4 | תאי 256m | **NOT DONE** | no |
+| 9.2 | pixel-diff CI | **NOT DONE** | no |
+| 2.2 | planar 768 | **PARTIAL** | no |
+| Codex2 | כביש פוטוגרמטרי | **FAKED** אם נטען אמיתי | no |
+| G2 | HDRI | **NOT DONE** (PNG 2D) | no |
+
+---
+
+## 4. אסור לכתוב כמשימה
+
+Unreal, כיסוי 100% ישראל לפני שהמנוע נראה כמו משחק, RT, 50 מכוניות, אונליין, "סיימנו את קודקס", "מספר 1 בעולם".
+
+---
+
+## 5. הפריט של הסשן הזה
+
+**1.2.1** קוביית סביבה ב-boot לכל מסלול — רכב וכביש מקבלים השתקפות סצנה, לא רק באיילון.
