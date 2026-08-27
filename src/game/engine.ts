@@ -514,13 +514,17 @@ export class RaceEngine {
     this.gate.rotation.y = Math.PI / 2;
     this.scene.add(this.gate);
 
-    const skidGeo = new THREE.PlaneGeometry(0.55, 1.35);
+    const skidGeo = new THREE.PlaneGeometry(0.62, 1.55);
     skidGeo.rotateX(-Math.PI / 2);
     const skidMat = new THREE.MeshBasicMaterial({
-      color: 0x0a0c0e,
+      map: blobTex,
+      color: 0x121416,
       transparent: true,
-      opacity: 0.42,
+      opacity: 0.48,
       depthWrite: false,
+      polygonOffset: true,
+      polygonOffsetFactor: -2,
+      polygonOffsetUnits: -2,
     });
     this.skidMesh = new THREE.InstancedMesh(skidGeo, skidMat, 180);
     this.skidMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
@@ -1898,7 +1902,7 @@ export class RaceEngine {
 
     const fx = -Math.sin(p.yaw);
     const fz = -Math.cos(p.yaw);
-    if (p.drifting || p.impact > 0.18) {
+    if (p.drifting || p.impact > 0.18 || p.wheelsLocked) {
       const spread = p.impact > 0.18 ? 1.4 : 0.8;
       for (let k = 0; k < 8; k++) {
         const i = Math.floor(hash01(this.tickId, k, 1) * 60) * 3;
@@ -1911,8 +1915,9 @@ export class RaceEngine {
       this.skidAcc += Math.abs(p.speed) * dt;
       if (this.skidAcc > 0.55) {
         this.skidAcc = 0;
-        this.skidDummy.position.set(p.x - fx * 1.5, p.y + 0.06, p.z - fz * 1.5);
+        this.skidDummy.position.set(p.x - fx * 1.5, p.y + 0.03, p.z - fz * 1.5);
         this.skidDummy.rotation.y = p.yaw;
+        this.skidDummy.scale.set(1, 1, 1.1 + Math.abs(p.speed) * 0.018);
         this.skidDummy.updateMatrix();
         const idx = this.skidI % 180;
         this.skidMesh.setMatrixAt(idx, this.skidDummy.matrix);
