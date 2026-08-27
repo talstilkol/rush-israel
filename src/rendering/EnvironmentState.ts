@@ -10,9 +10,9 @@ export type EnvironmentState = {
 };
 
 export const LOOKS: Record<LookId, EnvironmentState> = {
-  summer14: { look: "summer14", exposure: 0.68, wetness: 0, night: 0, vis: 1 },
-  golden: { look: "golden", exposure: 0.78, wetness: 0, night: 0.12, vis: 1 },
-  night: { look: "night", exposure: 1.05, wetness: 0.08, night: 1, vis: 0.85 },
+  summer14: { look: "summer14", exposure: 0.68, wetness: 0.22, night: 0, vis: 1 },
+  golden: { look: "golden", exposure: 0.78, wetness: 0.18, night: 0.12, vis: 1 },
+  night: { look: "night", exposure: 1.05, wetness: 0.15, night: 1, vis: 0.85 },
   nightrain: { look: "nightrain", exposure: 1.05, wetness: 0.65, night: 1, vis: 0.72 },
   rain: { look: "rain", exposure: 0.62, wetness: 1, night: 0.08, vis: 0.55 },
 };
