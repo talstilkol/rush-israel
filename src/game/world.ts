@@ -5672,24 +5672,30 @@ function addLandmarks(
         en: "University"
       }
     ]) {
-      const c = tlv(ic.lat, 34.79605);
-      const westX = tlv(ic.lat, 34.79405).x;
-      const eastX = tlv(ic.lat, 34.798).x;
+      const hint = tlv(ic.lat, 34.79605);
+      const n0 = nearestIndex(built.samples, hint.x, hint.z, 0);
+      const sm0 = built.samples[n0.index];
+      const c = { x: sm0.x, z: sm0.z };
+      const yaw = Math.atan2(sm0.tx, sm0.tz);
+      const westX = c.x - sm0.rx * (built.width / 2 + 14);
+      const westZ = c.z - sm0.rz * (built.width / 2 + 14);
+      const eastX = c.x + sm0.rx * (built.width / 2 + 14);
+      const eastZ = c.z + sm0.rz * (built.width / 2 + 14);
       const deckY = 9.4;
       const span = built.width + 28;
       const deck = new THREE.Mesh(new THREE.BoxGeometry(span, 1.15, 16), conc);
       deck.position.set(c.x, deckY, c.z);
+      deck.rotation.y = yaw;
       add(deck);
       for (const side of [-7.8, 7.8]) {
         const rail = new THREE.Mesh(new THREE.BoxGeometry(span, 1.15, 0.22), white);
-        rail.position.set(c.x, 10.3, c.z + side);
+        rail.position.set(c.x + sm0.tx * side, 10.3, c.z + sm0.tz * side);
+        rail.rotation.y = yaw;
         add(rail);
       }
       for (const side of [-1, 1]) {
-        const n = nearestIndex(built.samples, c.x, c.z, 0);
-        const sm = built.samples[n.index];
-        const px = sm.x + sm.rx * (built.width / 2 + 12) * side;
-        const pz = sm.z + sm.rz * (built.width / 2 + 12) * side;
+        const px = sm0.x + sm0.rx * (built.width / 2 + 12) * side;
+        const pz = sm0.z + sm0.rz * (built.width / 2 + 12) * side;
         const col = new THREE.Mesh(new THREE.BoxGeometry(1.8, deckY, 1.8), conc);
         col.position.set(px, deckY * 0.5, pz);
         add(col);
@@ -5697,36 +5703,35 @@ function addLandmarks(
       }
       for (const lx of [-28, -10, 10, 28]) {
         const post = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.16, 3.4, 6), conc);
-        post.position.set(c.x + lx, deckY + 2.2, c.z + 6.4);
+        post.position.set(c.x + sm0.rx * lx, deckY + 2.2, c.z + sm0.rz * lx);
         add(post);
         const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.28, 8, 6), new THREE.MeshBasicMaterial({ color: 0xffc070 }));
-        lamp.position.set(c.x + lx, deckY + 3.9, c.z + 6.4);
+        lamp.position.set(c.x + sm0.rx * lx, deckY + 3.9, c.z + sm0.rz * lx);
         add(lamp);
       }
       const signMat = mkSign(ic.he);
       const sign = new THREE.Mesh(new THREE.PlaneGeometry(18, 4.2), signMat);
       sign.position.set(c.x, 13.8, c.z);
-      sign.rotation.y = Math.PI;
+      sign.rotation.y = yaw + Math.PI;
       add(sign);
       const sign2 = sign.clone();
-      sign2.rotation.y = 0;
+      sign2.rotation.y = yaw;
       add(sign2);
       for (const gx of [-8, 8]) {
         const gpost = new THREE.Mesh(new THREE.BoxGeometry(0.35, 4.6, 0.35), conc);
-        gpost.position.set(c.x + gx, 11.7, c.z);
+        gpost.position.set(c.x + sm0.rx * gx, 11.7, c.z + sm0.rz * gx);
         add(gpost);
       }
       const gbar = new THREE.Mesh(new THREE.BoxGeometry(18.4, 0.28, 0.28), conc);
       gbar.position.set(c.x, 13.95, c.z);
+      gbar.rotation.y = yaw;
       add(gbar);
       const spd = getSign("speed90");
       if (spd) {
-        const nS = nearestIndex(built.samples, c.x, c.z, 0);
-        const smS = built.samples[nS.index];
-        const yawS = Math.atan2(smS.tx, smS.tz);
+        const yawS = yaw;
         const offS = built.width / 2 + 4.2;
-        const sx = smS.x + smS.rx * offS;
-        const sz = smS.z + smS.rz * offS;
+        const sx = sm0.x + sm0.rx * offS;
+        const sz = sm0.z + sm0.rz * offS;
         const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 3.4, 6), conc);
         pole.position.set(sx, 1.7, sz);
         add(pole);
@@ -5739,22 +5744,28 @@ function addLandmarks(
         add(plate);
       }
       const zLen = 52;
-      pushRamp(westX, c.z - 30, 0, 1, zLen, 7.2, 0.6, deckY, ic.he, ic.en);
-      pushRamp(westX, c.z + 30, 0, 1, zLen, 7.2, deckY, 0.6, ic.he, ic.en);
-      pushRamp(eastX, c.z - 30, 0, 1, zLen, 7.2, 0.6, deckY, ic.he, ic.en);
-      pushRamp(eastX, c.z + 30, 0, 1, zLen, 7.2, deckY, 0.6, ic.he, ic.en);
-      pushRamp(c.x, c.z, 1, 0, 30, 7.6, deckY, deckY, ic.he, ic.en);
+      const a = 30;
+      pushRamp(westX - sm0.tx * a, westZ - sm0.tz * a, sm0.tx, sm0.tz, zLen, 7.2, 0.6, deckY, ic.he, ic.en);
+      pushRamp(westX + sm0.tx * a, westZ + sm0.tz * a, sm0.tx, sm0.tz, zLen, 7.2, deckY, 0.6, ic.he, ic.en);
+      pushRamp(eastX - sm0.tx * a, eastZ - sm0.tz * a, sm0.tx, sm0.tz, zLen, 7.2, 0.6, deckY, ic.he, ic.en);
+      pushRamp(eastX + sm0.tx * a, eastZ + sm0.tz * a, sm0.tx, sm0.tz, zLen, 7.2, deckY, 0.6, ic.he, ic.en);
+      pushRamp(c.x, c.z, sm0.rx, sm0.rz, span, 8, deckY, deckY, ic.he, ic.en);
       if (ic.en === "Kibbutz Galuyot") {
-        pushRamp(westX - 20, c.z, 0, 1, 84, 6.4, 0.6, 7.2, ic.he, ic.en);
-        pushRamp(eastX + 20, c.z, 0, 1, 84, 6.4, 7.2, 0.6, ic.he, ic.en);
+        pushRamp(westX - sm0.rx * 20, westZ - sm0.rz * 20, sm0.tx, sm0.tz, 84, 6.4, 0.6, 7.2, ic.he, ic.en);
+        pushRamp(eastX + sm0.rx * 20, eastZ + sm0.rz * 20, sm0.tx, sm0.tz, 84, 6.4, 7.2, 0.6, ic.he, ic.en);
         const d = 0.7071;
-        pushRamp(c.x - 24, c.z - 24, d, d, 54, 6.2, 0.6, deckY, ic.he, ic.en);
-        pushRamp(c.x + 24, c.z + 24, d, d, 54, 6.2, deckY, 0.6, ic.he, ic.en);
+        const dx = sm0.rx * d + sm0.tx * d;
+        const dz = sm0.rz * d + sm0.tz * d;
+        const inv = Math.hypot(dx, dz) || 1;
+        pushRamp(c.x - 24 * sm0.rx, c.z - 24 * sm0.rz, dx / inv, dz / inv, 54, 6.2, 0.6, deckY, ic.he, ic.en);
+        pushRamp(c.x + 24 * sm0.rx, c.z + 24 * sm0.rz, dx / inv, dz / inv, 54, 6.2, deckY, 0.6, ic.he, ic.en);
       }
       if (ic.en === "LaGuardia") {
-        const d = 0.7071;
-        pushRamp(c.x - 18, c.z + 18, d, -d, 44, 6.2, 0.6, deckY, ic.he, ic.en);
-        pushRamp(c.x + 18, c.z - 18, d, -d, 44, 6.2, deckY, 0.6, ic.he, ic.en);
+        const dx = sm0.rx * 0.7071 - sm0.tx * 0.7071;
+        const dz = sm0.rz * 0.7071 - sm0.tz * 0.7071;
+        const inv = Math.hypot(dx, dz) || 1;
+        pushRamp(c.x - 18 * sm0.rx, c.z - 18 * sm0.rz, dx / inv, dz / inv, 44, 6.2, 0.6, deckY, ic.he, ic.en);
+        pushRamp(c.x + 18 * sm0.rx, c.z + 18 * sm0.rz, dx / inv, dz / inv, 44, 6.2, deckY, 0.6, ic.he, ic.en);
       }
     }
     for (const ic of [
