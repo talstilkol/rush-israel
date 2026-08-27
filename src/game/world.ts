@@ -5872,14 +5872,16 @@ function addLandmarks(
       const hint = tlv(ic.lat, 34.79605);
       const n0 = nearestIndex(built.samples, hint.x, hint.z, 0);
       const sm0 = built.samples[n0.index];
-      const c = { x: sm0.x, z: sm0.z };
+      const oppOff = built.width + 18;
+      const midOff = oppOff / 2;
+      const c = { x: sm0.x + sm0.rx * midOff, z: sm0.z + sm0.rz * midOff };
       const yaw = Math.atan2(sm0.tx, sm0.tz);
-      const westX = c.x - sm0.rx * (built.width / 2 + 14);
-      const westZ = c.z - sm0.rz * (built.width / 2 + 14);
-      const eastX = c.x + sm0.rx * (built.width / 2 + 14);
-      const eastZ = c.z + sm0.rz * (built.width / 2 + 14);
+      const westX = sm0.x - sm0.rx * (built.width / 2 + 14);
+      const westZ = sm0.z - sm0.rz * (built.width / 2 + 14);
+      const eastX = sm0.x + sm0.rx * (oppOff + built.width / 2 + 14);
+      const eastZ = sm0.z + sm0.rz * (oppOff + built.width / 2 + 14);
       const deckY = 9.4;
-      const span = built.width + 28;
+      const span = oppOff + built.width + 16;
       const deck = new THREE.Mesh(new THREE.BoxGeometry(span, 1.15, 16), conc);
       deck.position.set(c.x, deckY, c.z);
       deck.rotation.y = yaw;
@@ -5890,13 +5892,14 @@ function addLandmarks(
         rail.rotation.y = yaw;
         add(rail);
       }
-      for (const side of [-1, 1]) {
-        const px = sm0.x + sm0.rx * (built.width / 2 + 12) * side;
-        const pz = sm0.z + sm0.rz * (built.width / 2 + 12) * side;
+      for (const lat of [-(built.width / 2 + 12), oppOff + built.width / 2 + 12]) {
+        const px = sm0.x + sm0.rx * lat;
+        const pz = sm0.z + sm0.rz * lat;
         const col = new THREE.Mesh(new THREE.BoxGeometry(1.8, deckY, 1.8), conc);
         col.position.set(px, deckY * 0.5, pz);
         add(col);
-        hitRoad(px, pz, 1.4, 0.95, 0.95);
+        const colNear = nearestIndex(built.samples, px, pz, 0);
+        if (colNear.dist > built.width / 2 + 2.5) hitRoad(px, pz, 1.4, 0.95, 0.95);
       }
       for (const lx of [-28, -10, 10, 28]) {
         const post = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.16, 3.4, 6), conc);
