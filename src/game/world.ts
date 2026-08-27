@@ -890,6 +890,41 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       rails.count = ri;
       rails.instanceMatrix.needsUpdate = true;
       group.add(rails);
+      const wireG = keep(new THREE.BoxGeometry(0.05, 0.05, 3.4));
+      const wireM = keep(new THREE.MeshBasicMaterial({ color: 0x2c2e32 }));
+      const poleG2 = keep(new THREE.BoxGeometry(0.18, 6.2, 0.18));
+      const poleM2 = keep(new THREE.MeshStandardMaterial({ color: 0x6a7076, metalness: 0.55, roughness: 0.4 }));
+      const nWire = 200;
+      const wires = new THREE.InstancedMesh(wireG, wireM, nWire);
+      const nPole = 48;
+      const poles = new THREE.InstancedMesh(poleG2, poleM2, nPole);
+      let wi2 = 0;
+      const stepWire = Math.max(1, Math.floor(built.samples.length / nWire));
+      for (let i = 0; i < built.samples.length && wi2 < nWire; i += stepWire) {
+        const s = built.samples[i];
+        _dummy.position.set(s.x + s.rx * midOff, s.y + 5.35, s.z + s.rz * midOff);
+        _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
+        _dummy.scale.set(1, 1, 1);
+        _dummy.updateMatrix();
+        wires.setMatrixAt(wi2++, _dummy.matrix);
+      }
+      wires.count = wi2;
+      wires.instanceMatrix.needsUpdate = true;
+      group.add(wires);
+      let pi2 = 0;
+      const stepP = Math.max(1, Math.floor(built.samples.length / nPole));
+      for (let i = 0; i < built.samples.length && pi2 < nPole; i += stepP) {
+        const s = built.samples[i];
+        _dummy.position.set(s.x + s.rx * (midOff + 2.4), s.y + 3.1, s.z + s.rz * (midOff + 2.4));
+        _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
+        _dummy.scale.set(1, 1, 1);
+        _dummy.updateMatrix();
+        poles.setMatrixAt(pi2++, _dummy.matrix);
+      }
+      poles.count = pi2;
+      poles.instanceMatrix.needsUpdate = true;
+      poles.castShadow = true;
+      group.add(poles);
       const wallG = keep(new THREE.BoxGeometry(0.22, 3.4, 4.4));
       const wallM = keep(new THREE.MeshStandardMaterial({ color: 0xc8c4ba, roughness: 0.9, metalness: 0 }));
       const nWall = 90;
