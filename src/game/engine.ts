@@ -1076,14 +1076,20 @@ export class RaceEngine {
     if (!this.probeCam || !this.probeRT || this.soft) return;
     this.probeTick++;
     if (this.probeTick % 8 !== 1) return;
-    const vis = this.visuals[0];
-    if (vis) vis.group.visible = false;
+    for (const vis of this.visuals) vis.group.visible = false;
     this.probeCam.position.set(this.player.x, this.player.y + 1.05, this.player.z);
     this.probeCam.update(this.renderer, this.scene);
-    if (vis) {
+    const inten = nightAmt(this.clock) > 0.5 ? 0.8 : 1.2;
+    for (const vis of this.visuals) {
       vis.group.visible = true;
-      vis.bodyMat.envMap = this.probeRT.texture;
-      vis.bodyMat.envMapIntensity = nightAmt(this.clock) > 0.5 ? 0.8 : 1.2;
+      vis.group.traverse((o) => {
+        const mesh = o as THREE.Mesh;
+        const mat = mesh.material as THREE.MeshPhysicalMaterial | undefined;
+        if (mat && mat.isMeshPhysicalMaterial) {
+          mat.envMap = this.probeRT!.texture;
+          if (mat === vis.bodyMat) mat.envMapIntensity = inten;
+        }
+      });
     }
   }
 
