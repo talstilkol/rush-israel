@@ -5729,6 +5729,17 @@ function addLandmarks(
       mesh.rotation.x = -Math.atan2(y12 - y0, len);
       mesh.receiveShadow = true;
       add(mesh);
+      for (let i = 0; i < 4; i++) {
+        const t = (i + 0.5) / 4 - 0.5;
+        const px = x + sx * t * len;
+        const pz = z + sz * t * len;
+        const py = (y0 + y12) * 0.5 + (y12 - y0) * t;
+        const h = Math.max(1.4, py);
+        const pier = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.72, h, 8), conc);
+        pier.position.set(px, h * 0.5, pz);
+        pier.castShadow = true;
+        add(pier);
+      }
     };
     const mkSign = (he: string, en?: string) => {
       const cnv = document.createElement("canvas");
