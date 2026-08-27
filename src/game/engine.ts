@@ -467,12 +467,12 @@ export class RaceEngine {
 
     const blobTex = getBlob();
     if (!blobTex) throw new Error("blob texture missing");
-    const blobGeo = new THREE.PlaneGeometry(4.2, 2.1);
+    const blobGeo = new THREE.PlaneGeometry(4.9, 2.45);
     blobGeo.rotateX(-Math.PI / 2);
     const blobMat = new THREE.MeshBasicMaterial({
       map: blobTex,
       transparent: true,
-      opacity: this.opts.night ? 0.55 : 0.38,
+      opacity: this.opts.night ? 0.68 : 0.5,
       depthWrite: false,
       polygonOffset: true,
       polygonOffsetFactor: -1,
@@ -1883,7 +1883,7 @@ export class RaceEngine {
         blob.scale.set(stretch, 1, 0.92 + Math.abs(c.speed) * 0.008);
         blob.rotation.y = c.yaw;
         blob.visible = !c.eliminated;
-        (blob.material as THREE.MeshBasicMaterial).opacity = this.world.night ? 0.55 : 0.38;
+        (blob.material as THREE.MeshBasicMaterial).opacity = (this.world.night ? 0.68 : 0.5) * (c.airborne ? 0.12 : 1);
       }
     }
     for (let i = 0; i < this.traffic.length; i++) {
