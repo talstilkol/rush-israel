@@ -15,8 +15,8 @@ test("current physicsVersion is kept", () => {
 });
 
 test("payload + sha256", async () => {
-  const p = recordPayload("ayalon", "sabra", 12.3, 3);
-  assert.equal(p, "ayalon|sabra|12.3|3");
+  const p = recordPayload("ayalon", "sabra", 12.3, PHYSICS_VERSION);
+  assert.equal(p, `ayalon|sabra|12.3|${PHYSICS_VERSION}`);
   const hex = await sha256hex(p);
   const node = createHash("sha256").update(p).digest("hex");
   assert.equal(hex, node);

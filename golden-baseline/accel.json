@@ -1,5 +1,5 @@
 {
-  "physicsVersion": 3,
+  "physicsVersion": 4,
   "track": "ayalon",
   "note": "extrusion glTF, not a scanned hero. ±15% vs claimed zeroTo100.",
   "runs": [
