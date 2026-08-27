@@ -292,7 +292,7 @@ function buildCurb(built: BuiltTrack, side: number, centerOff = 0) {
   geo.computeVertexNormals();
   return geo;
 }
-function buildJersey(built: BuiltTrack, side: number) {
+function buildJersey(built: BuiltTrack, side: number, centerOff = 0) {
   const d0 = built.width / 2 + 0.62;
   const d1 = d0 + 0.42;
   const pos = [];
@@ -303,8 +303,8 @@ function buildJersey(built: BuiltTrack, side: number) {
     const s = samp(built, i);
     const rx = s.rx * side;
     const rz = s.rz * side;
-    pos.push(s.x + rx * d0, s.y + 0.08, s.z + rz * d0);
-    pos.push(s.x + rx * d1, s.y + 1.35, s.z + rz * d1);
+    pos.push(s.x + rx * d0 + s.rx * centerOff, s.y + 0.08, s.z + rz * d0 + s.rz * centerOff);
+    pos.push(s.x + rx * d1 + s.rx * centerOff, s.y + 1.35, s.z + rz * d1 + s.rz * centerOff);
     const v = i / n * (built.length / 2.4);
     uvs.push(0, v, 1, v);
   }
@@ -723,10 +723,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     roughnessMap: roadMaps.roughnessMap,
     bumpMap: roadMaps.bumpMap,
     bumpScale: 0.36,
-    color: 0xb4b8bc,
+    color: 0xffffff,
     roughness: 0.48,
     metalness: 0,
-    envMapIntensity: 0.62,
+    envMapIntensity: 0.85,
     clearcoat: 0.28,
     clearcoatRoughness: 0.4,
     reflectivity: 0.28
@@ -997,6 +997,13 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const capMat = keep(new THREE.MeshBasicMaterial({ color: 0xf4f0ea, fog: false }));
     group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, -0.78, 0.14, 1.38)), capMat));
     group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, -0.78, 0.14, 1.38)), capMat));
+    if (def.id === "ayalon") {
+      const oppOff = built.width + 18;
+      group.add(new THREE.Mesh(keep(buildJersey(built, 1, oppOff)), jerseyMat));
+      group.add(new THREE.Mesh(keep(buildJersey(built, -1, oppOff)), jerseyMat));
+      group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, -0.78, 0.14, 1.38, oppOff)), capMat));
+      group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, -0.78, 0.14, 1.38, oppOff)), capMat));
+    }
   }
   const walkTex = keep(sidewalkTexture());
   walkTex.repeat.set(1, 8);
@@ -2364,25 +2371,25 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const n = nightAmt(clock);
     puddles.visible = wx === "rain" || wx === "storm" || wx === "clear" && n > 0.35;
     if (wx === "rain" || wx === "storm") {
-      roadMat.color.setHex(n > 0.5 ? 0x8a929c : 0xb4bcc4);
+      roadMat.color.setHex(n > 0.5 ? 0xd0d4d8 : 0xe8ecee);
       roadMat.roughness = wx === "storm" ? 0.12 : 0.18;
       roadMat.metalness = 0;
-      roadMat.envMapIntensity = n > 0.5 ? 1.15 : 1.02;
+      roadMat.envMapIntensity = n > 0.5 ? 1.25 : 1.1;
       roadMat.clearcoat = 0.62;
       roadMat.clearcoatRoughness = 0.14;
       puddleMat.opacity = wx === "storm" ? 0.9 : 0.78;
     } else if (n > 0.45) {
-      roadMat.color.setHex(0x9aa0a8);
+      roadMat.color.setHex(0xe8eaee);
       roadMat.roughness = 0.26;
       roadMat.metalness = 0;
-      roadMat.envMapIntensity = 1.0;
+      roadMat.envMapIntensity = 1.12;
       roadMat.clearcoat = 0.48;
       roadMat.clearcoatRoughness = 0.2;
     } else {
-      roadMat.color.setHex(0xb4b8bc);
+      roadMat.color.setHex(0xffffff);
       roadMat.roughness = 0.42;
       roadMat.metalness = 0;
-      roadMat.envMapIntensity = 0.68;
+      roadMat.envMapIntensity = 0.85;
       roadMat.clearcoat = 0.32;
       roadMat.clearcoatRoughness = 0.38;
     }
@@ -5612,10 +5619,10 @@ function addLandmarks(
       roughnessMap: kit?.roughnessMap ?? null,
       bumpMap: kit?.bumpMap ?? null,
       bumpScale: kit ? 0.18 : 0,
-      color: kit ? 0xc8ccce : 6053990,
+      color: kit ? 0xffffff : 6053990,
       roughness: 0.45,
       metalness: 0,
-      envMapIntensity: 0.58,
+      envMapIntensity: 0.85,
       clearcoat: 0.22,
       clearcoatRoughness: 0.4
     });
