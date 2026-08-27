@@ -877,7 +877,6 @@ export const TRACKS: TrackDef[] = [
     ground: 0x6a6e72,
     sand: 0xb0a898,
     sky: { ...TLV_BLUE, fogDensity: 0.0009 },
-    water: { x: tlv(32.078, 34.796).x, z: tlv(32.078, 34.796).z, w: 14, d: 2800, color: 0x2a5860 },
     checkpointCount: 8,
     points: (() => {
       const west = 34.795;

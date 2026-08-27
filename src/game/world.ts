@@ -775,6 +775,34 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.16, 0.46)), edgeMat));
   group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.16, 0.46)), edgeMat));
   {
+    const dashG = keep(new THREE.BoxGeometry(0.12, 0.035, 3.4));
+    const dashM = keep(new THREE.MeshBasicMaterial({ color: 0xf4f6f2, fog: false }));
+    const offs = def.id === "ayalon" ? [0, built.width + 18] : [0];
+    const nDash = Math.min(1600, Math.floor(built.samples.length / 3) * (lanes - 1) * offs.length);
+    const dashes = new THREE.InstancedMesh(dashG, dashM, Math.max(1, nDash));
+    let di = 0;
+    const hw = built.width / 2;
+    const lw = built.width / lanes;
+    const stepD = Math.max(3, Math.floor(built.samples.length / 80));
+    for (const off of offs) {
+      for (let i = 0; i < built.samples.length && di < nDash; i += stepD) {
+        const s = built.samples[i];
+        if (Math.floor(s.s / 9) % 2 === 0) continue;
+        for (let k = 1; k < lanes && di < nDash; k++) {
+          const lat = -hw + k * lw;
+          _dummy.position.set(s.x + s.rx * (off + lat), s.y + 0.09, s.z + s.rz * (off + lat));
+          _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
+          _dummy.scale.set(1, 1, 1);
+          _dummy.updateMatrix();
+          dashes.setMatrixAt(di++, _dummy.matrix);
+        }
+      }
+    }
+    dashes.count = di;
+    dashes.instanceMatrix.needsUpdate = true;
+    group.add(dashes);
+  }
+  {
     const yMat = keep(new THREE.MeshBasicMaterial({
       color: 0xffc400,
       fog: false,
