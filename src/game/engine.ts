@@ -531,12 +531,13 @@ export class RaceEngine {
     this.skidMesh.count = 0;
     this.scene.add(this.skidMesh);
 
-    const smokeGeo = new THREE.PlaneGeometry(1.4, 1.4);
+    const smokeGeo = new THREE.PlaneGeometry(1.6, 1.6);
     smokeGeo.rotateX(-Math.PI / 2);
     const smokeMat = new THREE.MeshBasicMaterial({
-      color: 0x9aa3aa,
+      map: blobTex,
+      color: 0xb0b8be,
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.26,
       depthWrite: false,
     });
     this.smokeMesh = new THREE.InstancedMesh(smokeGeo, smokeMat, 64);
@@ -1940,7 +1941,7 @@ export class RaceEngine {
     this.gate.visible = this.racing && !this.player.finished && !this.replaying;
 
     if ((p.drifting || (!p.onTrack && Math.abs(p.speed) > 10) || (this.weather !== "clear" && Math.abs(p.speed) > 14)) && this.smokes.length < 64) {
-      if (hash01(this.tickId, 21) < 0.55) {
+      if (hash01(this.tickId, 21) < (!p.onTrack ? 0.88 : 0.55)) {
         this.smokes.push({
           x: p.x - fx * 1.7 + (hash01(this.tickId, 22) - 0.5) * 0.9,
           y: p.y + 0.08,
@@ -1968,8 +1969,9 @@ export class RaceEngine {
     }
     this.smokeMesh.count = this.smokes.length;
     this.smokeMesh.instanceMatrix.needsUpdate = true;
-    (this.smokeMesh.material as THREE.MeshBasicMaterial).opacity = this.weather !== "clear" ? 0.28 : 0.2;
-    (this.smokeMesh.material as THREE.MeshBasicMaterial).color.setHex(this.weather !== "clear" ? 0xc8d4dc : 0x9aa3aa);
+    const off = !p.onTrack;
+    (this.smokeMesh.material as THREE.MeshBasicMaterial).opacity = this.weather !== "clear" ? 0.32 : off ? 0.38 : 0.24;
+    (this.smokeMesh.material as THREE.MeshBasicMaterial).color.setHex(off ? 0x8a6a48 : this.weather !== "clear" ? 0xc8d4dc : 0xb0b8be);
 
     if (p.boostT > 0 || p.drafting) {
       for (let k = 0; k < 10; k++) {

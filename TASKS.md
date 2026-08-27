@@ -36,7 +36,7 @@
 1.2.4. SMAA Mid/High — **DONE** (tiny: SMAAPass; לא TAA).  
 1.2.5. CSM High 3 / Mid 1 / Low 0 — **DONE** (tiny).  
 1.2.6. לילה/יום — **DONE** (tiny). לא HDRI.  
-1.2.17. סימני צמיג מ־blob + בלימה נעולה — **DONE** (tiny).
+1.2.18. אבק שוליים חום + blob — **DONE** (tiny).
 
 ### 1.3 אחרי תמונת השלום
 1.3.1. Pose-lock מצלמת השלום.  
