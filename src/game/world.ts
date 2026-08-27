@@ -6004,9 +6004,15 @@ function addLandmarks(
           const win = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.85, 2.1), darkGlass);
           win.position.set(1.46, 2.35, -c * 18.2 - 6 + w * 3);
           g.add(win);
+          const winB = win.clone();
+          winB.position.x = -1.46;
+          g.add(winB);
           const win2 = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.7, 2.1), darkGlass);
           win2.position.set(1.46, 3.65, -c * 18.2 - 6 + w * 3);
           g.add(win2);
+          const win2B = win2.clone();
+          win2B.position.x = -1.46;
+          g.add(win2B);
         }
       }
       const nose = new THREE.Mesh(new THREE.BoxGeometry(2.7, 3.4, 4.6), silver);
@@ -6031,25 +6037,22 @@ function addLandmarks(
       lightR.position.x = 0.85;
       g.add(lightR);
       group.add(g);
-      const pts = railPts.map((p) => {
-        const ox = Math.cos(p.yaw) * trackX;
-        const oz = -Math.sin(p.yaw) * trackX;
-        return {
-          x: p.x + ox,
-          y: p.y,
-          z: p.z + oz,
-          yaw: p.yaw
-        };
-      });
+      const mid = built.width / 2 + 9;
+      const pts = built.samples.map((s) => ({
+        x: s.x + s.rx * (mid + trackX),
+        y: s.y + 0.42,
+        z: s.z + s.rz * (mid + trackX),
+        yaw: Math.atan2(s.tx, s.tz)
+      }));
       movers.push({
         mesh: g,
         pts,
-        speed: 0.05,
+        speed: 0.07,
         phase
       });
     };
-    makeTrain(0, built.width / 2 + 6);
-    makeTrain(0.48, built.width / 2 + 8.4);
+    makeTrain(0, -1.15);
+    makeTrain(0.48, 1.15);
     const arrowTex = getLaneArrow();
     if (!arrowTex) throw new Error("lane arrow missing");
     const arrowMat = new THREE.MeshBasicMaterial({ map: arrowTex, side: 2 });
