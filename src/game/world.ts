@@ -2520,7 +2520,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       lodCrowns.castShadow = hi;
     }
     if (lodTrunks) lodTrunks.castShadow = hi;
-    if (lodBills) lodBills.visible = true;
+    if (lodBills) lodBills.visible = hi;
     if (lodShads) lodShads.visible = hi || mid;
     tanks.visible = hi || mid;
     tanks.castShadow = hi;

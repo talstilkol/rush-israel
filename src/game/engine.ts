@@ -2083,6 +2083,8 @@ export class RaceEngine {
           this.cam.z = c.z + (dz / d) * keep;
         }
       }
+      const road = this.built.samples[p.sampleIndex];
+      if (this.cam.y < road.y + 1.55) this.cam.y = road.y + 1.55;
     }
     const shake = this.replaying ? 0 : this.trauma * this.trauma;
     this.camera.position.set(
