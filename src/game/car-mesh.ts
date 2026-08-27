@@ -426,13 +426,21 @@ export function createCarVisual(
       spot.position.set(sx, headY, headZ);
       spot.target.position.set(sx * 0.12, -0.42, 14);
       if (cookie) spot.map = cookie;
-      spot.castShadow = false;
+      spot.castShadow = !!(shadows && cookie);
+      if (spot.castShadow) {
+        spot.shadow.mapSize.set(256, 256);
+        spot.shadow.bias = -0.00025;
+        spot.shadow.camera.near = 0.6;
+        spot.shadow.camera.far = 42;
+        spot.shadow.focus = 1;
+      }
       spot.intensity = 0;
       group.add(spot, spot.target);
       spots.push(spot);
     }
     const poolMat = new THREE.MeshBasicMaterial({
-      color: 0xffe4b0,
+      map: cookie || null,
+      color: cookie ? 0xffffff : 0xffe4b0,
       transparent: true,
       opacity: 0,
       depthWrite: false,
@@ -572,7 +580,15 @@ export function setCarLights(vis: CarVisual, night: boolean) {
     g.visible = true;
   }
   if (vis.headPool) {
-    (vis.headPool.material as THREE.MeshBasicMaterial).opacity = night ? 0.48 : 0;
+    const m = vis.headPool.material as THREE.MeshBasicMaterial;
+    if (!m.map) {
+      const c = beamCookie();
+      if (c) {
+        m.map = c;
+        m.color.setHex(0xffffff);
+      }
+    }
+    m.opacity = night ? 0.55 : 0;
     vis.headPool.visible = night;
   }
 }

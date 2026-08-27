@@ -33,9 +33,10 @@
 1.2.1. קוביית סביבה ב-boot **לכל** מסלול — **DONE** (tiny).  
 1.2.2. כביש: envMap מהסצנה + `uWet` + רמפות Physical — **DONE** (tiny: IBL/clearcoat; אין SSR).  
 1.2.3. רפלקטור מישורי 768 + yaw + גובה כביש — **DONE** (tiny: RT לא הורם).  
-1.2.4. SMAA Mid/High — קיים; לא TAA.  
-1.2.5. CSM High 3 / Mid 1 / Low 0 — קיים זעיר.  
-1.2.6. לילה/יום — מולא זעיר. לא HDRI.
+1.2.4. SMAA Mid/High — **DONE** (tiny: SMAAPass; לא TAA).  
+1.2.5. CSM High 3 / Mid 1 / Low 0 — **DONE** (tiny).  
+1.2.6. לילה/יום — **DONE** (tiny). לא HDRI.  
+1.2.7. G6 פנסי רכב — **DONE** (tiny: SpotLight.map + 256 shadow על השחקן High; בריכת beam.png על הכביש).
 
 ### 1.3 אחרי תמונת השלום
 1.3.1. Pose-lock מצלמת השלום.  
