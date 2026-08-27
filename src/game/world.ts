@@ -913,6 +913,35 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       walls.castShadow = true;
       walls.receiveShadow = true;
       group.add(walls);
+      const markG = keep(new THREE.BoxGeometry(0.1, 0.62, 0.9));
+      const markRed = keep(new THREE.MeshBasicMaterial({ color: 0xc41818, fog: false }));
+      const markWht = keep(new THREE.MeshBasicMaterial({ color: 0xf3f1ea, fog: false }));
+      const nMark = 100;
+      const markRows = [-built.width / 2 - 0.62, oppOff + built.width / 2 + 0.62];
+      const reds = new THREE.InstancedMesh(markG, markRed, nMark * markRows.length);
+      const whts = new THREE.InstancedMesh(markG, markWht, nMark * markRows.length);
+      let riM = 0;
+      let wiM = 0;
+      let nM = 0;
+      const stepM = Math.max(1, Math.floor(built.samples.length / nMark));
+      for (let i = 0; i < built.samples.length && nM < nMark * markRows.length; i += stepM) {
+        const s = built.samples[i];
+        for (const lat of markRows) {
+          if (nM >= nMark * markRows.length) break;
+          _dummy.position.set(s.x + s.rx * lat, s.y + 0.95, s.z + s.rz * lat);
+          _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
+          _dummy.scale.set(1, 1, 1);
+          _dummy.updateMatrix();
+          if (nM % 2 === 0) reds.setMatrixAt(riM++, _dummy.matrix);
+          else whts.setMatrixAt(wiM++, _dummy.matrix);
+          nM += 1;
+        }
+      }
+      reds.count = riM;
+      whts.count = wiM;
+      reds.instanceMatrix.needsUpdate = true;
+      whts.instanceMatrix.needsUpdate = true;
+      group.add(reds, whts);
     }
   }
   {
