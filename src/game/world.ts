@@ -712,12 +712,12 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     bumpMap: roadMaps.bumpMap,
     bumpScale: 0.22,
     color: 0xb4b8bc,
-    roughness: 0.62,
+    roughness: 0.48,
     metalness: 0,
-    envMapIntensity: 0.32,
-    clearcoat: 0.12,
-    clearcoatRoughness: 0.55,
-    reflectivity: 0.18
+    envMapIntensity: 0.62,
+    clearcoat: 0.28,
+    clearcoatRoughness: 0.4,
+    reflectivity: 0.28
   }));
   roadMat.userData.lanes = lanes;
   roadMat.customProgramCacheKey = () => `rush-road-${lanes}`;
@@ -1081,7 +1081,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     mirror.position.y = 0.026;
     const mmat = mirror.material as THREE.ShaderMaterial;
     mmat.transparent = true;
-    mmat.opacity = isNight ? 0.32 : 0.16;
+    mmat.opacity = isNight ? 0.36 : 0.22;
     group.add(mirror);
     bag.push({ dispose() {
       mirror?.dispose();
@@ -2245,7 +2245,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     mirror.rotation.set(-Math.PI / 2, yaw, 0);
     const col = mirror.material as THREE.ShaderMaterial;
     const wet = wx === "rain" || wx === "storm";
-    col.opacity = wet ? (isNight ? 0.52 : 0.32) : isNight ? 0.28 : 0.16;
+    col.opacity = wet ? (isNight ? 0.58 : 0.38) : isNight ? 0.34 : 0.22;
     if (col.uniforms?.color) {
       const c = wet ? (isNight ? 0x6a7388 : 0x9aabbc) : isNight ? 0x3a4558 : 0x88a0b4;
       col.uniforms.color.value.setHex(c);
@@ -2317,26 +2317,26 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     puddles.visible = wx === "rain" || wx === "storm" || wx === "clear" && n > 0.35;
     if (wx === "rain" || wx === "storm") {
       roadMat.color.setHex(n > 0.5 ? 0x8a929c : 0xb4bcc4);
-      roadMat.roughness = wx === "storm" ? 0.14 : 0.2;
+      roadMat.roughness = wx === "storm" ? 0.12 : 0.18;
       roadMat.metalness = 0;
-      roadMat.envMapIntensity = n > 0.5 ? 0.95 : 0.7;
-      roadMat.clearcoat = 0.55;
-      roadMat.clearcoatRoughness = 0.18;
+      roadMat.envMapIntensity = n > 0.5 ? 1.15 : 1.02;
+      roadMat.clearcoat = 0.62;
+      roadMat.clearcoatRoughness = 0.14;
       puddleMat.opacity = wx === "storm" ? 0.9 : 0.78;
     } else if (n > 0.45) {
       roadMat.color.setHex(0x9aa0a8);
-      roadMat.roughness = 0.28;
+      roadMat.roughness = 0.26;
       roadMat.metalness = 0;
-      roadMat.envMapIntensity = 0.82;
-      roadMat.clearcoat = 0.42;
-      roadMat.clearcoatRoughness = 0.22;
+      roadMat.envMapIntensity = 1.0;
+      roadMat.clearcoat = 0.48;
+      roadMat.clearcoatRoughness = 0.2;
     } else {
       roadMat.color.setHex(0xb4b8bc);
-      roadMat.roughness = 0.5;
+      roadMat.roughness = 0.42;
       roadMat.metalness = 0;
-      roadMat.envMapIntensity = 0.38;
-      roadMat.clearcoat = 0.2;
-      roadMat.clearcoatRoughness = 0.42;
+      roadMat.envMapIntensity = 0.68;
+      roadMat.clearcoat = 0.32;
+      roadMat.clearcoatRoughness = 0.38;
     }
     if (roadMat.userData.uWet) {
       const n2 = nightAmt(clock);
@@ -5554,14 +5554,17 @@ function addLandmarks(
     placeRailStop(32.0547, 34.7982, 0.78);
     placeRailStop(32.1035, 34.79815, 0.9);
     const kit = getAyalonRoad();
-    const rampAsphalt = new THREE.MeshStandardMaterial({
+    const rampAsphalt = new THREE.MeshPhysicalMaterial({
       map: kit?.map ?? null,
       roughnessMap: kit?.roughnessMap ?? null,
       bumpMap: kit?.bumpMap ?? null,
       bumpScale: kit ? 0.18 : 0,
       color: kit ? 0xc8ccce : 6053990,
-      roughness: 0.78,
-      envMapIntensity: 0.12
+      roughness: 0.45,
+      metalness: 0,
+      envMapIntensity: 0.58,
+      clearcoat: 0.22,
+      clearcoatRoughness: 0.4
     });
     const conc = new THREE.MeshStandardMaterial({
       color: 13157044,
