@@ -5639,7 +5639,35 @@ function addLandmarks(
       mesh.receiveShadow = true;
       add(mesh);
     };
-    const mkSign = (_he: string) => greenSign;
+    const mkSign = (he: string, en?: string) => {
+      const cnv = document.createElement("canvas");
+      cnv.width = 512;
+      cnv.height = 128;
+      const ctx = cnv.getContext("2d");
+      if (!ctx) return greenSign;
+      ctx.fillStyle = "#0c4a2a";
+      ctx.fillRect(0, 0, 512, 128);
+      ctx.strokeStyle = "#d8e8d8";
+      ctx.lineWidth = 8;
+      ctx.strokeRect(6, 6, 500, 116);
+      ctx.fillStyle = "#f4f7f4";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = "700 40px Arial, sans-serif";
+      ctx.fillText(he, 256, en ? 48 : 64);
+      if (en) {
+        ctx.font = "600 22px Arial, sans-serif";
+        ctx.fillText(en, 256, 92);
+      }
+      const tex = new THREE.CanvasTexture(cnv);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.anisotropy = 4;
+      tex.needsUpdate = true;
+      bag.push(tex);
+      const mat = new THREE.MeshBasicMaterial({ map: tex, fog: false, side: THREE.DoubleSide });
+      bag.push(mat);
+      return mat;
+    };
     for (const ic of [
       {
         lat: 32.0525,
@@ -5709,7 +5737,7 @@ function addLandmarks(
         lamp.position.set(c.x + sm0.rx * lx, deckY + 3.9, c.z + sm0.rz * lx);
         add(lamp);
       }
-      const signMat = mkSign(ic.he);
+      const signMat = mkSign(ic.he, ic.en);
       const sign = new THREE.Mesh(new THREE.PlaneGeometry(18, 4.2), signMat);
       sign.position.set(c.x, 13.8, c.z);
       sign.rotation.y = yaw + Math.PI;
