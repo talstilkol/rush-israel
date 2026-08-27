@@ -304,7 +304,7 @@ function buildJersey(built: BuiltTrack, side: number) {
     const rx = s.rx * side;
     const rz = s.rz * side;
     pos.push(s.x + rx * d0, s.y + 0.08, s.z + rz * d0);
-    pos.push(s.x + rx * d1, s.y + 1.12, s.z + rz * d1);
+    pos.push(s.x + rx * d1, s.y + 1.35, s.z + rz * d1);
     const v = i / n * (built.length / 2.4);
     uvs.push(0, v, 1, v);
   }
@@ -994,8 +994,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     group.add(new THREE.Mesh(keep(buildJersey(built, 1)), jerseyMat));
     group.add(new THREE.Mesh(keep(buildJersey(built, -1)), jerseyMat));
     const capMat = keep(new THREE.MeshBasicMaterial({ color: 0xf4f0ea, fog: false }));
-    group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, -0.78, 0.14, 1.16)), capMat));
-    group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, -0.78, 0.14, 1.16)), capMat));
+    group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, -0.78, 0.14, 1.38)), capMat));
+    group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, -0.78, 0.14, 1.38)), capMat));
   }
   const walkTex = keep(sidewalkTexture());
   walkTex.repeat.set(1, 8);

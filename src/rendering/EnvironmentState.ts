@@ -28,7 +28,7 @@ export function lookFromFlags(night: boolean, weather: string, morning = false):
 export type FogKey = "city" | "desert" | "snow" | "carmel" | "stone";
 
 export const FOG: Record<FogKey, { day: number; night: number; far: number; dayCol: number; nightCol: number }> = {
-  city: { day: 0.000012, night: 0.00016, far: 10000, dayCol: 0x6eb4dc, nightCol: 0x1a2838 },
+  city: { day: 0.000012, night: 0.00009, far: 10000, dayCol: 0x6eb4dc, nightCol: 0x243848 },
   desert: { day: 0.00006, night: 0.00012, far: 12000, dayCol: 0xb8a888, nightCol: 0x1a2838 },
   snow: { day: 0.00004, night: 0.0001, far: 12000, dayCol: 0xc8dcec, nightCol: 0x1a2838 },
   carmel: { day: 0.00002, night: 0.0001, far: 12000, dayCol: 0x6eb4dc, nightCol: 0x1a2838 },
