@@ -6031,6 +6031,8 @@ function addLandmarks(
     }
     const makeTrain = (phase: number, trackX: number) => {
       const g = new THREE.Group();
+      const roof = new THREE.MeshStandardMaterial({ color: 0xe8eaee, roughness: 0.52, metalness: 0.28 });
+      bag.push(roof);
       for (let c = 0; c < 6; c++) {
         const body = new THREE.Mesh(new THREE.BoxGeometry(2.9, 4.1, 17.2), silver);
         body.position.set(0, 2.55, -c * 18.2);
@@ -6044,20 +6046,21 @@ function addLandmarks(
         const deck = new THREE.Mesh(new THREE.BoxGeometry(2.92, 0.12, 17.1), bandMat);
         deck.position.set(0, 3.15, -c * 18.2);
         g.add(deck);
-        for (let w = 0; w < 5; w++) {
-          const win = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.85, 2.1), darkGlass);
-          win.position.set(1.46, 2.35, -c * 18.2 - 6 + w * 3);
-          g.add(win);
-          const winB = win.clone();
-          winB.position.x = -1.46;
-          g.add(winB);
-          const win2 = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.7, 2.1), darkGlass);
-          win2.position.set(1.46, 3.65, -c * 18.2 - 6 + w * 3);
-          g.add(win2);
-          const win2B = win2.clone();
-          win2B.position.x = -1.46;
-          g.add(win2B);
-        }
+        const cap = new THREE.Mesh(new THREE.BoxGeometry(2.72, 0.16, 17.05), roof);
+        cap.position.set(0, 4.68, -c * 18.2);
+        g.add(cap);
+        const winStrip = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.95, 16.2), darkGlass);
+        winStrip.position.set(1.48, 2.42, -c * 18.2);
+        g.add(winStrip);
+        const winStripB = winStrip.clone();
+        winStripB.position.x = -1.48;
+        g.add(winStripB);
+        const winStrip2 = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.78, 16.2), darkGlass);
+        winStrip2.position.set(1.48, 3.68, -c * 18.2);
+        g.add(winStrip2);
+        const winStrip2B = winStrip2.clone();
+        winStrip2B.position.x = -1.48;
+        g.add(winStrip2B);
       }
       const nose = new THREE.Mesh(new THREE.BoxGeometry(2.7, 3.4, 4.6), silver);
       nose.position.set(0, 2.4, 10.4);
@@ -6068,6 +6071,9 @@ function addLandmarks(
       const screen = new THREE.Mesh(new THREE.BoxGeometry(2.2, 1.15, 0.12), darkGlass);
       screen.position.set(0, 3.05, 12.68);
       g.add(screen);
+      const dest = new THREE.Mesh(new THREE.PlaneGeometry(2.35, 0.42), mkSign("\u05E8\u05DB\u05D1\u05EA \u05D9\u05E9\u05E8\u05D0\u05DC", "HaHagana"));
+      dest.position.set(0, 3.58, 12.74);
+      g.add(dest);
       const panArm = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.6, 0.12), bandMat);
       panArm.position.set(0, 5.4, -2);
       g.add(panArm);
@@ -6080,6 +6086,7 @@ function addLandmarks(
       const lightR = lightL.clone();
       lightR.position.x = 0.85;
       g.add(lightR);
+      g.scale.setScalar(1.08);
       group.add(g);
       const mid = built.width / 2 + 9;
       const pts = built.samples.map((s) => ({
