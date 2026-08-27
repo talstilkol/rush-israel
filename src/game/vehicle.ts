@@ -260,10 +260,12 @@ export class ArcadeCar {
         this.reverseHold = 0;
       }
       const drag = (aero / mass + rolling) * dt;
-      if (Math.abs(this.speed) <= drag) {
+      const engineBrake = throttle <= 0.05 && brakeIn <= 0 && vAbs > 3 ? (ev ? 0.9 : 2.2 + this.gear * 0.4) * dt : 0;
+      const lose = drag + engineBrake;
+      if (Math.abs(this.speed) <= lose) {
         if (throttle <= 0 && brakeIn <= 0) this.speed = 0;
       } else {
-        this.speed -= Math.sign(this.speed) * drag;
+        this.speed -= Math.sign(this.speed) * lose;
       }
     } else {
       this.speed *= Math.exp(-2.4 * dt);
