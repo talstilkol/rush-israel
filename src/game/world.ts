@@ -1058,20 +1058,23 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   {
     const eyeGeo = keep(new THREE.BoxGeometry(0.2, 0.09, 0.32));
     const eyeMat = keep(new THREE.MeshBasicMaterial({ color: 0xfff2b0, fog: false }));
-    const eyeN = Math.min(320, Math.max(24, Math.floor(built.samples.length / 1.5)));
+    const eyeOffs = def.id === "ayalon" ? [0, built.width + 18] : [0];
+    const eyeN = Math.min(def.id === "ayalon" ? 560 : 320, Math.max(24, Math.floor(built.samples.length / 1.5) * eyeOffs.length));
     const eyes = new THREE.InstancedMesh(eyeGeo, eyeMat, eyeN);
     let ei = 0;
-    const stepE = Math.max(2, Math.floor(built.samples.length / (eyeN / 2)));
-    for (let i = 0; i < built.samples.length && ei < eyeN; i += stepE) {
-      const s = built.samples[i];
-      const d = built.width / 2 - 0.4;
-      for (const side of [1, -1]) {
-        if (ei >= eyeN) break;
-        _dummy.position.set(s.x + s.rx * d * side, s.y + 0.14, s.z + s.rz * d * side);
-        _dummy.scale.set(1, 1, 1);
-        _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
-        _dummy.updateMatrix();
-        eyes.setMatrixAt(ei++, _dummy.matrix);
+    const stepE = Math.max(2, Math.floor(built.samples.length / (eyeN / (2 * eyeOffs.length))));
+    for (const off of eyeOffs) {
+      for (let i = 0; i < built.samples.length && ei < eyeN; i += stepE) {
+        const s = built.samples[i];
+        const d = built.width / 2 - 0.4;
+        for (const side of [1, -1]) {
+          if (ei >= eyeN) break;
+          _dummy.position.set(s.x + s.rx * (off + d * side), s.y + 0.14, s.z + s.rz * (off + d * side));
+          _dummy.scale.set(1, 1, 1);
+          _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
+          _dummy.updateMatrix();
+          eyes.setMatrixAt(ei++, _dummy.matrix);
+        }
       }
     }
     eyes.count = ei;
