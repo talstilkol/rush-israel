@@ -846,17 +846,27 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       jerG.translate(0, 0, -1.3);
       jerG.computeVertexNormals();
       const jerM = keep(new THREE.MeshStandardMaterial({ color: 0xc8c4bc, roughness: 0.82, metalness: 0 }));
-      const nJer = 160;
-      const jers = new THREE.InstancedMesh(jerG, jerM, nJer);
+      const nJer = 120;
+      const jerRows = [
+        -built.width / 2 - 0.5,
+        built.width / 2 + 0.5,
+        midOff,
+        oppOff - built.width / 2 - 0.5,
+        oppOff + built.width / 2 + 0.5,
+      ];
+      const jers = new THREE.InstancedMesh(jerG, jerM, nJer * jerRows.length);
       let ji = 0;
       const stepJ = Math.max(1, Math.floor(built.samples.length / nJer));
-      for (let i = 0; i < built.samples.length && ji < nJer; i += stepJ) {
+      for (let i = 0; i < built.samples.length && ji < nJer * jerRows.length; i += stepJ) {
         const s = built.samples[i];
-        _dummy.position.set(s.x + s.rx * midOff, s.y + 0.06, s.z + s.rz * midOff);
-        _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
-        _dummy.scale.set(1, 1, 1);
-        _dummy.updateMatrix();
-        jers.setMatrixAt(ji++, _dummy.matrix);
+        for (const lat of jerRows) {
+          if (ji >= nJer * jerRows.length) break;
+          _dummy.position.set(s.x + s.rx * lat, s.y + 0.06, s.z + s.rz * lat);
+          _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
+          _dummy.scale.set(1, 1, 1);
+          _dummy.updateMatrix();
+          jers.setMatrixAt(ji++, _dummy.matrix);
+        }
       }
       jers.count = ji;
       jers.instanceMatrix.needsUpdate = true;
