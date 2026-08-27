@@ -239,15 +239,14 @@ export function createCarVisual(
   accentMat.roughness = 0.28;
   const dark = new THREE.MeshPhysicalMaterial({ color: 0x121418, metalness: 0.42, roughness: 0.46, envMapIntensity: 0.65 });
   const glass = new THREE.MeshPhysicalMaterial({
-    color: 0x1a2830,
-    metalness: 0,
-    roughness: 0.04,
+    color: 0x8aa4b4,
+    metalness: 0.06,
+    roughness: 0.07,
     transparent: true,
-    opacity: 0.55,
-    transmission: 0.52,
-    thickness: 0.12,
-    ior: 1.45,
-    envMapIntensity: 1.6,
+    opacity: 0.38,
+    envMapIntensity: 2.2,
+    clearcoat: 1,
+    clearcoatRoughness: 0.06,
   });
   const rubber = new THREE.MeshStandardMaterial({ color: 0x121214, metalness: 0.06, roughness: 0.82 });
   const rim = new THREE.MeshPhysicalMaterial({ color: 0xc8d0d6, metalness: 0.94, roughness: 0.14, clearcoat: 0.6, envMapIntensity: 1.4 });
