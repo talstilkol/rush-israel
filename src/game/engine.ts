@@ -446,7 +446,7 @@ export class RaceEngine {
         r.stats.color,
         r.stats.accent,
         shadows,
-        i === 0 && !soft && this.quality === "high",
+        i === 0 && !soft && this.quality !== "low",
         r.stats.body,
         r.stats.kit === "police",
         i === 0 ? this.opts.tune : undefined,

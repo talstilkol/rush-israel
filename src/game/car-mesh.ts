@@ -575,7 +575,7 @@ export function applyDamage(vis: CarVisual, dmg: number, dirt = 0) {
 export function setCarLights(vis: CarVisual, night: boolean) {
   const on = night;
   for (const s of vis.spots) {
-    s.intensity = on ? 3.6 : 0;
+    s.intensity = on ? 16 : 0;
     s.visible = on;
     if (!s.map) {
       const c = beamCookie();
@@ -599,7 +599,7 @@ export function setCarLights(vis: CarVisual, night: boolean) {
         m.color.setHex(0xffffff);
       }
     }
-    m.opacity = night ? 0.55 : 0;
+    m.opacity = night ? 0.78 : 0;
     vis.headPool.visible = night;
   }
 }
