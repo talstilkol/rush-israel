@@ -1471,6 +1471,29 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     group.add(canal);
     waterMeshes.push(canal);
     waterMats.push(canalMat);
+    const bankG = keep(new THREE.BoxGeometry(0.32, 1.35, 4.6));
+    const bankM = keep(new THREE.MeshStandardMaterial({ color: 0xb4b0a6, roughness: 0.9, metalness: 0 }));
+    const nBank = 110;
+    const bankLats = [canalOff - 2.35, canalOff + 2.35];
+    const banks = new THREE.InstancedMesh(bankG, bankM, nBank * 2);
+    let bi = 0;
+    const stepB = Math.max(1, Math.floor(built.samples.length / nBank));
+    for (let i = 0; i < built.samples.length && bi < nBank * 2; i += stepB) {
+      const s = built.samples[i];
+      for (const lat of bankLats) {
+        if (bi >= nBank * 2) break;
+        _dummy.position.set(s.x + s.rx * lat, s.y + 0.55, s.z + s.rz * lat);
+        _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
+        _dummy.scale.set(1, 1, 1);
+        _dummy.updateMatrix();
+        banks.setMatrixAt(bi++, _dummy.matrix);
+      }
+    }
+    banks.count = bi;
+    banks.instanceMatrix.needsUpdate = true;
+    banks.castShadow = true;
+    banks.receiveShadow = true;
+    group.add(banks);
   }
   for (const zone of def.clearZones ?? []) {
     const grass = new THREE.Mesh(keep(new THREE.PlaneGeometry(zone.w, zone.d)), keep(new THREE.MeshStandardMaterial({
