@@ -5807,6 +5807,20 @@ function addLandmarks(
         pier.castShadow = true;
         add(pier);
       }
+      const rx = sz;
+      const rz = -sx;
+      for (const side of [-1, 1]) {
+        const line = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.08, len * 0.94), white);
+        line.position.set(
+          x + rx * (half - 0.22) * side,
+          (y0 + y12) * 0.5 + 0.52,
+          z + rz * (half - 0.22) * side,
+        );
+        line.rotation.order = "YXZ";
+        line.rotation.y = yaw;
+        line.rotation.x = -Math.atan2(y12 - y0, len);
+        add(line);
+      }
     };
     const mkSign = (he: string, en?: string) => {
       const cnv = document.createElement("canvas");
