@@ -1193,6 +1193,30 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       group.add(face);
       si++;
     }
+    if (def.id === "ayalon") {
+      const oppOff = built.width + 18;
+      let sj = 0;
+      for (let i = 12; i < built.samples.length - 8 && sj < nSign; i += stepS) {
+        const s = built.samples[i];
+        const kind = kinds[sj % kinds.length];
+        const side = sj % 2 ? 1 : -1;
+        const off = oppOff + built.width / 2 + 1.85;
+        const px = s.x + s.rx * (side > 0 ? off : oppOff - built.width / 2 - 1.85);
+        const pz = s.z + s.rz * (side > 0 ? off : oppOff - built.width / 2 - 1.85);
+        const yaw = Math.atan2(s.tx, s.tz) + (side > 0 ? Math.PI : 0);
+        const pole = new THREE.Mesh(poleG, poleM);
+        pole.position.set(px, s.y, pz);
+        group.add(pole);
+        const face = new THREE.Mesh(
+          new THREE.PlaneGeometry(0.95, 0.95),
+          new THREE.MeshBasicMaterial({ map: maps[kind], transparent: true, depthWrite: false, fog: false }),
+        );
+        face.position.set(px, s.y + 3.05, pz);
+        face.rotation.y = yaw;
+        group.add(face);
+        sj++;
+      }
+    }
     if (!highway) {
       const boxM = keep(new THREE.MeshStandardMaterial({ color: 0x1a1c18, roughness: 0.5 }));
       const redM = keep(new THREE.MeshBasicMaterial({ color: 0xff2a2a }));
