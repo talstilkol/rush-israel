@@ -248,9 +248,16 @@ export function createCarVisual(
     clearcoat: 1,
     clearcoatRoughness: 0.06,
   });
-  const rubber = new THREE.MeshStandardMaterial({ color: 0x121214, metalness: 0.06, roughness: 0.82 });
-  const rim = new THREE.MeshPhysicalMaterial({ color: 0xc8d0d6, metalness: 0.94, roughness: 0.14, clearcoat: 0.6, envMapIntensity: 1.4 });
-  const disc = new THREE.MeshStandardMaterial({ color: 0x6a6e74, metalness: 0.86, roughness: 0.26 });
+  const rubber = new THREE.MeshPhysicalMaterial({
+    color: 0x141416,
+    metalness: 0.04,
+    roughness: 0.58,
+    envMapIntensity: 0.42,
+    clearcoat: 0.18,
+    clearcoatRoughness: 0.48,
+  });
+  const rim = new THREE.MeshPhysicalMaterial({ color: 0xc8d0d6, metalness: 0.96, roughness: 0.12, clearcoat: 0.85, clearcoatRoughness: 0.08, envMapIntensity: 1.65 });
+  const disc = new THREE.MeshPhysicalMaterial({ color: 0x6a6e74, metalness: 0.9, roughness: 0.22, envMapIntensity: 0.9 });
   const emitBrake = new THREE.MeshPhysicalMaterial({ color: 0x3a0608, emissive: 0xff1a12, emissiveIntensity: 0.5, roughness: 0.3 });
   const emitHead = new THREE.MeshPhysicalMaterial({ color: 0xfff6e0, emissive: 0xfff2c8, emissiveIntensity: 3.4, roughness: 0.12 });
   const chrome = new THREE.MeshPhysicalMaterial({ color: 0xd8dee4, metalness: 1, roughness: 0.08, envMapIntensity: 2 });
