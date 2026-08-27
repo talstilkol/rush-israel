@@ -2538,11 +2538,11 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       roadMat.clearcoatRoughness = 0.2;
     } else {
       roadMat.color.setHex(0xffffff);
-      roadMat.roughness = 0.42;
+      roadMat.roughness = 0.28;
       roadMat.metalness = 0;
-      roadMat.envMapIntensity = 0.85;
-      roadMat.clearcoat = 0.32;
-      roadMat.clearcoatRoughness = 0.38;
+      roadMat.envMapIntensity = 1.05;
+      roadMat.clearcoat = 0.42;
+      roadMat.clearcoatRoughness = 0.28;
     }
     if (roadMat.userData.uWet) {
       const n2 = nightAmt(clock);
