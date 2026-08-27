@@ -39,7 +39,7 @@ export type World = {
   streets: any[];
   ramps: Ramp[];
   followShadows: (x: number, y: number, z: number) => void;
-  followMirror: (x: number, z: number, yaw: number) => void;
+  followMirror: (x: number, y: number, z: number, yaw: number) => void;
   setPlanar: (on: boolean) => void;
   sunDir: THREE.Vector3;
   tick: (now: number, x: number, z: number) => void;
@@ -1071,7 +1071,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   if (shadows) {
     /** Codex 3.4: planar RT cap until Ayalon High p95 is measured on a user GPU. Do not raise. */
     const PLANAR_RT = 768;
-    mirror = new Reflector(new THREE.PlaneGeometry(36, 64), {
+    mirror = new Reflector(new THREE.PlaneGeometry(42, 80), {
       clipBias: 3e-3,
       textureWidth: PLANAR_RT,
       textureHeight: PLANAR_RT,
@@ -2238,10 +2238,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     dirNear.color.copy(dir.color);
     dirNear.visible = dir.castShadow;
   };
-  const followMirror = (x: number, z: number, yaw: number) => {
+  const followMirror = (x: number, y: number, z: number, yaw: number) => {
     if (!mirror || !planarOk) return;
     mirror.visible = true;
-    mirror.position.set(x, 0.028, z);
+    mirror.position.set(x, y + 0.03, z);
     mirror.rotation.set(-Math.PI / 2, yaw, 0);
     const col = mirror.material as THREE.ShaderMaterial;
     const wet = wx === "rain" || wx === "storm";

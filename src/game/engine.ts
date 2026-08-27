@@ -1131,7 +1131,7 @@ export class RaceEngine {
     if (this.photo) {
       this.stepPhoto(dt);
       this.world.tick(now, this.player.x, this.player.z);
-      this.world.followMirror(this.player.x, this.player.z, this.player.yaw);
+      this.world.followMirror(this.player.x, this.player.y, this.player.z, this.player.yaw);
       this.post.setDrive(0, false);
       this.post.render();
       this.flushSnap();
@@ -1943,7 +1943,7 @@ export class RaceEngine {
     this.snapCamera(false, dt);
     this.world.followShadows(this.player.x, this.player.y, this.player.z);
     this.updateCsm();
-    this.world.followMirror(this.player.x, this.player.z, this.player.yaw);
+    this.world.followMirror(this.player.x, this.player.y, this.player.z, this.player.yaw);
 
     if (this.rainMesh && this.rainPos) {
       const cam = this.camera.position;
