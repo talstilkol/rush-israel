@@ -1430,8 +1430,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       normalMap: nrm,
       normalScale: new THREE.Vector2(0.9, 0.9)
     }));
-    const canalOff = -built.width / 2 - 10;
-    const canal = new THREE.Mesh(keep(buildStrip(built, canalOff, 6, -0.16)), canalMat);
+    const canalOff = built.width / 2 + 9 - 5.2;
+    const canal = new THREE.Mesh(keep(buildStrip(built, canalOff, 2.2, -0.16)), canalMat);
     canal.receiveShadow = true;
     group.add(canal);
     waterMeshes.push(canal);
