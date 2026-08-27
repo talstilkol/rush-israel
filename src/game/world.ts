@@ -1627,13 +1627,18 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     roughness: 0.92,
     envMapIntensity: 0.18
   }));
-  const crownGeo = keep(pine || stoneHill ? new THREE.ConeGeometry(pine ? 2.15 : 1.15, pine ? 5.6 : 7.6, 8) : acacia ? new THREE.ConeGeometry(3.4, 1.6, 8) : new THREE.IcosahedronGeometry(ficusStreet ? 2.2 : 1.7, 0));
+  const useCards = !(pine || stoneHill || acacia);
+  const crownGeo = keep(pine || stoneHill ? new THREE.ConeGeometry(pine ? 2.15 : 1.15, pine ? 5.6 : 7.6, 8) : acacia ? new THREE.ConeGeometry(3.4, 1.6, 8) : new THREE.PlaneGeometry(ficusStreet ? 5.4 : 4.4, ficusStreet ? 4.6 : 3.8));
   const frondMat = keep(new THREE.MeshStandardMaterial({
     map: keep(foliageTexture()),
     color: pine ? def.id === "hermon" ? 2449952 : 1853992 : acacia ? 6982200 : stoneHill ? 1853992 : def.theme === "park" ? 3832386 : 3107386,
     roughness: 0.86,
-    envMapIntensity: 0.2,
-    flatShading: pine || stoneHill
+    envMapIntensity: useCards ? 0.45 : 0.2,
+    flatShading: pine || stoneHill,
+    transparent: useCards,
+    alphaTest: useCards ? 0.28 : 0,
+    side: useCards ? THREE.DoubleSide : THREE.FrontSide,
+    depthWrite: true
   }));
   const treeSpots = [];
   if ((pine || stoneHill || acacia || ficusStreet || nyc) && def.id !== "timessquare" && def.id !== "ramon") {
@@ -1737,24 +1742,35 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       ci++;
     } else {
       const top = t.y + (ficusStreet ? 7.4 : deciduous ? 5 : 4.4) * h;
-      const blobs = ficusStreet ? [
-        [0, top, 0, 1.22],
-        [1.9, top - 0.35, 0.55, 0.88],
-        [-1.7, top - 0.45, -0.45, 0.84],
-        [0.35, top - 0.15, -1.85, 0.8],
-        [-0.55, top + 0.35, 1.65, 0.76],
-        [0.2, top + 1.05, 0.15, 0.7]
-      ] : [
-        [0, top, 0, 1.08],
-        [1.25, top - 0.45, 0.4, 0.78],
-        [-1.05, top - 0.6, -0.5, 0.74],
-        [0.45, top - 0.25, -1.15, 0.7],
-        [-0.35, top + 0.55, 0.85, 0.66]
-      ];
-      for (const [ox, oy, oz, sc] of blobs) {
-        _dummy.position.set(t.x + ox, oy, t.z + oz);
-        _dummy.scale.set(sc, sc * 0.92, sc);
-        _dummy.rotation.set(0, rng() * 6, 0);
+      const yaws = [0, 1.047, 2.094];
+      const sc0 = ficusStreet ? 1.32 : 1.08;
+      for (const yaw of yaws) {
+        _dummy.position.set(t.x, top, t.z);
+        _dummy.scale.set(sc0, sc0 * 0.92 * h, 1);
+        _dummy.rotation.set(0, yaw + rng() * 0.12, 0);
+        _dummy.updateMatrix();
+        crowns.setMatrixAt(ci, _dummy.matrix);
+        ci++;
+      }
+      if (ficusStreet) {
+        for (const yaw of yaws) {
+          _dummy.position.set(t.x, top + 1.2 * h, t.z);
+          _dummy.scale.set(0.88, 0.8 * h, 1);
+          _dummy.rotation.set(0, yaw + 0.45, 0);
+          _dummy.updateMatrix();
+          crowns.setMatrixAt(ci, _dummy.matrix);
+          ci++;
+        }
+      } else {
+        _dummy.position.set(t.x, top + 0.9 * h, t.z);
+        _dummy.scale.set(0.74, 0.7 * h, 1);
+        _dummy.rotation.set(0, 0.52, 0);
+        _dummy.updateMatrix();
+        crowns.setMatrixAt(ci, _dummy.matrix);
+        ci++;
+        _dummy.position.set(t.x, top - 0.28 * h, t.z);
+        _dummy.scale.set(0.92, 0.82 * h, 1);
+        _dummy.rotation.set(0, 1.22, 0);
         _dummy.updateMatrix();
         crowns.setMatrixAt(ci, _dummy.matrix);
         ci++;
