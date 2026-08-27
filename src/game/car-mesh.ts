@@ -316,6 +316,11 @@ export function createCarVisual(
 
   const cabinFill = new THREE.MeshStandardMaterial({ color: 0x0a0c10, roughness: 0.92, metalness: 0.04 });
   put(new THREE.BoxGeometry(L.W * 0.62, L.cabinH * 0.48, L.cabinL * 0.52), cabinFill, 0, cabinY - 0.06, L.cabinZ);
+  put(new THREE.BoxGeometry(L.W * 0.56, 0.07, 0.2), black, 0, cabinY - 0.1, L.cabinZ + L.cabinL * 0.26);
+  put(new THREE.BoxGeometry(0.26, 0.2, 0.3), black, -0.17, cabinY - 0.2, L.cabinZ - 0.02);
+  put(new THREE.BoxGeometry(0.26, 0.2, 0.3), black, 0.17, cabinY - 0.2, L.cabinZ - 0.02);
+  const helm = new THREE.TorusGeometry(0.13, 0.016, 8, 18);
+  put(helm, black, -0.17, cabinY - 0.04, L.cabinZ + L.cabinL * 0.2, 0.62, 0, 0);
 
   const glassW = L.W * 0.68;
   const pane = (w: number, h: number) => new THREE.BoxGeometry(w, h, 0.036);

@@ -12,7 +12,7 @@ export async function loadGround() {
   t.wrapS = t.wrapT = THREE.RepeatWrapping;
   t.colorSpace = THREE.SRGBColorSpace;
   t.repeat.set(90, 90);
-  t.anisotropy = 4;
+  t.anisotropy = 8;
   t.needsUpdate = true;
   tex = t;
   return tex;
