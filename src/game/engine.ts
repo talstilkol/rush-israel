@@ -576,22 +576,16 @@ export class RaceEngine {
     } catch {
       /* warmup is best-effort */
     }
-    if (!this.soft && this.quality !== "low") {
+    if (!this.captureSceneEnv()) {
       try {
-        const size = this.trackDef.id === "ayalon" ? 128 : 96;
-        const rt = new THREE.WebGLCubeRenderTarget(size);
-        const cam = new THREE.CubeCamera(4, 400, rt);
-        cam.position.set(this.player.x, this.player.y + 26, this.player.z);
-        for (const v of this.visuals) v.group.visible = false;
-        cam.update(this.renderer, this.scene);
-        for (const v of this.visuals) v.group.visible = true;
-        this.scene.environment = rt.texture;
-        this.scene.environmentIntensity = this.world.night ? 0.42 : 0.7;
-        this.leases.retain("boot-env", () => rt.dispose());
+        const env = bakeEnv(this.renderer, this.world.night);
+        this.setEnvRT(env);
+        this.scene.environment = env.texture;
       } catch {
         /* probe is optional */
       }
     }
+    this.scene.environmentIntensity = this.world.night ? 0.42 : 0.7;
     this.renderer.setAnimationLoop(() => this.frame());
 
     this.rivalIdx = (this.opts.eventId?.length ?? 1) % 4;
@@ -774,14 +768,16 @@ export class RaceEngine {
 
   private upgradeGraphics() {
     if (this.disposed) return;
-    try {
-      const env = bakeEnv(this.renderer, this.world.night);
-      this.setEnvRT(env);
-      this.scene.environment = env.texture;
-      this.scene.environmentIntensity = this.world.night ? 0.52 : 0.88;
-    } catch {
-      /* keep fallback */
+    if (!this.captureSceneEnv()) {
+      try {
+        const env = bakeEnv(this.renderer, this.world.night);
+        this.setEnvRT(env);
+        this.scene.environment = env.texture;
+      } catch {
+        /* keep fallback */
+      }
     }
+    this.scene.environmentIntensity = this.world.night ? 0.52 : 0.88;
     if (this.disposed) return;
     try {
       const post = createPost(this.renderer, this.scene, this.camera, this.world.night, this.lite);
@@ -985,14 +981,44 @@ export class RaceEngine {
       this.pushHud();
       return;
     }
-    try {
-      const env = bakeEnv(this.renderer, this.world.night);
-      this.setEnvRT(env);
-      this.scene.environment = env.texture;
-    } catch {
-      /* keep previous env */
+    if (!this.captureSceneEnv()) {
+      try {
+        const env = bakeEnv(this.renderer, this.world.night);
+        this.setEnvRT(env);
+        this.scene.environment = env.texture;
+      } catch {
+        /* keep previous env */
+      }
     }
     this.pushHud();
+  }
+
+  private captureSceneEnv() {
+    if (this.disposed || this.soft || this.quality === "low") return false;
+    try {
+      const size = this.trackDef.id === "ayalon" ? 128 : 96;
+      const rt = new THREE.WebGLCubeRenderTarget(size);
+      const cam = new THREE.CubeCamera(4, 400, rt);
+      cam.position.set(this.player.x, this.player.y + 26, this.player.z);
+      const hidden: THREE.Object3D[] = [];
+      const stash = (g: THREE.Object3D) => {
+        if (g.visible) {
+          g.visible = false;
+          hidden.push(g);
+        }
+      };
+      for (const v of this.visuals) stash(v.group);
+      for (const v of this.trafficVis) stash(v.group);
+      for (const v of this.copVis) stash(v.group);
+      cam.update(this.renderer, this.scene);
+      for (const g of hidden) g.visible = true;
+      this.leases.release("boot-env");
+      this.scene.environment = rt.texture;
+      this.leases.retain("boot-env", () => rt.dispose());
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   private applyAltitudeLook() {
