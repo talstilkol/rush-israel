@@ -1913,6 +1913,9 @@ export class RaceEngine {
       }
       (this.sparks.geometry.getAttribute("position") as THREE.BufferAttribute).needsUpdate = true;
       this.sparks.visible = true;
+      const sm = this.sparks.material as THREE.PointsMaterial;
+      sm.color.setHex(p.lastHit === "building" ? 0xff7a38 : p.lastHit === "car" ? 0xf4f6f8 : 0xffe080);
+      sm.size = p.lastHit === "building" ? 0.26 : 0.16;
       this.skidAcc += Math.abs(p.speed) * dt;
       if (this.skidAcc > 0.55) {
         this.skidAcc = 0;
