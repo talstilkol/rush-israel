@@ -296,6 +296,7 @@ function buildJersey(built: BuiltTrack, side: number) {
   const d1 = d0 + 0.42;
   const pos = [];
   const idx = [];
+  const uvs: number[] = [];
   const n = segsOf(built);
   for (let i = 0; i <= n; i++) {
     const s = samp(built, i);
@@ -303,6 +304,8 @@ function buildJersey(built: BuiltTrack, side: number) {
     const rz = s.rz * side;
     pos.push(s.x + rx * d0, s.y + 0.08, s.z + rz * d0);
     pos.push(s.x + rx * d1, s.y + 1.12, s.z + rz * d1);
+    const v = i / n * (built.length / 2.4);
+    uvs.push(0, v, 1, v);
   }
   for (let i = 0; i < n; i++) {
     const a = i * 2;
@@ -310,6 +313,7 @@ function buildJersey(built: BuiltTrack, side: number) {
   }
   const geo = new THREE.BufferGeometry();
   geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
   geo.setIndex(idx);
   geo.computeVertexNormals();
   return geo;
@@ -959,11 +963,18 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     eyes.instanceMatrix.needsUpdate = true;
     group.add(eyes);
   }
+  const jerseySrc = getCurb("city");
+  const jerseyMap = jerseySrc ? keep(jerseySrc.clone()) : undefined;
+  if (jerseyMap) {
+    jerseyMap.wrapS = jerseyMap.wrapT = THREE.RepeatWrapping;
+    jerseyMap.needsUpdate = true;
+  }
   const jerseyMat = keep(new THREE.MeshStandardMaterial({
+    map: jerseyMap,
     color: 14209732,
-    roughness: 0.62,
-    metalness: 0.08,
-    envMapIntensity: 0.35
+    roughness: 0.58,
+    metalness: 0.06,
+    envMapIntensity: 0.4
   }));
   if (def.theme !== "desert" && def.theme !== "snow" && def.id !== "rothschild" && def.theme !== "stone" && def.theme !== "jaffa" && def.theme !== "carmel") {
     group.add(new THREE.Mesh(keep(buildJersey(built, 1)), jerseyMat));

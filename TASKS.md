@@ -36,7 +36,7 @@
 1.2.4. SMAA Mid/High — **DONE** (tiny: SMAAPass; לא TAA).  
 1.2.5. CSM High 3 / Mid 1 / Low 0 — **DONE** (tiny).  
 1.2.6. לילה/יום — **DONE** (tiny). לא HDRI.  
-1.2.22. G6: פנסי שחקן גם ב־Mid, intensity 16, בריכה 0.78 — **DONE** (tiny).
+1.2.23. מעקה ג'רזי: UV + `curb-city.png` — **DONE** (tiny).
 
 ### 1.3 אחרי תמונת השלום
 1.3.1. Pose-lock מצלמת השלום.  
