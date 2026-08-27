@@ -635,13 +635,16 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   group.add(skyDome);
   let span = 420;
   for (const s of built.samples) span = Math.max(span, Math.hypot(s.x, s.z));
-  const groundCol = def.id === "ayalon" ? 0x3a4046 : def.theme === "desert" ? def.sand : def.theme === "stone" ? 12890250 : def.theme === "carmel" ? 4874808 : def.theme === "snow" ? 15265524 : def.theme === "jaffa" ? 12098164 : 5920332;
+  const groundCol = def.id === "ayalon" ? 0xd0d4d8 : def.theme === "desert" ? def.sand : def.theme === "stone" ? 0xe8dcc8 : def.theme === "carmel" ? 0xc4c8a8 : def.theme === "snow" ? 0xf0f4f8 : def.theme === "jaffa" ? 0xe2d2bc : 0xd4cfc6;
+  const gMap = keep(groundTexture(def.ground));
+  gMap.wrapS = gMap.wrapT = THREE.RepeatWrapping;
+  gMap.repeat.set(90, 90);
   const ground = new THREE.Mesh(keep(new THREE.PlaneGeometry(Math.max(def.id === "scopus" || def.id === "hermon" || def.id === "ramon" ? 2800 : 1200, span * (def.id === "scopus" ? 4.2 : 2.8)), Math.max(def.id === "scopus" || def.id === "hermon" || def.id === "ramon" ? 2800 : 1200, span * (def.id === "scopus" ? 4.2 : 2.8)))), keep(new THREE.MeshStandardMaterial({
-    map: keep(groundTexture(def.ground)),
+    map: gMap,
     color: groundCol,
     roughness: 0.97,
     metalness: 0,
-    envMapIntensity: 0.1
+    envMapIntensity: 0.12
   })));
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = -0.4;
@@ -2452,7 +2455,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     haloMat.opacity = n > 0.45 ? 0.58 : 0;
     haloMat.needsUpdate = true;
     applyWet();
-    groundMat.color.setHex(n > 0.5 ? 3815474 : groundCol);
+    groundMat.color.setHex(n > 0.5 ? 0x4a5058 : groundCol);
     groundMat.envMapIntensity = lerp(0.14, 0.08, n);
     domeMat.color.setHex(n > 0.5 ? 923688 : clock < 0.38 ? 5942748 : 3839696);
     walkStd.color.setHex(n > 0.5 ? 9078400 : 12892324);
