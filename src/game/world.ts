@@ -828,11 +828,11 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       fog: false,
       side: THREE.DoubleSide,
     }));
-    const chevN = Math.min(28, Math.max(8, Math.floor(built.samples.length / 14)));
+    const chevN = Math.min(def.id === "ayalon" ? 48 : 28, Math.max(8, Math.floor(built.samples.length / (def.id === "ayalon" ? 9 : 14))));
     const chevs = new THREE.InstancedMesh(chevGeo, chevMat, chevN);
     const stepC = Math.max(1, Math.floor(built.samples.length / chevN));
     let ci2 = 0;
-    const chevS = Math.min(1.2, Math.max(0.72, built.width / 18));
+    const chevS = def.id === "ayalon" ? 1.55 : Math.min(1.2, Math.max(0.72, built.width / 18));
     for (let i = 2; i < built.samples.length - 2 && ci2 < chevN; i += stepC) {
       const s = built.samples[i];
       _dummy.position.set(s.x, s.y + 0.06, s.z);
