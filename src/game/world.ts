@@ -5665,49 +5665,6 @@ function addLandmarks(
     mallR.position.set(mall.x, 16.6, mall.z);
     add(mallR);
     hitRoad(mall.x, mall.z, 18);
-    const sav = tlv(32.0837, 34.79835);
-    const savHall = new THREE.Mesh(new THREE.BoxGeometry(46, 11.4, 22), cream);
-    savHall.position.set(sav.x, 5.7, sav.z);
-    add(savHall);
-    const savOrange = new THREE.MeshStandardMaterial({ color: 0xc45a1a, roughness: 0.55 });
-    bag.push(savOrange);
-    const savStripe = new THREE.Mesh(new THREE.BoxGeometry(46.2, 1.1, 0.4), savOrange);
-    savStripe.position.set(sav.x, 10.4, sav.z + 11.1);
-    add(savStripe);
-    const savRoof = new THREE.Mesh(new THREE.CylinderGeometry(12.4, 12.4, 48, 16, 1, true, 0, Math.PI), white);
-    savRoof.rotation.z = Math.PI / 2;
-    savRoof.position.set(sav.x, 12.8, sav.z);
-    add(savRoof);
-    const platGeo = new THREE.BoxGeometry(8.4, 0.45, 52);
-    const savPlats = new THREE.InstancedMesh(platGeo, white, 3);
-    savPlats.frustumCulled = false;
-    [-11, 0, 11].forEach((ox, i) => {
-      _dummy.position.set(sav.x + ox, 1.1, sav.z - 18);
-      _dummy.rotation.set(0, 0, 0);
-      _dummy.scale.set(1, 1, 1);
-      _dummy.updateMatrix();
-      savPlats.setMatrixAt(i, _dummy.matrix);
-    });
-    savPlats.instanceMatrix.needsUpdate = true;
-    group.add(savPlats);
-    bag.push(platGeo);
-    glowAt(sav.x, 14, sav.z, 0xff8844, 28, 24);
-    hitRoad(sav.x, sav.z, 16, 24, 14);
-    const placeRailStop = (lat: number, lon: number, sc: number) => {
-      const p = tlv(lat, lon);
-      const hall = new THREE.Mesh(new THREE.BoxGeometry(28 * sc, 8.2 * sc, 14 * sc), cream);
-      hall.position.set(p.x, 4.1 * sc, p.z);
-      add(hall);
-      const stripe = new THREE.Mesh(new THREE.BoxGeometry(28.2 * sc, 0.85 * sc, 0.32 * sc), savOrange);
-      stripe.position.set(p.x, 7.8 * sc, p.z + 7 * sc);
-      add(stripe);
-      const canopy = new THREE.Mesh(new THREE.BoxGeometry(30 * sc, 0.35 * sc, 16 * sc), white);
-      canopy.position.set(p.x, 8.6 * sc, p.z);
-      add(canopy);
-      hitRoad(p.x, p.z, 10 * sc, 15 * sc, 9 * sc);
-    };
-    placeRailStop(32.0547, 34.7982, 0.78);
-    placeRailStop(32.1035, 34.79815, 0.9);
     const kit = getAyalonRoad();
     const rampAsphalt = new THREE.MeshPhysicalMaterial({
       map: kit?.map ?? null,
