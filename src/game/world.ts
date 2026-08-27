@@ -323,6 +323,7 @@ function buildRail(built: BuiltTrack, side: number) {
   const d = built.width / 2 + 0.48;
   const pos = [];
   const idx = [];
+  const uvs: number[] = [];
   const n = samples.length;
   for (let i = 0; i <= n; i++) {
     const s = samples[i % n];
@@ -330,6 +331,8 @@ function buildRail(built: BuiltTrack, side: number) {
     const rz = s.rz * side;
     pos.push(s.x + rx * d, s.y + 0.22, s.z + rz * d);
     pos.push(s.x + rx * d, s.y + 0.72, s.z + rz * d);
+    const v = i / n * (built.length / 3);
+    uvs.push(0, v, 1, v);
   }
   for (let i = 0; i < n; i++) {
     const a = i * 2;
@@ -337,6 +340,7 @@ function buildRail(built: BuiltTrack, side: number) {
   }
   const geo = new THREE.BufferGeometry();
   geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
   geo.setIndex(idx);
   geo.computeVertexNormals();
   return geo;
@@ -1067,11 +1071,12 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     }
     }
   }
-  const railMat = keep(new THREE.MeshStandardMaterial({
-    color: 10134186,
-    metalness: 0.72,
-    roughness: 0.32,
-    envMapIntensity: 1.1
+  const railMat = keep(new THREE.MeshPhysicalMaterial({
+    color: 0x9aa3aa,
+    metalness: 0.82,
+    roughness: 0.28,
+    roughnessMap: getBakedRoad(3)?.roughnessMap,
+    envMapIntensity: 1.25
   }));
   if (def.theme !== "desert" && def.theme !== "snow" && def.theme !== "carmel" && def.id !== "ayalon") {
     group.add(new THREE.Mesh(keep(buildRail(built, 1)), railMat));
