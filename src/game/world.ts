@@ -890,6 +890,29 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       rails.count = ri;
       rails.instanceMatrix.needsUpdate = true;
       group.add(rails);
+      const wallG = keep(new THREE.BoxGeometry(0.22, 3.4, 4.4));
+      const wallM = keep(new THREE.MeshStandardMaterial({ color: 0xc8c4ba, roughness: 0.9, metalness: 0 }));
+      const nWall = 90;
+      const wallRows = [-built.width / 2 - 1.4, oppOff + built.width / 2 + 1.4];
+      const walls = new THREE.InstancedMesh(wallG, wallM, nWall * wallRows.length);
+      let wi = 0;
+      const stepW = Math.max(1, Math.floor(built.samples.length / nWall));
+      for (let i = 0; i < built.samples.length && wi < nWall * wallRows.length; i += stepW) {
+        const s = built.samples[i];
+        for (const lat of wallRows) {
+          if (wi >= nWall * wallRows.length) break;
+          _dummy.position.set(s.x + s.rx * lat, s.y + 1.72, s.z + s.rz * lat);
+          _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
+          _dummy.scale.set(1, 1, 1);
+          _dummy.updateMatrix();
+          walls.setMatrixAt(wi++, _dummy.matrix);
+        }
+      }
+      walls.count = wi;
+      walls.instanceMatrix.needsUpdate = true;
+      walls.castShadow = true;
+      walls.receiveShadow = true;
+      group.add(walls);
     }
   }
   {
