@@ -2152,6 +2152,7 @@ export class RaceEngine {
         ...this.cops.map((r) => ({ x: r.x, z: r.z, yaw: r.yaw, isPlayer: false, cop: true })),
       ],
       trackPoly: this.poly,
+      poiMarks: this.trackDef.pois.map((p) => ({ x: p.x, z: p.z })),
       progress: this.player.progress,
       mode: this.mode,
       driftScore: Math.round(this.player.driftScore),

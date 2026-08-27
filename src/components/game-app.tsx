@@ -285,14 +285,18 @@ export function GameApp() {
 		const n = pts.length;
 		const start = Math.floor((h.progress % 1 + 1) % 1 * n);
 		ctx.strokeStyle = "#ffd24a";
-		ctx.lineWidth = 4;
+		ctx.lineWidth = 5;
 		ctx.beginPath();
-		for (let k = 0; k < Math.max(6, Math.floor(n * .2)); k++) {
+		for (let k = 0; k < Math.max(8, Math.floor(n * .32)); k++) {
 			const p = pts[(start + k) % n];
 			if (k === 0) ctx.moveTo(mx(p.x), mz(p.z));
 			else ctx.lineTo(mx(p.x), mz(p.z));
 		}
 		ctx.stroke();
+		for (const p of h.poiMarks) {
+			ctx.fillStyle = "#c9a05a";
+			ctx.fillRect(mx(p.x) - 2.2, mz(p.z) - 2.2, 4.4, 4.4);
+		}
 		for (const c of h.minimap) {
 			ctx.fillStyle = c.isPlayer ? "#f2eee8" : c.cop ? "#d45b4a" : c.traffic ? "#d4b46a" : "#8b959e";
 			if (c.isPlayer) {

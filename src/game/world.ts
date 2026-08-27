@@ -503,6 +503,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   let lodBills = null;
   let lodShads = null;
   const lodWear: THREE.InstancedMesh[] = [];
+  let lodPuddles: THREE.InstancedMesh | null = null;
   const preset = skyFor(def, isNight, wx);
   const sky = new Sky();
   sky.visible = false;
@@ -2141,6 +2142,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   }
   puddles.visible = isNight || wx !== "clear";
   group.add(puddles);
+  lodPuddles = puddles;
   const neonGroup = new THREE.Group();
   neonGroup.visible = isNight;
   const neonGeo = keep(new THREE.BoxGeometry(3.4, 0.55, 0.1));
@@ -2526,6 +2528,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     tanks.castShadow = hi;
     if (farMesh) farMesh.visible = hi || mid;
     for (const w of lodWear) w.visible = hi || mid;
+    if (lodPuddles) lodPuddles.visible = hi;
   };
   applyWet();
   return {

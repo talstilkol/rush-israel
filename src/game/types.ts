@@ -180,6 +180,7 @@ export type HudState = {
   sideStreet: string;
   minimap: { x: number; z: number; yaw: number; isPlayer: boolean; traffic?: boolean; cop?: boolean }[];
   trackPoly: { x: number; z: number }[];
+  poiMarks: { x: number; z: number }[];
   progress: number;
   mode: RaceMode;
   driftScore: number;
