@@ -36,7 +36,7 @@
 1.2.4. SMAA Mid/High — **DONE** (tiny: SMAAPass; לא TAA).  
 1.2.5. CSM High 3 / Mid 1 / Low 0 — **DONE** (tiny).  
 1.2.6. לילה/יום — **DONE** (tiny). לא HDRI.  
-1.2.32. מינימפה: כיוון צהוב + נקודות סמלים; שלוליות כבויות ב־Low — **DONE** (tiny).
+1.2.33. אחרי 100 קמ״ש בלי רצפת 18%; 0–100 נשאר לפי spec; PHYSICS_VERSION 6 — **DONE** (tiny, qa:accel ירוק).
 
 ### 1.3 אחרי תמונת השלום
 1.3.1. Pose-lock מצלמת השלום.  

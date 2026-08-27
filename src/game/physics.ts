@@ -8,7 +8,7 @@ export const PHYSICS_HZ = 120;
 export const PHYSICS_DT = 1 / PHYSICS_HZ;
 export const MAX_CATCHUP_STEPS = 24;
 export const MAX_ACCUMULATOR = 0.2;
-export const PHYSICS_VERSION = 5;
+export const PHYSICS_VERSION = 6;
 
 export type HandlingMode = "arcade" | "simcade";
 

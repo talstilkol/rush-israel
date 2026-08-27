@@ -218,7 +218,7 @@ export class ArcadeCar {
     const aero = stats.drag * 0.00155 * vAbs * vAbs;
     const surf = SURFACE_SPEC[this.surfaceKind] ?? SURFACE_SPEC.asphalt;
     const rolling = vAbs > 0.2 ? (1.15 + (this.onTrack ? 0 : stats.body === "rally" ? 1.15 : 3.4)) * surf.roll * wx.roll : 0;
-    const driveCurve = Math.max(0.18, 1 - clamp(vAbs / Math.max(8, maxSpeed), 0, 1) ** 2.35);
+    const driveCurve = Math.max(0.02, 1 - clamp(vAbs / Math.max(8, maxSpeed), 0, 1) ** 2.1);
     const fx = -Math.sin(this.yaw);
     const fz = -Math.cos(this.yaw);
     const rx = Math.cos(this.yaw);
@@ -241,7 +241,7 @@ export class ArcadeCar {
         const v100 = 27.778;
         const t100 = Math.max(3.2, stats.zeroTo100 ?? 8);
         const pull = throttle * (v100 / t100) * mass * 1.35 * wx.long * surf.long * (boosting ? 1.08 : 1) * (this.drafting ? 1.05 : 1);
-        const top = vAbs <= v100 ? 1 : Math.max(0.14, driveCurve);
+        const top = vAbs <= v100 ? 1 : Math.max(0.02, driveCurve);
         this.speed += (pull / mass) * top * dt;
       }
       if (brakeIn > 0) {
