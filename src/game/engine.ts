@@ -822,6 +822,7 @@ export class RaceEngine {
     else if (!(this.post as { composer?: unknown }).composer) this.upgradeGraphics();
     else this.post.setTier(this.quality);
     this.world.setLod?.(this.quality);
+    if (this.rainMesh) this.rainMesh.visible = this.quality !== "low" && this.weather !== "clear" && this.weather !== "hamsin";
     this.trimCsm();
     this.applyGfxStep();
     this.onResize();
@@ -1995,6 +1996,7 @@ export class RaceEngine {
     this.world.followMirror(this.player.x, this.player.y, this.player.z, this.player.yaw);
 
     if (this.rainMesh && this.rainPos) {
+      this.rainMesh.visible = this.quality !== "low";
       const cam = this.camera.position;
       const fall = this.trackDef.theme === "snow" ? 9 : this.weather === "hamsin" ? 5 : this.weather === "storm" ? 38 : 26;
       const n = this.rainPos.length / 3;

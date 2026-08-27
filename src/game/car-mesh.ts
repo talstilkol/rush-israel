@@ -644,8 +644,12 @@ export function updateCarVisual(
   if (vis.wheels[3]) vis.wheels[3].position.y = ys[3] + (pitch - bank) * travel;
   if (vis.steerWheel) vis.steerWheel.rotation.z = -steer * 0.9;
 
-  const braking = brake > 0.15 || speed < -1;
+  const reversing = speed < -0.8;
+  const braking = brake > 0.15 && !reversing;
   for (const m of vis.brakeLights) {
-    (m.material as THREE.MeshPhysicalMaterial).emissiveIntensity = braking ? 4.6 : 0.45;
+    const mat = m.material as THREE.MeshPhysicalMaterial;
+    mat.emissive.setHex(reversing ? 0xf4f6f8 : 0xff1a12);
+    mat.color.setHex(reversing ? 0xf4f6f8 : 0x3a0608);
+    mat.emissiveIntensity = reversing || braking ? 4.6 : 0.45;
   }
 }
