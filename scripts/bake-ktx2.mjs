@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-/** Uncompressed RGBA KTX2 from PNG. Not UASTC — no toktx in this sandbox. */
+/** Do not ship output. Uncompressed RGBA KTX2 is not UASTC; KTX2Loader cannot transcode it.
+ *  Keep this file only as a note. Real path is toktx --encode uastc when the tool exists. */
 import { readFileSync, writeFileSync } from "node:fs";
 import { PNG } from "pngjs";
 import {

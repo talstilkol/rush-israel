@@ -51,7 +51,7 @@
 
 ### 1.5 אחרי שסלייס ישראל נראה כמו משחק
 1.5.1. **לא** לעבור ברירת מחדל ל-WebGPU.  
-1.5.2. UASTC אטלס **או** להסיר טענת KTX2 (`blob.ktx2` היום לא UASTC).  
+1.5.2. UASTC אטלס **או** להסיר טענת KTX2 — **DONE** (tiny: PNG בלבד, אין blob.ktx2, אין KTX2Loader).  
 1.5.3. תאי עולם 256m רק אם drawCalls מעל תקציב.  
 1.5.4. רכב hero glTF רק אם המשתמש נותן רישיון.  
 1.5.5. TSL כביש רק אחרי WebGPU אופציונלי ירוק.
@@ -97,7 +97,7 @@
 | 3.1 | רכב hero סרוק | **NOT DONE** (**FAKED** אם "סריקה") | no |
 | 7.1 | WebGPU כרנדרר משחק | **NOT DONE** | no |
 | 7.2 | TSL | **NOT DONE** | no |
-| 8.1 | UASTC | **PARTIAL** (blob.ktx2 לא דחוס) | no |
+| 8.1 | UASTC | **DONE** (tiny: loader removed; not UASTC atlas) | no (atlas) |
 | 8.4 | תאי 256m | **NOT DONE** | no |
 | 9.2 | pixel-diff CI | **NOT DONE** | no |
 | 2.2 | planar 768 | **PARTIAL** | no |
