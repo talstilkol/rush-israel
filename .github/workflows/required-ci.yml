@@ -23,11 +23,13 @@ jobs:
     timeout-minutes: 45
     env:
       CI: "true"
-      VITE_AUTH_ENABLED: "false"
+      NODE_OPTIONS: "--experimental-strip-types"
       PLAYWRIGHT_BROWSERS_PATH: "0"
     steps:
       - name: Check out exact revision
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
 
       - name: Set up pinned Node.js
         uses: actions/setup-node@v4
