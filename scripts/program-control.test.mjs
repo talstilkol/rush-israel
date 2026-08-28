@@ -3,32 +3,33 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { fromRoot } from "./project-root.mjs";
 
-const RSH_006_IMPLEMENTATION_HEAD = "2c7348d184473f3ae70bdc8c513d57b6058780d6";
-
 function readJson(name) {
   return JSON.parse(readFileSync(fromRoot(name), "utf8"));
 }
 
-test("canonical queue contains exactly RSH-001 through RSH-067", () => {
-  const queue = readJson("QUEUE.json");
-  const expected = Array.from(
+function expectedUnitOrder() {
+  return Array.from(
     { length: 67 },
     (_, index) => `RSH-${String(index + 1).padStart(3, "0")}`,
   );
+}
+
+test("canonical queue contains exactly RSH-001 through RSH-067", () => {
+  const queue = readJson("QUEUE.json");
   assert.equal(queue.counts.total, 67);
-  assert.deepEqual(queue.unit_order, expected);
+  assert.deepEqual(queue.unit_order, expectedUnitOrder());
   assert.equal(
     queue.counts.accepted
       + queue.counts.in_review
       + queue.counts.eligible
       + queue.counts.deferred,
-    67,
+    queue.counts.total,
   );
-  assert.equal(queue.counts.remaining, 61);
+  assert.equal(queue.counts.remaining, queue.counts.total - queue.counts.accepted);
   assert.equal(Object.keys(queue.accepted).length, queue.counts.accepted);
 });
 
-test("post-merge current state and queue agree exactly", () => {
+test("current state and queue agree on every live program count", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
   assert.equal(current.program_status.program_units_total, queue.counts.total);
@@ -40,59 +41,71 @@ test("post-merge current state and queue agree exactly", () => {
   assert.equal(current.program_status.queue_head, queue.queue_head.id);
   assert.equal(current.program_status.queue_head_state, queue.queue_head.state);
   assert.equal(current.program_status.queue_head_branch, queue.queue_head.branch);
-  assert.equal(current.next_eligible_change.unit, queue.queue_head.id);
-  assert.equal(current.next_eligible_change.branch, null);
-  assert.equal(current.next_eligible_change.pull_request, null);
-  assert.equal(queue.queue_head.automatic_start, false);
+  assert.equal(current.program_status.queue_head_pull_request, queue.queue_head.pull_request);
 });
 
-test("the owner-authorised batch is complete and ends at RSH-006", () => {
+test("the active owner-bounded batch is identical in both control documents", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
-  const units = ["RSH-002", "RSH-003", "RSH-004", "RSH-005", "RSH-006"];
+  const currentBatch = current.batch_authorization;
+  const queueBatch = queue.policy.active_bounded_batch;
 
-  assert.deepEqual(current.batch_authorization.authorized_units, units);
-  assert.equal(current.batch_authorization.closed_after, "RSH-006");
-  assert.equal(current.batch_authorization.completed_units, 5);
-  assert.equal(current.batch_authorization.total_units, 5);
-  assert.equal(current.batch_authorization.state, "completed");
-  assert.equal(current.batch_authorization["RSH-007_authorized"], false);
-
-  assert.deepEqual(queue.policy.completed_bounded_batch.authorized_units, units);
-  assert.equal(queue.policy.completed_bounded_batch.closed_after, "RSH-006");
-  assert.equal(queue.policy.completed_bounded_batch.completed, 5);
-  assert.equal(queue.policy.completed_bounded_batch.total, 5);
-  assert.equal(queue.next_instruction_contract.batch_authority_remaining, 0);
+  assert.deepEqual(currentBatch.authorized_units, queueBatch.authorized_units);
+  assert.deepEqual(currentBatch.authorized_units, [
+    "RSH-007",
+    "RSH-008",
+    "RSH-009",
+    "RSH-010",
+    "RSH-011",
+  ]);
+  assert.equal(currentBatch.completed_units, queueBatch.completed);
+  assert.equal(currentBatch.total_units, queueBatch.total);
+  assert.equal(currentBatch.closed_after, queueBatch.closed_after);
+  assert.equal(currentBatch.total_units, currentBatch.authorized_units.length);
+  assert.ok(currentBatch.completed_units >= 0);
+  assert.ok(currentBatch.completed_units <= currentBatch.total_units);
+  assert.equal(currentBatch.RSH-012_authorized, false);
 });
 
-test("RSH-006 acceptance transition is explicit and RSH-007 is not pre-created", () => {
+test("RSH-006 is reconciled to the live merged main baseline", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
   const baseline = readJson("BASELINE-REGISTER.json");
+  const mergeSha = "7ea076d377225d5db3561faf81fe1cedce091a28";
 
-  assert.equal(current.transition_basis.pull_request, 7);
-  assert.equal(current.transition_basis.reviewed_implementation_head_sha, RSH_006_IMPLEMENTATION_HEAD);
-  assert.equal(queue.transition_basis.effective_on_merge_of_pull_request, 7);
-  assert.equal(queue.transition_basis.reviewed_implementation_head_sha, RSH_006_IMPLEMENTATION_HEAD);
+  assert.equal(current.accepted_units["RSH-006"].merge_sha, mergeSha);
+  assert.equal(queue.accepted["RSH-006"].merge_sha, mergeSha);
+  const entry = baseline.baselines.find((item) => item.id === "B006-rsh-006-accepted");
+  assert.ok(entry);
+  assert.equal(entry.commit_sha, mergeSha);
+  assert.equal(entry.pull_request, 7);
+});
 
-  assert.equal(current.accepted_units["RSH-006"].pr, 7);
-  assert.equal(current.accepted_units["RSH-006"].implementation_head_sha, RSH_006_IMPLEMENTATION_HEAD);
-  assert.equal(current.accepted_units["RSH-006"].merge_sha, null);
-  assert.equal(queue.accepted["RSH-006"].pull_request, 7);
-  assert.equal(queue.accepted["RSH-006"].implementation_head_sha, RSH_006_IMPLEMENTATION_HEAD);
-  assert.equal(queue.accepted["RSH-006"].merge_sha, null);
-
-  const b006 = baseline.baselines.find((entry) => entry.id === "B006-rsh-006-accepted-on-pr-merge");
-  assert.ok(b006);
-  assert.equal(b006.pull_request, 7);
-  assert.equal(b006.reviewed_implementation_head_sha, RSH_006_IMPLEMENTATION_HEAD);
-  assert.equal(b006.merge_sha, null);
-
+test("RSH-007 is the sole in-review unit and RSH-008 is not pre-created", () => {
+  const current = readJson("CURRENT-STATE.json");
+  const queue = readJson("QUEUE.json");
+  assert.equal(queue.counts.in_review, 1);
   assert.equal(queue.queue_head.id, "RSH-007");
-  assert.equal(queue.queue_head.branch, null);
-  assert.equal(queue.queue_head.pull_request, null);
+  assert.equal(queue.queue_head.branch, "agent/rsh-007-github-actions-ci");
+  assert.equal(queue.queue_head.pull_request, 8);
+  assert.equal(current.active_change.unit, queue.queue_head.id);
+  assert.equal(current.active_change.branch, queue.queue_head.branch);
+  assert.equal(current.active_change.pull_request, queue.queue_head.pull_request);
+  assert.equal(current.validation.RSH-008_precreated, false);
   assert.equal(queue.next_after_acceptance.id, "RSH-008");
-  assert.equal(current.validation["RSH-007_precreated"], false);
+});
+
+test("the required CI workflow checks out the exact PR head and runs all gates", () => {
+  const workflow = readFileSync(fromRoot(".github", "workflows", "required-ci.yml"), "utf8");
+  assert.match(workflow, /name:\s*required-ci/);
+  assert.match(workflow, /name:\s*required-ci \/ validate/);
+  assert.match(workflow, /github\.event\.pull_request\.head\.sha/);
+  assert.match(workflow, /npm ci/);
+  assert.match(workflow, /npm run lint/);
+  assert.match(workflow, /npm test/);
+  assert.match(workflow, /npm run qa:ci/);
+  assert.match(workflow, /npm run build:dev/);
+  assert.doesNotMatch(workflow, /continue-on-error:\s*true/);
 });
 
 test("public QA commands own the server lifecycle", () => {
