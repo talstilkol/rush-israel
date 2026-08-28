@@ -648,7 +648,7 @@ export const TRACKS: TrackDef[] = [
       mieDirectionalG: 0.76,
       exposure: 0.8,
       fog: 0xd4c4a4,
-      fogDensity: 0.0004,
+      fogDensity: 0.00032,
     },
     checkpointCount: 8,
     points: [
@@ -669,8 +669,8 @@ export const TRACKS: TrackDef[] = [
       jer(31.7834, 35.2446),
     ],
     elevation: (t) => {
-      if (t < 0.42) return 28 - t * 62;
-      return 2 + Math.pow((t - 0.42) / 0.58, 1.12) * 72;
+      if (t < 0.42) return 36 - t * 82;
+      return 1.4 + Math.pow((t - 0.42) / 0.58, 1.1) * 88;
     },
     streets: [
       { from: 0.0, to: 0.18, he: "מחנה יהודה", en: "Mahane Yehuda" },

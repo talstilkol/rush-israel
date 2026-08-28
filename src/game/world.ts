@@ -4881,19 +4881,19 @@ function addLandmarks(
       }
       return p;
     };
-    const jg = offJer(jer(31.7764, 35.2276), 22);
-    const td = offJer(jer(31.7762, 35.2284), 30);
-    const dm = offJer(jer(31.7788, 35.2364), 36);
-    const kd = offJer(jer(31.7745, 35.2225), 22);
-    const my = offJer(jer(31.7848, 35.2114), 18);
-    const kt = offJer(jer(31.7784, 35.2346), 32);
-    const mill = offJer(jer(31.7715, 35.2247), 20);
-    const olives = offJer(jer(31.7848, 35.2462), 26);
+    const jg = offJer(jer(31.7764, 35.2276), 28);
+    const td = offJer(jer(31.7762, 35.2284), 36);
+    const dm = offJer(jer(31.7788, 35.2364), 42);
+    const kd = offJer(jer(31.7745, 35.2225), 26);
+    const my = offJer(jer(31.7848, 35.2114), 22);
+    const kt = offJer(jer(31.7784, 35.2346), 38);
+    const mill = offJer(jer(31.7715, 35.2247), 26);
+    const olives = offJer(jer(31.7848, 35.2462), 32);
     merlonWall(jg.x + 38, jg.z + 62, 54, 0.2, 13);
     merlonWall(jg.x + 62, jg.z + 42, 48, 1.1, 12);
     const gi = Math.max(0, Math.min(built.samples.length - 1, Math.floor(built.samples.length * 0.46)));
     const gs = built.samples[gi];
-    const gOff = built.width / 2 + 32;
+    const gOff = built.width / 2 + 44;
     ottomanGate(gs.x + gs.rx * gOff, gs.z + gs.rz * gOff, Math.atan2(gs.tx, gs.tz));
     const citadel = new THREE.Mesh(new THREE.BoxGeometry(22, 13, 22), stone);
     citadel.position.set(td.x + 28, 7.5, td.z + 36);
@@ -5036,9 +5036,9 @@ function addLandmarks(
     for (let i = 0; i < 18; i++) {
       const a = i / 18 * Math.PI * 2 + 0.3;
       const r = 340 + i % 5 * 90;
-      const h = 52 + i % 6 * 22;
-      const hill = new THREE.Mesh(new THREE.ConeGeometry(56 + i % 4 * 14, h, 6), hillM);
-      hill.position.set(olives.x + Math.cos(a) * r, def.elevation(1) * 0.12 + h * 0.18, olives.z + Math.sin(a) * r);
+      const h = 68 + i % 6 * 28;
+      const hill = new THREE.Mesh(new THREE.ConeGeometry(62 + i % 4 * 16, h, 6), hillM);
+      hill.position.set(olives.x + Math.cos(a) * r, def.elevation(1) * 0.18 + h * 0.22, olives.z + Math.sin(a) * r);
       add(hill);
     }
     glowAt(jg.x + 18, 16, jg.z + 40, 16769184, 28, 24);
