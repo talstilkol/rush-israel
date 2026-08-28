@@ -243,7 +243,7 @@ export class ArcadeCar {
       if (throttle > 0 && brakeIn <= 0.1) {
         const v100 = 27.778;
         const t100 = Math.max(3.2, stats.zeroTo100 ?? 8);
-        const pull = throttle * (v100 / t100) * mass * 1.35 * wx.long * surf.long * (boosting ? 1.08 : 1) * (this.drafting ? 1.05 : 1);
+        const pull = throttle * (v100 / t100) * mass * wx.long * surf.long * (boosting ? 1.08 : 1) * (this.drafting ? 1.05 : 1);
         const top = vAbs <= v100 ? 1 : Math.max(0.02, driveCurve);
         this.speed += (pull / mass) * top * dt;
       }

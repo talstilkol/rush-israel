@@ -705,7 +705,7 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 							/* @__PURE__ */ jsxs("p", {
 								className: "text-[11px] font-medium uppercase tracking-widest text-muted",
 								children: [
-									hud.mode === "roam" ? (langHe ? "חופשי" : "Roam") : (langHe ? `הקפה ${hud.lap}/${hud.totalLaps}` : `Lap ${hud.lap}/${hud.totalLaps}`)
+									hud.mode === "roam" ? (langHe ? "חופשי" : "Roam") : hud.pointToPoint ? (langHe ? "נקודה לנקודה" : "A → B") : (langHe ? `הקפה ${hud.lap}/${hud.totalLaps}` : `Lap ${hud.lap}/${hud.totalLaps}`)
 								]
 							}),
 							/* @__PURE__ */ jsxs("p", {

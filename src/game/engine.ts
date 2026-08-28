@@ -2114,6 +2114,7 @@ export class RaceEngine {
       speedKmh: Math.abs(this.player.speed) * 3.6,
       lap: Math.min(this.totalLaps, this.player.lap + 1),
       totalLaps: this.totalLaps,
+      pointToPoint: !!this.trackDef.open,
       lapTime: this.lapTime,
       bestLap: Number.isFinite(this.bestLap) ? this.bestLap : 0,
       totalTime: this.totalTime,

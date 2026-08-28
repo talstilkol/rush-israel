@@ -160,6 +160,7 @@ export type HudState = {
   speedKmh: number;
   lap: number;
   totalLaps: number;
+  pointToPoint: boolean;
   lapTime: number;
   bestLap: number;
   totalTime: number;
