@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { fromRoot } from "./project-root.mjs";
 
-const RSH_006_IMPLEMENTATION_HEAD = "5c15dc41eaebd1bc7f56758c046391a28bedbd8b";
+const RSH_006_IMPLEMENTATION_HEAD = "2c7348d184473f3ae70bdc8c513d57b6058780d6";
 
 function readJson(name) {
   return JSON.parse(readFileSync(fromRoot(name), "utf8"));
