@@ -7786,17 +7786,27 @@ function addLandmarks(
     const start = jer(31.7866, 35.2344);
     const uniP = jer(31.7938, 35.2452);
     const sc = jer(31.7912, 35.2454);
+    {
+      const nU = nearestIndex(built.samples, uniP.x, uniP.z, 0);
+      const sU = built.samples[nU.index];
+      uniP.x = sU.x + sU.rx * (built.width / 2 + 20);
+      uniP.z = sU.z + sU.rz * (built.width / 2 + 20);
+      const nS = nearestIndex(built.samples, sc.x, sc.z, 0);
+      const sS = built.samples[nS.index];
+      sc.x = sS.x + sS.rx * (built.width / 2 + 18);
+      sc.z = sS.z + sS.rz * (built.width / 2 + 18);
+    }
     const uni = new THREE.Mesh(new THREE.BoxGeometry(26, 12, 14), cream);
-    uni.position.set(uniP.x + 22, peakY * 0.78 + 6, uniP.z + 10);
+    uni.position.set(uniP.x, peakY * 0.78 + 6, uniP.z);
     add(uni);
     const tower = new THREE.Mesh(new THREE.BoxGeometry(7, 26, 7), stone);
-    tower.position.set(uniP.x + 30, peakY * 0.78 + 14, uniP.z + 10);
+    tower.position.set(uniP.x + 8, peakY * 0.78 + 14, uniP.z);
     add(tower);
     const look = new THREE.Mesh(new THREE.BoxGeometry(16, 1.6, 7), stone);
-    look.position.set(sc.x - 10, peakY + 0.9, sc.z - 16);
+    look.position.set(sc.x, peakY + 0.9, sc.z);
     add(look);
     const rail = new THREE.Mesh(new THREE.BoxGeometry(16, 0.9, 0.28), cream);
-    rail.position.set(sc.x - 10, peakY + 1.8, sc.z - 19);
+    rail.position.set(sc.x, peakY + 1.8, sc.z - 3);
     add(rail);
     const dm = jer(31.778, 35.2354);
     const kt = jer(31.7767, 35.2342);
@@ -7820,22 +7830,22 @@ function addLandmarks(
     bag.push(pineM, hillM);
     for (let i = 0; i < 16; i++) {
       const a = i / 16 * Math.PI * 2;
-      const r = 160 + i % 4 * 70;
-      const h = 22 + i % 5 * 14;
-      const hill = new THREE.Mesh(new THREE.ConeGeometry(28 + i % 3 * 10, h, 5), hillM);
-      hill.position.set(start.x + Math.cos(a) * r, h * 0.22, start.z + Math.sin(a) * r * 0.85);
+      const r = 220 + i % 4 * 90;
+      const h = 48 + i % 5 * 22;
+      const hill = new THREE.Mesh(new THREE.ConeGeometry(36 + i % 3 * 12, h, 5), hillM);
+      hill.position.set(sc.x + Math.cos(a) * r, peakY * 0.12 + h * 0.18, sc.z + Math.sin(a) * r * 0.85);
       add(hill);
     }
     for (let i = 0; i < 12; i++) {
       const a = i / 12 * Math.PI * 2;
-      const hill = new THREE.Mesh(new THREE.ConeGeometry(32 + i % 3 * 10, 28 + i % 4 * 12, 5), hillM);
-      hill.position.set(sc.x + Math.cos(a) * 220, 10, sc.z + Math.sin(a) * 190);
+      const hill = new THREE.Mesh(new THREE.ConeGeometry(42 + i % 3 * 12, 44 + i % 4 * 16, 5), hillM);
+      hill.position.set(sc.x + Math.cos(a) * 420, peakY * 0.08 + 16, sc.z + Math.sin(a) * 360);
       add(hill);
     }
     for (let i = 0; i < 10; i++) {
       const a = i / 10 * Math.PI * 2 + 0.2;
-      const hill = new THREE.Mesh(new THREE.ConeGeometry(48 + i % 3 * 14, 36 + i % 4 * 16, 5), hillM);
-      hill.position.set(sc.x + Math.cos(a) * 380, 14, sc.z + Math.sin(a) * 340);
+      const hill = new THREE.Mesh(new THREE.ConeGeometry(58 + i % 3 * 16, 52 + i % 4 * 18, 5), hillM);
+      hill.position.set(sc.x + Math.cos(a) * 620, 18, sc.z + Math.sin(a) * 540);
       add(hill);
     }
     for (let i = 0; i < 32; i++) {
@@ -7847,10 +7857,10 @@ function addLandmarks(
       cyp.position.set(p.x + side * (13 + i % 4 * 3), y + 3.4, p.z + i % 3 * 3);
       add(cyp);
     }
-    glowAt(sc.x - 10, peakY + 4, sc.z - 16, 16769184, 22, 18);
+    glowAt(sc.x, peakY + 4, sc.z, 16769184, 22, 18);
     glowAt(dm.x, 16, dm.z, 16765040, 36, 28);
-    hit(uniP.x + 22, uniP.z + 10, 12);
-    hit(sc.x - 10, sc.z - 16, 6);
+    hit(uniP.x, uniP.z, 12);
+    hit(sc.x, sc.z, 6);
     hit(dm.x, dm.z, 10);
     hit(kn.x, kn.z, 10);
   }
