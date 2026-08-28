@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { EventEmitter } from "node:events";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import {
   DEFAULT_COMMAND_TIMEOUT_MS,
@@ -11,6 +12,7 @@ import {
   probeServer,
   signalExitCode,
   waitForCommandOutcome,
+  waitForExit,
   waitForServer,
 } from "./run-with-server.mjs";
 import { fromRoot, projectRoot } from "./project-root.mjs";
@@ -150,6 +152,70 @@ test("waitForServer reports spawn errors instead of waiting for timeout", async 
   });
   setImmediate(() => child.emit("error", new Error("spawn boom")));
   await assert.rejects(result, /QA server failed to start: spawn boom/);
+});
+
+test("waitForExit cancels the losing timer and removes the exit listener", async () => {
+  const child = new EventEmitter();
+  child.exitCode = null;
+  child.signalCode = null;
+  const handle = { id: 1 };
+  let timerCallback = null;
+  let clearedHandle = null;
+  const result = waitForExit(child, 5_000, {
+    setTimeout: (callback) => {
+      timerCallback = callback;
+      return handle;
+    },
+    clearTimeout: (value) => {
+      clearedHandle = value;
+    },
+  });
+
+  assert.equal(child.listenerCount("exit"), 1);
+  child.emit("exit", 0, null);
+  assert.equal(await result, true);
+  assert.equal(clearedHandle, handle);
+  assert.equal(child.listenerCount("exit"), 0);
+  timerCallback?.();
+});
+
+test("waitForExit removes the exit listener when the timeout wins", async () => {
+  const child = new EventEmitter();
+  child.exitCode = null;
+  child.signalCode = null;
+  const handle = { id: 2 };
+  let timerCallback = null;
+  let clearedHandle = null;
+  const result = waitForExit(child, 5_000, {
+    setTimeout: (callback) => {
+      timerCallback = callback;
+      return handle;
+    },
+    clearTimeout: (value) => {
+      clearedHandle = value;
+    },
+  });
+
+  timerCallback();
+  assert.equal(await result, false);
+  assert.equal(clearedHandle, handle);
+  assert.equal(child.listenerCount("exit"), 0);
+});
+
+test("main checks interrupts before starting a server and before spawning QA", () => {
+  const source = readFileSync(fromRoot("scripts", "run-with-server.mjs"), "utf8");
+  const probe = source.indexOf("const alreadyRunning = await probeServer(config.serverUrl);");
+  const serverBranch = source.indexOf("if (!alreadyRunning)", probe);
+  const commandSpawn = source.indexOf("commandChild = spawnQaCommand", serverBranch);
+  const check = "if (interrupted) return signalExitCode(interrupted);";
+  const preServerCheck = source.indexOf(check, probe);
+  const preCommandCheck = source.lastIndexOf(check, commandSpawn);
+
+  assert.ok(probe >= 0);
+  assert.ok(serverBranch > probe);
+  assert.ok(commandSpawn > serverBranch);
+  assert.ok(preServerCheck > probe && preServerCheck < serverBranch);
+  assert.ok(preCommandCheck > serverBranch && preCommandCheck < commandSpawn);
 });
 
 test("waitForCommandOutcome resolves normal exits and removes listeners", async () => {
