@@ -2419,7 +2419,7 @@ export const TRACKS: TrackDef[] = [
     description: "מהתצפית במצפה רמון, סרפנטינות במצוק, עד רצפת המכתש. בלי בניינים — רק מדבר. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "From the Mitzpe Ramon lookout, switchbacks down the cliff, to the crater floor. Desert only. Inspired by the place — not a map, not GIS.",
     image: "/tracks/ramon.jpg",
-    width: 22,
+    width: 24,
     seed: 1956,
     theme: "desert",
     open: true,
@@ -2434,7 +2434,7 @@ export const TRACKS: TrackDef[] = [
       mieDirectionalG: 0.7,
       exposure: 0.82,
       fog: 0xe0c8a4,
-      fogDensity: 0.0008,
+      fogDensity: 0.00042,
     },
     checkpointCount: 8,
     points: [
@@ -2458,10 +2458,10 @@ export const TRACKS: TrackDef[] = [
       ram(30.5722, 34.7974),
     ],
     elevation: (t) => {
-      if (t < 0.08) return 118;
-      if (t > 0.9) return 1.8;
+      if (t < 0.08) return 142;
+      if (t > 0.9) return 1.2;
       const u = (t - 0.08) / 0.82;
-      return 118 * Math.pow(1 - u, 1.18) + 1.8;
+      return 142 * Math.pow(1 - u, 1.22) + 1.2;
     },
     streets: [
       { from: 0.0, to: 0.14, he: "התצפית", en: "The Lookout" },

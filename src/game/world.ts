@@ -693,7 +693,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 190 : def.id === "hermon" ? 160 : def.theme === "carmel" ? 110 : 78;
+    const outer = def.id === "ramon" ? 240 : def.id === "hermon" ? 160 : def.theme === "carmel" ? 110 : 78;
     let valleyX = 0;
     let valleyZ = 0;
     let invertSide = false;
@@ -718,7 +718,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const hw = built.width / 2 + 1.2;
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 140 + Math.min(90, s.y * 0.65) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 92 + s.y * 0.48 : def.theme === "carmel" ? s.y + 52 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 92 + s.y * 0.48 : def.theme === "carmel" ? s.y + 52 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
@@ -8140,8 +8140,8 @@ function addLandmarks(
     }
     for (let i = 0; i < 22; i++) {
       const a = i / 22 * Math.PI * 2 + 0.15;
-      const mtn = new THREE.Mesh(new THREE.ConeGeometry(72 + i % 5 * 22, 110 + i % 4 * 36, 6), i % 3 === 0 ? darkRock : i % 3 === 1 ? rust : tan);
-      mtn.position.set(floor.x + Math.cos(a) * 520, 42, floor.z + Math.sin(a) * 380);
+      const mtn = new THREE.Mesh(new THREE.ConeGeometry(80 + i % 5 * 24, 130 + i % 4 * 40, 6), i % 3 === 0 ? darkRock : i % 3 === 1 ? rust : tan);
+      mtn.position.set(floor.x + Math.cos(a) * 560, 52, floor.z + Math.sin(a) * 400);
       add(mtn);
     }
     const strata = [creamRock, tan, rust, band, sand];
@@ -8161,8 +8161,8 @@ function addLandmarks(
     {
       const n = nearestIndex(built.samples, lk.x, lk.z, 0);
       const s = built.samples[n.index];
-      lk.x = s.x + s.rx * (built.width / 2 + 18);
-      lk.z = s.z + s.rz * (built.width / 2 + 18);
+      lk.x = s.x + s.rx * (built.width / 2 + 26);
+      lk.z = s.z + s.rz * (built.width / 2 + 26);
     }
     const lookY = def.elevation(0.02);
     const deck = new THREE.Mesh(new THREE.BoxGeometry(18, 0.32, 12), creamRock);
