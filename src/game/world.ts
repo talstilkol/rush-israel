@@ -3355,7 +3355,12 @@ function addLandmarks(
     towerHit(p.x, p.z, 11 * s, 10 * s, 10 * s, yaw);
   };
   const placeToHa = (s: number, lat = 32.0713, lon = 34.7886) => {
-    const p = tlv(lat, lon);
+    const hint = tlv(lat, lon);
+    const nH = nearestIndex(built.samples, hint.x, hint.z, 0);
+    const sH = built.samples[nH.index];
+    const p = nH.dist < built.width / 2 + 40
+      ? { x: sH.x + sH.rx * (built.width / 2 + 48), z: sH.z + sH.rz * (built.width / 2 + 48) }
+      : hint;
     const n = 22;
     const floorGeo = new THREE.BoxGeometry(1, 4.7 * s, 0.62);
     const floors = new THREE.InstancedMesh(floorGeo, tohaGlass, n * 2);
@@ -5978,10 +5983,10 @@ function addLandmarks(
       const midOff = oppOff / 2;
       const c = { x: sm0.x + sm0.rx * midOff, z: sm0.z + sm0.rz * midOff };
       const yaw = Math.atan2(sm0.tx, sm0.tz);
-      const westX = sm0.x - sm0.rx * (built.width / 2 + 14);
-      const westZ = sm0.z - sm0.rz * (built.width / 2 + 14);
-      const eastX = sm0.x + sm0.rx * (oppOff + built.width / 2 + 14);
-      const eastZ = sm0.z + sm0.rz * (oppOff + built.width / 2 + 14);
+      const westX = sm0.x - sm0.rx * (built.width / 2 + 2.4);
+      const westZ = sm0.z - sm0.rz * (built.width / 2 + 2.4);
+      const eastX = sm0.x + sm0.rx * (oppOff + built.width / 2 + 2.4);
+      const eastZ = sm0.z + sm0.rz * (oppOff + built.width / 2 + 2.4);
       const deckY = 9.4;
       const span = oppOff + built.width + 16;
       const deck = new THREE.Mesh(new THREE.BoxGeometry(span, 1.15, 16), conc);
@@ -6045,13 +6050,18 @@ function addLandmarks(
         plate.rotation.y = yawS + Math.PI;
         add(plate);
       }
-      const zLen = 60;
-      const a = 32;
-      pushRamp(westX - sm0.tx * a, westZ - sm0.tz * a, sm0.tx, sm0.tz, zLen, 8.6, 0.6, deckY, ic.he, ic.en);
-      pushRamp(westX + sm0.tx * a, westZ + sm0.tz * a, sm0.tx, sm0.tz, zLen, 8.6, deckY, 0.6, ic.he, ic.en);
-      pushRamp(eastX - sm0.tx * a, eastZ - sm0.tz * a, sm0.tx, sm0.tz, zLen, 8.6, 0.6, deckY, ic.he, ic.en);
-      pushRamp(eastX + sm0.tx * a, eastZ + sm0.tz * a, sm0.tx, sm0.tz, zLen, 8.6, deckY, 0.6, ic.he, ic.en);
-      pushRamp(c.x, c.z, sm0.rx, sm0.rz, span, 8.4, deckY, deckY, ic.he, ic.en);
+      const zLen = 68;
+      const a = 34;
+      pushRamp(westX - sm0.tx * a, westZ - sm0.tz * a, sm0.tx, sm0.tz, zLen, 10.2, 0.5, deckY, ic.he, ic.en);
+      pushRamp(westX + sm0.tx * a, westZ + sm0.tz * a, sm0.tx, sm0.tz, zLen, 10.2, deckY, 0.5, ic.he, ic.en);
+      pushRamp(eastX - sm0.tx * a, eastZ - sm0.tz * a, sm0.tx, sm0.tz, zLen, 10.2, 0.5, deckY, ic.he, ic.en);
+      pushRamp(eastX + sm0.tx * a, eastZ + sm0.tz * a, sm0.tx, sm0.tz, zLen, 10.2, deckY, 0.5, ic.he, ic.en);
+      pushRamp(c.x, c.z, sm0.rx, sm0.rz, span, 10.2, deckY, deckY, ic.he, ic.en);
+      {
+        const half = built.width / 2;
+        pushRamp(sm0.x + sm0.rx * (half * 0.42), sm0.z + sm0.rz * (half * 0.42), sm0.rx, sm0.rz, 32, 12.5, 0.35, deckY, ic.he, ic.en);
+        pushRamp(sm0.x - sm0.rx * (half * 0.15), sm0.z - sm0.rz * (half * 0.15), sm0.tx, sm0.tz, 36, half * 0.55, 0.3, 0.3, ic.he, ic.en);
+      }
       if (ic.en === "Kibbutz Galuyot") {
         pushRamp(westX - sm0.rx * 20, westZ - sm0.rz * 20, sm0.tx, sm0.tz, 84, 6.4, 0.6, 7.2, ic.he, ic.en);
         pushRamp(eastX + sm0.rx * 20, eastZ + sm0.rz * 20, sm0.tx, sm0.tz, 84, 6.4, 7.2, 0.6, ic.he, ic.en);
@@ -6077,7 +6087,7 @@ function addLandmarks(
       const p = tlv(ic.lat, 34.795);
       const near = nearestIndex(built.samples, p.x, p.z, 0);
       const sm = built.samples[near.index];
-      const rc = built.width / 2 + 22;
+      const rc = built.width / 2 + 6;
       pushRamp(sm.x + sm.rx * rc, sm.z + sm.rz * rc, sm.tx, sm.tz, 46, 6.4, 0.4, 8.6, ic.he, ic.en);
       const wing = new THREE.Mesh(new THREE.BoxGeometry(16, 0.85, 20), conc);
       wing.position.set(sm.x + sm.rx * (rc + 14), 8.7, sm.z + sm.rz * (rc + 14));
