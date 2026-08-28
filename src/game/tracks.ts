@@ -572,7 +572,7 @@ export const TRACKS: TrackDef[] = [
     description: "נמל תל אביב, תחנת הכוח רדינג, פארק הירקון ושדרות רוקח. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Tel Aviv Port, Reading Power Station, Yarkon Park and Rokach Boulevard. Inspired by the place — not a map, not GIS.",
     image: "/tracks/namal.jpg",
-    width: 24,
+    width: 28,
     seed: 2002,
     theme: "port",
     ground: 0x8a8478,

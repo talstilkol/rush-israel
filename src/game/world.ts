@@ -4700,8 +4700,8 @@ function addLandmarks(
         const n = nearestIndex(built.samples, p.x, p.z, 0);
         if (n.dist < built.width / 2 + 16) {
           const s = built.samples[n.index];
-          p.x = s.x + s.rx * (built.width / 2 + 24);
-          p.z = s.z + s.rz * (built.width / 2 + 24);
+          p.x = s.x + s.rx * (built.width / 2 + 36);
+          p.z = s.z + s.rz * (built.width / 2 + 36);
         }
       }
       const hangar = new THREE.Mesh(new THREE.BoxGeometry(36, 7.2, 16), hangarMat);
@@ -4748,13 +4748,13 @@ function addLandmarks(
       roughness: 0.48
     });
     bag.push(ochre, ochreDark, conc, redBand, whiteBand);
-    placeTunnel(rs.x, rs.z, rdYaw, 72, built.width * 0.7, 8.2, rs.y);
+    placeTunnel(rs.x, rs.z, rdYaw, 86, built.width / 2 + 0.6, 8.8, rs.y);
     const rx = Math.cos(rdYaw);
     const rz = -Math.sin(rdYaw);
     const fx = Math.sin(rdYaw);
     const fz = Math.cos(rdYaw);
-    const plantX = rs.x + rx * (built.width / 2 + 42);
-    const plantZ = rs.z + rz * (built.width / 2 + 42);
+    const plantX = rs.x + rx * (built.width / 2 + 48);
+    const plantZ = rs.z + rz * (built.width / 2 + 48);
     const hall = new THREE.Mesh(new THREE.BoxGeometry(34, 11, 42), ochre);
     hall.position.set(plantX, rs.y + 5.5, plantZ);
     hall.rotation.y = rdYaw;
