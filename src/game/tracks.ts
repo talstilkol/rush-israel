@@ -465,7 +465,7 @@ export const TRACKS: TrackDef[] = [
     description: "נמל יפו, מגדל השעון, נווה צדק ופלורנטין — סמטאות אבן מול הים. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Jaffa Port, the Clock Tower, Neve Tzedek and Florentin — stone alleys by the sea. Inspired by the place — not a map, not GIS.",
     image: "/tracks/oldjaffa.jpg",
-    width: 22,
+    width: 24,
     seed: 1917,
     theme: "jaffa",
     ground: 0xc4a882,
@@ -492,7 +492,7 @@ export const TRACKS: TrackDef[] = [
       tlv(32.0556, 34.7578),
       tlv(32.0556, 34.7566),
     ],
-    elevation: (t) => (t > 0.12 && t < 0.45 ? 1.8 : 0.5),
+    elevation: (t) => (t > 0.12 && t < 0.45 ? 3.6 : 0.6),
     streets: [
       { from: 0.0, to: 0.16, he: "מגדל השעון", en: "Clock Tower" },
       { from: 0.16, to: 0.32, he: "יפת", en: "Yefet St" },

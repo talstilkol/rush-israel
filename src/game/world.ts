@@ -4079,8 +4079,8 @@ function addLandmarks(
       const n = nearestIndex(built.samples, ck.x, ck.z, 0);
       if (n.dist < built.width / 2 + 10) {
         const s = built.samples[n.index];
-        ck.x = s.x + s.rx * (built.width / 2 + 16);
-        ck.z = s.z + s.rz * (built.width / 2 + 16);
+        ck.x = s.x + s.rx * (built.width / 2 + 22);
+        ck.z = s.z + s.rz * (built.width / 2 + 22);
       }
     }
     const tower = new THREE.Mesh(new THREE.BoxGeometry(5.2, 32, 5.2), ochre);
@@ -4138,11 +4138,11 @@ function addLandmarks(
     finial.position.set(ck.x, 40.2, ck.z);
     add(finial);
     hit(ck.x, ck.z, 5.5, 4.2, 4.2);
-    for (let i = 0; i < 14; i++) {
-      const a = i / 14 * Math.PI * 1.6 + 0.4;
-      const hx = ck.x + Math.cos(a) * (18 + i % 3 * 4);
-      const hz = ck.z + Math.sin(a) * (16 + i % 2 * 5);
-      if (nearestIndex(built.samples, hx, hz, 0).dist < built.width / 2 + 6) continue;
+    for (let i = 0; i < 22; i++) {
+      const a = i / 22 * Math.PI * 1.7 + 0.35;
+      const hx = ck.x + Math.cos(a) * (22 + i % 4 * 5);
+      const hz = ck.z + Math.sin(a) * (20 + i % 3 * 6);
+      if (nearestIndex(built.samples, hx, hz, 0).dist < built.width / 2 + 10) continue;
       const h = 5.2 + i % 4 * 1.6;
       const house = new THREE.Mesh(new THREE.BoxGeometry(6.2 + i % 3, h, 5.4 + i % 2), i % 2 ? ochre : ochreDark);
       house.position.set(hx, h * 0.5, hz);
@@ -4166,8 +4166,8 @@ function addLandmarks(
       const n = nearestIndex(built.samples, mq.x, mq.z, 0);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
-        mq.x = s.x + s.rx * (built.width / 2 + 20);
-        mq.z = s.z + s.rz * (built.width / 2 + 20);
+        mq.x = s.x + s.rx * (built.width / 2 + 26);
+        mq.z = s.z + s.rz * (built.width / 2 + 26);
       }
     }
     const mosque = new THREE.Mesh(new THREE.BoxGeometry(16, 8, 14), ochre);
