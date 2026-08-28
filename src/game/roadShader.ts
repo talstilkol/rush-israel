@@ -17,9 +17,9 @@ export function injectRoadLanes(shader: { fragmentShader: string; uniforms: Reco
       float laneU = ru.x * lanes;
       float k = floor(laneU + 0.5);
       float skipEdge = step(k, 0.5) + step(lanes - 0.5, k);
-      float skipMid = lanes >= 7.5 ? (1.0 - smoothstep(0.02, 0.06, abs(ru.x - 0.5))) : 0.0;
+      float skipMid = 0.0;
       float bound = 1.0 - smoothstep(0.018, 0.04, abs(fract(laneU + 0.5) - 0.5));
-      diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.94), bound * dash * (1.0 - skipEdge) * (1.0 - skipMid) * 0.78);
+      diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.96), bound * dash * (1.0 - skipEdge) * (1.0 - skipMid) * 0.92);
       float wet = uWet;
       diffuseColor.rgb *= mix(1.0, 0.88, wet);
     }`,

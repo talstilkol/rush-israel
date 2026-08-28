@@ -772,15 +772,15 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.16, 0.46)), edgeMat));
   group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.16, 0.46)), edgeMat));
   {
-    const dashG = keep(new THREE.BoxGeometry(0.12, 0.035, 3.4));
-    const dashM = keep(new THREE.MeshBasicMaterial({ color: 0xf4f6f2, fog: false }));
+    const dashG = keep(new THREE.BoxGeometry(0.2, 0.045, 4.4));
+    const dashM = keep(new THREE.MeshBasicMaterial({ color: 0xf7f8f4, fog: false }));
     const offs = def.id === "ayalon" ? [0, built.width + 18] : [0];
-    const nDash = Math.min(1600, Math.floor(built.samples.length / 3) * (lanes - 1) * offs.length);
+    const nDash = Math.min(2800, Math.floor(built.samples.length / 2) * (lanes - 1) * offs.length);
     const dashes = new THREE.InstancedMesh(dashG, dashM, Math.max(1, nDash));
     let di = 0;
     const hw = built.width / 2;
     const lw = built.width / lanes;
-    const stepD = Math.max(3, Math.floor(built.samples.length / 80));
+    const stepD = Math.max(2, Math.floor(built.samples.length / 140));
     for (const off of offs) {
       for (let i = 0; i < built.samples.length && di < nDash; i += stepD) {
         const s = built.samples[i];
@@ -807,8 +807,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       polygonOffsetFactor: -2,
       polygonOffsetUnits: -2
     }));
-    group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.62, 0.09)), yMat));
-    group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.62, 0.09)), yMat));
+    group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.85, 0.1)), yMat));
+    group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.85, 0.1)), yMat));
     if (def.id === "ayalon") {
       const gap = 18;
       const oppOff = built.width + gap;
@@ -3168,9 +3168,9 @@ function addLandmarks(
   const placeAzrieli = (s: number) => {
     const azBand = new THREE.MeshStandardMaterial({
       color: 0xece8e0,
-      metalness: 0.28,
-      roughness: 0.32,
-      envMapIntensity: 1.05
+      metalness: 0,
+      roughness: 0.42,
+      envMapIntensity: 0.85
     });
     bag.push(azBand);
     const roundP = tlv(32.07455, 34.79195);
