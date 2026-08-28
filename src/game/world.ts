@@ -4877,7 +4877,7 @@ function addLandmarks(
     merlonWall(jg.x + 62, jg.z + 42, 48, 1.1, 12);
     const gi = Math.max(0, Math.min(built.samples.length - 1, Math.floor(built.samples.length * 0.46)));
     const gs = built.samples[gi];
-    const gOff = built.width / 2 + 20;
+    const gOff = built.width / 2 + 32;
     ottomanGate(gs.x + gs.rx * gOff, gs.z + gs.rz * gOff, Math.atan2(gs.tx, gs.tz));
     const citadel = new THREE.Mesh(new THREE.BoxGeometry(22, 13, 22), stone);
     citadel.position.set(td.x + 28, 7.5, td.z + 36);
@@ -5019,10 +5019,10 @@ function addLandmarks(
     bag.push(hillM);
     for (let i = 0; i < 18; i++) {
       const a = i / 18 * Math.PI * 2 + 0.3;
-      const r = 260 + i % 5 * 70;
-      const h = 38 + i % 6 * 18;
-      const hill = new THREE.Mesh(new THREE.ConeGeometry(48 + i % 4 * 12, h, 6), hillM);
-      hill.position.set(jg.x + Math.cos(a) * r, h * 0.22, jg.z + Math.sin(a) * r);
+      const r = 340 + i % 5 * 90;
+      const h = 52 + i % 6 * 22;
+      const hill = new THREE.Mesh(new THREE.ConeGeometry(56 + i % 4 * 14, h, 6), hillM);
+      hill.position.set(olives.x + Math.cos(a) * r, def.elevation(1) * 0.12 + h * 0.18, olives.z + Math.sin(a) * r);
       add(hill);
     }
     glowAt(jg.x + 18, 16, jg.z + 40, 16769184, 28, 24);

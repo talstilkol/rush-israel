@@ -633,7 +633,7 @@ export const TRACKS: TrackDef[] = [
     description: "מחנה יהודה, רחוב יפו, שער יפו, גיא בן הינום ועלייה להר הזיתים. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Mahane Yehuda, Jaffa Road, Jaffa Gate, Hinnom Valley and the climb to the Mount of Olives. Inspired by the place — not a map, not GIS.",
     image: "/tracks/jerusalem.jpg",
-    width: 28,
+    width: 30,
     seed: 3141,
     theme: "stone",
     open: true,
@@ -669,8 +669,8 @@ export const TRACKS: TrackDef[] = [
       jer(31.7834, 35.2446),
     ],
     elevation: (t) => {
-      if (t < 0.42) return 24 - t * 52;
-      return 2.2 + Math.pow((t - 0.42) / 0.58, 1.15) * 54;
+      if (t < 0.42) return 28 - t * 62;
+      return 2 + Math.pow((t - 0.42) / 0.58, 1.12) * 72;
     },
     streets: [
       { from: 0.0, to: 0.18, he: "מחנה יהודה", en: "Mahane Yehuda" },
