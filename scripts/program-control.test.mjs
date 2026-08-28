@@ -84,13 +84,19 @@ test("RSH-006 is reconciled to the live merged main baseline", () => {
 test("RSH-007 is the sole in-review unit and RSH-008 is not pre-created", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
+  const baseline = readJson("BASELINE-REGISTER.json");
   assert.equal(queue.counts.in_review, 1);
   assert.equal(queue.queue_head.id, "RSH-007");
+  assert.equal(queue.queue_head.state, "pr_open");
   assert.equal(queue.queue_head.branch, "agent/rsh-007-github-actions-ci");
-  assert.equal(queue.queue_head.pull_request, 8);
+  assert.equal(queue.queue_head.pull_request, 9);
+  assert.equal(queue.queue_head.replaced_pull_request, 8);
   assert.equal(current.active_change.unit, queue.queue_head.id);
   assert.equal(current.active_change.branch, queue.queue_head.branch);
   assert.equal(current.active_change.pull_request, queue.queue_head.pull_request);
+  assert.equal(current.active_change.replaced_pull_request, 8);
+  assert.equal(baseline.working_state.pull_request, 9);
+  assert.equal(baseline.working_state.replaced_pull_request, 8);
   assert.equal(current.validation["RSH-008_precreated"], false);
   assert.equal(queue.next_after_acceptance.id, "RSH-008");
 });
