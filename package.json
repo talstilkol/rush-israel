@@ -3,10 +3,21 @@
   "private": true,
   "sideEffects": false,
   "type": "module",
+  "packageManager": "npm@10.9.2",
+  "engines": {
+    "node": "22.16.0",
+    "npm": "10.9.2"
+  },
+  "volta": {
+    "node": "22.16.0",
+    "npm": "10.9.2"
+  },
   "overrides": {
     "nf3": "0.3.17"
   },
   "scripts": {
+    "preinstall": "node scripts/verify-toolchain.mjs",
+    "toolchain:verify": "node scripts/verify-toolchain.mjs",
     "dev": "node scripts/with-app-env.mjs vite dev --host 0.0.0.0 --port 8080",
     "build": "node scripts/with-app-env.mjs vite build && npm run db:migrate",
     "db:migrate": "node scripts/migrate.mjs",
