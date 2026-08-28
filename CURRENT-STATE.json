@@ -1,174 +1,165 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "2.2.1",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-28T23:55:00+03:00",
+  "generated_at": "2026-08-29T02:08:00+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
-    "policy": "Live GitHub state supersedes chat summaries, local copies and stale planning files."
+    "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
-  "verified_main": {
-    "head_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9",
-    "tree_sha": "69d715472e572ef2071646db293cd1247746e4a8",
-    "commit_authored_at": "2026-08-28T23:49:00+03:00",
-    "commit_message": "Merge PR #1: RSH-001 — Canonical program control",
-    "commit_signature_verified": true,
-    "protected": false,
-    "required_status_checks": 0,
-    "rulesets": 0
+  "transition_basis": {
+    "verified_main_before_pr_7": {
+      "head_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3",
+      "tree_sha": "b4be27abd2a3611325c8f8cc7589eb775f28c1dc",
+      "commit_authored_at": "2026-08-29T01:04:22+03:00",
+      "commit_message": "Merge PR #6: RSH-005 — Remove fixed workspace paths",
+      "commit_signature_verified": true
+    },
+    "effective_condition": "This document becomes canonical only when PR #7 is merged.",
+    "pull_request": 7,
+    "reviewed_implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
+    "merge_sha_recording": "The next GitHub write must read and record the actual PR #7 merge SHA."
   },
   "repository_snapshot": {
     "visibility_current": "public",
     "visibility_policy_target": "private",
     "visibility_transition_state": "owner_setting_action_required",
     "default_branch": "main",
-    "branch_count": 3,
-    "branches": [
-      "main",
-      "agent/rsh-001-canonical-program-control",
-      "agent/rsh-002-repository-governance"
-    ],
-    "open_pull_requests": 1,
-    "merged_pull_requests": 1,
+    "main_protected": false,
+    "required_status_checks": 0,
+    "rulesets": 0,
     "tags": 0,
-    "releases": 0,
-    "main_status_checks": 0
+    "releases": 0
   },
   "product_snapshot": {
     "classification": "Three.js WebGL simcade driving prototype inspired by Israeli places",
     "distribution_policy": "Private, owner-controlled development. Public distribution is not authorised.",
     "default_renderer": "WebGLRenderer",
-    "frameworks": [
-      "Three.js 0.185.1",
-      "React 19.2.0",
-      "Vite 8.2.0",
-      "TanStack Start 1.168.0"
-    ],
     "physics_hz": 120,
-    "explicit_non_claims": [
-      "GIS",
-      "measurement simulator",
-      "Unreal",
-      "photogrammetry",
-      "scanned vehicles"
-    ],
     "track_card_assets": 56,
     "version_1_mvp_tracks": 8,
     "deferred_track_cards": 48
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 1,
-    "units_in_review": 1,
-    "not_started_units": 65,
-    "queue_head": "RSH-002",
-    "queue_head_state": "draft_pr_open",
-    "next_unit_after_acceptance": "RSH-003",
-    "next_unit_eligible": false,
-    "documented_implementation_percent": 13.0,
-    "independent_estimate_percent": 16.0,
-    "independent_estimate_range_percent": [
-      14.0,
-      18.0
-    ],
+    "accepted_units": 6,
+    "units_in_review": 0,
+    "eligible_units": 1,
+    "deferred_units": 60,
+    "remaining_units": 61,
+    "queue_head": "RSH-007",
+    "queue_head_state": "eligible_on_future_next",
+    "queue_head_branch": null,
+    "automatic_execution": false,
     "release_gates_green": 0,
-    "release_gates_total": 13,
-    "status_resolution": "0/13 remains the only verified release-gate count."
+    "release_gates_total": 13
   },
-  "active_change": {
-    "unit": "RSH-002",
-    "title": "Repository governance and visibility policy",
-    "branch": "agent/rsh-002-repository-governance",
-    "base_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9",
-    "pull_request_state": "draft",
-    "implementation_state": "draft_pr_open",
-    "merge_authorized": false,
+  "accepted_units": {
+    "RSH-001": {
+      "pr": 1,
+      "merge_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9"
+    },
+    "RSH-002": {
+      "pr": 2,
+      "merge_sha": "ef86c69ade9bc54585104f90743fb32cb4489898"
+    },
+    "RSH-003": {
+      "pr": 3,
+      "merge_sha": "f1af9f507378d5d42c5e06255c8244c78b0c0f22"
+    },
+    "RSH-004": {
+      "pr": 5,
+      "merge_sha": "69ac509b39895bb33a68d871f31cc49b3f05726c",
+      "replacement_pr_note": "PR #4 closed unmerged after connector error."
+    },
+    "RSH-005": {
+      "pr": 6,
+      "merge_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3"
+    },
+    "RSH-006": {
+      "pr": 7,
+      "implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
+      "merge_sha": null,
+      "merge_sha_status": "Record the live PR #7 merge SHA during the RSH-007 preflight; live GitHub is authoritative."
+    }
+  },
+  "last_completed_change": {
+    "unit": "RSH-006",
+    "title": "Build a self-starting QA harness",
+    "pull_request": 7,
+    "implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
     "game_code_changed": false,
-    "repository_setting_changes": 0,
-    "later_units_precreated": false,
-    "pull_request_locator": "head:agent/rsh-002-repository-governance;base:main"
+    "dependency_versions_changed": false,
+    "package_lock_changed": false,
+    "runtime_evidence": "Pending RSH-007 GitHub Actions CI."
   },
-  "governance": {
-    "owner": "@talstilkol",
-    "target_visibility": "private",
-    "live_visibility_at_unit_start": "public",
-    "public_distribution_authorized": false,
-    "direct_main_writes_authorized": false,
-    "required_delivery_path": "one queue-head branch and Draft PR",
-    "owner_merge_approval_required": true,
-    "automatic_merge": false,
-    "force_push": false,
-    "history_rewrite": false,
-    "default_merge_method": "merge commit",
-    "technical_enforcement_unit": "RSH-008",
-    "policy_document": "REPOSITORY-GOVERNANCE.md"
+  "next_eligible_change": {
+    "unit": "RSH-007",
+    "title": "Create GitHub Actions CI",
+    "state": "eligible_on_future_next",
+    "branch": null,
+    "pull_request": null,
+    "authorized_by_completed_batch": false
+  },
+  "batch_authorization": {
+    "instruction": "make next 5",
+    "authorized_units": [
+      "RSH-002",
+      "RSH-003",
+      "RSH-004",
+      "RSH-005",
+      "RSH-006"
+    ],
+    "completed_units": 5,
+    "total_units": 5,
+    "state": "completed",
+    "closed_after": "RSH-006",
+    "RSH-007_authorized": false
+  },
+  "rsh_006_evidence": {
+    "self_starting_entry": "scripts/run-with-server.mjs",
+    "unit_tests": [
+      "scripts/run-with-server.test.mjs",
+      "scripts/program-control.test.mjs",
+      "scripts/toolchain-metadata.test.mjs"
+    ],
+    "documentation": "QA-HARNESS.md",
+    "server_url": "http://127.0.0.1:8080/",
+    "unknown_existing_server_rejected": true,
+    "explicit_reuse_flag": "QA_REUSE_SERVER=1",
+    "harness_owned_server_always_stopped": true,
+    "process_tree_cleanup": true,
+    "cross_platform_cleanup": true,
+    "signal_exit_mapping": "128 + operating-system signal number",
+    "timers_and_listeners_cleaned": true,
+    "wait_for_exit_losing_timer_cancelled": true,
+    "interrupt_checked_before_server_and_command_spawn": true,
+    "server_spawn_errors_reported_directly": true,
+    "rsh_004_lockfile_metadata_regression_test": "scripts/toolchain-metadata.test.mjs",
+    "clean_clone_runtime_evidence": "pending RSH-007"
   },
   "findings": {
     "total": 42,
     "p0": 12,
     "p1": 18,
     "p2": 12,
-    "closed": 1,
-    "mitigated": 5,
-    "open": 36,
+    "open": 30,
+    "mitigated": 9,
+    "closed": 3,
     "register": "FINDINGS-REGISTER.md"
   },
-  "canonical_control_files": [
-    "CURRENT-STATE.json",
-    "MASTER-PLAN.md",
-    "QUEUE.json",
-    "NEXT-CONTRACT.md",
-    "FINDINGS-REGISTER.md",
-    "REPOSITORY-GOVERNANCE.md"
-  ],
-  "governance_files": [
-    "REPOSITORY-GOVERNANCE.md",
-    "CONTRIBUTING.md",
-    "SECURITY.md",
-    ".github/CODEOWNERS",
-    ".github/PULL_REQUEST_TEMPLATE.md"
-  ],
-  "supersession": {
-    "control_and_sequencing": [
-      "progress.md",
-      "PLAN.md",
-      "TASKS.md",
-      "EXECUTION_PLAN.md",
-      "MASTER_PLAN_AUDIT.md",
-      "CODEX_GAPS.md"
-    ],
-    "rule": "The listed files remain technical and historical evidence. They do not control queue order, accepted progress or release-gate counts."
-  },
   "constraints": [
-    "One queue-head unit per next command.",
-    "Verify the live main HEAD before every write.",
-    "Use a clean feature branch and Draft PR.",
-    "Do not merge without explicit owner approval.",
-    "Do not force-push or rewrite history.",
-    "Do not pre-create later-unit branches, commits or PRs.",
-    "RSH-003 remains blocked until RSH-002 is accepted and merged.",
-    "Do not claim the repository is private until GitHub metadata confirms the setting."
+    "Do not claim the repository is private until GitHub metadata confirms it.",
+    "Do not create an RSH-007 branch, commit or PR without a future next instruction.",
+    "Do not claim clean-clone or GitHub-hosted runtime evidence before RSH-007.",
+    "Release gates remain 0/13."
   ],
   "validation": {
-    "expected_changed_paths": [
-      "CURRENT-STATE.json",
-      "MASTER-PLAN.md",
-      "QUEUE.json",
-      "NEXT-CONTRACT.md",
-      "FINDINGS-REGISTER.md",
-      "REPOSITORY-GOVERNANCE.md",
-      "CONTRIBUTING.md",
-      "SECURITY.md",
-      ".github/CODEOWNERS",
-      ".github/PULL_REQUEST_TEMPLATE.md"
-    ],
-    "json_documents_parse": true,
     "queue_units": 67,
     "game_source_changes": 0,
-    "runtime_build_asset_dependency_changes": 0,
-    "direct_main_changes": 0,
-    "repository_setting_changes": 0,
-    "visibility_policy_is_explicit": true,
-    "visibility_setting_truthfully_recorded_as_public": true
+    "asset_changes": 0,
+    "dependency_version_changes": 0,
+    "package_lock_changes": 0,
+    "RSH-007_precreated": false
   }
 }
