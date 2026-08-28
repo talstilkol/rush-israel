@@ -5104,6 +5104,22 @@ function addLandmarks(
     add(shrineTip);
     glowAt(bx, 69, bz - 8, 16763972, 56, 42);
     hit(bx, bz - 8, 11, 10, 10);
+    {
+      const hillM = new THREE.MeshStandardMaterial({
+        color: 0x4a6238,
+        roughness: 0.95,
+        flatShading: true
+      });
+      bag.push(hillM);
+      const start = built.samples[2];
+      for (let i = 0; i < 12; i++) {
+        const extra = 70 + i * 26;
+        const h = 36 + i % 4 * 16;
+        const hill = new THREE.Mesh(new THREE.ConeGeometry(34 + i % 3 * 10, h, 6), hillM);
+        hill.position.set(start.x - start.rx * extra, start.y + h * 0.18, start.z - start.rz * extra);
+        add(hill);
+      }
+    }
     const pineTrunkG = new THREE.CylinderGeometry(0.22, 0.36, 8.4, 7);
     pineTrunkG.translate(0, 4.2, 0);
     const pineCrownG = new THREE.ConeGeometry(2.2, 6.4, 7);
@@ -5163,7 +5179,6 @@ function addLandmarks(
       jib.position.set(cx + 12, 32 + c * 4, cz);
       add(jib);
     }
-    hit(pt.x, pt.z, 6);
     const sm = hai(32.8272, 34.9698);
     let smx = sm.x;
     let smz = sm.z;
