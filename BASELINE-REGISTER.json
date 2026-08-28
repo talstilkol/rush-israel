@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-baseline-register",
+  "generated_at": "2026-08-29T00:38:35+03:00",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "release_gates": {
+    "green": 0,
+    "total": 13
+  },
+  "baselines": [
+    {
+      "id": "B000-pre-control",
+      "kind": "historical",
+      "commit_sha": "bf08477a44aae0bfc5fee7329f83885adb85c3d8",
+      "tree_sha": "7cf530e3d561dc8022a7067cc62c94a81a4464be",
+      "recorded_at": "2026-08-28T20:59:55+03:00",
+      "description": "Last verified main state before the canonical RSH control program."
+    },
+    {
+      "id": "B001-rsh-001-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-001",
+      "pull_request": 1,
+      "commit_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9",
+      "tree_sha": "69d715472e572ef2071646db293cd1247746e4a8",
+      "recorded_at": "2026-08-28T23:49:00+03:00",
+      "description": "Canonical program-control plane accepted."
+    },
+    {
+      "id": "B002-rsh-002-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-002",
+      "pull_request": 2,
+      "commit_sha": "ef86c69ade9bc54585104f90743fb32cb4489898",
+      "tree_sha": "42def9cefba2ae4289626253f8bfc0410117df07",
+      "recorded_at": "2026-08-29T00:36:01+03:00",
+      "description": "Repository-governance and visibility policy accepted."
+    }
+  ],
+  "working_state": {
+    "unit": "RSH-003",
+    "base_commit_sha": "ef86c69ade9bc54585104f90743fb32cb4489898",
+    "branch": "agent/rsh-003-baseline-milestones-release-register",
+    "is_release": false,
+    "tag_created": false,
+    "release_created": false
+  },
+  "rules": [
+    "A baseline records immutable Git evidence; it is not a release by itself.",
+    "Tags and GitHub Releases are created only by their authorised release units.",
+    "Every accepted unit records its merge SHA in QUEUE.json and CURRENT-STATE.json.",
+    "Live GitHub state supersedes this register if they disagree."
+  ]
+}
