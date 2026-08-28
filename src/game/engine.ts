@@ -609,7 +609,7 @@ export class RaceEngine {
     const n = this.racers.length;
     for (let i = 0; i < n; i++) {
       const t = i === 0 ? 0.03 : (0.03 - 0.012 * i + 1) % 1;
-      const lat = i === 0 ? (this.trackDef.id === "rothschild" ? -7.2 : -2.2) : this.racers[i].aiOffset;
+      const lat = i === 0 ? (this.trackDef.id === "rothschild" ? -10.2 : -2.2) : this.racers[i].aiOffset;
       if (i === 0) this.racers[i].aiOffset = lat;
       this.racers[i].spawn(this.built, t, lat);
     }
@@ -658,7 +658,8 @@ export class RaceEngine {
       cab.isAi = true;
       cab.isTraffic = true;
       cab.aiSkill = 0.48 + (i % 3) * 0.08;
-      cab.aiOffset = (i % 2 === 0 ? -1 : 1) * Math.min(kind === "truck" ? 2.6 : 3.4, this.built.width * 0.28);
+      const lane = this.trackDef.id === "rothschild" ? 10.2 : Math.min(kind === "truck" ? 2.6 : 3.4, this.built.width * 0.28);
+      cab.aiOffset = (i % 2 === 0 ? -1 : 1) * lane;
       cab.baseGrip = SURFACE_GRIP[this.trackDef.theme] ?? 1;
       cab.surfaceGrip = cab.baseGrip;
       cab.weatherGrip = WEATHER_GRIP[this.weather] ?? 1;

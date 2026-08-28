@@ -5445,9 +5445,9 @@ function addLandmarks(
       roughness: 0.7
     });
     bag.push(curbM);
-    const ficusN = 96;
-    const trunkG = new THREE.CylinderGeometry(0.85, 1.38, 11.4, 12);
-    const leafG = new THREE.SphereGeometry(3.4, 10, 8);
+    const ficusN = 128;
+    const trunkG = new THREE.CylinderGeometry(0.95, 1.52, 12.4, 12);
+    const leafG = new THREE.SphereGeometry(4.2, 10, 8);
     bag.push(trunkG, leafG);
     const trunks = new THREE.InstancedMesh(trunkG, trunkM, ficusN);
     const leaves = new THREE.InstancedMesh(leafG, leafM, 960);
@@ -5455,14 +5455,14 @@ function addLandmarks(
     leaves.castShadow = shadows;
     let ti = 0;
     let li = 0;
-    const stepF = Math.max(1, Math.floor(n / 36));
+    const stepF = Math.max(1, Math.floor(n / 48));
     for (let i = 2; i < n && ti < ficusN; i += stepF) {
       const s = built.samples[i];
       for (const d of [-3.05, 3.05]) {
         if (ti >= ficusN) break;
         const fx = s.x + s.rx * d;
         const fz = s.z + s.rz * d;
-        _dummy.position.set(fx, s.y + 5.7, fz);
+        _dummy.position.set(fx, s.y + 6.2, fz);
         _dummy.scale.set(1, 1, 1);
         _dummy.rotation.set(0, i * 0.7 % 6, 0);
         _dummy.updateMatrix();
@@ -5482,7 +5482,7 @@ function addLandmarks(
           [-1.5, 2.5, 0.9],
         ];
         for (let k = 0; k < 12; k++) {
-          _dummy.position.set(fx + offs[k][0], s.y + 12.2 + offs[k][1], fz + offs[k][2]);
+          _dummy.position.set(fx + offs[k][0], s.y + 13.4 + offs[k][1], fz + offs[k][2]);
           const sc = 1.12 + (k % 3) * 0.2;
           _dummy.scale.set(sc, sc * 0.88, sc);
           _dummy.updateMatrix();
@@ -5618,7 +5618,7 @@ function addLandmarks(
       const p = tlv(uh.lat, uh.lon);
       const nearH = nearestIndex(built.samples, p.x, p.z, 0);
       const sH = built.samples[nearH.index];
-      const extraH = built.width / 2 + 14;
+      const extraH = built.width / 2 + 18;
       if (nearH.dist < extraH) {
         p.x = sH.x + sH.rx * extraH;
         p.z = sH.z + sH.rz * extraH;
