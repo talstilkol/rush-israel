@@ -1,12 +1,13 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 2.3.0  
+**Version:** 2.3.1  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
 **Verified base:** `7ea076d377225d5db3561faf81fe1cedce091a28`  
 **Active unit:** `RSH-007`  
 **Active branch:** `agent/rsh-007-github-actions-ci`  
-**Active PR:** `#8`
+**Active PR:** `#9`  
+**Replaced PR:** `#8` — closed unmerged after the connector failed to mark the Draft Ready
 
 ## 1. Authority
 
@@ -40,12 +41,22 @@ Each authorised unit still requires:
 `RSH-007 — Create GitHub Actions CI`
 
 RSH-007 establishes the first GitHub-hosted clean-checkout authority. It is not
-accepted merely because workflow YAML exists. The exact final PR head must have
-a completed successful job named:
+accepted merely because workflow YAML exists. The exact final head of replacement
+PR #9 must have a completed successful job named:
 
 `required-ci / validate`
 
-## 4. RSH-007 scope
+## 4. Replacement-PR continuity
+
+Draft PR #8 and replacement PR #9 use the same branch and linear branch history.
+PR #8 was closed without merge solely because the connector's Ready-for-review
+mutation failed. No validated bytes were discarded or reconstructed.
+
+The pre-reconciliation head `fb1bc883b03fd254954393c2b6d0142de964f12d`
+passed workflow run `33221515687`. After PR-number reconciliation, the new exact
+final head must independently pass again before merge.
+
+## 5. RSH-007 scope
 
 RSH-007 may add:
 
@@ -53,20 +64,21 @@ RSH-007 may add:
 - exact Node/npm and lockfile installation;
 - Playwright browser provisioning;
 - lint, complete unit tests, self-starting QA and build execution;
-- CI operating documentation and canonical state updates.
+- CI operating documentation and canonical state updates;
+- deterministic regression baselines that do not misrepresent unresolved claims.
 
 It must not apply branch protection or rulesets; that remains RSH-008.
 
-## 5. Transition to RSH-008
+## 6. Transition to RSH-008
 
 RSH-008 starts only after:
 
-1. PR #8 final head succeeds in GitHub Actions;
-2. PR #8 is merged under the owner's batch authorisation;
+1. PR #9 final head succeeds in GitHub Actions;
+2. PR #9 is merged under the owner's batch authorisation;
 3. the live merge SHA is read from `main`;
 4. RSH-007 acceptance is written into the next branch's canonical records.
 
-## 6. Prohibited actions
+## 7. Prohibited actions
 
 - direct write to `main`;
 - force-push or history rewrite;
@@ -76,7 +88,7 @@ RSH-008 starts only after:
 - creating a tag, release or public distribution artifact;
 - starting RSH-012 under this batch.
 
-## 7. Current metrics
+## 8. Current metrics
 
 | Metric | Value |
 |---|---:|
