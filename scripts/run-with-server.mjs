@@ -148,12 +148,29 @@ export async function waitForServer({ url, child, timeoutMs, probe = probeServer
   }
 }
 
-async function waitForExit(child, timeoutMs) {
+export async function waitForExit(child, timeoutMs, timerApi = {}) {
   if (exited(child)) return true;
-  return await Promise.race([
-    new Promise((resolve) => child.once("exit", () => resolve(true))),
-    delay(timeoutMs).then(() => false),
-  ]);
+  const setTimer = timerApi.setTimeout ?? setTimeout;
+  const clearTimer = timerApi.clearTimeout ?? clearTimeout;
+
+  return await new Promise((resolve) => {
+    let settled = false;
+    let timer = null;
+    const cleanup = () => {
+      if (timer !== null) clearTimer(timer);
+      child.removeListener("exit", onExit);
+    };
+    const settle = (value) => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      resolve(value);
+    };
+    const onExit = () => settle(true);
+
+    child.once("exit", onExit);
+    timer = setTimer(() => settle(false), timeoutMs);
+  });
 }
 
 export async function terminateTree(child, timeoutMs = DEFAULT_STOP_TIMEOUT_MS) {
@@ -273,6 +290,7 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
 
   try {
     const alreadyRunning = await probeServer(config.serverUrl);
+    if (interrupted) return signalExitCode(interrupted);
     if (alreadyRunning && !config.reuseServer) {
       throw new Error(
         `A server already responds at ${config.serverUrl}. `
@@ -300,6 +318,7 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
       console.log(`[qa-harness] reusing explicitly authorised server: ${config.serverUrl}`);
     }
 
+    if (interrupted) return signalExitCode(interrupted);
     commandChild = spawnQaCommand(config.command, {
       ...env,
       QA_SERVER_URL: config.serverUrl,
