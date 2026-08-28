@@ -8,6 +8,7 @@ import {
   devServerSpec,
   parseHarnessArgs,
   probeServer,
+  signalExitCode,
   waitForServer,
 } from "./run-with-server.mjs";
 import { fromRoot, projectRoot } from "./project-root.mjs";
@@ -81,6 +82,13 @@ test("dev server uses local Vite through the app-env wrapper", () => {
   assert.equal(spec.args[1], process.execPath);
   assert.equal(spec.args[2], fromRoot("node_modules", "vite", "bin", "vite.js"));
   assert.deepEqual(spec.args.slice(-6), ["dev", "--host", "0.0.0.0", "--port", "8080", "--strictPort"]);
+});
+
+test("signal exit codes follow the conventional 128 + signal mapping", () => {
+  assert.equal(signalExitCode("SIGHUP"), 129);
+  assert.equal(signalExitCode("SIGINT"), 130);
+  assert.equal(signalExitCode("SIGTERM"), 143);
+  assert.equal(signalExitCode("SIGUNKNOWN"), 128);
 });
 
 test("probeServer accepts healthy or redirect responses and rejects failures", async () => {
