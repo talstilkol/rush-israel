@@ -63,10 +63,10 @@ test("rejects malformed URL and timeout values", () => {
   });
 });
 
-test("self-start is restricted to the canonical local server contract", () => {
+test("self-start is restricted to the exact canonical IPv4 loopback URL", () => {
   assert.equal(canSelfStartUrl("http://127.0.0.1:8080/"), true);
-  assert.equal(canSelfStartUrl("http://localhost:8080/"), true);
-  assert.equal(canSelfStartUrl("http://[::1]:8080/"), true);
+  assert.equal(canSelfStartUrl("http://localhost:8080/"), false);
+  assert.equal(canSelfStartUrl("http://[::1]:8080/"), false);
   assert.equal(canSelfStartUrl("http://127.0.0.1:8081/"), false);
   assert.equal(canSelfStartUrl("https://127.0.0.1:8080/"), false);
   assert.equal(canSelfStartUrl("http://127.0.0.1:8080/qa"), false);
