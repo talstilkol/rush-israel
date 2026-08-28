@@ -1,36 +1,42 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-28T22:30:49+03:00",
+  "generated_at": "2026-08-28T23:55:00+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and stale planning files."
   },
   "verified_main": {
-    "head_sha": "bf08477a44aae0bfc5fee7329f83885adb85c3d8",
-    "tree_sha": "7cf530e3d561dc8022a7067cc62c94a81a4464be",
-    "commit_authored_at": "2026-08-28T20:59:55+03:00",
-    "commit_message": "Drive Reading: tunnel under the plant, 28m of port road.",
+    "head_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9",
+    "tree_sha": "69d715472e572ef2071646db293cd1247746e4a8",
+    "commit_authored_at": "2026-08-28T23:49:00+03:00",
+    "commit_message": "Merge PR #1: RSH-001 — Canonical program control",
+    "commit_signature_verified": true,
     "protected": false,
-    "required_status_checks": 0
+    "required_status_checks": 0,
+    "rulesets": 0
   },
   "repository_snapshot": {
-    "visibility": "public",
+    "visibility_current": "public",
+    "visibility_policy_target": "private",
+    "visibility_transition_state": "owner_setting_action_required",
     "default_branch": "main",
-    "branch_count": 2,
+    "branch_count": 3,
     "branches": [
       "main",
-      "agent/rsh-001-canonical-program-control"
+      "agent/rsh-001-canonical-program-control",
+      "agent/rsh-002-repository-governance"
     ],
     "open_pull_requests": 1,
-    "all_pull_requests_before_rsh_001": 0,
+    "merged_pull_requests": 1,
     "tags": 0,
     "releases": 0,
     "main_status_checks": 0
   },
   "product_snapshot": {
     "classification": "Three.js WebGL simcade driving prototype inspired by Israeli places",
+    "distribution_policy": "Private, owner-controlled development. Public distribution is not authorised.",
     "default_renderer": "WebGLRenderer",
     "frameworks": [
       "Three.js 0.185.1",
@@ -52,12 +58,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 0,
+    "accepted_units": 1,
     "units_in_review": 1,
-    "not_started_units": 66,
-    "queue_head": "RSH-001",
+    "not_started_units": 65,
+    "queue_head": "RSH-002",
     "queue_head_state": "draft_pr_open",
-    "next_unit_after_acceptance": "RSH-002",
+    "next_unit_after_acceptance": "RSH-003",
     "next_unit_eligible": false,
     "documented_implementation_percent": 13.0,
     "independent_estimate_percent": 16.0,
@@ -67,26 +73,44 @@
     ],
     "release_gates_green": 0,
     "release_gates_total": 13,
-    "status_resolution": "0/13 is the only verified release-gate count on the live main HEAD. Older 2/13 statements are retained as historical evidence but are not canonical."
+    "status_resolution": "0/13 remains the only verified release-gate count."
   },
   "active_change": {
-    "unit": "RSH-001",
-    "title": "Canonical program control",
-    "branch": "agent/rsh-001-canonical-program-control",
-    "base_sha": "bf08477a44aae0bfc5fee7329f83885adb85c3d8",
+    "unit": "RSH-002",
+    "title": "Repository governance and visibility policy",
+    "branch": "agent/rsh-002-repository-governance",
+    "base_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9",
     "pull_request_state": "draft",
     "implementation_state": "draft_pr_open",
     "merge_authorized": false,
     "game_code_changed": false,
+    "repository_setting_changes": 0,
     "later_units_precreated": false,
-    "pull_request_locator": "head:agent/rsh-001-canonical-program-control;base:main"
+    "pull_request_locator": "head:agent/rsh-002-repository-governance;base:main"
+  },
+  "governance": {
+    "owner": "@talstilkol",
+    "target_visibility": "private",
+    "live_visibility_at_unit_start": "public",
+    "public_distribution_authorized": false,
+    "direct_main_writes_authorized": false,
+    "required_delivery_path": "one queue-head branch and Draft PR",
+    "owner_merge_approval_required": true,
+    "automatic_merge": false,
+    "force_push": false,
+    "history_rewrite": false,
+    "default_merge_method": "merge commit",
+    "technical_enforcement_unit": "RSH-008",
+    "policy_document": "REPOSITORY-GOVERNANCE.md"
   },
   "findings": {
     "total": 42,
     "p0": 12,
     "p1": 18,
     "p2": 12,
-    "accepted_closed": 0,
+    "closed": 1,
+    "mitigated": 5,
+    "open": 36,
     "register": "FINDINGS-REGISTER.md"
   },
   "canonical_control_files": [
@@ -94,7 +118,15 @@
     "MASTER-PLAN.md",
     "QUEUE.json",
     "NEXT-CONTRACT.md",
-    "FINDINGS-REGISTER.md"
+    "FINDINGS-REGISTER.md",
+    "REPOSITORY-GOVERNANCE.md"
+  ],
+  "governance_files": [
+    "REPOSITORY-GOVERNANCE.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    ".github/CODEOWNERS",
+    ".github/PULL_REQUEST_TEMPLATE.md"
   ],
   "supersession": {
     "control_and_sequencing": [
@@ -105,7 +137,7 @@
       "MASTER_PLAN_AUDIT.md",
       "CODEX_GAPS.md"
     ],
-    "rule": "The listed files remain technical and historical evidence. They no longer control queue order, accepted progress or release-gate counts."
+    "rule": "The listed files remain technical and historical evidence. They do not control queue order, accepted progress or release-gate counts."
   },
   "constraints": [
     "One queue-head unit per next command.",
@@ -113,8 +145,9 @@
     "Use a clean feature branch and Draft PR.",
     "Do not merge without explicit owner approval.",
     "Do not force-push or rewrite history.",
-    "Do not pre-create later unit branches, commits or PRs.",
-    "RSH-002 remains blocked until RSH-001 is accepted and merged."
+    "Do not pre-create later-unit branches, commits or PRs.",
+    "RSH-003 remains blocked until RSH-002 is accepted and merged.",
+    "Do not claim the repository is private until GitHub metadata confirms the setting."
   ],
   "validation": {
     "expected_changed_paths": [
@@ -122,10 +155,20 @@
       "MASTER-PLAN.md",
       "QUEUE.json",
       "NEXT-CONTRACT.md",
-      "FINDINGS-REGISTER.md"
+      "FINDINGS-REGISTER.md",
+      "REPOSITORY-GOVERNANCE.md",
+      "CONTRIBUTING.md",
+      "SECURITY.md",
+      ".github/CODEOWNERS",
+      ".github/PULL_REQUEST_TEMPLATE.md"
     ],
     "json_documents_parse": true,
+    "queue_units": 67,
     "game_source_changes": 0,
-    "main_changes": 0
+    "runtime_build_asset_dependency_changes": 0,
+    "direct_main_changes": 0,
+    "repository_setting_changes": 0,
+    "visibility_policy_is_explicit": true,
+    "visibility_setting_truthfully_recorded_as_public": true
   }
 }
