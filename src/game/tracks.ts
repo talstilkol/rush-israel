@@ -819,7 +819,7 @@ export const TRACKS: TrackDef[] = [
     description: "השדרה ההיסטורית — בית הבימה, היכל העצמאות, אלנבי ושינקין. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "The historic boulevard — Habima, Independence Hall, Allenby and Sheinkin. Inspired by the place — not a map, not GIS.",
     image: "/tracks/rothschild.jpg",
-    width: 26,
+    width: 32,
     seed: 1909,
     theme: "bauhaus",
     ground: 0x8a8074,

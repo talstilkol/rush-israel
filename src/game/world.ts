@@ -5334,7 +5334,7 @@ function addLandmarks(
     const medIdx = [];
     const walkPos = [];
     const walkIdx = [];
-    const medHalf = 5.0;
+    const medHalf = 6.2;
     const pathHalf = 1.5;
     for (let i = 0; i <= n; i++) {
       const s = built.samples[i % n];
@@ -5366,23 +5366,7 @@ function addLandmarks(
       roughness: 0.7
     });
     bag.push(curbM);
-    const stepC = Math.max(1, Math.floor(n / 90));
-    for (let i = 0; i < n; i += stepC) {
-      const s = built.samples[i];
-      colliders.push({
-        x: s.x + s.rx * medHalf,
-        z: s.z + s.rz * medHalf,
-        r: 0.85,
-        kind: "barrier"
-      });
-      colliders.push({
-        x: s.x - s.rx * medHalf,
-        z: s.z - s.rz * medHalf,
-        r: 0.85,
-        kind: "barrier"
-      });
-    }
-    const ficusN = 80;
+    const ficusN = 96;
     const trunkG = new THREE.CylinderGeometry(0.85, 1.38, 11.4, 12);
     const leafG = new THREE.SphereGeometry(3.4, 10, 8);
     bag.push(trunkG, leafG);
@@ -5611,6 +5595,14 @@ function addLandmarks(
       hit(indy.x, indy.z, 7, 7.2, 5.8);
     }
     const pg = tlv(32.0648, 34.7752);
+    {
+      const nP = nearestIndex(built.samples, pg.x, pg.z, 0);
+      if (nP.dist < built.width / 2 + 12) {
+        const sP = built.samples[nP.index];
+        pg.x = sP.x + sP.rx * (built.width / 2 + 18);
+        pg.z = sP.z + sP.rz * (built.width / 2 + 18);
+      }
+    }
     const pgBody = new THREE.Mesh(new THREE.BoxGeometry(9.2, 16.5, 9.2), cream);
     pgBody.position.set(pg.x, 8.3, pg.z);
     add(pgBody);
@@ -5630,6 +5622,14 @@ function addLandmarks(
     pgCap.position.set(pg.x, 20.4, pg.z);
     add(pgCap);
     const hb = tlv(32.0734, 34.7826);
+    {
+      const nB = nearestIndex(built.samples, hb.x, hb.z, 0);
+      if (nB.dist < built.width / 2 + 16) {
+        const sB = built.samples[nB.index];
+        hb.x = sB.x + sB.rx * (built.width / 2 + 28);
+        hb.z = sB.z + sB.rz * (built.width / 2 + 28);
+      }
+    }
     const plaza = new THREE.Mesh(new THREE.CircleGeometry(22, 24), walkM);
     plaza.rotation.x = -Math.PI / 2;
     plaza.position.set(hb.x, 0.12, hb.z);
@@ -5672,6 +5672,14 @@ function addLandmarks(
     hbLid.position.set(hb.x, 16.6, hb.z);
     add(hbLid);
     const ind = tlv(32.0624, 34.7682);
+    {
+      const nN = nearestIndex(built.samples, ind.x, ind.z, 0);
+      if (nN.dist < built.width / 2 + 12) {
+        const sN = built.samples[nN.index];
+        ind.x = sN.x + sN.rx * (built.width / 2 + 18);
+        ind.z = sN.z + sN.rz * (built.width / 2 + 18);
+      }
+    }
     const hall = new THREE.Mesh(new THREE.BoxGeometry(16, 8.4, 11.4), cream);
     hall.position.set(ind.x, 4.6, ind.z);
     add(hall);
