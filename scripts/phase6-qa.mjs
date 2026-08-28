@@ -1,7 +1,9 @@
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
-mkdirSync("/workspace/screenshots", { recursive: true });
+const screenshots = fromRoot("screenshots");
+mkdirSync(screenshots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
@@ -73,7 +75,7 @@ if (dA <= 0.05) throw new Error(`A did not yaw left: ${dA}`);
 if (dD >= -0.05) throw new Error(`D did not yaw right: ${dD} speed=${speedD} steer=${steerD}`);
 if (rollA >= -0.02) throw new Error(`A should roll negative (lean): ${rollA}`);
 
-await page.screenshot({ path: "/workspace/screenshots/phase6-drive.png" });
+await page.screenshot({ path: `${screenshots}/phase6-drive.png` });
 console.log(
   JSON.stringify(
     {

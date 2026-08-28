@@ -2,12 +2,14 @@
 /** Codex 82: sha256 of Ayalon track + world slices. Bump AYALON_LOCK to rewrite. */
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
-const LOCK_PATH = "/workspace/golden-baseline/ayalon.lock";
+const LOCK_DIR = fromRoot("golden-baseline");
+const LOCK_PATH = fromRoot("golden-baseline", "ayalon.lock");
 
 export function ayalonPayload() {
-  const tracks = readFileSync("/workspace/src/game/tracks.ts", "utf8");
-  const world = readFileSync("/workspace/src/game/world.ts", "utf8");
+  const tracks = readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8");
+  const world = readFileSync(fromRoot("src", "game", "world.ts"), "utf8");
   const t0 = tracks.indexOf('id: "ayalon"');
   const t1 = tracks.indexOf('id: "caesarea"', t0);
   const w0 = world.indexOf("const placeAzrieli");
@@ -43,7 +45,7 @@ if (process.argv.includes("--write") || envLock) {
   } catch {
     /* first write */
   }
-  mkdirSync("/workspace/golden-baseline", { recursive: true });
+  mkdirSync(LOCK_DIR, { recursive: true });
   writeFileSync(LOCK_PATH, JSON.stringify({ lock: lockN, hash }, null, 2) + "\n");
   console.log("ayalon.lock wrote", lockN, hash.slice(0, 12));
   process.exit(0);

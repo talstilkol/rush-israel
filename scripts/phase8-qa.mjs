@@ -1,7 +1,9 @@
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
-mkdirSync("/workspace/screenshots", { recursive: true });
+const screenshots = fromRoot("screenshots");
+mkdirSync(screenshots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
@@ -68,7 +70,7 @@ if (dD >= -0.04) throw new Error(`D did not yaw right: ${dD}`);
 
 await page.evaluate(() => window.__controlsTest.setSteer(0));
 await page.waitForTimeout(200);
-await page.screenshot({ path: "/workspace/screenshots/phase8-night.png" });
+await page.screenshot({ path: `${screenshots}/phase8-night.png` });
 
 console.log(JSON.stringify({ ok: errors.length === 0, dA: Number(dA.toFixed(3)), dD: Number(dD.toFixed(3)), errors }, null, 2));
 if (errors.length) process.exit(1);

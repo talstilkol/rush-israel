@@ -1,7 +1,9 @@
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
-mkdirSync("/workspace/screenshots", { recursive: true });
+const screenshots = fromRoot("screenshots");
+mkdirSync(screenshots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
@@ -33,7 +35,7 @@ await page.waitForTimeout(200);
 await clickText("טיימס סקוואר|Times Square");
 await clickText("בחירת רכב|Choose car");
 await page.waitForTimeout(400);
-await page.screenshot({ path: "/workspace/screenshots/showroom.png" });
+await page.screenshot({ path: `${screenshots}/showroom.png` });
 await clickText("זינוק|Start");
 await page.waitForSelector("canvas", { timeout: 25000 });
 await page.waitForFunction(() => !!window.__controlsTest, { timeout: 20000 });
@@ -75,11 +77,11 @@ await page.waitForTimeout(350);
 const rewinding = await page.evaluate(() => window.__controlsTest?.isRewinding?.());
 await page.keyboard.up("KeyR");
 await page.waitForTimeout(120);
-await page.screenshot({ path: "/workspace/screenshots/phase5-drive.png" });
+await page.screenshot({ path: `${screenshots}/phase5-drive.png` });
 
 await page.evaluate(() => window.__controlsTest?.enterPhoto?.());
 await page.waitForTimeout(200);
-await page.screenshot({ path: "/workspace/screenshots/photo.png" });
+await page.screenshot({ path: `${screenshots}/photo.png` });
 await page.evaluate(() => window.__controlsTest?.exitPhoto?.());
 
 console.log(

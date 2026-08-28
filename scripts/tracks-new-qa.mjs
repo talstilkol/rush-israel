@@ -1,7 +1,9 @@
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
-mkdirSync("/workspace/screenshots", { recursive: true });
+const screenshots = fromRoot("screenshots");
+mkdirSync(screenshots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
@@ -33,7 +35,7 @@ const body = await page.evaluate(() => document.body.innerText);
 const want = ["רוטשילד", "איילון", "קיסריה", "ים המלח", "עכו"];
 const missing = want.filter((n) => !body.includes(n));
 if (missing.length) throw new Error(`missing tracks: ${missing.join(",")}`);
-await page.screenshot({ path: "/workspace/screenshots/tracks-new.png" });
+await page.screenshot({ path: `${screenshots}/tracks-new.png` });
 
 await clickText("קיסריה");
 await clickText("בחירת רכב|Choose car");
@@ -69,7 +71,7 @@ const dA = wrap(yA - y0);
 const dD = wrap(yD - yMid);
 if (dA <= 0.04) throw new Error(`A did not yaw left: ${dA}`);
 if (dD >= -0.04) throw new Error(`D did not yaw right: ${dD}`);
-await page.screenshot({ path: "/workspace/screenshots/caesarea-driving.png" });
+await page.screenshot({ path: `${screenshots}/caesarea-driving.png` });
 
 console.log(JSON.stringify({ ok: errors.length === 0, missing, dA: Number(dA.toFixed(3)), dD: Number(dD.toFixed(3)), errors }, null, 2));
 if (errors.length) process.exit(1);

@@ -2,8 +2,9 @@
 /** 21.9: HaShalom photo pack. User unblocked by המשך. Not an Ayalon freeze. */
 import { chromium } from "playwright";
 import { mkdir, writeFile, stat } from "node:fs/promises";
+import { fromRoot } from "./project-root.mjs";
 
-const out = process.env.GOLDEN_DIR || "/workspace/golden-baseline";
+const out = process.env.GOLDEN_DIR || fromRoot("golden-baseline");
 await mkdir(out, { recursive: true });
 const url = process.env.SMOKE_URL ?? "http://127.0.0.1:8080/?qa=1";
 const b = await chromium.launch({ headless: true });

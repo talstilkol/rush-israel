@@ -5,10 +5,11 @@
  */
 import { chromium } from "playwright";
 import { appendFile, mkdir } from "node:fs/promises";
+import { fromRoot } from "./project-root.mjs";
 
 const MS = Number(process.env.SOAK_MS || 30 * 60 * 1000);
 const url = process.env.SOAK_URL || "http://127.0.0.1:8080/";
-const logDir = "/workspace/soak-logs";
+const logDir = fromRoot("soak-logs");
 await mkdir(logDir, { recursive: true });
 const logFile = `${logDir}/drive-30min.log`;
 

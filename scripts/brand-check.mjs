@@ -3,30 +3,19 @@
  * browser): a canvas app is almost always a game / visually rich app, and
  * those must ship a custom share card — the default og.grok.me placeholder is
  * not acceptable for them (see .grok/skills/og/SKILL.md).
- *
- * Games must also set type=x:game in src/lib/og/site.json so the platform
- * injector emits og:type for X game-card unfurls, and public/x-banner.jpg for
- * the 50:11 X feed card. A card file is enough for bake to emit /og.jpg, but
- * brand-check still requires site.json `"card": "custom"` so the agent-facing
- * contract stays explicit.
- *
- * Checked on the filesystem (not the served head) so preview and mid-scaffold
- * workspaces are judged the same way.
  */
 import { existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { OG_SITE_REL_PATH, readOgSite, siteHasCustomCard } from "./grok-pwa-shared.mjs";
+import { projectRoot } from "./project-root.mjs";
 
-// Over this, link scrapers (X card previews included) time out or skip the
-// image, so the card silently fails to unfurl. The og skill's JPEG contract
-// (ffmpeg -q:v 4, ~150-300 KB) exists precisely to stay under it.
 export const MAX_CARD_BYTES = 600 * 1024;
 
 export function siteDeclaresOgTypeGame(site) {
   return String(site?.type ?? "").toLowerCase() === "x:game";
 }
 
-export function computeBrandWarnings({ hasCanvas, workspaceRoot = "/workspace" }) {
+export function computeBrandWarnings({ hasCanvas, workspaceRoot = projectRoot }) {
   const skillPath = join(workspaceRoot, ".grok/skills/og/SKILL.md");
   const sitePath = join(workspaceRoot, OG_SITE_REL_PATH);
   const site = readOgSite(workspaceRoot);
@@ -78,8 +67,6 @@ export function computeBrandWarnings({ hasCanvas, workspaceRoot = "/workspace" }
     );
   }
 
-  // Games with a custom link card must also ship the 50:11 X feed card.
-  // Skip while still on the og.grok.me placeholder — that pass has not started yet.
   if (hasCanvas && cardPath !== undefined) {
     const bannerPath = join(workspaceRoot, "public/x-banner.jpg");
     if (!existsSync(bannerPath)) {

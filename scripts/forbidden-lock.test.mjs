@@ -3,6 +3,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 import { FORBIDDEN } from "../src/rendering/forbidden.ts";
+import { fromRoot } from "./project-root.mjs";
 
 function walk(dir, acc = []) {
   for (const name of readdirSync(dir)) {
@@ -15,7 +16,7 @@ function walk(dir, acc = []) {
 
 test("Codex 84 forbidden features stay off", () => {
   assert.equal(Object.keys(FORBIDDEN).length, 12);
-  const files = walk("/workspace/src");
+  const files = walk(fromRoot("src"));
   const blob = files.map((f) => readFileSync(f, "utf8")).join("\n");
   assert.doesNotMatch(blob, /from ["']@pmndrs\/postprocessing/);
   assert.doesNotMatch(blob, /from ["']@dimforge\/rapier|from ["']cannon-es|from ["']cannon["']/);
@@ -27,6 +28,6 @@ test("Codex 84 forbidden features stay off", () => {
   assert.doesNotMatch(blob, /FFTOcean|Ocean\.js/);
   assert.doesNotMatch(blob, /VolumetricClouds|CloudVolume/);
   assert.doesNotMatch(blob, /unrealengine|UnrealEngine/);
-  const pkg = readFileSync("/workspace/package.json", "utf8");
+  const pkg = readFileSync(fromRoot("package.json"), "utf8");
   assert.doesNotMatch(pkg, /@pmndrs\/postprocessing|rapier|cannon-es/);
 });

@@ -1,7 +1,9 @@
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
-mkdirSync("/workspace/screenshots", { recursive: true });
+const screenshots = fromRoot("screenshots");
+mkdirSync(screenshots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
@@ -25,14 +27,14 @@ const clickText = async (re) => {
 };
 
 await page.goto("http://127.0.0.1:8080/", { waitUntil: "networkidle", timeout: 40000 });
-await page.screenshot({ path: "/workspace/screenshots/title.png" });
+await page.screenshot({ path: `${screenshots}/title.png` });
 const titleBits = await page.evaluate(() => document.body.innerText);
 if (!/מוסך|Garage/.test(titleBits)) throw new Error("garage CTA missing");
 if (!/₪/.test(titleBits)) throw new Error("cash missing");
 
 await clickText("מוסך|Garage");
 await page.waitForTimeout(350);
-await page.screenshot({ path: "/workspace/screenshots/garage.png" });
+await page.screenshot({ path: `${screenshots}/garage.png` });
 const garageText = await page.evaluate(() => document.body.innerText);
 if (!/מנוע|Engine/.test(garageText)) throw new Error("upgrade rows missing");
 
@@ -73,7 +75,7 @@ const dA = wrap(yA - y0);
 const dD = wrap(yD - yA);
 if (dA <= 0.05) throw new Error(`A did not yaw left: ${dA}`);
 if (dD >= -0.05) throw new Error(`D did not yaw right: ${dD}`);
-await page.screenshot({ path: "/workspace/screenshots/rain-timessquare.png" });
+await page.screenshot({ path: `${screenshots}/rain-timessquare.png` });
 
 await page.keyboard.press("Escape");
 await page.waitForTimeout(200);
@@ -87,7 +89,7 @@ await clickText("זינוק|Start");
 await page.waitForFunction(() => !!window.__controlsTest, { timeout: 20000 });
 const storm = await page.evaluate(() => window.__controlsTest?.getWeather?.());
 if (storm !== "storm") throw new Error(`expected storm, got ${storm}`);
-await page.screenshot({ path: "/workspace/screenshots/storm-beach.png" });
+await page.screenshot({ path: `${screenshots}/storm-beach.png` });
 
 console.log(
   JSON.stringify(

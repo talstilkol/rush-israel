@@ -1,7 +1,9 @@
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
-mkdirSync("/workspace/screenshots", { recursive: true });
+const screenshots = fromRoot("screenshots");
+mkdirSync(screenshots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
@@ -74,11 +76,11 @@ await page.evaluate(() => window.__controlsTest?.finishNow?.());
 await page.waitForTimeout(400);
 const replaying = await page.evaluate(() => window.__controlsTest?.isReplay?.());
 if (replaying) {
-  await page.screenshot({ path: "/workspace/screenshots/replay.png" });
+  await page.screenshot({ path: `${screenshots}/replay.png` });
   await page.evaluate(() => window.__controlsTest?.skipReplay?.());
   await page.waitForTimeout(250);
 }
-await page.screenshot({ path: "/workspace/screenshots/phase4-result.png" });
+await page.screenshot({ path: `${screenshots}/phase4-result.png` });
 
 const garageOk = await page.evaluate(() => document.body.innerText.includes("מוסך") || true);
 

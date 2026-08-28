@@ -2,8 +2,9 @@
 /** Phase A gate: Ayalon g01/g05/g07/g08 + JSON. Not an art pass. */
 import { chromium } from "playwright";
 import { mkdir, writeFile, stat } from "node:fs/promises";
+import { fromRoot } from "./project-root.mjs";
 
-const out = process.env.GOLDEN_DIR || "/workspace/golden-baseline";
+const out = process.env.GOLDEN_DIR || fromRoot("golden-baseline");
 await mkdir(out, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });

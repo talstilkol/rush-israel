@@ -1,7 +1,9 @@
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
-mkdirSync("/workspace/screenshots", { recursive: true });
+const screenshots = fromRoot("screenshots");
+mkdirSync(screenshots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
@@ -28,7 +30,7 @@ await clickText("בחירת מסלול|Choose track");
 await page.waitForTimeout(400);
 await clickText("^ניו יורק$|^New York$");
 await page.waitForTimeout(350);
-await page.screenshot({ path: "/workspace/screenshots/tracks-nyc.png" });
+await page.screenshot({ path: `${screenshots}/tracks-nyc.png` });
 
 const tracks = [
   { re: "סנטרל פארק|Central Park", file: "race-centralpark", night: false },
@@ -56,7 +58,7 @@ for (const tr of tracks) {
   await page.evaluate(() => window.__controlsTest?.skipCountdown?.());
   await page.keyboard.down("KeyW");
   await page.waitForTimeout(1800);
-  await page.screenshot({ path: `/workspace/screenshots/${tr.file}.png` });
+  await page.screenshot({ path: `${screenshots}/${tr.file}.png` });
   await page.keyboard.up("KeyW");
 }
 

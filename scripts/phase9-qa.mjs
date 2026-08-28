@@ -1,7 +1,5 @@
 import { chromium } from "playwright";
-import { mkdirSync } from "node:fs";
 
-mkdirSync("/workspace/screenshots", { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
