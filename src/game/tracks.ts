@@ -633,7 +633,7 @@ export const TRACKS: TrackDef[] = [
     description: "מחנה יהודה, רחוב יפו, שער יפו, גיא בן הינום ועלייה להר הזיתים. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Mahane Yehuda, Jaffa Road, Jaffa Gate, Hinnom Valley and the climb to the Mount of Olives. Inspired by the place — not a map, not GIS.",
     image: "/tracks/jerusalem.jpg",
-    width: 24,
+    width: 28,
     seed: 3141,
     theme: "stone",
     open: true,

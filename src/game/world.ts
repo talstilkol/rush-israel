@@ -4760,14 +4760,23 @@ function addLandmarks(
     hit(hp.x, hp.z + 40, 12);
   }
   if (def.id === "jerusalem") {
-    const jg = jer(31.7764, 35.2276);
-    const td = jer(31.7762, 35.2284);
-    const dm = jer(31.7788, 35.2364);
-    const kd = jer(31.7745, 35.2225);
-    const my = jer(31.7848, 35.2114);
-    const kt = jer(31.7784, 35.2346);
-    const mill = jer(31.7715, 35.2247);
-    const olives = jer(31.7848, 35.2462);
+    const offJer = (p: { x: number; z: number }, extra = 24) => {
+      const n = nearestIndex(built.samples, p.x, p.z, 0);
+      if (n.dist < built.width / 2 + extra) {
+        const s = built.samples[n.index];
+        p.x = s.x + s.rx * (built.width / 2 + extra);
+        p.z = s.z + s.rz * (built.width / 2 + extra);
+      }
+      return p;
+    };
+    const jg = offJer(jer(31.7764, 35.2276), 22);
+    const td = offJer(jer(31.7762, 35.2284), 30);
+    const dm = offJer(jer(31.7788, 35.2364), 36);
+    const kd = offJer(jer(31.7745, 35.2225), 22);
+    const my = offJer(jer(31.7848, 35.2114), 18);
+    const kt = offJer(jer(31.7784, 35.2346), 32);
+    const mill = offJer(jer(31.7715, 35.2247), 20);
+    const olives = offJer(jer(31.7848, 35.2462), 26);
     merlonWall(jg.x + 38, jg.z + 62, 54, 0.2, 13);
     merlonWall(jg.x + 62, jg.z + 42, 48, 1.1, 12);
     const gi = Math.max(0, Math.min(built.samples.length - 1, Math.floor(built.samples.length * 0.46)));
@@ -4792,28 +4801,28 @@ function addLandmarks(
     }
     minaret(td.x + 32, td.z + 33, 32);
     placeDome(dm.x, dm.z);
-    const aq = jer(31.7784, 35.236);
+    const aq = offJer(jer(31.7784, 35.236), 34);
     const aqsa = new THREE.Mesh(new THREE.BoxGeometry(28, 8, 16), stone);
     aqsa.position.set(aq.x, 4.2, aq.z);
     add(aqsa);
     const aqDome = new THREE.Mesh(new THREE.SphereGeometry(5.2, 14, 10, 0, Math.PI * 2, 0, Math.PI / 2), cream);
     aqDome.position.set(aq.x, 10.4, aq.z);
     add(aqDome);
-    const sepul = jer(31.7784, 35.2296);
+    const sepul = offJer(jer(31.7784, 35.2296), 26);
     const sep = new THREE.Mesh(new THREE.BoxGeometry(18, 11, 16), stone);
     sep.position.set(sepul.x, 5.6, sepul.z);
     add(sep);
     const sepDome = new THREE.Mesh(new THREE.SphereGeometry(6.4, 14, 10, 0, Math.PI * 2, 0, Math.PI / 2), cream);
     sepDome.position.set(sepul.x, 13.2, sepul.z);
     add(sepDome);
-    const hurva = jer(31.7772, 35.2316);
+    const hurva = offJer(jer(31.7772, 35.2316), 24);
     const hv = new THREE.Mesh(new THREE.CylinderGeometry(6.2, 6.6, 10, 12), stone);
     hv.position.set(hurva.x, 5.2, hurva.z);
     add(hv);
     const hvDome = new THREE.Mesh(new THREE.SphereGeometry(6.8, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), white);
     hvDome.position.set(hurva.x, 11.4, hurva.z);
     add(hvDome);
-    const ymcaP = jer(31.7753, 35.222);
+    const ymcaP = offJer(jer(31.7753, 35.222), 22);
     const ymca = new THREE.Mesh(new THREE.BoxGeometry(18, 14, 12), stone);
     ymca.position.set(ymcaP.x, 7.2, ymcaP.z);
     add(ymca);
@@ -4828,7 +4837,7 @@ function addLandmarks(
     hit(sepul.x, sepul.z, 9, 9, 8);
     hit(hurva.x, hurva.z, 7, 6.4, 6.4);
     hit(ymcaP.x, ymcaP.z, 8, 9, 6);
-    const kn = jer(31.7766, 35.2054);
+    const kn = offJer(jer(31.7766, 35.2054), 28);
     const knesset = new THREE.Mesh(new THREE.BoxGeometry(36, 8.4, 22), stone);
     knesset.position.set(kn.x, 5.2, kn.z);
     add(knesset);
