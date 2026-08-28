@@ -2,6 +2,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
+import { fromRoot } from "./project-root.mjs";
 
 const PAT = /sk-|apiKey|BEGIN RSA/;
 
@@ -24,7 +25,7 @@ export async function scanSecrets(root) {
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const hits = await scanSecrets("/workspace/src/game");
+  const hits = await scanSecrets(fromRoot("src", "game"));
   if (hits.length) {
     console.error(hits.join("\n"));
     process.exit(1);
