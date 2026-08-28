@@ -2116,9 +2116,9 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   poleGeo.translate(0, 2.6, 0);
   const poleMat = keep(new THREE.MeshStandardMaterial({
     color: 2764338,
-    metalness: 0.55,
-    roughness: 0.42,
-    envMapIntensity: 0.7
+    metalness: 0,
+    roughness: 0.62,
+    envMapIntensity: 0.5
   }));
   const bulbGeo = keep(new THREE.SphereGeometry(0.18, 8, 8));
   const bulbMat = keep(new THREE.MeshPhysicalMaterial({
@@ -2132,17 +2132,18 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const haloMat = keep(new THREE.MeshBasicMaterial({
     color: 16760944,
     transparent: true,
-    opacity: isNight ? 0.62 : 0,
+    opacity: isNight ? 0.78 : 0,
     blending: 2,
     depthWrite: false
   }));
-  const lampCount = def.id === "ramon" || def.id === "hermon" ? 0 : def.id === "hw1" || def.id === "hw2" || def.id === "hw6" ? Math.floor(built.samples.length / 16) : def.theme === "carmel" ? Math.floor(built.samples.length / 18) : Math.floor(built.samples.length / 10);
+  const lampCount = def.id === "ramon" || def.id === "hermon" ? 0 : def.id === "ayalon" ? Math.floor(built.samples.length / 8) : def.id === "hw1" || def.id === "hw2" || def.id === "hw6" ? Math.floor(built.samples.length / 16) : def.theme === "carmel" ? Math.floor(built.samples.length / 18) : Math.floor(built.samples.length / 10);
+  const lampStride = Math.max(1, Math.floor(built.samples.length / Math.max(1, lampCount)));
   const poles = new THREE.InstancedMesh(poleGeo, poleMat, Math.max(1, lampCount));
   const bulbs = new THREE.InstancedMesh(bulbGeo, bulbMat, Math.max(1, lampCount));
   const halos = new THREE.InstancedMesh(haloGeo, haloMat, Math.max(1, lampCount));
   const lampPos: THREE.Vector3[] = [];
   for (let i = 0; i < lampCount; i++) {
-    const s = built.samples[i * 10 % built.samples.length];
+    const s = built.samples[(i * lampStride) % built.samples.length];
     const side = i % 2 === 0 ? 1 : -1;
     const d = built.width / 2 + 2.7;
     const lx = s.x + s.rx * d * side;
@@ -2165,14 +2166,14 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const poolMat = keep(new THREE.MeshBasicMaterial({
     color: 0xffc070,
     transparent: true,
-    opacity: isNight ? 0.42 : 0,
+    opacity: isNight ? 0.58 : 0,
     blending: 2,
     depthWrite: false
   }));
   const pools = new THREE.InstancedMesh(poolGeo, poolMat, Math.max(1, lampCount));
   pools.renderOrder = 2;
   for (let i = 0; i < lampCount; i++) {
-    const s = built.samples[i * 10 % built.samples.length];
+    const s = built.samples[(i * lampStride) % built.samples.length];
     const p = lampPos[i];
     _dummy.position.set(p.x, s.y + 0.055, p.z);
     _dummy.scale.set(1.35, 1, 1.15);
@@ -2190,7 +2191,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     pools2.renderOrder = 2;
     const d = oppOff + built.width / 2 + 2.7;
     for (let i = 0; i < lampCount; i++) {
-      const s = built.samples[(i * 10 + 5) % built.samples.length];
+      const s = built.samples[(i * lampStride + Math.floor(lampStride / 2)) % built.samples.length];
       const lx = s.x + s.rx * d;
       const lz = s.z + s.rz * d;
       _dummy.position.set(lx, s.y, lz);
@@ -2635,30 +2636,30 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     if (n > 0.5) {
       hemi.color.copy(_nightHemi);
       dir.color.copy(_nightDir);
-      hemi.intensity = 0.52;
-      dir.intensity = 0.38;
+      hemi.intensity = 0.86;
+      dir.intensity = 0.58;
       fill.color.setHex(16758880);
-      fill.intensity = 0.48;
-      ambient.color.setHex(0x3a5070);
-      ambient.intensity = 0.28;
+      fill.intensity = 0.62;
+      ambient.color.setHex(0x4a6888);
+      ambient.intensity = 0.46;
     } else if (morning) {
       hemi.color.copy(_mornHemi);
       dir.color.copy(_mornDir);
-      hemi.intensity = 0.7;
-      dir.intensity = 1.12;
+      hemi.intensity = 0.66;
+      dir.intensity = 0.98;
       fill.color.setHex(16760976);
-      fill.intensity = 0.28;
+      fill.intensity = 0.24;
       ambient.color.setHex(13682872);
-      ambient.intensity = 0.28;
+      ambient.intensity = 0.26;
     } else {
       hemi.color.copy(_dayHemi);
       dir.color.copy(_dayDir);
-      hemi.intensity = 0.68;
-      dir.intensity = 1.12;
+      hemi.intensity = 0.62;
+      dir.intensity = 0.94;
       fill.color.setHex(10139856);
-      fill.intensity = 0.28;
+      fill.intensity = 0.22;
       ambient.color.setHex(11057352);
-      ambient.intensity = 0.32;
+      ambient.intensity = 0.24;
     }
     hemi.groundColor.setHex(n > 0.5 ? 1709072 : 5919304);
     dir.position.copy(lightAim).multiplyScalar(95);

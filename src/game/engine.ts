@@ -973,9 +973,9 @@ export class RaceEngine {
     if (baked) {
       this.scene.background = baked;
     } else {
-      this.scene.background = new THREE.Color(n > 0.5 ? 0x0a1424 : 0x1a74c4);
+      this.scene.background = new THREE.Color(n > 0.5 ? 0x14283c : 0x2f8fd4);
     }
-    this.scene.environmentIntensity = n > 0.5 ? 0.28 : 0.88;
+    this.scene.environmentIntensity = n > 0.5 ? 0.52 : 0.7;
     this.post.setNight(n > 0.5);
     const lamps = n > 0.42;
     for (const vis of this.visuals) setCarLights(vis, lamps);

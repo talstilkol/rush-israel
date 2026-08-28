@@ -79,7 +79,7 @@ function themeWash(theme: string, night: boolean) {
 
 export function GameApp() {
 	const [screen, setScreen] = useState("title");
-	const [trackId, setTrackId] = useState<TrackId>("telaviv");
+	const [trackId, setTrackId] = useState<TrackId>("ayalon");
 	const [carId, setCarId] = useState<CarId>("sabra");
 	const [hud, setHud] = useState<HudState | null>(null);
 	const [result, setResult] = useState<RaceResult | null>(null);
@@ -106,7 +106,7 @@ export function GameApp() {
 	const engineRef = useRef<RaceEngine | null>(null);
 	const mapRef = useRef<HTMLCanvasElement>(null);
 	useEffect(() => {
-		if (screen === "cars") setScreen("race");
+		if (screen === "cars" || screen === "career" || screen === "garage") setScreen(screen === "cars" ? "race" : "tracks");
 	}, [screen]);
 	useEffect(() => {
 		setMuted(getMuted());
