@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { EventEmitter } from "node:events";
 import { test } from "node:test";
 import {
   DEFAULT_COMMAND_TIMEOUT_MS,
@@ -9,6 +10,7 @@ import {
   parseHarnessArgs,
   probeServer,
   signalExitCode,
+  waitForCommandOutcome,
   waitForServer,
 } from "./run-with-server.mjs";
 import { fromRoot, projectRoot } from "./project-root.mjs";
@@ -134,4 +136,47 @@ test("waitForServer fails when the child exits before readiness", async () => {
     }),
     /exited before readiness/,
   );
+});
+
+test("waitForServer reports spawn errors instead of waiting for timeout", async () => {
+  const child = new EventEmitter();
+  child.exitCode = null;
+  child.signalCode = null;
+  const result = waitForServer({
+    url: DEFAULT_SERVER_URL,
+    child,
+    timeoutMs: 1_000,
+    probe: async () => false,
+  });
+  setImmediate(() => child.emit("error", new Error("spawn boom")));
+  await assert.rejects(result, /QA server failed to start: spawn boom/);
+});
+
+test("waitForCommandOutcome resolves normal exits and removes listeners", async () => {
+  const child = new EventEmitter();
+  const result = waitForCommandOutcome(child, 1_000);
+  setImmediate(() => child.emit("exit", 3, null));
+  assert.deepEqual(await result, { code: 3, signal: null, timedOut: false });
+  assert.equal(child.listenerCount("error"), 0);
+  assert.equal(child.listenerCount("exit"), 0);
+});
+
+test("waitForCommandOutcome rejects spawn errors and removes listeners", async () => {
+  const child = new EventEmitter();
+  const result = waitForCommandOutcome(child, 1_000);
+  setImmediate(() => child.emit("error", new Error("command boom")));
+  await assert.rejects(result, /command boom/);
+  assert.equal(child.listenerCount("error"), 0);
+  assert.equal(child.listenerCount("exit"), 0);
+});
+
+test("waitForCommandOutcome reports timeout and removes listeners", async () => {
+  const child = new EventEmitter();
+  assert.deepEqual(await waitForCommandOutcome(child, 5), {
+    code: null,
+    signal: null,
+    timedOut: true,
+  });
+  assert.equal(child.listenerCount("error"), 0);
+  assert.equal(child.listenerCount("exit"), 0);
 });
