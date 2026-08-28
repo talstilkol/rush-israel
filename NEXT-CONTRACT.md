@@ -1,115 +1,115 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 1.1.0  
+**Version:** 2.0.0  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**Verified baseline:** `0afa4e61086d0d37a05579b037baf6d18b2672a9`  
-**Accepted unit:** `RSH-001`  
-**Active unit:** `RSH-002`  
-**Active branch:** `agent/rsh-002-repository-governance`  
-**Active Draft PR:** `head:agent/rsh-002-repository-governance` → `base:main`
+**Verified `main`:** `6932a74ca23f125e212f37fa0db73da377eaabe3`  
+**Accepted units:** `RSH-001`–`RSH-005`  
+**Active unit:** `RSH-006`  
+**Active branch:** `agent/rsh-006-self-starting-qa-harness`
 
-## 1. Meaning of `next`
+## 1. Source of truth
 
-`next` authorises work on exactly one current queue-head unit. It does not
-authorise a merge, force-push, history rewrite, direct `main` write or
-later-unit pre-creation.
+GitHub and the canonical control documents govern the program. Before every unit,
+read the live `main` HEAD, open PRs, relevant branches, `CURRENT-STATE.json`,
+`QUEUE.json`, `MASTER-PLAN.md`, this contract and `FINDINGS-REGISTER.md`.
 
-## 2. Mandatory preflight
+Live GitHub evidence supersedes chat summaries and recorded SHAs when they differ.
 
-Before any action:
+## 2. Default meaning of `next`
 
-1. Read the current `main` HEAD from GitHub.
-2. Read all open PRs and relevant branches.
-3. Read `CURRENT-STATE.json`, `QUEUE.json`, `MASTER-PLAN.md`, this contract,
-   `FINDINGS-REGISTER.md` and `REPOSITORY-GOVERNANCE.md`.
-4. Reconcile any GitHub change after the recorded baseline.
-5. Stop rather than execute a later unit if the queue head is open,
-   incomplete or unaccepted.
+A plain `next` authorises implementation of exactly one eligible queue-head unit.
+It does not normally authorise merge, force-push, history rewrite, direct `main`
+write or later-unit pre-creation.
 
-## 3. Current transition
+A bounded instruction such as `make next N` may explicitly authorise implementation,
+review and merge of the named consecutive units. The exact bounds must be recorded in
+`CURRENT-STATE.json` and `QUEUE.json`; authority ends after the last listed unit.
 
-RSH-001 was accepted through PR #1 and merged at
-`0afa4e61086d0d37a05579b037baf6d18b2672a9`.
+## 3. Current bounded batch
 
-RSH-002 is the sole queue-head unit. It establishes repository governance and
-visibility policy.
+The owner instruction `make next 5` authorises exactly:
 
-- A repeated `next` before acceptance must inspect and finish **RSH-002 only**.
-- It must not start, branch, commit or open a PR for RSH-003.
-- RSH-003 becomes eligible only after explicit owner approval and merge of
-  RSH-002 into `main`.
+1. `RSH-002` — accepted through PR #2;
+2. `RSH-003` — accepted through PR #3;
+3. `RSH-004` — accepted through PR #5;
+4. `RSH-005` — accepted through PR #6;
+5. `RSH-006` — current and final batch unit.
 
-## 4. RSH-002 scope
+`RSH-007` is not part of this authorisation. It must not be branched, committed,
+opened or executed automatically when RSH-006 merges.
 
-RSH-002 may change only governance and canonical control files:
+## 4. Mandatory unit standard
 
-- `REPOSITORY-GOVERNANCE.md`;
-- `CONTRIBUTING.md`;
-- `SECURITY.md`;
-- `.github/CODEOWNERS`;
-- `.github/PULL_REQUEST_TEMPLATE.md`;
-- the canonical state, queue, findings, master plan and NEXT contract.
+Every unit must have:
 
-It must not change game source, runtime, build configuration, assets,
-dependencies, CI workflows, branch rules, releases, milestones or labels.
+1. an exact verified `main` base SHA;
+2. a dedicated queue-head branch;
+3. scope and explicit exclusions;
+4. deterministic changed-set evidence;
+5. updated canonical state when program state changes;
+6. one PR whose exact head is recorded;
+7. no completion claim beyond available evidence;
+8. no later-unit pre-creation.
 
-## 5. Visibility decision
+## 5. RSH-006 scope
 
-The policy target is **private, owner-controlled development**.
+RSH-006 delivers a self-starting QA harness that:
 
-GitHub reported the live repository as **public** at RSH-002 start. The current
-tooling does not expose a repository-visibility mutation. RSH-002 must record
-this truthfully and must not claim the setting changed.
+- starts repository-local Vite automatically on `127.0.0.1:8080`;
+- waits for readiness before browser QA;
+- rejects an unknown pre-existing server by default;
+- allows explicit reuse only with `QA_REUSE_SERVER=1`;
+- preserves command exit status and enforces timeouts;
+- terminates server and command process trees on success, failure or signal;
+- works on Linux, macOS and Windows;
+- makes public QA commands self-contained while retaining internal `:raw` commands;
+- includes unit tests and operator documentation.
 
-Until GitHub metadata confirms `private`:
+## 6. RSH-006 evidence boundary
 
-- no secret or confidential asset may be committed;
-- public distribution remains unauthorised;
-- finding P0-01 remains open;
-- the owner-level visibility action remains required.
+RSH-006 may claim implementation and source-level deterministic validation. It may
+not claim a clean-clone GitHub-hosted execution because GitHub Actions does not yet
+exist. That runtime evidence belongs to `RSH-007`.
 
-## 6. Unit execution standard
+Consequently finding P0-05 becomes `MITIGATED`, not `CLOSED`, when RSH-006 merges.
+Release gates remain `0/13`.
 
-Each unit must have:
+## 7. RSH-006 acceptance criteria
 
-1. exact scope and exclusions;
-2. a clean branch based on the verified controlling base;
-3. only the files required by that unit;
-4. deterministic validation evidence;
-5. updated queue/current-state records;
-6. a Draft PR;
-7. no completion claim while required evidence is missing.
+RSH-006 is acceptable only when:
 
-## 7. Prohibited actions
+- `scripts/run-with-server.mjs` owns server startup, readiness and cleanup;
+- `scripts/run-with-server.test.mjs` covers parsing, startup constraints and probes;
+- `QA-HARNESS.md` documents public/raw commands, reuse, timeouts and cleanup;
+- `npm run qa` and `npm run qa:ci` invoke the harness;
+- browser-dependent standalone QA commands invoke the harness;
+- static checks do not start an unnecessary server;
+- the two-cycle soak entry is cross-platform;
+- no dependency version, lockfile, game source or asset changes occur;
+- canonical state contains exactly 67 ordered units;
+- RSH-007 has no branch, commit or PR;
+- the PR is merged only under the current bounded owner authorisation.
 
-- merge without explicit owner approval;
-- direct write to `main`;
-- force-push;
-- Git history rewrite;
-- create later-unit branches or PRs;
-- mark estimates as measured facts;
-- replace historical evidence with fabricated reconstruction;
-- use stale chat state when GitHub differs;
-- claim private visibility while GitHub reports public.
+## 8. Prohibited actions
 
-## 8. RSH-002 acceptance criteria
+- write directly to `main`;
+- force-push or rewrite history;
+- claim the repository is private while GitHub reports public;
+- claim runtime CI evidence before RSH-007;
+- create a tag, release or public distribution artifact;
+- start RSH-007 under the current batch.
 
-RSH-002 may be accepted only when:
+## 9. State after RSH-006 merge
 
-- the five governance files in section 4 exist;
-- ownership, visibility, branch, PR, review and merge policies are explicit;
-- current public visibility and target private visibility are both recorded;
-- RSH-001 is `accepted` and RSH-002 is the only `draft_pr_open` unit;
-- RSH-003 is `queued_blocked`;
-- `QUEUE.json` still contains exactly 67 ordered units;
-- both JSON control files parse;
-- no game, runtime, build, asset, dependency or CI file changes;
-- no repository-setting change is falsely claimed;
-- no RSH-003 branch, commit or PR exists;
-- the PR remains unmerged until owner approval.
+After acceptance:
 
-## 9. Next eligible unit
+| Metric | Value |
+|---|---:|
+| Accepted units | 6/67 |
+| Remaining units | 61 |
+| Next queue head | RSH-007 |
+| RSH-007 automatic execution | No |
+| Release gates | 0/13 |
 
-`RSH-003 — Baseline, milestones, labels and release register`, blocked pending
-RSH-002 acceptance and merge.
+A future plain `next` may begin **RSH-007 only** from the newly verified `main` HEAD.
