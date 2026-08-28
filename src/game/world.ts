@@ -842,8 +842,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const jerG = keep(new THREE.ExtrudeGeometry(jerSh, { depth: 2.6, bevelEnabled: false }));
       jerG.translate(0, 0, -1.3);
       jerG.computeVertexNormals();
-      const jerM = keep(new THREE.MeshStandardMaterial({ color: 0xc8c4bc, roughness: 0.82, metalness: 0 }));
-      const nJer = 120;
+      const jerM = keep(new THREE.MeshStandardMaterial({ color: 0xb4aaa0, roughness: 0.86, metalness: 0 }));
+      const nJer = 160;
       const jerRows = [
         -built.width / 2 - 0.5,
         built.width / 2 + 0.5,
@@ -860,7 +860,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
           if (ji >= nJer * jerRows.length) break;
           _dummy.position.set(s.x + s.rx * lat, s.y + 0.06, s.z + s.rz * lat);
           _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
-          _dummy.scale.set(1, 1, 1);
+          _dummy.scale.set(1.2, 1.4, 1);
           _dummy.updateMatrix();
           jers.setMatrixAt(ji++, _dummy.matrix);
         }
@@ -6260,7 +6260,7 @@ function addLandmarks(
       movers.push({
         mesh: g,
         pts,
-        speed: 0.07,
+        speed: 0.14,
         phase
       });
     };
@@ -6269,7 +6269,7 @@ function addLandmarks(
     const arrowTex = getLaneArrow();
     if (!arrowTex) throw new Error("lane arrow missing");
     const arrowMat = new THREE.MeshBasicMaterial({ map: arrowTex, side: 2 });
-    for (const lat of [32.058, 32.068, 32.078, 32.092]) {
+    for (const lat of [32.055, 32.061, 32.067, 32.0735, 32.083, 32.092, 32.101]) {
       for (const lon of [34.795, 34.7971]) {
       const p = tlv(lat, lon);
       const near = nearestIndex(built.samples, p.x, p.z, 0);
