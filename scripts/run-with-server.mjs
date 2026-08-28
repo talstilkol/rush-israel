@@ -238,6 +238,7 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
   }
 
   let server = null;
+  let ownsServer = false;
   let commandChild = null;
   let interrupted = null;
   const onSignal = (signal) => {
@@ -265,6 +266,7 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
       }
       const spec = devServerSpec(env);
       server = spawn(spec.command, spec.args, spec.options);
+      ownsServer = true;
       server.once("error", (error) => {
         console.error("[qa-harness] server spawn failed:", error.message);
       });
@@ -314,7 +316,7 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
       process.removeListener(signal, onSignal);
     }
     await terminateTree(commandChild, config.stopTimeoutMs);
-    if (!config.reuseServer) await terminateTree(server, config.stopTimeoutMs);
+    if (ownsServer) await terminateTree(server, config.stopTimeoutMs);
   }
 }
 
