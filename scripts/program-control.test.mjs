@@ -64,7 +64,7 @@ test("the active owner-bounded batch is identical in both control documents", ()
   assert.equal(currentBatch.total_units, currentBatch.authorized_units.length);
   assert.ok(currentBatch.completed_units >= 0);
   assert.ok(currentBatch.completed_units <= currentBatch.total_units);
-  assert.equal(currentBatch.RSH-012_authorized, false);
+  assert.equal(currentBatch["RSH-012_authorized"], false);
 });
 
 test("RSH-006 is reconciled to the live merged main baseline", () => {
