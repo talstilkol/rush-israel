@@ -28,7 +28,7 @@ type SaveData = {
 };
 
 function empty(): SaveData {
-  return { version: 3, best: {}, career: { stars: {} }, cash: 500, tunes: {}, damage: {} };
+  return { version: 3, best: {}, career: { stars: {} }, cash: 500, tunes: {}, damage: {}, handling: "arcade" };
 }
 
 function load(): SaveData {
@@ -49,7 +49,7 @@ function load(): SaveData {
       damage: p.damage ?? {},
       dailyDone: p.dailyDone,
       weeklyDone: p.weeklyDone,
-      handling: p.handling === "arcade" ? "arcade" : "simcade",
+      handling: p.handling === "simcade" ? "simcade" : "arcade",
       assists: {
         abs: p.assists?.abs !== false,
         tcs: p.assists?.tcs !== false,
@@ -300,7 +300,7 @@ export function markWeeklyDone(key: string) {
 }
 
 export function getHandling(): HandlingMode {
-  return load().handling === "arcade" ? "arcade" : "simcade";
+  return load().handling === "simcade" ? "simcade" : "arcade";
 }
 
 export function setHandlingSave(handling: HandlingMode) {
@@ -322,6 +322,17 @@ export function setAssistsSave(assists: AssistFlags) {
   const data = load();
   data.assists = { ...assists };
   write(data);
+}
+
+export function flushSave() {
+  write(load());
+}
+
+if (typeof document !== "undefined") {
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") flushSave();
+  });
+  window.addEventListener("pagehide", () => flushSave());
 }
 
 export function getLang(): Lang | null {

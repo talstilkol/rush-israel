@@ -9,8 +9,8 @@ export type Provenance = {
 export const ASSET_PROVENANCE: Provenance[] = [
   { id: "procedural-world", owner: "rush", source: "src/game/world.ts", license: "unknown" },
   { id: "procedural-car", owner: "rush", source: "src/game/car-mesh.ts", license: "unknown" },
-  { id: "canvas-asphalt", owner: "rush", source: "runtime canvas", license: "unknown" },
-  { id: "canvas-sky", owner: "rush", source: "runtime canvas", license: "unknown" },
+  { id: "asphalt", owner: "rush", source: "public/game/asphalt-*.png", license: "unknown" },
+  { id: "sky", owner: "rush", source: "public/game/sky-*.png", license: "unknown" },
   { id: "track-splines", owner: "rush", source: "src/game/tracks.ts lat/lon hand-placed", license: "unknown" },
 ];
 

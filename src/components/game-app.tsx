@@ -17,12 +17,11 @@ import {
   VolumeX,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CarShowroom } from "@/components/car-showroom";
 import { TouchControls } from "@/components/touch-controls";
 import { BootOverlay } from "@/components/boot-overlay";
 import { CARS } from "@/game/cars";
 import { chapters, dailyEvent, getEvent, maxStars, starsFor, weeklyEvent, CAR_UNLOCK } from "@/game/career";
-import { applyTune, LIVERIES, LIVERY_COST, nextCost, PAINT_COST, PAINTS, racePayout } from "@/game/garage";
+import { applyTune, emptyTune, LIVERIES, LIVERY_COST, nextCost, PAINT_COST, PAINTS, racePayout } from "@/game/garage";
 import { formatTime } from "@/game/math";
 import { MODE_INFO, RACE_MODES } from "@/game/modes";
 import {
@@ -91,7 +90,7 @@ export function GameApp() {
 	const [fov, setFov] = useState(0);
 	const [lang, setLang] = useState<Lang>("he");
 	const langHe = lang === "he";
-	const [handling, setHandling] = useState<HandlingMode>("simcade");
+	const [handling, setHandling] = useState<HandlingMode>("arcade");
 	const [assists, setAssists] = useState<AssistFlags>({ abs: true, tcs: true, esc: true });
 	const [record, setRecord] = useState(false);
 	const [raceKey, setRaceKey] = useState(0);
@@ -102,10 +101,13 @@ export function GameApp() {
 	const [weather, setWeather] = useState<Weather>("clear");
 	const [cash, setCash] = useState(500);
 	const [tuneTick, setTuneTick] = useState(0);
-	const [boot, setBoot] = useState<{ etaMs: number } | null>(null);
+	const [boot, setBoot] = useState<{ etaMs: number; frac: number } | null>(null);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const engineRef = useRef<RaceEngine | null>(null);
 	const mapRef = useRef<HTMLCanvasElement>(null);
+	useEffect(() => {
+		if (screen === "cars") setScreen("race");
+	}, [screen]);
 	useEffect(() => {
 		setMuted(getMuted());
 		setNight(getNight());
@@ -123,7 +125,7 @@ export function GameApp() {
 			setBoot(null);
 			return;
 		}
-		setBoot({ etaMs: estimateLoadMs(trackId, quality, night) });
+		setBoot({ etaMs: estimateLoadMs(trackId, quality, night), frac: 0 });
 	}, [
 		screen,
 		trackId,
@@ -162,10 +164,11 @@ export function GameApp() {
 				mode,
 				eventId: eventId ?? void 0,
 				weather,
-				tune: getTune(carId),
+				tune: emptyTune(),
 				handling,
 				assists,
 				onHud: setHud,
+				onBoot: (frac) => setBoot((b) => (b ? { ...b, frac } : { etaMs: estimateLoadMs(trackId, quality, night), frac })),
 				onRestore: () => setRaceKey((k) => k + 1),
 				onFinish: (r) => {
 					const ok = r.eligible !== false;
@@ -342,6 +345,7 @@ export function GameApp() {
 			}),
 			boot ? /* @__PURE__ */ jsx(BootOverlay, {
 				etaMs: boot.etaMs,
+				frac: boot.frac,
 				langHe,
 				city: langHe ? track.cityHe : track.cityEn,
 				name: langHe ? track.nameHe : track.nameEn
@@ -1157,15 +1161,14 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 								children: t("רכב", "Car")
 							}),
 							/* @__PURE__ */ jsx("div", {
-								className: "mt-4",
-								children: /* @__PURE__ */ jsx(CarShowroom, {
-									color: applyTune(car, getTune(carId)).color,
-									accent: car.accent,
-									body: car.body,
-									damage: getDamage(carId),
-									kit: car.kit,
-									tune: getTune(carId)
-								})
+								className: "mt-4 flex gap-2",
+								children: CARS.map((c) => /* @__PURE__ */ jsx("button", {
+									type: "button",
+									className: cn("h-10 flex-1 rounded-md border", c.id === carId ? "border-fg" : "border-border"),
+									style: { background: `#${c.color.toString(16).padStart(6, "0")}` },
+									onClick: () => setCarId(c.id),
+									"aria-label": c.id
+								}, c.id))
 							}),
 							/* @__PURE__ */ jsxs("p", {
 								className: "mt-1 text-sm text-muted",

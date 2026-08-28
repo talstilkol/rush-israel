@@ -18,7 +18,7 @@ export class RendererFacade {
     const mobile = canvas.clientWidth < 700 || /Mobi|Android/i.test(navigator.userAgent);
     const gl = new THREE.WebGLRenderer({
       canvas,
-      antialias: !mobile,
+      antialias: !mobile && !profile.composer,
       alpha: false,
       powerPreference: "high-performance",
     });

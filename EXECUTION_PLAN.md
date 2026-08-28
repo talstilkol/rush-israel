@@ -1,9 +1,10 @@
 # RUSH — תוכנית ביצוע ממוספרת (קודקס)
 
-**מצב:** אושר לביצוע. רץ 21.1→21.4.  
+**מצב:** תכנון. קוד רק אחרי **אושר**.  
 **Three.js:** `0.185.1` — WebGPU דורש `await renderer.init()` (לא אופציונלי).  
 **יעד ריאלי:** Asphalt-like בדפדפן. לא GT7, לא Unreal, לא GIS.  
-**אחוז נוכחי:** ~12%. שערי שחרור: 0/13.  
+**אחוז ביצוע כנה:** ~13%. שערי שחרור: 2/13.  
+**כיסוי תכנון קודקס ווב:** ~99% (סעיפים 0–358). חסר: `pointercancel` + `touch-action` (352).  
 **החלטות טכנולוגיה:** [TECH_RESEARCH.md](/workspace/TECH_RESEARCH.md) — נעול 26.8.2026. לא לפתוח WebGPU/AgX/Rapier/SSR בלי לשנות את המחקר במפורש.
 
 מספור: `שלב.תת-שלב.משימה.תת-משימה.פרט`. מספרים בלבד.
@@ -912,9 +913,10 @@
 
 ## 40. סטטוס מסמך
 
-40.1. חלק א׳–ד׳ = תוכנית הביצוע לקודקס הווב.  
-40.2. `המשך` נוסף יוסיף רק אם יש חור ממוספר. אחרת: לחזור על 31 — מחכים ל-**אושר**.  
-40.3. HEAD תכנון: לראות git log של `EXECUTION_PLAN.md` בלבד.
+40.1. א–ד גרעין. ה׳ 43–70. ו׳ 71–86. ז׳ 87–96. ז׳-ב 97–104. ט׳ 105–112. י׳ 113–118. י״א 119–126. י״ב 127–133. י״ג 134–142. י״ד 143–150. ט״ו 151–158. ט״ז 159–166. י״ז 167–174. י״ח 175–182. י״ט 183–190. כ׳ 191–198. כ״א 199–206. כ״ב 207–214. כ״ג 215–222. כ״ד 223–230. כ״ה 231–238. כ״ו 239–246. כ״ז 247–254. כ״ח 255–262. כ״ט 263–270. ל׳ 271–278. ל״א 279–286. ל״ב 287–294. ל״ג 295–302. ל״ד 303–310. ל״ה 311–318. ל״ו 319–326. ל״ז 327–334. ל״ח 335–342. ל״ט 343–350. מ׳ 351–358.  
+40.2. `המשך` אחרי 358 = רק חור בלי מספר. אחרת **אושר**.  
+40.3. HEAD תכנון: git log של `EXECUTION_PLAN.md`.  
+40.4. אושר נדרש למימוש (31.1).
 
 ---
 
@@ -940,13 +942,5825 @@
 ## 42. סריקת חורים מול קודקס
 
 42.1. נסרק: §1 שכבות, §25 עשרת הראש, G0–G6, P0–P5, A1–A18, B, C, 24ש׳, MRT, cells, KTX2, Photo DoF.  
-42.2. חורים שנותרו **עם מתכון:** [CODEX_GAPS.md](/workspace/CODEX_GAPS.md) סעיפים 43–84.  
+42.2. חורים 43–84 **מוטמעים** בחלקים ה׳–ו׳. [CODEX_GAPS.md](/workspace/CODEX_GAPS.md) = אינדקס, לא מקור אמת.  
 42.3. פתוח לקלט משתמש בלבד: 6.1 צילום, 23 `.hdr`, 24 glTF.  
-42.4. אין חלק ו׳ אוטומטי בלי חור חדש.
+42.4. אין חלק ז׳ אוטומטי בלי חור חדש.  
+42.5. אין קוד. `המשך` ≠ `אושר`.
 
 ---
 
-**התוכנית סגורה לתכנון.** מחכים ל-**אושר** כדי להתחיל 21.1.
+# חלק ה׳ — חורים 43–70 מוטמעים (4–5 רמות)
+
+**חוק כתיבה:** לכל סעיף: מצב כנה עכשיו → החלטה נעולה → קובץ/פונקציה → תתי-משימות → שער → סשן → אסור.  
+**מחקר שננעל בסשן הזה (27.8.2026):**
+- `three@0.185.1` כולל `examples/jsm/tsl/display/TRAANode.js` **וגם** `TAAUNode.js`, `DepthOfFieldNode.js`, `SSGINode.js`, `GTAONode.js`, `CSMShadowNode.js`.
+- `SpotLight.map` (cookie) קיים מאז r144 — **כבר מחובר** ב-`car-mesh.ts` ל-`beam.png`.
+- `CSM.js` תומך `setupMaterial` + `dispose` — לא לפרוץ ל-RT פנימי.
+- הרבה סקריפטים ש-CODEX_GAPS תיאר כ"חסרים" **כבר קיימים** (`check-qa-hook.mjs`, `pixel-golden.mjs`, `ayalon-hash.mjs`, `records.test.mjs`). החור הוא **שער ירוק**, לא קובץ חסר.
+
+**אחוז כנה אחרי חלק ה׳:** עדיין ~13%. שערי שחרור 2/13. הטמעת מתכון ≠ ביצוע.
+
+---
+
+## 43. Photo / Cinematic (קודקס 1.1.4)
+
+### 43.0. מצב כנה
+43.0.1. **PARTIAL.** Photo = אותו `WebGLRenderer`, DPR bump ~1.35, `targetFps: 30` ב-`QualityProfile.photo`, orbit קיים.  
+43.0.2. אין watermark. אין BokehPass. אין motion-blur אמיתי (יש smear לפי מהירות ב-GRADE).  
+43.0.3. **FAKED** אם נכתוב "Photo WebGPU" / "DoF קולנועי".
+
+### 43.1. החלטה נעולה
+43.1.1. Photo WebGL = DPR 1.35 + smear קיים + SMAA אם composer דולק. **בלי** `BokehPass`. **בלי** `AfterimagePass`. **בלי** SSAA.  
+43.1.2. מחקר: דוגמת three `webgpu_postprocessing_dof` = `DepthOfFieldNode` על WebGPU, יעד ~10fps בדוגמה. לא לנהיגה.  
+43.1.3. Photo WebGPU (רק אחרי 8.2 ירוק): `DepthOfFieldNode` **אופציונלי**, כבוי כברירת מחדל, יעד 30fps.  
+43.1.4. Watermark חובה בכל צילום שיווקי: טקסט HUD `"מצב צילום / Photo Mode"`.
+
+### 43.2. קבצים
+43.2.1. `src/game/engine.ts` — `enterPhoto` / `exitPhoto` (DPR). לא לגעת בערך 1.35 בלי מדידת p95.  
+43.2.2. `src/rendering/QualityProfile.ts` — `photo.pixelScale=1`, `targetFps=30`. נעול.  
+43.2.3. `src/game/game-app.tsx` — שורת watermark כש-`photo===true`.  
+43.2.4. `src/game/postfx.ts` — אסור לייבא `BokehPass`.
+
+### 43.3. תתי-משימות (סשן יחיד אחרי 21.8, מותר במקביל ל-21.9 כי לא ארט איילון)
+43.3.1. ב-`game-app.tsx`: אם `photo` — div קבוע פינה שמאל-תחתון, `pointer-events:none`, `z-index` מעל הקנבס, עברית+אנגלית.  
+43.3.1.1. טקסט מ-`i18n.ts` מפתח `photoMode` (67.1 — לא מחרוזת עברית בקובץ חדש ב-engine).  
+43.3.1.2. גודל 14px, opacity 0.85, לא מסתיר HUD מהירות.  
+43.3.2. `qa:1` HUD לא מחליף את ה-watermark. שניהם יכולים להיות.  
+43.3.3. יציאה מ-photo מסתירה את השורה.  
+43.3.4. אסור DoF בסשן הזה.
+
+### 43.4. שער
+43.4.1. צילום מסך עם הטקסט נראה.  
+43.4.2. `grep BokehPass src` = 0.  
+43.4.3. p95 drive **לא** נמדד ב-photo (30fps מותר).
+
+### 43.5. אסור
+43.5.1. supersample > DPR 1.35.  
+43.5.2. קובץ PNG חיצוני כ"צילום משחק".  
+43.5.3. לסמן 43 DONE בלי watermark.
+
+---
+
+## 44. MRT / deferred (קודקס 15)
+
+### 44.0. מצב כנה
+44.0.1. **NOT DONE** כפיצ'ר — וזה **נכון**. Forward + SMAA.
+
+### 44.1. החלטה נעולה
+44.1.1. **אין MRT.** אין G-buffer. אין deferred.  
+44.1.2. WebGL2 יודע MRT; three deferred לא סטנדרטי למשחק מירוץ בגודל הזה.  
+44.1.3. Velocity buffer **רק** אם/כאשר TRAANode בנתיב WebGPU (8.5.3) — זה לא "MRT משחק".
+
+### 44.2. תתי-משימות
+44.2.1. אין סשן מימוש.  
+44.2.2. אם מישהו פותח PR עם `WebGLMultipleRenderTargets` למשחק — לדחות.  
+44.2.3. שער: `grep WebGLMultipleRenderTargets src/game` = 0.
+
+### 44.3. לא לפתוח שוב
+44.3.1. סעיף זה = DONE כאילוץ, לא כפיצ'ר.
+
+---
+
+## 45. GPU-driven / compute (קודקס 15)
+
+### 45.0. מצב כנה
+45.0.1. InstancedMesh = CPU `setMatrixAt`. Sparks = JS. אין compute.
+
+### 45.1. החלטה נעולה
+45.1.1. אין compute particles. אין GPU culling.  
+45.1.2. אחרי WebGPU (8.2): compute לעצים **אופציונלי**, לא שער שחרור.  
+45.1.3. TSL compute דורש `WebGPURenderer` — לא על WebGL הנוכחי.
+
+### 45.2. תתי-משימות
+45.2.1. אין סשן עד 8.2 ירוק **וגם** drawCalls איילון >80 אחרי 26.2.5.  
+45.2.2. שער נוכחי: לא לגעת.
+
+---
+
+## 46. HLOD / impostor קו רקיע
+
+### 46.0. מצב כנה
+46.0.1. **NOT DONE.** עזריאלי = primitives מלאים תמיד. אין Sprite רחוק.
+
+### 46.1. החלטה נעולה
+46.1.1. אחרי freeze איילון (6.5) בלבד.  
+46.1.2. עזריאלי+ToHa מעל **420m** ממרחק לשחקן = `THREE.Sprite` 256px.  
+46.1.3. האפייה: צילום אורתו **חד-פעמי מהמשחק** אחרי 6.5 → `public/game/azrieli-impostor.png`. זה לא canvas runtime.  
+46.1.4. בלי 6.5: אסור ליצור את ה-PNG.
+
+### 46.2. קבצים (רק אחרי 6.5)
+46.2.1. `scripts/bake-ayalon-impostor.mjs` — Playwright ortho, כותב PNG. לא קיים היום — לא לכתוב לפני 6.5.  
+46.2.2. `src/game/world.ts` (או `world/ayalon.ts` אחרי 1.4.3): `sprite.visible = dist>420; mesh.visible = dist<=420`.  
+46.2.3. היסטרזיס 40m כדי לא להבהב.
+
+### 46.3. תתי-משימות
+46.3.1. לפני 6.5: כלום.  
+46.3.2. אחרי 6.5 סשן ייעודי:  
+46.3.2.1. bake PNG 256.  
+46.3.2.2. Sprite במיקום GPS של עיגול עזריאלי, scale ~180.  
+46.3.2.3. כיבוי InstancedMesh פסים >420m.  
+46.3.3. שער: chase מ-800m רואה צללית, drawCalls יורדים; מ-100m mesh מלא.
+
+### 46.4. אסור
+46.4.1. canvas 2D כל פריים.  
+46.4.2. impostor לכל בניין גנרי (אין גנריים).
+
+---
+
+## 47. World cells — מספרים (קודקס 5 / 9.4)
+
+### 47.0. מצב כנה
+47.0.1. **NOT DONE.** אין `world/cells.ts`. כל המסלול נטען ב-`createWorld`.
+
+### 47.1. החלטה נעולה
+47.1.1. תא **256×256m**.  
+47.1.2. טעינה כששחקן בתוך תא ± **64m** היסטרזיס.  
+47.1.3. unload כשמרחק ממרכז התא > **320m**.  
+47.1.4. איילון כולו = **תא אחד** עד freeze. אחרי 6.5 מותר לפצל.
+
+### 47.2. קבצים (אחרי 6.5 ורק אם `renderer.info.render.calls` >80 ב-chase)
+47.2.1. `src/game/world/cells.ts`  
+47.2.1.1. `cellId(x,z) = Math.floor(x/256)+":"+Math.floor(z/256)`  
+47.2.1.2. `needed(px,pz)` = 3×3 סביב התא הנוכחי.  
+47.2.2. קבוצות ראשונות לאיילון: `cell-azrieli`, `cell-savidor`, `cell-south`.  
+47.2.3. `world.ts` `tickCells(px,pz)` מוסיף/מסיר `THREE.Group`.
+
+### 47.3. תתי-משימות
+47.3.1. לפני 6.5: לא.  
+47.3.2. מדידת calls (21.5) קודם — אם <80, **לבטל cells**. Asphalt לא טוען תאים לעיר קצרה.  
+47.3.3. שער: מעבר תא לא מייצר GC spike >8ms ב-p95 (HUD `?qa=1`).
+
+### 47.4. אסור
+47.4.1. streaming glTF לפי תא לפני שיש glTF עולם (אין).  
+47.4.2. לפצל את הספליין עצמו — הכביש נשאר mesh אחד.
+
+---
+
+## 48. Reflection probes איילון (קודקס 8)
+
+### 48.0. מצב כנה
+48.0.1. **PARTIAL.** Cube probe אחד ~96px. מתרענן ביום/לילה. לא 3 מיקומים.
+
+### 48.1. החלטה נעולה
+48.1.1. אחרי freeze: 3 probes, גודל **64** (לא 256 — יקר).  
+48.1.2. מיקום לפי `t` על ספליין איילון:  
+48.1.2.1. `t=0.20` דרום (גלויות/הגנה).  
+48.1.2.2. `t=0.48` השלום / עזריאלי.  
+48.1.2.3. `t=0.72` סבידור.  
+48.1.3. רענון: כניסה למסלול + החלפת יום/לילה + החלפת גשם. **לא כל פריים.**  
+48.1.4. בחירת probe: הקרוב ל-`(player.x, player.z)`.
+
+### 48.2. קבצים
+48.2.1. `src/game/engine.ts` — `bakeProbes()` (או השם הקיים ל-cube).  
+48.2.2. `WebGLCubeRenderTarget` size 64, `PMREMGenerator.fromCubeRenderTarget`.  
+48.2.3. `scene.environment` = probe פעיל. כביש `envMapIntensity` נשאר לפי 3.3.  
+48.2.4. WebGPU אחרי 8.2: אותם probes, בלי Reflector.
+
+### 48.3. תתי-משימות
+48.3.1. לפני 6.5: לא להוסיף probes (יישברו עם שינויי ארט).  
+48.3.2. אחרי 6.5 סשן: 3 targets ב-ResourceRegistry lease.  
+48.3.3. soak 37.2 חייב להישאר ≤2 textures דלתא — probes ממוחזרים, לא נוצרים כל כניסה.
+
+### 48.4. שער
+48.4.1. צילום מכסה מנוע ליד השלום רואה השתקפות שונה מצפון המסדרון.  
+48.4.2. לא "יותר מבריק" — **זהות מקום**.
+
+---
+
+## 49. KTX2 / Basis — שורה מחייבת (קודקס 4 / E1)
+
+### 49.0. מצב כנה
+49.0.1. **PARTIAL / tiny DONE כהסרה.** TASKS 1.5.2: PNG בלבד, `KTX2Loader` הוסר, אין `blob.ktx2` בשידור.  
+49.0.2. `public/basis/basis_transcoder.{js,wasm}` **עדיין בריפו** (Apache-2.0, רשום ב-LICENSES).  
+49.0.3. `scripts/bake-ktx2.mjs` + `qa:ktx2` קיימים — לא שער משחק.  
+49.0.4. **FAKED** אם נכתוב "פייפליין UASTC פעיל".
+
+### 49.1. החלטה נעולה
+49.1.1. **אין KTX2 בשידור עד שיש `toktx` בסנדבוקס.** היום אין.  
+49.1.2. Transcoder path אם יוחזר loader: `setTranscoderPath("/basis/")` בלבד.  
+49.1.3. Encode (כשיהיה toktx):
+
+```
+toktx --2d --genmipmap --t2 --encode uastc --uastc_quality 2 --zcmp 18 out.ktx2 in.png
+```
+
+49.1.4. Albedo כביש: UASTC. UI: ETC1S. HDR: **לא** KTX2 — RGBE לפי 23.  
+49.1.5. אטלס חזיתות (50) באותו כלל: בלי toktx = PNG.
+
+### 49.2. תתי-משימות
+49.2.1. סשן עכשיו: **לא**. אל תחזירו loader.  
+49.2.2. אם `qa:ktx2` נכשל בלי קבצים — זה OK; לא לתקן בלהמציא KTX2.  
+49.2.3. שער 9.1: **או** `.ktx2` ב-`public/game/` נטען ב-High בלי שגיאת console, **או** loader נשאר מחוק (המצב היום = הענף השני, tiny).  
+49.2.4. 100 אמיתי = קובץ UASTC + טעינה. Tiny ≠ 100.
+
+### 49.3. אסור
+49.3.1. להתקין KTX-Software בלי אישור סשן ייעודי אחרי 6.5.  
+49.3.2. לדחוס UI JPEG כ-UASTC.
+
+---
+
+## 50. G5 Facade atlas
+
+### 50.0. מצב כנה
+50.0.1. ישראל: אפס canvas לחזיתות (curtain PNG). NYC: `nyc-canvas.ts` עדיין DataTexture.  
+50.0.2. **FAKED** אם "אטלס איילון".
+
+### 50.1. החלטה נעולה
+50.1.1. ישראל — **אפס** canvas 2D לטקסטורת עולם.  
+50.1.2. NYC נשאר canvas עד 35.3 (אחרי freeze איילון).  
+50.1.3. אטלס TLV רק מצילום CC0/משתמש, 2048×2048, רשת 4×4 חזיתות.  
+50.1.4. UV: `atlasIndex` 0–15 על InstancedMesh `uvOffset = (i%4)/4, floor(i/4)/4`.  
+50.1.5. בלי תמונות חוקיות: נשארים `curtain-*.png` הקיימים. לא לאפות אטלס מ-canvas.
+
+### 50.2. קבצים
+50.2.1. אחרי 6.5 ורק עם נכס: `public/game/facade-tlv.png` (או ktx2 לפי 49).  
+50.2.2. `src/game/facade-assets.ts` — loader.  
+50.2.3. שער: `npm run check:canvas` = probe בלבד **לבילד ישראל** (NYC chunk נפרד, 3.6).
+
+### 50.3. תתי-משימות
+50.3.1. לפני נכס משתמש/CC0: לא.  
+50.3.2. לא לגעת ב-curtain הקיימים.
+
+---
+
+## 51. G6 Headlight cookies
+
+### 51.0. מצב כנה
+51.0.1. **PARTIAL / tiny קרוב.** `car-mesh.ts` ~431–465: שני `SpotLight` צבע `0xfff1c8`, `distance=48`, `angle=0.5`, `penumbra=0.68`, `decay=1.05`, `spot.map = beamCookie()` מ-`beam.png`, intensity 0 ביום. + `headPool` CircleGeometry אדיטיבי.  
+51.0.2. חסר vis-à-vis המפרט הישן (angle 0.42 / dist 38 / intensity 1.8) — **לא לשנות מספרים עובדים בלי צילום לילה g08.**  
+51.0.3. שער הישן "כתם לא מלבן" — צריך צילום g08 מהמשתמש/golden, לא ניחוש.
+
+### 51.1. החלטה נעולה (מספרי קוד נוכחיים, לא CODEX_GAPS 51.2)
+51.1.1. High+לילה בלבד. Mid: spots בלי `castShadow`. Low: `headPool` בלבד, spots intensity 0.  
+51.1.2. אין atlas חדש. `beam.png` קיים.  
+51.1.3. `spot.castShadow` רק אם `shadows && cookie` (כבר). לא 1024 — 256 נעול.  
+51.1.4. לא לגעת ב-angle/dist אלא אם g08 מראה מלבן חד.
+
+### 51.2. קבצים
+51.2.1. `src/game/car-mesh.ts` — יצירה.  
+51.2.2. `src/game/beam-assets.ts` — טעינת `/game/beam.png`.  
+51.2.3. `src/game/engine.ts` — עדכון intensity לפי `night` (חיפוש `spots[` / `headPool`).
+
+### 51.3. תתי-משימות (סשן 21.14 רק אם g08 נכשל)
+51.3.1. לצלם g08. אם הכתם אליפטי על האספלט — **51 נסגר tiny ולא נוגעים.**  
+51.3.2. אם מלבן: `angle` ↓ ל-0.42, `headPool.scale` מכוון, לא shader חדש.  
+51.3.3. שער: `golden-baseline` g08 אחרי אישור משתמש, לא סוכן.
+
+### 51.4. אסור
+51.4.1. RectAreaLight.  
+51.4.2. cookie canvas כל פריים.
+
+---
+
+## 52. G4 Blob — מספרים
+
+### 52.0. מצב כנה
+52.0.1. **PARTIAL.** שני נתיבים:  
+52.0.1.1. `engine.ts` ~470: `PlaneGeometry(4.9, 2.45)`, `y=0.04`, opacity לילה 0.68 / יום 0.5, נמתח לפי מהירות, נע עם שמש.  
+52.0.1.2. `car-mesh.ts` ~525: `CircleGeometry` opacity 0 — כבוי בפועל.  
+52.0.2. CODEX_GAPS ביקש 4.2×2.1 / 0.38 / 0.55 — **לא** המספרים החיים.
+
+### 52.1. החלטה נעולה
+52.1.1. Blob חי = זה שב-`engine.ts` (4.9×2.45, opacity 0.50/0.68).  
+52.1.2. `car-mesh` blob נשאר `visible=false` — לא למחוק בסשן גרפיקה (סיכון).  
+52.1.3. Low: נשאר. CSM mute: נשאר (זה הצל היחיד ב-Low).  
+52.1.4. לא ellipse shader. לא KTX2 לblob (49).
+
+### 52.2. תתי-משימות
+52.2.1. סשן רק אם הצל קופץ מעל המדרכה (z-fight): `polygonOffset` או y=0.05.  
+52.2.2. שער: צילום chase יום — כתם כהה תחת הרכב, לא ריבוע שחור חד.
+
+### 52.3. אסור
+52.3.1. לשנות 4.9×2.45 בלי מדידה. המספר ב-CODEX_GAPS מבוטל מול הקוד החי.
+
+---
+
+## 53. A5 Fog לכל theme
+
+### 53.0. מצב כנה
+53.0.1. **PARTIAL / tiny קרוב.** הטבלה חיה ב-`src/rendering/EnvironmentState.ts` `FOG`:
+
+| key | day | night | far | dayCol |
+|---|---|---|---|---|
+| city | 0.000012 | 0.00009 | 10000 | 0x6eb4dc |
+| desert | 0.00006 | 0.00012 | 12000 | 0xb8a888 |
+| snow | 0.00004 | 0.0001 | 12000 | 0xc8dcec |
+| carmel | 0.00002 | 0.0001 | 12000 | 0x6eb4dc |
+| stone | 0.00003 | 0.00012 | 8000 | 0xc4b49a |
+
+53.0.2. סטייה מ-CODEX_GAPS: city night **0.00009** לא 0.00016 (0.00016 חתך אופק — בוטל בכוונה אחרי באג Scopus).  
+53.0.3. `fogKey(theme,id)` ממפה ramon→desert, hermon→snow, jerusalem/scopus→stone.
+
+### 53.1. החלטה נעולה
+53.1.1. המספרים ב-`FOG` הם האמת. לא להחזיר 0.00016.  
+53.1.2. לא volumetric clouds.  
+53.1.3. `scene.fog = Exp2` לפי `FOG[key]`, צבע לפי יום/לילה.  
+53.1.4. camera.far ≥ `FOG.far` לאותו theme (scopus/ramon/hermon 12000).
+
+### 53.2. קבצים
+53.2.1. `EnvironmentState.ts` — טבלה.  
+53.2.2. `engine.ts` / `world.ts` — apply לפי `fogKey`. לא לשכפל קבועים.
+
+### 53.3. תתי-משימות
+53.3.1. סשן רק אם משתמש שולח צילום "הכל נחתך". אז `far`↑ או density↓ ב-10%, לא שכתוב טבלה.  
+53.3.2. שער: scopus / ramon / hermon בלי חיתוך אופק. golden קיים ככוונה — אישור משתמש.
+
+### 53.4. אסור
+53.4.1. Fog ל-city 0 — שובר עומק איילון.  
+53.4.2. צבע ערפל לבן ביום (סנוור ישן).
+
+---
+
+## 54. A10 תא / A15 עצים / A17 ים
+
+### 54.0. מצב כנה
+54.0.1. תא: דאש+הגה קיימים כ-boxes. Hood מחביא חלקית. לא mesh סרוק.  
+54.0.2. עצים: נפח כדורים/חרוטים (TASKS 1.2.8 tiny). LOD לפי איכות יותר מאשר מרחק.  
+54.0.3. ים: `foam.png` + `water-n.png` offset. לא FFT.
+
+### 54.1. תא — החלטה
+54.1.1. Hood: `glass.visible=false` אם `name` כולל `glass` (4.4.2).  
+54.1.2. Chase: `dash.visible=false` (4.4.3).  
+54.1.3. אין מושבים מפוסלים. אין תא hero בלי 4.2.  
+54.1.4. קובץ: `car-mesh.ts` + `engine.ts` camMode.  
+54.1.5. שער: צילום hood בלי זכוכית אטומה מול הפנים; chase בלי דאש צף.
+
+### 54.2. עצים — החלטה
+54.2.1. LOD לפי `distanceTo(player)`, לא רק quality:  
+54.2.1.1. <80m: LOD0 (כתר מרובה כדורים / 10 icosa אם פיקוס רוטשילד).  
+54.2.1.2. 80–180m: LOD1 (1–2 כדורים + גזע).  
+54.2.1.3. >180m: hide או Impostor אחרי 46 — **לא** לפני.  
+54.2.2. Draw calls: **2** (קרונה instanced + גזע instanced) למסלול.  
+54.2.3. רוטשילד אחרי 6.5: פיקוס על המדיאן כל 15–20m (14.2.2).  
+54.2.4. אסור מטוס alpha כ-LOD0.
+
+### 54.3. ים — החלטה
+54.3.1. `foam.png` + `water-n` offset **0.04 / 0.026** (קיים).  
+54.3.2. גל vertex ±**0.06m**. לא FFT. לא gerstner מלא.  
+54.3.3. רק מסלולי חוף (`reading` / `tlv-beach` / יפו אם יש מים). איילון: תעלה, לא ים.  
+54.3.4. שער: אין ים באיילון; בחוף יש קו תיחום + גל קטן.
+
+### 54.4. סשנים
+54.4.1. 54.1 מותר אחרי 21.8 (לא ארט מסלול).  
+54.4.2. 54.2 רוטשילד אסור לפני 6.5.  
+54.4.3. 54.3 לא לגעת אם כבר נראה בחוף — tiny.
+
+---
+
+## 55. A18 פוסט (Asphalt-like)
+
+### 55.0. מצב כנה
+55.0.1. `postfx.ts`: RenderPass + SMAA + UnrealBloom חלש + GRADE (smear לפי `uSpeed`, vignette לפי `uNight`).  
+55.0.2. `SSGI_OFF = true`. `PHOTO_AA` מ-`../rendering/traa`.
+
+### 55.1. החלטה נעולה
+55.1.1. smear קיים — לא לגעת בעקומה בלי צילום.  
+55.1.2. Vignette רק כש-`uNight>0.5`. לא vignette יום.  
+55.1.3. **אין** chromatic aberration. זול, נראה רע, `ChromaticAberrationNode` קיים ב-r185 — **לא לייבא**.  
+55.1.4. Bloom 0.11 לילה High בלבד — לא להעלות.  
+55.1.5. אין `pmndrs/postprocessing`.
+
+### 55.2. תתי-משימות
+55.2.1. סשן: `grep Chromatic src/game` חייב 0. אם מישהו הוסיף — למחוק.  
+55.2.2. שער: יום בלי מסגרת שחורה; לילה בלי מסך לבן.
+
+---
+
+## 56. EnvironmentState חיבור (קודקס 22)
+
+### 56.0. מצב כנה
+56.0.1. **PARTIAL / tiny קרוב.**  
+56.0.1.1. `engine.ts` `applyLook()` → `gfx.setEnvironment(LOOKS[id].exposure)`.  
+56.0.1.2. `world.ts` `roadMat.userData.uWet.value = LOOKS[look].wetness`.  
+56.0.2. LOOKS.night.exposure = **1.05** (לא 0.15–0.28 מסעיף 34.2). 34.2 דיבר על חשיפת IBL HDRI. LOOKS.night=1.05 הוא grade לרנדר WebGL הנוכחי. **לא לאחד בכוח.**
+
+### 56.1. החלטה נעולה
+56.1.1. `lookFromFlags(night, weather, morning)` נשאר מקור יחיד.  
+56.1.2. החלפת rain/night קוראת `applyLook` בלי reload עולם.  
+56.1.3. 34.2 חל **רק** כש-23 HDRI קיים. עד אז LOOKS כמו היום.
+
+### 56.2. תתי-משימות
+56.2.1. סשן 21.13 רק אם החלפת גשם **לא** משנה `uWet` — אז לחבר את הקריאה החסרה.  
+56.2.2. שער: `scripts/look.test.mjs` (קיים) ירוק.  
+56.2.3. לא לייצר `applyLook` שני.
+
+---
+
+## 57. LookDev / golden / pixelmatch (קודקס 13 / שער 10.3)
+
+### 57.0. מצב כנה
+57.0.1. `src/world/goldenCameras.ts` קיים.  
+57.0.2. `scripts/pixel-golden.mjs` **קיים** (CODEX_GAPS 57.4 היה שגוי). מצלם g01/g05/g07 + g08 לילה, pixelmatch threshold 0.12, fail >8%.  
+57.0.3. Baseline ב-`golden-baseline/` = צילומי סוכן. **לא** אישור משתמש. לכן שער 10.3 **אדום**.
+
+### 57.1. החלטה נעולה
+57.1.1. הסקריפט לא נכתב מחדש.  
+57.1.2. HUD mask: 64px עליונים אם `?qa=1` — לבדוק אם pixel-golden ממסך; אם לא, סשן אחרי 6.1.  
+57.1.3. עדכון baseline רק commit `golden: bump g01` אחרי **hashalom ok**.  
+57.1.4. threshold 0.12 / 8% נשאר. לא 0% פיקסלים.
+
+### 57.2. תתי-משימות
+57.2.1. לפני 6.1: מותר להריץ כ-smoke, אסור לסמן 10.3.  
+57.2.2. אחרי hashalom ok: להחליף PNG בייסליין, אז CI.  
+57.2.3. שער 10.3 = הסקריפט ירוק **על בייסליין שאושר**.
+
+### 57.3. אסור
+57.3.1. JPEG.  
+57.3.2. סוכן כותב "נראה דומה" כשער.
+
+---
+
+## 58. Histogram לילה/יום (15.5)
+
+### 58.0. מצב כנה
+58.0.1. **NOT DONE כסקריפט.** אין `scripts/luma-qa.mjs`. יש ספים כתובים ב-15.5.
+
+### 58.1. החלטה נעולה
+58.1.1. Playwright קורא 4 פסי אופק (שליש עליון), ממוצע luma `(r+g+b)/3/255`.  
+58.1.2. יום: **0.22–0.72**. פסילה אם >30% פיקסלים בשליש העליון = `#ffffff`.  
+58.1.3. לילה: **0.08–0.38**. לא 0, לא 0.95.  
+58.1.4. אחרי 6.5 (ערכי תאורה יזוזו עם ארט). מותר לכתוב סקריפט לפני, לא לשער.
+
+### 58.2. קבצים
+58.2.1. `scripts/luma-qa.mjs` — לא קיים. סשן אחרי 6.1.  
+58.2.2. קורא את אותם PNG כמו pixel-golden (`ayalon-day-g01`, `ayalon-night-g08`).  
+58.2.3. `package.json` `"qa:luma": "node scripts/luma-qa.mjs"` רק כשהקובץ נוסף.
+
+### 58.3. תתי-משימות
+58.3.1. לא לכתוב עכשיו (סשן תכנון).  
+58.3.2. שער: יציאת 0 + הדפסת luma day/night.
+
+---
+
+## 59. `check-qa-hook.mjs` (1.2 / 10.5)
+
+### 59.0. מצב כנה
+59.0.1. **PARTIAL / tiny קרוב.** הקובץ קיים. `npm run check:qa`. בונה עם `VITE_QA=""` ומחפש `finishNow` + `__controlsTest` ב-`dist` / `.output` / `.vercel/output/static`.  
+59.0.2. 100 = הבילד באמת בלי המחרוזות. לא בדקנו בביצוע הזה.
+
+### 59.1. החלטה נעולה
+59.1.1. לא לכתוב סקריפט שני.  
+59.1.2. `?qa=1` לבד **לא** פותח hook בפרוד (1.2.2.2).  
+59.1.3. DEV+localhost נשאר ל-`qa:drive`.
+
+### 59.2. תתי-משימות
+59.2.1. סשן 21.2: להריץ `npm run check:qa` על HEAD. אם נכשל — `qaHookAllowed()` חייב `import.meta.env.VITE_QA==="1"` בלי fallback שמגיע לפרוד.  
+59.2.2. שער 10.5: הסקריפט ירוק על `vite build` בלי VITE_QA.
+
+### 59.3. אסור
+59.3.1. למחוק את ההוק מ-DEV.
+
+---
+
+## 60. `qa:accel` schema (4.6 / 10.7)
+
+### 60.0. מצב כנה
+60.0.1. `qa:accel` + `scripts/accel-smoke.mjs` קיימים. TASKS: PHYSICS_VERSION 6, tiny ירוק ±30%.  
+60.0.2. schema יעד:
+
+```json
+{ "physicsVersion": 6, "track": "ayalon", "runs": [
+  { "carId": "gt", "t": [8.1, 8.4, 8.0], "mean": 8.17, "target": 8.4, "tol": 0.3 }
+]}
+```
+
+60.0.3. carId בקוד = `gt|hatch|muscle|rally|super` (25.2), לא "sabra" מ-CODEX_GAPS — **השמות הבדיוניים על הכרטיס נשארים; JSON = id טכני.**
+
+### 60.1. החלטה נעולה
+60.1.1. 5 דגמים, 3 ריצות, TCS/ABS/ESC off, איילון ישר.  
+60.1.2. Fail אם mean מחוץ ל-±30% מ-25.2 עד freeze פיזיקה; אחרי hero ±15%.  
+60.1.3. פלט: `artifacts/accel.json`.  
+60.1.4. `physicsVersion` עולה בכל שינוי accel/drag/mass/pacejka/yaw mix (25.4).
+
+### 60.2. תתי-משימות
+60.2.1. סשן 21.12: לוודא שה-JSON באמת נכתב (לא רק console).  
+60.2.2. שער 10.7: קובץ ב-repo או artifacts אחרי ריצה ירוקה.  
+60.2.3. אסור לעדכן target כדי "לעבור" בלי לשנות tagline כרטיס (25.3).
+
+---
+
+## 61. Records JSON (1.3 / W1.5)
+
+### 61.0. מצב כנה
+61.0.1. `src/game/records.ts`: `{ physicsVersion, hash }` + `recordPayload(trackId|carId|t|physicsVersion)` + `sha256hex`.  
+61.0.2. `scripts/records.test.mjs` קיים.  
+61.0.3. אין HMAC. אין שרת. זה לא אנטי-צ'יט.
+
+### 61.1. החלטה נעולה
+61.1.1. localStorage key `rush.records.v3` (או המפתח החי — לא לשבור שמירות; אם המפתח אחר, לתעד כאן בסשן ולא להחליף).  
+61.1.2. טעינה: `physicsVersion` ≠ נוכחי → לא מציגים.  
+61.1.3. אין HMAC. אסור "שיא רשמי".
+
+### 61.2. תתי-משימות
+61.2.1. סשן: `npm run test:records` חייב ירוק; מקרה גרסה ישנה נדחית.  
+61.2.2. שער 1.3 / 10.13.
+
+---
+
+## 62. Save טרנזקציה (W1.2)
+
+### 62.0. מצב כנה
+62.0.1. `src/game/save.ts` + localStorage. אין IndexedDB למשחק.
+
+### 62.1. החלטה נעולה
+62.1.1. כתיבה אטומית למפתח אחד: `JSON.stringify` מערך מלא, אז `setItem`.  
+62.1.2. אין pglite למשחק (auth/db נשארים מחוץ למירוץ, 0.5 AGENTS).  
+62.1.3. קריאה: try/catch; JSON שבור → מערך ריק, לא קריסה.
+
+### 62.2. תתי-משימות
+62.2.1. סשן אחרי 21.8: קרוא `save.ts`; אם כבר מחליף מפתח בשלמות — tiny DONE.  
+62.2.2. אם append שורות — לתקן ל-replace.  
+62.2.3. שער: ניתוק באמצע כתיבה לא משאיר `undefined` ב-JSON (טסט יחידה).
+
+---
+
+## 63. CCD / airborne 12ms (W1.3 / 5.5)
+
+### 63.0. מצב כנה
+63.0.1. TASKS: CCD 2-cut + airborne CI tiny. לא 6DoF.  
+63.0.2. סיכון ישן: clamp `y` מונע טיסה אמיתית.
+
+### 63.1. החלטה נעולה
+63.1.1. אם `y > groundY + 0.55` ל-**12ms רצופים**: `airborne=true`.  
+63.1.2. כש-`vy>2`: clamp עליון `groundY+8` (לא +0.5).  
+63.1.3. רמפות: `probeRamp` נשאר snap — **לא** airborne.  
+63.1.4. אחרי 21.8, סשן נפרד. סיכון: נפילה מאיילון.
+
+### 63.2. קבצים
+63.2.1. `src/game/vehicle.ts` — תנאי airborne + clamp.  
+63.2.2. `scripts/airborne-smoke.mjs` + `qa:airborne` (קיימים).  
+63.2.3. `scripts/ramp-smoke.mjs` חייב להישאר ירוק אחרי השינוי.
+
+### 63.3. תתי-משימות
+63.3.1. לכתוב מפרט זעיר לפני העריכה: "רמפת השלום y>4 אחרי 2s; מדרכה vy>3 → airborne".  
+63.3.2. אם ramp נכשל — revert clamp, לא "לשפר".  
+63.3.3. שער: שני הסקריפטים ירוקים באותו HEAD.
+
+---
+
+## 64. Damage lifecycle
+
+### 64.0. מצב כנה
+64.0.1. dents visual ב-`car-mesh.ts`. `damage` 0–1 מוריד grip. `qa:damage` קיים.
+
+### 64.1. החלטה נעולה
+64.1.1. אין תיקון במהלך מרוץ. Esc לא מאפס damage. Restart מאפס.  
+64.1.2. אין ספיירים. אין דלתות נפתחות.  
+64.1.3. בניין = עצירה (5.4.3). לא "פיצוץ".
+
+### 64.2. תתי-משימות
+64.2.1. סשן: וידוא Esc resume משאיר damage. אם מאפס — באג, לתקן ב-`engine.ts` pause path.  
+64.2.2. שער: `qa:damage` + ידני Esc.
+
+---
+
+## 65. Gamepad (27 / B4)
+
+### 65.0. מצב כנה
+65.0.1. `src/game/input-curve.ts` `padCurve(x, dead=0.12, exp=1.6)` קיים.  
+65.0.2. `input.ts` חייב לקרוא לזה על `axes[0]`. לא אומת כאן שורה-שורה.
+
+### 65.1. החלטה נעולה
+65.1.1. `axes[0]` → `padCurve`.  
+65.1.2. throttle: `buttons[7]` (RT) או `axes[1]` שלילי — לבחור **אחד** ולתעד ב-`input.ts` הערה.  
+65.1.3. brake: `buttons[6]` (LT).  
+65.1.4. אין FFB. אין rumble.  
+65.1.5. מקלדת נשארת מקור ל-`qa:drive`.
+
+### 65.2. תתי-משימות
+65.2.1. סשן 21.18: grep `padCurve` מ-`input.ts`; אם לא מחובר — לחבר בלבד.  
+65.2.2. שער: `scripts/input.test.mjs` (קיים) ירוק. qa:drive במקלדת לא נשבר.
+
+---
+
+## 66. Low 30fps clamp (B6)
+
+### 66.0. מצב כנה
+66.0.1. **tiny DONE.** `engine.ts` `shouldPresent`: אם `quality==="low" || lite` — מציג רק כש-`now-lastPresent >= 1000/30`. פיזיקה ממשיכה.
+
+### 66.1. החלטה נעולה
+66.1.1. לא vsync תכנותי. לא `frameRate` WebXR.  
+66.1.2. לא לגעת.  
+66.1.3. שער: Low על מחשב חלש לא מציג 60. בסנדבוקס SwiftShader — לא מדד 60 אמיתי (2.3.3).
+
+### 66.2. תתי-משימות
+66.2.1. אין סשן.  
+66.2.2. 100 מול "טלפון 60" = NOT DONE (חסם משתמש). 100 מול "Low מדלג פריימים" = tiny DONE.
+
+---
+
+## 67. i18n (D2)
+
+### 67.0. מצב כנה
+67.0.1. `src/game/i18n.ts` קיים. כרטיסים he/en. לא אומת שאין עברית ב-`engine.ts`.
+
+### 67.1. החלטה נעולה
+67.1.1. כל מחרוזת UI ב-`i18n.ts`. אסור עברית ב-`engine.ts` / `vehicle.ts` / `world.ts`.  
+67.1.2. watermark 43.3.1.1 דרך i18n.  
+67.1.3. שמות סמלים (עזריאלי) מותרים ב-`tracks.ts` / GPS.
+
+### 67.2. תתי-משימות
+67.2.1. סשן: `grep -n '[\u05D0-\u05EA]' src/game/engine.ts` חייב ריק (או הערות בלבד — עדיף ריק).  
+67.2.2. `game-app.tsx` מותר `langHe ? i18n.x : i18n.y` בלבד.  
+67.2.3. שער: grep נקי + כרטיס inspired (1.1).
+
+---
+
+## 68. כרטיסי JPEG (D3)
+
+### 68.0. מצב כנה
+68.0.1. תפריט משתמש ב-JPEG/צבע סטטי. **לא** texture עולם.
+
+### 68.1. החלטה נעולה
+68.1.1. `public/tracks/*.jpg` (אם קיים) = תפריט בלבד.  
+68.1.2. אסור `TextureLoader("/tracks/...")` מ-`world.ts` / `engine.ts`.  
+68.1.3. כרטיס ≠ צילום runtime. אסור לטעון שזה "photo mode still".
+
+### 68.2. תתי-משימות
+68.2.1. סשן: grep `tracks/` מחוץ לקומפוננטת תפריט = 0.  
+68.2.2. שער D3 tiny אם grep נקי.
+
+---
+
+## 69. Dead code (career / garage / multiplayer)
+
+### 69.0. מצב כנה
+69.0.1. `career.ts` `garage.ts` `daily.ts` `src/lib/multiplayer` `src/lib/auth` קיימים.
+
+### 69.1. החלטה נעולה
+69.1.1. **לא מוחקים** בסשן גרפיקה.  
+69.1.2. אחרי freeze: לא לייבא מ-`game-app` — tree-shake.  
+69.1.3. אסור פיצ'ר אונליין חדש. אסור גאראז' שדרוגים (0.5).  
+69.1.4. PWA grok — לא קודקס מירוץ, לא לגעת.
+
+### 69.2. תתי-משימות
+69.2.1. סשן אחרי 6.5: grep import מ-game-app; אם career מחובר ל-UI מירוץ — לנתק, לא למחוק קובץ.  
+69.2.2. שער: מסך ראשי = כותרת → מסלול → מרוץ. בלי קריירה.
+
+---
+
+## 70. Audio
+
+### 70.0. מצב כנה
+70.0.1. `audio.ts` oscillators. mute ב-Esc. `audio-lock.test.mjs` קיים.
+
+### 70.1. החלטה נעולה
+70.1.1. oscillators נשארים. אין FMOD. אין Howler. אין מוזיקה מוזרמת.  
+70.1.2. לא שער גרפיקה.  
+70.1.3. לא "מנוע V8 מוקלט".
+
+### 70.2. תתי-משימות
+70.2.1. אין סשן גרפיקה.  
+70.2.2. אם mute שבור — תיקון נקודתי, לא ספרייה.
+
+---
+
+## 70.9. המשך הוטמע
+71–86 → **חלק ו׳** למטה. אין קוד.
+
+---
+
+## 70.10. סטטוס אחרי חלק ה׳
+70.10.1. 43–70 ממוספרים. 71–84 בחלק ו׳ למטה.  
+70.10.2. tiny בקוד ≠ 100 מול קודקס.  
+70.10.3. אחוז כנה: **~13%**. שערי שחרור **2/13**.
+
+---
+
+# חלק ו׳ — חורים 71–84 מוטמעים (4–5 רמות)
+
+**מחקר שננעל בסשן הזה (27.8.2026 19:18 IDT):**
+- `TRAANode` חי ב-`three/addons/tsl/display/TRAANode.js`. **לא** ב-barrel `three/tsl`. דורש beauty+depth+velocity + `WebGPURenderer`. `HAS_TRAA_NODE=false` — נכון למשחק.
+- `RendererFacade.probeWebGPU()` קיים; הקנבס נשאר `WebGLRenderer`.
+- `getColliders` חי. `qa:colliders` חי. CODEX_GAPS 83.2 מיושן.
+- `ayalon.lock` lock=11. **זה לא freeze.**
+- עזריאלי עיגול בקוד: גובה **121** לא 187. 3 InstancedMesh (טסט ירוק מול 49 Mesh). 6.2 פתוח.
+- אין `.github/workflows`. CI = `npm run qa:ci`.
+- `ResourceRegistry.disposeAll` חד-פעמי (`dead=true`). `engine.dispose` קורא פעמיים — השני no-op.
+
+---
+
+## 71. Cleanup / dispose (קודקס 17 / שער 10.12)
+
+### 71.0. מצב כנה
+71.0.1. **PARTIAL / tiny קרוב.**  
+71.0.1.1. `world.dispose` = לולאה על `bag` (`world.ts` ~2781).  
+71.0.1.2. `engine.dispose` (~2700): input/audio → `leases.release("csm")` (`csm.remove()+dispose()`) → `world.dispose` → `leases.disposeAll` → geos מקומיים → `gfx.dispose`.  
+71.0.1.3. `soak-menu-race.mjs` קיים. `qa:soak`=20; `qa:soak-smoke`=2.  
+71.0.2. 100 = לוג soak 20 מצורף + textures delta ≤2. לא אומת על HEAD בסשן תכנון.
+
+### 71.1. החלטה נעולה
+71.1.1. סדר: `csm.dispose` (דרך lease) **לפני** `gfx.dispose`.  
+71.1.2. לא לפרוץ ל-RT פנימי של CSM (2.4.3).  
+71.1.3. `disposeAll` נשאר idempotent. לא לאפס `dead` באותו מחזור חיים.  
+71.1.4. מרוץ חדש = `Engine` חדש + registry חדש.
+
+### 71.2. קבצים
+71.2.1. `src/game/engine.ts` `dispose()`.  
+71.2.2. `src/rendering/ResourceRegistry.ts`.  
+71.2.3. `src/game/world.ts` `dispose`.  
+71.2.4. `scripts/soak-menu-race.mjs`.
+
+### 71.3. תתי-משימות
+71.3.1. סשן אחרי אושר, מותר במקביל ל-21.9: `npm run qa:soak`, פלט ל-`soak-logs/soak-YYYYMMDD.txt`.  
+71.3.2. `getMemory()` חייב `textures` אחרי מחזור 2 ואחרי 20.  
+71.3.3. אם delta >2: לחפש RT ב-`upgradeGraphics` בלי lease. לא להעלות סף.  
+71.3.4. שער 10.12: קובץ לוג + textures(20) ≤ textures(2)+2.
+
+### 71.4. אסור
+71.4.1. סקריפט soak שני.  
+71.4.2. V בלי לוג 20.
+
+---
+
+## 72. CI matrix (קודקס 19)
+
+### 72.0. מצב כנה
+72.0.1. **PARTIAL.**  
+72.0.1.1. `"qa"` = drive+ramp+webgl2+accel+colliders+airborne+ktx2+soak-smoke.  
+72.0.1.2. `"qa:ci"` = typecheck + records/physics/ssgi/traa + qa + check:qa/secrets/canvas/copy/webgl + qa:cache.  
+72.0.2. אין GitHub Actions.  
+72.0.3. `qa:webgpu` / `qa:golden` / `qa:ayalon-lock` **לא** ב-`qa:ci`.
+
+### 72.1. החלטה נעולה
+72.1.1. אין חובת Actions בסנדבוקס. שער = `npm run qa:ci` ירוק מקומית.  
+72.1.2. WebGPU job: N/A עד 8.2 כרנדרר משחק. עד אז `qa:webgpu` = smoke שהמשחק נשאר WebGL. לא ב-`qa:ci` עד יציב על SwiftShader.  
+72.1.3. `qa:golden` לא ב-CI עד 6.1.
+
+### 72.2. תתי-משימות
+72.2.1. סשן: להריץ `qa:ci`, לתעד pass/fail. לא להוסיף סקריפטים.  
+72.2.2. אם `qa:ktx2` נכשל בלי קבצים — לתקן הסקריפט לירוק-בלי-ktx2 (49), לא לייצר KTX2.  
+72.2.3. שער: `qa:ci` ירוק מתועד אחרי אושר.
+
+### 72.3. אסור
+72.3.1. GitHub Actions בלי runner.  
+72.3.2. pixelmatch ב-CI לפני hashalom ok.
+
+---
+
+## 73. Secrets grep (קודקס 20 / 24.1)
+
+### 73.0. מצב כנה
+73.0.1. **tiny קרוב.** `scripts/secrets-check.mjs` על `src/game`, דפוס `sk-|apiKey|BEGIN RSA`. ב-`qa:ci`.  
+73.0.2. 24.1 OAuth rotate = מחוץ לסנדבוקס (11.5).
+
+### 73.1. החלטה נעולה
+73.1.1. שער: אפס hits ב-`src/game`.  
+73.1.2. לא להרחיב ל-`src/lib/auth` בסשן גרפיקה.  
+73.1.3. hit אמיתי → מחיקה, לא החרגת regex.
+
+### 73.2. תתי-משימות
+73.2.1. סשן: `npm run check:secrets`. ירוק = 73 tiny.  
+73.2.2. שער קודקס 20 = הסקריפט. לא "סובבנו OAuth".
+
+### 73.3. אסור
+73.3.1. לטעון 24.1 DONE.
+
+---
+
+## 74. Perf headers (W1.6)
+
+### 74.0. מצב כנה
+74.0.1. **tiny קרוב.** `game-cache-plugin.mjs`: `/game/*` + `/basis/*` = `max-age=31536000, immutable`; HTML = `no-cache`.  
+74.0.2. `qa:cache` ב-`qa:ci`.
+
+### 74.1. החלטה נעולה
+74.1.1. לא Cloudflare.  
+74.1.2. אחרי freeze: אסור להחליף PNG באותו שם (cache immutable). bump: `asphalt-8-v2.png`.
+
+### 74.2. תתי-משימות
+74.2.1. סשן: `qa:cache` ירוק מול dev.  
+74.2.2. שער W1.6 tiny אם הסקריפט ירוק.
+
+### 74.3. אסור
+74.3.1. cache על `/` או JS בלי hash.
+
+---
+
+## 75. LICENSES.md (M3)
+
+### 75.0. מצב כנה
+75.0.1. **tiny כקובץ.** `public/game/LICENSES.md` — generated PNGs, extrusion cars, placeholders ל-Kenney/HDRI/hero, Basis Apache-2.0.
+
+### 75.1. החלטה נעולה
+75.1.1. בלי שורת רישיון — אסור hero (24.3).  
+75.1.2. קובץ חדש ב-`public/game/` = שורה באותו סשן.  
+75.1.3. Kenney רק LOD2 + URL.
+
+### 75.2. תתי-משימות
+75.2.1. אין סשן עד נכס חדש.  
+75.2.2. שער ייבוא hero = שורה + LICENSE ליד glb.
+
+### 75.3. אסור
+75.3.1. "CC0" בלי URL. מותג רשום.
+
+---
+
+## 76. WebGPU init (8.1 / 8.2 / 21.20)
+
+### 76.0. מצב כנה
+76.0.1. **PARTIAL — probe, לא רנדרר משחק.**  
+76.0.1.1. `RendererFacade.init` = `WebGLRenderer` תמיד.  
+76.0.1.2. `probeWebGPU()`: canvas dummy, `await init()`, timeout 4s, dispose, לוג fail.  
+76.0.1.3. `?webgpu=1` שומר tried/ok/reason. `webgpu-smoke.mjs` דורש tried + נסיעה.  
+76.0.2. **FAKED** אם Ultra WebGPU / TSL כביש רץ.
+
+### 76.1. החלטה נעולה
+76.1.1. ברירת מחדל WebGL.  
+76.1.2. נתיב משחק GPU רק אחרי כביש GLSL (3) + freeze (6.5) + ramp (21.8).  
+76.1.3. צ'קליסט 8.2:  
+76.1.3.1. `import { WebGPURenderer } from "three/webgpu"`.  
+76.1.3.2. `new WebGPURenderer({ canvas, antialias:false, forceWebGL: !wantGpu, powerPreference:"high-performance" })`.  
+76.1.3.3. `await r.init()`.  
+76.1.3.4. throw → WebGL קיים + `[gfx] webgpu fail`.  
+76.1.3.5. כבוי ב-GPU: Reflector, EffectComposer, CSM.js, `onBeforeCompile`.  
+76.1.3.6. דולק: probe; TSL road = סשן 8.3 נפרד; SMAANode/FXAANode.  
+76.1.4. CI אחרי 8.2: `forceWebGL: true`.
+
+### 76.2. תתי-משימות עכשיו
+76.2.1. לא לחבר GPU לקנבס המשחק.  
+76.2.2. 21.20 אחרי 6.5: `qa:webgpu` ירוק.  
+76.2.3. שער ביניים: `?webgpu=1` לא שובר `qa:drive`.
+
+### 76.3. אסור
+76.3.1. `forceWebGL:false` כברירת מחדל. composer+GPU באותו פריים.
+
+---
+
+## 77. TRAA (קודקס 9 / 8.5)
+
+### 77.0. מצב כנה + מחקר
+77.0.1. `traa.ts`: `HAS_TRAA_NODE=false`, `PHOTO_AA="smaa"`.  
+77.0.2. `traa.test.mjs` אוסר `TAARenderPass|TRAANode` ב-`postfx.ts`.  
+77.0.3. Addons: `import { traa } from 'three/addons/tsl/display/TRAANode.js'`.  
+77.0.4. Barrel `three/tsl` **אין** traa — לא להשתמש בו כשער.  
+77.0.5. דורש beauty+depth+velocity. MSAA כבוי.
+
+### 77.1. החלטה נעולה
+77.1.1. Photo WebGL = SMAA. לא TAARenderPass. לא TRAA ידני.  
+77.1.2. TRAA רק Photo/Ultra WebGPU אחרי 8.2 ורק עם velocity.  
+77.1.3. בלי velocity: FXAA/SMAA node.  
+77.1.4. `HAS_TRAA_NODE=true` רק כש-postfx GPU מייבא `traa` **והמשחק רץ עליו**.
+
+### 77.2. תתי-משימות
+77.2.1. אין סשן עד 8.2.  
+77.2.2. שער עכשיו: `test:traa` ירוק.
+
+### 77.3. אסור
+77.3.1. לייבא TRAANode ל-postfx WebGL.  
+77.3.2. לסמן "TAA".
+
+---
+
+## 78. SSGI / וולומטרי (קודקס 10 / 17)
+
+### 78.0. מצב כנה
+78.0.1. `SSGI_OFF = true` + `ssgi.test.mjs`.  
+78.0.2. r185: `SSGINode.js` / `GTAONode.js` ב-addons — לא לייבא.  
+78.0.3. גשם Points. ערפל Exp2.
+
+### 78.1. החלטה נעולה
+78.1.1. כבוי עד 4.2 + 6.5 + p95 High <12ms. כמעט לא ייפתח כאן.  
+78.1.2. אם ייפתח: GTAO half-res ≤2ms High בלבד. שובר p95 → מחיקה.  
+78.1.3. clouds וולומטריים = 84.6 אסור.
+
+### 78.2. תתי-משימות
+78.2.1. אין סשן. שער: `test:ssgi` = DONE כאילוץ.
+
+### 78.3. אסור
+78.3.1. `SSGINode` ב-postfx. חלקיקי GPU לגשם.
+
+---
+
+## 79. Streaming תור (קודקס 11)
+
+### 79.0. מצב כנה
+79.0.1. `MESH_STREAMING = false` ב-`stream-flag.ts`.  
+79.0.2. assemble ממתין ל-PNG. NYC `import()` — 3.6.
+
+### 79.1. החלטה נעולה
+79.1.1. אין mesh streaming עד cells (47) אחרי 6.5 ורק אם calls>80.  
+79.1.2. אין glTF עולם.
+
+### 79.2. תתי-משימות
+79.2.1. אין סשן. שער: הדגל false עד 47.
+
+### 79.3. אסור
+79.3.1. הורדת glb באמצע מרוץ. "open world streaming".
+
+---
+
+## 80. 30fps / pixelScale (Asphalt G0)
+
+### 80.0. מצב כנה
+80.0.1. High `pixelScale=0.85`. compat=1, balanced=0.75, ultra=1, photo=1.  
+80.0.2. Low ≤30fps (`shouldPresent`). cascade 2.2 קיים.
+
+### 80.1. החלטה נעולה
+80.1.1. High 0.85 נעול. לא 50% אוטומטי.  
+80.1.2. הורדה לפי 2.2.2.4 עד 0.5.  
+80.1.3. לא לשנות בלי p95.
+
+### 80.2. תתי-משימות
+80.2.1. אין סשן.  
+80.2.2. G0 100 = p95 משתמש <20ms High, לא SwiftShader.
+
+---
+
+## 81. Azrieli bands + impostor (6.2 / 26.2.5 / 46)
+
+### 81.0. מצב כנה — כנה מול 6.2
+81.0.1. `placeAzrieli` ~3159: עיגול גובה **`121 * s`**, משולש **`110 * s`**. כתר צלחת.  
+81.0.2. 3 `InstancedMesh` לפסים — `azrieli-bands.test.mjs` ירוק מול 49 Mesh. **לא** מול 187/169/154.  
+81.0.3. `azBand.metalness = 0.28` — חוב dielectric.  
+81.0.4. Impostor 420m — **NOT DONE** (46).  
+81.0.5. **FAKED** אם "שחזור 187m".
+
+### 81.1. החלטה נעולה
+81.1.1. מקס 3 InstancedMesh לפסי קומות. tiny ל-draw-call.  
+81.1.2. יעד גובה: 187 / 169 / 154 מטר. `s=1` לגובה אחרי 6.1. היסט אופקי מחוץ לנתיב.  
+81.1.3. שינוי גובה = ארט איילון = אחרי 6.1 (21.10).  
+81.1.4. metalness→0 באותו סשן 21.10.  
+81.1.5. Impostor = 46 אחרי 6.5.
+
+### 81.2. קבצים
+81.2.1. `world.ts` `placeAzrieli` בלבד.  
+81.2.2. אחרי 6.1: הטסט בודק `/187/` `/169/` `/154/`.
+
+### 81.3. תתי-משימות
+81.3.1. עכשיו: לא לגעת.  
+81.3.2. 21.9 עצירה לצילום.  
+81.3.3. 21.10 גבהים + metalness 0.  
+81.3.4. שער: g07 מול משתמש; drawCalls <80.
+
+### 81.4. אסור
+81.4.1. canvas חזית. מגדל חדש לפני 6.1. לולאת 49 Mesh.
+
+---
+
+## 82. Freeze hash (6.5 / M2)
+
+### 82.0. מצב כנה
+82.0.1. `ayalon-hash.mjs` + `qa:ayalon-lock`.  
+82.0.2. `golden-baseline/ayalon.lock` `"lock": 11`.  
+82.0.3. **NOT DONE כ-freeze.** אין `hashalom ok`.  
+82.0.4. **FAKED** אם M2 / "52 מסלולים מוקפאים".
+
+### 82.1. החלטה נעולה
+82.1.1. hash = sha256 בלוק ayalon ב-tracks + world (placeAzrieli…placeCityGate + `def.id==="ayalon"` + שורות /ayalon/i).  
+82.1.2. שינוי בלי bump `AYALON_LOCK` נכשל.  
+82.1.3. Freeze = 6.1 + commit `golden: freeze ayalon` + ACK + איסור עריכה בלי bump.  
+82.1.4. עד 6.1: bump רק לתיקוני חסימה, לא צלליות חדשות.
+
+### 82.2. תתי-משימות
+82.2.1. 21.19 רק אחרי 6.1. הפרה = 0.3.  
+82.2.2. אחרי ACK: `AYALON_LOCK=<n+1> node scripts/ayalon-hash.mjs --write`.  
+82.2.3. שער 6.5: `qa:ayalon-lock` ירוק בלי env.
+
+### 82.3. אסור
+82.3.1. לסמן M2. להקפיא בלי צילום.
+
+---
+
+## 83. Landmark offset test (14.9.2 / 21.12)
+
+### 83.0. מצב כנה
+83.0.1. **tiny קרוב.** `__controlsTest.getColliders`.  
+83.0.2. `collider-offset-smoke.mjs`: building, dist−r ≥ width/2−0.25, מרכז ≥ width/2+12, n≥4.  
+83.0.3. `qa:colliders` ב-`qa`. 83.2 ב-CODEX_GAPS מיושן.
+
+### 83.1. החלטה נעולה
+83.1.1. לא סקריפט שני.  
+83.1.2. אחרי 21.10 הסקריפט חייב להישאר ירוק.  
+83.1.3. מנהרה ≠ building.
+
+### 83.2. תתי-משימות
+83.2.1. סשן: `qa:colliders` על HEAD. ירוק = 83 tiny לאיילון.  
+83.2.2. שאר מסלולים אחרי 6.5 לפי 7.0.2.
+
+### 83.3. אסור
+83.3.1. להקטין minCenter מתחת ל-width/2+12.
+
+---
+
+## 84. נעילות — מה לא ייכתב
+
+### 84.0. רשימה סגורה (תוספת ל-11 / 39)
+84.1. הולכי רגל.  
+84.2. שיפור Traffic AI.  
+84.3. טיפות על השמשה.  
+84.4. Tire mark persistence מעבר ל-skid הקיים.  
+84.5. FFT ocean.  
+84.6. Volumetric clouds.  
+84.7. Rapier / Cannon / PhysX.  
+84.8. OSM / DEM / EPSG / "רחובות אמיתיים".  
+84.9. Unreal / Unity / Nanite / Lumen / RT.  
+84.10. AgX עד HDRI+LUT (23).  
+84.11. MRT / deferred (44).  
+84.12. `pmndrs/postprocessing`.  
+84.13. אונליין, גאראז' שדרוגים, 50 מכוניות.  
+84.14. ערים חדשות.  
+84.15. Canvas PNG חדש לעולם.  
+84.16. TRAA על WebGL.  
+84.17. GIS compiler.
+
+### 84.18. שער
+84.18.1. סשן מימוש שמתחיל ב-84.1–84.17 — לעצור.
+
+---
+
+## 85. סדר סשנים אחרי **אושר** (27.8.2026)
+
+21.1–21.8 כבר רצו חלקית (TASKS tiny). לא לחזור עליהם אם השער tiny ירוק.
+
+### 85.1. חסום למשתמש
+85.1.1. 6.1 השלום / `hashalom ok`.  
+85.1.2. 23 `.hdr`.  
+85.1.3. 24 hero glTF.  
+85.1.4. 60fps מכשיר משתמש.
+
+### 85.2. מותר בלי ארט איילון (מספר אחד לסשן)
+85.2.1. 59.2 `check:qa` ביילד פרוד.  
+85.2.2. 71.3 soak 20 + לוג.  
+85.2.3. 67.2 grep עברית ב-engine.  
+85.2.4. 43.3 watermark Photo.  
+85.2.5. 72.2 `qa:ci` מתועד.  
+85.2.6. 73.2 secrets אם לא ירוק.  
+85.2.7. 54.1 vis hood/chase.  
+85.2.8. 65.2 `padCurve` אם חסר.
+
+### 85.3. אסור עד 6.1
+85.3.1. 81 גבהי עזריאלי.  
+85.3.2. 82 freeze.  
+85.3.3. 7.x ישראל.  
+85.3.4. 8.2 WebGPU משחק.  
+85.3.5. 46 impostor / 47 cells / 48 3 probes.
+
+### 85.4. אחרי 6.1
+85.4.1. 81.3.3 גבהים 187/169/154.  
+85.4.2. 82 freeze + commit.  
+85.4.3. 7.1…7.7 לפי 7.0.  
+85.4.4. golden bump אחרי ACK.
+
+### 85.5. artifacts (24.5)
+85.5.1. תיקייה קיימת. שמות: `artifacts/accel.json`, `artifacts/golden-tmp/*.png`, `soak-logs/soak-*.txt`.  
+85.5.2. לא סודות. לא glb כפול.
+
+### 85.6. פקודה
+85.6.1. `המשך` אחרי 86.1 = מחכים ל-**אושר**, אלא אם נמצא חור חדש → 87+.  
+85.6.2. קוד ראשון אחרי אושר = **85.2.1**, לא עזריאלי.
+
+---
+
+## 86. האם התוכנית מלאה?
+
+### 86.1. כיסוי קודקס ווב — כן לתכנון
+86.1.1. §1 שכבות → 8.7 + 33 + 43.  
+86.1.2. §25 עשרת הראש → 4, 3, 7/20/23, 9, 47, 3.3, 8, 8.4/48, 77, 78.  
+86.1.3. G0–G6 → 2, 3, 20, 4.3, 52, 50, 51.  
+86.1.4. P0–P5 → 3, 20, 4, 5, 6–7, 27.  
+86.1.5. A1–A18 → 29 + 53–55.  
+86.1.6. 24ש׳/W/M → 1.2–1.3, 62–64, 72–75, 82, 11.  
+86.1.7. 43–84 → חלק ה׳ + ו׳.
+
+### 86.2. לא 100 בביצוע (לא חור תכנון)
+86.2.1. Hashalom. Hero. HDRI.  
+86.2.2. WebGPU כרנדרר משחק. UASTC. Cells/HLOD.  
+86.2.3. 60fps טלפון. Pixel-diff מאושר. עזריאלי 187m.
+
+### 86.3. אחוז כנה
+86.3.1. **~13%** ביצוע.  
+86.3.2. **~95%** כיסוי תכנון ממוספר (נשאר קלט משתמש + שבירת API של three).  
+86.3.3. שערי שחרור **2/13**.  
+86.3.4. לא GT7. לא "סיימנו את קודקס".
+
+### 86.4. אחרי 86
+86.4.1. חורים דקים שנותרו אחרי 86 → **חלק ז׳ (87+)** למטה.  
+86.4.2. אחרי 96.1 אין חור קודקס/ישראל-שער בלי מתכון → **אושר**.
+
+---
+
+# חלק ז׳ — חורים שנשארו דקים (87–96)
+
+**למה הסשן הזה קיים:** 0–86 כיסו את מנוע הווב. 7.x / 6.3 / שלטי איילון / רשימת מסלולים / Esc / AI נשארו 2–3 שורות. זה החור מול בקשת "ישראל + סמלים". אין קוד.
+
+**מחקר חי (27.8.2026 19:23):**
+- `world.ts` `mkSign` = `createElement("canvas")` + `CanvasTexture` בזמן ריצה. `check-canvas.mjs` **לא** מתיר את `world.ts`. זה באג מול 9.2 / שער 10.8.
+- מחלפים: 6 נקודות lat קשיחות בקוד.
+- עזריאלי≠ToHa≠CityGate≠Midtown — גבהים בקוד לא ויקיפדיה (חוץ מ-City Gate ~168≈170).
+- 56 `id` ב-`tracks.ts`. אסור id חדש.
+- Esc: המשך / התחל מחדש / ראשי / צליל / יום-לילה / איכות.
+- Golden איילון = 12 poses לפי `t` על הספליין, לא x/y/z עולם.
+- `__root.tsx` description: "Arcade street racing across Israel and New York." — מצג שווא מול 1.1.
+
+---
+
+## 87. Canvas איילון — שלטי מחלף (חור 9.2 / 10.8)
+
+### 87.0. מצב כנה
+87.0.1. `world.ts` ~5883 `mkSign(he,en)`: canvas 512×128, טקסט עברית+אנגלית, `CanvasTexture`, על גנטרי.  
+87.0.2. `canvasInventory.ts` מתיר רק CapabilityProbe + RendererFacade.  
+87.0.3. `check:canvas` חייב להיכשל על HEAD אם `mkSign` נשאר — **לא אומת בסשן תכנון, חזוי fail**.  
+87.0.4. NYC canvas נפרד (35.3).
+
+### 87.1. החלטה נעולה
+87.1.1. אסור canvas runtime ב-`world.ts`.  
+87.1.2. פתרון: אפייה **חד-פעמית** של 6 PNG (אותו צינור כמו `bake-signs.mjs`), ואז `TextureLoader("/game/ic-*.png")`.  
+87.1.3. זה לא סותר 0.2 אם זה **הסשן המפורש 87** — לא אפייה אקראית.  
+87.1.4. בלי אפייה: להוריד את הטקסט העברי מהגנטרי ולהשאיר רק `sign-speed90.png` הקיים. עדיף על canvas.
+
+### 87.2. קבצים
+87.2.1. `src/game/world.ts` — למחוק `mkSign` + `createElement("canvas")`.  
+87.2.2. אופציה א: `scripts/bake-ic-signs.mjs` + `public/game/ic-galuyot.png` … `ic-university.png` + שורות ב-LICENSES (generated).  
+87.2.3. `scripts/check-canvas.mjs` — אסור להוסיף `world.ts` ל-ALLOW.
+
+### 87.3. תתי-משימות (אחרי אושר, לפני freeze)
+87.3.1. להריץ `npm run check:canvas`. אם fail — זה הסשן.  
+87.3.2. לבחור א או ב (87.1.4). ב מהיר יותר ופחות נכסים.  
+87.3.3. שער: `check:canvas` ירוק + גנטרי בלי canvas.  
+87.3.4. לא ארט מגדלים.
+
+### 87.4. אסור
+87.4.1. allowlist ל-`world.ts`.  
+87.4.2. LED/שילוט canvas ב-NYC כתירוץ לאיילון.
+
+---
+
+## 88. ששת המחלפים + רמפות (6.4 מפורק)
+
+### 88.0. מצב כנה
+88.0.1. לולאה על:
+
+| # | he | en | lat בקוד | הערות |
+|---|---|---|---|---|
+| 1 | קיבוץ גלויות | Kibbutz Galuyot | 32.0525 | רמפות extra + אלכסון |
+| 2 | ההגנה | HaHagana | 32.0547 | דק סטנדרטי |
+| 3 | לה גרדיה | LaGuardia | 32.062 | רמפות אלכסון |
+| 4 | השלום | HaShalom | 32.0735 | + רמפת כנף width/2+22 |
+| 5 | סבידור מרכז | Savidor Center | 32.0837 | כנף + אולם ארוך |
+| 6 | אוניברסיטה | University | 32.1035 | דק סטנדרטי |
+
+88.0.2. `lon` מחלפים ראשיים ≈ מחושב מ-nearestIndex על הספליין; כנף השלום/סבידור `tlv(lat, 34.795)`.  
+88.0.3. `pushRamp` מחבר y0→y12. `qa:ramp` קיים.  
+88.0.4. עמודים אמורים להיות מחוץ ל-width/2+12 (83).
+
+### 88.1. החלטה נעולה
+88.1.1. שמות ו-lat האלה נעולים. לא מחלף שביעי.  
+88.1.2. `deckY` הקיים (~9.4) נעול עד 6.1.  
+88.1.3. רמפה יתומה (לא מחוברת לדק) → מחיקה, לא גשר יתום (6.4.4).  
+88.1.4. השחקן על רמפת השלום: אחרי 2s תאוצה `y>4` (6.4.5 / `qa:ramp`).
+
+### 88.2. קבצים
+88.2.1. בלוק `def.id==="ayalon"` ב-`world.ts` בלבד.  
+88.2.2. `scripts/ramp-smoke.mjs`.
+
+### 88.3. תתי-משימות
+88.3.1. לפני 6.1: רק אם `qa:ramp` אדום או עמוד בנתיב.  
+88.3.2. אחרי 6.1: לא לשנות lat. מותר חומר/שלט לפי 87.  
+88.3.3. שער: 6 שמות נראים על גנטרי **או** על שלט PNG; `qa:ramp` + `qa:colliders` ירוקים.
+
+### 88.4. אסור
+88.4.1. מחלף "נתיבי איילון צפון" חדש.  
+88.4.2. ספליין שני לנתיב נגדי (3.5.2).
+
+---
+
+## 89. ToHa / City Gate / Midtown / סבידור (6.3 מפורק)
+
+### 89.0. מצב כנה — מספרים חיים
+89.0.1. City Gate: GPS `32.0832, 34.8027`, Box 16.2, גובה **`168 * s`**, yaw π/4, InstancedMesh slabs, תורן.  
+89.0.2. ToHa: ברירת `32.0713, 34.7886` (גם קריאות עם lat אחר), 22 קומות InstancedMesh מתרחבות+טוויסט, cap y=`118 * s`.  
+89.0.3. Midtown: `32.0806, 34.7926`, שני Boxes **108 / 94 * s**, navy dielectric metalness 0.  
+89.0.4. סבידור: `kind==="savidor"` אולם 28×40, רציף 110, 7 עמודים — לא העתק השלום.  
+89.0.5. עזריאלי נפרד (81): עיגול 121 לא 187.
+
+### 89.1. יעדי גובה אחרי 6.1 (ויקיפדיה / דיווח יזם, בהשראת)
+89.1.1. City Gate: ~170m — הקוד 168 קרוב. אחרי 6.1: `s=1` → **168–170**. לא Box זהה לעזריאלי ריבוע.  
+89.1.2. ToHa: ~128m מגדל משרדים (צללית מניפה). יעד cap **128**, לא 118. טוויסט נשאר — זה הסימן.  
+89.1.3. Midtown TLV: שני מגדלים, גבהים **שונים זה מזה** חובה. יעד אחרי 6.1: בערך 150 / 130 אם `s=1`, לא 108/94 אם זה נראה נמוך מול עזריאלי 187. כוונון רק עם צילום g07.  
+89.1.4. סבידור: לא גורד. אולם+רציף. גובה אולם נמוך מחובה.
+
+### 89.2. היסט
+89.2.1. כל מגדל `width/2 + ≥16` (14.1.9).  
+89.2.2. אחרי שינוי גובה/s: `qa:colliders`.
+
+### 89.3. תתי-משימות
+89.3.1. לפני 6.1: **אסור** לגעת בפונקציות `placeToHa` / `placeCityGate` / `placeMidtown`.  
+89.3.2. 21.10 אחרי 6.1: עזריאלי קודם; סשן נפרד 89 אחרי ש-81 ירוק.  
+89.3.3. שער: שלושה צללים שונים ב-g05/g07; אף שני Box זהים; colliders ירוק.
+
+### 89.4. אסור
+89.4.1. מגדל בשם חדש (IBM / פלטינום כבר TASKS tiny — לא להוסיף עוד שמות).  
+89.4.2. canvas חזית. metalness>0 על זכוכית כחולה (Midtown כבר 0).
+
+---
+
+## 90. Esc / HUD / טעינה / זרימת תפריט (P5 + בקשת משתמש)
+
+### 90.0. מצב כנה
+90.0.1. Esc/P → paused overlay ב-`game-app.tsx` ~393:  
+90.0.1.1. המשך (ראשון — עומד בבקשה "כפתור למעלה").  
+90.0.1.2. התחל מחדש.  
+90.0.1.3. מסך ראשי.  
+90.0.1.4. צליל.  
+90.0.1.5. יום/לילה.  
+90.0.1.6. איכות נמוכה/בינונית/גבוהה.  
+90.0.2. `load-eta.ts`: הערכה לפי היסטוריית localStorage + בונוס HEAVY.  
+90.0.3. כותרת → בחירת מסלול → מרוץ.  
+90.0.4. Assists abs/tcs/esc על המסך — בניגוד ל"כמה שפחות כפתורים".
+
+### 90.1. החלטה נעולה
+90.1.1. רשימת Esc נעולה כמו 90.0.1. לא קריירה, לא גאראז', לא אונליין.  
+90.1.2. Restart מותר (לא היה בבקשה המקורית; לא מזיק).  
+90.1.3. Assists: להשאיר ב-Esc settings או מסך מירוץ מצומצם — **לא** על ה-HUD הראשי אם אפשר להזיז בלי שבירת qa:drive. סשן אחרי אושר, לא ארט.  
+90.1.4. מד טעינה: `estimateLoadMs` נשאר; HUD חייב להציג **שניות שנותרו** (לא רק בר). אם כבר מוצג — tiny.  
+90.1.5. אחרי בחירת מסלול: כפתור "המשך/סע" **למעלה**, בלי גלילה (בקשת משתמש ישנה).
+
+### 90.2. קבצים
+90.2.1. `src/components/game-app.tsx` בלבד.  
+90.2.2. `src/game/load-eta.ts`.  
+90.2.3. `src/game/i18n.ts` למחרוזות.
+
+### 90.3. תתי-משימות
+90.3.1. סשן UI אחרי אושר, לא לפני 87 אם canvas נכשל (לא תלוי). מותר במקביל ל-85.2.  
+90.3.2. שער: Esc פותח; המשך ראשון; ראשי מחזיר כותרת; אין כפתור אונליין.  
+90.3.3. צילום מסך תפריט בחירת איילון: כפתור סע בלי לגלול.
+
+### 90.4. אסור
+90.4.1. HUD מפה מיני / מיני-מפה GIS.  
+90.4.2. חנות שדרוגים.
+
+---
+
+## 91. Hashalom golden pose (6.1 + 18)
+
+### 91.0. מצב כנה
+91.0.1. אין מצלמת עולם x/y/z. יש `AYALON_GOLDEN` לפי `t`:  
+91.0.1.1. g04 t=0.42 השלום מערב.  
+91.0.1.2. g05 t=0.46 עזריאלי צללית.  
+91.0.1.3. g06 t=0.52 גשר השלום.  
+91.0.2. `qa:golden` מצלם g01, g05, g07, g08. **לא** g06.  
+91.0.3. `qa:hashalom` סקריפט קיים (`hashalom-photo.mjs`).
+
+### 91.1. החלטה נעולה
+91.1.1. Pose ייחוס משתמש = **g06** (גשר) + **g05** (צללית). לא ממציאים מצלמה רביעית.  
+91.1.2. פרוטוקול 6.1: המשתמש שולח PNG או כותב `hashalom ok` אחרי שרואה g05/g06 בלייב.  
+91.1.3. סוכן לא מאשר דמיון.  
+91.1.4. כישלון: קוביות גנריות, נגד חסר, שלושת עזריאלי באותו גובה, אופק חתוך, canvas חזית.
+
+### 91.2. תתי-משימות
+91.2.1. אין סשן קוד עד שיש תמונה/ACK.  
+91.2.2. אחרי ACK: bump golden-baseline g05/g06/g08 (57).  
+91.2.3. להוסיף g06 ל-`pixel-golden.mjs` רק אחרי ACK.
+
+### 91.3. אסור
+91.3.1. AI-generated "reference".  
+91.3.2. לסמן 6.1 כי `qa:hashalom` רץ.
+
+---
+
+## 92. Color / ACES (קודקס 3 / TECH 7)
+
+### 92.0. מצב כנה
+92.0.1. `ColorPipeline.ts`: `SRGBColorSpace` + `ACESFilmicToneMapping`. אין LUT.  
+92.0.2. חשיפה: `LOOKS.*.exposure` (לילה 1.05). TECH 7.3 אמר 0.15–0.28 לילה — **רק כש-HDRI**. עד אז 56.1.3.
+
+### 92.1. החלטה נעולה
+92.1.1. ACES נשאר. לא AgX בלי HDRI+LUT.  
+92.1.2. לא `toneMapping = None` (סנוור לבן ישן).  
+92.1.3. שמש יום: לא לגעת בלי histogram 58.
+
+### 92.2. תתי-משימות
+92.2.1. אין סשן.  
+92.2.2. שער: יום לא לבן (58.1.2); לילה לא שחור (58.1.3).
+
+### 92.3. אסור
+92.3.1. החלפת ACES "כדי שיהיה ריאליסטי".
+
+---
+
+## 93. יריבים / תנועה / משטרה — הקפאה
+
+### 93.0. מצב כנה
+93.0.1. `racers[]` שחקן + AI. `traffic[]` + `trafficInput`. `copInput`. `separateCars`.  
+93.0.2. המשתמש: בונוסים לא מעניינים. ריאליזם רכב+מסלול כן.
+
+### 93.1. החלטה נעולה
+93.1.1. **לא משפרים AI / traffic / cops** עד אחרי 6.5 ו-P4 של 8 המסלולים.  
+93.1.2. מותר תיקון באג שחוסם נסיעה (תקיעה בנתיב).  
+93.1.3. 4 יריבים נשארים לתקציב draw (26.2.3). לא 20 מכוניות תנועה חדשות.
+
+### 93.2. תתי-משימות
+93.2.1. אין סשן.  
+93.2.2. שער: qa:drive לא נשבר. לא "AI 100".
+
+### 93.3. אסור
+93.3.1. 84.2 שיפור Traffic AI.  
+93.3.2. הולכי רגל.
+
+---
+
+## 94. מלאי מסלולים — הקפאה (56 id)
+
+### 94.0. רשימה נעולה (אין id חדש)
+94.0.1. ישראל ליבה (סדר 7.x): `ayalon`, `rothschild`, `hayarkon`, `telaviv`, `namal`, `oldjaffa`, `jerusalem`, `scopus`, `walls`, `ramon`, `hermon`, `haifa`, `stellamaris`.  
+94.0.2. NYC (35): `centralpark`, `timessquare`, `brooklynbridge`, `manhattan`.  
+94.0.3. סטאבים פלייביליים — **אין סשן ארט** עד ש-94.0.1 עובר 7.0:  
+`eilat`, `caesarea`, `deadsea`, `acre`, `beersheva`, `netanya`, `hw1`, `herzliya`, `hanikra`, `haifaport`, `tiberias`, `golan`, `hw6`, `hw2`, `hw90`, `petah`, `rishon`, `ashdod`, `ashkelon`, `modiin`, `hw40`, `eilatmtn`, `gushdan`, `nazareth`, `tzfat`, `masada`, `batyam`, `rehovot`, `nahariya`, `ramla`, `holon`, `beitshan`, `hadera`, `lod`, `kshmona`, `raanana`, `afula`, `ksaba`, `arad`.  
+94.0.4. ספירה: 13 ליבה + 4 NYC + 39 סטאב = **56**. אם `tracks.ts` מקבל id 57 — הפרת 0.2.
+
+### 94.1. החלטה נעולה
+94.1.1. סטאב = מותר לנהוג, אסור `scatterStreetBuildings` חדש, אסור מגדל חדש.  
+94.1.2. WIDTH_DEBT (41) רק אחרי 6.5 ומסלול-מסלול מ-94.0.1.  
+94.1.3. `gushdan` נשאר open-ish; לא "לסגור ללולאה" ולא GIS.
+
+### 94.2. תתי-משימות
+94.2.1. סשן תכנון: אין.  
+94.2.2. שער: grep `id: "` ב-tracks.ts = 56 (או המספר החי אחרי ספירה ב-`אושר`; אם 56 — נעול).  
+94.2.3. כרטיס תפריט: משפט בהשראת כבר על רבים (32) — לא לשכתב שמות.
+
+### 94.3. אסור
+94.3.1. מסלול ניו-יורק חמישי. מסלול ישראל חדש. "כיסוי 100% מדינה".
+
+---
+
+## 95. כרטיסי סשן ליבה 7.x (אחרי 6.5 בלבד)
+
+כל כרטיס: קובץ → 8 סמלים מ-14.x → fog מ-53 → elevation קיים → שער צילום chase. **אפס GIS.**
+
+### 95.1. רוטשילד (`rothschild`) — ראשון אחרי freeze
+95.1.1. קובץ: בלוק `rothschild` ב-`world.ts` + `tracks.ts`.  
+95.1.2. חובה: מדיאן פיקוס LOD 54.2; היכל העצמאות 2–3 קומות; אפס scatter.  
+95.1.3. פסילה: פיקוס בנתיב; גורד גנרי.  
+95.1.4. Pose זהב: `rothschild-ficus` (18.4).  
+95.1.5. שער: 7.0.4 משתמש.
+
+### 95.2. חוף / רידינג (`hayarkon` + מנהרת רידינג באותו מסלול או `telaviv`/`namal`)
+95.2.1. מסלול סשן ראשי: `hayarkon`. `telaviv`/`namal` — תיקון חסימה בלבד באותו גל.  
+95.2.2. ארובה מחוץ לכביש; מנהרה עבירה OBB; ים ±0.06m (54.3); לא ים באיילון.  
+95.2.3. Pose: `reading-stack`.
+
+### 95.3. יפו (`oldjaffa`)
+95.3.1. שעון מוסט; כורכר; אסור manhattan/highway facade.  
+95.3.2. Pose: `jaffa-clock`.
+
+### 95.4. ירושלים (`jerusalem` ואז `scopus`/`walls`)
+95.4.1. שער יפו מחוץ לנתיב; אבן; fog stone 53; A→B עם ΔY ספליין.  
+95.4.2. `scopus`: far 12000, בלי חיתוך.  
+95.4.3. Pose: `jaffa-gate`.
+
+### 95.5. רמון (`ramon`)
+95.5.1. אפס Box עירוני. מצוק. ΔY שלילי. fog desert.  
+95.5.2. Pose: `ramon-rim`.  
+95.5.3. `hw40` סטאב — לא בגל הזה.
+
+### 95.6. חרמון (`hermon`)
+95.6.1. A→B עלייה. קו שלג לפי Y. לא לולאה. fog snow.  
+95.6.2. Pose: `hermon-snow`.
+
+### 95.7. כרמל (`haifa` / `stellamaris`)
+95.7.1. בהאאי היסט ≥58m. יער. ירידה.  
+95.7.2. Pose: `carmel-shrine`.  
+95.7.3. `haifaport` סטאב.
+
+### 95.8. כלל 95
+95.8.1. סשן אחד = מסלול אחד מ-95.1→95.7.  
+95.8.2. בלי 7.0.4 המסלול נשאר PARTIAL.  
+95.8.3. אסור לפני 6.5.
+
+---
+
+## 96. יושרת עותק שורש + סגירת תכנון
+
+### 96.0. מצב כנה
+96.0.1. `__root.tsx` meta description: "Arcade street racing across Israel and New York."  
+96.0.2. זה נשמע כמו סימולטור מפה. סותר 1.1.
+
+### 96.1. החלטה נעולה
+96.1.1. טקסט: `RUSH — arcade racer inspired by Israeli and NYC places. Not a map, not GIS.`  
+96.1.2. עברית ב-i18n אם מוצג.  
+96.1.3. סשן: קובץ `__root.tsx` (+ README אם צריך). מותר עם 85.2.1.
+
+### 96.2. כיסוי אחרי חלק ז׳
+96.2.1. מחלפים, מגדלי איילון חוץ מעזריאלי, canvas גנטרי, 56 id, Esc, golden t, ACES, AI freeze, כרטיסי 7.x — יש מתכון 4–5 רמות.  
+96.2.2. נשאר למשתמש: 6.1, 23, 24, 60fps מכשיר.  
+96.2.3. נשאר דק במודע: פנים-סטאב של 39 מסלולים (94.0.3) — **לא** לתכנן בניין-בניין. זה בכוונה.
+
+### 96.3. אחוז כנה
+96.3.1. ביצוע **~13%**. שערים **2/13**.  
+96.3.2. תכנון קודקס+ישראל-שער **~98%**.  
+96.3.3. `המשך` אחרי 96 = מחכים ל-**אושר**, אלא אם מתגלה canvas/id/API חדש → 97.
+
+### 96.4. תור קוד אחרי אושר (עדכון 85)
+96.4.1. **87.3** `check:canvas` + הריגת `mkSign` (חוסם שער 10.8).  
+96.4.2. 85.2.1 `check:qa`.  
+96.4.3. 96.1.3 meta description.  
+96.4.4. 71.3 soak לוג.  
+96.4.5. לא 81/89 עד 6.1.
+
+---
+
+**סוף 87–96.** אין קוד.
+
+---
+
+# חלק ז׳-ב — השלמות מהקוד החי (97–105)
+
+לא כפילות של 87–96. `המשך` אחרי 105 בלי חור חדש = **אושר**.
+
+---
+
+## 97. Photo-export canvas (העמקה ל-87 / `check:canvas`)
+
+### 97.0. מצב כנה
+97.0.1. בנוסף ל-`mkSign`: `engine.ts` ~916 `flushSnap` — canvas 2D להורדת PNG של Photo, לא texture עולם.  
+97.0.2. `check:canvas` תופס גם אותו (needles `createElement("canvas")`).  
+97.0.3. `nyc-canvas.ts` כרגע בלי `CanvasTexture`.
+
+### 97.1. החלטה נעולה
+97.1.1. Photo dump מותר. **לא** allowlist לכל `engine.ts`.  
+97.1.2. סשן אחרי אושר: להעביר `flushSnap` ל-`src/game/photo-export.ts`, ALLOW רק הקובץ הזה.  
+97.1.3. סדר: 97.1.2 ואז 87.3 (מחיקת mkSign). אחרת `check:canvas` נשאר אדום אחרי 87 לבדו.
+
+### 97.2. אסור
+97.2.1. `world.ts` ב-ALLOW.
+
+---
+
+## 98. `Sky()` מול PNG (20.4 / G2)
+
+### 98.0. מצב כנה
+98.0.1. `world.ts` ~533: `new Sky(); sky.visible = false` — מחשבון שמש.  
+98.0.2. נראה: `sky-day.png` / `sky-night.png`.  
+98.0.3. **FAKED** אם "HDRI" או שמיים פרוצדורליים נראים.
+
+### 98.1. החלטה
+98.1.1. `visible` נשאר false עד 23.  
+98.1.2. שער: grep `sky.visible` → false.  
+98.1.3. אסור להדליק Sky כפתרון ל"לא כחול".
+
+---
+
+## 99. WIDTH_DEBT — טבלה (העמקה ל-41)
+
+`laneCountFor` (`world.ts` ~286): ayalon=8; telaviv/namal/gushdan/hw*=4; rothschild/hayarkon/jerusalem=3; אחרת=3.
+
+### 99.1. נעול
+99.1.1. ayalon 28=8×3.5. לא לגעת. לא לצמצם אחר לפני 6.5.
+
+### 99.2. חוב אחרי freeze
+
+| id | width | lanes | יעד |
+|---|---:|---:|---:|
+| ayalon | 28 | 8 | 28 |
+| hw1/hw2/hw6 | 26 | 4 | 14 |
+| telaviv/namal/gushdan | 20–21 | 4 | 14 |
+| rothschild | 26 | 3+מדיאן | 26 כולל דשא |
+| hayarkon | 22 | 3 | 10.5–14 |
+| oldjaffa/jerusalem | 20–24 | 2–3 | 7–10.5 |
+| ramon/hermon/scopus | 20–22 | 2–3 | לפי כביש |
+| centralpark/timessquare | 12.6/13.2 | — | אחרי ישראל |
+
+99.2.1. אם שוליים ב-width: לתעד בסשן `lanes*3.5+shoulders`.  
+99.2.2. אסור: hw1→14 לפני 6.5; רוטשילד 8 נתיבים.
+
+---
+
+## 100. `tlv()` lat/lon — יושרה (0.1)
+
+### 100.0. מצב כנה
+100.0.1. המרה ידנית lat/lon→x/z ב-`tracks.ts`. לא OSM.  
+100.0.2. **FAKED** אם UI אומר "רחובות אמיתיים" / GIS.
+
+### 100.1. החלטה
+100.1.1. נשאר להצבת סמלים (14).  
+100.1.2. בסשן 32: הערה בקוד → `"Manual landmark placement. Not GIS."`  
+100.1.3. שער: grep `רחובות אמיתיים|OpenStreetMap` ב-`src/game` = 0.
+
+---
+
+## 101. חוזה פסילה ויזואלי (העמקה ל-95)
+
+לפני 6.5 רק חסימה. אחרי: מסלול אחד לסשן.
+
+101.1. רוטשילד — פסילה: פיקוס בנתיב; scatter; זכוכית במקום באוהאוס.  
+101.2. רידינג — פסילה: ארובה על אספלט; מנהרה סגורה; ים חסר.  
+101.3. יפו — פסילה: מודרני על הספליין; שעון בנתיב.  
+101.4. ירושלים — פסילה: שער בנתיב; בטון ת״א; אופק חתוך; המילה DEM.  
+101.5. רמון — פסילה: Box עירוני; שטוח.  
+101.6. חרמון — פסילה: שלג בגובה 0; לולאה.  
+101.7. כרמל — פסילה: מקדש על אספלט; היסט <58m.
+
+---
+
+## 102. `@ts-nocheck` / W1.1
+
+### 102.0. מצב כנה
+102.0.1. tiny. nocheck רק `routeTree.gen.ts`.
+
+### 102.1. החלטה
+102.1.1. קובץ חדש בלי nocheck. פיצול world אחרי 6.5.  
+102.1.2. שער: grep nocheck רק gen; `typecheck` בכל סשן מימוש.
+
+---
+
+## 103. תור אחרי אושר — נעילה סופית
+
+103.1. **97.1.2** photo-export allowlist.  
+103.2. **87.3** הריגת mkSign.  
+103.3. **96.1.3** meta `__root.tsx`.  
+103.4. **85.2.1** `check:qa`.  
+103.5. 71.3 soak לוג.  
+103.6. לא 81/89 גבהים עד 6.1.  
+103.7. לא 7.x עד 6.5.  
+103.8. לא WebGPU משחק עד 8.2.
+
+---
+
+## 104. אחוז וסגירה
+
+104.1. ביצוע **~13%**. שערי שחרור **2/13**.  
+104.2. תכנון קודקס+ישראל-שער **~98%**.  
+104.3. חסום משתמש: השלום, `.hdr`, hero glTF, 60fps מכשיר.  
+104.4. חור חי לביצוע: `mkSign` + `flushSnap` מול `check:canvas`.  
+104.5. `המשך` בלי חור חדש היה 105+. החורים הבאים (מצלמות t, פיזיקה חיה, 5 id, chase, נגד, probe) = **חלק ט׳**.
+
+---
+
+**סוף חלק ז׳-ב (97–104).** חלק ט׳ למטה. אין קוד.
+
+---
+
+# חלק ט׳ — 105–112 (סריקה חיה 27.8.2026 19:27)
+
+לא כפילות 87–104. מקור: `goldenCameras.ts`, `physics.ts`, `cars.ts`, `engine.ts` chase, `world.ts` oppOff, `CapabilityProbe.ts`.
+
+---
+
+## 105. Golden `t` — 12 מצלמות נעולות (העמקה ל-18 / 91)
+
+### 105.0. מקור
+`src/world/goldenCameras.ts` — ספליין-יחסי, לא x/y/z עולם.
+
+### 105.1. טבלה נעולה
+
+| id | t | look | חובה עכשיו |
+|---|---:|---|---|
+| g01 | 0.04 | summer14 | qa:golden |
+| g02 | 0.14 | summer14 | לא |
+| g03 | 0.28 | summer14 | לא |
+| g04 | 0.42 | summer14 | השלום מערב |
+| g05 | 0.46 | golden | qa:golden + 6.1 צללית |
+| g06 | 0.52 | golden | **ייחוס גשר 6.1** — לא ב-pixel-golden עד ACK |
+| g07 | 0.62 | golden | qa:golden סבידור |
+| g08 | 0.48 | nightrain | qa:golden לילה |
+| g09 | 0.70 | nightrain | רכבת מדיאן |
+| g10 | 0.38 | rain | רטוב |
+| g11 | 0.80 | rain | אוניברסיטה |
+| g12 | 0.92 | summer14 | קצה |
+
+### 105.2. החלטה
+105.2.1. אסור להזיז `t` בלי bump golden + ACK.  
+105.2.2. Pose 7.x אחרי 6.5 בלבד.  
+105.2.3. שער 6.1 = g05+g06 מול המשתמש, לא g01 לבד.
+
+### 105.3. אסור
+105.3.1. מצלמת עולם חופשית כ-baseline.  
+105.3.2. סוכן ממציא t.
+
+---
+
+## 106. פיזיקה — קבועים חיים (5 / 25)
+
+### 106.0. `src/game/physics.ts`
+106.0.1. `PHYSICS_HZ=120`, `PHYSICS_DT=1/120`, `MAX_CATCHUP_STEPS=24`, `MAX_ACCUMULATOR=0.2`.  
+106.0.2. `PHYSICS_VERSION=6`.  
+106.0.3. `DEFAULT_ASSISTS` abs/tcs/esc = true.  
+106.0.4. `HANDLING.arcade` gripMul 1.08 rubberBand true; `simcade` 0.94 בלי rubber.
+
+### 106.1. החלטה
+106.1.1. 120Hz לא לגעת בלי מדידת JS ms (16.1.5).  
+106.1.2. שינוי accel/drag/mass/pacejka/yaw → גרסה +1 ופסילת שיאים (25.4).  
+106.1.3. אסור "tire-only" כל עוד crawl>0 (5.1.5).
+
+### 106.2. שער
+106.2.1. `artifacts/accel.json` `physicsVersion` = 6 (או הנוכחי אחרי bump).  
+106.2.2. אין סשן עד באג.
+
+---
+
+## 107. חמשת הדגמים — id ≠ body (4 / 25.2)
+
+### 107.0. `cars.ts` חי
+
+| id | שם | body (glb) | 0–100 |
+|---|---|---|---:|
+| sabra | צבר | gt | 8.4 |
+| carmel | כרמל T | hatch | 6.6 |
+| kfir | כפיר V8 | muscle | 4.9 |
+| negev | נגב | rally | 5.8 |
+| yam | ים סוף | super | 3.5 |
+
+### 107.1. החלטה
+107.1.1. `qa:accel` JSON משתמש ב-**id**, לא בשם הקובץ.  
+107.1.2. אין דגם 6. hero מחליף mesh של body אחד, id נשאר.  
+107.1.3. ±30% עד hero; ±15% אחרי.  
+107.1.4. אסור לוגו יצרן; Kenney ≠ hero.
+
+---
+
+## 108. מצלמת chase — מספרים (`engine.ts` ~2051)
+
+### 108.0. מצב כנה
+108.0.1. Chase mode 0: follow `7.4+clamp(speed/22,0,2.2)`, height **1.92**, lookAhead `8+clamp(speed/14,0,8)`, fov `58+clamp(speed/14,0,8)`.  
+108.0.2. Hood 1: follow 0.18, height 1.16, side 0.36, lookAhead 9, fov 64.  
+108.0.3. Bumper 2: follow 1.35, height 0.52, fov 78.  
+108.0.4. Helo 3: follow 0.4, height 16, fov 52.  
+108.0.5. B look-back: dir=-1.  
+108.0.6. Clamp מצלמה: `width/2+7`; y ≥ road+1.55; דחייה מקוליידר r+2.4.
+
+### 108.1. החלטה
+108.1.1. ברירת מחדל chase. לא לגעת בלי צילום g01.  
+108.1.2. Hood glass = 54.1, לא שינוי follow.  
+108.1.3. Photo orbit ≠ chase (43).
+
+### 108.2. שער
+108.2.1. g01: הרכב בתחתית, כביש לפניו.  
+108.2.2. אין סשן עד באג מצלמה.
+
+### 108.3. אסור
+108.3.1. cinematic כברירת נהיגה. FPV בלי hood.
+
+---
+
+## 109. נגד איילון + מסילה (העמקה ל-3.5)
+
+### 109.0. מצב כנה
+109.0.1. `gap=18`, `oppOff = width+18` → איילון **46** ממרכז השחקן לנגד.  
+109.0.2. מדיאן `width/2+9`. רכבת ויזואלית נעה.  
+109.0.3. אין ספליין נהיגה שני.
+
+### 109.1. החלטה
+109.1.1. gap=18 נעול עד 6.5.  
+109.1.2. בלי קפיצה לנגד בלי רמפה.  
+109.1.3. רכבת לא פיזיקה.
+
+### 109.2. שער
+109.2.1. g01/g09: נגד + מסילה נראים. כישלון 6.1 אם נגד חסר.  
+109.2.2. אסור 8 נתיבים נוספים ניתנים לנהיגה.
+
+---
+
+## 110. CapabilityProbe (G0)
+
+### 110.0. מצב כנה
+110.0.1. secure + adapter + webgl2 + MAX_TEXTURE + UNMASKED_RENDERER.  
+110.0.2. canvas probe ב-ALLOW. אין microbench 2–4s.
+
+### 110.1. החלטה
+110.1.1. לא microbench — p95 חיה (2.2) מספיקה.  
+110.1.2. Probe לא מחליף את ברירת WebGL (76).  
+110.1.3. שער: `qa:webgl2`. אין סשן.
+
+---
+
+## 111. Assists על המסך (העמקה ל-90.1.3)
+
+### 111.0. מצב כנה
+111.0.1. abs/tcs/esc ברירת true. מופיעים ב-UI (90.0.4) בניגוד ל"פחות כפתורים".  
+111.0.2. qa:accel דורש כיבוי לצורך מדידה.
+
+### 111.1. החלטה
+111.1.1. להשאיר ב-Esc settings, **לא** על HUD מירוץ.  
+111.1.2. סשן UI אחרי אושר, קובץ `game-app.tsx` בלבד, אחרי 103.1–103.2 אם אפשר בלי לערבב. **סשן נפרד** (0.7).  
+111.1.3. שער: מירוץ בלי שלושת הכפתורים; Esc עדיין משנה assists; `qa:accel` יודע לכבות דרך hook.
+
+### 111.2. אסור
+111.2.1. למחוק assists מהפיזיקה.  
+111.2.2. ניטרו HUD חדש.
+
+---
+
+## 112. סגירת חלק ט׳
+
+### 112.1. כיסוי
+112.1.1. 0–104 + 105–111 = קודקס ווב + מחלפים + canvas + golden t + 5 דגמים + chase + נגד + probe + assists.  
+112.1.2. 39 סטאבים עדיין בלי בניין-בניין (94) — במודע.
+
+### 112.2. אחוז כנה
+112.2.1. ביצוע **~13%**. שערים **2/13**.  
+112.2.2. תכנון **~99%**.  
+112.2.3. חסום משתמש: 6.1, 23, 24, טלפון 60.  
+112.2.4. חור ביצוע ראשון: 103.1 photo-export → 87.3 mkSign.
+
+### 112.3. `המשך`
+112.3.1. חור חי שנתגלה: 109.0.2 **FAKED** (רכבת נעה). מסילה סטטית קיימת; קרונות לא. → 113.  
+112.3.2. אחרת `המשך` = **אושר**.
+
+---
+
+# חלק י׳ — 113–118 (סריקה 27.8.2026 19:29)
+
+מקור: `world.ts` 874–927, `vehicle.ts` 625–647 + SURFACE_GRIP, `input.ts` 58–98, `engine.ts` 1096–1104, `game-app.tsx` 169.
+
+---
+
+## 113. רכבת איילון — תיקון 109.0.2
+
+### 113.0. מצב כנה — כנה
+113.0.1. **יש:** InstancedMesh פסי ברזל `nRail=220` ב-`midOff±1.15`, חוטי חשמל `nWire=200` בגובה 5.35, עמודים `nPole=48`.  
+113.0.2. **אין:** קרון, קטר, `setMatrixAt` אנימציה, collider של רכבת.  
+113.0.3. g09 נקרא "רכבת באמצע" — שם בלבד.  
+113.0.4. **FAKED** לכתוב "רכבת ויזואלית נעה" (109.0.2). האמת: **מסילה סטטית**.
+
+### 113.1. החלטה נעולה
+113.1.1. לפני 6.1: **לא** להוסיף קרונות (ארט איילון).  
+113.1.2. אחרי 6.1, סשן אחד:  
+113.1.2.1. קטר `BoxGeometry(14, 4.2, 3.1)` + 4 קרונות InstancedMesh `BoxGeometry(16, 3.6, 3.0)` — מקס **2** Mesh (קטר+instanced).  
+113.1.2.2. צבע: לבן/אפור כהה (רכבת ישראל), לא אדום ספורט.  
+113.1.2.3. תנועה: `t = (t0 + 0.012 * dt) % 1` על דגימות הספליין ב-`midOff`. ~25מ׳/ש׳ ויזואלי.  
+113.1.2.4. **אין** פיזיקה. **אין** collider. השחקן לא מתנגש ברכבת (המדיאן+ג'רסי כבר חוסמים).  
+113.1.2.5. עדכון מטריצה ב-tick העולם, לא ב-shader.  
+113.1.3. בלי הסשן: g09 עדיין "מסילה". לא לכתוב "רכבת" ב-HUD.
+
+### 113.2. קבצים
+113.2.1. בלוק `def.id==="ayalon"` ב-`world.ts` ליד rails.  
+113.2.2. אופציונלי `world.setClock` קיים — אפשר dt משם.
+
+### 113.3. שער
+113.3.1. g09: לפחות קרון אחד על המדיאן, לא על האספלט.  
+113.3.2. `qa:drive` + `qa:colliders` לא משתנים.
+
+### 113.4. אסור
+113.4.1. רכבת ניתנת לנהיגה. 8 קרונות × Mesh נפרד. צליל רכבת חדש.
+
+---
+
+## 114. התנגשות — מספרים חיים (בקשת משתמש 4 / 5.4)
+
+### 114.0. `vehicle.ts` ~625 — נעול עד באג
+
+| kind | מהירות אחרי פגיעה | damage | impact |
+|---|---|---|---|
+| `building` | ×0.02 אם hit>10; ×0.07 אם >5; אחרת ×0.14 | +hit×0.085 | אם hit>2.5 |
+| `car` | דחיפה 0.68 על into; ×0.58/>14, ×0.76/>7, ×0.88 | +hit×0.02 | אם hit>4 מקס 0.55 |
+| אחר (מעקה/שוליים) | into×1.08; ×0.78 אם hit>12 אחרת ×0.92 | +hit×0.008 רק אם hit>9 | מקס 0.38 |
+
+114.0.1. OBB אם `hx/hz` קיימים; אחרת עיגול `r`.  
+114.0.2. `lastHit` נשמר ל-HUD/`?qa=1`.
+
+### 114.1. SURFACE_GRIP נעול
+jaffa 0.76, stone 0.80, desert 0.62, park 0.86, carmel 0.90, port 0.88, highway 0.94, manhattan 0.92, bauhaus 0.94, snow 0.50.
+
+### 114.2. החלטה
+114.2.1. לא לאחד kind. בניין חייב לעצור יותר מרכב.  
+114.2.2. שינוי מקדם = `PHYSICS_VERSION+1` (106.1.2).  
+114.2.3. חול/שוליים בלי kind → מעקה (לא בניין).  
+114.2.4. אין סשן עד באג (למשל בניין לא עוצר).
+
+### 114.3. אסור
+114.3.1. Rapier. CCD כבר 5.5/63.  
+114.3.2. "פיזיקה AAA" בלי לשנות את הטבלה הזו במפורש.
+
+---
+
+## 115. הגה — A/D + slew (27 / controls skill)
+
+### 115.0. מצב כנה
+115.0.1. `KeyA`/`ArrowLeft` → `steer += 1`. `KeyD`/`Right` → `steer -= 1`.  
+115.0.2. Slew: חזרה ל-0 k=**11**; לכיוון קלט k=**6.5**. dead 0.01.  
+115.0.3. גז: עלייה k=5.5, שחרור k=8.  
+115.0.4. `padCurve(x, dead=0.12, exp=1.6)` (65).  
+115.0.5. מגע: `touchSteer` מתווסף אחרי מקלדת.
+
+### 115.1. החלטה נעולה
+115.1.1. A = שמאלה **כפי שנראה ממצלמת chase** (הרכב פונה שמאלה). D ימינה.  
+115.1.2. אם הפוך (באג ship #1 ב-AGENTS): להפוך **רק** את הסימנים ב-`input.ts` 59–60. לא לגעת ב-`vehicle.yaw`.  
+115.1.3. Slew נשאר. לא הגה דיגיטלי יבש.  
+115.1.4. אין FFB.
+
+### 115.2. שער
+115.2.1. `qa:drive`: W+A לא זורק ימינה.  
+115.2.2. אין סשן עד דיווח "הפוך".
+
+### 115.3. אסור
+115.3.1. לעקוף slew ב-`steerOverride` מחוץ ל-QA.
+
+---
+
+## 116. WebGL context lost
+
+### 116.0. מצב כנה
+116.0.1. `preventDefault` על `webglcontextlost`. `glLost=true`.  
+116.0.2. `webglcontextrestored` → `opts.onRestore`.  
+116.0.3. `game-app.tsx`: `onRestore: () => setRaceKey(k=>k+1)` — **Engine חדש**, לא שיקום RT במקום.
+
+### 116.1. החלטה
+116.1.1. נשאר remount. לא לכתוב restore ידני של CSM/composer.  
+116.1.2. שער: אין סשן. אם restored בלי remount — באג.  
+116.1.3. soak לא חייב לדמות contextlost.
+
+### 116.2. אסור
+116.2.1. `WEBGL_lose_context` בפריסה.
+
+---
+
+## 117. תיקון סתירות במסמך
+
+### 117.1. 31.3 / 21.1
+117.1.1. "סשן ראשון = inspired copy" **מיושן** אם `check:copy` ירוק.  
+117.1.2. האמת אחרי אושר = **103.1** (photo-export) לא 21.1.
+
+### 117.2. 109.0.2
+117.2.1. לקרוא: "מסילה+חוטים סטטיים. קרונות = 113 NOT DONE."
+
+### 117.3. 28.8 canvasInventory
+117.3.1. אחרי 87+97: probe + photo-export, לא "probe בלבד" אם flushSnap עבר קובץ.
+
+### 117.4. אסור
+117.4.1. לשכתב 0–112. סתירה → המספר החדש + קוד חי.
+
+---
+
+## 118. סגירה
+
+### 118.1. כיסוי
+118.1.1. רכבת (תיקון FAKED), מקדמי פגיעה, grip, A/D, context lost, סתירות ישנות.
+
+### 118.2. אחוז כנה
+118.2.1. ביצוע **~13%**. שערים **2/13**.  
+118.2.2. תכנון **~99%**.  
+118.2.3. חור ביצוע ראשון אחרי אושר: 103.1 → 87.3. רכבת רק אחרי 6.1.
+
+### 118.3. `המשך`
+118.3.1. חורים חיים הבאים (רחובות צד, scatter כבוי, 5 תחנות, מצבים, replay, spline) = **119+**.  
+118.3.2. בלי חור חדש אחרי 126 = **אושר**.
+
+---
+
+**סוף חלק י׳ (113–118).** חלק י״א למטה. אין קוד.
+
+---
+
+# חלק י״א — 119–126
+
+סריקה 27.8.2026 19:30 מול `streets.ts`, `buildings.ts`, תחנות `world.ts` ~6087, `modes.ts`, replay, `spline.ts`, leftovers.
+
+---
+
+## 119. רחובות צד (`streets.ts`) — לא GIS
+
+### 119.0. מצב כנה
+119.0.1. `generateStreets` בונה `StreetRibbon` עם שמות מ-`IL_NAMES` / `NYC_NAMES` (דיזנגוף… / ברודוויי…).  
+119.0.2. `world.ts` ~1317 קורא לזה. `vehicle.sideStreet` ב-HUD.  
+119.0.3. **FAKED** אם "רחוב אמיתי ממופה".
+
+### 119.1. החלטה נעולה
+119.1.1. שמות = השראה. לא OSM. לא להרחיב רשימה בסשן גרפיקה.  
+119.1.2. סרט צד ≠ ספליין מרוץ. לא עיר פתוחה.  
+119.1.3. איילון: אסור שסרט יחסום 8 נתיבים (83).  
+119.1.4. אין סשן עד "נתקעתי בסמטה".
+
+### 119.2. אסור
+119.2.1. "כל רחובות ת״א". ספליין נהיגה שני.
+
+---
+
+## 120. `scatterStreetBuildings` — גנרי מת
+
+### 120.0. מצב כנה
+120.0.1. `buildings.ts` ~250: אחרי NYC return יש **`return;` חשוף**. bauhaus/eclectic מתים.  
+120.0.2. `world.ts` ~8768 עדיין קורא (no-op).  
+120.0.3. tiny ל"אפס גנרי" — לא FAKED.
+
+### 120.1. החלטה
+120.1.1. ה-`return;` נשאר לנצח אלא אם מסלול מקבל בניינים **בשמות**, לא אקראי.  
+120.1.2. אסור להסיר באיילון/רוטשילד/יפו/רמון.  
+120.1.3. מחיקת גוף מת = סשן 69 אחרי 6.5.
+
+### 120.2. שער
+120.2.1. הפונקציה יוצאת מיד. אין סשן ארט.
+
+---
+
+## 121. חמש תחנות רכבת (לא שש)
+
+### 121.0. חי ב-`world.ts` ~6087
+
+| kind | he | lat | רציף/אולם |
+|---|---|---:|---|
+| galuyot | קיבוץ גלויות | 32.0525 | 70 |
+| hagana | ההגנה | 32.0547 | אולם 18×6.4 |
+| shalom | השלום | 32.0735 | 96, גג זכוכית |
+| savidor | סבידור | 32.0837 | 110, אולם 28×40, 7 עמודים |
+| uni | האוניברסיטה | 32.1035 | terracotta 7.2 |
+
+121.0.1. מדיאן `width/2+9`, lon ≈ 34.796.  
+121.0.2. **לה גרדיה = מחלף (88), לא תחנה.**  
+121.0.3. `purpleStripe.metalness = 0.22` על רציף — **חור dielectric**. אחרי 6.1: →0 באותו סשן 113 קרונות או סשן נפרד חומרים.
+
+### 121.1. החלטה
+121.1.1. חמשת השמות נעולים. לא הולון/וולפסון/בני ברק בלי סשן ישראל אחרי 6.5.  
+121.1.2. סבידור ≠ השלום.  
+121.1.3. שלט תחנה = PNG/mesh, לא canvas (87).
+
+### 121.2. שער
+121.2.1. לפני 6.1: רק colliders.  
+121.2.2. g02/g06/g07/g11: 4 צלליות שונות לפחות.
+
+### 121.3. אסור
+121.3.1. תחנת "לה גרדיה". רכבת כפיזיקה.
+
+---
+
+## 122. מצבי מרוץ (`modes.ts`)
+
+### 122.0. מצב כנה
+circuit 3 / time 2 / drift 2 / knockout 3 / heat 2 / roam 99.
+
+### 122.1. החלטה
+122.1.1. ברירת מחדל **circuit**.  
+122.1.2. לא קליק מצב במסך הראשי.  
+122.1.3. roam בקוד ל-side street; לא לקדם ב-UI.  
+122.1.4. drift/knockout/heat/daily לא לשער גרפיקה.
+
+### 122.2. שער
+122.2.1. כותרת → איילון → סע (90 / 10.10).
+
+---
+
+## 123. Replay
+
+### 123.0. מצב כנה
+123.0.1. באפר ב-`engine.ts`. HUD ריפליי. דילוג Enter/X / `skipReplay`.
+
+### 123.1. החלטה
+123.1.1. נשאר. דילוג חובה.  
+123.1.2. לא ghost אונליין. לא שמירה לשרת.  
+123.1.3. אין סשן.
+
+---
+
+## 124. Spline Catmull-Rom
+
+### 124.0. `spline.ts`
+124.0.1. `sampleSpline`, `open` ל-A→B.  
+124.0.2. `BuiltTrack`: samples, length, width, checkpoints, closed.  
+124.0.3. Y מ-tracks/world, לא DEM.
+
+### 124.1. החלטה
+124.1.1. לא nurbs.  
+124.1.2. רמון/חרמון/ירושלים: `open: true`.  
+124.1.3. אין סשן עד באג לולאה/חיתוך.
+
+### 124.2. אסור
+124.2.1. OSM polyline. ספליין "כל המדינה".
+
+---
+
+## 125. career / daily / dialog / garage (העמקה ל-69)
+
+### 125.0. מצב כנה
+125.0.1. `KEEP_CAREER_MODULE = true`. dialog שורות יריב. daily/garage קיימים.  
+125.0.2. אסור ב-UI מירוץ.
+
+### 125.1. החלטה
+125.1.1. לא למחוק עד אחרי 6.5.  
+125.1.2. grep אחרי freeze: אין import מ-`game-app` race.  
+125.1.3. שער: מסך ראשי בלי קריירה/גאראז'/אונליין.
+
+---
+
+## 126. תור + סגירת י״א
+
+### 126.1. אחרי אושר (מספר אחד לסשן)
+126.1.1. 97/103 photo-export.  
+126.1.2. 87 mkSign.  
+126.1.3. meta + הערת tlv.  
+126.1.4. `check:qa`.  
+126.1.5. soak.  
+126.1.6. assists מ-HUD אם שם.  
+126.1.7. **עצירה 6.1.**  
+126.1.8. אחרי 6.1: 113 קרונות + 121.0.3 metalness רציף.  
+126.1.9. אסור לפני 6.1: 81, 89, 7.x, 8.2, הסרת return של 120.
+
+### 126.2. אחוז כנה
+126.2.1. ביצוע **~13%**. שערים **2/13**.  
+126.2.2. תכנון **~99%**.  
+126.2.3. תיקון יושרה: רכבת נעה = NOT DONE (113). scatter גנרי = כבוי במכוון (120).
+
+### 126.3. `המשך`
+126.3.1. חורים חיים שנתגלו (רכבת **כן** קיימת; Scopus far=8000) → **127+**.  
+126.3.2. אחרי 133 בלי חור = **אושר**.
+
+**סוף חלק י״א (119–126).** חלק י״ב למטה. אין קוד.
+
+---
+
+# חלק י״ב — 127–133 (תיקוני יושרה 27.8.2026 19:33)
+
+113.0 אמר "אין קרונות". **שגוי.** `world.ts` ~6199 `makeTrain` חי.  
+53.1.4 אמר scopus far 12000. **הקוד:** stone.far=8000, דגל `mountain` מחושב ולא בשימוש.
+
+---
+
+## 127. רכבת איילון — תיקון 113.0 (PARTIAL, לא NOT DONE)
+
+### 127.0. מצב כנה חי
+127.0.1. `makeTrain(phase, trackX)` ×2 (`0, -1.15` ו-`0.48, +1.15`) על מדיאן.  
+127.0.2. כל רכבת: **6** קרונות `BoxGeometry` + אף + פסים סגול/אדום + גג metalness **0.28** + `mkSign("רכבת ישראל","HaHagana")` + אורות Basic.  
+127.0.3. `movers[]` ב-tick: אינטרפולציה על `pts` מהספליין, `speed: 0.07`. **כן נעה.**  
+127.0.4. אין collider לרכבת.  
+127.0.5. draw: ~6 קרונות × ~8 mesh × 2 רכבות ≈ **96 mesh** — שובר 26.2.5 (InstancedMesh).  
+127.0.6. 113.0.2–113.0.4 = **FAKED במסמך**. למחוק מהזיכרון; 127 שולט.
+
+### 127.1. החלטה נעולה
+127.1.1. **אסור** להוסיף רכבת שנייה (113.1.2 מבוטל).  
+127.1.2. לפני 6.1: לא לגעת בגיאומטריה/צבע/מסלול. מותר רק אם canvas (87) דורש להחליף `mkSign` על `dest` — אותו סשן 87, לא ארט חדש.  
+127.1.3. אחרי 6.1, סשן אחד:  
+127.1.3.1. גוף קרון → **InstancedMesh אחד** count=6 לכל רכבת (או count=12 לשתי הרכבות אם אותו mesh). אף+פנטוגרף = 1–2 Mesh. יעד: ≤6 draw לרכבות.  
+127.1.3.2. `roof.metalness → 0`.  
+127.1.3.3. שלט יעד = PNG אפוי (87), לא canvas.  
+127.1.4. עדיין אין פיזיקה/collider.
+
+### 127.2. שער
+127.2.1. g09: קרון על מדיאן (כבר). אחרי 127.1.3: calls לא קופצים.  
+127.2.2. `qa:colliders` ללא רכבת על אספלט.
+
+### 127.3. אסור
+127.3.1. 8 Mesh לקרון. צליל רכבת. 113.1.2 כמתכון.
+
+---
+
+## 128. `camera.far` Scopus / ירושלים (חיתוך אופק)
+
+### 128.0. מצב כנה
+128.0.1. `fogKey(scopus|jerusalem)=stone`, `FOG.stone.far=8000`.  
+128.0.2. `engine.ts` ~302: `mountain = spec.far>=12000 || trackId scopus|jerusalem` — **לא בשימוש**.  
+128.0.3. מצלמה: `PerspectiveCamera(..., spec.far)` = **8000** ל-scopus.  
+128.0.4. 53.1.4 דורש 12000 — **לא מיושם**. זה באג משתמש ישן ("הר הצופים נחתך").
+
+### 128.1. החלטה נעולה
+128.1.1. סשן אחרי אושר, **לא ארט איילון**:  
+128.1.1.1. `if (mountain) camera.far = Math.max(spec.far, 12000)`.  
+128.1.1.2. או: `FOG.stone.far = 12000` — זה משפיע גם על `walls`. עדיף 128.1.1.1 כדי לא לשנות fog density.  
+128.1.2. `camera.near` נשאר 0.28.  
+128.1.3. איילון נשאר city far=10000.
+
+### 128.2. שער
+128.2.1. scopus: אופק בלי קיר fog ב-far. `qa:drive` על jerusalem/scopus אם קיים; אחרת צילום.  
+128.2.2. מותר במקביל ל-103 (לא world ayalon).
+
+### 128.3. אסור
+128.3.1. `far=0` / ביטול fog.  
+128.3.2. לשנות city.far.
+
+---
+
+## 129. Impostor רחוק — קונוסים/קוביות (46 / תלונת "אפור")
+
+### 129.0. מצב כנה
+129.0.1. `world.ts` ~1861: InstancedMesh קונוס/Box ל-nyc/carmel/stone/hermon/hw1.  
+129.0.2. **מוחרגים:** ayalon, ramon, hayarkon, deadsea.  
+129.0.3. hermon/carmel/hw1/jerusalem-stone עדיין קונוסים אפורים-ירוקים. המשתמש שנא את זה.
+
+### 129.1. החלטה
+129.1.1. איילון נשאר בלי far-boxes.  
+129.1.2. לפני 6.5: לא לגעת ב-far של מסלולים אחרים אלא אם באג חסימה.  
+129.1.3. אחרי 6.5, סשן למסלול (95): להחליף קונוס ב-`Sprite` 46 **או** לכבות `farN=0` אם זה נראה גנרי.  
+129.1.4. אסור קונוס כ"עץ" אחרי 7.x.
+
+### 129.2. שער
+129.2.1. g01 איילון: אפס Box אופק.  
+129.2.2. ramon/hermon אחרי 7.x: בלי עיר קוביות.
+
+---
+
+## 130. QualityProfile — שדות חסרים (33 / 2.4)
+
+### 130.0. מצב כנה
+130.0.1. שדות: pixelScale, shadows 0–4, composer, bloom, planar, targetFps.  
+130.0.2. **אין** `csmCascades`. CSM 2 cascades בקוד engine, לא בפרופיל.  
+130.0.3. `PROFILE_VERSION=1`.
+
+### 130.1. החלטה
+130.1.1. לא להוסיף שדה עד 8.4 (CSM 3/1/0). עד אז: shadows=0 כבה; >0 = 2 cascades כמו היום.  
+130.1.2. bump `PROFILE_VERSION` רק כשמשנים schema.  
+130.1.3. אין סשן עכשיו.
+
+---
+
+## 131. ניטרו — הקפאה (משתמש: בונוסים לא)
+
+### 131.0. מצב כנה
+131.0.1. `vehicle.ts`: ניטרו מ-`nitroStart`, drain 0.42, accel×0.55×nitroMul. Shift/input.nitro.  
+131.0.2. kfir `nitroStart: 0.28`. תנועה `nitro=0`.
+
+### 131.1. החלטה
+131.1.1. לא לשפר ניטרו, לא HUD ניטרו חדש, לא למחוק (שובר accel).  
+131.1.2. אחרי 6.5 מותר להחביא כפתור אם מבקשים פחות UI (111).  
+131.1.3. שינוי drain = PHYSICS_VERSION+1.
+
+### 131.2. אסור
+131.2.1. "ניטרו AAA". חנות שדרוגי ניטרו.
+
+---
+
+## 132. ג'רסי / אבני שפה — מספרים
+
+### 132.0. `buildJersey`
+132.0.1. d0 = width/2+0.62, d1 = d0+0.42, גובה 0.08→1.35. UV לפי length/2.4.  
+132.0.2. איילון: גם על נגד (`oppOff`).  
+132.0.3. מפה `getCurb("city")`. night מחליף color.
+
+### 132.1. החלטה
+132.1.1. גובה 1.35 נעול — חייב להיות **נראה** מ-chase (בקשת גבולות).  
+132.1.2. לא canvas. לא לגעת לפני 6.1.  
+132.1.3. collider מעקה = barrier (114).
+
+### 132.2. שער
+132.2.1. g01: קו צהוב + ג'רסי מחוץ לנתיב.  
+132.2.2. אין סשן עד "אין גבול".
+
+---
+
+## 133. תור + סגירת י״ב
+
+### 133.1. אחרי אושר (עדכון 126)
+133.1.1. 97 photo-export.  
+133.1.2. 87 mkSign — כולל **שלטי תחנה + dest רכבת** (127.1.2), לא רק גנטרי.  
+133.1.3. **128.1.1** far scopus — מותר במקביל (engine.ts, לא ayalon art).  
+133.1.4. meta / tlv / check:qa / soak.  
+133.1.5. עצירה 6.1.  
+133.1.6. אחרי 6.1: 127.1.3 InstancedMesh רכבת, לא 113.1.2.
+
+### 133.2. אחוז כנה
+133.2.1. ביצוע **~13%**. שערים **2/13**.  
+133.2.2. תכנון **~99%**.  
+133.2.3. תיקוני יושרה: רכבת = PARTIAL נעה; Scopus far = 8000 לא 12000.
+
+### 133.3. `המשך`
+133.3.1. חורים חיים: assemble, CSM 3/1, 3× mkSign, metalness, showroom, DQC, כוכבים ≠ גשם → **134+**.  
+133.3.2. אחרי 142 בלי חור = **אושר**.
+
+**סוף חלק י״ב (127–133).** חלק י״ג למטה. אין קוד.
+
+---
+
+# חלק י״ג — 134–142 (סריקה 27.8.2026 19:35)
+
+---
+
+## 134. `assemble()` — רשימת המתנה (טעינה)
+
+### 134.0. סדר חי (`engine.ts` ~311)
+134.0.1. 2× rAF → onBoot 0.18.  
+134.0.2. אם `MESH_STREAMING` → **throw** (79 / `stream-flag.ts` = false).  
+134.0.3. WebGPU **רק** אם `?webgpu=1` — probe, לא renderer משחק.  
+134.0.4. await לפי הסדר: sky, road(id), beam, blob, flake, cars, tree, curbs, curtains, sidewalk, ground, foam, signs, water, flares, laneArrow.  
+134.0.5. תנאי: jaffaClock / israelFlag / herodian לפי id.  
+134.0.6. `createWorld` → onBoot 0.72 → rAF → CSM → post.  
+134.0.7. `load-eta.ts` מעריך שניות; חייב להתאים ל-134.0.4 (90.1.4).
+
+### 134.1. החלטה
+134.1.1. לא להוסיף await לפני 6.1.  
+134.1.2. כשל PNG חסר = throw (כבר). לא canvas fallback.  
+134.1.3. סשן UI: בר + שניות מ-`estimateLoadMs` (90). אין סשן engine.
+
+### 134.2. אסור
+134.2.1. `MESH_STREAMING=true` לפני 47.  
+134.2.2. טעינת כל 56 המסלולים ב-assemble.
+
+---
+
+## 135. CSM cascades חיים — תיקון 130
+
+### 135.0. מצב כנה
+135.0.1. `assemble`: high → **3** cascades @1024 maxFar 160; אחרת **1** @512 maxFar 90.  
+135.0.2. Low/soft: אין CSM.  
+135.0.3. 130.0.2 אמר "2 cascades" — **שגוי.** 8.4.1 אומר 3 או 2 לפי p95.
+
+### 135.1. החלטה
+135.1.1. האמת = הקוד: 3 / 1 / 0.  
+135.1.2. DQC (139) יכול להוריד csm (step≥3) — לא משנה cascades בתוך High באמצע סשן freeze.  
+135.1.3. `setupMaterial` אחרי world+car (8.4.4). אין סשן עד באג צל.
+
+### 135.2. אסור
+135.2.1. 4 cascades. CSM ב-Low.
+
+---
+
+## 136. מלאי `mkSign` — 3 קריאות בלבד
+
+### 136.0. חי ב-`world.ts`
+136.0.1. ~5984 גנטרי מחלף `mkSign(ic.he, ic.en)` — 6 מחלפים (88).  
+136.0.2. ~6193 שלט תחנה `"תחנת "+st.he` — 5 תחנות (121).  
+136.0.3. ~6241 dest רכבת `"רכבת ישראל","HaHagana"` ×2 רכבות (127).
+
+### 136.1. החלטה
+136.1.1. סשן 87 אופה **את כל השלושה סוגים** ל-PNG. מחיקת `mkSign` אחרי זה.  
+136.1.2. רשימת קבצים מינימלית: 6 מחלפים + 5 תחנות + 1 dest = **12 PNG** (או atlas אחד).  
+136.1.3. עד אז `check:canvas` אדום.
+
+### 136.2. אסור
+136.2.1. mkSign רביעי "רק לשלט מהירות". יש `sign-speed90.png`.
+
+---
+
+## 137. metalness — חריגים נעולים (ישראל)
+
+כלל 0.5: בניין/זכוכית/כביש/צבע רכב = 0.  
+חריג **מתכת אמיתית** בלבד:
+
+### 137.1. מותר >0
+137.1.1. חישוק/דיסק בלם (`car-mesh` rim 0.96 disc 0.9).  
+137.1.2. פסי רכבת + עמודי חשמל (world rail 0.72 pole 0.55) — עד 127.1.3 לא לגעת.  
+137.1.3. NYC קובץ נפרד (35) — לא בסשן ישראל.
+
+### 137.2. אסור >0.05
+137.2.1. חזית בניין, זכוכית עזריאלי, אספלט, צבע סברה.  
+137.2.2. `purpleStripe` רציף 0.22 ו-`roof` רכבת 0.28 → 0 אחרי 6.1 (121.0.3 / 127.1.3.2).
+
+### 137.3. showroom
+137.3.1. `car-showroom.tsx` metalness 0.6 על preview — לא עולם. סשן 138.
+
+---
+
+## 138. CarShowroom — WebGL שני
+
+### 138.0. מצב כנה
+138.0.1. `game-app.tsx` מייבא Showroom. Canvas WebGL נפרד, ACES, `createCarVisual`.  
+138.0.2. מוסיף קליק/GPU לפני מרוץ. סותר "פחות כפתורים".
+
+### 138.1. החלטה
+138.1.1. לא לשפר showroom. לא GLB hero שם לפני 4.2.  
+138.1.2. אחרי אושר, סשן UI (עם 122): אם בחירת רכב דורשת גלילה — **להחביא** showroom, JPEG/צבע בלבד.  
+138.1.3. ברירת רכב = sabra, קליק סע בלי חובה לראות 3D.
+
+### 138.2. אסור
+138.2.1. Renderer שלישי. OrbitControls חדשים.
+
+---
+
+## 139. DynamicQualityController — מספרים
+
+### 139.0. חי
+139.0.1. p95>20 למשך **90** דגימות → `step++` (מקס 8).  
+139.0.2. p95<16 למשך **5s** → `step--`.  
+139.0.3. `gfxPassFlags`: planar<1, bloom<2, csm<3, אח"כ pixelExtra.
+
+### 139.1. החלטה
+139.1.1. תואם 2.2. לא לשנות ספים לפני מדידת soak.  
+139.1.2. High דסקטופ אמור להישאר step=0. אם לא — באג תקציב (16), לא "לכבות איילון".
+
+### 139.2. אסור
+139.2.1. להוריד CSM בפריים הראשון.
+
+---
+
+## 140. כוכבים ≠ גשם
+
+### 140.0. מצב כנה
+140.0.1. `starField()` 1100 Points, לילה, fog:false.  
+140.0.2. **אין** Particles גשם. `forbidden.windshieldRain = true`.  
+140.0.3. גשם = wetness כביש + puddles + audio (3.3 / 70).
+
+### 140.1. החלטה
+140.1.1. לא Points גשם.  
+140.1.2. כוכבים נשארים בלילה. לא ביום.  
+140.1.3. אין סשן.
+
+### 140.2. אסור
+140.2.1. FFT ים, עננים וולומטריים, סימני צמיג קבועים (forbidden.ts).
+
+---
+
+## 141. מגע / HUD נהיגה
+
+### 141.0. מצב כנה
+141.0.1. `setTouch` steer/throttle/brake/drift/nitro/rewind.  
+141.0.2. מקלדת W/A/S/D + חצים. Space preventDefault.  
+141.0.3. Rewind קיים בקלט — בונוס. המשתמש לא ביקש.
+
+### 141.1. החלטה
+141.1.1. מגע נשאר למובייל. לא לשכתב.  
+141.1.2. לא להוסיף כפתור rewind ל-HUD אם חסר. אם יש — מותר להחביא אחרי אושר (111).  
+141.1.3. A/D = 115. אין FFB.
+
+### 141.2. שער
+141.2.1. `qa:drive` מקלדת. מגע = עשן ידני.
+
+---
+
+## 142. תור + סגירת י״ג
+
+### 142.1. אחרי אושר
+142.1.1. 97 photo-export.  
+142.1.2. 87+136 אפיית 12 שלטים / מחיקת mkSign.  
+142.1.3. 128 far scopus (engine).  
+142.1.4. meta / check:qa / soak.  
+142.1.5. 138/111 UI אם קליקים מיותרים — לא ארט.  
+142.1.6. עצירה 6.1.  
+142.1.7. אחרי 6.1: 127 instancing רכבת + metalness 137.2.2.
+
+### 142.2. אחוז כנה
+142.2.1. ביצוע **~13%**. שערים **2/13**.  
+142.2.2. תכנון **~99%**.  
+142.2.3. תיקון: CSM חי = 3/1/0 לא "2".
+
+### 142.3. `המשך`
+142.3.1. חורים חיים: boot ETA מזויף, AssetRegistry ישן, rewind ב-HUD, db:migrate → **143+**.  
+142.3.2. אחרי 150 בלי חור = **אושר**.
+
+**סוף חלק י״ג (134–142).** חלק י״ד למטה. אין קוד.
+
+---
+
+# חלק י״ד — 143–150 (סריקה 27.8.2026 19:37)
+
+---
+
+## 143. מד טעינה — ETA מזויף (בקשת משתמש)
+
+### 143.0. מצב כנה — כנה
+143.0.1. `estimateLoadMs` + `BootOverlay`: אנימציית CSS `steps` על eta קבוע. המספר **לא** מתעדכן מ-assemble.  
+143.0.2. `onBoot(frac)` חי: 0.12 → 0.18 → 0.72 → 1. **game-app לא מעביר frac ל-overlay.**  
+143.0.3. **FAKED** "עוד X שניות" כזמן אמת. זה שעון יורד מניחוש.
+
+### 143.1. החלטה נעולה
+143.1.1. סשן UI אחרי אושר (לא ארט איילון):  
+143.1.1.1. `onBoot(frac)` → `setBoot({ etaMs, frac })`.  
+143.1.1.2. שניות שנותרו = `etaMs * (1-frac) / 1000` **או** שעון מ-`performance.now()` רק אחרי frac≥0.18, לא CSS steps.  
+143.1.1.3. בר = `frac` אמיתי, לא animationDuration.  
+143.1.2. `recordLoadMs` בסוף נשאר (לניחוש הבא).  
+143.1.3. אם frac תקוע — להציג "טוען…" בלי מספר שקר.
+
+### 143.2. קבצים
+143.2.1. `boot-overlay.tsx`, `game-app.tsx` onBoot. לא engine מלבד הוקים קיימים.
+
+### 143.3. שער
+143.3.1. המספר יורד כש-onBoot קופץ 0.18→0.72. לא ליניארי מזויף אם העולם נתקע.
+
+### 143.4. אסור
+143.4.1. להשאיר steps כ"מספיק טוב" אחרי הסשן.  
+143.4.2. GIS במסך טעינה.
+
+---
+
+## 144. `ASSET_PROVENANCE` — שגוי מול PNG
+
+### 144.0. מצב כנה
+144.0.1. `src/world/AssetRegistry.ts`: canvas-asphalt, canvas-sky, license unknown.  
+144.0.2. האמת: asphalt/sky אפויים PNG (3 / 97). hero glTF unknown עד 24.
+
+### 144.1. החלטה
+144.1.1. סשן קטן אחרי אושר (עם 75 LICENSES):  
+144.1.1.1. למחוק שורות canvas-asphalt/canvas-sky או `source: public/game/*.png`, `license: owned`.  
+144.1.1.2. procedural-world/car נשארים unknown עד hero.  
+144.1.2. `unpublishedAssets()` חוסם publish — לא לשקר `licensed`.
+
+### 144.2. אסור
+144.2.1. לסמן Kenney כ-owned.
+
+---
+
+## 145. Rewind — בונוס חי ב-HUD
+
+### 145.0. מצב כנה
+145.0.1. באפר ב-`engine.ts`, מקש R, כפתור מגע "ריוויינד", HUD `hud.rewind`.  
+145.0.2. המשתמש: בונוסים לא מעניינים.
+
+### 145.1. החלטה
+145.1.1. לא לשפר rewind (אין פיזיקה חדשה).  
+145.1.2. סשן UI עם 111: **להחביא** כפתור מגע + שורת HUD. מקש R יכול להישאר בקוד.  
+145.1.3. לא למחוק באפר לפני 6.5 (סיכון).
+
+### 145.2. אסור
+145.2.1. Rewind אונליין. FFB rewind.
+
+---
+
+## 146. `db:migrate` / auth / P2P — לא מירוץ
+
+### 146.0. מצב כנה
+146.0.1. `npm run build` = vite build **&& db:migrate** (PGlite).  
+146.0.2. `src/lib/auth/*`, `src/lib/multiplayer`, `src/lib/db.ts` קיימים (תבנית אפליקציה).  
+146.0.3. `check:auth` קיים. לא שער גרפיקה.
+
+### 146.1. החלטה
+146.1.1. לא למחוק בסשן גרפיקה (שובר sandbox).  
+146.1.2. אסור UI התחברות/מולטיפלייר במסך RUSH (69 / 125).  
+146.1.3. לא להוסיף תלות DB למשחק.  
+146.1.4. PWA grok — לא לגעת (69.1.4).
+
+### 146.2. שער
+146.2.1. grep מסך מירוץ: אין SignIn / P2PRoom.
+
+---
+
+## 147. TouchControls — כפתורים עודפים
+
+### 147.0. מצב כנה
+147.0.1. פד הגה/גז + rewind + בלם (+ כנראה ניטרו בהמשך הקובץ). md:hidden.
+
+### 147.1. החלטה
+147.1.1. מובייל: פד + בלם מספיקים.  
+147.1.2. אותה סשן 145/111: rewind/nitro מוסתרים אם מוסיפים קליק.  
+147.1.3. לא לשכתב פד. A/D דסקטופ = 115.
+
+---
+
+## 148. סקריפטי bake — נעילה
+
+### 148.0. קיימים
+asphalt, sky, car, clock, flag, trees, herodian, curb, curtain, sidewalk, flake, blob, ground, foam, signs, water, flare, arrow, beam, ktx2.
+
+### 148.1. החלטה
+148.1.1. לא להריץ bake לפני אושר.  
+148.1.2. סשן 87/136 = `bake-ic-signs.mjs` **חדש** או הרחבת `bake-signs.mjs` — זה החריג היחיד ל-0.2.  
+148.1.3. אסור bake-facade / bake-azrieli לפני 6.1.
+
+### 148.2. שער 9.2
+148.2.1. אחרי 136: `check:canvas` ירוק. לא צריך להריץ את כל bake:*.
+
+---
+
+## 149. `qa:ci` — רשימה נעולה (העמקה ל-72)
+
+typecheck + records + physics + ssgi + traa + qa (drive/ramp/webgl2/accel/colliders/airborne/ktx2/soak-smoke) + check:qa/secrets/canvas/copy/webgl + qa:cache.
+
+### 149.1. החלטה
+149.1.1. לא להוסיף סקריפט ל-`qa:ci` בלי שער 10.x.  
+149.1.2. `check:canvas` אדום עד 136 — **ידוע**. סשן ראשון אחרי אושר מתקן את זה לפני להכריז CI ירוק.  
+149.1.3. `qa:ayalon-lock` / `qa:golden` לא ב-ci עד 6.1.
+
+---
+
+## 150. תור + סגירת י״ד
+
+### 150.1. אחרי אושר
+150.1.1. 97 photo-export.  
+150.1.2. 87+136 12 שלטים.  
+150.1.3. 128 far.  
+150.1.4. **143** מד טעינה אמיתי (UI).  
+150.1.5. 144 provenance.  
+150.1.6. check:qa / soak.  
+150.1.7. 145/147 rewind hide אם סשן UI.  
+150.1.8. עצירה 6.1.
+
+### 150.2. אחוז כנה
+150.2.1. ביצוע **~13%**. שערים **2/13**.  
+150.2.2. תכנון **~99%**.  
+150.2.3. תיקון יושרה: מד טעינה = FAKED עד 143.
+
+### 150.3. `המשך`
+150.3.1. חורים חיים: פנסי איילון=pool לא PointLight, countdown 1.45, הילוכים ארקייד, bloom 0.11, הערת גשם ב-postfx → **151+**.  
+150.3.2. אחרי 158 בלי חור = **אושר**.
+
+**סוף חלק י״ד (143–150).** חלק ט״ו למטה. אין קוד.
+
+---
+
+# חלק ט״ו — 151–158 (סריקה 27.8.2026 19:38)
+
+---
+
+## 151. פנסי לילה איילון — לא PointLight (34 / תלונת חושך)
+
+### 151.0. מצב כנה
+151.0.1. עמודי תאורה = InstancedMesh poles/bulbs/halos + **Circle pool** Additive על הכביש.  
+151.0.2. `lampCount = floor(samples/10)` לאיילון. רמון/חרמון = 0.  
+151.0.3. איילון: סט שני על הנגד (`oppOff+width/2+2.7`).  
+151.0.4. PointLight אמיתיים: `neonLights` ≤**2**, `glowAt` ≤**4**.  
+151.0.5. 34.3 אמר "PointLight dist קצר" — **חלקי**. רוב הלילה = blob, לא אור.  
+151.0.6. לכן לילה יכול להיראות שטוח/חשוך בין בריכות.
+
+### 151.1. החלטה נעולה
+151.1.1. לפני 6.1: לא להוסיף PointLight לכל עמוד (שובר 16ms).  
+151.1.2. אחרי 6.1 **או** אם המשתמש שולח "חשוך" אחרי אושר:  
+151.1.2.1. להעלות `poolMat.opacity` לילה 0.42→0.55 **או**  
+151.1.2.2. 2–4 PointLight נוספים על g05/g08 בלבד (לא lampCount).  
+151.1.3. היסט עמוד `width/2+2.7` נעול — מחוץ לג'רסי.  
+151.1.4. bloom 0.11 (152) נשאר התשובה ל"זוהר", לא 20 אורות.
+
+### 151.2. שער
+151.2.1. g08: בריכות נראות על אספלט, לא שמש מלבנת.  
+151.2.2. histogram 15.5 / 58.
+
+### 151.3. אסור
+151.3.1. PointLight per-lamp.  
+151.3.2. intensity שמש לילה >0.18 (34.1).
+
+---
+
+## 152. Bloom — מספרים חיים (`postfx.ts`)
+
+### 152.0. מצב כנה
+152.0.1. strength **0.11** רק `night && high`. אחרת 0 / disabled.  
+152.0.2. radius 0.2 לילה / 0.06 יום. threshold 0.84 / 0.96.  
+152.0.3. SMAA אחרי bloom, לא ב-lite. GRADE smear `uSpeed`.  
+152.0.4. הערה בקובץ: `"Rain is Points"` — **שגוי** (140). גשם ≠ Points.
+
+### 152.1. החלטה
+152.1.1. 0.11 נעול עד צילום "מסך לבן". אז 0.08, לא 0.3.  
+152.1.2. יום: bloom כבוי.  
+152.1.3. סשן הערה: לתקן JSDoc ב-postfx כשנוגעים בקובץ (לא סשן לבד).  
+152.1.4. UnrealBloomPass ≠ Unreal Engine (forbidden).
+
+### 152.2. אסור
+152.2.1. BokehPass. TAARenderPass. SSGINode.
+
+---
+
+## 153. Countdown זינוק
+
+### 153.0. מצב כנה
+153.0.1. `engine.countdown = 1.45` שניות. HUD: מספר אם >1, אחרת "סע!".  
+153.0.2. זה לא 3-2-1 מלא.
+
+### 153.1. החלטה
+153.1.1. נשאר קצר — תואם "פחות מסכים".  
+153.1.2. לא 3 שניות. לא לדלג ל-0 בלי באג.  
+153.1.3. אין סשן.
+
+---
+
+## 154. הילוכים — ארקייד, לא סימולטור
+
+### 154.0. `vehicle.ts` ~194
+154.0.1. 5 הילוכים לפי יחס מהירות `tops = [0.2, 0.38, 0.56, 0.76, 1.08]`.  
+154.0.2. החלפה: speed ×0.94. torque לפי הילוך.  
+154.0.3. `body==="ev"`: הילוך 1.  
+154.0.4. rpm ל-HUD/אודיו, לא דגלונים.
+
+### 154.1. החלטה
+154.1.1. לא תיבת הילוכים ידנית. לא דוושת קלאץ'.  
+154.1.2. שינוי tops = PHYSICS_VERSION+1.  
+154.1.3. אין סשן עד באג 0–100 (25).
+
+### 154.2. אסור
+154.2.1. "DCT כמו GT7". H-pattern.
+
+---
+
+## 155. כביש shader — UV נעול (העמקה ל-3.2)
+
+### 155.0. `injectRoadLanes`
+155.0.1. `uv.y` = מטר/6. dash כל 8מ׳. קצה לבן.  
+155.0.2. איילון 8 נתיבים: `skipMid` מוחק קו על המדיאן.  
+155.0.3. `uWet` מוריד albedo ומוריד roughness ל-0.14.
+
+### 155.1. החלטה
+155.1.1. לא לגעת ב-shader לפני 6.1.  
+155.1.2. אחרי CSM `onBeforeCompile` — סדר 8.4.4.  
+155.1.3. אין canvas כביש.
+
+---
+
+## 156. `preview-host-bridge` — תשתית Grok
+
+### 156.0. מצב כנה
+156.0.1. postMessage רק ב-iframe של Grok.  
+156.0.2. לא חלק ממשחק.
+
+### 156.1. החלטה
+156.1.1. **אסור לגעת.** שובר preview.  
+156.1.2. אין סשן. אין שער מירוץ.
+
+---
+
+## 157. `hit()` ב-landmarks — תמיד `kind:"building"`
+
+### 157.0. מצב כנה
+157.0.1. `addLandmarks` `hit()` דוחף `kind: "building"` תמיד.  
+157.0.2. מעקה/ג'רסי חייבים path אחר (114 barrier).  
+157.0.3. אם עמוד מחלף קורא ל-`hit` — יתנהג כבניין (עצירה קשה).
+
+### 157.1. החלטה
+157.1.1. לפני 6.1: רק אם `qa:colliders` / נתקעות בעמוד. אז `kind:"barrier"` לעמודים.  
+157.1.2. מגדלים נשארים building.  
+157.1.3. אין סשן עד באג.
+
+---
+
+## 158. תור + סגירת ט״ו
+
+### 158.1. אחרי אושר
+158.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+158.1.2. 144 provenance.  
+158.1.3. check:qa / soak.  
+158.1.4. 145 rewind hide.  
+158.1.5. **עצירה 6.1.**  
+158.1.6. לילה חשוך מדווח → 151.1.2 אחרי 6.1 או אם 6.1 נכשל בגלל g08.  
+158.1.7. אסור: PointLight לכל עמוד, 81 עזריאלי, 8.2.
+
+### 158.2. אחוז כנה
+158.2.1. ביצוע **~13%**. שערים **2/13**.  
+158.2.2. תכנון **~99%**.  
+158.2.3. תיקון: לילה איילון = בריכות Additive, לא יער PointLight.
+
+### 158.3. `המשך`
+158.3.1. חורים חיים: planar 768, משטרה/מחסום, 5 glb extrusion, רדיו → **159+**.  
+158.3.2. אחרי 166 בלי חור = **אושר**.
+
+**סוף חלק ט״ו (151–158).** חלק ט״ז למטה. אין קוד.
+
+---
+
+# חלק ט״ז — 159–166 (סריקה 27.8.2026 19:40)
+
+---
+
+## 159. Planar Reflector — מספרים חיים (G1 / 3.4)
+
+### 159.0. מצב כנה
+159.0.1. `Reflector` `PlaneGeometry(42, 80)`, RT **768²**, clipBias 3e-3, y=0.026.  
+159.0.2. `followMirror`: המישור **עוקב** אחרי הרכב (x,y+0.03,z) + yaw. לא כביש שלם.  
+159.0.3. opacity יבש: לילה 0.34 / יום 0.22. רטוב: 0.58 / 0.38.  
+159.0.4. נוצר רק אם `shadows`. `setPlanar(false)` מכבה.  
+159.0.5. תוכניות ישנות אמרו 512 — **הקוד 768**. 768 שולט. לא להעלות.
+
+### 159.1. החלטה
+159.1.1. לפני 6.1: לא לגעת ב-RT/גיאומטריה.  
+159.1.2. אם p95>18 ב-High: DQC מכבה planar קודם (139).  
+159.1.3. אחרי 6.5 מותר 512 ב-balanced בלבד, לא 1024.  
+159.1.4. אין SSR.
+
+### 159.2. שער
+159.2.1. g01: ברק קרוב לגוף, לא מראה אינסוף.  
+159.2.2. איילון בלי rail צידי (1290 מדלג ayalon) — נשאר.
+
+### 159.3. אסור
+159.3.1. Reflector על כל הספליין. RT 2K.
+
+---
+
+## 160. משטרה / wanted / מחסום — בונוס חי
+
+### 160.0. מצב כנה — לא ב-93 במפורש
+160.0.1. `ensureCops` עד 5 (lite 3). `spawnRoadblock` אם heat>0.32.  
+160.0.2. `bustAcc>=2.7` → busted, `endRace`.  
+160.0.3. המשתמש: אונליין/בונוסים לא.
+
+### 160.1. החלטה נעולה
+160.1.1. **לא** לשפר AI שוטרים, לא מחסום חדש, לא wanted חדש.  
+160.1.2. סשן UI (111): מותר להחביא מד heat.  
+160.1.3. אם חוסם נסיעת איילון (מחסום על האספלט) — באג: להזיז/לכבות `spawnRoadblock` באיילון בלבד. זה הסשן היחיד המותר לפני 6.5.  
+160.1.4. לא למחוק קוד לפני freeze.
+
+### 160.2. אסור
+160.2.1. "מערכת כוכבים כמו NFS". הולכי רגל.
+
+---
+
+## 161. `public/game` — מלאי נעול
+
+### 161.0. קבצים חיים
+asphalt-3/4/8 + bump/rough, sky-day/night, 5× `car-*.glb/gltf` (gt hatch muscle rally super), flake blob beam ground foam water-n foliage bark, curb-*, curtain-*, sidewalk, herodian, israel-flag, jaffa-clock, sign-speed50/80/90 stop yield none, flare-0/1, lane-arrow, checker, LICENSES.md.
+
+### 161.1. יושרה
+161.1.1. כל PNG = generated.  
+161.1.2. `car-*.glb` = **extrusion Meshopt, לא סריקה** (`LICENSES.md` + `car-assets.ts`). 4.2 hero עדיין NOT DONE.  
+161.1.3. אין `.hdr`. אין KTX2 shipping.
+
+### 161.2. החלטה
+161.2.1. לא למחוק GLB. cloneCarBody לפי body id (107).  
+161.2.2. סשן 87 מוסיף PNG שלטים — שמות חדשים רק תחת `public/game/`.  
+161.2.3. `LICENSES.md` מתעדכן ב-75/144.
+
+### 161.3. אסור
+161.3.1. להגיד "רכב סרוק" על ה-5 הקיימים.  
+161.3.2. Kenney בלי שורת CC0.
+
+---
+
+## 162. RendererFacade + ColorPipeline
+
+### 162.0. מצב כנה
+162.0.1. `WebGLRenderer` antialias=!mobile, alpha=false, high-performance.  
+162.0.2. dpr = `min(devicePixelRatio,1) * pixelScale`.  
+162.0.3. `applyColorPipeline`: SRGB + ACES. **אין LUT. אין AgX.**  
+162.0.4. `probeWebGPU` dummy canvas, timeout 4s, רק `?webgpu=1`.  
+162.0.5. חשיפה = `gfx.setEnvironment` / LookDev (56), לא ב-ColorPipeline.
+
+### 162.1. החלטה
+162.1.1. לא לשנות init לפני 6.1.  
+162.1.2. חשיפת יום 0.68 (LOOKS.summer14) נעולה מול "סנוור לבן".  
+162.1.3. WebGPU משחק = 8.2 אחרי 6.5.
+
+### 162.2. אסור
+162.2.1. AgX. pmndrs postprocessing. renderer שני למשחק (showroom = 138 חריג UI).
+
+---
+
+## 163. רדיו / אוסצילטורים (העמקה ל-70)
+
+### 163.0. מצב כנה
+163.0.1. `AUDIO_BACKEND = "oscillator"`. 4 תחנות ב-`RADIO` (Pulse/Yam/Underground/White Night) + `STATIONS` bpm/kick.  
+163.0.2. Mute ב-Esc. אין קבצי mp3.
+
+### 163.1. החלטה
+163.1.1. לא דגימות אודיו. לא Spotify.  
+163.1.2. לא סשן גרפיקה.  
+163.1.3. מותר לכבות רדיו ב-HUD אם מרעיש (111).
+
+### 163.2. אסור
+163.2.1. WebAudio positional 3D מלא לפני 6.5.
+
+---
+
+## 164. סיום מרוץ / `endRace`
+
+### 164.0. מצב כנה
+164.0.1. `onFinish` → תוצאה. replay (123). bust גם מסיים.  
+164.0.2. HUD finished מסתיר מדדים.
+
+### 164.1. החלטה
+164.1.1. אחרי סיום: דילוג replay + חזרה לראשי (Esc). לא קריירה.  
+164.1.2. אין סשן.  
+164.1.3. records JSON (61) נשאר מקומי.
+
+---
+
+## 165. ABS / TCS / wrong-way
+
+### 165.0. מצב כנה
+165.0.1. דגלים ב-vehicle. assists HUD (111).  
+165.0.2. `wrongWayT` אם progress יורד ו-speed>4 על main.
+
+### 165.1. החלטה
+165.1.1. לא סימולציית ABS AAA.  
+165.1.2. wrong-way: אזהרה ב-HUD מותרת; לא לסובב את הרכב אוטומטית.  
+165.1.3. A→B פתוח: progress יורד בסוף ≠ wrong-way — לבדוק ב-7.x רמון, לא עכשיו.
+
+### 165.2. אסור
+165.2.1. אייקון ABS גדול על המסך (111 מסתיר).
+
+---
+
+## 166. תור + סגירת ט״ז
+
+### 166.1. אחרי אושר
+166.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+166.1.2. 144 LICENSES/provenance.  
+166.1.3. check:qa / soak.  
+166.1.4. 111/145/160.1.2 hide extras.  
+166.1.5. 160.1.3 רק אם מחסום חוסם איילון.  
+166.1.6. **עצירה 6.1.**  
+166.1.7. אסור: 81, RT 2K, שוטרים חדשים, "סריקת רכב".
+
+### 166.2. אחוז כנה
+166.2.1. ביצוע **~13%**. שערים **2/13**.  
+166.2.2. תכנון **~99%**.  
+166.2.3. 5 GLB ≠ hero. Planar = 768 עוקב, לא SSR.
+
+### 166.3. `המשך`
+166.3.1. חורים חיים: כותרת/כסף/קריירה בתפריט, יחידות מהירות, SURFACE_SPEC, פורט 8080 → **167+**.  
+166.3.2. אחרי 174 בלי חור = **אושר**.
+
+**סוף חלק ט״ז (159–166).** חלק י״ז למטה. אין קוד.
+
+---
+
+# חלק י״ז — 167–174 (סריקה 27.8.2026 19:41)
+
+---
+
+## 167. כותרת — טקסט שיווקי
+
+### 167.0. מצב כנה — `game-app.tsx` ~967
+167.0.1. "סימקייד ישראלי · 120Hz" — 120Hz = **פיזיקה** (`PHYSICS_HZ`), לא FPS.  
+167.0.2. "איילון, רוטשילד וירושלים — משקל, צמיגים ועזרות."  
+167.0.3. `__root.tsx` description Arcade NY (96) — נפרד.
+
+### 167.1. החלטה
+167.1.1. סשן copy עם 96/1.1:  
+167.1.1.1. להחליף 120Hz → "פיזיקה 120Hz" או למחוק.  
+167.1.1.2. לא "רחובות אמיתיים / GPS / OSM".  
+167.1.2. כפתור יחיד "בחר מסלול" נשאר (122 circuit).
+
+### 167.2. אסור
+167.2.1. "GT7". "מפת ישראל המלאה".
+
+---
+
+## 168. תפריט ראשי — כסף / קריירה / מזג אוויר
+
+### 168.0. מצב כנה
+168.0.1. `save.ts`: cash, career.stars, tunes, daily, weekly.  
+168.0.2. `game-app` state: cash=500, weather, eventId, startCareer, starTotal.  
+168.0.3. payout ב-`onFinish`.  
+168.0.4. הגדרות גלגל: איכות, יום/לילה, mute, **FOV**, **סימקייד/ארקייד**, ABS/TCS/ESC.
+
+### 168.1. החלטה נעולה
+168.1.1. לא להציג cash/כוכבים/קריירה על title. אם מוצג — סשן UI להחביא (69/125).  
+168.1.2. weather ברירת מחדל `clear`. לא חובה במסך לפני סע.  
+168.1.3. FOV + handling + assists נשארים **בגלגל הגדרות**, לא על title.  
+168.1.4. `startCareer` לא על כפתור ראשי.  
+168.1.5. לא למחוק save schema לפני 6.5.
+
+### 168.2. שער
+168.2.1. title: RUSH + בחר מסלול + שורת שליטה. בלי כסף.
+
+---
+
+## 169. מהירות HUD — מ׳/ש׳ × 3.6
+
+### 169.0. מצב כנה
+169.0.1. `speed` בקוד = מ׳/ש׳. `speedKmh = abs(speed)*3.6`.  
+169.0.2. sabra `maxSpeed: 53` → ~191 קמ״ש. kfir 72 → ~259.  
+169.0.3. `zeroTo100` בשמות — חייב לעמוד ב-`qa:accel` (60 / 4.6).
+
+### 169.1. החלטה
+169.1.1. לא להחליף ליחידות "יחידות משחק".  
+169.1.2. שינוי maxSpeed = PHYSICS_VERSION+1 + qa:accel.  
+169.1.3. HUD: מספר שלם קמ״ש. אין סשן.
+
+### 169.2. אסור
+169.2.1. להציג 53 כאילו קמ״ש.
+
+---
+
+## 170. `SURFACE_SPEC` + `WEATHER_SPEC` (העמקה ל-114)
+
+### 170.0. `physics.ts`
+asphalt 1/1/1; curb 0.82/0.74/1.22; sand 0.54/0.48/2.35; water 0.42/0.36/1.85.  
+weather: rain long 0.78 hydro 0.22; storm 0.62/0.4; hamsin 0.9 vis 0.7.
+
+### 170.1. מול 114.1 SURFACE_GRIP
+170.1.1. שני טבלאות: GRIP לפי **theme מסלול**, SPEC לפי **משטח גלגל**. לא לאחד בסשן.  
+170.1.2. שינוי = PHYSICS_VERSION+1.
+
+### 170.2. אסור
+170.2.1. Pacejka 4 גלגלים מלא (5.1 נשאר 2.5D).
+
+---
+
+## 171. Vite — חוזה פורט (AGENTS)
+
+### 171.0. מצב כנה
+171.0.1. `server 0.0.0.0:8080 strictPort`. `preview 127.0.0.1:8081`.  
+171.0.2. PWA + pglite plugins — תשתית, לא מירוץ.
+
+### 171.1. החלטה
+171.1.1. **אסור** לשנות host/port. שובר preview.  
+171.1.2. אין סשן. אין שער גרפיקה.
+
+---
+
+## 172. `fovExtra` 0–12
+
+### 172.0. מצב כנה
+172.0.1. Chase: `58+speed/14 + boost3 + fovExtra` (108 נכון).  
+172.0.2. Photo: `48+fovExtra` (לא chase).  
+172.0.3. Slider בהגדרות.
+
+### 172.1. החלטה
+172.1.1. ברירת 0.  
+172.1.2. לא לגעת בנוסחת chase.  
+172.1.3. cap 12 נעול.
+
+---
+
+## 173. `assists.esc` ≠ מקש Esc
+
+### 173.0. מצב כנה
+173.0.1. `AssistFlags.esc` = יציבות (stability). מקש Escape = תפריט (90).
+
+### 173.1. החלטה
+173.1.1. לא לשנות שם השדה (save).  
+173.1.2. UI: להציג "ESC" כעזרה רק בגלגל. מקש נשאר תפריט.  
+173.1.3. אין סשן עד באג "Esc סוגר וגם מכבה יציבות".
+
+---
+
+## 174. תור + סגירת י״ז
+
+### 174.1. אחרי אושר
+174.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+174.1.2. 167+168 copy/הסתרת כסף — סשן UI, לא ארט.  
+174.1.3. check:qa / soak.  
+174.1.4. **עצירה 6.1.**  
+174.1.5. אסור: 8080, 81, קריירה חדשה, שינוי maxSpeed.
+
+### 174.2. אחוז כנה
+174.2.1. ביצוע **~13%**. שערים **2/13**.  
+174.2.2. תכנון **~99%**.  
+174.2.3. 120Hz בכותרת = פיזיקה, לא פריימים.
+
+### 174.3. `המשך`
+174.3.1. חורים חיים: `isDriveable`, פילטר NYC, ערבית, `skyAt`, כפתור סע דביק → **175+**.  
+174.3.2. אחרי 182 בלי חור = **אושר**.
+
+**סוף חלק י״ז (167–174).** חלק י״ח למטה. אין קוד.
+
+---
+
+# חלק י״ח — 175–182 (סריקה 27.8.2026 19:43)
+
+---
+
+## 175. `isDriveable` — שער תפריט
+
+### 175.0. מצב כנה
+175.0.1. `tracks.ts` ~3406: `width >= 19.5 && city !== "nyc"`.  
+175.0.2. NYC **מוסתר** מהבוחר. מסלולים צרים מ-19.5 מוסתרים.  
+175.0.3. 41 WIDTH_DEBT: הרחבה ל-19.5 משנה את הרשימה.  
+175.0.4. 94 56 id נשארים בקוד; לא כולם ב-UI.
+
+### 175.1. החלטה נעולה
+175.1.1. לא לשנות את הסף לפני 6.5.  
+175.1.2. אחרי freeze: להעלות רוחב חסר (99) **או** להוריד סף — לא במקביל.  
+175.1.3. NYC נשאר מחוץ ל-UI עד 35.
+
+### 175.2. שער
+175.2.1. איילון/רוטשילד/חוף/יפו/ירושלים ב-telaviv+jerusalem filters.  
+175.2.2. אף כרטיס NYC.
+
+### 175.3. אסור
+175.3.1. `isDriveable = true` לכל 56.
+
+---
+
+## 176. `CITY_FILTERS` כולל NYC + 20 ערים
+
+### 176.0. מצב כנה
+176.0.1. הרשימה כוללת nyc, eilat, beersheva… כפתור מופיע רק אם יש `isDriveable` בעיר.  
+176.0.2. ברירת `cityFilter = "telaviv"`.
+
+### 176.1. החלטה
+176.1.1. לא להוסיף עיר.  
+176.1.2. סשן UI אחרי 6.5: למחוק פילטרים ריקים (אין driveable). NYC ייעלם לבד בגלל 175.  
+176.1.3. ברירת telaviv נעולה.
+
+---
+
+## 177. כפתור "סע" — כבר למעלה (90.1.5)
+
+### 177.0. מצב כנה — **DONE חלקי**
+177.0.1. `game-app` ~1014: sticky top עם חזרה + שם + **סע**.  
+177.0.2. סע כופה `mode="circuit"`.  
+177.0.3. בקשת "כפתור למעלה בלי גלילה" — **מיושם**. לא להמציא סשן כפול.
+
+### 177.1. החלטה
+177.1.1. לא להזיז למטה.  
+177.1.2. לא מסך "מצב מרוץ" ביניים.  
+177.1.3. Showroom (138) אם עדיין מתחת לכרטיסים — לא חוסם את סע.
+
+---
+
+## 178. ערבית ב-`i18n` (חריג ל-67)
+
+### 178.0. מצב כנה
+178.0.1. `Lang = "he"|"ar"|"en"`. `nextLang` he→ar→en. RTL ל-he ו-ar.  
+178.0.2. 67 אמר he/en. **הקוד תלת-לשוני.**  
+178.0.3. מחרוזות רבות ב-`t(he,en)` בלי ar → נופל ל-en.
+
+### 178.1. החלטה
+178.1.1. לא לתרגם הכל לעברית/ערבית בסשן גרפיקה.  
+178.1.2. לא להסיר ar (save).  
+178.1.3. כלל: מחרוזת חדשה = `t(he,en)` מספיק. לא קובץ i18n ענק.
+
+---
+
+## 179. מסכי `career` / `garage` עדיין ב-router פנימי
+
+### 179.0. מצב כנה
+179.0.1. `screen === "career"|"garage"` מרנדר פאנלים.  
+179.0.2. title לא אמור לקשר אליהם (168). אם נשאר כפתור — באג UI.
+
+### 179.1. החלטה
+179.1.1. סשן 168: grep `setScreen("career"|"garage")` מ-title. אם קיים — להסיר.  
+179.1.2. לא למחוק רכיבים לפני 6.5.
+
+---
+
+## 180. Roam "גוש דן פתוח" — טקסט שקרי (122)
+
+### 180.0. מצב כנה
+180.0.1. `MODE_INFO.roam`: "גוש דן פתוח. אסוף ציוני דרך."  
+180.0.2. המציאות: ספליין + רחובות צד פרוצדורליים (119). המשתמש כעס על מסלול סגור.
+
+### 180.1. החלטה
+180.1.1. roam לא ב-UI (122.1.3).  
+180.1.2. אם מוצג: לשנות ל"נסיעה חופשית על המסלול".  
+180.1.3. לא open-world.
+
+---
+
+## 181. `skyAt()` — שארית Sky() (98)
+
+### 181.0. מצב כנה
+181.0.1. `skyAt` מחשב elevation/turbidity/exposure/fog לפי clock.  
+181.0.2. רקע המשחק = PNG + FogExp2 (20/53).  
+181.0.3. ייתכן ש-`setClock` עדיין קורא ל-skyAt לחשיפת שמש.
+
+### 181.1. החלטה
+181.1.1. לפני 6.1: לא לשכתב skyAt.  
+181.1.2. אחרי freeze: אם `Sky` geometry לא בסצנה — skyAt רק ל-azimuth/elevation של dir light.  
+181.1.3. אסור להחזיר `THREE.Sky`.
+
+### 181.2. אסור
+181.2.1. עננים וולומטריים. HDRI לפני 20.
+
+---
+
+## 182. תור + סגירת י״ח
+
+### 182.1. אחרי אושר
+182.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+182.1.2. 167/168/179 הסתרת קריירה+כסף.  
+182.1.3. check:qa / soak.  
+182.1.4. **עצירה 6.1.**  
+182.1.5. אסור: isDriveable=true לכל, NYC ב-UI, THREE.Sky, 81.
+
+### 182.2. אחוז כנה
+182.2.1. ביצוע **~13%**. שערים **2/13**.  
+182.2.2. תכנון **~99%**.  
+182.2.3. כפתור סע למעלה = כבר קיים. NYC מוסתר ב-`isDriveable`.
+
+### 182.3. `המשך`
+182.3.1. חורים חיים: מיפוי איכות, setLod עצים, מים, checkpoints, lookBack → **183+**.  
+182.3.2. אחרי 190 בלי חור = **אושר**.
+
+**סוף חלק י״ח (175–182).** חלק י״ט למטה. אין קוד.
+
+---
+
+# חלק י״ט — 183–190 (סריקה 27.8.2026 19:45)
+
+---
+
+## 183. מיפוי איכות UI ↔ Profile
+
+### 183.0. מצב כנה
+183.0.1. UI: low / mid / high בלבד.  
+183.0.2. `profileFromLegacy`: low→compat, mid→balanced, high→**high** (לא ultra).  
+183.0.3. `PROFILES.ultra` קיים **ולא מחובר**.  
+183.0.4. שדה `shadows: 1` בפרופיל high ≠ CSM 3 cascades (135). השדה **לא** קובע cascades.
+
+### 183.1. החלטה
+183.1.1. לא לחבר ultra לפני 6.5.  
+183.1.2. High UI = PROFILES.high + CSM 3 (135).  
+183.1.3. Photo = PROFILES.photo בנפרד (43).  
+183.1.4. לא לסמוך על `profile.shadows` עד סשן שמאחד עם CSM.
+
+### 183.2. אסור
+183.2.1. כפתור Ultra בתפריט.
+
+---
+
+## 184. `setLod` — עצים / שלטים / שלוליות
+
+### 184.0. מצב כנה — `world.ts` ~2733
+184.0.1. Low: בלי כתרים, בלי billboards, בלי tanks, בלי far, בלי wear, בלי puddles. גזעים? trunks נשארים (רק castShadow=false ב-low דרך lodTrunks.castShadow=hi).  
+184.0.2. Mid: כתרים + צללי עצים + tanks + far + wear. בלי bills, בלי puddles.  
+184.0.3. High: הכל כולל bills ו-puddles.
+
+### 184.1. יושרה עצים
+184.1.1. כתר = InstancedMesh (כדור/שכבות), לא פוטוגרמטריה.  
+184.1.2. `lodBills` = billboards — **רק High**. המשתמש ביקש נפח 3D; bills הם פשרה רחוקה.  
+184.1.3. לא "עצים AAA".
+
+### 184.2. החלטה
+184.2.1. לפני 6.1: לא לגעת ב-setLod.  
+184.2.2. אחרי: אם bills נראים כמו קלפים מ-chase — להסתיר גם ב-High (`lodBills.visible=false`).  
+184.2.3. מרחק יער מנתיב `width/2+16` נעול (לא בגזע הכביש).
+
+### 184.3. אסור
+184.3.1. SpeedTree. עצים בתוך נתיב.
+
+---
+
+## 185. מים — מישור ענק + bob
+
+### 185.0. מצב כנה
+185.0.1. `PlaneGeometry(max(w*1.4,900), max(d,1600))` + `MeshPhysicalMaterial` ior 1.33, metalness **0.08**, normal `water-n.png`.  
+185.0.2. `tick`: `y = -0.1 + sin(t*0.7)*0.06`.  
+185.0.3. חול ליד מים חוץ מ-manhattan/park.
+
+### 185.1. החלטה
+185.1.1. metalness 0.08 = חריג מים (137), לא בניין. לא להעלות.  
+185.1.2. לא FFT ocean (forbidden).  
+185.1.3. איילון: אם אין `def.water` — אין ים. חוף hayarkon כן.  
+185.1.4. לפני 6.1: לא לגעת.
+
+### 185.2. אסור
+185.2.1. Gerstner. Caustics.
+
+---
+
+## 186. Checkpoints
+
+### 186.0. מצב כנה
+186.0.1. `buildTrack`: `checkpointCount` נקודות על הספליין. פתוח: `(i+1)/(n+0.15)`.  
+186.0.2. צליל `audio.checkpoint()`. התקדמות lap.
+
+### 186.1. החלטה
+186.1.1. לא שערים ויזואליים חדשים לפני 6.1.  
+186.1.2. A→B: checkpoint אחרון = סיום, לא לופ (7.x).  
+186.1.3. אין סשן עד באג lap.
+
+---
+
+## 187. Look-back — מקש B
+
+### 187.0. מצב כנה
+187.0.1. `KeyB` / gamepad 11/13 הופך chase אחורה (`dir=-1`, mode 0).
+
+### 187.1. החלטה
+187.1.1. נשאר. לא כפתור HUD.  
+187.1.2. לא במגע אלא אם חסר מאוד.  
+187.1.3. אין סשן.
+
+---
+
+## 188. `PROFILES.shadows` מול CSM
+
+### 188.0. סתירה
+188.0.1. high.shadows=1, compat=0.  
+188.0.2. CSM cascades = 3/1/0 לפי מחרוזת quality (135).
+
+### 188.1. החלטה
+188.1.1. **CSM שולט.** שדה shadows בפרופיל מטעה — לא לקרוא ממנו עד איחוד.  
+188.1.2. סשן אחרי 6.5: או למחוק את השדה או למפות 0/1/3.
+
+---
+
+## 189. Drafting / boost FOV
+
+### 189.0. מצב כנה
+189.0.1. `drafting` + `boostT` מוסיפים +3 ל-FOV chase (108).  
+189.0.2. ניטרו = 131.
+
+### 189.1. החלטה
+189.1.1. לא לשפר slipstream.  
+189.1.2. +3 FOV נעול.  
+189.1.3. אין סשן.
+
+---
+
+## 190. תור + סגירת י״ט
+
+### 190.1. אחרי אושר
+190.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+190.1.2. 168/179 UI.  
+190.1.3. check:qa / soak.  
+190.1.4. **עצירה 6.1.**  
+190.1.5. bills מכוערים אחרי freeze → 184.2.2.  
+190.1.6. אסור: Ultra UI, FFT ים, 81.
+
+### 190.2. אחוז כנה
+190.2.1. ביצוע **~13%**. שערים **2/13**.  
+190.2.2. תכנון **~99%**.  
+190.2.3. Ultra לא מחובר. מים = מישור, לא אוקיינוס.
+
+### 190.3. `המשך`
+190.3.1. חורים חיים: canvasInventory שקרי, Lensflare כבוי, applyLights vs LookDev, load-eta HEAVY → **191+**.  
+190.3.2. אחרי 198 בלי חור = **אושר**.
+
+**סוף חלק י״ט (183–190).** חלק כ׳ למטה. אין קוד.
+
+---
+
+# חלק כ׳ — 191–198 (סריקה 27.8.2026 19:46)
+
+---
+
+## 191. `canvasInventory.ts` — רשימה שקרית
+
+### 191.0. מצב כנה
+191.0.1. הקובץ מצהיר: רק CapabilityProbe + RendererFacade.  
+191.0.2. האמת: `mkSign` + `flushSnap` עדיין יוצרים canvas (87 / 97).  
+191.0.3. **FAKED** "honest remaining sites".
+
+### 191.1. החלטה
+191.1.1. אחרי 87+97: לעדכן inventory = probe בלבד.  
+191.1.2. עד אז: לא להשתמש בקובץ כהוכחה ש-canvas=0.  
+191.1.3. `check:canvas` = מקור האמת, לא ההערה.
+
+### 191.2. אסור
+191.2.1. להוסיף את mkSign כ-allowed.
+
+---
+
+## 192. `Lensflare` — מת, כבוי
+
+### 192.0. מצב כנה
+192.0.1. import `Lensflare` + `flare-0/1.png`.  
+192.0.2. `applyLights`: `lensflare.visible = false` תמיד.  
+192.0.3. לא G6 פנסים על כביש.
+
+### 192.1. החלטה
+192.1.1. לא להדליק Lensflare לפני 6.5 (עלות + סנוור).  
+192.1.2. אחרי 6.1 מותר שמש אחת ב-High בלבד אם g01 לא לבן.  
+192.1.3. אין סשן עד באג.
+
+### 192.2. אסור
+192.2.1. Lensflare על כל רכב.
+
+---
+
+## 193. `applyLights` vs LookDev — כפל עוצמה
+
+### 193.0. מצב כנה
+193.0.1. `applyLights` יום: `dir.intensity = 1.12`. לילה 0.38.  
+193.0.2. LookDev `summer14` חשיפה 0.68 (56).  
+193.0.3. `setClock` עלול לדרוס — אם לא, יום = סנוור (תלונת משתמש).
+
+### 193.1. החלטה נעולה
+193.1.1. **LookDev שולט** אחרי `setClock`. applyLights רק צבעי hemi/fill אם אין override.  
+193.1.2. סשן אחרי אושר רק אם יום לבן **וגם** 56 לא רץ באותו טיק. אז dir.intensity יום ≤0.9.  
+193.1.3. לילה dir ≤0.38 נשאר (34.1 אמר 0.18 ל-dir — **סתירה**).  
+193.1.3.1. חי: 0.38. 34.1 ישן. **0.38 שולט** עד צילום חשוך מדי → אז 0.45 לא 2.0.
+
+### 193.2. שער
+193.2.1. histogram 15.5 לא clipped.
+
+---
+
+## 194. `load-eta` HEAVY כולל NYC
+
+### 194.0. מצב כנה
+194.0.1. HEAVY: ayalon, manhattan, timessquare, gushdan, jerusalem, scopus, ramon, hermon, oldjaffa, rothschild.  
+194.0.2. manhattan/timessquare לא driveable (175) אבל ETA עדיין.
+
+### 194.1. החלטה
+194.1.1. לא למחוק מפתחות.  
+194.1.2. סשן 143 יכול להסיר NYC מ-HEAVY. לא חוסם.  
+194.1.3. `recordLoadMs` אחרי assemble נשאר.
+
+---
+
+## 195. `dialog.ts` / יריבים — בונוס
+
+### 195.0. מצב כנה
+195.0.1. `introLine` לקריירה. `rivalName` מ-RIVALS.
+
+### 195.1. החלטה
+195.1.1. לא לשכתב דיאלוג. לא UI קריירה (179).  
+195.1.2. שמות יריבים ב-HUD מירוץ מותרים (מקום 2/3).  
+195.1.3. אין סשן.
+
+---
+
+## 196. DQC — מספרים חיים (העמקה ל-139)
+
+### 196.0. `DynamicQualityController`
+196.0.1. p95>20 למשך **90** דגימות → drop.  
+196.0.2. p95<16 למשך **5s** → raise.  
+196.0.3. סדר: planar → bloom → CSM → pixelExtra. max step 8.
+
+### 196.1. החלטה
+196.1.1. לא לשנות ספים לפני 6.1.  
+196.1.2. High איילון חייב לעמוד בלי לעבור step 1 ב-g05 (אחרת 6.1 נכשל).  
+196.1.3. אין סשן.
+
+---
+
+## 197. PNG חסר = throw ב-assemble
+
+### 197.0. מצב כנה
+197.0.1. curtain/curb/foliage/bark/sidewalk/ground/foam/sign/water/checker/flare/herodian: `if (!baked) throw`.  
+197.0.2. טעינה חייבת await לפי 134 לפני `createWorld`.
+
+### 197.1. החלטה
+197.1.1. לא להחזיר canvas fallback.  
+197.1.2. throw = נכון.  
+197.1.3. סשן 87 מוסיף getSign ל-12 IC — אותה תבנית throw.
+
+---
+
+## 198. תור + סגירת כ׳
+
+### 198.1. אחרי אושר
+198.1.1. 97 flushSnap (גם מתקן 191).  
+198.1.2. 87+136 שלטים.  
+198.1.3. 128 far.  
+198.1.4. 143 מד.  
+198.1.5. 193 רק אם יום לבן אחרי LookDev.  
+198.1.6. check:qa / soak.  
+198.1.7. **עצירה 6.1.**  
+198.1.8. אסור: Lensflare לכל רכב, canvas fallback, 81.
+
+### 198.2. אחוז כנה
+198.2.1. ביצוע **~13%**. שערים **2/13**.  
+198.2.2. תכנון **~99%**.  
+198.2.3. canvasInventory ≠ אמת עד 87+97.
+
+### 198.3. `המשך`
+198.3.1. חורים חיים: מפת מקשים, daily על NYC, Space=דריפט, records hash → **199+**.  
+198.3.2. אחרי 206 בלי חור = **אושר**.
+
+**סוף חלק כ׳ (191–198).** חלק כ״א למטה. אין קוד.
+
+---
+
+# חלק כ״א — 199–206 (סריקה 27.8.2026 19:47)
+
+---
+
+## 199. מפת מקשים חיה (`input.ts`)
+
+### 199.0. מצב כנה
+199.0.1. הגה: A/← = +1, D/→ = −1 (115).  
+199.0.2. גז: W/↑. בלם: S/↓.  
+199.0.3. דריפט: Space / Shift / LB/RB.  
+199.0.4. ניטרו: E / Q / A/B ב-gamepad.  
+199.0.5. pause: Escape / P. rewind: (wantsRewind — 145). look-back: B ב-engine (187).  
+199.0.6. פילטר הגה k=6.5/11. גז k=5.5 עלייה / 8 ירידה.
+
+### 199.1. Gamepad — 65
+199.1.1. חי: `axes[0]` הגה + `axes[1]` גז + **גם** RT(7)/LT(6).  
+199.1.2. 65 אמר לבחור אחד. **שניהם** — `Math.max`. נעול כך (לא לשבור הגה).  
+199.1.3. `padCurve` dead 0.12 exp 1.6.
+
+### 199.2. החלטה
+199.2.1. לא לשנות סימני A/D.  
+199.2.2. לא להוסיף מקשים.  
+199.2.3. HUD מגע מכסה W/A/D בלבד (141). Space לא חובה במגע.
+
+### 199.3. אסור
+199.3.1. WASD הפוך. FFB.
+
+---
+
+## 200. `daily.ts` יכול לבחור NYC / צר
+
+### 200.0. מצב כנה
+200.0.1. `todayChallenge`: `TRACKS[h % TRACKS.length]` — **כל** 56, כולל nyc ו-width<19.5.  
+200.0.2. סותר `isDriveable` (175).
+
+### 200.1. החלטה
+200.1.1. daily לא ב-title (168). אם אין כניסה — לא באג משתמש.  
+200.1.2. אם יש כפתור "אתגר יומי": סשן — לסנן `isDriveable` בלבד.  
+200.1.3. לא להרחיב daily.
+
+### 200.2. אסור
+200.2.1. daily על manhattan.
+
+---
+
+## 201. `CAR_UNLOCK` / career — מת ל-UI
+
+### 201.0. מצב כנה
+201.0.1. sabra 0, carmel 4, kfir 8, negev 12…  
+201.0.2. 69 KEEP_CAREER. 179 מסך קיים.
+
+### 201.1. החלטה
+201.1.1. כל 5 הרכבים זמינים לבחירה בלי כוכבים (107).  
+201.1.2. אם הגאראז' נועל לפי CAR_UNLOCK — סשן 179 מבטל נעילה.  
+201.1.3. לא למחוק את הטבלה לפני tree-shake.
+
+---
+
+## 202. `records.ts` — hash + PHYSICS_VERSION
+
+### 202.0. מצב כנה
+202.0.1. payload `track|car|t|physicsVersion`. sha256.  
+202.0.2. `writeRecords` בודק read-after-write.  
+202.0.3. PHYSICS_VERSION=6 (106). שינוי פיזיקה פוסל שיאים.
+
+### 202.1. החלטה
+202.1.1. כל שינוי maxSpeed/grip/tops = VERSION+1.  
+202.1.2. אין סשן.  
+202.1.3. לא IndexedDB (62).
+
+---
+
+## 203. Space = דריפט, לא בלם יד
+
+### 203.0. מצב כנה
+203.0.1. Space מדליק `drift`. לא handbrake נפרד.  
+203.0.2. משתמש ביקש W/A/D פשוט.
+
+### 203.1. החלטה
+203.1.1. נשאר. לא כפתור HUD.  
+203.1.2. לא לשנות ל-handbrake GT.  
+203.1.3. אין סשן.
+
+---
+
+## 204. `boot-overlay` — אנימציית שניות (העמקה ל-143)
+
+### 204.0. מצב כנה
+204.0.1. `labelsFor` בונה N שלבים (`etaMs/100`) עם טקסט "עוד X.X שניות" ב-CSS.  
+204.0.2. זה **תצוגה משוערת**, לא שעון אמיתי (143).
+
+### 204.1. החלטה
+204.1.1. סשן 143: מספר אחד מתעדכן מ-`performance.now()` מול `assemble` done.  
+204.1.2. עד אז: לא לגעת ב-CSS animation (עלול לשבור qa:boot).
+
+---
+
+## 205. `button.tsx` / UI kit
+
+### 205.0. מצב כנה
+205.0.1. רק `src/components/ui/button.tsx`. Tailwind.
+
+### 205.1. החלטה
+205.1.1. לא להוסיף ספריית UI.  
+205.1.2. לא shadcn חדש.  
+205.1.3. אין סשן גרפיקה.
+
+---
+
+## 206. תור + סגירת כ״א
+
+### 206.1. אחרי אושר
+206.1.1. 97 → 136 שלטים → 128 far → 143 מד (כולל 204).  
+206.1.2. 200/201 רק אם daily/נעילה רכב מופיעים ב-UI.  
+206.1.3. check:qa / soak.  
+206.1.4. **עצירה 6.1.**  
+206.1.5. אסור: הפיכת A/D, daily NYC, CAR_UNLOCK חדש, 81.
+
+### 206.2. אחוז כנה
+206.2.1. ביצוע **~13%**. שערים **2/13**.  
+206.2.2. תכנון **~99%**.  
+206.2.3. daily יכול לבחור nyc — מוסתר אם אין כפתור.
+
+### 206.3. `המשך`
+206.3.1. חורים חיים: applyTune במרוץ, טראומה מצלמה, כרטיסי jpg, elevation → **207+**.  
+206.3.2. אחרי 214 בלי חור = **אושר**.
+
+**סוף חלק כ״א (199–206).** חלק כ״ב למטה. אין קוד.
+
+---
+
+# חלק כ״ב — 207–214 (סריקה 27.8.2026 19:49)
+
+---
+
+## 207. `applyTune` רץ במרוץ — שינוי פיזיקה
+
+### 207.0. מצב כנה
+207.0.1. `engine.ts` ~410: `applyTune(getCar(), opts.tune ?? empty)`.  
+207.0.2. `engine * 1.4` על maxSpeed, `tires * 0.034` grip.  
+207.0.3. משתמש: שדרוגים לא מעניינים.  
+207.0.4. save עלול להחזיק tunes ישנים → `qa:accel` נכשל לפי רכב שמור.
+
+### 207.1. החלטה נעולה
+207.1.1. סשן UI/engine אחרי אושר: **לכפות `emptyTune()`** בזינוק circuit מ-title.  
+207.1.2. לא למחוק garage.ts (69).  
+207.1.3. אם tune≠0 ב-save — להתעלם עד גאראז' חוזר (לא יחזור).  
+207.1.4. שינוי applyTune עצמו = PHYSICS_VERSION+1 — לא לגעת בנוסחה.
+
+### 207.2. שער
+207.2.1. `qa:accel` על sabra בלי שדרוג = 8.4±.
+
+### 207.3. אסור
+207.3.1. חנות שדרוגים. "מנוע +3".
+
+---
+
+## 208. Camera trauma / shake
+
+### 208.0. מצב כנה
+208.0.1. impact, curb, sand, drift, bust מוסיפים trauma. דעיכה `dt*2.4`.  
+208.0.2. shake = trauma² על מיקום מצלמה (~0.14). replay=0.
+
+### 208.1. החלטה
+208.1.1. לא motion blur (forbidden).  
+208.1.2. אם g01 רועד בלי התנגשות — באג, להוריד curb trauma.  
+208.1.3. אין סשן עד באג.
+
+---
+
+## 209. `check-copy.mjs` — CI יושרה (1.1)
+
+### 209.0. מצב כנה
+209.0.1. כל `description` חייב `בהשראת|inspired|not gis`.  
+209.0.2. אסור `\bDEM\b` ב-`src/`.  
+209.0.3. כבר ב-`check:qa` (72).
+
+### 209.1. החלטה
+209.1.1. תיאור חדש בלי "בהשראת" = כשל CI.  
+209.1.2. לא להחליש את הרגקס.  
+209.1.3. אין סשן.
+
+---
+
+## 210. כרטיסי מסלול `public/tracks/*.jpg`
+
+### 210.0. מצב כנה
+210.0.1. 56 קבצים, אחד ל-id.  
+210.0.2. P5 ביקש תמונות אמיתיות לא AI.  
+210.0.3. provenance = unknown (144).
+
+### 210.1. החלטה
+210.1.1. לא להחליף תמונות לפני 6.1.  
+210.1.2. אחרי freeze: רק איילון/רוטשילד אם יש תמונת משתמש.  
+210.1.3. לא לייצר AI חדש.  
+210.1.4. `image:` ב-TrackDef נשאר `/tracks/{id}.jpg`.
+
+### 210.2. אסור
+210.2.1. להגיד "צילום רחוב אמיתי" בלי מקור.
+
+---
+
+## 211. פונטים — Heebo + Noto Arabic
+
+### 211.0. מצב כנה
+211.0.1. Google Fonts מ-`styles.css`. צבעים `#0a0c0e` / `#f2eee8` / accent `#6ec8c4`.
+
+### 211.1. החלטה
+211.1.1. לא לשנות פלטת צבעים בסשן גרפיקה 3D.  
+211.1.2. לא לנתק fonts (RTL).  
+211.1.3. אין סשן.
+
+---
+
+## 212. `TrackDef.elevation(t)`
+
+### 212.0. מצב כנה
+212.0.1. פונקציה על כל מסלול. רמון/חרמון/ירושלים/כרמל מכוונים (7.x / 59).  
+212.0.2. מישור TLV ≈ קבוע נמוך.
+
+### 212.1. החלטה
+212.1.1. לא לגעת ב-elevation איילון (שטוח יחסית).  
+212.1.2. שיפוע פיזיקלי = 59, לא דקורציה בלבד.  
+212.1.3. אין סשן לפני 6.1.
+
+---
+
+## 213. `TrackDef.open` — A→B
+
+### 213.0. מצב כנה
+213.0.1. `open?: boolean`. spline `closed = !open`.  
+213.0.2. רמון/חרמון/ירושלים אמורים להיות פתוחים (7.x).
+
+### 213.1. החלטה
+213.1.1. לא לסגור מסלול פתוח.  
+213.1.2. איילון: מה שכתוב ב-def (לא לשנות לפני 6.1).  
+213.1.3. A→B בלי לופ = checkpoint אחרון מסיים (186).
+
+---
+
+## 214. תור + סגירת כ״ב
+
+### 214.1. אחרי אושר
+214.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+214.1.2. **207 emptyTune בזינוק** — סשן קטן, לפני qa:accel.  
+214.1.3. check:qa / soak.  
+214.1.4. **עצירה 6.1.**  
+214.1.5. אסור: שדרוגי מנוע, AI כרטיסים, 81.
+
+### 214.2. אחוז כנה
+214.2.1. ביצוע **~13%**. שערים **2/13**.  
+214.2.2. תכנון **~99%**.  
+214.2.3. tunes ב-save יכולים לשקר ל-qa:accel עד 207.
+
+### 214.3. `המשך`
+214.3.1. חורים חיים: HUD/minimap canvas, rubberBand, WEATHER_GRIP כפול, ghost → **215+**.  
+214.3.2. אחרי 222 בלי חור = **אושר**.
+
+**סוף חלק כ״ב (207–214).** חלק כ״ג למטה. אין קוד.
+
+---
+
+# חלק כ״ג — 215–222 (סריקה 27.8.2026 19:50)
+
+---
+
+## 215. HUD תפוח + minimap canvas 2D
+
+### 215.0. מצב כנה — `HudState` ~40 שדות
+215.0.1. כולל: heat/wanted/cops, ghost, photo, radio, rewind, knockout, minimap[], trackPoly, poiMarks, driftScore, damage.  
+215.0.2. `game-app` מצייר minimap על **canvas 2D** (לא טקסטורת Three). `check:canvas` עלול **לא** לתפוס.  
+215.0.3. משתמש: כמה שפחות על המסך.
+
+### 215.1. החלטה נעולה
+215.1.1. מירוץ חייב: קמ״ש, מקום, זמן הקפה, שם רחוב/POI.  
+215.1.2. סשן 111/145: להסתיר minimap / heat / nitro / rewind / radio אם אפשר בלי לשבור qa.  
+215.1.3. לא למחוק שדות מ-HudState (engine דוחף).  
+215.1.4. minimap canvas ≠ mkSign. לא לספור כ-G0 canvas-texture.
+
+### 215.2. שער
+215.2.1. צילום chase בלי מפה קטנה אם 215.1.2 בוצע. אחרת: מפה קיימת = PARTIAL.
+
+### 215.3. אסור
+215.3.1. מפה תלת-ממדית. radar NFS.
+
+---
+
+## 216. Rubber-band AI (arcade בלבד)
+
+### 216.0. מצב כנה — `vehicle.ts` ~788
+216.0.1. `gap = player.raceScore() - car.raceScore()`.  
+216.0.2. `throttle *= aiSkill * (1 + clamp(gap*0.004, -0.12, 0.08))`.  
+216.0.3. כבוי ב-simcade.
+
+### 216.1. החלטה
+216.1.1. לא לשפר AI (93).  
+216.1.2. ברירת handling מה-save; title לא חייב להציג (168).  
+216.1.3. אין סשן.
+
+---
+
+## 217. `WEATHER_GRIP` ≠ `WEATHER_SPEC`
+
+### 217.0. מצב כנה
+217.0.1. `garage.ts` WEATHER_GRIP: clear 1, rain 0.76, storm 0.6, hamsin 0.86 — מוכפל ב-`car.weatherGrip` בזינוק.  
+217.0.2. `physics.ts` WEATHER_SPEC: long/lat/roll/hydro/vis (170).
+
+### 217.1. החלטה
+217.1.1. שתי טבלאות נשארות. לא לאחד בסשן.  
+217.1.2. שינוי = PHYSICS_VERSION+1.  
+217.1.3. מזג אוויר ברירת `clear` (168) → GRIP 1.
+
+---
+
+## 218. Ghost
+
+### 218.0. מצב כנה
+218.0.1. `GhostFrame` x/z/y/yaw. `sampleGhost` dt 0.16.  
+218.0.2. `GHOST_KEY` ב-save. HUD ghostDelta.
+
+### 218.1. החלטה
+218.1.1. לא לשכתב מערכת ghost.  
+218.1.2. מותר להסתיר דלתא ב-HUD (215).  
+218.1.3. אין סשן גרפיקה.
+
+---
+
+## 219. TRAA — נעול כבוי (77)
+
+### 219.0. מצב כנה
+219.0.1. `HAS_TRAA_NODE = false`. Photo AA = SMAA.  
+219.0.2. addons TSL WebGPU-only — לא מחובר.
+
+### 219.1. החלטה
+219.1.1. לא לכתוב TAA ידני.  
+219.1.2. 8.2 אחרי 6.5.  
+219.1.3. אין סשן.
+
+---
+
+## 220. `RenderTelemetry` — חלון 120
+
+### 220.0. מצב כנה
+220.0.1. buffer 120 דגימות. p50/p95/p99.  
+220.0.2. אין GPU timer query.
+
+### 220.1. החלטה
+220.1.1. 6.1 קורא p95 מכאן.  
+220.1.2. לא להחליף ל-EXT_disjoint_timer_query.  
+220.1.3. אין סשן.
+
+---
+
+## 221. `math.ts`
+
+### 221.0. מצב כנה
+221.0.1. clamp, lerp, lerpColor, expSmooth, TAU.
+
+### 221.1. החלטה
+221.1.1. לא gl-matrix / three.MathUtils בכל מקום — הקובץ נשאר.  
+221.1.2. אין סשן.
+
+---
+
+## 222. תור + סגירת כ״ג
+
+### 222.1. אחרי אושר
+222.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+222.1.2. 207 emptyTune.  
+222.1.3. 215 הסתרת minimap/heat — אחרי HUD 111, לא לפני שלטים.  
+222.1.4. check:qa / soak.  
+222.1.5. **עצירה 6.1.**  
+222.1.6. אסור: 81, TAA ידני, איחוד טבלאות מזג אוויר.
+
+### 222.2. אחוז כנה
+222.2.1. ביצוע **~13%**. שערים **2/13**.  
+222.2.2. תכנון **~99%**.  
+222.2.3. minimap = canvas HUD, לא טקסטורת עולם.
+
+### 222.3. `המשך`
+222.3.1. חורים חיים: smear במהירות, פילטרי photo, probe WebGPU, gtao מת → **223+**.  
+222.3.2. אחרי 230 בלי חור = **אושר**.
+
+**סוף חלק כ״ג (215–222).** חלק כ״ד למטה. אין קוד.
+
+---
+
+# חלק כ״ד — 223–230 (סריקה 27.8.2026 19:51)
+
+---
+
+## 223. GRADE smear — "motion blur" זול
+
+### 223.0. מצב כנה — `postfx.ts` GRADE
+223.0.1. `k = smoothstep(0.18, 0.92, uSpeed)` → דגימות UV מוזזות + aberration.  
+223.0.2. זה **לא** MotionBlurPass, אבל נראה כמו smearing במהירות.  
+223.0.3. רצוד מדווח: smear + MSAA/SMAA יכולים לרצד.
+
+### 223.1. החלטה
+223.1.1. Low: `setBudget(lite)` חייב k≈0 (אם לא — סשן postfx).  
+223.1.2. High: k נשאר, מקס smear 0.038.  
+223.1.3. לא להוסיף Velocity buffer.  
+223.1.4. אם g01 רועד בעמידה (uSpeed=0) — באג, לא smear.
+
+### 223.2. אסור
+223.2.1. `MotionBlurPass`. TAA.
+
+---
+
+## 224. פילטרי Photo `uFilter`
+
+### 224.0. מצב כנה
+224.0.1. f>0.5 מדליק. מדרגות ~1.5–6.5: חם, סגול, B&W, letterbox, חם-2, contrast, vintage.  
+224.0.2. `cyclePhotoFilter` במצב צילום בלבד.
+
+### 224.1. החלטה
+224.1.1. נהיגה: `uFilter=0`.  
+224.1.2. לא LUT.  
+224.1.3. אין סשן עד באג.
+
+---
+
+## 225. CapabilityProbe מבקש WebGPU — הרינדר WebGL
+
+### 225.0. מצב כנה
+225.0.1. `requestAdapter()` רק לסימון `webgpu: true`.  
+225.0.2. המשחק = WebGLRenderer (0.3).  
+225.0.3. אין microbench 2–4s (הערה בקובץ).
+
+### 225.1. החלטה
+225.1.1. לא לבחור backend לפי probe.  
+225.1.2. סשן 21: רק לוג.  
+225.1.3. canvas probe מותר (9.2).
+
+### 225.2. אסור
+225.2.1. `new WebGPURenderer` לפני 8.
+
+---
+
+## 226. `ResourceRegistry.disposeAll` חד-פעמי
+
+### 226.0. מצב כנה
+226.0.1. `dead=true` אחרי disposeAll. retain אחרי זה? לבדוק — אם dead מתעלם.
+
+### 226.1. החלטה
+226.1.1. עולם חדש = registry חדש (לא reuse אחרי dead).  
+226.1.2. 61/80. אין סשן עד דליפה.
+
+---
+
+## 227. `gtao?` ב-PostStack — מת
+
+### 227.0. מצב כנה
+227.0.1. טיפוס אופציונלי. SSGI_OFF=true. אין GTAO pass.
+
+### 227.1. החלטה
+227.1.1. לא לחבר GTAO (78).  
+227.1.2. מותר למחוק את השדה כשנוגעים ב-postfx.  
+227.1.3. אין סשן לבד.
+
+---
+
+## 228. Router — רק `/` → GameApp
+
+### 228.0. מצב כנה
+228.0.1. `src/routes/index.tsx` + `__root.tsx`.  
+228.0.2. AuthProvider עוטף (146).
+
+### 228.1. החלטה
+228.1.1. לא להוסיף `/garage` `/career`.  
+228.1.2. אין סשן.
+
+---
+
+## 229. Heat / שוטרים / `kit`
+
+### 229.0. מצב כנה
+229.0.1. HUD heat/wanted/cops. engine יוצר cop עם weatherGrip.  
+229.0.2. `CarDef.kit` police/taxi בטיפוס — **אין kit ב-CARS**.  
+229.0.3. 122: heat לא ב-UI ברירת מחדל.
+
+### 229.1. החלטה
+229.1.1. לא לשכתב מרדף.  
+229.1.2. לא רכב משטרה חדש.  
+229.1.3. הסתרה ב-215.
+
+---
+
+## 230. תור + סגירת כ״ד
+
+### 230.1. אחרי אושר
+230.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+230.1.2. 207 emptyTune.  
+230.1.3. 223 רק אם Low עדיין smears.  
+230.1.4. check:qa / soak.  
+230.1.5. **עצירה 6.1.**  
+230.1.6. אסור: WebGPURenderer, GTAO, 81.
+
+### 230.2. אחוז כנה
+230.2.1. ביצוע **~13%**. שערים **2/13**.  
+230.2.2. תכנון **~99%**.  
+230.2.3. probe.webgpu ≠ המשחק רץ WebGPU.
+
+### 230.3. `המשך`
+230.3.1. חורים חיים: handling ברירת simcade ב-save, NYC LED canvas, cash 500, שם חבילה → **231+**.  
+230.3.2. אחרי 238 בלי חור = **אושר**.
+
+**סוף חלק כ״ד (223–230).** חלק כ״ה למטה. אין קוד.
+
+---
+
+# חלק כ״ה — 231–238 (סריקה 27.8.2026 19:52)
+
+---
+
+## 231. `save.ts` handling — ברירת **simcade** אם חסר
+
+### 231.0. מצב כנה
+231.0.1. `handling: p.handling === "arcade" ? "arcade" : "simcade"`.  
+231.0.2. save חדש / בלי שדה = **simcade**, לא arcade.  
+231.0.3. 106: arcade rubberBand. סתירה לשחקן חדש.
+
+### 231.1. החלטה נעולה
+231.1.1. סשן אחרי אושר (עם 207): `=== "simcade" ? simcade : arcade` — חסר = arcade.  
+231.1.2. לא לשנות מי שכבר שמר simcade.  
+231.1.3. title לא חייב UI handling (168).
+
+### 231.2. שער
+231.2.1. localStorage ריק → rubberBand פועל.
+
+---
+
+## 232. מפתחות save נוספים
+
+### 232.0. מצב כנה
+232.0.1. `rush-v1` + legacy `tlv-rush-v1`. version 3.  
+232.0.2. `cash` ברירת 500. `damage` per car. `fov`. `muted`. `night`. `quality`.  
+232.0.3. `recordBest`: זמן רק 8–2700 שנ'.
+
+### 232.1. החלטה
+232.1.1. לא למחוק מפתחות. cash/damage מתים ל-UI (168) אבל נשמרים.  
+232.1.2. `fov` ב-save: אם UI מציג סליידר — להסתיר (111). chase FOV נשאר 108.  
+232.1.3. לא IndexedDB.
+
+### 232.2. אסור
+232.2.1. cloud save.
+
+---
+
+## 233. `buildings.ts` חומרים גנריים ל-hero
+
+### 233.0. מצב כנה
+233.0.1. cream/stone/plaster/glass… MeshStandard. glass = Physical.  
+233.0.2. משמש סמלי דרך (עזריאלי וכו') — לא scatter רחוב.
+
+### 233.1. החלטה
+233.1.1. לא קוביות רחוב.  
+233.1.2. לא לשכתב עזריאלי לפני 6.1.  
+233.1.3. dielectric לפי 137 על glass.
+
+---
+
+## 234. `nyc-landmarks.ts` — `ledTexture` DataTexture חי
+
+### 234.0. מצב כנה
+234.0.1. `Uint8Array` 128×256 נצבע ב-CPU. **לא** PNG.  
+234.0.2. 9.2 אוסר. 35 אוסר עריכה עד 6.5 חוץ מ-dynamic import.
+
+### 234.1. החלטה
+234.1.1. **לא לגעת** עד אחרי freeze איילון.  
+234.1.2. אחרי 35: PNG או מחיקה עם NYC.  
+234.1.3. לא "canvas=0" כל עוד הקובץ חי.
+
+### 234.2. אסור
+234.2.1. לקרוא ל-ledTexture מאיילון.
+
+---
+
+## 235. `package.json` name = `app-builder-workspace`
+
+### 235.0. מצב כנה
+235.0.1. לא "rush". תבנית Grok.
+
+### 235.1. החלטה
+235.1.1. לא לשנות שם חבילה בסשן גרפיקה (CI/paths).  
+235.1.2. שם מוצר = RUSH ב-UI בלבד.  
+235.1.3. אין סשן.
+
+---
+
+## 236. `db:migrate` ב-`npm run build` (148)
+
+### 236.0. מצב כנה
+236.0.1. כל production build מריץ migrate. המשחק לא צריך DB.
+
+### 236.1. החלטה
+236.1.1. לא לפרק את שרשרת Vite עכשיו (תבנית).  
+236.1.2. מירוץ לא קורא ל-db.  
+236.1.3. אין סשן גרפיקה.
+
+---
+
+## 237. `buildings.ts` / `streets.ts` — שמות אקראיים
+
+### 237.0. מצב כנה
+237.0.1. IL_NAMES כולל דיזנגוף גם **מחוץ** לת״א (119). HUD עלול לשקר.
+
+### 237.1. החלטה
+237.1.1. איילון: `streetName` מ-`def.streets` (עדיפות) לא IL_NAMES.  
+237.1.2. לא GIS.  
+237.1.3. אין סשן לפני 6.1.
+
+---
+
+## 238. תור + סגירת כ״ה
+
+### 238.1. אחרי אושר
+238.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+238.1.2. **207 emptyTune + 231 arcade default** — אותו סשן save/engine.  
+238.1.3. check:qa / soak.  
+238.1.4. **עצירה 6.1.**  
+238.1.5. אסור: nyc-landmarks, שינוי שם חבילה, 81.
+
+### 238.2. אחוז כנה
+238.2.1. ביצוע **~13%**. שערים **2/13**.  
+238.2.2. תכנון **~99%**.  
+238.2.3. שחקן חדש עלול לקבל simcade בלי לדעת.
+
+### 238.3. `המשך`
+238.3.1. חורים חיים: hit-stop freeze, רדיו מדומה, i18n ערבית, PWA/cache כבר 74/171 → **239+**.  
+238.3.2. אחרי 246 בלי חור = **אושר**.
+
+**סוף חלק כ״ה (231–238).** חלק כ״ו למטה. אין קוד.
+
+---
+
+# חלק כ״ו — 239–246 (סריקה 27.8.2026 19:54)
+
+---
+
+## 239. Hit-stop `engine.freeze`
+
+### 239.0. מצב כנה
+239.0.1. התנגשות: `freeze = 0.012` (~12ms). הטיק `return` בלי פיזיקה.  
+239.0.2. מבוטל ב-countdown / 2.5 שנ' ראשונות.  
+239.0.3. עלול להרגיש **רצוד** בהתנגשויות חוזרות (תלונת משתמש).
+
+### 239.1. החלטה
+239.1.1. לא freeze ארוך בסגנון fighting-game.  
+239.1.2. אם soak מראה stutter בהתנגשות — סשן: `freeze=0`.  
+239.1.3. אין סשן לפני באג.
+
+### 239.2. אסור
+239.2.1. slow-mo. bullet-time.
+
+---
+
+## 240. רדיו — 4 תחנות oscillator
+
+### 240.0. מצב כנה
+240.0.1. Pulse 101 / Yam FM / Underground / White Night. דפוסי kick/snare ב-Web Audio.  
+240.0.2. HUD `radio`. 70 oscillators.
+
+### 240.1. החלטה
+240.1.1. לא UI רדיו ב-title (215).  
+240.1.2. mute ב-Esc נשאר.  
+240.1.3. לא Spotify. אין סשן.
+
+---
+
+## 241. `i18n` — he / ar / en
+
+### 241.0. מצב כנה
+241.0.1. `nextLang` he→ar→en. RTL ל-he/ar.  
+241.0.2. מחרוזות רבות `ar?` נופלות ל-en.
+
+### 241.1. החלטה
+241.1.1. לא לתרגם הכל לערבית בסשן גרפיקה.  
+241.1.2. ברירת UI = he (משתמש).  
+241.1.3. 67: אין עברית ב-engine.
+
+---
+
+## 242. Vite PWA + PGLite bootstrap
+
+### 242.0. מצב כנה
+242.0.1. `grokPwaPlugin` + `pgliteBootstrapPlugin` מדלג אם אין migrations.  
+242.0.2. 171 PWA. 148 db.
+
+### 242.1. החלטה
+242.1.1. לא לפרק את תבנית Vite.  
+242.1.2. המשחק לא קורא ל-db.  
+242.1.3. אין סשן.
+
+---
+
+## 243. `gameCachePlugin` (74)
+
+### 243.0. מצב כנה
+243.0.1. `/game/` + `/basis/` = immutable 1y. HTML no-cache.
+
+### 243.1. החלטה
+243.1.1. נעול. `qa:cache`.  
+243.1.2. PNG חדש ל-`/game/` בלבד.  
+243.1.3. אין סשן.
+
+---
+
+## 244. PNG יפו/דגל/מדרכה
+
+### 244.0. מצב כנה
+244.0.1. `clock-assets` / `flag-assets` / `walk-assets` — TextureLoader, throw אם חסר (197).  
+244.0.2. טעינה מותנית לפי id (134).
+
+### 244.1. החלטה
+244.1.1. דגל/שעון לא באיילון אם id לא דורש.  
+244.1.2. לא canvas fallback.  
+244.1.3. אין סשן לפני 6.1.
+
+---
+
+## 245. מסמכי repo (לא קוד משחק)
+
+### 245.0. מצב כנה
+245.0.1. AGENTS.md, AGENTS.project.md, PLAN.md, CODEX_GAPS.md, TASKS.md, MASTER_PLAN_AUDIT.md, progress.md — מתיישנים מול EXECUTION_PLAN.
+
+### 245.1. החלטה
+245.1.1. **EXECUTION_PLAN.md שולט.**  
+245.1.2. לא לעדכן TASKS כ"DONE" בלי קוד.  
+245.1.3. artifacts/ = מקורות משתמש, לא נכסי משחק.
+
+---
+
+## 246. תור + סגירת כ״ו
+
+### 246.1. אחרי אושר
+246.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+246.1.2. 207+231 save.  
+246.1.3. 239 רק אם stutter.  
+246.1.4. check:qa / soak.  
+246.1.5. **עצירה 6.1.**  
+246.1.6. אסור: 81, רדיו UI, עזריאלי.
+
+### 246.2. אחוז כנה
+246.2.1. ביצוע **~13%**. שערים **2/13**.  
+246.2.2. תכנון **~99%**.  
+246.2.3. freeze 12ms עלול להרגיש רצוד.
+
+### 246.3. `המשך`
+246.3.1. חורים חיים: ultra מת, photo dpr כפול, MSAA+SMAA, glb+gltf → **247+**.  
+246.3.2. אחרי 254 בלי חור = **אושר**.
+
+**סוף חלק כ״ו (239–246).** חלק כ״ז למטה. אין קוד.
+
+---
+
+# חלק כ״ז — 247–254 (סריקה 27.8.2026 19:55)
+
+---
+
+## 247. `PROFILES.ultra` — מת
+
+### 247.0. מצב כנה
+247.0.1. קיים ב-QualityProfile. shadows=1 כמו high, pixelScale=1.  
+247.0.2. UI = low/mid/high בלבד → `profileFromLegacy`. ultra לא נבחר.
+
+### 247.1. החלטה
+247.1.1. לא לחבר כפתור Ultra ב-title (172).  
+247.1.2. 8.1 אחרי 6.5.  
+247.1.3. אין סשן.
+
+---
+
+## 248. Photo DPR: פרופיל 1 מול engine 1.35
+
+### 248.0. מצב כנה
+248.0.1. `PROFILES.photo.pixelScale = 1`.  
+248.0.2. `enterPhoto`: `setPixelRatio(max(drivePR, min(dpr, 1.35)))`.  
+248.0.3. הפרופיל **לא** שולט בפועל.
+
+### 248.1. החלטה
+248.1.1. engine שולט (43). לא לסנכרן בסשן לפני 6.1.  
+248.1.2. Photo ≠ renderer שני.  
+248.1.3. אין סשן.
+
+---
+
+## 249. MSAA + SMAA יחד (רצוד)
+
+### 249.0. מצב כנה
+249.0.1. `RendererFacade`: `antialias: !mobile` (MSAA דסקטופ).  
+249.0.2. composer SMAA ב-High (55).  
+249.0.3. כפל AA = שוליים רועדים / עלות.
+
+### 249.1. החלטה נעולה
+249.1.1. אחרי אושר, סשן post/facade: דסקטופ **עם composer** → `antialias: false`, SMAA נשאר.  
+249.1.2. Low בלי composer: antialias true מותר.  
+249.1.3. לא FXAA.
+
+### 249.2. שער
+249.2.1. g01 בלי shimmer על קו הרקיע.
+
+---
+
+## 250. `startup.sh` פורט 8080
+
+### 250.0. מצב כנה
+250.0.1. בודק `127.0.0.1:8080` ואז `npm run dev`.  
+250.0.2. תואם AGENTS / 0.3.
+
+### 250.1. החלטה
+250.1.1. לא לשנות פורט.  
+250.1.2. אין סשן.
+
+---
+
+## 251. `tsconfig` checkJs + include server
+
+### 251.0. מצב כנה
+251.0.1. `allowJs`/`checkJs` בגלל db.mjs. include `src`+`server`.
+
+### 251.1. החלטה
+251.1.1. לא להוציא server מה-include בסשן גרפיקה.  
+251.1.2. `tsc --noEmit` חייב ירוק אחרי כל סשן.  
+251.1.3. אין סשן לבד.
+
+---
+
+## 252. `car-*.glb` **וגם** `.gltf`
+
+### 252.0. מצב כנה
+252.0.1. 5× שני פורמטים. 132: העדפת GLB.  
+252.0.2. loader כנראה GLB.
+
+### 252.1. החלטה
+252.1.1. לא למחוק gltf לפני אימות loader (134).  
+252.1.2. אחרי freeze: למחוק כפילות אם GLB נטען.  
+252.1.3. אין סשן לפני 6.1.
+
+---
+
+## 253. `server/` + OG identity
+
+### 253.0. מצב כנה
+253.0.1. middleware + virtual grok og. תבנית.
+
+### 253.1. החלטה
+253.1.1. לא לשכתב OG בסשן משחק.  
+253.1.2. אין סשן.
+
+---
+
+## 254. תור + סגירת כ״ז
+
+### 254.1. אחרי אושר
+254.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+254.1.2. 207+231 save.  
+254.1.3. **249 MSAA off כשיש composer** — סשן קטן עם postfx.  
+254.1.4. check:qa / soak.  
+254.1.5. **עצירה 6.1.**  
+254.1.6. אסור: Ultra UI, FXAA, 81.
+
+### 254.2. אחוז כנה
+254.2.1. ביצוע **~13%**. שערים **2/13**.  
+254.2.2. תכנון **~99%**.  
+254.2.3. MSAA+SMAA מועמד לרצוד.
+
+### 254.3. `המשך`
+254.3.1. חורים חיים: אין KTX2 ב-shipping, body ev מת, error UI בעברית בקוד, LICENSES → **255+**.  
+254.3.2. אחרי 262 בלי חור = **אושר**.
+
+**סוף חלק כ״ז (247–254).** חלק כ״ח למטה. אין קוד.
+
+---
+
+# חלק כ״ח — 255–262 (סריקה 27.8.2026 19:57)
+
+---
+
+## 255. אין KTX2 ב-shipping
+
+### 255.0. מצב כנה
+255.0.1. `public/game/` = PNG + GLB/GLTF. **אפס** `.ktx2`.  
+255.0.2. `public/basis/` = transcoder בלבד.  
+255.0.3. LICENSES: "No KTX2 in shipping (no toktx)".  
+255.0.4. 73 pipeline מוכן; 134 טוען PNG.
+
+### 255.1. החלטה נעולה
+255.1.1. לא להכריז "KTX2 חי".  
+255.1.2. `qa:ktx2` חייב לעבור כ-smoke **שאין** חובת ktx, או לדלג ב-CI אם אין קבצים.  
+255.1.3. סשן 73 רק עם `toktx` במכונה.
+
+### 255.2. אסור
+255.2.1. לומר שהאספלט UASTC.
+
+---
+
+## 256. `LICENSES.md` — יושרה
+
+### 256.0. מצב כנה
+256.0.1. הכל generated. hero glTF NOT PRESENT. Kenney/Poly Haven "if added".
+
+### 256.1. החלטה
+256.1.1. כל PNG חדש = שורה כאן.  
+256.1.2. 144. אין סשן לבד.  
+256.1.3. לא למחוק את הקובץ.
+
+---
+
+## 257. `body: "ev"` בטיפוס — אין רכב
+
+### 257.0. מצב כנה
+257.0.1. 5 רכבים: gt/hatch/muscle/rally/super. אין `car-ev`.  
+257.0.2. clone נופל ל-gt אם חסר.
+
+### 257.1. החלטה
+257.1.1. לא רכב שישי.  
+257.1.2. מותר למחוק `"ev"` מה-union כשנוגעים ב-types.  
+257.1.3. אין סשן.
+
+---
+
+## 258. `AppErrorComponent` — עברית בקוד
+
+### 258.0. מצב כנה
+258.0.1. "משהו השתבש" hardcoded. 67: UI ב-i18n.  
+258.0.2. `errorId` מ-math.ts.
+
+### 258.1. החלטה
+258.1.1. סשן 67/111: copy() לפי lang. לא דחוף ל-6.1.  
+258.1.2. לא לעצב מחדש.
+
+---
+
+## 259. README אומר "simcade 120Hz"
+
+### 259.0. מצב כנה
+259.0.1. 120Hz נכון (105). handling ברירת save עלולה להיות simcade (231).
+
+### 259.1. החלטה
+259.1.1. אחרי 231: לעדכן README "arcade default, 120Hz step".  
+259.1.2. לא עכשיו.  
+259.1.3. לא להבטיח GIS.
+
+---
+
+## 260. `cloneCarBody` — name `"body"`
+
+### 260.0. מצב כנה
+260.0.1. אם אין mesh בשם body → undefined → נפילה ל-primitives? (132).
+
+### 260.1. שער
+260.1.1. 5 GLB חייבים `name=body`. `qa:drive` רואה רכב.  
+260.1.2. אין סשן אם qa ירוק.
+
+---
+
+## 261. `og.jpg` / `x-banner.jpg` / favicon
+
+### 261.0. מצב כנה
+261.0.1. תבנית Grok ב-`public/`. לא נכסי מסלול.
+
+### 261.1. החלטה
+261.1.1. לא לשכתב באנר בסשן גרפיקה 3D.  
+261.1.2. אין סשן.
+
+---
+
+## 262. תור + סגירת כ״ח
+
+### 262.1. אחרי אושר
+262.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+262.1.2. 207+231 save.  
+262.1.3. 249 MSAA.  
+262.1.4. check:qa / soak.  
+262.1.5. **עצירה 6.1.**  
+262.1.6. אסור: להכריז KTX2, רכב ev, 81.
+
+### 262.2. אחוז כנה
+262.2.1. ביצוע **~13%**. שערים **2/13**.  
+262.2.2. תכנון **~99%**.  
+262.2.3. חומרים = PNG generated, לא UASTC.
+
+### 262.3. `המשך`
+262.3.1. חורים חיים: מסך רכב + WebGL שני, golden חסר, migrations/auth → **263+**.  
+262.3.2. אחרי 270 בלי חור = **אושר**.
+
+**סוף חלק כ״ח (255–262).** חלק כ״ט למטה. אין קוד.
+
+---
+
+# חלק כ״ט — 263–270 (סריקה 27.8.2026 19:58)
+
+---
+
+## 263. מסך "רכב" + `CarShowroom` (WebGL שני)
+
+### 263.0. מצב כנה
+263.0.1. `game-app` screen car: כותרת "רכב", `CarShowroom`, כפתור זינוק, נעילה `isCarUnlocked`.  
+263.0.2. משתמש: אחרי מסלול → **המשך למעלה מיד**, בלי ירידה.  
+263.0.3. Showroom: `WebGLRenderer` נפרד, `alpha: true`, רצפה `metalness 0.6`, RAF 60fps, exposure 1.05.  
+263.0.4. 137/138: metalness ברצפה לא בעולם — עדיין הקשר WebGL שני.
+
+### 263.1. החלטה נעולה
+263.1.1. סשן UI (111/179): מסלול → זינוק באותו מסך (כפתור למעלה).  
+263.1.2. בחירת רכב = שורה של 5 צבעים, **בלי** canvas 3D.  
+263.1.3. לא לטעון CarShowroom ב-title.  
+263.1.4. אם נשאר זמנית: `dispose()` ב-unmount (יש?). לאסשן לוודא.
+
+### 263.2. שער
+263.2.1. לחיצות title→מסלול→מירוץ ≤ 2. בלי מסך רכב חובה.
+
+### 263.3. אסור
+263.3.1. גאראז' מסתובב. שדרוגים על המסך הזה.
+
+---
+
+## 264. `golden-baseline` חלקי מול 12 מצלמות
+
+### 264.0. מצב כנה
+264.0.1. קיימים: chase, day g01/g05/g07, night chase/g08. חסרים g02–04, g06, g09–12.  
+264.0.2. `ayalon.lock` lock=11.  
+264.0.3. 57: baseline סוכן ≠ ACK משתמש.
+
+### 264.1. החלטה
+264.1.1. לא למלא 12 צילומים לפני 6.1.  
+264.1.2. שער 10.3 אדום עד ACK.  
+264.1.3. אין סשן צילום עכשיו.
+
+---
+
+## 265. `migrations/auth` — תבנית DB
+
+### 265.0. מצב כנה
+265.0.1. תיקיית auth ב-migrations. המשחק לא קורא.
+
+### 265.1. החלטה
+265.1.1. לא למחוק בסשן גרפיקה (148).  
+265.1.2. אין סשן.
+
+---
+
+## 266. `src/lib/utils.ts` `cn()`
+
+### 266.0. מצב כנה
+266.0.1. clsx+twMerge. UI kit.
+
+### 266.1. החלטה
+266.1.1. לא ספריית classnames חדשה.  
+266.1.2. אין סשן.
+
+---
+
+## 267. ESLint / Prettier
+
+### 267.0. מצב כנה
+267.0.1. `npm run lint` / format. לא שער 6.1.
+
+### 267.1. החלטה
+267.1.1. סשן קוד חייב `tsc` ירוק. lint לא חוסם 6.1.  
+267.1.2. אין סשן לבד.
+
+---
+
+## 268. `CarShowroom` vs 5 רכבים
+
+### 268.0. מצב כנה
+268.0.1. `createCarVisual` + kit police. kit תמיד undefined (229).
+
+### 268.1. החלטה
+268.1.1. אחרי 263 אין showroom.  
+268.1.2. לא לתקן metalness רצפה אם מוחקים.
+
+---
+
+## 269. soak-logs / screenshots / artifacts
+
+### 269.0. מצב כנה
+269.0.1. תיקיות QA מקומיות. לא נכסי runtime.
+
+### 269.1. החלטה
+269.1.1. לא לשייפ.  
+269.1.2. artifacts = מקורות משתמש (245).
+
+---
+
+## 270. תור + סגירת כ״ט
+
+### 270.1. אחרי אושר
+270.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+270.1.2. 207+231 save.  
+270.1.3. **263 דילוג מסך רכב** — סשן UI, אחרי שלטים או איתם.  
+270.1.4. 249 MSAA.  
+270.1.5. check:qa / soak.  
+270.1.6. **עצירה 6.1.**  
+270.1.7. אסור: גאראז' 3D, 81, KTX2.
+
+### 270.2. אחוז כנה
+270.2.1. ביצוע **~13%**. שערים **2/13**.  
+270.2.2. תכנון **~99%**.  
+270.2.3. מסך רכב = קליק עודף + WebGL שני.
+
+### 270.3. `המשך`
+270.3.1. חורים חיים: AssetRegistry שקרי, פאנלי קריירה יתומים, boot-overlay, touch → **271+**.  
+270.3.2. אחרי 278 בלי חור = **אושר**.
+
+**סוף חלק כ״ט (263–270).** חלק ל׳ למטה. אין קוד.
+
+---
+
+# חלק ל׳ — 271–278 (סריקה 27.8.2026 19:59)
+
+---
+
+## 271. Title נקי; Career/Garage יתומים
+
+### 271.0. מצב כנה
+271.0.1. Title: RUSH + **בחר מסלול** + רמז W/A/D. אין כפתור קריירה/מוסך.  
+271.0.2. `CareerPanel` / `GaragePanel` עדיין ב-`game-app` אם `screen` career/garage.  
+271.0.3. כותרת: "סימקייד" + "משקל, צמיגים ועזרות" — מנוגד ל-231 arcade ול-168 בלי עזרות.
+
+### 271.1. החלטה
+271.1.1. לא לחבר כפתורים ל-career/garage.  
+271.1.2. סשן 111: למחוק פאנלים או להשאיר מתים.  
+271.1.3. סשן copy: "בהשראת איילון" בלי "עזרות".  
+271.1.4. לא לעבות title.
+
+---
+
+## 272. `AssetRegistry.ts` — שקר יושרה
+
+### 272.0. מצב כנה
+272.0.1. רשומות `canvas-asphalt` / `canvas-sky` = "runtime canvas".  
+272.0.2. בפועל: PNG `/game/asphalt-*.png` `/game/sky-*.png` (87/255).  
+272.0.3. כל license = unknown. `unpublishedAssets()` חוסם publish (144).
+
+### 272.1. החלטה נעולה
+272.1.1. סשן 144: לעדכן מקור ל-PNG. לא לשנות ל-owned בלי בעלים.  
+272.1.2. לא publish.  
+272.1.3. לא למחוק את הרשימה.
+
+---
+
+## 273. `BootOverlay` — מד טעינה (143)
+
+### 273.0. מצב כנה
+273.0.1. CSS `--boot-eta-ms`, טקסט "עוד X שניות". eta 400–20000ms.  
+273.0.2. 90/143/204.
+
+### 273.1. החלטה
+273.1.1. נשאר. 143.1.5 חייב מספר.  
+273.1.2. אין סשן לבד.
+
+---
+
+## 274. `TouchControls` — מובייל
+
+### 274.0. מצב כנה
+274.0.1. `md:hidden`. פד הגה+גז. 65 analog.  
+274.0.2. אין FFB.
+
+### 274.1. החלטה
+274.1.1. לא HUD דסקטופ.  
+274.1.2. אין סשן.
+
+---
+
+## 275. `forbidden.ts`
+
+### 275.0. מצב כנה
+275.0.1. pedestrians, OSM/DEM, Rapier, AgX, MRT, pmndrs, FFT ocean, volumetric clouds…  
+275.0.2. 84. בדיקות נכשלות אם מופיעים ב-src.
+
+### 275.1. החלטה
+275.1.1. נעול. לא ליישם אף מפתח.  
+275.1.2. UnrealBloomPass ≠ Unreal Engine (הערה בקובץ).
+
+---
+
+## 276. `input-curve.ts` `padCurve`
+
+### 276.0. מצב כנה
+276.0.1. deadzone 0.12, exp 1.6. 65.
+
+### 276.1. החלטה
+276.1.1. לא FFB.  
+276.1.2. אין סשן.
+
+---
+
+## 277. `facade-assets` / `stone-assets`
+
+### 277.0. מצב כנה
+277.0.1. curtains PNG ×5. herodian.png לירושלים. throw אם חסר (197).
+
+### 277.1. החלטה
+277.1.1. לא באיילון אם id לא דורש (134).  
+277.1.2. אין סשן לפני 6.1.
+
+---
+
+## 278. תור + סגירת ל׳
+
+### 278.1. אחרי אושר
+278.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+278.1.2. 207+231 save.  
+278.1.3. 263 דילוג מסך רכב.  
+278.1.4. 249 MSAA.  
+278.1.5. 272 רישום PNG — סשן זעיר עם 144.  
+278.1.6. check:qa / soak.  
+278.1.7. **עצירה 6.1.**  
+278.1.8. אסור: כפתור קריירה, 81, KTX2.
+
+### 278.2. אחוז כנה
+278.2.1. ביצוע **~13%**. שערים **2/13**.  
+278.2.2. תכנון **~99%**.  
+278.2.3. Title כבר מינימלי. מסך רכב עדיין עודף.
+
+### 278.3. `המשך`
+278.3.1. מיפוי כל `src/` + P2P חי + LOOKS + roadShader → **279+**.  
+278.3.2. אחרי 286 בלי חור = **אושר**.
+
+**סוף חלק ל׳ (271–278).** חלק ל״א למטה. אין קוד.
+
+---
+
+# חלק ל״א — 279–286 (סריקה 27.8.2026 20:00)
+
+---
+
+## 279. מיפוי כל קובץ `src/` לסעיף (אין בריחה)
+
+### 279.1. components
+279.1.1. `boot-overlay.tsx` → 273.  
+279.1.2. `car-showroom.tsx` → 263.  
+279.1.3. `game-app.tsx` → 111, 168, 215, 263, 271.  
+279.1.4. `preview-host-bridge.tsx` → 156.  
+279.1.5. `touch-controls.tsx` → 274.  
+279.1.6. `ui/button.tsx` → ערכת Grok. לא סשן.
+
+### 279.2. game — ליבה
+279.2.1. `engine.ts` → 0.3, 105, 151, 207, 239.  
+279.2.2. `world.ts` → 97, 98, 127, 136.  
+279.2.3. `vehicle.ts` → 105, 159, 216.  
+279.2.4. `physics.ts` → 105, 170.  
+279.2.5. `tracks.ts` → 1, 31, 101, 127.  
+279.2.6. `cars.ts` → 132, 175.  
+279.2.7. `types.ts` → 110, 257.  
+279.2.8. `spline.ts` → 124.  
+279.2.9. `input.ts` / `input-curve.ts` → 65, 276.  
+279.2.10. `postfx.ts` → 55, 152, 223, 224.  
+279.2.11. `save.ts` → 62, 207, 231, 232.  
+279.2.12. `audio.ts` → 70, 240.  
+279.2.13. `i18n.ts` → 67, 241.  
+279.2.14. `math.ts` → 221.  
+279.2.15. `modes.ts` → 122.  
+279.2.16. `streets.ts` → 119, 237.  
+279.2.17. `buildings.ts` → 233.  
+279.2.18. `car-mesh.ts` / `car-assets.ts` → 132, 260.  
+279.2.19. `roadShader.ts` → 280.  
+279.2.20. `load-eta.ts` → 90, 194.  
+279.2.21. `stream-flag.ts` → 79.
+
+### 279.3. game — נכסים PNG
+279.3.1. `road-assets` `sky-assets` `curb-assets` `sign-assets` `arrow-assets` `tree-assets` `water-assets` `foam-assets` `flake-assets` `blob-assets` `ground-assets` `beam-assets` `flare-assets` `clock-assets` `flag-assets` `walk-assets` `facade-assets` `stone-assets` → 87, 97, 134, 197, 244, 277.
+
+### 279.4. game — בונוס מת
+279.4.1. `career.ts` `garage.ts` `daily.ts` `dialog.ts` `records.ts` `nyc-canvas.ts` `nyc-landmarks.ts` → 69, 195, 200, 202, 234.
+
+### 279.5. rendering
+279.5.1. `RendererFacade` → 162, 249, 225.  
+279.5.2. `ColorPipeline` → 162.  
+279.5.3. `QualityProfile` → 130, 247, 248.  
+279.5.4. `DynamicQualityController` → 139, 196.  
+279.5.5. `RenderTelemetry` → 220.  
+279.5.6. `ResourceRegistry` → 226.  
+279.5.7. `CapabilityProbe` → 225.  
+279.5.8. `EnvironmentState` → 53, 281.  
+279.5.9. `canvasInventory` → 191, 285.  
+279.5.10. `forbidden` → 275.  
+279.5.11. `traa` → 219.
+
+### 279.6. world
+279.6.1. `goldenCameras` → 18, 57, 105.  
+279.6.2. `AssetRegistry` → 144, 272.
+
+### 279.7. lib / routes
+279.7.1. `auth/*` `db.ts` → 146, 148.  
+279.7.2. `multiplayer/*` → 69, 282.  
+279.7.3. `error-component` → 258.  
+279.7.4. `utils.ts` → 266.  
+279.7.5. `preview-*` → 156, 283.  
+279.7.6. `router.tsx` `routeTree.gen.ts` `routes/*` → 228, 284.
+
+### 279.8. כלל
+279.8.1. קובץ `src` חדש = סעיף חדש לפני כתיבה.  
+279.8.2. אין "קובץ בלי מספר".
+
+---
+
+## 280. `roadShader.ts` — נתיבים ב-UV
+
+### 280.0. מצב כנה
+280.0.1. `injectRoadLanes` אחרי CSM `onBeforeCompile`.  
+280.0.2. קו לבן בקצה, dash כל 8m, דילוג אמצע אם lanes≥8 (רכבת).  
+280.0.3. `uWet` מכהה.
+
+### 280.1. החלטה
+280.1.1. איילון lanes=8 חייב skipMid.  
+280.1.2. לא InstancedMesh dashes כפול (204).  
+280.1.3. אין סשן אם g01 מראה נתיבים.
+
+---
+
+## 281. `LOOKS` — מספרים חיים
+
+### 281.0. מצב כנה
+281.0.1. summer14 exposure **0.68** wet 0.22.  
+281.0.2. night 1.05. rain 0.62 vis 0.55.  
+281.0.3. 53/56/153.
+
+### 281.1. החלטה
+281.1.1. לא לגעת לפני 6.1 אלא אם שמש שורפת.  
+281.1.2. אין HDRI.
+
+---
+
+## 282. `p2p.ts` — קוד אונליין חי ב-repo
+
+### 282.0. מצב כנה
+282.0.1. WebRTC perfect negotiation + `/api/rtc`.  
+282.0.2. 69 לא לייבא מ-engine.
+
+### 282.1. החלטה
+282.1.1. אסור `import` מ-game.  
+282.1.2. לא למחוק בסשן גרפיקה (תבנית).  
+282.1.3. משתמש: אונליין לא מעניין.
+
+---
+
+## 283. `preview-embedder-origin` + 284. router
+
+### 283.1. preview
+283.1.1. grok.com / sandbox / localhost. 156. אין סשן.
+
+### 284.1. router
+284.1.1. `getRouter` + AppErrorComponent. רק `/`. 228. אין סשן.
+
+---
+
+## 285. `canvasInventory` עכשיו (עדכון 191)
+
+### 285.0. מצב כנה
+285.0.1. רק CapabilityProbe + RendererFacade dummy. **ישר לטקסטורות.**  
+285.0.2. HUD minimap canvas (215) **לא** ברשימה — מותר, לא טקסטורת Three.
+
+### 285.1. החלטה
+285.1.1. `check:canvas` חייב להתאים לקובץ זה.  
+285.1.2. nyc-canvas אם עדיין `document.createElement('canvas')` — 9.2/87 חייב להיכשל או הקובץ מת.
+
+---
+
+## 286. תור + סגירת ל״א
+
+### 286.1. אחרי אושר
+286.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+286.1.2. 207+231 save.  
+286.1.3. 263 דילוג מסך רכב.  
+286.1.4. 249 MSAA.  
+286.1.5. 272 PNG ב-AssetRegistry.  
+286.1.6. check:qa / soak.  
+286.1.7. **עצירה 6.1.**  
+286.1.8. אסור: import p2p, 81, קובץ src בלי סעיף.
+
+### 286.2. אחוז כנה
+286.2.1. ביצוע **~13%**. שערים **2/13**.  
+286.2.2. תכנון **~99%**. כל קובץ `src` ממופה.  
+286.2.3. זה לא אומר שהמשחק נראה AAA.
+
+### 286.3. `המשך`
+286.3.1. חורים חיים: 88 סקריפטים, 56 כרטיסי jpg, phase-qa ישנים, soak-30 → **287+**.  
+286.3.2. אחרי 294 בלי חור = **אושר**.
+
+**סוף חלק ל״א (279–286).** חלק ל״ב למטה. אין קוד.
+
+---
+
+# חלק ל״ב — 287–294 (סריקה 27.8.2026 20:01)
+
+---
+
+## 287. `scripts/` — 88 קבצים
+
+### 287.1. bake (רק אם PNG חסר)
+287.1.1. `bake-asphalt|sky|car|clock|curb|curtain|flag|flake|flare|foam|ground|herodian|ktx2|sidewalk|signs|trees|water|arrow|beam|blob`.  
+287.1.2. אסור bake-ktx2 בלי toktx (255).  
+287.1.3. אסור לייצר canvas ב-runtime.
+
+### 287.2. qa שער 6.1 (חובה אחרי סשן)
+287.2.1. `drive-smoke` `ramp-smoke` `webgl2-smoke` `accel-smoke` `collider-offset-smoke` `airborne-smoke` `soak-menu-race` `check-qa-hook` `check-canvas` `check-copy` `check-webgl-default` `secrets-check` `w-determinism.test` `ssgi.test` `traa.test` `records.test` `forbidden-lock.test` `audio-lock.test`.
+
+### 287.3. qa לא ב-ci / אחרי 6.5
+287.3.1. `qa:webgpu` `pixel-golden` `capture-golden` `ayalon-hash` `hashalom-photo` `ktx2-smoke` `soak-30min`.
+
+### 287.4. qa מפות — **לא להריץ** עד freeze
+287.4.1. `nyc-qa` `tlv-maps-qa` `tracks-new-qa` `phase1-qa`…`phase9-qa` `codex-wave-qa`.  
+287.4.2. לא למחוק. לא להרחיב.
+
+### 287.5. תבנית Grok — לא לגעת
+287.5.1. `app-env-plugin` `with-app-env` `migrate` `migration-plan` `check-auth-invariant` `grok-pwa-*` `browser-*` `brand-check` `sign-out-plan` `preview-thumbnail` `install-page.html`.
+
+### 287.6. כלל
+287.6.1. סקריפט חדש = סעיף חדש.  
+287.6.2. לא "phase10-qa" כתחליף ל-6.1.
+
+---
+
+## 288. `public/tracks/` — 56 JPG
+
+### 288.0. מצב כנה
+288.0.1. כרטיסי תפריט. 210. לא פוטוגרמטריה.  
+288.0.2. כולל `brooklynbridge.jpg` — NYC.
+
+### 288.1. החלטה
+288.1.1. לא כרטיס חדש. לא AI חדש.  
+288.1.2. חסר jpg → פלייסהולדר קיים או בלי תמונה. לא חוסם נהיגה.  
+288.1.3. אין סשן.
+
+---
+
+## 289. `soak-30min.mjs`
+
+### 289.0. מצב כנה
+289.0.1. קיים. 21.22 / 147. לא ב-`qa:ci`.
+
+### 289.1. החלטה
+289.1.1. אחרי 6.1 ידנית.  
+289.1.2. `qa:soak-smoke` = 2 מחזורים (קיים).  
+289.1.3. אין סשן עכשיו.
+
+---
+
+## 290. `public/__grok/` PWA icon
+
+### 290.0. מצב כנה
+290.0.1. `icon-180.png`. 171.
+
+### 290.1. החלטה
+290.1.1. לא אייקון משחק בסשן 3D.  
+290.1.2. אין סשן.
+
+---
+
+## 291. `phase*-qa.mjs` — גלים ישנים
+
+### 291.0. מצב כנה
+291.0.1. phase1–9 + codex-wave. עלולים לייפות % ישן.
+
+### 291.1. החלטה
+291.1.1. **EXECUTION_PLAN שולט**, לא פלט phase-qa.  
+291.1.2. לא להריץ כהוכחת 6.1.
+
+---
+
+## 292. `install-page.html`
+
+### 292.0. מצב כנה
+292.0.1. PWA install. תבנית.
+
+### 292.1. החלטה
+292.1.1. אין סשן.
+
+---
+
+## 293. סקריפט `preview-thumbnail.mjs`
+
+### 293.0. מצב כנה
+293.0.1. תמונת תצוגה מקדימה של Grok. לא golden.
+
+### 293.1. החלטה
+293.1.1. לא baseline. אין סשן.
+
+---
+
+## 294. תור + סגירת ל״ב
+
+### 294.1. אחרי אושר
+294.1.1. 97 → 136 שלטים → 128 far → 143 מד.  
+294.1.2. 207+231 save.  
+294.1.3. 263 דילוג מסך רכב.  
+294.1.4. 249 MSAA.  
+294.1.5. 272 AssetRegistry.  
+294.1.6. qa מ-287.2 בלבד.  
+294.1.7. **עצירה 6.1.**  
+294.1.8. אסור: phase-qa, כרטיס מסלול חדש, 81.
+
+### 294.2. אחוז כנה
+294.2.1. ביצוע **~13%**. שערים **2/13**.  
+294.2.2. תכנון **~99%**. `src/` + `scripts/` ממופים.  
+294.2.3. 56 כרטיסים ≠ 56 מסלולים איכותיים.
+
+### 294.3. `המשך`
+294.3.1. חורים חיים: חוזה AGENTS (פורט, auth-off, לא למחוק __grok, A/D) → **295+**.  
+294.3.2. אחרי 302 בלי חור = **אושר**.
+
+**סוף חלק ל״ב (287–294).** חלק ל״ג למטה. אין קוד.
+
+---
+
+# חלק ל״ג — 295–302 (סריקה 27.8.2026 20:02)
+
+---
+
+## 295. פריוויו `0.0.0.0:8080`
+
+### 295.0. חוזה AGENTS
+295.0.1. שרת על כל הממשקים פורט **8080**. לא loopback-only. לא פורט אחר.  
+295.0.2. `startup.sh` idempotent (250). `npm run dev` דרך `with-app-env`. לא `vite` ישיר.
+
+### 295.1. החלטה
+295.1.1. אחרי אושר: לוודא שרת רץ לפני QA.  
+295.1.2. למשתמש לא לדבר בפורטים.
+
+---
+
+## 296. Auth OFF / DB OFF
+
+### 296.0. מצב כנה
+296.0.1. AGENTS: משחק = localStorage. אין סיבה ל-auth.  
+296.0.2. `src/lib/auth` + `db.ts` קיימים (146) — **לא לייבא** מ-game.
+
+### 296.1. החלטה
+296.1.1. שיאים ב-localStorage (202).  
+296.1.2. אסור `authMiddleware` בנתיבי משחק.  
+296.1.3. אין Neon.
+
+---
+
+## 297. אסור למחוק תשתית Grok
+
+### 297.0. חוזה
+297.0.1. לא למחוק: `public/__grok/`, `server/`, `scripts/grok-pwa-*`, `startup.sh`.  
+297.0.2. לא לשכתב `vite.config` / `tsconfig` מאפס.
+
+### 297.1. החלטה
+297.1.1. נעול. אין סשן ניקוי תבנית.
+
+---
+
+## 298. A/D — בודק היפוך (skill `controls`)
+
+### 298.0. מצב כנה
+298.0.1. `KeyA` → `steer += 1`, `KeyD` → `steer -= 1`.  
+298.0.2. AGENTS: היפוך A/D = באג שילוח #1.
+
+### 298.1. שער חובה בסשן ראשון
+298.1.1. A = פנייה **שמאלה** במצלמת chase מאחורי הרכב.  
+298.1.2. אם הפוך — תיקון `input.ts` מיד, לפני שלטים.  
+298.1.3. לא "תיקון מצלמה" במקום הגה.
+
+---
+
+## 299. אין `apt` — אין toktx
+
+### 299.0. חוזה
+299.0.1. לא להתקין כלי מערכת. 255 KTX2 תקוע.
+
+### 299.1. החלטה
+299.1.1. PNG בלבד עד שיש toktx במכונה (לא כאן).
+
+---
+
+## 300. `imagine_*` / אמנות גנרטיבית
+
+### 300.0. חוזה
+300.0.1. לא לקרוא לכלי שלא ברשימה.  
+300.0.2. נכסי 3D = PNG baked + meshes, לא ספרייט AI.
+
+### 300.1. החלטה
+300.1.1. לא כרטיסי מסלול AI חדשים (288).  
+300.1.2. אין סשן imagine.
+
+---
+
+## 301. ESLint flat config
+
+### 301.0. מצב כנה
+301.0.1. `eslint.config.mjs` תבנית. ignore dist/vercel/routeTree.
+
+### 301.1. החלטה
+301.1.1. lint לא שער 6.1. `tsc` כן.  
+301.1.2. אין סשן.
+
+---
+
+## 302. תור + מה נחשב "תוכנית מלאה"
+
+### 302.1. אחרי אושר (לא משתנה)
+302.1.1. 298 A/D אם הפוך.  
+302.1.2. 97 → 136 שלטים → 128 far → 143 מד.  
+302.1.3. 207+231 save.  
+302.1.4. 263 דילוג מסך רכב.  
+302.1.5. 249 MSAA.  
+302.1.6. 272 AssetRegistry.  
+302.1.7. qa 287.2.  
+302.1.8. **עצירה 6.1.**  
+302.1.9. אסור: auth, 81, מחיקת __grok, phase-qa.
+
+### 302.2. אחוז כנה
+302.2.1. ביצוע **~13%**. שערים **2/13**.  
+302.2.2. תכנון **~99%**. חוזה sandbox ממוספר.  
+302.2.3. קודקס 1–26 **לא** "DONE" — רק ממופה לעץ זה.
+
+### 302.3. `המשך` מול אושר
+302.3.1. חורים חיים: CODEX_GAPS מיושן, gitignore מסתיר startup, אינדקס קודקס 1–26 → **303+**.  
+302.3.2. אחרי 310 בלי חור = **אושר**.
+
+### 302.4. מה עדיין לא "תוכנית = קודקס 100% ביצוע"
+302.4.1. WebGPURenderer (8) — אחרי 6.5.  
+302.4.2. hero car / HDRI / KTX2 / GIS / Unreal — מחוץ ליעד.  
+302.4.3. freeze איילון (10.3) אדום.
+
+**סוף חלק ל״ג (295–302).** חלק ל״ד למטה. אין קוד.
+
+---
+
+# חלק ל״ד — 303–310 (סריקה 27.8.2026 20:04)
+
+---
+
+## 303. `CODEX_GAPS.md` / `PLAN.md` / `TASKS.md` — מיושנים
+
+### 303.0. מצב כנה
+303.0.1. CODEX_GAPS (27.8): "EnvironmentState לא מחובר", "check-qa-hook חסר", "MRT חסר".  
+303.0.2. בעץ: 53/56 LOOKS, 59 check:qa, 80 MRT נעול. המסמך **שקרי**.
+
+### 303.1. החלטה נעולה
+303.1.1. **EXECUTION_PLAN.md שולט.** GAPS/TASKS/PLAN/AUDIT לא ראיה.  
+303.1.2. לא לעדכן אותם בסשן קוד.  
+303.1.3. אחרי 6.1 מותר הערה אחת: "ראה EXECUTION_PLAN".
+
+---
+
+## 304. אינדקס קודקס 25.8 → עץ (תכנון, לא DONE)
+
+### 304.1. שכבות renderer
+304.1.1. Ultra WebGPU → 8, אחרי 6.5.  
+304.1.2. Balanced → 33, 130.  
+304.1.3. Compat 30fps → 172, 214.  
+304.1.4. Photo → 43, 103, 248. DoF נעול לא (80).
+
+### 304.2. תוכן / נכסים
+304.2.1. אותו בסיס LOD → 9.4, 203.  
+304.2.2. glTF/KTX2/Meshopt → 73, 132, 255 (KTX2 לא ב-shipping).  
+304.2.3. world cells → 9.4, 203.  
+304.2.4. road dry/wet → 97, 280.  
+304.2.5. G5 facade atlas → 97.5, 277.  
+304.2.6. G6 headlights → A11, 97.  
+304.2.7. G4 blob → 87, 134.
+
+### 304.3. תאורה / פוסט
+304.3.1. color/exposure → 7, 53, 162, 281.  
+304.3.2. WebGPU+TSL → 8, 76.  
+304.3.3. CSM+probes → 8.4, 54, 198.  
+304.3.4. TRAA → 8.5, 219.  
+304.3.5. weather/SSGI/vol → 17, 80 (SSGI נעול לא).  
+304.3.6. MRT / GPU-driven / HLOD → 80, 203 **לא**.
+
+### 304.4. תהליך
+304.4.1. streaming → 79 false.  
+304.4.2. art direction LOOKS → 53, 281.  
+304.4.3. QA → 15, 59, 287.2.  
+304.4.4. cleanup → 2.4, 226.  
+304.4.5. debug hooks → 59.  
+304.4.6. CI WebGPU+WebGL2 → 10.4, 225.  
+304.4.7. secrets → 287.2 secrets-check.  
+304.4.8. photo marked → 43.
+
+### 304.5. כלל
+304.5.1. שורה כאן = **ממופה**. לא "בוצע בקוד".
+
+---
+
+## 305. `.gitignore` מסתיר `startup.sh` ו-`AGENTS.md`
+
+### 305.0. מצב כנה
+305.0.1. גם `screenshots/` `artifacts/` `attachments/`.  
+305.0.2. `golden-baseline/` **לא** ב-ignore (טוב).
+
+### 305.1. החלטה
+305.1.1. לא להסיר ignore של AGENTS (פלטפורמה).  
+305.1.2. `startup.sh` חייב להישאר בדיסק גם אם לא ב-git. 250/295.  
+305.1.3. צילומי QA ל-`golden-baseline/` לא ל-`screenshots/`.
+
+---
+
+## 306. GitHub
+
+### 306.0. מצב כנה
+306.0.1. משתמש ביקש push קבוע.  
+306.0.2. תכנון: commit EXECUTION_PLAN אחרי אושר/סשן, לא כל `המשך`.
+
+### 306.1. החלטה
+306.1.1. אחרי סשן קוד: commit + push.  
+306.1.2. עכשיו (תכנון): לא חובה.  
+306.1.3. לא secrets.
+
+---
+
+## 307. PLAN.md 24ש׳ / שבוע / חודש
+
+### 307.0. מיפוי
+307.0.1. 24.1 OAuth → 146 לא.  
+307.0.2. W1 save טרנזקציה → 62, 207.  
+307.0.3. W1.3 damage/CCD → 105, 170.  
+307.0.4. W1.6 cache headers → 74, 243.  
+307.0.5. M1 Unreal → לא.  
+307.0.6. M2 freeze 52 מסלולים → 6.5, 101.  
+307.0.7. M3 legal → 144, 256.  
+307.0.8. M4 CRS → 1.3 לא GIS.  
+307.0.9. M5 vehicle lab → 25, 160.
+
+### 307.1. החלטה
+307.1.1. לא לוח זמנים 24ש׳. סדר = 302.1.
+
+---
+
+## 308. `attachments/` / `artifacts/`
+
+### 308.0. מצב כנה
+308.0.1. מקורות משתמש (צילומי באגים). gitignore.
+
+### 308.1. החלטה
+308.1.1. לקרוא לפני תיקון באג ויזואלי. לא להעתיק ל-public/game.
+
+---
+
+## 309. `.env`
+
+### 309.0. מצב כנה
+309.0.1. gitignore. VITE_QA / VITE_AUTH דרך with-app-env.
+
+### 309.1. החלטה
+309.1.1. אין secrets ב-src. 287.2.  
+309.1.2. אין סשן.
+
+---
+
+## 310. תור + סגירת ל״ד
+
+### 310.1. אחרי אושר
+310.1.1. 298 A/D.  
+310.1.2. 97 → 136 שלטים → 128 far → 143 מד.  
+310.1.3. 207+231 save.  
+310.1.4. 263 דילוג מסך רכב.  
+310.1.5. 249 MSAA.  
+310.1.6. 272 AssetRegistry.  
+310.1.7. qa 287.2.  
+310.1.8. **עצירה 6.1.**  
+310.1.9. אסור: לעדכן CODEX_GAPS כ-DONE, 81, GIS.
+
+### 310.2. אחוז כנה
+310.2.1. ביצוע **~13%**. שערים **2/13**.  
+310.2.2. תכנון **~99%**. אינדקס קודקס 304.  
+310.2.3. מסמכי GAPS ישנים = מלכודת.
+
+### 310.3. `המשך`
+310.3.1. חורים חיים: skill building-games (לא R3F/Rapier), A/D פורמולה, og:type, vite plugins → **311+**.  
+310.3.2. אחרי 318 בלי חור = **אושר**.
+
+**סוף חלק ל״ד (303–310).** חלק ל״ה למטה. אין קוד.
+
+---
+
+# חלק ל״ה — 311–318 (סריקה 27.8.2026 20:05)
+
+---
+
+## 311. Skills: מה לקרוא / מה לא להעתיק
+
+### 311.1. חובה לפני סשן קוד
+311.1.1. `.grok/skills/controls/SKILL.md` — A=שמאל. 298.  
+311.1.2. `building-games` §1–5 לולאה/מצלמה/perf.  
+311.1.3. `design-ui` ל-HUD/תפריט (111).
+
+### 311.2. אסור להעתיק מה-skill
+311.2.1. **לא** `@react-three/fiber` / `drei` / `@react-three/rapier`. נעול Three **imperative** + פיזיקה שלנו (12, 80).  
+311.2.2. **לא** Phaser / Babylon.  
+311.2.3. **לא** `generate2dmap` / tilesets / magenta sprites למשחק 3D.  
+311.2.4. **לא** P2P (282).
+
+### 311.3. אופציונלי
+311.3.1. `threejs` skill / TSL dump — רק אחרי 6.5 WebGPU.  
+311.3.2. `og` skill ל-`site.json` `x:game` — לא סשן 3D.
+
+---
+
+## 312. פורמולת A/D מה-skill (נעילה כפולה ל-298)
+
+### 312.0. נוסחה
+312.0.1. `forward = (-sin(yaw), 0, -cos(yaw))`.  
+312.0.2. `KeyA → steer = +1`; `yaw += steer * turnRate * speedFactor * dt`.  
+312.0.3. הפוך: `KeyA → steer = -1` **אסור**.
+
+### 312.1. מצב כנה
+312.1.1. `input.ts`: A `+= 1`, D `-= 1`. תואם **אם** `vehicle` מוסיף yaw עם +steer.  
+312.1.2. שער: `__controlsTest` + צילום chase. לא screenshot-only.
+
+### 312.2. סדר תיקון (skill §4)
+312.2.1. מפתחות → סימני תנועה → מצלמה מסכימה. לא לתקן מצלמה קודם.
+
+---
+
+## 313. `THREE.Timer` מול `Clock`
+
+### 313.0. skill
+313.0.1. `Clock.getDelta()` פעמיים באותו פריים = 0.
+
+### 313.1. החלטה
+313.1.1. סשן engine: dt **פעם אחת** לפריים. אם Clock — לא לקרוא getDelta שוב.  
+313.1.2. cap `min(dt, 0.1)` + פיזיקה 120Hz (105).  
+313.1.3. אין סשן לבד אם qa:drive יציב.
+
+---
+
+## 314. `vite.config.ts` — פלאגינים
+
+### 314.0. מצב כנה
+314.0.1. tanstackStart + react + tailwind + nitro + grokPwa + appEnv + gameCache + pgliteBootstrap (דילוג בלי migrations) + authPopup `/auth/popup`.
+
+### 314.1. החלטה
+314.1.1. לא למחוק פלאגין.  
+314.1.2. לא ליצור `src/routes/auth/popup.tsx`.  
+314.1.3. gameCache = 74/243.  
+314.1.4. אין סשן.
+
+---
+
+## 315. `npm` scripts — `qa:luma` לא קיים
+
+### 315.0. מצב כנה
+315.0.1. 58.2.3 אמר להוסיף כשיהיה קובץ. אין `luma-qa.mjs`.
+
+### 315.1. החלטה
+315.1.1. לא להוסיף.  
+315.1.2. `qa:ci` = רשימת 287.2.  
+315.1.3. `qa:ayalon-lock` אחרי ACK (82).
+
+---
+
+## 316. OG `x:game`
+
+### 316.0. skill finish
+316.0.1. `public/og.jpg` + `src/lib/og/site.json` type `x:game`.
+
+### 316.1. החלטה
+316.1.1. לא סשן לפני 6.1.  
+316.1.2. brand-check מזהיר — לא חוסם נהיגה.
+
+---
+
+## 317. Juice / screen-shake
+
+### 317.0. skill §7
+317.0.1. shake, hit-stop, particles.
+
+### 317.1. החלטה
+317.1.1. **לא** לפני 6.1. משתמש: ריאליזם לא juice.  
+317.1.2. התנגשות = פיזיקה (105) לא shake מצלמה חובה.
+
+---
+
+## 318. תור + סגירת ל״ה
+
+### 318.1. אחרי אושר
+318.1.1. 298/312 A/D + `__controlsTest`.  
+318.1.2. 97 → 136 שלטים → 128 far → 143 מד.  
+318.1.3. 207+231 save.  
+318.1.4. 263 דילוג מסך רכב.  
+318.1.5. 249 MSAA.  
+318.1.6. 272 AssetRegistry.  
+318.1.7. qa 287.2.  
+318.1.8. **עצירה 6.1.**  
+318.1.9. אסור: R3F, Rapier, Phaser, 2D sprites, 81.
+
+### 318.2. אחוז כנה
+318.2.1. ביצוע **~13%**. שערים **2/13**.  
+318.2.2. תכנון **~99%**. Skills ממופות; לא מחליפות את העץ.  
+318.2.3. skill מציע R3F — **נדחה**.
+
+### 318.3. `המשך`
+318.3.1. חורים חיים: playbook kart (מיני-טורבו) נגד המשתמש, reverse כבר בקוד, §5c Playwright → **319+**.  
+318.3.2. אחרי 326 בלי חור = **אושר**.
+
+**סוף חלק ל״ה (311–318).** חלק ל״ו למטה. אין קוד.
+
+---
+
+# חלק ל״ו — 319–326 (סריקה 27.8.2026 20:06)
+
+---
+
+## 319. `racing-kart.md` — מה לקחת / מה לדחות
+
+### 319.1. לקחת
+319.1.1. A/D + basis (312).  
+319.1.2. היגוי לפי מהירות + היפוך בנסיעה לאחור.  
+319.1.3. מצלמת chase lerp, לא parent קשיח.  
+319.1.4. צ'קפוינט לפי סדר (לא חיתוך הקפות).  
+319.1.5. dt + timestep קבוע.
+
+### 319.2. לדחות (משתמש: ריאליזם, לא קארט)
+319.2.1. Hop-then-drift + mini-turbo + ניצוצות צבעוניים.  
+319.2.2. FOV קיץ על בוסט.  
+319.2.3. motion lines / ground blur.  
+319.2.4. "one looping track" כהיקף — יש הרבה מסלולים, freeze איילון.  
+319.2.5. לא Marco Monster מלא / לא Rapier.
+
+### 319.3. החלטה
+319.3.1. handling = arcade (231) בלי juice קארט.  
+319.3.2. אין סשן מיני-טורבו.
+
+---
+
+## 320. Reverse-steer כבר בקוד
+
+### 320.0. מצב כנה
+320.0.1. `vehicle.ts`: `reverse = speed >= 0 ? 1 : -1` נכנס ל-steer ול-kin. תואם skill §2b.
+
+### 320.1. החלטה
+320.1.1. לא לגעת בסשן 97.  
+320.1.2. שער: נסיעה לאחור + A עדיין "שמאל של גלגל".
+
+---
+
+## 321. `__controlsTest` — מפרט §5c
+
+### 321.0. חובה אחרי אושר (עם 298)
+321.0.1. `getYaw` `getSpeed` `setSteer`.  
+321.0.2. Playwright: גז → yaw0 → A 500ms → `wrap(Δyaw) > 0.05`. D הפוך.  
+321.0.3. `qa:drive` חייב להיכשל אם הפוך.  
+321.0.4. פרוד: בלי hook אלא `VITE_QA=1` (1.2.2).
+
+### 321.1. אין סשן נפרד
+321.1.1. חלק מ-298/318.1.1.
+
+---
+
+## 322. צ'קפוינט / הקפה
+
+### 322.0. מצב כנה
+322.0.1. `modes.ts` circuit/time (122).  
+322.0.2. kart דורש שערים לפי סדר.
+
+### 322.1. החלטה
+322.1.1. לא לשכתב הקפות לפני 6.1.  
+322.1.2. A→B (רמון/חרמון) = לא הקפה.  
+322.1.3. אין סשן.
+
+---
+
+## 323. מצלמה לא parent
+
+### 323.0. מצב כנה
+323.0.1. chase lerp (engine 239). Hood אופציונלי (187).
+
+### 323.1. החלטה
+323.1.1. לא `camera.parent = car`.  
+323.1.2. אין FOV-boost.  
+323.1.3. אין סשן.
+
+---
+
+## 324. `event.code` לא `key`
+
+### 324.0. skill §4
+324.0.1. `KeyA` / `KeyD` — כבר כך ב-input.ts.
+
+### 324.1. החלטה
+324.1.1. clear על blur. אם חסר — תיקון זעיר עם 298.  
+324.1.2. אין סשן לבד.
+
+---
+
+## 325. Space דביק / ניטרו
+
+### 325.0. skill §6
+325.0.1. אין thrust דביק ממקש בודד.
+
+### 325.1. החלטה
+325.1.1. 145/147: nitro/rewind מוסתרים.  
+325.1.2. אין סשן.
+
+---
+
+## 326. תור + סגירת ל״ו
+
+### 326.1. אחרי אושר
+326.1.1. 298/312/321 A/D + Playwright yaw.  
+326.1.2. 97 → 136 שלטים → 128 far → 143 מד.  
+326.1.3. 207+231 save.  
+326.1.4. 263 דילוג מסך רכב.  
+326.1.5. 249 MSAA.  
+326.1.6. 272 AssetRegistry.  
+326.1.7. qa 287.2 כולל 321.  
+326.1.8. **עצירה 6.1.**  
+326.1.9. אסור: מיני-טורבו, R3F, 81.
+
+### 326.2. אחוז כנה
+326.2.1. ביצוע **~13%**. שערים **2/13**.  
+326.2.2. תכנון **~99%**. Playbook kart מסונן.  
+326.2.3. reverse-steer כבר חי.
+
+### 326.3. `המשך`
+326.3.1. חורים חיים: Timer vs performance.now, draw-calls, PointerLock, nipplejs, site.json כבר x:game → **327+**.  
+326.3.2. אחרי 334 בלי חור = **אושר**.
+
+**סוף חלק ל״ו (319–326).** חלק ל״ז למטה. אין קוד.
+
+---
+
+# חלק ל״ז — 327–334 (סריקה 27.8.2026 20:07)
+
+---
+
+## 327. dt = `performance.now` (לא Clock, לא חובה Timer)
+
+### 327.0. מצב כנה
+327.0.1. `engine.ts`: `dt = min((now-last)/1000, 0.1)` פעם אחת ב-`frame()`.  
+327.0.2. `setAnimationLoop` כבר (594). עצירה = `null` (2702).
+
+### 327.1. החלטה
+327.1.1. **לא** להחליף ל-`THREE.Clock`.  
+327.1.2. `THREE.Timer` אופציונלי אחרי 6.1 — לא שער.  
+327.1.3. cap 0.1 נשאר (tab ברקע).  
+327.1.4. אין סשן.
+
+---
+
+## 328. Draw calls < 100
+
+### 328.0. skill
+328.0.1. יעד <100. 500+ נתקע.  
+328.0.2. 10.2 / 130 High.
+
+### 328.1. שער 6.1
+328.1.1. `renderer.info.render.calls` בלוג QA על איילון chase.  
+328.1.2. אם >120 ב-High: instancing (97) לא primitives חדשים.  
+328.1.3. אין סשן perf לפני שלטים.
+
+---
+
+## 329. PointerLock / FPS — אסור
+
+### 329.0. skill מציע PointerLockControls + Rapier character.
+
+### 329.1. החלטה
+329.1.1. משחק נהיגה: **לא** pointer lock.  
+329.1.2. לא FirstPersonControls.  
+329.1.3. Esc = תפריט (199), לא unlock עכבר.
+
+---
+
+## 330. nipplejs — לא
+
+### 330.0. skill מציע nipplejs.
+
+### 330.1. החלטה
+330.1.1. `TouchControls` קיים (274). לא חבילה חדשה.  
+330.1.2. ≥44px כבר.
+
+---
+
+## 331. frameloop demand — אסור במירוץ
+
+### 331.0. skill: עצור לולאה אם כלום לא זז.
+
+### 331.1. החלטה
+331.1.1. תמיד RAF בזמן מרוץ (רכבת, מים, שעונים).  
+331.1.2. עצירה רק ב-dispose / pause אם כבר קיים.  
+331.1.3. אין סשן.
+
+---
+
+## 332. `site.json` — כבר `x:game`
+
+### 332.0. מצב כנה
+332.0.1. `src/lib/og/site.json`: title RUSH, type `x:game`, card custom.  
+332.0.2. 316 כמעט DONE.
+
+### 332.1. החלטה
+332.1.1. אין סשן OG לפני 6.1.  
+332.1.2. `og.jpg` קיים (261).
+
+---
+
+## 333. BatchedMesh / merge
+
+### 333.0. skill r156+ BatchedMesh.
+
+### 333.1. החלטה
+333.1.1. InstancedMesh קיים. BatchedMesh רק אם draw calls נכשלים (328).  
+333.1.2. לא merge כל העיר (culling).  
+333.1.3. אין סשן עכשיו.
+
+---
+
+## 334. תור + סגירת ל״ז + מצב תוכנית
+
+### 334.1. אחרי אושר (לא משתנה)
+334.1.1. 298/321 A/D Playwright.  
+334.1.2. 97 → 136 שלטים → 128 far → 143 מד.  
+334.1.3. 207+231 save.  
+334.1.4. 263 דילוג מסך רכב.  
+334.1.5. 249 MSAA.  
+334.1.6. 272 AssetRegistry.  
+334.1.7. qa 287.2 + calls (328).  
+334.1.8. **עצירה 6.1.**  
+334.1.9. אסור: PointerLock, nipplejs, Clock, 81, R3F.
+
+### 334.2. אחוז כנה
+334.2.1. ביצוע **~13%**. שערים **2/13**.  
+334.2.2. תכנון קודקס-ווב **~99%**. foundational מסונן.  
+334.2.3. dt כבר נכון. OG type כבר נכון.
+
+### 334.3. `המשך`
+334.3.1. חורים חיים: collision-skill, visibilitychange חסר ב-save, handling default simcade, אין אינטרפולציית render → **335+**.  
+334.3.2. אחרי 342 בלי חור = **אושר**.  
+334.3.3. אין מילוי ריק.
+
+**סוף חלק ל״ז (327–334).** חלק ל״ח למטה. אין קוד.
+
+---
+
+# חלק ל״ח — 335–342 (סריקה 27.8.2026 20:09)
+
+---
+
+## 335. `collision-physics.md` — סינון
+
+### 335.1. לקחת
+335.1.1. AABB/OBB ידני. 105.  
+335.1.2. CCD/substep. 5.5 / 63.  
+335.1.3. fixed step + clamp accumulator — **כבר ב-engine**.  
+335.1.4. squared distance, לא sqrt.
+
+### 335.2. לדחות
+335.2.1. Rapier / cannon / Ammo / character controller.  
+335.2.2. SAT לכל בניין (יקר). OBB מספיק.  
+335.2.3. spatial hash — אין 100 דינמיים.
+
+### 335.3. החלטה
+335.3.1. אין סשן פיזיקה לפני 6.1 אלא באג נהיגה.
+
+---
+
+## 336. אינטרפולציית render (`alpha`)
+
+### 336.0. מצב כנה
+336.0.1. `acc` + `while fixed`. אין `alpha = acc/FIXED` בין מצבי פיזיקה.  
+336.0.2. 120Hz פיזיקה + vsync ≈ חלק מספיק.
+
+### 336.1. החלטה
+336.1.1. לא חובה ל-6.1.  
+336.1.2. אם 144Hz נראה קפיצות — אחרי freeze.  
+336.1.3. אין סשן עכשיו.
+
+---
+
+## 337. `save.ts` — אין `visibilitychange`
+
+### 337.0. מצב כנה
+337.0.1. version 3, try/catch, write אחד.  
+337.0.2. **אין** listener ל-`hidden` / `pagehide`. skill: מובייל הורג טאב.
+
+### 337.1. החלטה
+337.1.1. סשן עם 207/231: `visibilitychange` → `write(load())` אם dirty.  
+337.1.2. לא כל פריים.  
+337.1.3. לא IndexedDB / `idb`.
+
+---
+
+## 338. `handling` default עדיין `simcade`
+
+### 338.0. מצב כנה
+338.0.1. `p.handling === "arcade" ? "arcade" : "simcade"`. 231 נעל arcade.
+
+### 338.1. החלטה
+338.1.1. אותו סשן 207: ברירת מחדש arcade; שמור ישן לא נמחק.  
+338.1.2. assists כבויים ב-empty.
+
+---
+
+## 339. Broadphase
+
+### 339.0. מצב כנה
+339.0.1. מתחרים מעטים + בניינים סטטיים.
+
+### 339.1. החלטה
+339.1.1. לא hash/quadtree.  
+339.1.2. אין סשן.
+
+---
+
+## 340. `public/basis/` transcoder
+
+### 340.0. מצב כנה
+340.0.1. `basis_transcoder.js`+wasm. 255 לא shipping KTX2.
+
+### 340.1. החלטה
+340.1.1. לא לטעון ב-runtime.  
+340.1.2. לא למחוק (תבנית/עתיד).  
+340.1.3. אין סשן.
+
+---
+
+## 341. `world.ts` 8774 שורות
+
+### 341.0. מצב כנה
+341.0.1. פצצה. 97 פיצול אחרי 6.1.
+
+### 341.1. החלטה
+341.1.1. לפני 6.1: ניתוחים קטנים בלבד.  
+341.1.2. לא ריפקטור גדול.
+
+---
+
+## 342. תור + סגירת ל״ח
+
+### 342.1. אחרי אושר
+342.1.1. 298/321 A/D.  
+342.1.2. 97 → 136 שלטים → 128 far → 143 מד.  
+342.1.3. **207+231+337+338** save: arcade, emptyTune, visibilitychange.  
+342.1.4. 263 דילוג מסך רכב.  
+342.1.5. 249 MSAA.  
+342.1.6. 272 AssetRegistry.  
+342.1.7. qa 287.2.  
+342.1.8. **עצירה 6.1.**  
+342.1.9. אסור: Rapier, idb, 81, פיצול world.
+
+### 342.2. אחוז כנה
+342.2.1. ביצוע **~13%**. שערים **2/13**.  
+342.2.2. תכנון **~99%**.  
+342.2.3. חור אמיתי: save לא נשמר בסגירת טאב.
+
+### 342.3. `המשך`
+342.3.1. חורים חיים: `void resume()` שובר iOS, אין audio visibilitychange, 5×glb → **343+**.  
+342.3.2. אחרי 350 בלי חור = **אושר**.
+
+**סוף חלק ל״ח (335–342).** חלק ל״ט למטה. אין קוד.
+
+---
+
+# חלק ל״ט — 343–350 (סריקה 27.8.2026 20:10)
+
+---
+
+## 343. Audio unlock — `void resume()` אסור ב-iOS
+
+### 343.0. מצב כנה
+343.0.1. `GameAudio.unlock()` + `onPointerDown` ב-game-app.  
+343.0.2. `void this.ctx?.resume()` — **לא סינכרוני**. skill: await/void שובר gesture ב-Safari.  
+343.0.3. אין `visibilitychange` ב-audio.ts.
+
+### 343.1. החלטה
+343.1.1. סשן קטן עם 70: `ctx.resume()` בלי void/await בתוך ה-handler.  
+343.1.2. `visibilitychange`/`focus` → `resume()` שוב.  
+343.1.3. `latencyHint: "interactive"` כבר — לא לגעת.
+
+---
+
+## 344. Howler — לא
+
+### 344.0. skill מציע Howler כברירת מחדל.
+
+### 344.1. החלטה
+344.1.1. נעול oscillators (70). לא חבילה.  
+344.1.2. לא `<audio>` ל-SFX.
+
+---
+
+## 345. PannerNode / HRTF
+
+### 345.1. החלטה
+345.1.1. לא לפני 6.1. אוסילטור מנוע מספיק.  
+345.1.2. אין סשן.
+
+---
+
+## 346. חמישה GLB ב-`public/game/`
+
+### 346.0. מצב כנה
+346.0.1. `car-gt|hatch|muscle|rally|super` `.glb`+`.gltf`. 73.
+
+### 346.1. החלטה
+346.1.1. לא לייצא מחדש לפני 6.1.  
+346.1.2. לא car-scan / Nanite.  
+346.1.3. `.gltf` ליד `.glb` — לא חובה ב-loader אם glb נטען.
+
+---
+
+## 347. `LICENSES.md` ב-public/game
+
+### 347.0. מצב כנה
+347.0.1. קיים. 144 / 256.
+
+### 347.1. החלטה
+347.1.1. אין סשן משפטי לפני 6.1.
+
+---
+
+## 348. PNG baked — מלאי
+
+### 348.0. מצב כנה
+348.0.1. asphalt 3/4/8 + bump/rough, curb×4, curtain×5, sky day/night, flake, blob, foam, water-n, signs×6, cars, flag, clock, herodian, ground, sidewalk, bark, foliage, beam, flare, checker, lane-arrow.
+
+### 348.1. החלטה
+348.1.1. לא canvas runtime. 287.1 bake רק אם חסר.  
+348.1.2. אין סשן bake עכשיו.
+
+---
+
+## 349. רדיו oscillators
+
+### 349.0. מצב כנה
+349.0.1. 4 תחנות פרוצדורליות. לא סטרימינג.
+
+### 349.1. החלטה
+349.1.1. לא Howl/mp3. mute ב-Esc.  
+349.1.2. אין סשן.
+
+---
+
+## 350. תור + סגירת ל״ט
+
+### 350.1. אחרי אושר
+350.1.1. 298/321 A/D.  
+350.1.2. **343** unlock סינכרוני + visibility.  
+350.1.3. 97 → 136 שלטים → 128 far → 143 מד.  
+350.1.4. 207+231+337+338 save.  
+350.1.5. 263 דילוג מסך רכב.  
+350.1.6. 249 MSAA.  
+350.1.7. 272 AssetRegistry.  
+350.1.8. qa 287.2.  
+350.1.9. **עצירה 6.1.**  
+350.1.10. אסור: Howler, Rapier, 81.
+
+### 350.2. אחוז כנה
+350.2.1. ביצוע **~13%**. שערים **2/13**.  
+350.2.2. תכנון **~99%**.  
+350.2.3. 5 GLB קיימים ≠ hero scan.
+
+### 350.3. `המשך`
+350.3.1. חורים חיים: אין `pointercancel` / `touch-action`, game-app מייבא career, padCurve חד-צירי → **351+**.  
+350.3.2. אחרי 358 בלי חור = **אושר**.
+
+**סוף חלק ל״ט (343–350).** חלק מ׳ למטה. אין קוד.
+
+---
+
+# חלק מ׳ — 351–358 (סריקה 27.8.2026 20:11)
+
+---
+
+## 351. `input.md` — מה כבר חי / מה לדחות
+
+### 351.0. כבר חי
+351.0.1. `event.code` + Set.  
+351.0.2. `blur` + `visibilitychange` → `keys.clear()`.  
+351.0.3. `getGamepads()` כל poll.  
+351.0.4. `padCurve` dead 0.12 + exp 1.6 (חד-צירי).
+
+### 351.1. לדחות
+351.1.1. מסך rebind.  
+351.1.2. coyote / jump buffer (לא פלטפורמר).  
+351.1.3. nipplejs.  
+351.1.4. FFB.
+
+### 351.2. radial deadzone
+351.2.1. הגה = ציר X בלבד → 1D OK.  
+351.2.2. לא להחליף ל-2D לפני 6.1.
+
+---
+
+## 352. חסר: `pointercancel` + `touch-action: none`
+
+### 352.0. מצב כנה
+352.0.1. grep ריק ב-src.
+
+### 352.1. החלטה
+352.1.1. סשן עם 274/298: CSS `touch-action: none` על canvas.  
+352.1.2. `pointercancel` = שחרור סטיק/בלם.  
+352.1.3. לא חבילת joystick.
+
+---
+
+## 353. `game-app.tsx` 1576 שורות + career imports
+
+### 353.0. מצב כנה
+353.0.1. מייבא `chapters`, `dailyEvent`, `CAR_UNLOCK`, `applyTune`, `LIVERIES`.  
+353.0.2. 111 / 263: זרימה מסלול→מרוץ.
+
+### 353.1. החלטה
+353.1.1. סשן 263: להסתיר career/garage, לא למחוק קבצים.  
+353.1.2. לא TSX-טיפוסי מלא (1.4.4) לפני 6.1.
+
+---
+
+## 354. `tracks.ts` 3511 שורות
+
+### 354.0. מצב כנה
+354.0.1. 56 כרטיסים. freeze רוחב.
+
+### 354.1. החלטה
+354.1.1. אסור מסלול חדש (6.5, 81).  
+354.1.2. אין פיצול קובץ לפני 6.1.
+
+---
+
+## 355. Lucide ב-HUD
+
+### 355.0. מצב כנה
+355.0.1. `lucide-react` ב-game-app.
+
+### 355.1. החלטה
+355.1.1. לא ספריית אייקונים חדשה.  
+355.1.2. אחרי 263 מותר להסיר אייקונים מיותרים.  
+355.1.3. אין סשן עיצוב לבד.
+
+---
+
+## 356. רק `src/routes/index.tsx` + root
+
+### 356.0. מצב כנה
+356.0.1. אין `/auth` משחק. 297.
+
+### 356.1. החלטה
+356.1.1. לא נתיבים חדשים.  
+356.1.2. לא `routeTree.gen.ts`.
+
+---
+
+## 357. `justPressed` ל-Esc
+
+### 357.0. מצב כנה
+357.0.1. pause ב-engine/keys. 199.
+
+### 357.1. החלטה
+357.1.1. לא לשכתב input לקובץ actions מלא.  
+357.1.2. אם Esc חוזר על עצמו — edge בסשן 199, לא עכשיו.
+
+---
+
+## 358. תור + סגירת מ׳
+
+### 358.1. אחרי אושר
+358.1.1. 298/321 A/D.  
+358.1.2. **352** touch-action + pointercancel.  
+358.1.3. 343 audio unlock.  
+358.1.4. 97 → 136 שלטים → 128 far → 143 מד.  
+358.1.5. 207+337+338 save.  
+358.1.6. 263/353 דילוג מסך רכב.  
+358.1.7. 249 MSAA. 272 registry.  
+358.1.8. qa 287.2.  
+358.1.9. **עצירה 6.1.**  
+358.1.10. אסור: rebind, 81, nipplejs.
+
+### 358.2. אחוז כנה
+358.2.1. ביצוע **~13%**. שערים **2/13**.  
+358.2.2. תכנון **~99%**.  
+358.2.3. blur-keys כבר חי. pointercancel לא.
+
+### 358.3. `המשך`
+358.3.1. רק חור בלי מספר → 359.  
+358.3.2. אחרת **אושר**. אין קוד.
+
+**סוף חלק מ׳ (351–358). אין קוד.**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

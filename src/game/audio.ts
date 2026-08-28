@@ -107,11 +107,31 @@ export class GameAudio {
   private step = 0;
   private noise: AudioBuffer | null = null;
 
+  private visBound = false;
+
   unlock() {
-    if (this.started) {
-      void this.ctx?.resume();
-      return;
-    }
+    if (!this.started) this.bootGraph();
+    this.resumeSync();
+    this.bindVisibility();
+  }
+
+  private resumeSync() {
+    const ctx = this.ctx;
+    if (!ctx) return;
+    if (ctx.state === "suspended") ctx.resume();
+  }
+
+  private bindVisibility() {
+    if (this.visBound || typeof document === "undefined") return;
+    this.visBound = true;
+    const onVis = () => {
+      if (document.visibilityState === "visible") this.resumeSync();
+    };
+    document.addEventListener("visibilitychange", onVis);
+    window.addEventListener("focus", onVis);
+  }
+
+  private bootGraph() {
     const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     if (!AC) return;
     const ctx = new AC({ latencyHint: "interactive" });
@@ -460,7 +480,7 @@ export class GameAudio {
   }
 
   resume() {
-    void this.ctx?.resume();
+    this.resumeSync();
   }
 
   dispose() {

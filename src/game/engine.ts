@@ -3,7 +3,7 @@ import { GameAudio, RADIO } from "./audio";
 import { createCarVisual, pulsePolice, setCarLights, updateCarVisual, applyDamage, type CarVisual } from "./car-mesh";
 import { getEvent } from "./career";
 import { finishLine, introLine, overtakeLine } from "./dialog";
-import { applyTune, paceGhost, racePayout, sampleGhost, sampleGhostLoop, WEATHER_GRIP, type GhostFrame } from "./garage";
+import { applyTune, emptyTune, paceGhost, racePayout, sampleGhost, sampleGhostLoop, WEATHER_GRIP, type GhostFrame } from "./garage";
 import { CARS, getCar, RIVALS } from "./cars";
 import { GameInput } from "./input";
 import { clamp, expSmooth, lerp, hash01, hashStr } from "./math";
@@ -52,6 +52,7 @@ import { profileFromLegacy } from "../rendering/QualityProfile";
 import { FOG, fogKey, LOOKS, lookFromFlags } from "../rendering/EnvironmentState";
 import { ResourceRegistry } from "../rendering/ResourceRegistry";
 import { DynamicQualityController, gfxPassFlags } from "../rendering/DynamicQualityController";
+import { exportPhotoPng } from "./photo-export";
 import { MESH_STREAMING } from "./stream-flag";
 
 const FIXED = PHYSICS_DT;
@@ -300,7 +301,7 @@ export class RaceEngine {
     this.scene.background = new THREE.Color(opts.night ? skyNight : skyDay);
 
     const mountain = spec.far >= 12000 || opts.trackId === "scopus" || opts.trackId === "jerusalem";
-    this.camera = new THREE.PerspectiveCamera(68, canvas.clientWidth / Math.max(1, canvas.clientHeight), 0.28, spec.far);
+    this.camera = new THREE.PerspectiveCamera(68, canvas.clientWidth / Math.max(1, canvas.clientHeight), 0.28, mountain ? Math.max(spec.far, 12000) : spec.far);
 
     this.opts.onBoot?.(0.12);
     canvas.addEventListener("webglcontextlost", this.onContextLost);
@@ -407,12 +408,12 @@ export class RaceEngine {
     this.audio = new GameAudio();
     this.audio.setVoice(getCar(this.opts.carId).body);
 
-    const playerDef = applyTune(getCar(this.opts.carId), this.opts.tune ?? { engine: 0, tires: 0, nitro: 0, paint: 0, livery: 0 });
+    const playerDef = applyTune(getCar(this.opts.carId), emptyTune());
     this.player = new ArcadeCar(playerDef, playerDef.nameHe);
     this.player.roam = (this.opts.mode ?? "circuit") === "roam" || this.opts.trackId === "gushdan";
     this.player.weatherGrip = WEATHER_GRIP[this.weather] ?? 1;
     this.player.weather = this.weather;
-    this.player.handling = this.opts.handling ?? "simcade";
+    this.player.handling = this.opts.handling ?? "arcade";
     this.player.assists = { ...(this.opts.assists ?? DEFAULT_ASSISTS) };
     this.player.damage = getDamage(this.opts.carId);
     this.mode = this.opts.mode ?? "circuit";
@@ -912,23 +913,7 @@ export class RaceEngine {
     if (!this.snapPhoto) return;
     this.snapPhoto = false;
     try {
-      const src = this.renderer.domElement;
-      const c = document.createElement("canvas");
-      c.width = src.width;
-      c.height = src.height;
-      const ctx = c.getContext("2d");
-      if (!ctx) return;
-      ctx.drawImage(src, 0, 0);
-      const size = Math.max(13, Math.round(c.width / 78));
-      ctx.font = `${size}px ui-sans-serif, system-ui, sans-serif`;
-      ctx.fillStyle = "rgba(255,255,255,0.7)";
-      ctx.textAlign = "right";
-      ctx.textBaseline = "bottom";
-      ctx.fillText("PHOTO MODE · RUSH", c.width - 18, c.height - 16);
-      const a = document.createElement("a");
-      a.href = c.toDataURL("image/png");
-      a.download = `rush-photo-${Date.now()}.png`;
-      a.click();
+      exportPhotoPng(this.renderer.domElement);
     } catch {
       /* ignore */
     }
