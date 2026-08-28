@@ -1,7 +1,7 @@
 {
-  "schema_version": "2.3.0",
+  "schema_version": "2.3.1",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-29T02:21:00+03:00",
+  "generated_at": "2026-08-29T02:52:00+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -42,9 +42,9 @@
     "deferred_units": 60,
     "remaining_units": 61,
     "queue_head": "RSH-007",
-    "queue_head_state": "draft_pr_open",
+    "queue_head_state": "pr_open",
     "queue_head_branch": "agent/rsh-007-github-actions-ci",
-    "queue_head_pull_request": 8,
+    "queue_head_pull_request": 9,
     "automatic_execution": false,
     "release_gates_green": 0,
     "release_gates_total": 13
@@ -61,10 +61,11 @@
     "unit": "RSH-007",
     "title": "Create GitHub Actions CI",
     "branch": "agent/rsh-007-github-actions-ci",
-    "pull_request": 8,
+    "pull_request": 9,
+    "replaced_pull_request": 8,
+    "replacement_reason": "The connector failed to mark Draft PR #8 Ready; PR #8 was closed unmerged and replaced without changing the branch history.",
     "base_sha": "7ea076d377225d5db3561faf81fe1cedce091a28",
-    "initial_head_sha": "6801b9f661dd9d64325be5c9774e2767ac67dcc0",
-    "state": "draft_pr_open",
+    "state": "pr_open",
     "merge_authorized_by_owner_batch": true,
     "acceptance_requires_exact_head_ci_success": true,
     "game_code_changed": false,
@@ -93,7 +94,10 @@
     "lint": true,
     "complete_unit_tests": true,
     "self_starting_qa": true,
-    "build": "npm run build:dev"
+    "build": "npm run build:dev",
+    "last_successful_pre_reconciliation_head": "fb1bc883b03fd254954393c2b6d0142de964f12d",
+    "last_successful_run": 33221515687,
+    "final_reconciled_head_requires_new_success": true
   },
   "findings": {
     "total": 42,
@@ -107,7 +111,7 @@
   },
   "constraints": [
     "Do not claim the repository is private until GitHub metadata confirms it.",
-    "Do not accept RSH-007 until the exact final PR head has successful GitHub Actions evidence.",
+    "Do not accept RSH-007 until the exact final replacement-PR head has successful GitHub Actions evidence.",
     "Do not begin RSH-008 before RSH-007 is validated and merged.",
     "Execute only the owner-authorised RSH-007–RSH-011 batch.",
     "Release gates remain 0/13."
