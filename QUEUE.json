@@ -1,13 +1,13 @@
 {
-  "schema_version": "2.2.0",
+  "schema_version": "2.2.1",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-29T01:52:50+03:00",
+  "generated_at": "2026-08-29T02:08:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "transition_basis": {
     "verified_main_before_pr_7": "6932a74ca23f125e212f37fa0db73da377eaabe3",
     "effective_on_merge_of_pull_request": 7,
-    "reviewed_implementation_head_sha": "5c15dc41eaebd1bc7f56758c046391a28bedbd8b",
+    "reviewed_implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
     "merge_sha_recording": "Resolve from live main during the RSH-007 preflight."
   },
   "policy": {
@@ -77,7 +77,7 @@
     },
     "RSH-006": {
       "pull_request": 7,
-      "implementation_head_sha": "5c15dc41eaebd1bc7f56758c046391a28bedbd8b",
+      "implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
       "merge_sha": null,
       "merge_sha_status": "Record from live main during RSH-007 preflight."
     }
