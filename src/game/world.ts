@@ -718,7 +718,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const hw = built.width / 2 + 1.2;
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 140 + Math.min(90, s.y * 0.65) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 92 + s.y * 0.48 : def.theme === "carmel" ? s.y + 22 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 140 + Math.min(90, s.y * 0.65) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 92 + s.y * 0.48 : def.theme === "carmel" ? s.y + 52 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
@@ -5056,14 +5056,18 @@ function addLandmarks(
     const craneM = new THREE.MeshStandardMaterial({ color: 12085288, metalness: 0.4, roughness: 0.45 });
     bag.push(craneM);
     for (let c = 0; c < 3; c++) {
+      const nP = nearestIndex(built.samples, pt.x, pt.z, 0);
+      const sP = built.samples[nP.index];
+      const cx = sP.x + sP.rx * (built.width / 2 + 24 + c * 10);
+      const cz = sP.z + sP.rz * (built.width / 2 + 24 + c * 10);
       const crane = new THREE.Mesh(new THREE.BoxGeometry(1.4, 32 + c * 4, 1.4), craneM);
-      crane.position.set(pt.x - 8 + c * 18, 16 + c * 2, pt.z + c * 10);
+      crane.position.set(cx, 16 + c * 2, cz);
       add(crane);
       const jib = new THREE.Mesh(new THREE.BoxGeometry(36, 0.8, 0.8), craneM);
-      jib.position.set(pt.x + 8 + c * 18, 32 + c * 4, pt.z + c * 10);
+      jib.position.set(cx + 12, 32 + c * 4, cz);
       add(jib);
     }
-    hit(pt.x, pt.z, 8);
+    hit(pt.x, pt.z, 6);
     const sm = hai(32.8272, 34.9698);
     let smx = sm.x;
     let smz = sm.z;
