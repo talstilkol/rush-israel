@@ -2246,7 +2246,7 @@ export const TRACKS: TrackDef[] = [
     description: "מהגבעה הצרפתית עולים לאוניברסיטה ולתצפית — העיר העתיקה למטה, הרי ירושלים מסביב. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "From French Hill up to the university and lookout — Old City below, Jerusalem hills around. Inspired by the place — not a map, not GIS.",
     image: "/tracks/scopus.jpg",
-    width: 22,
+    width: 24,
     seed: 1968,
     theme: "stone",
     open: true,
@@ -2261,7 +2261,7 @@ export const TRACKS: TrackDef[] = [
       mieDirectionalG: 0.74,
       exposure: 0.82,
       fog: 0xd8c8a8,
-      fogDensity: 0.00028,
+      fogDensity: 0.00018,
     },
     checkpointCount: 8,
     points: [
@@ -2278,7 +2278,7 @@ export const TRACKS: TrackDef[] = [
       jer(31.7928, 35.2466),
       jer(31.7912, 35.2454),
     ],
-    elevation: (t) => 4 + 64 * Math.pow(t, 1.15),
+    elevation: (t) => 4 + 78 * Math.pow(t, 1.12),
     streets: [
       { from: 0.0, to: 0.22, he: "הגבעה הצרפתית", en: "French Hill" },
       { from: 0.22, to: 0.48, he: "העלייה", en: "The Climb" },

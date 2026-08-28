@@ -661,7 +661,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const gMap = keep(groundTexture(def.ground));
   gMap.wrapS = gMap.wrapT = THREE.RepeatWrapping;
   gMap.repeat.set(90, 90);
-  const ground = new THREE.Mesh(keep(new THREE.PlaneGeometry(Math.max(def.id === "scopus" || def.id === "hermon" || def.id === "ramon" ? 2800 : 1200, span * (def.id === "scopus" ? 4.2 : 2.8)), Math.max(def.id === "scopus" || def.id === "hermon" || def.id === "ramon" ? 2800 : 1200, span * (def.id === "scopus" ? 4.2 : 2.8)))), keep(new THREE.MeshStandardMaterial({
+  const ground = new THREE.Mesh(keep(new THREE.PlaneGeometry(Math.max(def.id === "scopus" || def.id === "hermon" || def.id === "ramon" ? 4200 : 1200, span * (def.id === "scopus" ? 5.4 : 2.8)), Math.max(def.id === "scopus" || def.id === "hermon" || def.id === "ramon" ? 4200 : 1200, span * (def.id === "scopus" ? 5.4 : 2.8)))), keep(new THREE.MeshStandardMaterial({
     map: gMap,
     color: groundCol,
     roughness: 0.97,
@@ -7928,12 +7928,12 @@ function addLandmarks(
     {
       const nU = nearestIndex(built.samples, uniP.x, uniP.z, 0);
       const sU = built.samples[nU.index];
-      uniP.x = sU.x + sU.rx * (built.width / 2 + 20);
-      uniP.z = sU.z + sU.rz * (built.width / 2 + 20);
+      uniP.x = sU.x + sU.rx * (built.width / 2 + 24);
+      uniP.z = sU.z + sU.rz * (built.width / 2 + 24);
       const nS = nearestIndex(built.samples, sc.x, sc.z, 0);
       const sS = built.samples[nS.index];
-      sc.x = sS.x + sS.rx * (built.width / 2 + 18);
-      sc.z = sS.z + sS.rz * (built.width / 2 + 18);
+      sc.x = sS.x + sS.rx * (built.width / 2 + 22);
+      sc.z = sS.z + sS.rz * (built.width / 2 + 22);
     }
     const uni = new THREE.Mesh(new THREE.BoxGeometry(26, 12, 14), cream);
     uni.position.set(uniP.x, peakY * 0.78 + 6, uniP.z);
@@ -7985,6 +7985,12 @@ function addLandmarks(
       const a = i / 10 * Math.PI * 2 + 0.2;
       const hill = new THREE.Mesh(new THREE.ConeGeometry(58 + i % 3 * 16, 52 + i % 4 * 18, 5), hillM);
       hill.position.set(sc.x + Math.cos(a) * 620, 18, sc.z + Math.sin(a) * 540);
+      add(hill);
+    }
+    for (let i = 0; i < 8; i++) {
+      const a = i / 8 * Math.PI * 2 + 0.4;
+      const hill = new THREE.Mesh(new THREE.ConeGeometry(72 + i % 3 * 18, 62 + i % 4 * 22, 5), hillM);
+      hill.position.set(sc.x + Math.cos(a) * 920, 22, sc.z + Math.sin(a) * 780);
       add(hill);
     }
     for (let i = 0; i < 32; i++) {
