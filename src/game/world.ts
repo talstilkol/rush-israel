@@ -3981,21 +3981,26 @@ function addLandmarks(
     {
       const n = nearestIndex(built.samples, rdH.x, rdH.z, 0);
       const s = built.samples[n.index];
-      placeTunnel(s.x, s.z, Math.atan2(s.tx, s.tz), 44, built.width * 0.62, 7.2, s.y);
+      placeTunnel(s.x, s.z, Math.atan2(s.tx, s.tz), 82, built.width * 0.72, 8.8, s.y);
       if (n.dist < built.width / 2 + 12) {
         rdH.x = s.x + s.rx * (built.width / 2 + 26);
         rdH.z = s.z + s.rz * (built.width / 2 + 26);
       }
     }
-    const chimH = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 5.2, 78, 16), cream);
-    chimH.position.set(rdH.x, 39, rdH.z);
+    const chimH = new THREE.Mesh(new THREE.CylinderGeometry(3.8, 5.6, 92, 16), cream);
+    chimH.position.set(rdH.x, 46, rdH.z);
     add(chimH);
-    const chimGalH = new THREE.Mesh(new THREE.CylinderGeometry(4.6, 3.8, 2.4, 16), cream);
-    chimGalH.position.set(rdH.x, 79, rdH.z);
+    const chimGalH = new THREE.Mesh(new THREE.CylinderGeometry(5.2, 4.2, 2.8, 16), cream);
+    chimGalH.position.set(rdH.x, 93, rdH.z);
     add(chimGalH);
-    for (let i = 0; i < 5; i++) {
-      const bandH = new THREE.Mesh(new THREE.CylinderGeometry(3.55, 3.7, 2.6, 14), i % 2 ? terracotta : white);
-      bandH.position.set(rdH.x, 66 + i * 2.8, rdH.z);
+    const chimTopH = new THREE.Mesh(new THREE.CylinderGeometry(4.2, 3.6, 3.4, 16), cream);
+    chimTopH.position.set(rdH.x, 96, rdH.z);
+    add(chimTopH);
+    const redRing = new THREE.MeshStandardMaterial({ color: 0xc43c28, roughness: 0.52 });
+    bag.push(redRing);
+    for (let i = 0; i < 16; i++) {
+      const bandH = new THREE.Mesh(new THREE.CylinderGeometry(4.05, 4.2, 3.2, 14), i % 2 ? redRing : white);
+      bandH.position.set(rdH.x, 22 + i * 4.4, rdH.z);
       add(bandH);
     }
     skipRoad(rdH.x, rdH.z, 5);
