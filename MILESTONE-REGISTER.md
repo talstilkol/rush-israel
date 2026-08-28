@@ -1,9 +1,10 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 1.1.0  
+**Version:** 1.2.0  
 **Established by:** RSH-003  
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`  
-**Verified base:** `6932a74ca23f125e212f37fa0db73da377eaabe3`
+**Transition base:** `6932a74ca23f125e212f37fa0db73da377eaabe3`  
+**Effective when:** PR #7 merges
 
 ## Status vocabulary
 
@@ -31,11 +32,10 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 5 |
-| Unit in execution | RSH-006 |
-| Remaining units including RSH-006 | 62 |
-| Expected accepted units after RSH-006 | 6 |
-| Next unit after this batch | RSH-007 |
+| Accepted units | 6 |
+| Units in review | 0 |
+| Eligible queue head | RSH-007 |
+| Remaining units | 61 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -46,12 +46,13 @@
 |---|---|
 | RSH-004 — exact Node/npm toolchain | ACCEPTED |
 | RSH-005 — portable project paths | ACCEPTED |
-| RSH-006 — self-starting QA harness | IN REVIEW |
-| RSH-007 — GitHub Actions CI | BLOCKED until a future `next` |
+| RSH-006 — self-starting QA harness | ACCEPTED ON PR #7 MERGE |
+| RSH-007 — GitHub Actions CI | ELIGIBLE ON A FUTURE `next` |
 | RSH-008 — required checks and branch protection | DEFERRED |
 
-RSH-006 establishes the local harness but cannot close M1. Clean-clone runtime
-execution belongs to RSH-007, and technical branch protection belongs to RSH-008.
+RSH-006 establishes the local QA lifecycle. Clean-clone GitHub-hosted execution
+belongs to RSH-007, and technical branch protection belongs to RSH-008. M1 therefore
+remains ACTIVE.
 
 ## GitHub-native milestone policy
 

@@ -1,14 +1,19 @@
 {
-  "schema_version": "2.1.0",
+  "schema_version": "2.2.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-29T01:37:35+03:00",
+  "generated_at": "2026-08-29T01:52:50+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_main_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3",
+  "transition_basis": {
+    "verified_main_before_pr_7": "6932a74ca23f125e212f37fa0db73da377eaabe3",
+    "effective_on_merge_of_pull_request": 7,
+    "reviewed_implementation_head_sha": "5c15dc41eaebd1bc7f56758c046391a28bedbd8b",
+    "merge_sha_recording": "Resolve from live main during the RSH-007 preflight."
+  },
   "policy": {
     "mode": "strict_serial",
-    "units_per_next": 1,
-    "bounded_batch_authorization": {
+    "units_per_plain_next": 1,
+    "completed_bounded_batch": {
       "instruction": "make next 5",
       "authorized_units": [
         "RSH-002",
@@ -17,8 +22,9 @@
         "RSH-005",
         "RSH-006"
       ],
-      "ends_after": "RSH-006",
-      "later_units_authorized": false
+      "completed": 5,
+      "total": 5,
+      "closed_after": "RSH-006"
     },
     "direct_main_writes": false,
     "automatic_merge": false,
@@ -28,25 +34,24 @@
   },
   "counts": {
     "total": 67,
-    "accepted": 5,
-    "in_review": 1,
-    "queued_blocked": 1,
+    "accepted": 6,
+    "in_review": 0,
+    "eligible": 1,
     "deferred": 60,
-    "remaining_including_review": 62
+    "remaining": 61
   },
   "queue_head": {
-    "id": "RSH-006",
-    "title": "Build a self-starting QA harness",
-    "state": "in_review",
-    "branch": "agent/rsh-006-self-starting-qa-harness",
-    "pull_request": 7,
-    "base_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3"
-  },
-  "next_after_acceptance": {
     "id": "RSH-007",
     "title": "Create GitHub Actions CI",
-    "state": "queued_blocked",
+    "state": "eligible_on_future_next",
+    "branch": null,
+    "pull_request": null,
     "automatic_start": false
+  },
+  "next_after_acceptance": {
+    "id": "RSH-008",
+    "title": "Enforce required checks, branch protection and CI artifacts",
+    "state": "blocked_by_RSH-007"
   },
   "accepted": {
     "RSH-001": {
@@ -64,11 +69,17 @@
     "RSH-004": {
       "pull_request": 5,
       "merge_sha": "69ac509b39895bb33a68d871f31cc49b3f05726c",
-      "note": "Draft PR #4 closed unmerged after connector ready-for-review failure; identical replacement merged as PR #5."
+      "note": "PR #4 closed unmerged after connector error."
     },
     "RSH-005": {
       "pull_request": 6,
       "merge_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3"
+    },
+    "RSH-006": {
+      "pull_request": 7,
+      "implementation_head_sha": "5c15dc41eaebd1bc7f56758c046391a28bedbd8b",
+      "merge_sha": null,
+      "merge_sha_status": "Record from live main during RSH-007 preflight."
     }
   },
   "unit_order": [
@@ -140,18 +151,14 @@
     "RSH-066",
     "RSH-067"
   ],
-  "default_state_rules": {
-    "RSH-006": "in_review",
-    "RSH-007": "queued_blocked",
+  "state_rules": {
+    "RSH-001–RSH-006": "accepted",
+    "RSH-007": "eligible_on_future_next",
     "RSH-008–RSH-067": "deferred"
   },
-  "expected_after_rsh_006_merge": {
-    "accepted": 6,
-    "in_review": 0,
-    "queued_blocked": 1,
-    "deferred": 60,
-    "remaining": 61,
-    "queue_head": "RSH-007",
-    "queue_head_state": "eligible_on_future_next"
+  "next_instruction_contract": {
+    "plain_next": "Start RSH-007 only after re-reading live GitHub and recording the PR #7 merge SHA.",
+    "automatic_execution": false,
+    "batch_authority_remaining": 0
   }
 }

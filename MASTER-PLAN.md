@@ -1,9 +1,10 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 2.0.0  
+**Schema:** 2.1.0  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**Verified baseline:** `6932a74ca23f125e212f37fa0db73da377eaabe3`  
+**Transition base:** `6932a74ca23f125e212f37fa0db73da377eaabe3`  
+**Effective when:** PR #7 merges  
 **Established by:** RSH-001  
 **Governance policy:** RSH-002  
 **Date:** 29 August 2026
@@ -39,24 +40,25 @@ MVP are outside Version 1 until explicitly authorised.
 7. Percentages are estimates; accepted units and the 13 release gates are authoritative.
 8. A bounded owner instruction may authorise several consecutive units, but authority
    ends after the exact final unit recorded in `QUEUE.json`.
+9. If a unit's own PR prepares post-merge canonical state, the next preflight must
+   read and persist the actual merge SHA.
 
 ## 4. Current program state
 
 | Metric | Current value |
 |---|---:|
 | Total units | 67 |
-| Accepted before RSH-006 merge | 5 |
-| Active unit | RSH-006 |
-| Expected accepted after merge | 6 |
-| Next unit | RSH-007 |
-| RSH-007 authorised in current batch | No |
-| Remaining after RSH-006 | 61 |
+| Accepted units | 6 |
+| Units in review | 0 |
+| Eligible queue head | RSH-007 |
+| RSH-007 started | No |
+| Remaining units | 61 |
 | Verified release gates | 0/13 |
 | Findings | 42 |
 | OPEN / MITIGATED / CLOSED | 30 / 9 / 3 |
 
-The owner-authorised five-unit batch contains exactly RSH-002–RSH-006 and ends after
-RSH-006. A future `next` may begin RSH-007 only.
+The owner-authorised five-unit batch contained exactly RSH-002–RSH-006 and is
+complete. A future plain `next` may begin RSH-007 only.
 
 ## 5. Version 1 track scope
 
@@ -230,8 +232,10 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-RSH-006 implements the local self-starting QA lifecycle. GitHub-hosted clean-clone
-execution is intentionally deferred to RSH-007. Therefore RSH-006 may mitigate the
-self-contained-QA finding but cannot close the CI or reproducibility gates.
+RSH-006 has established the local self-starting QA lifecycle. GitHub-hosted
+clean-clone execution remains intentionally deferred to RSH-007. Therefore the
+self-contained-QA finding is mitigated, but CI and reproducibility gates remain open.
 
-RSH-007 must not be started until RSH-006 is merged and a future `next` is received.
+No RSH-007 branch or PR exists. The completed batch gives no remaining authority.
+A future plain `next` may begin RSH-007 only after its preflight records the live
+PR #7 merge SHA.
