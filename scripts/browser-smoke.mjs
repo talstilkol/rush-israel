@@ -4,6 +4,7 @@ import { dirname } from "node:path";
 import { chromium } from "playwright";
 import { checkedOutputPath, checkedUrl } from "./browser-guard.mjs";
 import { computeBrandWarnings } from "./brand-check.mjs";
+import { projectRoot } from "./project-root.mjs";
 import {
   authInvariantWarnings,
   buildAuthEnabled,
@@ -27,10 +28,10 @@ if (args.error) {
 }
 
 const url = checkedUrl(args.url);
-const outPng = checkedOutputPath(args.outPng, ["/workspace"]);
+const outPng = checkedOutputPath(args.outPng, [projectRoot]);
 const derived = derivedPaths(outPng);
-const mobilePng = checkedOutputPath(derived.mobilePng, ["/workspace"]);
-const outJson = checkedOutputPath(derived.verdictJson, ["/workspace"], "verdict JSON");
+const mobilePng = checkedOutputPath(derived.mobilePng, [projectRoot]);
+const outJson = checkedOutputPath(derived.verdictJson, [projectRoot], "verdict JSON");
 
 const MAX_BASELINE_BYTES = 1024 * 1024;
 const baselineRequested = Boolean(args.baseline);
@@ -38,7 +39,7 @@ let baselinePath = null;
 let baselineResolveError = null;
 if (baselineRequested) {
   try {
-    baselinePath = checkedOutputPath(realpathSync(args.baseline), ["/workspace"], "baseline");
+    baselinePath = checkedOutputPath(realpathSync(args.baseline), [projectRoot], "baseline");
   } catch (err) {
     baselineResolveError = err?.code ?? "unresolvable path";
   }
@@ -105,8 +106,6 @@ try {
       if (msg.type() === "error") errors.consoleErrors.push(msg.text());
     });
     page.on("pageerror", (err) => errors.pageErrors.push(String(err?.message || err)));
-    // `domcontentloaded`, not `networkidle`: Vite keeps an HMR websocket open, so
-    // networkidle never settles and would burn the whole timeout.
     const resp = await page.goto(url, { waitUntil: "domcontentloaded", timeout: timeoutMs });
     const status = resp?.status() ?? 0;
     await page.waitForTimeout(1000);
@@ -141,8 +140,6 @@ try {
   }
 
   const brandWarnings = computeBrandWarnings({ hasCanvas: viewports.desktop.hasCanvas });
-  // Only a dev server answers /__app-env, so smoking the built output reads as
-  // indeterminate — report a divergence, never the absence of an observation.
   const authWarnings = authInvariantWarnings(
     compareAuthInvariant({
       devAuthEnabled: await probeDevAuthEnabled(url),
@@ -159,9 +156,6 @@ try {
   writeFileSync(outJson, JSON.stringify(verdict, null, 2));
   console.log(JSON.stringify(verdict, null, 2));
   for (const w of [...brandWarnings, ...authWarnings]) console.error(w);
-  // Set the code rather than aborting the process so the `finally` browser
-  // teardown always runs (agents typically smoke twice per turn; leaking
-  // Chromium accumulates across retries).
   process.exitCode = exitCodeFor(viewports);
 } catch (err) {
   const failure = { ok: false, url, error: String(err?.message || err) };
