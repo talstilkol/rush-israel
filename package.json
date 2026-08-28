@@ -4,10 +4,6 @@
   "sideEffects": false,
   "type": "module",
   "packageManager": "npm@10.9.2",
-  "engines": {
-    "node": "22.16.0",
-    "npm": "10.9.2"
-  },
   "volta": {
     "node": "22.16.0",
     "npm": "10.9.2"
@@ -32,7 +28,7 @@
     "check:secrets": "node scripts/secrets-check.mjs",
     "check:paths": "node scripts/check-portable-paths.mjs",
     "test": "node --test 'scripts/**/*.test.mjs'",
-    "test:harness": "node --test scripts/run-with-server.test.mjs",
+    "test:harness": "node --test scripts/run-with-server.test.mjs scripts/toolchain-metadata.test.mjs scripts/program-control.test.mjs",
     "test:records": "node --test scripts/records.test.mjs",
     "test:physics": "node --test scripts/w-determinism.test.mjs",
     "test:ssgi": "node --test scripts/ssgi.test.mjs",
