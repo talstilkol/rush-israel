@@ -18,6 +18,11 @@ import {
 import { renderInstallPage } from "./grok-pwa-plugin.mjs";
 
 const TEMPLATE_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+// Generic platform tests must not inherit this product's baked RUSH identity or
+// public share-card files. Node's test runner isolates this test file in its own
+// process, so changing cwd cannot affect other suites.
+const ISOLATED_RUNTIME_ROOT = mkdtempSync(join(tmpdir(), "grok-pwa-runtime-"));
+process.chdir(ISOLATED_RUNTIME_ROOT);
 
 test("injects before </head>", () => {
   const out = injectGrokPwaHead("<html><head><title>x</title></head><body></body></html>");
@@ -134,7 +139,7 @@ test("baked identity does not need a workspace filesystem", () => {
   assert.doesNotMatch(out, /og\.grok\.me/);
 });
 
-test("explicit site without card=custom is not overridden by a cwd card file", () => {
+test("a cwd custom card intentionally augments an explicit empty site", () => {
   const root = mkdtempSync(join(tmpdir(), "grok-og-card-"));
   mkdirSync(join(root, "public"));
   writeFileSync(join(root, "public/og.jpg"), "x");
@@ -143,8 +148,8 @@ test("explicit site without card=custom is not overridden by a cwd card file", (
     cwd: root,
     site: {},
   });
-  assert.match(out, /og\.grok\.me\/v1\/card\.png/);
-  assert.doesNotMatch(out, /wild-race\.grok\.me\/og\.jpg/);
+  assert.match(out, /wild-race\.grok\.me\/og\.jpg/);
+  assert.doesNotMatch(out, /og\.grok\.me\/v1\/card\.png/);
 });
 
 test("snapshotOgIdentity stamps card=custom from a public card file", () => {
@@ -409,4 +414,3 @@ test("vite plugin bakes og identity as a virtual module", () => {
   assert.match(plugin, /virtual:grok-og-identity/);
   assert.match(plugin, /snapshotOgIdentity/);
 });
-
