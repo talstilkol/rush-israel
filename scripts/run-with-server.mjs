@@ -9,6 +9,16 @@ export const DEFAULT_START_TIMEOUT_MS = 60_000;
 export const DEFAULT_COMMAND_TIMEOUT_MS = 15 * 60_000;
 export const DEFAULT_STOP_TIMEOUT_MS = 5_000;
 
+const SIGNAL_EXIT_CODES = {
+  SIGHUP: 129,
+  SIGINT: 130,
+  SIGTERM: 143,
+};
+
+export function signalExitCode(signal) {
+  return SIGNAL_EXIT_CODES[signal] ?? 128;
+}
+
 function positiveInteger(value, fallback, label) {
   if (value == null || value === "") return fallback;
   const n = Number(value);
@@ -231,7 +241,7 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
   let commandChild = null;
   let interrupted = null;
   const onSignal = (signal) => {
-    interrupted = signal;
+    interrupted ??= signal;
     void terminateTree(commandChild, config.stopTimeoutMs);
     void terminateTree(server, config.stopTimeoutMs);
   };
@@ -293,9 +303,12 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
         `QA command exceeded ${config.commandTimeoutMs}ms: ${config.command.join(" ")}`,
       );
     }
+    if (interrupted) return signalExitCode(interrupted);
     if (outcome.signal) throw new Error(`QA command terminated by ${outcome.signal}`);
-    if (interrupted) return 128;
     return outcome.code ?? 1;
+  } catch (error) {
+    if (interrupted) return signalExitCode(interrupted);
+    throw error;
   } finally {
     for (const signal of ["SIGINT", "SIGTERM", "SIGHUP"]) {
       process.removeListener(signal, onSignal);
