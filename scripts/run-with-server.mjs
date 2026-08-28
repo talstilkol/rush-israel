@@ -123,17 +123,29 @@ function exited(child) {
 }
 
 export async function waitForServer({ url, child, timeoutMs, probe = probeServer }) {
-  const deadline = Date.now() + timeoutMs;
-  while (Date.now() < deadline) {
-    if (child && exited(child)) {
-      throw new Error(
-        `QA server exited before readiness (code=${child.exitCode}, signal=${child.signalCode})`,
-      );
+  let spawnError = null;
+  const onError = (error) => {
+    spawnError = error;
+  };
+  child?.once?.("error", onError);
+  try {
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+      if (spawnError) {
+        throw new Error(`QA server failed to start: ${spawnError.message || spawnError}`);
+      }
+      if (child && exited(child)) {
+        throw new Error(
+          `QA server exited before readiness (code=${child.exitCode}, signal=${child.signalCode})`,
+        );
+      }
+      if (await probe(url)) return;
+      await delay(250);
     }
-    if (await probe(url)) return;
-    await delay(250);
+    throw new Error(`QA server did not become ready within ${timeoutMs}ms: ${url}`);
+  } finally {
+    child?.removeListener?.("error", onError);
   }
-  throw new Error(`QA server did not become ready within ${timeoutMs}ms: ${url}`);
 }
 
 async function waitForExit(child, timeoutMs) {
@@ -194,20 +206,35 @@ export function spawnQaCommand(command, env = process.env) {
   });
 }
 
+export function waitForCommandOutcome(child, timeoutMs) {
+  return new Promise((resolve, reject) => {
+    let settled = false;
+    let timer;
+    const cleanup = () => {
+      clearTimeout(timer);
+      child.removeListener("error", onError);
+      child.removeListener("exit", onExit);
+    };
+    const settle = (fn, value) => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      fn(value);
+    };
+    const onError = (error) => settle(reject, error);
+    const onExit = (code, signal) => settle(resolve, { code, signal, timedOut: false });
+    child.once("error", onError);
+    child.once("exit", onExit);
+    timer = setTimeout(
+      () => settle(resolve, { code: null, signal: null, timedOut: true }),
+      timeoutMs,
+    );
+  });
+}
+
 export async function runQaCommand(command, timeoutMs, env = process.env) {
   const child = spawnQaCommand(command, env);
-  let timer;
-  const outcome = await Promise.race([
-    new Promise((resolve, reject) => {
-      child.once("error", reject);
-      child.once("exit", (code, signal) => resolve({ code, signal, timedOut: false }));
-    }),
-    new Promise((resolve) => {
-      timer = setTimeout(() => resolve({ code: null, signal: null, timedOut: true }), timeoutMs);
-    }),
-  ]);
-  clearTimeout(timer);
-
+  const outcome = await waitForCommandOutcome(child, timeoutMs);
   if (outcome.timedOut) {
     await terminateTree(child);
     throw new Error(`QA command exceeded ${timeoutMs}ms: ${command.join(" ")}`);
@@ -263,9 +290,6 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
       const spec = devServerSpec(env);
       server = spawn(spec.command, spec.args, spec.options);
       ownsServer = true;
-      server.once("error", (error) => {
-        console.error("[qa-harness] server spawn failed:", error.message);
-      });
       await waitForServer({
         url: config.serverUrl,
         child: server,
@@ -280,21 +304,7 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
       ...env,
       QA_SERVER_URL: config.serverUrl,
     });
-    let timer;
-    const outcome = await Promise.race([
-      new Promise((resolve, reject) => {
-        commandChild.once("error", reject);
-        commandChild.once("exit", (code, signal) => resolve({ code, signal, timedOut: false }));
-      }),
-      new Promise((resolve) => {
-        timer = setTimeout(
-          () => resolve({ code: null, signal: null, timedOut: true }),
-          config.commandTimeoutMs,
-        );
-      }),
-    ]);
-    clearTimeout(timer);
-
+    const outcome = await waitForCommandOutcome(commandChild, config.commandTimeoutMs);
     if (outcome.timedOut) {
       await terminateTree(commandChild, config.stopTimeoutMs);
       throw new Error(
