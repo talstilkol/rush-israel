@@ -1,29 +1,30 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-28T22:30:49+03:00",
+  "generated_at": "2026-08-28T23:55:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "baseline_sha": "bf08477a44aae0bfc5fee7329f83885adb85c3d8",
+  "baseline_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9",
   "queue_policy": {
     "mode": "strict_serial",
     "units_per_next": 1,
-    "queue_head": "RSH-001",
+    "queue_head": "RSH-002",
     "queue_head_state": "draft_pr_open",
     "next_eligible_unit": null,
-    "promotion_condition": "RSH-001 must be explicitly accepted and merged into main before RSH-002 becomes eligible.",
+    "promotion_condition": "RSH-002 must be explicitly accepted and merged into main before RSH-003 becomes eligible.",
     "direct_main_writes": false,
     "automatic_merge": false,
     "force_push": false,
+    "history_rewrite": false,
     "later_unit_precreation": false
   },
   "counts": {
     "total": 67,
-    "accepted": 0,
+    "accepted": 1,
     "in_review": 1,
     "queued_blocked": 1,
-    "deferred": 65,
-    "remaining_including_review": 67
+    "deferred": 64,
+    "remaining_including_review": 66
   },
   "stages": [
     {
@@ -102,23 +103,25 @@
       "id": "RSH-001",
       "stage": "G0",
       "title": "Canonical program control",
-      "state": "draft_pr_open",
+      "state": "accepted",
       "depends_on": null,
-      "branch": "agent/rsh-001-canonical-program-control",
-      "pull_request_locator": "head:agent/rsh-001-canonical-program-control;base:main"
+      "pull_request": 1,
+      "merge_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9"
     },
     {
       "id": "RSH-002",
       "stage": "G0",
       "title": "Repository governance and visibility policy",
-      "state": "queued_blocked",
-      "depends_on": "RSH-001"
+      "state": "draft_pr_open",
+      "depends_on": "RSH-001",
+      "branch": "agent/rsh-002-repository-governance",
+      "pull_request_locator": "head:agent/rsh-002-repository-governance;base:main"
     },
     {
       "id": "RSH-003",
       "stage": "G0",
       "title": "Baseline, milestones, labels and release register",
-      "state": "deferred",
+      "state": "queued_blocked",
       "depends_on": "RSH-002"
     },
     {
@@ -425,112 +428,112 @@
     {
       "id": "RSH-047",
       "stage": "G7",
-      "title": "Harden PWA installation, offline and update behaviour",
+      "title": "Validate PWA install, offline and update behaviour",
       "state": "deferred",
       "depends_on": "RSH-046"
     },
     {
       "id": "RSH-048",
       "stage": "G7",
-      "title": "Pass accessibility, privacy and Alpha UX gates",
+      "title": "Pass accessibility, privacy and alpha UX gates",
       "state": "deferred",
       "depends_on": "RSH-047"
     },
     {
       "id": "RSH-049",
       "stage": "G8",
-      "title": "Rothschild geometry and driveability",
+      "title": "Rothschild geometry and driving pass",
       "state": "deferred",
       "depends_on": "RSH-048"
     },
     {
       "id": "RSH-050",
       "stage": "G8",
-      "title": "Rothschild art, golden evidence and freeze",
+      "title": "Rothschild art, golden and freeze",
       "state": "deferred",
       "depends_on": "RSH-049"
     },
     {
       "id": "RSH-051",
       "stage": "G8",
-      "title": "Yarkon-Reading geometry and driveability",
+      "title": "Yarkon–Reading geometry and driving pass",
       "state": "deferred",
       "depends_on": "RSH-050"
     },
     {
       "id": "RSH-052",
       "stage": "G8",
-      "title": "Yarkon-Reading art, golden evidence and freeze",
+      "title": "Yarkon–Reading art, golden and freeze",
       "state": "deferred",
       "depends_on": "RSH-051"
     },
     {
       "id": "RSH-053",
       "stage": "G8",
-      "title": "Jaffa geometry and driveability",
+      "title": "Jaffa geometry and driving pass",
       "state": "deferred",
       "depends_on": "RSH-052"
     },
     {
       "id": "RSH-054",
       "stage": "G8",
-      "title": "Jaffa art, golden evidence and freeze",
+      "title": "Jaffa art, golden and freeze",
       "state": "deferred",
       "depends_on": "RSH-053"
     },
     {
       "id": "RSH-055",
       "stage": "G8",
-      "title": "Jerusalem-Scopus geometry and driveability",
+      "title": "Jerusalem–Scopus geometry and driving pass",
       "state": "deferred",
       "depends_on": "RSH-054"
     },
     {
       "id": "RSH-056",
       "stage": "G8",
-      "title": "Jerusalem-Scopus art, golden evidence and freeze",
+      "title": "Jerusalem–Scopus art, golden and freeze",
       "state": "deferred",
       "depends_on": "RSH-055"
     },
     {
       "id": "RSH-057",
       "stage": "G8",
-      "title": "Haifa-Carmel geometry and driveability",
+      "title": "Haifa–Carmel geometry and driving pass",
       "state": "deferred",
       "depends_on": "RSH-056"
     },
     {
       "id": "RSH-058",
       "stage": "G8",
-      "title": "Haifa-Carmel art, golden evidence and freeze",
+      "title": "Haifa–Carmel art, golden and freeze",
       "state": "deferred",
       "depends_on": "RSH-057"
     },
     {
       "id": "RSH-059",
       "stage": "G8",
-      "title": "Ramon geometry and driveability",
+      "title": "Ramon geometry and driving pass",
       "state": "deferred",
       "depends_on": "RSH-058"
     },
     {
       "id": "RSH-060",
       "stage": "G8",
-      "title": "Ramon art, golden evidence and freeze",
+      "title": "Ramon art, golden and freeze",
       "state": "deferred",
       "depends_on": "RSH-059"
     },
     {
       "id": "RSH-061",
       "stage": "G8",
-      "title": "Hermon geometry and driveability",
+      "title": "Hermon geometry and driving pass",
       "state": "deferred",
       "depends_on": "RSH-060"
     },
     {
       "id": "RSH-062",
       "stage": "G8",
-      "title": "Hermon art, golden evidence and freeze",
+      "title": "Hermon art, golden and freeze",
       "state": "deferred",
       "depends_on": "RSH-061"
     },
