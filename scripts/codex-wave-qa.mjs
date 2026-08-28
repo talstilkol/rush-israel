@@ -1,7 +1,9 @@
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
-mkdirSync("/workspace/screenshots", { recursive: true });
+const screenshots = fromRoot("screenshots");
+mkdirSync(screenshots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
@@ -27,7 +29,7 @@ const clickText = async (re) => {
 await page.goto("http://127.0.0.1:8080/", { waitUntil: "networkidle", timeout: 40000 });
 const title = await page.evaluate(() => document.body.innerText);
 if (!/סימקייד|Simcade|120Hz/.test(title)) throw new Error("title missing simcade copy");
-await page.screenshot({ path: "/workspace/screenshots/title.png" });
+await page.screenshot({ path: `${screenshots}/title.png` });
 
 await clickText("בחר מסלול|Choose track");
 await page.waitForTimeout(300);
@@ -35,7 +37,7 @@ await clickText("נתיבי איילון|Ayalon Highway");
 await page.waitForSelector("canvas", { timeout: 25000 });
 await page.waitForFunction(() => !!window.__controlsTest, { timeout: 25000 });
 await page.waitForTimeout(600);
-await page.screenshot({ path: "/workspace/screenshots/race-ayalon.png" });
+await page.screenshot({ path: `${screenshots}/race-ayalon.png` });
 
 const hz = await page.evaluate(() => window.__controlsTest?.getPhysicsHz?.());
 if (hz !== 120) throw new Error(`physics Hz ${hz}`);
@@ -71,7 +73,7 @@ await page.evaluate(() => {
   window.__controlsTest.setThrottle(1);
 });
 await page.waitForTimeout(1200);
-await page.screenshot({ path: "/workspace/screenshots/codex-ayalon-drive.png" });
+await page.screenshot({ path: `${screenshots}/codex-ayalon-drive.png` });
 
 const hudText = await page.evaluate(() => document.body.innerText);
 if (!/ABS|TCS|ESC/.test(hudText)) throw new Error("HUD missing assists");
