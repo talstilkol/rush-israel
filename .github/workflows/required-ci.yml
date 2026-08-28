@@ -1,0 +1,62 @@
+name: required-ci
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: required-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: required-ci / validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CI: "true"
+      NODE_OPTIONS: "--experimental-strip-types"
+      PLAYWRIGHT_BROWSERS_PATH: "0"
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+
+      - name: Verify toolchain
+        run: npm run toolchain:verify
+
+      - name: Install dependencies from lockfile
+        run: npm ci
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Lint all tracked source
+        run: npm run lint
+
+      - name: Run complete unit-test suite
+        run: npm test
+
+      - name: Run self-starting QA gate
+        run: npm run qa:ci
+
+      - name: Build deterministic development bundle
+        run: npm run build:dev

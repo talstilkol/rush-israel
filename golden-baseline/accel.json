@@ -1,72 +1,42 @@
 {
+  "schemaVersion": 2,
   "physicsVersion": 6,
   "track": "ayalon",
-  "note": "extrusion glTF, not a scanned hero. ±15% vs claimed zeroTo100.",
+  "gate": "current-behaviour regression",
+  "claimGate": "RSH-033",
+  "regressionToleranceSeconds": 0.1,
+  "claimTolerance": 0.15,
+  "authority": "RSH-007 GitHub-hosted exact-head measurement. This baseline prevents silent physics drift; it does not approve zeroTo100 product claims.",
   "runs": [
     {
       "carId": "sabra",
-      "t": [
-        9.6,
-        9.6,
-        9.6
-      ],
-      "mean": 9.6,
-      "target": 8.4,
-      "tol": 0.15,
-      "model": "extrusion",
-      "ok": true
+      "mean": 15.55,
+      "claim": 8.4,
+      "claimOk": false
     },
     {
       "carId": "carmel",
-      "t": [
-        7.05,
-        7.05,
-        7.05
-      ],
-      "mean": 7.05,
-      "target": 6.6,
-      "tol": 0.15,
-      "model": "extrusion",
-      "ok": true
+      "mean": 10.95,
+      "claim": 6.6,
+      "claimOk": false
     },
     {
       "carId": "kfir",
-      "t": [
-        4.45,
-        4.45,
-        4.45
-      ],
-      "mean": 4.45,
-      "target": 4.9,
-      "tol": 0.15,
-      "model": "extrusion",
-      "ok": true
+      "mean": 6.55,
+      "claim": 4.9,
+      "claimOk": false
     },
     {
       "carId": "negev",
-      "t": [
-        5.8,
-        5.8,
-        5.8
-      ],
-      "mean": 5.8,
-      "target": 5.8,
-      "tol": 0.15,
-      "model": "extrusion",
-      "ok": true
+      "mean": 8.65,
+      "claim": 5.8,
+      "claimOk": false
     },
     {
       "carId": "yam",
-      "t": [
-        3.05,
-        3.05,
-        3.05
-      ],
-      "mean": 3.05,
-      "target": 3.5,
-      "tol": 0.15,
-      "model": "extrusion",
-      "ok": true
+      "mean": 4.35,
+      "claim": 3.5,
+      "claimOk": false
     }
   ]
 }

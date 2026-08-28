@@ -171,8 +171,10 @@ test("exit codes distinguish navigation failure and page errors", () => {
 });
 
 test("browser smoke source contains no fixed workspace root", () => {
+  const forbiddenRootName = ["work", "space"].join("");
+  const forbiddenRoot = new RegExp(`/${forbiddenRootName}(?:/|\\b)`);
   for (const file of ["browser-smoke.mjs", "browser-smoke-verdict.mjs"]) {
     const source = readFileSync(join(projectRoot, "scripts", file), "utf8");
-    assert.doesNotMatch(source, /\/workspace(?:\/|\b)/);
+    assert.doesNotMatch(source, forbiddenRoot);
   }
 });

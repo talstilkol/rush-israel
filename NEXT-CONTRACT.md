@@ -1,115 +1,101 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 2.1.0  
+**Version:** 2.3.1  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**Transition base:** `6932a74ca23f125e212f37fa0db73da377eaabe3`  
-**Accepted units after PR #7 merge:** `RSH-001`–`RSH-006`  
-**Queue head after PR #7 merge:** `RSH-007`
+**Verified base:** `7ea076d377225d5db3561faf81fe1cedce091a28`  
+**Active unit:** `RSH-007`  
+**Active branch:** `agent/rsh-007-github-actions-ci`  
+**Active PR:** `#9`  
+**Replaced PR:** `#8` — closed unmerged after the connector failed to mark the Draft Ready
 
-## 1. Source of truth
+## 1. Authority
 
-GitHub and the canonical control documents govern the program. Live GitHub evidence
-supersedes chat summaries and recorded SHAs whenever they differ.
+GitHub and the canonical control documents govern the program. Live GitHub
+evidence supersedes chat summaries and recorded SHAs whenever they differ.
 
-The first action of the next unit must read the actual `main` HEAD created by PR #7
-and record that merge SHA in `CURRENT-STATE.json`, `QUEUE.json` and
-`BASELINE-REGISTER.json`.
+The owner instruction `make next 5; confirm everything` explicitly authorises
+sequential implementation, validation and merge of exactly:
 
-## 2. Meaning of a future plain `next`
+1. `RSH-007` — Create GitHub Actions CI;
+2. `RSH-008` — Enforce required checks, branch protection and CI artifacts;
+3. `RSH-009` — Freeze the Version 1 product definition;
+4. `RSH-010` — Classify the track catalogue into 8 MVP and 48 deferred tracks;
+5. `RSH-011` — Create the complete asset provenance and licence inventory.
 
-A plain `next` authorises implementation of exactly one eligible queue-head unit.
+The batch closes after RSH-011. RSH-012 is not authorised.
 
-After PR #7 merges, that unit is:
+## 2. Sequential execution
+
+Each authorised unit still requires:
+
+- re-reading the live `main` created by the prior merge;
+- one new branch based on that exact SHA;
+- one separate PR;
+- deterministic changed-set and unit-specific validation;
+- no later-unit pre-creation before the current unit is accepted;
+- merge only after the applicable acceptance boundary passes.
+
+## 3. Current queue head
 
 `RSH-007 — Create GitHub Actions CI`
 
-A plain `next` does not authorise RSH-008, direct `main` writes, force-push,
-history rewrite, release creation or public distribution.
+RSH-007 establishes the first GitHub-hosted clean-checkout authority. It is not
+accepted merely because workflow YAML exists. The exact final head of replacement
+PR #9 must have a completed successful job named:
 
-## 3. Completed bounded batch
+`required-ci / validate`
 
-The owner instruction `make next 5` authorised exactly:
+## 4. Replacement-PR continuity
 
-1. `RSH-002` — accepted through PR #2;
-2. `RSH-003` — accepted through PR #3;
-3. `RSH-004` — accepted through PR #5;
-4. `RSH-005` — accepted through PR #6;
-5. `RSH-006` — accepted when PR #7 merges.
+Draft PR #8 and replacement PR #9 use the same branch and linear branch history.
+PR #8 was closed without merge solely because the connector's Ready-for-review
+mutation failed. No validated bytes were discarded or reconstructed.
 
-The batch is complete and its authority is exhausted. It does not authorise
-automatic creation of an RSH-007 branch, commit or PR.
-
-## 4. Mandatory preflight for RSH-007
-
-Before any RSH-007 write:
-
-1. read the live `main` HEAD and PR #7 merge result;
-2. record the actual PR #7 merge SHA in all canonical acceptance registers;
-3. read all open PRs and relevant branches;
-4. confirm there is no pre-existing RSH-007 branch or PR;
-5. read `CURRENT-STATE.json`, `QUEUE.json`, `MASTER-PLAN.md`,
-   `MILESTONE-REGISTER.md`, this contract and `FINDINGS-REGISTER.md`;
-6. reconcile any live GitHub change before creating the RSH-007 branch.
+The pre-reconciliation head `fb1bc883b03fd254954393c2b6d0142de964f12d`
+passed workflow run `33221515687`. After PR-number reconciliation, the new exact
+final head must independently pass again before merge.
 
 ## 5. RSH-007 scope
 
-RSH-007 may create GitHub Actions CI and the minimum supporting changes required to
-run a clean-clone install, static validation and self-starting QA harness on GitHub.
+RSH-007 may add:
 
-It must not:
+- a pull-request and `main` GitHub Actions workflow;
+- exact Node/npm and lockfile installation;
+- Playwright browser provisioning;
+- lint, complete unit tests, self-starting QA and build execution;
+- CI operating documentation and canonical state updates;
+- deterministic regression baselines that do not misrepresent unresolved claims.
 
-- enforce branch protection or rulesets; that is RSH-008;
-- change game design, assets or product scope;
-- publish a tag or release;
-- start RSH-008.
+It must not apply branch protection or rulesets; that remains RSH-008.
 
-## 6. Unit standard
+## 6. Transition to RSH-008
 
-Every unit must have:
+RSH-008 starts only after:
 
-1. an exact verified `main` base SHA;
-2. one dedicated queue-head branch;
-3. written scope and exclusions;
-4. deterministic changed-set evidence;
-5. updated canonical state;
-6. one PR with an exact head;
-7. no completion claim beyond available evidence;
-8. no later-unit pre-creation.
+1. PR #9 final head succeeds in GitHub Actions;
+2. PR #9 is merged under the owner's batch authorisation;
+3. the live merge SHA is read from `main`;
+4. RSH-007 acceptance is written into the next branch's canonical records.
 
-## 7. RSH-006 evidence boundary
+## 7. Prohibited actions
 
-RSH-006 provides:
+- direct write to `main`;
+- force-push or history rewrite;
+- merging a failed or pending exact head;
+- claiming branch protection exists without live GitHub evidence;
+- claiming the repository is private while GitHub reports public;
+- creating a tag, release or public distribution artifact;
+- starting RSH-012 under this batch.
 
-- automatic repository-local Vite startup;
-- readiness probing and fail-closed server reuse;
-- startup, command and cleanup timeouts;
-- process-tree cleanup on Linux, macOS and Windows;
-- `128+signal` exit semantics;
-- timer and listener cleanup;
-- toolchain/lockfile metadata regression validation;
-- source-level deterministic tests.
-
-It does not claim clean-clone GitHub-hosted execution. That evidence belongs to
-RSH-007. Finding P0-05 remains `MITIGATED`, and release gates remain `0/13`.
-
-## 8. Prohibited actions
-
-- write directly to `main`;
-- force-push or rewrite history;
-- claim the repository is private while GitHub reports public;
-- claim runtime CI evidence before RSH-007 runs;
-- create a tag, release or public distribution artifact;
-- start RSH-008 before RSH-007 is accepted.
-
-## 9. Canonical post-merge state
+## 8. Current metrics
 
 | Metric | Value |
 |---|---:|
 | Accepted units | 6/67 |
+| In review | 1 |
 | Remaining units | 61 |
-| Units in review | 0 |
 | Queue head | RSH-007 |
-| Queue-head state | Eligible on a future `next` |
-| RSH-007 branch/PR | None |
+| Batch units completed | 0/5 |
+| Batch authority remaining | 5 |
 | Release gates | 0/13 |

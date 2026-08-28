@@ -1,13 +1,10 @@
 {
-  "schema_version": "1.2.1",
+  "schema_version": "1.3.1",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-08-29T02:08:00+03:00",
+  "generated_at": "2026-08-29T02:52:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "release_gates": {
-    "green": 0,
-    "total": 13
-  },
+  "release_gates": { "green": 0, "total": 13 },
   "baselines": [
     {
       "id": "B000-pre-control",
@@ -56,7 +53,7 @@
       "tree_sha": "7724ceed10fd362dc2c6aef81cd66ef1f65f1e28",
       "recorded_at": "2026-08-29T00:43:53+03:00",
       "description": "Exact Node/npm pins and reproducible-install contract accepted.",
-      "note": "Draft PR #4 closed unmerged after a connector ready-for-review failure; replacement PR #5 was merged."
+      "note": "Draft PR #4 closed unmerged after connector error; replacement PR #5 was merged."
     },
     {
       "id": "B005-rsh-005-accepted",
@@ -69,33 +66,35 @@
       "description": "Executable automation made repository-root portable; fixed sandbox-root search returned zero."
     },
     {
-      "id": "B006-rsh-006-accepted-on-pr-merge",
-      "kind": "accepted-unit-transition",
+      "id": "B006-rsh-006-accepted",
+      "kind": "accepted-unit",
       "unit": "RSH-006",
       "pull_request": 7,
+      "commit_sha": "7ea076d377225d5db3561faf81fe1cedce091a28",
+      "tree_sha": "c7fcc5f1bae924ad975c2e8bbd214fd86b7f3f65",
       "reviewed_implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
-      "merge_sha": null,
-      "merge_sha_status": "Resolve from live main at the next preflight.",
-      "recorded_at": "2026-08-29T02:08:00+03:00",
-      "description": "Self-starting QA lifecycle, cancellable cleanup timers, interrupt-safe command startup, process cleanup, toolchain metadata regression guard and deterministic source tests accepted when PR #7 merges.",
-      "runtime_evidence": "Clean-clone GitHub-hosted execution remains pending RSH-007."
+      "recorded_at": "2026-08-29T02:10:21+03:00",
+      "description": "Self-starting QA lifecycle, cancellable cleanup timers, interrupt-safe startup and deterministic source tests accepted.",
+      "runtime_evidence": "Clean-checkout GitHub-hosted execution is owned by RSH-007."
     }
   ],
   "working_state": {
     "unit": "RSH-007",
-    "state": "eligible_on_future_next",
-    "base_commit_sha": "Resolve live main after PR #7 merge.",
-    "branch": null,
+    "state": "pr_open",
+    "base_commit_sha": "7ea076d377225d5db3561faf81fe1cedce091a28",
+    "branch": "agent/rsh-007-github-actions-ci",
+    "pull_request": 9,
+    "replaced_pull_request": 8,
+    "replacement_reason": "The connector failed to mark Draft PR #8 Ready; PR #8 closed unmerged and PR #9 preserves the same branch history.",
     "is_release": false,
     "tag_created": false,
     "release_created": false,
-    "runtime_evidence": "RSH-007 will provide the first GitHub-hosted clean-clone result."
+    "runtime_evidence": "The reconciled final PR #9 head must pass required-ci / validate before merge."
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
     "Tags and GitHub Releases are created only by their authorised release units.",
-    "Accepted units normally record their merge SHA.",
-    "When a unit's own merging change prepares post-merge state, it records the reviewed implementation head and PR number; the next preflight must resolve and persist the actual merge SHA from live GitHub.",
+    "Every accepted unit is reconciled to the live merge SHA during the next preflight.",
     "Live GitHub state supersedes this register if they disagree."
   ]
 }

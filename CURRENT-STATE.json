@@ -1,24 +1,18 @@
 {
-  "schema_version": "2.2.1",
+  "schema_version": "2.3.1",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-29T02:08:00+03:00",
+  "generated_at": "2026-08-29T02:52:00+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
-  "transition_basis": {
-    "verified_main_before_pr_7": {
-      "head_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3",
-      "tree_sha": "b4be27abd2a3611325c8f8cc7589eb775f28c1dc",
-      "commit_authored_at": "2026-08-29T01:04:22+03:00",
-      "commit_message": "Merge PR #6: RSH-005 — Remove fixed workspace paths",
-      "commit_signature_verified": true
-    },
-    "effective_condition": "This document becomes canonical only when PR #7 is merged.",
-    "pull_request": 7,
-    "reviewed_implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
-    "merge_sha_recording": "The next GitHub write must read and record the actual PR #7 merge SHA."
+  "verified_main": {
+    "head_sha": "7ea076d377225d5db3561faf81fe1cedce091a28",
+    "tree_sha": "c7fcc5f1bae924ad975c2e8bbd214fd86b7f3f65",
+    "commit_authored_at": "2026-08-29T02:10:21+03:00",
+    "commit_message": "Merge PR #7: RSH-006 — Self-starting QA harness",
+    "commit_signature_verified": true
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -43,100 +37,67 @@
   "program_status": {
     "program_units_total": 67,
     "accepted_units": 6,
-    "units_in_review": 0,
-    "eligible_units": 1,
+    "units_in_review": 1,
+    "eligible_units": 0,
     "deferred_units": 60,
     "remaining_units": 61,
     "queue_head": "RSH-007",
-    "queue_head_state": "eligible_on_future_next",
-    "queue_head_branch": null,
+    "queue_head_state": "pr_open",
+    "queue_head_branch": "agent/rsh-007-github-actions-ci",
+    "queue_head_pull_request": 9,
     "automatic_execution": false,
     "release_gates_green": 0,
     "release_gates_total": 13
   },
   "accepted_units": {
-    "RSH-001": {
-      "pr": 1,
-      "merge_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9"
-    },
-    "RSH-002": {
-      "pr": 2,
-      "merge_sha": "ef86c69ade9bc54585104f90743fb32cb4489898"
-    },
-    "RSH-003": {
-      "pr": 3,
-      "merge_sha": "f1af9f507378d5d42c5e06255c8244c78b0c0f22"
-    },
-    "RSH-004": {
-      "pr": 5,
-      "merge_sha": "69ac509b39895bb33a68d871f31cc49b3f05726c",
-      "replacement_pr_note": "PR #4 closed unmerged after connector error."
-    },
-    "RSH-005": {
-      "pr": 6,
-      "merge_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3"
-    },
-    "RSH-006": {
-      "pr": 7,
-      "implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
-      "merge_sha": null,
-      "merge_sha_status": "Record the live PR #7 merge SHA during the RSH-007 preflight; live GitHub is authoritative."
-    }
+    "RSH-001": { "pr": 1, "merge_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9" },
+    "RSH-002": { "pr": 2, "merge_sha": "ef86c69ade9bc54585104f90743fb32cb4489898" },
+    "RSH-003": { "pr": 3, "merge_sha": "f1af9f507378d5d42c5e06255c8244c78b0c0f22" },
+    "RSH-004": { "pr": 5, "merge_sha": "69ac509b39895bb33a68d871f31cc49b3f05726c", "replacement_pr_note": "PR #4 closed unmerged after connector error." },
+    "RSH-005": { "pr": 6, "merge_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3" },
+    "RSH-006": { "pr": 7, "merge_sha": "7ea076d377225d5db3561faf81fe1cedce091a28", "implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6" }
   },
-  "last_completed_change": {
-    "unit": "RSH-006",
-    "title": "Build a self-starting QA harness",
-    "pull_request": 7,
-    "implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
-    "game_code_changed": false,
-    "dependency_versions_changed": false,
-    "package_lock_changed": false,
-    "runtime_evidence": "Pending RSH-007 GitHub Actions CI."
-  },
-  "next_eligible_change": {
+  "active_change": {
     "unit": "RSH-007",
     "title": "Create GitHub Actions CI",
-    "state": "eligible_on_future_next",
-    "branch": null,
-    "pull_request": null,
-    "authorized_by_completed_batch": false
+    "branch": "agent/rsh-007-github-actions-ci",
+    "pull_request": 9,
+    "replaced_pull_request": 8,
+    "replacement_reason": "The connector failed to mark Draft PR #8 Ready; PR #8 was closed unmerged and replaced without changing the branch history.",
+    "base_sha": "7ea076d377225d5db3561faf81fe1cedce091a28",
+    "state": "pr_open",
+    "merge_authorized_by_owner_batch": true,
+    "acceptance_requires_exact_head_ci_success": true,
+    "game_code_changed": false,
+    "dependency_versions_changed": false
   },
   "batch_authorization": {
-    "instruction": "make next 5",
-    "authorized_units": [
-      "RSH-002",
-      "RSH-003",
-      "RSH-004",
-      "RSH-005",
-      "RSH-006"
-    ],
-    "completed_units": 5,
+    "instruction": "make next 5; confirm everything",
+    "authorized_units": ["RSH-007", "RSH-008", "RSH-009", "RSH-010", "RSH-011"],
+    "completed_units": 0,
     "total_units": 5,
-    "state": "completed",
-    "closed_after": "RSH-006",
-    "RSH-007_authorized": false
+    "state": "active",
+    "closed_after": "RSH-011",
+    "separate_branch_and_pr_per_unit": true,
+    "merge_after_validation": true,
+    "RSH-012_authorized": false
   },
-  "rsh_006_evidence": {
-    "self_starting_entry": "scripts/run-with-server.mjs",
-    "unit_tests": [
-      "scripts/run-with-server.test.mjs",
-      "scripts/program-control.test.mjs",
-      "scripts/toolchain-metadata.test.mjs"
-    ],
-    "documentation": "QA-HARNESS.md",
-    "server_url": "http://127.0.0.1:8080/",
-    "unknown_existing_server_rejected": true,
-    "explicit_reuse_flag": "QA_REUSE_SERVER=1",
-    "harness_owned_server_always_stopped": true,
-    "process_tree_cleanup": true,
-    "cross_platform_cleanup": true,
-    "signal_exit_mapping": "128 + operating-system signal number",
-    "timers_and_listeners_cleaned": true,
-    "wait_for_exit_losing_timer_cancelled": true,
-    "interrupt_checked_before_server_and_command_spawn": true,
-    "server_spawn_errors_reported_directly": true,
-    "rsh_004_lockfile_metadata_regression_test": "scripts/toolchain-metadata.test.mjs",
-    "clean_clone_runtime_evidence": "pending RSH-007"
+  "rsh_007_acceptance": {
+    "workflow": ".github/workflows/required-ci.yml",
+    "required_job": "required-ci / validate",
+    "contract": "CI-CONTRACT.md",
+    "exact_head_success_required": true,
+    "clean_checkout": true,
+    "pinned_node": "22.16.0",
+    "pinned_npm": "10.9.2",
+    "lockfile_install": "npm ci",
+    "lint": true,
+    "complete_unit_tests": true,
+    "self_starting_qa": true,
+    "build": "npm run build:dev",
+    "last_successful_pre_reconciliation_head": "fb1bc883b03fd254954393c2b6d0142de964f12d",
+    "last_successful_run": 33221515687,
+    "final_reconciled_head_requires_new_success": true
   },
   "findings": {
     "total": 42,
@@ -150,8 +111,9 @@
   },
   "constraints": [
     "Do not claim the repository is private until GitHub metadata confirms it.",
-    "Do not create an RSH-007 branch, commit or PR without a future next instruction.",
-    "Do not claim clean-clone or GitHub-hosted runtime evidence before RSH-007.",
+    "Do not accept RSH-007 until the exact final replacement-PR head has successful GitHub Actions evidence.",
+    "Do not begin RSH-008 before RSH-007 is validated and merged.",
+    "Execute only the owner-authorised RSH-007–RSH-011 batch.",
     "Release gates remain 0/13."
   ],
   "validation": {
@@ -160,6 +122,6 @@
     "asset_changes": 0,
     "dependency_version_changes": 0,
     "package_lock_changes": 0,
-    "RSH-007_precreated": false
+    "RSH-008_precreated": false
   }
 }
