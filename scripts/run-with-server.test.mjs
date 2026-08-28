@@ -4,6 +4,7 @@ import {
   DEFAULT_COMMAND_TIMEOUT_MS,
   DEFAULT_SERVER_URL,
   DEFAULT_START_TIMEOUT_MS,
+  canSelfStartUrl,
   devServerSpec,
   parseHarnessArgs,
   probeServer,
@@ -61,11 +62,21 @@ test("rejects malformed URL and timeout values", () => {
   });
 });
 
+test("self-start is restricted to the canonical local server contract", () => {
+  assert.equal(canSelfStartUrl("http://127.0.0.1:8080/"), true);
+  assert.equal(canSelfStartUrl("http://localhost:8080/"), true);
+  assert.equal(canSelfStartUrl("http://[::1]:8080/"), true);
+  assert.equal(canSelfStartUrl("http://127.0.0.1:8081/"), false);
+  assert.equal(canSelfStartUrl("https://127.0.0.1:8080/"), false);
+  assert.equal(canSelfStartUrl("http://127.0.0.1:8080/qa"), false);
+});
+
 test("dev server uses local Vite through the app-env wrapper", () => {
   const spec = devServerSpec({ EXAMPLE: "1" });
   assert.equal(spec.command, process.execPath);
   assert.equal(spec.options.cwd, projectRoot);
   assert.equal(spec.options.env.VITE_QA, "1");
+  assert.equal(spec.options.detached, process.platform !== "win32");
   assert.equal(spec.args[0], fromRoot("scripts", "with-app-env.mjs"));
   assert.equal(spec.args[1], process.execPath);
   assert.equal(spec.args[2], fromRoot("node_modules", "vite", "bin", "vite.js"));
