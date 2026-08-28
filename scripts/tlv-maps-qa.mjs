@@ -1,7 +1,9 @@
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
-mkdirSync("/workspace/screenshots", { recursive: true });
+const screenshots = fromRoot("screenshots");
+mkdirSync(screenshots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
@@ -16,11 +18,11 @@ await page.waitForTimeout(400);
 
 await page.getByRole("button", { name: /^יום$|^Day$/ }).click();
 await page.waitForTimeout(250);
-await page.screenshot({ path: "/workspace/screenshots/tracks-day.png" });
+await page.screenshot({ path: `${screenshots}/tracks-day.png` });
 
 await page.getByRole("button", { name: /^לילה$|^Night$/ }).click();
 await page.waitForTimeout(250);
-await page.screenshot({ path: "/workspace/screenshots/tracks-night.png" });
+await page.screenshot({ path: `${screenshots}/tracks-night.png` });
 
 await page.getByRole("button", { name: /^יום$|^Day$/ }).click();
 await page.getByRole("button", { name: /עזריאלי|Azrieli/ }).first().click();
@@ -32,14 +34,14 @@ await page.waitForTimeout(4500);
 await page.evaluate(() => window.__controlsTest?.skipCountdown?.());
 await page.keyboard.down("KeyW");
 await page.waitForTimeout(1600);
-await page.screenshot({ path: "/workspace/screenshots/race-day.png" });
+await page.screenshot({ path: `${screenshots}/race-day.png` });
 await page.keyboard.up("KeyW");
 
 await page.keyboard.press("KeyN");
 await page.waitForTimeout(1200);
 await page.keyboard.down("KeyW");
 await page.waitForTimeout(900);
-await page.screenshot({ path: "/workspace/screenshots/race-night.png" });
+await page.screenshot({ path: `${screenshots}/race-night.png` });
 await page.keyboard.up("KeyW");
 
 await page.keyboard.press("Escape");
@@ -55,13 +57,13 @@ await page.waitForTimeout(4500);
 await page.evaluate(() => window.__controlsTest?.skipCountdown?.());
 await page.keyboard.down("KeyW");
 await page.waitForTimeout(1400);
-await page.screenshot({ path: "/workspace/screenshots/jerusalem-night.png" });
+await page.screenshot({ path: `${screenshots}/jerusalem-night.png` });
 await page.keyboard.up("KeyW");
 await page.keyboard.press("KeyN");
 await page.waitForTimeout(1100);
 await page.keyboard.down("KeyW");
 await page.waitForTimeout(800);
-await page.screenshot({ path: "/workspace/screenshots/jerusalem-day.png" });
+await page.screenshot({ path: `${screenshots}/jerusalem-day.png` });
 await page.keyboard.up("KeyW");
 
 console.log(JSON.stringify({ errors }, null, 2));
