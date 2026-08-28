@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.3.0",
+  "schema_version": "1.3.1",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-08-29T02:21:00+03:00",
+  "generated_at": "2026-08-29T02:52:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": { "green": 0, "total": 13 },
@@ -80,14 +80,16 @@
   ],
   "working_state": {
     "unit": "RSH-007",
-    "state": "draft_pr_open",
+    "state": "pr_open",
     "base_commit_sha": "7ea076d377225d5db3561faf81fe1cedce091a28",
     "branch": "agent/rsh-007-github-actions-ci",
-    "pull_request": 8,
+    "pull_request": 9,
+    "replaced_pull_request": 8,
+    "replacement_reason": "The connector failed to mark Draft PR #8 Ready; PR #8 closed unmerged and PR #9 preserves the same branch history.",
     "is_release": false,
     "tag_created": false,
     "release_created": false,
-    "runtime_evidence": "Pending successful required-ci / validate on the exact final PR head."
+    "runtime_evidence": "The reconciled final PR #9 head must pass required-ci / validate before merge."
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
