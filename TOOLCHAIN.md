@@ -25,7 +25,11 @@ dependency graph matches `package-lock.json` exactly.
 - Volta reads the `volta` block in `package.json`.
 
 All three sources intentionally contain the same exact Node version. `package.json`
-pins the matching npm version through `packageManager`, `engines` and Volta.
+pins npm through `packageManager` and Volta, while the fail-closed `preinstall`
+verifier enforces both Node and npm before installation. The root `engines` field is
+intentionally omitted because npm serialises it into the root lockfile package entry;
+omitting it keeps the existing dependency lock stable while the stronger exact-version
+verifier remains authoritative.
 
 ## Environment
 
@@ -45,15 +49,19 @@ The `preinstall` hook fails immediately when Node or npm differs from the pinned
 versions. This prevents a lockfile or generated artifact from being silently
 rewritten by an unapproved toolchain.
 
+`npm run test:harness` also verifies that `package.json` and the root
+`package-lock.json` entry agree on the deliberate absence of `engines` metadata.
+
 ## Updating the pin
 
 A future update must change all of the following in one reviewed unit:
 
 1. `.nvmrc`;
 2. `.node-version`;
-3. `package.json` `packageManager`, `engines` and `volta`;
+3. `package.json` `packageManager` and `volta`;
 4. `scripts/verify-toolchain.mjs`;
-5. this document;
-6. `package-lock.json` only when npm actually changes lockfile bytes.
+5. `scripts/toolchain-metadata.test.mjs`;
+6. this document;
+7. `package-lock.json` only when npm or dependency metadata actually changes its bytes.
 
 The update must include a clean `npm ci`, typecheck and build result before merge.
