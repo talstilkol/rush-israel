@@ -3318,8 +3318,16 @@ function addLandmarks(
     towerHit(triX, triZ, 11 * s, 10 * s, 10 * s);
     towerHit(sqX, sqZ, 10 * s, 8.4 * s, 8.4 * s);
   };
+  const parkTower = (lat: number, lon: number, extra = 48) => {
+    const hint = tlv(lat, lon);
+    const nH = nearestIndex(built.samples, hint.x, hint.z, 0);
+    const sH = built.samples[nH.index];
+    return nH.dist < built.width / 2 + extra - 8
+      ? { x: sH.x + sH.rx * (built.width / 2 + extra), z: sH.z + sH.rz * (built.width / 2 + extra) }
+      : hint;
+  };
   const placeCityGate = (s: number) => {
-    const p = tlv(32.0832, 34.8027);
+    const p = parkTower(32.0832, 34.8027, 52);
     const h = 168 * s;
     const yaw = Math.PI / 4;
     const body = new THREE.Mesh(new THREE.BoxGeometry(16.2 * s, h, 16.2 * s), gateGlass);
@@ -3411,7 +3419,7 @@ function addLandmarks(
     towerHit(p.x, p.z, 13 * s, 15 * s, 13 * s);
   };
   const placeMidtown = (s: number) => {
-    const md = tlv(32.0806, 34.7926);
+    const md = parkTower(32.0806, 34.7926, 48);
     const navy = new THREE.MeshPhysicalMaterial({
       color: 0x1c2c3c,
       roughness: 0.1,
@@ -3465,7 +3473,7 @@ function addLandmarks(
     towerHit(md.x, md.z, 14 * s, 18 * s, 10 * s);
   };
   const placeElectra = (s: number) => {
-    const el = tlv(32.0699, 34.7918);
+    const el = parkTower(32.0699, 34.7918, 46);
     const teal = new THREE.MeshPhysicalMaterial({
       color: 0x4a7a92,
       roughness: 0.1,
@@ -3526,7 +3534,7 @@ function addLandmarks(
     towerHit(el.x, el.z, 9 * s);
   };
   const placeSarona = (s: number) => {
-    const p = tlv(32.0714, 34.7866);
+    const p = parkTower(32.0714, 34.7866, 44);
     const h = 178 * s;
     const glass = new THREE.MeshPhysicalMaterial({
       color: 0xd8e4ec,
@@ -3567,7 +3575,7 @@ function addLandmarks(
     towerHit(p.x, p.z, 12 * s, 8 * s, 14 * s, 0.18);
   };
   const placeHakirya = (s: number) => {
-    const p = tlv(32.0756, 34.7878);
+    const p = parkTower(32.0756, 34.7878, 40);
     const khaki = new THREE.MeshStandardMaterial({
       color: 0xb89a6e,
       roughness: 0.62,
@@ -3606,7 +3614,7 @@ function addLandmarks(
     towerHit(p.x, p.z, 16 * s, 22 * s, 20 * s);
   };
   const placeShalomMeir = (s: number) => {
-    const p = tlv(32.0639, 34.7704);
+    const p = parkTower(32.0639, 34.7704, 36);
     const h = 82 * s;
     const body = new THREE.Mesh(new THREE.BoxGeometry(16.4 * s, h, 10.6 * s), cream);
     body.position.set(p.x, h * 0.5, p.z);
