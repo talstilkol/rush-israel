@@ -5258,12 +5258,13 @@ function addLandmarks(
       roughness: 0.78
     });
     const trunkM = new THREE.MeshStandardMaterial({
-      color: 4862496,
+      map: barkTexture(),
+      color: 0x6a5038,
       roughness: 0.94
     });
     const leafM = new THREE.MeshStandardMaterial({
       map: foliageTexture(),
-      color: 1727016,
+      color: 0x2a6a28,
       roughness: 0.82,
       flatShading: true
     });
@@ -5330,11 +5331,11 @@ function addLandmarks(
       });
     }
     const ficusN = 80;
-    const trunkG = new THREE.CylinderGeometry(0.78, 1.28, 10.2, 12);
-    const leafG = new THREE.IcosahedronGeometry(3.1, 2);
+    const trunkG = new THREE.CylinderGeometry(0.85, 1.38, 11.4, 12);
+    const leafG = new THREE.SphereGeometry(3.4, 10, 8);
     bag.push(trunkG, leafG);
     const trunks = new THREE.InstancedMesh(trunkG, trunkM, ficusN);
-    const leaves = new THREE.InstancedMesh(leafG, leafM, 800);
+    const leaves = new THREE.InstancedMesh(leafG, leafM, 960);
     trunks.castShadow = shadows;
     leaves.castShadow = shadows;
     let ti = 0;
@@ -5346,25 +5347,27 @@ function addLandmarks(
         if (ti >= ficusN) break;
         const fx = s.x + s.rx * d;
         const fz = s.z + s.rz * d;
-        _dummy.position.set(fx, s.y + 5.1, fz);
+        _dummy.position.set(fx, s.y + 5.7, fz);
         _dummy.scale.set(1, 1, 1);
         _dummy.rotation.set(0, i * 0.7 % 6, 0);
         _dummy.updateMatrix();
         trunks.setMatrixAt(ti, _dummy.matrix);
         const offs = [
-          [0, 0.6, 0],
-          [2.6, 0.2, 0.8],
-          [-2.5, 0.3, 0.6],
-          [0.8, 0.6, -2.5],
-          [-0.9, 0.2, 2.4],
-          [1.8, 2.0, 1.3],
-          [-1.9, 1.9, -1.2],
-          [0.2, 2.8, 0.3],
-          [2.1, 1.4, -1.6],
-          [-2.0, 1.5, 1.7],
+          [0, 0.8, 0],
+          [2.8, 0.3, 0.9],
+          [-2.7, 0.4, 0.7],
+          [0.9, 0.7, -2.7],
+          [-1.0, 0.3, 2.6],
+          [2.0, 2.2, 1.4],
+          [-2.1, 2.1, -1.3],
+          [0.2, 3.2, 0.3],
+          [2.3, 1.6, -1.8],
+          [-2.2, 1.7, 1.9],
+          [1.4, 2.6, -0.8],
+          [-1.5, 2.5, 0.9],
         ];
-        for (let k = 0; k < 10; k++) {
-          _dummy.position.set(fx + offs[k][0], s.y + 11.0 + offs[k][1], fz + offs[k][2]);
+        for (let k = 0; k < 12; k++) {
+          _dummy.position.set(fx + offs[k][0], s.y + 12.2 + offs[k][1], fz + offs[k][2]);
           const sc = 1.12 + (k % 3) * 0.2;
           _dummy.scale.set(sc, sc * 0.88, sc);
           _dummy.updateMatrix();
@@ -5499,7 +5502,12 @@ function addLandmarks(
     ]) {
       const p = tlv(uh.lat, uh.lon);
       const nearH = nearestIndex(built.samples, p.x, p.z, 0);
-      if (nearH.dist < built.width / 2 + 7) continue;
+      const sH = built.samples[nearH.index];
+      const extraH = built.width / 2 + 14;
+      if (nearH.dist < extraH) {
+        p.x = sH.x + sH.rx * extraH;
+        p.z = sH.z + sH.rz * extraH;
+      }
       const kinds = ["white", "gold", "white", "teal"];
       const facade = new THREE.MeshStandardMaterial({
         map: curtainTexture(kinds[uh.col % 4]),
@@ -5531,7 +5539,15 @@ function addLandmarks(
       hit(p.x, p.z, 5.5, uh.w * 0.48, uh.d * 0.48);
     }
     const indy = tlv(32.0629, 34.7695);
-    if (nearestIndex(built.samples, indy.x, indy.z, 0).dist > built.width / 2 + 6) {
+    {
+      const nI = nearestIndex(built.samples, indy.x, indy.z, 0);
+      if (nI.dist < built.width / 2 + 12) {
+        const sI = built.samples[nI.index];
+        indy.x = sI.x + sI.rx * (built.width / 2 + 16);
+        indy.z = sI.z + sI.rz * (built.width / 2 + 16);
+      }
+    }
+    {
       const indyM = new THREE.MeshStandardMaterial({ map: curtainTexture("white"), roughness: 0.8, color: 16118744 });
       bag.push(indyM);
       const indyB = new THREE.Mesh(new THREE.BoxGeometry(14.2, 8.4, 11.2), indyM);

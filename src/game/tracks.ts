@@ -824,7 +824,7 @@ export const TRACKS: TrackDef[] = [
     theme: "bauhaus",
     ground: 0x8a8074,
     sand: 0xc8b898,
-    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    sky: { ...TLV_BLUE, fogDensity: 0.0009 },
     checkpointCount: 10,
     points: [
       tlv(32.0632, 34.7712),
