@@ -6010,13 +6010,13 @@ function addLandmarks(
         plate.rotation.y = yawS + Math.PI;
         add(plate);
       }
-      const zLen = 52;
-      const a = 30;
-      pushRamp(westX - sm0.tx * a, westZ - sm0.tz * a, sm0.tx, sm0.tz, zLen, 7.2, 0.6, deckY, ic.he, ic.en);
-      pushRamp(westX + sm0.tx * a, westZ + sm0.tz * a, sm0.tx, sm0.tz, zLen, 7.2, deckY, 0.6, ic.he, ic.en);
-      pushRamp(eastX - sm0.tx * a, eastZ - sm0.tz * a, sm0.tx, sm0.tz, zLen, 7.2, 0.6, deckY, ic.he, ic.en);
-      pushRamp(eastX + sm0.tx * a, eastZ + sm0.tz * a, sm0.tx, sm0.tz, zLen, 7.2, deckY, 0.6, ic.he, ic.en);
-      pushRamp(c.x, c.z, sm0.rx, sm0.rz, span, 8, deckY, deckY, ic.he, ic.en);
+      const zLen = 60;
+      const a = 32;
+      pushRamp(westX - sm0.tx * a, westZ - sm0.tz * a, sm0.tx, sm0.tz, zLen, 8.6, 0.6, deckY, ic.he, ic.en);
+      pushRamp(westX + sm0.tx * a, westZ + sm0.tz * a, sm0.tx, sm0.tz, zLen, 8.6, deckY, 0.6, ic.he, ic.en);
+      pushRamp(eastX - sm0.tx * a, eastZ - sm0.tz * a, sm0.tx, sm0.tz, zLen, 8.6, 0.6, deckY, ic.he, ic.en);
+      pushRamp(eastX + sm0.tx * a, eastZ + sm0.tz * a, sm0.tx, sm0.tz, zLen, 8.6, deckY, 0.6, ic.he, ic.en);
+      pushRamp(c.x, c.z, sm0.rx, sm0.rz, span, 8.4, deckY, deckY, ic.he, ic.en);
       if (ic.en === "Kibbutz Galuyot") {
         pushRamp(westX - sm0.rx * 20, westZ - sm0.rz * 20, sm0.tx, sm0.tz, 84, 6.4, 0.6, 7.2, ic.he, ic.en);
         pushRamp(eastX + sm0.rx * 20, eastZ + sm0.rz * 20, sm0.tx, sm0.tz, 84, 6.4, 7.2, 0.6, ic.he, ic.en);

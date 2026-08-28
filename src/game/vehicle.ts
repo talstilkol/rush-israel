@@ -299,8 +299,8 @@ export class ArcadeCar {
         grade = rp.dyds * Math.sign(alongV || 1);
       }
       if (racing) {
-        this.speed += -grade * 9.81 * dt;
-        if (grade > 0.05) this.speed -= grade * 4.2 * dt;
+        this.speed += -grade * 11.4 * dt;
+        if (grade > 0.04) this.speed -= grade * 5.2 * dt;
       }
     }
 
@@ -310,7 +310,7 @@ export class ArcadeCar {
     const sG = track.samples[iG];
     const nG = track.samples[Math.min(iG + 1, track.samples.length - 1)];
     const gds = Math.hypot(nG.x - sG.x, nG.z - sG.z) || 1;
-    const terrainPitch = clamp(-((nG.y - sG.y) / gds) * 3.4, -0.75, 0.75);
+    const terrainPitch = clamp(-(probeRamp(this.x, this.z, ramps, this.y)?.dyds ?? (nG.y - sG.y) / gds) * 3.4, -0.75, 0.75);
     this.pitch = expSmooth(this.pitch, loadTgt + terrainPitch, 9, dt);
     const rollTgt = racing ? -input.steer * clamp(speedAbs / 24, 0, 1) * 0.34 : 0;
     this.roll = expSmooth(this.roll, rollTgt, 7, dt);
