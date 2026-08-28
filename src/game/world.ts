@@ -693,7 +693,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 240 : def.id === "hermon" ? 210 : def.theme === "carmel" ? 110 : 78;
+    const outer = def.id === "ramon" ? 240 : def.id === "hermon" ? 210 : def.theme === "carmel" ? 160 : 78;
     let valleyX = 0;
     let valleyZ = 0;
     let invertSide = false;
@@ -718,7 +718,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const hw = built.width / 2 + 1.2;
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 118 + s.y * 0.55 : def.theme === "carmel" ? s.y + 52 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 118 + s.y * 0.55 : def.theme === "carmel" ? s.y + 78 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
@@ -5069,56 +5069,57 @@ function addLandmarks(
         bz = s.z + s.rz * off;
       }
     }
+    const shrineY = def.elevation(0.06);
     for (let i = 0; i < 18; i++) {
       const terrace = new THREE.Mesh(new THREE.BoxGeometry(38 - i * 1.15, 1.05, 12), new THREE.MeshStandardMaterial({
         color: i % 2 ? 13623492 : 15262936,
         roughness: 0.85,
         envMapIntensity: 0.35
       }));
-      terrace.position.set(bx, 46 - i * 2.15, bz + i * 6.4);
+      terrace.position.set(bx, shrineY - 4 - i * 2.4, bz + i * 7.2);
       add(terrace);
       const stair = new THREE.Mesh(new THREE.BoxGeometry(5.2, 0.4, 7.4), cream);
-      stair.position.set(bx, 46.4 - i * 2.15, bz + i * 6.4);
+      stair.position.set(bx, shrineY - 3.6 - i * 2.4, bz + i * 7.2);
       add(stair);
       if (i % 2 === 0) for (const side of [-14, 14]) {
         const cypress = new THREE.Mesh(new THREE.ConeGeometry(1.1, 5.4, 7), cypressM);
-        cypress.position.set(bx + side, 49.2 - i * 2.15, bz + i * 6.4);
+        cypress.position.set(bx + side, shrineY - 0.8 - i * 2.4, bz + i * 7.2);
         add(cypress);
       } else for (const side of [-10, 10]) {
         const cypress = new THREE.Mesh(new THREE.ConeGeometry(0.9, 4.2, 7), cypressM);
-        cypress.position.set(bx + side, 48.6 - i * 2.15, bz + i * 6.4);
+        cypress.position.set(bx + side, shrineY - 1.4 - i * 2.4, bz + i * 7.2);
         add(cypress);
       }
       const hedge = new THREE.Mesh(new THREE.BoxGeometry(34 - i * 1.1, 0.55, 0.7), leafM);
-      hedge.position.set(bx, 46.7 - i * 2.15, bz + i * 6.4 + 5.4);
+      hedge.position.set(bx, shrineY - 3.3 - i * 2.4, bz + i * 7.2 + 5.4);
       add(hedge);
     }
     const shrine = new THREE.Mesh(new THREE.CylinderGeometry(8.2, 9.1, 13, 8), cream);
-    shrine.position.set(bx, 54, bz - 8);
+    shrine.position.set(bx, shrineY + 8, bz - 8);
     add(shrine);
     for (let i = 0; i < 18; i++) {
       const a = i / 18 * Math.PI * 2;
       const col = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.42, 12, 8), cream);
-      col.position.set(bx + Math.cos(a) * 10.2, 54, bz - 8 + Math.sin(a) * 10.2);
+      col.position.set(bx + Math.cos(a) * 10.2, shrineY + 8, bz - 8 + Math.sin(a) * 10.2);
       add(col);
     }
     const shrineDome = new THREE.Mesh(new THREE.SphereGeometry(8.4, 24, 16, 0, Math.PI * 2, 0, Math.PI / 2), gold);
-    shrineDome.position.set(bx, 61.6, bz - 8);
+    shrineDome.position.set(bx, shrineY + 15.6, bz - 8);
     add(shrineDome);
     const drum = new THREE.Mesh(new THREE.CylinderGeometry(8.6, 8.9, 2.6, 18), cream);
-    drum.position.set(bx, 60.4, bz - 8);
+    drum.position.set(bx, shrineY + 14.4, bz - 8);
     add(drum);
     const drumGold = new THREE.Mesh(new THREE.TorusGeometry(8.55, 0.22, 6, 18), gold);
     drumGold.rotation.x = Math.PI / 2;
-    drumGold.position.set(bx, 61.5, bz - 8);
+    drumGold.position.set(bx, shrineY + 15.5, bz - 8);
     add(drumGold);
     const shrineLantern = new THREE.Mesh(new THREE.CylinderGeometry(0.9, 1.5, 3.6, 8), gold);
-    shrineLantern.position.set(bx, 69.2, bz - 8);
+    shrineLantern.position.set(bx, shrineY + 23.2, bz - 8);
     add(shrineLantern);
     const shrineTip = new THREE.Mesh(new THREE.SphereGeometry(0.7, 10, 8), gold);
-    shrineTip.position.set(bx, 71.4, bz - 8);
+    shrineTip.position.set(bx, shrineY + 25.4, bz - 8);
     add(shrineTip);
-    glowAt(bx, 69, bz - 8, 16763972, 56, 42);
+    glowAt(bx, shrineY + 23, bz - 8, 16763972, 56, 42);
     hit(bx, bz - 8, 11, 10, 10);
     {
       const hillM = new THREE.MeshStandardMaterial({
@@ -5129,8 +5130,8 @@ function addLandmarks(
       bag.push(hillM);
       const start = built.samples[2];
       for (let i = 0; i < 12; i++) {
-        const extra = 70 + i * 26;
-        const h = 36 + i % 4 * 16;
+        const extra = 80 + i * 28;
+        const h = 48 + i % 4 * 20;
         const hill = new THREE.Mesh(new THREE.ConeGeometry(34 + i % 3 * 10, h, 6), hillM);
         hill.position.set(start.x - start.rx * extra, start.y + h * 0.18, start.z - start.rz * extra);
         add(hill);
