@@ -84,9 +84,10 @@ test("dev server uses local Vite through the app-env wrapper", () => {
   assert.deepEqual(spec.args.slice(-6), ["dev", "--host", "0.0.0.0", "--port", "8080", "--strictPort"]);
 });
 
-test("signal exit codes follow the conventional 128 + signal mapping", () => {
+test("signal exit codes follow 128 plus the platform signal number", () => {
   assert.equal(signalExitCode("SIGHUP"), 129);
   assert.equal(signalExitCode("SIGINT"), 130);
+  assert.equal(signalExitCode("SIGKILL"), 137);
   assert.equal(signalExitCode("SIGTERM"), 143);
   assert.equal(signalExitCode("SIGUNKNOWN"), 128);
 });
