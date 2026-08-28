@@ -4,9 +4,10 @@ import { mkdir, readFile, writeFile, copyFile } from "node:fs/promises";
 import { chromium } from "playwright";
 import { PNG } from "pngjs";
 import pixelmatch from "pixelmatch";
+import { fromRoot } from "./project-root.mjs";
 
-const baseline = process.env.GOLDEN_DIR || "/workspace/golden-baseline";
-const tmp = process.env.GOLDEN_TMP || "/workspace/artifacts/golden-tmp";
+const baseline = process.env.GOLDEN_DIR || fromRoot("golden-baseline");
+const tmp = process.env.GOLDEN_TMP || fromRoot("artifacts", "golden-tmp");
 const UPDATE = process.env.UPDATE_GOLDEN === "1";
 const files = ["ayalon-day-g01.png", "ayalon-day-g05.png", "ayalon-day-g07.png", "ayalon-night-g08.png"];
 const ids = ["g01", "g05", "g07"];
