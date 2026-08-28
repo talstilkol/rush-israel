@@ -718,7 +718,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const hw = built.width / 2 + 1.2;
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 140 + Math.min(90, s.y * 0.65) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 58 + s.y * 0.38 : def.theme === "carmel" ? s.y + 22 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 140 + Math.min(90, s.y * 0.65) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 92 + s.y * 0.48 : def.theme === "carmel" ? s.y + 22 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
@@ -7372,8 +7372,8 @@ function addLandmarks(
       const r = 90 + i % 3 * 32;
       const h = 36 + i % 4 * 14;
       const mtn = new THREE.Mesh(new THREE.DodecahedronGeometry(14 + i % 3 * 5, 0), i < 6 ? snowM : rock);
-      mtn.position.set(peak.x + Math.cos(a) * r, 18 + i * 2, peak.z + 22 + Math.sin(a) * r * 0.7);
-      mtn.scale.set(1.6, 2.2, 1.5);
+      mtn.position.set(peak.x + Math.cos(a) * r, def.elevation(1) + 10 + i * 4, peak.z + 22 + Math.sin(a) * r * 0.7);
+      mtn.scale.set(2.2, 3.4, 2);
       add(mtn);
     }
     const peakCone = new THREE.Mesh(new THREE.DodecahedronGeometry(34, 0), snowM);
@@ -7382,6 +7382,16 @@ function addLandmarks(
     add(peakCone);
     const liftA = her(33.2924, 35.7802);
     const liftB = her(33.3084, 35.7876);
+    {
+      const nA = nearestIndex(built.samples, liftA.x, liftA.z, 0);
+      const sA = built.samples[nA.index];
+      liftA.x = sA.x + sA.rx * (built.width / 2 + 14);
+      liftA.z = sA.z + sA.rz * (built.width / 2 + 14);
+      const nB = nearestIndex(built.samples, liftB.x, liftB.z, 0);
+      const sB = built.samples[nB.index];
+      liftB.x = sB.x + sB.rx * (built.width / 2 + 14);
+      liftB.z = sB.z + sB.rz * (built.width / 2 + 14);
+    }
     const postGeo = new THREE.CylinderGeometry(0.35, 0.5, 14, 8);
     const postA = new THREE.Mesh(postGeo, rock);
     postA.position.set(liftA.x, 7, liftA.z);
@@ -7440,22 +7450,33 @@ function addLandmarks(
     for (let i = 0; i < village.length; i++) {
       const p = her(village[i].lat, village[i].lon);
       const n = nearestIndex(built.samples, p.x, p.z, 0);
-      if (n.dist < built.width / 2 + 10) continue;
+      const extra = built.width / 2 + 16;
+      if (n.dist < extra) {
+        const s = built.samples[n.index];
+        p.x = s.x + s.rx * extra;
+        p.z = s.z + s.rz * extra;
+      }
       const house = new THREE.Mesh(new THREE.BoxGeometry(6.4, 4.2, 7.4), stone);
-      house.position.set(p.x + 22, 5.2, p.z + 18);
+      house.position.set(p.x, 5.2, p.z);
       add(house);
       const rf = new THREE.Mesh(new THREE.ConeGeometry(5.4, 2.8, 4), snowM);
       rf.rotation.y = Math.PI / 4;
-      rf.position.set(p.x + 22, 8.8, p.z + 18);
+      rf.position.set(p.x, 8.8, p.z);
       add(rf);
     }
     const lodgeY = def.elevation(0.9);
-    const lodge = new THREE.Mesh(new THREE.BoxGeometry(16, 5.4, 10), rock);
-    lodge.position.set(peak.x - 32, lodgeY + 2.8, peak.z - 24);
-    add(lodge);
-    const roof = new THREE.Mesh(new THREE.ConeGeometry(11, 5.4, 4), snowM);
-    roof.position.set(peak.x - 32, lodgeY + 8.4, peak.z - 24);
-    add(roof);
+    {
+      const nL = nearestIndex(built.samples, peak.x, peak.z, 0);
+      const sL = built.samples[nL.index];
+      const lx = sL.x + sL.rx * (built.width / 2 + 22);
+      const lz = sL.z + sL.rz * (built.width / 2 + 22);
+      const lodge = new THREE.Mesh(new THREE.BoxGeometry(16, 5.4, 10), rock);
+      lodge.position.set(lx, lodgeY + 2.8, lz);
+      add(lodge);
+      const roof = new THREE.Mesh(new THREE.ConeGeometry(11, 5.4, 4), snowM);
+      roof.position.set(lx, lodgeY + 8.4, lz);
+      add(roof);
+    }
     const snowField = new THREE.Mesh(new THREE.CircleGeometry(168, 24), snowM);
     snowField.rotation.x = -Math.PI / 2;
     snowField.position.set(peak.x + 18, def.elevation(1) + 0.35, peak.z + 28);
