@@ -1,7 +1,7 @@
 {
-  "schema_version": "2.3.0",
+  "schema_version": "2.3.1",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-29T02:21:00+03:00",
+  "generated_at": "2026-08-29T02:52:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "verified_base_sha": "7ea076d377225d5db3561faf81fe1cedce091a28",
@@ -34,11 +34,13 @@
   "queue_head": {
     "id": "RSH-007",
     "title": "Create GitHub Actions CI",
-    "state": "draft_pr_open",
+    "state": "pr_open",
     "branch": "agent/rsh-007-github-actions-ci",
-    "pull_request": 8,
+    "pull_request": 9,
+    "replaced_pull_request": 8,
+    "replacement_reason": "Connector failure prevented Draft PR #8 from being marked Ready; it was closed unmerged and replaced without changing branch history.",
     "base_sha": "7ea076d377225d5db3561faf81fe1cedce091a28",
-    "acceptance_condition": "The exact final PR head has a successful required-ci / validate result."
+    "acceptance_condition": "The exact final replacement-PR head has a successful required-ci / validate result."
   },
   "next_after_acceptance": {
     "id": "RSH-008",
@@ -58,7 +60,7 @@
   ],
   "state_rules": {
     "RSH-001–RSH-006": "accepted",
-    "RSH-007": "draft_pr_open",
+    "RSH-007": "pr_open",
     "RSH-008": "authorized_batch_blocked_by_RSH-007",
     "RSH-009–RSH-011": "authorized_batch_deferred",
     "RSH-012–RSH-067": "deferred"
