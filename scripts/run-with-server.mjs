@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { spawn } from "node:child_process";
 import { realpathSync } from "node:fs";
+import { constants as osConstants } from "node:os";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
@@ -9,14 +10,9 @@ export const DEFAULT_START_TIMEOUT_MS = 60_000;
 export const DEFAULT_COMMAND_TIMEOUT_MS = 15 * 60_000;
 export const DEFAULT_STOP_TIMEOUT_MS = 5_000;
 
-const SIGNAL_EXIT_CODES = {
-  SIGHUP: 129,
-  SIGINT: 130,
-  SIGTERM: 143,
-};
-
 export function signalExitCode(signal) {
-  return SIGNAL_EXIT_CODES[signal] ?? 128;
+  const number = osConstants.signals?.[signal];
+  return Number.isInteger(number) ? 128 + number : 128;
 }
 
 function positiveInteger(value, fallback, label) {
@@ -216,7 +212,7 @@ export async function runQaCommand(command, timeoutMs, env = process.env) {
     await terminateTree(child);
     throw new Error(`QA command exceeded ${timeoutMs}ms: ${command.join(" ")}`);
   }
-  if (outcome.signal) throw new Error(`QA command terminated by ${outcome.signal}`);
+  if (outcome.signal) return signalExitCode(outcome.signal);
   return outcome.code ?? 1;
 }
 
@@ -306,7 +302,7 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
       );
     }
     if (interrupted) return signalExitCode(interrupted);
-    if (outcome.signal) throw new Error(`QA command terminated by ${outcome.signal}`);
+    if (outcome.signal) return signalExitCode(outcome.signal);
     return outcome.code ?? 1;
   } catch (error) {
     if (interrupted) return signalExitCode(interrupted);
