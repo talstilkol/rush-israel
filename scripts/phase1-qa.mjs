@@ -1,7 +1,9 @@
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
-mkdirSync("/workspace/screenshots", { recursive: true });
+const screenshots = fromRoot("screenshots");
+mkdirSync(screenshots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
@@ -27,7 +29,7 @@ const clickText = async (re) => {
 
 await page.goto("http://127.0.0.1:8080/", { waitUntil: "networkidle", timeout: 40000 });
 const title = await page.locator("h1").first().innerText();
-await page.screenshot({ path: "/workspace/screenshots/title.png" });
+await page.screenshot({ path: `${screenshots}/title.png` });
 
 await clickText("בחירת מסלול|Choose track");
 await page.waitForTimeout(250);
@@ -70,7 +72,7 @@ await page.waitForTimeout(400);
 const nitro = await page.evaluate(() => window.__controlsTest?.getNitro?.() ?? -1);
 await page.keyboard.down("KeyW");
 await page.waitForTimeout(1600);
-await page.screenshot({ path: "/workspace/screenshots/race-timessquare.png" });
+await page.screenshot({ path: `${screenshots}/race-timessquare.png` });
 await page.keyboard.up("KeyW");
 await page.evaluate(() => {
   window.__controlsTest?.setKeys?.([]);
