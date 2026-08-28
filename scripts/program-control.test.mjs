@@ -91,7 +91,7 @@ test("RSH-007 is the sole in-review unit and RSH-008 is not pre-created", () => 
   assert.equal(current.active_change.unit, queue.queue_head.id);
   assert.equal(current.active_change.branch, queue.queue_head.branch);
   assert.equal(current.active_change.pull_request, queue.queue_head.pull_request);
-  assert.equal(current.validation.RSH-008_precreated, false);
+  assert.equal(current.validation["RSH-008_precreated"], false);
   assert.equal(queue.next_after_acceptance.id, "RSH-008");
 });
 
