@@ -1,17 +1,25 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "2.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-28T23:55:00+03:00",
+  "generated_at": "2026-08-29T01:11:09+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "baseline_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9",
-  "queue_policy": {
+  "verified_main_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3",
+  "policy": {
     "mode": "strict_serial",
     "units_per_next": 1,
-    "queue_head": "RSH-002",
-    "queue_head_state": "draft_pr_open",
-    "next_eligible_unit": null,
-    "promotion_condition": "RSH-002 must be explicitly accepted and merged into main before RSH-003 becomes eligible.",
+    "bounded_batch_authorization": {
+      "instruction": "make next 5",
+      "authorized_units": [
+        "RSH-002",
+        "RSH-003",
+        "RSH-004",
+        "RSH-005",
+        "RSH-006"
+      ],
+      "ends_after": "RSH-006",
+      "later_units_authorized": false
+    },
     "direct_main_writes": false,
     "automatic_merge": false,
     "force_push": false,
@@ -20,557 +28,129 @@
   },
   "counts": {
     "total": 67,
-    "accepted": 1,
+    "accepted": 5,
     "in_review": 1,
     "queued_blocked": 1,
-    "deferred": 64,
-    "remaining_including_review": 66
+    "deferred": 60,
+    "remaining_including_review": 62
   },
-  "stages": [
-    {
-      "id": "G0",
-      "name": "Control and governance",
-      "range": "RSH-001–RSH-003",
-      "count": 3,
-      "gate": "A single canonical state, queue and governance model exists."
-    },
-    {
-      "id": "G1",
-      "name": "Toolchain and CI",
-      "range": "RSH-004–RSH-008",
-      "count": 5,
-      "gate": "A clean clone passes one reproducible required CI command."
-    },
-    {
-      "id": "G2",
-      "name": "Scope, licensing and assets",
-      "range": "RSH-009–RSH-012",
-      "count": 4,
-      "gate": "Version 1 scope and every shipped asset's legal status are explicit."
-    },
-    {
-      "id": "G3",
-      "name": "Architecture decomposition",
-      "range": "RSH-013–RSH-020",
-      "count": 8,
-      "gate": "Core responsibilities are separated and resource ownership is explicit."
-    },
-    {
-      "id": "G4",
-      "name": "Data integrity and production security",
-      "range": "RSH-021–RSH-024",
-      "count": 4,
-      "gate": "Save data is recoverable and production contains no debug or secret exposure."
-    },
-    {
-      "id": "G5",
-      "name": "Ayalon vertical slice",
-      "range": "RSH-025–RSH-036",
-      "count": 12,
-      "gate": "Ayalon is owner-approved, golden-locked and dependency-frozen."
-    },
-    {
-      "id": "G6",
-      "name": "Performance and reliability",
-      "range": "RSH-037–RSH-043",
-      "count": 7,
-      "gate": "Performance, leak, recovery, soak and compatibility targets pass."
-    },
-    {
-      "id": "G7",
-      "name": "UX, accessibility and mobile",
-      "range": "RSH-044–RSH-048",
-      "count": 5,
-      "gate": "Keyboard, touch and gamepad flows pass UX, accessibility and privacy gates."
-    },
-    {
-      "id": "G8",
-      "name": "Seven additional Version 1 tracks",
-      "range": "RSH-049–RSH-062",
-      "count": 14,
-      "gate": "Eight of eight MVP tracks are driveable, golden-approved and frozen."
-    },
-    {
-      "id": "G9",
-      "name": "Release",
-      "range": "RSH-063–RSH-067",
-      "count": 5,
-      "gate": "All 13 release gates pass and v1.0.0 has rollback proof."
-    }
-  ],
-  "units": [
-    {
-      "id": "RSH-001",
-      "stage": "G0",
-      "title": "Canonical program control",
-      "state": "accepted",
-      "depends_on": null,
+  "queue_head": {
+    "id": "RSH-006",
+    "title": "Build a self-starting QA harness",
+    "state": "in_review",
+    "branch": "agent/rsh-006-self-starting-qa-harness",
+    "base_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3"
+  },
+  "next_after_acceptance": {
+    "id": "RSH-007",
+    "title": "Create GitHub Actions CI",
+    "state": "queued_blocked",
+    "automatic_start": false
+  },
+  "accepted": {
+    "RSH-001": {
       "pull_request": 1,
       "merge_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9"
     },
-    {
-      "id": "RSH-002",
-      "stage": "G0",
-      "title": "Repository governance and visibility policy",
-      "state": "draft_pr_open",
-      "depends_on": "RSH-001",
-      "branch": "agent/rsh-002-repository-governance",
-      "pull_request_locator": "head:agent/rsh-002-repository-governance;base:main"
-    },
-    {
-      "id": "RSH-003",
-      "stage": "G0",
-      "title": "Baseline, milestones, labels and release register",
-      "state": "queued_blocked",
-      "depends_on": "RSH-002"
-    },
-    {
-      "id": "RSH-004",
-      "stage": "G1",
-      "title": "Pin Node, npm and reproducible installation",
-      "state": "deferred",
-      "depends_on": "RSH-003"
-    },
-    {
-      "id": "RSH-005",
-      "stage": "G1",
-      "title": "Remove absolute workspace paths and make scripts portable",
-      "state": "deferred",
-      "depends_on": "RSH-004"
-    },
-    {
-      "id": "RSH-006",
-      "stage": "G1",
-      "title": "Build a self-starting QA harness",
-      "state": "deferred",
-      "depends_on": "RSH-005"
-    },
-    {
-      "id": "RSH-007",
-      "stage": "G1",
-      "title": "Create GitHub Actions CI",
-      "state": "deferred",
-      "depends_on": "RSH-006"
-    },
-    {
-      "id": "RSH-008",
-      "stage": "G1",
-      "title": "Enforce required checks, branch protection and CI artifacts",
-      "state": "deferred",
-      "depends_on": "RSH-007"
-    },
-    {
-      "id": "RSH-009",
-      "stage": "G2",
-      "title": "Freeze the Version 1 product definition",
-      "state": "deferred",
-      "depends_on": "RSH-008"
-    },
-    {
-      "id": "RSH-010",
-      "stage": "G2",
-      "title": "Classify the track catalogue into 8 MVP and 48 deferred tracks",
-      "state": "deferred",
-      "depends_on": "RSH-009"
-    },
-    {
-      "id": "RSH-011",
-      "stage": "G2",
-      "title": "Create the complete asset provenance and licence inventory",
-      "state": "deferred",
-      "depends_on": "RSH-010"
-    },
-    {
-      "id": "RSH-012",
-      "stage": "G2",
-      "title": "Align README, metadata, branding, licence and PWA scope",
-      "state": "deferred",
-      "depends_on": "RSH-011"
-    },
-    {
-      "id": "RSH-013",
-      "stage": "G3",
-      "title": "Define and validate the canonical track schema",
-      "state": "deferred",
-      "depends_on": "RSH-012"
-    },
-    {
-      "id": "RSH-014",
-      "stage": "G3",
-      "title": "Split tracks.ts into one module per track",
-      "state": "deferred",
-      "depends_on": "RSH-013"
-    },
-    {
-      "id": "RSH-015",
-      "stage": "G3",
-      "title": "Extract the world core from world.ts",
-      "state": "deferred",
-      "depends_on": "RSH-014"
-    },
-    {
-      "id": "RSH-016",
-      "stage": "G3",
-      "title": "Create isolated world builders per track",
-      "state": "deferred",
-      "depends_on": "RSH-015"
-    },
-    {
-      "id": "RSH-017",
-      "stage": "G3",
-      "title": "Split engine.ts into loop, rendering, physics and QA adapters",
-      "state": "deferred",
-      "depends_on": "RSH-016"
-    },
-    {
-      "id": "RSH-018",
-      "stage": "G3",
-      "title": "Split game-app.tsx into screens, HUD and race controller",
-      "state": "deferred",
-      "depends_on": "RSH-017"
-    },
-    {
-      "id": "RSH-019",
-      "stage": "G3",
-      "title": "Complete resource ownership, disposal and leak accounting",
-      "state": "deferred",
-      "depends_on": "RSH-018"
-    },
-    {
-      "id": "RSH-020",
-      "stage": "G3",
-      "title": "Isolate or remove unused auth, DB, multiplayer and template dependencies",
-      "state": "deferred",
-      "depends_on": "RSH-019"
-    },
-    {
-      "id": "RSH-021",
-      "stage": "G4",
-      "title": "Version the save schema and implement deterministic migrations",
-      "state": "deferred",
-      "depends_on": "RSH-020"
-    },
-    {
-      "id": "RSH-022",
-      "stage": "G4",
-      "title": "Add save backup, corruption recovery and user-visible failure handling",
-      "state": "deferred",
-      "depends_on": "RSH-021"
-    },
-    {
-      "id": "RSH-023",
-      "stage": "G4",
-      "title": "Harden timed records, write ordering, deduplication and storage limits",
-      "state": "deferred",
-      "depends_on": "RSH-022"
-    },
-    {
-      "id": "RSH-024",
-      "stage": "G4",
-      "title": "Harden production security and separate DB migration from build",
-      "state": "deferred",
-      "depends_on": "RSH-023"
-    },
-    {
-      "id": "RSH-025",
-      "stage": "G5",
-      "title": "Define Ayalon acceptance criteria and reference pack",
-      "state": "deferred",
-      "depends_on": "RSH-024"
-    },
-    {
-      "id": "RSH-026",
-      "stage": "G5",
-      "title": "Lock Ayalon road geometry, widths and lanes",
-      "state": "deferred",
-      "depends_on": "RSH-025"
-    },
-    {
-      "id": "RSH-027",
-      "stage": "G5",
-      "title": "Lock Ayalon ramps, barriers, colliders and checkpoints",
-      "state": "deferred",
-      "depends_on": "RSH-026"
-    },
-    {
-      "id": "RSH-028",
-      "stage": "G5",
-      "title": "Lock Ayalon landmark placement",
-      "state": "deferred",
-      "depends_on": "RSH-027"
-    },
-    {
-      "id": "RSH-029",
-      "stage": "G5",
-      "title": "Lock Ayalon asphalt, sidewalks, markings and signs",
-      "state": "deferred",
-      "depends_on": "RSH-028"
-    },
-    {
-      "id": "RSH-030",
-      "stage": "G5",
-      "title": "Deliver the Version 1 hero car, LODs and silhouette gate",
-      "state": "deferred",
-      "depends_on": "RSH-029"
-    },
-    {
-      "id": "RSH-031",
-      "stage": "G5",
-      "title": "Lock daylight, sky and image-based lighting",
-      "state": "deferred",
-      "depends_on": "RSH-030"
-    },
-    {
-      "id": "RSH-032",
-      "stage": "G5",
-      "title": "Lock night lighting, headlights and weather",
-      "state": "deferred",
-      "depends_on": "RSH-031"
-    },
-    {
-      "id": "RSH-033",
-      "stage": "G5",
-      "title": "Calibrate driving physics and the five-car performance table",
-      "state": "deferred",
-      "depends_on": "RSH-032"
-    },
-    {
-      "id": "RSH-034",
-      "stage": "G5",
-      "title": "Lock audio, HUD, keyboard, touch and gamepad behaviour",
-      "state": "deferred",
-      "depends_on": "RSH-033"
-    },
-    {
-      "id": "RSH-035",
-      "stage": "G5",
-      "title": "Produce the unique Ayalon golden pack and owner approval record",
-      "state": "deferred",
-      "depends_on": "RSH-034"
-    },
-    {
-      "id": "RSH-036",
-      "stage": "G5",
-      "title": "Freeze Ayalon and hash all transitive dependencies",
-      "state": "deferred",
-      "depends_on": "RSH-035"
-    },
-    {
-      "id": "RSH-037",
-      "stage": "G6",
-      "title": "Instrument p50, p95, p99, draw calls, triangles and memory",
-      "state": "deferred",
-      "depends_on": "RSH-036"
-    },
-    {
-      "id": "RSH-038",
-      "stage": "G6",
-      "title": "Define quality profiles and dynamic-quality hysteresis",
-      "state": "deferred",
-      "depends_on": "RSH-037"
-    },
-    {
-      "id": "RSH-039",
-      "stage": "G6",
-      "title": "Set bundle, asset streaming and cache budgets",
-      "state": "deferred",
-      "depends_on": "RSH-038"
-    },
-    {
-      "id": "RSH-040",
-      "stage": "G6",
-      "title": "Pass 20 race enter-exit cycles without a resource leak",
-      "state": "deferred",
-      "depends_on": "RSH-039"
-    },
-    {
-      "id": "RSH-041",
-      "stage": "G6",
-      "title": "Pass WebGL context-loss and recovery tests",
-      "state": "deferred",
-      "depends_on": "RSH-040"
-    },
-    {
-      "id": "RSH-042",
-      "stage": "G6",
-      "title": "Pass the 30-minute soak test",
-      "state": "deferred",
-      "depends_on": "RSH-041"
-    },
-    {
-      "id": "RSH-043",
-      "stage": "G6",
-      "title": "Validate the browser and device support matrix",
-      "state": "deferred",
-      "depends_on": "RSH-042"
-    },
-    {
-      "id": "RSH-044",
-      "stage": "G7",
-      "title": "Unify keyboard, touch and gamepad input maps",
-      "state": "deferred",
-      "depends_on": "RSH-043"
-    },
-    {
-      "id": "RSH-045",
-      "stage": "G7",
-      "title": "Complete Hebrew RTL, English LTR and the Arabic-scope decision",
-      "state": "deferred",
-      "depends_on": "RSH-044"
-    },
-    {
-      "id": "RSH-046",
-      "stage": "G7",
-      "title": "Complete onboarding, settings, error and recovery UX",
-      "state": "deferred",
-      "depends_on": "RSH-045"
-    },
-    {
-      "id": "RSH-047",
-      "stage": "G7",
-      "title": "Validate PWA install, offline and update behaviour",
-      "state": "deferred",
-      "depends_on": "RSH-046"
-    },
-    {
-      "id": "RSH-048",
-      "stage": "G7",
-      "title": "Pass accessibility, privacy and alpha UX gates",
-      "state": "deferred",
-      "depends_on": "RSH-047"
-    },
-    {
-      "id": "RSH-049",
-      "stage": "G8",
-      "title": "Rothschild geometry and driving pass",
-      "state": "deferred",
-      "depends_on": "RSH-048"
-    },
-    {
-      "id": "RSH-050",
-      "stage": "G8",
-      "title": "Rothschild art, golden and freeze",
-      "state": "deferred",
-      "depends_on": "RSH-049"
-    },
-    {
-      "id": "RSH-051",
-      "stage": "G8",
-      "title": "Yarkon–Reading geometry and driving pass",
-      "state": "deferred",
-      "depends_on": "RSH-050"
-    },
-    {
-      "id": "RSH-052",
-      "stage": "G8",
-      "title": "Yarkon–Reading art, golden and freeze",
-      "state": "deferred",
-      "depends_on": "RSH-051"
-    },
-    {
-      "id": "RSH-053",
-      "stage": "G8",
-      "title": "Jaffa geometry and driving pass",
-      "state": "deferred",
-      "depends_on": "RSH-052"
-    },
-    {
-      "id": "RSH-054",
-      "stage": "G8",
-      "title": "Jaffa art, golden and freeze",
-      "state": "deferred",
-      "depends_on": "RSH-053"
-    },
-    {
-      "id": "RSH-055",
-      "stage": "G8",
-      "title": "Jerusalem–Scopus geometry and driving pass",
-      "state": "deferred",
-      "depends_on": "RSH-054"
-    },
-    {
-      "id": "RSH-056",
-      "stage": "G8",
-      "title": "Jerusalem–Scopus art, golden and freeze",
-      "state": "deferred",
-      "depends_on": "RSH-055"
-    },
-    {
-      "id": "RSH-057",
-      "stage": "G8",
-      "title": "Haifa–Carmel geometry and driving pass",
-      "state": "deferred",
-      "depends_on": "RSH-056"
-    },
-    {
-      "id": "RSH-058",
-      "stage": "G8",
-      "title": "Haifa–Carmel art, golden and freeze",
-      "state": "deferred",
-      "depends_on": "RSH-057"
-    },
-    {
-      "id": "RSH-059",
-      "stage": "G8",
-      "title": "Ramon geometry and driving pass",
-      "state": "deferred",
-      "depends_on": "RSH-058"
-    },
-    {
-      "id": "RSH-060",
-      "stage": "G8",
-      "title": "Ramon art, golden and freeze",
-      "state": "deferred",
-      "depends_on": "RSH-059"
-    },
-    {
-      "id": "RSH-061",
-      "stage": "G8",
-      "title": "Hermon geometry and driving pass",
-      "state": "deferred",
-      "depends_on": "RSH-060"
-    },
-    {
-      "id": "RSH-062",
-      "stage": "G8",
-      "title": "Hermon art, golden and freeze",
-      "state": "deferred",
-      "depends_on": "RSH-061"
-    },
-    {
-      "id": "RSH-063",
-      "stage": "G9",
-      "title": "Establish SemVer, changelog and release automation",
-      "state": "deferred",
-      "depends_on": "RSH-062"
-    },
-    {
-      "id": "RSH-064",
-      "stage": "G9",
-      "title": "Establish preview, staging, production and rollback",
-      "state": "deferred",
-      "depends_on": "RSH-063"
-    },
-    {
-      "id": "RSH-065",
-      "stage": "G9",
-      "title": "Publish and evaluate v0.1.0-alpha.1",
-      "state": "deferred",
-      "depends_on": "RSH-064"
-    },
-    {
-      "id": "RSH-066",
-      "stage": "G9",
-      "title": "Produce RC1 and close all blocking defects",
-      "state": "deferred",
-      "depends_on": "RSH-065"
-    },
-    {
-      "id": "RSH-067",
-      "stage": "G9",
-      "title": "Publish v1.0.0 with signed tag, dossier and rollback proof",
-      "state": "deferred",
-      "depends_on": "RSH-066"
+    "RSH-002": {
+      "pull_request": 2,
+      "merge_sha": "ef86c69ade9bc54585104f90743fb32cb4489898"
+    },
+    "RSH-003": {
+      "pull_request": 3,
+      "merge_sha": "f1af9f507378d5d42c5e06255c8244c78b0c0f22"
+    },
+    "RSH-004": {
+      "pull_request": 5,
+      "merge_sha": "69ac509b39895bb33a68d871f31cc49b3f05726c",
+      "note": "Draft PR #4 closed unmerged after connector ready-for-review failure; identical replacement merged as PR #5."
+    },
+    "RSH-005": {
+      "pull_request": 6,
+      "merge_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3"
     }
-  ]
+  },
+  "unit_order": [
+    "RSH-001",
+    "RSH-002",
+    "RSH-003",
+    "RSH-004",
+    "RSH-005",
+    "RSH-006",
+    "RSH-007",
+    "RSH-008",
+    "RSH-009",
+    "RSH-010",
+    "RSH-011",
+    "RSH-012",
+    "RSH-013",
+    "RSH-014",
+    "RSH-015",
+    "RSH-016",
+    "RSH-017",
+    "RSH-018",
+    "RSH-019",
+    "RSH-020",
+    "RSH-021",
+    "RSH-022",
+    "RSH-023",
+    "RSH-024",
+    "RSH-025",
+    "RSH-026",
+    "RSH-027",
+    "RSH-028",
+    "RSH-029",
+    "RSH-030",
+    "RSH-031",
+    "RSH-032",
+    "RSH-033",
+    "RSH-034",
+    "RSH-035",
+    "RSH-036",
+    "RSH-037",
+    "RSH-038",
+    "RSH-039",
+    "RSH-040",
+    "RSH-041",
+    "RSH-042",
+    "RSH-043",
+    "RSH-044",
+    "RSH-045",
+    "RSH-046",
+    "RSH-047",
+    "RSH-048",
+    "RSH-049",
+    "RSH-050",
+    "RSH-051",
+    "RSH-052",
+    "RSH-053",
+    "RSH-054",
+    "RSH-055",
+    "RSH-056",
+    "RSH-057",
+    "RSH-058",
+    "RSH-059",
+    "RSH-060",
+    "RSH-061",
+    "RSH-062",
+    "RSH-063",
+    "RSH-064",
+    "RSH-065",
+    "RSH-066",
+    "RSH-067"
+  ],
+  "default_state_rules": {
+    "RSH-006": "in_review",
+    "RSH-007": "queued_blocked",
+    "RSH-008–RSH-067": "deferred"
+  },
+  "expected_after_rsh_006_merge": {
+    "accepted": 6,
+    "in_review": 0,
+    "queued_blocked": 1,
+    "deferred": 60,
+    "remaining": 61,
+    "queue_head": "RSH-007",
+    "queue_head_state": "eligible_on_future_next"
+  }
 }
