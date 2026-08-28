@@ -59,6 +59,18 @@ export function parseHarnessArgs(argv, env = process.env) {
   }
 }
 
+export function canSelfStartUrl(value) {
+  const url = new URL(value);
+  return (
+    url.protocol === "http:" &&
+    ["127.0.0.1", "localhost", "[::1]"].includes(url.hostname) &&
+    url.port === "8080" &&
+    url.pathname === "/" &&
+    !url.search &&
+    !url.hash
+  );
+}
+
 export function devServerSpec(env = process.env) {
   return {
     command: process.execPath,
@@ -160,11 +172,19 @@ function commandForPlatform(command) {
 
 export function spawnQaCommand(command, env = process.env) {
   const [file, ...args] = command;
+  const serverUrl = env.QA_SERVER_URL || DEFAULT_SERVER_URL;
   return spawn(commandForPlatform(file), args, {
     cwd: projectRoot,
-    env: { ...env, QA_SERVER_URL: env.QA_SERVER_URL || DEFAULT_SERVER_URL, VITE_QA: "1" },
+    env: {
+      ...env,
+      QA_SERVER_URL: serverUrl,
+      SMOKE_URL: env.SMOKE_URL || serverUrl,
+      SOAK_URL: env.SOAK_URL || serverUrl,
+      VITE_QA: "1",
+    },
     stdio: "inherit",
     windowsHide: true,
+    detached: process.platform !== "win32",
   });
 }
 
@@ -227,6 +247,12 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
     }
 
     if (!alreadyRunning) {
+      if (!canSelfStartUrl(config.serverUrl)) {
+        throw new Error(
+          "The harness can self-start only the canonical loopback URL on port 8080. "
+            + "For another URL, start that server explicitly and set QA_REUSE_SERVER=1.",
+        );
+      }
       const spec = devServerSpec(env);
       server = spawn(spec.command, spec.args, spec.options);
       server.once("error", (error) => {
