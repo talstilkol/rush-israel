@@ -3709,8 +3709,8 @@ function addLandmarks(
       const n = nearestIndex(built.samples, hi.x, hi.z, 0);
       if (n.dist < built.width / 2 + 10) {
         const s = built.samples[n.index];
-        hi.x = s.x + s.rx * (built.width / 2 + 24);
-        hi.z = s.z + s.rz * (built.width / 2 + 24);
+        hi.x = s.x + s.rx * (built.width / 2 + 30);
+        hi.z = s.z + s.rz * (built.width / 2 + 30);
       }
     }
     const hilton = new THREE.Mesh(new THREE.CylinderGeometry(20, 21, 34, 20, 1, false, 0.55, 2.05), white);
@@ -3832,6 +3832,14 @@ function addLandmarks(
     poolHall.position.set(poolP.x + 8, 2.1, poolP.z);
     add(poolHall);
     const mar = tlv(32.0938, 34.7688);
+    {
+      const n = nearestIndex(built.samples, mar.x, mar.z, 0);
+      if (n.dist < built.width / 2 + 10) {
+        const s = built.samples[n.index];
+        mar.x = s.x + s.rx * (built.width / 2 + 22);
+        mar.z = s.z + s.rz * (built.width / 2 + 22);
+      }
+    }
     const breakw = new THREE.Mesh(new THREE.BoxGeometry(4.2, 1.4, 52), stone);
     breakw.position.set(mar.x - 36, 0.5, mar.z);
     add(breakw);
@@ -3870,8 +3878,8 @@ function addLandmarks(
       const n = nearestIndex(built.samples, rd.x, rd.z, 0);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
-        rd.x = s.x + s.rx * (built.width / 2 + 26);
-        rd.z = s.z + s.rz * (built.width / 2 + 26);
+        rd.x = s.x + s.rx * (built.width / 2 + 34);
+        rd.z = s.z + s.rz * (built.width / 2 + 34);
       }
     }
     const brick = new THREE.MeshStandardMaterial({ color: 9067074, roughness: 0.9 });
@@ -4740,13 +4748,13 @@ function addLandmarks(
       roughness: 0.48
     });
     bag.push(ochre, ochreDark, conc, redBand, whiteBand);
-    placeTunnel(rs.x, rs.z, rdYaw, 72, built.width * 0.58, 8.2, rs.y);
+    placeTunnel(rs.x, rs.z, rdYaw, 72, built.width * 0.7, 8.2, rs.y);
     const rx = Math.cos(rdYaw);
     const rz = -Math.sin(rdYaw);
     const fx = Math.sin(rdYaw);
     const fz = Math.cos(rdYaw);
-    const plantX = rs.x + rx * (built.width / 2 + 30);
-    const plantZ = rs.z + rz * (built.width / 2 + 30);
+    const plantX = rs.x + rx * (built.width / 2 + 42);
+    const plantZ = rs.z + rz * (built.width / 2 + 42);
     const hall = new THREE.Mesh(new THREE.BoxGeometry(34, 11, 42), ochre);
     hall.position.set(plantX, rs.y + 5.5, plantZ);
     hall.rotation.y = rdYaw;
