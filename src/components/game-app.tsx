@@ -931,7 +931,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 						children: [
 							/* @__PURE__ */ jsx("p", {
 								className: "text-sm text-muted",
-								children: t("סימקייד ישראלי · 120Hz", "Israeli simcade · 120Hz", "سيمكيد إسرائيلي · 120Hz")
+								children: t("מרוץ בישראל", "Race Israel", "سباق إسرائيل")
 							}),
 							/* @__PURE__ */ jsx("h1", {
 								className: "mt-2 text-5xl font-semibold tracking-tight text-balance",
@@ -939,7 +939,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 							}),
 							/* @__PURE__ */ jsx("p", {
 								className: "mt-4 max-w-md text-pretty text-sm leading-relaxed text-muted",
-								children: t("איילון, רוטשילד וירושלים — משקל, צמיגים ועזרות. בחר עיר וסע.", "Ayalon, Rothschild and Jerusalem — weight, tires and assists. Pick a city and drive.", "أيالون وروتشيلد والقدس — وزن وإطارات ومساعدات. اختر مدينة وقُد.")
+								children: t("בחר מסלול וסע. W גז, A/D הגה.", "Pick a track and drive. W gas, A/D steer.", "اختر مساراً وقد. W بنزين، A/D توجيه.")
 							}),
 							/* @__PURE__ */ jsxs(Button, {
 								className: "mt-8 min-h-14 w-full text-base",

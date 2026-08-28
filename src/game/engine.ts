@@ -44,7 +44,7 @@ import { loadBlob, getBlob, blobIsKtx2 } from "./blob-assets";
 import { loadFlake } from "./flake-assets";
 import { loadCars } from "./car-assets";
 import { loadRoadFor } from "./road-assets";
-import { getSkyDay, getSkyNight, loadSky } from "./sky-assets";
+import { loadSky } from "./sky-assets";
 import { RenderTelemetry } from "../rendering/RenderTelemetry";
 import { AYALON_GOLDEN } from "../world/goldenCameras";
 import { RendererFacade } from "../rendering/RendererFacade";
@@ -969,12 +969,7 @@ export class RaceEngine {
     this.world.setClock(this.clock);
     const n = nightAmt(this.clock);
     this.applyLook();
-    const baked = n > 0.5 ? getSkyNight() : getSkyDay();
-    if (baked) {
-      this.scene.background = baked;
-    } else {
-      this.scene.background = new THREE.Color(n > 0.5 ? 0x14283c : 0x2f8fd4);
-    }
+    this.scene.background = new THREE.Color(n > 0.5 ? 0x1c3450 : 0x3c9ee0);
     this.scene.environmentIntensity = n > 0.5 ? 0.52 : 0.7;
     this.post.setNight(n > 0.5);
     const lamps = n > 0.42;
@@ -2033,8 +2028,8 @@ export class RaceEngine {
     const rz = -Math.sin(p.yaw);
     const dir = this.lookBack ? -1 : 1;
     const mode = this.lookBack ? 0 : this.camMode;
-    let follow = 7.4 + clamp(Math.abs(p.speed) / 22, 0, 2.2);
-    let height = 1.92;
+    let follow = 9.2 + clamp(Math.abs(p.speed) / 22, 0, 2.6);
+    let height = 2.28;
     let side = 0;
     if (mode === 1) {
       follow = 0.18;

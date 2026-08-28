@@ -644,11 +644,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   sunHalo.visible = !isNight;
   sunHalo.frustumCulled = false;
   group.add(sunHalo);
-  const skyDayMap = getSkyDay();
-  const skyNightMap = getSkyNight();
   const skyDomeMat = keep(new THREE.MeshBasicMaterial({
-    map: isNight ? skyNightMap ?? undefined : skyDayMap ?? undefined,
-    color: (isNight ? skyNightMap : skyDayMap) ? 0xffffff : isNight ? 0x0a1424 : 0x1a74c4,
+    color: isNight ? 0x1c3450 : 0x3c9ee0,
     fog: false,
     depthWrite: false,
     side: THREE.BackSide,
@@ -2529,7 +2526,6 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   };
   const tick = (now: number, x: number, z: number) => {
     const t = now * 1e-3;
-    skyDome.position.set(x, 0, z);
     dome.position.x = x;
     dome.position.z = z;
     for (const mv of movers) {
@@ -2635,7 +2631,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const morning = n <= 0.5 && clock < 0.38;
     const next = skyAt(def, clock, wx);
     applySky(sky, sun, next);
-    skyDomeMat.map = n > 0.5 ? skyNightMap ?? null : skyDayMap ?? null;
+    skyDomeMat.map = null;
+    skyDomeMat.color.setHex(n > 0.5 ? 0x1c3450 : 0x3c9ee0);
     skyDomeMat.needsUpdate = true;
     if (n < 0.58) lightAim.copy(sun);
     else {
