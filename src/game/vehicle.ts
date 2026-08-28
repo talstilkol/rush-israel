@@ -46,8 +46,8 @@ export type CarSnap = {
   yawRate: number;
 };
 
-function probeRamp(x: number, z: number, ramps: Ramp[]) {
-  let best: { r: Ramp; y: number; dyds: number } | null = null;
+function probeRamp(x: number, z: number, ramps: Ramp[], yHint = 0) {
+  let best: { r: Ramp; y: number; dyds: number; score: number } | null = null;
   for (const r of ramps) {
     const dx = x - r.x;
     const dz = z - r.z;
@@ -57,7 +57,10 @@ function probeRamp(x: number, z: number, ramps: Ramp[]) {
       const t = clamp(along / r.len + 0.5, 0, 1);
       const y = r.y0 + (r.y1 - r.y0) * t;
       const dyds = (r.y1 - r.y0) / r.len;
-      if (!best || y > best.y) best = { r, y, dyds };
+      const score = Math.abs(y - yHint);
+      if (!best || score + 0.04 < best.score || (score <= best.score + 0.04 && y > best.y && y <= yHint + 1.2)) {
+        best = { r, y, dyds, score };
+      }
     }
   }
   return best;
@@ -290,7 +293,7 @@ export class ArcadeCar {
       const nG = track.samples[Math.min(this.sampleIndex + 1, track.samples.length - 1)];
       const gds = Math.hypot(nG.x - sG.x, nG.z - sG.z) || 1;
       let grade = (nG.y - sG.y) / gds;
-      const rp = probeRamp(this.x, this.z, ramps);
+      const rp = probeRamp(this.x, this.z, ramps, this.y);
       if (rp) {
         const alongV = this.vx * rp.r.sx + this.vz * rp.r.sz;
         grade = rp.dyds * Math.sign(alongV || 1);
@@ -449,7 +452,7 @@ export class ArcadeCar {
     const near = nearestIndex(track.samples, this.x, this.z, this.sampleIndex, track.closed);
     this.sampleIndex = near.index;
     const s = track.samples[near.index];
-    const rp = probeRamp(this.x, this.z, ramps);
+    const rp = probeRamp(this.x, this.z, ramps, this.y);
     const wb = 1.25;
     const tr = 0.72;
     const corners = [
@@ -462,7 +465,7 @@ export class ArcadeCar {
     let yMin = 1e9;
     let yMax = -1e9;
     for (const [cx, cz] of corners) {
-      const cRp = probeRamp(cx, cz, ramps);
+      const cRp = probeRamp(cx, cz, ramps, this.y);
       const y = cRp ? cRp.y : track.samples[nearestIndex(track.samples, cx, cz, near.index, track.closed).index].y;
       ySum += y;
       if (y < yMin) yMin = y;

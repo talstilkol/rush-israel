@@ -45,6 +45,7 @@
     "qa:ayalon-lock": "node scripts/ayalon-hash.mjs",
     "qa:colliders": "node scripts/collider-offset-smoke.mjs",
     "qa:hashalom": "node scripts/hashalom-photo.mjs",
+    "bake:gantry": "node scripts/bake-gantry.mjs",
     "bake:asphalt": "node scripts/bake-asphalt.mjs",
     "bake:sky": "node scripts/bake-sky.mjs",
     "bake:car": "node scripts/bake-car.mjs",

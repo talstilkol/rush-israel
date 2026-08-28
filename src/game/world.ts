@@ -14,7 +14,7 @@ import { bindRoadCompile } from "./roadShader";
 import { getLaneArrow } from "./arrow-assets";
 import { getFlare0, getFlare1 } from "./flare-assets";
 import { getWaterNormal, getChecker } from "./water-assets";
-import { getSign } from "./sign-assets";
+import { getSign, getGantry } from "./sign-assets";
 import { getFoam } from "./foam-assets";
 import { getGroundNoise } from "./ground-assets";
 import { getSidewalk } from "./walk-assets";
@@ -27,7 +27,6 @@ import { getFoliage, getBark } from "./tree-assets";
 import { getAyalonRoad, getBakedRoad } from "./road-assets";
 import { getSkyDay, getSkyNight } from "./sky-assets";
 import { getBlob } from "./blob-assets";
-import { mkSign as bakeSign } from "./sign-canvas";
 
 export type World = {
   group: THREE.Group;
@@ -5881,7 +5880,21 @@ function addLandmarks(
         add(line);
       }
     };
-    const mkSign = (he: string, en?: string) => bakeSign(he, bag, greenSign, en);
+    const gantryMat = (id: string) => {
+      const t = getGantry(id);
+      if (!t) return greenSign;
+      const m = new THREE.MeshBasicMaterial({ map: t, fog: false, side: THREE.DoubleSide });
+      bag.push(m);
+      return m;
+    };
+    const gantryId: Record<string, string> = {
+      "Kibbutz Galuyot": "gantry-kibbutz-galuyot",
+      "HaHagana": "gantry-hahagana",
+      "LaGuardia": "gantry-laguardia",
+      "HaShalom": "gantry-hashalom",
+      "Savidor Center": "gantry-savidor-center",
+      "University": "gantry-university",
+    };
     for (const ic of [
       {
         lat: 32.0525,
@@ -5954,7 +5967,7 @@ function addLandmarks(
         lamp.position.set(c.x + sm0.rx * lx, deckY + 3.9, c.z + sm0.rz * lx);
         add(lamp);
       }
-      const signMat = mkSign(ic.he, ic.en);
+      const signMat = gantryMat(gantryId[ic.en] ?? "gantry-hashalom");
       const sign = new THREE.Mesh(new THREE.PlaneGeometry(18, 4.2), signMat);
       sign.position.set(c.x, 13.8, c.z);
       sign.rotation.y = yaw + Math.PI;
@@ -6034,25 +6047,25 @@ function addLandmarks(
     const glassRoof = new THREE.MeshPhysicalMaterial({
       color: 11060436,
       roughness: 0.12,
-      metalness: 0.35,
+      metalness: 0,
       transparent: true,
       opacity: 0.55,
       envMapIntensity: 1.4
     });
     const silver = new THREE.MeshStandardMaterial({
       color: 14212320,
-      metalness: 0.55,
+      metalness: 0,
       roughness: 0.28
     });
     const redStripe = new THREE.MeshStandardMaterial({
       color: 12589096,
       roughness: 0.45,
-      metalness: 0.2
+      metalness: 0
     });
     const purpleStripe = new THREE.MeshStandardMaterial({
       color: 0x4a1a6a,
       roughness: 0.42,
-      metalness: 0.22
+      metalness: 0
     });
     bag.push(platMat, glassRoof, silver, redStripe, purpleStripe);
     const midLon = 34.79605;
@@ -6163,7 +6176,7 @@ function addLandmarks(
         over.rotation.y = Math.atan2(hallP.x - p.x, hallP.z - p.z);
         add(over);
       }
-      const stSign = new THREE.Mesh(new THREE.PlaneGeometry(18, 4.2), mkSign("\u05EA\u05D7\u05E0\u05EA " + st.he));
+      const stSign = new THREE.Mesh(new THREE.PlaneGeometry(18, 4.2), gantryMat("stn-" + st.kind));
       stSign.position.set(hallP.x, hallH + 3.2, hallP.z);
       stSign.rotation.y = Math.PI / 2;
       add(stSign);
@@ -6171,7 +6184,7 @@ function addLandmarks(
     }
     const makeTrain = (phase: number, trackX: number) => {
       const g = new THREE.Group();
-      const roof = new THREE.MeshStandardMaterial({ color: 0xe8eaee, roughness: 0.52, metalness: 0.28 });
+      const roof = new THREE.MeshStandardMaterial({ color: 0xe8eaee, roughness: 0.52, metalness: 0 });
       bag.push(roof);
       for (let c = 0; c < 6; c++) {
         const body = new THREE.Mesh(new THREE.BoxGeometry(2.9, 4.1, 17.2), silver);
@@ -6211,7 +6224,7 @@ function addLandmarks(
       const screen = new THREE.Mesh(new THREE.BoxGeometry(2.2, 1.15, 0.12), darkGlass);
       screen.position.set(0, 3.05, 12.68);
       g.add(screen);
-      const dest = new THREE.Mesh(new THREE.PlaneGeometry(2.35, 0.42), mkSign("\u05E8\u05DB\u05D1\u05EA \u05D9\u05E9\u05E8\u05D0\u05DC", "HaHagana"));
+      const dest = new THREE.Mesh(new THREE.PlaneGeometry(2.35, 0.42), gantryMat("dest-rail"));
       dest.position.set(0, 3.58, 12.74);
       g.add(dest);
       const panArm = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.6, 0.12), bandMat);

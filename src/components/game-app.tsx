@@ -920,45 +920,6 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 						className: "mt-3 flex min-h-10 w-full items-center justify-center gap-2 rounded-md border border-border text-sm",
 						onClick: () => setMuted(!muted),
 						children: [muted ? /* @__PURE__ */ jsx(VolumeX, { className: "size-4" }) : /* @__PURE__ */ jsx(Volume2, { className: "size-4" }), muted ? t("מושתק", "Muted") : t("צליל", "Sound")]
-					}),
-					/* @__PURE__ */ jsx("p", {
-						className: "mt-3 text-xs text-muted",
-						children: t("שדה ראייה", "Field of view", "مجال الرؤية")
-					}),
-					/* @__PURE__ */ jsx("input", {
-						type: "range",
-						min: 0,
-						max: 12,
-						value: fov,
-						onChange: (e: { target: { value: string } }) => setFovMode(Number(e.target.value)),
-						className: "mt-1 w-full accent-current"
-					}),
-					/* @__PURE__ */ jsx("p", {
-						className: "mt-3 text-xs text-muted",
-						children: t("פיזיקה", "Physics", "فيزياء")
-					}),
-					/* @__PURE__ */ jsxs("div", {
-						className: "mt-2 flex gap-2",
-						children: [/* @__PURE__ */ jsx("button", {
-							type: "button",
-							className: cn("min-h-10 flex-1 rounded-md border text-sm", handling === "simcade" ? "border-fg bg-fg text-bg" : "border-border"),
-							onClick: () => setHandlingMode("simcade"),
-							children: t("סימקייד", "Simcade", "سيمكيد")
-						}), /* @__PURE__ */ jsx("button", {
-							type: "button",
-							className: cn("min-h-10 flex-1 rounded-md border text-sm", handling === "arcade" ? "border-fg bg-fg text-bg" : "border-border"),
-							onClick: () => setHandlingMode("arcade"),
-							children: t("ארקייד", "Arcade", "أركيد")
-						})]
-					}),
-					/* @__PURE__ */ jsxs("div", {
-						className: "mt-2 flex gap-2",
-						children: (["abs", "tcs", "esc"] as const).map((k) => /* @__PURE__ */ jsx("button", {
-							type: "button",
-							className: cn("min-h-10 flex-1 rounded-md border text-xs font-medium uppercase tracking-widest", assists[k] ? "border-fg bg-fg text-bg" : "border-border"),
-							onClick: () => setAssistsMode({ ...assists, [k]: !assists[k] }),
-							children: k.toUpperCase()
-						}, k))
 					})
 				]
 			}) : null,

@@ -7,7 +7,6 @@ const ALLOW = new Set([
   "src/rendering/CapabilityProbe.ts",
   "src/rendering/RendererFacade.ts",
   "src/game/photo-export.ts",
-  "src/game/sign-canvas.ts",
 ]);
 
 const NEEDLES = [
