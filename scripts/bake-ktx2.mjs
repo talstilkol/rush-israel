@@ -3,6 +3,7 @@
  *  Keep this file only as a note. Real path is toktx --encode uastc when the tool exists. */
 import { readFileSync, writeFileSync } from "node:fs";
 import { PNG } from "pngjs";
+import { fromRoot } from "./project-root.mjs";
 import {
   createDefaultContainer,
   write,
@@ -14,8 +15,8 @@ import {
   KHR_DF_CHANNEL_RGBSDA_ALPHA,
 } from "ktx-parse";
 
-const src = process.argv[2] || "/workspace/public/game/blob.png";
-const dst = process.argv[3] || "/workspace/public/game/blob.ktx2";
+const src = process.argv[2] || fromRoot("public", "game", "blob.png");
+const dst = process.argv[3] || fromRoot("public", "game", "blob.ktx2");
 const png = PNG.sync.read(readFileSync(src));
 const c = createDefaultContainer();
 c.vkFormat = VK_FORMAT_R8G8B8A8_SRGB;
