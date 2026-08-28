@@ -1840,7 +1840,7 @@ export const TRACKS: TrackDef[] = [
     description: "ממג׳דל שמס, סרפנטינות בחרמון, יער, שלג ואתר הסקי עד הפסגה. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "From Majdal Shams, switchbacks up Hermon, forest, snow and the ski site to the peak. Inspired by the place — not a map, not GIS.",
     image: "/tracks/hermon.jpg",
-    width: 22,
+    width: 24,
     seed: 2814,
     theme: "snow",
     open: true,
@@ -1855,7 +1855,7 @@ export const TRACKS: TrackDef[] = [
       mieDirectionalG: 0.68,
       exposure: 0.78,
       fog: 0xd8e4ee,
-      fogDensity: 0.0009,
+      fogDensity: 0.00038,
     },
     checkpointCount: 8,
     points: [
@@ -1877,7 +1877,7 @@ export const TRACKS: TrackDef[] = [
       her(33.3084, 35.7876),
       her(33.3112, 35.79),
     ],
-    elevation: (t) => 4 + 110 * Math.pow(t, 1.18),
+    elevation: (t) => 4 + 140 * Math.pow(t, 1.15),
     streets: [
       { from: 0.0, to: 0.16, he: "מג׳דל שמס", en: "Majdal Shams" },
       { from: 0.16, to: 0.36, he: "הסרפנטינות", en: "Switchbacks" },

@@ -693,7 +693,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 240 : def.id === "hermon" ? 160 : def.theme === "carmel" ? 110 : 78;
+    const outer = def.id === "ramon" ? 240 : def.id === "hermon" ? 210 : def.theme === "carmel" ? 110 : 78;
     let valleyX = 0;
     let valleyZ = 0;
     let invertSide = false;
@@ -718,7 +718,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const hw = built.width / 2 + 1.2;
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 92 + s.y * 0.48 : def.theme === "carmel" ? s.y + 52 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 118 + s.y * 0.55 : def.theme === "carmel" ? s.y + 52 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
@@ -7513,12 +7513,12 @@ function addLandmarks(
     {
       const nA = nearestIndex(built.samples, liftA.x, liftA.z, 0);
       const sA = built.samples[nA.index];
-      liftA.x = sA.x + sA.rx * (built.width / 2 + 14);
-      liftA.z = sA.z + sA.rz * (built.width / 2 + 14);
+      liftA.x = sA.x + sA.rx * (built.width / 2 + 20);
+      liftA.z = sA.z + sA.rz * (built.width / 2 + 20);
       const nB = nearestIndex(built.samples, liftB.x, liftB.z, 0);
       const sB = built.samples[nB.index];
-      liftB.x = sB.x + sB.rx * (built.width / 2 + 14);
-      liftB.z = sB.z + sB.rz * (built.width / 2 + 14);
+      liftB.x = sB.x + sB.rx * (built.width / 2 + 20);
+      liftB.z = sB.z + sB.rz * (built.width / 2 + 20);
     }
     const postGeo = new THREE.CylinderGeometry(0.35, 0.5, 14, 8);
     const postA = new THREE.Mesh(postGeo, rock);
@@ -7578,18 +7578,18 @@ function addLandmarks(
     for (let i = 0; i < village.length; i++) {
       const p = her(village[i].lat, village[i].lon);
       const n = nearestIndex(built.samples, p.x, p.z, 0);
-      const extra = built.width / 2 + 16;
+      const extra = built.width / 2 + 22;
       if (n.dist < extra) {
         const s = built.samples[n.index];
         p.x = s.x + s.rx * extra;
         p.z = s.z + s.rz * extra;
       }
       const house = new THREE.Mesh(new THREE.BoxGeometry(6.4, 4.2, 7.4), stone);
-      house.position.set(p.x, 5.2, p.z);
+      house.position.set(p.x, built.samples[n.index].y + 2.2, p.z);
       add(house);
       const rf = new THREE.Mesh(new THREE.ConeGeometry(5.4, 2.8, 4), snowM);
       rf.rotation.y = Math.PI / 4;
-      rf.position.set(p.x, 8.8, p.z);
+      rf.position.set(p.x, built.samples[n.index].y + 5.8, p.z);
       add(rf);
     }
     const lodgeY = def.elevation(0.9);
