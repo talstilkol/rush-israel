@@ -693,7 +693,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 240 : def.id === "hermon" ? 210 : def.theme === "carmel" ? 160 : 78;
+    const outer = def.id === "ramon" ? 280 : def.id === "hermon" ? 210 : def.theme === "carmel" ? 160 : 78;
     let valleyX = 0;
     let valleyZ = 0;
     let invertSide = false;
@@ -8106,7 +8106,7 @@ function addLandmarks(
     wadi.position.set(floor.x + 8, 0.55, floor.z);
     add(wadi);
     const rockGeo = new THREE.DodecahedronGeometry(1, 0);
-    const nRock = Math.min(48, built.samples.length);
+    const nRock = Math.min(64, built.samples.length);
     const rocks = new THREE.InstancedMesh(rockGeo, tan, nRock);
     rocks.castShadow = shadows;
     let rii = 0;
@@ -8138,7 +8138,7 @@ function addLandmarks(
         const ms = -vs;
         const d = built.width / 2 + 9.5;
         const y0 = s.y - 4;
-        const y1 = s.y + 120 + Math.min(70, s.y * 0.5);
+        const y1 = s.y + 150 + Math.min(90, s.y * 0.55);
         cPos.push(s.x + s.rx * d * ms, y0, s.z + s.rz * d * ms);
         cPos.push(s.x + s.rx * d * ms, y1, s.z + s.rz * d * ms);
       }
