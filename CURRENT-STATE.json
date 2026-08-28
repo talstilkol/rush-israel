@@ -1,7 +1,7 @@
 {
-  "schema_version": "2.2.0",
+  "schema_version": "2.2.1",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-29T01:52:50+03:00",
+  "generated_at": "2026-08-29T02:08:00+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -17,7 +17,7 @@
     },
     "effective_condition": "This document becomes canonical only when PR #7 is merged.",
     "pull_request": 7,
-    "reviewed_implementation_head_sha": "5c15dc41eaebd1bc7f56758c046391a28bedbd8b",
+    "reviewed_implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
     "merge_sha_recording": "The next GitHub write must read and record the actual PR #7 merge SHA."
   },
   "repository_snapshot": {
@@ -78,7 +78,7 @@
     },
     "RSH-006": {
       "pr": 7,
-      "implementation_head_sha": "5c15dc41eaebd1bc7f56758c046391a28bedbd8b",
+      "implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
       "merge_sha": null,
       "merge_sha_status": "Record the live PR #7 merge SHA during the RSH-007 preflight; live GitHub is authoritative."
     }
@@ -87,7 +87,7 @@
     "unit": "RSH-006",
     "title": "Build a self-starting QA harness",
     "pull_request": 7,
-    "implementation_head_sha": "5c15dc41eaebd1bc7f56758c046391a28bedbd8b",
+    "implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
     "game_code_changed": false,
     "dependency_versions_changed": false,
     "package_lock_changed": false,
@@ -132,6 +132,8 @@
     "cross_platform_cleanup": true,
     "signal_exit_mapping": "128 + operating-system signal number",
     "timers_and_listeners_cleaned": true,
+    "wait_for_exit_losing_timer_cancelled": true,
+    "interrupt_checked_before_server_and_command_spawn": true,
     "server_spawn_errors_reported_directly": true,
     "rsh_004_lockfile_metadata_regression_test": "scripts/toolchain-metadata.test.mjs",
     "clean_clone_runtime_evidence": "pending RSH-007"
