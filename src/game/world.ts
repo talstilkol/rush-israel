@@ -3735,6 +3735,14 @@ function addLandmarks(
     hiltonWins.instanceMatrix.needsUpdate = true;
     group.add(hiltonWins);
     const op = tlv(32.0768, 34.7662);
+    {
+      const n = nearestIndex(built.samples, op.x, op.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        op.x = s.x + s.rx * (built.width / 2 + 22);
+        op.z = s.z + s.rz * (built.width / 2 + 22);
+      }
+    }
     const operaBase = new THREE.Mesh(new THREE.CylinderGeometry(11, 12.4, 6, 20), cream);
     operaBase.position.set(op.x, 3, op.z);
     add(operaBase);
@@ -3761,6 +3769,14 @@ function addLandmarks(
     crown.position.set(op.x, 50.2, op.z);
     add(crown);
     const danP = tlv(32.0814, 34.7672);
+    {
+      const n = nearestIndex(built.samples, danP.x, danP.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        danP.x = s.x + s.rx * (built.width / 2 + 20);
+        danP.z = s.z + s.rz * (built.width / 2 + 20);
+      }
+    }
     const dan = new THREE.Mesh(new THREE.BoxGeometry(12, 28, 38), white);
     dan.position.set(danP.x, 14, danP.z);
     add(dan);
@@ -3778,6 +3794,14 @@ function addLandmarks(
     danRoof.position.set(danP.x, 29.2, danP.z);
     add(danRoof);
     const carP = tlv(32.0866, 34.7678);
+    {
+      const n = nearestIndex(built.samples, carP.x, carP.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        carP.x = s.x + s.rx * (built.width / 2 + 20);
+        carP.z = s.z + s.rz * (built.width / 2 + 20);
+      }
+    }
     for (let i = 0; i < 5; i++) {
       const w = 16 - i * 1.4;
       const slab = new THREE.Mesh(new THREE.BoxGeometry(w, 5.2, 22 - i * 1.1), i % 2 ? white : cream);
@@ -3911,6 +3935,14 @@ function addLandmarks(
     lawn.position.set(clore.x, 0.06, clore.z);
     add(lawn);
     const carl = tlv(32.0865, 34.7688);
+    {
+      const n = nearestIndex(built.samples, carl.x, carl.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        carl.x = s.x + s.rx * (built.width / 2 + 22);
+        carl.z = s.z + s.rz * (built.width / 2 + 22);
+      }
+    }
     const carlA = new THREE.Mesh(new THREE.BoxGeometry(11, 44, 11), white);
     carlA.position.set(carl.x, 22, carl.z);
     add(carlA);
@@ -4600,6 +4632,14 @@ function addLandmarks(
       }
     ]) {
       const p = tlv(hg.lat, hg.lon);
+      {
+        const n = nearestIndex(built.samples, p.x, p.z, 0);
+        if (n.dist < built.width / 2 + 16) {
+          const s = built.samples[n.index];
+          p.x = s.x + s.rx * (built.width / 2 + 24);
+          p.z = s.z + s.rz * (built.width / 2 + 24);
+        }
+      }
       const hangar = new THREE.Mesh(new THREE.BoxGeometry(36, 7.2, 16), hangarMat);
       hangar.position.set(p.x, 3.6, p.z);
       add(hangar);
@@ -4701,28 +4741,30 @@ function addLandmarks(
     cornice.position.set(plantX, rs.y + 11.1, plantZ);
     cornice.rotation.y = rdYaw;
     add(cornice);
-    const chimP = tlv(32.1046, 34.7766);
+    const chimX = plantX + rx * 26;
+    const chimZ = plantZ + rz * 26;
     const chim = new THREE.Mesh(new THREE.CylinderGeometry(3.8, 5.6, 92, 16), conc);
-    chim.position.set(chimP.x, 52.4, chimP.z);
+    chim.position.set(chimX, rs.y + 52.4, chimZ);
     add(chim);
     const chimGal = new THREE.Mesh(new THREE.CylinderGeometry(5.2, 4.2, 2.8, 16), conc);
-    chimGal.position.set(chimP.x, 99.2, chimP.z);
+    chimGal.position.set(chimX, rs.y + 99.2, chimZ);
     add(chimGal);
     const chimTop = new THREE.Mesh(new THREE.CylinderGeometry(4.2, 3.6, 3.6, 16), conc);
-    chimTop.position.set(chimP.x, 102.2, chimP.z);
+    chimTop.position.set(chimX, rs.y + 102.2, chimZ);
     add(chimTop);
     for (let i = 0; i < 16; i++) {
       const band = new THREE.Mesh(new THREE.CylinderGeometry(4.05, 4.2, 3.2, 14), i % 2 ? redBand : whiteBand);
-      band.position.set(chimP.x, 28 + i * 4.4, chimP.z);
+      band.position.set(chimX, rs.y + 28 + i * 4.4, chimZ);
       add(band);
     }
-    const chim2P = tlv(32.1052, 34.776);
+    const chim2X = plantX + rx * 36;
+    const chim2Z = plantZ + rz * 36;
     const chim2 = new THREE.Mesh(new THREE.CylinderGeometry(2.8, 3.8, 62, 12), conc);
-    chim2.position.set(chim2P.x, 37.4, chim2P.z);
+    chim2.position.set(chim2X, rs.y + 37.4, chim2Z);
     add(chim2);
     for (let i = 0; i < 12; i++) {
       const band2 = new THREE.Mesh(new THREE.CylinderGeometry(3, 3.1, 2.6, 12), i % 2 ? redBand : whiteBand);
-      band2.position.set(chim2P.x, 18 + i * 3.4, chim2P.z);
+      band2.position.set(chim2X, rs.y + 18 + i * 3.4, chim2Z);
       add(band2);
     }
     const beach = tlv(32.102, 34.774);
@@ -4755,12 +4797,12 @@ function addLandmarks(
     const expoRoof = new THREE.Mesh(new THREE.SphereGeometry(16, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2), glass);
     expoRoof.position.set(ex.x, 6, ex.z);
     add(expoRoof);
-    glowAt(chimP.x, 98, chimP.z, 16724016, 48, 40);
+    glowAt(chimX, rs.y + 98, chimZ, 16724016, 48, 40);
     glowAt(hp.x, 10, hp.z, 16760944, 24, 22);
     hit(rs.x - rx * 30, rs.z - rz * 30, 8);
     hit(rs.x + rx * 30, rs.z + rz * 30, 8);
-    hit(chimP.x, chimP.z, 5);
-    hit(chim2P.x, chim2P.z, 4);
+    hit(chimX, chimZ, 5);
+    hit(chim2X, chim2Z, 4);
     hit(plantX, plantZ, 16, 18, 22, rdYaw);
     hit(ex.x, ex.z, 14);
     hit(hp.x, hp.z + 40, 12);
