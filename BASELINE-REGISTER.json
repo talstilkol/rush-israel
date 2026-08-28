@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.2.1",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-08-29T01:52:50+03:00",
+  "generated_at": "2026-08-29T02:08:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -73,11 +73,11 @@
       "kind": "accepted-unit-transition",
       "unit": "RSH-006",
       "pull_request": 7,
-      "reviewed_implementation_head_sha": "5c15dc41eaebd1bc7f56758c046391a28bedbd8b",
+      "reviewed_implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
       "merge_sha": null,
       "merge_sha_status": "Resolve from live main at the next preflight.",
-      "recorded_at": "2026-08-29T01:52:50+03:00",
-      "description": "Self-starting QA lifecycle, process cleanup, toolchain metadata regression guard and deterministic source tests accepted when PR #7 merges.",
+      "recorded_at": "2026-08-29T02:08:00+03:00",
+      "description": "Self-starting QA lifecycle, cancellable cleanup timers, interrupt-safe command startup, process cleanup, toolchain metadata regression guard and deterministic source tests accepted when PR #7 merges.",
       "runtime_evidence": "Clean-clone GitHub-hosted execution remains pending RSH-007."
     }
   ],
