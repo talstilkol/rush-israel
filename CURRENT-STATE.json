@@ -1,7 +1,7 @@
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-29T01:11:09+03:00",
+  "generated_at": "2026-08-29T01:37:35+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -82,16 +82,22 @@
     "title": "Build a self-starting QA harness",
     "branch": "agent/rsh-006-self-starting-qa-harness",
     "base_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3",
-    "pull_request_state": "not_open_yet",
-    "implementation_state": "ready_for_review",
+    "pull_request": 7,
+    "pull_request_state": "open_ready",
+    "implementation_state": "review_in_progress",
     "merge_authorized_by_owner_batch": true,
     "game_code_changed": false,
     "dependency_versions_changed": false,
+    "package_lock_changed": false,
     "later_units_precreated": false
   },
   "rsh_006_evidence": {
     "self_starting_entry": "scripts/run-with-server.mjs",
-    "unit_tests": "scripts/run-with-server.test.mjs",
+    "unit_tests": [
+      "scripts/run-with-server.test.mjs",
+      "scripts/program-control.test.mjs",
+      "scripts/toolchain-metadata.test.mjs"
+    ],
     "documentation": "QA-HARNESS.md",
     "public_commands": [
       "npm run qa",
@@ -102,9 +108,21 @@
     "readiness_probe": true,
     "unknown_existing_server_rejected": true,
     "explicit_reuse_flag": "QA_REUSE_SERVER=1",
+    "harness_owned_server_always_stopped": true,
     "command_timeout": true,
     "process_tree_cleanup": true,
     "cross_platform_cleanup": true,
+    "signal_exit_codes": {
+      "SIGHUP": 129,
+      "SIGINT": 130,
+      "SIGTERM": 143
+    },
+    "qa_hook_enabled_by": "VITE_QA=1",
+    "rsh_004_review_remediation": {
+      "issue": "Root engines metadata was not represented in package-lock.json and could dirty a clean checkout.",
+      "resolution": "Removed redundant package.json engines metadata; exact pins remain enforced by packageManager, Volta, version files and preinstall verification.",
+      "regression_test": "scripts/toolchain-metadata.test.mjs"
+    },
     "runtime_execution_evidence": "pending RSH-007 GitHub Actions CI"
   },
   "batch_authorization": {
