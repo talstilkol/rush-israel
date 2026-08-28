@@ -1,7 +1,9 @@
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
-mkdirSync("/workspace/screenshots", { recursive: true });
+const screenshots = fromRoot("screenshots");
+mkdirSync(screenshots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
@@ -26,7 +28,7 @@ const clickText = async (re) => {
 };
 
 await page.goto("http://127.0.0.1:8080/", { waitUntil: "networkidle", timeout: 40000 });
-await page.screenshot({ path: "/workspace/screenshots/title.png" });
+await page.screenshot({ path: `${screenshots}/title.png` });
 const title = await page.locator("h1").first().innerText();
 if (!/RUSH/.test(title)) throw new Error(`bad title: ${title}`);
 
@@ -35,7 +37,7 @@ await page.waitForTimeout(400);
 const careerEvents = await page.evaluate(() =>
   [...document.querySelectorAll("button")].filter((b) => /טיילת|Promenade|עזריאלי|Azrieli/.test(b.textContent || "")).length,
 );
-await page.screenshot({ path: "/workspace/screenshots/career.png" });
+await page.screenshot({ path: `${screenshots}/career.png` });
 if (careerEvents < 1) throw new Error("career events missing");
 
 await clickText("טיילת הזהב|Golden promenade");
@@ -70,7 +72,7 @@ const dD = wrap(yD - yA);
 if (dA <= 0.05) throw new Error(`A did not yaw left: ${dA}`);
 if (dD >= -0.05) throw new Error(`D did not yaw right: ${dD}`);
 
-await page.screenshot({ path: "/workspace/screenshots/career-race.png" });
+await page.screenshot({ path: `${screenshots}/career-race.png` });
 
 await page.keyboard.press("Escape");
 await page.waitForTimeout(200);
@@ -95,7 +97,7 @@ const laps = await page.evaluate(() => window.__controlsTest?.getLaps?.());
 if (heatMode !== "heat") throw new Error(`expected heat, got ${heatMode}`);
 if (cops < 2) throw new Error(`expected cops, got ${cops}`);
 if (laps !== 2) throw new Error(`heat laps ${laps}`);
-await page.screenshot({ path: "/workspace/screenshots/heat-timessquare.png" });
+await page.screenshot({ path: `${screenshots}/heat-timessquare.png` });
 
 await page.keyboard.press("Escape");
 await page.waitForTimeout(200);
@@ -114,7 +116,7 @@ await clickText("זינוק|Start");
 await page.waitForFunction(() => !!window.__controlsTest, { timeout: 20000 });
 const driftMode = await page.evaluate(() => window.__controlsTest?.getMode?.());
 if (driftMode !== "drift") throw new Error(`expected drift, got ${driftMode}`);
-await page.screenshot({ path: "/workspace/screenshots/drift-jaffa.png" });
+await page.screenshot({ path: `${screenshots}/drift-jaffa.png` });
 
 console.log(
   JSON.stringify(
