@@ -73,7 +73,7 @@ export function canSelfStartUrl(value) {
   const url = new URL(value);
   return (
     url.protocol === "http:" &&
-    ["127.0.0.1", "localhost", "[::1]"].includes(url.hostname) &&
+    url.hostname === "127.0.0.1" &&
     url.port === "8080" &&
     url.pathname === "/" &&
     !url.search &&
