@@ -791,7 +791,7 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 											children: [/* @__PURE__ */ jsx(Gauge, { className: "size-3.5" }), langHe ? "קמ״ש" : "km/h"]
 										}),
 										/* @__PURE__ */ jsx("span", {
-											className: "text-3xl font-semibold tabular-nums leading-tight",
+											className: "text-4xl font-semibold tabular-nums leading-tight",
 											children: Math.round(hud.speedKmh)
 										})
 									]

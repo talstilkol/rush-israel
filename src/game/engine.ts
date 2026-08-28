@@ -243,7 +243,7 @@ export class RaceEngine {
   private replayBuf: { x: number; y: number; z: number; yaw: number; speed: number }[][] = [];
   private replayAcc = 0;
   private pendingResult: RaceResult | null = null;
-  private camNames = ["chase", "hood", "bumper", "heli"];
+  private camNames = ["chase"];
   private rewindBuf: RewindPack[] = [];
   private rewindAcc = 0;
   private rewinding = false;
@@ -1136,8 +1136,8 @@ export class RaceEngine {
 
     const hoodDown = this.input.keys.has("KeyC") || this.input.keys.has("KeyV") || !!navigator.getGamepads?.()?.[0]?.buttons[3]?.pressed;
     if (hoodDown && !this.hoodEdge && !this.photo) {
-      this.camMode = (this.camMode + 1) % 4;
-      this.hood = this.camMode === 1;
+      this.camMode = 0;
+      this.hood = false;
     }
     this.hoodEdge = hoodDown;
 
@@ -1857,8 +1857,8 @@ export class RaceEngine {
       car.speed = ra.speed + (rb.speed - ra.speed) * f;
     }
     if (Math.floor(this.replayT / 2.8) !== Math.floor((this.replayT - dt) / 2.8)) {
-      this.camMode = (this.camMode + 1) % 4;
-      this.hood = this.camMode === 1;
+      this.camMode = 0;
+      this.hood = false;
     }
   }
 

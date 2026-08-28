@@ -1545,8 +1545,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       color: 0x5a4030,
       roughness: 0.92
     }));
-    const frondGeo = keep(new THREE.ConeGeometry(0.28, 3.6, 5));
-    frondGeo.translate(0, -1.55, 0);
+    const frondGeo = keep(new THREE.ConeGeometry(0.42, 4.1, 6));
+    frondGeo.translate(0, -1.75, 0);
     const crownMat = keep(new THREE.MeshStandardMaterial({
       map: keep(foliageTexture()),
       color: 0x3a7a32,
@@ -1557,7 +1557,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const capGeo = keep(new THREE.SphereGeometry(0.55, 8, 6));
     const palmN = 28;
     const trunks2 = new THREE.InstancedMesh(trunkGeo2, trunkMat2, palmN);
-    const fronds = new THREE.InstancedMesh(frondGeo, crownMat, palmN * 10);
+    const fronds = new THREE.InstancedMesh(frondGeo, crownMat, palmN * 12);
     const caps = new THREE.InstancedMesh(capGeo, crownMat, palmN);
     trunks2.castShadow = shadows;
     fronds.castShadow = shadows;
@@ -1581,11 +1581,11 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       _dummy.scale.set(1, 1, 1);
       _dummy.updateMatrix();
       caps.setMatrixAt(pc, _dummy.matrix);
-      for (let f = 0; f < 10; f++) {
-        const a = f / 10 * Math.PI * 2;
+      for (let f = 0; f < 12; f++) {
+        const a = f / 12 * Math.PI * 2;
         _dummy.position.set(px, s.y + 8.05, pz);
-        _dummy.scale.set(0.95 + f % 3 * 0.08, 1, 1);
-        _dummy.rotation.set(1.12, a, 0.08);
+        _dummy.scale.set(0.95 + f % 3 * 0.1, 1, 1);
+        _dummy.rotation.set(1.02, a, 0.1);
         _dummy.updateMatrix();
         fronds.setMatrixAt(fc, _dummy.matrix);
         fc++;
@@ -1957,6 +1957,17 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       y: 0
     });
   }
+  if (def.id === "ayalon") {
+    for (let i = 0; i < built.samples.length; i += 11) {
+      const s = built.samples[i];
+      const d = built.width / 2 + 38;
+      treeSpots.push({
+        x: s.x + s.rx * d,
+        z: s.z + s.rz * d,
+        y: s.y
+      });
+    }
+  }
   const trunks = new THREE.InstancedMesh(trunkGeo, trunkMat, treeSpots.length);
   const pineLayers = pine ? 3 : 1;
   const crowns = new THREE.InstancedMesh(crownGeo, frondMat, pine || stoneHill || acacia ? treeSpots.length * pineLayers : treeSpots.length * (ficusStreet ? 6 : 5));
@@ -2012,8 +2023,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     } else {
       const top = t.y + (ficusStreet ? 6.8 : 4.8) * h;
       const blobs = ficusStreet
-        ? [[0, 0, 0, 1.18], [1.15, 0.32, 0.45, 0.82], [-1.05, 0.28, -0.5, 0.78], [0.2, 0.82, -0.15, 0.7]] as const
-        : [[0, 0, 0, 1], [0.72, 0.28, 0.38, 0.74], [-0.58, 0.22, -0.42, 0.7]] as const;
+        ? [[0, 0, 0, 1.22], [1.25, 0.35, 0.5, 0.88], [-1.15, 0.3, -0.55, 0.84], [0.25, 0.95, -0.2, 0.76], [0.85, -0.15, -1.0, 0.7], [-0.9, -0.1, 0.95, 0.7]] as const
+        : [[0, 0, 0, 1.08], [0.82, 0.32, 0.42, 0.78], [-0.68, 0.26, -0.48, 0.74], [0.15, 0.72, -0.12, 0.62], [0.55, -0.18, -0.7, 0.58]] as const;
       for (const [dx, dy, dz, sc] of blobs) {
         _dummy.position.set(t.x + dx, top + dy * h, t.z + dz);
         _dummy.scale.set(sc, sc * 0.86 * h, sc);
@@ -2266,7 +2277,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const postGeo = keep(new THREE.BoxGeometry(0.22, 5.4, 0.22));
   const postMat = keep(new THREE.MeshStandardMaterial({
     color: 2764338,
-    metalness: 0.4,
+    metalness: 0,
     roughness: 0.5
   }));
   const ads = [
@@ -2328,7 +2339,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const puddleMat = keep(new THREE.MeshPhysicalMaterial({
     color: 1843752,
     roughness: 0.04,
-    metalness: 0.22,
+    metalness: 0,
     clearcoat: 1,
     clearcoatRoughness: 0.05,
     envMapIntensity: 2.6,
@@ -2453,7 +2464,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const gatePoleMat = keep(new THREE.MeshStandardMaterial({
     color: 1842724,
     roughness: 0.42,
-    metalness: 0.55
+    metalness: 0
   }));
   const startMat = keep(new THREE.MeshBasicMaterial({ color: 16250094 }));
   const cpMat = keep(new THREE.MeshBasicMaterial({ color: 6283476 }));
@@ -2923,13 +2934,13 @@ function addLandmarks(
   const white = new THREE.MeshStandardMaterial({
     color: 15525594,
     roughness: 0.48,
-    metalness: 0.18,
+    metalness: 0,
     envMapIntensity: 0.7
   });
   const glass = new THREE.MeshPhysicalMaterial({
     color: 6987956,
     roughness: 0.08,
-    metalness: 0.85,
+    metalness: 0,
     envMapIntensity: 1.8,
     clearcoat: 1,
     clearcoatRoughness: 0.08,
