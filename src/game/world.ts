@@ -4007,13 +4007,13 @@ function addLandmarks(
   }
   if (def.id === "oldjaffa") {
     const ochre = new THREE.MeshStandardMaterial({
-      color: 12093784,
-      roughness: 0.88,
-      envMapIntensity: 0.28
+      color: 0xc4a070,
+      roughness: 0.9,
+      envMapIntensity: 0.22
     });
     const ochreDark = new THREE.MeshStandardMaterial({
-      color: 9398336,
-      roughness: 0.9
+      color: 0xa07848,
+      roughness: 0.92
     });
     const lime = new THREE.MeshStandardMaterial({
       color: 13215092,
@@ -4029,16 +4029,16 @@ function addLandmarks(
         ck.z = s.z + s.rz * (built.width / 2 + 16);
       }
     }
-    const tower = new THREE.Mesh(new THREE.BoxGeometry(4.8, 26, 4.8), ochre);
-    tower.position.set(ck.x, 14.2, ck.z);
+    const tower = new THREE.Mesh(new THREE.BoxGeometry(5.2, 32, 5.2), ochre);
+    tower.position.set(ck.x, 17.2, ck.z);
     add(tower);
-    for (let y = 6.2; y < 24; y += 4.4) {
-      const band = new THREE.Mesh(new THREE.BoxGeometry(5.15, 0.32, 5.15), lime);
+    for (let y = 6.2; y < 30; y += 4.6) {
+      const band = new THREE.Mesh(new THREE.BoxGeometry(5.55, 0.36, 5.55), lime);
       band.position.set(ck.x, y, ck.z);
       add(band);
     }
-    const base = new THREE.Mesh(new THREE.BoxGeometry(7.6, 3.6, 7.6), ochreDark);
-    base.position.set(ck.x, 1.8, ck.z);
+    const base = new THREE.Mesh(new THREE.BoxGeometry(8.4, 4.2, 8.4), ochreDark);
+    base.position.set(ck.x, 2.1, ck.z);
     add(base);
     const plaza = new THREE.Mesh(new THREE.CylinderGeometry(16, 16, 0.18, 20), ochreDark);
     plaza.position.set(ck.x - 6, 0.1, ck.z);
@@ -4072,20 +4072,20 @@ function addLandmarks(
     for (let i = 0; i < 4; i++) {
       const a = i * Math.PI / 2;
       const face = new THREE.Mesh(new THREE.CircleGeometry(1.05, 22), faceMat);
-      face.position.set(ck.x + Math.sin(a) * 2.46, 22.6, ck.z + Math.cos(a) * 2.46);
-      face.lookAt(ck.x + Math.sin(a) * 8, 22.6, ck.z + Math.cos(a) * 8);
+      face.position.set(ck.x + Math.sin(a) * 2.66, 26.4, ck.z + Math.cos(a) * 2.66);
+      face.lookAt(ck.x + Math.sin(a) * 8, 26.4, ck.z + Math.cos(a) * 8);
       add(face);
     }
     const cap = new THREE.Mesh(new THREE.ConeGeometry(3.6, 6.4, 4), ochreDark);
     cap.rotation.y = Math.PI / 4;
-    cap.position.set(ck.x, 30.4, ck.z);
+    cap.position.set(ck.x, 36.2, ck.z);
     add(cap);
     const finial = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.11, 2.8, 6), ochreDark);
-    finial.position.set(ck.x, 34.2, ck.z);
+    finial.position.set(ck.x, 40.2, ck.z);
     add(finial);
     hit(ck.x, ck.z, 5.5, 4.2, 4.2);
-    for (let i = 0; i < 8; i++) {
-      const a = i / 8 * Math.PI * 1.6 + 0.4;
+    for (let i = 0; i < 14; i++) {
+      const a = i / 14 * Math.PI * 1.6 + 0.4;
       const hx = ck.x + Math.cos(a) * (18 + i % 3 * 4);
       const hz = ck.z + Math.sin(a) * (16 + i % 2 * 5);
       if (nearestIndex(built.samples, hx, hz, 0).dist < built.width / 2 + 6) continue;

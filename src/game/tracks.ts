@@ -468,9 +468,9 @@ export const TRACKS: TrackDef[] = [
     width: 20,
     seed: 1917,
     theme: "jaffa",
-    ground: 0xb89a74,
-    sand: 0xd4b890,
-    sky: { ...TLV_GOLDEN, fogDensity: 0.0009 },
+    ground: 0xc4a882,
+    sand: 0xd8c09a,
+    sky: { ...TLV_BLUE, fogDensity: 0.00085 },
     water: { x: tlv(32.0524, 34.7488).x, z: tlv(32.0524, 34.7488).z, w: 220, d: 380, color: 0x1a6a78 },
     checkpointCount: 10,
     points: [
