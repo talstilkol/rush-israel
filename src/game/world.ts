@@ -645,7 +645,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   sunHalo.frustumCulled = false;
   group.add(sunHalo);
   const skyDomeMat = keep(new THREE.MeshBasicMaterial({
-    color: isNight ? 0x1c3450 : 0x3c9ee0,
+    color: isNight ? 0x2a4a6c : 0x3c9ee0,
     fog: false,
     depthWrite: false,
     side: THREE.BackSide,
@@ -2322,9 +2322,9 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     group.add(post);
   }
   const nightLights: THREE.SpotLight[] = [];
-  if (shadows) for (let i = 0; i < 5; i++) {
+  if (shadows) for (let i = 0; i < 10; i++) {
     const src = lampPos[i] ?? new THREE.Vector3();
-    const spot = new THREE.SpotLight(0xffc070, isNight ? 140 : 0, 28, 0.78, 0.7, 1.35);
+    const spot = new THREE.SpotLight(0xffc070, isNight ? 200 : 0, 44, 0.9, 0.65, 1.2);
     spot.position.copy(src);
     spot.target.position.set(src.x, src.y - 5.2, src.z);
     spot.castShadow = false;
@@ -2632,7 +2632,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const next = skyAt(def, clock, wx);
     applySky(sky, sun, next);
     skyDomeMat.map = null;
-    skyDomeMat.color.setHex(n > 0.5 ? 0x1c3450 : 0x3c9ee0);
+    skyDomeMat.color.setHex(n > 0.5 ? 0x2a4a6c : 0x3c9ee0);
     skyDomeMat.needsUpdate = true;
     if (n < 0.58) lightAim.copy(sun);
     else {
@@ -2644,12 +2644,12 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     if (n > 0.5) {
       hemi.color.copy(_nightHemi);
       dir.color.copy(_nightDir);
-      hemi.intensity = 0.86;
-      dir.intensity = 0.58;
+      hemi.intensity = 0.98;
+      dir.intensity = 0.72;
       fill.color.setHex(16758880);
-      fill.intensity = 0.62;
-      ambient.color.setHex(0x4a6888);
-      ambient.intensity = 0.46;
+      fill.intensity = 0.72;
+      ambient.color.setHex(0x5a7898);
+      ambient.intensity = 0.58;
     } else if (morning) {
       hemi.color.copy(_mornHemi);
       dir.color.copy(_mornDir);
@@ -2663,7 +2663,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       hemi.color.copy(_dayHemi);
       dir.color.copy(_dayDir);
       hemi.intensity = 0.62;
-      dir.intensity = 0.94;
+      dir.intensity = 0.82;
       fill.color.setHex(10139856);
       fill.intensity = 0.22;
       ambient.color.setHex(11057352);
@@ -2697,9 +2697,9 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     haloMat.opacity = n > 0.45 ? 0.58 : 0;
     haloMat.needsUpdate = true;
     applyWet();
-    groundMat.color.setHex(n > 0.5 ? 0x4a5058 : groundCol);
+    groundMat.color.setHex(n > 0.5 ? 0x5a626c : groundCol);
     groundMat.envMapIntensity = lerp(0.14, 0.08, n);
-    domeMat.color.setHex(n > 0.5 ? 0x0e1a2c : clock < 0.38 ? 0x6aaee0 : 0x4a9ad8);
+    domeMat.color.setHex(n > 0.5 ? 0x1e3854 : clock < 0.38 ? 0x6aaee0 : 0x4a9ad8);
     walkStd.color.setHex(n > 0.5 ? 9078400 : 12892324);
     walkStd.envMapIntensity = lerp(0.22, 0.16, n);
     shoulderMat.color.setHex(n > 0.5 ? 4867128 : def.sand);
@@ -2725,9 +2725,9 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     bulbMat.emissiveIntensity = lerp(0.08, 7.2, n);
     haloMat.opacity = n > 0.4 ? 0.22 + n * 0.42 : 0;
     pools.visible = n > 0.4 && lampCount > 0;
-    poolMat.opacity = n > 0.4 ? 0.2 + n * 0.28 : 0;
+    poolMat.opacity = n > 0.4 ? 0.32 + n * 0.4 : 0;
     neonGroup.visible = n > 0.32;
-    for (const pl of nightLights) pl.intensity = n * 150;
+    for (const pl of nightLights) pl.intensity = n * 210;
     for (const pl of neonLights) pl.intensity = n * 42;
     for (const g of landmarkGlows) g.light.intensity = n * g.on;
     for (const e of emitList) e.mat.emissiveIntensity = lerp(e.day, e.night, n);
