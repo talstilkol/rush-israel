@@ -299,8 +299,8 @@ export class ArcadeCar {
         grade = rp.dyds * Math.sign(alongV || 1);
       }
       if (racing) {
-        this.speed += -grade * 11.4 * dt;
-        if (grade > 0.04) this.speed -= grade * 5.2 * dt;
+        this.speed += -grade * 16.2 * dt;
+        if (grade > 0.04) this.speed -= grade * 7.4 * dt;
       }
     }
 

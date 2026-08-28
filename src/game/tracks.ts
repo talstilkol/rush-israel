@@ -2419,7 +2419,7 @@ export const TRACKS: TrackDef[] = [
     description: "מהתצפית במצפה רמון, סרפנטינות במצוק, עד רצפת המכתש. בלי בניינים — רק מדבר. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "From the Mitzpe Ramon lookout, switchbacks down the cliff, to the crater floor. Desert only. Inspired by the place — not a map, not GIS.",
     image: "/tracks/ramon.jpg",
-    width: 20,
+    width: 22,
     seed: 1956,
     theme: "desert",
     open: true,

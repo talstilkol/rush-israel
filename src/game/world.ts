@@ -718,7 +718,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const hw = built.width / 2 + 1.2;
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 96 + Math.min(70, s.y * 0.55) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 58 + s.y * 0.38 : def.theme === "carmel" ? s.y + 22 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 140 + Math.min(90, s.y * 0.65) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 58 + s.y * 0.38 : def.theme === "carmel" ? s.y + 22 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
@@ -7962,7 +7962,7 @@ function addLandmarks(
         const ms = -vs;
         const d = built.width / 2 + 9.5;
         const y0 = s.y - 4;
-        const y1 = s.y + 88 + Math.min(48, s.y * 0.4);
+        const y1 = s.y + 120 + Math.min(70, s.y * 0.5);
         cPos.push(s.x + s.rx * d * ms, y0, s.z + s.rz * d * ms);
         cPos.push(s.x + s.rx * d * ms, y1, s.z + s.rz * d * ms);
       }
@@ -7981,8 +7981,8 @@ function addLandmarks(
     }
     for (let i = 0; i < 22; i++) {
       const a = i / 22 * Math.PI * 2 + 0.15;
-      const mtn = new THREE.Mesh(new THREE.ConeGeometry(62 + i % 5 * 18, 78 + i % 4 * 28, 6), i % 3 === 0 ? darkRock : i % 3 === 1 ? rust : tan);
-      mtn.position.set(floor.x + Math.cos(a) * 480, 28, floor.z + Math.sin(a) * 340);
+      const mtn = new THREE.Mesh(new THREE.ConeGeometry(72 + i % 5 * 22, 110 + i % 4 * 36, 6), i % 3 === 0 ? darkRock : i % 3 === 1 ? rust : tan);
+      mtn.position.set(floor.x + Math.cos(a) * 520, 42, floor.z + Math.sin(a) * 380);
       add(mtn);
     }
     const strata = [creamRock, tan, rust, band, sand];
@@ -7992,41 +7992,47 @@ function addLandmarks(
       const ms = -vs;
       for (let layer = 0; layer < 5; layer++) {
         const slab = new THREE.Mesh(new THREE.BoxGeometry(16, 3.6, 10), strata[layer]);
-        const d = built.width / 2 + 7 + layer * 2.8;
+        const d = built.width / 2 + 12 + layer * 3.2;
         slab.position.set(s.x + s.rx * d * ms, s.y + 2.2 + layer * 3.5, s.z + s.rz * d * ms);
         slab.rotation.y = Math.atan2(s.tx, s.tz);
         add(slab);
       }
     }
     const lk = ram(30.6132, 34.801);
+    {
+      const n = nearestIndex(built.samples, lk.x, lk.z, 0);
+      const s = built.samples[n.index];
+      lk.x = s.x + s.rx * (built.width / 2 + 18);
+      lk.z = s.z + s.rz * (built.width / 2 + 18);
+    }
     const lookY = def.elevation(0.02);
     const deck = new THREE.Mesh(new THREE.BoxGeometry(18, 0.32, 12), creamRock);
-    deck.position.set(lk.x + 8, lookY + 0.2, lk.z - 10);
+    deck.position.set(lk.x, lookY + 0.2, lk.z);
     add(deck);
     const railM = new THREE.MeshStandardMaterial({ color: 0x6a5848, roughness: 0.7, metalness: 0.2 });
     bag.push(railM);
     for (const z of [-16, -4]) {
       const bar = new THREE.Mesh(new THREE.BoxGeometry(18, 0.08, 0.08), railM);
-      bar.position.set(lk.x + 8, lookY + 1.15, lk.z + z);
+      bar.position.set(lk.x, lookY + 1.15, lk.z + z);
       add(bar);
     }
     for (const sx of [-8, 0, 8]) {
       const post = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.08, 1.15, 6), railM);
-      post.position.set(lk.x + 8 + sx, lookY + 0.7, lk.z - 16);
+      post.position.set(lk.x + sx, lookY + 0.7, lk.z - 6);
       add(post);
     }
     const cut = ram(30.5992, 34.806);
     const nCut = ram(30.5964, 34.8044);
     const cutYaw = Math.atan2(nCut.x - cut.x, nCut.z - cut.z);
     const cutY = def.elevation(0.55);
-    placeTunnel(cut.x, cut.z, cutYaw, 38, 11, 7.2, cutY);
+    placeTunnel(cut.x, cut.z, cutYaw, 42, built.width * 0.62, 7.6, cutY);
     const crx = Math.cos(cutYaw);
     const crz = -Math.sin(cutYaw);
     const spurL = new THREE.Mesh(new THREE.BoxGeometry(22, 36, 30), darkRock);
-    spurL.position.set(cut.x - crx * 22, cutY + 18, cut.z - crz * 22);
+    spurL.position.set(cut.x - crx * 28, cutY + 18, cut.z - crz * 28);
     add(spurL);
     const spurR = new THREE.Mesh(new THREE.BoxGeometry(22, 32, 30), sand);
-    spurR.position.set(cut.x + crx * 22, cutY + 16, cut.z + crz * 22);
+    spurR.position.set(cut.x + crx * 28, cutY + 16, cut.z + crz * 28);
     add(spurR);
     const bushM = new THREE.MeshStandardMaterial({ color: 6978104, roughness: 0.92, flatShading: true });
     bag.push(bushM);
@@ -8035,10 +8041,10 @@ function addLandmarks(
       bush.position.set(floor.x + i % 9 * 28 - 90, 1.4, floor.z + Math.floor(i / 9) * 34 - 30);
       add(bush);
     }
-    glowAt(lk.x + 8, lookY + 5, lk.z - 4, 16763e3, 24, 20);
-    hit(lk.x + 8, lk.z - 4, 4);
-    hit(cut.x - crx * 22, cut.z - crz * 22, 10);
-    hit(cut.x + crx * 22, cut.z + crz * 22, 10);
+    glowAt(lk.x, lookY + 5, lk.z, 16763e3, 24, 20);
+    hit(lk.x, lk.z, 4);
+    hit(cut.x - crx * 28, cut.z - crz * 28, 8);
+    hit(cut.x + crx * 28, cut.z + crz * 28, 8);
   }
   if (def.id === "hw40") {
     const hutP = hwy40(30.847, 34.781);
