@@ -53,7 +53,9 @@ QA_REUSE_SERVER=1 npm run qa:drive
 
 A noncanonical `QA_SERVER_URL` is accepted only for an explicitly prestarted,
 responding server with `QA_REUSE_SERVER=1`. Automatic startup is restricted to the
-loopback root URL on port 8080.
+exact IPv4 endpoint `http://127.0.0.1:8080/`; `localhost`, IPv6, another port,
+path, query or HTTPS endpoint is never auto-started. A server created by the
+harness is always stopped by the harness, regardless of the reuse flag.
 
 ## Timeouts
 
@@ -91,7 +93,7 @@ on a `?qa=1` query parameter to expose their deterministic control surface.
 `npm run test:harness` covers:
 
 - argument and URL parsing;
-- canonical self-start restrictions;
+- exact canonical self-start restrictions;
 - Vite startup specification;
 - readiness probing and early server exit;
 - conventional signal exit codes;
