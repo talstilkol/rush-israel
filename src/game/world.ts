@@ -4146,6 +4146,14 @@ function addLandmarks(
       hit(hx, hz, 3.4, 3.2, 2.8);
     }
     const mq = tlv(32.0564, 34.7568);
+    {
+      const n = nearestIndex(built.samples, mq.x, mq.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        mq.x = s.x + s.rx * (built.width / 2 + 20);
+        mq.z = s.z + s.rz * (built.width / 2 + 20);
+      }
+    }
     const mosque = new THREE.Mesh(new THREE.BoxGeometry(16, 8, 14), ochre);
     mosque.position.set(mq.x, 4, mq.z);
     add(mosque);
@@ -4181,6 +4189,14 @@ function addLandmarks(
       }
     ]) {
       const p = tlv(sh.lat, sh.lon);
+      {
+        const n = nearestIndex(built.samples, p.x, p.z, 0);
+        if (n.dist < built.width / 2 + 10) {
+          const s = built.samples[n.index];
+          p.x = s.x + s.rx * (built.width / 2 + 18);
+          p.z = s.z + s.rz * (built.width / 2 + 18);
+        }
+      }
       const shed = new THREE.Mesh(new THREE.BoxGeometry(18, 6.4, 14), ochre);
       shed.position.set(p.x, 3.2, p.z);
       add(shed);
@@ -4218,7 +4234,35 @@ function addLandmarks(
     const pier = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.35, 22), wood);
     pier.position.set(pt.x - 18, 0.4, pt.z + 8);
     add(pier);
+    {
+      const lh = tlv(32.0533, 34.751);
+      const nL = nearestIndex(built.samples, lh.x, lh.z, 0);
+      if (nL.dist < built.width / 2 + 12) {
+        const sL = built.samples[nL.index];
+        lh.x = sL.x + sL.rx * (built.width / 2 + 26);
+        lh.z = sL.z + sL.rz * (built.width / 2 + 26);
+      }
+      const stem = new THREE.Mesh(new THREE.CylinderGeometry(1.15, 1.55, 14, 10), lime);
+      stem.position.set(lh.x, 7.2, lh.z);
+      add(stem);
+      const lantern = new THREE.Mesh(new THREE.CylinderGeometry(1.7, 1.5, 2.4, 10), cream);
+      lantern.position.set(lh.x, 15.4, lh.z);
+      add(lantern);
+      const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.7, 10, 8), new THREE.MeshBasicMaterial({ color: 0xfff2c8 }));
+      lamp.position.set(lh.x, 16.8, lh.z);
+      add(lamp);
+      glowAt(lh.x, 16.8, lh.z, 16777136, 22, 16);
+      hit(lh.x, lh.z, 2.4);
+    }
     const ch = tlv(32.0546, 34.7508);
+    {
+      const n = nearestIndex(built.samples, ch.x, ch.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        ch.x = s.x + s.rx * (built.width / 2 + 22);
+        ch.z = s.z + s.rz * (built.width / 2 + 22);
+      }
+    }
     const nave = new THREE.Mesh(new THREE.BoxGeometry(14, 10, 22), cream);
     nave.position.set(ch.x, 8, ch.z);
     add(nave);
@@ -4305,7 +4349,11 @@ function addLandmarks(
     for (const h of oldHouses) {
       const p = tlv(h.lat, h.lon);
       const nearH = nearestIndex(built.samples, p.x, p.z, 0);
-      if (nearH.dist < built.width / 2 + 6) continue;
+      if (nearH.dist < built.width / 2 + 8) {
+        const s = built.samples[nearH.index];
+        p.x = s.x + s.rx * (built.width / 2 + 14);
+        p.z = s.z + s.rz * (built.width / 2 + 14);
+      }
       const house = new THREE.Mesh(new THREE.BoxGeometry(h.w, h.h, h.d), h.col);
       house.position.set(p.x, 1.6 + h.h * 0.5, p.z);
       add(house);
