@@ -74,16 +74,39 @@ The harness exports the canonical URL to child scripts as:
 - `SMOKE_URL`, unless already explicitly set
 - `SOAK_URL`, unless already explicitly set
 
+The QA hook is enabled by `VITE_QA=1`; browser smoke commands therefore do not rely
+on a `?qa=1` query parameter to expose their deterministic control surface.
+
 ## Cross-platform behaviour
 
 - Linux and macOS: server and QA commands run in detached process groups and are
   terminated with `SIGTERM`, then `SIGKILL` after the cleanup deadline.
 - Windows: process trees are terminated with `taskkill /t /f`.
 - npm/npx commands resolve to their `.cmd` launchers on Windows.
+- interruption exits use conventional values: `SIGHUP=129`, `SIGINT=130`,
+  `SIGTERM=143`.
+
+## Source-level validation
+
+`npm run test:harness` covers:
+
+- argument and URL parsing;
+- canonical self-start restrictions;
+- Vite startup specification;
+- readiness probing and early server exit;
+- conventional signal exit codes;
+- canonical queue/control invariants;
+- exact Node/npm pin agreement;
+- package/lockfile root metadata agreement.
+
+The lockfile metadata check also prevents recurrence of the RSH-004 review finding
+where a root `engines` field could make a clean npm operation rewrite
+`package-lock.json`.
 
 ## Validation boundary
 
 RSH-006 provides deterministic source tests for parsing, server specification,
-readiness probing and fail-closed behaviour. The first clean-clone runtime execution
-and GitHub-hosted evidence are controlled by RSH-007. Until that unit runs, the
-harness is implemented but its full environment execution remains unverified.
+readiness probing, fail-closed behaviour, signal semantics and toolchain metadata.
+The first clean-clone runtime execution and GitHub-hosted evidence are controlled by
+RSH-007. Until that unit runs, the harness is implemented but its full environment
+execution remains unverified.
