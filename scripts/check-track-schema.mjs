@@ -9,10 +9,12 @@ import {
 import { validateTrackSchemaExports } from "./check-track-schema-exports.mjs";
 import { validateTrackSchemaHardening } from "./check-track-schema-hardening.mjs";
 import { validateTrackDefinitionClosure } from "./check-track-schema-definition-guard.mjs";
+import { validateTrackDefImportAuthority } from "./check-track-schema-import-authority.mjs";
 import { validateTrackMutationEdges } from "./check-track-schema-mutation-edges.mjs";
 import { validateTrackMutationGuard } from "./check-track-schema-mutation-guard.mjs";
 import { validateTrackDefTypeAuthority } from "./check-track-schema-type-authority.mjs";
 import { validateTrackSourcePin } from "./check-track-source-pin.mjs";
+import { validateTrackSupportPin } from "./check-track-schema-support-pin.mjs";
 
 export { EXPECTED_RSH_012_MERGE };
 
@@ -45,7 +47,13 @@ export function validateTrackSchema(inputs) {
     coreResult,
   });
   const exportErrors = validateTrackSchemaExports(trackSchemaSource);
+  const importAuthorityErrors = validateTrackDefImportAuthority(trackSchemaSource);
   const typeAuthorityErrors = validateTrackDefTypeAuthority(inputs?.typeSource);
+  const supportPinResult = validateTrackSupportPin({
+    schema: inputs?.schema,
+    supportSources: inputs?.supportSources,
+    aggregateDigest: hardening.aggregateDigest,
+  });
   const mutationErrors = validateTrackMutationGuard(inputs?.trackSource);
   const mutationEdgeErrors = validateTrackMutationEdges(inputs?.trackSource);
   const definitionClosureErrors = validateTrackDefinitionClosure(inputs?.trackSource);
@@ -59,7 +67,9 @@ export function validateTrackSchema(inputs) {
       ...coreResult.errors,
       ...hardening.errors,
       ...exportErrors,
+      ...importAuthorityErrors,
       ...typeAuthorityErrors,
+      ...supportPinResult.errors,
       ...mutationErrors,
       ...mutationEdgeErrors,
       ...definitionClosureErrors,
@@ -67,6 +77,7 @@ export function validateTrackSchema(inputs) {
     ],
     aggregateDigest: hardening.aggregateDigest,
     supportSourceIdentities: hardening.supportSourceIdentities,
+    mathSupportGitBlobSha1: supportPinResult.actualGitBlobSha1,
     trackSourceGitBlobSha1: sourcePinResult.actualGitBlobSha1,
   };
 }
@@ -103,6 +114,6 @@ if (isMainModule(import.meta.url)) {
     process.exit(1);
   }
   console.log(
-    `track-schema ok: 56 definitions; source blob ${result.trackSourceGitBlobSha1}; track digest ${result.digest}; aggregate ${result.aggregateDigest}; 8 MVP; 48 deferred; 0/13 gates`,
+    `track-schema ok: 56 definitions; source blob ${result.trackSourceGitBlobSha1}; math blob ${result.mathSupportGitBlobSha1}; track digest ${result.digest}; aggregate ${result.aggregateDigest}; 8 MVP; 48 deferred; 0/13 gates`,
   );
 }
