@@ -1,13 +1,10 @@
 {
-  "schema_version": "1.5.0",
+  "schema_version": "1.6.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-08-29T03:14:00+03:00",
+  "generated_at": "2026-08-29T05:44:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "release_gates": {
-    "green": 0,
-    "total": 13
-  },
+  "release_gates": { "green": 0, "total": 13 },
   "baselines": [
     {
       "id": "B000-pre-control",
@@ -91,7 +88,7 @@
       "workflow_run": 33221919501,
       "workflow_job": 99017575707,
       "recorded_at": "2026-08-29T02:57:37+03:00",
-      "description": "Pinned clean-checkout GitHub Actions authority accepted after successful lint, 170 tests, self-starting QA and deterministic build.",
+      "description": "Pinned clean-checkout GitHub Actions authority accepted after successful lint, tests, self-starting QA and deterministic build.",
       "claim_boundary": "Five zero-to-100 claims remain failed and owned by RSH-033."
     },
     {
@@ -110,21 +107,37 @@
       "description": "Exact-head governance validation and always-retained CI diagnostics accepted.",
       "branch_protection_applied": false,
       "branch_protection_state": "owner_action_required"
+    },
+    {
+      "id": "B009-rsh-009-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-009",
+      "pull_request": 11,
+      "commit_sha": "69765febef85d732d9ba79fe260fec78ee76b2df",
+      "tree_sha": "bb5dd593a142a691e6f8b77ab2ece2defaeb2215",
+      "validated_head_sha": "f71d56ba9d095f4850d95be45f255b1463fb0a92",
+      "workflow_run": 33223709759,
+      "workflow_job": 99022999281,
+      "artifact_id": 9706145678,
+      "artifact_digest": "sha256:24070b1b5ff714f19f2994afa2668db046fe02bb7dbf06c6690a1d3b4a3e4517",
+      "product_definition_sha256": "a9e481e9c262b51ddb09bee75a129f7886b6161f234abfd24ccea20d3de6f715",
+      "recorded_at": "2026-08-29T03:33:51+03:00",
+      "description": "Digest-backed Version 1 product definition accepted after exact-head CI and remediated Codex review."
     }
   ],
   "working_state": {
-    "unit": "RSH-009",
+    "unit": "RSH-010",
     "state": "pr_open",
-    "base_commit_sha": "c7628b1da3d149f1881961148e11564039de4b8d",
-    "branch": "agent/rsh-009-freeze-v1-product-definition",
-    "pull_request": 11,
+    "base_commit_sha": "69765febef85d732d9ba79fe260fec78ee76b2df",
+    "branch": "agent/rsh-010-track-catalogue-classification",
+    "pull_request": 12,
     "head_sha": "resolve from live PR exact head",
     "is_release": false,
     "tag_created": false,
     "release_created": false,
     "live_branch_protection": false,
     "settings_application_state": "owner_action_required",
-    "runtime_evidence": "Exact final head must pass required-ci / validate before merge."
+    "runtime_evidence": "Exact final head must pass required-ci / validate; 56 IDs must resolve to 8 MVP and 48 deferred."
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
