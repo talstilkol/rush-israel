@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { fromRoot } from "./project-root.mjs";
 import {
+  EXPECTED_TRACK_SOURCE_CAPTURE_COMMIT,
   EXPECTED_TRACK_SOURCE_GIT_BLOB_SHA1,
   gitBlobSha1,
   validateTrackSourcePin,
@@ -15,12 +16,13 @@ function readInputs() {
   };
 }
 
-test("committed track source matches the exact RSH-013 Git blob authority", () => {
+test("committed track source matches the exact reconciled RSH-013 Git blob authority", () => {
   const inputs = readInputs();
   const result = validateTrackSourcePin(inputs);
   assert.deepEqual(result.errors, []);
   assert.equal(result.actualGitBlobSha1, EXPECTED_TRACK_SOURCE_GIT_BLOB_SHA1);
   assert.equal(gitBlobSha1(inputs.trackSource), EXPECTED_TRACK_SOURCE_GIT_BLOB_SHA1);
+  assert.equal(inputs.pin.captured_from_commit, EXPECTED_TRACK_SOURCE_CAPTURE_COMMIT);
 });
 
 test("any source-level edit fails closed even when semantic guards miss its syntax", () => {
@@ -42,7 +44,7 @@ test("updating only the machine pin cannot authorize source drift", () => {
   );
 });
 
-test("source path algorithm capture state and baseline commit fail closed", () => {
+test("source path algorithm capture state and reconciled commit fail closed", () => {
   const inputs = readInputs();
   inputs.pin.source_path = "src/game/other.ts";
   inputs.pin.algorithm = "sha256";
@@ -52,7 +54,7 @@ test("source path algorithm capture state and baseline commit fail closed", () =
   assert.match(errors, /path must remain/);
   assert.match(errors, /algorithm/);
   assert.match(errors, /remain pinned/);
-  assert.match(errors, /accepted RSH-012 merge/);
+  assert.match(errors, /reconciled live main commit/);
 });
 
 test("RSH-014 is the only declared replacement authority and RSH-015 stays blocked", () => {
