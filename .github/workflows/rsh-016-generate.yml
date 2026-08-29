@@ -31,8 +31,8 @@ jobs:
       - run: npm ci
       - name: Generate isolated track builders
         run: |
-          base64 --decode .rsh016/generator.gz.b64 | gzip --decompress > /tmp/rsh-016-generate.mjs
-          node /tmp/rsh-016-generate.mjs
+          base64 --decode .rsh016/generator.gz.b64 | gzip --decompress > .rsh016/generate.mjs
+          node .rsh016/generate.mjs
       - name: Commit generated candidate
         run: |
           rm -rf .rsh016
