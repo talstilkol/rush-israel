@@ -1,10 +1,11 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 2.6.0  
+**Schema:** 2.6.1  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
 **Verified base:** `69765febef85d732d9ba79fe260fec78ee76b2df`  
-**Active unit:** RSH-010 / PR #12  
+**Active unit:** RSH-010 / replacement PR #13  
+**Replaced Draft PR:** #12, closed unmerged after connector Ready-for-review failure  
 **Established by:** RSH-001  
 **Governance policy:** RSH-002  
 **Product-definition authority:** `PRODUCT-DEFINITION.json`  
@@ -77,7 +78,8 @@ catalogue entries. RSH-011 inventories asset provenance and licensing.
 | Accepted units | 9 |
 | Units in review | 1 |
 | Queue head | RSH-010 |
-| Active PR | #12 |
+| Active PR | #13 |
+| Replaced unmerged draft | #12 |
 | Remaining units | 58 |
 | Active bounded batch | RSH-010–RSH-014 |
 | Verified release gates | 0/13 |
@@ -266,8 +268,9 @@ The five known acceleration product claims remain failed and assigned to RSH-033
 ## 9. Current execution boundary
 
 RSH-010 creates the complete 56-entry machine classification and source-aware validator.
-Its PR must reconcile all canonical state, pass exact-head `required-ci / validate`,
-preserve all 48 deferred entries and preserve 0/13 release-gate truth.
+Replacement PR #13 must reconcile all canonical state, pass exact-head
+`required-ci / validate`, preserve all 48 deferred entries and preserve 0/13
+release-gate truth. Draft PR #12 remains closed and unmerged as a tool-failure record.
 
 After RSH-010 merges, RSH-011 may inventory provenance. RSH-012, RSH-013 and RSH-014
 may then run strictly serially. The bounded batch ends after RSH-014; RSH-015 must not
