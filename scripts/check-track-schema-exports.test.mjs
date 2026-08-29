@@ -80,7 +80,7 @@ test("identity-helper generic constraints cannot be weakened", () => {
   ];
   for (const [before, after, expected] of mutations) {
     const mutated = mutatedSource(before, after);
-    assert.match(validateTrackSchemaExports(mutated).join("\n"), new RegExp(expected.replace(/[\[\]]/g, "\\$&")));
+    assert.ok(validateTrackSchemaExports(mutated).includes(expected));
   }
 });
 
