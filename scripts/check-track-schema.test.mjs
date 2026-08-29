@@ -113,12 +113,11 @@ test("RSH-015 remains outside the authorised schema change", () => {
   assert.match(errorsOf(inputs).join("\n"), /over-authorized/);
 });
 
-
 test("runtime data mutation changes the pinned digest", () => {
   const inputs = readInputs();
-  inputs.trackSource = inputs.trackSource.replace(
-    '    descriptionEn: "Tel Aviv promenade, sea and sunset.",',
-    '    descriptionEn: "A changed but still valid localized description.",',
-  );
+  const original = '    descriptionEn: "The promenade on the Mediterranean — Hilton, Opera Tower, Gordon Beach and the marina. Inspired by the place — not a map, not GIS.",';
+  const replacement = '    descriptionEn: "A changed but still valid localized description for the same track.",';
+  assert.ok(inputs.trackSource.includes(original));
+  inputs.trackSource = inputs.trackSource.replace(original, replacement);
   assert.match(errorsOf(inputs).join("\n"), /runtime definition digest/);
 });
