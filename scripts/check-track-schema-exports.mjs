@@ -67,6 +67,23 @@ function constraintMatches(node, expected) {
   );
 }
 
+function isImmediateObjectFreeze(statement, name) {
+  if (!statement || !ts.isExpressionStatement(statement)) return false;
+  const expression = unwrapExpression(statement.expression);
+  if (!ts.isCallExpression(expression) || expression.arguments.length !== 1) return false;
+  const callee = unwrapExpression(expression.expression);
+  if (
+    !ts.isPropertyAccessExpression(callee)
+    || !ts.isIdentifier(callee.expression)
+    || callee.expression.text !== "Object"
+    || callee.name.text !== "freeze"
+  ) {
+    return false;
+  }
+  const argument = unwrapExpression(expression.arguments[0]);
+  return ts.isIdentifier(argument) && argument.text === name;
+}
+
 function validateGenericContract(helper, name, contract, errors) {
   const typeParameters = helper.typeParameters ?? [];
   if (typeParameters.length !== 1) {
@@ -142,11 +159,16 @@ export function validateTrackSchemaExports(trackSchemaSource) {
 
   for (const name of REQUIRED_ARRAY_AUTHORITIES) {
     let authority = null;
-    for (const statement of file.statements) {
+    for (let statementIndex = 0; statementIndex < file.statements.length; statementIndex += 1) {
+      const statement = file.statements[statementIndex];
       if (!ts.isVariableStatement(statement)) continue;
       for (const declaration of statement.declarationList.declarations) {
         if (ts.isIdentifier(declaration.name) && declaration.name.text === name) {
-          authority = { statement, declarationList: statement.declarationList };
+          authority = {
+            statement,
+            statementIndex,
+            declarationList: statement.declarationList,
+          };
         }
       }
     }
@@ -159,6 +181,9 @@ export function validateTrackSchemaExports(trackSchemaSource) {
     }
     if (!(authority.declarationList.flags & ts.NodeFlags.Const)) {
       errors.push(`${name} must remain a const authority`);
+    }
+    if (!isImmediateObjectFreeze(file.statements[authority.statementIndex + 1], name)) {
+      errors.push(`${name} must be frozen immediately after its declaration`);
     }
   }
 
