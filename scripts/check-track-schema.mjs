@@ -34,6 +34,9 @@ export function validateTrackSchema(inputs) {
     ?? readFileSync(fromRoot("src", "game", "track-schema.ts"), "utf8");
   const sourcePin = inputs?.sourcePin
     ?? JSON.parse(readFileSync(fromRoot("TRACK-SOURCE-PIN.json"), "utf8"));
+  const supportSources = inputs?.supportSources ?? {
+    "src/game/math.ts": readFileSync(fromRoot("src", "game", "math.ts"), "utf8"),
+  };
   const coreResult = validateTrackSchemaCore({
     ...inputs,
     schema: schemaForReviewedCore(inputs?.schema),
@@ -43,6 +46,7 @@ export function validateTrackSchema(inputs) {
 
   const hardening = validateTrackSchemaHardening({
     ...inputs,
+    supportSources,
     trackSchemaSource,
     coreResult,
   });
@@ -51,7 +55,7 @@ export function validateTrackSchema(inputs) {
   const typeAuthorityErrors = validateTrackDefTypeAuthority(inputs?.typeSource);
   const supportPinResult = validateTrackSupportPin({
     schema: inputs?.schema,
-    supportSources: inputs?.supportSources,
+    supportSources,
     aggregateDigest: hardening.aggregateDigest,
   });
   const mutationErrors = validateTrackMutationGuard(inputs?.trackSource);
