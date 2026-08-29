@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.2",
   "document_type": "rush-canonical-track-schema",
-  "generated_at": "2026-08-29T11:05:00+03:00",
+  "generated_at": "2026-08-29T12:00:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "observed_source_commit": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
@@ -10,6 +10,7 @@
     "city_id_union": "src/game/types.ts:CityId",
     "track_type": "src/game/types.ts:TrackDef",
     "track_definitions": "src/game/tracks.ts:TRACKS",
+    "track_schema_helpers": "src/game/track-schema.ts",
     "catalogue_classification": "TRACK-CATALOGUE-CLASSIFICATION.json",
     "validator": "scripts/check-track-schema.mjs"
   },
@@ -265,10 +266,18 @@
   "runtime_definition_integrity": {
     "algorithm": "sha256",
     "basis": "ordered array of TrackId, canonical TypeScript AST hash of each track object, and recursive hashes of referenced top-level runtime definitions",
+    "aggregate_basis": "aggregate of expected_digest and configured support-source Git blob identities",
     "source_order_is_runtime_order": true,
     "canonical_track_id_order_is_independent": true,
-    "support_sources": [],
+    "support_sources": [
+      {
+        "module": "./math",
+        "path": "src/game/math.ts",
+        "git_blob_sha1": "c215daef16056d5d7c142db964ed93f82c74f8e8"
+      }
+    ],
     "expected_digest": "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f",
+    "expected_aggregate_digest": "93ee4c2c8ed1bd3776cca0cdb6de559c6ad34a9220d60935a73fe65c8194f65e",
     "capture_state": "pinned"
   },
   "semantic_invariants": {
@@ -278,6 +287,7 @@
     "runtime_definition_order_preserved_by_RSH_014": true,
     "canonical_track_id_order_independent_from_runtime_definition_order": true,
     "referenced_runtime_helpers_are_hashed": true,
+    "configured_support_sources_are_hashed": true,
     "image_path_matches_track_id": true,
     "all_tracks_classified_exactly_once": true,
     "mvp_set_exactly_frozen": true,
