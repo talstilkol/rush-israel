@@ -8,6 +8,7 @@ import {
 } from "./check-track-schema-core.mjs";
 import { validateTrackSchemaExports } from "./check-track-schema-exports.mjs";
 import { validateTrackSchemaHardening } from "./check-track-schema-hardening.mjs";
+import { validateTrackMutationGuard } from "./check-track-schema-mutation-guard.mjs";
 
 export { EXPECTED_RSH_012_MERGE };
 
@@ -38,9 +39,15 @@ export function validateTrackSchema(inputs) {
     coreResult,
   });
   const exportErrors = validateTrackSchemaExports(trackSchemaSource);
+  const mutationErrors = validateTrackMutationGuard(inputs?.trackSource);
   return {
     ...coreResult,
-    errors: [...coreResult.errors, ...hardening.errors, ...exportErrors],
+    errors: [
+      ...coreResult.errors,
+      ...hardening.errors,
+      ...exportErrors,
+      ...mutationErrors,
+    ],
     aggregateDigest: hardening.aggregateDigest,
     supportSourceIdentities: hardening.supportSourceIdentities,
   };
