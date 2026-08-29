@@ -14,7 +14,7 @@ test("milestone register records the consumed RSH-015 authority exactly", () => 
   assert.match(register, /\*\*State effective on:\*\* merge of the RSH-015 pull request/);
   assert.match(register, /\*\*Next eligible unit:\*\* none/);
   assert.match(register, /\*\*Next scheduled unit:\*\* RSH-016 — deferred and not authorised/);
-  assert.match(register, /\| M3 \| Architecture decomposition \| RSH-013–RSH-020 \| 8 \| ACTIVE — RSH-013–RSH-015 accepted; RSH-016 not authorised \|/);
+  assert.match(register, /\| M3 \| Architecture decomposition \| RSH-013–RSH-020 \| 8 \| DEFERRED — RSH-013–RSH-015 accepted; RSH-016 not authorised \|/);
   assert.match(register, /\| Accepted units \| 15 \|/);
   assert.match(register, /\| Eligible units \| 0 \|/);
   assert.match(register, /\| Queue head \| none \|/);

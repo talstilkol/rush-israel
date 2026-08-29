@@ -105,7 +105,7 @@ root-branding assets remain unverified.
 | G0 | RSH-001–003 | 3 | Control and governance | ACCEPTED |
 | G1 | RSH-004–008 | 5 | Reproducible toolchain and CI | UNITS ACCEPTED; EXIT GATE BLOCKED BY OWNER SETTING |
 | G2 | RSH-009–012 | 4 | Scope, licensing and assets | ACCEPTED |
-| G3 | RSH-013–020 | 8 | Architecture decomposition | ACTIVE — RSH-013–RSH-015 accepted; RSH-016 deferred/not authorised |
+| G3 | RSH-013–020 | 8 | Architecture decomposition | DEFERRED — RSH-013–RSH-015 accepted; RSH-016 deferred/not authorised |
 | G4 | RSH-021–024 | 4 | Data integrity and production security | DEFERRED |
 | G5 | RSH-025–036 | 12 | Ayalon vertical slice | DEFERRED |
 | G6 | RSH-037–043 | 7 | Performance and reliability | DEFERRED |

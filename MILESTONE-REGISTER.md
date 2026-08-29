@@ -23,7 +23,7 @@
 | M0 | Control and governance | RSH-001–RSH-003 | 3 | ACCEPTED | Canonical state, queue, governance, baselines and registers agree. |
 | M1 | Reproducible toolchain and CI | RSH-004–RSH-008 | 5 | BLOCKED — owner setting | A clean clone passes required CI and `main` is technically protected. |
 | M2 | Product scope, licensing and assets | RSH-009–RSH-012 | 4 | ACCEPTED | Scope, package identity, root licence and every shipped asset’s legal status are explicit. |
-| M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | ACTIVE — RSH-013–RSH-015 accepted; RSH-016 not authorised | Core responsibilities and resource ownership are separated. |
+| M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | DEFERRED — RSH-013–RSH-015 accepted; RSH-016 not authorised | Core responsibilities and resource ownership are separated. |
 | M4 | Data integrity and production security | RSH-021–RSH-024 | 4 | DEFERRED | Save data is recoverable and production has no debug or secret exposure. |
 | M5 | Ayalon vertical slice | RSH-025–RSH-036 | 12 | DEFERRED | Ayalon is owner-approved, golden-locked and dependency-frozen. |
 | M6 | Performance and reliability | RSH-037–RSH-043 | 7 | DEFERRED | Performance, leak, recovery, soak and compatibility targets pass. |
