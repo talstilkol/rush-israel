@@ -1,12 +1,13 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 2.6.0  
+**Version:** 2.6.1  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
 **Verified base:** `69765febef85d732d9ba79fe260fec78ee76b2df`  
 **Active unit:** `RSH-010`  
 **Active branch:** `agent/rsh-010-track-catalogue-classification`  
-**Active PR:** `#12`
+**Active PR:** `#13`  
+**Replaced Draft PR:** `#12`, closed unmerged after connector Ready-for-review failure
 
 ## 1. Authority
 
@@ -67,10 +68,10 @@ The exact final PR head must prove that:
 
 RSH-011 starts only after:
 
-1. PR #12 exact final head passes `required-ci / validate`;
+1. replacement PR #13 exact final head passes `required-ci / validate`;
 2. all 56 IDs validate as 8 MVP and 48 deferred;
 3. blocking review findings are resolved;
-4. PR #12 merges under the owner batch;
+4. PR #13 merges under the owner batch;
 5. its live merge SHA is recorded in the RSH-011 branch.
 
 ## 6. Prohibited actions
@@ -79,7 +80,7 @@ RSH-011 starts only after:
 - deleting deferred catalogue entries;
 - treating catalogue classification as release readiness;
 - direct `main` writes, force-push or history rewrite;
-- creating RSH-011 before PR #12 merges;
+- creating RSH-011 before PR #13 merges;
 - starting or pre-creating RSH-015.
 
 ## 7. Current metrics
@@ -90,6 +91,8 @@ RSH-011 starts only after:
 | In review | 1 |
 | Remaining units | 58 |
 | Queue head | RSH-010 |
+| Active PR | #13 |
+| Replaced unmerged PR | #12 |
 | Batch units completed | 0/5 |
 | Batch authority remaining | 5 |
 | Catalogue | 56 = 8 MVP + 48 deferred |
