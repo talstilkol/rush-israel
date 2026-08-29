@@ -32,55 +32,78 @@ the existing runtime order exactly while relocating definitions.
 | Determinism | `seed` |
 
 Optional properties are exactly `water`, `waters`, `clearZones` and `open`.
-Unknown or duplicate top-level properties are rejected.
+Unknown or duplicate top-level properties are rejected. The exported
+`TRACK_REQUIRED_PROPERTIES` and `TRACK_OPTIONAL_PROPERTIES` arrays are checked both
+at compile time and by the validator against the exact `TrackDef` partition.
+
+## Type and catalogue authority
+
+The validator compares the machine schema directly with:
+
+- the complete `TrackId` union;
+- the complete `CityId` union;
+- the literal union declared by `TrackDef.theme`;
+- the exact required and optional `TrackDef` keys;
+- all 56 classification entries;
+- the declared counts of **56 total, 8 MVP and 48 deferred**.
+
+An unused enum member, incorrect count or incomplete helper-key list therefore fails
+CI even when the current track objects do not exercise the drifted value.
 
 ## Point collection forms
 
 The committed catalogue uses two reviewed point forms:
 
 1. an array literal containing at least three entries;
-2. the Ayalon zero-argument IIFE, which creates a local array, appends generated
-   points with `push`, and returns that same array.
+2. the Ayalon zero-argument IIFE, which declares a local array, appends generated
+   entries with `push`, and returns that same local array as its final statement.
 
-Other point-expression forms fail closed.
+The IIFE may not return a different array, contain nested functions or reassign the
+returned array. Other point-expression forms fail closed.
 
-## Semantic enforcement
+## Runtime-data integrity
 
-The validator parses TypeScript with the compiler API and fails when:
+RSH-013 maintains two related SHA-256 authorities:
 
-- `TrackId`, `CityId` or `TrackDef` drift from the machine schema;
-- the source does not parse cleanly;
-- the catalogue contains other than 56 object-literal definitions;
-- definition IDs are missing, duplicated or differ as a set from either authority;
-- a track lacks a required field or contains an unknown top-level field;
-- an image path differs from `/tracks/<TrackId>.jpg`;
-- width, seed or checkpoint values are invalid;
-- points, sky, elevation, street, POI, water or clear-zone structures are malformed;
-- a street range is outside normalized progress or is reversed;
-- the exact eight-track MVP set changes;
-- the pinned ordered runtime-definition digest changes;
-- release-gate truth differs from `0/13`.
+| Authority | Exact digest |
+|---|---|
+| Ordered track-definition closure | `27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f` |
+| Aggregate including configured support sources | `93ee4c2c8ed1bd3776cca0cdb6de559c6ad34a9220d60935a73fe65c8194f65e` |
 
-## Runtime-data pin
+The track-definition closure hashes each complete canonical TypeScript AST plus the
+recursive top-level presets and coordinate helpers referenced by that track. The
+aggregate additionally pins configured support files by Git object identity.
 
-The validator hashes each complete `ObjectLiteralExpression.getText()` and then
-hashes the ordered array of `{ id, source_sha256 }` records. This protects every
-localized string, coordinate expression, visual setting, seed and gameplay field,
-while preserving the current runtime order independently of canonical `TrackId` order.
-The exact pinned digest is `27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f`. Any runtime-data or runtime-order change fails CI.
+The first configured support authority is:
 
-## Compile-time boundary
+| Module | Path | Git blob SHA-1 |
+|---|---|---|
+| `./math` | `src/game/math.ts` | `c215daef16056d5d7c142db964ed93f82c74f8e8` |
 
-`src/game/track-schema.ts` exports `defineTrack` and `defineTracks`. These helpers
-preserve literal inference while requiring `TrackDef` compatibility. RSH-014 may use
-them at module boundaries.
+Changing localized text, geometry, sky presets, coordinate helpers, runtime order or
+the configured math support source fails validation.
+
+## Identity-wrapper boundary
+
+`src/game/track-schema.ts` exports `defineTrack` and `defineTracks`. The validator
+requires both functions to return their sole parameter unchanged. A wrapped `TRACKS`
+array is accepted only when `defineTracks` is a named runtime import from
+`./track-schema`; a local or differently sourced function with the same spelling is
+rejected.
 
 ## RSH-014 transition rule
 
-RSH-014 may relocate the 56 definitions into one module per track only when the
-ordered runtime-definition digest remains unchanged. It may adapt the validator to
-the modular source layout, but it may not change a track ID, runtime order, MVP
-membership, geometry, localized text, image, environment, seed or gameplay data.
+RSH-014 may relocate the 56 definitions into one module per track only when:
+
+- runtime IDs and order remain unchanged;
+- both integrity digests remain exact;
+- every module is checked through the canonical helpers;
+- the 8/48 classification remains unchanged;
+- no track data, asset or dependency is modified.
+
+RSH-014 may adapt the validator to the modular source layout, but it may not change a
+track ID, runtime order, MVP membership, geometry, localized text, image,
+environment, seed or gameplay data.
 
 ## Decision
 
@@ -88,7 +111,10 @@ membership, geometry, localized text, image, environment, seed or gameplay data.
 |---|---|
 | Is there one machine-readable track schema? | **Yes** |
 | Does it agree with `TrackDef` and all 56 IDs? | **Required by CI** |
-| Is canonical ID order the same as runtime definition order? | **No — intentionally independent** |
+| Is the theme enum checked directly against `TrackDef.theme`? | **Yes** |
+| Are declared 56/8/48 counts enforced? | **Yes** |
+| Is `math.ts` included in the aggregate integrity authority? | **Yes** |
+| May an arbitrary function named `defineTracks` wrap the catalogue? | **No** |
 | May RSH-014 change runtime track data or order? | **No** |
 | Is RSH-015 authorized by this unit? | **No** |
 | Are any release gates closed by this unit? | **No — 0/13 remains** |
