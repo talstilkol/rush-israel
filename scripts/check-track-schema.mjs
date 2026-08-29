@@ -6,6 +6,7 @@ import {
   EXPECTED_RSH_012_MERGE,
   validateTrackSchema as validateTrackSchemaCore,
 } from "./check-track-schema-core.mjs";
+import { validateTrackConsumerSourcePin } from "./check-track-consumer-source-pin.mjs";
 import { validateTrackSchemaExports } from "./check-track-schema-exports.mjs";
 import { validateTrackSchemaHardening } from "./check-track-schema-hardening.mjs";
 import { validateTrackDefinitionClosure } from "./check-track-schema-definition-guard.mjs";
@@ -15,6 +16,7 @@ import { validateTrackMutationGuard } from "./check-track-schema-mutation-guard.
 import { validateTrackDefTypeAuthority } from "./check-track-schema-type-authority.mjs";
 import { validateTrackSourcePin } from "./check-track-source-pin.mjs";
 import { validateTrackSupportPin } from "./check-track-schema-support-pin.mjs";
+import { validateTrackTypeSourcePin } from "./check-track-type-source-pin.mjs";
 
 export { EXPECTED_RSH_012_MERGE };
 
@@ -50,9 +52,13 @@ export function validateTrackSchema(inputs) {
     trackSchemaSource,
     coreResult,
   });
+  const consumerSourcePinResult = validateTrackConsumerSourcePin({
+    consumerSources: inputs?.consumerSources,
+  });
   const exportErrors = validateTrackSchemaExports(trackSchemaSource);
   const importAuthorityErrors = validateTrackDefImportAuthority(trackSchemaSource);
   const typeAuthorityErrors = validateTrackDefTypeAuthority(inputs?.typeSource);
+  const typeSourcePinResult = validateTrackTypeSourcePin(inputs?.typeSource);
   const supportPinResult = validateTrackSupportPin({
     schema: inputs?.schema,
     supportSources,
@@ -70,9 +76,11 @@ export function validateTrackSchema(inputs) {
     errors: [
       ...coreResult.errors,
       ...hardening.errors,
+      ...consumerSourcePinResult.errors,
       ...exportErrors,
       ...importAuthorityErrors,
       ...typeAuthorityErrors,
+      ...typeSourcePinResult.errors,
       ...supportPinResult.errors,
       ...mutationErrors,
       ...mutationEdgeErrors,
@@ -82,7 +90,9 @@ export function validateTrackSchema(inputs) {
     aggregateDigest: hardening.aggregateDigest,
     supportSourceIdentities: hardening.supportSourceIdentities,
     mathSupportGitBlobSha1: supportPinResult.actualGitBlobSha1,
+    trackConsumerSourceIdentities: consumerSourcePinResult.identities,
     trackSourceGitBlobSha1: sourcePinResult.actualGitBlobSha1,
+    trackTypeSourceGitBlobSha1: typeSourcePinResult.actualGitBlobSha1,
   };
 }
 
@@ -118,6 +128,10 @@ if (isMainModule(import.meta.url)) {
     process.exit(1);
   }
   console.log(
-    `track-schema ok: 56 definitions; source blob ${result.trackSourceGitBlobSha1}; math blob ${result.mathSupportGitBlobSha1}; track digest ${result.digest}; aggregate ${result.aggregateDigest}; 8 MVP; 48 deferred; 0/13 gates`,
+    `track-schema ok: 56 definitions; source blob ${result.trackSourceGitBlobSha1};`
+    + ` type blob ${result.trackTypeSourceGitBlobSha1};`
+    + ` 4 consumer blobs; math blob ${result.mathSupportGitBlobSha1};`
+    + ` track digest ${result.digest}; aggregate ${result.aggregateDigest};`
+    + " 8 MVP; 48 deferred; 0/13 gates",
   );
 }
