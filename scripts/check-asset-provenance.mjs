@@ -14,6 +14,21 @@ const EXPECTED_GROUPS = {
   root_branding_assets: { files: 3, assets: 3 },
 };
 
+const EXPECTED_BAKED_IDS = [
+  "gantry-kibbutz-galuyot",
+  "gantry-hahagana",
+  "gantry-laguardia",
+  "gantry-hashalom",
+  "gantry-savidor-center",
+  "gantry-university",
+  "stn-galuyot",
+  "stn-hagana",
+  "stn-shalom",
+  "stn-savidor",
+  "stn-uni",
+  "dest-rail",
+];
+
 const ROOT_BRANDING = new Set([
   "public/favicon.svg",
   "public/og.jpg",
@@ -94,18 +109,36 @@ function sameJson(actual, expected) {
   return JSON.stringify(actual) === JSON.stringify(expected);
 }
 
+function validateBakeEvidence(source, errors) {
+  if (typeof source !== "string") {
+    errors.push("scripts/bake-gantry.mjs evidence must be readable text");
+    return;
+  }
+  const ids = [...source.matchAll(/\{\s*id:\s*"([^"]+)"/g)].map((match) => match[1]);
+  if (!sameJson(ids, EXPECTED_BAKED_IDS)) {
+    errors.push("scripts/bake-gantry.mjs must enumerate the exact 12 gantry, station and destination IDs");
+  }
+  if (!/\.\.\/public\/game/.test(source)) {
+    errors.push("scripts/bake-gantry.mjs must write its generated PNGs to public/game");
+  }
+  if (!/writeFileSync\(join\(dir, s\.id \+ "\.png"\)/.test(source)) {
+    errors.push("scripts/bake-gantry.mjs must write one PNG for each declared ID");
+  }
+}
+
 export function validateAssetProvenance({
   manifest,
   catalogue,
   publicFiles,
   licencesText,
+  bakeGantryText,
   gameTreeSha,
 }) {
   const errors = [];
   if (!manifest || typeof manifest !== "object") {
     return ["asset provenance manifest is not an object"];
   }
-  if (manifest.schema_version !== "1.0.1") errors.push("schema version must be 1.0.1");
+  if (manifest.schema_version !== "1.0.2") errors.push("schema version must be 1.0.2");
   if (manifest.document_type !== "rush-asset-provenance-inventory") {
     errors.push("document type must be rush-asset-provenance-inventory");
   }
@@ -164,10 +197,23 @@ export function validateAssetProvenance({
     errors.push("public distribution and legal clearance must remain false");
   }
 
-  const groups = new Map((manifest.groups ?? []).map((group) => [group.id, group]));
-  if (groups.size !== Object.keys(EXPECTED_GROUPS).length) {
-    errors.push("manifest must contain exactly six provenance groups");
+  const groupArray = manifest.groups;
+  const groupIds = Array.isArray(groupArray) ? groupArray.map((group) => group.id) : [];
+  const expectedGroupIds = Object.keys(EXPECTED_GROUPS);
+  if (!Array.isArray(groupArray)) {
+    errors.push("manifest groups must be an array");
   }
+  if (groupArray?.length !== expectedGroupIds.length) {
+    errors.push("manifest must contain exactly six provenance group records");
+  }
+  if (new Set(groupIds).size !== groupIds.length) {
+    errors.push("provenance group IDs must be unique");
+  }
+  if (!sameJson(groupIds.slice().sort(), expectedGroupIds.slice().sort())) {
+    errors.push("provenance group IDs must match the exact six-group authority");
+  }
+  const groups = new Map((groupArray ?? []).map((group) => [group.id, group]));
+
   for (const [id, expected] of Object.entries(EXPECTED_GROUPS)) {
     const group = groups.get(id);
     const files = byGroup.get(id) ?? [];
@@ -188,10 +234,17 @@ export function validateAssetProvenance({
   if (
     generated?.provenance_status !== "owner_generated_claim_recorded"
     || generated?.public_distribution_clearance !== false
-    || !sameJson(generated?.evidence, ["public/game/LICENSES.md"])
+    || !sameJson(generated?.evidence, ["public/game/LICENSES.md", "scripts/bake-gantry.mjs"])
   ) {
-    errors.push("generated game assets must retain recorded owner-generation evidence without public clearance");
+    errors.push("generated game assets must cite both generation evidence sources without public clearance");
   }
+  if (!sameJson(generated?.evidence_partition, {
+    "public/game/LICENSES.md": "procedural textures and five extrusion-car GLB/GLTF pairs",
+    "scripts/bake-gantry.mjs": "six gantry, five station and one destination-rail PNG",
+  })) {
+    errors.push("generated game asset evidence partition must cover both source families");
+  }
+  validateBakeEvidence(bakeGantryText, errors);
   if (generated?.pinned_directory_entry_count !== 65) {
     errors.push("public/game pin must cover exactly 65 directory entries including LICENSES.md");
   }
@@ -259,6 +312,9 @@ export function validateAssetProvenance({
   if (truth?.release_gates_green !== 0 || truth?.release_gates_total !== 13) {
     errors.push("release-gate truth must remain 0/13");
   }
+  if (manifest.change_control?.duplicate_group_ids_allowed !== false) {
+    errors.push("duplicate provenance group IDs must remain prohibited");
+  }
 
   return errors;
 }
@@ -280,12 +336,14 @@ if (isMainModule(import.meta.url)) {
   );
   const publicFiles = listPublicFiles();
   const licencesText = readFileSync(fromRoot("public", "game", "LICENSES.md"), "utf8");
+  const bakeGantryText = readFileSync(fromRoot("scripts", "bake-gantry.mjs"), "utf8");
   const gameTreeSha = computeFlatGitTreeSha();
   const errors = validateAssetProvenance({
     manifest,
     catalogue,
     publicFiles,
     licencesText,
+    bakeGantryText,
     gameTreeSha,
   });
   if (errors.length) {
