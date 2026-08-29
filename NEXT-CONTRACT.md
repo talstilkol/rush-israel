@@ -3,7 +3,7 @@
 **Version:** 2.9.0  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**RSH-013 implementation base:** `94524201dfe87f1f22f8d8bdd9d97aad507c0438`  
+**RSH-013 reconciled implementation base:** `e9b7683330bb288e9e5005e595f699b58d7ad20f`  
 **State effective on:** merge of PR #16  
 **Next eligible unit after merge:** `RSH-014`  
 **RSH-015 authorised:** no
@@ -26,9 +26,11 @@ PR #16 may merge only when its exact final head proves:
 - the frozen classification remains 8 MVP and 48 deferred;
 - canonical ID order and runtime definition order are treated as distinct authorities;
 - the committed Ayalon point-builder IIFE is accepted only by the narrow reviewed form;
-- the ordered runtime-definition digest is exactly `27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f`;
+- the reconciled complete `src/game/tracks.ts` Git blob is exactly `e26454223f8a598cdf516af7c7c3f494162e2616`;
+- the ordered runtime-definition digest is exactly `a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d`;
+- the aggregate runtime-definition digest is exactly `1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7`;
 - valid-looking runtime-data mutations fail the digest check;
-- runtime data and runtime ordering changed by this unit are both zero;
+- runtime data and runtime ordering changed relative to reconciled live `main` are both zero;
 - release gates remain 0/13;
 - exact-head `required-ci / validate` and Codex review pass with no unresolved blocking thread.
 
