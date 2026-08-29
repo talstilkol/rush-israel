@@ -29,22 +29,10 @@ jobs:
           cache: npm
       - run: npm install --global npm@10.9.2
       - run: npm ci
-      - name: Generate isolated track builders
+      - name: Diagnose generator order boundary
         run: |
           base64 --decode .rsh016/generator.gz.b64 | gzip --decompress > .rsh016/generate.mjs
-          node .rsh016/generate.mjs
-      - name: Commit generated candidate
-        run: |
-          rm -rf .rsh016
-          rm -f .github/workflows/rsh-016-generate.yml
-          rm -f scripts/rsh-016-analyze.mjs
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -A
-          git commit -m "RSH-016: generate isolated world builders [rsh-016-generated]"
-          git push origin HEAD:agent/rsh-016-track-builders
-      - name: Validate generated boundary
-        run: |
-          node scripts/check-world-builders.mjs
-          npm run typecheck
-          npm test
+          grep -n -B 8 -A 12 'top-level world-builder order' .rsh016/generate.mjs
+          grep -n -B 6 -A 16 'WORLD_BUILDERS' .rsh016/generate.mjs || true
+          grep -n -B 6 -A 16 'registry' .rsh016/generate.mjs | head -160 || true
+          exit 1
