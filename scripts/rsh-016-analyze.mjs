@@ -29,46 +29,66 @@ if (!addLandmarks?.body || !createWorld?.body || !laneCountFor?.body) {
   throw new Error("RSH-016 preflight could not resolve addLandmarks/createWorld/laneCountFor");
 }
 
-const topLevel = addLandmarks.body.statements.map((statement, index) => {
-  const text = statement.getText(file);
-  return {
-    ordinal: index + 1,
-    syntax_kind: ts.SyntaxKind[statement.kind],
-    ...nodeRange(statement),
-    track_ids: trackIdsIn(text),
-    contains_def_id: /\bdef\.id\b/.test(text),
-    contains_theme: /\bdef\.theme\b/.test(text),
-    contains_track_helper: /\b(?:acr|afl|ard|asd|ask|bsn|bsv|bym|cae|dsea|eil|gol|hai|hdr|her|hol|hwy1|hwy2|hwy6|hwy40|hwy90|hzl|jer|ksb|ksm|lodp|mas|mod|naz|nah|net|nik|pth|raa|ram|rhv|rml|rsh|tib|tlv|tzf)\s*\(/.test(text),
-    preview: text.replace(/\s+/g, " ").slice(0, 240),
-  };
-});
-
-const ifStatements = [];
-const walk = (node, topOrdinal = null, depth = 0) => {
-  if (ts.isIfStatement(node)) {
-    const condition = node.expression.getText(file);
-    const thenText = node.thenStatement.getText(file);
-    const elseText = node.elseStatement?.getText(file) ?? "";
-    if (/\bdef\.(?:id|theme|city)\b/.test(condition) || trackIdsIn(condition).length) {
-      ifStatements.push({
-        ordinal: ifStatements.length + 1,
-        top_level_ordinal: topOrdinal,
-        depth,
-        condition,
-        condition_track_ids: trackIdsIn(condition),
-        statement_track_ids: trackIdsIn(`${thenText}\n${elseText}`),
-        ...nodeRange(node),
-        then_range: nodeRange(node.thenStatement),
-        else_range: node.elseStatement ? nodeRange(node.elseStatement) : null,
-      });
+function analyzeFunctionBody(functionNode) {
+  const topLevel = functionNode.body.statements.map((statement, index) => {
+    const text = statement.getText(file);
+    return {
+      ordinal: index + 1,
+      syntax_kind: ts.SyntaxKind[statement.kind],
+      ...nodeRange(statement),
+      track_ids: trackIdsIn(text),
+      contains_def_id: /\bdef\.id\b/.test(text),
+      contains_theme: /\bdef\.theme\b/.test(text),
+      contains_city: /\bdef\.city\b/.test(text),
+      contains_track_helper: /\b(?:acr|afl|ard|asd|ask|bsn|bsv|bym|cae|dsea|eil|gol|hai|hdr|her|hol|hwy1|hwy2|hwy6|hwy40|hwy90|hzl|jer|ksb|ksm|lodp|mas|mod|naz|nah|net|nik|pth|raa|ram|rhv|rml|rsh|tib|tlv|tzf)\s*\(/.test(text),
+      preview: text.replace(/\s+/g, " ").slice(0, 320),
+    };
+  });
+  const conditions = [];
+  const walk = (node, topOrdinal = null, depth = 0) => {
+    if (ts.isIfStatement(node)) {
+      const condition = node.expression.getText(file);
+      const thenText = node.thenStatement.getText(file);
+      const elseText = node.elseStatement?.getText(file) ?? "";
+      if (/\bdef\.(?:id|theme|city)\b/.test(condition) || trackIdsIn(condition).length) {
+        conditions.push({
+          ordinal: conditions.length + 1,
+          top_level_ordinal: topOrdinal,
+          depth,
+          condition,
+          condition_track_ids: trackIdsIn(condition),
+          statement_track_ids: trackIdsIn(`${thenText}\n${elseText}`),
+          ...nodeRange(node),
+          then_range: nodeRange(node.thenStatement),
+          else_range: node.elseStatement ? nodeRange(node.elseStatement) : null,
+        });
+      }
     }
+    if (ts.isConditionalExpression(node)) {
+      const condition = node.condition.getText(file);
+      if (/\bdef\.(?:id|theme|city)\b/.test(condition) || trackIdsIn(condition).length) {
+        conditions.push({
+          ordinal: conditions.length + 1,
+          top_level_ordinal: topOrdinal,
+          depth,
+          kind: "ConditionalExpression",
+          condition,
+          condition_track_ids: trackIdsIn(condition),
+          statement_track_ids: trackIdsIn(node.getText(file)),
+          ...nodeRange(node),
+        });
+      }
+    }
+    ts.forEachChild(node, (child) => walk(child, topOrdinal, depth + 1));
+  };
+  for (let index = 0; index < functionNode.body.statements.length; index += 1) {
+    walk(functionNode.body.statements[index], index + 1, 0);
   }
-  ts.forEachChild(node, (child) => walk(child, topOrdinal, depth + 1));
-};
-for (let index = 0; index < addLandmarks.body.statements.length; index += 1) {
-  walk(addLandmarks.body.statements[index], index + 1, 0);
+  return { topLevel, conditions };
 }
 
+const addLandmarksAnalysis = analyzeFunctionBody(addLandmarks);
+const createWorldAnalysis = analyzeFunctionBody(createWorld);
 const references = Object.fromEntries(trackIds.map((id) => {
   const matches = [];
   const pattern = new RegExp(`["']${id}["']`, "g");
@@ -77,7 +97,7 @@ const references = Object.fromEntries(trackIds.map((id) => {
 }));
 
 const report = {
-  schema_version: "1.0.0",
+  schema_version: "1.1.0",
   document_type: "rush-rsh-016-world-builder-preflight",
   unit: "RSH-016",
   repository: "talstilkol/rush-israel",
@@ -97,11 +117,17 @@ const report = {
     createWorld: nodeRange(createWorld),
     addLandmarks: nodeRange(addLandmarks),
   },
+  create_world: {
+    top_level_statement_count: createWorldAnalysis.topLevel.length,
+    top_level_statements: createWorldAnalysis.topLevel,
+    track_condition_count: createWorldAnalysis.conditions.length,
+    track_conditions: createWorldAnalysis.conditions,
+  },
   add_landmarks: {
-    top_level_statement_count: topLevel.length,
-    top_level_statements: topLevel,
-    track_condition_count: ifStatements.length,
-    track_conditions: ifStatements,
+    top_level_statement_count: addLandmarksAnalysis.topLevel.length,
+    top_level_statements: addLandmarksAnalysis.topLevel,
+    track_condition_count: addLandmarksAnalysis.conditions.length,
+    track_conditions: addLandmarksAnalysis.conditions,
   },
   track_references: references,
   invariants: {
@@ -113,19 +139,41 @@ const report = {
 };
 writeFileSync("RSH-016-WORLD-BUILDER-PREFLIGHT.json", JSON.stringify(report, null, 2) + "\n");
 
-const lines = [
+const landmarkLines = [
   "# RSH-016 world-builder preflight",
   "",
   `- Base: \`${report.implementation_base.commit_sha}\``,
   `- world.ts: ${report.source.lines} lines / ${report.source.bytes} bytes`,
   `- addLandmarks: lines ${report.functions.addLandmarks.start_line}-${report.functions.addLandmarks.end_line}`,
-  `- top-level statements: ${topLevel.length}`,
-  `- track-aware conditionals: ${ifStatements.length}`,
+  `- top-level statements: ${addLandmarksAnalysis.topLevel.length}`,
+  `- track-aware conditionals: ${addLandmarksAnalysis.conditions.length}`,
   "",
   "| # | Lines | Kind | Track IDs | Preview |",
   "|---:|---:|---|---|---|",
-  ...topLevel.map((entry) => `| ${entry.ordinal} | ${entry.start_line}-${entry.end_line} | ${entry.syntax_kind} | ${entry.track_ids.join(", ") || "—"} | ${entry.preview.replaceAll("|", "\\|")} |`),
+  ...addLandmarksAnalysis.topLevel.map((entry) => `| ${entry.ordinal} | ${entry.start_line}-${entry.end_line} | ${entry.syntax_kind} | ${entry.track_ids.join(", ") || "—"} | ${entry.preview.replaceAll("|", "\\|")} |`),
   "",
 ];
-writeFileSync("RSH-016-WORLD-BUILDER-PREFLIGHT.md", lines.join("\n"));
-console.log(`rsh-016 preflight: ${topLevel.length} top-level statements, ${ifStatements.length} track conditionals`);
+writeFileSync("RSH-016-WORLD-BUILDER-PREFLIGHT.md", landmarkLines.join("\n"));
+
+const createLines = [
+  "# RSH-016 createWorld track-coupling preflight",
+  "",
+  `- createWorld: lines ${report.functions.createWorld.start_line}-${report.functions.createWorld.end_line}`,
+  `- top-level statements: ${createWorldAnalysis.topLevel.length}`,
+  `- track-aware conditionals/expressions: ${createWorldAnalysis.conditions.length}`,
+  "",
+  "| # | Lines | Kind | Track IDs | def.id | Theme | Preview |",
+  "|---:|---:|---|---|---|---|---|",
+  ...createWorldAnalysis.topLevel
+    .filter((entry) => entry.contains_def_id || entry.contains_theme || entry.contains_city || entry.track_ids.length)
+    .map((entry) => `| ${entry.ordinal} | ${entry.start_line}-${entry.end_line} | ${entry.syntax_kind} | ${entry.track_ids.join(", ") || "—"} | ${entry.contains_def_id ? "yes" : "no"} | ${entry.contains_theme ? "yes" : "no"} | ${entry.preview.replaceAll("|", "\\|")} |`),
+  "",
+  "## Track-aware expressions",
+  "",
+  "| # | Lines | Top | Condition | Track IDs |",
+  "|---:|---:|---:|---|---|",
+  ...createWorldAnalysis.conditions.map((entry) => `| ${entry.ordinal} | ${entry.start_line}-${entry.end_line} | ${entry.top_level_ordinal ?? "—"} | ${entry.condition.replaceAll("|", "\\|")} | ${entry.condition_track_ids.join(", ") || "—"} |`),
+  "",
+];
+writeFileSync("RSH-016-CREATE-WORLD-PREFLIGHT.md", createLines.join("\n"));
+console.log(`rsh-016 preflight: addLandmarks ${addLandmarksAnalysis.topLevel.length}/${addLandmarksAnalysis.conditions.length}; createWorld ${createWorldAnalysis.topLevel.length}/${createWorldAnalysis.conditions.length}`);
