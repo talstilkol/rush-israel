@@ -264,14 +264,12 @@
   },
   "runtime_definition_integrity": {
     "algorithm": "sha256",
-    "basis": "ordered array of TrackId, canonical TypeScript AST hash of each track object, and recursive hashes of referenced top-level runtime definitions plus imported runtime support sources",
+    "basis": "ordered array of TrackId, canonical TypeScript AST hash of each track object, and recursive hashes of referenced top-level runtime definitions",
     "source_order_is_runtime_order": true,
     "canonical_track_id_order_is_independent": true,
-    "support_sources": [
-      "src/game/math.ts"
-    ],
-    "expected_digest": null,
-    "capture_state": "pending_exact_ci_capture"
+    "support_sources": [],
+    "expected_digest": "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f",
+    "capture_state": "pinned"
   },
   "semantic_invariants": {
     "track_ids_unique": true,

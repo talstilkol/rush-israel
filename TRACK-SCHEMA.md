@@ -67,7 +67,7 @@ The validator hashes each complete `ObjectLiteralExpression.getText()` and then
 hashes the ordered array of `{ id, source_sha256 }` records. This protects every
 localized string, coordinate expression, visual setting, seed and gameplay field,
 while preserving the current runtime order independently of canonical `TrackId` order.
-The exact pinned digest is `9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230`. Any runtime-data or runtime-order change fails CI.
+The exact pinned digest is `27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f`. Any runtime-data or runtime-order change fails CI.
 
 ## Compile-time boundary
 

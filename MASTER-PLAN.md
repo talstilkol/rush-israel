@@ -208,7 +208,7 @@ Current verified result: **0/13**.
 
 PR #16 is the sole RSH-013 delivery vehicle. It establishes one machine-readable
 track schema, compile-time helpers, TypeScript-AST validation and the pinned ordered
-runtime-definition digest `9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230` without changing runtime data or order.
+runtime-definition digest `27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f` without changing runtime data or order.
 
 After exact-head CI and review pass and PR #16 merges, RSH-014 becomes eligible as
 the second unit authorised by the current `next 2` instruction and the final unit

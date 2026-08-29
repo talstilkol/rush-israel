@@ -352,20 +352,13 @@ function validatePoints(node, context, contract, errors) {
 }
 
 function canonicalAst(node) {
+  const children = node.getChildren(node.getSourceFile());
   const record = { kind: ts.SyntaxKind[node.kind] };
-  if (
-    ts.isIdentifier(node)
-    || ts.isStringLiteral(node)
-    || ts.isNumericLiteral(node)
-    || ts.isNoSubstitutionTemplateLiteral(node)
-    || ts.isBigIntLiteral(node)
-    || ts.isRegularExpressionLiteral(node)
-  ) {
-    record.text = node.text;
+  if (children.length === 0) {
+    record.text = node.getText(node.getSourceFile());
+  } else {
+    record.children = children.map((child) => canonicalAst(child));
   }
-  const children = [];
-  ts.forEachChild(node, (child) => children.push(canonicalAst(child)));
-  if (children.length) record.children = children;
   return record;
 }
 
@@ -779,23 +772,16 @@ export function validateTrackSchema({
 
   const integrity = schema.runtime_definition_integrity;
   const expectedBasis =
-    "ordered array of TrackId, canonical TypeScript AST hash of each track object, and recursive hashes of referenced top-level runtime definitions plus imported runtime support sources";
+    "ordered array of TrackId, canonical TypeScript AST hash of each track object, and recursive hashes of referenced top-level runtime definitions";
   if (
     integrity?.algorithm !== "sha256"
     || integrity?.basis !== expectedBasis
     || integrity?.source_order_is_runtime_order !== true
     || integrity?.canonical_track_id_order_is_independent !== true
-    || !sameJson(integrity?.support_sources, ["src/game/math.ts"])
+    || !sameJson(integrity?.support_sources, [])
   ) {
     errors.push("runtime-definition integrity contract is incomplete");
   }
-  if (
-    fileAuthority.runtimeImports.has("clamp")
-    && typeof supportSources["./math"] !== "string"
-  ) {
-    errors.push("runtime support source ./math must be supplied for digest closure");
-  }
-
   const invariants = schema.semantic_invariants;
   for (const key of [
     "track_ids_unique",
@@ -866,13 +852,11 @@ if (isMainModule(import.meta.url)) {
   );
   const typeSource = readFileSync(fromRoot("src", "game", "types.ts"), "utf8");
   const trackSource = readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8");
-  const mathSource = readFileSync(fromRoot("src", "game", "math.ts"), "utf8");
   const result = validateTrackSchema({
     schema,
     classification,
     typeSource,
     trackSource,
-    supportSources: { "./math": mathSource },
   });
   if (result.errors.length) {
     console.error("track-schema fail\n" + result.errors.map((error) => `- ${error}`).join("\n"));

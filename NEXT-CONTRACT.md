@@ -26,7 +26,7 @@ PR #16 may merge only when its exact final head proves:
 - the frozen classification remains 8 MVP and 48 deferred;
 - canonical ID order and runtime definition order are treated as distinct authorities;
 - the committed Ayalon point-builder IIFE is accepted only by the narrow reviewed form;
-- the ordered runtime-definition digest is exactly `9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230`;
+- the ordered runtime-definition digest is exactly `27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f`;
 - valid-looking runtime-data mutations fail the digest check;
 - runtime data and runtime ordering changed by this unit are both zero;
 - release gates remain 0/13;

@@ -176,7 +176,7 @@
       "track_count": 56,
       "mvp_tracks": 8,
       "deferred_tracks": 48,
-      "runtime_definition_digest": "9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230",
+      "runtime_definition_digest": "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f",
       "runtime_data_changes": 0,
       "runtime_order_changes": 0
     }
@@ -306,7 +306,7 @@
     "RSH-013_precreated": false,
     "RSH-015_authorized": false,
     "track_schema_version": "1.0.1",
-    "track_schema_runtime_digest": "9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230",
+    "track_schema_runtime_digest": "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f",
     "track_runtime_data_changes": 0,
     "track_runtime_order_changes": 0,
     "RSH-014_precreated": false
@@ -321,7 +321,7 @@
     "unique_track_ids": 56,
     "mvp_tracks": 8,
     "deferred_tracks": 48,
-    "runtime_definition_digest": "9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230",
+    "runtime_definition_digest": "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f",
     "canonical_id_order_equals_runtime_order": false,
     "runtime_data_changes": 0,
     "runtime_order_changes": 0

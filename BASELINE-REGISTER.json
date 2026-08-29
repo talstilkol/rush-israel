@@ -186,7 +186,7 @@
       "commit_sha_resolution": "live main HEAD created by merging PR #16",
       "tree_sha_resolution": "tree of the live PR #16 merge commit",
       "exact_evidence_reconciliation": "RSH-014 preflight",
-      "runtime_definition_digest": "9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230",
+      "runtime_definition_digest": "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f",
       "recorded_at": "2026-08-29T10:55:00+03:00",
       "description": "Canonical track schema, TypeScript-AST validation and exact ordered runtime-definition digest accepted on PR #16 merge without changing runtime data or order."
     }
@@ -200,7 +200,7 @@
     "head_sha_resolution": "the exact PR #16 head accepted by required-ci / validate and Codex review",
     "merge_sha_resolution": "the live main HEAD created by merging PR #16",
     "exact_evidence_reconciliation": "RSH-014 preflight",
-    "runtime_definition_digest": "9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230",
+    "runtime_definition_digest": "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f",
     "is_release": false,
     "tag_created": false,
     "release_created": false,

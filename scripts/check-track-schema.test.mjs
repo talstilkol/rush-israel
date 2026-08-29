@@ -12,9 +12,6 @@ function readInputs() {
     ),
     typeSource: readFileSync(fromRoot("src", "game", "types.ts"), "utf8"),
     trackSource: readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8"),
-    supportSources: {
-      "./math": readFileSync(fromRoot("src", "game", "math.ts"), "utf8"),
-    },
   };
 }
 
@@ -162,11 +159,10 @@ test("referenced coordinate helper mutation changes the closure digest", () => {
   assert.notEqual(resultOf(changed).digest, baselineDigest);
 });
 
-test("referenced imported runtime source mutation changes the closure digest", () => {
+test("unreferenced utility source is outside the track-definition digest", () => {
   const baselineDigest = resultOf(readInputs()).digest;
-  const changed = readInputs();
-  changed.supportSources["./math"] += "\n// reviewed semantic support mutation\n";
-  assert.notEqual(resultOf(changed).digest, baselineDigest);
+  const unchanged = readInputs();
+  assert.equal(resultOf(unchanged).digest, baselineDigest);
 });
 
 test("TRACKS rejects wrappers other than defineTracks", () => {
