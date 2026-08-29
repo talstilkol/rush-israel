@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { readFileSync, realpathSync } from "node:fs";
 import { createHash } from "node:crypto";
+import { readFileSync, realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { fromRoot } from "./project-root.mjs";
@@ -9,6 +9,15 @@ export const EXPECTED_RSH_012_MERGE = "94524201dfe87f1f22f8d8bdd9d97aad507c0438"
 
 function sameJson(actual, expected) {
   return JSON.stringify(actual) === JSON.stringify(expected);
+}
+
+function sameUniqueSet(actual, expected) {
+  const actualSet = new Set(actual);
+  const expectedSet = new Set(expected);
+  return actual.length === expected.length
+    && actualSet.size === actual.length
+    && expectedSet.size === expected.length
+    && actual.every((value) => expectedSet.has(value));
 }
 
 function parseTypeScript(fileName, source, errors) {
@@ -23,7 +32,9 @@ function parseTypeScript(fileName, source, errors) {
     const position = diagnostic.start === undefined
       ? "unknown"
       : file.getLineAndCharacterOfPosition(diagnostic.start).line + 1;
-    errors.push(`${fileName}:${position} does not parse: ${ts.flattenDiagnosticMessageText(diagnostic.messageText, " ")}`);
+    errors.push(
+      `${fileName}:${position} does not parse: ${ts.flattenDiagnosticMessageText(diagnostic.messageText, " ")}`,
+    );
   }
   return file;
 }
@@ -183,6 +194,61 @@ function validateStructuredObject(node, required, context, errors, { allowSpread
   return props;
 }
 
+function isGeneratedPointArrayIife(node) {
+  const value = unwrapExpression(node);
+  if (!ts.isCallExpression(value) || value.arguments.length !== 0) return false;
+  const callable = unwrapExpression(value.expression);
+  if (
+    (!ts.isArrowFunction(callable) && !ts.isFunctionExpression(callable))
+    || callable.parameters.length !== 0
+    || !ts.isBlock(callable.body)
+  ) {
+    return false;
+  }
+
+  const localArrays = new Set();
+  const pushedArrays = new Set();
+  const returnedArrays = new Set();
+  const visit = (current) => {
+    if (ts.isVariableDeclaration(current) && ts.isIdentifier(current.name)) {
+      const initializer = current.initializer && unwrapExpression(current.initializer);
+      if (initializer && ts.isArrayLiteralExpression(initializer)) {
+        localArrays.add(current.name.text);
+      }
+    }
+    if (
+      ts.isCallExpression(current)
+      && ts.isPropertyAccessExpression(current.expression)
+      && current.expression.name.text === "push"
+      && ts.isIdentifier(current.expression.expression)
+    ) {
+      pushedArrays.add(current.expression.expression.text);
+    }
+    if (ts.isReturnStatement(current) && current.expression) {
+      const returned = unwrapExpression(current.expression);
+      if (ts.isIdentifier(returned)) returnedArrays.add(returned.text);
+      if (ts.isArrayLiteralExpression(returned) && returned.elements.length >= 3) {
+        returnedArrays.add("__direct_array__");
+      }
+    }
+    ts.forEachChild(current, visit);
+  };
+  visit(callable.body);
+
+  if (returnedArrays.has("__direct_array__")) return true;
+  return [...returnedArrays].some(
+    (name) => localArrays.has(name) && pushedArrays.has(name),
+  );
+}
+
+function validatePoints(node, context, errors) {
+  if (node && ts.isArrayLiteralExpression(node) && node.elements.length >= 3) return;
+  if (node && isGeneratedPointArrayIife(node)) return;
+  errors.push(
+    `${context}.points must be an array literal with at least three entries or a zero-argument array-builder IIFE`,
+  );
+}
+
 function validateTrackObject(node, index, schema, errors) {
   const context = `track[${index}]`;
   const props = objectProperties(node, context, errors);
@@ -246,10 +312,8 @@ function validateTrackObject(node, index, schema, errors) {
     }
   }
 
-  const points = props.get("points");
-  if (!points || !ts.isArrayLiteralExpression(points) || points.elements.length < 3) {
-    errors.push(`${context}.points must be an array literal with at least three entries`);
-  }
+  validatePoints(props.get("points"), context, errors);
+
   const elevation = props.get("elevation");
   if (!elevation || !ts.isArrowFunction(elevation) || elevation.parameters.length > 1) {
     errors.push(`${context}.elevation must be an arrow function with at most one parameter`);
@@ -362,19 +426,14 @@ function validateTrackObject(node, index, schema, errors) {
 
   return {
     id,
-    city,
-    theme,
-    image,
-    width,
-    seed,
-    checkpointCount: checkpoints,
+    source_sha256: createHash("sha256").update(node.getText()).digest("hex"),
   };
 }
 
 export function validateTrackSchema({ schema, classification, typeSource, trackSource }) {
   const errors = [];
   if (!schema || typeof schema !== "object") return ["track schema is not an object"];
-  if (schema.schema_version !== "1.0.0") errors.push("schema version must be 1.0.0");
+  if (schema.schema_version !== "1.0.1") errors.push("schema version must be 1.0.1");
   if (schema.document_type !== "rush-canonical-track-schema") {
     errors.push("document type must be rush-canonical-track-schema");
   }
@@ -443,26 +502,70 @@ export function validateTrackSchema({ schema, classification, typeSource, trackS
     });
   }
 
-  const ids = summaries.map((entry) => entry.id);
-  if (ids.some((id) => id === null) || new Set(ids).size !== ids.length) {
+  const definitionIds = summaries.map((entry) => entry.id);
+  if (definitionIds.some((id) => id === null) || new Set(definitionIds).size !== definitionIds.length) {
     errors.push("track definition IDs must be non-null and unique");
   }
-  if (!sameJson(ids, trackIds)) errors.push("TRACKS order must exactly match TrackId order");
-  if (!sameJson(ids, catalogueIds)) errors.push("TRACKS order must exactly match catalogue order");
+  if (!sameUniqueSet(definitionIds, trackIds)) {
+    errors.push("TRACKS definitions must contain the same unique IDs as TrackId");
+  }
+  if (!sameUniqueSet(definitionIds, catalogueIds)) {
+    errors.push("TRACKS definitions must contain the same unique IDs as the classification catalogue");
+  }
 
-  if (schema.semantic_invariants?.release_gates_green !== 0
-    || schema.semantic_invariants?.release_gates_total !== 13) {
+  const integrity = schema.runtime_definition_integrity;
+  if (
+    integrity?.algorithm !== "sha256"
+    || integrity?.basis !== "ordered array of TrackId plus SHA-256 of each TypeScript ObjectLiteralExpression.getText()"
+    || integrity?.source_order_is_runtime_order !== true
+    || integrity?.canonical_track_id_order_is_independent !== true
+  ) {
+    errors.push("runtime-definition integrity contract is incomplete");
+  }
+
+  const invariants = schema.semantic_invariants;
+  for (const key of [
+    "track_ids_unique",
+    "track_definition_set_matches_track_id_union",
+    "track_definition_set_matches_catalogue_entries",
+    "runtime_definition_order_preserved_by_RSH_014",
+    "canonical_track_id_order_independent_from_runtime_definition_order",
+    "image_path_matches_track_id",
+    "all_tracks_classified_exactly_once",
+    "mvp_set_exactly_frozen",
+    "deferred_tracks_retained",
+    "streets_use_normalized_progress",
+    "street_ranges_must_be_ordered",
+    "source_must_parse_without_diagnostics",
+  ]) {
+    if (invariants?.[key] !== true) errors.push(`semantic invariant ${key} must remain true`);
+  }
+  if (invariants?.release_gates_green !== 0 || invariants?.release_gates_total !== 13) {
     errors.push("release-gate truth must remain 0/13");
   }
-  if (schema.change_control?.schema_changes_require_owner_authorization !== true
+  if (
+    schema.change_control?.schema_changes_require_owner_authorization !== true
     || schema.change_control?.track_id_addition_or_removal_requires_owner_authorization !== true
     || schema.change_control?.mvp_mapping_changes_require_owner_authorization !== true
     || schema.change_control?.RSH_014_may_relocate_definitions_without_changing_runtime_data !== true
-    || schema.change_control?.RSH_015_authorized !== false) {
+    || schema.change_control?.RSH_015_authorized !== false
+  ) {
     errors.push("track-schema change control is incomplete or over-authorized");
   }
 
   const digest = createHash("sha256").update(JSON.stringify(summaries)).digest("hex");
+  if (integrity?.expected_digest === null) {
+    if (integrity.capture_state !== "pending_exact_ci_capture") {
+      errors.push("unpinned runtime digest must remain in pending exact-CI capture state");
+    }
+  } else if (
+    !/^[0-9a-f]{64}$/.test(integrity?.expected_digest ?? "")
+    || integrity.capture_state !== "pinned"
+    || integrity.expected_digest !== digest
+  ) {
+    errors.push("runtime definition digest differs from the pinned RSH-013 baseline");
+  }
+
   return { errors, summaries, digest };
 }
 
