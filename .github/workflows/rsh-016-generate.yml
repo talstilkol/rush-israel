@@ -15,7 +15,6 @@ concurrency:
 
 jobs:
   generate:
-    if: ${{ !contains(github.event.head_commit.message || '', '[rsh-016-generated]') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
@@ -29,10 +28,8 @@ jobs:
           cache: npm
       - run: npm install --global npm@10.9.2
       - run: npm ci
-      - name: Diagnose generator order boundary
+      - name: Diagnose generator module and reconstruction ordering
         run: |
           base64 --decode .rsh016/generator.gz.b64 | gzip --decompress > .rsh016/generate.mjs
-          grep -n -B 8 -A 12 'top-level world-builder order' .rsh016/generate.mjs
-          grep -n -B 6 -A 16 'WORLD_BUILDERS' .rsh016/generate.mjs || true
-          grep -n -B 6 -A 16 'registry' .rsh016/generate.mjs | head -160 || true
+          sed -n '240,470p' .rsh016/generate.mjs
           exit 1
