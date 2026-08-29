@@ -6,9 +6,11 @@ import { fromRoot } from "./project-root.mjs";
 
 export const EXPECTED_TRACK_SOURCE_PATH = "src/game/tracks.ts";
 export const EXPECTED_TRACK_SOURCE_GIT_BLOB_SHA1 =
-  "ba22d9d82466e02779342ec6a70eddb12481a928";
+  "e26454223f8a598cdf516af7c7c3f494162e2616";
 export const EXPECTED_RSH_012_MERGE =
   "94524201dfe87f1f22f8d8bdd9d97aad507c0438";
+export const EXPECTED_TRACK_SOURCE_CAPTURE_COMMIT =
+  "e9b7683330bb288e9e5005e595f699b58d7ad20f";
 
 export function gitBlobSha1(source) {
   const body = Buffer.from(String(source ?? ""), "utf8");
@@ -37,8 +39,8 @@ export function validateTrackSourcePin({ pin, trackSource }) {
   if (pin.algorithm !== "git_blob_sha1") {
     errors.push("track source pin algorithm must remain git_blob_sha1");
   }
-  if (pin.captured_from_commit !== EXPECTED_RSH_012_MERGE) {
-    errors.push("track source pin must remain captured from the accepted RSH-012 merge");
+  if (pin.captured_from_commit !== EXPECTED_TRACK_SOURCE_CAPTURE_COMMIT) {
+    errors.push("track source pin must remain captured from the reconciled live main commit");
   }
   if (pin.capture_state !== "pinned") errors.push("track source pin must remain pinned");
   if (pin.expected_git_blob_sha1 !== EXPECTED_TRACK_SOURCE_GIT_BLOB_SHA1) {
