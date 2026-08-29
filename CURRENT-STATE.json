@@ -9,16 +9,16 @@
   },
   "state_semantics": {
     "effective_event": "merge_of_pull_request_16",
-    "implementation_base_sha": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
+    "implementation_base_sha": "e9b7683330bb288e9e5005e595f699b58d7ad20f",
     "self_reference_boundary": "A candidate cannot contain its own future merge SHA. PR #16 exact-head and merge evidence are read from live GitHub and reconciled in the RSH-014 preflight."
   },
   "verified_main": {
-    "head_sha": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
-    "tree_sha": "53ec197fefc4c4f44b8992e04164d30d8d6a18f8",
-    "commit_authored_at": "2026-08-29T09:39:30+03:00",
-    "commit_message": "Merge PR #15: RSH-012 — Align metadata, licence, branding and PWA scope",
-    "commit_signature_verified": true,
-    "role": "RSH-013 implementation base"
+    "head_sha": "e9b7683330bb288e9e5005e595f699b58d7ad20f",
+    "tree_sha": "4e4cfce5290ca18cce58401e7f31556be0224d39",
+    "commit_authored_at": "2026-08-29T17:54:40+03:00",
+    "commit_message": "Open Center TLV: Azrieli beside Begin, hotels off the sand.",
+    "commit_signature_verified": false,
+    "role": "RSH-013 reconciled implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -46,7 +46,7 @@
     "deferred_track_entries": 48,
     "exact_track_id_mapping_state": "accepted_RSH-010",
     "asset_provenance_state": "accepted_RSH-011",
-    "product_metadata_state": "accepted_on_merge_RSH-012",
+    "product_metadata_state": "accepted_RSH-012",
     "asset_inventory_files": 134,
     "asset_inventory_assets": 131,
     "unverified_asset_files": 66,
@@ -176,7 +176,7 @@
       "track_count": 56,
       "mvp_tracks": 8,
       "deferred_tracks": 48,
-      "runtime_definition_digest": "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f",
+      "runtime_definition_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
       "runtime_data_changes": 0,
       "runtime_order_changes": 0
     }
@@ -187,7 +187,7 @@
     "title": "Define and validate the canonical track schema",
     "branch": "agent/rsh-013-canonical-track-schema",
     "pull_request": 16,
-    "base_sha": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
+    "base_sha": "e9b7683330bb288e9e5005e595f699b58d7ad20f",
     "state": "accepted_on_merge",
     "merge_authorized_by_owner_instruction": "next 2",
     "acceptance_requires_exact_head_ci_success": true,
@@ -306,7 +306,7 @@
     "RSH-013_precreated": false,
     "RSH-015_authorized": false,
     "track_schema_version": "1.0.2",
-    "track_schema_runtime_digest": "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f",
+    "track_schema_runtime_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
     "track_runtime_data_changes": 0,
     "track_runtime_order_changes": 0,
     "RSH-014_precreated": false
@@ -321,7 +321,7 @@
     "unique_track_ids": 56,
     "mvp_tracks": 8,
     "deferred_tracks": 48,
-    "runtime_definition_digest": "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f",
+    "runtime_definition_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
     "canonical_id_order_equals_runtime_order": false,
     "runtime_data_changes": 0,
     "runtime_order_changes": 0
