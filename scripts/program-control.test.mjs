@@ -109,8 +109,8 @@ test("RSH-013 becomes accepted on merge and RSH-014 is the sole eligible final b
   assert.equal(current.last_transition.pull_request, 16);
   assert.equal(current.last_transition.state, "accepted_on_merge");
   assert.equal(current.accepted_units["RSH-013"].state, "accepted_on_merge");
-  assert.equal(current.accepted_units["RSH-013"].runtime_definition_digest, "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f");
-  assert.equal(schema.runtime_definition_integrity.expected_digest, "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f");
+  assert.equal(current.accepted_units["RSH-013"].runtime_definition_digest, "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d");
+  assert.equal(schema.runtime_definition_integrity.expected_digest, "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d");
   assert.equal(schema.runtime_definition_integrity.capture_state, "pinned");
   assert.equal(baseline.working_state.unit, "RSH-013");
   assert.equal(baseline.working_state.state, "accepted_on_merge_of_PR_16");
