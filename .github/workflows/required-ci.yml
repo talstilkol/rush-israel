@@ -49,6 +49,9 @@ jobs:
       - name: Install Chromium for Playwright
         run: npx playwright install --with-deps chromium
 
+      - name: Validate repository governance contract
+        run: node scripts/check-governance-contract.mjs
+
       - name: Lint all tracked source
         run: npm run lint
 
@@ -60,3 +63,27 @@ jobs:
 
       - name: Build deterministic development bundle
         run: npm run build:dev
+
+      - name: Write deterministic diagnostic summary
+        if: always()
+        env:
+          CI_JOB_STATUS: ${{ job.status }}
+        run: node scripts/write-ci-summary.mjs
+
+      - name: Upload required-CI diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: required-ci-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/**
+            screenshots/**
+            dist/**
+            .output/**
+            test-results/**
+            playwright-report/**
+            npm-debug.log*
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 6
+          include-hidden-files: true

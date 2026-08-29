@@ -1,10 +1,10 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 2.1.0  
+**Schema:** 2.4.0  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**Transition base:** `6932a74ca23f125e212f37fa0db73da377eaabe3`  
-**Effective when:** PR #7 merges  
+**Verified base:** `88c7754b62c66cfdf59f8bfce847db2113eb09de`  
+**Active unit:** RSH-008 / PR #10  
 **Established by:** RSH-001  
 **Governance policy:** RSH-002  
 **Date:** 29 August 2026
@@ -29,6 +29,9 @@ photogrammetry or a scanned-vehicle product. `WebGLRenderer` remains the default
 WebGPU, online multiplayer, public distribution and expansion beyond the eight-track
 MVP are outside Version 1 until explicitly authorised.
 
+The detailed product definition is frozen by RSH-009. Until then, this section is
+the controlling high-level boundary.
+
 ## 3. Operating rules
 
 1. Execute only the eligible queue head.
@@ -40,25 +43,28 @@ MVP are outside Version 1 until explicitly authorised.
 7. Percentages are estimates; accepted units and the 13 release gates are authoritative.
 8. A bounded owner instruction may authorise several consecutive units, but authority
    ends after the exact final unit recorded in `QUEUE.json`.
-9. If a unit's own PR prepares post-merge canonical state, the next preflight must
-   read and persist the actual merge SHA.
+9. Exact-head required CI success is mandatory for every PR after RSH-007.
+10. Workflow evidence and GitHub repository settings are separate authorities.
+11. If a unit's own PR prepares post-merge canonical state, the next preflight must
+    read and persist the actual merge SHA.
 
 ## 4. Current program state
 
 | Metric | Current value |
 |---|---:|
 | Total units | 67 |
-| Accepted units | 6 |
-| Units in review | 0 |
-| Eligible queue head | RSH-007 |
-| RSH-007 started | No |
-| Remaining units | 61 |
+| Accepted units | 7 |
+| Units in review | 1 |
+| Queue head | RSH-008 |
+| Active PR | #10 |
+| Remaining units | 60 |
 | Verified release gates | 0/13 |
 | Findings | 42 |
-| OPEN / MITIGATED / CLOSED | 30 / 9 / 3 |
+| OPEN / MITIGATED / CLOSED | 26 / 8 / 8 |
 
-The owner-authorised five-unit batch contained exactly RSH-002–RSH-006 and is
-complete. A future plain `next` may begin RSH-007 only.
+The owner-authorised active batch contains exactly RSH-007–RSH-011. RSH-007 is
+accepted. RSH-008 is active. RSH-009–RSH-011 may run sequentially only after each
+preceding unit is validated and merged. RSH-012 is not authorised.
 
 ## 5. Version 1 track scope
 
@@ -73,16 +79,18 @@ complete. A future plain `next` may begin RSH-007 only.
 | 7 | Ramon |
 | 8 | Hermon |
 
-The remaining 48 catalogue cards are deferred and must not be expanded before the
-MVP and release gates are complete.
+RSH-010 must map these names to exact repository track IDs and classify every one
+of the 56 catalogue entries. Until that machine-readable classification merges,
+this table remains the owner-approved intended scope and the remaining 48 entries
+remain deferred by policy.
 
 ## 6. Stage map
 
 | Stage | Units | Count | Purpose | Current state |
 |---|---:|---:|---|---|
 | G0 | RSH-001–RSH-003 | 3 | Control and governance | ACCEPTED |
-| G1 | RSH-004–RSH-008 | 5 | Reproducible toolchain and CI | ACTIVE |
-| G2 | RSH-009–RSH-012 | 4 | Scope, licensing and assets | DEFERRED |
+| G1 | RSH-004–RSH-008 | 5 | Reproducible toolchain and CI | ACTIVE — RSH-008 |
+| G2 | RSH-009–RSH-012 | 4 | Scope, licensing and assets | AUTHORISED THROUGH RSH-011 |
 | G3 | RSH-013–RSH-020 | 8 | Architecture decomposition | DEFERRED |
 | G4 | RSH-021–RSH-024 | 4 | Data integrity and production security | DEFERRED |
 | G5 | RSH-025–RSH-036 | 12 | Ayalon vertical slice | DEFERRED |
@@ -230,12 +238,17 @@ MVP and release gates are complete.
 
 Current verified result: **0/13**.
 
+RSH-007 provides reproducible clean-checkout CI evidence, but release gate 4 remains
+unverified as a repository-required setting while `main` is unprotected. The five
+known acceleration product claims also remain failed and assigned to RSH-033.
+
 ## 9. Current execution boundary
 
-RSH-006 has established the local self-starting QA lifecycle. GitHub-hosted
-clean-clone execution remains intentionally deferred to RSH-007. Therefore the
-self-contained-QA finding is mitigated, but CI and reproducibility gates remain open.
+RSH-008 adds a blocking governance-contract check and always-retained CI diagnostics.
+The desired `main` ruleset is machine-readable, but GitHub still reports protection
+false, required checks 0 and rulesets 0. The integration cannot mutate those admin
+settings. That limitation remains explicit and finding P0-02 stays open.
 
-No RSH-007 branch or PR exists. The completed batch gives no remaining authority.
-A future plain `next` may begin RSH-007 only after its preflight records the live
-PR #7 merge SHA.
+RSH-009 must not start until PR #10 passes the exact-head workflow, its diagnostic
+artifact is confirmed and the PR is merged. After RSH-011, the current batch ends;
+RSH-012 must not be created automatically.

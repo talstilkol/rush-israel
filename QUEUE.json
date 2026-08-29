@@ -1,17 +1,17 @@
 {
-  "schema_version": "2.3.1",
+  "schema_version": "2.4.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-29T02:52:00+03:00",
+  "generated_at": "2026-08-29T03:05:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "7ea076d377225d5db3561faf81fe1cedce091a28",
+  "verified_base_sha": "88c7754b62c66cfdf59f8bfce847db2113eb09de",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
     "active_bounded_batch": {
       "instruction": "make next 5; confirm everything",
       "authorized_units": ["RSH-007", "RSH-008", "RSH-009", "RSH-010", "RSH-011"],
-      "completed": 0,
+      "completed": 1,
       "total": 5,
       "closed_after": "RSH-011",
       "separate_branch_and_pr_per_unit": true,
@@ -25,27 +25,25 @@
   },
   "counts": {
     "total": 67,
-    "accepted": 6,
+    "accepted": 7,
     "in_review": 1,
     "eligible": 0,
-    "deferred": 60,
-    "remaining": 61
+    "deferred": 59,
+    "remaining": 60
   },
   "queue_head": {
-    "id": "RSH-007",
-    "title": "Create GitHub Actions CI",
-    "state": "pr_open",
-    "branch": "agent/rsh-007-github-actions-ci",
-    "pull_request": 9,
-    "replaced_pull_request": 8,
-    "replacement_reason": "Connector failure prevented Draft PR #8 from being marked Ready; it was closed unmerged and replaced without changing branch history.",
-    "base_sha": "7ea076d377225d5db3561faf81fe1cedce091a28",
-    "acceptance_condition": "The exact final replacement-PR head has a successful required-ci / validate result."
-  },
-  "next_after_acceptance": {
     "id": "RSH-008",
     "title": "Enforce required checks, branch protection and CI artifacts",
-    "state": "authorized_batch_blocked_by_RSH-007"
+    "state": "pr_open",
+    "branch": "agent/rsh-008-required-checks-artifacts",
+    "pull_request": 10,
+    "base_sha": "88c7754b62c66cfdf59f8bfce847db2113eb09de",
+    "acceptance_condition": "Exact final head passes required-ci / validate; diagnostic artifact upload succeeds; unapplied administrative protection remains explicitly owner_action_required."
+  },
+  "next_after_acceptance": {
+    "id": "RSH-009",
+    "title": "Freeze the Version 1 product definition",
+    "state": "authorized_batch_blocked_by_RSH-008"
   },
   "accepted": {
     "RSH-001": { "pull_request": 1, "merge_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9" },
@@ -53,22 +51,31 @@
     "RSH-003": { "pull_request": 3, "merge_sha": "f1af9f507378d5d42c5e06255c8244c78b0c0f22" },
     "RSH-004": { "pull_request": 5, "merge_sha": "69ac509b39895bb33a68d871f31cc49b3f05726c" },
     "RSH-005": { "pull_request": 6, "merge_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3" },
-    "RSH-006": { "pull_request": 7, "merge_sha": "7ea076d377225d5db3561faf81fe1cedce091a28", "implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6" }
+    "RSH-006": { "pull_request": 7, "merge_sha": "7ea076d377225d5db3561faf81fe1cedce091a28", "implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6" },
+    "RSH-007": {
+      "pull_request": 9,
+      "replaced_pull_request": 8,
+      "merge_sha": "88c7754b62c66cfdf59f8bfce847db2113eb09de",
+      "validated_head_sha": "3cb2ca2ac6d34b25f77f313b70590bcc36190f76",
+      "workflow_run": 33221919501,
+      "workflow_job": 99017575707,
+      "workflow_conclusion": "success"
+    }
   },
   "unit_order": [
     "RSH-001", "RSH-002", "RSH-003", "RSH-004", "RSH-005", "RSH-006", "RSH-007", "RSH-008", "RSH-009", "RSH-010", "RSH-011", "RSH-012", "RSH-013", "RSH-014", "RSH-015", "RSH-016", "RSH-017", "RSH-018", "RSH-019", "RSH-020", "RSH-021", "RSH-022", "RSH-023", "RSH-024", "RSH-025", "RSH-026", "RSH-027", "RSH-028", "RSH-029", "RSH-030", "RSH-031", "RSH-032", "RSH-033", "RSH-034", "RSH-035", "RSH-036", "RSH-037", "RSH-038", "RSH-039", "RSH-040", "RSH-041", "RSH-042", "RSH-043", "RSH-044", "RSH-045", "RSH-046", "RSH-047", "RSH-048", "RSH-049", "RSH-050", "RSH-051", "RSH-052", "RSH-053", "RSH-054", "RSH-055", "RSH-056", "RSH-057", "RSH-058", "RSH-059", "RSH-060", "RSH-061", "RSH-062", "RSH-063", "RSH-064", "RSH-065", "RSH-066", "RSH-067"
   ],
   "state_rules": {
-    "RSH-001–RSH-006": "accepted",
-    "RSH-007": "pr_open",
-    "RSH-008": "authorized_batch_blocked_by_RSH-007",
-    "RSH-009–RSH-011": "authorized_batch_deferred",
+    "RSH-001–RSH-007": "accepted",
+    "RSH-008": "pr_open",
+    "RSH-009": "authorized_batch_blocked_by_RSH-008",
+    "RSH-010–RSH-011": "authorized_batch_deferred",
     "RSH-012–RSH-067": "deferred"
   },
   "next_instruction_contract": {
-    "current_action": "Finish, validate and merge RSH-007 only.",
-    "after_merge": "Start RSH-008 from the new live main.",
-    "batch_authority_remaining_after_RSH-007": 4,
+    "current_action": "Finish, validate and merge RSH-008 only.",
+    "after_merge": "Start RSH-009 from the new live main.",
+    "batch_authority_remaining_after_RSH-008": 3,
     "RSH-012_authorized": false
   }
 }

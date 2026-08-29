@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.3.1",
+  "schema_version": "1.4.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-08-29T02:52:00+03:00",
+  "generated_at": "2026-08-29T03:05:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": { "green": 0, "total": 13 },
@@ -74,27 +74,42 @@
       "tree_sha": "c7fcc5f1bae924ad975c2e8bbd214fd86b7f3f65",
       "reviewed_implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6",
       "recorded_at": "2026-08-29T02:10:21+03:00",
-      "description": "Self-starting QA lifecycle, cancellable cleanup timers, interrupt-safe startup and deterministic source tests accepted.",
-      "runtime_evidence": "Clean-checkout GitHub-hosted execution is owned by RSH-007."
+      "description": "Self-starting QA lifecycle, cancellable cleanup timers, interrupt-safe startup and deterministic source tests accepted."
+    },
+    {
+      "id": "B007-rsh-007-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-007",
+      "pull_request": 9,
+      "replaced_pull_request": 8,
+      "commit_sha": "88c7754b62c66cfdf59f8bfce847db2113eb09de",
+      "tree_sha": "dee5f39195bef83a7a7770fd388f880103669c09",
+      "validated_head_sha": "3cb2ca2ac6d34b25f77f313b70590bcc36190f76",
+      "workflow_run": 33221919501,
+      "workflow_job": 99017575707,
+      "recorded_at": "2026-08-29T02:57:37+03:00",
+      "description": "Pinned clean-checkout GitHub Actions authority accepted after successful lint, 170 tests, self-starting QA and deterministic build.",
+      "claim_boundary": "Five zero-to-100 claims remain failed and owned by RSH-033."
     }
   ],
   "working_state": {
-    "unit": "RSH-007",
+    "unit": "RSH-008",
     "state": "pr_open",
-    "base_commit_sha": "7ea076d377225d5db3561faf81fe1cedce091a28",
-    "branch": "agent/rsh-007-github-actions-ci",
-    "pull_request": 9,
-    "replaced_pull_request": 8,
-    "replacement_reason": "The connector failed to mark Draft PR #8 Ready; PR #8 closed unmerged and PR #9 preserves the same branch history.",
+    "base_commit_sha": "88c7754b62c66cfdf59f8bfce847db2113eb09de",
+    "branch": "agent/rsh-008-required-checks-artifacts",
+    "pull_request": 10,
     "is_release": false,
     "tag_created": false,
     "release_created": false,
-    "runtime_evidence": "The reconciled final PR #9 head must pass required-ci / validate before merge."
+    "live_branch_protection": false,
+    "settings_application_state": "owner_action_required",
+    "runtime_evidence": "Pending exact-head required-ci success including governance validation and artifact upload."
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
     "Tags and GitHub Releases are created only by their authorised release units.",
     "Every accepted unit is reconciled to the live merge SHA during the next preflight.",
+    "Workflow evidence must not be represented as live branch-protection enforcement.",
     "Live GitHub state supersedes this register if they disagree."
   ]
 }

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-repository-ruleset-desired-state",
+  "repository": "talstilkol/rush-israel",
+  "target": "branch",
+  "target_branch": "refs/heads/main",
+  "desired_enforcement": "active",
+  "bypass_actors": [],
+  "conditions": {
+    "ref_name": {
+      "include": ["refs/heads/main"],
+      "exclude": []
+    }
+  },
+  "rules": {
+    "deletion": false,
+    "non_fast_forward": false,
+    "required_linear_history": false,
+    "required_signatures": false,
+    "pull_request": {
+      "required": true,
+      "required_approving_review_count": 0,
+      "dismiss_stale_reviews_on_push": true,
+      "require_code_owner_review": false,
+      "require_last_push_approval": false,
+      "required_review_thread_resolution": true,
+      "allowed_merge_methods": ["merge"]
+    },
+    "required_status_checks": {
+      "strict_required_status_checks_policy": true,
+      "do_not_enforce_on_create": false,
+      "required_checks": [
+        {
+          "context": "required-ci / validate"
+        }
+      ]
+    }
+  },
+  "administrative_intent": {
+    "enforce_for_repository_administrators": true,
+    "allow_force_pushes": false,
+    "allow_deletions": false,
+    "allow_auto_merge": false
+  },
+  "application": {
+    "state": "owner_action_required",
+    "reason": "The connected GitHub integration exposes branch-protection and ruleset reads but no administrative mutation action.",
+    "must_not_be_reported_as_applied_until": [
+      "GitHub reports main protected",
+      "GitHub reports the required-ci / validate check as required",
+      "GitHub reports force-push and deletion blocked"
+    ]
+  }
+}
