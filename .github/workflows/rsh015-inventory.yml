@@ -1,0 +1,67 @@
+name: RSH-015 inventory and contract
+
+on:
+  push:
+    branches:
+      - agent/rsh-015-world-core
+    paths:
+      - .github/workflows/rsh015-inventory.yml
+
+permissions:
+  contents: write
+
+jobs:
+  inventory:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out exact feature branch revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+
+      - name: Verify toolchain
+        run: npm run toolchain:verify
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Reconstruct inventory generator
+        shell: bash
+        run: |
+          cat scripts/rsh015-inventory.mjs.gz.b64.part-* \
+            | base64 --decode \
+            | gzip --decompress \
+            > /tmp/rsh015-inventory.mjs
+
+      - name: Generate pre-edit inventory and contract
+        env:
+          RSH_BASE_SHA: 076dabb754dba1676c6685a4a8d6f6d3c0b153ea
+        run: node /tmp/rsh015-inventory.mjs
+
+      - name: Remove temporary generator
+        shell: bash
+        run: |
+          rm -f .github/workflows/rsh015-inventory.yml
+          rm -f scripts/rsh015-inventory.mjs.gz.b64.part-*
+
+      - name: Commit generated evidence
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "RSH-015: map world responsibilities and extraction contract"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
