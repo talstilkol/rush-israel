@@ -1,7 +1,7 @@
 {
-  "schema_version": "2.6.0",
+  "schema_version": "2.6.1",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-29T05:44:00+03:00",
+  "generated_at": "2026-08-29T05:49:00+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -51,7 +51,7 @@
     "queue_head": "RSH-010",
     "queue_head_state": "pr_open",
     "queue_head_branch": "agent/rsh-010-track-catalogue-classification",
-    "queue_head_pull_request": 12,
+    "queue_head_pull_request": 13,
     "automatic_execution": false,
     "release_gates_green": 0,
     "release_gates_total": 13
@@ -90,7 +90,9 @@
     "unit": "RSH-010",
     "title": "Classify the track catalogue into 8 MVP and 48 deferred tracks",
     "branch": "agent/rsh-010-track-catalogue-classification",
-    "pull_request": 12,
+    "pull_request": 13,
+    "replaced_draft_pull_request": 12,
+    "replacement_reason": "Connector mark-ready mutation failed; PR #12 was closed unmerged and replaced without changing branch history.",
     "base_sha": "69765febef85d732d9ba79fe260fec78ee76b2df",
     "state": "pr_open",
     "merge_authorized_by_owner_batch": true,
