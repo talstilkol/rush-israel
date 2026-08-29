@@ -45,6 +45,7 @@ export const TRACK_REQUIRED_PROPERTIES = [
   "seed",
   "theme",
 ] as const satisfies readonly (keyof TrackDef)[];
+Object.freeze(TRACK_REQUIRED_PROPERTIES);
 
 /** Canonical optional TrackDef keys, mirrored by TRACK-SCHEMA.json. */
 export const TRACK_OPTIONAL_PROPERTIES = [
@@ -53,6 +54,7 @@ export const TRACK_OPTIONAL_PROPERTIES = [
   "clearZones",
   "open",
 ] as const satisfies readonly (keyof TrackDef)[];
+Object.freeze(TRACK_OPTIONAL_PROPERTIES);
 
 export type TrackRequiredPropertiesAreExact = Assert<
   ExactUnion<(typeof TRACK_REQUIRED_PROPERTIES)[number], RequiredKeys<TrackDef>>
