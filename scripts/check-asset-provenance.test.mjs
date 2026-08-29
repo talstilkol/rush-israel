@@ -4,6 +4,7 @@ import { test } from "node:test";
 import { fromRoot } from "./project-root.mjs";
 import {
   classifyPublicPath,
+  computeFlatGitTreeSha,
   listPublicFiles,
   validateAssetProvenance,
 } from "./check-asset-provenance.mjs";
@@ -16,6 +17,7 @@ function readInputs() {
     ),
     publicFiles: listPublicFiles(),
     licencesText: readFileSync(fromRoot("public", "game", "LICENSES.md"), "utf8"),
+    gameTreeSha: computeFlatGitTreeSha(),
   };
 }
 
@@ -23,6 +25,18 @@ test("committed provenance inventory covers every public file", () => {
   const inputs = readInputs();
   assert.equal(inputs.publicFiles.length, 134);
   assert.deepEqual(validateAssetProvenance(inputs), []);
+});
+
+test("the complete public/game directory is pinned by its Git tree identity", () => {
+  const inputs = readInputs();
+  const generated = inputs.manifest.groups.find((group) => group.id === "game_generated_assets");
+  assert.equal(inputs.gameTreeSha, "332fe666fd91590787856c32cf2040b8f6adb7d0");
+  assert.equal(generated.pinned_git_tree_sha1, inputs.gameTreeSha);
+  assert.equal(generated.pinned_directory_entry_count, 65);
+
+  const replaced = readInputs();
+  replaced.gameTreeSha = "0000000000000000000000000000000000000000";
+  assert.match(validateAssetProvenance(replaced).join("\n"), /path or content identity/);
 });
 
 test("every public file maps to exactly one provenance group", () => {
