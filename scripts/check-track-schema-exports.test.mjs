@@ -15,7 +15,7 @@ function mutatedSource(before, after) {
   return mutated;
 }
 
-test("canonical key authorities and typed identity helpers are exported", () => {
+test("canonical key authorities and typed identity helpers are exported and frozen", () => {
   assert.deepEqual(validateTrackSchemaExports(source()), []);
 });
 
@@ -31,6 +31,36 @@ test("changing either key authority from const fails closed", () => {
     const mutated = mutatedSource(`export const ${name}`, `export let ${name}`);
     assert.match(validateTrackSchemaExports(mutated).join("\n"), new RegExp(`${name} must remain a const authority`));
   }
+});
+
+test("removing either immediate runtime freeze fails closed", () => {
+  for (const name of ["TRACK_REQUIRED_PROPERTIES", "TRACK_OPTIONAL_PROPERTIES"]) {
+    const mutated = mutatedSource(`Object.freeze(${name});`, `void ${name};`);
+    assert.match(
+      validateTrackSchemaExports(mutated).join("\n"),
+      new RegExp(`${name} must be frozen immediately after its declaration`),
+    );
+  }
+});
+
+test("freezing the wrong authority or freezing it too late fails closed", () => {
+  const wrongTarget = mutatedSource(
+    "Object.freeze(TRACK_REQUIRED_PROPERTIES);",
+    "Object.freeze(TRACK_OPTIONAL_PROPERTIES);",
+  );
+  assert.match(
+    validateTrackSchemaExports(wrongTarget).join("\n"),
+    /TRACK_REQUIRED_PROPERTIES must be frozen immediately/,
+  );
+
+  const delayed = mutatedSource(
+    "Object.freeze(TRACK_OPTIONAL_PROPERTIES);",
+    "void 0;\nObject.freeze(TRACK_OPTIONAL_PROPERTIES);",
+  );
+  assert.match(
+    validateTrackSchemaExports(delayed).join("\n"),
+    /TRACK_OPTIONAL_PROPERTIES must be frozen immediately/,
+  );
 });
 
 test("removing export from either identity helper fails closed", () => {
