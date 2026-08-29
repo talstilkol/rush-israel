@@ -28,30 +28,8 @@ import { getAyalonRoad, getBakedRoad } from "./road-assets";
 import { getSkyDay, getSkyNight } from "./sky-assets";
 import { getBlob } from "./blob-assets";
 
-export type World = {
-  group: THREE.Group;
-  sun: THREE.Vector3;
-  sky: Sky;
-  dir: THREE.DirectionalLight;
-  dirNear: THREE.DirectionalLight;
-  waterMesh?: THREE.Mesh;
-  night: boolean;
-  colliders: Collider[];
-  streets: any[];
-  ramps: Ramp[];
-  followShadows: (x: number, y: number, z: number) => void;
-  followMirror: (x: number, y: number, z: number, yaw: number) => void;
-  setPlanar: (on: boolean) => void;
-  sunDir: THREE.Vector3;
-  tick: (now: number, x: number, z: number) => void;
-  setTime: (night: boolean) => any;
-  setClock: (clock: number) => any;
-  clock: number;
-  setWeather: (w: any) => any;
-  setLod?: (tier: "low" | "mid" | "high") => void;
-  weather: Weather;
-  dispose: () => void;
-};
+import { assembleWorld } from "./world-core";
+export type { World } from "./world-core";
 
 type Disposable = { dispose: () => void };
 type Glow = { light: THREE.PointLight; on: number };
@@ -2756,7 +2734,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     if (lodPuddles) lodPuddles.visible = hi;
   };
   applyWet();
-  return {
+  return assembleWorld({
     group,
     sun,
     sky,
@@ -2766,12 +2744,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     colliders,
     streets,
     ramps,
-    get night() {
-      return isNight;
-    },
-    get weather() {
-      return wx;
-    },
+    getNight: () => isNight,
+    getWeather: () => wx,
     followShadows,
     followMirror,
     setPlanar(on: boolean) {
@@ -2782,15 +2756,13 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     tick,
     setTime,
     setClock,
-    get clock() {
-      return clock;
-    },
+    getClock: () => clock,
     setWeather,
     setLod,
     dispose() {
       for (const d of bag) d.dispose();
-    }
-  };
+    },
+  });
 }
 function addLandmarks(
   group: THREE.Group,

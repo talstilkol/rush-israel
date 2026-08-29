@@ -1,0 +1,4977 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-world-responsibility-inventory",
+  "unit": "RSH-015",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "verified_base_commit": "076dabb754dba1676c6685a4a8d6f6d3c0b153ea",
+  "generated_at_utc": "2026-08-29T21:30:59.957Z",
+  "baseline": {
+    "world": {
+      "path": "src/game/world.ts",
+      "lines": 9034,
+      "bytes": 353285,
+      "sha256": "db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056",
+      "git_blob_sha1": "07b7e0b559e66f89641357db5aa2be8bcd8c3135"
+    },
+    "engine": {
+      "path": "src/game/engine.ts",
+      "lines": 2815,
+      "bytes": 99577,
+      "sha256": "3f4d54bbe0b68f9654ae8a92a2f56ce378a59a9790e8fbbe2ee05199ced192c1",
+      "git_blob_sha1": "692663c6d05ab59c1d99c7a357999839b9ebb0ec"
+    },
+    "track_module_manifest": {
+      "path": "TRACK-MODULE-MANIFEST.json",
+      "bytes": 23738,
+      "sha256": "a8891a4af9345dbfa34fcb998302b77383f3b14f19fd240c9a8c46d2e5a43fdd",
+      "module_count": 56,
+      "runtime_order_count": 56,
+      "runtime_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
+      "aggregate_digest": "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7",
+      "runtime_data_changes": 0,
+      "runtime_order_changes": 0
+    },
+    "track_schema": {
+      "path": "TRACK-SCHEMA.json",
+      "bytes": 7719,
+      "sha256": "56f2f29c131d8df1b98c5fdc909fd1fe35cf21de2346d6f9f8189b6d1abec208",
+      "total_tracks": 56,
+      "mvp_tracks": 8,
+      "deferred_tracks": 48
+    },
+    "program": {
+      "accepted_units": 14,
+      "remaining_units": 53,
+      "eligible_units": 0,
+      "queue_head": "RSH-015",
+      "queue_head_state": "deferred_not_authorized",
+      "queue_accepted_units": 14
+    },
+    "invariants": {
+      "physics_hz": 120,
+      "unverified_asset_files": 66,
+      "release_gates_green": 0,
+      "release_gates_total": 13,
+      "public_distribution_authorized": false
+    }
+  },
+  "imports": [
+    {
+      "module": "three",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "*",
+          "local": "THREE",
+          "type_only": false
+        }
+      ],
+      "line": 1
+    },
+    {
+      "module": "three/examples/jsm/objects/Lensflare.js",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "Lensflare",
+          "local": "Lensflare",
+          "type_only": false
+        },
+        {
+          "imported": "LensflareElement",
+          "local": "LensflareElement",
+          "type_only": false
+        }
+      ],
+      "line": 2
+    },
+    {
+      "module": "three/examples/jsm/objects/Reflector.js",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "Reflector",
+          "local": "Reflector",
+          "type_only": false
+        }
+      ],
+      "line": 3
+    },
+    {
+      "module": "three/examples/jsm/objects/Sky.js",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "Sky",
+          "local": "Sky",
+          "type_only": false
+        }
+      ],
+      "line": 4
+    },
+    {
+      "module": "./math",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "mulberry32",
+          "local": "mulberry32",
+          "type_only": false
+        },
+        {
+          "imported": "lerp",
+          "local": "lerp",
+          "type_only": false
+        },
+        {
+          "imported": "clamp",
+          "local": "clamp",
+          "type_only": false
+        },
+        {
+          "imported": "hash01",
+          "local": "hash01",
+          "type_only": false
+        }
+      ],
+      "line": 5
+    },
+    {
+      "module": "./spline",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "nearestIndex",
+          "local": "nearestIndex",
+          "type_only": false
+        }
+      ],
+      "line": 6
+    },
+    {
+      "module": "./spline",
+      "type_only": true,
+      "symbols": [
+        {
+          "imported": "BuiltTrack",
+          "local": "BuiltTrack",
+          "type_only": true
+        }
+      ],
+      "line": 7
+    },
+    {
+      "module": "./types",
+      "type_only": true,
+      "symbols": [
+        {
+          "imported": "Collider",
+          "local": "Collider",
+          "type_only": true
+        },
+        {
+          "imported": "Ramp",
+          "local": "Ramp",
+          "type_only": true
+        },
+        {
+          "imported": "SkyPreset",
+          "local": "SkyPreset",
+          "type_only": true
+        },
+        {
+          "imported": "TrackDef",
+          "local": "TrackDef",
+          "type_only": true
+        },
+        {
+          "imported": "Weather",
+          "local": "Weather",
+          "type_only": true
+        }
+      ],
+      "line": 8
+    },
+    {
+      "module": "./tracks",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "acr",
+          "local": "acr",
+          "type_only": false
+        },
+        {
+          "imported": "afl",
+          "local": "afl",
+          "type_only": false
+        },
+        {
+          "imported": "ard",
+          "local": "ard",
+          "type_only": false
+        },
+        {
+          "imported": "asd",
+          "local": "asd",
+          "type_only": false
+        },
+        {
+          "imported": "ask",
+          "local": "ask",
+          "type_only": false
+        },
+        {
+          "imported": "bsn",
+          "local": "bsn",
+          "type_only": false
+        },
+        {
+          "imported": "bsv",
+          "local": "bsv",
+          "type_only": false
+        },
+        {
+          "imported": "bym",
+          "local": "bym",
+          "type_only": false
+        },
+        {
+          "imported": "cae",
+          "local": "cae",
+          "type_only": false
+        },
+        {
+          "imported": "dsea",
+          "local": "dsea",
+          "type_only": false
+        },
+        {
+          "imported": "eil",
+          "local": "eil",
+          "type_only": false
+        },
+        {
+          "imported": "gol",
+          "local": "gol",
+          "type_only": false
+        },
+        {
+          "imported": "hai",
+          "local": "hai",
+          "type_only": false
+        },
+        {
+          "imported": "hdr",
+          "local": "hdr",
+          "type_only": false
+        },
+        {
+          "imported": "her",
+          "local": "her",
+          "type_only": false
+        },
+        {
+          "imported": "hol",
+          "local": "hol",
+          "type_only": false
+        },
+        {
+          "imported": "hwy1",
+          "local": "hwy1",
+          "type_only": false
+        },
+        {
+          "imported": "hwy2",
+          "local": "hwy2",
+          "type_only": false
+        },
+        {
+          "imported": "hwy6",
+          "local": "hwy6",
+          "type_only": false
+        },
+        {
+          "imported": "hwy40",
+          "local": "hwy40",
+          "type_only": false
+        },
+        {
+          "imported": "hwy90",
+          "local": "hwy90",
+          "type_only": false
+        },
+        {
+          "imported": "hzl",
+          "local": "hzl",
+          "type_only": false
+        },
+        {
+          "imported": "jer",
+          "local": "jer",
+          "type_only": false
+        },
+        {
+          "imported": "ksb",
+          "local": "ksb",
+          "type_only": false
+        },
+        {
+          "imported": "ksm",
+          "local": "ksm",
+          "type_only": false
+        },
+        {
+          "imported": "lodp",
+          "local": "lodp",
+          "type_only": false
+        },
+        {
+          "imported": "mas",
+          "local": "mas",
+          "type_only": false
+        },
+        {
+          "imported": "mod",
+          "local": "mod",
+          "type_only": false
+        },
+        {
+          "imported": "naz",
+          "local": "naz",
+          "type_only": false
+        },
+        {
+          "imported": "nah",
+          "local": "nah",
+          "type_only": false
+        },
+        {
+          "imported": "net",
+          "local": "net",
+          "type_only": false
+        },
+        {
+          "imported": "nightAmt",
+          "local": "nightAmt",
+          "type_only": false
+        },
+        {
+          "imported": "nik",
+          "local": "nik",
+          "type_only": false
+        },
+        {
+          "imported": "pth",
+          "local": "pth",
+          "type_only": false
+        },
+        {
+          "imported": "raa",
+          "local": "raa",
+          "type_only": false
+        },
+        {
+          "imported": "ram",
+          "local": "ram",
+          "type_only": false
+        },
+        {
+          "imported": "rhv",
+          "local": "rhv",
+          "type_only": false
+        },
+        {
+          "imported": "rml",
+          "local": "rml",
+          "type_only": false
+        },
+        {
+          "imported": "rsh",
+          "local": "rsh",
+          "type_only": false
+        },
+        {
+          "imported": "skyAt",
+          "local": "skyAt",
+          "type_only": false
+        },
+        {
+          "imported": "skyFor",
+          "local": "skyFor",
+          "type_only": false
+        },
+        {
+          "imported": "tib",
+          "local": "tib",
+          "type_only": false
+        },
+        {
+          "imported": "tlv",
+          "local": "tlv",
+          "type_only": false
+        },
+        {
+          "imported": "tzf",
+          "local": "tzf",
+          "type_only": false
+        }
+      ],
+      "line": 9
+    },
+    {
+      "module": "./buildings",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "scatterStreetBuildings",
+          "local": "scatterStreetBuildings",
+          "type_only": false
+        }
+      ],
+      "line": 10
+    },
+    {
+      "module": "../rendering/EnvironmentState",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "LOOKS",
+          "local": "LOOKS",
+          "type_only": false
+        },
+        {
+          "imported": "lookFromFlags",
+          "local": "lookFromFlags",
+          "type_only": false
+        }
+      ],
+      "line": 11
+    },
+    {
+      "module": "./streets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "generateStreets",
+          "local": "generateStreets",
+          "type_only": false
+        },
+        {
+          "imported": "nearestStreet",
+          "local": "nearestStreet",
+          "type_only": false
+        }
+      ],
+      "line": 12
+    },
+    {
+      "module": "./roadShader",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "bindRoadCompile",
+          "local": "bindRoadCompile",
+          "type_only": false
+        }
+      ],
+      "line": 13
+    },
+    {
+      "module": "./arrow-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getLaneArrow",
+          "local": "getLaneArrow",
+          "type_only": false
+        }
+      ],
+      "line": 14
+    },
+    {
+      "module": "./flare-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getFlare0",
+          "local": "getFlare0",
+          "type_only": false
+        },
+        {
+          "imported": "getFlare1",
+          "local": "getFlare1",
+          "type_only": false
+        }
+      ],
+      "line": 15
+    },
+    {
+      "module": "./water-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getWaterNormal",
+          "local": "getWaterNormal",
+          "type_only": false
+        },
+        {
+          "imported": "getChecker",
+          "local": "getChecker",
+          "type_only": false
+        }
+      ],
+      "line": 16
+    },
+    {
+      "module": "./sign-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getSign",
+          "local": "getSign",
+          "type_only": false
+        },
+        {
+          "imported": "getGantry",
+          "local": "getGantry",
+          "type_only": false
+        }
+      ],
+      "line": 17
+    },
+    {
+      "module": "./foam-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getFoam",
+          "local": "getFoam",
+          "type_only": false
+        }
+      ],
+      "line": 18
+    },
+    {
+      "module": "./ground-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getGroundNoise",
+          "local": "getGroundNoise",
+          "type_only": false
+        }
+      ],
+      "line": 19
+    },
+    {
+      "module": "./walk-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getSidewalk",
+          "local": "getSidewalk",
+          "type_only": false
+        }
+      ],
+      "line": 20
+    },
+    {
+      "module": "./facade-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getCurtain",
+          "local": "getCurtain",
+          "type_only": false
+        }
+      ],
+      "line": 21
+    },
+    {
+      "module": "./curb-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getCurb",
+          "local": "getCurb",
+          "type_only": false
+        }
+      ],
+      "line": 22
+    },
+    {
+      "module": "./stone-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getHerodian",
+          "local": "getHerodian",
+          "type_only": false
+        }
+      ],
+      "line": 23
+    },
+    {
+      "module": "./clock-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getJaffaClock",
+          "local": "getJaffaClock",
+          "type_only": false
+        }
+      ],
+      "line": 24
+    },
+    {
+      "module": "./flag-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getIsraelFlag",
+          "local": "getIsraelFlag",
+          "type_only": false
+        }
+      ],
+      "line": 25
+    },
+    {
+      "module": "./tree-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getFoliage",
+          "local": "getFoliage",
+          "type_only": false
+        },
+        {
+          "imported": "getBark",
+          "local": "getBark",
+          "type_only": false
+        }
+      ],
+      "line": 26
+    },
+    {
+      "module": "./road-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getAyalonRoad",
+          "local": "getAyalonRoad",
+          "type_only": false
+        },
+        {
+          "imported": "getBakedRoad",
+          "local": "getBakedRoad",
+          "type_only": false
+        }
+      ],
+      "line": 27
+    },
+    {
+      "module": "./sky-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getSkyDay",
+          "local": "getSkyDay",
+          "type_only": false
+        },
+        {
+          "imported": "getSkyNight",
+          "local": "getSkyNight",
+          "type_only": false
+        }
+      ],
+      "line": 28
+    },
+    {
+      "module": "./blob-assets",
+      "type_only": false,
+      "symbols": [
+        {
+          "imported": "getBlob",
+          "local": "getBlob",
+          "type_only": false
+        }
+      ],
+      "line": 29
+    }
+  ],
+  "exports": [
+    {
+      "name": "World",
+      "kind": "TypeAliasDeclaration",
+      "line_start": 31,
+      "sha256": "a96118a7f21ba7a2e7d7d155a0b29936b7b9ff67c31b3cacddfcf378dd9e69d2"
+    },
+    {
+      "name": "createWorld",
+      "kind": "FunctionDeclaration",
+      "line_start": 478,
+      "sha256": "af4e2dd061bca30267b70c0fdd4d91033b54567a364a4c6ab9b4076b2d49306d"
+    }
+  ],
+  "module_state": {
+    "mutable_declarations": [
+      {
+        "names": [
+          "_dummy"
+        ],
+        "kind": "FirstStatement",
+        "exported": false,
+        "default_export": false,
+        "variable_kind": "var",
+        "line_start": 61,
+        "line_end": 61,
+        "bytes": 34,
+        "sha256": "ef9f7524975948ea0f75ebe850bdae6db011fbb58d11e5e11ff4e0d3a5c26a56",
+        "top_level_references": [],
+        "imported_references": [
+          {
+            "name": "THREE",
+            "module": "three"
+          }
+        ]
+      },
+      {
+        "names": [
+          "_color"
+        ],
+        "kind": "FirstStatement",
+        "exported": false,
+        "default_export": false,
+        "variable_kind": "var",
+        "line_start": 62,
+        "line_end": 62,
+        "bytes": 31,
+        "sha256": "bb8149e128563e20e95bf262d41be531387302734e8c5d375c81e3f35e951164",
+        "top_level_references": [],
+        "imported_references": [
+          {
+            "name": "THREE",
+            "module": "three"
+          }
+        ]
+      }
+    ],
+    "top_level_reassignments": []
+  },
+  "create_world": {
+    "declaration_line_start": 478,
+    "declaration_line_end": 2794,
+    "immediate_declarations": [
+      {
+        "names": [
+          "group"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 479,
+        "line_end": 479,
+        "bytes": 32
+      },
+      {
+        "names": [
+          "bag"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 480,
+        "line_end": 480,
+        "bytes": 29
+      },
+      {
+        "names": [
+          "shared"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 481,
+        "line_end": 481,
+        "bytes": 37
+      },
+      {
+        "names": [
+          "keep"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 517,
+        "line_end": 521,
+        "bytes": 118
+      },
+      {
+        "names": [
+          "rng"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 522,
+        "line_end": 522,
+        "bytes": 33
+      },
+      {
+        "names": [
+          "isNight"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 523,
+        "line_end": 523,
+        "bytes": 20
+      },
+      {
+        "names": [
+          "clock"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 524,
+        "line_end": 524,
+        "bytes": 30
+      },
+      {
+        "names": [
+          "wx"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 525,
+        "line_end": 525,
+        "bytes": 26
+      },
+      {
+        "names": [
+          "lodCrowns"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 526,
+        "line_end": 526,
+        "bytes": 21
+      },
+      {
+        "names": [
+          "lodTrunks"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 527,
+        "line_end": 527,
+        "bytes": 21
+      },
+      {
+        "names": [
+          "lodBills"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 528,
+        "line_end": 528,
+        "bytes": 20
+      },
+      {
+        "names": [
+          "lodShads"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 529,
+        "line_end": 529,
+        "bytes": 20
+      },
+      {
+        "names": [
+          "lodWear"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 530,
+        "line_end": 530,
+        "bytes": 42
+      },
+      {
+        "names": [
+          "lodPuddles"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 531,
+        "line_end": 531,
+        "bytes": 50
+      },
+      {
+        "names": [
+          "preset"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 532,
+        "line_end": 532,
+        "bytes": 40
+      },
+      {
+        "names": [
+          "sky"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 533,
+        "line_end": 533,
+        "bytes": 22
+      },
+      {
+        "names": [
+          "sun"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 535,
+        "line_end": 535,
+        "bytes": 32
+      },
+      {
+        "names": [
+          "lightAim"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 536,
+        "line_end": 536,
+        "bytes": 37
+      },
+      {
+        "names": [
+          "hemi"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 539,
+        "line_end": 539,
+        "bytes": 41
+      },
+      {
+        "names": [
+          "dir"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 541,
+        "line_end": 541,
+        "bytes": 41
+      },
+      {
+        "names": [
+          "dirNear"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 556,
+        "line_end": 556,
+        "bytes": 45
+      },
+      {
+        "names": [
+          "fill"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 570,
+        "line_end": 570,
+        "bytes": 42
+      },
+      {
+        "names": [
+          "ambient"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 572,
+        "line_end": 572,
+        "bytes": 54
+      },
+      {
+        "names": [
+          "flareCol"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 574,
+        "line_end": 574,
+        "bytes": 35
+      },
+      {
+        "names": [
+          "lensflare"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 575,
+        "line_end": 575,
+        "bytes": 39
+      },
+      {
+        "names": [
+          "stars"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 596,
+        "line_end": 596,
+        "bytes": 26
+      },
+      {
+        "names": [
+          "moonMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 602,
+        "line_end": 605,
+        "bytes": 93
+      },
+      {
+        "names": [
+          "moonMesh"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 606,
+        "line_end": 606,
+        "bytes": 85
+      },
+      {
+        "names": [
+          "moonHaloMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 611,
+        "line_end": 618,
+        "bytes": 179
+      },
+      {
+        "names": [
+          "moonHalo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 619,
+        "line_end": 619,
+        "bytes": 89
+      },
+      {
+        "names": [
+          "sunMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 623,
+        "line_end": 627,
+        "bytes": 115
+      },
+      {
+        "names": [
+          "sunMesh"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 628,
+        "line_end": 628,
+        "bytes": 83
+      },
+      {
+        "names": [
+          "sunHaloMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 633,
+        "line_end": 641,
+        "bytes": 201
+      },
+      {
+        "names": [
+          "sunHalo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 642,
+        "line_end": 642,
+        "bytes": 87
+      },
+      {
+        "names": [
+          "skyDomeMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 647,
+        "line_end": 653,
+        "bytes": 189
+      },
+      {
+        "names": [
+          "skyDome"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 654,
+        "line_end": 654,
+        "bytes": 89
+      },
+      {
+        "names": [
+          "span"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 658,
+        "line_end": 658,
+        "bytes": 15
+      },
+      {
+        "names": [
+          "groundCol"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 660,
+        "line_end": 660,
+        "bytes": 236
+      },
+      {
+        "names": [
+          "gMap"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 661,
+        "line_end": 661,
+        "bytes": 45
+      },
+      {
+        "names": [
+          "ground"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 664,
+        "line_end": 670,
+        "bytes": 472
+      },
+      {
+        "names": [
+          "domeMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 675,
+        "line_end": 681,
+        "bytes": 288
+      },
+      {
+        "names": [
+          "dome"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 682,
+        "line_end": 682,
+        "bytes": 118
+      },
+      {
+        "names": [
+          "lanes"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 743,
+        "line_end": 743,
+        "bytes": 32
+      },
+      {
+        "names": [
+          "roadMaps"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 744,
+        "line_end": 744,
+        "bytes": 39
+      },
+      {
+        "names": [
+          "roadMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 746,
+        "line_end": 758,
+        "bytes": 336
+      },
+      {
+        "names": [
+          "road"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 762,
+        "line_end": 762,
+        "bytes": 61
+      },
+      {
+        "names": [
+          "edgeMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 765,
+        "line_end": 771,
+        "bytes": 175
+      },
+      {
+        "names": [
+          "urban"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1027,
+        "line_end": 1027,
+        "bytes": 164
+      },
+      {
+        "names": [
+          "zebraGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1028,
+        "line_end": 1028,
+        "bytes": 63
+      },
+      {
+        "names": [
+          "zebraMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1029,
+        "line_end": 1029,
+        "bytes": 72
+      },
+      {
+        "names": [
+          "stopGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1030,
+        "line_end": 1030,
+        "bytes": 76
+      },
+      {
+        "names": [
+          "paintAt"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1031,
+        "line_end": 1050,
+        "bytes": 772
+      },
+      {
+        "names": [
+          "wearMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1057,
+        "line_end": 1066,
+        "bytes": 280
+      },
+      {
+        "names": [
+          "wearGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1067,
+        "line_end": 1067,
+        "bytes": 111
+      },
+      {
+        "names": [
+          "wearN"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1068,
+        "line_end": 1068,
+        "bytes": 58
+      },
+      {
+        "names": [
+          "wear"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1069,
+        "line_end": 1069,
+        "bytes": 62
+      },
+      {
+        "names": [
+          "rightLane"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1070,
+        "line_end": 1070,
+        "bytes": 60
+      },
+      {
+        "names": [
+          "wearI"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1071,
+        "line_end": 1071,
+        "bytes": 14
+      },
+      {
+        "names": [
+          "curbTex"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1102,
+        "line_end": 1102,
+        "bytes": 168
+      },
+      {
+        "names": [
+          "curbMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1103,
+        "line_end": 1111,
+        "bytes": 219
+      },
+      {
+        "names": [
+          "jerseySrc"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1145,
+        "line_end": 1145,
+        "bytes": 34
+      },
+      {
+        "names": [
+          "jerseyMap"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1146,
+        "line_end": 1146,
+        "bytes": 66
+      },
+      {
+        "names": [
+          "jerseyMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1151,
+        "line_end": 1157,
+        "bytes": 170
+      },
+      {
+        "names": [
+          "walkTex"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1172,
+        "line_end": 1172,
+        "bytes": 40
+      },
+      {
+        "names": [
+          "walkMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1174,
+        "line_end": 1179,
+        "bytes": 145
+      },
+      {
+        "names": [
+          "shoulderMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1187,
+        "line_end": 1192,
+        "bytes": 153
+      },
+      {
+        "names": [
+          "railMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1280,
+        "line_end": 1286,
+        "bytes": 198
+      },
+      {
+        "names": [
+          "mirror"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1291,
+        "line_end": 1291,
+        "bytes": 36
+      },
+      {
+        "names": [
+          "planarOk"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1292,
+        "line_end": 1292,
+        "bytes": 20
+      },
+      {
+        "names": [
+          "bodies"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1313,
+        "line_end": 1313,
+        "bytes": 78
+      },
+      {
+        "names": [
+          "streets"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1314,
+        "line_end": 1314,
+        "bytes": 52
+      },
+      {
+        "names": [
+          "ramps"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1315,
+        "line_end": 1315,
+        "bytes": 25
+      },
+      {
+        "names": [
+          "railPostGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1316,
+        "line_end": 1316,
+        "bytes": 73
+      },
+      {
+        "names": [
+          "railPostMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1318,
+        "line_end": 1322,
+        "bytes": 125
+      },
+      {
+        "names": [
+          "postSpots"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1323,
+        "line_end": 1323,
+        "bytes": 21
+      },
+      {
+        "names": [
+          "waterMesh"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1403,
+        "line_end": 1403,
+        "bytes": 14
+      },
+      {
+        "names": [
+          "waterMeshes"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1404,
+        "line_end": 1404,
+        "bytes": 37
+      },
+      {
+        "names": [
+          "waterMats"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1405,
+        "line_end": 1405,
+        "bytes": 51
+      },
+      {
+        "names": [
+          "needFacade"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1506,
+        "line_end": 1506,
+        "bytes": 38
+      },
+      {
+        "names": [
+          "nycMod"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1507,
+        "line_end": 1507,
+        "bytes": 64
+      },
+      {
+        "names": [
+          "facadeDay"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1508,
+        "line_end": 1508,
+        "bytes": 79
+      },
+      {
+        "names": [
+          "facadeNight"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1509,
+        "line_end": 1509,
+        "bytes": 80
+      },
+      {
+        "names": [
+          "facadeEmit"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1510,
+        "line_end": 1510,
+        "bytes": 68
+      },
+      {
+        "names": [
+          "bGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1511,
+        "line_end": 1511,
+        "bytes": 50
+      },
+      {
+        "names": [
+          "bMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1513,
+        "line_end": 1521,
+        "bytes": 571
+      },
+      {
+        "names": [
+          "canyon"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1522,
+        "line_end": 1522,
+        "bytes": 40
+      },
+      {
+        "names": [
+          "maxB"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1523,
+        "line_end": 1523,
+        "bytes": 116
+      },
+      {
+        "names": [
+          "placements"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1524,
+        "line_end": 1524,
+        "bytes": 22
+      },
+      {
+        "names": [
+          "minX"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1525,
+        "line_end": 1525,
+        "bytes": 49
+      },
+      {
+        "names": [
+          "maxX"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1526,
+        "line_end": 1526,
+        "bytes": 47
+      },
+      {
+        "names": [
+          "minZ"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1527,
+        "line_end": 1527,
+        "bytes": 50
+      },
+      {
+        "names": [
+          "maxZ"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1528,
+        "line_end": 1528,
+        "bytes": 48
+      },
+      {
+        "names": [
+          "gap"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1529,
+        "line_end": 1529,
+        "bytes": 227
+      },
+      {
+        "names": [
+          "inWater2"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1530,
+        "line_end": 1533,
+        "bytes": 182
+      },
+      {
+        "names": [
+          "inClear2"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1534,
+        "line_end": 1537,
+        "bytes": 194
+      },
+      {
+        "names": [
+          "heightAt"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1600,
+        "line_end": 1600,
+        "bytes": 461
+      },
+      {
+        "names": [
+          "step"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1601,
+        "line_end": 1601,
+        "bytes": 96
+      },
+      {
+        "names": [
+          "loopCx"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1602,
+        "line_end": 1602,
+        "bytes": 15
+      },
+      {
+        "names": [
+          "loopCz"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1603,
+        "line_end": 1603,
+        "bytes": 15
+      },
+      {
+        "names": [
+          "buildings"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1656,
+        "line_end": 1656,
+        "bytes": 73
+      },
+      {
+        "names": [
+          "palette"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1660,
+        "line_end": 1707,
+        "bytes": 822
+      },
+      {
+        "names": [
+          "crownPlacements"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1739,
+        "line_end": 1739,
+        "bytes": 86
+      },
+      {
+        "names": [
+          "winGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1758,
+        "line_end": 1758,
+        "bytes": 57
+      },
+      {
+        "names": [
+          "facadeWinMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1759,
+        "line_end": 1767,
+        "bytes": 236
+      },
+      {
+        "names": [
+          "maxWin"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1768,
+        "line_end": 1768,
+        "bytes": 54
+      },
+      {
+        "names": [
+          "wins"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1769,
+        "line_end": 1769,
+        "bytes": 67
+      },
+      {
+        "names": [
+          "_off"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1770,
+        "line_end": 1770,
+        "bytes": 33
+      },
+      {
+        "names": [
+          "wi"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1771,
+        "line_end": 1771,
+        "bytes": 11
+      },
+      {
+        "names": [
+          "faces"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1772,
+        "line_end": 1793,
+        "bytes": 256
+      },
+      {
+        "names": [
+          "roofMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1821,
+        "line_end": 1826,
+        "bytes": 168
+      },
+      {
+        "names": [
+          "roofs"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1827,
+        "line_end": 1827,
+        "bytes": 72
+      },
+      {
+        "names": [
+          "nyc"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1839,
+        "line_end": 1839,
+        "bytes": 62
+      },
+      {
+        "names": [
+          "tankGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1840,
+        "line_end": 1840,
+        "bytes": 106
+      },
+      {
+        "names": [
+          "tankMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1841,
+        "line_end": 1846,
+        "bytes": 190
+      },
+      {
+        "names": [
+          "tanks"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1847,
+        "line_end": 1847,
+        "bytes": 179
+      },
+      {
+        "names": [
+          "farMesh"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1857,
+        "line_end": 1857,
+        "bytes": 47
+      },
+      {
+        "names": [
+          "deciduous"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1886,
+        "line_end": 1886,
+        "bytes": 22
+      },
+      {
+        "names": [
+          "stoneHill"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1887,
+        "line_end": 1887,
+        "bytes": 40
+      },
+      {
+        "names": [
+          "pine"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1888,
+        "line_end": 1888,
+        "bytes": 79
+      },
+      {
+        "names": [
+          "acacia"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1889,
+        "line_end": 1889,
+        "bytes": 60
+      },
+      {
+        "names": [
+          "ficusStreet"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1890,
+        "line_end": 1890,
+        "bytes": 167
+      },
+      {
+        "names": [
+          "trunkGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1891,
+        "line_end": 1891,
+        "bytes": 332
+      },
+      {
+        "names": [
+          "trunkMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1893,
+        "line_end": 1898,
+        "bytes": 220
+      },
+      {
+        "names": [
+          "crownGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1899,
+        "line_end": 1899,
+        "bytes": 213
+      },
+      {
+        "names": [
+          "frondMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1900,
+        "line_end": 1908,
+        "bytes": 369
+      },
+      {
+        "names": [
+          "treeSpots"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1909,
+        "line_end": 1909,
+        "bytes": 21
+      },
+      {
+        "names": [
+          "trunks"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1968,
+        "line_end": 1968,
+        "bytes": 77
+      },
+      {
+        "names": [
+          "pineLayers"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1969,
+        "line_end": 1969,
+        "bytes": 32
+      },
+      {
+        "names": [
+          "crowns"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1970,
+        "line_end": 1970,
+        "bytes": 163
+      },
+      {
+        "names": [
+          "ci"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1975,
+        "line_end": 1975,
+        "bytes": 11
+      },
+      {
+        "names": [
+          "snowCapMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1976,
+        "line_end": 1980,
+        "bytes": 127
+      },
+      {
+        "names": [
+          "snowCaps"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1981,
+        "line_end": 1981,
+        "bytes": 138
+      },
+      {
+        "names": [
+          "si"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 1982,
+        "line_end": 1982,
+        "bytes": 11
+      },
+      {
+        "names": [
+          "poleGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2123,
+        "line_end": 2123,
+        "bytes": 69
+      },
+      {
+        "names": [
+          "poleMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2125,
+        "line_end": 2130,
+        "bytes": 144
+      },
+      {
+        "names": [
+          "bulbGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2131,
+        "line_end": 2131,
+        "bytes": 59
+      },
+      {
+        "names": [
+          "bulbMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2132,
+        "line_end": 2138,
+        "bytes": 210
+      },
+      {
+        "names": [
+          "haloGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2139,
+        "line_end": 2139,
+        "bytes": 59
+      },
+      {
+        "names": [
+          "haloMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2140,
+        "line_end": 2146,
+        "bytes": 173
+      },
+      {
+        "names": [
+          "lampCount"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2147,
+        "line_end": 2147,
+        "bytes": 329
+      },
+      {
+        "names": [
+          "lampStride"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2148,
+        "line_end": 2148,
+        "bytes": 90
+      },
+      {
+        "names": [
+          "poles"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2149,
+        "line_end": 2149,
+        "bytes": 80
+      },
+      {
+        "names": [
+          "bulbs"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2150,
+        "line_end": 2150,
+        "bytes": 80
+      },
+      {
+        "names": [
+          "halos"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2151,
+        "line_end": 2151,
+        "bytes": 80
+      },
+      {
+        "names": [
+          "lampPos"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2152,
+        "line_end": 2152,
+        "bytes": 36
+      },
+      {
+        "names": [
+          "poolGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2172,
+        "line_end": 2172,
+        "bytes": 56
+      },
+      {
+        "names": [
+          "poolMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2174,
+        "line_end": 2180,
+        "bytes": 173
+      },
+      {
+        "names": [
+          "pools"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2181,
+        "line_end": 2181,
+        "bytes": 80
+      },
+      {
+        "names": [
+          "natureTrack"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2224,
+        "line_end": 2224,
+        "bytes": 198
+      },
+      {
+        "names": [
+          "crowdN"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2225,
+        "line_end": 2225,
+        "bytes": 177
+      },
+      {
+        "names": [
+          "boardGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2273,
+        "line_end": 2273,
+        "bytes": 61
+      },
+      {
+        "names": [
+          "postGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2274,
+        "line_end": 2274,
+        "bytes": 61
+      },
+      {
+        "names": [
+          "postMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2275,
+        "line_end": 2279,
+        "bytes": 117
+      },
+      {
+        "names": [
+          "ads"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2280,
+        "line_end": 2301,
+        "bytes": 319
+      },
+      {
+        "names": [
+          "nightLights"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2324,
+        "line_end": 2324,
+        "bytes": 42
+      },
+      {
+        "names": [
+          "puddleGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2334,
+        "line_end": 2334,
+        "bytes": 58
+      },
+      {
+        "names": [
+          "puddleMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2336,
+        "line_end": 2345,
+        "bytes": 236
+      },
+      {
+        "names": [
+          "puddleN"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2346,
+        "line_end": 2346,
+        "bytes": 19
+      },
+      {
+        "names": [
+          "puddlePos"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2347,
+        "line_end": 2347,
+        "bytes": 97
+      },
+      {
+        "names": [
+          "puddles"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2348,
+        "line_end": 2348,
+        "bytes": 71
+      },
+      {
+        "names": [
+          "neonGroup"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2371,
+        "line_end": 2371,
+        "bytes": 36
+      },
+      {
+        "names": [
+          "neonGeo"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2373,
+        "line_end": 2373,
+        "bytes": 60
+      },
+      {
+        "names": [
+          "neonMats"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2374,
+        "line_end": 2378,
+        "bytes": 201
+      },
+      {
+        "names": [
+          "neonStep"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2379,
+        "line_end": 2379,
+        "bytes": 100
+      },
+      {
+        "names": [
+          "neonLights"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2389,
+        "line_end": 2389,
+        "bytes": 42
+      },
+      {
+        "names": [
+          "landmarkGlows"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2398,
+        "line_end": 2398,
+        "bytes": 33
+      },
+      {
+        "names": [
+          "emitList"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2399,
+        "line_end": 2399,
+        "bytes": 28
+      },
+      {
+        "names": [
+          "colliders"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2405,
+        "line_end": 2405,
+        "bytes": 33
+      },
+      {
+        "names": [
+          "movers"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2406,
+        "line_end": 2406,
+        "bytes": 27
+      },
+      {
+        "names": [
+          "edgeStep"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2412,
+        "line_end": 2412,
+        "bytes": 69
+      },
+      {
+        "names": [
+          "wallD"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2413,
+        "line_end": 2413,
+        "bytes": 37
+      },
+      {
+        "names": [
+          "bHits"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2429,
+        "line_end": 2429,
+        "bytes": 14
+      },
+      {
+        "names": [
+          "start"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2441,
+        "line_end": 2441,
+        "bytes": 31
+      },
+      {
+        "names": [
+          "stripe"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2442,
+        "line_end": 2446,
+        "bytes": 202
+      },
+      {
+        "names": [
+          "gatePoleMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2461,
+        "line_end": 2465,
+        "bytes": 122
+      },
+      {
+        "names": [
+          "startMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2466,
+        "line_end": 2466,
+        "bytes": 72
+      },
+      {
+        "names": [
+          "cpMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2467,
+        "line_end": 2467,
+        "bytes": 68
+      },
+      {
+        "names": [
+          "followShadows"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2494,
+        "line_end": 2513,
+        "bytes": 786
+      },
+      {
+        "names": [
+          "followMirror"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2514,
+        "line_end": 2526,
+        "bytes": 575
+      },
+      {
+        "names": [
+          "tick"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2527,
+        "line_end": 2584,
+        "bytes": 2461
+      },
+      {
+        "names": [
+          "groundMat"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2585,
+        "line_end": 2585,
+        "bytes": 34
+      },
+      {
+        "names": [
+          "walkStd"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2586,
+        "line_end": 2586,
+        "bytes": 24
+      },
+      {
+        "names": [
+          "applyWet"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2587,
+        "line_end": 2619,
+        "bytes": 1215
+      },
+      {
+        "names": [
+          "_dayHemi"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2620,
+        "line_end": 2620,
+        "bytes": 42
+      },
+      {
+        "names": [
+          "_mornHemi"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2621,
+        "line_end": 2621,
+        "bytes": 44
+      },
+      {
+        "names": [
+          "_nightHemi"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2622,
+        "line_end": 2622,
+        "bytes": 45
+      },
+      {
+        "names": [
+          "_dayDir"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2623,
+        "line_end": 2623,
+        "bytes": 42
+      },
+      {
+        "names": [
+          "_mornDir"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2624,
+        "line_end": 2624,
+        "bytes": 43
+      },
+      {
+        "names": [
+          "_nightDir"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2625,
+        "line_end": 2625,
+        "bytes": 44
+      },
+      {
+        "names": [
+          "_moon"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2626,
+        "line_end": 2626,
+        "bytes": 34
+      },
+      {
+        "names": [
+          "setClock"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2627,
+        "line_end": 2736,
+        "bytes": 4381
+      },
+      {
+        "names": [
+          "setTime"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2737,
+        "line_end": 2737,
+        "bytes": 72
+      },
+      {
+        "names": [
+          "setWeather"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2738,
+        "line_end": 2741,
+        "bytes": 81
+      },
+      {
+        "names": [
+          "setLod"
+        ],
+        "kind": "FirstStatement",
+        "line_start": 2742,
+        "line_end": 2757,
+        "bytes": 552
+      }
+    ],
+    "returns": [
+      {
+        "line": 518,
+        "expression_kind": "Identifier",
+        "expression": "d",
+        "object_keys": []
+      },
+      {
+        "line": 520,
+        "expression_kind": "Identifier",
+        "expression": "d",
+        "object_keys": []
+      },
+      {
+        "line": 1531,
+        "expression_kind": "TrueKeyword",
+        "expression": "true",
+        "object_keys": []
+      },
+      {
+        "line": 1532,
+        "expression_kind": "FalseKeyword",
+        "expression": "false",
+        "object_keys": []
+      },
+      {
+        "line": 1535,
+        "expression_kind": "TrueKeyword",
+        "expression": "true",
+        "object_keys": []
+      },
+      {
+        "line": 1536,
+        "expression_kind": "FalseKeyword",
+        "expression": "false",
+        "object_keys": []
+      },
+      {
+        "line": 2735,
+        "expression_kind": "Identifier",
+        "expression": "next",
+        "object_keys": []
+      },
+      {
+        "line": 2740,
+        "expression_kind": "CallExpression",
+        "expression": "setClock(clock)",
+        "object_keys": []
+      },
+      {
+        "line": 2759,
+        "expression_kind": "ObjectLiteralExpression",
+        "expression": "{\n    group,\n    sun,\n    sky,\n    dir,\n    dirNear,\n    waterMesh,\n    colliders,\n    streets,\n    ramps,\n    get night() {\n      return isNight;\n    },\n    get weather() {\n      return wx;\n    },\n    followShadows,\n    followMirror,\n    s",
+        "object_keys": [
+          "group",
+          "sun",
+          "sky",
+          "dir",
+          "dirNear",
+          "waterMesh",
+          "colliders",
+          "streets",
+          "ramps",
+          "night",
+          "weather",
+          "followShadows",
+          "followMirror",
+          "setPlanar",
+          "sunDir",
+          "tick",
+          "setTime",
+          "setClock",
+          "clock",
+          "setWeather",
+          "setLod",
+          "dispose"
+        ]
+      },
+      {
+        "line": 2770,
+        "expression_kind": "Identifier",
+        "expression": "isNight",
+        "object_keys": []
+      },
+      {
+        "line": 2773,
+        "expression_kind": "Identifier",
+        "expression": "wx",
+        "object_keys": []
+      },
+      {
+        "line": 2786,
+        "expression_kind": "Identifier",
+        "expression": "clock",
+        "object_keys": []
+      }
+    ],
+    "final_public_return": {
+      "line": 2759,
+      "expression_kind": "ObjectLiteralExpression",
+      "expression": "{\n    group,\n    sun,\n    sky,\n    dir,\n    dirNear,\n    waterMesh,\n    colliders,\n    streets,\n    ramps,\n    get night() {\n      return isNight;\n    },\n    get weather() {\n      return wx;\n    },\n    followShadows,\n    followMirror,\n    s",
+      "object_keys": [
+        "group",
+        "sun",
+        "sky",
+        "dir",
+        "dirNear",
+        "waterMesh",
+        "colliders",
+        "streets",
+        "ramps",
+        "night",
+        "weather",
+        "followShadows",
+        "followMirror",
+        "setPlanar",
+        "sunDir",
+        "tick",
+        "setTime",
+        "setClock",
+        "clock",
+        "setWeather",
+        "setLod",
+        "dispose"
+      ]
+    },
+    "lifecycle": {
+      "group": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "sun": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "sky": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "dir": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "dirNear": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "waterMesh": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "colliders": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "streets": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "ramps": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "night": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "weather": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "followShadows": {
+        "declaration": "ArrowFunction",
+        "line_start": 2494,
+        "line_end": 2513,
+        "sha256": "79134c21e654ccf05af6a64f0475d33348388e64e68054137ea4984571ccdbe6",
+        "call_sequence": [
+          {
+            "line": 2501,
+            "callee": "dir.target.position.set",
+            "text": "dir.target.position.set(x, y, z)"
+          },
+          {
+            "line": 2503,
+            "callee": "dir.position.set",
+            "text": "dir.position.set(x + lightAim.x * dist, y + Math.max(28, lightAim.y * dist), z + lightAim.z * dist)"
+          },
+          {
+            "line": 2503,
+            "callee": "Math.max",
+            "text": "Math.max(28, lightAim.y * dist)"
+          },
+          {
+            "line": 2504,
+            "callee": "dir.target.updateMatrixWorld",
+            "text": "dir.target.updateMatrixWorld()"
+          },
+          {
+            "line": 2505,
+            "callee": "dir.shadow.camera.updateProjectionMatrix",
+            "text": "dir.shadow.camera.updateProjectionMatrix()"
+          },
+          {
+            "line": 2506,
+            "callee": "dirNear.target.position.set",
+            "text": "dirNear.target.position.set(x, y, z)"
+          },
+          {
+            "line": 2508,
+            "callee": "dirNear.position.set",
+            "text": "dirNear.position.set(x + lightAim.x * distN, y + Math.max(18, lightAim.y * distN), z + lightAim.z * distN)"
+          },
+          {
+            "line": 2508,
+            "callee": "Math.max",
+            "text": "Math.max(18, lightAim.y * distN)"
+          },
+          {
+            "line": 2509,
+            "callee": "dirNear.target.updateMatrixWorld",
+            "text": "dirNear.target.updateMatrixWorld()"
+          },
+          {
+            "line": 2510,
+            "callee": "dirNear.shadow.camera.updateProjectionMatrix",
+            "text": "dirNear.shadow.camera.updateProjectionMatrix()"
+          },
+          {
+            "line": 2511,
+            "callee": "dirNear.color.copy",
+            "text": "dirNear.color.copy(dir.color)"
+          }
+        ]
+      },
+      "followMirror": {
+        "declaration": "ArrowFunction",
+        "line_start": 2514,
+        "line_end": 2526,
+        "sha256": "7133dc1bf62eaadaef8cd7894b70b61da660b7e3775d11c7400b9dbd69e3d3b9",
+        "call_sequence": [
+          {
+            "line": 2517,
+            "callee": "mirror.position.set",
+            "text": "mirror.position.set(x, y + 0.03, z)"
+          },
+          {
+            "line": 2518,
+            "callee": "mirror.rotation.set",
+            "text": "mirror.rotation.set(-Math.PI / 2, yaw, 0)"
+          },
+          {
+            "line": 2524,
+            "callee": "col.uniforms.color.value.setHex",
+            "text": "col.uniforms.color.value.setHex(c)"
+          }
+        ]
+      },
+      "setPlanar": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "sunDir": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "tick": {
+        "declaration": "ArrowFunction",
+        "line_start": 2527,
+        "line_end": 2584,
+        "sha256": "c69697bc7b183363e52fa5715cc66f4f172e146ddfa321811ec0194c233e2901",
+        "call_sequence": [
+          {
+            "line": 2534,
+            "callee": "Math.min",
+            "text": "Math.min(mv.pts.length - 2, Math.floor(f))"
+          },
+          {
+            "line": 2534,
+            "callee": "Math.floor",
+            "text": "Math.floor(f)"
+          },
+          {
+            "line": 2538,
+            "callee": "mv.mesh.position.set",
+            "text": "mv.mesh.position.set(a.x + (b.x - a.x) * k, a.y + (b.y - a.y) * k, a.z + (b.z - a.z) * k)"
+          },
+          {
+            "line": 2539,
+            "callee": "Math.atan2",
+            "text": "Math.atan2(Math.sin(b.yaw - a.yaw), Math.cos(b.yaw - a.yaw))"
+          },
+          {
+            "line": 2539,
+            "callee": "Math.sin",
+            "text": "Math.sin(b.yaw - a.yaw)"
+          },
+          {
+            "line": 2539,
+            "callee": "Math.cos",
+            "text": "Math.cos(b.yaw - a.yaw)"
+          },
+          {
+            "line": 2543,
+            "callee": "Math.sin",
+            "text": "Math.sin(t * 0.7)"
+          },
+          {
+            "line": 2552,
+            "callee": "Math.sin",
+            "text": "Math.sin(now * 0.013)"
+          },
+          {
+            "line": 2553,
+            "callee": "nightAmt",
+            "text": "nightAmt(clock)"
+          },
+          {
+            "line": 2554,
+            "callee": "lerp",
+            "text": "lerp(0.22, 0.34, n)"
+          },
+          {
+            "line": 2555,
+            "callee": "lerp",
+            "text": "lerp(0.55, 0.52, n)"
+          },
+          {
+            "line": 2557,
+            "callee": "lerp",
+            "text": "lerp(0.08, 0.42, nightAmt(clock))"
+          },
+          {
+            "line": 2557,
+            "callee": "nightAmt",
+            "text": "nightAmt(clock)"
+          },
+          {
+            "line": 2560,
+            "callee": "Math.sin",
+            "text": "Math.sin(t * 2.2)"
+          },
+          {
+            "line": 2563,
+            "callee": "_dummy.position.set",
+            "text": "_dummy.position.set(p.x, p.y, p.z)"
+          },
+          {
+            "line": 2564,
+            "callee": "_dummy.scale.set",
+            "text": "_dummy.scale.set(p.sx * ripple, 1, p.sz * ripple)"
+          },
+          {
+            "line": 2565,
+            "callee": "_dummy.rotation.set",
+            "text": "_dummy.rotation.set(0, p.rot + t * 0.04, 0)"
+          },
+          {
+            "line": 2566,
+            "callee": "_dummy.updateMatrix",
+            "text": "_dummy.updateMatrix()"
+          },
+          {
+            "line": 2567,
+            "callee": "puddles.setMatrixAt",
+            "text": "puddles.setMatrixAt(i, _dummy.matrix)"
+          },
+          {
+            "line": 2572,
+            "callee": "lerp",
+            "text": "lerp(0.1, 0.4, nightAmt(clock))"
+          },
+          {
+            "line": 2572,
+            "callee": "nightAmt",
+            "text": "nightAmt(clock)"
+          },
+          {
+            "line": 2574,
+            "callee": "nightAmt",
+            "text": "nightAmt(clock)"
+          },
+          {
+            "line": 2575,
+            "callee": "lampPos.map((p, i) => ({\n      i,\n      d: (p.x - x) * (p.x - x) + (p.z - z) * (p.z - z)\n    })).sort",
+            "text": "lampPos.map((p, i) => ({\n      i,\n      d: (p.x - x) * (p.x - x) + (p.z - z) * (p.z - z)\n    })).sort((a, b) => a.d - b.d)"
+          },
+          {
+            "line": 2575,
+            "callee": "lampPos.map",
+            "text": "lampPos.map((p, i) => ({\n      i,\n      d: (p.x - x) * (p.x - x) + (p.z - z) * (p.z - z)\n    }))"
+          },
+          {
+            "line": 2581,
+            "callee": "nightLights[i].position.copy",
+            "text": "nightLights[i].position.copy(src)"
+          },
+          {
+            "line": 2582,
+            "callee": "nightLights[i].target.position.set",
+            "text": "nightLights[i].target.position.set(src.x, src.y - 5.2, src.z)"
+          }
+        ]
+      },
+      "setTime": {
+        "declaration": "ArrowFunction",
+        "line_start": 2737,
+        "line_end": 2737,
+        "sha256": "2ddb3dfd521e096b98d81e96ed6bdc15e3e20dece2895b707b60b57a0799e81f",
+        "call_sequence": [
+          {
+            "line": 2737,
+            "callee": "setClock",
+            "text": "setClock(nextNight ? 0.9 : 0.5)"
+          }
+        ]
+      },
+      "setClock": {
+        "declaration": "ArrowFunction",
+        "line_start": 2627,
+        "line_end": 2736,
+        "sha256": "2d447b2460b48b9d5f31b6524b70ece8e3e8de1050d93891e938c6c8b561b94b",
+        "call_sequence": [
+          {
+            "line": 2629,
+            "callee": "nightAmt",
+            "text": "nightAmt(clock)"
+          },
+          {
+            "line": 2632,
+            "callee": "skyAt",
+            "text": "skyAt(def, clock, wx)"
+          },
+          {
+            "line": 2633,
+            "callee": "applySky",
+            "text": "applySky(sky, sun, next)"
+          },
+          {
+            "line": 2635,
+            "callee": "skyDomeMat.color.setHex",
+            "text": "skyDomeMat.color.setHex(n > 0.5 ? 0x2a4a6c : 0x3c9ee0)"
+          },
+          {
+            "line": 2637,
+            "callee": "lightAim.copy",
+            "text": "lightAim.copy(sun)"
+          },
+          {
+            "line": 2639,
+            "callee": "THREE.MathUtils.degToRad",
+            "text": "THREE.MathUtils.degToRad(46)"
+          },
+          {
+            "line": 2640,
+            "callee": "THREE.MathUtils.degToRad",
+            "text": "THREE.MathUtils.degToRad(def.sky.azimuth + 172)"
+          },
+          {
+            "line": 2641,
+            "callee": "_moon.setFromSphericalCoords",
+            "text": "_moon.setFromSphericalCoords(1, phi, theta)"
+          },
+          {
+            "line": 2642,
+            "callee": "lightAim.copy(sun).lerp",
+            "text": "lightAim.copy(sun).lerp(_moon, (n - 0.58) / 0.42)"
+          },
+          {
+            "line": 2642,
+            "callee": "lightAim.copy",
+            "text": "lightAim.copy(sun)"
+          },
+          {
+            "line": 2645,
+            "callee": "hemi.color.copy",
+            "text": "hemi.color.copy(_nightHemi)"
+          },
+          {
+            "line": 2646,
+            "callee": "dir.color.copy",
+            "text": "dir.color.copy(_nightDir)"
+          },
+          {
+            "line": 2649,
+            "callee": "fill.color.setHex",
+            "text": "fill.color.setHex(16758880)"
+          },
+          {
+            "line": 2651,
+            "callee": "ambient.color.setHex",
+            "text": "ambient.color.setHex(0x5a7898)"
+          },
+          {
+            "line": 2654,
+            "callee": "hemi.color.copy",
+            "text": "hemi.color.copy(_mornHemi)"
+          },
+          {
+            "line": 2655,
+            "callee": "dir.color.copy",
+            "text": "dir.color.copy(_mornDir)"
+          },
+          {
+            "line": 2658,
+            "callee": "fill.color.setHex",
+            "text": "fill.color.setHex(16760976)"
+          },
+          {
+            "line": 2660,
+            "callee": "ambient.color.setHex",
+            "text": "ambient.color.setHex(13682872)"
+          },
+          {
+            "line": 2663,
+            "callee": "hemi.color.copy",
+            "text": "hemi.color.copy(_dayHemi)"
+          },
+          {
+            "line": 2664,
+            "callee": "dir.color.copy",
+            "text": "dir.color.copy(_dayDir)"
+          },
+          {
+            "line": 2667,
+            "callee": "fill.color.setHex",
+            "text": "fill.color.setHex(10139856)"
+          },
+          {
+            "line": 2669,
+            "callee": "ambient.color.setHex",
+            "text": "ambient.color.setHex(11057352)"
+          },
+          {
+            "line": 2672,
+            "callee": "hemi.groundColor.setHex",
+            "text": "hemi.groundColor.setHex(n > 0.5 ? 1709072 : 5919304)"
+          },
+          {
+            "line": 2673,
+            "callee": "dir.position.copy(lightAim).multiplyScalar",
+            "text": "dir.position.copy(lightAim).multiplyScalar(95)"
+          },
+          {
+            "line": 2673,
+            "callee": "dir.position.copy",
+            "text": "dir.position.copy(lightAim)"
+          },
+          {
+            "line": 2674,
+            "callee": "flareCol.setHex",
+            "text": "flareCol.setHex(n > 0.55 ? 16760944 : 16767136)"
+          },
+          {
+            "line": 2676,
+            "callee": "lerp",
+            "text": "lerp(1.05, 0.7, n)"
+          },
+          {
+            "line": 2678,
+            "callee": "hemi.color.setHex",
+            "text": "hemi.color.setHex(6981832)"
+          },
+          {
+            "line": 2679,
+            "callee": "lerp",
+            "text": "lerp(0.26, 0.52, n)"
+          },
+          {
+            "line": 2680,
+            "callee": "lerp",
+            "text": "lerp(0.72, 1.02, n)"
+          },
+          {
+            "line": 2681,
+            "callee": "fill.color.setHex",
+            "text": "fill.color.setHex(16734858)"
+          },
+          {
+            "line": 2682,
+            "callee": "lerp",
+            "text": "lerp(0.1, 0.42, n)"
+          },
+          {
+            "line": 2685,
+            "callee": "clamp",
+            "text": "clamp((n - 0.45) * 2.4, 0, 0.92)"
+          },
+          {
+            "line": 2688,
+            "callee": "moonMesh.position.copy(lightAim).multiplyScalar",
+            "text": "moonMesh.position.copy(lightAim).multiplyScalar(420)"
+          },
+          {
+            "line": 2688,
+            "callee": "moonMesh.position.copy",
+            "text": "moonMesh.position.copy(lightAim)"
+          },
+          {
+            "line": 2689,
+            "callee": "moonHalo.position.copy",
+            "text": "moonHalo.position.copy(moonMesh.position)"
+          },
+          {
+            "line": 2694,
+            "callee": "sunMesh.position.copy(lightAim).multiplyScalar",
+            "text": "sunMesh.position.copy(lightAim).multiplyScalar(900)"
+          },
+          {
+            "line": 2694,
+            "callee": "sunMesh.position.copy",
+            "text": "sunMesh.position.copy(lightAim)"
+          },
+          {
+            "line": 2695,
+            "callee": "sunHalo.position.copy",
+            "text": "sunHalo.position.copy(sunMesh.position)"
+          },
+          {
+            "line": 2699,
+            "callee": "applyWet",
+            "text": "applyWet()"
+          },
+          {
+            "line": 2700,
+            "callee": "groundMat.color.setHex",
+            "text": "groundMat.color.setHex(n > 0.5 ? 0x5a626c : groundCol)"
+          },
+          {
+            "line": 2701,
+            "callee": "lerp",
+            "text": "lerp(0.14, 0.08, n)"
+          },
+          {
+            "line": 2702,
+            "callee": "domeMat.color.setHex",
+            "text": "domeMat.color.setHex(n > 0.5 ? 0x1e3854 : clock < 0.38 ? 0x6aaee0 : 0x4a9ad8)"
+          },
+          {
+            "line": 2703,
+            "callee": "walkStd.color.setHex",
+            "text": "walkStd.color.setHex(n > 0.5 ? 9078400 : 12892324)"
+          },
+          {
+            "line": 2704,
+            "callee": "lerp",
+            "text": "lerp(0.22, 0.16, n)"
+          },
+          {
+            "line": 2705,
+            "callee": "shoulderMat.color.setHex",
+            "text": "shoulderMat.color.setHex(n > 0.5 ? 4867128 : def.sand)"
+          },
+          {
+            "line": 2706,
+            "callee": "jerseyMat.color.setHex",
+            "text": "jerseyMat.color.setHex(n > 0.5 ? 9078396 : 12893358)"
+          },
+          {
+            "line": 2710,
+            "callee": "mat.color.setHex",
+            "text": "mat.color.setHex(src.color)"
+          },
+          {
+            "line": 2711,
+            "callee": "mat.color.multiplyScalar",
+            "text": "mat.color.multiplyScalar(lerp(1, 0.5, n))"
+          },
+          {
+            "line": 2711,
+            "callee": "lerp",
+            "text": "lerp(1, 0.5, n)"
+          },
+          {
+            "line": 2712,
+            "callee": "lerp",
+            "text": "lerp(1.7, 2.6, n)"
+          },
+          {
+            "line": 2713,
+            "callee": "lerp",
+            "text": "lerp(0.08, 0.03, n)"
+          },
+          {
+            "line": 2714,
+            "callee": "lerp",
+            "text": "lerp(0.82, 0.9, n)"
+          },
+          {
+            "line": 2718,
+            "callee": "bMat.emissive.setHex",
+            "text": "bMat.emissive.setHex(n > 0.4 ? 16763e3 : 0)"
+          },
+          {
+            "line": 2720,
+            "callee": "lerp",
+            "text": "lerp(0.08, 0.16, n)"
+          },
+          {
+            "line": 2721,
+            "callee": "lerp",
+            "text": "lerp(0.5, 1.15, n)"
+          },
+          {
+            "line": 2724,
+            "callee": "bulbMat.emissive.setHex",
+            "text": "bulbMat.emissive.setHex(n > 0.4 ? 16760944 : 2236962)"
+          },
+          {
+            "line": 2725,
+            "callee": "lerp",
+            "text": "lerp(0.08, 7.2, n)"
+          },
+          {
+            "line": 2733,
+            "callee": "lerp",
+            "text": "lerp(e.day, e.night, n)"
+          },
+          {
+            "line": 2734,
+            "callee": "applyWet",
+            "text": "applyWet()"
+          }
+        ]
+      },
+      "clock": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      },
+      "setWeather": {
+        "declaration": "ArrowFunction",
+        "line_start": 2738,
+        "line_end": 2741,
+        "sha256": "85ce47da28f90190ad78e3f5c388ab236bea9ce41f915bf72e46cb3fef74fad2",
+        "call_sequence": [
+          {
+            "line": 2740,
+            "callee": "setClock",
+            "text": "setClock(clock)"
+          }
+        ]
+      },
+      "setLod": {
+        "declaration": "ArrowFunction",
+        "line_start": 2742,
+        "line_end": 2757,
+        "sha256": "5e68faac5b6284eb983799261a83fb983b50bc1673e8477d50edee9a4f23a2b8",
+        "call_sequence": []
+      },
+      "dispose": {
+        "declaration": "value_or_external",
+        "call_sequence": []
+      }
+    },
+    "side_effect_calls": [
+      {
+        "line": 515,
+        "callee": "shared.add",
+        "text": "shared.add(tex)"
+      },
+      {
+        "line": 540,
+        "callee": "group.add",
+        "text": "group.add(hemi)"
+      },
+      {
+        "line": 554,
+        "callee": "group.add",
+        "text": "group.add(dir)"
+      },
+      {
+        "line": 555,
+        "callee": "group.add",
+        "text": "group.add(dir.target)"
+      },
+      {
+        "line": 568,
+        "callee": "group.add",
+        "text": "group.add(dirNear)"
+      },
+      {
+        "line": 569,
+        "callee": "group.add",
+        "text": "group.add(dirNear.target)"
+      },
+      {
+        "line": 571,
+        "callee": "group.add",
+        "text": "group.add(fill)"
+      },
+      {
+        "line": 573,
+        "callee": "group.add",
+        "text": "group.add(ambient)"
+      },
+      {
+        "line": 584,
+        "callee": "dir.add",
+        "text": "dir.add(lensflare)"
+      },
+      {
+        "line": 601,
+        "callee": "group.add",
+        "text": "group.add(stars.mesh)"
+      },
+      {
+        "line": 610,
+        "callee": "group.add",
+        "text": "group.add(moonMesh)"
+      },
+      {
+        "line": 622,
+        "callee": "group.add",
+        "text": "group.add(moonHalo)"
+      },
+      {
+        "line": 632,
+        "callee": "group.add",
+        "text": "group.add(sunMesh)"
+      },
+      {
+        "line": 646,
+        "callee": "group.add",
+        "text": "group.add(sunHalo)"
+      },
+      {
+        "line": 657,
+        "callee": "group.add",
+        "text": "group.add(skyDome)"
+      },
+      {
+        "line": 674,
+        "callee": "group.add",
+        "text": "group.add(ground)"
+      },
+      {
+        "line": 685,
+        "callee": "group.add",
+        "text": "group.add(dome)"
+      },
+      {
+        "line": 741,
+        "callee": "group.add",
+        "text": "group.add(slopeMesh)"
+      },
+      {
+        "line": 764,
+        "callee": "group.add",
+        "text": "group.add(road)"
+      },
+      {
+        "line": 772,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.16, 0.46)), edgeMat))"
+      },
+      {
+        "line": 773,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.16, 0.46)), edgeMat))"
+      },
+      {
+        "line": 800,
+        "callee": "group.add",
+        "text": "group.add(dashes)"
+      },
+      {
+        "line": 810,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.85, 0.1)), yMat))"
+      },
+      {
+        "line": 811,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.85, 0.1)), yMat))"
+      },
+      {
+        "line": 817,
+        "callee": "group.add",
+        "text": "group.add(opp)"
+      },
+      {
+        "line": 818,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.16, 0.46, 0.08, oppOff)), edgeMat))"
+      },
+      {
+        "line": 819,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.16, 0.46, 0.08, oppOff)), edgeMat))"
+      },
+      {
+        "line": 820,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.62, 0.09, 0.08, oppOff)), yMat))"
+      },
+      {
+        "line": 821,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.62, 0.09, 0.08, oppOff)), yMat))"
+      },
+      {
+        "line": 833,
+        "callee": "group.add",
+        "text": "group.add(bed)"
+      },
+      {
+        "line": 870,
+        "callee": "group.add",
+        "text": "group.add(jers)"
+      },
+      {
+        "line": 889,
+        "callee": "group.add",
+        "text": "group.add(rails)"
+      },
+      {
+        "line": 910,
+        "callee": "group.add",
+        "text": "group.add(wires)"
+      },
+      {
+        "line": 924,
+        "callee": "group.add",
+        "text": "group.add(poles)"
+      },
+      {
+        "line": 947,
+        "callee": "group.add",
+        "text": "group.add(walls)"
+      },
+      {
+        "line": 976,
+        "callee": "group.add",
+        "text": "group.add(reds, whts)"
+      },
+      {
+        "line": 1009,
+        "callee": "group.add",
+        "text": "group.add(chevs)"
+      },
+      {
+        "line": 1024,
+        "callee": "group.add",
+        "text": "group.add(chevs2)"
+      },
+      {
+        "line": 1042,
+        "callee": "group.add",
+        "text": "group.add(bar)"
+      },
+      {
+        "line": 1048,
+        "callee": "group.add",
+        "text": "group.add(stop)"
+      },
+      {
+        "line": 1082,
+        "callee": "group.add",
+        "text": "group.add(wear)"
+      },
+      {
+        "line": 1099,
+        "callee": "group.add",
+        "text": "group.add(wear2)"
+      },
+      {
+        "line": 1112,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildCurb(built, 1)), curbMat))"
+      },
+      {
+        "line": 1113,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildCurb(built, -1)), curbMat))"
+      },
+      {
+        "line": 1116,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildCurb(built, 1, oppOff)), curbMat))"
+      },
+      {
+        "line": 1117,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildCurb(built, -1, oppOff)), curbMat))"
+      },
+      {
+        "line": 1143,
+        "callee": "group.add",
+        "text": "group.add(eyes)"
+      },
+      {
+        "line": 1159,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildJersey(built, 1)), jerseyMat))"
+      },
+      {
+        "line": 1160,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildJersey(built, -1)), jerseyMat))"
+      },
+      {
+        "line": 1162,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, -0.78, 0.14, 1.38)), capMat))"
+      },
+      {
+        "line": 1163,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, -0.78, 0.14, 1.38)), capMat))"
+      },
+      {
+        "line": 1166,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildJersey(built, 1, oppOff)), jerseyMat))"
+      },
+      {
+        "line": 1167,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildJersey(built, -1, oppOff)), jerseyMat))"
+      },
+      {
+        "line": 1168,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, -0.78, 0.14, 1.38, oppOff)), capMat))"
+      },
+      {
+        "line": 1169,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, -0.78, 0.14, 1.38, oppOff)), capMat))"
+      },
+      {
+        "line": 1185,
+        "callee": "group.add",
+        "text": "group.add(walkL, walkR)"
+      },
+      {
+        "line": 1193,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildShoulder(built, 1)), shoulderMat))"
+      },
+      {
+        "line": 1194,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildShoulder(built, -1)), shoulderMat))"
+      },
+      {
+        "line": 1218,
+        "callee": "group.add",
+        "text": "group.add(pole)"
+      },
+      {
+        "line": 1225,
+        "callee": "group.add",
+        "text": "group.add(face)"
+      },
+      {
+        "line": 1241,
+        "callee": "group.add",
+        "text": "group.add(pole)"
+      },
+      {
+        "line": 1248,
+        "callee": "group.add",
+        "text": "group.add(face)"
+      },
+      {
+        "line": 1264,
+        "callee": "group.add",
+        "text": "group.add(pole)"
+      },
+      {
+        "line": 1267,
+        "callee": "group.add",
+        "text": "group.add(head)"
+      },
+      {
+        "line": 1271,
+        "callee": "group.add",
+        "text": "group.add(m)"
+      },
+      {
+        "line": 1288,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildRail(built, 1)), railMat))"
+      },
+      {
+        "line": 1289,
+        "callee": "group.add",
+        "text": "group.add(new THREE.Mesh(keep(buildRail(built, -1)), railMat))"
+      },
+      {
+        "line": 1307,
+        "callee": "group.add",
+        "text": "group.add(mirror)"
+      },
+      {
+        "line": 1309,
+        "callee": "mirror.dispose",
+        "text": "mirror?.dispose()"
+      },
+      {
+        "line": 1310,
+        "callee": "mirror.geometry.dispose",
+        "text": "mirror?.geometry.dispose()"
+      },
+      {
+        "line": 1352,
+        "callee": "group.add",
+        "text": "group.add(posts)"
+      },
+      {
+        "line": 1370,
+        "callee": "group.add",
+        "text": "group.add(sideMesh)"
+      },
+      {
+        "line": 1401,
+        "callee": "group.add",
+        "text": "group.add(stripes)"
+      },
+      {
+        "line": 1426,
+        "callee": "group.add",
+        "text": "group.add(mesh)"
+      },
+      {
+        "line": 1439,
+        "callee": "group.add",
+        "text": "group.add(sand)"
+      },
+      {
+        "line": 1448,
+        "callee": "group.add",
+        "text": "group.add(foam)"
+      },
+      {
+        "line": 1468,
+        "callee": "group.add",
+        "text": "group.add(canal)"
+      },
+      {
+        "line": 1493,
+        "callee": "group.add",
+        "text": "group.add(banks)"
+      },
+      {
+        "line": 1504,
+        "callee": "group.add",
+        "text": "group.add(grass)"
+      },
+      {
+        "line": 1598,
+        "callee": "group.add",
+        "text": "group.add(trunks2, fronds, caps)"
+      },
+      {
+        "line": 1719,
+        "callee": "group.add",
+        "text": "group.add(buildings)"
+      },
+      {
+        "line": 1737,
+        "callee": "group.add",
+        "text": "group.add(roofs2)"
+      },
+      {
+        "line": 1756,
+        "callee": "group.add",
+        "text": "group.add(crowns2)"
+      },
+      {
+        "line": 1820,
+        "callee": "group.add",
+        "text": "group.add(wins)"
+      },
+      {
+        "line": 1838,
+        "callee": "group.add",
+        "text": "group.add(roofs)"
+      },
+      {
+        "line": 1856,
+        "callee": "group.add",
+        "text": "group.add(tanks)"
+      },
+      {
+        "line": 1884,
+        "callee": "group.add",
+        "text": "group.add(far)"
+      },
+      {
+        "line": 2038,
+        "callee": "group.add",
+        "text": "group.add(trunks, crowns)"
+      },
+      {
+        "line": 2067,
+        "callee": "group.add",
+        "text": "group.add(bills)"
+      },
+      {
+        "line": 2073,
+        "callee": "group.add",
+        "text": "group.add(snowCaps)"
+      },
+      {
+        "line": 2094,
+        "callee": "group.add",
+        "text": "group.add(shads)"
+      },
+      {
+        "line": 2121,
+        "callee": "group.add",
+        "text": "group.add(rocks)"
+      },
+      {
+        "line": 2171,
+        "callee": "group.add",
+        "text": "group.add(poles, bulbs, halos)"
+      },
+      {
+        "line": 2193,
+        "callee": "group.add",
+        "text": "group.add(pools)"
+      },
+      {
+        "line": 2222,
+        "callee": "group.add",
+        "text": "group.add(poles2, bulbs2, pools2)"
+      },
+      {
+        "line": 2271,
+        "callee": "group.add",
+        "text": "group.add(crowdBodies, shirts, heads)"
+      },
+      {
+        "line": 2319,
+        "callee": "group.add",
+        "text": "group.add(board)"
+      },
+      {
+        "line": 2322,
+        "callee": "group.add",
+        "text": "group.add(post)"
+      },
+      {
+        "line": 2331,
+        "callee": "group.add",
+        "text": "group.add(spot, spot.target)"
+      },
+      {
+        "line": 2369,
+        "callee": "group.add",
+        "text": "group.add(puddles)"
+      },
+      {
+        "line": 2386,
+        "callee": "neonGroup.add",
+        "text": "neonGroup.add(mesh)"
+      },
+      {
+        "line": 2388,
+        "callee": "group.add",
+        "text": "group.add(neonGroup)"
+      },
+      {
+        "line": 2395,
+        "callee": "group.add",
+        "text": "group.add(pl)"
+      },
+      {
+        "line": 2449,
+        "callee": "group.add",
+        "text": "group.add(stripe)"
+      },
+      {
+        "line": 2459,
+        "callee": "group.add",
+        "text": "group.add(finish)"
+      },
+      {
+        "line": 2478,
+        "callee": "group.add",
+        "text": "group.add(pole)"
+      },
+      {
+        "line": 2483,
+        "callee": "group.add",
+        "text": "group.add(beam)"
+      },
+      {
+        "line": 2491,
+        "callee": "group.add",
+        "text": "group.add(light)"
+      },
+      {
+        "line": 2791,
+        "callee": "d.dispose",
+        "text": "d.dispose()"
+      }
+    ],
+    "assignment_count": 325,
+    "call_count": 1041,
+    "disposal": {
+      "resolved": true,
+      "owner": "src/game/world.ts",
+      "collection": "bag",
+      "iteration_order": "insertion_order",
+      "exact_statement": "for (const d of bag) d.dispose();",
+      "calls_per_item": 1
+    }
+  },
+  "consumers": {
+    "direct_imports": [
+      {
+        "path": "src/game/engine.ts",
+        "module": "./world",
+        "line": 27,
+        "symbols": [
+          {
+            "imported": "createWorld",
+            "local": "createWorld",
+            "type_only": false
+          },
+          {
+            "imported": "World",
+            "local": "World",
+            "type_only": true
+          }
+        ]
+      }
+    ],
+    "token_consumers": [
+      "src/game/engine.ts",
+      "src/game/tracks/brooklynbridge.ts",
+      "src/game/tracks/manhattan.ts"
+    ],
+    "engine_world_access_order": [],
+    "engine_world_access": []
+  },
+  "responsibility_graph": [
+    {
+      "names": [
+        "World"
+      ],
+      "category": "public_contract_or_export",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "Collider",
+          "module": "./types"
+        },
+        {
+          "name": "Ramp",
+          "module": "./types"
+        },
+        {
+          "name": "Sky",
+          "module": "three/examples/jsm/objects/Sky.js"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        },
+        {
+          "name": "Weather",
+          "module": "./types"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Disposable"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": []
+    },
+    {
+      "names": [
+        "Glow"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Emit"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "Mover"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "_dummy"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "_color"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "asphaltTexture"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getBakedRoad",
+          "module": "./road-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "herodianTexture"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getHerodian",
+          "module": "./stone-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "curtainTexture"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getCurtain",
+          "module": "./facade-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "curbTexture"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getCurb",
+          "module": "./curb-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "foliageTexture"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getFoliage",
+          "module": "./tree-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "barkTexture"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getBark",
+          "module": "./tree-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "sidewalkTexture"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getSidewalk",
+          "module": "./walk-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "groundTexture"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getGroundNoise",
+          "module": "./ground-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "foamTex"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getFoam",
+          "module": "./foam-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "tiSignTex"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getSign",
+          "module": "./sign-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "waterNormalTex"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getWaterNormal",
+          "module": "./water-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "checkerTexture"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getChecker",
+          "module": "./water-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "flareTex"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "getFlare0",
+          "module": "./flare-assets"
+        },
+        {
+          "name": "getFlare1",
+          "module": "./flare-assets"
+        }
+      ]
+    },
+    {
+      "names": [
+        "segsOf"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        }
+      ]
+    },
+    {
+      "names": [
+        "samp"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        }
+      ]
+    },
+    {
+      "names": [
+        "buildRoad"
+      ],
+      "category": "generic_support",
+      "dependencies": [
+        "samp",
+        "segsOf"
+      ],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "buildOffsetRoad"
+      ],
+      "category": "generic_support",
+      "dependencies": [
+        "samp",
+        "segsOf"
+      ],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "buildStrip"
+      ],
+      "category": "generic_support",
+      "dependencies": [
+        "samp",
+        "segsOf"
+      ],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "buildCenterLine"
+      ],
+      "category": "generic_support",
+      "dependencies": [
+        "samp",
+        "segsOf"
+      ],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "buildSidewalk"
+      ],
+      "category": "generic_support",
+      "dependencies": [
+        "samp",
+        "segsOf"
+      ],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "buildEdgeLine"
+      ],
+      "category": "generic_support",
+      "dependencies": [
+        "samp",
+        "segsOf"
+      ],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "laneCountFor"
+      ],
+      "category": "track_coupled",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "TrackDef",
+          "module": "./types"
+        }
+      ]
+    },
+    {
+      "names": [
+        "buildCurb"
+      ],
+      "category": "generic_support",
+      "dependencies": [
+        "samp",
+        "segsOf"
+      ],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "buildJersey"
+      ],
+      "category": "generic_support",
+      "dependencies": [
+        "samp",
+        "segsOf"
+      ],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "buildRail"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "buildShoulder"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "applySky"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "Sky",
+          "module": "three/examples/jsm/objects/Sky.js"
+        },
+        {
+          "name": "SkyPreset",
+          "module": "./types"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "aimLight"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "applyLights"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "Lensflare",
+          "module": "three/examples/jsm/objects/Lensflare.js"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        }
+      ]
+    },
+    {
+      "names": [
+        "starField"
+      ],
+      "category": "generic_support",
+      "dependencies": [],
+      "import_dependencies": [
+        {
+          "name": "THREE",
+          "module": "three"
+        },
+        {
+          "name": "hash01",
+          "module": "./math"
+        }
+      ]
+    },
+    {
+      "names": [
+        "createWorld"
+      ],
+      "category": "composition_root",
+      "dependencies": [
+        "Disposable",
+        "Emit",
+        "Glow",
+        "Mover",
+        "_color",
+        "_dummy",
+        "addLandmarks",
+        "aimLight",
+        "applyLights",
+        "applySky",
+        "asphaltTexture",
+        "barkTexture",
+        "buildCurb",
+        "buildEdgeLine",
+        "buildJersey",
+        "buildOffsetRoad",
+        "buildRail",
+        "buildRoad",
+        "buildShoulder",
+        "buildSidewalk",
+        "buildStrip",
+        "checkerTexture",
+        "curbTexture",
+        "flareTex",
+        "foamTex",
+        "foliageTexture",
+        "groundTexture",
+        "laneCountFor",
+        "samp",
+        "segsOf",
+        "sidewalkTexture",
+        "starField",
+        "tiSignTex",
+        "waterNormalTex"
+      ],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        },
+        {
+          "name": "Collider",
+          "module": "./types"
+        },
+        {
+          "name": "LOOKS",
+          "module": "../rendering/EnvironmentState"
+        },
+        {
+          "name": "Lensflare",
+          "module": "three/examples/jsm/objects/Lensflare.js"
+        },
+        {
+          "name": "LensflareElement",
+          "module": "three/examples/jsm/objects/Lensflare.js"
+        },
+        {
+          "name": "Ramp",
+          "module": "./types"
+        },
+        {
+          "name": "Reflector",
+          "module": "three/examples/jsm/objects/Reflector.js"
+        },
+        {
+          "name": "Sky",
+          "module": "three/examples/jsm/objects/Sky.js"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        },
+        {
+          "name": "TrackDef",
+          "module": "./types"
+        },
+        {
+          "name": "Weather",
+          "module": "./types"
+        },
+        {
+          "name": "bindRoadCompile",
+          "module": "./roadShader"
+        },
+        {
+          "name": "clamp",
+          "module": "./math"
+        },
+        {
+          "name": "generateStreets",
+          "module": "./streets"
+        },
+        {
+          "name": "getBakedRoad",
+          "module": "./road-assets"
+        },
+        {
+          "name": "getBark",
+          "module": "./tree-assets"
+        },
+        {
+          "name": "getBlob",
+          "module": "./blob-assets"
+        },
+        {
+          "name": "getChecker",
+          "module": "./water-assets"
+        },
+        {
+          "name": "getCurb",
+          "module": "./curb-assets"
+        },
+        {
+          "name": "getCurtain",
+          "module": "./facade-assets"
+        },
+        {
+          "name": "getFlare0",
+          "module": "./flare-assets"
+        },
+        {
+          "name": "getFlare1",
+          "module": "./flare-assets"
+        },
+        {
+          "name": "getFoam",
+          "module": "./foam-assets"
+        },
+        {
+          "name": "getFoliage",
+          "module": "./tree-assets"
+        },
+        {
+          "name": "getGroundNoise",
+          "module": "./ground-assets"
+        },
+        {
+          "name": "getHerodian",
+          "module": "./stone-assets"
+        },
+        {
+          "name": "getIsraelFlag",
+          "module": "./flag-assets"
+        },
+        {
+          "name": "getJaffaClock",
+          "module": "./clock-assets"
+        },
+        {
+          "name": "getLaneArrow",
+          "module": "./arrow-assets"
+        },
+        {
+          "name": "getSidewalk",
+          "module": "./walk-assets"
+        },
+        {
+          "name": "getSign",
+          "module": "./sign-assets"
+        },
+        {
+          "name": "getSkyDay",
+          "module": "./sky-assets"
+        },
+        {
+          "name": "getSkyNight",
+          "module": "./sky-assets"
+        },
+        {
+          "name": "getWaterNormal",
+          "module": "./water-assets"
+        },
+        {
+          "name": "her",
+          "module": "./tracks"
+        },
+        {
+          "name": "lerp",
+          "module": "./math"
+        },
+        {
+          "name": "lookFromFlags",
+          "module": "../rendering/EnvironmentState"
+        },
+        {
+          "name": "mulberry32",
+          "module": "./math"
+        },
+        {
+          "name": "nearestIndex",
+          "module": "./spline"
+        },
+        {
+          "name": "nearestStreet",
+          "module": "./streets"
+        },
+        {
+          "name": "nightAmt",
+          "module": "./tracks"
+        },
+        {
+          "name": "ram",
+          "module": "./tracks"
+        },
+        {
+          "name": "skyAt",
+          "module": "./tracks"
+        },
+        {
+          "name": "skyFor",
+          "module": "./tracks"
+        }
+      ]
+    },
+    {
+      "names": [
+        "addLandmarks"
+      ],
+      "category": "track_coupled",
+      "dependencies": [
+        "Disposable",
+        "Emit",
+        "Glow",
+        "Mover",
+        "_dummy",
+        "barkTexture",
+        "curtainTexture",
+        "foliageTexture",
+        "herodianTexture",
+        "samp",
+        "segsOf"
+      ],
+      "import_dependencies": [
+        {
+          "name": "BuiltTrack",
+          "module": "./spline"
+        },
+        {
+          "name": "Collider",
+          "module": "./types"
+        },
+        {
+          "name": "Ramp",
+          "module": "./types"
+        },
+        {
+          "name": "THREE",
+          "module": "three"
+        },
+        {
+          "name": "TrackDef",
+          "module": "./types"
+        },
+        {
+          "name": "acr",
+          "module": "./tracks"
+        },
+        {
+          "name": "afl",
+          "module": "./tracks"
+        },
+        {
+          "name": "ard",
+          "module": "./tracks"
+        },
+        {
+          "name": "asd",
+          "module": "./tracks"
+        },
+        {
+          "name": "ask",
+          "module": "./tracks"
+        },
+        {
+          "name": "bsn",
+          "module": "./tracks"
+        },
+        {
+          "name": "bsv",
+          "module": "./tracks"
+        },
+        {
+          "name": "bym",
+          "module": "./tracks"
+        },
+        {
+          "name": "cae",
+          "module": "./tracks"
+        },
+        {
+          "name": "dsea",
+          "module": "./tracks"
+        },
+        {
+          "name": "eil",
+          "module": "./tracks"
+        },
+        {
+          "name": "getAyalonRoad",
+          "module": "./road-assets"
+        },
+        {
+          "name": "getGantry",
+          "module": "./sign-assets"
+        },
+        {
+          "name": "getIsraelFlag",
+          "module": "./flag-assets"
+        },
+        {
+          "name": "getJaffaClock",
+          "module": "./clock-assets"
+        },
+        {
+          "name": "getLaneArrow",
+          "module": "./arrow-assets"
+        },
+        {
+          "name": "getSign",
+          "module": "./sign-assets"
+        },
+        {
+          "name": "gol",
+          "module": "./tracks"
+        },
+        {
+          "name": "hai",
+          "module": "./tracks"
+        },
+        {
+          "name": "hdr",
+          "module": "./tracks"
+        },
+        {
+          "name": "her",
+          "module": "./tracks"
+        },
+        {
+          "name": "hol",
+          "module": "./tracks"
+        },
+        {
+          "name": "hwy1",
+          "module": "./tracks"
+        },
+        {
+          "name": "hwy2",
+          "module": "./tracks"
+        },
+        {
+          "name": "hwy40",
+          "module": "./tracks"
+        },
+        {
+          "name": "hwy6",
+          "module": "./tracks"
+        },
+        {
+          "name": "hwy90",
+          "module": "./tracks"
+        },
+        {
+          "name": "hzl",
+          "module": "./tracks"
+        },
+        {
+          "name": "jer",
+          "module": "./tracks"
+        },
+        {
+          "name": "ksb",
+          "module": "./tracks"
+        },
+        {
+          "name": "ksm",
+          "module": "./tracks"
+        },
+        {
+          "name": "lerp",
+          "module": "./math"
+        },
+        {
+          "name": "lodp",
+          "module": "./tracks"
+        },
+        {
+          "name": "mas",
+          "module": "./tracks"
+        },
+        {
+          "name": "mod",
+          "module": "./tracks"
+        },
+        {
+          "name": "nah",
+          "module": "./tracks"
+        },
+        {
+          "name": "naz",
+          "module": "./tracks"
+        },
+        {
+          "name": "nearestIndex",
+          "module": "./spline"
+        },
+        {
+          "name": "net",
+          "module": "./tracks"
+        },
+        {
+          "name": "nik",
+          "module": "./tracks"
+        },
+        {
+          "name": "pth",
+          "module": "./tracks"
+        },
+        {
+          "name": "raa",
+          "module": "./tracks"
+        },
+        {
+          "name": "ram",
+          "module": "./tracks"
+        },
+        {
+          "name": "rhv",
+          "module": "./tracks"
+        },
+        {
+          "name": "rml",
+          "module": "./tracks"
+        },
+        {
+          "name": "rsh",
+          "module": "./tracks"
+        },
+        {
+          "name": "scatterStreetBuildings",
+          "module": "./buildings"
+        },
+        {
+          "name": "tib",
+          "module": "./tracks"
+        },
+        {
+          "name": "tlv",
+          "module": "./tracks"
+        },
+        {
+          "name": "tzf",
+          "module": "./tracks"
+        }
+      ]
+    }
+  ],
+  "boundaries": {
+    "source_track_module_files": [
+      "src/game/tracks/acre.ts",
+      "src/game/tracks/afula.ts",
+      "src/game/tracks/arad.ts",
+      "src/game/tracks/ashdod.ts",
+      "src/game/tracks/ashkelon.ts",
+      "src/game/tracks/ayalon.ts",
+      "src/game/tracks/batyam.ts",
+      "src/game/tracks/beersheva.ts",
+      "src/game/tracks/beitshan.ts",
+      "src/game/tracks/brooklynbridge.ts",
+      "src/game/tracks/caesarea.ts",
+      "src/game/tracks/centralpark.ts",
+      "src/game/tracks/deadsea.ts",
+      "src/game/tracks/eilat.ts",
+      "src/game/tracks/eilatmtn.ts",
+      "src/game/tracks/golan.ts",
+      "src/game/tracks/gushdan.ts",
+      "src/game/tracks/hadera.ts",
+      "src/game/tracks/haifa.ts",
+      "src/game/tracks/haifaport.ts",
+      "src/game/tracks/hanikra.ts",
+      "src/game/tracks/hayarkon.ts",
+      "src/game/tracks/hermon.ts",
+      "src/game/tracks/herzliya.ts",
+      "src/game/tracks/holon.ts",
+      "src/game/tracks/hw1.ts",
+      "src/game/tracks/hw2.ts",
+      "src/game/tracks/hw40.ts",
+      "src/game/tracks/hw6.ts",
+      "src/game/tracks/hw90.ts",
+      "src/game/tracks/index.ts",
+      "src/game/tracks/jerusalem.ts",
+      "src/game/tracks/ksaba.ts",
+      "src/game/tracks/kshmona.ts",
+      "src/game/tracks/lod.ts",
+      "src/game/tracks/manhattan.ts",
+      "src/game/tracks/masada.ts",
+      "src/game/tracks/modiin.ts",
+      "src/game/tracks/nahariya.ts",
+      "src/game/tracks/namal.ts",
+      "src/game/tracks/nazareth.ts",
+      "src/game/tracks/netanya.ts",
+      "src/game/tracks/oldjaffa.ts",
+      "src/game/tracks/petah.ts",
+      "src/game/tracks/raanana.ts",
+      "src/game/tracks/ramla.ts",
+      "src/game/tracks/ramon.ts",
+      "src/game/tracks/rehovot.ts",
+      "src/game/tracks/rishon.ts",
+      "src/game/tracks/rothschild.ts",
+      "src/game/tracks/scopus.ts",
+      "src/game/tracks/shared.ts",
+      "src/game/tracks/stellamaris.ts",
+      "src/game/tracks/telaviv.ts",
+      "src/game/tracks/tiberias.ts",
+      "src/game/tracks/timessquare.ts",
+      "src/game/tracks/tzfat.ts",
+      "src/game/tracks/walls.ts"
+    ],
+    "source_track_module_file_count": 58,
+    "unauthorized_rsh_016_paths": []
+  },
+  "reconciled_at": "2026-08-30T01:15:00+03:00",
+  "owner_authorization": {
+    "authorized_unit": "RSH-015",
+    "authorized_scope": "Extract the world core from world.ts",
+    "authorization_count": 1,
+    "RSH-016_authorized": false,
+    "later_units_authorized": false
+  },
+  "planned_extraction": {
+    "core_path": "src/game/world-core.ts",
+    "facade_path": "src/game/world.ts",
+    "machine_authority": "WORLD-CORE-MANIFEST.json",
+    "validator": "scripts/check-world-core.mjs",
+    "world_lines_after": 9006,
+    "world_bytes_after": 352625,
+    "core_lines": 116,
+    "core_bytes": 2604,
+    "legacy_reconstruction_sha256": "db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056",
+    "runtime_behavior_changes": 0,
+    "RSH-016_structures_created": 0
+  }
+}

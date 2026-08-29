@@ -1,24 +1,24 @@
 {
-  "schema_version": "3.0.0",
+  "schema_version": "4.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-29T21:30:00+03:00",
+  "generated_at": "2026-08-30T01:18:00+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_014_pull_request",
-    "implementation_base_sha": "0273520da4924cb3e71ff41b2ea75788a45bf757",
-    "self_reference_boundary": "The RSH-014 candidate cannot contain its own future merge SHA. Exact PR, merge and post-merge CI evidence are read from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_015_pull_request",
+    "implementation_base_sha": "076dabb754dba1676c6685a4a8d6f6d3c0b153ea",
+    "self_reference_boundary": "The RSH-015 candidate cannot contain its own future merge SHA. Exact PR, merge and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "0273520da4924cb3e71ff41b2ea75788a45bf757",
-    "tree_sha": "986917098fa8ca09f9f1db4cf10a0e2dd32a33e8",
-    "commit_authored_at": "2026-08-29T21:13:24+03:00",
-    "commit_message": "Merge PR #16: RSH-013 — Define and validate the canonical track schema",
+    "head_sha": "076dabb754dba1676c6685a4a8d6f6d3c0b153ea",
+    "tree_sha": "1fee6773325f4b01bf08a670d9db9e1f930c122a",
+    "commit_authored_at": "2026-08-29T22:46:55+03:00",
+    "commit_message": "Merge PR #17: RSH-014 — Split tracks.ts into one module per track",
     "commit_signature_verified": true,
-    "role": "RSH-014 exact implementation base"
+    "role": "RSH-015 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 14,
+    "accepted_units": 15,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 53,
-    "remaining_units": 53,
-    "queue_head": "RSH-015",
+    "deferred_units": 52,
+    "remaining_units": 52,
+    "queue_head": "RSH-016",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -188,26 +188,69 @@
       "post_merge_workflow_job": 99140544856
     },
     "RSH-014": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-014-track-modules",
-      "pull_request_resolution": "the pull request created from this branch",
-      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
-      "merge_sha_resolution": "live main HEAD created by merging the RSH-014 pull request",
+      "pull_request": 17,
+      "merge_sha": "076dabb754dba1676c6685a4a8d6f6d3c0b153ea",
+      "tree_sha": "1fee6773325f4b01bf08a670d9db9e1f930c122a",
+      "validated_head_sha": "87c621305e57c2c2dbc4b38f952c3d3bcf335c04",
+      "workflow_run": 33271431815,
+      "workflow_job": 99150485806,
+      "artifact_id": 9720254205,
+      "artifact_digest": "sha256:5d6bbcd33d81f13584285d48129e73e5e4f1033fc3e5ee413b4b78b1d965b3e7",
+      "post_merge_workflow_run": 33271755489,
+      "post_merge_workflow_job": 99151332118,
+      "post_merge_artifact_id": 9720347564,
+      "post_merge_artifact_digest": "sha256:93f52ff7bc9f496e384aaace699e09be6ae920a0cb1cce57149ea8ff7c7c4594",
+      "codex_review_exact_head": true,
+      "resolved_review_threads": 5,
+      "unresolved_review_threads": 0,
+      "unit_tests_passed": 331,
+      "unit_tests_failed": 0,
       "module_manifest": "TRACK-MODULE-MANIFEST.json",
       "module_count": 56,
       "runtime_definition_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
       "aggregate_definition_digest": "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7",
       "runtime_data_changes": 0,
       "runtime_order_changes": 0
+    },
+    "RSH-015": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-015-world-core",
+      "pull_request_resolution": "the pull request created from agent/rsh-015-world-core",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the RSH-015 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-015 merge SHA",
+      "manifest": "WORLD-CORE-MANIFEST.json",
+      "contract": "RSH-015-WORLD-CORE-CONTRACT.md",
+      "inventory": "RSH-015-WORLD-INVENTORY.json",
+      "world_path": "src/game/world.ts",
+      "world_lines_before": 9034,
+      "world_bytes_before": 353285,
+      "world_lines_after": 9006,
+      "world_bytes_after": 352625,
+      "core_path": "src/game/world-core.ts",
+      "core_lines": 116,
+      "core_bytes": 2604,
+      "legacy_world_sha256": "db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056",
+      "legacy_world_git_blob_sha1": "07b7e0b559e66f89641357db5aa2be8bcd8c3135",
+      "runtime_behavior_changes": 0,
+      "track_data_changes": 0,
+      "physics_changes": 0,
+      "asset_changes": 0,
+      "dependency_changes": 0,
+      "RSH-016_created": false,
+      "RSH-016_authorized": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-014",
+    "unit": "RSH-015",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-014-track-modules",
-    "pull_request_resolution": "live GitHub pull request for this branch",
-    "merge_sha_resolution": "live main HEAD created by merge"
+    "branch": "agent/rsh-015-world-core",
+    "pull_request_resolution": "the pull request created from this branch",
+    "merge_sha_resolution": "live main HEAD created by merge",
+    "post_merge_ci_resolution": "required-ci / validate on the exact merge SHA"
   },
   "batch_authorization": {
     "instruction": "next 5",
@@ -224,9 +267,11 @@
     "closed_after": "RSH-014",
     "separate_branch_and_pr_per_unit": true,
     "merge_after_validation": true,
-    "RSH-015_authorized": false,
     "completion_instruction": "next 2",
-    "next_instruction_required": true
+    "next_instruction_required": true,
+    "RSH-015_was_separately_authorized": true,
+    "RSH-015_authorization_consumed": true,
+    "RSH-016_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -301,9 +346,9 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "RSH-014 may start only after PR #16 merges and live main is re-read.",
-    "RSH-014 is the second unit authorized by the current next 2 instruction and the final unit in the RSH-010–RSH-014 batch.",
-    "Do not pre-create or execute RSH-015.",
+    "RSH-015 is the only unit covered by the current explicit owner authorization.",
+    "Do not pre-create or execute RSH-016.",
+    "Public distribution remains unauthorized.",
     "Release gates remain 0/13."
   ],
   "validation": {
@@ -314,12 +359,12 @@
     "public_shipping_files": 134,
     "public_asset_files": 131,
     "unverified_public_asset_files": 66,
-    "game_source_changes": 0,
+    "game_source_changes": 2,
     "asset_binary_changes": 0,
     "dependency_version_changes": 0,
     "package_lock_changes": 0,
     "RSH-013_precreated": false,
-    "RSH-015_authorized": false,
+    "RSH-015_authorized": true,
     "track_schema_version": "1.0.2",
     "track_schema_runtime_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
     "track_runtime_data_changes": 0,
@@ -328,14 +373,21 @@
     "RSH-014_module_count": 56,
     "RSH-014_runtime_data_changes": 0,
     "RSH-014_runtime_order_changes": 0,
-    "RSH-015_precreated": false
+    "RSH-015_precreated": false,
+    "RSH-015_authorization_consumed_on_merge": true,
+    "RSH-015_world_lines_before": 9034,
+    "RSH-015_world_lines_after": 9006,
+    "RSH-015_core_lines": 116,
+    "RSH-015_runtime_behavior_changes": 0,
+    "RSH-016_precreated": false,
+    "RSH-016_authorized": false
   },
   "rsh_013_schema": {
     "machine_authority": "TRACK-SCHEMA.json",
     "human_authority": "TRACK-SCHEMA.md",
     "compile_time_authority": "src/game/track-schema.ts",
     "validator": "scripts/check-track-schema.mjs",
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "definitions": 56,
     "unique_track_ids": 56,
     "mvp_tracks": 8,
@@ -346,13 +398,55 @@
     "runtime_order_changes": 0
   },
   "rsh_014_modularization": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "manifest": "TRACK-MODULE-MANIFEST.json",
     "modules": 56,
     "legacy_blob": "e26454223f8a598cdf516af7c7c3f494162e2616",
     "runtime_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
     "aggregate_digest": "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7",
     "runtime_data_changes": 0,
-    "runtime_order_changes": 0
+    "runtime_order_changes": 0,
+    "pull_request": 17,
+    "merge_sha": "076dabb754dba1676c6685a4a8d6f6d3c0b153ea",
+    "validated_head_sha": "87c621305e57c2c2dbc4b38f952c3d3bcf335c04"
+  },
+  "single_unit_authorization": {
+    "instruction": "explicit owner authorization for RSH-015",
+    "authorized_units": [
+      "RSH-015"
+    ],
+    "completed_units": 1,
+    "total_units": 1,
+    "state": "consumed_on_RSH-015_merge",
+    "separate_branch_and_pr": true,
+    "merge_after_validation": true,
+    "RSH-016_authorized": false,
+    "next_instruction_required": true
+  },
+  "rsh_015_world_core": {
+    "state": "accepted_on_merge",
+    "machine_authority": "WORLD-CORE-MANIFEST.json",
+    "human_contract": "RSH-015-WORLD-CORE-CONTRACT.md",
+    "inventory": "RSH-015-WORLD-INVENTORY.json",
+    "validator": "scripts/check-world-core.mjs",
+    "test": "scripts/check-world-core.test.mjs",
+    "facade": "src/game/world.ts",
+    "core": "src/game/world-core.ts",
+    "public_exports": [
+      "World",
+      "createWorld"
+    ],
+    "lifecycle_key_count": 22,
+    "world_lines_before": 9034,
+    "world_lines_after": 9006,
+    "core_lines": 116,
+    "legacy_reconstruction_sha256": "db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056",
+    "runtime_behavior_changes": 0,
+    "track_data_changes": 0,
+    "physics_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "RSH-016_created": false,
+    "RSH-016_authorized": false
   }
 }

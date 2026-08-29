@@ -47,6 +47,26 @@ test("the accepted runtime track consumer set and four source identities are pin
   assert.equal(result.identities.length, 4);
 });
 
+test("RSH-015 world extraction is accepted only through byte-exact legacy reconstruction", () => {
+  const result = validateTrackConsumerSourcePin({ consumerSources: readConsumerSources() });
+  const world = result.identities.find((entry) => entry.path === "src/game/world.ts");
+  assert.equal(world.controlled_reconstruction, true);
+  assert.equal(world.git_blob_sha1, "07b7e0b559e66f89641357db5aa2be8bcd8c3135");
+  assert.notEqual(world.current_git_blob_sha1, world.git_blob_sha1);
+});
+
+test("world changes outside the bounded RSH-015 extraction fail closed", () => {
+  const sources = readConsumerSources();
+  sources["src/game/world.ts"] = sources["src/game/world.ts"].replace(
+    "var _dummy = new THREE.Object3D();",
+    "var _dummy = new THREE.Group();",
+  );
+  assert.match(
+    validateTrackConsumerSourcePin({ consumerSources: sources }).errors.join("\n"),
+    /src\/game\/world\.ts Git blob identity/,
+  );
+});
+
 test("a direct TRACKS mutation in a current consumer fails closed", () => {
   const sources = readConsumerSources();
   sources["src/game/daily.ts"] += "\nTRACKS.reverse();\n";

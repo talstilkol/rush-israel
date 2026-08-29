@@ -1,19 +1,19 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 2.0.0  
-**Established by:** RSH-003  
-**Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`  
-**RSH-014 implementation base:** `0273520da4924cb3e71ff41b2ea75788a45bf757`  
-**State effective on:** merge of PR #17  
-**Next eligible unit:** none  
-**Next scheduled unit:** RSH-015 — deferred and not authorised
+**Version:** 3.0.0
+**Established by:** RSH-003
+**Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
+**RSH-015 implementation base:** `076dabb754dba1676c6685a4a8d6f6d3c0b153ea`
+**State effective on:** merge of the RSH-015 pull request
+**Next eligible unit:** none
+**Next scheduled unit:** RSH-016 — deferred and not authorised
 
 ## Status vocabulary
 
 - `ACCEPTED`: every unit in the milestone is merged and its exit gate passes.
 - `ACTIVE`: exactly one queue-head unit in the milestone is eligible or in review.
 - `BLOCKED`: scheduled units may be accepted, but an owner action or exit-gate requirement remains unresolved.
-- `AUTHORISED-DEFERRED`: included in the bounded owner instruction but blocked by strict serial execution.
+- `AUTHORISED-DEFERRED`: included in a bounded owner instruction but blocked by strict serial execution.
 - `DEFERRED`: not eligible under the current queue.
 
 ## Version 1 milestones
@@ -23,7 +23,7 @@
 | M0 | Control and governance | RSH-001–RSH-003 | 3 | ACCEPTED | Canonical state, queue, governance, baselines and registers agree. |
 | M1 | Reproducible toolchain and CI | RSH-004–RSH-008 | 5 | BLOCKED — owner setting | A clean clone passes required CI and `main` is technically protected. |
 | M2 | Product scope, licensing and assets | RSH-009–RSH-012 | 4 | ACCEPTED | Scope, package identity, root licence and every shipped asset’s legal status are explicit. |
-| M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | DEFERRED — RSH-013–RSH-014 accepted; RSH-015 not authorised | Core responsibilities and resource ownership are separated. |
+| M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | DEFERRED — RSH-013–RSH-015 accepted; RSH-016 not authorised | Core responsibilities and resource ownership are separated. |
 | M4 | Data integrity and production security | RSH-021–RSH-024 | 4 | DEFERRED | Save data is recoverable and production has no debug or secret exposure. |
 | M5 | Ayalon vertical slice | RSH-025–RSH-036 | 12 | DEFERRED | Ayalon is owner-approved, golden-locked and dependency-frozen. |
 | M6 | Performance and reliability | RSH-037–RSH-043 | 7 | DEFERRED | Performance, leak, recovery, soak and compatibility targets pass. |
@@ -35,15 +35,14 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 14 |
+| Accepted units | 15 |
 | Units in review | 0 |
 | Eligible units | 0 |
 | Queue head | none |
 | Active PR | none |
-| Remaining units | 53 |
-| Owner batch | RSH-010–RSH-014 — closed |
-| Batch completed | 5/5 |
-| Next scheduled unit | RSH-015 — deferred and not authorised |
+| Remaining units | 52 |
+| RSH-015 one-unit authority | consumed 1/1 |
+| Next scheduled unit | RSH-016 — deferred and not authorised |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -66,16 +65,17 @@ metadata confirms protection.
 M2 acceptance means legal status is explicit; it does not mean every asset is cleared.
 Exactly 66 public asset files remain unverified and public distribution remains blocked.
 
-## M3 closed owner boundary
+## M3 current boundary
 
 | Unit | Status |
 |---|---|
 | RSH-013 — canonical track schema | ACCEPTED — PR #16 |
-| RSH-014 — one module per track | ACCEPTED ON MERGE — PR #17 |
-| RSH-015–RSH-020 | DEFERRED — NOT AUTHORISED |
+| RSH-014 — one module per track | ACCEPTED — PR #17 |
+| RSH-015 — world-core extraction | ACCEPTED ON MERGE — RSH-015 PR |
+| RSH-016–RSH-020 | DEFERRED — NOT AUTHORISED |
 
-The bounded owner instruction closes after RSH-014 with five of five units completed.
-No unit remains eligible. RSH-015 requires a new explicit owner instruction.
+The explicit owner authority covers exactly RSH-015 and is consumed on its validated merge.
+No unit remains eligible. RSH-016 requires a new explicit owner instruction.
 
 ## GitHub-native milestone policy
 

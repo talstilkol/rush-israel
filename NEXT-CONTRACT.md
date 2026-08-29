@@ -1,26 +1,28 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 3.0.0
+**Version:** 4.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-014 implementation base:** `0273520da4924cb3e71ff41b2ea75788a45bf757`
-**State effective on:** merge of the RSH-014 pull request
-**Next unit:** `RSH-015` — deferred and not authorised
+**RSH-015 implementation base:** `076dabb754dba1676c6685a4a8d6f6d3c0b153ea`
+**State effective on:** merge of the RSH-015 pull request
+**Next unit:** `RSH-016` — deferred and not authorised
 
 ## Authority
 
-GitHub is the sole source of truth. RSH-014 is the second and final unit authorised by the owner instruction `next 2`. After its validated merge, the bounded RSH-010–RSH-014 batch is closed.
+GitHub is the sole source of truth. The owner authorised exactly RSH-015. That one-unit authority is consumed on its validated merge; it does not extend to RSH-016.
 
-## RSH-014 acceptance boundary
+## RSH-015 acceptance boundary
 
-- exactly **56** files contain one track definition each;
-- each module default-exports `defineTrack(object)`;
-- `src/game/tracks/index.ts` constructs the catalogue with `defineTracks` in the exact accepted runtime order;
-- `TRACK-MODULE-MANIFEST.json` pins every module, facade, shared source and index;
-- the modular tree reconstructs the accepted RSH-013 `tracks.ts` Git blob `e26454223f8a598cdf516af7c7c3f494162e2616` byte-for-byte;
-- ordered digest remains `a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d`;
-- aggregate digest remains `1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7`;
-- runtime data/order, IDs, MVP mapping, assets and dependencies change by **0**;
+- `src/game/world-core.ts` is the sole owner of the typed `World` contract and lifecycle assembly;
+- `src/game/world.ts` remains the concrete composition root and compatibility facade;
+- the facade still exports exactly `World` and `createWorld`;
+- the core returns exactly 22 public keys in the accepted order;
+- the concrete disposer still iterates `bag` in insertion order and calls every `dispose()` once;
+- `world.ts` falls from 9034 lines / 353285 bytes to 9006 lines / 352625 bytes;
+- `world-core.ts` contains 116 lines / 2604 bytes;
+- reconstruction returns the accepted pre-extraction world SHA-256 `db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056` byte-for-byte;
+- `WORLD-CORE-MANIFEST.json` and `scripts/check-world-core.mjs` fail closed on ownership, lifecycle, disposal, facade, RSH-016 and preservation drift;
+- track data/order, physics, assets, dependencies, rendering, save/record and QA behaviour change by **0**;
 - exact-head required CI and Codex review must pass before merge.
 
 ## Post-merge state
@@ -28,15 +30,15 @@ GitHub is the sole source of truth. RSH-014 is the second and final unit authori
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 14 |
+| Accepted | 15 |
 | In review | 0 |
 | Eligible | 0 |
-| Deferred | 53 |
-| Remaining | 53 |
-| Queue head | RSH-015 |
-| RSH-015 authorised | No |
-| Batch completed | 5/5 |
+| Deferred | 52 |
+| Remaining | 52 |
+| Queue head | RSH-016 |
+| RSH-016 authorised | No |
+| Current one-unit authority remaining | 0 |
 | Release gates | 0/13 |
 | Unverified asset files | 66 |
 
-A new explicit owner instruction is required before RSH-015 may be created or executed.
+A new explicit owner instruction is required before RSH-016 may be created or executed.

@@ -1,0 +1,325 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-world-core-manifest",
+  "unit": "RSH-015",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "generated_at": "2026-08-30T01:12:53+03:00",
+  "implementation_base": {
+    "commit_sha": "076dabb754dba1676c6685a4a8d6f6d3c0b153ea",
+    "tree_sha": "1fee6773325f4b01bf08a670d9db9e1f930c122a",
+    "branch": "agent/rsh-015-world-core"
+  },
+  "accepted_pre_extraction_world": {
+    "path": "src/game/world.ts",
+    "lines": 9034,
+    "bytes": 353285,
+    "sha256": "db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056",
+    "git_blob_sha1": "07b7e0b559e66f89641357db5aa2be8bcd8c3135"
+  },
+  "extraction": {
+    "facade": {
+      "path": "src/game/world.ts",
+      "lines": 9006,
+      "bytes": 352625,
+      "sha256": "64d3aed2e9d4a6dca0fcdbd7d27bb924783afc441549d76cb4079f399b11b107",
+      "git_blob_sha1": "a6586b78725573f97ef9d938f592ab545aba793d"
+    },
+    "core": {
+      "path": "src/game/world-core.ts",
+      "lines": 116,
+      "bytes": 2604,
+      "sha256": "cbb9ac1f9de387cb1b31290fbc617b0ca34536b97067198b61e82ffcaf31fafe",
+      "git_blob_sha1": "9b39357c54181255a845c0fa3fbf136b8ec1f183"
+    },
+    "reconstruction": {
+      "algorithm": "replace the exact world-core type edge and lifecycle assembly edge with the accepted pre-extraction blocks",
+      "expected_lines": 9034,
+      "expected_bytes": 353285,
+      "expected_sha256": "db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056",
+      "expected_git_blob_sha1": "07b7e0b559e66f89641357db5aa2be8bcd8c3135"
+    },
+    "public_facade_exports": [
+      "World",
+      "createWorld"
+    ],
+    "core_exports": [
+      "World",
+      "WorldCoreAssembly",
+      "assembleWorld"
+    ],
+    "world_core_owner": "src/game/world-core.ts",
+    "concrete_composition_owner": "src/game/world.ts",
+    "direct_consumer": {
+      "path": "src/game/engine.ts",
+      "module": "./world",
+      "value_import": "createWorld",
+      "type_import": "World"
+    },
+    "assembly_call_count": 1,
+    "return_key_order": [
+      "group",
+      "sun",
+      "sky",
+      "dir",
+      "dirNear",
+      "waterMesh",
+      "colliders",
+      "streets",
+      "ramps",
+      "night",
+      "weather",
+      "followShadows",
+      "followMirror",
+      "setPlanar",
+      "sunDir",
+      "tick",
+      "setTime",
+      "setClock",
+      "clock",
+      "setWeather",
+      "setLod",
+      "dispose"
+    ],
+    "getter_keys": [
+      "night",
+      "weather",
+      "clock"
+    ],
+    "dispose_contract": {
+      "owner": "src/game/world.ts",
+      "collection": "bag",
+      "iteration_order": "insertion_order",
+      "exact_statement": "for (const d of bag) d.dispose();",
+      "core_role": "delegate_only"
+    }
+  },
+  "boundaries": {
+    "core_imports": [
+      {
+        "module": "three",
+        "type_only": true
+      },
+      {
+        "module": "three/examples/jsm/objects/Sky.js",
+        "type_only": true
+      },
+      {
+        "module": "./types",
+        "type_only": true
+      }
+    ],
+    "core_side_effects": 0,
+    "core_resource_constructors": 0,
+    "core_track_specific_builders": 0,
+    "world_ts_nocheck": false,
+    "core_ts_nocheck": false,
+    "forbidden_rsh016_paths": [
+      "src/game/world/",
+      "src/game/world-builders/",
+      "src/game/track-builders/",
+      "src/game/builders/",
+      "src/game/tracks/builders/"
+    ],
+    "rsh016_created": false,
+    "rsh016_authorized": false
+  },
+  "track_preservation": {
+    "module_manifest": {
+      "path": "TRACK-MODULE-MANIFEST.json",
+      "sha256": "a8891a4af9345dbfa34fcb998302b77383f3b14f19fd240c9a8c46d2e5a43fdd"
+    },
+    "track_schema": {
+      "path": "TRACK-SCHEMA.json",
+      "sha256": "56f2f29c131d8df1b98c5fdc909fd1fe35cf21de2346d6f9f8189b6d1abec208"
+    },
+    "track_count": 56,
+    "module_count": 56,
+    "mvp_tracks": 8,
+    "deferred_tracks": 48,
+    "runtime_order_count": 56,
+    "runtime_definition_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
+    "aggregate_definition_digest": "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7",
+    "runtime_data_changes": 0,
+    "runtime_order_changes": 0
+  },
+  "preservation_identities": {
+    "engine": {
+      "path": "src/game/engine.ts",
+      "lines": 2815,
+      "bytes": 99577,
+      "sha256": "3f4d54bbe0b68f9654ae8a92a2f56ce378a59a9790e8fbbe2ee05199ced192c1",
+      "git_blob_sha1": "692663c6d05ab59c1d99c7a357999839b9ebb0ec"
+    },
+    "physics": {
+      "path": "src/game/physics.ts",
+      "lines": 125,
+      "bytes": 3825,
+      "sha256": "cbff35aa2e2e4b509decf38e9f1ca3d262667675af81e0352ba02f460f5723c1",
+      "git_blob_sha1": "84a64bbe2adcf980922367aed279866d6f2fbcd8"
+    },
+    "save": {
+      "path": "src/game/save.ts",
+      "lines": 346,
+      "bytes": 8316,
+      "sha256": "d7c681b9e00942c91135a579d47f7f9f8def717d22232470b3990a5b0a644d87",
+      "git_blob_sha1": "f9a9225d735412de771c59f8cb6bd139051d5681"
+    },
+    "records": {
+      "path": "src/game/records.ts",
+      "lines": 33,
+      "bytes": 1071,
+      "sha256": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
+      "git_blob_sha1": "b063470542ebae33b7f98eaab8d86294413f8f2a"
+    },
+    "environment_state": {
+      "path": "src/rendering/EnvironmentState.ts",
+      "lines": 44,
+      "bytes": 2047,
+      "sha256": "a4471989af161d1e9d195cf1b9972c3ba4b6a9e85d09a1d9c60a9beb309b69a2",
+      "git_blob_sha1": "4f91cc5e7e8c682420aee7782f10494508d70afa"
+    },
+    "renderer_facade": {
+      "path": "src/rendering/RendererFacade.ts",
+      "lines": 97,
+      "bytes": 3193,
+      "sha256": "90d8b440c1dcbb2020196ea1b99c854ae4e44c3a30b094f015fef6e98fefc904",
+      "git_blob_sha1": "fb30a8f2d0b7e124a10363eb9248d5fad8ff4747"
+    },
+    "resource_registry": {
+      "path": "src/rendering/ResourceRegistry.ts",
+      "lines": 38,
+      "bytes": 794,
+      "sha256": "64781dfb6d7cc53c0052374a1d2f647b0436e2017382902110f40a09262dc873",
+      "git_blob_sha1": "fb421f99514f5b7c86618e4e90a00101993ddc9d"
+    },
+    "asset_registry": {
+      "path": "src/world/AssetRegistry.ts",
+      "lines": 19,
+      "bytes": 838,
+      "sha256": "c9877f99624077f73862e09c5c465236aee4b0d78bf938033d470449e517bed3",
+      "git_blob_sha1": "4ef7c234327fcdf282a11af97d1c963c5000089b"
+    },
+    "asset_provenance": {
+      "path": "ASSET-PROVENANCE.json",
+      "lines": 123,
+      "bytes": 5660,
+      "sha256": "6881756ee4c3fba9ce798208f5222dbadc3820e18d676b4f8c93733e8fe5f6e5",
+      "git_blob_sha1": "8bec7f0d6845619fc52ac55fc8d0c84002347668"
+    },
+    "product_definition": {
+      "path": "PRODUCT-DEFINITION.json",
+      "lines": 145,
+      "bytes": 4030,
+      "sha256": "66c445b89f73fd84bfd0ea85b80097945546241e85d7b1f3b738bc98ebe0e4ca",
+      "git_blob_sha1": "900beb88a75da42463142bb1d82fcd8ed7e93341"
+    },
+    "package_lock": {
+      "path": "package-lock.json",
+      "lines": 7646,
+      "bytes": 271867,
+      "sha256": "62ec6d2fe00b439855a06803789a03fe4cac5072f7e1e3437ba4aef9d87244ec",
+      "git_blob_sha1": "5c70a0004615826d76c1a7855e3d0b0899073389"
+    },
+    "smokes": {
+      "drive-smoke.mjs": {
+        "path": "scripts/drive-smoke.mjs",
+        "lines": 87,
+        "bytes": 3360,
+        "sha256": "b7cf752ca08b7217a08d619d338055867f520e79a9f6bf29c56e0307dc219f59",
+        "git_blob_sha1": "f8e141f8a59f282a7f9d4d3d9a85fa66ee2c5c29"
+      },
+      "ramp-smoke.mjs": {
+        "path": "scripts/ramp-smoke.mjs",
+        "lines": 67,
+        "bytes": 2856,
+        "sha256": "57c859162157ae304c750746c8b8946c43d6bba6208a2f880aabcb25e2461e0a",
+        "git_blob_sha1": "a217c094dcf9386b98c78fae4708b675a609bb16"
+      },
+      "webgl2-smoke.mjs": {
+        "path": "scripts/webgl2-smoke.mjs",
+        "lines": 18,
+        "bytes": 655,
+        "sha256": "9400b4625e37c794c2bb0469c70394e3029463e3f774383631e3ad366b827f53",
+        "git_blob_sha1": "4e2bca0ba7c46a661112dc2bf5ce3ed6dc3931c1"
+      },
+      "accel-smoke.mjs": {
+        "path": "scripts/accel-smoke.mjs",
+        "lines": 231,
+        "bytes": 8461,
+        "sha256": "3dd2499741a581b13c97f3f6f51f0861228c9b26c1964c0970f267c4aff4fb50",
+        "git_blob_sha1": "b032e96872ecff54e471b0ad92412be99559e61c"
+      },
+      "collider-offset-smoke.mjs": {
+        "path": "scripts/collider-offset-smoke.mjs",
+        "lines": 46,
+        "bytes": 1985,
+        "sha256": "52efbb454ee2c88e134bbcbef5d61b41fada628a966b2544267645254668d10f",
+        "git_blob_sha1": "b109d3a5d6d43ed2e99ed053183f625e8ef3da86"
+      },
+      "airborne-smoke.mjs": {
+        "path": "scripts/airborne-smoke.mjs",
+        "lines": 54,
+        "bytes": 2460,
+        "sha256": "dbb5ef12c4b7e330309ded7dcbd650e8edf7080b93d41e032e70c07dfb0961f5",
+        "git_blob_sha1": "7801f02547e58ba78b64c005aa9616235aca0386"
+      },
+      "soak-smoke.mjs": {
+        "path": "scripts/soak-smoke.mjs",
+        "lines": 3,
+        "bytes": 91,
+        "sha256": "46f3c813263d2046771a918bdaa624c13ff42fdef580448764bfe6b45a6f33c2",
+        "git_blob_sha1": "33382a9ec6ac6150bf23f20e278fd30c5caf2c5b"
+      }
+    }
+  },
+  "dependency_preservation": {
+    "package_json_pre_sha256": "6ab942958cb76120b0f51a8b250e7d223c412a1c23964644bd90ab5661632a63",
+    "package_json_post_sha256": "6ab942958cb76120b0f51a8b250e7d223c412a1c23964644bd90ab5661632a63",
+    "package_lock_sha256": "62ec6d2fe00b439855a06803789a03fe4cac5072f7e1e3437ba4aef9d87244ec",
+    "dependency_map_sha256": "043847573b5f3b3fd66f2174b052539b34899b864e2fe0fedbcf4ce33dd10471",
+    "dependency_changes": 0,
+    "lockfile_changes": 0
+  },
+  "runtime_invariants": {
+    "physics_hz": 120,
+    "unverified_asset_files": 66,
+    "release_gates_green": 0,
+    "release_gates_total": 13,
+    "public_distribution_authorized": false,
+    "runtime_behavior_changes": 0,
+    "track_data_changes": 0,
+    "physics_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0
+  },
+  "rsh014_reconciliation": {
+    "pull_request": 17,
+    "validated_head_sha": "87c621305e57c2c2dbc4b38f952c3d3bcf335c04",
+    "merge_sha": "076dabb754dba1676c6685a4a8d6f6d3c0b153ea",
+    "pre_merge_workflow_run": 33271431815,
+    "pre_merge_workflow_job": 99150485806,
+    "pre_merge_artifact_id": 9720254205,
+    "pre_merge_artifact_digest": "sha256:5d6bbcd33d81f13584285d48129e73e5e4f1033fc3e5ee413b4b78b1d965b3e7",
+    "post_merge_workflow_run": 33271755489,
+    "post_merge_workflow_job": 99151332118,
+    "post_merge_artifact_id": 9720347564,
+    "post_merge_artifact_digest": "sha256:93f52ff7bc9f496e384aaace699e09be6ae920a0cb1cce57149ea8ff7c7c4594",
+    "unit_tests_passed": 331,
+    "unit_tests_failed": 0,
+    "codex_review_exact_head": true,
+    "resolved_review_threads": 5,
+    "unresolved_review_threads": 0
+  },
+  "program_transition_effective_on_merge": {
+    "accepted_units": 15,
+    "remaining_units": 52,
+    "eligible_units": 0,
+    "deferred_units": 52,
+    "queue_head": "RSH-016",
+    "queue_head_state": "deferred_not_authorized",
+    "active_branch_after_completion": null,
+    "active_pull_request_after_completion": null,
+    "rsh016_authorized": false
+  }
+}
