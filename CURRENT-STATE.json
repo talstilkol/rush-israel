@@ -225,7 +225,8 @@
     "separate_branch_and_pr_per_unit": true,
     "merge_after_validation": true,
     "RSH-015_authorized": false,
-    "continuation_instruction": "next 2"
+    "completion_instruction": "next 2",
+    "next_instruction_required": true
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",

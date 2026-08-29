@@ -23,7 +23,7 @@
       "closed_after": "RSH-014",
       "separate_branch_and_pr_per_unit": true,
       "merge_after_validation": true,
-      "continuation_instruction": "next 2",
+      "completion_instruction": "next 2",
       "state": "closed_after_RSH-014"
     },
     "direct_main_writes": false,
@@ -244,8 +244,7 @@
     "RSH-067"
   ],
   "state_rules": {
-    "RSH-001–RSH-013": "accepted",
-    "RSH-014": "eligible_under_owner_next_2",
+    "RSH-001–RSH-014": "accepted",
     "RSH-015–RSH-067": "deferred_not_authorized",
     "accepted": {
       "from": "RSH-001",
@@ -258,12 +257,12 @@
     }
   },
   "next_instruction_contract": {
-    "current_action": "After PR #16 merges, continue the current next 2 instruction by starting RSH-014 only from verified live main.",
+    "current_action": "No unit is authorized; RSH-015 remains deferred until a new explicit owner instruction.",
     "after_RSH_014": "The bounded batch closes; RSH-015 requires a new explicit owner instruction.",
     "batch_authority_remaining": 0,
-    "RSH-014_precreated": false,
+    "RSH-014_completed": true,
     "RSH-015_authorized": false,
-    "current_instruction": "next 2",
+    "completed_instruction": "next 2",
     "authorized_sequence": [
       "RSH-013",
       "RSH-014"

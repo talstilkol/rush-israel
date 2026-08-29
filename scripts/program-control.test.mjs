@@ -57,6 +57,22 @@ test("the owner-bounded batch closes with five accepted units on RSH-014 merge",
   assert.equal(current.batch_authorization["RSH-015_authorized"], false);
   assert.equal(queue.next_instruction_contract.batch_authority_remaining, 0);
   assert.equal(queue.next_instruction_contract.batch_closed, true);
+  assert.equal(queue.state_rules["RSH-001–RSH-014"], "accepted");
+  assert.equal(queue.state_rules["RSH-014"], undefined);
+  assert.deepEqual(queue.state_rules.eligible, []);
+  assert.equal(
+    queue.next_instruction_contract.current_action,
+    "No unit is authorized; RSH-015 remains deferred until a new explicit owner instruction.",
+  );
+  assert.equal(queue.next_instruction_contract["RSH-014_completed"], true);
+  assert.equal(queue.next_instruction_contract["RSH-014_precreated"], undefined);
+  assert.equal(queue.next_instruction_contract.current_instruction, undefined);
+  assert.equal(queue.next_instruction_contract.completed_instruction, "next 2");
+  assert.equal(queue.policy.active_bounded_batch.continuation_instruction, undefined);
+  assert.equal(queue.policy.active_bounded_batch.completion_instruction, "next 2");
+  assert.equal(current.batch_authorization.continuation_instruction, undefined);
+  assert.equal(current.batch_authorization.completion_instruction, "next 2");
+  assert.equal(current.batch_authorization.next_instruction_required, true);
 });
 
 test("RSH-007 through RSH-012 are reconciled to exact accepted evidence", () => {
