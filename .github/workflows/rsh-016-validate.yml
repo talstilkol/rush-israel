@@ -1,0 +1,38 @@
+name: rsh-016-validate
+
+on:
+  push:
+    branches:
+      - agent/rsh-016-track-builders
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CI: "true"
+  NODE_OPTIONS: "--experimental-strip-types"
+
+concurrency:
+  group: rsh-016-validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/rsh-016-track-builders
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm install --global npm@10.9.2
+      - run: npm run toolchain:verify
+      - run: npm ci
+      - run: node scripts/check-world-builders.mjs
+      - run: npm run lint
+      - run: npm test
+      - run: npm run typecheck
