@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.0.1",
   "document_type": "rush-canonical-track-schema",
-  "generated_at": "2026-08-29T09:15:00+03:00",
+  "generated_at": "2026-08-29T10:27:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "observed_source_commit": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
@@ -188,8 +188,10 @@
       "maximum": 128
     },
     "points": {
-      "kind": "array_literal",
-      "minimum_items": 3
+      "kind": "array_literal_or_zero_argument_array_builder_iife",
+      "minimum_literal_items": 3,
+      "builder_requires_local_array_return": true,
+      "builder_requires_push": true
     },
     "elevation": {
       "kind": "arrow_function",
@@ -232,10 +234,20 @@
       "kind": "boolean_literal"
     }
   },
+  "runtime_definition_integrity": {
+    "algorithm": "sha256",
+    "basis": "ordered array of TrackId plus SHA-256 of each TypeScript ObjectLiteralExpression.getText()",
+    "source_order_is_runtime_order": true,
+    "canonical_track_id_order_is_independent": true,
+    "expected_digest": null,
+    "capture_state": "pending_exact_ci_capture"
+  },
   "semantic_invariants": {
     "track_ids_unique": true,
-    "track_order_matches_track_id_union": true,
-    "track_order_matches_catalogue_entries": true,
+    "track_definition_set_matches_track_id_union": true,
+    "track_definition_set_matches_catalogue_entries": true,
+    "runtime_definition_order_preserved_by_RSH_014": true,
+    "canonical_track_id_order_independent_from_runtime_definition_order": true,
     "image_path_matches_track_id": true,
     "all_tracks_classified_exactly_once": true,
     "mvp_set_exactly_frozen": true,
