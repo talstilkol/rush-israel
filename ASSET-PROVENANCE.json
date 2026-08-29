@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-asset-provenance-inventory",
+  "generated_at": "2026-08-29T06:15:00+03:00",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "observed_source_commit": "d8259877740a2feab6533f1723fd21be8fb2f6c2",
+  "scope": {
+    "root": "public",
+    "coverage": "every tracked file recursively under public",
+    "shipping_files_total": 134,
+    "asset_files_total": 131,
+    "unverified_shipping_files": 67,
+    "unverified_asset_files": 66,
+    "public_distribution_authorized": false,
+    "legal_clearance_complete": false
+  },
+  "asset_extensions": [
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".svg",
+    ".webp",
+    ".glb",
+    ".gltf",
+    ".wasm",
+    ".ktx2",
+    ".hdr",
+    ".exr",
+    ".mp3",
+    ".wav",
+    ".ogg",
+    ".woff",
+    ".woff2",
+    ".ttf",
+    ".otf",
+    ".ico"
+  ],
+  "groups": [
+    {
+      "id": "game_generated_assets",
+      "path_rule": "public/game/* excluding public/game/LICENSES.md",
+      "expected_file_count": 64,
+      "expected_asset_count": 64,
+      "provenance_status": "owner_generated_claim_recorded",
+      "licence_status": "owner_controlled_private_use",
+      "evidence": ["public/game/LICENSES.md"],
+      "public_distribution_clearance": false,
+      "blocker": "Root product licence and public-distribution authorization remain absent."
+    },
+    {
+      "id": "game_asset_evidence",
+      "path_rule": "public/game/LICENSES.md",
+      "expected_file_count": 1,
+      "expected_asset_count": 0,
+      "provenance_status": "evidence_document",
+      "licence_status": "not_applicable",
+      "evidence": ["public/game/LICENSES.md"],
+      "public_distribution_clearance": false,
+      "blocker": "Evidence document is not itself a public-distribution licence."
+    },
+    {
+      "id": "basis_universal_runtime",
+      "path_rule": "public/basis/basis_transcoder.js and public/basis/basis_transcoder.wasm",
+      "expected_file_count": 2,
+      "expected_asset_count": 1,
+      "provenance_status": "third_party_identified",
+      "licence_status": "Apache-2.0",
+      "upstream": "KhronosGroup/Basis-Universal",
+      "evidence": ["public/game/LICENSES.md"],
+      "public_distribution_clearance": true,
+      "notice_required": true
+    },
+    {
+      "id": "track_card_images",
+      "path_rule": "public/tracks/<TrackId>.jpg",
+      "expected_file_count": 56,
+      "expected_asset_count": 56,
+      "provenance_status": "source_not_recorded",
+      "licence_status": "unverified",
+      "evidence": [],
+      "public_distribution_clearance": false,
+      "blocker": "No source, creator, generation record, permission or licence is recorded for any track-card image."
+    },
+    {
+      "id": "platform_install_material",
+      "path_rule": "public/__grok/**",
+      "expected_file_count": 8,
+      "expected_asset_count": 7,
+      "provenance_status": "template_origin_inferred_not_proven",
+      "licence_status": "unverified",
+      "evidence": [],
+      "public_distribution_clearance": false,
+      "blocker": "Repository contains no licence or permission record for the Grok-branded install material."
+    },
+    {
+      "id": "root_branding_assets",
+      "path_rule": "public/favicon.svg, public/og.jpg and public/x-banner.jpg",
+      "expected_file_count": 3,
+      "expected_asset_count": 3,
+      "provenance_status": "source_not_recorded",
+      "licence_status": "unverified",
+      "evidence": [],
+      "public_distribution_clearance": false,
+      "blocker": "No source, creator, generation record, permission or licence is recorded."
+    }
+  ],
+  "release_blockers": [
+    {
+      "id": "AP-001",
+      "severity": "P0",
+      "group": "track_card_images",
+      "affected_asset_files": 56,
+      "required_resolution": "Replace with owner-generated assets or record verifiable source and licence evidence."
+    },
+    {
+      "id": "AP-002",
+      "severity": "P0",
+      "group": "platform_install_material",
+      "affected_asset_files": 7,
+      "affected_non_asset_files": 1,
+      "required_resolution": "Remove, replace or record explicit permission and licence evidence."
+    },
+    {
+      "id": "AP-003",
+      "severity": "P0",
+      "group": "root_branding_assets",
+      "affected_asset_files": 3,
+      "required_resolution": "Replace with owner-generated branding or record verifiable source and licence evidence."
+    },
+    {
+      "id": "AP-004",
+      "severity": "P0",
+      "group": "game_generated_assets",
+      "affected_asset_files": 64,
+      "required_resolution": "RSH-012 must establish the root proprietary licence and align repository visibility with owner policy."
+    }
+  ],
+  "truth_boundaries": {
+    "inventory_coverage_complete": true,
+    "provenance_evidence_complete": false,
+    "licence_clearance_complete": false,
+    "public_release_allowed": false,
+    "repository_visibility_current": "public",
+    "repository_visibility_policy_target": "private",
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "change_control": {
+    "new_public_file_requires_inventory_classification": true,
+    "unverified_asset_may_not_be_reclassified_without_evidence": true,
+    "public_distribution_requires_explicit_owner_authorization": true,
+    "validator": "scripts/check-asset-provenance.mjs"
+  }
+}
