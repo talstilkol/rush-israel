@@ -1,0 +1,34 @@
+name: rsh-013-finalize
+
+on:
+  push:
+    branches:
+      - agent/rsh-013-canonical-track-schema
+    paths:
+      - .github/workflows/rsh-013-finalize.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/rsh-013-canonical-track-schema
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Pin exact runtime digest and remove one-shot tooling
+        run: node scripts/finalize-rsh-013.mjs
+      - name: Commit final RSH-013 candidate
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && { echo "No finalization changes"; exit 1; }
+          git commit -m "RSH-013: pin exact runtime definition digest"
+          git push origin HEAD:agent/rsh-013-canonical-track-schema
