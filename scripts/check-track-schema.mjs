@@ -23,6 +23,8 @@ function schemaForReviewedCore(schema) {
 }
 
 export function validateTrackSchema(inputs) {
+  const trackSchemaSource = inputs?.trackSchemaSource
+    ?? readFileSync(fromRoot("src", "game", "track-schema.ts"), "utf8");
   const coreResult = validateTrackSchemaCore({
     ...inputs,
     schema: schemaForReviewedCore(inputs?.schema),
@@ -32,9 +34,10 @@ export function validateTrackSchema(inputs) {
 
   const hardening = validateTrackSchemaHardening({
     ...inputs,
+    trackSchemaSource,
     coreResult,
   });
-  const exportErrors = validateTrackSchemaExports(inputs?.trackSchemaSource);
+  const exportErrors = validateTrackSchemaExports(trackSchemaSource);
   return {
     ...coreResult,
     errors: [...coreResult.errors, ...hardening.errors, ...exportErrors],
