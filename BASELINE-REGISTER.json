@@ -214,7 +214,7 @@
     "branch": null,
     "pull_request": null,
     "requires_new_next": false,
-    "RSH_015_authorized": false
+    "RSH-015_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

@@ -236,8 +236,8 @@
     "current_action": "After PR #16 merges, continue the current next 2 instruction by starting RSH-014 only from verified live main.",
     "after_RSH_014": "The bounded batch closes; RSH-015 requires a new explicit owner instruction.",
     "batch_authority_remaining": 1,
-    "RSH_014_precreated": false,
-    "RSH_015_authorized": false
+    "RSH-014_precreated": false,
+    "RSH-015_authorized": false
   },
   "self_reference_boundary": {
     "RSH_013_merge_sha": "resolve from live main after PR #16 merges",

@@ -114,8 +114,8 @@ test("RSH-013 becomes accepted on merge and RSH-014 is the sole eligible final b
   assert.equal(schema.runtime_definition_integrity.capture_state, "pinned");
   assert.equal(baseline.working_state.unit, "RSH-013");
   assert.equal(baseline.working_state.state, "accepted_on_merge_of_PR_16");
-  assert.equal(current.validation["RSH_014_precreated"], false);
-  assert.equal(queue.next_instruction_contract["RSH_014_precreated"], false);
+  assert.equal(current.validation["RSH-014_precreated"], false);
+  assert.equal(queue.next_instruction_contract["RSH-014_precreated"], false);
   assert.equal(queue.next_after_acceptance.id, "RSH-015");
   assert.equal(queue.next_after_acceptance.state, "deferred_not_authorized");
 });
