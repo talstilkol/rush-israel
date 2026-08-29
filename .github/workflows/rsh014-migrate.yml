@@ -30,9 +30,10 @@ jobs:
       - name: Generate exact RSH-014 modularization
         shell: bash
         run: |
-          gzip -dc scripts/rsh014-migrate.mjs.gz > scripts/rsh014-migrate.mjs
+          set -euo pipefail
+          cat scripts/rsh014-migrate.mjs.gz.b64.* | base64 --decode | gzip -dc > scripts/rsh014-migrate.mjs
           node scripts/rsh014-migrate.mjs
-          rm -f scripts/rsh014-migrate.mjs.gz
+          rm -f scripts/rsh014-migrate.mjs.gz.b64.*
       - name: Commit generated RSH-014 candidate
         shell: bash
         run: |
