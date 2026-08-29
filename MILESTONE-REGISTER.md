@@ -1,11 +1,11 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 1.8.0  
+**Version:** 1.9.0  
 **Established by:** RSH-003  
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`  
-**RSH-012 implementation base:** `aab3b725f256ff5a0a145c5cd3ac749860bdaeb9`  
-**State effective on:** merge of PR #15  
-**Next eligible unit:** RSH-013
+**RSH-013 implementation base:** `94524201dfe87f1f22f8d8bdd9d97aad507c0438`  
+**State effective on:** merge of PR #16  
+**Next eligible unit:** RSH-014
 
 ## Status vocabulary
 
@@ -21,8 +21,8 @@
 |---|---|---:|---:|---|---|
 | M0 | Control and governance | RSH-001–RSH-003 | 3 | ACCEPTED | Canonical state, queue, governance, baselines and registers agree. |
 | M1 | Reproducible toolchain and CI | RSH-004–RSH-008 | 5 | BLOCKED — owner setting | A clean clone passes required CI and `main` is technically protected. |
-| M2 | Product scope, licensing and assets | RSH-009–RSH-012 | 4 | ACCEPTED ON PR #15 MERGE | Scope, package identity, root licence and every shipped asset’s legal status are explicit. |
-| M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | ACTIVE — RSH-013 eligible; RSH-014 authorised-deferred | Core responsibilities and resource ownership are separated. |
+| M2 | Product scope, licensing and assets | RSH-009–RSH-012 | 4 | ACCEPTED | Scope, package identity, root licence and every shipped asset’s legal status are explicit. |
+| M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | ACTIVE — RSH-013 accepted on PR #16 merge; RSH-014 eligible | Core responsibilities and resource ownership are separated. |
 | M4 | Data integrity and production security | RSH-021–RSH-024 | 4 | DEFERRED | Save data is recoverable and production has no debug or secret exposure. |
 | M5 | Ayalon vertical slice | RSH-025–RSH-036 | 12 | DEFERRED | Ayalon is owner-approved, golden-locked and dependency-frozen. |
 | M6 | Performance and reliability | RSH-037–RSH-043 | 7 | DEFERRED | Performance, leak, recovery, soak and compatibility targets pass. |
@@ -34,14 +34,14 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 12 |
+| Accepted units | 13 |
 | Units in review | 0 |
 | Eligible units | 1 |
-| Queue head | RSH-013 |
+| Queue head | RSH-014 |
 | Active PR | none |
-| Remaining units | 55 |
+| Remaining units | 54 |
 | Active owner batch | RSH-010–RSH-014 |
-| Batch completed | 3/5 |
+| Batch completed | 4/5 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -59,7 +59,7 @@ metadata confirms protection.
 | RSH-009 — frozen Version 1 product definition | ACCEPTED — PR #11 |
 | RSH-010 — 8 MVP / 48 deferred catalogue classification | ACCEPTED — PR #13 |
 | RSH-011 — complete asset provenance and licence inventory | ACCEPTED — PR #14 |
-| RSH-012 — README, metadata, branding, root licence and PWA alignment | ACCEPTED ON MERGE — PR #15 |
+| RSH-012 — README, metadata, branding, root licence and PWA alignment | ACCEPTED — PR #15 |
 
 M2 acceptance means legal status is explicit; it does not mean every asset is cleared.
 Exactly 66 public asset files remain unverified and public distribution remains blocked.
@@ -68,8 +68,8 @@ Exactly 66 public asset files remain unverified and public distribution remains 
 
 | Unit | Status |
 |---|---|
-| RSH-013 — canonical track schema | ELIGIBLE AFTER PR #15; requires new `next` |
-| RSH-014 — one module per track | AUTHORISED, BLOCKED BY RSH-013, FINAL BATCH UNIT |
+| RSH-013 — canonical track schema | ACCEPTED ON MERGE — PR #16 |
+| RSH-014 — one module per track | ELIGIBLE UNDER `next 2`; FINAL BATCH UNIT |
 | RSH-015–RSH-020 | NOT AUTHORISED |
 
 The bounded owner instruction closes after RSH-014. RSH-015 requires a new explicit instruction.

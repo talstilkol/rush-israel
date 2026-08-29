@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-track-source-pin",
+  "unit": "RSH-013",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "source_path": "src/game/tracks.ts",
+  "algorithm": "git_blob_sha1",
+  "expected_git_blob_sha1": "e26454223f8a598cdf516af7c7c3f494162e2616",
+  "captured_from_commit": "e9b7683330bb288e9e5005e595f699b58d7ad20f",
+  "capture_state": "pinned",
+  "purpose": "Fail closed on every source-level change after reconciling the live main track updates and before the owner-authorized RSH-014 modularization.",
+  "change_control": {
+    "updates_require_owner_authorization": true,
+    "RSH-014_may_replace_with_modular_source_manifest": true,
+    "RSH-015_authorized": false
+  }
+}
