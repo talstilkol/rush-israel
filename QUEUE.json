@@ -4,7 +4,7 @@
   "generated_at": "2026-08-29T10:55:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
+  "verified_base_sha": "e9b7683330bb288e9e5005e595f699b58d7ad20f",
   "state_effective_on": "merge_of_pull_request_16",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
@@ -155,7 +155,7 @@
       "validated_head_resolution": "exact PR #16 head accepted by required-ci / validate and Codex review",
       "merge_sha_resolution": "live main HEAD created by merging PR #16",
       "exact_evidence_reconciliation": "RSH-014 preflight",
-      "runtime_definition_digest": "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f"
+      "runtime_definition_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d"
     }
   },
   "unit_order": [
@@ -240,8 +240,8 @@
     "RSH-015_authorized": false
   },
   "self_reference_boundary": {
-    "RSH_013_merge_sha": "resolve from live main after PR #16 merges",
-    "RSH_013_validated_head": "resolve from the exact merged PR #16 head",
+    "RSH-013_merge_sha": "resolve from live main after PR #16 merges",
+    "RSH-013_validated_head": "resolve from the exact merged PR #16 head",
     "reconcile_in": "RSH-014 preflight"
   }
 }
