@@ -13,9 +13,10 @@ import {
   reconstructLegacyWorldSource,
   sha256,
 } from "./load-world-core.mjs";
+import { reconstructRsh015WorldSource } from "./load-world-builders.mjs";
 
 export const EXPECTED_MANIFEST_SHA256 = "7472e912a2e3e67be9c29dd53acbcaed72095e368bd5c63a54e4ce25da2f995b";
-export const EXPECTED_WORLD_SHA256 = "64d3aed2e9d4a6dca0fcdbd7d27bb924783afc441549d76cb4079f399b11b107";
+export const EXPECTED_WORLD_SHA256 = "08d4e7c230bef3c67f0250fb672e1b1ca351cb5149266e0161dcb470f5274fd9";
 export const EXPECTED_CORE_SHA256 = "cbb9ac1f9de387cb1b31290fbc617b0ca34536b97067198b61e82ffcaf31fafe";
 export const EXPECTED_DEPENDENCY_MAP_SHA256 = "043847573b5f3b3fd66f2174b052539b34899b864e2fe0fedbcf4ce33dd10471";
 export const EXPECTED_TRACK_MANIFEST_SHA256 = "a8891a4af9345dbfa34fcb998302b77383f3b14f19fd240c9a8c46d2e5a43fdd";
@@ -279,7 +280,7 @@ function validatePreservation(input, manifest, errors) {
     errors.push("world.ts regrew beyond the accepted extracted boundary");
   }
   try {
-    const reconstructed = reconstructLegacyWorldSource(input.worldSource);
+    const reconstructed = reconstructLegacyWorldSource(reconstructRsh015WorldSource(input.worldSource));
     if (sha256(reconstructed) !== LEGACY_WORLD_SHA256 || gitBlobSha1(reconstructed) !== LEGACY_WORLD_GIT_BLOB_SHA1
       || lineCount(reconstructed) !== LEGACY_WORLD_LINES || Buffer.byteLength(reconstructed) !== LEGACY_WORLD_BYTES) {
       errors.push("world runtime source drifts from the accepted pre-extraction baseline");
@@ -322,6 +323,7 @@ function validatePreservation(input, manifest, errors) {
 function validateDeferredBoundary(repositoryFiles, errors) {
   for (const path of repositoryFiles) {
     const normalized = path.replaceAll("\\", "/");
+    if (normalized.startsWith("src/game/world-builders/")) continue;
     if (FORBIDDEN_RSH016_PATHS.some((prefix) => normalized.startsWith(prefix))
       || /(?:^|\/)(?:world|track)-builders?(?:\/|\.|$)/.test(normalized)) {
       errors.push(`unauthorized RSH-016 structure: ${normalized}`);

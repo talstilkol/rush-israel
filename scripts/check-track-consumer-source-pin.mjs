@@ -4,6 +4,7 @@ import { extname, join, posix, relative, sep } from "node:path";
 import ts from "typescript";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 import { reconstructLegacyWorldSource } from "./load-world-core.mjs";
+import { reconstructRsh015WorldSource } from "./load-world-builders.mjs";
 
 const ACCEPTED_TRACK_CONSUMERS = Object.freeze({
   "src/components/game-app.tsx": "956cfa131200b3c9d9d0902a1b2d6d4d9a8d8728",
@@ -182,7 +183,7 @@ function identitySourceForAcceptedBaseline(filePath, source, expectedGitBlobSha1
     return { source, rawIdentity, reconstructed: false };
   }
   try {
-    const reconstructed = reconstructLegacyWorldSource(source);
+    const reconstructed = reconstructLegacyWorldSource(reconstructRsh015WorldSource(source));
     return { source: reconstructed, rawIdentity, reconstructed: true };
   } catch (error) {
     errors.push(`src/game/world.ts controlled RSH-015 reconstruction failed: ${error.message}`);

@@ -1,0 +1,2136 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-world-builder-manifest",
+  "unit": "RSH-016",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "generated_at": "2026-08-30T02:30:00+03:00",
+  "implementation_base": {
+    "commit_sha": "973e68d6e1d3fa8ed628f4461cdfae3096d01ea3",
+    "tree_sha": "27e88997f6127a045b0c260850cabcf0c0d650fd",
+    "branch": "agent/rsh-016-track-builders"
+  },
+  "accepted_pre_extraction_world": {
+    "path": "src/game/world.ts",
+    "lines": 9006,
+    "bytes": 352625,
+    "sha256": "64d3aed2e9d4a6dca0fcdbd7d27bb924783afc441549d76cb4079f399b11b107",
+    "git_blob_sha1": "a6586b78725573f97ef9d938f592ab545aba793d"
+  },
+  "extraction": {
+    "world": {
+      "path": "src/game/world.ts",
+      "lines": 2790,
+      "bytes": 110205,
+      "sha256": "08d4e7c230bef3c67f0250fb672e1b1ca351cb5149266e0161dcb470f5274fd9",
+      "git_blob_sha1": "e13e66744ce3b2e8610aca2e14cb5932fc3c8fd6"
+    },
+    "directory": "src/game/world-builders",
+    "track_directory": "src/game/world-builders/tracks",
+    "types": {
+      "path": "src/game/world-builders/types.ts",
+      "sha256": "5ee728a93cd801f36d66bd1f89abb311562590c804e8a87dcf54e50c733c6fef",
+      "lines": 37,
+      "bytes": 1104
+    },
+    "shared": {
+      "path": "src/game/world-builders/shared.ts",
+      "sha256": "f0c50f4deb850d9e2d13ccdf404a88f5102fd1335c3a02f2b5ecd45d01984ba2",
+      "lines": 986,
+      "bytes": 35625
+    },
+    "registry": {
+      "path": "src/game/world-builders/index.ts",
+      "sha256": "af8bfcda68616b648c85cb671f3eea6ff9ff4aa39226f34ec23246ccb2dbb7c7",
+      "lines": 196,
+      "bytes": 5738
+    },
+    "module_count": 56,
+    "one_module_per_track": true,
+    "runtime_order": [
+      "hayarkon",
+      "oldjaffa",
+      "telaviv",
+      "namal",
+      "jerusalem",
+      "haifa",
+      "eilat",
+      "rothschild",
+      "ayalon",
+      "caesarea",
+      "deadsea",
+      "acre",
+      "centralpark",
+      "timessquare",
+      "brooklynbridge",
+      "manhattan",
+      "beersheva",
+      "netanya",
+      "hw1",
+      "herzliya",
+      "hanikra",
+      "haifaport",
+      "stellamaris",
+      "tiberias",
+      "golan",
+      "hermon",
+      "hw6",
+      "hw2",
+      "hw90",
+      "petah",
+      "rishon",
+      "ashdod",
+      "ashkelon",
+      "scopus",
+      "walls",
+      "modiin",
+      "ramon",
+      "hw40",
+      "eilatmtn",
+      "gushdan",
+      "nazareth",
+      "tzfat",
+      "masada",
+      "batyam",
+      "rehovot",
+      "nahariya",
+      "ramla",
+      "holon",
+      "beitshan",
+      "hadera",
+      "lod",
+      "kshmona",
+      "raanana",
+      "afula",
+      "ksaba",
+      "arad"
+    ],
+    "context_keys": [
+      "group",
+      "def",
+      "bag",
+      "shadows",
+      "isNight",
+      "emitList",
+      "colliders",
+      "movers",
+      "ramps",
+      "streets",
+      "built",
+      "add",
+      "glowAt",
+      "hit",
+      "hitRoad",
+      "placeTunnel",
+      "stone",
+      "white",
+      "glass",
+      "copper",
+      "gold",
+      "cream",
+      "terracotta",
+      "wood",
+      "darkArch",
+      "merlonWall",
+      "minaret",
+      "ottomanGate",
+      "placeDome",
+      "cyan",
+      "darkGlass",
+      "paleGlass",
+      "bandMat",
+      "azSqGlass",
+      "gateGlass",
+      "placeAzrieli",
+      "placeCityGate",
+      "placeToHa",
+      "placeMidtown",
+      "placeElectra",
+      "placeSarona",
+      "placeHakirya",
+      "placeShalomMeir",
+      "placeTlvTowers",
+      "placeNycSkyline",
+      "placeGothicTower",
+      "_dummy",
+      "barkTexture",
+      "curtainTexture",
+      "foliageTexture",
+      "herodianTexture",
+      "samp",
+      "segsOf"
+    ],
+    "modules": [
+      {
+        "ordinal": 1,
+        "id": "hayarkon",
+        "path": "src/game/world-builders/tracks/hayarkon.ts",
+        "function_name": "buildHayarkon",
+        "imports": [
+          "nearestIndex",
+          "tlv"
+        ],
+        "context_keys": [
+          "group",
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "placeTunnel",
+          "stone",
+          "white",
+          "cream",
+          "terracotta",
+          "wood",
+          "cyan",
+          "darkGlass",
+          "paleGlass",
+          "bandMat",
+          "_dummy"
+        ],
+        "body_sha256": "d950a9faadef868fae039edf3957bb7524efa110270ee799cba9f78d9f016578",
+        "legacy_statement_sha256": "6424e8d0e141581c28081772cc10ed546012b9e7c87177f9d419128b82084435",
+        "source_sha256": "1095959817b028ce2fc0afa250242c0969a280799b9a1ec5dc5964bb7f403216",
+        "source_git_blob_sha1": "20700bea6aa38cecc12032cebf05646890bc4353",
+        "lines": 422,
+        "bytes": 16831,
+        "layout": {
+          "prefix": "if (def.id === \"hayarkon\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 1
+      },
+      {
+        "ordinal": 2,
+        "id": "oldjaffa",
+        "path": "src/game/world-builders/tracks/oldjaffa.ts",
+        "function_name": "buildOldjaffa",
+        "imports": [
+          "getJaffaClock",
+          "nearestIndex",
+          "tlv"
+        ],
+        "context_keys": [
+          "bag",
+          "isNight",
+          "emitList",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "white",
+          "cream",
+          "terracotta",
+          "wood",
+          "darkArch"
+        ],
+        "body_sha256": "51dff09bb3191befba1b4e8d55fea68a0a69be570e89fc15c1267d1216c812c1",
+        "legacy_statement_sha256": "a223f3984968359c72b7f555a10065698527e61bb4c1162dc44ec87decda16c5",
+        "source_sha256": "a35be9cb20db916ff5851a5d0bae0c0bab7fdb73eae94f0f13539f040c76fb71",
+        "source_git_blob_sha1": "06093a99d9a6eab2128cf2691d160bdf301e4dd3",
+        "lines": 437,
+        "bytes": 15875,
+        "layout": {
+          "prefix": "if (def.id === \"oldjaffa\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 2
+      },
+      {
+        "ordinal": 3,
+        "id": "telaviv",
+        "path": "src/game/world-builders/tracks/telaviv.ts",
+        "function_name": "buildTelaviv",
+        "imports": [
+          "getIsraelFlag",
+          "nearestIndex",
+          "tlv"
+        ],
+        "context_keys": [
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "hitRoad",
+          "stone",
+          "white",
+          "glass",
+          "cream",
+          "terracotta",
+          "darkGlass",
+          "paleGlass",
+          "bandMat",
+          "azSqGlass",
+          "gateGlass",
+          "placeAzrieli",
+          "placeCityGate",
+          "placeToHa"
+        ],
+        "body_sha256": "7021e737cd94305b3cc6aa256e800a12d259c375a5c2e3e7cf305ea8a708e0dd",
+        "legacy_statement_sha256": "fcc131ffea5d1905b197227a1a4d07b10051f14895b75a7898a48854453b87f9",
+        "source_sha256": "b12cbdb63366843ae3a25336a0f86db93f322337aaaf181a4176c6c5e06f181d",
+        "source_git_blob_sha1": "10f828fe186e49c822b4f1fd79d3b5e19e1284cb",
+        "lines": 222,
+        "bytes": 9534,
+        "layout": {
+          "prefix": "if (def.id === \"telaviv\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 3
+      },
+      {
+        "ordinal": 4,
+        "id": "namal",
+        "path": "src/game/world-builders/tracks/namal.ts",
+        "function_name": "buildNamal",
+        "imports": [
+          "nearestIndex",
+          "tlv"
+        ],
+        "context_keys": [
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "placeTunnel",
+          "white",
+          "glass",
+          "cream",
+          "terracotta",
+          "wood",
+          "darkGlass"
+        ],
+        "body_sha256": "677c19235a53f92767e41c1c5890688717f6bf2041f247d862c6d67db8b3a3a5",
+        "legacy_statement_sha256": "b7985c5aa108a376c2ef90dae2cae7a3b064b3b4b4b5e89882e1761cce9df2ff",
+        "source_sha256": "e35efc94d9201a7d8154c65870ad8650faeff47a263871654f6320ea5188169a",
+        "source_git_blob_sha1": "4dba185ae2e759725986c107657acd8f8c0f6a8f",
+        "lines": 234,
+        "bytes": 8466,
+        "layout": {
+          "prefix": "if (def.id === \"namal\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 4
+      },
+      {
+        "ordinal": 5,
+        "id": "jerusalem",
+        "path": "src/game/world-builders/tracks/jerusalem.ts",
+        "function_name": "buildJerusalem",
+        "imports": [
+          "jer",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "def",
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "white",
+          "cream",
+          "terracotta",
+          "merlonWall",
+          "minaret",
+          "ottomanGate",
+          "placeDome",
+          "herodianTexture"
+        ],
+        "body_sha256": "bb05227e8895221378fe11278aaa77a9a99fc6de0e780b164c172599ada52833",
+        "legacy_statement_sha256": "8dd8376f97a623f328135efb13f5b20cdc6ca85aff7e1ad5bea044e9a683db8b",
+        "source_sha256": "a056d76da7906c56898c152ecb48564cc2d4ff850496ce2941653b4d905bd5e3",
+        "source_git_blob_sha1": "46a0b7785b46361f5a572a9b5506f81009330d23",
+        "lines": 202,
+        "bytes": 7888,
+        "layout": {
+          "prefix": "if (def.id === \"jerusalem\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 5
+      },
+      {
+        "ordinal": 6,
+        "id": "haifa",
+        "path": "src/game/world-builders/tracks/haifa.ts",
+        "function_name": "buildHaifa",
+        "imports": [
+          "hai",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "group",
+          "def",
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "gold",
+          "cream",
+          "terracotta",
+          "_dummy"
+        ],
+        "body_sha256": "ca5542dba37d517463ada9dfc7e07e7ae2a5228dbdd094bed1c485eb3e3f9ee7",
+        "legacy_statement_sha256": "81d17f022fa675182f5083260cead3d43a448a8cbb3602481e320b3c48c2efe7",
+        "source_sha256": "cbf147aed82daf2506443baadaa39d34914626acd64eeb82c823af052c7f476e",
+        "source_git_blob_sha1": "618045eab16308fdfcf23fb0a005925e17889706",
+        "lines": 269,
+        "bytes": 11644,
+        "layout": {
+          "prefix": "if (def.id === \"haifa\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 6
+      },
+      {
+        "ordinal": 7,
+        "id": "eilat",
+        "path": "src/game/world-builders/tracks/eilat.ts",
+        "function_name": "buildEilat",
+        "imports": [
+          "eil",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "white",
+          "cream",
+          "wood",
+          "cyan"
+        ],
+        "body_sha256": "a8ad2b3c13a6c2ba6c17dda0a79553c2b3a0332ec670a39f9adb9deedadd31bd",
+        "legacy_statement_sha256": "3b0d4d6502ef07f034edf70e762a615d6bb63e6bc93317d9b6a0e61e7c0c6834",
+        "source_sha256": "c2c55061a2b744dc9dd235579be987ecf50538992600b8425f26d68afd9627a4",
+        "source_git_blob_sha1": "ec3bd8874f7e393eca531a18f9962cf8e412e116",
+        "lines": 96,
+        "bytes": 2672,
+        "layout": {
+          "prefix": "if (def.id === \"eilat\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 7
+      },
+      {
+        "ordinal": 8,
+        "id": "rothschild",
+        "path": "src/game/world-builders/tracks/rothschild.ts",
+        "function_name": "buildRothschild",
+        "imports": [
+          "getIsraelFlag",
+          "nearestIndex",
+          "tlv"
+        ],
+        "context_keys": [
+          "group",
+          "bag",
+          "shadows",
+          "colliders",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "white",
+          "gold",
+          "cream",
+          "terracotta",
+          "darkGlass",
+          "bandMat",
+          "_dummy",
+          "barkTexture",
+          "curtainTexture",
+          "foliageTexture"
+        ],
+        "body_sha256": "d8220e359f2e4c84d331451f02d265c2e90cb3305135ea665fc8dbf3bc391a10",
+        "legacy_statement_sha256": "279ec565c1f4a93b0a821c6bc76bc3882cda8732b816765de75ad4464da9a175",
+        "source_sha256": "c4b2e7c8d5575214d8c9828bfffff1306c1e272ec7e9d78376443fccc0740c7c",
+        "source_git_blob_sha1": "07b6c983bd14907fba0d3f028f28ed45f1e78450",
+        "lines": 466,
+        "bytes": 14915,
+        "layout": {
+          "prefix": "if (def.id === \"rothschild\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 8
+      },
+      {
+        "ordinal": 9,
+        "id": "ayalon",
+        "path": "src/game/world-builders/tracks/ayalon.ts",
+        "function_name": "buildAyalon",
+        "imports": [
+          "getAyalonRoad",
+          "getGantry",
+          "getLaneArrow",
+          "getSign",
+          "nearestIndex",
+          "tlv"
+        ],
+        "context_keys": [
+          "group",
+          "bag",
+          "shadows",
+          "movers",
+          "ramps",
+          "streets",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "hitRoad",
+          "white",
+          "cream",
+          "terracotta",
+          "darkGlass",
+          "paleGlass",
+          "bandMat",
+          "placeAzrieli",
+          "placeCityGate",
+          "placeToHa",
+          "placeMidtown",
+          "placeElectra",
+          "placeSarona",
+          "placeHakirya",
+          "placeShalomMeir",
+          "_dummy"
+        ],
+        "body_sha256": "bbda66f966c7045b013390ff18a2ef76313f686a6e9244a1f3db27b85af665e5",
+        "legacy_statement_sha256": "4c54d89dde318057d42569f735c193b13e1009da1bc72af135831359aef84207",
+        "source_sha256": "866afe889a98457a868d1f9e61ca8cb3a803b821bd089ff9d4ab13dae8da2c3c",
+        "source_git_blob_sha1": "4d8a2f72de2a83f4ce2012d63204f505bd093720",
+        "lines": 693,
+        "bytes": 28392,
+        "layout": {
+          "prefix": "if (def.id === \"ayalon\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 9
+      },
+      {
+        "ordinal": 10,
+        "id": "caesarea",
+        "path": "src/game/world-builders/tracks/caesarea.ts",
+        "function_name": "buildCaesarea",
+        "imports": [
+          "cae",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "bag",
+          "built",
+          "add",
+          "hit",
+          "stone",
+          "white",
+          "cream",
+          "wood",
+          "darkArch"
+        ],
+        "body_sha256": "e0f853e58c6438f991157bce1b5e2cd7f816393f812228a7cc60ff183bcf47ed",
+        "legacy_statement_sha256": "1b3bcfd258c4d4011ded2d057ebcaea158c73a10f52d5e3b5f60667ff69b2ba4",
+        "source_sha256": "4f2f1ed51a62cc7119063cc59aa65ce352b5624a807cf4af424d1e5630059959",
+        "source_git_blob_sha1": "bc296234c81c7ac3f919e1f67a3c358f9440ed47",
+        "lines": 127,
+        "bytes": 4760,
+        "layout": {
+          "prefix": "if (def.id === \"caesarea\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 10
+      },
+      {
+        "ordinal": 11,
+        "id": "deadsea",
+        "path": "src/game/world-builders/tracks/deadsea.ts",
+        "function_name": "buildDeadsea",
+        "imports": [
+          "dsea",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "white",
+          "cream",
+          "terracotta",
+          "wood",
+          "cyan",
+          "darkGlass"
+        ],
+        "body_sha256": "bc088c47e59556b5a7cad6eae4c34cb212f2a859374890e7121362a6a4c8d8f4",
+        "legacy_statement_sha256": "368ee4edae146a2384d71636b289282bee6e310347c9b2005f0a846f3787010b",
+        "source_sha256": "015517d7339c6d5be58f9d451058f762e69bd4888106f19bb0407d10817532fb",
+        "source_git_blob_sha1": "f9399553fc6e3aca9e8ccc34b5506004d7406536",
+        "lines": 122,
+        "bytes": 4669,
+        "layout": {
+          "prefix": "if (def.id === \"deadsea\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 11
+      },
+      {
+        "ordinal": 12,
+        "id": "acre",
+        "path": "src/game/world-builders/tracks/acre.ts",
+        "function_name": "buildAcre",
+        "imports": [
+          "acr",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "white",
+          "cream",
+          "terracotta",
+          "wood",
+          "darkArch"
+        ],
+        "body_sha256": "5dae1b96979745e329f7463a8988ccd2d8620b7a09b4981450d5c398c55c5bd2",
+        "legacy_statement_sha256": "333f9ab7bf392a4340e7be5908885d2c25fc4c150a5891732b31a4fd927c9e0f",
+        "source_sha256": "f8aba8c0a532a9a39f31909e76ec85cace0e4a628c40889ece1a23c3a6257c56",
+        "source_git_blob_sha1": "119734462333a439220e0430d53a38d01156c8f1",
+        "lines": 154,
+        "bytes": 6413,
+        "layout": {
+          "prefix": "if (def.id === \"acre\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 12
+      },
+      {
+        "ordinal": 13,
+        "id": "centralpark",
+        "path": "src/game/world-builders/tracks/centralpark.ts",
+        "function_name": "buildCentralpark",
+        "imports": [],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "white",
+          "copper"
+        ],
+        "body_sha256": "ea5e5f07387a967e56705c440a945021c057b3218ef63edc9bcb988932f53318",
+        "legacy_statement_sha256": "21c5fb765367841bbf7a951dff6ceab9e927b20ebae66be5d2523cbf702bd6ec",
+        "source_sha256": "89b1ed8af191d42f2b23d9010cc3962106cb501bc17524756bf88c61a82531cf",
+        "source_git_blob_sha1": "72e0a57fe72b0fe78ea2c48fef137957140d6a2b",
+        "lines": 30,
+        "bytes": 982,
+        "layout": {
+          "prefix": "if (def.id === \"centralpark\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 56
+      },
+      {
+        "ordinal": 14,
+        "id": "timessquare",
+        "path": "src/game/world-builders/tracks/timessquare.ts",
+        "function_name": "buildTimessquare",
+        "imports": [],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "darkGlass",
+          "paleGlass",
+          "placeNycSkyline"
+        ],
+        "body_sha256": "ebaaa872408ced69d8e2807dd05364255861c0f4071523f6ebd98cbaf8566ee1",
+        "legacy_statement_sha256": "75610e8c40eb900276236b546fcc0497d1156f4ff2627379daa9ba1234ae9ae6",
+        "source_sha256": "6f27a48ac627b2cf0c332339cf25243bffaa78e67e687a762d8f20e1947ee1d0",
+        "source_git_blob_sha1": "6025c9850c71f07570b29d5937f3dfadf17a23c7",
+        "lines": 24,
+        "bytes": 722,
+        "layout": {
+          "prefix": "if (def.id === \"timessquare\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 55
+      },
+      {
+        "ordinal": 15,
+        "id": "brooklynbridge",
+        "path": "src/game/world-builders/tracks/brooklynbridge.ts",
+        "function_name": "buildBrooklynbridge",
+        "imports": [],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "copper",
+          "placeNycSkyline",
+          "placeGothicTower"
+        ],
+        "body_sha256": "54966aba50ecd34df11c0b7a5d9a7176e8f646e8dc2671bb52971b59995d6487",
+        "legacy_statement_sha256": "23971417a009dd247b7885163617f6ec612098c27bfa2a08e73a28ebbd371855",
+        "source_sha256": "de872d6f177640612735e923374302217ceb43d99bba3306bc977e86fb648191",
+        "source_git_blob_sha1": "54bc819baba6828a556b26a0964b2dc44e141a48",
+        "lines": 21,
+        "bytes": 652,
+        "layout": {
+          "prefix": "if (def.id === \"brooklynbridge\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 54
+      },
+      {
+        "ordinal": 16,
+        "id": "manhattan",
+        "path": "src/game/world-builders/tracks/manhattan.ts",
+        "function_name": "buildManhattan",
+        "imports": [],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "copper",
+          "gold",
+          "placeNycSkyline"
+        ],
+        "body_sha256": "79232bdd3fc4087220990016c01b1a9bc1b2b6a0fd88038abb65f58a3fc7a1a9",
+        "legacy_statement_sha256": "6a56f198a1e5df854ed4a2967b504c650871a1e1f278b369ac24e6507271c2d0",
+        "source_sha256": "c12fca7a9f3411d76044a481cb03e938202c727d53e6ab3914940fecfea9470d",
+        "source_git_blob_sha1": "e03b247bc525da5c5ae31aa57b8f2580a2e9a499",
+        "lines": 24,
+        "bytes": 733,
+        "layout": {
+          "prefix": "if (def.id === \"manhattan\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 53
+      },
+      {
+        "ordinal": 17,
+        "id": "beersheva",
+        "path": "src/game/world-builders/tracks/beersheva.ts",
+        "function_name": "buildBeersheva",
+        "imports": [
+          "bsv",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "copper",
+          "cream",
+          "terracotta"
+        ],
+        "body_sha256": "ed4a63d2a07745f524acc611b0ad9b4f8410fcc99b2eeb57cda271d6e1247390",
+        "legacy_statement_sha256": "043922812a4f0059deae165b2f611dcee7335d9bdb825759395996724fa3cf2a",
+        "source_sha256": "52fe2122b02f9b5842cbcba65d7c4c00ece8490479b2f27f0b159c5fcc1885ad",
+        "source_git_blob_sha1": "482f351b499dd1901fec20762b654dfb583d56e9",
+        "lines": 56,
+        "bytes": 1968,
+        "layout": {
+          "prefix": "if (def.id === \"beersheva\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 13
+      },
+      {
+        "ordinal": 18,
+        "id": "netanya",
+        "path": "src/game/world-builders/tracks/netanya.ts",
+        "function_name": "buildNetanya",
+        "imports": [
+          "nearestIndex",
+          "net"
+        ],
+        "context_keys": [
+          "bag",
+          "isNight",
+          "emitList",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "white",
+          "cream",
+          "terracotta",
+          "cyan",
+          "paleGlass"
+        ],
+        "body_sha256": "1e1fef8341178dc1a9314dcb07d659973aea8a1c76487826f7699db3745387ba",
+        "legacy_statement_sha256": "d49af92ba0e4d5b1def6bba6e9217df7b83e59958a823269db25a42e3f152b06",
+        "source_sha256": "076b98e7591954bf670ba0aae7e07bde945733b6219282b39042bf73f6b5d771",
+        "source_git_blob_sha1": "c37a06cabcf2fc9510ef8c2961d8c75a17a71bbd",
+        "lines": 153,
+        "bytes": 6162,
+        "layout": {
+          "prefix": "if (def.id === \"netanya\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 14
+      },
+      {
+        "ordinal": 19,
+        "id": "hw1",
+        "path": "src/game/world-builders/tracks/hw1.ts",
+        "function_name": "buildHw1",
+        "imports": [
+          "hwy1",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "bag",
+          "built",
+          "add",
+          "hit",
+          "placeTunnel",
+          "stone",
+          "white",
+          "cream",
+          "terracotta",
+          "darkGlass"
+        ],
+        "body_sha256": "588e67ccc2adb6906016543c68a7d6848f4d938afaf905c3881d14a5c5fe3d9d",
+        "legacy_statement_sha256": "6a26f7669abaa81e1c4bb645e1f9ed03e7693ab853ea3dbdd0f09cede2a105d6",
+        "source_sha256": "b11135ba43d452c4a7d0741f1868718ee92d10c6e1b4c2d7ada62220c3ec504c",
+        "source_git_blob_sha1": "40c260174f6f1300d96c2bfe11b0f694f1ca7adc",
+        "lines": 126,
+        "bytes": 5370,
+        "layout": {
+          "prefix": "if (def.id === \"hw1\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 15
+      },
+      {
+        "ordinal": 20,
+        "id": "herzliya",
+        "path": "src/game/world-builders/tracks/herzliya.ts",
+        "function_name": "buildHerzliya",
+        "imports": [
+          "hzl",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "white",
+          "glass",
+          "cream",
+          "terracotta",
+          "wood",
+          "darkGlass",
+          "paleGlass"
+        ],
+        "body_sha256": "eb9011fba2b062abe6c4cbecb97ad60a087e523a85c60bf4a85c9df705ea0dc3",
+        "legacy_statement_sha256": "4052cfc33c25ae9687d161652be40fe132c4ee0704f698e6779fe07f852bc3fb",
+        "source_sha256": "25e764b512bb0b8d7ebf56ee774ad0208f3767137616696eb69a4b8bc93f2c0c",
+        "source_git_blob_sha1": "bf0c7da33043931f42eb9ae0d5b2a81bcd185c92",
+        "lines": 141,
+        "bytes": 5749,
+        "layout": {
+          "prefix": "if (def.id === \"herzliya\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 16
+      },
+      {
+        "ordinal": 21,
+        "id": "hanikra",
+        "path": "src/game/world-builders/tracks/hanikra.ts",
+        "function_name": "buildHanikra",
+        "imports": [
+          "nik"
+        ],
+        "context_keys": [
+          "bag",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "white",
+          "cyan"
+        ],
+        "body_sha256": "cbf691ebbb6015da9da4d5718984dcaa74bb54a3c34fac77787b319817e63f8d",
+        "legacy_statement_sha256": "5b886a9c8841ec8bac0fb9c1444cb91995d6048b7d17ec54c883078ce0d992bd",
+        "source_sha256": "9deb81aa365f4ec2662eecf3a6c7cb58d225512e0482656fab62834a84dfee49",
+        "source_git_blob_sha1": "4f94d87f5a3c36a35505b5789999a13b7261738c",
+        "lines": 67,
+        "bytes": 2327,
+        "layout": {
+          "prefix": "if (def.id === \"hanikra\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 17
+      },
+      {
+        "ordinal": 22,
+        "id": "haifaport",
+        "path": "src/game/world-builders/tracks/haifaport.ts",
+        "function_name": "buildHaifaport",
+        "imports": [
+          "hai"
+        ],
+        "context_keys": [
+          "bag",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "terracotta"
+        ],
+        "body_sha256": "5a8945e6f1fc32714b391b4ccd9d9ebd460c4ee5a6b2b7da251a250039473199",
+        "legacy_statement_sha256": "df8c2e6f94e730eec26e9269fc1b72b49f94c20b6f9a79560770def2d952b397",
+        "source_sha256": "4b0e77059cc18ad1963e039341e3ed5aa960131d87d97ce2b818cfc2df442320",
+        "source_git_blob_sha1": "28d385add883b98955070f3d951119df585fc15c",
+        "lines": 85,
+        "bytes": 2002,
+        "layout": {
+          "prefix": "if (def.id === \"haifaport\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 18
+      },
+      {
+        "ordinal": 23,
+        "id": "stellamaris",
+        "path": "src/game/world-builders/tracks/stellamaris.ts",
+        "function_name": "buildStellamaris",
+        "imports": [
+          "hai"
+        ],
+        "context_keys": [
+          "def",
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "white",
+          "cream",
+          "darkArch"
+        ],
+        "body_sha256": "5fa468c1750ba677c4a8b7cc640b3dd0ba6e4c7bd69d06f293ea119b910ebb3a",
+        "legacy_statement_sha256": "78819cc00dd7919f934c0c96a63e10f54504c68ca80d16786f77c33b49ed0fad",
+        "source_sha256": "85b5a04599df3e11de606bb1ffd7ee5997b429f83c031f64dcae7ecd5e6c15d7",
+        "source_git_blob_sha1": "abaeff60d2fe923a05254a42f4757212f340f456",
+        "lines": 91,
+        "bytes": 3783,
+        "layout": {
+          "prefix": "if (def.id === \"stellamaris\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 19
+      },
+      {
+        "ordinal": 24,
+        "id": "tiberias",
+        "path": "src/game/world-builders/tracks/tiberias.ts",
+        "function_name": "buildTiberias",
+        "imports": [
+          "tib"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "white",
+          "cream",
+          "wood",
+          "cyan"
+        ],
+        "body_sha256": "5494cc8a28cb40cce5f8019aede41f74a92d10def2e01381a85ab1c839fd75ba",
+        "legacy_statement_sha256": "6e67eac255a42fb8af8418d23d20761fb61a8c7faefd5f52072a028963eade12",
+        "source_sha256": "eab65465f096c2ed8988c7f75e788c2f25c0869a96e4d20180bfcc56e835942d",
+        "source_git_blob_sha1": "75d66e726323b6024acb705cc9c1f5a123bc360d",
+        "lines": 56,
+        "bytes": 1999,
+        "layout": {
+          "prefix": "if (def.id === \"tiberias\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 20
+      },
+      {
+        "ordinal": 25,
+        "id": "golan",
+        "path": "src/game/world-builders/tracks/golan.ts",
+        "function_name": "buildGolan",
+        "imports": [
+          "gol",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone"
+        ],
+        "body_sha256": "5540082f8389935cdc0fa9c00139379380b8bb7e3079ec6a9d67f60d46720be2",
+        "legacy_statement_sha256": "0f538498e500b73cdb4fc6a434a5082fb5f5e7282ea151771ed8d94c51a2a53f",
+        "source_sha256": "f2e173c447444d0c12f87d4df001bc0dbc6fcb30abe2f176c3e6e1c9b70e3890",
+        "source_git_blob_sha1": "c3d1d5ac9a9f64b8d53b2acef85514ca17e1f317",
+        "lines": 58,
+        "bytes": 1781,
+        "layout": {
+          "prefix": "if (def.id === \"golan\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 21
+      },
+      {
+        "ordinal": 26,
+        "id": "hermon",
+        "path": "src/game/world-builders/tracks/hermon.ts",
+        "function_name": "buildHermon",
+        "imports": [
+          "her",
+          "lerp",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "def",
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "cream",
+          "bandMat"
+        ],
+        "body_sha256": "15b72ebc74fdd02d53fafeb3e610a2fca1e6a29b68eacd8634fe1908f5e70e80",
+        "legacy_statement_sha256": "6871a47f0897d7c9a75b714f8ae014b1e09dfca82cd383382a9e143d4549b411",
+        "source_sha256": "cd29cac634c3529b633e368ac505d2acca59e5b987465084d0764dbdf616de0c",
+        "source_git_blob_sha1": "15a115c44259a138af2a9daa6b4407e05eb6484f",
+        "lines": 186,
+        "bytes": 7721,
+        "layout": {
+          "prefix": "if (def.id === \"hermon\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 22
+      },
+      {
+        "ordinal": 27,
+        "id": "hw6",
+        "path": "src/game/world-builders/tracks/hw6.ts",
+        "function_name": "buildHw6",
+        "imports": [
+          "hwy6"
+        ],
+        "context_keys": [
+          "bag",
+          "add",
+          "hit",
+          "wood"
+        ],
+        "body_sha256": "68137a45601b1a0dbf7e73dc0a4a419c7a51bbdc4bbcc8e7e7281aa91f6ec713",
+        "legacy_statement_sha256": "8005288e7960071401bd5f78843cd2670914c1564bc1b24b9c287d604c0ecece",
+        "source_sha256": "0a439f0625f5ecde2765276641e2d065ed7760f0b6b2efc658473926e4551cc5",
+        "source_git_blob_sha1": "4c03cb4250c65080960ded98e1afd17e1ef9661c",
+        "lines": 58,
+        "bytes": 2346,
+        "layout": {
+          "prefix": "if (def.id === \"hw6\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 23
+      },
+      {
+        "ordinal": 28,
+        "id": "hw2",
+        "path": "src/game/world-builders/tracks/hw2.ts",
+        "function_name": "buildHw2",
+        "imports": [
+          "hwy2"
+        ],
+        "context_keys": [
+          "bag",
+          "add",
+          "hit",
+          "stone",
+          "white",
+          "cream",
+          "terracotta",
+          "paleGlass"
+        ],
+        "body_sha256": "95777a6910e9dd1be885adf5cab724f84965ad38417e54a4d70e747cd7500850",
+        "legacy_statement_sha256": "08474ffd8cf45e5eb9f6d7c7a0fff294490aa31db24f4ea4085968304b8db36a",
+        "source_sha256": "805ee09560144d5e24b5b9f5a2d05095e4beace53bf97182bb2dc6ee4fe687f7",
+        "source_git_blob_sha1": "34055cd8c13a49600f0fa796012198162479efe4",
+        "lines": 73,
+        "bytes": 2832,
+        "layout": {
+          "prefix": "if (def.id === \"hw2\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 24
+      },
+      {
+        "ordinal": 29,
+        "id": "hw90",
+        "path": "src/game/world-builders/tracks/hw90.ts",
+        "function_name": "buildHw90",
+        "imports": [
+          "hwy90"
+        ],
+        "context_keys": [
+          "bag",
+          "add",
+          "hit",
+          "cream",
+          "terracotta",
+          "wood"
+        ],
+        "body_sha256": "582367cbcd16a29cfd770fe4681a0a91ca74972383b4c47e5625d8e9fbaf71e6",
+        "legacy_statement_sha256": "f1f9123b5719e204ec78152ad434a7dc6c1847f1d71637d3c6adee540551ec7d",
+        "source_sha256": "5740ea62797eeaa221bba74bc8cf990d962db15b3ce0a1a566b110f21d22fff7",
+        "source_git_blob_sha1": "73dff567509e1e900b657db70e1a90e18aa8a4f3",
+        "lines": 51,
+        "bytes": 2042,
+        "layout": {
+          "prefix": "if (def.id === \"hw90\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 25
+      },
+      {
+        "ordinal": 30,
+        "id": "petah",
+        "path": "src/game/world-builders/tracks/petah.ts",
+        "function_name": "buildPetah",
+        "imports": [
+          "pth"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "white",
+          "cream",
+          "paleGlass"
+        ],
+        "body_sha256": "41b97ec729b994a13d82cb6ea2db9b95e7e1b7bc1e5c9190e74aeb4bb9482aa2",
+        "legacy_statement_sha256": "e089839bcf648b659c1f9ee2eb1d0fed721a8a97932eacedda27cb2444b851d7",
+        "source_sha256": "ba8dccdb9dd5316dae85ac4a8937825e3299589229e0a8ef718c8871488f1f8d",
+        "source_git_blob_sha1": "415ad0ee9206ef92638d3a4f31183467d352e5f9",
+        "lines": 33,
+        "bytes": 1141,
+        "layout": {
+          "prefix": "if (def.id === \"petah\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 26
+      },
+      {
+        "ordinal": 31,
+        "id": "rishon",
+        "path": "src/game/world-builders/tracks/rishon.ts",
+        "function_name": "buildRishon",
+        "imports": [
+          "rsh"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "white",
+          "terracotta",
+          "wood"
+        ],
+        "body_sha256": "f95094fa0c7af4b1e97939c39f3eff1c1b2081b9e6b467023adff4406a5be3dd",
+        "legacy_statement_sha256": "db3b7461df35808a89e8fa14df8ac73b6e65a4e85e3fee24c3a9ce5e34878cc0",
+        "source_sha256": "0d18373493a249f8fb343ea8a70eed0ed5c6d9620914b008ea5b8343b0b8fb8f",
+        "source_git_blob_sha1": "ca2086a47b54b9a328df226ef3d5dc2287b1f19f",
+        "lines": 43,
+        "bytes": 1515,
+        "layout": {
+          "prefix": "if (def.id === \"rishon\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 27
+      },
+      {
+        "ordinal": 32,
+        "id": "ashdod",
+        "path": "src/game/world-builders/tracks/ashdod.ts",
+        "function_name": "buildAshdod",
+        "imports": [
+          "asd"
+        ],
+        "context_keys": [
+          "bag",
+          "add",
+          "glowAt",
+          "hit",
+          "white",
+          "cream"
+        ],
+        "body_sha256": "6dca4b23f9795f103d8297fde39ba04dc9becadbee1808b41815e32acef0b4c2",
+        "legacy_statement_sha256": "071ba0354d5c01f91957dabccbc7afbfcb6c7df24fe9f84391cf1a11adfed0bd",
+        "source_sha256": "76b078effe4b0411fd9f56762991d3a2842d2f7a3184c8a27d27d2f9bb5cd067",
+        "source_git_blob_sha1": "38c116b44dbad419aafe555303bf1de40f30d001",
+        "lines": 56,
+        "bytes": 1590,
+        "layout": {
+          "prefix": "if (def.id === \"ashdod\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 28
+      },
+      {
+        "ordinal": 33,
+        "id": "ashkelon",
+        "path": "src/game/world-builders/tracks/ashkelon.ts",
+        "function_name": "buildAshkelon",
+        "imports": [
+          "ask"
+        ],
+        "context_keys": [
+          "add",
+          "hit",
+          "stone"
+        ],
+        "body_sha256": "c14cc7cce7f21664ac271dde2a4306450ec02eadcb770caabfe6fbc36d2a3125",
+        "legacy_statement_sha256": "1a1b07f8932fa8016b91d5c4a4fdf97043b313e29b549625d5e9ff47e64100b2",
+        "source_sha256": "0737fc371a9e66d98563f47636b469b5392d8208f90337f713fe8a70b6da2d15",
+        "source_git_blob_sha1": "5b5c3444211d10ba6640433efbcde20f292db6a1",
+        "lines": 45,
+        "bytes": 1051,
+        "layout": {
+          "prefix": "if (def.id === \"ashkelon\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 29
+      },
+      {
+        "ordinal": 34,
+        "id": "scopus",
+        "path": "src/game/world-builders/tracks/scopus.ts",
+        "function_name": "buildScopus",
+        "imports": [
+          "jer",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "def",
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "cream",
+          "merlonWall",
+          "placeDome"
+        ],
+        "body_sha256": "ba6d8d56a06fa8e04f2ddb22e2e2aef0ea04e1250748433a8957c44d1b8a49ff",
+        "legacy_statement_sha256": "81d715a7cda8fee2083b9b74c984ff154b8cb716e7609b914a40a6b0dc139130",
+        "source_sha256": "c14b11a972dfe579595d9b8baafb8ef9d093707b66f0abb4d23369edee0bf871",
+        "source_git_blob_sha1": "d6a5f0b993c2726fd9e638ab0836eeb6c5d9c4bb",
+        "lines": 108,
+        "bytes": 4129,
+        "layout": {
+          "prefix": "if (def.id === \"scopus\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 30
+      },
+      {
+        "ordinal": 35,
+        "id": "walls",
+        "path": "src/game/world-builders/tracks/walls.ts",
+        "function_name": "buildWalls",
+        "imports": [
+          "jer"
+        ],
+        "context_keys": [
+          "add",
+          "hit",
+          "stone",
+          "merlonWall",
+          "minaret",
+          "ottomanGate",
+          "placeDome"
+        ],
+        "body_sha256": "2f80db3758e3ea4203515bf0a76f4242bbdbf52aa0001cdd321501c9de3328d6",
+        "legacy_statement_sha256": "869813cfdea9b62f13ae599e34c75617094ec2f3941dbd49970b36c00f34cb80",
+        "source_sha256": "44f6ce4acdb304ccfc736b0ab812ca4a2248f6d34904004a8e45ca9803a14dab",
+        "source_git_blob_sha1": "9790ebe5cd48f6acb5d29f92115ea76814bfa7e0",
+        "lines": 60,
+        "bytes": 2288,
+        "layout": {
+          "prefix": "if (def.id === \"walls\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 31
+      },
+      {
+        "ordinal": 36,
+        "id": "modiin",
+        "path": "src/game/world-builders/tracks/modiin.ts",
+        "function_name": "buildModiin",
+        "imports": [
+          "mod"
+        ],
+        "context_keys": [
+          "add",
+          "hit",
+          "cream",
+          "paleGlass"
+        ],
+        "body_sha256": "22ea5d909f33992ca86bb9d63231b61cd38949dca1fa29bee60d0db54968b048",
+        "legacy_statement_sha256": "dfe17c136db759798343487465feb6df20dc3aebccac60eecf3ba19c57f3f808",
+        "source_sha256": "5d9f51f3978574eda3a0f4860b63f3cd220a2202b2ab78ea50d4d647a23d7b3a",
+        "source_git_blob_sha1": "97d49cb97729d9c4c5889a9ae4ee824f9598c26e",
+        "lines": 22,
+        "bytes": 717,
+        "layout": {
+          "prefix": "if (def.id === \"modiin\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 32
+      },
+      {
+        "ordinal": 37,
+        "id": "ramon",
+        "path": "src/game/world-builders/tracks/ramon.ts",
+        "function_name": "buildRamon",
+        "imports": [
+          "nearestIndex",
+          "ram"
+        ],
+        "context_keys": [
+          "group",
+          "def",
+          "bag",
+          "shadows",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "placeTunnel",
+          "_dummy",
+          "samp",
+          "segsOf"
+        ],
+        "body_sha256": "d7b71428df96996f07270989a15e465167183823714d01fb01b5e75c4e97daa4",
+        "legacy_statement_sha256": "f1f3fb3ef41a33e7f99a08508c92aad204bdb664ecdc24705c68641d0d64b01d",
+        "source_sha256": "afd3246a41eab3c1ef42edc97888c309570c985679d6cb88d3c4580e70b5909d",
+        "source_git_blob_sha1": "c77a48b11705490b8ce72fbee7a04b49e59aa0b9",
+        "lines": 183,
+        "bytes": 6891,
+        "layout": {
+          "prefix": "if (def.id === \"ramon\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 33
+      },
+      {
+        "ordinal": 38,
+        "id": "hw40",
+        "path": "src/game/world-builders/tracks/hw40.ts",
+        "function_name": "buildHw40",
+        "imports": [
+          "hwy40"
+        ],
+        "context_keys": [
+          "add",
+          "hit",
+          "stone",
+          "cream"
+        ],
+        "body_sha256": "41d74cb08b78fbf6386c0ae4285f3a7db0724829a55e473e00f98e467742873f",
+        "legacy_statement_sha256": "15ea09018099c66ad7d2b84ab901702b4c4d74ce964f39ea90f151cf0487f4d6",
+        "source_sha256": "ac910f83030d00b1bde6e99f0a95b2f99e11138a7a37723d3b7bf68ae6c522d5",
+        "source_git_blob_sha1": "811c2dcda0fc5ea3b70321aaf3dc7ee9d932ebf8",
+        "lines": 24,
+        "bytes": 749,
+        "layout": {
+          "prefix": "if (def.id === \"hw40\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 34
+      },
+      {
+        "ordinal": 39,
+        "id": "eilatmtn",
+        "path": "src/game/world-builders/tracks/eilatmtn.ts",
+        "function_name": "buildEilatmtn",
+        "imports": [
+          "eil"
+        ],
+        "context_keys": [
+          "add"
+        ],
+        "body_sha256": "709451324ef1d3b4ae0e2996acb0464ff8c0db26d41eb95a4e0140731c511f82",
+        "legacy_statement_sha256": "b1dd7f71662983b70c30646ee47f8bcd17825061171944ee681e427bb2ed05e6",
+        "source_sha256": "ae8fa4149be4013305b18af378394155f0bee730c77820c0f3f116e92c2294e6",
+        "source_git_blob_sha1": "910f5557115415523e74f9c122e929e13de6f05b",
+        "lines": 30,
+        "bytes": 880,
+        "layout": {
+          "prefix": "if (def.id === \"eilatmtn\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 35
+      },
+      {
+        "ordinal": 40,
+        "id": "gushdan",
+        "path": "src/game/world-builders/tracks/gushdan.ts",
+        "function_name": "buildGushdan",
+        "imports": [
+          "hzl",
+          "tlv"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "white",
+          "cream",
+          "terracotta",
+          "wood",
+          "placeAzrieli",
+          "placeTlvTowers"
+        ],
+        "body_sha256": "d109d3ad605000b3678e134b19db88b3b5cf8e9601f5bc66ac4532a802c8e275",
+        "legacy_statement_sha256": "efd9bf84b2b4f7e205d75a966a2525bdefc104c259237a176b8d1a16accd01b5",
+        "source_sha256": "7a07e9e291067f28488dd66bb06635f5fcfd0d8a1f430f8e94f5eb0fd549d2c0",
+        "source_git_blob_sha1": "2f277499f404c142b6f91a35d8ac58f9a844aeff",
+        "lines": 67,
+        "bytes": 2513,
+        "layout": {
+          "prefix": "if (def.id === \"gushdan\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 36
+      },
+      {
+        "ordinal": 41,
+        "id": "nazareth",
+        "path": "src/game/world-builders/tracks/nazareth.ts",
+        "function_name": "buildNazareth",
+        "imports": [
+          "naz",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "copper",
+          "cream",
+          "terracotta",
+          "darkGlass"
+        ],
+        "body_sha256": "84e58f42eaefc250ec2c82af11d4377411d1eae5c3b7b3c0bb1e44cc177ee5b2",
+        "legacy_statement_sha256": "21eba346e88cf3ce1a3ef4bc5c50cf9b216583b061b935a17775bf8a2b99b818",
+        "source_sha256": "89609ee771cd0485d9c0012c046a7eaf77c91f7032eda4e6fc3791db08e3629a",
+        "source_git_blob_sha1": "ae6b1fa1196a716237b28ea1421493862058401e",
+        "lines": 106,
+        "bytes": 4170,
+        "layout": {
+          "prefix": "if (def.id === \"nazareth\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 37
+      },
+      {
+        "ordinal": 42,
+        "id": "tzfat",
+        "path": "src/game/world-builders/tracks/tzfat.ts",
+        "function_name": "buildTzfat",
+        "imports": [
+          "nearestIndex",
+          "tzf"
+        ],
+        "context_keys": [
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "gold",
+          "cream"
+        ],
+        "body_sha256": "b34d139b0d2847d1c937956b34f6462acfb2469cc43ba2c5966a1f22f3d62f43",
+        "legacy_statement_sha256": "695bfe4ec5712ab4dfa75e58ca4d147c7d1b5621163e6e868e9e05e07cc856dd",
+        "source_sha256": "7a1273ccc63036e8fe3e4c43b5332ad240ab8815e53485fa125b61b1e44f5ec4",
+        "source_git_blob_sha1": "ae49cb533d10e7e75ca5b25cd8da64d874e33a70",
+        "lines": 117,
+        "bytes": 3046,
+        "layout": {
+          "prefix": "if (def.id === \"tzfat\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 38
+      },
+      {
+        "ordinal": 43,
+        "id": "masada",
+        "path": "src/game/world-builders/tracks/masada.ts",
+        "function_name": "buildMasada",
+        "imports": [
+          "mas",
+          "nearestIndex"
+        ],
+        "context_keys": [
+          "bag",
+          "built",
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "cream",
+          "terracotta"
+        ],
+        "body_sha256": "c24be223a793c06cd8645f6c5733a83966f8b114b44cab39577ed1fb1a8c5431",
+        "legacy_statement_sha256": "6c0f74c15c29640d9aa9b10d5fbbf83c9e5275d7136d683b2b781de2f06af876",
+        "source_sha256": "3e196185edeeda87a72ab0cc668db3feda622a4af986555a1f8674a23e38a81c",
+        "source_git_blob_sha1": "d8c69c696d11b1faa9aa92bdbd7cf41a58a1cb39",
+        "lines": 91,
+        "bytes": 3297,
+        "layout": {
+          "prefix": "if (def.id === \"masada\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 39
+      },
+      {
+        "ordinal": 44,
+        "id": "batyam",
+        "path": "src/game/world-builders/tracks/batyam.ts",
+        "function_name": "buildBatyam",
+        "imports": [
+          "bym"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "white",
+          "wood"
+        ],
+        "body_sha256": "014da05370b1f350a4b6e297c67fa9ba18824aea0f53e3dc0ce1237f71a08c5d",
+        "legacy_statement_sha256": "2b32dd8c1e608aa163f5b639c12710448c076e34d3d0a6e7867e9067b7af0b59",
+        "source_sha256": "407c781aae28a7f09d285580311897438e265c7c8ab02ab2596951831e24a8d9",
+        "source_git_blob_sha1": "ed171ec44b59350b0b54618e538a73b0e73eb015",
+        "lines": 50,
+        "bytes": 1227,
+        "layout": {
+          "prefix": "if (def.id === \"batyam\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 40
+      },
+      {
+        "ordinal": 45,
+        "id": "rehovot",
+        "path": "src/game/world-builders/tracks/rehovot.ts",
+        "function_name": "buildRehovot",
+        "imports": [
+          "rhv"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "white",
+          "cream",
+          "terracotta"
+        ],
+        "body_sha256": "15534fafb59bdf1e23ebda98f712d19ee779ebd244785e675cbe41e26d1af9b2",
+        "legacy_statement_sha256": "f4532035ff76417b3fa5c3554f862148aabaa89064b950e92dd658226db7fde9",
+        "source_sha256": "933e09288ba4e6714f2bf184e523ac75e9a66c8fb78faf007f2afa39401d7f80",
+        "source_git_blob_sha1": "92929b965961997b499b97fbbd36cc767b081a13",
+        "lines": 61,
+        "bytes": 1457,
+        "layout": {
+          "prefix": "if (def.id === \"rehovot\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 41
+      },
+      {
+        "ordinal": 46,
+        "id": "nahariya",
+        "path": "src/game/world-builders/tracks/nahariya.ts",
+        "function_name": "buildNahariya",
+        "imports": [
+          "nah"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "white",
+          "wood",
+          "cyan"
+        ],
+        "body_sha256": "253c2b73539ccfe8533f91cdb73b94ad971d4c757ea47a17c83ccb31bb8d3c04",
+        "legacy_statement_sha256": "abba91205f7d0272329eff15692fd2c07cff4fc32212d92d23cde0fd5db29372",
+        "source_sha256": "65aef34858aeff1f82a1405457531eb9545f3c6ee1f55aa2cab7474a2ad1081d",
+        "source_git_blob_sha1": "7814d50f63b7127dcac5545882c6336dd8024392",
+        "lines": 37,
+        "bytes": 1307,
+        "layout": {
+          "prefix": "if (def.id === \"nahariya\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 42
+      },
+      {
+        "ordinal": 47,
+        "id": "ramla",
+        "path": "src/game/world-builders/tracks/ramla.ts",
+        "function_name": "buildRamla",
+        "imports": [
+          "rml"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "white",
+          "cream"
+        ],
+        "body_sha256": "c4e764e0f548c2826f4b486ee619376a7abe66cd8b0009c9c91a1939a9e5e285",
+        "legacy_statement_sha256": "50e5577bdded381a07611a1b673596b2916b9dfd0fc3922b0fa81d71df21c150",
+        "source_sha256": "1fbc3672667147da647c3b9153b8e9371cfc59266f6a92c708017aa3fde9b0e5",
+        "source_git_blob_sha1": "d20285b24e12b9f15e184ed62741d9f3c32820fe",
+        "lines": 33,
+        "bytes": 1076,
+        "layout": {
+          "prefix": "if (def.id === \"ramla\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 43
+      },
+      {
+        "ordinal": 48,
+        "id": "holon",
+        "path": "src/game/world-builders/tracks/holon.ts",
+        "function_name": "buildHolon",
+        "imports": [
+          "hol"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "white",
+          "cream"
+        ],
+        "body_sha256": "8de8291be614650d244f26c39c8b873879be73078b2dcc00152b2924af7d564b",
+        "legacy_statement_sha256": "786cfeea57ea434223d644b3b6afb9ddb3fdf0dd39077eed55431b553592970e",
+        "source_sha256": "e6d3c29ebf0fcfebf3ea29c66fa9739d994b555ad87a9a6356fc108721ccd8fe",
+        "source_git_blob_sha1": "54bb50b471d1de4098c0042df89e3ef15d843f8c",
+        "lines": 54,
+        "bytes": 1341,
+        "layout": {
+          "prefix": "if (def.id === \"holon\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 44
+      },
+      {
+        "ordinal": 49,
+        "id": "beitshan",
+        "path": "src/game/world-builders/tracks/beitshan.ts",
+        "function_name": "buildBeitshan",
+        "imports": [
+          "bsn"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "cream"
+        ],
+        "body_sha256": "67a4582e2247a954f88da11758b4fe96d7ecce75c2237251abc663d13b153f23",
+        "legacy_statement_sha256": "aed82e08aacd3b240821f264217f8f1a4da43f9924c92f66d8632c8070404dca",
+        "source_sha256": "e7b7f0088ab3d0efefa69dfd83764fe46566e28655a38254573a2832ada0731d",
+        "source_git_blob_sha1": "bc98ca6b12f7e1e117366c7e885df3384582dd5b",
+        "lines": 61,
+        "bytes": 1615,
+        "layout": {
+          "prefix": "if (def.id === \"beitshan\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 45
+      },
+      {
+        "ordinal": 50,
+        "id": "hadera",
+        "path": "src/game/world-builders/tracks/hadera.ts",
+        "function_name": "buildHadera",
+        "imports": [
+          "hdr"
+        ],
+        "context_keys": [
+          "bag",
+          "add",
+          "glowAt",
+          "hit",
+          "cream"
+        ],
+        "body_sha256": "7e90581b6428ca706ce9a0f3a51628dec8a4220ea23b47e21c743b071b373c34",
+        "legacy_statement_sha256": "33513fc2fddbfa11ecc70221a7dae4181cb621aa7660e6830869d9f5d41f0568",
+        "source_sha256": "8f06665e5f48cab81eecc330785c92bce946b2905c55c006b869af8df2c35395",
+        "source_git_blob_sha1": "7254bd782e2a3dc31a1e4d26a5b17d711d077d4d",
+        "lines": 33,
+        "bytes": 1017,
+        "layout": {
+          "prefix": "if (def.id === \"hadera\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 46
+      },
+      {
+        "ordinal": 51,
+        "id": "lod",
+        "path": "src/game/world-builders/tracks/lod.ts",
+        "function_name": "buildLod",
+        "imports": [
+          "lodp"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "stone",
+          "white",
+          "cream",
+          "paleGlass"
+        ],
+        "body_sha256": "d602b36488e31e0077028f954efe84b848b115be116823256bcc080f9ec862a8",
+        "legacy_statement_sha256": "4b5b82849237b85a0fdde85a2f22e133b278e2d659d4b3263ddce5ceadb9381b",
+        "source_sha256": "b946c30d674c45cbf035a7ee2e9bd9973ccd068e9fdab423b8dcb532d26c207d",
+        "source_git_blob_sha1": "c7b0fc47751deecf6c13323d6cc654f7bcf34b1c",
+        "lines": 34,
+        "bytes": 1132,
+        "layout": {
+          "prefix": "if (def.id === \"lod\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 47
+      },
+      {
+        "ordinal": 52,
+        "id": "kshmona",
+        "path": "src/game/world-builders/tracks/kshmona.ts",
+        "function_name": "buildKshmona",
+        "imports": [
+          "ksm"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "stone"
+        ],
+        "body_sha256": "f383d2819281f1bed7488399a4aaed6279402e0629ff49e3e179f841dd5b6a4c",
+        "legacy_statement_sha256": "050acba36ced7d8cd2e47703aa6ed3dd55e84c358dad26e09a23b12797ad8fba",
+        "source_sha256": "b1190b79b993777ddd19b5912d9806e705bb369ca6fc123e5ce9f94c23b25f8c",
+        "source_git_blob_sha1": "fd747b95b5793e17e862eab516e59351f3558445",
+        "lines": 30,
+        "bytes": 984,
+        "layout": {
+          "prefix": "if (def.id === \"kshmona\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 48
+      },
+      {
+        "ordinal": 53,
+        "id": "raanana",
+        "path": "src/game/world-builders/tracks/raanana.ts",
+        "function_name": "buildRaanana",
+        "imports": [
+          "raa"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "white"
+        ],
+        "body_sha256": "9728e312063876b353ff24597f07db671135ab653635116ae6bdc41391ae16d2",
+        "legacy_statement_sha256": "405356b5587c09a8f5ef04999b434f53bd1fd7f31108141375594014e4c38dd1",
+        "source_sha256": "6ff2e1a665f2c1c4344b7c5db4c2277e710eb66019cd92be0898f4b19d8c6f50",
+        "source_git_blob_sha1": "e9fcc656b2d29eb8db53e4ff32135747c966b756",
+        "lines": 29,
+        "bytes": 955,
+        "layout": {
+          "prefix": "if (def.id === \"raanana\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 49
+      },
+      {
+        "ordinal": 54,
+        "id": "afula",
+        "path": "src/game/world-builders/tracks/afula.ts",
+        "function_name": "buildAfula",
+        "imports": [
+          "afl"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "cream"
+        ],
+        "body_sha256": "caf11fa84ce8ddd652b3f86f06d7c3852e270fc32aa86bb74a49976af50f70ad",
+        "legacy_statement_sha256": "c84cb2999e08f0eb900a73d068741e3cc7798bea8aba6b16bc413bccbfebaaed",
+        "source_sha256": "b8cd3634eab1ef2600ebb5dbeeaee0887794bc18d46285511e3b86a63a2fe8ae",
+        "source_git_blob_sha1": "3b86acd739565814ea6e4bf36b3f91d467aac7a4",
+        "lines": 29,
+        "bytes": 904,
+        "layout": {
+          "prefix": "if (def.id === \"afula\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 50
+      },
+      {
+        "ordinal": 55,
+        "id": "ksaba",
+        "path": "src/game/world-builders/tracks/ksaba.ts",
+        "function_name": "buildKsaba",
+        "imports": [
+          "ksb"
+        ],
+        "context_keys": [
+          "add",
+          "glowAt",
+          "hit",
+          "stone"
+        ],
+        "body_sha256": "100b3fa30b4d6107d89d605202357d6ef5c73012da2cf2448d147e1b54c94edb",
+        "legacy_statement_sha256": "998ce551cd8b0f10903b90984be731f4c933caada141a4d252d626984fb5d0d1",
+        "source_sha256": "112c03f6b37a5e82be60da468ce27a8acdc37b8bff8ae5a92386bb5d4416237e",
+        "source_git_blob_sha1": "f72b98805db609e429af273ae1c6071a5754243a",
+        "lines": 26,
+        "bytes": 821,
+        "layout": {
+          "prefix": "if (def.id === \"ksaba\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 51
+      },
+      {
+        "ordinal": 56,
+        "id": "arad",
+        "path": "src/game/world-builders/tracks/arad.ts",
+        "function_name": "buildArad",
+        "imports": [
+          "ard"
+        ],
+        "context_keys": [
+          "add",
+          "hit",
+          "white"
+        ],
+        "body_sha256": "352a84f1c6f610d3d8c7485ed3d292a5eaa856885f3e09813777344522b430e9",
+        "legacy_statement_sha256": "68593f5b084b943824a4c17cca4ef378b5105ed832ef6b3bc3502726516013b3",
+        "source_sha256": "58db1f3d44bd3e03a7f43ddc753220b69e2ca9c461a75428a4ad0b0200bea52d",
+        "source_git_blob_sha1": "7aea36b49c9d95fb3b2c5de79c2ace593a669a58",
+        "lines": 50,
+        "bytes": 1192,
+        "layout": {
+          "prefix": "if (def.id === \"arad\") {",
+          "suffix": "}",
+          "separator_after": "\n  "
+        },
+        "legacy_ordinal": 52
+      }
+    ]
+  },
+  "reconstruction": {
+    "new_import_edge": "import { addLandmarks } from \"./world-builders\";",
+    "original_call": "addLandmarks(group, def, bag, shadows, isNight, landmarkGlows, emitList, colliders, movers, ramps, streets, built)",
+    "extracted_call": "addLandmarks({\n    group,\n    def,\n    bag,\n    shadows,\n    isNight,\n    glows: landmarkGlows,\n    emitList,\n    colliders,\n    movers,\n    ramps,\n    streets,\n    built,\n    support: {\n      _dummy,\n      barkTexture,\n      curtainTexture,\n      foliageTexture,\n      herodianTexture,\n      samp,\n      segsOf,\n    },\n  })",
+    "function_header": "function addLandmarks(\n  group: THREE.Group,\n  def: TrackDef,\n  bag: Disposable[],\n  shadows: boolean,\n  isNight: boolean,\n  glows: Glow[],\n  emitList: Emit[],\n  colliders: Collider[],\n  movers: Mover[],\n  ramps: Ramp[],\n  streets: unknown[],\n  built: BuiltTrack,\n) {",
+    "after_function_suffix": "\n",
+    "function_close_suffix": "\n}",
+    "legacy_builder_order": [
+      "hayarkon",
+      "oldjaffa",
+      "telaviv",
+      "namal",
+      "jerusalem",
+      "haifa",
+      "eilat",
+      "rothschild",
+      "ayalon",
+      "caesarea",
+      "deadsea",
+      "acre",
+      "beersheva",
+      "netanya",
+      "hw1",
+      "herzliya",
+      "hanikra",
+      "haifaport",
+      "stellamaris",
+      "tiberias",
+      "golan",
+      "hermon",
+      "hw6",
+      "hw2",
+      "hw90",
+      "petah",
+      "rishon",
+      "ashdod",
+      "ashkelon",
+      "scopus",
+      "walls",
+      "modiin",
+      "ramon",
+      "hw40",
+      "eilatmtn",
+      "gushdan",
+      "nazareth",
+      "tzfat",
+      "masada",
+      "batyam",
+      "rehovot",
+      "nahariya",
+      "ramla",
+      "holon",
+      "beitshan",
+      "hadera",
+      "lod",
+      "kshmona",
+      "raanana",
+      "afula",
+      "ksaba",
+      "arad",
+      "manhattan",
+      "brooklynbridge",
+      "timessquare",
+      "centralpark"
+    ],
+    "markers": {
+      "shared_begin": "/* RSH-016:BEGIN-LEGACY-SHARED */",
+      "shared_end": "/* RSH-016:END-LEGACY-SHARED */",
+      "body_begin": "/* RSH-016:BEGIN-LEGACY-TRACK-BODY */",
+      "body_end": "/* RSH-016:END-LEGACY-TRACK-BODY */",
+      "final_begin": "/* RSH-016:BEGIN-LEGACY-FINAL */",
+      "final_end": "/* RSH-016:END-LEGACY-FINAL */"
+    },
+    "expected_lines": 9006,
+    "expected_bytes": 352625,
+    "expected_sha256": "64d3aed2e9d4a6dca0fcdbd7d27bb924783afc441549d76cb4079f399b11b107",
+    "expected_git_blob_sha1": "a6586b78725573f97ef9d938f592ab545aba793d"
+  },
+  "track_preservation": {
+    "track_count": 56,
+    "module_count": 56,
+    "mvp_tracks": 8,
+    "deferred_tracks": 48,
+    "runtime_definition_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
+    "aggregate_definition_digest": "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7",
+    "runtime_data_changes": 0,
+    "runtime_order_changes": 0
+  },
+  "behavior_preservation": {
+    "runtime_behavior_changes": 0,
+    "physics_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "renderer_changes": 0,
+    "save_record_changes": 0,
+    "qa_interface_changes": 0,
+    "physics_hz": 120,
+    "unverified_asset_files": 66,
+    "release_gates_green": 0,
+    "release_gates_total": 13,
+    "public_distribution_authorized": false
+  },
+  "preservation": {
+    "src/game/engine.ts": {
+      "sha256": "3f4d54bbe0b68f9654ae8a92a2f56ce378a59a9790e8fbbe2ee05199ced192c1",
+      "git_blob_sha1": "692663c6d05ab59c1d99c7a357999839b9ebb0ec",
+      "lines": 2815,
+      "bytes": 99577
+    },
+    "src/game/physics.ts": {
+      "sha256": "cbff35aa2e2e4b509decf38e9f1ca3d262667675af81e0352ba02f460f5723c1",
+      "git_blob_sha1": "84a64bbe2adcf980922367aed279866d6f2fbcd8",
+      "lines": 125,
+      "bytes": 3825
+    },
+    "src/game/world-core.ts": {
+      "sha256": "cbb9ac1f9de387cb1b31290fbc617b0ca34536b97067198b61e82ffcaf31fafe",
+      "git_blob_sha1": "9b39357c54181255a845c0fa3fbf136b8ec1f183",
+      "lines": 116,
+      "bytes": 2604
+    },
+    "src/game/save.ts": {
+      "sha256": "d7c681b9e00942c91135a579d47f7f9f8def717d22232470b3990a5b0a644d87",
+      "git_blob_sha1": "f9a9225d735412de771c59f8cb6bd139051d5681",
+      "lines": 346,
+      "bytes": 8316
+    },
+    "src/game/records.ts": {
+      "sha256": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
+      "git_blob_sha1": "b063470542ebae33b7f98eaab8d86294413f8f2a",
+      "lines": 33,
+      "bytes": 1071
+    },
+    "TRACK-MODULE-MANIFEST.json": {
+      "sha256": "a8891a4af9345dbfa34fcb998302b77383f3b14f19fd240c9a8c46d2e5a43fdd",
+      "git_blob_sha1": "4688589028649dd2ec894be9100deeb60ecfcf56",
+      "lines": 714,
+      "bytes": 23738
+    },
+    "TRACK-SCHEMA.json": {
+      "sha256": "56f2f29c131d8df1b98c5fdc909fd1fe35cf21de2346d6f9f8189b6d1abec208",
+      "git_blob_sha1": "30ef7c53dccd4b2094b7d8de6fd56b44a11ec11b",
+      "lines": 323,
+      "bytes": 7719
+    },
+    "ASSET-PROVENANCE.json": {
+      "sha256": "6881756ee4c3fba9ce798208f5222dbadc3820e18d676b4f8c93733e8fe5f6e5",
+      "git_blob_sha1": "8bec7f0d6845619fc52ac55fc8d0c84002347668",
+      "lines": 123,
+      "bytes": 5660
+    },
+    "PRODUCT-DEFINITION.json": {
+      "sha256": "66c445b89f73fd84bfd0ea85b80097945546241e85d7b1f3b738bc98ebe0e4ca",
+      "git_blob_sha1": "900beb88a75da42463142bb1d82fcd8ed7e93341",
+      "lines": 145,
+      "bytes": 4030
+    },
+    "package.json": {
+      "sha256": "6ab942958cb76120b0f51a8b250e7d223c412a1c23964644bd90ab5661632a63",
+      "git_blob_sha1": "f9376a6c463a29d049fe91746a676f9c85c3f972",
+      "lines": 175,
+      "bytes": 8100
+    },
+    "package-lock.json": {
+      "sha256": "62ec6d2fe00b439855a06803789a03fe4cac5072f7e1e3437ba4aef9d87244ec",
+      "git_blob_sha1": "5c70a0004615826d76c1a7855e3d0b0899073389",
+      "lines": 7646,
+      "bytes": 271867
+    },
+    "src/rendering/EnvironmentState.ts": {
+      "sha256": "a4471989af161d1e9d195cf1b9972c3ba4b6a9e85d09a1d9c60a9beb309b69a2",
+      "git_blob_sha1": "4f91cc5e7e8c682420aee7782f10494508d70afa",
+      "lines": 44,
+      "bytes": 2047
+    },
+    "src/rendering/RendererFacade.ts": {
+      "sha256": "90d8b440c1dcbb2020196ea1b99c854ae4e44c3a30b094f015fef6e98fefc904",
+      "git_blob_sha1": "fb30a8f2d0b7e124a10363eb9248d5fad8ff4747",
+      "lines": 97,
+      "bytes": 3193
+    },
+    "src/rendering/ResourceRegistry.ts": {
+      "sha256": "64781dfb6d7cc53c0052374a1d2f647b0436e2017382902110f40a09262dc873",
+      "git_blob_sha1": "fb421f99514f5b7c86618e4e90a00101993ddc9d",
+      "lines": 38,
+      "bytes": 794
+    },
+    "src/world/AssetRegistry.ts": {
+      "sha256": "c9877f99624077f73862e09c5c465236aee4b0d78bf938033d470449e517bed3",
+      "git_blob_sha1": "4ef7c234327fcdf282a11af97d1c963c5000089b",
+      "lines": 19,
+      "bytes": 838
+    }
+  },
+  "deferred_boundary": {
+    "rsh_017_started": false,
+    "rsh_017_authorized": false
+  }
+}
