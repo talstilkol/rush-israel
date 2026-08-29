@@ -1,98 +1,99 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 2.4.0  
+**Version:** 2.5.0  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**Verified base:** `88c7754b62c66cfdf59f8bfce847db2113eb09de`  
-**Active unit:** `RSH-008`  
-**Active branch:** `agent/rsh-008-required-checks-artifacts`  
-**Active PR:** `#10`
+**Verified base:** `c7628b1da3d149f1881961148e11564039de4b8d`  
+**Active unit:** `RSH-009`  
+**Active branch:** `agent/rsh-009-freeze-v1-product-definition`  
+**Active PR:** `#11`
 
 ## 1. Authority
 
 GitHub and the canonical control documents govern the program. Live GitHub
 evidence supersedes chat summaries and recorded SHAs whenever they differ.
 
-The owner instruction `make next 5; confirm everything` authorises exactly:
+The active bounded batch is exactly:
 
-1. `RSH-007` — accepted and merged by PR #9;
-2. `RSH-008` — active;
-3. `RSH-009` — blocked by RSH-008;
-4. `RSH-010` — deferred inside the authorised batch;
-5. `RSH-011` — final authorised unit.
+1. RSH-007 — accepted;
+2. RSH-008 — accepted, with live branch protection still an owner action;
+3. RSH-009 — active;
+4. RSH-010 — blocked by RSH-009;
+5. RSH-011 — final authorised unit.
 
-The batch closes after RSH-011. RSH-012 is not authorised.
+RSH-012 is not authorised.
 
-## 2. Sequential execution
+## 2. Current queue head
 
-Each authorised unit requires:
+`RSH-009 — Freeze the Version 1 product definition`
 
-- the exact live `main` created by the preceding merge;
-- a distinct branch and PR;
-- exact-head GitHub Actions success;
-- deterministic changed-set and unit-specific evidence;
-- no later-unit pre-creation;
-- merge only after the acceptance boundary passes.
+The exact final PR head must prove that:
 
-## 3. Current queue head
+- `PRODUCT-DEFINITION.json` is valid and frozen;
+- ownership is private and owner-controlled;
+- public distribution is not authorised;
+- the renderer default is WebGL and handling is simcade at 120 Hz;
+- the intended Version 1 track count is exactly 8;
+- the intended fictional vehicle count is exactly 5;
+- all explicit non-claims and exclusions remain present;
+- all 13 release gates remain required and 0 are currently green;
+- unresolved subjects remain assigned to their later authoritative units.
 
-`RSH-008 — Enforce required checks, branch protection and CI artifacts`
+## 3. Frozen product boundary
 
-The code-controlled acceptance boundary is:
+The Version 1 product is a private owner-controlled browser driving game using
+Three.js, WebGL and fixed-step simcade physics on fictional routes inspired by
+Israeli places.
 
-- governance contract validation passes;
-- the stable check context remains `required-ci / validate`;
-- CI diagnostics are collected with `if: always()`;
-- at least `artifacts/ci-summary.json` is uploaded;
-- artifact retention is exactly 14 days;
-- the exact final PR head passes the complete required workflow.
+The intended track names are:
 
-## 4. Administrative truth boundary
+1. Ayalon;
+2. Rothschild;
+3. Yarkon–Reading;
+4. Jaffa;
+5. Jerusalem–Scopus;
+6. Haifa–Carmel;
+7. Ramon;
+8. Hermon.
 
-Live GitHub currently reports:
+RSH-010 must map these names to exact live repository IDs and classify every
+catalogue entry. RSH-009 does not guess the IDs.
 
-| Setting | Value |
-|---|---:|
-| `main` protected | No |
-| Required status checks | 0 |
-| Rulesets | 0 |
-| Branch-protection detail through integration | HTTP 403 |
+## 4. Truth boundaries
 
-The integration has no settings-mutation action. Therefore:
+- Branch protection remains unapplied and owner-action-required.
+- Public repository visibility remains inconsistent with private policy.
+- Five zero-to-100 claims remain failed and belong to RSH-033.
+- Asset provenance remains incomplete until RSH-011.
+- README, metadata, branding, root licence and PWA alignment remain RSH-012.
+- Browser/device support remains RSH-043.
+- Release gates remain 0/13.
 
-- `REPOSITORY-RULESET-DESIRED.json` records the exact target;
-- `REPOSITORY-SETTINGS-STATUS.json` records every live claim as false;
-- `BRANCH-PROTECTION.md` records the exact owner action;
-- finding P0-02 remains open;
-- RSH-008 must not claim that branch protection was applied.
+## 5. Transition to RSH-010
 
-## 5. Transition to RSH-009
+RSH-010 starts only after:
 
-RSH-009 starts only after:
-
-1. PR #10 exact final head passes `required-ci / validate`;
-2. the diagnostic artifact is confirmed on that run;
-3. PR #10 merges under the owner batch;
-4. its live merge SHA is recorded in the RSH-009 branch.
+1. PR #11 exact final head passes `required-ci / validate`;
+2. product-definition tests pass;
+3. PR #11 merges under the owner batch;
+4. its live merge SHA is recorded in the RSH-010 branch.
 
 ## 6. Prohibited actions
 
-- direct write to `main`;
-- force-push or history rewrite;
-- merging a failed or pending exact head;
-- treating a workflow as a substitute for live branch protection;
-- claiming the repository is private while GitHub reports public;
-- creating tags, releases or public-distribution artifacts;
+- implicit Version 1 scope expansion;
+- guessing exact track IDs before RSH-010 evidence;
+- public-distribution or release claims;
+- direct `main` writes, force-push or history rewrite;
 - starting RSH-012 under this batch.
 
 ## 7. Current metrics
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 7/67 |
+| Accepted units | 8/67 |
 | In review | 1 |
-| Remaining units | 60 |
-| Queue head | RSH-008 |
-| Batch units completed | 1/5 |
-| Batch authority remaining | 4 |
+| Remaining units | 59 |
+| Queue head | RSH-009 |
+| Batch units completed | 2/5 |
+| Batch authority remaining | 3 |
 | Release gates | 0/13 |

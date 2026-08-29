@@ -1,18 +1,20 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 2.4.0  
+**Schema:** 2.5.0  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**Verified base:** `88c7754b62c66cfdf59f8bfce847db2113eb09de`  
-**Active unit:** RSH-008 / PR #10  
+**Verified base:** `c7628b1da3d149f1881961148e11564039de4b8d`  
+**Active unit:** RSH-009 / PR #11  
 **Established by:** RSH-001  
 **Governance policy:** RSH-002  
+**Product-definition authority:** `PRODUCT-DEFINITION.json`  
 **Date:** 29 August 2026
 
 ## 1. Authority
 
 GitHub is the sole source of truth. `CURRENT-STATE.json`, `QUEUE.json`, this document,
-`NEXT-CONTRACT.md`, `FINDINGS-REGISTER.md`, `BASELINE-REGISTER.json` and
+`NEXT-CONTRACT.md`, `FINDINGS-REGISTER.md`, `BASELINE-REGISTER.json`,
+`MILESTONE-REGISTER.md`, `PRODUCT-DEFINITION.json` and
 `REPOSITORY-GOVERNANCE.md` control program state and sequencing.
 
 `progress.md`, `PLAN.md`, `TASKS.md`, `EXECUTION_PLAN.md`,
@@ -22,15 +24,29 @@ They do not control queue order, accepted progress or release-gate counts.
 ## 2. Product boundary
 
 Version 1 is a **private, owner-controlled Three.js WebGL simcade driving game
-inspired by Israeli places**.
+using fictional routes inspired by Israeli places**.
 
-It is not represented as GIS, a measurement simulator, a digital twin, Unreal,
-photogrammetry or a scanned-vehicle product. `WebGLRenderer` remains the default.
-WebGPU, online multiplayer, public distribution and expansion beyond the eight-track
-MVP are outside Version 1 until explicitly authorised.
+The machine-readable product boundary is frozen in `PRODUCT-DEFINITION.json` by
+RSH-009. It requires:
 
-The detailed product definition is frozen by RSH-009. Until then, this section is
-the controlling high-level boundary.
+- `WebGLRenderer` as the default renderer;
+- fixed-step simcade physics at 120 Hz;
+- exactly eight intended Version 1 tracks;
+- exactly five fictional vehicles;
+- local single-player web delivery;
+- keyboard, touch and gamepad input;
+- Hebrew and English;
+- all 13 release gates before a release claim.
+
+It is not represented as GIS, a measurement simulator, a digital twin, Unreal, Unity,
+photogrammetry, a scanned/licensed-real-vehicle product or console-equivalent
+photorealism. WebGPU as default, online multiplayer, public distribution, native store
+packages, mandatory accounts, monetisation, UGC and expansion beyond the eight-track
+Version 1 boundary are excluded unless a later explicit owner-authorised unit changes
+the preserved definition.
+
+RSH-010 must map the eight intended names to exact repository IDs and classify all 56
+catalogue entries. RSH-011 must inventory asset provenance and licensing.
 
 ## 3. Operating rules
 
@@ -47,28 +63,30 @@ the controlling high-level boundary.
 10. Workflow evidence and GitHub repository settings are separate authorities.
 11. If a unit's own PR prepares post-merge canonical state, the next preflight must
     read and persist the actual merge SHA.
+12. The frozen product definition may change only through explicit owner authorisation,
+    a separate reviewed unit, canonical plan/queue updates and preservation of history.
 
 ## 4. Current program state
 
 | Metric | Current value |
 |---|---:|
 | Total units | 67 |
-| Accepted units | 7 |
+| Accepted units | 8 |
 | Units in review | 1 |
-| Queue head | RSH-008 |
-| Active PR | #10 |
-| Remaining units | 60 |
+| Queue head | RSH-009 |
+| Active PR | #11 |
+| Remaining units | 59 |
 | Verified release gates | 0/13 |
 | Findings | 42 |
 | OPEN / MITIGATED / CLOSED | 26 / 8 / 8 |
 
-The owner-authorised active batch contains exactly RSH-007–RSH-011. RSH-007 is
-accepted. RSH-008 is active. RSH-009–RSH-011 may run sequentially only after each
-preceding unit is validated and merged. RSH-012 is not authorised.
+The owner-authorised active batch contains exactly RSH-007–RSH-011. RSH-007 and
+RSH-008 are accepted. RSH-009 is active. RSH-010 and RSH-011 may run sequentially
+only after each preceding unit is validated and merged. RSH-012 is not authorised.
 
 ## 5. Version 1 track scope
 
-| # | MVP track |
+| # | Intended MVP track |
 |---|---|
 | 1 | Ayalon |
 | 2 | Rothschild |
@@ -79,18 +97,18 @@ preceding unit is validated and merged. RSH-012 is not authorised.
 | 7 | Ramon |
 | 8 | Hermon |
 
-RSH-010 must map these names to exact repository track IDs and classify every one
-of the 56 catalogue entries. Until that machine-readable classification merges,
-this table remains the owner-approved intended scope and the remaining 48 entries
-remain deferred by policy.
+RSH-010 must map these names to exact repository track IDs and classify every one of
+the 56 catalogue entries. Until that machine-readable classification merges, this
+table is the frozen intended scope and every other catalogue entry remains deferred
+by rule rather than by guessed identity.
 
 ## 6. Stage map
 
 | Stage | Units | Count | Purpose | Current state |
 |---|---:|---:|---|---|
 | G0 | RSH-001–RSH-003 | 3 | Control and governance | ACCEPTED |
-| G1 | RSH-004–RSH-008 | 5 | Reproducible toolchain and CI | ACTIVE — RSH-008 |
-| G2 | RSH-009–RSH-012 | 4 | Scope, licensing and assets | AUTHORISED THROUGH RSH-011 |
+| G1 | RSH-004–RSH-008 | 5 | Reproducible toolchain and CI | UNITS ACCEPTED; EXIT GATE BLOCKED BY OWNER SETTING |
+| G2 | RSH-009–RSH-012 | 4 | Scope, licensing and assets | ACTIVE — RSH-009; BATCH AUTHORISED THROUGH RSH-011 |
 | G3 | RSH-013–RSH-020 | 8 | Architecture decomposition | DEFERRED |
 | G4 | RSH-021–RSH-024 | 4 | Data integrity and production security | DEFERRED |
 | G5 | RSH-025–RSH-036 | 12 | Ayalon vertical slice | DEFERRED |
@@ -238,17 +256,17 @@ remain deferred by policy.
 
 Current verified result: **0/13**.
 
-RSH-007 provides reproducible clean-checkout CI evidence, but release gate 4 remains
-unverified as a repository-required setting while `main` is unprotected. The five
-known acceleration product claims also remain failed and assigned to RSH-033.
+RSH-007 provides reproducible clean-checkout CI evidence. RSH-008 provides exact-head
+governance validation and retained diagnostics, but release gate 2 remains blocked
+because live GitHub still reports `main` unprotected, required checks 0 and rulesets 0.
+The five known acceleration product claims remain failed and assigned to RSH-033.
 
 ## 9. Current execution boundary
 
-RSH-008 adds a blocking governance-contract check and always-retained CI diagnostics.
-The desired `main` ruleset is machine-readable, but GitHub still reports protection
-false, required checks 0 and rulesets 0. The integration cannot mutate those admin
-settings. That limitation remains explicit and finding P0-02 stays open.
+RSH-009 freezes the Version 1 definition in a machine-readable authority and an exact
+digest-backed validator. Its PR must reconcile all canonical state, pass the exact-head
+`required-ci / validate` job and preserve 0/13 release-gate truth.
 
-RSH-009 must not start until PR #10 passes the exact-head workflow, its diagnostic
-artifact is confirmed and the PR is merged. After RSH-011, the current batch ends;
-RSH-012 must not be created automatically.
+After RSH-009 merges, RSH-010 may classify the exact catalogue IDs. RSH-011 may start
+only after RSH-010 merges. The current batch ends after RSH-011; RSH-012 must not be
+created automatically.
