@@ -11,6 +11,7 @@ import { validateTrackSchemaHardening } from "./check-track-schema-hardening.mjs
 import { validateTrackDefinitionClosure } from "./check-track-schema-definition-guard.mjs";
 import { validateTrackMutationEdges } from "./check-track-schema-mutation-edges.mjs";
 import { validateTrackMutationGuard } from "./check-track-schema-mutation-guard.mjs";
+import { validateTrackDefTypeAuthority } from "./check-track-schema-type-authority.mjs";
 import { validateTrackSourcePin } from "./check-track-source-pin.mjs";
 
 export { EXPECTED_RSH_012_MERGE };
@@ -44,6 +45,7 @@ export function validateTrackSchema(inputs) {
     coreResult,
   });
   const exportErrors = validateTrackSchemaExports(trackSchemaSource);
+  const typeAuthorityErrors = validateTrackDefTypeAuthority(inputs?.typeSource);
   const mutationErrors = validateTrackMutationGuard(inputs?.trackSource);
   const mutationEdgeErrors = validateTrackMutationEdges(inputs?.trackSource);
   const definitionClosureErrors = validateTrackDefinitionClosure(inputs?.trackSource);
@@ -57,6 +59,7 @@ export function validateTrackSchema(inputs) {
       ...coreResult.errors,
       ...hardening.errors,
       ...exportErrors,
+      ...typeAuthorityErrors,
       ...mutationErrors,
       ...mutationEdgeErrors,
       ...definitionClosureErrors,
