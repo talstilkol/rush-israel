@@ -28,7 +28,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat .rsh-patch/part-* | base64 --decode > /tmp/rsh013-patch.tar.gz
+          cat \
+            .rsh-patch/part-000-00 \
+            .rsh-patch/part-000-01 \
+            .rsh-patch/part-000-02 \
+            .rsh-patch/part-001 \
+            .rsh-patch/part-002 \
+            .rsh-patch/part-003 \
+            .rsh-patch/part-004 \
+            .rsh-patch/part-005-00 \
+            .rsh-patch/part-005-01 \
+            .rsh-patch/part-005-02 \
+            | base64 --decode > /tmp/rsh013-patch.tar.gz
           echo "c32420e9482a769f044ee0e6c7065fe7f3f01cd476259884c24f1a9dd516a76d  /tmp/rsh013-patch.tar.gz" | sha256sum --check --strict
           tar -xzf /tmp/rsh013-patch.tar.gz -C .
           rm -rf .rsh-patch
@@ -43,6 +54,9 @@ jobs:
           git config user.name "talsitelkol"
           git config user.email "tal_stilkol@hotmail.com"
           git add -A
-          git diff --cached --exit-code && { echo "expected staged changes" >&2; exit 1; } || true
+          if git diff --cached --quiet; then
+            echo "expected staged changes" >&2
+            exit 1
+          fi
           git commit -m "RSH-013: apply exact remediated schema authority"
           git push origin "HEAD:${GITHUB_REF_NAME}"
