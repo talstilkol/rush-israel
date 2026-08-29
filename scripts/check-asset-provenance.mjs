@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import { readdirSync, readFileSync, realpathSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { lstatSync, readdirSync, readFileSync, realpathSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
@@ -37,6 +38,34 @@ export function listPublicFiles(root = fromRoot("public")) {
   return files.sort();
 }
 
+function gitObjectSha(type, body) {
+  return createHash("sha1")
+    .update(Buffer.from(`${type} ${body.length}\0`))
+    .update(body)
+    .digest("hex");
+}
+
+export function computeFlatGitTreeSha(directory = fromRoot("public", "game")) {
+  const names = readdirSync(directory).sort((left, right) =>
+    Buffer.compare(Buffer.from(left), Buffer.from(right)),
+  );
+  const entries = names.map((name) => {
+    const absolute = path.join(directory, name);
+    const stat = lstatSync(absolute);
+    if (!stat.isFile() || stat.isSymbolicLink()) {
+      throw new Error(`public/game must stay flat and file-only: ${name}`);
+    }
+    const body = readFileSync(absolute);
+    const blobSha = gitObjectSha("blob", body);
+    const mode = stat.mode & 0o111 ? "100755" : "100644";
+    return Buffer.concat([
+      Buffer.from(`${mode} ${name}\0`),
+      Buffer.from(blobSha, "hex"),
+    ]);
+  });
+  return gitObjectSha("tree", Buffer.concat(entries));
+}
+
 export function classifyPublicPath(filePath) {
   const matches = [];
   if (filePath === "public/game/LICENSES.md") matches.push("game_asset_evidence");
@@ -65,12 +94,18 @@ function sameJson(actual, expected) {
   return JSON.stringify(actual) === JSON.stringify(expected);
 }
 
-export function validateAssetProvenance({ manifest, catalogue, publicFiles, licencesText }) {
+export function validateAssetProvenance({
+  manifest,
+  catalogue,
+  publicFiles,
+  licencesText,
+  gameTreeSha,
+}) {
   const errors = [];
   if (!manifest || typeof manifest !== "object") {
     return ["asset provenance manifest is not an object"];
   }
-  if (manifest.schema_version !== "1.0.0") errors.push("schema version must be 1.0.0");
+  if (manifest.schema_version !== "1.0.1") errors.push("schema version must be 1.0.1");
   if (manifest.document_type !== "rush-asset-provenance-inventory") {
     errors.push("document type must be rush-asset-provenance-inventory");
   }
@@ -149,6 +184,24 @@ export function validateAssetProvenance({ manifest, catalogue, publicFiles, lice
     }
   }
 
+  const generated = groups.get("game_generated_assets");
+  if (
+    generated?.provenance_status !== "owner_generated_claim_recorded"
+    || generated?.public_distribution_clearance !== false
+    || !sameJson(generated?.evidence, ["public/game/LICENSES.md"])
+  ) {
+    errors.push("generated game assets must retain recorded owner-generation evidence without public clearance");
+  }
+  if (generated?.pinned_directory_entry_count !== 65) {
+    errors.push("public/game pin must cover exactly 65 directory entries including LICENSES.md");
+  }
+  if (generated?.pinned_git_tree_sha1 !== "332fe666fd91590787856c32cf2040b8f6adb7d0") {
+    errors.push("public/game pinned Git tree SHA must match the accepted RSH-010 baseline");
+  }
+  if (gameTreeSha !== generated?.pinned_git_tree_sha1) {
+    errors.push("public/game path or content identity differs from the pinned Git tree SHA");
+  }
+
   const basis = groups.get("basis_universal_runtime");
   if (
     basis?.provenance_status !== "third_party_identified"
@@ -167,15 +220,6 @@ export function validateAssetProvenance({ manifest, catalogue, publicFiles, lice
     if (!Array.isArray(group?.evidence) || group.evidence.length !== 0) {
       errors.push(`${id} must not claim missing evidence`);
     }
-  }
-
-  const generated = groups.get("game_generated_assets");
-  if (
-    generated?.provenance_status !== "owner_generated_claim_recorded"
-    || generated?.public_distribution_clearance !== false
-    || !sameJson(generated?.evidence, ["public/game/LICENSES.md"])
-  ) {
-    errors.push("generated game assets must retain recorded owner-generation evidence without public clearance");
   }
 
   if (!/Basis Universal/.test(licencesText) || !/Apache-2\.0/.test(licencesText)) {
@@ -236,12 +280,19 @@ if (isMainModule(import.meta.url)) {
   );
   const publicFiles = listPublicFiles();
   const licencesText = readFileSync(fromRoot("public", "game", "LICENSES.md"), "utf8");
-  const errors = validateAssetProvenance({ manifest, catalogue, publicFiles, licencesText });
+  const gameTreeSha = computeFlatGitTreeSha();
+  const errors = validateAssetProvenance({
+    manifest,
+    catalogue,
+    publicFiles,
+    licencesText,
+    gameTreeSha,
+  });
   if (errors.length) {
     console.error("asset-provenance fail\n" + errors.map((error) => `- ${error}`).join("\n"));
     process.exit(1);
   }
   console.log(
-    "asset-provenance ok: 134/134 files classified; 131 assets; 66 assets remain unverified; public release blocked",
+    `asset-provenance ok: 134/134 files; public/game tree ${gameTreeSha}; 66 assets remain unverified`,
   );
 }
