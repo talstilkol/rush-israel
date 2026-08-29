@@ -114,12 +114,15 @@ test("RSH-010 is the sole in-review unit and RSH-011 is not pre-created", () => 
   assert.equal(queue.queue_head.id, "RSH-010");
   assert.equal(queue.queue_head.state, "pr_open");
   assert.equal(queue.queue_head.branch, "agent/rsh-010-track-catalogue-classification");
-  assert.equal(queue.queue_head.pull_request, 12);
+  assert.equal(queue.queue_head.pull_request, 13);
+  assert.equal(queue.queue_head.replaced_draft_pull_request, 12);
   assert.equal(current.active_change.unit, queue.queue_head.id);
   assert.equal(current.active_change.branch, queue.queue_head.branch);
   assert.equal(current.active_change.pull_request, queue.queue_head.pull_request);
+  assert.equal(current.active_change.replaced_draft_pull_request, 12);
   assert.equal(baseline.working_state.unit, "RSH-010");
-  assert.equal(baseline.working_state.pull_request, 12);
+  assert.equal(baseline.working_state.pull_request, 13);
+  assert.equal(baseline.working_state.replaced_draft_pull_request, 12);
   assert.equal(current.validation.RSH_011_precreated, false);
   assert.equal(queue.next_after_acceptance.id, "RSH-011");
 });
