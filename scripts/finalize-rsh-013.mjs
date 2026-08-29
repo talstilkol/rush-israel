@@ -11,7 +11,7 @@ schema.runtime_definition_integrity.expected_digest = DIGEST;
 schema.runtime_definition_integrity.capture_state = "pinned";
 writeFileSync("TRACK-SCHEMA.json", `${JSON.stringify(schema, null, 2)}\n`);
 
-let testSource = readFileSync("scripts/check-track-schema.test.mjs", "utf8");n
+let testSource = readFileSync("scripts/check-track-schema.test.mjs", "utf8");
 assert.ok(testSource.includes("  assert.match(result.digest, /^[0-9a-f]{64}$/);"));
 testSource = testSource.replace(
   "  assert.match(result.digest, /^[0-9a-f]{64}$/);",
