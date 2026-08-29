@@ -303,14 +303,12 @@ function collectTaintedAliases(sourceFile, tracksSymbol, checker) {
         ) ? propertyName(callee) : null;
         if (receiver && expressionIsTainted(receiver, tainted, checker)) {
           if (method && ARRAY_CALLBACK_METHODS.has(method)) {
-            const callback = functionLikeFromExpression(node.arguments[0]);
-            if (callback) {
+            for (const callback of functionLikeDeclarations(node.arguments[0], checker)) {
               changed = addParameterSymbols(callback, [0, 2], tainted, checker) || changed;
             }
           }
           if (method && REDUCE_METHODS.has(method)) {
-            const callback = functionLikeFromExpression(node.arguments[0]);
-            if (callback) {
+            for (const callback of functionLikeDeclarations(node.arguments[0], checker)) {
               changed = addParameterSymbols(callback, [0, 1, 3], tainted, checker) || changed;
             }
           }
@@ -416,13 +414,20 @@ export function validateTrackMutationGuard(trackSource) {
       const method = (
         ts.isPropertyAccessExpression(callee) || ts.isElementAccessExpression(callee)
       ) ? propertyName(callee) : null;
-      if (
-        receiver
-        && method
-        && MUTATING_METHODS.has(method)
-        && expressionIsTainted(receiver, tainted, checker)
-      ) {
+      const protectedReceiver = Boolean(
+        receiver && expressionIsTainted(receiver, tainted, checker),
+      );
+      if (protectedReceiver && method && MUTATING_METHODS.has(method)) {
         report(node, `mutating method ${method}`);
+      }
+      if (
+        protectedReceiver
+        && method
+        && (ARRAY_CALLBACK_METHODS.has(method) || REDUCE_METHODS.has(method))
+        && node.arguments[0]
+        && functionLikeDeclarations(node.arguments[0], checker).length === 0
+      ) {
+        report(node, `unreviewed callback passed to protected method ${method}`);
       }
 
       const callName = dottedName(callee);

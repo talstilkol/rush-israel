@@ -66,3 +66,17 @@ test("unreviewed external call with TRACKS fails closed", () => {
     /unreviewed call mutate/,
   );
 });
+
+test("named callback element mutation fails closed", () => {
+  assert.match(
+    errors("function rewrite(track: TrackDef) { track.width = 1; } TRACKS.forEach(rewrite);"),
+    /assignment to TRACKS/,
+  );
+});
+
+test("unreviewed callback on a protected iteration fails closed", () => {
+  assert.match(
+    errors("declare function rewrite(track: TrackDef): void; TRACKS.forEach(rewrite);"),
+    /unreviewed callback passed to protected method forEach/,
+  );
+});
