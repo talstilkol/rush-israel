@@ -20,13 +20,15 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.ref_name }}
-          fetch-depth: 2
+          fetch-depth: 3
 
       - name: Verify and apply exact RSH-015 patch
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = "0e00610ac0426aa2d134c7f30b943b080702699b"
+          base="0e00610ac0426aa2d134c7f30b943b080702699b"
+          test "$(git rev-parse HEAD^)" = "42f8e7fbd5e262b380f54442d645b5a37872ef24"
+          test "$(git rev-parse HEAD^^)" = "$base"
           expected=(
             016ad6f5a48760a847feb6b5b892a1d4d494734a
             650936f678920d91cef0c0e8c8358483d5b14e6c
@@ -38,9 +40,10 @@ jobs:
             448e32c660b1806fbac8fedf6568f263b08e61cb
             f42844c43bca26d791a30ee6aa88165545f68cdc
           )
-          for i in $(seq -w 0 8); do
+          for n in $(seq 0 8); do
+            i="$(printf '%02d' "$n")"
             path=".rsh015-transfer/part-${i}"
-            test "$(git hash-object "$path")" = "${expected[$((10#$i))]}"
+            test "$(git hash-object "$path")" = "${expected[$n]}"
           done
           cat .rsh015-transfer/part-* > /tmp/rsh015.patch.gz
           echo "982eb1b3f181efb45fb09287afd1affb85a7e074c94f64ac9d222177b376c86c  /tmp/rsh015.patch.gz" | sha256sum --check --strict
@@ -51,10 +54,10 @@ jobs:
           rm -rf .rsh015-transfer .github/workflows/rsh015-apply.yml
           git add -A
           git diff --cached --check
-          test "$(git diff --cached HEAD^ --name-only | wc -l)" -eq 20
-          test "$(git diff --cached HEAD^ --binary --full-index | sha256sum | cut -d' ' -f1)" = "9aed2176ed950ead71561c51fdd37b49d4669a1a37bdac2efca9e46707bbe55a"
+          test "$(git diff --cached "$base" --name-only | wc -l)" -eq 20
+          test "$(git diff --cached "$base" --binary --full-index | sha256sum | cut -d' ' -f1)" = "9aed2176ed950ead71561c51fdd37b49d4669a1a37bdac2efca9e46707bbe55a"
           test "$(git write-tree)" = "8dfb231a4e30623320b4d1f99f10f19853ff7eb9"
-          ! git diff --cached HEAD^ --name-only | grep -Ei '(^|/)(rsh-016|world/(tracks|builders))'
+          ! git diff --cached "$base" --name-only | grep -Ei '(^|/)(rsh-016|world/(tracks|builders))'
 
       - name: Commit exact RSH-015 implementation
         shell: bash
