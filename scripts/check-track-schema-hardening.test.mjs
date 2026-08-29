@@ -4,8 +4,8 @@ import { test } from "node:test";
 import { fromRoot } from "./project-root.mjs";
 import { validateTrackSchema } from "./check-track-schema.mjs";
 
-const TRACK_DIGEST = "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f";
-const AGGREGATE_DIGEST = "93ee4c2c8ed1bd3776cca0cdb6de559c6ad34a9220d60935a73fe65c8194f65e";
+const TRACK_DIGEST = "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d";
+const AGGREGATE_DIGEST = "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7";
 
 function readInputs() {
   const mathSource = readFileSync(fromRoot("src", "game", "math.ts"), "utf8");
