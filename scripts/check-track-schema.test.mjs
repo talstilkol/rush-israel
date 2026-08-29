@@ -26,7 +26,7 @@ test("committed 56-track catalogue satisfies the canonical schema", () => {
   assert.equal(Array.isArray(result), false);
   assert.deepEqual(result.errors, []);
   assert.equal(result.summaries.length, 56);
-  assert.match(result.digest, /^[0-9a-f]{64}$/);
+  assert.equal(result.digest, "9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230");
   assert.notDeepEqual(
     result.summaries.map((entry) => entry.id),
     inputs.schema.catalogue.ids_in_canonical_order,
@@ -111,4 +111,14 @@ test("RSH-015 remains outside the authorised schema change", () => {
   const inputs = readInputs();
   inputs.schema.change_control.RSH_015_authorized = true;
   assert.match(errorsOf(inputs).join("\n"), /over-authorized/);
+});
+
+
+test("runtime data mutation changes the pinned digest", () => {
+  const inputs = readInputs();
+  inputs.trackSource = inputs.trackSource.replace(
+    '    descriptionEn: "Tel Aviv promenade, sea and sunset.",',
+    '    descriptionEn: "A changed but still valid localized description.",',
+  );
+  assert.match(errorsOf(inputs).join("\n"), /runtime definition digest/);
 });
