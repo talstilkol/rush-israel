@@ -43,16 +43,17 @@ jobs:
           cat scripts/rsh015-inventory.mjs.gz.b64.part-* \
             | base64 --decode \
             | gzip --decompress \
-            > /tmp/rsh015-inventory.mjs
+            > scripts/.rsh015-inventory.mjs
 
       - name: Generate pre-edit inventory and contract
         env:
           RSH_BASE_SHA: 076dabb754dba1676c6685a4a8d6f6d3c0b153ea
-        run: node /tmp/rsh015-inventory.mjs
+        run: node scripts/.rsh015-inventory.mjs
 
       - name: Remove temporary generator
         shell: bash
         run: |
+          rm -f scripts/.rsh015-inventory.mjs
           rm -f .github/workflows/rsh015-inventory.yml
           rm -f scripts/rsh015-inventory.mjs.gz.b64.part-*
 
