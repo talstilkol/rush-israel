@@ -40,13 +40,14 @@ public distribution.
 | Open Graph title | `RUSH Israel` |
 | Open Graph type | `x:game` |
 | Dynamic PWA name | `RUSH Israel` |
-| Manifest path | `/manifest.webmanifest` |
+| Manifest path | `/__grok/manifest.webmanifest` |
+| Legacy manifest alias | `/__grok/manifest.json` |
 | Display mode | `standalone` |
-| Start URL | `/` |
+| Start URL / scope | `/` / `/` |
 
-The PWA manifest derives its product name from `src/lib/og/site.json`. The generic
-platform helper may retain a generic fallback for non-product workspaces; the RUSH
-identity is explicit and tested at the product boundary.
+`scripts/rush-pwa.mjs` applies the baked `src/lib/og/site.json` title to the dynamic
+manifest and install page. The generic platform helper retains its generic fallback
+for non-product workspaces, while the RUSH product identity is explicit and tested.
 
 ## Exact local workflow
 
