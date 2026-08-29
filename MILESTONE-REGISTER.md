@@ -1,11 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 1.9.0  
+**Version:** 2.0.0  
 **Established by:** RSH-003  
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`  
-**RSH-013 implementation base:** `94524201dfe87f1f22f8d8bdd9d97aad507c0438`  
-**State effective on:** merge of PR #16  
-**Next eligible unit:** RSH-014
+**RSH-014 implementation base:** `0273520da4924cb3e71ff41b2ea75788a45bf757`  
+**State effective on:** merge of PR #17  
+**Next eligible unit:** none  
+**Next scheduled unit:** RSH-015 — deferred and not authorised
 
 ## Status vocabulary
 
@@ -22,7 +23,7 @@
 | M0 | Control and governance | RSH-001–RSH-003 | 3 | ACCEPTED | Canonical state, queue, governance, baselines and registers agree. |
 | M1 | Reproducible toolchain and CI | RSH-004–RSH-008 | 5 | BLOCKED — owner setting | A clean clone passes required CI and `main` is technically protected. |
 | M2 | Product scope, licensing and assets | RSH-009–RSH-012 | 4 | ACCEPTED | Scope, package identity, root licence and every shipped asset’s legal status are explicit. |
-| M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | ACTIVE — RSH-013 accepted on PR #16 merge; RSH-014 eligible | Core responsibilities and resource ownership are separated. |
+| M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | DEFERRED — RSH-013–RSH-014 accepted; RSH-015 not authorised | Core responsibilities and resource ownership are separated. |
 | M4 | Data integrity and production security | RSH-021–RSH-024 | 4 | DEFERRED | Save data is recoverable and production has no debug or secret exposure. |
 | M5 | Ayalon vertical slice | RSH-025–RSH-036 | 12 | DEFERRED | Ayalon is owner-approved, golden-locked and dependency-frozen. |
 | M6 | Performance and reliability | RSH-037–RSH-043 | 7 | DEFERRED | Performance, leak, recovery, soak and compatibility targets pass. |
@@ -34,14 +35,15 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 13 |
+| Accepted units | 14 |
 | Units in review | 0 |
-| Eligible units | 1 |
-| Queue head | RSH-014 |
+| Eligible units | 0 |
+| Queue head | none |
 | Active PR | none |
-| Remaining units | 54 |
-| Active owner batch | RSH-010–RSH-014 |
-| Batch completed | 4/5 |
+| Remaining units | 53 |
+| Owner batch | RSH-010–RSH-014 — closed |
+| Batch completed | 5/5 |
+| Next scheduled unit | RSH-015 — deferred and not authorised |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -64,15 +66,16 @@ metadata confirms protection.
 M2 acceptance means legal status is explicit; it does not mean every asset is cleared.
 Exactly 66 public asset files remain unverified and public distribution remains blocked.
 
-## M3 authorised boundary
+## M3 closed owner boundary
 
 | Unit | Status |
 |---|---|
-| RSH-013 — canonical track schema | ACCEPTED ON MERGE — PR #16 |
-| RSH-014 — one module per track | ELIGIBLE UNDER `next 2`; FINAL BATCH UNIT |
-| RSH-015–RSH-020 | NOT AUTHORISED |
+| RSH-013 — canonical track schema | ACCEPTED — PR #16 |
+| RSH-014 — one module per track | ACCEPTED ON MERGE — PR #17 |
+| RSH-015–RSH-020 | DEFERRED — NOT AUTHORISED |
 
-The bounded owner instruction closes after RSH-014. RSH-015 requires a new explicit instruction.
+The bounded owner instruction closes after RSH-014 with five of five units completed.
+No unit remains eligible. RSH-015 requires a new explicit owner instruction.
 
 ## GitHub-native milestone policy
 

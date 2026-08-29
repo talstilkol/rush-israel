@@ -3,12 +3,13 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fromRoot } from "./project-root.mjs";
+import { readCanonicalTrackSource } from "./load-track-modules.mjs";
 
 const LOCK_DIR = fromRoot("golden-baseline");
 const LOCK_PATH = fromRoot("golden-baseline", "ayalon.lock");
 
 export function ayalonPayload() {
-  const tracks = readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8");
+  const tracks = readCanonicalTrackSource();
   const world = readFileSync(fromRoot("src", "game", "world.ts"), "utf8");
   const t0 = tracks.indexOf('id: "ayalon"');
   const t1 = tracks.indexOf('id: "caesarea"', t0);

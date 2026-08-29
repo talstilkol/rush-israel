@@ -1,0 +1,46 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, rml } from "./shared";
+
+export default defineTrack({
+    id: "ramla",
+    nameHe: "רמלה",
+    nameEn: "Ramla",
+    city: "ramla",
+    cityHe: "רמלה",
+    cityEn: "Ramla",
+    lengthHint: "3 הקפות · העיר העתיקה",
+    description: "המגדל הלבן, השוק, המסגד הגדול ובריכת הקשתות. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "The White Tower, the market, the Great Mosque and the Pool of Arches. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/ramla.jpg",
+    width: 20,
+    seed: 716,
+    theme: "stone",
+    ground: 0x8a7a64,
+    sand: 0xd4c4a4,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    checkpointCount: 10,
+    points: [
+      rml(31.931, 34.863),
+      rml(31.929, 34.866),
+      rml(31.927, 34.868),
+      rml(31.925, 34.867),
+      rml(31.924, 34.864),
+      rml(31.925, 34.861),
+      rml(31.927, 34.859),
+      rml(31.93, 34.86),
+      rml(31.9315, 34.862),
+    ],
+    elevation: () => 0.8,
+    streets: [
+      { from: 0.0, to: 0.22, he: "המגדל הלבן", en: "White Tower" },
+      { from: 0.22, to: 0.46, he: "השוק", en: "The Market" },
+      { from: 0.46, to: 0.68, he: "המסגד הגדול", en: "Great Mosque" },
+      { from: 0.68, to: 0.86, he: "הקשתות", en: "The Arches" },
+      { from: 0.86, to: 1, he: "הרצל", en: "Herzl" },
+    ],
+    pois: [
+      { ...rml(31.9304, 34.8676), r: 26, he: "המגדל הלבן", en: "White Tower" },
+      { ...rml(31.9266, 34.8684), r: 24, he: "המסגד הגדול", en: "Great Mosque" },
+      { ...rml(31.9264, 34.8596), r: 24, he: "בריכת הקשתות", en: "Pool of Arches" },
+    ],
+  });

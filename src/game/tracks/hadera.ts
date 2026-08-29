@@ -1,0 +1,48 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, hdr } from "./shared";
+
+export default defineTrack({
+    id: "hadera",
+    nameHe: "חדרה",
+    nameEn: "Hadera",
+    city: "highway",
+    cityHe: "כבישים",
+    cityEn: "Highways",
+    lengthHint: "3 הקפות · החוף",
+    description: "אורות רבין, הארובות, כביש 4 והחוף. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "Orot Rabin, the chimneys, Highway 4 and the beach. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/hadera.jpg",
+    width: 20,
+    seed: 1891,
+    theme: "highway",
+    ground: 0x8a846c,
+    sand: 0xe0d4b0,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    water: { x: hdr(32.44, 34.875).x, z: hdr(32.44, 34.875).z, w: 240, d: 400, color: 0x1a6880 },
+    checkpointCount: 10,
+    points: [
+      hdr(32.47, 34.888),
+      hdr(32.46, 34.884),
+      hdr(32.45, 34.88),
+      hdr(32.44, 34.878),
+      hdr(32.43, 34.882),
+      hdr(32.432, 34.892),
+      hdr(32.44, 34.9),
+      hdr(32.45, 34.906),
+      hdr(32.46, 34.904),
+      hdr(32.468, 34.896),
+    ],
+    elevation: () => 0.5,
+    streets: [
+      { from: 0.0, to: 0.22, he: "אורות רבין", en: "Orot Rabin" },
+      { from: 0.22, to: 0.44, he: "כביש 4", en: "Highway 4" },
+      { from: 0.44, to: 0.66, he: "החוף", en: "The Beach" },
+      { from: 0.66, to: 0.84, he: "הבילויים", en: "Habibluim" },
+      { from: 0.84, to: 1, he: "גבעת אולגה", en: "Givat Olga" },
+    ],
+    pois: [
+      { ...hdr(32.4684, 34.8822), r: 32, he: "אורות רבין", en: "Orot Rabin" },
+      { ...hdr(32.44, 34.9), r: 24, he: "כביש 4", en: "Highway 4" },
+      { ...hdr(32.44, 34.878), r: 26, he: "החוף", en: "The Beach" },
+    ],
+  });

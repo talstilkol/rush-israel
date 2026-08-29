@@ -296,13 +296,28 @@
     "street_ranges_must_be_ordered": true,
     "source_must_parse_without_diagnostics": true,
     "release_gates_green": 0,
-    "release_gates_total": 13
+    "release_gates_total": 13,
+    "one_module_per_track": true,
+    "modular_source_manifest_pinned": true
   },
   "change_control": {
     "schema_changes_require_owner_authorization": true,
     "track_id_addition_or_removal_requires_owner_authorization": true,
     "mvp_mapping_changes_require_owner_authorization": true,
     "RSH-014_may_relocate_definitions_without_changing_runtime_data": true,
-    "RSH-015_authorized": false
+    "RSH-015_authorized": false,
+    "RSH-014_completed_on_merge": true
+  },
+  "source_layout": {
+    "state": "modular",
+    "unit": "RSH-014",
+    "manifest": "TRACK-MODULE-MANIFEST.json",
+    "facade": "src/game/tracks.ts",
+    "shared": "src/game/tracks/shared.ts",
+    "index": "src/game/tracks/index.ts",
+    "module_directory": "src/game/tracks",
+    "module_count": 56,
+    "one_module_per_track": true,
+    "reconstructed_legacy_git_blob_sha1": "e26454223f8a598cdf516af7c7c3f494162e2616"
   }
 }

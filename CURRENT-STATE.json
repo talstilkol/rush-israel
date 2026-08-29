@@ -1,24 +1,24 @@
 {
-  "schema_version": "2.9.0",
+  "schema_version": "3.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-29T10:55:00+03:00",
+  "generated_at": "2026-08-29T21:30:00+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_pull_request_16",
-    "implementation_base_sha": "e9b7683330bb288e9e5005e595f699b58d7ad20f",
-    "self_reference_boundary": "A candidate cannot contain its own future merge SHA. PR #16 exact-head and merge evidence are read from live GitHub and reconciled in the RSH-014 preflight."
+    "effective_event": "merge_of_RSH_014_pull_request",
+    "implementation_base_sha": "0273520da4924cb3e71ff41b2ea75788a45bf757",
+    "self_reference_boundary": "The RSH-014 candidate cannot contain its own future merge SHA. Exact PR, merge and post-merge CI evidence are read from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "e9b7683330bb288e9e5005e595f699b58d7ad20f",
-    "tree_sha": "4e4cfce5290ca18cce58401e7f31556be0224d39",
-    "commit_authored_at": "2026-08-29T17:54:40+03:00",
-    "commit_message": "Open Center TLV: Azrieli beside Begin, hotels off the sand.",
-    "commit_signature_verified": false,
-    "role": "RSH-013 reconciled implementation base"
+    "head_sha": "0273520da4924cb3e71ff41b2ea75788a45bf757",
+    "tree_sha": "986917098fa8ca09f9f1db4cf10a0e2dd32a33e8",
+    "commit_authored_at": "2026-08-29T21:13:24+03:00",
+    "commit_message": "Merge PR #16: RSH-013 — Define and validate the canonical track schema",
+    "commit_signature_verified": true,
+    "role": "RSH-014 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,13 +55,13 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 13,
+    "accepted_units": 14,
     "units_in_review": 0,
-    "eligible_units": 1,
+    "eligible_units": 0,
     "deferred_units": 53,
-    "remaining_units": 54,
-    "queue_head": "RSH-014",
-    "queue_head_state": "eligible_under_owner_next_2",
+    "remaining_units": 53,
+    "queue_head": "RSH-015",
+    "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
     "automatic_execution": false,
@@ -169,7 +169,7 @@
     },
     "RSH-013": {
       "pr": 16,
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "validated_head_resolution": "the exact PR #16 head that passes required-ci / validate and Codex review",
       "merge_sha_resolution": "the live main HEAD created by merging PR #16",
       "exact_evidence_reconciliation": "RSH-014 preflight",
@@ -178,22 +178,36 @@
       "deferred_tracks": 48,
       "runtime_definition_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
       "runtime_data_changes": 0,
+      "runtime_order_changes": 0,
+      "merge_sha": "0273520da4924cb3e71ff41b2ea75788a45bf757",
+      "tree_sha": "986917098fa8ca09f9f1db4cf10a0e2dd32a33e8",
+      "validated_head_sha": "e5a0787ce0c706beef10fa1cc5acf2445a6ea933",
+      "workflow_run": 33267261261,
+      "workflow_job": 99139442443,
+      "post_merge_workflow_run": 33267678176,
+      "post_merge_workflow_job": 99140544856
+    },
+    "RSH-014": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-014-track-modules",
+      "pull_request_resolution": "the pull request created from this branch",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the RSH-014 pull request",
+      "module_manifest": "TRACK-MODULE-MANIFEST.json",
+      "module_count": 56,
+      "runtime_definition_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
+      "aggregate_definition_digest": "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7",
+      "runtime_data_changes": 0,
       "runtime_order_changes": 0
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-013",
-    "title": "Define and validate the canonical track schema",
-    "branch": "agent/rsh-013-canonical-track-schema",
-    "pull_request": 16,
-    "base_sha": "e9b7683330bb288e9e5005e595f699b58d7ad20f",
+    "unit": "RSH-014",
     "state": "accepted_on_merge",
-    "merge_authorized_by_owner_instruction": "next 2",
-    "acceptance_requires_exact_head_ci_success": true,
-    "game_runtime_data_changed": false,
-    "asset_binary_changes": 0,
-    "dependency_versions_changed": false
+    "branch": "agent/rsh-014-track-modules",
+    "pull_request_resolution": "live GitHub pull request for this branch",
+    "merge_sha_resolution": "live main HEAD created by merge"
   },
   "batch_authorization": {
     "instruction": "next 5",
@@ -204,14 +218,15 @@
       "RSH-013",
       "RSH-014"
     ],
-    "completed_units": 4,
+    "completed_units": 5,
     "total_units": 5,
-    "state": "active_final_unit_remaining",
+    "state": "closed_after_RSH-014",
     "closed_after": "RSH-014",
     "separate_branch_and_pr_per_unit": true,
     "merge_after_validation": true,
     "RSH-015_authorized": false,
-    "continuation_instruction": "next 2"
+    "completion_instruction": "next 2",
+    "next_instruction_required": true
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -309,7 +324,11 @@
     "track_schema_runtime_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
     "track_runtime_data_changes": 0,
     "track_runtime_order_changes": 0,
-    "RSH-014_precreated": false
+    "RSH-014_precreated": false,
+    "RSH-014_module_count": 56,
+    "RSH-014_runtime_data_changes": 0,
+    "RSH-014_runtime_order_changes": 0,
+    "RSH-015_precreated": false
   },
   "rsh_013_schema": {
     "machine_authority": "TRACK-SCHEMA.json",
@@ -323,6 +342,16 @@
     "deferred_tracks": 48,
     "runtime_definition_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
     "canonical_id_order_equals_runtime_order": false,
+    "runtime_data_changes": 0,
+    "runtime_order_changes": 0
+  },
+  "rsh_014_modularization": {
+    "state": "accepted_on_merge",
+    "manifest": "TRACK-MODULE-MANIFEST.json",
+    "modules": 56,
+    "legacy_blob": "e26454223f8a598cdf516af7c7c3f494162e2616",
+    "runtime_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
+    "aggregate_digest": "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7",
     "runtime_data_changes": 0,
     "runtime_order_changes": 0
   }

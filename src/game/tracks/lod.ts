@@ -1,0 +1,48 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, lodp } from "./shared";
+
+export default defineTrack({
+    id: "lod",
+    nameHe: "לוד · נתב״ג",
+    nameEn: "Lod · Ben Gurion",
+    city: "ramla",
+    cityHe: "רמלה",
+    cityEn: "Ramla",
+    lengthHint: "3 הקפות · הנמל",
+    description: "מגדל הפיקוח, הטרמינל, כביש 1 והעיר העתיקה. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "The control tower, the terminal, Highway 1 and the old city. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/lod.jpg",
+    width: 22,
+    seed: 1950,
+    theme: "highway",
+    ground: 0x7a7a70,
+    sand: 0xc8bc9c,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    checkpointCount: 10,
+    points: [
+      lodp(31.999, 34.87),
+      lodp(31.99, 34.875),
+      lodp(31.98, 34.88),
+      lodp(31.97, 34.886),
+      lodp(31.958, 34.89),
+      lodp(31.952, 34.888),
+      lodp(31.954, 34.882),
+      lodp(31.964, 34.876),
+      lodp(31.976, 34.872),
+      lodp(31.988, 34.868),
+      lodp(31.996, 34.867),
+    ],
+    elevation: () => 0.5,
+    streets: [
+      { from: 0.0, to: 0.24, he: "נתב״ג", en: "Ben Gurion" },
+      { from: 0.24, to: 0.46, he: "כביש 1", en: "Highway 1" },
+      { from: 0.46, to: 0.68, he: "הטרמינל", en: "The Terminal" },
+      { from: 0.68, to: 0.86, he: "ג׳ורג׳ חליל", en: "George Khalil" },
+      { from: 0.86, to: 1, he: "העיר העתיקה", en: "Old City" },
+    ],
+    pois: [
+      { ...lodp(31.9764, 34.8852), r: 32, he: "נתב״ג", en: "Ben Gurion" },
+      { ...lodp(31.9528, 34.8904), r: 26, he: "כנסית ג׳ורג׳", en: "St. George" },
+      { ...lodp(31.97, 34.886), r: 24, he: "כביש 1", en: "Highway 1" },
+    ],
+  });

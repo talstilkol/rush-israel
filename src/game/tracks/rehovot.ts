@@ -1,0 +1,48 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, rhv } from "./shared";
+
+export default defineTrack({
+    id: "rehovot",
+    nameHe: "רחובות",
+    nameEn: "Rehovot",
+    city: "rehovot",
+    cityHe: "רחובות",
+    cityEn: "Rehovot",
+    lengthHint: "3 הקפות · הרצל",
+    description: "מכון ויצמן, בית ויצמן, רחוב הרצל ופארק המדע. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "Weizmann Institute, Weizmann House, Herzl Street and the science park. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/rehovot.jpg",
+    width: 20,
+    seed: 1934,
+    theme: "bauhaus",
+    ground: 0x6a7a58,
+    sand: 0xc8bc98,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    checkpointCount: 10,
+    points: [
+      rhv(31.894, 34.808),
+      rhv(31.898, 34.811),
+      rhv(31.902, 34.814),
+      rhv(31.906, 34.817),
+      rhv(31.908, 34.82),
+      rhv(31.91, 34.816),
+      rhv(31.908, 34.811),
+      rhv(31.904, 34.807),
+      rhv(31.9, 34.804),
+      rhv(31.896, 34.804),
+      rhv(31.893, 34.806),
+    ],
+    elevation: () => 0.7,
+    streets: [
+      { from: 0.0, to: 0.22, he: "הרצל", en: "Herzl" },
+      { from: 0.22, to: 0.46, he: "ויצמן", en: "Weizmann" },
+      { from: 0.46, to: 0.68, he: "פארק המדע", en: "Science Park" },
+      { from: 0.68, to: 0.86, he: "ביל״ו", en: "Bilu" },
+      { from: 0.86, to: 1, he: "המעבדות", en: "The Labs" },
+    ],
+    pois: [
+      { ...rhv(31.896, 34.808), r: 26, he: "הרצל", en: "Herzl" },
+      { ...rhv(31.9072, 34.8194), r: 28, he: "בית ויצמן", en: "Weizmann House" },
+      { ...rhv(31.9076, 34.8092), r: 26, he: "מאיץ קפלר", en: "Koffler Accelerator" },
+    ],
+  });

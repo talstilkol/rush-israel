@@ -1,0 +1,48 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, nah } from "./shared";
+
+export default defineTrack({
+    id: "nahariya",
+    nameHe: "נהריה",
+    nameEn: "Nahariya",
+    city: "galilee",
+    cityHe: "גליל",
+    cityEn: "Galilee",
+    lengthHint: "3 הקפות · הגעתון",
+    description: "תעלת הגעתון, הטיילת, החוף והדרך לראש הנקרה. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "The Gaaton canal, the promenade, the beach and the road to Rosh Hanikra. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/nahariya.jpg",
+    width: 20,
+    seed: 1947,
+    theme: "bauhaus",
+    ground: 0x7a7a68,
+    sand: 0xe0d4b4,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    water: { x: nah(33.006, 35.086).x, z: nah(33.006, 35.086).z, w: 200, d: 360, color: 0x2a7a90 },
+    checkpointCount: 10,
+    points: [
+      nah(33.006, 35.094),
+      nah(33.007, 35.091),
+      nah(33.008, 35.089),
+      nah(33.01, 35.088),
+      nah(33.012, 35.09),
+      nah(33.011, 35.094),
+      nah(33.009, 35.097),
+      nah(33.006, 35.098),
+      nah(33.004, 35.096),
+      nah(33.004, 35.094),
+    ],
+    elevation: () => 0.4,
+    streets: [
+      { from: 0.0, to: 0.22, he: "הגעתון", en: "Gaaton" },
+      { from: 0.22, to: 0.44, he: "הטיילת", en: "The Promenade" },
+      { from: 0.44, to: 0.66, he: "החוף", en: "The Beach" },
+      { from: 0.66, to: 0.84, he: "סוקולוב", en: "Sokolov" },
+      { from: 0.84, to: 1, he: "לנקרה", en: "Toward Hanikra" },
+    ],
+    pois: [
+      { ...nah(33.0064, 35.0924), r: 26, he: "הגעתון", en: "Gaaton" },
+      { ...nah(33.0104, 35.0854), r: 24, he: "הטיילת", en: "Promenade" },
+      { ...nah(33.009, 35.097), r: 24, he: "סוקולוב", en: "Sokolov" },
+    ],
+  });

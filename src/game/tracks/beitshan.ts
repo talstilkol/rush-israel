@@ -1,0 +1,46 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, bsn } from "./shared";
+
+export default defineTrack({
+    id: "beitshan",
+    nameHe: "בית שאן",
+    nameEn: "Beit Shean",
+    city: "kinneret",
+    cityHe: "כנרת",
+    cityEn: "Kinneret",
+    lengthHint: "3 הקפות · הגן הלאומי",
+    description: "התיאטרון הרומי, הקארדו, העמודים והגלבוע. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "The Roman theatre, the cardo, columns and Mount Gilboa. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/beitshan.jpg",
+    width: 20,
+    seed: 63,
+    theme: "stone",
+    ground: 0x9a8a6a,
+    sand: 0xd8c8a0,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    checkpointCount: 10,
+    points: [
+      bsn(32.503, 35.502),
+      bsn(32.505, 35.506),
+      bsn(32.507, 35.51),
+      bsn(32.506, 35.514),
+      bsn(32.502, 35.516),
+      bsn(32.498, 35.514),
+      bsn(32.496, 35.51),
+      bsn(32.497, 35.505),
+      bsn(32.5, 35.502),
+    ],
+    elevation: () => 0.6,
+    streets: [
+      { from: 0.0, to: 0.24, he: "התיאטרון", en: "The Theatre" },
+      { from: 0.24, to: 0.48, he: "הקארדו", en: "The Cardo" },
+      { from: 0.48, to: 0.7, he: "העמודים", en: "The Columns" },
+      { from: 0.7, to: 0.88, he: "שאול המלך", en: "King Saul" },
+      { from: 0.88, to: 1, he: "הגלבוע", en: "Gilboa" },
+    ],
+    pois: [
+      { ...bsn(32.5016, 35.5004), r: 28, he: "התיאטרון", en: "Theatre" },
+      { ...bsn(32.504, 35.508), r: 24, he: "הקארדו", en: "Cardo" },
+      { ...bsn(32.49, 35.42), r: 32, he: "הגלבוע", en: "Gilboa" },
+    ],
+  });

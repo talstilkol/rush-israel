@@ -4,6 +4,7 @@ import { test } from "node:test";
 import { fromRoot } from "./project-root.mjs";
 import { validateTrackSchema } from "./check-track-schema.mjs";
 import { validateTrackTypeSourcePin } from "./check-track-type-source-pin.mjs";
+import { readCanonicalTrackSource } from "./load-track-modules.mjs";
 
 function typeSource() {
   return readFileSync(fromRoot("src", "game", "types.ts"), "utf8");
@@ -15,9 +16,8 @@ function completeInputs(mutatedTypeSource) {
     classification: JSON.parse(
       readFileSync(fromRoot("TRACK-CATALOGUE-CLASSIFICATION.json"), "utf8"),
     ),
-    sourcePin: JSON.parse(readFileSync(fromRoot("TRACK-SOURCE-PIN.json"), "utf8")),
     typeSource: mutatedTypeSource,
-    trackSource: readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8"),
+    trackSource: readCanonicalTrackSource(),
     trackSchemaSource: readFileSync(fromRoot("src", "game", "track-schema.ts"), "utf8"),
     supportSources: {
       "src/game/math.ts": readFileSync(fromRoot("src", "game", "math.ts"), "utf8"),

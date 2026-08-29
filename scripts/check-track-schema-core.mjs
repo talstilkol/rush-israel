@@ -4,6 +4,7 @@ import { readFileSync, realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { fromRoot } from "./project-root.mjs";
+import { readCanonicalTrackSource } from "./load-track-modules.mjs";
 
 export const EXPECTED_RSH_012_MERGE = "94524201dfe87f1f22f8d8bdd9d97aad507c0438";
 
@@ -851,7 +852,7 @@ if (isMainModule(import.meta.url)) {
     readFileSync(fromRoot("TRACK-CATALOGUE-CLASSIFICATION.json"), "utf8"),
   );
   const typeSource = readFileSync(fromRoot("src", "game", "types.ts"), "utf8");
-  const trackSource = readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8");
+  const trackSource = readCanonicalTrackSource();
   const result = validateTrackSchema({
     schema,
     classification,

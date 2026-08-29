@@ -1,0 +1,48 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, bym } from "./shared";
+
+export default defineTrack({
+    id: "batyam",
+    nameHe: "בת ים",
+    nameEn: "Bat Yam",
+    city: "telaviv",
+    cityHe: "תל אביב",
+    cityEn: "Tel Aviv",
+    lengthHint: "3 הקפות · הטיילת",
+    description: "טיילת בת ים, החוף הרחב, המלונות ויפו באופק. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "Bat Yam promenade, the wide beach, hotels and Jaffa on the horizon. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/batyam.jpg",
+    width: 20,
+    seed: 1958,
+    theme: "bauhaus",
+    ground: 0x8a8678,
+    sand: 0xe2d4b4,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    water: { x: bym(32.015, 34.73).x, z: bym(32.015, 34.73).z, w: 220, d: 380, color: 0x1a6880 },
+    checkpointCount: 10,
+    points: [
+      bym(32.02, 34.739),
+      bym(32.016, 34.738),
+      bym(32.012, 34.7375),
+      bym(32.008, 34.737),
+      bym(32.005, 34.7385),
+      bym(32.006, 34.743),
+      bym(32.01, 34.746),
+      bym(32.014, 34.747),
+      bym(32.018, 34.746),
+      bym(32.021, 34.743),
+    ],
+    elevation: () => 0.4,
+    streets: [
+      { from: 0.0, to: 0.22, he: "טיילת בת ים", en: "Bat Yam Promenade" },
+      { from: 0.22, to: 0.44, he: "בן גוריון", en: "Ben Gurion" },
+      { from: 0.44, to: 0.66, he: "החוף", en: "The Beach" },
+      { from: 0.66, to: 0.84, he: "המרינה", en: "The Marina" },
+      { from: 0.84, to: 1, he: "לעבר יפו", en: "Toward Jaffa" },
+    ],
+    pois: [
+      { ...bym(32.0164, 34.7364), r: 28, he: "לאונרדו", en: "Leonardo" },
+      { ...bym(32.0192, 34.7368), r: 24, he: "ארמון ים", en: "Armon Yam" },
+      { ...bym(32.007, 34.737), r: 26, he: "החוף", en: "The Beach" },
+    ],
+  });
