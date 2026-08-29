@@ -1,0 +1,46 @@
+RUSH ISRAEL PROPRIETARY LICENSE
+Version 1.0 — 29 August 2026
+
+Copyright (c) 2026 talstilkol. All rights reserved.
+
+1. Ownership
+
+The RUSH Israel source code, original documentation and owner-created materials are
+proprietary and controlled exclusively by talstilkol, except for third-party or
+unverified materials identified in THIRD-PARTY-NOTICES.md and
+ASSET-PROVENANCE.json.
+
+2. No public licence grant
+
+No permission is granted to use, copy, modify, merge, publish, distribute,
+sublicense, sell, host, deploy, reverse engineer or create derivative works from
+this repository or any portion of it without prior written permission from the
+owner. Public accessibility of a repository, commit, preview or file does not
+constitute a licence or authorization.
+
+3. Private owner-controlled use
+
+The authorised product scope is private, owner-controlled development and use.
+Public distribution, public licensing, public archive submission and public release
+are not authorised.
+
+4. Third-party and unverified materials
+
+This licence does not grant rights in third-party materials. Identified third-party
+components remain governed by their own licences and notices. Assets whose source,
+permission or licence is unverified are not cleared for distribution and must not be
+represented as owner-licensed material.
+
+5. No warranty
+
+THE SOFTWARE AND MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NON-INFRINGEMENT. TO THE MAXIMUM EXTENT PERMITTED BY LAW,
+THE OWNER IS NOT LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM THE
+SOFTWARE OR ITS USE.
+
+6. Written authorization
+
+Any authorization must be explicit, written and issued by talstilkol. Silence,
+repository access, review access, contribution access or technical availability is
+not authorization.

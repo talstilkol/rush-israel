@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0.2",
+  "document_type": "rush-product-metadata",
+  "generated_at": "2026-08-29T08:58:00+03:00",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "observed_source_commit": "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9",
+  "product": {
+    "id": "rush-israel",
+    "name": "RUSH Israel",
+    "version": "0.0.0-private",
+    "release_stage": "pre_alpha_private",
+    "owner": "talstilkol",
+    "ownership_model": "private_owner_controlled"
+  },
+  "package": {
+    "internal_name": "app-builder-workspace",
+    "internal_name_retained": true,
+    "internal_name_is_public_product_name": false,
+    "version": "0.0.0-private",
+    "private": true,
+    "license": "UNLICENSED",
+    "description": "Private owner-controlled Three.js WebGL simcade driving game on fictional routes inspired by Israeli places."
+  },
+  "licensing": {
+    "root_file": "LICENSE",
+    "model": "proprietary_all_rights_reserved",
+    "public_licence_granted": false,
+    "public_distribution_authorized": false,
+    "third_party_notices": "THIRD-PARTY-NOTICES.md",
+    "asset_provenance_authority": "ASSET-PROVENANCE.json",
+    "unverified_asset_files": 66,
+    "legal_clearance_complete": false
+  },
+  "repository_state": {
+    "visibility_current": "public",
+    "visibility_policy_target": "private",
+    "visibility_transition_state": "owner_setting_action_required",
+    "main_protected": false,
+    "required_status_checks": 0,
+    "rulesets": 0
+  },
+  "branding": {
+    "canonical_title": "RUSH Israel",
+    "open_graph_site_file": "src/lib/og/site.json",
+    "open_graph_title": "RUSH Israel",
+    "open_graph_type": "x:game",
+    "root_document_title": "RUSH Israel — סימולטור נהיגה ישראלי",
+    "root_description": "Private owner-controlled Three.js WebGL simcade driving game on fictional routes inspired by Israeli places.",
+    "public_branding_assets_verified": false
+  },
+  "pwa": {
+    "manifest_delivery": "dynamic_via_vite_and_server_middleware",
+    "manifest_path": "/__grok/manifest.webmanifest",
+    "manifest_legacy_alias": "/__grok/manifest.json",
+    "name_source": "src/lib/og/site.json:title via scripts/rush-pwa.mjs",
+    "name": "RUSH Israel",
+    "display": "standalone",
+    "start_url": "/",
+    "scope": "/",
+    "install_material_path": "public/__grok",
+    "install_material_licence_verified": false,
+    "public_install_distribution_authorized": false
+  },
+  "toolchain": {
+    "node": "22.16.0",
+    "npm": "10.9.2",
+    "clean_install": "npm ci",
+    "development": "npm run dev",
+    "complete_tests": "npm test",
+    "self_starting_qa": "npm run qa:ci",
+    "deterministic_development_build": "npm run build:dev"
+  },
+  "product_boundary": {
+    "renderer": "WebGLRenderer",
+    "handling": "simcade",
+    "physics_hz": 120,
+    "vehicle_count": 5,
+    "track_count": 8,
+    "languages": [
+      "Hebrew",
+      "English"
+    ],
+    "inputs": [
+      "keyboard",
+      "touch",
+      "gamepad"
+    ]
+  },
+  "readiness": {
+    "release_gates_green": 0,
+    "release_gates_total": 13,
+    "browser_device_matrix_complete": false,
+    "public_release_ready": false
+  },
+  "change_control": {
+    "metadata_changes_require_review": true,
+    "public_distribution_requires_explicit_owner_authorization": true,
+    "unverified_assets_may_not_be_marked_cleared_without_evidence": true,
+    "validator": "scripts/check-product-metadata.mjs"
+  }
+}

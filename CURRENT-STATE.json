@@ -1,18 +1,24 @@
 {
-  "schema_version": "2.7.0",
+  "schema_version": "2.8.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-29T06:22:00+03:00",
+  "generated_at": "2026-08-29T08:58:00+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
+  "state_semantics": {
+    "effective_event": "merge_of_pull_request_15",
+    "implementation_base_sha": "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9",
+    "self_reference_boundary": "A commit cannot contain its own future merge SHA. PR #15 exact-head and merge evidence are resolved from live GitHub and reconciled in the RSH-013 preflight."
+  },
   "verified_main": {
-    "head_sha": "d8259877740a2feab6533f1723fd21be8fb2f6c2",
-    "tree_sha": "62c0ccbc7bed0035faf3ebe5e16e6bc6685aa331",
-    "commit_authored_at": "2026-08-29T06:11:00+03:00",
-    "commit_message": "Merge PR #13: RSH-010 — Classify 8 MVP and 48 deferred tracks",
-    "commit_signature_verified": true
+    "head_sha": "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9",
+    "tree_sha": "85f7c4432cc7416e6a244bcfd2aaaae0e5bfa82b",
+    "commit_authored_at": "2026-08-29T06:40:50+03:00",
+    "commit_message": "Merge PR #14: RSH-011 — Complete asset provenance and licence inventory",
+    "commit_signature_verified": true,
+    "role": "RSH-012 implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -39,35 +45,64 @@
     "version_1_mvp_tracks": 8,
     "deferred_track_entries": 48,
     "exact_track_id_mapping_state": "accepted_RSH-010",
-    "asset_provenance_state": "in_review_RSH-011",
+    "asset_provenance_state": "accepted_RSH-011",
+    "product_metadata_state": "accepted_on_merge_RSH-012",
     "asset_inventory_files": 134,
     "asset_inventory_assets": 131,
     "unverified_asset_files": 66,
+    "root_licence": "proprietary_all_rights_reserved",
     "legal_clearance_complete": false
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 10,
-    "units_in_review": 1,
-    "eligible_units": 0,
-    "deferred_units": 56,
-    "remaining_units": 57,
-    "queue_head": "RSH-011",
-    "queue_head_state": "pr_open",
-    "queue_head_branch": "agent/rsh-011-asset-provenance",
-    "queue_head_pull_request": 14,
+    "accepted_units": 12,
+    "units_in_review": 0,
+    "eligible_units": 1,
+    "deferred_units": 54,
+    "remaining_units": 55,
+    "queue_head": "RSH-013",
+    "queue_head_state": "eligible",
+    "queue_head_branch": null,
+    "queue_head_pull_request": null,
     "automatic_execution": false,
     "release_gates_green": 0,
     "release_gates_total": 13
   },
   "accepted_units": {
-    "RSH-001": { "pr": 1, "merge_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9" },
-    "RSH-002": { "pr": 2, "merge_sha": "ef86c69ade9bc54585104f90743fb32cb4489898" },
-    "RSH-003": { "pr": 3, "merge_sha": "f1af9f507378d5d42c5e06255c8244c78b0c0f22" },
-    "RSH-004": { "pr": 5, "merge_sha": "69ac509b39895bb33a68d871f31cc49b3f05726c", "replacement_pr_note": "PR #4 closed unmerged after connector error." },
-    "RSH-005": { "pr": 6, "merge_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3" },
-    "RSH-006": { "pr": 7, "merge_sha": "7ea076d377225d5db3561faf81fe1cedce091a28", "implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6" },
-    "RSH-007": { "pr": 9, "replaced_pr": 8, "merge_sha": "88c7754b62c66cfdf59f8bfce847db2113eb09de", "validated_head_sha": "3cb2ca2ac6d34b25f77f313b70590bcc36190f76", "workflow_run": 33221919501, "workflow_job": 99017575707 },
+    "RSH-001": {
+      "pr": 1,
+      "merge_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9"
+    },
+    "RSH-002": {
+      "pr": 2,
+      "merge_sha": "ef86c69ade9bc54585104f90743fb32cb4489898"
+    },
+    "RSH-003": {
+      "pr": 3,
+      "merge_sha": "f1af9f507378d5d42c5e06255c8244c78b0c0f22"
+    },
+    "RSH-004": {
+      "pr": 5,
+      "merge_sha": "69ac509b39895bb33a68d871f31cc49b3f05726c",
+      "replacement_pr_note": "PR #4 closed unmerged after connector error."
+    },
+    "RSH-005": {
+      "pr": 6,
+      "merge_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3"
+    },
+    "RSH-006": {
+      "pr": 7,
+      "merge_sha": "7ea076d377225d5db3561faf81fe1cedce091a28",
+      "implementation_head_sha": "2c7348d184473f3ae70bdc8c513d57b6058780d6"
+    },
+    "RSH-007": {
+      "pr": 9,
+      "replaced_pr": 8,
+      "merge_sha": "88c7754b62c66cfdf59f8bfce847db2113eb09de",
+      "validated_head_sha": "3cb2ca2ac6d34b25f77f313b70590bcc36190f76",
+      "workflow_run": 33221919501,
+      "workflow_job": 99017575707
+    },
     "RSH-008": {
       "pr": 10,
       "merge_sha": "c7628b1da3d149f1881961148e11564039de4b8d",
@@ -102,15 +137,39 @@
       "catalogue_mvp": 8,
       "catalogue_deferred": 48,
       "deleted_tracks": 0
+    },
+    "RSH-011": {
+      "pr": 14,
+      "merge_sha": "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9",
+      "validated_head_sha": "0d88fe23cfb6581c8490962dc316a6cf83cd3c2c",
+      "workflow_run": 33231814717,
+      "workflow_job": 99045844517,
+      "artifact_id": 9708749550,
+      "artifact_digest": "sha256:924505b60b4f567746d62a25c2fc4858655dd881df22cfcb1a178fdd255d7303",
+      "shipping_files_total": 134,
+      "asset_files_total": 131,
+      "unverified_shipping_files": 67,
+      "unverified_asset_files": 66,
+      "public_game_tree_sha1": "332fe666fd91590787856c32cf2040b8f6adb7d0"
+    },
+    "RSH-012": {
+      "pr": 15,
+      "state": "accepted_on_merge",
+      "validated_head_resolution": "the exact PR #15 head that passes required-ci / validate and Codex review",
+      "merge_sha_resolution": "the live main HEAD created by merging PR #15",
+      "exact_evidence_reconciliation": "RSH-013 preflight",
+      "public_distribution_authorized": false,
+      "unverified_asset_files": 66
     }
   },
-  "active_change": {
-    "unit": "RSH-011",
-    "title": "Create the complete asset provenance and licence inventory",
-    "branch": "agent/rsh-011-asset-provenance",
-    "pull_request": 14,
-    "base_sha": "d8259877740a2feab6533f1723fd21be8fb2f6c2",
-    "state": "pr_open",
+  "active_change": null,
+  "last_transition": {
+    "unit": "RSH-012",
+    "title": "Align README, metadata, branding, licence and PWA scope",
+    "branch": "agent/rsh-012-metadata-license-pwa",
+    "pull_request": 15,
+    "base_sha": "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9",
+    "state": "accepted_on_merge",
     "merge_authorized_by_owner_batch": true,
     "acceptance_requires_exact_head_ci_success": true,
     "game_code_changed": false,
@@ -119,8 +178,14 @@
   },
   "batch_authorization": {
     "instruction": "next 5",
-    "authorized_units": ["RSH-010", "RSH-011", "RSH-012", "RSH-013", "RSH-014"],
-    "completed_units": 1,
+    "authorized_units": [
+      "RSH-010",
+      "RSH-011",
+      "RSH-012",
+      "RSH-013",
+      "RSH-014"
+    ],
+    "completed_units": 3,
     "total_units": 5,
     "state": "active",
     "closed_after": "RSH-014",
@@ -143,14 +208,25 @@
     "total_entries": 56,
     "mvp_entries": 8,
     "deferred_entries": 48,
-    "mvp_ids": ["ayalon", "rothschild", "namal", "oldjaffa", "scopus", "haifa", "ramon", "hermon"],
+    "mvp_ids": [
+      "ayalon",
+      "rothschild",
+      "namal",
+      "oldjaffa",
+      "scopus",
+      "haifa",
+      "ramon",
+      "hermon"
+    ],
     "deleted_entries": 0
   },
   "rsh_011_provenance": {
     "machine_authority": "ASSET-PROVENANCE.json",
     "human_authority": "ASSET-PROVENANCE.md",
     "validator": "scripts/check-asset-provenance.mjs",
-    "state": "in_review",
+    "state": "accepted",
+    "merge_sha": "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9",
+    "validated_head_sha": "0d88fe23cfb6581c8490962dc316a6cf83cd3c2c",
     "shipping_files_total": 134,
     "asset_files_total": 131,
     "unverified_shipping_files": 67,
@@ -160,21 +236,35 @@
     "licence_clearance_complete": false,
     "public_distribution_authorized": false
   },
+  "rsh_012_metadata": {
+    "machine_authority": "PRODUCT-METADATA.json",
+    "human_authority": "PRODUCT-METADATA.md",
+    "validator": "scripts/check-product-metadata.mjs",
+    "state": "accepted_on_merge",
+    "product_name": "RUSH Israel",
+    "version": "0.0.0-private",
+    "package_license": "UNLICENSED",
+    "root_license": "proprietary_all_rights_reserved",
+    "pwa_delivery": "dynamic_via_vite_and_server_middleware",
+    "unverified_asset_files": 66,
+    "legal_clearance_complete": false,
+    "public_distribution_authorized": false
+  },
   "findings": {
     "total": 42,
     "p0": 12,
     "p1": 18,
     "p2": 12,
-    "open": 25,
-    "mitigated": 9,
-    "closed": 8,
+    "open": 24,
+    "mitigated": 7,
+    "closed": 11,
     "register": "FINDINGS-REGISTER.md"
   },
   "constraints": [
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "Do not begin RSH-012 before RSH-011 is validated and merged.",
+    "RSH-013 becomes eligible only after PR #15 merges and still requires a new next instruction.",
     "Execute only the owner-authorised RSH-010–RSH-014 batch.",
     "Do not pre-create RSH-015.",
     "Release gates remain 0/13."
@@ -191,6 +281,7 @@
     "asset_binary_changes": 0,
     "dependency_version_changes": 0,
     "package_lock_changes": 0,
-    "RSH-012_precreated": false
+    "RSH-013_precreated": false,
+    "RSH-015_authorized": false
   }
 }

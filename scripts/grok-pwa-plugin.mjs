@@ -1,8 +1,7 @@
 /**
  * Dev/preview (Vite) half of the platform PWA chrome: serves the ?install=1
  * tutorial and the per-app manifest, and injects missing PWA head tags into
- * app documents. The deployed-app half lives in server/middleware/grok-pwa.ts;
- * both share scripts/grok-pwa-shared.mjs.
+ * app documents. The deployed-app half lives in server/middleware/grok-pwa.ts.
  */
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -14,9 +13,12 @@ import {
   isDocumentPath,
   isInstallQuery,
   renderInstallPageHtml,
-  renderWebManifest,
   snapshotOgIdentity,
 } from "./grok-pwa-shared.mjs";
+import {
+  renderRushInstallPageHtml,
+  renderRushWebManifest,
+} from "./rush-pwa.mjs";
 
 export const GROK_OG_IDENTITY_ID = "virtual:grok-og-identity";
 
@@ -28,9 +30,32 @@ function requestHost(req) {
   return Array.isArray(host) ? host[0] : host;
 }
 
+/**
+ * Generic platform renderer retained only for the shared platform regression
+ * suite. Product traffic uses renderProductInstallPage below.
+ */
 export function renderInstallPage(hostHeader, url = "/") {
   const template = readFileSync(INSTALL_PAGE_PATH, "utf8");
   return renderInstallPageHtml(template, { host: hostHeader, url });
+}
+
+export function renderProductWebManifest(hostHeader, cwd = process.cwd()) {
+  const { site } = snapshotOgIdentity(cwd);
+  return renderRushWebManifest(hostHeader, site);
+}
+
+export function renderProductInstallPage(
+  hostHeader,
+  url = "/",
+  cwd = process.cwd(),
+) {
+  const template = readFileSync(INSTALL_PAGE_PATH, "utf8");
+  const { site } = snapshotOgIdentity(cwd);
+  return renderRushInstallPageHtml(template, {
+    host: hostHeader,
+    url,
+    site,
+  });
 }
 
 function sendHtml(res, html) {
@@ -42,7 +67,7 @@ function sendHtml(res, html) {
   res.end(body);
 }
 
-function serveGrokPwa(middlewares) {
+function serveGrokPwa(middlewares, cwd) {
   middlewares.use((req, res, next) => {
     const rawUrl = req.url ?? "";
     const pathOnly = rawUrl.split("?", 1)[0] ?? "";
@@ -53,7 +78,10 @@ function serveGrokPwa(middlewares) {
     }
 
     if (pathOnly === "/__grok/manifest.webmanifest" || pathOnly === "/__grok/manifest.json") {
-      const body = Buffer.from(renderWebManifest(requestHost(req)), "utf8");
+      const body = Buffer.from(
+        renderProductWebManifest(requestHost(req), cwd),
+        "utf8",
+      );
       res.statusCode = 200;
       res.setHeader("content-type", "application/manifest+json; charset=utf-8");
       res.setHeader("cache-control", "no-cache");
@@ -64,7 +92,10 @@ function serveGrokPwa(middlewares) {
 
     if (isInstallQuery(rawUrl) && isDocumentPath(pathOnly) && acceptsHtml(req.headers.accept)) {
       try {
-        sendHtml(res, renderInstallPage(requestHost(req), rawUrl));
+        sendHtml(
+          res,
+          renderProductInstallPage(requestHost(req), rawUrl, cwd),
+        );
       } catch (err) {
         console.error("[app-builder] install page missing:", err);
         res.statusCode = 500;
@@ -79,10 +110,7 @@ function serveGrokPwa(middlewares) {
 
 /**
  * Wrap res.write/res.end on app-document requests to inject missing PWA head
- * tags at the `</head>` boundary as chunks stream through (no full-document
- * buffering, so streaming SSR keeps its early flush). Skips anything already
- * content-encoded: under `vite preview` the compression middleware can hand
- * this wrapper gzipped bytes, which must pass through untouched.
+ * tags at the </head> boundary while preserving streaming SSR.
  */
 function wrapHtmlResponses(middlewares, cwd) {
   middlewares.use((req, res, next) => {
@@ -90,10 +118,10 @@ function wrapHtmlResponses(middlewares, cwd) {
     const pathOnly = rawUrl.split("?", 1)[0] ?? "";
     const method = (req.method ?? "GET").toUpperCase();
     const looksLikeDocument =
-      method === "GET" &&
-      String(req.headers.accept ?? "").includes("text/html") &&
-      !isInstallQuery(rawUrl) &&
-      isDocumentPath(pathOnly);
+      method === "GET"
+      && String(req.headers.accept ?? "").includes("text/html")
+      && !isInstallQuery(rawUrl)
+      && isDocumentPath(pathOnly);
     if (!looksLikeDocument) {
       next();
       return;
@@ -106,15 +134,13 @@ function wrapHtmlResponses(middlewares, cwd) {
       host,
       cwd,
     });
-    let mode = null; // null = undecided, "inject" | "passthrough"
+    let mode = null;
 
     const decideMode = () => {
       if (mode) return mode;
       const isHtml = String(res.getHeader("content-type") ?? "").includes("text/html");
       const encoded = Boolean(res.getHeader("content-encoding"));
       mode = isHtml && !encoded ? "inject" : "passthrough";
-      // Streaming SSR flushes headers before the first body chunk, so the
-      // header may no longer be removable — chunked responses don't carry one.
       if (mode === "inject" && !res.headersSent) res.removeHeader("content-length");
       return mode;
     };
@@ -172,16 +198,11 @@ export function grokPwaPlugin() {
       });
     },
     configureServer(server) {
-      // Registered directly (not in a returned post-hook) so both run BEFORE
-      // TanStack Start's SSR middleware, like the auth-popup plugin.
-      serveGrokPwa(server.middlewares);
+      serveGrokPwa(server.middlewares, root);
       wrapHtmlResponses(server.middlewares, root);
     },
     configurePreviewServer(server) {
-      serveGrokPwa(server.middlewares);
-      // Post-hook: preview registers compression between the direct hooks and
-      // the post-hooks, and the injector must wrap AFTER compression so it
-      // sees plaintext HTML (compression then compresses the injected output).
+      serveGrokPwa(server.middlewares, root);
       return () => {
         wrapHtmlResponses(server.middlewares, root);
       };
