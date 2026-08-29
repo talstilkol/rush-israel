@@ -181,7 +181,7 @@ export function validateAssetProvenance({ manifest, catalogue, publicFiles, lice
   if (!/Basis Universal/.test(licencesText) || !/Apache-2\.0/.test(licencesText)) {
     errors.push("public/game/LICENSES.md must identify Basis Universal and Apache-2.0");
   }
-  if (!/generated/i.test(licencesText) || !/not scans/i.test(licencesText)) {
+  if (!/generated/i.test(licencesText) || !/not (?:a )?scan/i.test(licencesText)) {
     errors.push("public/game/LICENSES.md must preserve generated-asset and non-scan statements");
   }
 
