@@ -6,6 +6,7 @@ import {
   EXPECTED_RSH_012_MERGE,
   validateTrackSchema as validateTrackSchemaCore,
 } from "./check-track-schema-core.mjs";
+import { validateTrackSchemaExports } from "./check-track-schema-exports.mjs";
 import { validateTrackSchemaHardening } from "./check-track-schema-hardening.mjs";
 
 export { EXPECTED_RSH_012_MERGE };
@@ -33,9 +34,10 @@ export function validateTrackSchema(inputs) {
     ...inputs,
     coreResult,
   });
+  const exportErrors = validateTrackSchemaExports(inputs?.trackSchemaSource);
   return {
     ...coreResult,
-    errors: [...coreResult.errors, ...hardening.errors],
+    errors: [...coreResult.errors, ...hardening.errors, ...exportErrors],
     aggregateDigest: hardening.aggregateDigest,
     supportSourceIdentities: hardening.supportSourceIdentities,
   };
