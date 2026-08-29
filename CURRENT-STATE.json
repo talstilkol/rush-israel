@@ -305,7 +305,7 @@
     "package_lock_changes": 0,
     "RSH-013_precreated": false,
     "RSH-015_authorized": false,
-    "track_schema_version": "1.0.1",
+    "track_schema_version": "1.0.2",
     "track_schema_runtime_digest": "27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f",
     "track_runtime_data_changes": 0,
     "track_runtime_order_changes": 0,
