@@ -1,17 +1,17 @@
 {
-  "schema_version": "2.5.0",
+  "schema_version": "2.6.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-29T03:14:00+03:00",
+  "generated_at": "2026-08-29T05:44:00+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "verified_main": {
-    "head_sha": "c7628b1da3d149f1881961148e11564039de4b8d",
-    "tree_sha": "13a41d8e5be4fc18ca125315ab72def2df11d670",
-    "commit_authored_at": "2026-08-29T03:09:41+03:00",
-    "commit_message": "Merge PR #10: RSH-008 — Required checks and CI artifacts",
+    "head_sha": "69765febef85d732d9ba79fe260fec78ee76b2df",
+    "tree_sha": "bb5dd593a142a691e6f8b77ab2ece2defaeb2215",
+    "commit_authored_at": "2026-08-29T03:33:51+03:00",
+    "commit_message": "Merge PR #11: RSH-009 — Freeze the Version 1 product definition",
     "commit_signature_verified": true
   },
   "repository_snapshot": {
@@ -27,7 +27,7 @@
     "releases": 0
   },
   "product_snapshot": {
-    "definition_state": "frozen",
+    "definition_state": "frozen_by_RSH-009",
     "definition_authority": "PRODUCT-DEFINITION.json",
     "classification": "Private owner-controlled browser driving game; Three.js WebGL simcade; fictional routes inspired by Israeli places",
     "distribution_policy": "Private owner-controlled web build; public distribution is not authorised.",
@@ -38,20 +38,20 @@
     "track_catalogue_entries": 56,
     "version_1_mvp_tracks": 8,
     "deferred_track_entries": 48,
-    "exact_track_id_mapping_state": "pending_RSH-010",
+    "exact_track_id_mapping_state": "in_review_RSH-010",
     "asset_provenance_state": "pending_RSH-011"
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 8,
+    "accepted_units": 9,
     "units_in_review": 1,
     "eligible_units": 0,
-    "deferred_units": 58,
-    "remaining_units": 59,
-    "queue_head": "RSH-009",
+    "deferred_units": 57,
+    "remaining_units": 58,
+    "queue_head": "RSH-010",
     "queue_head_state": "pr_open",
-    "queue_head_branch": "agent/rsh-009-freeze-v1-product-definition",
-    "queue_head_pull_request": 11,
+    "queue_head_branch": "agent/rsh-010-track-catalogue-classification",
+    "queue_head_pull_request": 12,
     "automatic_execution": false,
     "release_gates_green": 0,
     "release_gates_total": 13
@@ -74,41 +74,64 @@
       "artifact_digest": "sha256:7266e4d9f6fac546dad2efb3863a69673e2bf5da1a94079a55e415f553b92a1d",
       "branch_protection_applied": false,
       "branch_protection_state": "owner_action_required"
+    },
+    "RSH-009": {
+      "pr": 11,
+      "merge_sha": "69765febef85d732d9ba79fe260fec78ee76b2df",
+      "validated_head_sha": "f71d56ba9d095f4850d95be45f255b1463fb0a92",
+      "workflow_run": 33223709759,
+      "workflow_job": 99022999281,
+      "artifact_id": 9706145678,
+      "artifact_digest": "sha256:24070b1b5ff714f19f2994afa2668db046fe02bb7dbf06c6690a1d3b4a3e4517",
+      "product_definition_sha256": "a9e481e9c262b51ddb09bee75a129f7886b6161f234abfd24ccea20d3de6f715"
     }
   },
   "active_change": {
-    "unit": "RSH-009",
-    "title": "Freeze the Version 1 product definition",
-    "branch": "agent/rsh-009-freeze-v1-product-definition",
-    "pull_request": 11,
-    "base_sha": "c7628b1da3d149f1881961148e11564039de4b8d",
+    "unit": "RSH-010",
+    "title": "Classify the track catalogue into 8 MVP and 48 deferred tracks",
+    "branch": "agent/rsh-010-track-catalogue-classification",
+    "pull_request": 12,
+    "base_sha": "69765febef85d732d9ba79fe260fec78ee76b2df",
     "state": "pr_open",
     "merge_authorized_by_owner_batch": true,
     "acceptance_requires_exact_head_ci_success": true,
     "game_code_changed": false,
+    "asset_changes": 0,
     "dependency_versions_changed": false
   },
   "batch_authorization": {
-    "instruction": "make next 5; confirm everything",
-    "authorized_units": ["RSH-007", "RSH-008", "RSH-009", "RSH-010", "RSH-011"],
-    "completed_units": 2,
+    "instruction": "next 5",
+    "authorized_units": ["RSH-010", "RSH-011", "RSH-012", "RSH-013", "RSH-014"],
+    "completed_units": 0,
     "total_units": 5,
     "state": "active",
-    "closed_after": "RSH-011",
+    "closed_after": "RSH-014",
     "separate_branch_and_pr_per_unit": true,
     "merge_after_validation": true,
-    "RSH-012_authorized": false
+    "RSH-015_authorized": false,
+    "prior_batch": {
+      "instruction": "make next 5; confirm everything",
+      "authorized_units": ["RSH-007", "RSH-008", "RSH-009", "RSH-010", "RSH-011"],
+      "accepted_before_superseding_instruction": ["RSH-007", "RSH-008", "RSH-009"]
+    }
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
     "human_authority": "PRODUCT-DEFINITION.md",
     "validator": "scripts/check-product-definition.mjs",
-    "state": "frozen",
-    "mvp_track_names": ["Ayalon", "Rothschild", "Yarkon–Reading", "Jaffa", "Jerusalem–Scopus", "Haifa–Carmel", "Ramon", "Hermon"],
-    "public_distribution_authorized": false,
-    "webgpu_default": false,
-    "release_gate_count": 13,
-    "release_gates_green": 0
+    "state": "accepted",
+    "product_definition_sha256": "a9e481e9c262b51ddb09bee75a129f7886b6161f234abfd24ccea20d3de6f715"
+  },
+  "rsh_010_classification": {
+    "machine_authority": "TRACK-CATALOGUE-CLASSIFICATION.json",
+    "human_authority": "TRACK-CATALOGUE-CLASSIFICATION.md",
+    "validator": "scripts/check-track-catalogue.mjs",
+    "state": "in_review",
+    "total_entries": 56,
+    "mvp_entries": 8,
+    "deferred_entries": 48,
+    "mvp_ids": ["ayalon", "rothschild", "namal", "oldjaffa", "scopus", "haifa", "ramon", "hermon"],
+    "deleted_entries": 0
   },
   "findings": {
     "total": 42,
@@ -124,16 +147,20 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not expand the frozen Version 1 product definition implicitly.",
-    "Do not begin RSH-010 before RSH-009 is validated and merged.",
-    "Execute only the owner-authorised RSH-007–RSH-011 batch.",
+    "Do not begin RSH-011 before RSH-010 is validated and merged.",
+    "Execute only the owner-authorised RSH-010–RSH-014 batch.",
+    "Do not pre-create RSH-015.",
     "Release gates remain 0/13."
   ],
   "validation": {
     "queue_units": 67,
+    "catalogue_entries": 56,
+    "mvp_entries": 8,
+    "deferred_entries": 48,
     "game_source_changes": 0,
     "asset_changes": 0,
     "dependency_version_changes": 0,
     "package_lock_changes": 0,
-    "RSH-010_precreated": false
+    "RSH-011_precreated": false
   }
 }
