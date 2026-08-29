@@ -1,7 +1,7 @@
 # RUSH Israel — Canonical Track Schema
 
 **Unit:** RSH-013  
-**Machine authority:** `TRACK-SCHEMA.json`  
+**Machine authorities:** `TRACK-SCHEMA.json`, `TRACK-SOURCE-PIN.json`  
 **Observed source commit:** `94524201dfe87f1f22f8d8bdd9d97aad507c0438`  
 **Validator:** `scripts/check-track-schema.mjs`
 
@@ -63,12 +63,19 @@ returned array. Other point-expression forms fail closed.
 
 ## Runtime-data integrity
 
-RSH-013 maintains two related SHA-256 authorities:
+RSH-013 maintains three independent authorities:
 
-| Authority | Exact digest |
-|---|---|
-| Ordered track-definition closure | `27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f` |
-| Aggregate including configured support sources | `93ee4c2c8ed1bd3776cca0cdb6de559c6ad34a9220d60935a73fe65c8194f65e` |
+| Authority | Algorithm | Exact identity |
+|---|---|---|
+| Complete `src/game/tracks.ts` source | Git blob SHA-1 | `ba22d9d82466e02779342ec6a70eddb12481a928` |
+| Ordered track-definition closure | SHA-256 | `27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f` |
+| Aggregate including configured support sources | SHA-256 | `93ee4c2c8ed1bd3776cca0cdb6de559c6ad34a9220d60935a73fe65c8194f65e` |
+
+`TRACK-SOURCE-PIN.json` fixes the complete pre-modularization source byte-for-byte.
+A syntax form not understood by a semantic mutation guard still changes the Git blob
+identity and therefore fails CI. Updating both the JSON pin and source is also
+rejected by a validator-held accepted baseline. RSH-014 is the only declared owner-
+authorized unit that may replace this single-file pin with a modular source manifest.
 
 The track-definition closure hashes each complete canonical TypeScript AST plus the
 recursive top-level presets and coordinate helpers referenced by that track. The
@@ -102,7 +109,8 @@ rejected.
 RSH-014 may relocate the 56 definitions into one module per track only when:
 
 - runtime IDs and order remain unchanged;
-- both integrity digests remain exact;
+- both semantic integrity digests remain exact;
+- the single-file source pin is replaced by an exact modular source manifest;
 - every module is checked through the canonical helpers;
 - the 8/48 classification remains unchanged;
 - no track data, asset or dependency is modified.
@@ -116,6 +124,7 @@ environment, seed or gameplay data.
 | Question | Answer |
 |---|---|
 | Is there one machine-readable track schema? | **Yes** |
+| Is the complete pre-modularization source pinned? | **Yes** |
 | Does it agree with `TrackDef` and all 56 IDs? | **Required by CI** |
 | Is the theme enum checked directly against `TrackDef.theme`? | **Yes** |
 | Are declared 56/8/48 counts enforced? | **Yes** |
