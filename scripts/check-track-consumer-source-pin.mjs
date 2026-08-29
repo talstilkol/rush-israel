@@ -12,6 +12,8 @@ const ACCEPTED_TRACK_CONSUMERS = Object.freeze({
   "src/game/engine.ts": "692663c6d05ab59c1d99c7a357999839b9ebb0ec",
   "src/game/world.ts": "07b7e0b559e66f89641357db5aa2be8bcd8c3135",
 });
+const EXPECTED_WORLD_BUILDER_MANIFEST_SHA256 =
+  "5921e14be99509e8b812bc3f556643b98d2244d1f8b77c2b928e02a99de90f00";
 
 const SOURCE_EXTENSIONS = new Set([
   ".cjs",
@@ -23,6 +25,10 @@ const SOURCE_EXTENSIONS = new Set([
   ".ts",
   ".tsx",
 ]);
+
+function sha256(source) {
+  return createHash("sha256").update(String(source ?? "")).digest("hex");
+}
 
 function gitBlobSha1(source) {
   const body = Buffer.from(String(source ?? ""), "utf8");
@@ -177,6 +183,40 @@ function readRepositorySources() {
   return sources;
 }
 
+function acceptedInternalWorldBuilderPaths(errors) {
+  let source;
+  try {
+    source = readFileSync(fromRoot("WORLD-BUILDER-MANIFEST.json"), "utf8");
+  } catch (error) {
+    errors.push(`RSH-016 world-builder manifest cannot be read: ${error.message}`);
+    return new Set();
+  }
+  if (sha256(source) !== EXPECTED_WORLD_BUILDER_MANIFEST_SHA256) {
+    errors.push("RSH-016 world-builder manifest differs from the accepted internal-consumer authority");
+    return new Set();
+  }
+  try {
+    const manifest = JSON.parse(source);
+    const modules = manifest.extraction?.modules;
+    if (
+      manifest.unit !== "RSH-016"
+      || !Array.isArray(modules)
+      || modules.length !== 56
+      || typeof manifest.extraction?.shared?.path !== "string"
+    ) {
+      errors.push("RSH-016 world-builder internal-consumer authority is invalid");
+      return new Set();
+    }
+    return new Set([
+      manifest.extraction.shared.path,
+      ...modules.map((module) => module.path),
+    ]);
+  } catch (error) {
+    errors.push(`RSH-016 world-builder manifest is invalid JSON: ${error.message}`);
+    return new Set();
+  }
+}
+
 function identitySourceForAcceptedBaseline(filePath, source, expectedGitBlobSha1, errors) {
   const rawIdentity = gitBlobSha1(source);
   if (rawIdentity === expectedGitBlobSha1 || filePath !== "src/game/world.ts") {
@@ -186,7 +226,7 @@ function identitySourceForAcceptedBaseline(filePath, source, expectedGitBlobSha1
     const reconstructed = reconstructLegacyWorldSource(reconstructRsh015WorldSource(source));
     return { source: reconstructed, rawIdentity, reconstructed: true };
   } catch (error) {
-    errors.push(`src/game/world.ts controlled RSH-015 reconstruction failed: ${error.message}`);
+    errors.push(`src/game/world.ts controlled RSH-016 reconstruction failed: ${error.message}`);
     return { source, rawIdentity, reconstructed: false };
   }
 }
@@ -202,9 +242,13 @@ export function validateTrackConsumerSourcePin({ consumerSources } = {}) {
     };
   }
 
+  const internalWorldBuilderPaths = acceptedInternalWorldBuilderPaths(errors);
   const expectedPaths = Object.keys(ACCEPTED_TRACK_CONSUMERS).sort();
   const consumers = Object.entries(sources)
-    .filter(([filePath, source]) => importsTrackRuntime(filePath, source))
+    .filter(([filePath, source]) => (
+      !internalWorldBuilderPaths.has(filePath)
+      && importsTrackRuntime(filePath, source)
+    ))
     .map(([filePath]) => filePath)
     .sort();
 
@@ -223,7 +267,12 @@ export function validateTrackConsumerSourcePin({ consumerSources } = {}) {
       continue;
     }
     const expectedGitBlobSha1 = ACCEPTED_TRACK_CONSUMERS[filePath];
-    const identitySource = identitySourceForAcceptedBaseline(filePath, source, expectedGitBlobSha1, errors);
+    const identitySource = identitySourceForAcceptedBaseline(
+      filePath,
+      source,
+      expectedGitBlobSha1,
+      errors,
+    );
     const actualGitBlobSha1 = gitBlobSha1(identitySource.source);
     if (actualGitBlobSha1 !== expectedGitBlobSha1) {
       errors.push(
