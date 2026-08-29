@@ -3974,6 +3974,14 @@ function addLandmarks(
     skyb.position.set(carl.x + 7, 24, carl.z + 2);
     add(skyb);
     const yam = tlv(32.0795, 34.7668);
+    {
+      const n = nearestIndex(built.samples, yam.x, yam.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        yam.x = s.x + s.rx * (built.width / 2 + 22);
+        yam.z = s.z + s.rz * (built.width / 2 + 22);
+      }
+    }
     const yamT = new THREE.Mesh(new THREE.CylinderGeometry(4.6, 5.2, 46, 12), white);
     yamT.position.set(yam.x, 23, yam.z);
     add(yamT);
@@ -3981,6 +3989,14 @@ function addLandmarks(
     yamCap.position.set(yam.x, 48, yam.z);
     add(yamCap);
     const dav = tlv(32.0638, 34.7648);
+    {
+      const n = nearestIndex(built.samples, dav.x, dav.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        dav.x = s.x + s.rx * (built.width / 2 + 24);
+        dav.z = s.z + s.rz * (built.width / 2 + 24);
+      }
+    }
     const david = new THREE.Mesh(new THREE.BoxGeometry(36, 18, 16), cream);
     david.position.set(dav.x, 9, dav.z);
     add(david);
@@ -3991,6 +4007,14 @@ function addLandmarks(
     davidTop.position.set(dav.x, 31, dav.z);
     add(davidTop);
     const sher = tlv(32.083, 34.7674);
+    {
+      const n = nearestIndex(built.samples, sher.x, sher.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        sher.x = s.x + s.rx * (built.width / 2 + 22);
+        sher.z = s.z + s.rz * (built.width / 2 + 22);
+      }
+    }
     const sheraton = new THREE.Mesh(new THREE.BoxGeometry(16, 22, 10), peach);
     sheraton.position.set(sher.x, 11, sher.z);
     add(sheraton);
@@ -4000,6 +4024,14 @@ function addLandmarks(
       add(shade);
     }
     const dol = tlv(32.0648, 34.7618);
+    {
+      const n = nearestIndex(built.samples, dol.x, dol.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        dol.x = s.x + s.rx * (built.width / 2 + 26);
+        dol.z = s.z + s.rz * (built.width / 2 + 26);
+      }
+    }
     const dolRing = new THREE.Mesh(new THREE.TorusGeometry(12, 1.4, 8, 24), stone);
     dolRing.rotation.x = Math.PI / 2;
     dolRing.position.set(dol.x, 0.8, dol.z);
@@ -4008,6 +4040,14 @@ function addLandmarks(
     dolInner.position.set(dol.x, 1.2, dol.z);
     add(dolInner);
     const smH = tlv(32.0639, 34.7688);
+    {
+      const n = nearestIndex(built.samples, smH.x, smH.z, 0);
+      if (n.dist < built.width / 2 + 12) {
+        const s = built.samples[n.index];
+        smH.x = s.x + s.rx * (built.width / 2 + 24);
+        smH.z = s.z + s.rz * (built.width / 2 + 24);
+      }
+    }
     const smHM = new THREE.Mesh(new THREE.BoxGeometry(16, 62, 10), cream);
     smHM.position.set(smH.x, 31, smH.z);
     add(smHM);
@@ -4475,11 +4515,20 @@ function addLandmarks(
     skipJ(lightH.x, lightH.z, 3);
   }
   if (def.id === "telaviv") {
+    const offTlv = (p: { x: number; z: number }, extra = 26) => {
+      const n = nearestIndex(built.samples, p.x, p.z, 0);
+      if (n.dist < built.width / 2 + extra) {
+        const s = built.samples[n.index];
+        p.x = s.x + s.rx * (built.width / 2 + extra);
+        p.z = s.z + s.rz * (built.width / 2 + extra);
+      }
+      return p;
+    };
     const az = tlv(32.0744, 34.7938);
     placeAzrieli(1.22);
     placeToHa(1.05);
     placeCityGate(1);
-    const saT = tlv(32.0714, 34.7866);
+    const saT = offTlv(tlv(32.0714, 34.7866), 28);
     const saronaTw = new THREE.Mesh(new THREE.BoxGeometry(11, 92, 11), glass);
     saronaTw.position.set(saT.x, 46, saT.z);
     add(saronaTw);
@@ -4496,7 +4545,7 @@ function addLandmarks(
       { lat: 32.0716, lon: 34.785, w: 8.4, d: 7.2, h: 7.2, col: white, roof: terracotta }
     ];
     for (const h of houseSpec) {
-      const p = tlv(h.lat, h.lon);
+      const p = offTlv(tlv(h.lat, h.lon), 22);
       const house = new THREE.Mesh(new THREE.BoxGeometry(h.w, h.h, h.d), h.col);
       house.position.set(p.x, h.h * 0.5, p.z);
       add(house);
@@ -4506,7 +4555,7 @@ function addLandmarks(
       add(r);
       hit(p.x, p.z, 4);
     }
-    const saHall = tlv(32.0712, 34.7844);
+    const saHall = offTlv(tlv(32.0712, 34.7844), 22);
     const hall = new THREE.Mesh(new THREE.BoxGeometry(10, 8.4, 16), cream);
     hall.position.set(saHall.x, 4.2, saHall.z);
     add(hall);
@@ -4514,7 +4563,7 @@ function addLandmarks(
     hallRoof.position.set(saHall.x, 8.6, saHall.z);
     add(hallRoof);
     hit(saHall.x, saHall.z, 6);
-    const mkt = tlv(32.0704, 34.7838);
+    const mkt = offTlv(tlv(32.0704, 34.7838), 22);
     const mktHall = new THREE.Mesh(new THREE.BoxGeometry(22, 6.2, 9), paleGlass);
     mktHall.position.set(mkt.x, 3.1, mkt.z);
     add(mktHall);
@@ -4527,32 +4576,32 @@ function addLandmarks(
       add(rib);
     }
     hit(mkt.x, mkt.z, 8);
-    const ky = tlv(32.0754, 34.7874);
+    const ky = offTlv(tlv(32.0754, 34.7874), 30);
     const kirya = new THREE.Mesh(new THREE.BoxGeometry(16, 42, 12), cream);
     kirya.position.set(ky.x, 21, ky.z);
     add(kirya);
     const kirHat = new THREE.Mesh(new THREE.BoxGeometry(17.2, 4.4, 13), bandMat);
     kirHat.position.set(ky.x, 44.2, ky.z);
     add(kirHat);
-    const el = tlv(32.0804, 34.7942);
+    const el = offTlv(tlv(32.0804, 34.7942), 32);
     const electra = new THREE.Mesh(new THREE.BoxGeometry(13.2, 88, 13.2), azSqGlass);
     electra.position.set(el.x, 44, el.z);
     add(electra);
     const elMast = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.4, 24, 8), bandMat);
     elMast.position.set(el.x, 100, el.z);
     add(elMast);
-    const md = tlv(32.0798, 34.7934);
+    const md = offTlv(tlv(32.0798, 34.7934), 32);
     const midA = new THREE.Mesh(new THREE.BoxGeometry(11, 76, 13), gateGlass);
     midA.position.set(md.x - 8, 38, md.z);
     add(midA);
     const midB = new THREE.Mesh(new THREE.BoxGeometry(11, 68, 13), gateGlass);
     midB.position.set(md.x + 8, 34, md.z);
     add(midB);
-    const sp = tlv(32.0758, 34.7946);
+    const sp = offTlv(tlv(32.0758, 34.7946), 30);
     const spiral = new THREE.Mesh(new THREE.CylinderGeometry(7.2, 9.4, 72, 12), glass);
     spiral.position.set(sp.x, 36, sp.z);
     add(spiral);
-    const hb = tlv(32.0728, 34.7794);
+    const hb = offTlv(tlv(32.0728, 34.7794), 28);
     const hbPlaza = new THREE.Mesh(new THREE.CylinderGeometry(28, 28, 0.16, 32), stone);
     hbPlaza.position.set(hb.x, 0.08, hb.z);
     add(hbPlaza);
@@ -4584,7 +4633,7 @@ function addLandmarks(
     hbStep.position.set(hb.x, 0.6, hb.z + 12);
     add(hbStep);
     hit(hb.x, hb.z, 14);
-    const ih = tlv(32.0629, 34.7716);
+    const ih = offTlv(tlv(32.0629, 34.7716), 24);
     const hallBody = new THREE.Mesh(new THREE.BoxGeometry(13.4, 8.2, 10.2), cream);
     hallBody.position.set(ih.x, 4.1, ih.z);
     add(hallBody);
@@ -4601,7 +4650,7 @@ function addLandmarks(
     flag.position.set(ih.x + 6.7, 11.2, ih.z + 4.2);
     add(flag);
     hit(ih.x, ih.z, 7);
-    const ds = tlv(32.0732, 34.7888);
+    const ds = offTlv(tlv(32.0732, 34.7888), 28);
     const discount = new THREE.Mesh(new THREE.BoxGeometry(14, 56, 10), darkGlass);
     discount.position.set(ds.x, 28, ds.z);
     add(discount);
@@ -4614,7 +4663,7 @@ function addLandmarks(
     hitRoad(saT.x, saT.z, 8);
     hitRoad(ky.x, ky.z, 10);
     hitRoad(el.x, el.z, 8);
-    const dz = tlv(32.0753, 34.7748);
+    const dz = offTlv(tlv(32.0753, 34.7748), 28);
     const dzPodium = new THREE.Mesh(new THREE.CylinderGeometry(18, 20, 8, 24), cream);
     dzPodium.position.set(dz.x, 4, dz.z);
     add(dzPodium);
@@ -4629,7 +4678,7 @@ function addLandmarks(
     dzRamp.position.set(dz.x, 2.4, dz.z);
     add(dzRamp);
     hitRoad(dz.x, dz.z, 16);
-    const fib = tlv(32.063, 34.7795);
+    const fib = offTlv(tlv(32.063, 34.7795), 28);
     const fibM = new THREE.Mesh(new THREE.CylinderGeometry(8.4, 9.2, 78, 3), darkGlass);
     fibM.position.set(fib.x, 39, fib.z);
     fibM.rotation.y = 0.4;
@@ -4639,8 +4688,8 @@ function addLandmarks(
     fibCap.rotation.y = 0.4;
     add(fibCap);
     hitRoad(fib.x, fib.z, 8);
-    const yooA = tlv(32.0854, 34.7966);
-    const yooB = tlv(32.0858, 34.7972);
+    const yooA = offTlv(tlv(32.0854, 34.7966), 30);
+    const yooB = offTlv(tlv(32.0858, 34.7972), 30);
     const y1 = new THREE.Mesh(new THREE.BoxGeometry(11, 82, 11), paleGlass);
     y1.position.set(yooA.x, 41, yooA.z);
     add(y1);
@@ -4649,7 +4698,7 @@ function addLandmarks(
     add(y2);
     hitRoad(yooA.x, yooA.z, 7);
     hitRoad(yooB.x, yooB.z, 7);
-    const sm = tlv(32.0639, 34.7704);
+    const sm = offTlv(tlv(32.0639, 34.7704), 26);
     const smM = new THREE.Mesh(new THREE.BoxGeometry(16, 62, 10), cream);
     smM.position.set(sm.x, 31, sm.z);
     add(smM);
