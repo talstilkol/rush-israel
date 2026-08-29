@@ -1,99 +1,101 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 2.5.0  
+**Version:** 2.6.2  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**Verified base:** `c7628b1da3d149f1881961148e11564039de4b8d`  
-**Active unit:** `RSH-009`  
-**Active branch:** `agent/rsh-009-freeze-v1-product-definition`  
-**Active PR:** `#11`
+**Verified base:** `69765febef85d732d9ba79fe260fec78ee76b2df`  
+**Active unit:** `RSH-010`  
+**Active branch:** `agent/rsh-010-track-catalogue-classification`  
+**Active PR:** `#13`  
+**Replaced Draft PR:** `#12`, closed unmerged after connector Ready-for-review failure
 
 ## 1. Authority
 
-GitHub and the canonical control documents govern the program. Live GitHub
-evidence supersedes chat summaries and recorded SHAs whenever they differ.
+GitHub and the canonical control documents govern the program. Live GitHub evidence
+supersedes chat summaries and recorded SHAs whenever they differ.
 
-The active bounded batch is exactly:
+The owner instruction `next 5` authorises exactly:
 
-1. RSH-007 — accepted;
-2. RSH-008 — accepted, with live branch protection still an owner action;
-3. RSH-009 — active;
-4. RSH-010 — blocked by RSH-009;
-5. RSH-011 — final authorised unit.
+1. RSH-010 — active;
+2. RSH-011 — blocked by RSH-010;
+3. RSH-012 — deferred inside the authorised batch;
+4. RSH-013 — deferred inside the authorised batch;
+5. RSH-014 — final authorised unit.
 
-RSH-012 is not authorised.
+The batch closes after RSH-014. RSH-015 is not authorised.
 
-## 2. Current queue head
+## 2. Sequential execution
 
-`RSH-009 — Freeze the Version 1 product definition`
+Each authorised unit requires:
+
+- the exact live `main` created by the preceding merge;
+- a distinct branch and PR;
+- exact-head `required-ci / validate` success;
+- deterministic unit-specific tests and changed-set evidence;
+- review findings resolved before merge;
+- no later-unit pre-creation;
+- merge only after the acceptance boundary passes.
+
+## 3. Current queue head
+
+`RSH-010 — Classify the track catalogue into 8 MVP and 48 deferred tracks`
 
 The exact final PR head must prove that:
 
-- `PRODUCT-DEFINITION.json` is valid and frozen;
-- ownership is private and owner-controlled;
-- public distribution is not authorised;
-- the renderer default is WebGL and handling is simcade at 120 Hz;
-- the intended Version 1 track count is exactly 8;
-- the intended fictional vehicle count is exactly 5;
-- all explicit non-claims and exclusions remain present;
-- all 13 release gates remain required and 0 are currently green;
-- unresolved subjects remain assigned to their later authoritative units.
-
-## 3. Frozen product boundary
-
-The Version 1 product is a private owner-controlled browser driving game using
-Three.js, WebGL and fixed-step simcade physics on fictional routes inspired by
-Israeli places.
-
-The intended track names are:
-
-1. Ayalon;
-2. Rothschild;
-3. Yarkon–Reading;
-4. Jaffa;
-5. Jerusalem–Scopus;
-6. Haifa–Carmel;
-7. Ramon;
-8. Hermon.
-
-RSH-010 must map these names to exact live repository IDs and classify every
-catalogue entry. RSH-009 does not guess the IDs.
+- `src/game/types.ts` and `src/game/tracks.ts` expose the same 56 unique IDs;
+- `TrackId` order alone is the canonical classification order; the historical `TRACKS`
+  declaration order is not required to match it;
+- every live ID is classified exactly once;
+- exactly 8 IDs are MVP and exactly 48 are deferred;
+- the frozen names map exactly to `ayalon`, `rothschild`, `namal`, `oldjaffa`,
+  `scopus`, `haifa`, `ramon` and `hermon`;
+- no deferred track is deleted or implicitly promoted;
+- `TRACK-CATALOGUE-CLASSIFICATION.json` and its validator fail closed on source drift;
+- all canonical program-control records agree;
+- release gates remain 0/13.
 
 ## 4. Truth boundaries
 
-- Branch protection remains unapplied and owner-action-required.
-- Public repository visibility remains inconsistent with private policy.
-- Five zero-to-100 claims remain failed and belong to RSH-033.
+- RSH-009 is accepted at merge SHA `69765febef85d732d9ba79fe260fec78ee76b2df`.
+- Repository visibility remains public against the private owner policy.
+- `main` remains unprotected with zero required checks and zero rulesets.
 - Asset provenance remains incomplete until RSH-011.
 - README, metadata, branding, root licence and PWA alignment remain RSH-012.
-- Browser/device support remains RSH-043.
+- The canonical track schema remains RSH-013.
+- Physical module splitting remains RSH-014.
+- Five zero-to-100 claims remain failed and belong to RSH-033.
 - Release gates remain 0/13.
 
-## 5. Transition to RSH-010
+## 5. Transition to RSH-011
 
-RSH-010 starts only after:
+RSH-011 starts only after:
 
-1. PR #11 exact final head passes `required-ci / validate`;
-2. product-definition tests pass;
-3. PR #11 merges under the owner batch;
-4. its live merge SHA is recorded in the RSH-010 branch.
+1. replacement PR #13 exact final head passes `required-ci / validate`;
+2. all 56 IDs validate as 8 MVP and 48 deferred;
+3. blocking review findings are resolved;
+4. PR #13 merges under the owner batch;
+5. its live merge SHA is recorded in the RSH-011 branch.
 
 ## 6. Prohibited actions
 
 - implicit Version 1 scope expansion;
-- guessing exact track IDs before RSH-010 evidence;
-- public-distribution or release claims;
+- deleting deferred catalogue entries;
+- treating catalogue classification as release readiness;
 - direct `main` writes, force-push or history rewrite;
-- starting RSH-012 under this batch.
+- creating RSH-011 before PR #13 merges;
+- starting or pre-creating RSH-015.
 
 ## 7. Current metrics
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 8/67 |
+| Accepted units | 9/67 |
 | In review | 1 |
-| Remaining units | 59 |
-| Queue head | RSH-009 |
-| Batch units completed | 2/5 |
-| Batch authority remaining | 3 |
+| Remaining units | 58 |
+| Queue head | RSH-010 |
+| Active PR | #13 |
+| Replaced unmerged PR | #12 |
+| Batch units completed | 0/5 |
+| Batch authority remaining | 5 |
+| Catalogue | 56 = 8 MVP + 48 deferred |
 | Release gates | 0/13 |

@@ -44,80 +44,107 @@ test("current state and queue agree on every live program count", () => {
   assert.equal(current.program_status.queue_head_pull_request, queue.queue_head.pull_request);
 });
 
-test("the owner-bounded batch has exactly two accepted units", () => {
+test("the owner-bounded next-five batch is exactly RSH-010 through RSH-014", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
-  const currentBatch = current.batch_authorization;
-  const queueBatch = queue.policy.active_bounded_batch;
-
-  assert.deepEqual(currentBatch.authorized_units, queueBatch.authorized_units);
-  assert.deepEqual(currentBatch.authorized_units, [
-    "RSH-007",
-    "RSH-008",
-    "RSH-009",
-    "RSH-010",
-    "RSH-011",
-  ]);
-  assert.equal(currentBatch.completed_units, 2);
-  assert.equal(queueBatch.completed, 2);
-  assert.equal(currentBatch.total_units, 5);
-  assert.equal(queueBatch.total, 5);
-  assert.equal(currentBatch.closed_after, "RSH-011");
-  assert.equal(currentBatch["RSH-012_authorized"], false);
+  const expected = ["RSH-010", "RSH-011", "RSH-012", "RSH-013", "RSH-014"];
+  assert.deepEqual(current.batch_authorization.authorized_units, expected);
+  assert.deepEqual(queue.policy.active_bounded_batch.authorized_units, expected);
+  assert.equal(current.batch_authorization.completed_units, 0);
+  assert.equal(queue.policy.active_bounded_batch.completed, 0);
+  assert.equal(current.batch_authorization.total_units, 5);
+  assert.equal(queue.policy.active_bounded_batch.total, 5);
+  assert.equal(current.batch_authorization.closed_after, "RSH-014");
+  assert.equal(current.batch_authorization["RSH-015_authorized"], false);
 });
 
-test("RSH-007 and RSH-008 are reconciled to exact accepted evidence", () => {
+test("RSH-007 through RSH-009 are reconciled to exact accepted evidence", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
   const baseline = readJson("BASELINE-REGISTER.json");
 
-  const rsh007Merge = "88c7754b62c66cfdf59f8bfce847db2113eb09de";
-  const rsh007Head = "3cb2ca2ac6d34b25f77f313b70590bcc36190f76";
-  assert.equal(current.accepted_units["RSH-007"].merge_sha, rsh007Merge);
-  assert.equal(current.accepted_units["RSH-007"].validated_head_sha, rsh007Head);
-  assert.equal(queue.accepted["RSH-007"].merge_sha, rsh007Merge);
-  assert.equal(queue.accepted["RSH-007"].validated_head_sha, rsh007Head);
+  const evidence = {
+    "RSH-007": {
+      merge: "88c7754b62c66cfdf59f8bfce847db2113eb09de",
+      head: "3cb2ca2ac6d34b25f77f313b70590bcc36190f76",
+      pr: 9,
+      baseline: "B007-rsh-007-accepted",
+    },
+    "RSH-008": {
+      merge: "c7628b1da3d149f1881961148e11564039de4b8d",
+      head: "bf1add01626e72db660cdd1e195f233c24399d0a",
+      pr: 10,
+      baseline: "B008-rsh-008-accepted",
+    },
+    "RSH-009": {
+      merge: "69765febef85d732d9ba79fe260fec78ee76b2df",
+      head: "f71d56ba9d095f4850d95be45f255b1463fb0a92",
+      pr: 11,
+      baseline: "B009-rsh-009-accepted",
+    },
+  };
 
-  const rsh008Merge = "c7628b1da3d149f1881961148e11564039de4b8d";
-  const rsh008Head = "bf1add01626e72db660cdd1e195f233c24399d0a";
-  assert.equal(current.accepted_units["RSH-008"].merge_sha, rsh008Merge);
-  assert.equal(current.accepted_units["RSH-008"].validated_head_sha, rsh008Head);
-  assert.equal(queue.accepted["RSH-008"].merge_sha, rsh008Merge);
-  assert.equal(queue.accepted["RSH-008"].validated_head_sha, rsh008Head);
+  for (const [unit, expected] of Object.entries(evidence)) {
+    assert.equal(current.accepted_units[unit].merge_sha, expected.merge);
+    assert.equal(current.accepted_units[unit].validated_head_sha, expected.head);
+    assert.equal(queue.accepted[unit].merge_sha, expected.merge);
+    assert.equal(queue.accepted[unit].validated_head_sha, expected.head);
+    const entry = baseline.baselines.find((item) => item.id === expected.baseline);
+    assert.ok(entry);
+    assert.equal(entry.commit_sha, expected.merge);
+    assert.equal(entry.validated_head_sha, expected.head);
+    assert.equal(entry.pull_request, expected.pr);
+  }
+
   assert.equal(current.accepted_units["RSH-008"].branch_protection_applied, false);
-
-  const entry = baseline.baselines.find((item) => item.id === "B008-rsh-008-accepted");
-  assert.ok(entry);
-  assert.equal(entry.commit_sha, rsh008Merge);
-  assert.equal(entry.validated_head_sha, rsh008Head);
-  assert.equal(entry.pull_request, 10);
+  assert.equal(
+    current.accepted_units["RSH-009"].product_definition_sha256,
+    "a9e481e9c262b51ddb09bee75a129f7886b6161f234abfd24ccea20d3de6f715",
+  );
 });
 
-test("RSH-009 is the sole in-review unit and RSH-010 is not pre-created", () => {
+test("RSH-010 is the sole in-review unit and RSH-011 is not pre-created", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
   const baseline = readJson("BASELINE-REGISTER.json");
 
-  assert.equal(queue.counts.accepted, 8);
+  assert.equal(queue.counts.accepted, 9);
   assert.equal(queue.counts.in_review, 1);
-  assert.equal(queue.counts.remaining, 59);
-  assert.equal(queue.queue_head.id, "RSH-009");
+  assert.equal(queue.counts.remaining, 58);
+  assert.equal(queue.queue_head.id, "RSH-010");
   assert.equal(queue.queue_head.state, "pr_open");
-  assert.equal(queue.queue_head.branch, "agent/rsh-009-freeze-v1-product-definition");
-  assert.equal(queue.queue_head.pull_request, 11);
+  assert.equal(queue.queue_head.branch, "agent/rsh-010-track-catalogue-classification");
+  assert.equal(queue.queue_head.pull_request, 13);
+  assert.equal(queue.queue_head.replaced_draft_pull_request, 12);
   assert.equal(current.active_change.unit, queue.queue_head.id);
   assert.equal(current.active_change.branch, queue.queue_head.branch);
   assert.equal(current.active_change.pull_request, queue.queue_head.pull_request);
-  assert.equal(baseline.working_state.unit, "RSH-009");
-  assert.equal(baseline.working_state.pull_request, 11);
-  assert.equal(current.validation["RSH-010_precreated"], false);
-  assert.equal(queue.next_after_acceptance.id, "RSH-010");
+  assert.equal(current.active_change.replaced_draft_pull_request, 12);
+  assert.equal(baseline.working_state.unit, "RSH-010");
+  assert.equal(baseline.working_state.pull_request, 13);
+  assert.equal(baseline.working_state.replaced_draft_pull_request, 12);
+  assert.equal(current.validation["RSH-011_precreated"], false);
+  assert.equal(queue.next_after_acceptance.id, "RSH-011");
+});
+
+test("track catalogue authority is complete and remains non-release evidence", () => {
+  const current = readJson("CURRENT-STATE.json");
+  const catalogue = readJson("TRACK-CATALOGUE-CLASSIFICATION.json");
+  assert.deepEqual(catalogue.counts, { total: 56, mvp: 8, deferred: 48 });
+  assert.equal(catalogue.entries.length, 56);
+  assert.equal(catalogue.entries.filter((entry) => entry.status === "mvp").length, 8);
+  assert.equal(catalogue.entries.filter((entry) => entry.status === "deferred").length, 48);
+  assert.equal(current.rsh_010_classification.deleted_entries, 0);
+  assert.equal(catalogue.rules.release_gates_green, 0);
+  assert.equal(catalogue.rules.release_gates_total, 13);
 });
 
 test("live settings claims fail closed while protection is unapplied", () => {
   const current = readJson("CURRENT-STATE.json");
   const status = readJson("REPOSITORY-SETTINGS-STATUS.json");
+  assert.equal(current.repository_snapshot.visibility_current, "public");
   assert.equal(current.repository_snapshot.main_protected, false);
+  assert.equal(current.repository_snapshot.required_status_checks, 0);
   assert.equal(current.repository_snapshot.rulesets, 0);
   assert.equal(status.application_state, "owner_action_required");
   assert.equal(status.claims.branch_protection_applied, false);
@@ -143,11 +170,13 @@ test("the required CI workflow checks out exact heads, validates governance and 
   assert.doesNotMatch(workflow, /continue-on-error:\s*true/);
 });
 
-test("the frozen product definition is integrated into the complete test suite", () => {
+test("product and catalogue validators are integrated into the complete test suite", () => {
   const pkg = readJson("package.json");
   const definition = readJson("PRODUCT-DEFINITION.json");
+  const catalogue = readJson("TRACK-CATALOGUE-CLASSIFICATION.json");
   assert.equal(definition.product.definition_state, "frozen");
   assert.equal(definition.change_control.definition_frozen_by, "RSH-009");
+  assert.equal(catalogue.document_type, "rush-track-catalogue-classification");
   assert.match(pkg.scripts.test, /scripts\/\*\*\/\*\.test\.mjs/);
 });
 

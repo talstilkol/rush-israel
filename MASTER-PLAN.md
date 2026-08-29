@@ -1,21 +1,24 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 2.5.0  
+**Schema:** 2.6.1  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**Verified base:** `c7628b1da3d149f1881961148e11564039de4b8d`  
-**Active unit:** RSH-009 / PR #11  
+**Verified base:** `69765febef85d732d9ba79fe260fec78ee76b2df`  
+**Active unit:** RSH-010 / replacement PR #13  
+**Replaced Draft PR:** #12, closed unmerged after connector Ready-for-review failure  
 **Established by:** RSH-001  
 **Governance policy:** RSH-002  
 **Product-definition authority:** `PRODUCT-DEFINITION.json`  
+**Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`  
 **Date:** 29 August 2026
 
 ## 1. Authority
 
 GitHub is the sole source of truth. `CURRENT-STATE.json`, `QUEUE.json`, this document,
 `NEXT-CONTRACT.md`, `FINDINGS-REGISTER.md`, `BASELINE-REGISTER.json`,
-`MILESTONE-REGISTER.md`, `PRODUCT-DEFINITION.json` and
-`REPOSITORY-GOVERNANCE.md` control program state and sequencing.
+`MILESTONE-REGISTER.md`, `PRODUCT-DEFINITION.json`,
+`TRACK-CATALOGUE-CLASSIFICATION.json` and `REPOSITORY-GOVERNANCE.md` control
+program state and sequencing.
 
 `progress.md`, `PLAN.md`, `TASKS.md`, `EXECUTION_PLAN.md`,
 `MASTER_PLAN_AUDIT.md` and `CODEX_GAPS.md` remain historical and technical evidence.
@@ -26,12 +29,12 @@ They do not control queue order, accepted progress or release-gate counts.
 Version 1 is a **private, owner-controlled Three.js WebGL simcade driving game
 using fictional routes inspired by Israeli places**.
 
-The machine-readable product boundary is frozen in `PRODUCT-DEFINITION.json` by
-RSH-009. It requires:
+The machine-readable product boundary was frozen by RSH-009 in
+`PRODUCT-DEFINITION.json`. It requires:
 
 - `WebGLRenderer` as the default renderer;
 - fixed-step simcade physics at 120 Hz;
-- exactly eight intended Version 1 tracks;
+- exactly eight Version 1 tracks;
 - exactly five fictional vehicles;
 - local single-player web delivery;
 - keyboard, touch and gamepad input;
@@ -45,8 +48,8 @@ packages, mandatory accounts, monetisation, UGC and expansion beyond the eight-t
 Version 1 boundary are excluded unless a later explicit owner-authorised unit changes
 the preserved definition.
 
-RSH-010 must map the eight intended names to exact repository IDs and classify all 56
-catalogue entries. RSH-011 must inventory asset provenance and licensing.
+RSH-010 maps the eight frozen names to exact repository IDs and classifies all 56
+catalogue entries. RSH-011 inventories asset provenance and licensing.
 
 ## 3. Operating rules
 
@@ -65,42 +68,43 @@ catalogue entries. RSH-011 must inventory asset provenance and licensing.
     read and persist the actual merge SHA.
 12. The frozen product definition may change only through explicit owner authorisation,
     a separate reviewed unit, canonical plan/queue updates and preservation of history.
+13. Deferred catalogue entries remain retained unless an explicit later unit authorises deletion.
 
 ## 4. Current program state
 
 | Metric | Current value |
 |---|---:|
 | Total units | 67 |
-| Accepted units | 8 |
+| Accepted units | 9 |
 | Units in review | 1 |
-| Queue head | RSH-009 |
-| Active PR | #11 |
-| Remaining units | 59 |
+| Queue head | RSH-010 |
+| Active PR | #13 |
+| Replaced unmerged draft | #12 |
+| Remaining units | 58 |
+| Active bounded batch | RSH-010–RSH-014 |
 | Verified release gates | 0/13 |
 | Findings | 42 |
 | OPEN / MITIGATED / CLOSED | 26 / 8 / 8 |
 
-The owner-authorised active batch contains exactly RSH-007–RSH-011. RSH-007 and
-RSH-008 are accepted. RSH-009 is active. RSH-010 and RSH-011 may run sequentially
-only after each preceding unit is validated and merged. RSH-012 is not authorised.
+The owner instruction `next 5` authorises exactly RSH-010 through RSH-014. Each unit
+must validate and merge before its successor starts. RSH-015 is not authorised.
 
 ## 5. Version 1 track scope
 
-| # | Intended MVP track |
-|---|---|
-| 1 | Ayalon |
-| 2 | Rothschild |
-| 3 | Yarkon–Reading |
-| 4 | Jaffa |
-| 5 | Jerusalem–Scopus |
-| 6 | Haifa–Carmel |
-| 7 | Ramon |
-| 8 | Hermon |
+| # | Frozen Version 1 name | Exact repository ID | RSH-010 state |
+|---:|---|---|---|
+| 1 | Ayalon | `ayalon` | MVP |
+| 2 | Rothschild | `rothschild` | MVP |
+| 3 | Yarkon–Reading | `namal` | MVP |
+| 4 | Jaffa | `oldjaffa` | MVP |
+| 5 | Jerusalem–Scopus | `scopus` | MVP |
+| 6 | Haifa–Carmel | `haifa` | MVP |
+| 7 | Ramon | `ramon` | MVP |
+| 8 | Hermon | `hermon` | MVP |
 
-RSH-010 must map these names to exact repository track IDs and classify every one of
-the 56 catalogue entries. Until that machine-readable classification merges, this
-table is the frozen intended scope and every other catalogue entry remains deferred
-by rule rather than by guessed identity.
+All other 48 live IDs are explicitly deferred and retained. The complete ordered
+classification is in `TRACK-CATALOGUE-CLASSIFICATION.json`; implicit promotion or
+scope expansion is prohibited.
 
 ## 6. Stage map
 
@@ -108,8 +112,8 @@ by rule rather than by guessed identity.
 |---|---:|---:|---|---|
 | G0 | RSH-001–RSH-003 | 3 | Control and governance | ACCEPTED |
 | G1 | RSH-004–RSH-008 | 5 | Reproducible toolchain and CI | UNITS ACCEPTED; EXIT GATE BLOCKED BY OWNER SETTING |
-| G2 | RSH-009–RSH-012 | 4 | Scope, licensing and assets | ACTIVE — RSH-009; BATCH AUTHORISED THROUGH RSH-011 |
-| G3 | RSH-013–RSH-020 | 8 | Architecture decomposition | DEFERRED |
+| G2 | RSH-009–RSH-012 | 4 | Scope, licensing and assets | ACTIVE — RSH-010; AUTHORISED THROUGH RSH-012 |
+| G3 | RSH-013–RSH-020 | 8 | Architecture decomposition | RSH-013–RSH-014 AUTHORISED; RSH-015–020 DEFERRED |
 | G4 | RSH-021–RSH-024 | 4 | Data integrity and production security | DEFERRED |
 | G5 | RSH-025–RSH-036 | 12 | Ayalon vertical slice | DEFERRED |
 | G6 | RSH-037–RSH-043 | 7 | Performance and reliability | DEFERRED |
@@ -263,10 +267,11 @@ The five known acceleration product claims remain failed and assigned to RSH-033
 
 ## 9. Current execution boundary
 
-RSH-009 freezes the Version 1 definition in a machine-readable authority and an exact
-digest-backed validator. Its PR must reconcile all canonical state, pass the exact-head
-`required-ci / validate` job and preserve 0/13 release-gate truth.
+RSH-010 creates the complete 56-entry machine classification and source-aware validator.
+Replacement PR #13 must reconcile all canonical state, pass exact-head
+`required-ci / validate`, preserve all 48 deferred entries and preserve 0/13
+release-gate truth. Draft PR #12 remains closed and unmerged as a tool-failure record.
 
-After RSH-009 merges, RSH-010 may classify the exact catalogue IDs. RSH-011 may start
-only after RSH-010 merges. The current batch ends after RSH-011; RSH-012 must not be
-created automatically.
+After RSH-010 merges, RSH-011 may inventory provenance. RSH-012, RSH-013 and RSH-014
+may then run strictly serially. The bounded batch ends after RSH-014; RSH-015 must not
+be created automatically.
