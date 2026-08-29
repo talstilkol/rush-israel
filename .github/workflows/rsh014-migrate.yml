@@ -1,0 +1,49 @@
+name: rsh014-migrate
+
+on:
+  push:
+    branches:
+      - agent/rsh-014-track-modules
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: ${{ !contains(github.event.head_commit.message, '[rsh014-generated]') }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+      - name: Install dependencies from lockfile
+        run: npm ci
+      - name: Generate exact RSH-014 modularization
+        shell: bash
+        run: |
+          gzip -dc scripts/rsh014-migrate.mjs.gz > scripts/rsh014-migrate.mjs
+          node scripts/rsh014-migrate.mjs
+          rm -f scripts/rsh014-migrate.mjs.gz
+      - name: Commit generated RSH-014 candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+            exit 1
+          fi
+          git commit -m "RSH-014: split track catalogue into 56 modules [rsh014-generated]"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
