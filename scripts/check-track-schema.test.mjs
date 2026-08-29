@@ -21,11 +21,17 @@ function errorsOf(inputs) {
 }
 
 test("committed 56-track catalogue satisfies the canonical schema", () => {
-  const result = validateTrackSchema(readInputs());
+  const inputs = readInputs();
+  const result = validateTrackSchema(inputs);
   assert.equal(Array.isArray(result), false);
   assert.deepEqual(result.errors, []);
   assert.equal(result.summaries.length, 56);
   assert.match(result.digest, /^[0-9a-f]{64}$/);
+  assert.notDeepEqual(
+    result.summaries.map((entry) => entry.id),
+    inputs.schema.catalogue.ids_in_canonical_order,
+  );
+  console.log(`track-schema-runtime-digest=${result.digest}`);
 });
 
 test("schema and TrackDef required keys cannot drift", () => {
@@ -75,7 +81,7 @@ test("duplicate track IDs fail closed", () => {
     '    id: "oldjaffa",\n',
     '    id: "hayarkon",\n',
   );
-  assert.match(errorsOf(inputs).join("\n"), /unique|order/);
+  assert.match(errorsOf(inputs).join("\n"), /unique|same unique IDs/);
 });
 
 test("invalid normalized street ranges fail closed", () => {
@@ -85,6 +91,13 @@ test("invalid normalized street ranges fail closed", () => {
     '{ from: 0.8, to: 0.2, he: "טיילת הרברט סמואל", en: "Herbert Samuel" }',
   );
   assert.match(errorsOf(inputs).join("\n"), /ordered normalized range/);
+});
+
+test("the Ayalon zero-argument point-builder IIFE is explicitly accepted", () => {
+  const inputs = readInputs();
+  const result = validateTrackSchema(inputs);
+  assert.equal(Array.isArray(result), false);
+  assert.doesNotMatch(result.errors.join("\n"), /track\[8\]\.points/);
 });
 
 test("MVP membership cannot expand implicitly", () => {
