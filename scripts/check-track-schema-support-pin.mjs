@@ -8,7 +8,7 @@ const ACCEPTED_SUPPORT_SOURCE = Object.freeze({
 const ACCEPTED_AGGREGATE_BASIS =
   "aggregate of expected_digest and configured support-source Git blob identities";
 const ACCEPTED_AGGREGATE_DIGEST =
-  "93ee4c2c8ed1bd3776cca0cdb6de559c6ad34a9220d60935a73fe65c8194f65e";
+  "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7";
 
 function gitBlobSha1(source) {
   const body = Buffer.from(String(source), "utf8");
