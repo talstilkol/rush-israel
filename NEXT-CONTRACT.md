@@ -1,6 +1,6 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 2.6.1  
+**Version:** 2.6.2  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
 **Verified base:** `69765febef85d732d9ba79fe260fec78ee76b2df`  
@@ -42,7 +42,9 @@ Each authorised unit requires:
 
 The exact final PR head must prove that:
 
-- `src/game/types.ts` and `src/game/tracks.ts` expose the same 56 IDs in the same order;
+- `src/game/types.ts` and `src/game/tracks.ts` expose the same 56 unique IDs;
+- `TrackId` order alone is the canonical classification order; the historical `TRACKS`
+  declaration order is not required to match it;
 - every live ID is classified exactly once;
 - exactly 8 IDs are MVP and exactly 48 are deferred;
 - the frozen names map exactly to `ayalon`, `rothschild`, `namal`, `oldjaffa`,
