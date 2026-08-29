@@ -83,6 +83,12 @@ The first configured support authority is:
 Changing localized text, geometry, sky presets, coordinate helpers, runtime order or
 the configured math support source fails validation.
 
+The referenced-definition closure is sealed. Every use of a local preset or helper
+that contributes to `TRACKS` must remain inside its hashed declaration or the
+`TRACKS` initializer. Any external read, alias, call, reassignment or mutation fails
+closed, preventing an out-of-declaration write from changing effective runtime data
+without changing a pinned authority.
+
 ## Identity-wrapper boundary
 
 `src/game/track-schema.ts` exports `defineTrack` and `defineTracks`. The validator
