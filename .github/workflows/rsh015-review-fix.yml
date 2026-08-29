@@ -26,18 +26,25 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = "1289bb7d574e7241476edaa952751935d058b4f6"
+          test "$(git rev-parse HEAD^)" = "60ebe860e5f1d3214f540cd836f8e3f3070226b2"
           python - <<'PY'
           from pathlib import Path
 
-          old = "ACTIVE — RSH-013–RSH-015 accepted; RSH-016 not authorised"
-          new = "DEFERRED — RSH-013–RSH-015 accepted; RSH-016 not authorised"
-          paths = (
-              Path("MASTER-PLAN.md"),
-              Path("MILESTONE-REGISTER.md"),
-              Path("scripts/milestone-register.test.mjs"),
-          )
-          for path in paths:
+          replacements = {
+              Path("MASTER-PLAN.md"): (
+                  "ACTIVE — RSH-013–RSH-015 accepted; RSH-016 deferred/not authorised",
+                  "DEFERRED — RSH-013–RSH-015 accepted; RSH-016 deferred/not authorised",
+              ),
+              Path("MILESTONE-REGISTER.md"): (
+                  "ACTIVE — RSH-013–RSH-015 accepted; RSH-016 not authorised",
+                  "DEFERRED — RSH-013–RSH-015 accepted; RSH-016 not authorised",
+              ),
+              Path("scripts/milestone-register.test.mjs"): (
+                  "ACTIVE — RSH-013–RSH-015 accepted; RSH-016 not authorised",
+                  "DEFERRED — RSH-013–RSH-015 accepted; RSH-016 not authorised",
+              ),
+          }
+          for path, (old, new) in replacements.items():
               text = path.read_text(encoding="utf-8")
               count = text.count(old)
               if count != 1:
