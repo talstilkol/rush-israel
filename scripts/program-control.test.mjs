@@ -55,7 +55,7 @@ test("the owner-bounded next-five batch is exactly RSH-010 through RSH-014", () 
   assert.equal(current.batch_authorization.total_units, 5);
   assert.equal(queue.policy.active_bounded_batch.total, 5);
   assert.equal(current.batch_authorization.closed_after, "RSH-014");
-  assert.equal(current.batch_authorization.RSH_015_authorized, false);
+  assert.equal(current.batch_authorization["RSH-015_authorized"], false);
 });
 
 test("RSH-007 through RSH-009 are reconciled to exact accepted evidence", () => {
@@ -123,7 +123,7 @@ test("RSH-010 is the sole in-review unit and RSH-011 is not pre-created", () => 
   assert.equal(baseline.working_state.unit, "RSH-010");
   assert.equal(baseline.working_state.pull_request, 13);
   assert.equal(baseline.working_state.replaced_draft_pull_request, 12);
-  assert.equal(current.validation.RSH_011_precreated, false);
+  assert.equal(current.validation["RSH-011_precreated"], false);
   assert.equal(queue.next_after_acceptance.id, "RSH-011");
 });
 
