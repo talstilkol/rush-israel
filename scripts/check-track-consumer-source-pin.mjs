@@ -30,15 +30,19 @@ function gitBlobSha1(source) {
     .digest("hex");
 }
 
+function normalizeResolvedModulePath(modulePath) {
+  return modulePath
+    .replace(/\.(?:[cm]?[jt]sx?)$/u, "")
+    .replace(/\/index$/u, "");
+}
+
 function normalizedModulePath(filePath, moduleName) {
-  if (moduleName === "@/game/tracks" || moduleName === "@/game/tracks.ts") {
-    return "src/game/tracks";
+  if (moduleName.startsWith("@/")) {
+    return normalizeResolvedModulePath(`src/${moduleName.slice(2)}`);
   }
   if (!moduleName.startsWith(".")) return null;
   const resolved = posix.normalize(posix.join(posix.dirname(filePath), moduleName));
-  return resolved
-    .replace(/\.(?:[cm]?[jt]sx?)$/u, "")
-    .replace(/\/index$/u, "");
+  return normalizeResolvedModulePath(resolved);
 }
 
 function resolvesToTrackModule(filePath, moduleName) {
