@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.0.1",
   "document_type": "rush-product-metadata",
-  "generated_at": "2026-08-29T06:48:00+03:00",
+  "generated_at": "2026-08-29T06:55:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "observed_source_commit": "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9",
@@ -50,11 +50,13 @@
   },
   "pwa": {
     "manifest_delivery": "dynamic_via_server_middleware",
-    "manifest_path": "/manifest.webmanifest",
-    "name_source": "src/lib/og/site.json:title",
+    "manifest_path": "/__grok/manifest.webmanifest",
+    "manifest_legacy_alias": "/__grok/manifest.json",
+    "name_source": "scripts/rush-pwa.mjs:productPwaName(grokOgIdentity.site)",
     "name": "RUSH Israel",
     "display": "standalone",
     "start_url": "/",
+    "scope": "/",
     "install_material_path": "public/__grok",
     "install_material_licence_verified": false,
     "public_install_distribution_authorized": false
