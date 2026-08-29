@@ -24,13 +24,24 @@ test("committed track catalogue classifies every live ID", () => {
   assert.deepEqual(validateTrackCatalogue(readInputs()), []);
 });
 
-test("TrackId and TRACKS expose the same 56 IDs in source order", () => {
+test("TrackId and TRACKS expose the same 56 unique IDs", () => {
   const { typeSource, trackSource } = readInputs();
   const typeIds = extractTrackIdsFromType(typeSource);
   const definitionIds = extractTrackIdsFromDefinitions(trackSource);
   assert.equal(typeIds.length, 56);
+  assert.equal(definitionIds.length, 56);
   assert.equal(new Set(typeIds).size, 56);
-  assert.deepEqual(definitionIds, typeIds);
+  assert.equal(new Set(definitionIds).size, 56);
+  assert.deepEqual(typeIds.slice().sort(), definitionIds.slice().sort());
+  assert.notDeepEqual(definitionIds, typeIds);
+});
+
+test("the canonical classification order follows TrackId and not TRACKS layout", () => {
+  const { classification, typeSource } = readInputs();
+  assert.deepEqual(
+    classification.entries.map((entry) => entry.id),
+    extractTrackIdsFromType(typeSource),
+  );
 });
 
 test("the eight frozen names map to exact repository IDs", () => {
@@ -67,11 +78,11 @@ test("missing, duplicate and implicit promotion mutations fail closed", () => {
 
   const missing = structuredClone(base);
   missing.classification.entries.pop();
-  assert.match(validateTrackCatalogue(missing).join("\n"), /56|source order/);
+  assert.match(validateTrackCatalogue(missing).join("\n"), /56|canonical TrackId order/);
 
   const duplicate = structuredClone(base);
   duplicate.classification.entries[55].id = duplicate.classification.entries[54].id;
-  assert.match(validateTrackCatalogue(duplicate).join("\n"), /unique|source order/);
+  assert.match(validateTrackCatalogue(duplicate).join("\n"), /unique|canonical TrackId order/);
 
   const promoted = structuredClone(base);
   const entry = promoted.classification.entries.find((item) => item.id === "hayarkon");
@@ -86,12 +97,15 @@ test("source drift is rejected instead of silently changing classification", () 
     '| "manhattan";',
     '| "manhattan"\n  | "future-track";',
   );
-  assert.match(validateTrackCatalogue(changedType).join("\n"), /56|same IDs|source order/);
+  assert.match(
+    validateTrackCatalogue(changedType).join("\n"),
+    /56|same unique IDs|canonical TrackId order/,
+  );
 
   const changedDefinitions = readInputs();
   changedDefinitions.trackSource = changedDefinitions.trackSource.replace(
     '    id: "hayarkon",',
     '    id: "future-track",',
   );
-  assert.match(validateTrackCatalogue(changedDefinitions).join("\n"), /same IDs|source order/);
+  assert.match(validateTrackCatalogue(changedDefinitions).join("\n"), /same unique IDs/);
 });
