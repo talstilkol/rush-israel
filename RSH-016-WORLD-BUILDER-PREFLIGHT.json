@@ -1,0 +1,3592 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-rsh-016-world-builder-preflight",
+  "unit": "RSH-016",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "973e68d6e1d3fa8ed628f4461cdfae3096d01ea3",
+    "tree_sha": "27e88997f6127a045b0c260850cabcf0c0d650fd"
+  },
+  "source": {
+    "path": "src/game/world.ts",
+    "lines": 9006,
+    "bytes": 352625,
+    "sha256": "64d3aed2e9d4a6dca0fcdbd7d27bb924783afc441549d76cb4079f399b11b107"
+  },
+  "functions": {
+    "laneCountFor": {
+      "start_line": 264,
+      "end_line": 270,
+      "start_offset": 9425,
+      "end_offset": 9791,
+      "bytes": 366,
+      "sha256": "70927845a3fe1e01421d46fc796cbe80fe02f4227298fc83a2d2d1ea446ed565"
+    },
+    "createWorld": {
+      "start_line": 456,
+      "end_line": 2766,
+      "start_offset": 16070,
+      "end_offset": 109944,
+      "bytes": 93874,
+      "sha256": "901349d6e4961f386a68e1361cf3dc68b6e5a8e68769f5a2ea223a2ccc300398"
+    },
+    "addLandmarks": {
+      "start_line": 2767,
+      "end_line": 9006,
+      "start_offset": 109945,
+      "end_offset": 352609,
+      "bytes": 242679,
+      "sha256": "2346fb48799c4129385047464b0bac669dbd124b696494cf704c62bd628083a8"
+    }
+  },
+  "add_landmarks": {
+    "top_level_statement_count": 110,
+    "top_level_statements": [
+      {
+        "ordinal": 1,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2781,
+        "end_line": 2789,
+        "start_offset": 110215,
+        "end_offset": 110626,
+        "bytes": 411,
+        "sha256": "192bac9a9793ec68a64085de01e55c4d04bce99999719a3189361e83ec02c028",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const add = (mesh: THREE.Mesh | THREE.Object3D) => { (mesh as THREE.Mesh).castShadow = shadows; (mesh as THREE.Mesh).receiveShadow = true; group.add(mesh); if (\"geometry\" in mesh && mesh.geometry) bag.push(mesh.geometry); const mat = \"mater"
+      },
+      {
+        "ordinal": 2,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2790,
+        "end_line": 2799,
+        "start_offset": 110629,
+        "end_offset": 110946,
+        "bytes": 317,
+        "sha256": "7a9e06b564023aa91133eef3840926072bdd09089cd02aa1b94b6c740bbe5dd9",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const glowAt = (x: number, y: number, z: number, color: number, on: number, dist: number) => { if (!shadows || glows.length >= 4) return; const pl = new THREE.PointLight(color, isNight ? on : 0, dist, 2); pl.position.set(x, y, z); group.add"
+      },
+      {
+        "ordinal": 3,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2800,
+        "end_line": 2810,
+        "start_offset": 110949,
+        "end_offset": 111196,
+        "bytes": 247,
+        "sha256": "0cecd929656a510039d8a88a90b8ef98b5755851ec5ff5bc461caebf39148af3",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const hit = (x: number, z: number, r: number, hx?: number, hz?: number, yaw?: number) => { colliders.push({ x, z, r, hx: hx ?? r * 0.72, hz: hz ?? r * 0.72, yaw: yaw ?? 0, kind: \"building\" }); };"
+      },
+      {
+        "ordinal": 4,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2811,
+        "end_line": 2814,
+        "start_offset": 111199,
+        "end_offset": 111355,
+        "bytes": 156,
+        "sha256": "fd70cff06b9e4b30c11b62a494df7b690e74b27d54e22e4b4051daa2f5900d46",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const roadYaw = (x: number, z: number) => { const s = built.samples[nearestIndex(built.samples, x, z, 0).index]; return Math.atan2(s.tx, s.tz); };"
+      },
+      {
+        "ordinal": 5,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2815,
+        "end_line": 2815,
+        "start_offset": 111358,
+        "end_offset": 111473,
+        "bytes": 115,
+        "sha256": "2af1384303f71f4a81bfd0d28ac7df0f03f0b6fcf8af480b96dbaa61ba90e4c8",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const hitRoad = (x: number, z: number, r: number, hx?: number, hz?: number) => hit(x, z, r, hx, hz, roadYaw(x, z));"
+      },
+      {
+        "ordinal": 6,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2816,
+        "end_line": 2819,
+        "start_offset": 111476,
+        "end_offset": 111667,
+        "bytes": 191,
+        "sha256": "77e53c005ba19ba4f5705baacc4fa16b2c3fcec07832efaee75e89dc8e696176",
+        "track_ids": [
+          "ayalon"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const towerHit = (x: number, z: number, r: number, hx?: number, hz?: number, yaw?: number) => { if (def.id === \"ayalon\") hitRoad(x, z, r, hx, hz); else hit(x, z, r, hx, hz, yaw); };"
+      },
+      {
+        "ordinal": 7,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2820,
+        "end_line": 2897,
+        "start_offset": 111670,
+        "end_offset": 114794,
+        "bytes": 3124,
+        "sha256": "600a75c0d143d7b7fb2a456e490610ee67bad2a8c57cfbab39a775e00f5b2526",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const placeTunnel = (cx: number, cz: number, yaw: number, len: number, half: number, h: number, y0 = 0) => { const fx = Math.sin(yaw); const fz = Math.cos(yaw); const rx = Math.cos(yaw); const rz = -Math.sin(yaw); const wallMat = new THREE."
+      },
+      {
+        "ordinal": 8,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2898,
+        "end_line": 2902,
+        "start_offset": 114797,
+        "end_offset": 114917,
+        "bytes": 120,
+        "sha256": "5c8581e04377111336286a1187eb052e0caedd0397b33044013bc3d7618c9c38",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const stone = new THREE.MeshStandardMaterial({ color: 13350810, roughness: 0.78, envMapIntensity: 0.45 });"
+      },
+      {
+        "ordinal": 9,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2903,
+        "end_line": 2908,
+        "start_offset": 114920,
+        "end_offset": 115057,
+        "bytes": 137,
+        "sha256": "6e57a3b4281ed7d817336e23d8198ce5c91a6ff08472f104c951cf65a7da7e79",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const white = new THREE.MeshStandardMaterial({ color: 15525594, roughness: 0.48, metalness: 0, envMapIntensity: 0.7 });"
+      },
+      {
+        "ordinal": 10,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2909,
+        "end_line": 2918,
+        "start_offset": 115060,
+        "end_offset": 115310,
+        "bytes": 250,
+        "sha256": "4befd13877206d5bcd1877ed574bf635f118093683b4ecc8822d47cfa6f8f671",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const glass = new THREE.MeshPhysicalMaterial({ color: 6987956, roughness: 0.08, metalness: 0, envMapIntensity: 1.8, clearcoat: 1, clearcoatRoughness: 0.08, emissive: 1722982, emissiveIntensity: isNight ? 0.32 : 0 });"
+      },
+      {
+        "ordinal": 11,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2919,
+        "end_line": 2925,
+        "start_offset": 115313,
+        "end_offset": 115475,
+        "bytes": 162,
+        "sha256": "dc4d132b70ff121c224c9e4a5347fc0e2296c89af6e67d38f3cd3a1a3710ee9b",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const copper = new THREE.MeshPhysicalMaterial({ color: 11569722, metalness: 0.82, roughness: 0.22, envMapIntensity: 1.4, clearcoat: 0.45 });"
+      },
+      {
+        "ordinal": 12,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2926,
+        "end_line": 2934,
+        "start_offset": 115478,
+        "end_offset": 115707,
+        "bytes": 229,
+        "sha256": "44d470847b17be43f72285e7296c9eeac012b608c40e714204ca1ecea30c367d",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const gold = new THREE.MeshPhysicalMaterial({ color: 13934615, metalness: 0.92, roughness: 0.18, envMapIntensity: 1.8, clearcoat: 0.7, emissive: 13934615, emissiveIntensity: isNight ? 0.55 : 0.06 });"
+      },
+      {
+        "ordinal": 13,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2935,
+        "end_line": 2939,
+        "start_offset": 115710,
+        "end_offset": 115829,
+        "bytes": 119,
+        "sha256": "9fd2d0bb5af2d9b3bab43870bbd54cdec1184284615fc39c9388b7ef8840744c",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const cream = new THREE.MeshStandardMaterial({ color: 15260868, roughness: 0.62, envMapIntensity: 0.5 });"
+      },
+      {
+        "ordinal": 14,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2940,
+        "end_line": 2944,
+        "start_offset": 115832,
+        "end_offset": 115956,
+        "bytes": 124,
+        "sha256": "4815c66a3f1aaf825f2fd2bc32666ce0e96961d6bcb8b15c8ed5084693fc6252",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const terracotta = new THREE.MeshStandardMaterial({ color: 10771002, roughness: 0.82, envMapIntensity: 0.3 });"
+      },
+      {
+        "ordinal": 15,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2945,
+        "end_line": 2948,
+        "start_offset": 115959,
+        "end_offset": 116050,
+        "bytes": 91,
+        "sha256": "d956289edfcde21a415916c103a2c36ffe3e108c067eaff8fca9fc5a863fbc21",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const wood = new THREE.MeshStandardMaterial({ color: 6965810, roughness: 0.88 });"
+      },
+      {
+        "ordinal": 16,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2949,
+        "end_line": 2952,
+        "start_offset": 116053,
+        "end_offset": 116148,
+        "bytes": 95,
+        "sha256": "b73a114499cfcb066fa20e672e51629a676eda48b05ef7197927751d74a66828",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const darkArch = new THREE.MeshStandardMaterial({ color: 1840144, roughness: 0.96 });"
+      },
+      {
+        "ordinal": 17,
+        "syntax_kind": "ExpressionStatement",
+        "start_line": 2953,
+        "end_line": 2953,
+        "start_offset": 116151,
+        "end_offset": 116170,
+        "bytes": 19,
+        "sha256": "f7d1356612f891f61882371f2c464fbe44e82fb7fd5efd1f277a440f3cceb01b",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "bag.push(darkArch);"
+      },
+      {
+        "ordinal": 18,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2954,
+        "end_line": 2968,
+        "start_offset": 116173,
+        "end_offset": 116816,
+        "bytes": 643,
+        "sha256": "db55b605036f7d16bde14addb99c894f983f01157af9e74432c402d31234abfb",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const merlonWall = (x: number, z: number, len: number, yaw: number, h = 12) => { const wall = new THREE.Mesh(new THREE.BoxGeometry(len, h, 4.4), stone); wall.position.set(x, h * 0.5, z); wall.rotation.y = yaw; add(wall); const n = Math.max("
+      },
+      {
+        "ordinal": 19,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2969,
+        "end_line": 2980,
+        "start_offset": 116819,
+        "end_offset": 117307,
+        "bytes": 488,
+        "sha256": "988bd0ac2ec7414c20b6c9434d413b68358c2c119dad7bad001660474aad85cc",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const minaret = (x: number, z: number, h = 26) => { const shaft = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.65, h, 10), stone); shaft.position.set(x, h * 0.5, z); add(shaft); const ring = new THREE.Mesh(new THREE.CylinderGeometry(2."
+      },
+      {
+        "ordinal": 20,
+        "syntax_kind": "FirstStatement",
+        "start_line": 2981,
+        "end_line": 3006,
+        "start_offset": 117310,
+        "end_offset": 118266,
+        "bytes": 956,
+        "sha256": "f7226ff04219b97e0ea7d7b5740cab1ac814ed276ec79ebdbbe6a32bd74940f9",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const ottomanGate = (x: number, z: number, yaw: number) => { const rx = Math.cos(yaw); const rz = -Math.sin(yaw); const side = 18; for (const s of [-side, side]) { const t = new THREE.Mesh(new THREE.BoxGeometry(9, 16, 10), stone); t.positio"
+      },
+      {
+        "ordinal": 21,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3007,
+        "end_line": 3038,
+        "start_offset": 118269,
+        "end_offset": 119589,
+        "bytes": 1320,
+        "sha256": "eee701fb70ded35f1f13ed67bef18ed58c07c3cde62213599be7bcc5843dc106",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const placeDome = (dmx: number, dmz: number) => { const oct = new THREE.Mesh(new THREE.CylinderGeometry(11.4, 11.4, 8.4, 8), cream); oct.position.set(dmx, 9.2, dmz); add(oct); const tile = new THREE.MeshStandardMaterial({ color: 1986178, ro"
+      },
+      {
+        "ordinal": 22,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3039,
+        "end_line": 3048,
+        "start_offset": 119592,
+        "end_offset": 119846,
+        "bytes": 254,
+        "sha256": "ec5e2a92d03a0a8dc8000a32dd47e5e3924ab78fcf452ba0087671edd6270a7e",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const cyan = new THREE.MeshPhysicalMaterial({ color: 3842232, roughness: 0.08, metalness: 0.12, envMapIntensity: 1.4, clearcoat: 1, clearcoatRoughness: 0.12, emissive: 3842232, emissiveIntensity: isNight ? 0.7 : 0.08 });"
+      },
+      {
+        "ordinal": 23,
+        "syntax_kind": "ExpressionStatement",
+        "start_line": 3049,
+        "end_line": 3049,
+        "start_offset": 119849,
+        "end_offset": 119924,
+        "bytes": 75,
+        "sha256": "0fd365a884efddc025fefb22f8bb0487fc63703ebd7c34c5dfb0d5e317fff75a",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "bag.push(stone, white, glass, copper, gold, cream, terracotta, wood, cyan);"
+      },
+      {
+        "ordinal": 24,
+        "syntax_kind": "ExpressionStatement",
+        "start_line": 3050,
+        "end_line": 3062,
+        "start_offset": 119927,
+        "end_offset": 120097,
+        "bytes": 170,
+        "sha256": "fb0599e0e22206a872fd5bd6ee1495f2672df0e9ff170df0f0dc41a4d6bcf692",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "emitList.push({ mat: gold, night: 0.55, day: 0.06 }, { mat: glass, night: 0.32, day: 0 }, { mat: cyan, night: 0.7, day: 0.08 });"
+      },
+      {
+        "ordinal": 25,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3063,
+        "end_line": 3072,
+        "start_offset": 120100,
+        "end_offset": 120353,
+        "bytes": 253,
+        "sha256": "3139e1ef1f827b815f1cc845bd33c16e68c7d47ad63270dab253a59b3e594882",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const darkGlass = new THREE.MeshPhysicalMaterial({ color: 3822696, roughness: 0.08, metalness: 0, envMapIntensity: 1.6, clearcoat: 1, clearcoatRoughness: 0.08, emissive: 663600, emissiveIntensity: isNight ? 0.28 : 0 });"
+      },
+      {
+        "ordinal": 26,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3073,
+        "end_line": 3081,
+        "start_offset": 120356,
+        "end_offset": 120582,
+        "bytes": 226,
+        "sha256": "fcfa3c7128ad8f8828174884804e142c3b654f51d891601beca5f5556554671f",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const paleGlass = new THREE.MeshPhysicalMaterial({ color: 12110036, roughness: 0.1, metalness: 0, envMapIntensity: 1.4, clearcoat: 0.9, emissive: 1716288, emissiveIntensity: isNight ? 0.22 : 0 });"
+      },
+      {
+        "ordinal": 27,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3082,
+        "end_line": 3087,
+        "start_offset": 120585,
+        "end_offset": 120727,
+        "bytes": 142,
+        "sha256": "da155a61c3de92551562af28991726019de69ddcab6120341297387b394de500",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const bandMat = new THREE.MeshStandardMaterial({ color: 14214378, metalness: 0.62, roughness: 0.22, envMapIntensity: 1.3 });"
+      },
+      {
+        "ordinal": 28,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3088,
+        "end_line": 3088,
+        "start_offset": 120730,
+        "end_offset": 120768,
+        "bytes": 38,
+        "sha256": "d900768f1a6cbc84ecc8eaf803ca89ef655264d1ea1991b469df0a2198ae9996",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const winTex = curtainTexture(\"blue\");"
+      },
+      {
+        "ordinal": 29,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3089,
+        "end_line": 3089,
+        "start_offset": 120771,
+        "end_offset": 120809,
+        "bytes": 38,
+        "sha256": "57bdfbf5722d847e270304eaec18ca5caaf1549b2ae582677ea514f2f0584ca4",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const triTex = curtainTexture(\"teal\");"
+      },
+      {
+        "ordinal": 30,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3090,
+        "end_line": 3090,
+        "start_offset": 120812,
+        "end_offset": 120849,
+        "bytes": 37,
+        "sha256": "dc78068190a8808af49fcfd0cd5330652db40ad782d090d0433b20fedc56c70e",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const sqTex = curtainTexture(\"dark\");"
+      },
+      {
+        "ordinal": 31,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3091,
+        "end_line": 3091,
+        "start_offset": 120852,
+        "end_offset": 120891,
+        "bytes": 39,
+        "sha256": "581c045a91e62c88e65d0cf071a134331dcd65a1e67af17f7dc9c76d655d177e",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const gateTex = curtainTexture(\"dark\");"
+      },
+      {
+        "ordinal": 32,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3092,
+        "end_line": 3092,
+        "start_offset": 120894,
+        "end_offset": 120933,
+        "bytes": 39,
+        "sha256": "f8c8e9325d9d035a94e49dc83a132839af17102a25093ae83539561450bf2032",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const tohaTex = curtainTexture(\"gold\");"
+      },
+      {
+        "ordinal": 33,
+        "syntax_kind": "ExpressionStatement",
+        "start_line": 3093,
+        "end_line": 3093,
+        "start_offset": 120936,
+        "end_offset": 120986,
+        "bytes": 50,
+        "sha256": "9998f0c0b98cc9c3ae955b030aac9d1b6281a4775d3bb2b67dc01f0a57ffc377",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "bag.push(winTex, triTex, sqTex, gateTex, tohaTex);"
+      },
+      {
+        "ordinal": 34,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3094,
+        "end_line": 3104,
+        "start_offset": 120989,
+        "end_offset": 121302,
+        "bytes": 313,
+        "sha256": "ae16d6aa7d40eb4124ac13251433da6ac0fabb088484cc1632d946af55fa6638",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const mkGlass = (map: THREE.Texture, color: number, nightEmi: number) => new THREE.MeshPhysicalMaterial({ map, color, roughness: 0.12, metalness: 0, envMapIntensity: 1.45, clearcoat: 1, clearcoatRoughness: 0.1, emissive: 1722982, emissiveIn"
+      },
+      {
+        "ordinal": 35,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3105,
+        "end_line": 3105,
+        "start_offset": 121305,
+        "end_offset": 121353,
+        "bytes": 48,
+        "sha256": "d30146f600134b2d0b7eea54a4a7bcc1309214e77b4960969c512e1b4fc64009",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const azGlass = mkGlass(winTex, 0x4e9a82, 0.38);"
+      },
+      {
+        "ordinal": 36,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3106,
+        "end_line": 3106,
+        "start_offset": 121356,
+        "end_offset": 121407,
+        "bytes": 51,
+        "sha256": "fa19ada29de28f4f9b234f0be0185ef6a152141e0e1346ec04e8b0a8e3c88100",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const azTriGlass = mkGlass(triTex, 0x8b6b4a, 0.32);"
+      },
+      {
+        "ordinal": 37,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3107,
+        "end_line": 3107,
+        "start_offset": 121410,
+        "end_offset": 121459,
+        "bytes": 49,
+        "sha256": "6b5fbdbde3dc071d78de0ead31aecc65c40a047a4cb8b6af2c61d8efcf3571e2",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const azSqGlass = mkGlass(sqTex, 0x6a8aaa, 0.28);"
+      },
+      {
+        "ordinal": 38,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3108,
+        "end_line": 3108,
+        "start_offset": 121462,
+        "end_offset": 121512,
+        "bytes": 50,
+        "sha256": "0169d6774aa4f5935b17e00271bada2ab4c6ad6e1c644fb50f79366bdedca576",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const gateGlass = mkGlass(gateTex, 0xc8d4dc, 0.3);"
+      },
+      {
+        "ordinal": 39,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3109,
+        "end_line": 3109,
+        "start_offset": 121515,
+        "end_offset": 121566,
+        "bytes": 51,
+        "sha256": "244bc6e4475ca18a8961240698fca5fbed4f2aa86d9e6ce068765a99d2c21407",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const tohaGlass = mkGlass(tohaTex, 0xc9a45a, 0.24);"
+      },
+      {
+        "ordinal": 40,
+        "syntax_kind": "ExpressionStatement",
+        "start_line": 3110,
+        "end_line": 3110,
+        "start_offset": 121569,
+        "end_offset": 121663,
+        "bytes": 94,
+        "sha256": "ffb504dd6f38601420af3461a9ca468307374faee4aa58b1203e37dd9be6aa39",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "bag.push(darkGlass, paleGlass, bandMat, azGlass, azTriGlass, azSqGlass, gateGlass, tohaGlass);"
+      },
+      {
+        "ordinal": 41,
+        "syntax_kind": "ExpressionStatement",
+        "start_line": 3111,
+        "end_line": 3139,
+        "start_offset": 121666,
+        "end_offset": 122063,
+        "bytes": 397,
+        "sha256": "d61f58fe1eb63c6f2f3e7a3058cfc48f0729b2025488d041cbf625b8d81e662b",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "emitList.push({ mat: darkGlass, night: 0.28, day: 0 }, { mat: paleGlass, night: 0.22, day: 0 }, { mat: azGlass, night: 0.38, day: 0 }, { mat: azTriGlass, night: 0.32, day: 0 }, { mat: azSqGlass, night: 0.28, day: 0 }, { mat: gateGlass, nigh"
+      },
+      {
+        "ordinal": 42,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3140,
+        "end_line": 3292,
+        "start_offset": 122066,
+        "end_offset": 129117,
+        "bytes": 7051,
+        "sha256": "077987ffbf1cff4fe85091ecf0b49e13bfdb498e0f1f033623b9d04c381e6df2",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "const placeAzrieli = (s: number) => { const azBand = new THREE.MeshStandardMaterial({ color: 0xece8e0, metalness: 0, roughness: 0.42, envMapIntensity: 0.85 }); bag.push(azBand); const roundP = tlv(32.07455, 34.79195); const nAz = nearestInd"
+      },
+      {
+        "ordinal": 43,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3293,
+        "end_line": 3300,
+        "start_offset": 129120,
+        "end_offset": 129485,
+        "bytes": 365,
+        "sha256": "0a264ae2544762d8edad4b0c6a1596678a10dd7a8396a595d675f2f2ef56938c",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "const parkTower = (lat: number, lon: number, extra = 48) => { const hint = tlv(lat, lon); const nH = nearestIndex(built.samples, hint.x, hint.z, 0); const sH = built.samples[nH.index]; return nH.dist < built.width / 2 + extra - 8 ? { x: sH."
+      },
+      {
+        "ordinal": 44,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3301,
+        "end_line": 3336,
+        "start_offset": 129488,
+        "end_offset": 130947,
+        "bytes": 1459,
+        "sha256": "ace6d264432a23b9f4e23db6da1ba371c7d00b29f86a22db2ca0ba7b816b245e",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const placeCityGate = (s: number) => { const p = parkTower(32.0832, 34.8027, 52); const h = 168 * s; const yaw = Math.PI / 4; const body = new THREE.Mesh(new THREE.BoxGeometry(16.2 * s, h, 16.2 * s), gateGlass); body.position.set(p.x, h * 0"
+      },
+      {
+        "ordinal": 45,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3337,
+        "end_line": 3392,
+        "start_offset": 130950,
+        "end_offset": 133281,
+        "bytes": 2331,
+        "sha256": "9de7d49ecc8f967dc2e15f354e10f941d368d757214fccd609a20ffd9bee00b5",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "const placeToHa = (s: number, lat = 32.0713, lon = 34.7886) => { const hint = tlv(lat, lon); const nH = nearestIndex(built.samples, hint.x, hint.z, 0); const sH = built.samples[nH.index]; const p = nH.dist < built.width / 2 + 40 ? { x: sH.x"
+      },
+      {
+        "ordinal": 46,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3393,
+        "end_line": 3446,
+        "start_offset": 133284,
+        "end_offset": 135236,
+        "bytes": 1952,
+        "sha256": "cac4d5f193d1561e3ed5c5bcb8886bb5836e7155eda4100770e5f2cdac4b72ef",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const placeMidtown = (s: number) => { const md = parkTower(32.0806, 34.7926, 48); const navy = new THREE.MeshPhysicalMaterial({ color: 0x1c2c3c, roughness: 0.1, metalness: 0, envMapIntensity: 1.55, clearcoat: 1, clearcoatRoughness: 0.1 }); "
+      },
+      {
+        "ordinal": 47,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3447,
+        "end_line": 3507,
+        "start_offset": 135239,
+        "end_offset": 137604,
+        "bytes": 2365,
+        "sha256": "170186fe1d94b6481dfee28a8a091ff6bcdf295bbcaebbca2cc30b7a4c87ea07",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const placeElectra = (s: number) => { const el = parkTower(32.0699, 34.7918, 46); const teal = new THREE.MeshPhysicalMaterial({ color: 0x4a7a92, roughness: 0.1, metalness: 0, envMapIntensity: 1.5, clearcoat: 1, clearcoatRoughness: 0.1 }); b"
+      },
+      {
+        "ordinal": 48,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3508,
+        "end_line": 3548,
+        "start_offset": 137607,
+        "end_offset": 139044,
+        "bytes": 1437,
+        "sha256": "cbf19db2534a7388d0f03229bede5226f826267dcb6215ed56f91f41ab673690",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const placeSarona = (s: number) => { const p = parkTower(32.0714, 34.7866, 44); const h = 178 * s; const glass = new THREE.MeshPhysicalMaterial({ color: 0xd8e4ec, roughness: 0.08, metalness: 0, envMapIntensity: 1.65, clearcoat: 1, clearcoat"
+      },
+      {
+        "ordinal": 49,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3549,
+        "end_line": 3587,
+        "start_offset": 139047,
+        "end_offset": 140459,
+        "bytes": 1412,
+        "sha256": "f9b822e622c23f54d0c172c755dc39c44ffdad5241ca43d7375ca5cf4ac450e7",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const placeHakirya = (s: number) => { const p = parkTower(32.0756, 34.7878, 40); const khaki = new THREE.MeshStandardMaterial({ color: 0xb89a6e, roughness: 0.62, envMapIntensity: 0.45 }); bag.push(khaki); const h = 96 * s; const matcal = ne"
+      },
+      {
+        "ordinal": 50,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3588,
+        "end_line": 3618,
+        "start_offset": 140462,
+        "end_offset": 141818,
+        "bytes": 1356,
+        "sha256": "9e1ba8612ba476ef79de7cd38cd7e070e78ad93c4d9a9e9ade53f4812242e706",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const placeShalomMeir = (s: number) => { const p = parkTower(32.0639, 34.7704, 36); const h = 82 * s; const body = new THREE.Mesh(new THREE.BoxGeometry(16.4 * s, h, 10.6 * s), cream); body.position.set(p.x, h * 0.5, p.z); add(body); const m"
+      },
+      {
+        "ordinal": 51,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3619,
+        "end_line": 3627,
+        "start_offset": 141821,
+        "end_offset": 142012,
+        "bytes": 191,
+        "sha256": "c67dcb02340bacc2ec10b452eaa0a316a8b821b5e4911389adcdbd0842a977a6",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const placeTlvTowers = (s: number) => { placeCityGate(s); placeToHa(s); placeSarona(s); placeHakirya(s); placeShalomMeir(s); placeMidtown(s); placeElectra(s); };"
+      },
+      {
+        "ordinal": 52,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3628,
+        "end_line": 3660,
+        "start_offset": 142015,
+        "end_offset": 143687,
+        "bytes": 1672,
+        "sha256": "4d8e09e659fe3ff2be24bb4763a9c329617eb36a8a76a390c9870092360822cd",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const placeNycSkyline = (ox: number, oz: number, s: number) => { const wtcH = 118 * s; const wtc = new THREE.Mesh(new THREE.BoxGeometry(14 * s, wtcH, 14 * s), paleGlass); wtc.position.set(ox, wtcH * 0.5, oz); add(wtc); const wtcTip = new TH"
+      },
+      {
+        "ordinal": 53,
+        "syntax_kind": "FirstStatement",
+        "start_line": 3661,
+        "end_line": 3677,
+        "start_offset": 143690,
+        "end_offset": 144342,
+        "bytes": 652,
+        "sha256": "e9cc2486019d1a337ad85d3289f1f9152584b2c88079df51961f81bc5fef3514",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "const placeGothicTower = (x: number, z: number, h: number) => { const body = new THREE.Mesh(new THREE.BoxGeometry(10, h, 8), stone); body.position.set(x, h * 0.5, z); add(body); const arch = new THREE.Mesh(new THREE.BoxGeometry(4.2, h * 0.4"
+      },
+      {
+        "ordinal": 54,
+        "syntax_kind": "IfStatement",
+        "start_line": 3678,
+        "end_line": 4073,
+        "start_offset": 144345,
+        "end_offset": 160647,
+        "bytes": 16302,
+        "sha256": "6424e8d0e141581c28081772cc10ed546012b9e7c87177f9d419128b82084435",
+        "track_ids": [
+          "hayarkon"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"hayarkon\") { const hi = tlv(32.0893, 34.7694); { const n = nearestIndex(built.samples, hi.x, hi.z, 0); if (n.dist < built.width / 2 + 10) { const s = built.samples[n.index]; hi.x = s.x + s.rx * (built.width / 2 + 30); hi.z ="
+      },
+      {
+        "ordinal": 55,
+        "syntax_kind": "IfStatement",
+        "start_line": 4074,
+        "end_line": 4488,
+        "start_offset": 160650,
+        "end_offset": 176007,
+        "bytes": 15357,
+        "sha256": "a223f3984968359c72b7f555a10065698527e61bb4c1162dc44ec87decda16c5",
+        "track_ids": [
+          "oldjaffa"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"oldjaffa\") { const ochre = new THREE.MeshStandardMaterial({ color: 0xc4a070, roughness: 0.9, envMapIntensity: 0.22 }); const ochreDark = new THREE.MeshStandardMaterial({ color: 0xa07848, roughness: 0.92 }); const lime = new "
+      },
+      {
+        "ordinal": 56,
+        "syntax_kind": "IfStatement",
+        "start_line": 4489,
+        "end_line": 4681,
+        "start_offset": 176010,
+        "end_offset": 184918,
+        "bytes": 8908,
+        "sha256": "fcc131ffea5d1905b197227a1a4d07b10051f14895b75a7898a48854453b87f9",
+        "track_ids": [
+          "telaviv"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"telaviv\") { const offTlv = (p: { x: number; z: number }, extra = 26) => { const n = nearestIndex(built.samples, p.x, p.z, 0); if (n.dist < built.width / 2 + extra) { const s = built.samples[n.index]; p.x = s.x + s.rx * (buil"
+      },
+      {
+        "ordinal": 57,
+        "syntax_kind": "IfStatement",
+        "start_line": 4682,
+        "end_line": 4894,
+        "start_offset": 184921,
+        "end_offset": 192919,
+        "bytes": 7998,
+        "sha256": "b7985c5aa108a376c2ef90dae2cae7a3b064b3b4b4b5e89882e1761cce9df2ff",
+        "track_ids": [
+          "namal"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"namal\") { const hangarMat = new THREE.MeshStandardMaterial({ color: 14207144, roughness: 0.74, metalness: 0.08, envMapIntensity: 0.4 }); const rust = new THREE.MeshStandardMaterial({ color: 11029042, roughness: 0.62, metalne"
+      },
+      {
+        "ordinal": 58,
+        "syntax_kind": "IfStatement",
+        "start_line": 4895,
+        "end_line": 5072,
+        "start_offset": 192922,
+        "end_offset": 200293,
+        "bytes": 7371,
+        "sha256": "8dd8376f97a623f328135efb13f5b20cdc6ca85aff7e1ad5bea044e9a683db8b",
+        "track_ids": [
+          "jerusalem"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"jerusalem\") { const offJer = (p: { x: number; z: number }, extra = 24) => { const n = nearestIndex(built.samples, p.x, p.z, 0); if (n.dist < built.width / 2 + extra) { const s = built.samples[n.index]; p.x = s.x + s.rx * (bu"
+      },
+      {
+        "ordinal": 59,
+        "syntax_kind": "IfStatement",
+        "start_line": 5073,
+        "end_line": 5320,
+        "start_offset": 200296,
+        "end_offset": 211483,
+        "bytes": 11187,
+        "sha256": "81d17f022fa675182f5083260cead3d43a448a8cbb3602481e320b3c48c2efe7",
+        "track_ids": [
+          "haifa"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"haifa\") { const bg = hai(32.8118, 34.9884); const pt = hai(32.819, 35.004); const pineM = new THREE.MeshStandardMaterial({ color: 1853992, roughness: 0.9, flatShading: true }); const barkM = new THREE.MeshStandardMaterial({ "
+      },
+      {
+        "ordinal": 60,
+        "syntax_kind": "IfStatement",
+        "start_line": 5321,
+        "end_line": 5399,
+        "start_offset": 211486,
+        "end_offset": 213748,
+        "bytes": 2262,
+        "sha256": "3b0d4d6502ef07f034edf70e762a615d6bb63e6bc93317d9b6a0e61e7c0c6834",
+        "track_ids": [
+          "eilat"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"eilat\") { const mar = eil(29.5482, 34.9542); { const n = nearestIndex(built.samples, mar.x, mar.z, 0); if (n.dist < built.width / 2 + 10) { const s = built.samples[n.index]; mar.x = s.x + s.rx * (built.width / 2 + 24); mar.z"
+      },
+      {
+        "ordinal": 61,
+        "syntax_kind": "IfStatement",
+        "start_line": 5400,
+        "end_line": 5837,
+        "start_offset": 213751,
+        "end_offset": 228054,
+        "bytes": 14303,
+        "sha256": "279ec565c1f4a93b0a821c6bc76bc3882cda8732b816765de75ad4464da9a175",
+        "track_ids": [
+          "rothschild"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"rothschild\") { const grassM = new THREE.MeshStandardMaterial({ color: 3832386, roughness: 0.92 }); const walkM = new THREE.MeshStandardMaterial({ color: 12890256, roughness: 0.88 }); const asphM = new THREE.MeshStandardMater"
+      },
+      {
+        "ordinal": 62,
+        "syntax_kind": "IfStatement",
+        "start_line": 5838,
+        "end_line": 6492,
+        "start_offset": 228057,
+        "end_offset": 255589,
+        "bytes": 27547,
+        "sha256": "4c54d89dde318057d42569f735c193b13e1009da1bc72af135831359aef84207",
+        "track_ids": [
+          "ayalon"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"ayalon\") { tlv(32.0744, 34.7932); placeAzrieli(1.42); placeToHa(1.28, 32.0695, 34.7894); placeCityGate(1); placeMidtown(1.15); placeElectra(1.2); placeSarona(1.32); placeHakirya(1.1); placeShalomMeir(1.15); const parkOff = ("
+      },
+      {
+        "ordinal": 63,
+        "syntax_kind": "IfStatement",
+        "start_line": 6493,
+        "end_line": 6601,
+        "start_offset": 255592,
+        "end_offset": 259930,
+        "bytes": 4338,
+        "sha256": "1b3bcfd258c4d4011ded2d057ebcaea158c73a10f52d5e3b5f60667ff69b2ba4",
+        "track_ids": [
+          "caesarea"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"caesarea\") { const aq = cae(32.5078, 34.8976); { const n = nearestIndex(built.samples, aq.x, aq.z, 0); if (n.dist < built.width / 2 + 12) { const s = built.samples[n.index]; aq.x = s.x + s.rx * (built.width / 2 + 28); aq.z ="
+      },
+      {
+        "ordinal": 64,
+        "syntax_kind": "IfStatement",
+        "start_line": 6602,
+        "end_line": 6703,
+        "start_offset": 259933,
+        "end_offset": 264151,
+        "bytes": 4218,
+        "sha256": "368ee4edae146a2384d71636b289282bee6e310347c9b2005f0a846f3787010b",
+        "track_ids": [
+          "deadsea"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"deadsea\") { const salt = new THREE.MeshStandardMaterial({ color: 15261908, roughness: 0.55, envMapIntensity: 0.55 }); const peach = new THREE.MeshStandardMaterial({ color: 15255720, roughness: 0.7 }); bag.push(salt, peach); "
+      },
+      {
+        "ordinal": 65,
+        "syntax_kind": "IfStatement",
+        "start_line": 6704,
+        "end_line": 6837,
+        "start_offset": 264154,
+        "end_offset": 270117,
+        "bytes": 5963,
+        "sha256": "333f9ab7bf392a4340e7be5908885d2c25fc4c150a5891732b31a4fd927c9e0f",
+        "track_ids": [
+          "acre"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"acre\") { const ochreH = new THREE.MeshStandardMaterial({ color: 12093784, roughness: 0.88, envMapIntensity: 0.28 }); const ochreD = new THREE.MeshStandardMaterial({ color: 9398336, roughness: 0.9 }); bag.push(ochreH, ochreD)"
+      },
+      {
+        "ordinal": 66,
+        "syntax_kind": "IfStatement",
+        "start_line": 6838,
+        "end_line": 6876,
+        "start_offset": 270120,
+        "end_offset": 271670,
+        "bytes": 1550,
+        "sha256": "043922812a4f0059deae165b2f611dcee7335d9bdb825759395996724fa3cf2a",
+        "track_ids": [
+          "beersheva"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"beersheva\") { const ch = bsv(31.252, 34.791); { const n = nearestIndex(built.samples, ch.x, ch.z, 0); if (n.dist < built.width / 2 + 12) { const s = built.samples[n.index]; ch.x = s.x + s.rx * (built.width / 2 + 26); ch.z = "
+      },
+      {
+        "ordinal": 67,
+        "syntax_kind": "IfStatement",
+        "start_line": 6877,
+        "end_line": 7007,
+        "start_offset": 271673,
+        "end_offset": 277357,
+        "bytes": 5684,
+        "sha256": "d49af92ba0e4d5b1def6bba6e9217df7b83e59958a823269db25a42e3f152b06",
+        "track_ids": [
+          "netanya"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"netanya\") { const sq = net(32.3318, 34.8565); { const n = nearestIndex(built.samples, sq.x, sq.z, 0); if (n.dist < built.width / 2 + 10) { const s = built.samples[n.index]; sq.x = s.x + s.rx * (built.width / 2 + 22); sq.z = "
+      },
+      {
+        "ordinal": 68,
+        "syntax_kind": "IfStatement",
+        "start_line": 7008,
+        "end_line": 7114,
+        "start_offset": 277360,
+        "end_offset": 282283,
+        "bytes": 4923,
+        "sha256": "6a26f7669abaa81e1c4bb645e1f9ed03e7693ab853ea3dbdd0f09cede2a105d6",
+        "track_ids": [
+          "hw1"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"hw1\") { const vineMat = new THREE.MeshStandardMaterial({ color: 3178290, roughness: 0.92, flatShading: true }); const ochre = new THREE.MeshStandardMaterial({ color: 13213808, roughness: 0.82 }); const olive = new THREE.Mesh"
+      },
+      {
+        "ordinal": 69,
+        "syntax_kind": "IfStatement",
+        "start_line": 7115,
+        "end_line": 7234,
+        "start_offset": 282286,
+        "end_offset": 287567,
+        "bytes": 5281,
+        "sha256": "4052cfc33c25ae9687d161652be40fe132c4ee0704f698e6779fe07f852bc3fb",
+        "track_ids": [
+          "herzliya"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"herzliya\") { const mar = hzl(32.1635, 34.7965); { const n = nearestIndex(built.samples, mar.x, mar.z, 0); if (n.dist < built.width / 2 + 10) { const s = built.samples[n.index]; mar.x = s.x + s.rx * (built.width / 2 + 26); ma"
+      },
+      {
+        "ordinal": 70,
+        "syntax_kind": "IfStatement",
+        "start_line": 7235,
+        "end_line": 7286,
+        "start_offset": 287570,
+        "end_offset": 289544,
+        "bytes": 1974,
+        "sha256": "5b886a9c8841ec8bac0fb9c1444cb91995d6048b7d17ec54c883078ce0d992bd",
+        "track_ids": [
+          "hanikra"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"hanikra\") { const chalk = new THREE.MeshStandardMaterial({ color: 15789282, roughness: 0.9, envMapIntensity: 0.22 }); const darkCave = new THREE.MeshStandardMaterial({ color: 920586, roughness: 1 }); bag.push(chalk, darkCave"
+      },
+      {
+        "ordinal": 71,
+        "syntax_kind": "IfStatement",
+        "start_line": 7287,
+        "end_line": 7357,
+        "start_offset": 289547,
+        "end_offset": 291201,
+        "bytes": 1654,
+        "sha256": "df8c2e6f94e730eec26e9269fc1b72b49f94c20b6f9a79560770def2d952b397",
+        "track_ids": [
+          "haifaport"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"haifaport\") { const rust = new THREE.MeshStandardMaterial({ color: 12081714, metalness: 0.45, roughness: 0.42 }); bag.push(rust); const pt = hai(32.819, 35.004); for (const c of [ { lat: 32.8186, lon: 35.0028 }, { lat: 32.81"
+      },
+      {
+        "ordinal": 72,
+        "syntax_kind": "IfStatement",
+        "start_line": 7358,
+        "end_line": 7430,
+        "start_offset": 291204,
+        "end_offset": 294599,
+        "bytes": 3395,
+        "sha256": "78819cc00dd7919f934c0c96a63e10f54504c68ca80d16786f77c33b49ed0fad",
+        "track_ids": [
+          "stellamaris"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"stellamaris\") { const sm = hai(32.8275, 34.9705); const abbey = new THREE.Mesh(new THREE.BoxGeometry(18, 12, 14), cream); abbey.position.set(sm.x, 8, sm.z); add(abbey); const nave = new THREE.Mesh(new THREE.BoxGeometry(10, 8"
+      },
+      {
+        "ordinal": 73,
+        "syntax_kind": "IfStatement",
+        "start_line": 7431,
+        "end_line": 7470,
+        "start_offset": 294602,
+        "end_offset": 296236,
+        "bytes": 1634,
+        "sha256": "6e67eac255a42fb8af8418d23d20761fb61a8c7faefd5f52072a028963eade12",
+        "track_ids": [
+          "tiberias"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"tiberias\") { const pr = tib(32.788, 35.543); const wall = new THREE.Mesh(new THREE.BoxGeometry(80, 1.15, 3.4), stone); wall.position.set(pr.x, 0.7, pr.z); add(wall); for (let i = 0; i < 8; i++) { const palm = new THREE.Mesh("
+      },
+      {
+        "ordinal": 74,
+        "syntax_kind": "IfStatement",
+        "start_line": 7471,
+        "end_line": 7513,
+        "start_offset": 296239,
+        "end_offset": 297632,
+        "bytes": 1393,
+        "sha256": "0f538498e500b73cdb4fc6a434a5082fb5f5e7282ea151771ed8d94c51a2a53f",
+        "track_ids": [
+          "golan"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"golan\") { const basalt = new THREE.MeshStandardMaterial({ color: 4866104, roughness: 0.95, flatShading: true }); const grass = new THREE.MeshStandardMaterial({ color: 4876856, roughness: 0.92, flatShading: true }); bag.push("
+      },
+      {
+        "ordinal": 75,
+        "syntax_kind": "IfStatement",
+        "start_line": 7514,
+        "end_line": 7680,
+        "start_offset": 297635,
+        "end_offset": 304900,
+        "bytes": 7265,
+        "sha256": "6871a47f0897d7c9a75b714f8ae014b1e09dfca82cd383382a9e143d4549b411",
+        "track_ids": [
+          "hermon"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"hermon\") { const snowM = new THREE.MeshStandardMaterial({ color: 15922938, roughness: 0.88 }); const rock = new THREE.MeshStandardMaterial({ color: 9077880, roughness: 0.94, flatShading: true }); const pineM = new THREE.Mesh"
+      },
+      {
+        "ordinal": 76,
+        "syntax_kind": "IfStatement",
+        "start_line": 7681,
+        "end_line": 7726,
+        "start_offset": 304903,
+        "end_offset": 306929,
+        "bytes": 2026,
+        "sha256": "8005288e7960071401bd5f78843cd2670914c1564bc1b24b9c287d604c0ecece",
+        "track_ids": [
+          "hw6"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"hw6\") { const conc = new THREE.MeshStandardMaterial({ color: 12105908, roughness: 0.7 }); const olive = new THREE.MeshStandardMaterial({ color: 4874808, roughness: 0.9, flatShading: true }); const greenSign = new THREE.MeshS"
+      },
+      {
+        "ordinal": 77,
+        "syntax_kind": "IfStatement",
+        "start_line": 7727,
+        "end_line": 7783,
+        "start_offset": 306932,
+        "end_offset": 309390,
+        "bytes": 2458,
+        "sha256": "08474ffd8cf45e5eb9f6d7c7a0fff294490aa31db24f4ea4085968304b8db36a",
+        "track_ids": [
+          "hw2"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"hw2\") { const sandMat = new THREE.MeshStandardMaterial({ color: 15259572, roughness: 1, flatShading: true }); const palmTrunk = new THREE.MeshStandardMaterial({ color: 6965810, roughness: 0.9 }); const palmLeaf = new THREE.M"
+      },
+      {
+        "ordinal": 78,
+        "syntax_kind": "IfStatement",
+        "start_line": 7784,
+        "end_line": 7820,
+        "start_offset": 309393,
+        "end_offset": 311087,
+        "bytes": 1694,
+        "sha256": "f1f9123b5719e204ec78152ad434a7dc6c1847f1d71637d3c6adee540551ec7d",
+        "track_ids": [
+          "hw90"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"hw90\") { const red = new THREE.MeshStandardMaterial({ color: 11565650, roughness: 0.95, flatShading: true }); const date = new THREE.MeshStandardMaterial({ color: 3107386, roughness: 0.86, flatShading: true }); bag.push(red,"
+      },
+      {
+        "ordinal": 79,
+        "syntax_kind": "IfStatement",
+        "start_line": 7821,
+        "end_line": 7839,
+        "start_offset": 311090,
+        "end_offset": 311882,
+        "bytes": 792,
+        "sha256": "e089839bcf648b659c1f9ee2eb1d0fed721a8a97932eacedda27cb2444b851d7",
+        "track_ids": [
+          "petah"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"petah\") { const mallP = pth(32.091, 34.887); const mall = new THREE.Mesh(new THREE.BoxGeometry(32, 12, 22), cream); mall.position.set(mallP.x, 6.2, mallP.z); add(mall); const atrium = new THREE.Mesh(new THREE.CylinderGeometr"
+      },
+      {
+        "ordinal": 80,
+        "syntax_kind": "IfStatement",
+        "start_line": 7840,
+        "end_line": 7867,
+        "start_offset": 311885,
+        "end_offset": 313040,
+        "bytes": 1155,
+        "sha256": "db3b7461df35808a89e8fa14df8ac73b6e65a4e85e3fee24c3a9ce5e34878cc0",
+        "track_ids": [
+          "rishon"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"rishon\") { const gs = rsh(31.9638, 34.8045); const syn = new THREE.Mesh(new THREE.BoxGeometry(16, 11, 14), stone); syn.position.set(gs.x, 5.6, gs.z); add(syn); for (const sx of [-7, 7]) { const tw = new THREE.Mesh(new THREE."
+      },
+      {
+        "ordinal": 81,
+        "syntax_kind": "IfStatement",
+        "start_line": 7868,
+        "end_line": 7909,
+        "start_offset": 313043,
+        "end_offset": 314290,
+        "bytes": 1247,
+        "sha256": "071ba0354d5c01f91957dabccbc7afbfcb6c7df24fe9f84391cf1a11adfed0bd",
+        "track_ids": [
+          "ashdod"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"ashdod\") { const rust = new THREE.MeshStandardMaterial({ color: 12081714, metalness: 0.45, roughness: 0.42 }); bag.push(rust); const quay = asd(31.821, 34.647); for (const c of [ { lat: 31.8204, lon: 34.6464 }, { lat: 31.821"
+      },
+      {
+        "ordinal": 82,
+        "syntax_kind": "IfStatement",
+        "start_line": 7910,
+        "end_line": 7943,
+        "start_offset": 314293,
+        "end_offset": 315033,
+        "bytes": 740,
+        "sha256": "1a1b07f8932fa8016b91d5c4a4fdf97043b313e29b549625d5e9ff47e64100b2",
+        "track_ids": [
+          "ashkelon"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"ashkelon\") { const np = ask(31.663, 34.548); for (const w of [ { lat: 31.6622, lon: 34.5472 }, { lat: 31.6628, lon: 34.5478 }, { lat: 31.6634, lon: 34.5484 }, { lat: 31.664, lon: 34.549 }, { lat: 31.6646, lon: 34.5496 } ]) {"
+      },
+      {
+        "ordinal": 83,
+        "syntax_kind": "IfStatement",
+        "start_line": 7944,
+        "end_line": 8032,
+        "start_offset": 315036,
+        "end_offset": 318726,
+        "bytes": 3690,
+        "sha256": "81d715a7cda8fee2083b9b74c984ff154b8cb716e7609b914a40a6b0dc139130",
+        "track_ids": [
+          "scopus"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"scopus\") { const peakY = def.elevation(0.94); const start = jer(31.7866, 35.2344); const uniP = jer(31.7938, 35.2452); const sc = jer(31.7912, 35.2454); { const nU = nearestIndex(built.samples, uniP.x, uniP.z, 0); const sU ="
+      },
+      {
+        "ordinal": 84,
+        "syntax_kind": "IfStatement",
+        "start_line": 8033,
+        "end_line": 8077,
+        "start_offset": 318729,
+        "end_offset": 320645,
+        "bytes": 1916,
+        "sha256": "869813cfdea9b62f13ae599e34c75617094ec2f3941dbd49970b36c00f34cb80",
+        "track_ids": [
+          "walls"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"walls\") { const jg = jer(31.7764, 35.2276); const ng = jer(31.7794, 35.226); const ds = jer(31.7817, 35.2304); const lg = jer(31.7808, 35.2368); const dg = jer(31.7748, 35.2342); const zg = jer(31.7728, 35.2292); const td = "
+      },
+      {
+        "ordinal": 85,
+        "syntax_kind": "IfStatement",
+        "start_line": 8078,
+        "end_line": 8087,
+        "start_offset": 320648,
+        "end_offset": 321039,
+        "bytes": 391,
+        "sha256": "dfe17c136db759798343487465feb6df20dc3aebccac60eecf3ba19c57f3f808",
+        "track_ids": [
+          "modiin"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"modiin\") { const mallP = mod(31.907, 35.007); const mall = new THREE.Mesh(new THREE.BoxGeometry(24, 12, 16), cream); mall.position.set(mallP.x, 6, mallP.z); add(mall); const atrium = new THREE.Mesh(new THREE.CylinderGeometry"
+      },
+      {
+        "ordinal": 86,
+        "syntax_kind": "IfStatement",
+        "start_line": 8088,
+        "end_line": 8249,
+        "start_offset": 321042,
+        "end_offset": 327472,
+        "bytes": 6430,
+        "sha256": "f1f3fb3ef41a33e7f99a08508c92aad204bdb664ecdc24705c68641d0d64b01d",
+        "track_ids": [
+          "ramon"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"ramon\") { const dust = new THREE.MeshStandardMaterial({ color: 6961192, roughness: 0.97, flatShading: true }); const sand = new THREE.MeshStandardMaterial({ color: 12868658, roughness: 0.94, flatShading: true }); const tan ="
+      },
+      {
+        "ordinal": 87,
+        "syntax_kind": "IfStatement",
+        "start_line": 8250,
+        "end_line": 8261,
+        "start_offset": 327475,
+        "end_offset": 327900,
+        "bytes": 425,
+        "sha256": "15ea09018099c66ad7d2b84ab901702b4c4d74ce964f39ea90f151cf0487f4d6",
+        "track_ids": [
+          "hw40"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"hw40\") { const hutP = hwy40(30.847, 34.781); const hut = new THREE.Mesh(new THREE.BoxGeometry(10, 4, 8), cream); hut.position.set(hutP.x, 2.2, hutP.z); add(hut); const avP = hwy40(30.794, 34.773); const avdat = new THREE.Mes"
+      },
+      {
+        "ordinal": 88,
+        "syntax_kind": "IfStatement",
+        "start_line": 8262,
+        "end_line": 8282,
+        "start_offset": 327903,
+        "end_offset": 328492,
+        "bytes": 589,
+        "sha256": "b1dd7f71662983b70c30646ee47f8bcd17825061171944ee681e427bb2ed05e6",
+        "track_ids": [
+          "eilatmtn"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"eilatmtn\") { const ridgePts = [ eil(29.546, 34.916), eil(29.548, 34.92), eil(29.55, 34.924), eil(29.552, 34.918), eil(29.554, 34.926), eil(29.547, 34.928), eil(29.556, 34.922) ]; for (let i = 0; i < ridgePts.length; i++) { c"
+      },
+      {
+        "ordinal": 89,
+        "syntax_kind": "IfStatement",
+        "start_line": 8283,
+        "end_line": 8331,
+        "start_offset": 328495,
+        "end_offset": 330594,
+        "bytes": 2099,
+        "sha256": "efd9bf84b2b4f7e205d75a966a2525bdefc104c259237a176b8d1a16accd01b5",
+        "track_ids": [
+          "gushdan"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"gushdan\") { const clk = tlv(32.0547, 34.7556); const clock = new THREE.Mesh(new THREE.CylinderGeometry(2.6, 3.1, 20, 12), stone); clock.position.set(clk.x, 10, clk.z); add(clock); const clockBox = new THREE.Mesh(new THREE.Bo"
+      },
+      {
+        "ordinal": 90,
+        "syntax_kind": "IfStatement",
+        "start_line": 8332,
+        "end_line": 8418,
+        "start_offset": 330597,
+        "end_offset": 334325,
+        "bytes": 3728,
+        "sha256": "21eba346e88cf3ce1a3ef4bc5c50cf9b216583b061b935a17775bf8a2b99b818",
+        "track_ids": [
+          "nazareth"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"nazareth\") { const ba = naz(32.7014, 35.2962); { const n = nearestIndex(built.samples, ba.x, ba.z, 0); if (n.dist < built.width / 2 + 16) { const s = built.samples[n.index]; ba.x = s.x + s.rx * (built.width / 2 + 32); ba.z ="
+      },
+      {
+        "ordinal": 91,
+        "syntax_kind": "IfStatement",
+        "start_line": 8419,
+        "end_line": 8518,
+        "start_offset": 334328,
+        "end_offset": 336965,
+        "bytes": 2637,
+        "sha256": "695bfe4ec5712ab4dfa75e58ca4d147c7d1b5621163e6e868e9e05e07cc856dd",
+        "track_ids": [
+          "tzfat"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"tzfat\") { const ct = tzf(32.967, 35.495); { const n = nearestIndex(built.samples, ct.x, ct.z, 0); if (n.dist < built.width / 2 + 14) { const s = built.samples[n.index]; ct.x = s.x + s.rx * (built.width / 2 + 28); ct.z = s.z "
+      },
+      {
+        "ordinal": 92,
+        "syntax_kind": "IfStatement",
+        "start_line": 8519,
+        "end_line": 8592,
+        "start_offset": 336968,
+        "end_offset": 339850,
+        "bytes": 2882,
+        "sha256": "6c0f74c15c29640d9aa9b10d5fbbf83c9e5275d7136d683b2b781de2f06af876",
+        "track_ids": [
+          "masada"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"masada\") { const ft = mas(31.3157, 35.3538); { const n = nearestIndex(built.samples, ft.x, ft.z, 0); if (n.dist < built.width / 2 + 40) { const s = built.samples[n.index]; ft.x = s.x + s.rx * (built.width / 2 + 58); ft.z = s"
+      },
+      {
+        "ordinal": 93,
+        "syntax_kind": "IfStatement",
+        "start_line": 8593,
+        "end_line": 8629,
+        "start_offset": 339853,
+        "end_offset": 340747,
+        "bytes": 894,
+        "sha256": "2b32dd8c1e608aa163f5b639c12710448c076e34d3d0a6e7867e9067b7af0b59",
+        "track_ids": [
+          "batyam"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"batyam\") { const promenade = bym(32.017, 34.741); for (const ht of [ { lat: 32.0158, lon: 34.7406, h: 18 }, { lat: 32.0172, lon: 34.741, h: 22 }, { lat: 32.0186, lon: 34.7414, h: 20 }, { lat: 32.02, lon: 34.7418, h: 24 } ]) "
+      },
+      {
+        "ordinal": 94,
+        "syntax_kind": "IfStatement",
+        "start_line": 8630,
+        "end_line": 8676,
+        "start_offset": 340750,
+        "end_offset": 341857,
+        "bytes": 1107,
+        "sha256": "f4532035ff76417b3fa5c3554f862148aabaa89064b950e92dd658226db7fde9",
+        "track_ids": [
+          "rehovot"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"rehovot\") { const wz = rhv(31.9078, 34.818); const house = new THREE.Mesh(new THREE.CylinderGeometry(8.4, 8.4, 8, 16), cream); house.position.set(wz.x, 5, wz.z); add(house); const roof = new THREE.Mesh(new THREE.SphereGeomet"
+      },
+      {
+        "ordinal": 95,
+        "syntax_kind": "IfStatement",
+        "start_line": 8677,
+        "end_line": 8699,
+        "start_offset": 341860,
+        "end_offset": 342824,
+        "bytes": 964,
+        "sha256": "abba91205f7d0272329eff15692fd2c07cff4fc32212d92d23cde0fd5db29372",
+        "track_ids": [
+          "nahariya"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"nahariya\") { const canalP = nah(33.006, 35.094); const canal = new THREE.Mesh(new THREE.BoxGeometry(6.5, 0.25, 160), cyan); canal.position.set(canalP.x, 0.12, canalP.z); add(canal); for (let i = 0; i < 8; i++) { const palm ="
+      },
+      {
+        "ordinal": 96,
+        "syntax_kind": "IfStatement",
+        "start_line": 8700,
+        "end_line": 8718,
+        "start_offset": 342827,
+        "end_offset": 343558,
+        "bytes": 731,
+        "sha256": "50e5577bdded381a07611a1b673596b2916b9dfd0fc3922b0fa81d71df21c150",
+        "track_ids": [
+          "ramla"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"ramla\") { const tw = rml(31.9294, 34.866); const tower = new THREE.Mesh(new THREE.BoxGeometry(5.2, 28, 5.2), cream); tower.position.set(tw.x, 14, tw.z); add(tower); const cap = new THREE.Mesh(new THREE.BoxGeometry(6.2, 3.2, "
+      },
+      {
+        "ordinal": 97,
+        "syntax_kind": "IfStatement",
+        "start_line": 8719,
+        "end_line": 8759,
+        "start_offset": 343561,
+        "end_offset": 344568,
+        "bytes": 1007,
+        "sha256": "786cfeea57ea434223d644b3b6afb9ddb3fdf0dd39077eed55431b553592970e",
+        "track_ids": [
+          "holon"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"holon\") { const dmH = hol(32.0076, 34.7792); const spiral = new THREE.Mesh(new THREE.CylinderGeometry(7.2, 9.4, 12, 10), white); spiral.position.set(dmH.x, 7, dmH.z); add(spiral); const lip = new THREE.Mesh(new THREE.TorusGe"
+      },
+      {
+        "ordinal": 98,
+        "syntax_kind": "IfStatement",
+        "start_line": 8760,
+        "end_line": 8807,
+        "start_offset": 344571,
+        "end_offset": 345852,
+        "bytes": 1281,
+        "sha256": "aed82e08aacd3b240821f264217f8f1a4da43f9924c92f66d8632c8070404dca",
+        "track_ids": [
+          "beitshan"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"beitshan\") { const th = bsn(32.503, 35.502); const theatre = new THREE.Mesh(new THREE.CylinderGeometry(10, 12, 6, 16, 1, true, 0, Math.PI), stone); theatre.position.set(th.x, 3.2, th.z); theatre.rotation.y = 0.4; add(theatre"
+      },
+      {
+        "ordinal": 99,
+        "syntax_kind": "IfStatement",
+        "start_line": 8808,
+        "end_line": 8827,
+        "start_offset": 345855,
+        "end_offset": 346540,
+        "bytes": 685,
+        "sha256": "33513fc2fddbfa11ecc70221a7dae4181cb621aa7660e6830869d9f5d41f0568",
+        "track_ids": [
+          "hadera"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"hadera\") { const rust = new THREE.MeshStandardMaterial({ color: 12081714, metalness: 0.35, roughness: 0.48 }); bag.push(rust); const plant = hdr(32.47, 34.888); const stacks = [hdr(32.4698, 34.8874), hdr(32.4704, 34.8886)]; "
+      },
+      {
+        "ordinal": 100,
+        "syntax_kind": "IfStatement",
+        "start_line": 8828,
+        "end_line": 8846,
+        "start_offset": 346543,
+        "end_offset": 347314,
+        "bytes": 771,
+        "sha256": "4b5b82849237b85a0fdde85a2f22e133b278e2d659d4b3263ddce5ceadb9381b",
+        "track_ids": [
+          "lod"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"lod\") { const tw = lodp(31.9514, 34.8882); const tower = new THREE.Mesh(new THREE.CylinderGeometry(2.4, 3.2, 28, 10), cream); tower.position.set(tw.x, 14, tw.z); add(tower); const church = new THREE.Mesh(new THREE.BoxGeometr"
+      },
+      {
+        "ordinal": 101,
+        "syntax_kind": "IfStatement",
+        "start_line": 8847,
+        "end_line": 8864,
+        "start_offset": 347317,
+        "end_offset": 347978,
+        "bytes": 661,
+        "sha256": "050acba36ced7d8cd2e47703aa6ed3dd55e84c358dad26e09a23b12797ad8fba",
+        "track_ids": [
+          "kshmona"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"kshmona\") { const ridge0 = ksm(33.215, 35.58); for (let i = 0; i < 5; i++) { const ridge = new THREE.Mesh(new THREE.ConeGeometry(12 + i * 2, 18 + i * 4, 5), new THREE.MeshStandardMaterial({ color: 5925448, roughness: 0.95, f"
+      },
+      {
+        "ordinal": 102,
+        "syntax_kind": "IfStatement",
+        "start_line": 8865,
+        "end_line": 8881,
+        "start_offset": 347981,
+        "end_offset": 348613,
+        "bytes": 632,
+        "sha256": "405356b5587c09a8f5ef04999b434f53bd1fd7f31108141375594014e4c38dd1",
+        "track_ids": [
+          "raanana"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"raanana\") { const park = raa(32.185, 34.853); for (let i = 0; i < 12; i++) { const tree = new THREE.Mesh(new THREE.ConeGeometry(2.2, 7, 6), new THREE.MeshStandardMaterial({ color: 2779704, roughness: 0.88 })); tree.position."
+      },
+      {
+        "ordinal": 103,
+        "syntax_kind": "IfStatement",
+        "start_line": 8882,
+        "end_line": 8898,
+        "start_offset": 348616,
+        "end_offset": 349197,
+        "bytes": 581,
+        "sha256": "c84cb2999e08f0eb900a73d068741e3cc7798bea8aba6b16bc413bccbfebaaed",
+        "track_ids": [
+          "afula"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"afula\") { const ctr = afl(32.61, 35.29); const ring = new THREE.Mesh(new THREE.TorusGeometry(16, 1.1, 8, 28), cream); ring.rotation.x = Math.PI / 2; ring.position.set(ctr.x, 0.4, ctr.z); add(ring); const gb = afl(32.55, 35.3"
+      },
+      {
+        "ordinal": 104,
+        "syntax_kind": "IfStatement",
+        "start_line": 8899,
+        "end_line": 8912,
+        "start_offset": 349200,
+        "end_offset": 349698,
+        "bytes": 498,
+        "sha256": "998ce551cd8b0f10903b90984be731f4c933caada141a4d252d626984fb5d0d1",
+        "track_ids": [
+          "ksaba"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"ksaba\") { const pk = ksb(32.175, 34.908); const garden = new THREE.Mesh(new THREE.CylinderGeometry(10, 10, 0.3, 16), new THREE.MeshStandardMaterial({ color: 3832386, roughness: 0.9 })); garden.position.set(pk.x, 0.15, pk.z);"
+      },
+      {
+        "ordinal": 105,
+        "syntax_kind": "IfStatement",
+        "start_line": 8913,
+        "end_line": 8951,
+        "start_offset": 349701,
+        "end_offset": 350582,
+        "bytes": 881,
+        "sha256": "68593f5b084b943824a4c17cca4ef378b5105ed832ef6b3bc3502726516013b3",
+        "track_ids": [
+          "arad"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": true,
+        "preview": "if (def.id === \"arad\") { for (const h of [ { lat: 31.2572, lon: 35.2122, h: 4.2 }, { lat: 31.258, lon: 35.2134, h: 5.6 }, { lat: 31.2588, lon: 35.2126, h: 4.8 }, { lat: 31.2576, lon: 35.214, h: 6.2 } ]) { const p = ard(h.lat, h.lon); const "
+      },
+      {
+        "ordinal": 106,
+        "syntax_kind": "IfStatement",
+        "start_line": 8952,
+        "end_line": 8962,
+        "start_offset": 350585,
+        "end_offset": 350999,
+        "bytes": 414,
+        "sha256": "6a56f198a1e5df854ed4a2967b504c650871a1e1f278b369ac24e6507271c2d0",
+        "track_ids": [
+          "manhattan"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "if (def.id === \"manhattan\") { placeNycSkyline(8, -120, 1); const liberty = new THREE.Mesh(new THREE.CylinderGeometry(1.6, 2.4, 18, 8), copper); liberty.position.set(-96, 10, -180); add(liberty); const torch = new THREE.Mesh(new THREE.Sphere"
+      },
+      {
+        "ordinal": 107,
+        "syntax_kind": "IfStatement",
+        "start_line": 8963,
+        "end_line": 8971,
+        "start_offset": 351002,
+        "end_offset": 351332,
+        "bytes": 330,
+        "sha256": "23971417a009dd247b7885163617f6ec612098c27bfa2a08e73a28ebbd371855",
+        "track_ids": [
+          "brooklynbridge"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "if (def.id === \"brooklynbridge\") { placeGothicTower(-8, -36, 28); placeGothicTower(28, 62, 28); placeNycSkyline(-70, 8, 0.55); const liberty = new THREE.Mesh(new THREE.CylinderGeometry(1.4, 2.1, 16, 8), copper); liberty.position.set(90, 9, "
+      },
+      {
+        "ordinal": 108,
+        "syntax_kind": "IfStatement",
+        "start_line": 8972,
+        "end_line": 8982,
+        "start_offset": 351335,
+        "end_offset": 351730,
+        "bytes": 395,
+        "sha256": "75610e8c40eb900276236b546fcc0497d1156f4ff2627379daa9ba1234ae9ae6",
+        "track_ids": [
+          "timessquare"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "if (def.id === \"timessquare\") { const oneTs = new THREE.Mesh(new THREE.BoxGeometry(12, 52, 10), darkGlass); oneTs.position.set(18, 26, 8); add(oneTs); const ball = new THREE.Mesh(new THREE.SphereGeometry(2.4, 12, 10), paleGlass); ball.posit"
+      },
+      {
+        "ordinal": 109,
+        "syntax_kind": "IfStatement",
+        "start_line": 8983,
+        "end_line": 8999,
+        "start_offset": 351733,
+        "end_offset": 352405,
+        "bytes": 672,
+        "sha256": "21c5fb765367841bbf7a951dff6ceab9e927b20ebae66be5d2523cbf702bd6ec",
+        "track_ids": [
+          "centralpark"
+        ],
+        "contains_def_id": true,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "if (def.id === \"centralpark\") { const font = new THREE.Mesh(new THREE.TorusGeometry(5.4, 0.45, 8, 24), stone); font.rotation.x = Math.PI / 2; font.position.set(8, 0.6, 12); add(font); const angel = new THREE.Mesh(new THREE.CylinderGeometry("
+      },
+      {
+        "ordinal": 110,
+        "syntax_kind": "ExpressionStatement",
+        "start_line": 9000,
+        "end_line": 9005,
+        "start_offset": 352408,
+        "end_offset": 352607,
+        "bytes": 199,
+        "sha256": "ad291d4b1e01d9abcfbab526c9b4fbfd231664f86c848c30aa103af7ba8acaca",
+        "track_ids": [],
+        "contains_def_id": false,
+        "contains_theme": false,
+        "contains_track_helper": false,
+        "preview": "scatterStreetBuildings(def, built, add, hit, isNight, (x, z) => { for (const c of colliders) { if (Math.hypot(c.x - x, c.z - z) < (c.r ?? 6) + 14) return true; } return false; });"
+      }
+    ],
+    "track_condition_count": 57,
+    "track_conditions": [
+      {
+        "ordinal": 1,
+        "top_level_ordinal": 6,
+        "depth": 5,
+        "condition": "def.id === \"ayalon\"",
+        "condition_track_ids": [
+          "ayalon"
+        ],
+        "statement_track_ids": [],
+        "start_line": 2817,
+        "end_line": 2818,
+        "start_offset": 111576,
+        "end_offset": 111662,
+        "bytes": 86,
+        "sha256": "575e61836baa502afded49928fa4a0add0d7384b6989e255d2bf3717e6a661c2",
+        "then_range": {
+          "start_line": 2817,
+          "end_line": 2817,
+          "start_offset": 111601,
+          "end_offset": 111626,
+          "bytes": 25,
+          "sha256": "e182d61f2a3b8bc13bc4f5dfc468c9c972d7ced3c3d9be8adc5bc35c06fd8a92"
+        },
+        "else_range": {
+          "start_line": 2818,
+          "end_line": 2818,
+          "start_offset": 111636,
+          "end_offset": 111662,
+          "bytes": 26,
+          "sha256": "6bb90111724a4a426533709b4adaffc0ed6f9489cd0aa22ac4fe51ee10a5a095"
+        }
+      },
+      {
+        "ordinal": 2,
+        "top_level_ordinal": 54,
+        "depth": 0,
+        "condition": "def.id === \"hayarkon\"",
+        "condition_track_ids": [
+          "hayarkon"
+        ],
+        "statement_track_ids": [],
+        "start_line": 3678,
+        "end_line": 4073,
+        "start_offset": 144345,
+        "end_offset": 160647,
+        "bytes": 16302,
+        "sha256": "6424e8d0e141581c28081772cc10ed546012b9e7c87177f9d419128b82084435",
+        "then_range": {
+          "start_line": 3678,
+          "end_line": 4073,
+          "start_offset": 144372,
+          "end_offset": 160647,
+          "bytes": 16275,
+          "sha256": "26cd1fded6a6fd172ca893a5b0773e2d0dc32560b4d50adfef33d2bde16756d8"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 3,
+        "top_level_ordinal": 55,
+        "depth": 0,
+        "condition": "def.id === \"oldjaffa\"",
+        "condition_track_ids": [
+          "oldjaffa"
+        ],
+        "statement_track_ids": [],
+        "start_line": 4074,
+        "end_line": 4488,
+        "start_offset": 160650,
+        "end_offset": 176007,
+        "bytes": 15357,
+        "sha256": "a223f3984968359c72b7f555a10065698527e61bb4c1162dc44ec87decda16c5",
+        "then_range": {
+          "start_line": 4074,
+          "end_line": 4488,
+          "start_offset": 160677,
+          "end_offset": 176007,
+          "bytes": 15330,
+          "sha256": "6bb036213f7f770d0b2f040ab03aba5c2bded01d7480dfe02b600b3a0ec7497b"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 4,
+        "top_level_ordinal": 56,
+        "depth": 0,
+        "condition": "def.id === \"telaviv\"",
+        "condition_track_ids": [
+          "telaviv"
+        ],
+        "statement_track_ids": [],
+        "start_line": 4489,
+        "end_line": 4681,
+        "start_offset": 176010,
+        "end_offset": 184918,
+        "bytes": 8908,
+        "sha256": "fcc131ffea5d1905b197227a1a4d07b10051f14895b75a7898a48854453b87f9",
+        "then_range": {
+          "start_line": 4489,
+          "end_line": 4681,
+          "start_offset": 176036,
+          "end_offset": 184918,
+          "bytes": 8882,
+          "sha256": "10fce5d0cb9d6a170ee344f76909fbcc11b505b545e35f41f1f507ec51127608"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 5,
+        "top_level_ordinal": 57,
+        "depth": 0,
+        "condition": "def.id === \"namal\"",
+        "condition_track_ids": [
+          "namal"
+        ],
+        "statement_track_ids": [],
+        "start_line": 4682,
+        "end_line": 4894,
+        "start_offset": 184921,
+        "end_offset": 192919,
+        "bytes": 7998,
+        "sha256": "b7985c5aa108a376c2ef90dae2cae7a3b064b3b4b4b5e89882e1761cce9df2ff",
+        "then_range": {
+          "start_line": 4682,
+          "end_line": 4894,
+          "start_offset": 184945,
+          "end_offset": 192919,
+          "bytes": 7974,
+          "sha256": "9698e910522be0ba22c6d586596be4ed11fb3db5885e3fe91e55d1b1ba748892"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 6,
+        "top_level_ordinal": 58,
+        "depth": 0,
+        "condition": "def.id === \"jerusalem\"",
+        "condition_track_ids": [
+          "jerusalem"
+        ],
+        "statement_track_ids": [],
+        "start_line": 4895,
+        "end_line": 5072,
+        "start_offset": 192922,
+        "end_offset": 200293,
+        "bytes": 7371,
+        "sha256": "8dd8376f97a623f328135efb13f5b20cdc6ca85aff7e1ad5bea044e9a683db8b",
+        "then_range": {
+          "start_line": 4895,
+          "end_line": 5072,
+          "start_offset": 192950,
+          "end_offset": 200293,
+          "bytes": 7343,
+          "sha256": "24b33569bc1e58d80e63489590c9c054c52ed4b0c6be51bab17d1e6794e76dbf"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 7,
+        "top_level_ordinal": 59,
+        "depth": 0,
+        "condition": "def.id === \"haifa\"",
+        "condition_track_ids": [
+          "haifa"
+        ],
+        "statement_track_ids": [],
+        "start_line": 5073,
+        "end_line": 5320,
+        "start_offset": 200296,
+        "end_offset": 211483,
+        "bytes": 11187,
+        "sha256": "81d17f022fa675182f5083260cead3d43a448a8cbb3602481e320b3c48c2efe7",
+        "then_range": {
+          "start_line": 5073,
+          "end_line": 5320,
+          "start_offset": 200320,
+          "end_offset": 211483,
+          "bytes": 11163,
+          "sha256": "7c458d2a65cd8e1c64e9c2bf8df0b8a162bb4161c55a9b17f86896af5726c1e5"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 8,
+        "top_level_ordinal": 60,
+        "depth": 0,
+        "condition": "def.id === \"eilat\"",
+        "condition_track_ids": [
+          "eilat"
+        ],
+        "statement_track_ids": [],
+        "start_line": 5321,
+        "end_line": 5399,
+        "start_offset": 211486,
+        "end_offset": 213748,
+        "bytes": 2262,
+        "sha256": "3b0d4d6502ef07f034edf70e762a615d6bb63e6bc93317d9b6a0e61e7c0c6834",
+        "then_range": {
+          "start_line": 5321,
+          "end_line": 5399,
+          "start_offset": 211510,
+          "end_offset": 213748,
+          "bytes": 2238,
+          "sha256": "716856c3bb8c3402429fc52533bfcba436c9d047e7ceb15ca365f7d76eee7956"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 9,
+        "top_level_ordinal": 61,
+        "depth": 0,
+        "condition": "def.id === \"rothschild\"",
+        "condition_track_ids": [
+          "rothschild"
+        ],
+        "statement_track_ids": [],
+        "start_line": 5400,
+        "end_line": 5837,
+        "start_offset": 213751,
+        "end_offset": 228054,
+        "bytes": 14303,
+        "sha256": "279ec565c1f4a93b0a821c6bc76bc3882cda8732b816765de75ad4464da9a175",
+        "then_range": {
+          "start_line": 5400,
+          "end_line": 5837,
+          "start_offset": 213780,
+          "end_offset": 228054,
+          "bytes": 14274,
+          "sha256": "71553105cf491380c58a4ade2772b67bfc245d4ce6dcb6d299d25564f5717b0a"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 10,
+        "top_level_ordinal": 62,
+        "depth": 0,
+        "condition": "def.id === \"ayalon\"",
+        "condition_track_ids": [
+          "ayalon"
+        ],
+        "statement_track_ids": [],
+        "start_line": 5838,
+        "end_line": 6492,
+        "start_offset": 228057,
+        "end_offset": 255589,
+        "bytes": 27547,
+        "sha256": "4c54d89dde318057d42569f735c193b13e1009da1bc72af135831359aef84207",
+        "then_range": {
+          "start_line": 5838,
+          "end_line": 6492,
+          "start_offset": 228082,
+          "end_offset": 255589,
+          "bytes": 27522,
+          "sha256": "d4ef63ce6c19e7bfb1b0a55261dc5ad791ea92102348560aa424b3da21b00039"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 11,
+        "top_level_ordinal": 63,
+        "depth": 0,
+        "condition": "def.id === \"caesarea\"",
+        "condition_track_ids": [
+          "caesarea"
+        ],
+        "statement_track_ids": [],
+        "start_line": 6493,
+        "end_line": 6601,
+        "start_offset": 255592,
+        "end_offset": 259930,
+        "bytes": 4338,
+        "sha256": "1b3bcfd258c4d4011ded2d057ebcaea158c73a10f52d5e3b5f60667ff69b2ba4",
+        "then_range": {
+          "start_line": 6493,
+          "end_line": 6601,
+          "start_offset": 255619,
+          "end_offset": 259930,
+          "bytes": 4311,
+          "sha256": "53aec77b971667f9d3927bd2a7a6d4228dd740952f2f3ebc96a2aff4cde84e41"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 12,
+        "top_level_ordinal": 64,
+        "depth": 0,
+        "condition": "def.id === \"deadsea\"",
+        "condition_track_ids": [
+          "deadsea"
+        ],
+        "statement_track_ids": [],
+        "start_line": 6602,
+        "end_line": 6703,
+        "start_offset": 259933,
+        "end_offset": 264151,
+        "bytes": 4218,
+        "sha256": "368ee4edae146a2384d71636b289282bee6e310347c9b2005f0a846f3787010b",
+        "then_range": {
+          "start_line": 6602,
+          "end_line": 6703,
+          "start_offset": 259959,
+          "end_offset": 264151,
+          "bytes": 4192,
+          "sha256": "d009a50d9b0692ab7d23c4538dc6761ffb95fa3d7f3a756de1a9de655ac1e42d"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 13,
+        "top_level_ordinal": 65,
+        "depth": 0,
+        "condition": "def.id === \"acre\"",
+        "condition_track_ids": [
+          "acre"
+        ],
+        "statement_track_ids": [],
+        "start_line": 6704,
+        "end_line": 6837,
+        "start_offset": 264154,
+        "end_offset": 270117,
+        "bytes": 5963,
+        "sha256": "333f9ab7bf392a4340e7be5908885d2c25fc4c150a5891732b31a4fd927c9e0f",
+        "then_range": {
+          "start_line": 6704,
+          "end_line": 6837,
+          "start_offset": 264177,
+          "end_offset": 270117,
+          "bytes": 5940,
+          "sha256": "de66a89952350de32e5e6a57d998fd63086bdcd2f307f1f15d9249a44b63181b"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 14,
+        "top_level_ordinal": 66,
+        "depth": 0,
+        "condition": "def.id === \"beersheva\"",
+        "condition_track_ids": [
+          "beersheva"
+        ],
+        "statement_track_ids": [],
+        "start_line": 6838,
+        "end_line": 6876,
+        "start_offset": 270120,
+        "end_offset": 271670,
+        "bytes": 1550,
+        "sha256": "043922812a4f0059deae165b2f611dcee7335d9bdb825759395996724fa3cf2a",
+        "then_range": {
+          "start_line": 6838,
+          "end_line": 6876,
+          "start_offset": 270148,
+          "end_offset": 271670,
+          "bytes": 1522,
+          "sha256": "d4bd5d61492c65b81267f773533ba113209229cc384a1d7b30459c7d0ea64576"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 15,
+        "top_level_ordinal": 67,
+        "depth": 0,
+        "condition": "def.id === \"netanya\"",
+        "condition_track_ids": [
+          "netanya"
+        ],
+        "statement_track_ids": [],
+        "start_line": 6877,
+        "end_line": 7007,
+        "start_offset": 271673,
+        "end_offset": 277357,
+        "bytes": 5684,
+        "sha256": "d49af92ba0e4d5b1def6bba6e9217df7b83e59958a823269db25a42e3f152b06",
+        "then_range": {
+          "start_line": 6877,
+          "end_line": 7007,
+          "start_offset": 271699,
+          "end_offset": 277357,
+          "bytes": 5658,
+          "sha256": "07b7e48690855d01fc1e5f948cb647cc9329c60e3dbe3a25c7f891a338427b92"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 16,
+        "top_level_ordinal": 68,
+        "depth": 0,
+        "condition": "def.id === \"hw1\"",
+        "condition_track_ids": [
+          "hw1"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7008,
+        "end_line": 7114,
+        "start_offset": 277360,
+        "end_offset": 282283,
+        "bytes": 4923,
+        "sha256": "6a26f7669abaa81e1c4bb645e1f9ed03e7693ab853ea3dbdd0f09cede2a105d6",
+        "then_range": {
+          "start_line": 7008,
+          "end_line": 7114,
+          "start_offset": 277382,
+          "end_offset": 282283,
+          "bytes": 4901,
+          "sha256": "72ebc79a9fbc4320f45512b2bd6bbfecb6543c262172f8f22931a9f4b588de0c"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 17,
+        "top_level_ordinal": 69,
+        "depth": 0,
+        "condition": "def.id === \"herzliya\"",
+        "condition_track_ids": [
+          "herzliya"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7115,
+        "end_line": 7234,
+        "start_offset": 282286,
+        "end_offset": 287567,
+        "bytes": 5281,
+        "sha256": "4052cfc33c25ae9687d161652be40fe132c4ee0704f698e6779fe07f852bc3fb",
+        "then_range": {
+          "start_line": 7115,
+          "end_line": 7234,
+          "start_offset": 282313,
+          "end_offset": 287567,
+          "bytes": 5254,
+          "sha256": "d6da66c42f329b8be457e9b939b2bf1d4c9e9a4ef43e22f63217f828a4e34566"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 18,
+        "top_level_ordinal": 70,
+        "depth": 0,
+        "condition": "def.id === \"hanikra\"",
+        "condition_track_ids": [
+          "hanikra"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7235,
+        "end_line": 7286,
+        "start_offset": 287570,
+        "end_offset": 289544,
+        "bytes": 1974,
+        "sha256": "5b886a9c8841ec8bac0fb9c1444cb91995d6048b7d17ec54c883078ce0d992bd",
+        "then_range": {
+          "start_line": 7235,
+          "end_line": 7286,
+          "start_offset": 287596,
+          "end_offset": 289544,
+          "bytes": 1948,
+          "sha256": "15a4f16c5dde17c80ef47a3772ad97c590cda0f94313ccd1b1d22dae0f2c58a7"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 19,
+        "top_level_ordinal": 71,
+        "depth": 0,
+        "condition": "def.id === \"haifaport\"",
+        "condition_track_ids": [
+          "haifaport"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7287,
+        "end_line": 7357,
+        "start_offset": 289547,
+        "end_offset": 291201,
+        "bytes": 1654,
+        "sha256": "df8c2e6f94e730eec26e9269fc1b72b49f94c20b6f9a79560770def2d952b397",
+        "then_range": {
+          "start_line": 7287,
+          "end_line": 7357,
+          "start_offset": 289575,
+          "end_offset": 291201,
+          "bytes": 1626,
+          "sha256": "64bf2d374ed8cefa757a8ca3d039e9e41110c0dc60be5bf0528c3d0aecaf7d8f"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 20,
+        "top_level_ordinal": 72,
+        "depth": 0,
+        "condition": "def.id === \"stellamaris\"",
+        "condition_track_ids": [
+          "stellamaris"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7358,
+        "end_line": 7430,
+        "start_offset": 291204,
+        "end_offset": 294599,
+        "bytes": 3395,
+        "sha256": "78819cc00dd7919f934c0c96a63e10f54504c68ca80d16786f77c33b49ed0fad",
+        "then_range": {
+          "start_line": 7358,
+          "end_line": 7430,
+          "start_offset": 291234,
+          "end_offset": 294599,
+          "bytes": 3365,
+          "sha256": "67891758cb4b7337ed81dadc333139de5878a0aa410fbc0ebf11783f03f02372"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 21,
+        "top_level_ordinal": 73,
+        "depth": 0,
+        "condition": "def.id === \"tiberias\"",
+        "condition_track_ids": [
+          "tiberias"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7431,
+        "end_line": 7470,
+        "start_offset": 294602,
+        "end_offset": 296236,
+        "bytes": 1634,
+        "sha256": "6e67eac255a42fb8af8418d23d20761fb61a8c7faefd5f52072a028963eade12",
+        "then_range": {
+          "start_line": 7431,
+          "end_line": 7470,
+          "start_offset": 294629,
+          "end_offset": 296236,
+          "bytes": 1607,
+          "sha256": "91d3af41a75647afa75bd2bba56623dfeb108492bad51ac0460b861b71f10b71"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 22,
+        "top_level_ordinal": 74,
+        "depth": 0,
+        "condition": "def.id === \"golan\"",
+        "condition_track_ids": [
+          "golan"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7471,
+        "end_line": 7513,
+        "start_offset": 296239,
+        "end_offset": 297632,
+        "bytes": 1393,
+        "sha256": "0f538498e500b73cdb4fc6a434a5082fb5f5e7282ea151771ed8d94c51a2a53f",
+        "then_range": {
+          "start_line": 7471,
+          "end_line": 7513,
+          "start_offset": 296263,
+          "end_offset": 297632,
+          "bytes": 1369,
+          "sha256": "3ebfc52e5149b76f4b74447590511704eb740cd825e602b1397841682a1bb857"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 23,
+        "top_level_ordinal": 75,
+        "depth": 0,
+        "condition": "def.id === \"hermon\"",
+        "condition_track_ids": [
+          "hermon"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7514,
+        "end_line": 7680,
+        "start_offset": 297635,
+        "end_offset": 304900,
+        "bytes": 7265,
+        "sha256": "6871a47f0897d7c9a75b714f8ae014b1e09dfca82cd383382a9e143d4549b411",
+        "then_range": {
+          "start_line": 7514,
+          "end_line": 7680,
+          "start_offset": 297660,
+          "end_offset": 304900,
+          "bytes": 7240,
+          "sha256": "5b4bb1d09f66aff1c281596c9e1c7407d54bf4bdbc45b9261cff7f08559f21e1"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 24,
+        "top_level_ordinal": 76,
+        "depth": 0,
+        "condition": "def.id === \"hw6\"",
+        "condition_track_ids": [
+          "hw6"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7681,
+        "end_line": 7726,
+        "start_offset": 304903,
+        "end_offset": 306929,
+        "bytes": 2026,
+        "sha256": "8005288e7960071401bd5f78843cd2670914c1564bc1b24b9c287d604c0ecece",
+        "then_range": {
+          "start_line": 7681,
+          "end_line": 7726,
+          "start_offset": 304925,
+          "end_offset": 306929,
+          "bytes": 2004,
+          "sha256": "3cf9c81b9e21ced5c8c1200cf8095e21f0b4ae0ebdd95f1d2523e036019fdc80"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 25,
+        "top_level_ordinal": 77,
+        "depth": 0,
+        "condition": "def.id === \"hw2\"",
+        "condition_track_ids": [
+          "hw2"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7727,
+        "end_line": 7783,
+        "start_offset": 306932,
+        "end_offset": 309390,
+        "bytes": 2458,
+        "sha256": "08474ffd8cf45e5eb9f6d7c7a0fff294490aa31db24f4ea4085968304b8db36a",
+        "then_range": {
+          "start_line": 7727,
+          "end_line": 7783,
+          "start_offset": 306954,
+          "end_offset": 309390,
+          "bytes": 2436,
+          "sha256": "9e93697f88a4d2a1339e8826c5ee32d9f9c27a502db4d52a3af4169f62bc8282"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 26,
+        "top_level_ordinal": 78,
+        "depth": 0,
+        "condition": "def.id === \"hw90\"",
+        "condition_track_ids": [
+          "hw90"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7784,
+        "end_line": 7820,
+        "start_offset": 309393,
+        "end_offset": 311087,
+        "bytes": 1694,
+        "sha256": "f1f9123b5719e204ec78152ad434a7dc6c1847f1d71637d3c6adee540551ec7d",
+        "then_range": {
+          "start_line": 7784,
+          "end_line": 7820,
+          "start_offset": 309416,
+          "end_offset": 311087,
+          "bytes": 1671,
+          "sha256": "3bad0493f1d0511a0085f05148baf7ee079e9fa7913c625aefb9e629711891cf"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 27,
+        "top_level_ordinal": 79,
+        "depth": 0,
+        "condition": "def.id === \"petah\"",
+        "condition_track_ids": [
+          "petah"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7821,
+        "end_line": 7839,
+        "start_offset": 311090,
+        "end_offset": 311882,
+        "bytes": 792,
+        "sha256": "e089839bcf648b659c1f9ee2eb1d0fed721a8a97932eacedda27cb2444b851d7",
+        "then_range": {
+          "start_line": 7821,
+          "end_line": 7839,
+          "start_offset": 311114,
+          "end_offset": 311882,
+          "bytes": 768,
+          "sha256": "6ce5af00551b54ff73383196d1541b485352235132203869c1a0cd64f9e51d4f"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 28,
+        "top_level_ordinal": 80,
+        "depth": 0,
+        "condition": "def.id === \"rishon\"",
+        "condition_track_ids": [
+          "rishon"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7840,
+        "end_line": 7867,
+        "start_offset": 311885,
+        "end_offset": 313040,
+        "bytes": 1155,
+        "sha256": "db3b7461df35808a89e8fa14df8ac73b6e65a4e85e3fee24c3a9ce5e34878cc0",
+        "then_range": {
+          "start_line": 7840,
+          "end_line": 7867,
+          "start_offset": 311910,
+          "end_offset": 313040,
+          "bytes": 1130,
+          "sha256": "01c5e513ed19b0ce3261ab5fe754b6fc87c4cb779451695255cfc20c121ca36f"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 29,
+        "top_level_ordinal": 81,
+        "depth": 0,
+        "condition": "def.id === \"ashdod\"",
+        "condition_track_ids": [
+          "ashdod"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7868,
+        "end_line": 7909,
+        "start_offset": 313043,
+        "end_offset": 314290,
+        "bytes": 1247,
+        "sha256": "071ba0354d5c01f91957dabccbc7afbfcb6c7df24fe9f84391cf1a11adfed0bd",
+        "then_range": {
+          "start_line": 7868,
+          "end_line": 7909,
+          "start_offset": 313068,
+          "end_offset": 314290,
+          "bytes": 1222,
+          "sha256": "ae2d9bcee00e5fc4d73c81e21d4bad16e9cb5410eadd06eb810669b84416299f"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 30,
+        "top_level_ordinal": 82,
+        "depth": 0,
+        "condition": "def.id === \"ashkelon\"",
+        "condition_track_ids": [
+          "ashkelon"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7910,
+        "end_line": 7943,
+        "start_offset": 314293,
+        "end_offset": 315033,
+        "bytes": 740,
+        "sha256": "1a1b07f8932fa8016b91d5c4a4fdf97043b313e29b549625d5e9ff47e64100b2",
+        "then_range": {
+          "start_line": 7910,
+          "end_line": 7943,
+          "start_offset": 314320,
+          "end_offset": 315033,
+          "bytes": 713,
+          "sha256": "9dfd679ab7d0790f6e6947c8a42be48a97ade4bc4ed1cec1c3b82a2d632c3155"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 31,
+        "top_level_ordinal": 83,
+        "depth": 0,
+        "condition": "def.id === \"scopus\"",
+        "condition_track_ids": [
+          "scopus"
+        ],
+        "statement_track_ids": [],
+        "start_line": 7944,
+        "end_line": 8032,
+        "start_offset": 315036,
+        "end_offset": 318726,
+        "bytes": 3690,
+        "sha256": "81d715a7cda8fee2083b9b74c984ff154b8cb716e7609b914a40a6b0dc139130",
+        "then_range": {
+          "start_line": 7944,
+          "end_line": 8032,
+          "start_offset": 315061,
+          "end_offset": 318726,
+          "bytes": 3665,
+          "sha256": "93cab5b760225698fa9387184991c9c87eb4e57fe18debf44a9eed4dfe01a3db"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 32,
+        "top_level_ordinal": 84,
+        "depth": 0,
+        "condition": "def.id === \"walls\"",
+        "condition_track_ids": [
+          "walls"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8033,
+        "end_line": 8077,
+        "start_offset": 318729,
+        "end_offset": 320645,
+        "bytes": 1916,
+        "sha256": "869813cfdea9b62f13ae599e34c75617094ec2f3941dbd49970b36c00f34cb80",
+        "then_range": {
+          "start_line": 8033,
+          "end_line": 8077,
+          "start_offset": 318753,
+          "end_offset": 320645,
+          "bytes": 1892,
+          "sha256": "8f481fa76520f990aa06a93bee5cd43e5bcf9d9287e2615f2554dd8bf5745bf3"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 33,
+        "top_level_ordinal": 85,
+        "depth": 0,
+        "condition": "def.id === \"modiin\"",
+        "condition_track_ids": [
+          "modiin"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8078,
+        "end_line": 8087,
+        "start_offset": 320648,
+        "end_offset": 321039,
+        "bytes": 391,
+        "sha256": "dfe17c136db759798343487465feb6df20dc3aebccac60eecf3ba19c57f3f808",
+        "then_range": {
+          "start_line": 8078,
+          "end_line": 8087,
+          "start_offset": 320673,
+          "end_offset": 321039,
+          "bytes": 366,
+          "sha256": "9239bf0fbace73d7fb3e3b773b9fb455b54c8826e79af8439c2d2beeaedf12ea"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 34,
+        "top_level_ordinal": 86,
+        "depth": 0,
+        "condition": "def.id === \"ramon\"",
+        "condition_track_ids": [
+          "ramon"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8088,
+        "end_line": 8249,
+        "start_offset": 321042,
+        "end_offset": 327472,
+        "bytes": 6430,
+        "sha256": "f1f3fb3ef41a33e7f99a08508c92aad204bdb664ecdc24705c68641d0d64b01d",
+        "then_range": {
+          "start_line": 8088,
+          "end_line": 8249,
+          "start_offset": 321066,
+          "end_offset": 327472,
+          "bytes": 6406,
+          "sha256": "8e6513977557934b5e472c67656075d6b2a1ef3bc9a452d883cc3f7405596bfd"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 35,
+        "top_level_ordinal": 87,
+        "depth": 0,
+        "condition": "def.id === \"hw40\"",
+        "condition_track_ids": [
+          "hw40"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8250,
+        "end_line": 8261,
+        "start_offset": 327475,
+        "end_offset": 327900,
+        "bytes": 425,
+        "sha256": "15ea09018099c66ad7d2b84ab901702b4c4d74ce964f39ea90f151cf0487f4d6",
+        "then_range": {
+          "start_line": 8250,
+          "end_line": 8261,
+          "start_offset": 327498,
+          "end_offset": 327900,
+          "bytes": 402,
+          "sha256": "79499c28b9f0ada110b80bb17b8e2d56c8bbfab74a047d076e5ec2829e8ecf92"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 36,
+        "top_level_ordinal": 88,
+        "depth": 0,
+        "condition": "def.id === \"eilatmtn\"",
+        "condition_track_ids": [
+          "eilatmtn"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8262,
+        "end_line": 8282,
+        "start_offset": 327903,
+        "end_offset": 328492,
+        "bytes": 589,
+        "sha256": "b1dd7f71662983b70c30646ee47f8bcd17825061171944ee681e427bb2ed05e6",
+        "then_range": {
+          "start_line": 8262,
+          "end_line": 8282,
+          "start_offset": 327930,
+          "end_offset": 328492,
+          "bytes": 562,
+          "sha256": "91b01823a9f62923fc69b9b208ab57d3ec00c3fa91899ecf7d4fc6efa9778fb1"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 37,
+        "top_level_ordinal": 89,
+        "depth": 0,
+        "condition": "def.id === \"gushdan\"",
+        "condition_track_ids": [
+          "gushdan"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8283,
+        "end_line": 8331,
+        "start_offset": 328495,
+        "end_offset": 330594,
+        "bytes": 2099,
+        "sha256": "efd9bf84b2b4f7e205d75a966a2525bdefc104c259237a176b8d1a16accd01b5",
+        "then_range": {
+          "start_line": 8283,
+          "end_line": 8331,
+          "start_offset": 328521,
+          "end_offset": 330594,
+          "bytes": 2073,
+          "sha256": "df1a1a6139d0175ded1d2f16dcc80230c5845ce90ad84ff7f515c35d0ee92693"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 38,
+        "top_level_ordinal": 90,
+        "depth": 0,
+        "condition": "def.id === \"nazareth\"",
+        "condition_track_ids": [
+          "nazareth"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8332,
+        "end_line": 8418,
+        "start_offset": 330597,
+        "end_offset": 334325,
+        "bytes": 3728,
+        "sha256": "21eba346e88cf3ce1a3ef4bc5c50cf9b216583b061b935a17775bf8a2b99b818",
+        "then_range": {
+          "start_line": 8332,
+          "end_line": 8418,
+          "start_offset": 330624,
+          "end_offset": 334325,
+          "bytes": 3701,
+          "sha256": "132a5bfe4ead4de4c06627e3802a8b4da217e0849f58f797bbd27e0d5721e44d"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 39,
+        "top_level_ordinal": 91,
+        "depth": 0,
+        "condition": "def.id === \"tzfat\"",
+        "condition_track_ids": [
+          "tzfat"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8419,
+        "end_line": 8518,
+        "start_offset": 334328,
+        "end_offset": 336965,
+        "bytes": 2637,
+        "sha256": "695bfe4ec5712ab4dfa75e58ca4d147c7d1b5621163e6e868e9e05e07cc856dd",
+        "then_range": {
+          "start_line": 8419,
+          "end_line": 8518,
+          "start_offset": 334352,
+          "end_offset": 336965,
+          "bytes": 2613,
+          "sha256": "e1beccc7d3a2e3a93e8918bc6a3598c55c627b87c472018b79f27171052635b4"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 40,
+        "top_level_ordinal": 92,
+        "depth": 0,
+        "condition": "def.id === \"masada\"",
+        "condition_track_ids": [
+          "masada"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8519,
+        "end_line": 8592,
+        "start_offset": 336968,
+        "end_offset": 339850,
+        "bytes": 2882,
+        "sha256": "6c0f74c15c29640d9aa9b10d5fbbf83c9e5275d7136d683b2b781de2f06af876",
+        "then_range": {
+          "start_line": 8519,
+          "end_line": 8592,
+          "start_offset": 336993,
+          "end_offset": 339850,
+          "bytes": 2857,
+          "sha256": "b20e411c90741c9ce00782dd6076810ab7732a8313cafc68eaaf0827490a7a37"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 41,
+        "top_level_ordinal": 93,
+        "depth": 0,
+        "condition": "def.id === \"batyam\"",
+        "condition_track_ids": [
+          "batyam"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8593,
+        "end_line": 8629,
+        "start_offset": 339853,
+        "end_offset": 340747,
+        "bytes": 894,
+        "sha256": "2b32dd8c1e608aa163f5b639c12710448c076e34d3d0a6e7867e9067b7af0b59",
+        "then_range": {
+          "start_line": 8593,
+          "end_line": 8629,
+          "start_offset": 339878,
+          "end_offset": 340747,
+          "bytes": 869,
+          "sha256": "3210dffe2d8c9988a6c83ea88282e68107b8c5a73c1090ecb4c9615e695647c2"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 42,
+        "top_level_ordinal": 94,
+        "depth": 0,
+        "condition": "def.id === \"rehovot\"",
+        "condition_track_ids": [
+          "rehovot"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8630,
+        "end_line": 8676,
+        "start_offset": 340750,
+        "end_offset": 341857,
+        "bytes": 1107,
+        "sha256": "f4532035ff76417b3fa5c3554f862148aabaa89064b950e92dd658226db7fde9",
+        "then_range": {
+          "start_line": 8630,
+          "end_line": 8676,
+          "start_offset": 340776,
+          "end_offset": 341857,
+          "bytes": 1081,
+          "sha256": "d9471ac920d9d569eb26e9295a67d0780335e58f1d10efa5bc7634adc309fc56"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 43,
+        "top_level_ordinal": 95,
+        "depth": 0,
+        "condition": "def.id === \"nahariya\"",
+        "condition_track_ids": [
+          "nahariya"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8677,
+        "end_line": 8699,
+        "start_offset": 341860,
+        "end_offset": 342824,
+        "bytes": 964,
+        "sha256": "abba91205f7d0272329eff15692fd2c07cff4fc32212d92d23cde0fd5db29372",
+        "then_range": {
+          "start_line": 8677,
+          "end_line": 8699,
+          "start_offset": 341887,
+          "end_offset": 342824,
+          "bytes": 937,
+          "sha256": "0e0d33539e4fb35f7143908a2eb05fab2efef8e2b3b2d405ae34ae42add53494"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 44,
+        "top_level_ordinal": 96,
+        "depth": 0,
+        "condition": "def.id === \"ramla\"",
+        "condition_track_ids": [
+          "ramla"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8700,
+        "end_line": 8718,
+        "start_offset": 342827,
+        "end_offset": 343558,
+        "bytes": 731,
+        "sha256": "50e5577bdded381a07611a1b673596b2916b9dfd0fc3922b0fa81d71df21c150",
+        "then_range": {
+          "start_line": 8700,
+          "end_line": 8718,
+          "start_offset": 342851,
+          "end_offset": 343558,
+          "bytes": 707,
+          "sha256": "748afaf6d3c397352cef6747ce13a63b462ed883eacab76ab59c9a91bc4ba722"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 45,
+        "top_level_ordinal": 97,
+        "depth": 0,
+        "condition": "def.id === \"holon\"",
+        "condition_track_ids": [
+          "holon"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8719,
+        "end_line": 8759,
+        "start_offset": 343561,
+        "end_offset": 344568,
+        "bytes": 1007,
+        "sha256": "786cfeea57ea434223d644b3b6afb9ddb3fdf0dd39077eed55431b553592970e",
+        "then_range": {
+          "start_line": 8719,
+          "end_line": 8759,
+          "start_offset": 343585,
+          "end_offset": 344568,
+          "bytes": 983,
+          "sha256": "447d80225ff857a2c153cc7c9ca08fcdc9cfe704b4297cbb9de6b970a06a603e"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 46,
+        "top_level_ordinal": 98,
+        "depth": 0,
+        "condition": "def.id === \"beitshan\"",
+        "condition_track_ids": [
+          "beitshan"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8760,
+        "end_line": 8807,
+        "start_offset": 344571,
+        "end_offset": 345852,
+        "bytes": 1281,
+        "sha256": "aed82e08aacd3b240821f264217f8f1a4da43f9924c92f66d8632c8070404dca",
+        "then_range": {
+          "start_line": 8760,
+          "end_line": 8807,
+          "start_offset": 344598,
+          "end_offset": 345852,
+          "bytes": 1254,
+          "sha256": "6116d3e681ddb815456d152a149c96569a94ff619579ea3e65cb14ce604bf4c6"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 47,
+        "top_level_ordinal": 99,
+        "depth": 0,
+        "condition": "def.id === \"hadera\"",
+        "condition_track_ids": [
+          "hadera"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8808,
+        "end_line": 8827,
+        "start_offset": 345855,
+        "end_offset": 346540,
+        "bytes": 685,
+        "sha256": "33513fc2fddbfa11ecc70221a7dae4181cb621aa7660e6830869d9f5d41f0568",
+        "then_range": {
+          "start_line": 8808,
+          "end_line": 8827,
+          "start_offset": 345880,
+          "end_offset": 346540,
+          "bytes": 660,
+          "sha256": "e63172d3d22e521bd837794aafb9b5a8a2bf43be381ee2ef37a3468345441ad3"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 48,
+        "top_level_ordinal": 100,
+        "depth": 0,
+        "condition": "def.id === \"lod\"",
+        "condition_track_ids": [
+          "lod"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8828,
+        "end_line": 8846,
+        "start_offset": 346543,
+        "end_offset": 347314,
+        "bytes": 771,
+        "sha256": "4b5b82849237b85a0fdde85a2f22e133b278e2d659d4b3263ddce5ceadb9381b",
+        "then_range": {
+          "start_line": 8828,
+          "end_line": 8846,
+          "start_offset": 346565,
+          "end_offset": 347314,
+          "bytes": 749,
+          "sha256": "60dc8db94f6b60913df0a2b096c6510ac7047bb7d60cbdec7321539a80bcb187"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 49,
+        "top_level_ordinal": 101,
+        "depth": 0,
+        "condition": "def.id === \"kshmona\"",
+        "condition_track_ids": [
+          "kshmona"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8847,
+        "end_line": 8864,
+        "start_offset": 347317,
+        "end_offset": 347978,
+        "bytes": 661,
+        "sha256": "050acba36ced7d8cd2e47703aa6ed3dd55e84c358dad26e09a23b12797ad8fba",
+        "then_range": {
+          "start_line": 8847,
+          "end_line": 8864,
+          "start_offset": 347343,
+          "end_offset": 347978,
+          "bytes": 635,
+          "sha256": "d1722fc54cb26c0082d71e059ec317a4d50fa98a4e141e0cd3c4f03fcd407457"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 50,
+        "top_level_ordinal": 102,
+        "depth": 0,
+        "condition": "def.id === \"raanana\"",
+        "condition_track_ids": [
+          "raanana"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8865,
+        "end_line": 8881,
+        "start_offset": 347981,
+        "end_offset": 348613,
+        "bytes": 632,
+        "sha256": "405356b5587c09a8f5ef04999b434f53bd1fd7f31108141375594014e4c38dd1",
+        "then_range": {
+          "start_line": 8865,
+          "end_line": 8881,
+          "start_offset": 348007,
+          "end_offset": 348613,
+          "bytes": 606,
+          "sha256": "95d8bc28a18c3f5eb1fee6549025b431b1121006023f80beeb2f683b722abfb1"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 51,
+        "top_level_ordinal": 103,
+        "depth": 0,
+        "condition": "def.id === \"afula\"",
+        "condition_track_ids": [
+          "afula"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8882,
+        "end_line": 8898,
+        "start_offset": 348616,
+        "end_offset": 349197,
+        "bytes": 581,
+        "sha256": "c84cb2999e08f0eb900a73d068741e3cc7798bea8aba6b16bc413bccbfebaaed",
+        "then_range": {
+          "start_line": 8882,
+          "end_line": 8898,
+          "start_offset": 348640,
+          "end_offset": 349197,
+          "bytes": 557,
+          "sha256": "c166e43fb7a74336d4c6fe36f2271418de5743311dc4b44e8d30976b65741302"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 52,
+        "top_level_ordinal": 104,
+        "depth": 0,
+        "condition": "def.id === \"ksaba\"",
+        "condition_track_ids": [
+          "ksaba"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8899,
+        "end_line": 8912,
+        "start_offset": 349200,
+        "end_offset": 349698,
+        "bytes": 498,
+        "sha256": "998ce551cd8b0f10903b90984be731f4c933caada141a4d252d626984fb5d0d1",
+        "then_range": {
+          "start_line": 8899,
+          "end_line": 8912,
+          "start_offset": 349224,
+          "end_offset": 349698,
+          "bytes": 474,
+          "sha256": "f386ac3dfa052b1551f669954d929147a7dbca4d33eb8faeb8a07a17fe824fa6"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 53,
+        "top_level_ordinal": 105,
+        "depth": 0,
+        "condition": "def.id === \"arad\"",
+        "condition_track_ids": [
+          "arad"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8913,
+        "end_line": 8951,
+        "start_offset": 349701,
+        "end_offset": 350582,
+        "bytes": 881,
+        "sha256": "68593f5b084b943824a4c17cca4ef378b5105ed832ef6b3bc3502726516013b3",
+        "then_range": {
+          "start_line": 8913,
+          "end_line": 8951,
+          "start_offset": 349724,
+          "end_offset": 350582,
+          "bytes": 858,
+          "sha256": "d2d6efaea237af626587da1469a260b81b8f3543a8ecf826f11bd959ee9186a1"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 54,
+        "top_level_ordinal": 106,
+        "depth": 0,
+        "condition": "def.id === \"manhattan\"",
+        "condition_track_ids": [
+          "manhattan"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8952,
+        "end_line": 8962,
+        "start_offset": 350585,
+        "end_offset": 350999,
+        "bytes": 414,
+        "sha256": "6a56f198a1e5df854ed4a2967b504c650871a1e1f278b369ac24e6507271c2d0",
+        "then_range": {
+          "start_line": 8952,
+          "end_line": 8962,
+          "start_offset": 350613,
+          "end_offset": 350999,
+          "bytes": 386,
+          "sha256": "68d82dc6ebd6a4520a5067262405d68968dc2248e07da55144c9e96791ae7176"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 55,
+        "top_level_ordinal": 107,
+        "depth": 0,
+        "condition": "def.id === \"brooklynbridge\"",
+        "condition_track_ids": [
+          "brooklynbridge"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8963,
+        "end_line": 8971,
+        "start_offset": 351002,
+        "end_offset": 351332,
+        "bytes": 330,
+        "sha256": "23971417a009dd247b7885163617f6ec612098c27bfa2a08e73a28ebbd371855",
+        "then_range": {
+          "start_line": 8963,
+          "end_line": 8971,
+          "start_offset": 351035,
+          "end_offset": 351332,
+          "bytes": 297,
+          "sha256": "79fda2971ae6be0458f8b986428786e8cd145d980a4a9ac8fc59562b4b49ffd6"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 56,
+        "top_level_ordinal": 108,
+        "depth": 0,
+        "condition": "def.id === \"timessquare\"",
+        "condition_track_ids": [
+          "timessquare"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8972,
+        "end_line": 8982,
+        "start_offset": 351335,
+        "end_offset": 351730,
+        "bytes": 395,
+        "sha256": "75610e8c40eb900276236b546fcc0497d1156f4ff2627379daa9ba1234ae9ae6",
+        "then_range": {
+          "start_line": 8972,
+          "end_line": 8982,
+          "start_offset": 351365,
+          "end_offset": 351730,
+          "bytes": 365,
+          "sha256": "b9366fb6a221b135120b5b33ec6452eed07f64564c0d778745e52b78f9c54148"
+        },
+        "else_range": null
+      },
+      {
+        "ordinal": 57,
+        "top_level_ordinal": 109,
+        "depth": 0,
+        "condition": "def.id === \"centralpark\"",
+        "condition_track_ids": [
+          "centralpark"
+        ],
+        "statement_track_ids": [],
+        "start_line": 8983,
+        "end_line": 8999,
+        "start_offset": 351733,
+        "end_offset": 352405,
+        "bytes": 672,
+        "sha256": "21c5fb765367841bbf7a951dff6ceab9e927b20ebae66be5d2523cbf702bd6ec",
+        "then_range": {
+          "start_line": 8983,
+          "end_line": 8999,
+          "start_offset": 351763,
+          "end_offset": 352405,
+          "bytes": 642,
+          "sha256": "ea8eb216c6bf51c80574fb249f3138648794b0ed96a467def6c723ede3d1d830"
+        },
+        "else_range": null
+      }
+    ]
+  },
+  "track_references": {
+    "hayarkon": [
+      268,
+      1005,
+      1516,
+      1836,
+      1868,
+      2203,
+      3678
+    ],
+    "oldjaffa": [
+      1516,
+      2203,
+      4074
+    ],
+    "telaviv": [
+      266,
+      1005,
+      1868,
+      4489
+    ],
+    "namal": [
+      266,
+      1516,
+      1868,
+      4682
+    ],
+    "jerusalem": [
+      268,
+      664,
+      666,
+      2203,
+      4895
+    ],
+    "haifa": [
+      5073
+    ],
+    "eilat": [
+      1516,
+      5321
+    ],
+    "rothschild": [
+      268,
+      1005,
+      1136,
+      1868,
+      2203,
+      5400
+    ],
+    "ayalon": [
+      265,
+      638,
+      755,
+      790,
+      972,
+      972,
+      976,
+      988,
+      1062,
+      1092,
+      1100,
+      1101,
+      1142,
+      1158,
+      1176,
+      1206,
+      1265,
+      1302,
+      1428,
+      1836,
+      1868,
+      1935,
+      2125,
+      2172,
+      2203,
+      2817,
+      5838
+    ],
+    "caesarea": [
+      6493
+    ],
+    "deadsea": [
+      1174,
+      1836,
+      6602
+    ],
+    "acre": [
+      6704
+    ],
+    "centralpark": [
+      8983
+    ],
+    "timessquare": [
+      1500,
+      1578,
+      1888,
+      2017,
+      2357,
+      8972
+    ],
+    "brooklynbridge": [
+      8963
+    ],
+    "manhattan": [
+      565,
+      1417,
+      1426,
+      1475,
+      1495,
+      1501,
+      1501,
+      1503,
+      1504,
+      1505,
+      1506,
+      1507,
+      1578,
+      1603,
+      1605,
+      1612,
+      1613,
+      1622,
+      1628,
+      1630,
+      1665,
+      1817,
+      1839,
+      1853,
+      1927,
+      2655,
+      2697,
+      8952
+    ],
+    "beersheva": [
+      6838
+    ],
+    "netanya": [
+      1516,
+      6877
+    ],
+    "hw1": [
+      266,
+      664,
+      1176,
+      1836,
+      1838,
+      1843,
+      1852,
+      1853,
+      1855,
+      1855,
+      1866,
+      1913,
+      1914,
+      2125,
+      2202,
+      7008
+    ],
+    "herzliya": [
+      1516,
+      7115
+    ],
+    "hanikra": [
+      7235
+    ],
+    "haifaport": [
+      7287
+    ],
+    "stellamaris": [
+      664,
+      7358
+    ],
+    "tiberias": [
+      7431
+    ],
+    "golan": [
+      664,
+      7471
+    ],
+    "hermon": [
+      642,
+      642,
+      654,
+      666,
+      674,
+      682,
+      699,
+      1174,
+      1836,
+      1838,
+      1843,
+      1852,
+      1853,
+      1855,
+      1855,
+      1866,
+      1880,
+      1959,
+      2125,
+      2202,
+      7514
+    ],
+    "hw6": [
+      266,
+      1176,
+      2125,
+      2202,
+      7681
+    ],
+    "hw2": [
+      266,
+      1176,
+      2125,
+      2202,
+      7727
+    ],
+    "hw90": [
+      7784
+    ],
+    "petah": [
+      7821
+    ],
+    "rishon": [
+      7840
+    ],
+    "ashdod": [
+      7868
+    ],
+    "ashkelon": [
+      1516,
+      7910
+    ],
+    "scopus": [
+      642,
+      642,
+      642,
+      642,
+      664,
+      666,
+      7944
+    ],
+    "walls": [
+      8033
+    ],
+    "modiin": [
+      8078
+    ],
+    "ramon": [
+      642,
+      642,
+      654,
+      664,
+      666,
+      674,
+      678,
+      699,
+      1174,
+      1836,
+      1843,
+      1852,
+      1853,
+      1855,
+      1855,
+      1867,
+      1888,
+      2075,
+      2078,
+      2125,
+      2202,
+      8088
+    ],
+    "hw40": [
+      8250
+    ],
+    "eilatmtn": [
+      664,
+      8262
+    ],
+    "gushdan": [
+      266,
+      1516,
+      8283
+    ],
+    "nazareth": [
+      664,
+      8332
+    ],
+    "tzfat": [
+      664,
+      8419
+    ],
+    "masada": [
+      664,
+      699,
+      1174,
+      8519
+    ],
+    "batyam": [
+      1516,
+      8593
+    ],
+    "rehovot": [
+      8630
+    ],
+    "nahariya": [
+      1516,
+      8677
+    ],
+    "ramla": [
+      8700
+    ],
+    "holon": [
+      8719
+    ],
+    "beitshan": [
+      8760
+    ],
+    "hadera": [
+      8808
+    ],
+    "lod": [
+      8828
+    ],
+    "kshmona": [
+      8847
+    ],
+    "raanana": [
+      8865
+    ],
+    "afula": [
+      8882
+    ],
+    "ksaba": [
+      8899
+    ],
+    "arad": [
+      8913
+    ]
+  },
+  "invariants": {
+    "track_count": 56,
+    "runtime_definition_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
+    "aggregate_definition_digest": "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7",
+    "rsh_017_started": false
+  }
+}
