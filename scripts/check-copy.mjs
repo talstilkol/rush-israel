@@ -2,8 +2,9 @@
 /** Fail if a track card drops the inspired disclaimer, or src/game says DEM. */
 import { readdir, readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
+import { readCanonicalTrackSource } from "./load-track-modules.mjs";
 
-const tracks = await readFile("src/game/tracks.ts", "utf8");
+const tracks = readCanonicalTrackSource();
 const descs = [...tracks.matchAll(/description(?:En)?:\s*"([^"]*)"/g)].map((m) => m[1]);
 if (descs.length < 50) {
   console.error("check-copy: too few descriptions", descs.length);
