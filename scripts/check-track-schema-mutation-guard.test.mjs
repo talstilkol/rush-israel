@@ -80,3 +80,73 @@ test("unreviewed callback on a protected iteration fails closed", () => {
     /unreviewed callback passed to protected method forEach/,
   );
 });
+
+test("local helper return values remain protected", () => {
+  assert.match(
+    errors("function pick() { return TRACKS[0]; } const track = pick(); track.width = 1;"),
+    /assignment to TRACKS/,
+  );
+});
+
+test("the existing getTrack helper cannot release a mutable untracked reference", () => {
+  assert.match(
+    errors('const track = getTrack("a"); track.width = 1;'),
+    /assignment to TRACKS/,
+  );
+});
+
+test("concise arrow helper return values remain protected", () => {
+  assert.match(
+    errors("const pick = () => TRACKS[0]; const track = pick(); track.width = 1;"),
+    /assignment to TRACKS/,
+  );
+});
+
+test("angle-bracket assertions cannot hide a protected reference", () => {
+  assert.match(
+    errors("const track = <TrackDef>TRACKS[0]; track.width = 1;"),
+    /assignment to TRACKS/,
+  );
+});
+
+test("array binding defaults inherit protected taint", () => {
+  assert.match(
+    errors("const [track = TRACKS[0]] = []; track.width = 1;"),
+    /assignment to TRACKS/,
+  );
+});
+
+test("object binding defaults inherit protected taint", () => {
+  assert.match(
+    errors("const { track = TRACKS[0] } = {}; track.width = 1;"),
+    /assignment to TRACKS/,
+  );
+});
+
+test("parameter defaults inherit protected taint", () => {
+  assert.match(
+    errors("function mutate(track: TrackDef = TRACKS[0]) { track.width = 1; } mutate();"),
+    /assignment to TRACKS/,
+  );
+});
+
+test("tagged templates containing protected substitutions fail closed", () => {
+  assert.match(
+    errors("function mutate(_strings: TemplateStringsArray, track: TrackDef) { track.width = 1; } mutate`${TRACKS[0]}`;"),
+    /tagged template mutate|assignment to TRACKS/,
+  );
+});
+
+test("unreviewed tagged templates containing protected substitutions fail closed", () => {
+  assert.match(
+    errors("declare function externalTag(strings: TemplateStringsArray, value: unknown): string; externalTag`${TRACKS[0]}`;"),
+    /tagged template externalTag/,
+  );
+});
+
+test("a local tag return value remains protected", () => {
+  assert.match(
+    errors("function pick(_strings: TemplateStringsArray) { return TRACKS[0]; } const track = pick``; track.width = 1;"),
+    /assignment to TRACKS/,
+  );
+});
