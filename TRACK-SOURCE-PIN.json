@@ -6,10 +6,10 @@
   "canonical_branch": "main",
   "source_path": "src/game/tracks.ts",
   "algorithm": "git_blob_sha1",
-  "expected_git_blob_sha1": "ba22d9d82466e02779342ec6a70eddb12481a928",
-  "captured_from_commit": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
+  "expected_git_blob_sha1": "e26454223f8a598cdf516af7c7c3f494162e2616",
+  "captured_from_commit": "e9b7683330bb288e9e5005e595f699b58d7ad20f",
   "capture_state": "pinned",
-  "purpose": "Fail closed on every source-level change before the owner-authorized RSH-014 modularization.",
+  "purpose": "Fail closed on every source-level change after reconciling the live main track updates and before the owner-authorized RSH-014 modularization.",
   "change_control": {
     "updates_require_owner_authorization": true,
     "RSH-014_may_replace_with_modular_source_manifest": true,
