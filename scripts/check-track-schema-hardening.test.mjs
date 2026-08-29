@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { fromRoot } from "./project-root.mjs";
 import { validateTrackSchema } from "./check-track-schema.mjs";
+import { readCanonicalTrackSource } from "./load-track-modules.mjs";
 
 const TRACK_DIGEST = "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d";
 const AGGREGATE_DIGEST = "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7";
@@ -15,7 +16,7 @@ function readInputs() {
       readFileSync(fromRoot("TRACK-CATALOGUE-CLASSIFICATION.json"), "utf8"),
     ),
     typeSource: readFileSync(fromRoot("src", "game", "types.ts"), "utf8"),
-    trackSource: readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8"),
+    trackSource: readCanonicalTrackSource(),
     trackSchemaSource: readFileSync(fromRoot("src", "game", "track-schema.ts"), "utf8"),
     supportSources: { "src/game/math.ts": mathSource },
   };

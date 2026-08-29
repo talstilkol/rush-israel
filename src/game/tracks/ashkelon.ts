@@ -1,0 +1,47 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, ask } from "./shared";
+
+export default defineTrack({
+    id: "ashkelon",
+    nameHe: "אשקלון",
+    nameEn: "Ashkelon",
+    city: "ashkelon",
+    cityHe: "אשקלון",
+    cityEn: "Ashkelon",
+    lengthHint: "3 הקפות · החומות",
+    description: "הגן הלאומי, החומות, המרינה וברנע. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "The national park, the walls, the marina and Barnea. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/ashkelon.jpg",
+    width: 20,
+    seed: 1150,
+    theme: "stone",
+    ground: 0x9a8a70,
+    sand: 0xe0d0b0,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    water: { x: ask(31.67, 34.54).x, z: ask(31.67, 34.54).z, w: 280, d: 420, color: 0x1a6880 },
+    checkpointCount: 10,
+    points: [
+      ask(31.679, 34.556),
+      ask(31.673, 34.552),
+      ask(31.667, 34.549),
+      ask(31.662, 34.548),
+      ask(31.66, 34.553),
+      ask(31.664, 34.56),
+      ask(31.67, 34.566),
+      ask(31.676, 34.57),
+      ask(31.682, 34.568),
+      ask(31.682, 34.561),
+    ],
+    elevation: () => 0.6,
+    streets: [
+      { from: 0.0, to: 0.28, he: "המרינה", en: "The Marina" },
+      { from: 0.28, to: 0.52, he: "הגן הלאומי", en: "National Park" },
+      { from: 0.52, to: 0.76, he: "ברנע", en: "Barnea" },
+      { from: 0.76, to: 1, he: "הרצל", en: "Herzl" },
+    ],
+    pois: [
+      { ...ask(31.679, 34.556), r: 28, he: "המרינה", en: "The Marina" },
+      { ...ask(31.662, 34.548), r: 28, he: "הגן הלאומי", en: "National Park" },
+      { ...ask(31.682, 34.57), r: 24, he: "ברנע", en: "Barnea" },
+    ],
+  });

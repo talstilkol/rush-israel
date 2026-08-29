@@ -4,6 +4,7 @@ import { test } from "node:test";
 import { fromRoot } from "./project-root.mjs";
 import { validateTrackConsumerSourcePin } from "./check-track-consumer-source-pin.mjs";
 import { validateTrackSchema } from "./check-track-schema.mjs";
+import { readCanonicalTrackSource } from "./load-track-modules.mjs";
 
 const CONSUMER_PATHS = [
   "src/components/game-app.tsx",
@@ -29,7 +30,7 @@ function completeInputs(consumerSources = readConsumerSources()) {
     ),
     sourcePin: JSON.parse(readFileSync(fromRoot("TRACK-SOURCE-PIN.json"), "utf8")),
     typeSource: readFileSync(fromRoot("src", "game", "types.ts"), "utf8"),
-    trackSource: readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8"),
+    trackSource: readCanonicalTrackSource(),
     trackSchemaSource: readFileSync(fromRoot("src", "game", "track-schema.ts"), "utf8"),
     supportSources: {
       "src/game/math.ts": readFileSync(fromRoot("src", "game", "math.ts"), "utf8"),

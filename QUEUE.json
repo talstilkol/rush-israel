@@ -1,11 +1,11 @@
 {
-  "schema_version": "2.9.0",
+  "schema_version": "3.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-29T10:55:00+03:00",
+  "generated_at": "2026-08-29T21:30:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "e9b7683330bb288e9e5005e595f699b58d7ad20f",
-  "state_effective_on": "merge_of_pull_request_16",
+  "verified_base_sha": "0273520da4924cb3e71ff41b2ea75788a45bf757",
+  "state_effective_on": "merge_of_RSH_014_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -18,12 +18,13 @@
         "RSH-013",
         "RSH-014"
       ],
-      "completed": 4,
+      "completed": 5,
       "total": 5,
       "closed_after": "RSH-014",
       "separate_branch_and_pr_per_unit": true,
       "merge_after_validation": true,
-      "continuation_instruction": "next 2"
+      "continuation_instruction": "next 2",
+      "state": "closed_after_RSH-014"
     },
     "direct_main_writes": false,
     "automatic_merge_without_validation": false,
@@ -33,19 +34,19 @@
   },
   "counts": {
     "total": 67,
-    "accepted": 13,
+    "accepted": 14,
     "in_review": 0,
-    "eligible": 1,
+    "eligible": 0,
     "deferred": 53,
-    "remaining": 54
+    "remaining": 53
   },
   "queue_head": {
-    "id": "RSH-014",
-    "title": "Split tracks.ts into one module per track",
-    "state": "eligible_under_owner_next_2",
+    "id": "RSH-015",
+    "title": "Extract the world core from world.ts",
+    "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "Start one clean RSH-014 branch from the live RSH-013 merge; preserve the pinned runtime definition digest; pass exact-head required-ci / validate and review before merge."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-015 may start."
   },
   "next_after_acceptance": {
     "id": "RSH-015",
@@ -155,7 +156,22 @@
       "validated_head_resolution": "exact PR #16 head accepted by required-ci / validate and Codex review",
       "merge_sha_resolution": "live main HEAD created by merging PR #16",
       "exact_evidence_reconciliation": "RSH-014 preflight",
-      "runtime_definition_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d"
+      "runtime_definition_digest": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
+      "merge_sha": "0273520da4924cb3e71ff41b2ea75788a45bf757",
+      "tree_sha": "986917098fa8ca09f9f1db4cf10a0e2dd32a33e8",
+      "validated_head_sha": "e5a0787ce0c706beef10fa1cc5acf2445a6ea933",
+      "workflow_run": 33267261261,
+      "workflow_job": 99139442443,
+      "post_merge_workflow_run": 33267678176,
+      "post_merge_workflow_job": 99140544856
+    },
+    "RSH-014": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-014-track-modules",
+      "pull_request_resolution": "live GitHub pull request for this branch",
+      "merge_sha_resolution": "live main HEAD created by merge",
+      "module_manifest": "TRACK-MODULE-MANIFEST.json",
+      "module_count": 56
     }
   },
   "unit_order": [
@@ -230,14 +246,34 @@
   "state_rules": {
     "RSH-001–RSH-013": "accepted",
     "RSH-014": "eligible_under_owner_next_2",
-    "RSH-015–RSH-067": "deferred_not_authorized"
+    "RSH-015–RSH-067": "deferred_not_authorized",
+    "accepted": {
+      "from": "RSH-001",
+      "through": "RSH-014"
+    },
+    "eligible": [],
+    "deferred": {
+      "from": "RSH-015",
+      "through": "RSH-067"
+    }
   },
   "next_instruction_contract": {
     "current_action": "After PR #16 merges, continue the current next 2 instruction by starting RSH-014 only from verified live main.",
     "after_RSH_014": "The bounded batch closes; RSH-015 requires a new explicit owner instruction.",
-    "batch_authority_remaining": 1,
+    "batch_authority_remaining": 0,
     "RSH-014_precreated": false,
-    "RSH-015_authorized": false
+    "RSH-015_authorized": false,
+    "current_instruction": "next 2",
+    "authorized_sequence": [
+      "RSH-013",
+      "RSH-014"
+    ],
+    "completed_sequence": [
+      "RSH-013",
+      "RSH-014"
+    ],
+    "batch_closed": true,
+    "continuation": "A new explicit owner instruction is required."
   },
   "self_reference_boundary": {
     "RSH-013_merge_sha": "resolve from live main after PR #16 merges",

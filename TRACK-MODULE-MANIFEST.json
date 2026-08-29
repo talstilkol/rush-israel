@@ -1,0 +1,714 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-track-module-manifest",
+  "unit": "RSH-014",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "0273520da4924cb3e71ff41b2ea75788a45bf757",
+    "tree_sha": "986917098fa8ca09f9f1db4cf10a0e2dd32a33e8",
+    "rsh_013_validated_head_sha": "e5a0787ce0c706beef10fa1cc5acf2445a6ea933",
+    "rsh_013_legacy_tracks_git_blob_sha1": "e26454223f8a598cdf516af7c7c3f494162e2616"
+  },
+  "layout": {
+    "state": "modular",
+    "facade_path": "src/game/tracks.ts",
+    "shared_path": "src/game/tracks/shared.ts",
+    "index_path": "src/game/tracks/index.ts",
+    "module_directory": "src/game/tracks",
+    "module_extension": ".ts",
+    "module_count": 56,
+    "one_module_per_track": true,
+    "module_export": "default_defineTrack",
+    "catalogue_constructor": "defineTracks"
+  },
+  "counts": {
+    "total": 56,
+    "mvp": 8,
+    "deferred": 48
+  },
+  "runtime_order": [
+    "hayarkon",
+    "oldjaffa",
+    "telaviv",
+    "namal",
+    "jerusalem",
+    "haifa",
+    "eilat",
+    "rothschild",
+    "ayalon",
+    "caesarea",
+    "deadsea",
+    "acre",
+    "centralpark",
+    "timessquare",
+    "brooklynbridge",
+    "manhattan",
+    "beersheva",
+    "netanya",
+    "hw1",
+    "herzliya",
+    "hanikra",
+    "haifaport",
+    "stellamaris",
+    "tiberias",
+    "golan",
+    "hermon",
+    "hw6",
+    "hw2",
+    "hw90",
+    "petah",
+    "rishon",
+    "ashdod",
+    "ashkelon",
+    "scopus",
+    "walls",
+    "modiin",
+    "ramon",
+    "hw40",
+    "eilatmtn",
+    "gushdan",
+    "nazareth",
+    "tzfat",
+    "masada",
+    "batyam",
+    "rehovot",
+    "nahariya",
+    "ramla",
+    "holon",
+    "beitshan",
+    "hadera",
+    "lod",
+    "kshmona",
+    "raanana",
+    "afula",
+    "ksaba",
+    "arad"
+  ],
+  "modules": [
+    {
+      "ordinal": 1,
+      "id": "hayarkon",
+      "path": "src/game/tracks/hayarkon.ts",
+      "local_binding": "track_01_hayarkon",
+      "git_blob_sha1": "ac8fcffe6b4fb2e5a178cc3a9dcd6850291063f1",
+      "sha256": "e3c9f9e864895f7a4192a41b75f56e0405439a7510be4291c580b5867933f8a2",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 2,
+      "id": "oldjaffa",
+      "path": "src/game/tracks/oldjaffa.ts",
+      "local_binding": "track_02_oldjaffa",
+      "git_blob_sha1": "7cda095ae4a779477f5503c571519eb96ce85342",
+      "sha256": "eb4e4b0531cae08fe7b8336e642442d99bb7277e2b769130c2d35581c52328d1",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 3,
+      "id": "telaviv",
+      "path": "src/game/tracks/telaviv.ts",
+      "local_binding": "track_03_telaviv",
+      "git_blob_sha1": "4fea36facda358108c53b32f2c5ae374f122bab7",
+      "sha256": "1c5213f54deb797fc736206f31c7bdff8cd364b913761e798c19d6350e683c9e",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 4,
+      "id": "namal",
+      "path": "src/game/tracks/namal.ts",
+      "local_binding": "track_04_namal",
+      "git_blob_sha1": "507b32c7d409dd31b3eec3c72d77dcddcec997d9",
+      "sha256": "4e1c67e34343d23c1581be4ea58198837050379afcae7a91356a098ce9f5214d",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 5,
+      "id": "jerusalem",
+      "path": "src/game/tracks/jerusalem.ts",
+      "local_binding": "track_05_jerusalem",
+      "git_blob_sha1": "36030431e53a1993c7f045360abdc40181e25aff",
+      "sha256": "352a9f8bc5704544c5149860ea0b364d214e5e182b047caae15444631a9c545c",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 6,
+      "id": "haifa",
+      "path": "src/game/tracks/haifa.ts",
+      "local_binding": "track_06_haifa",
+      "git_blob_sha1": "0caaa1c62e800101a845f828888520ed6d6d4949",
+      "sha256": "8a6081f1d5569fa6a5b0d3810a3912c78bd8158d310d2d49be0699181c9e52c3",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 7,
+      "id": "eilat",
+      "path": "src/game/tracks/eilat.ts",
+      "local_binding": "track_07_eilat",
+      "git_blob_sha1": "39e3e3751d47d40eca1ccf5bc0b33839c00e7068",
+      "sha256": "bf9058846742841d829735d7d238fc261cce7939c77d9819701048438e40ebfd",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 8,
+      "id": "rothschild",
+      "path": "src/game/tracks/rothschild.ts",
+      "local_binding": "track_08_rothschild",
+      "git_blob_sha1": "aee7e8f82b091539ab0113a77aac2d5d30e9a2d6",
+      "sha256": "5e86efcf42a1f8f93ad5f57d98cfda48d7f343f53887ad359582d936b1f5b275",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 9,
+      "id": "ayalon",
+      "path": "src/game/tracks/ayalon.ts",
+      "local_binding": "track_09_ayalon",
+      "git_blob_sha1": "c98e8fa1c6efe837269232c5b4bdbb491acb4bc3",
+      "sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 10,
+      "id": "caesarea",
+      "path": "src/game/tracks/caesarea.ts",
+      "local_binding": "track_10_caesarea",
+      "git_blob_sha1": "7208a2c7fe12ce17ef08aea13ec04ffe3270425b",
+      "sha256": "ad9ed0da337a44f7149e2551700127246907038a2f8049c048c6b825815c16e9",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 11,
+      "id": "deadsea",
+      "path": "src/game/tracks/deadsea.ts",
+      "local_binding": "track_11_deadsea",
+      "git_blob_sha1": "e199ea75aaad0e5317e9e275ff1768e06e01b8af",
+      "sha256": "13ef3645aa3a12c2e6c5e4e424cc38dafb8fc333753d3955ae2402e89265cb16",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 12,
+      "id": "acre",
+      "path": "src/game/tracks/acre.ts",
+      "local_binding": "track_12_acre",
+      "git_blob_sha1": "55647da3074e59ef6fbfa21fa95ed835f0d31563",
+      "sha256": "a9bfac7c296932c19326e7606d166bea7870a64d44a2d83ba3984bbf3665578b",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 13,
+      "id": "centralpark",
+      "path": "src/game/tracks/centralpark.ts",
+      "local_binding": "track_13_centralpark",
+      "git_blob_sha1": "2566eabf0ad2db297afdf3e3ff743aae81352ae1",
+      "sha256": "f747bb178dd360670458cc451514c3ea11179d605f47b22b3619c59b742a80fa",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 14,
+      "id": "timessquare",
+      "path": "src/game/tracks/timessquare.ts",
+      "local_binding": "track_14_timessquare",
+      "git_blob_sha1": "b176be937ee3f8aa827abcd2f54bb642dfbe3b8b",
+      "sha256": "b7cc339e0c037f18aec763ff51343e8631dd6395e79ce867d54a0ba1edcdb8fe",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 15,
+      "id": "brooklynbridge",
+      "path": "src/game/tracks/brooklynbridge.ts",
+      "local_binding": "track_15_brooklynbridge",
+      "git_blob_sha1": "84275b839abe4fba85e8711be55934c389d5b697",
+      "sha256": "c289ade57cb0aeaad6a7aa0494199bbbaa9ccc3f5552c544f0726d3616f0654d",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 16,
+      "id": "manhattan",
+      "path": "src/game/tracks/manhattan.ts",
+      "local_binding": "track_16_manhattan",
+      "git_blob_sha1": "0e7b5d5e503d09bd377228650e4c802518db2d8c",
+      "sha256": "74e2b9656c9622eeadd07dd8e1a892317f3d4d4a0d6ad8d4c430f00569b81a35",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 17,
+      "id": "beersheva",
+      "path": "src/game/tracks/beersheva.ts",
+      "local_binding": "track_17_beersheva",
+      "git_blob_sha1": "f88929141f36bafb6ae3fc56a8d5c4d1bae22adb",
+      "sha256": "d2942a87a8a5de0d31b92ed700eae2ddc31abb94e91a59d5e80be3bc2a0b338e",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 18,
+      "id": "netanya",
+      "path": "src/game/tracks/netanya.ts",
+      "local_binding": "track_18_netanya",
+      "git_blob_sha1": "ebfeaf655615c42e158869141be7364d088ff88e",
+      "sha256": "2b83d961850c51938b007618867f8d1a0d7f52344f2e923cb7c50ca248ea7d38",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 19,
+      "id": "hw1",
+      "path": "src/game/tracks/hw1.ts",
+      "local_binding": "track_19_hw1",
+      "git_blob_sha1": "82628dc8fb3c1ba6a339be5fc8ccc6537ddd68bd",
+      "sha256": "b1d349c101f378599b268b75acacd3f073c569e215d4fedbc2ce36dceb1e30ff",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 20,
+      "id": "herzliya",
+      "path": "src/game/tracks/herzliya.ts",
+      "local_binding": "track_20_herzliya",
+      "git_blob_sha1": "23a436f67d55de4ecd40b587afd1f15a05bc9811",
+      "sha256": "8a42d1e8da8ac0b4d6e490f0effb18a7eeaacba9838fdd12f06a2c15a873fe6b",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 21,
+      "id": "hanikra",
+      "path": "src/game/tracks/hanikra.ts",
+      "local_binding": "track_21_hanikra",
+      "git_blob_sha1": "91c9abb43c844aaabde1b8852cb53a20d97123fa",
+      "sha256": "0482b64c611bb9689e6098fc748beac6bcc16695c7553c989b9274f8565db1b6",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 22,
+      "id": "haifaport",
+      "path": "src/game/tracks/haifaport.ts",
+      "local_binding": "track_22_haifaport",
+      "git_blob_sha1": "c0d37f7010194f2f2eba8a77761ef0c7f35fdeb1",
+      "sha256": "f06aee9f16cecc49e44d549c3565cdadb2e959cbaef09a5fff7b9fab1a064f04",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 23,
+      "id": "stellamaris",
+      "path": "src/game/tracks/stellamaris.ts",
+      "local_binding": "track_23_stellamaris",
+      "git_blob_sha1": "31a0ef5ff9ae7c35c38ccede9cddd8c1c145b20a",
+      "sha256": "65890e517731abca39befa1771a9b08eda0ee1bd6a8f026a1a12c2e799e6806b",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 24,
+      "id": "tiberias",
+      "path": "src/game/tracks/tiberias.ts",
+      "local_binding": "track_24_tiberias",
+      "git_blob_sha1": "5ba2851f1e42a20145eb16196a983d748e3d12c0",
+      "sha256": "c487b85355115d0919aba4d0c1af81b3eef695095645fe48146bae189980fc5a",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 25,
+      "id": "golan",
+      "path": "src/game/tracks/golan.ts",
+      "local_binding": "track_25_golan",
+      "git_blob_sha1": "7cb32087a5a38fe15e9e76daaa140a3deb6312eb",
+      "sha256": "f719d6bc64694924c9e41d39de901f373ba9783bcb156a54118887c752b8a093",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 26,
+      "id": "hermon",
+      "path": "src/game/tracks/hermon.ts",
+      "local_binding": "track_26_hermon",
+      "git_blob_sha1": "4886dba20224b94cff50f39dd1be9d5bff96f5ab",
+      "sha256": "5d1e267fc7527143f0b5f88823410d6d3927a098e64ae7330cc55140c29054a2",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 27,
+      "id": "hw6",
+      "path": "src/game/tracks/hw6.ts",
+      "local_binding": "track_27_hw6",
+      "git_blob_sha1": "7332d9d5031ffc74216d6150c6fcde0ce9cc0fb9",
+      "sha256": "35b7881dd1822f5d76433299caf8c605fc1b178f426cff3a4e8a90a128b7e256",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 28,
+      "id": "hw2",
+      "path": "src/game/tracks/hw2.ts",
+      "local_binding": "track_28_hw2",
+      "git_blob_sha1": "b38882b9e2a23e338877e93b6ba9fab1cf6f0a61",
+      "sha256": "837274616ed4b51ddde6ca4eb7ebe0e8537850f2feedad66cf445b04eec069a4",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 29,
+      "id": "hw90",
+      "path": "src/game/tracks/hw90.ts",
+      "local_binding": "track_29_hw90",
+      "git_blob_sha1": "243deba212f40fd4bee57cfa87eb3eac988ad2f3",
+      "sha256": "8db2cfa6d6ad73c50c6285bc7fb15827a1f0f73a819f099885ca59646d21283f",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 30,
+      "id": "petah",
+      "path": "src/game/tracks/petah.ts",
+      "local_binding": "track_30_petah",
+      "git_blob_sha1": "01e49a0156e81a6c4055d080a4210e0d9f378750",
+      "sha256": "2f70dcb260195fcaaf97b82644e96598b0f973a480c261a2ec4ddfedd2157eba",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 31,
+      "id": "rishon",
+      "path": "src/game/tracks/rishon.ts",
+      "local_binding": "track_31_rishon",
+      "git_blob_sha1": "60f57820f05fe97eb113dc510d5642593f45c076",
+      "sha256": "3f353a794b10e137c09736dd70780e993757a34a7a8e04cc4a29bd7160d6a02e",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 32,
+      "id": "ashdod",
+      "path": "src/game/tracks/ashdod.ts",
+      "local_binding": "track_32_ashdod",
+      "git_blob_sha1": "4d18cf4bce7259fd405a1e16d34bebd6311c90c7",
+      "sha256": "73ac7de3d1a9596b6b1b5c558315c45a866008299ec5472511ed3aa13f1f5217",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 33,
+      "id": "ashkelon",
+      "path": "src/game/tracks/ashkelon.ts",
+      "local_binding": "track_33_ashkelon",
+      "git_blob_sha1": "2890c118860e0cac6a0a54fc9e07fbc3d6595a9b",
+      "sha256": "f70a0c9ecc545e9149c23d5686029578e0de31acdaa78f9dac91dab04b3519c3",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 34,
+      "id": "scopus",
+      "path": "src/game/tracks/scopus.ts",
+      "local_binding": "track_34_scopus",
+      "git_blob_sha1": "e6a0c93566a09c2c1cddce72e8d93fdb37b8612b",
+      "sha256": "d5565572b22e5d85da8ee023c819bd7f2b070aa6d8c308873d890d5a6b6e3a25",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 35,
+      "id": "walls",
+      "path": "src/game/tracks/walls.ts",
+      "local_binding": "track_35_walls",
+      "git_blob_sha1": "65acd04057317aa71ca00b63e1d244317bfeb82c",
+      "sha256": "a44a9b03df1ae78ea6ff0dae565226a1057bbb9a3307292c34d58fa6484618f5",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 36,
+      "id": "modiin",
+      "path": "src/game/tracks/modiin.ts",
+      "local_binding": "track_36_modiin",
+      "git_blob_sha1": "98423212a49b9d737bbd08c20cd297ada19b7592",
+      "sha256": "8c77c800858e5349eadd4e2c0f06817bee0e969d2d6ff96baf21a8af9cf1f8c6",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 37,
+      "id": "ramon",
+      "path": "src/game/tracks/ramon.ts",
+      "local_binding": "track_37_ramon",
+      "git_blob_sha1": "3be9a73491d4d4097492b1a0c3aadecbcae32f2d",
+      "sha256": "b0f363210e071220daec626b5bc7074bfc060f611df8aef190f99e57502ab158",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 38,
+      "id": "hw40",
+      "path": "src/game/tracks/hw40.ts",
+      "local_binding": "track_38_hw40",
+      "git_blob_sha1": "9af18838da20c4f3d5c6543f3457f15892b59811",
+      "sha256": "227aa978e724678ea567e917cc4f0b27414c6774d42727405d54b4723e244fa0",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 39,
+      "id": "eilatmtn",
+      "path": "src/game/tracks/eilatmtn.ts",
+      "local_binding": "track_39_eilatmtn",
+      "git_blob_sha1": "babfc756cafa2eff7bdaabdc54101add467eb9eb",
+      "sha256": "7cafa44957c09a791dfe4de346a8d77e07c35a037bbba1052376e3452ea0c29a",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 40,
+      "id": "gushdan",
+      "path": "src/game/tracks/gushdan.ts",
+      "local_binding": "track_40_gushdan",
+      "git_blob_sha1": "4d429387139a002824bf5353a3298de654f5c7c6",
+      "sha256": "c80f01d7939ddf3906c93d93903737907dc0072a526748f4c4345ef2d205e73c",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 41,
+      "id": "nazareth",
+      "path": "src/game/tracks/nazareth.ts",
+      "local_binding": "track_41_nazareth",
+      "git_blob_sha1": "7fbe48d00166206c65ccc756e673d65a031662a5",
+      "sha256": "0e6974b035eb923dddddff169cbd9a51a278490c64f966be07f83ff35a018129",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 42,
+      "id": "tzfat",
+      "path": "src/game/tracks/tzfat.ts",
+      "local_binding": "track_42_tzfat",
+      "git_blob_sha1": "f95cd010bd5c45e7833cd58577d71b6b97ac0122",
+      "sha256": "b28ad62f7e539a0196d1ec4c278157040498ebdb4ffeb02c8b25d55d261682ba",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 43,
+      "id": "masada",
+      "path": "src/game/tracks/masada.ts",
+      "local_binding": "track_43_masada",
+      "git_blob_sha1": "00c8bfe5154a990fa50c7116b29c07d0c68ee74f",
+      "sha256": "e9918d92c0cdc972197fa55e134d021f09aa5ee1cf6ced3f88162e7fb295f2fb",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 44,
+      "id": "batyam",
+      "path": "src/game/tracks/batyam.ts",
+      "local_binding": "track_44_batyam",
+      "git_blob_sha1": "2cba99faeb95aa8b3c5ce4f8dc9ed985fa53b0ab",
+      "sha256": "20fd3bf31074a678175711733931c65eca9ab22299a14629089e24d4774ddedd",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 45,
+      "id": "rehovot",
+      "path": "src/game/tracks/rehovot.ts",
+      "local_binding": "track_45_rehovot",
+      "git_blob_sha1": "bafb0b2576cf6ecd424193e69a3d34ae3795ec23",
+      "sha256": "1209fed06f8b1e6123c5a61e0a034670720b4eb54f477c57ab7a2893833a089d",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 46,
+      "id": "nahariya",
+      "path": "src/game/tracks/nahariya.ts",
+      "local_binding": "track_46_nahariya",
+      "git_blob_sha1": "4a3ecdc706a549e03d7ba26fc9e28380a5523f72",
+      "sha256": "4df5e219e02b3ae3ebf651610fb59d9f626c4ee3ad844914407d527ad81122cd",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 47,
+      "id": "ramla",
+      "path": "src/game/tracks/ramla.ts",
+      "local_binding": "track_47_ramla",
+      "git_blob_sha1": "c6af30edbd3623ee8118ffd5c1a9211db8c75410",
+      "sha256": "30b5f5f00ff39c268ce0c792d32cf2e4571e46a90850805e4def51836e4c4df2",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 48,
+      "id": "holon",
+      "path": "src/game/tracks/holon.ts",
+      "local_binding": "track_48_holon",
+      "git_blob_sha1": "e93c6a60e55e61cc997e3909063aa0fcc6ec274b",
+      "sha256": "7c3be33aa9f0f5ed224df739778099f66e35cc352bfe1e50a244098ca95b0114",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 49,
+      "id": "beitshan",
+      "path": "src/game/tracks/beitshan.ts",
+      "local_binding": "track_49_beitshan",
+      "git_blob_sha1": "0cc1867cb19c3d3575956fba14f2ff5737a3af3c",
+      "sha256": "ae0ddfffac4241b82f0c47cedb3c7aacfded7918c00810734f3ffc5e83c6340b",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 50,
+      "id": "hadera",
+      "path": "src/game/tracks/hadera.ts",
+      "local_binding": "track_50_hadera",
+      "git_blob_sha1": "35ea253c6234404f8bf1ee98bd7c2776008ce921",
+      "sha256": "44f68ff745f971089c7b44061ff1853170130b06c3f1fad36db5a775cc4b5395",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 51,
+      "id": "lod",
+      "path": "src/game/tracks/lod.ts",
+      "local_binding": "track_51_lod",
+      "git_blob_sha1": "0358ad5290bf7024c346c02fe395b94e82dfc7c6",
+      "sha256": "e1e69e04555a32ead6e99a26368ea418d7037d9b7dae1f600ea7395203005e91",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 52,
+      "id": "kshmona",
+      "path": "src/game/tracks/kshmona.ts",
+      "local_binding": "track_52_kshmona",
+      "git_blob_sha1": "eef68da5142d68bd1e10fadfe35b8de7b43cc084",
+      "sha256": "ef495a1a7a1b9d0c022c69162796be1825ceab4ef7072d3f89ee01b9f46c809d",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 53,
+      "id": "raanana",
+      "path": "src/game/tracks/raanana.ts",
+      "local_binding": "track_53_raanana",
+      "git_blob_sha1": "b42df89a9ec089c61cbb1542bf878c187d52b3f9",
+      "sha256": "7ed636824c1b31ae329a1f034b24cef82344155b85692a1c02f113702bc388f3",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 54,
+      "id": "afula",
+      "path": "src/game/tracks/afula.ts",
+      "local_binding": "track_54_afula",
+      "git_blob_sha1": "94170dd72494abe16bde4c55cc0786d35a992976",
+      "sha256": "f4982884dd9cc7d500a5389ee1fe74e870c0001bff00dcaf8ba58aebf1b254a3",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 55,
+      "id": "ksaba",
+      "path": "src/game/tracks/ksaba.ts",
+      "local_binding": "track_55_ksaba",
+      "git_blob_sha1": "d0d18082296152b766eed412b831937ec8f6a797",
+      "sha256": "d26a389c098983e431142904c298af30e8926a3fc00f1f33f79345a5f4b652ec",
+      "object_ast_sha256": null
+    },
+    {
+      "ordinal": 56,
+      "id": "arad",
+      "path": "src/game/tracks/arad.ts",
+      "local_binding": "track_56_arad",
+      "git_blob_sha1": "c1af954478778ac57112d35cfa33c3a8491323a9",
+      "sha256": "3d6feed16e274fb192c5f8d1cb504e8a7a9e911a5d3b9323b77570a38b6a02ed",
+      "object_ast_sha256": null
+    }
+  ],
+  "source_identities": {
+    "facade": {
+      "path": "src/game/tracks.ts",
+      "git_blob_sha1": "540d0d6e444f1764d2a9682bb2a654b736bc9b3f",
+      "sha256": "b28327a0a4e3cd272f8aeffe33a94d3fe6b45d923c47b0c4d27c29bd7332f581"
+    },
+    "shared": {
+      "path": "src/game/tracks/shared.ts",
+      "git_blob_sha1": "19bb0856f4a357fc00bcf54d81d67d57959f8e31",
+      "sha256": "0ea33babacf4f3e6599d35d69e48f028d6e28cfec62cab52f7c76fa78795f0ae"
+    },
+    "index": {
+      "path": "src/game/tracks/index.ts",
+      "git_blob_sha1": "eb224b1dd8353adf841e4305b119dbe469071aae",
+      "sha256": "28c1ac5eb86657b2f1099afae0a79ba088734964755bf74beddebd82c4d164bb"
+    },
+    "type_authority": {
+      "path": "src/game/types.ts",
+      "git_blob_sha1": "f2ce095b2fcd4f9fa6f55ce0c3413ffa8d09d6c0"
+    },
+    "math_support": {
+      "path": "src/game/math.ts",
+      "git_blob_sha1": "c215daef16056d5d7c142db964ed93f82c74f8e8"
+    },
+    "world_consumer": {
+      "path": "src/game/world.ts",
+      "git_blob_sha1": "07b7e0b559e66f89641357db5aa2be8bcd8c3135"
+    },
+    "module_set_sha256": "dea4173593692ab794423fbc9af7528e9e51f9c3dc483e9e8c68b62f40cffb23"
+  },
+  "semantic_integrity": {
+    "ordered_runtime_definition_digest_sha256": "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d",
+    "aggregate_runtime_definition_digest_sha256": "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7",
+    "runtime_data_changes": 0,
+    "runtime_order_changes": 0,
+    "track_id_changes": 0,
+    "mvp_classification_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "legacy_reconstruction": {
+    "purpose": "Reconstruct the exact accepted RSH-013 source from modular authorities for byte and semantic validation; no duplicate runtime catalogue is stored.",
+    "expected_git_blob_sha1": "e26454223f8a598cdf516af7c7c3f494162e2616",
+    "expected_sha256": "aeae9a6d982e44a823d44bc8f4020c885243b5fd4eb8fab82f6d2b91e0841046",
+    "layout": {
+      "statement_prefix": "export const TRACKS: TrackDef[] = [",
+      "leading": "\n  ",
+      "separators": [
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  ",
+        ",\n  "
+      ],
+      "trailing": ",\n",
+      "statement_suffix": "];"
+    },
+    "actual_git_blob_sha1": "e26454223f8a598cdf516af7c7c3f494162e2616",
+    "actual_sha256": "aeae9a6d982e44a823d44bc8f4020c885243b5fd4eb8fab82f6d2b91e0841046"
+  },
+  "change_control": {
+    "module_changes_require_owner_authorization": true,
+    "runtime_data_changes_require_owner_authorization": true,
+    "runtime_order_changes_require_owner_authorization": true,
+    "track_id_changes_require_owner_authorization": true,
+    "mvp_mapping_changes_require_owner_authorization": true,
+    "RSH-015_authorized": false
+  }
+}

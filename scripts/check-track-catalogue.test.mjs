@@ -8,6 +8,7 @@ import {
   extractTrackIdsFromType,
   validateTrackCatalogue,
 } from "./check-track-catalogue.mjs";
+import { readCanonicalTrackSource } from "./load-track-modules.mjs";
 
 function readInputs() {
   return {
@@ -16,7 +17,7 @@ function readInputs() {
     ),
     product: JSON.parse(readFileSync(fromRoot("PRODUCT-DEFINITION.json"), "utf8")),
     typeSource: readFileSync(fromRoot("src", "game", "types.ts"), "utf8"),
-    trackSource: readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8"),
+    trackSource: readCanonicalTrackSource(),
   };
 }
 

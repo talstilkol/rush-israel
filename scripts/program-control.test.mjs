@@ -29,8 +29,8 @@ test("canonical queue contains exactly RSH-001 through RSH-067", () => {
 test("current state and queue agree on every post-merge program count", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
-  assert.equal(current.state_semantics.effective_event, "merge_of_pull_request_16");
-  assert.equal(queue.state_effective_on, "merge_of_pull_request_16");
+  assert.equal(current.state_semantics.effective_event, "merge_of_RSH_014_pull_request");
+  assert.equal(queue.state_effective_on, "merge_of_RSH_014_pull_request");
   assert.equal(current.program_status.program_units_total, queue.counts.total);
   assert.equal(current.program_status.accepted_units, queue.counts.accepted);
   assert.equal(current.program_status.units_in_review, queue.counts.in_review);
@@ -43,19 +43,20 @@ test("current state and queue agree on every post-merge program count", () => {
   assert.equal(current.program_status.queue_head_pull_request, queue.queue_head.pull_request);
 });
 
-test("the owner-bounded batch has exactly four accepted units on RSH-013 merge", () => {
+test("the owner-bounded batch closes with five accepted units on RSH-014 merge", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
   const expected = ["RSH-010", "RSH-011", "RSH-012", "RSH-013", "RSH-014"];
   assert.deepEqual(current.batch_authorization.authorized_units, expected);
   assert.deepEqual(queue.policy.active_bounded_batch.authorized_units, expected);
-  assert.equal(current.batch_authorization.completed_units, 4);
-  assert.equal(queue.policy.active_bounded_batch.completed, 4);
+  assert.equal(current.batch_authorization.completed_units, 5);
+  assert.equal(queue.policy.active_bounded_batch.completed, 5);
   assert.equal(current.batch_authorization.total_units, 5);
   assert.equal(queue.policy.active_bounded_batch.total, 5);
   assert.equal(current.batch_authorization.closed_after, "RSH-014");
   assert.equal(current.batch_authorization["RSH-015_authorized"], false);
-  assert.equal(queue.next_instruction_contract.batch_authority_remaining, 1);
+  assert.equal(queue.next_instruction_contract.batch_authority_remaining, 0);
+  assert.equal(queue.next_instruction_contract.batch_closed, true);
 });
 
 test("RSH-007 through RSH-012 are reconciled to exact accepted evidence", () => {
@@ -90,36 +91,39 @@ test("RSH-007 through RSH-012 are reconciled to exact accepted evidence", () => 
   );
 });
 
-test("RSH-013 becomes accepted on merge and RSH-014 is the sole eligible final batch unit", () => {
+test("RSH-014 becomes accepted on merge and closes the bounded batch", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
   const baseline = readJson("BASELINE-REGISTER.json");
   const schema = readJson("TRACK-SCHEMA.json");
-  assert.equal(queue.counts.accepted, 13);
+  const modules = readJson("TRACK-MODULE-MANIFEST.json");
+  assert.equal(queue.counts.accepted, 14);
   assert.equal(queue.counts.in_review, 0);
-  assert.equal(queue.counts.eligible, 1);
+  assert.equal(queue.counts.eligible, 0);
   assert.equal(queue.counts.deferred, 53);
-  assert.equal(queue.counts.remaining, 54);
-  assert.equal(queue.queue_head.id, "RSH-014");
-  assert.equal(queue.queue_head.state, "eligible_under_owner_next_2");
+  assert.equal(queue.counts.remaining, 53);
+  assert.equal(queue.queue_head.id, "RSH-015");
+  assert.equal(queue.queue_head.state, "deferred_not_authorized");
   assert.equal(queue.queue_head.branch, null);
   assert.equal(queue.queue_head.pull_request, null);
   assert.equal(current.active_change, null);
-  assert.equal(current.last_transition.unit, "RSH-013");
-  assert.equal(current.last_transition.pull_request, 16);
+  assert.equal(current.last_transition.unit, "RSH-014");
   assert.equal(current.last_transition.state, "accepted_on_merge");
-  assert.equal(current.accepted_units["RSH-013"].state, "accepted_on_merge");
-  assert.equal(current.accepted_units["RSH-013"].runtime_definition_digest, "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d");
+  assert.equal(current.accepted_units["RSH-013"].merge_sha, "0273520da4924cb3e71ff41b2ea75788a45bf757");
+  assert.equal(current.accepted_units["RSH-014"].state, "accepted_on_merge");
+  assert.equal(current.accepted_units["RSH-014"].module_count, 56);
+  assert.equal(modules.modules.length, 56);
+  assert.equal(modules.semantic_integrity.runtime_data_changes, 0);
+  assert.equal(modules.semantic_integrity.runtime_order_changes, 0);
+  assert.equal(schema.source_layout.state, "modular");
   assert.equal(schema.runtime_definition_integrity.expected_digest, "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d");
-  assert.equal(schema.runtime_definition_integrity.capture_state, "pinned");
-  assert.equal(baseline.working_state.unit, "RSH-013");
-  assert.equal(baseline.working_state.state, "accepted_on_merge_of_PR_16");
-  assert.equal(current.validation["RSH-014_precreated"], false);
-  assert.equal(queue.next_instruction_contract["RSH-014_precreated"], false);
+  assert.equal(baseline.working_state.unit, "RSH-014");
+  assert.equal(baseline.working_state.state, "accepted_on_merge");
+  assert.equal(queue.next_instruction_contract.batch_authority_remaining, 0);
+  assert.equal(queue.next_instruction_contract["RSH-015_authorized"], false);
   assert.equal(queue.next_after_acceptance.id, "RSH-015");
   assert.equal(queue.next_after_acceptance.state, "deferred_not_authorized");
 });
-
 test("asset provenance remains accepted without claiming legal clearance", () => {
   const current = readJson("CURRENT-STATE.json");
   const manifest = readJson("ASSET-PROVENANCE.json");
@@ -203,6 +207,7 @@ test("product, catalogue, provenance and metadata tests are in the complete suit
   assert.equal(readJson("ASSET-PROVENANCE.json").scope.shipping_files_total, 134);
   assert.equal(readJson("PRODUCT-METADATA.json").product.name, "RUSH Israel");
   assert.equal(readJson("TRACK-SCHEMA.json").schema_version, "1.0.2");
+  assert.equal(readJson("TRACK-MODULE-MANIFEST.json").modules.length, 56);
 });
 
 test("public QA commands own the server lifecycle", () => {

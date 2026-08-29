@@ -1,0 +1,47 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, afl } from "./shared";
+
+export default defineTrack({
+    id: "afula",
+    nameHe: "עפולה",
+    nameEn: "Afula",
+    city: "kinneret",
+    cityHe: "כנרת",
+    cityEn: "Kinneret",
+    lengthHint: "3 הקפות · הכיכר",
+    description: "הכיכר הגדולה, עמק יזרעאל, הגלבוע וכביש 65. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "The big circle, Jezreel Valley, Mount Gilboa and Highway 65. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/afula.jpg",
+    width: 20,
+    seed: 1925,
+    theme: "highway",
+    ground: 0x7a8a58,
+    sand: 0xd0c090,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    checkpointCount: 10,
+    points: [
+      afl(32.61, 35.289),
+      afl(32.608, 35.295),
+      afl(32.606, 35.3),
+      afl(32.602, 35.302),
+      afl(32.598, 35.298),
+      afl(32.596, 35.292),
+      afl(32.598, 35.286),
+      afl(32.602, 35.282),
+      afl(32.607, 35.283),
+      afl(32.61, 35.286),
+    ],
+    elevation: () => 0.8,
+    streets: [
+      { from: 0.0, to: 0.22, he: "הכיכר", en: "The Circle" },
+      { from: 0.22, to: 0.44, he: "כביש 65", en: "Highway 65" },
+      { from: 0.44, to: 0.66, he: "יזרעאל", en: "Jezreel" },
+      { from: 0.66, to: 0.84, he: "הגלבוע", en: "Gilboa" },
+      { from: 0.84, to: 1, he: "העיר", en: "The Town" },
+    ],
+    pois: [
+      { ...afl(32.61, 35.289), r: 28, he: "הכיכר", en: "The Circle" },
+      { ...afl(32.607, 35.3), r: 24, he: "כביש 65", en: "Highway 65" },
+      { ...afl(32.598, 35.286), r: 26, he: "הגלבוע", en: "Gilboa" },
+    ],
+  });

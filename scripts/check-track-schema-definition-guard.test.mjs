@@ -6,8 +6,9 @@ import {
   analyzeTrackDefinitionClosure,
   validateTrackDefinitionClosure,
 } from "./check-track-schema-definition-guard.mjs";
+import { readCanonicalTrackSource } from "./load-track-modules.mjs";
 
-const SOURCE = readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8");
+const SOURCE = readCanonicalTrackSource();
 const TRACKS_MARKER = "export const TRACKS: TrackDef[] = [";
 
 function insertBeforeTracks(statement) {

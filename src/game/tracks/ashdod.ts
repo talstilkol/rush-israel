@@ -1,0 +1,47 @@
+import { defineTrack } from "../track-schema";
+import { TLV_BLUE, asd } from "./shared";
+
+export default defineTrack({
+    id: "ashdod",
+    nameHe: "נמל אשדוד",
+    nameEn: "Ashdod Port",
+    city: "ashdod",
+    cityHe: "אשדוד",
+    cityEn: "Ashdod",
+    lengthHint: "3 הקפות · הרציפים",
+    description: "הנמל, המרינה, הרצל ורוגוזין. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "The port, the marina, Herzl and Rogozin. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/ashdod.jpg",
+    width: 20,
+    seed: 1956,
+    theme: "port",
+    ground: 0x7a746c,
+    sand: 0xc8b898,
+    sky: { ...TLV_BLUE, fogDensity: 0.0014 },
+    water: { x: asd(31.81, 34.62).x, z: asd(31.81, 34.62).z, w: 280, d: 420, color: 0x1a5a70 },
+    checkpointCount: 10,
+    points: [
+      asd(31.821, 34.646),
+      asd(31.816, 34.642),
+      asd(31.81, 34.638),
+      asd(31.805, 34.636),
+      asd(31.802, 34.638),
+      asd(31.802, 34.644),
+      asd(31.806, 34.65),
+      asd(31.812, 34.652),
+      asd(31.818, 34.651),
+      asd(31.822, 34.648),
+    ],
+    elevation: () => 0.4,
+    streets: [
+      { from: 0.0, to: 0.28, he: "הרציף", en: "The Quay" },
+      { from: 0.28, to: 0.5, he: "המרינה", en: "The Marina" },
+      { from: 0.5, to: 0.75, he: "הרצל", en: "Herzl" },
+      { from: 0.75, to: 1, he: "רוגוזין", en: "Rogozin" },
+    ],
+    pois: [
+      { ...asd(31.8218, 34.6436), r: 32, he: "נמל אשדוד", en: "Ashdod Port" },
+      { ...asd(31.804, 34.636), r: 26, he: "המרינה", en: "The Marina" },
+      { ...asd(31.806, 34.65), r: 24, he: "הרצל", en: "Herzl" },
+    ],
+  });

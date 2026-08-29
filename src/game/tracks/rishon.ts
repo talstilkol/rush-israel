@@ -1,0 +1,45 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, rsh } from "./shared";
+
+export default defineTrack({
+    id: "rishon",
+    nameHe: "ראשון לציון",
+    nameEn: "Rishon LeZion",
+    city: "rishon",
+    cityHe: "ראשון לציון",
+    cityEn: "Rishon LeZion",
+    lengthHint: "3 הקפות · היקב",
+    description: "רוטשילד, בית הכנסת הגדול, היקב ונחלת יהודה. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "Rothschild, the Great Synagogue, the winery and Nahalat Yehuda. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/rishon.jpg",
+    width: 20,
+    seed: 1882,
+    theme: "jaffa",
+    ground: 0x8a7a64,
+    sand: 0xd4c4a4,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    checkpointCount: 10,
+    points: [
+      rsh(31.9645, 34.8028),
+      rsh(31.964, 34.8046),
+      rsh(31.9632, 34.8064),
+      rsh(31.962, 34.8076),
+      rsh(31.9632, 34.8088),
+      rsh(31.9648, 34.8082),
+      rsh(31.966, 34.8066),
+      rsh(31.9664, 34.8046),
+      rsh(31.9658, 34.803),
+    ],
+    elevation: () => 0.5,
+    streets: [
+      { from: 0.0, to: 0.28, he: "רוטשילד", en: "Rothschild" },
+      { from: 0.28, to: 0.52, he: "הרצל", en: "Herzl" },
+      { from: 0.52, to: 0.76, he: "היקב", en: "The Winery" },
+      { from: 0.76, to: 1, he: "נחלת יהודה", en: "Nahalat Yehuda" },
+    ],
+    pois: [
+      { ...rsh(31.9626, 34.803), r: 28, he: "בית הכנסת הגדול", en: "Great Synagogue" },
+      { ...rsh(31.9608, 34.8086), r: 26, he: "היקב", en: "The Winery" },
+      { ...rsh(31.9656, 34.8012), r: 22, he: "מגדל המים", en: "Water Tower" },
+    ],
+  });

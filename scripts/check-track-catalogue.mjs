@@ -2,6 +2,7 @@
 import { readFileSync, realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
+import { readCanonicalTrackSource } from "./load-track-modules.mjs";
 
 export const EXPECTED_SOURCE_COMMIT = "69765febef85d732d9ba79fe260fec78ee76b2df";
 
@@ -188,7 +189,7 @@ if (isMainModule(import.meta.url)) {
   );
   const product = JSON.parse(readFileSync(fromRoot("PRODUCT-DEFINITION.json"), "utf8"));
   const typeSource = readFileSync(fromRoot("src", "game", "types.ts"), "utf8");
-  const trackSource = readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8");
+  const trackSource = readCanonicalTrackSource();
   const errors = validateTrackCatalogue({ classification, product, typeSource, trackSource });
   if (errors.length) {
     console.error("track-catalogue fail\n" + errors.map((error) => `- ${error}`).join("\n"));

@@ -1,0 +1,47 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, hol } from "./shared";
+
+export default defineTrack({
+    id: "holon",
+    nameHe: "חולון",
+    nameEn: "Holon",
+    city: "telaviv",
+    cityHe: "תל אביב",
+    cityEn: "Tel Aviv",
+    lengthHint: "3 הקפות · העיר",
+    description: "מוזיאון העיצוב, פארק פרס, סוקולוב והדרך לבת ים. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "Design Museum, Peres Park, Sokolov and the road to Bat Yam. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/holon.jpg",
+    width: 20,
+    seed: 1940,
+    theme: "bauhaus",
+    ground: 0x7a7a6e,
+    sand: 0xd8ccb0,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    checkpointCount: 10,
+    points: [
+      hol(32.007, 34.779),
+      hol(32.011, 34.776),
+      hol(32.016, 34.773),
+      hol(32.02, 34.772),
+      hol(32.02, 34.777),
+      hol(32.017, 34.782),
+      hol(32.012, 34.787),
+      hol(32.007, 34.79),
+      hol(32.003, 34.787),
+      hol(32.004, 34.782),
+    ],
+    elevation: () => 0.5,
+    streets: [
+      { from: 0.0, to: 0.22, he: "מוזיאון העיצוב", en: "Design Museum" },
+      { from: 0.22, to: 0.44, he: "סוקולוב", en: "Sokolov" },
+      { from: 0.44, to: 0.66, he: "פארק פרס", en: "Peres Park" },
+      { from: 0.66, to: 0.84, he: "חנקין", en: "Hankin" },
+      { from: 0.84, to: 1, he: "לבת ים", en: "Toward Bat Yam" },
+    ],
+    pois: [
+      { ...hol(32.0062, 34.7814), r: 26, he: "מוזיאון העיצוב", en: "Design Museum" },
+      { ...hol(32.018, 34.772), r: 24, he: "סוקולוב", en: "Sokolov" },
+      { ...hol(32.0042, 34.7886), r: 26, he: "פארק פרס", en: "Peres Park" },
+    ],
+  });

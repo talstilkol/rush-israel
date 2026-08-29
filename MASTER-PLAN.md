@@ -1,15 +1,15 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 2.9.0  
-**Repository:** `talstilkol/rush-israel`  
-**Canonical branch:** `main`  
-**RSH-013 reconciled implementation base:** `e9b7683330bb288e9e5005e595f699b58d7ad20f`  
-**State effective on:** merge of PR #16  
-**Next eligible unit:** RSH-014  
-**Product-definition authority:** `PRODUCT-DEFINITION.json`  
-**Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`  
-**Asset-provenance authority:** `ASSET-PROVENANCE.json`  
-**Product-metadata authority:** `PRODUCT-METADATA.json`  
+**Schema:** 3.0.0
+**Repository:** `talstilkol/rush-israel`
+**Canonical branch:** `main`
+**RSH-014 implementation base:** `0273520da4924cb3e71ff41b2ea75788a45bf757`
+**State effective on:** merge of the RSH-014 pull request
+**Next unit:** RSH-015 — deferred and not authorised
+**Product-definition authority:** `PRODUCT-DEFINITION.json`
+**Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
+**Asset-provenance authority:** `ASSET-PROVENANCE.json`
+**Product-metadata authority:** `PRODUCT-METADATA.json`
 **Date:** 29 August 2026
 
 ## 1. Authority
@@ -86,14 +86,14 @@ root-branding assets remain unverified.
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 13 |
+| Accepted | 14 |
 | In review | 0 |
-| Eligible | 1 |
+| Eligible | 0 |
 | Deferred | 53 |
-| Remaining | 54 |
-| Queue head | RSH-014 |
+| Remaining | 53 |
+| Queue head | RSH-015 — deferred/not authorised |
 | Active PR | none |
-| Current batch completed | 4/5 |
+| Current batch completed | 5/5 — closed |
 | Release gates green | 0/13 |
 | Findings OPEN / MITIGATED / CLOSED | 24 / 7 / 11 |
 
@@ -104,7 +104,7 @@ root-branding assets remain unverified.
 | G0 | RSH-001–003 | 3 | Control and governance | ACCEPTED |
 | G1 | RSH-004–008 | 5 | Reproducible toolchain and CI | UNITS ACCEPTED; EXIT GATE BLOCKED BY OWNER SETTING |
 | G2 | RSH-009–012 | 4 | Scope, licensing and assets | ACCEPTED |
-| G3 | RSH-013–020 | 8 | Architecture decomposition | ACTIVE — RSH-013 accepted on PR #16 merge; RSH-014 eligible |
+| G3 | RSH-013–020 | 8 | Architecture decomposition | ACTIVE — RSH-013 and RSH-014 accepted; RSH-015 deferred/not authorised |
 | G4 | RSH-021–024 | 4 | Data integrity and production security | DEFERRED |
 | G5 | RSH-025–036 | 12 | Ayalon vertical slice | DEFERRED |
 | G6 | RSH-037–043 | 7 | Performance and reliability | DEFERRED |
@@ -206,12 +206,6 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-PR #16 is the sole RSH-013 delivery vehicle. It establishes one machine-readable
-track schema, compile-time helpers, TypeScript-AST validation and the reconciled
-ordered runtime-definition digest `a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d`
-without changing runtime data or order relative to live `main` commit
-`e9b7683330bb288e9e5005e595f699b58d7ad20f`.
+RSH-014 is accepted on merge only after exact-head CI and review. It replaces the monolithic track catalogue with exactly 56 per-track modules while preserving the exact RSH-013 legacy blob, semantic digests, runtime data/order and 8/48 classification.
 
-After exact-head CI and review pass and PR #16 merges, RSH-014 becomes eligible as
-the second unit authorised by the current `next 2` instruction and the final unit
-in the RSH-010–RSH-014 batch. RSH-015 must not be created or executed automatically.
+The owner-bounded RSH-010–RSH-014 batch is then closed. RSH-015 is deferred and cannot start without a new explicit owner instruction.

@@ -1,0 +1,46 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, ksb } from "./shared";
+
+export default defineTrack({
+    id: "ksaba",
+    nameHe: "כפר סבא",
+    nameEn: "Kfar Saba",
+    city: "herzliya",
+    cityHe: "הרצליה",
+    cityEn: "Herzliya",
+    lengthHint: "3 הקפות · ויצמן",
+    description: "ויצמן, ארלוזורוב, גן הזיכרון והשרון. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "Weizmann, Arlozorov, the memorial garden and the Sharon. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/ksaba.jpg",
+    width: 20,
+    seed: 1903,
+    theme: "bauhaus",
+    ground: 0x6a7a58,
+    sand: 0xc8bc98,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    checkpointCount: 10,
+    points: [
+      ksb(32.175, 34.908),
+      ksb(32.176, 34.912),
+      ksb(32.178, 34.915),
+      ksb(32.18, 34.914),
+      ksb(32.181, 34.91),
+      ksb(32.18, 34.906),
+      ksb(32.178, 34.903),
+      ksb(32.175, 34.903),
+      ksb(32.174, 34.906),
+    ],
+    elevation: () => 0.5,
+    streets: [
+      { from: 0.0, to: 0.22, he: "ויצמן", en: "Weizmann" },
+      { from: 0.22, to: 0.44, he: "ארלוזורוב", en: "Arlozorov" },
+      { from: 0.44, to: 0.66, he: "גן הזיכרון", en: "Memorial Garden" },
+      { from: 0.66, to: 0.84, he: "טשרניחובסקי", en: "Tchernichovsky" },
+      { from: 0.84, to: 1, he: "השרון", en: "The Sharon" },
+    ],
+    pois: [
+      { ...ksb(32.175, 34.908), r: 26, he: "ויצמן", en: "Weizmann" },
+      { ...ksb(32.178, 34.914), r: 24, he: "ארלוזורוב", en: "Arlozorov" },
+      { ...ksb(32.178, 34.906), r: 24, he: "גן הזיכרון", en: "Memorial Garden" },
+    ],
+  });

@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { readFileSync, realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
+import { readCanonicalTrackSource } from "./load-track-modules.mjs";
 
 export const EXPECTED_TRACK_SOURCE_PATH = "src/game/tracks.ts";
 export const EXPECTED_TRACK_SOURCE_GIT_BLOB_SHA1 =
@@ -81,7 +82,7 @@ function isMainModule(moduleUrl) {
 
 if (isMainModule(import.meta.url)) {
   const pin = JSON.parse(readFileSync(fromRoot("TRACK-SOURCE-PIN.json"), "utf8"));
-  const trackSource = readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8");
+  const trackSource = readCanonicalTrackSource();
   const result = validateTrackSourcePin({ pin, trackSource });
   if (result.errors.length) {
     console.error("track-source-pin fail\n" + result.errors.map((error) => `- ${error}`).join("\n"));

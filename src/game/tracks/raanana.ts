@@ -1,0 +1,47 @@
+import { defineTrack } from "../track-schema";
+import { TLV_GOLDEN, raa } from "./shared";
+
+export default defineTrack({
+    id: "raanana",
+    nameHe: "רעננה",
+    nameEn: "Raanana",
+    city: "herzliya",
+    cityHe: "הרצליה",
+    cityEn: "Herzliya",
+    lengthHint: "3 הקפות · אחוזה",
+    description: "פארק רעננה, אחוזה, קניון רננים והשרון. בהשראת המקום, לא מפה ולא GIS.",
+    descriptionEn: "Raanana Park, Ahuza, Renanim Mall and the Sharon. Inspired by the place — not a map, not GIS.",
+    image: "/tracks/raanana.jpg",
+    width: 20,
+    seed: 1922,
+    theme: "park",
+    ground: 0x5a7a4a,
+    sand: 0xc8bc98,
+    sky: { ...TLV_GOLDEN, fogDensity: 0.0014 },
+    checkpointCount: 10,
+    points: [
+      raa(32.184, 34.87),
+      raa(32.185, 34.864),
+      raa(32.1855, 34.858),
+      raa(32.184, 34.853),
+      raa(32.181, 34.852),
+      raa(32.179, 34.856),
+      raa(32.178, 34.862),
+      raa(32.179, 34.868),
+      raa(32.181, 34.872),
+      raa(32.183, 34.872),
+    ],
+    elevation: () => 0.5,
+    streets: [
+      { from: 0.0, to: 0.22, he: "אחוזה", en: "Ahuza" },
+      { from: 0.22, to: 0.44, he: "הפארק", en: "The Park" },
+      { from: 0.44, to: 0.66, he: "רננים", en: "Renanim" },
+      { from: 0.66, to: 0.84, he: "ויצמן", en: "Weizmann" },
+      { from: 0.84, to: 1, he: "השרון", en: "The Sharon" },
+    ],
+    pois: [
+      { ...raa(32.184, 34.87), r: 24, he: "אחוזה", en: "Ahuza" },
+      { ...raa(32.185, 34.853), r: 28, he: "פארק רעננה", en: "Raanana Park" },
+      { ...raa(32.184, 34.865), r: 24, he: "רננים", en: "Renanim" },
+    ],
+  });
