@@ -31,9 +31,7 @@ function gitBlobSha1(source) {
 }
 
 function normalizeResolvedModulePath(modulePath) {
-  return modulePath
-    .replace(/\.(?:[cm]?[jt]sx?)$/u, "")
-    .replace(/\/index$/u, "");
+  return modulePath.replace(/\.(?:[cm]?[jt]sx?)$/u, "");
 }
 
 function normalizedModulePath(filePath, moduleName) {
@@ -46,7 +44,13 @@ function normalizedModulePath(filePath, moduleName) {
 }
 
 function resolvesToTrackModule(filePath, moduleName) {
-  return normalizedModulePath(filePath, moduleName) === "src/game/tracks";
+  const resolved = normalizedModulePath(filePath, moduleName);
+  if (resolved === "src/game/tracks/index") {
+    // The canonical facade is independently pinned by TRACK-MODULE-MANIFEST.json.
+    // Other direct imports of the modular index remain protected consumers.
+    return filePath !== "src/game/tracks.ts";
+  }
+  return resolved === "src/game/tracks";
 }
 
 function hasRuntimeBindings(clause) {

@@ -109,6 +109,15 @@ test("aliased runtime consumers normalize every supported source extension", () 
   }
 });
 
+test("the canonical facade may import the modular index without becoming an external consumer", () => {
+  const sources = readConsumerSources();
+  sources["src/game/tracks.ts"] =
+    'import { TRACKS } from "./tracks/index";\nexport { TRACKS };\n';
+  const result = validateTrackConsumerSourcePin({ consumerSources: sources });
+  assert.deepEqual(result.errors, []);
+  assert.deepEqual(result.consumers, CONSUMER_PATHS);
+});
+
 test("type-only imports do not expand the runtime consumer authority", () => {
   const sources = readConsumerSources();
   sources["src/game/type-only.ts"] =
