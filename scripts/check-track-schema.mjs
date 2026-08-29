@@ -11,6 +11,7 @@ import { validateTrackSchemaHardening } from "./check-track-schema-hardening.mjs
 import { validateTrackDefinitionClosure } from "./check-track-schema-definition-guard.mjs";
 import { validateTrackMutationEdges } from "./check-track-schema-mutation-edges.mjs";
 import { validateTrackMutationGuard } from "./check-track-schema-mutation-guard.mjs";
+import { validateTrackSourcePin } from "./check-track-source-pin.mjs";
 
 export { EXPECTED_RSH_012_MERGE };
 
@@ -28,6 +29,8 @@ function schemaForReviewedCore(schema) {
 export function validateTrackSchema(inputs) {
   const trackSchemaSource = inputs?.trackSchemaSource
     ?? readFileSync(fromRoot("src", "game", "track-schema.ts"), "utf8");
+  const sourcePin = inputs?.sourcePin
+    ?? JSON.parse(readFileSync(fromRoot("TRACK-SOURCE-PIN.json"), "utf8"));
   const coreResult = validateTrackSchemaCore({
     ...inputs,
     schema: schemaForReviewedCore(inputs?.schema),
@@ -44,6 +47,10 @@ export function validateTrackSchema(inputs) {
   const mutationErrors = validateTrackMutationGuard(inputs?.trackSource);
   const mutationEdgeErrors = validateTrackMutationEdges(inputs?.trackSource);
   const definitionClosureErrors = validateTrackDefinitionClosure(inputs?.trackSource);
+  const sourcePinResult = validateTrackSourcePin({
+    pin: sourcePin,
+    trackSource: inputs?.trackSource,
+  });
   return {
     ...coreResult,
     errors: [
@@ -53,9 +60,11 @@ export function validateTrackSchema(inputs) {
       ...mutationErrors,
       ...mutationEdgeErrors,
       ...definitionClosureErrors,
+      ...sourcePinResult.errors,
     ],
     aggregateDigest: hardening.aggregateDigest,
     supportSourceIdentities: hardening.supportSourceIdentities,
+    trackSourceGitBlobSha1: sourcePinResult.actualGitBlobSha1,
   };
 }
 
@@ -77,6 +86,7 @@ if (isMainModule(import.meta.url)) {
   const result = validateTrackSchema({
     schema,
     classification,
+    sourcePin: JSON.parse(readFileSync(fromRoot("TRACK-SOURCE-PIN.json"), "utf8")),
     typeSource: readFileSync(fromRoot("src", "game", "types.ts"), "utf8"),
     trackSource: readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8"),
     trackSchemaSource: readFileSync(fromRoot("src", "game", "track-schema.ts"), "utf8"),
@@ -90,6 +100,6 @@ if (isMainModule(import.meta.url)) {
     process.exit(1);
   }
   console.log(
-    `track-schema ok: 56 definitions; track digest ${result.digest}; aggregate ${result.aggregateDigest}; 8 MVP; 48 deferred; 0/13 gates`,
+    `track-schema ok: 56 definitions; source blob ${result.trackSourceGitBlobSha1}; track digest ${result.digest}; aggregate ${result.aggregateDigest}; 8 MVP; 48 deferred; 0/13 gates`,
   );
 }
