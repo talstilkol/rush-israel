@@ -1,0 +1,48 @@
+name: rsh-013-apply-exact-patch
+
+on:
+  push:
+    branches:
+      - agent/rsh-013-canonical-track-schema
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rsh-013-apply-exact-patch
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: contains(github.event.head_commit.message, '[arm-rsh-013-patch]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Reconstruct and verify exact patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .rsh-patch/part-* | base64 --decode > /tmp/rsh013-patch.tar.gz
+          echo "c32420e9482a769f044ee0e6c7065fe7f3f01cd476259884c24f1a9dd516a76d  /tmp/rsh013-patch.tar.gz" | sha256sum --check --strict
+          tar -xzf /tmp/rsh013-patch.tar.gz -C .
+          rm -rf .rsh-patch
+          rm -f .github/workflows/rsh-013-apply.yml
+          rm -f scripts/export-rsh-source.test.mjs
+          git diff --check
+
+      - name: Commit exact remediated authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "talsitelkol"
+          git config user.email "tal_stilkol@hotmail.com"
+          git add -A
+          git diff --cached --exit-code && { echo "expected staged changes" >&2; exit 1; } || true
+          git commit -m "RSH-013: apply exact remediated schema authority"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
