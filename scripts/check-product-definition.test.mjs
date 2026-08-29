@@ -4,14 +4,19 @@ import { test } from "node:test";
 import { fromRoot } from "./project-root.mjs";
 import {
   EXPECTED_TRACK_NAMES,
+  FROZEN_DEFINITION_SHA256,
   REQUIRED_NON_CLAIMS,
+  productDefinitionHash,
   validateProductDefinition,
 } from "./check-product-definition.mjs";
 
-const readDefinition = () => JSON.parse(readFileSync(fromRoot("PRODUCT-DEFINITION.json"), "utf8"));
+const readDefinition = () =>
+  JSON.parse(readFileSync(fromRoot("PRODUCT-DEFINITION.json"), "utf8"));
 
 test("committed Version 1 definition passes the frozen contract", () => {
-  assert.deepEqual(validateProductDefinition(readDefinition()), []);
+  const definition = readDefinition();
+  assert.equal(productDefinitionHash(definition), FROZEN_DEFINITION_SHA256);
+  assert.deepEqual(validateProductDefinition(definition), []);
 });
 
 test("Version 1 contains exactly the eight owner-approved track names", () => {
@@ -27,7 +32,7 @@ test("private ownership and no public distribution fail closed", () => {
   assert.equal(definition.product.public_distribution_authorized, false);
   const broken = structuredClone(definition);
   broken.product.public_distribution_authorized = true;
-  assert.match(validateProductDefinition(broken).join("\n"), /public distribution/);
+  assert.match(validateProductDefinition(broken).join("\n"), /public distribution|digest/);
 });
 
 test("WebGL, simcade and 120 Hz are frozen technology invariants", () => {
@@ -38,10 +43,9 @@ test("WebGL, simcade and 120 Hz are frozen technology invariants", () => {
   assert.equal(definition.technology_invariants.webgpu_default, false);
 });
 
-test("all explicit non-claims remain present", () => {
+test("all explicit non-claims remain present in exact frozen order", () => {
   const definition = readDefinition();
-  const actual = new Set(definition.explicit_non_claims);
-  for (const item of REQUIRED_NON_CLAIMS) assert.equal(actual.has(item), true, item);
+  assert.deepEqual(definition.explicit_non_claims, REQUIRED_NON_CLAIMS);
 });
 
 test("known unresolved work stays assigned to later authorities", () => {
@@ -64,4 +68,31 @@ test("scope expansion requires an explicit reviewed owner change", () => {
     "separate_reviewed_change_unit",
     "preservation_of_historical_definition",
   ]);
+});
+
+test("every frozen section is protected by the canonical digest", () => {
+  const mutations = [
+    ["technology engine", (value) => { value.technology_invariants.engine = "Other"; }],
+    ["application", (value) => { value.technology_invariants.application = "Other"; }],
+    ["build system", (value) => { value.technology_invariants.build_system = "Other"; }],
+    ["public release", (value) => { value.version_1_scope.delivery.public_release = true; }],
+    ["gameplay", (value) => { value.version_1_scope.gameplay.pop(); }],
+    ["inputs", (value) => { value.version_1_scope.inputs = ["keyboard"]; }],
+    ["languages", (value) => { value.version_1_scope.languages.push("Arabic"); }],
+    ["delivery form", (value) => { value.version_1_scope.delivery.form = "public_web"; }],
+    ["change control", (value) => {
+      value.change_control.implicit_scope_expansion_allowed = true;
+    }],
+    ["unresolved authority", (value) => {
+      value.known_unresolved_authorities[0].unit = "RSH-999";
+    }],
+  ];
+
+  for (const [label, mutate] of mutations) {
+    const broken = readDefinition();
+    mutate(broken);
+    const errors = validateProductDefinition(broken);
+    assert.notEqual(productDefinitionHash(broken), FROZEN_DEFINITION_SHA256, label);
+    assert.ok(errors.includes("frozen product-definition digest mismatch"), label);
+  }
 });
