@@ -3,11 +3,18 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { fromRoot } from "./project-root.mjs";
 import {
+  renderProductInstallPage,
+  renderProductWebManifest,
+} from "./grok-pwa-plugin.mjs";
+import {
   RUSH_PWA_DESCRIPTION,
   renderRushInstallPageHtml,
   renderRushWebManifest,
 } from "./rush-pwa.mjs";
-import { validateProductMetadata } from "./check-product-metadata.mjs";
+import {
+  normalizeWhitespace,
+  validateProductMetadata,
+} from "./check-product-metadata.mjs";
 
 function readInputs() {
   return {
@@ -23,6 +30,7 @@ function readInputs() {
     notices: readFileSync(fromRoot("THIRD-PARTY-NOTICES.md"), "utf8"),
     rootSource: readFileSync(fromRoot("src", "routes", "__root.tsx"), "utf8"),
     middlewareSource: readFileSync(fromRoot("server", "middleware", "grok-pwa.ts"), "utf8"),
+    vitePluginSource: readFileSync(fromRoot("scripts", "grok-pwa-plugin.mjs"), "utf8"),
     rushPwaSource: readFileSync(fromRoot("scripts", "rush-pwa.mjs"), "utf8"),
   };
 }
@@ -53,6 +61,24 @@ test("dynamic PWA install page replaces the generic host identity", () => {
   assert.doesNotMatch(html, /Grok App/);
   assert.doesNotMatch(html, /Preview/);
   assert.match(html, /href="\/"/);
+});
+
+test("Vite dev and preview product renderers use RUSH Israel by default", () => {
+  const manifest = JSON.parse(
+    renderProductWebManifest("localhost:8080", fromRoot()),
+  );
+  assert.equal(manifest.name, "RUSH Israel");
+  assert.equal(manifest.short_name, "RUSH Israel");
+  assert.equal(manifest.description, RUSH_PWA_DESCRIPTION);
+
+  const html = renderProductInstallPage(
+    "preview.local",
+    "/?install=1&platform=ios",
+    fromRoot(),
+  );
+  assert.match(html, /RUSH Israel/);
+  assert.doesNotMatch(html, /Grok App/);
+  assert.doesNotMatch(html, />Preview</);
 });
 
 test("package and canonical identity mutations fail closed", () => {
@@ -91,6 +117,20 @@ test("Open Graph and PWA path drift fail closed", () => {
   const pathDrift = readInputs();
   pathDrift.metadata.pwa.manifest_path = "/manifest.webmanifest";
   assert.match(validateProductMetadata(pathDrift).join("\n"), /PWA metadata/);
+
+  const viteDrift = readInputs();
+  viteDrift.vitePluginSource = viteDrift.vitePluginSource.replaceAll(
+    "renderProductWebManifest",
+    "renderGenericWebManifest",
+  );
+  assert.match(validateProductMetadata(viteDrift).join("\n"), /Vite dev and preview/);
+});
+
+test("root title and description match the canonical product boundary", () => {
+  const { rootSource } = readInputs();
+  assert.match(rootSource, /RUSH Israel — סימולטור נהיגה ישראלי/);
+  assert.match(rootSource, /Private owner-controlled Three\.js WebGL simcade/);
+  assert.doesNotMatch(rootSource, /Israel and New York/i);
 });
 
 test("README contains exact reproducible commands and no obsolete geography claim", () => {
@@ -98,15 +138,20 @@ test("README contains exact reproducible commands and no obsolete geography clai
   for (const command of ["npm ci", "npm run dev", "npm test", "npm run qa:ci", "npm run build:dev"]) {
     assert.match(readme, new RegExp(command.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
+  assert.match(
+    normalizeWhitespace(readme),
+    /Public accessibility of this repository does not grant a licence or authorize public distribution\./,
+  );
   assert.doesNotMatch(readme, /Israel and New York/i);
   assert.doesNotMatch(packageJson.description, /Israel and New York/i);
 });
 
 test("licence and notices preserve the proprietary and unresolved boundaries", () => {
   const { licence, notices } = readInputs();
-  assert.match(licence, /All rights reserved/);
-  assert.match(licence, /No public licence grant/);
-  assert.match(licence, /does not constitute a licence/);
+  const normalizedLicence = normalizeWhitespace(licence);
+  assert.match(normalizedLicence, /All rights reserved/);
+  assert.match(normalizedLicence, /No public licence grant/);
+  assert.match(normalizedLicence, /does not constitute a licence/);
   assert.match(notices, /Basis Universal/);
   assert.match(notices, /Apache License 2\.0/);
   assert.match(notices, /66/);

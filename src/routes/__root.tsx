@@ -3,15 +3,17 @@ import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import appCss from "../styles.css?url";
 
-const APP_NAME = "RUSH";
+const APP_TITLE = "RUSH Israel — סימולטור נהיגה ישראלי";
+const APP_DESCRIPTION =
+  "Private owner-controlled Three.js WebGL simcade driving game on fictional routes inspired by Israeli places.";
 
 export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: APP_NAME },
-      { name: "description", content: "Arcade street racing across Israel and New York." },
+      { title: APP_TITLE },
+      { name: "description", content: APP_DESCRIPTION },
       { name: "theme-color", content: "#0a0c0e" },
     ],
     links: [

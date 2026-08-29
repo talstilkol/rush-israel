@@ -1,12 +1,13 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 2.7.0  
+**Version:** 2.8.0  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**Verified base:** `d8259877740a2feab6533f1723fd21be8fb2f6c2`  
-**Active unit:** `RSH-011`  
-**Active branch:** `agent/rsh-011-asset-provenance`  
-**Active PR:** `#14`
+**RSH-012 implementation base:** `aab3b725f256ff5a0a145c5cd3ac749860bdaeb9`  
+**State effective on:** merge of PR #15  
+**Next eligible unit after merge:** `RSH-013`  
+**Active branch after merge:** none  
+**Active PR after merge:** none
 
 ## 1. Authority
 
@@ -16,86 +17,81 @@ supersedes chat summaries and recorded SHAs whenever they differ.
 The owner instruction `next 5` authorises exactly:
 
 1. RSH-010 — accepted;
-2. RSH-011 — active;
-3. RSH-012 — blocked by RSH-011;
-4. RSH-013 — deferred inside the authorised batch;
-5. RSH-014 — final authorised unit.
+2. RSH-011 — accepted;
+3. RSH-012 — accepted when PR #15 merges;
+4. RSH-013 — next eligible unit, not pre-created;
+5. RSH-014 — final authorised unit, blocked by RSH-013.
 
 The batch closes after RSH-014. RSH-015 is not authorised.
 
-## 2. Sequential execution
+## 2. RSH-012 acceptance boundary
 
-Each authorised unit requires:
+PR #15 may merge only when its exact final head proves all of the following:
 
-- the exact live `main` created by the preceding merge;
-- a distinct branch and PR;
-- exact-head `required-ci / validate` success;
-- deterministic unit-specific tests and changed-set evidence;
-- review findings resolved before merge;
-- no later-unit pre-creation;
-- merge only after the acceptance boundary passes.
+- product identity is exactly `RUSH Israel`;
+- package version is `0.0.0-private`, package privacy is `true`, and package licence is `UNLICENSED`;
+- the proprietary root `LICENSE` grants no public licence;
+- `THIRD-PARTY-NOTICES.md` and `ASSET-PROVENANCE.json` preserve all third-party and unverified-asset boundaries;
+- README documents Node `22.16.0`, npm `10.9.2`, `npm ci`, `npm test`, `npm run qa:ci` and `npm run build:dev`;
+- root title and description contain no obsolete “Israel and New York” claim;
+- Open Graph, Vite dev/preview and deployed Nitro PWA surfaces use the exact RUSH Israel identity;
+- 66 public asset files remain unverified;
+- public distribution remains unauthorised;
+- release gates remain 0/13;
+- `required-ci / validate` and Codex review pass on the same exact head.
 
-## 3. Current queue head
+## 3. Post-merge queue head
 
-`RSH-011 — Create the complete asset provenance and licence inventory`
+`RSH-013 — Define and validate the canonical track schema`
 
-The exact final PR head must prove that:
-
-- every tracked file recursively under `public/` is classified exactly once;
-- the inventory contains exactly 134 shipping files and 131 asset files;
-- the 56 `public/tracks/<TrackId>.jpg` files map one-to-one to the canonical catalogue;
-- the generated-game-asset and Basis Universal evidence remains present;
-- exactly 67 shipping files and 66 asset files remain unverified;
-- unverified groups cannot claim legal or public-distribution clearance;
-- complete inventory coverage is not represented as complete provenance evidence;
-- all canonical program-control records agree;
-- release gates remain 0/13.
+RSH-013 remains unstarted until a new `next` instruction. Its branch and PR must both
+be absent after the RSH-012 merge.
 
 ## 4. Truth boundaries
 
-- RSH-010 is accepted at merge SHA `d8259877740a2feab6533f1723fd21be8fb2f6c2`.
 - Repository visibility remains public against the private owner policy.
 - `main` remains unprotected with zero required checks and zero rulesets.
-- The 56 track-card images, seven Grok visual assets and three root-branding assets lack sufficient source/licence evidence.
-- RSH-012 may establish the root proprietary licence but may not silently clear unverified assets.
-- The canonical track schema remains RSH-013.
-- Physical module splitting remains RSH-014.
-- Five zero-to-100 claims remain failed and belong to RSH-033.
+- The root proprietary licence covers owner-created material only.
+- The 56 track-card images, seven Grok visual assets and three root-branding assets remain unverified.
+- Legal clearance remains incomplete.
+- Public distribution remains unauthorised.
+- A candidate cannot encode its own future merge SHA. The PR #15 exact head and merge
+  SHA are read from live GitHub and reconciled in the RSH-013 preflight.
 - Release gates remain 0/13.
 
-## 5. Transition to RSH-012
+## 5. Transition to RSH-013
 
-RSH-012 starts only after:
+RSH-013 starts only after:
 
-1. PR #14 exact final head passes `required-ci / validate`;
-2. all 134 public files classify exactly once;
-3. legal and distribution claims fail closed while blockers remain;
-4. blocking review findings are resolved;
-5. PR #14 merges under the owner batch;
-6. its live merge SHA is recorded in the RSH-012 branch.
+1. PR #15 exact final head passes `required-ci / validate`;
+2. Codex reports no unresolved blocking finding on that same head;
+3. PR #15 merges;
+4. live `main` is re-read;
+5. a new explicit `next` instruction is received.
 
 ## 6. Prohibited actions
 
-- treating complete inventory coverage as legal clearance;
-- clearing an unverified asset without source or permission evidence;
+- starting or pre-creating RSH-013 during the RSH-012 session;
+- starting or pre-creating RSH-015;
+- claiming the repository is private or `main` is protected;
+- claiming legal clearance while 66 assets remain unverified;
 - enabling public distribution;
-- direct `main` writes, force-push or history rewrite;
-- creating RSH-012 before PR #14 merges;
-- starting or pre-creating RSH-015.
+- direct `main` writes, force-push or history rewrite.
 
-## 7. Current metrics
+## 7. Post-merge metrics
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 10/67 |
-| In review | 1 |
-| Remaining units | 57 |
-| Queue head | RSH-011 |
-| Active PR | #14 |
-| Batch units completed | 1/5 |
-| Batch authority remaining | 4 |
-| Public files inventoried | 134/134 |
-| Asset files | 131 |
+| Total units | 67 |
+| Accepted units | 12 |
+| In review | 0 |
+| Eligible | 1 |
+| Deferred | 54 |
+| Remaining units | 55 |
+| Queue head | RSH-013 |
+| Active PR | none |
+| Batch units completed | 3/5 |
+| Batch authority remaining | 2 |
 | Unverified asset files | 66 |
 | Legal clearance complete | No |
 | Release gates | 0/13 |

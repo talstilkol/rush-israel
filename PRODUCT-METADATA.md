@@ -1,6 +1,7 @@
 # RUSH Israel — Product Metadata Contract
 
 **Unit:** RSH-012  
+**Schema:** 1.0.2  
 **Machine authority:** `PRODUCT-METADATA.json`  
 **Observed source commit:** `aab3b725f256ff5a0a145c5cd3ac749860bdaeb9`
 
@@ -18,7 +19,7 @@
 | Root licence | Proprietary, all rights reserved |
 
 `app-builder-workspace` remains the internal npm package name to avoid an unrelated
-lockfile and template migration. It is not the public or canonical product name.
+lockfile and template migration. It is not the canonical product name.
 
 ## Repository truth
 
@@ -29,46 +30,35 @@ lockfile and template migration. It is not the public or canonical product name.
 | Required status checks | 0 | Required CI context after owner action |
 | Rulesets | 0 | Desired ruleset already documented |
 
-The repository's current public accessibility grants no licence and does not authorise
-public distribution.
+Public accessibility does not grant a licence or authorise public distribution.
 
 ## Branding and PWA
 
 | Surface | Exact identity |
 |---|---|
 | Root document title | `RUSH Israel — סימולטור נהיגה ישראלי` |
+| Root description | Private owner-controlled Three.js WebGL simcade driving game on fictional routes inspired by Israeli places. |
 | Open Graph title | `RUSH Israel` |
 | Open Graph type | `x:game` |
 | Dynamic PWA name | `RUSH Israel` |
-| Manifest path | `/__grok/manifest.webmanifest` |
+| Primary manifest | `/__grok/manifest.webmanifest` |
 | Legacy manifest alias | `/__grok/manifest.json` |
+| Delivery | Vite dev/preview and deployed Nitro middleware |
 | Display mode | `standalone` |
 | Start URL / scope | `/` / `/` |
 
-`scripts/rush-pwa.mjs` applies the baked `src/lib/og/site.json` title to the dynamic
-manifest and install page. The generic platform helper retains its generic fallback
-for non-product workspaces, while the RUSH product identity is explicit and tested.
+Both runtime paths use `scripts/rush-pwa.mjs`; the generic platform fallback is not
+used for the RUSH product manifest or install page.
 
 ## Exact local workflow
 
 ```bash
-# Required versions
 node --version  # v22.16.0
 npm --version   # 10.9.2
-
-# Reproducible installation
 npm ci
-
-# Development
 npm run dev
-
-# Complete unit tests
 npm test
-
-# Self-starting QA
 npm run qa:ci
-
-# Deterministic development build
 npm run build:dev
 ```
 

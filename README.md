@@ -18,7 +18,8 @@ inspired by Israeli places.
 | Visibility חי של GitHub | **Public** |
 | יעד מדיניות | **Private — נדרשת פעולת בעלים** |
 
-המאגר הציבורי כעת אינו מעניק רישיון ואינו מאשר הפצה ציבורית.
+המאגר הציבורי כעת אינו מעניק רישיון ואינו מאשר הפצה ציבורית.  
+Public accessibility of this repository does not grant a licence or authorize public distribution.
 
 ## גבול המוצר
 

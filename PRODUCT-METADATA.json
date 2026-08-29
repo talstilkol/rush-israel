@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.0.1",
+  "schema_version": "1.0.2",
   "document_type": "rush-product-metadata",
-  "generated_at": "2026-08-29T06:55:00+03:00",
+  "generated_at": "2026-08-29T08:58:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "observed_source_commit": "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9",
@@ -46,13 +46,14 @@
     "open_graph_title": "RUSH Israel",
     "open_graph_type": "x:game",
     "root_document_title": "RUSH Israel — סימולטור נהיגה ישראלי",
+    "root_description": "Private owner-controlled Three.js WebGL simcade driving game on fictional routes inspired by Israeli places.",
     "public_branding_assets_verified": false
   },
   "pwa": {
-    "manifest_delivery": "dynamic_via_server_middleware",
+    "manifest_delivery": "dynamic_via_vite_and_server_middleware",
     "manifest_path": "/__grok/manifest.webmanifest",
     "manifest_legacy_alias": "/__grok/manifest.json",
-    "name_source": "scripts/rush-pwa.mjs:productPwaName(grokOgIdentity.site)",
+    "name_source": "src/lib/og/site.json:title via scripts/rush-pwa.mjs",
     "name": "RUSH Israel",
     "display": "standalone",
     "start_url": "/",
@@ -76,8 +77,15 @@
     "physics_hz": 120,
     "vehicle_count": 5,
     "track_count": 8,
-    "languages": ["Hebrew", "English"],
-    "inputs": ["keyboard", "touch", "gamepad"]
+    "languages": [
+      "Hebrew",
+      "English"
+    ],
+    "inputs": [
+      "keyboard",
+      "touch",
+      "gamepad"
+    ]
   },
   "readiness": {
     "release_gates_green": 0,

@@ -5,9 +5,20 @@ import { fromRoot } from "./project-root.mjs";
 
 export const EXPECTED_PRODUCT_DESCRIPTION =
   "Private owner-controlled Three.js WebGL simcade driving game on fictional routes inspired by Israeli places.";
+export const EXPECTED_ROOT_TITLE = "RUSH Israel — סימולטור נהיגה ישראלי";
 
 function sameJson(actual, expected) {
   return JSON.stringify(actual) === JSON.stringify(expected);
+}
+
+export function normalizeWhitespace(value) {
+  return String(value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function containsNormalized(haystack, needle) {
+  return normalizeWhitespace(haystack)
+    .toLocaleLowerCase("en")
+    .includes(normalizeWhitespace(needle).toLocaleLowerCase("en"));
 }
 
 export function validateProductMetadata({
@@ -23,6 +34,7 @@ export function validateProductMetadata({
   notices,
   rootSource,
   middlewareSource,
+  vitePluginSource,
   rushPwaSource,
 }) {
   const errors = [];
@@ -30,14 +42,18 @@ export function validateProductMetadata({
     return ["product metadata is not an object"];
   }
 
-  if (metadata.schema_version !== "1.0.1") errors.push("metadata schema version must be 1.0.1");
+  if (metadata.schema_version !== "1.0.2") {
+    errors.push("metadata schema version must be 1.0.2");
+  }
   if (metadata.document_type !== "rush-product-metadata") {
     errors.push("metadata document type must be rush-product-metadata");
   }
   if (metadata.repository !== "talstilkol/rush-israel") {
     errors.push("metadata repository must be talstilkol/rush-israel");
   }
-  if (metadata.canonical_branch !== "main") errors.push("metadata canonical branch must be main");
+  if (metadata.canonical_branch !== "main") {
+    errors.push("metadata canonical branch must be main");
+  }
   if (metadata.observed_source_commit !== "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9") {
     errors.push("metadata source commit must match the accepted RSH-011 merge");
   }
@@ -89,7 +105,11 @@ export function validateProductMetadata({
   if (productDefinition?.version_1_scope?.tracks?.target_count !== 8) {
     errors.push("frozen product definition must retain exactly eight tracks");
   }
-  if (catalogue?.counts?.total !== 56 || catalogue?.counts?.mvp !== 8 || catalogue?.counts?.deferred !== 48) {
+  if (
+    catalogue?.counts?.total !== 56
+    || catalogue?.counts?.mvp !== 8
+    || catalogue?.counts?.deferred !== 48
+  ) {
     errors.push("track catalogue must remain 56 total, 8 MVP and 48 deferred");
   }
 
@@ -133,19 +153,32 @@ export function validateProductMetadata({
     metadata.branding?.canonical_title !== "RUSH Israel"
     || metadata.branding?.open_graph_title !== site.title
     || metadata.branding?.open_graph_type !== site.type
+    || metadata.branding?.root_document_title !== EXPECTED_ROOT_TITLE
+    || metadata.branding?.root_description !== EXPECTED_PRODUCT_DESCRIPTION
     || metadata.branding?.public_branding_assets_verified !== false
   ) {
-    errors.push("branding metadata must use RUSH Israel without clearing branding assets");
+    errors.push("branding metadata must use the exact RUSH Israel identity without clearing assets");
   }
-  if (!rootSource.includes('title: "RUSH Israel — סימולטור נהיגה ישראלי"')) {
+  if (
+    !rootSource.includes(`const APP_TITLE = "${EXPECTED_ROOT_TITLE}"`)
+    || !rootSource.includes("{ title: APP_TITLE }")
+  ) {
     errors.push("root document title must remain the exact RUSH Israel title");
+  }
+  if (
+    !rootSource.includes(`"${EXPECTED_PRODUCT_DESCRIPTION}"`)
+    || !rootSource.includes("content: APP_DESCRIPTION")
+    || /Israel and New York/i.test(rootSource)
+  ) {
+    errors.push("root document description must match the private Israel-inspired product boundary");
   }
 
   const pwa = metadata.pwa;
   if (
-    pwa?.manifest_delivery !== "dynamic_via_server_middleware"
+    pwa?.manifest_delivery !== "dynamic_via_vite_and_server_middleware"
     || pwa?.manifest_path !== "/__grok/manifest.webmanifest"
     || pwa?.manifest_legacy_alias !== "/__grok/manifest.json"
+    || pwa?.name_source !== "src/lib/og/site.json:title via scripts/rush-pwa.mjs"
     || pwa?.name !== "RUSH Israel"
     || pwa?.display !== "standalone"
     || pwa?.start_url !== "/"
@@ -153,9 +186,12 @@ export function validateProductMetadata({
     || pwa?.install_material_licence_verified !== false
     || pwa?.public_install_distribution_authorized !== false
   ) {
-    errors.push("PWA metadata must match the dynamic private RUSH Israel product surface");
+    errors.push("PWA metadata must match both dynamic private RUSH Israel runtime surfaces");
   }
-  if (!middlewareSource.includes("renderRushWebManifest") || !middlewareSource.includes("renderRushInstallPageHtml")) {
+  if (
+    !middlewareSource.includes("renderRushWebManifest")
+    || !middlewareSource.includes("renderRushInstallPageHtml")
+  ) {
     errors.push("server middleware must use the product-specific RUSH PWA wrapper");
   }
   if (
@@ -163,6 +199,16 @@ export function validateProductMetadata({
     || !middlewareSource.includes('path === "/__grok/manifest.json"')
   ) {
     errors.push("server middleware must expose both recorded dynamic manifest paths");
+  }
+  if (
+    !vitePluginSource.includes('from "./rush-pwa.mjs"')
+    || !vitePluginSource.includes("renderRushWebManifest")
+    || !vitePluginSource.includes("renderRushInstallPageHtml")
+    || !vitePluginSource.includes("renderProductWebManifest(")
+    || !vitePluginSource.includes("renderProductInstallPage(")
+    || !vitePluginSource.includes("serveGrokPwa(server.middlewares, root)")
+  ) {
+    errors.push("Vite dev and preview must use the product-specific RUSH PWA wrapper");
   }
   if (!rushPwaSource.includes('RUSH_PWA_NAME = "RUSH Israel"')) {
     errors.push("RUSH PWA wrapper must retain the exact product name");
@@ -201,10 +247,18 @@ export function validateProductMetadata({
   if (/Israel and New York/i.test(readme) || /Israel and New York/i.test(packageJson?.description ?? "")) {
     errors.push("obsolete Israel and New York metadata must be absent");
   }
-  if (!/public[^\n]*does not[^\n]*licen[cs]e/i.test(readme.replace(/\n/g, " "))) {
+  const englishReadmeBoundary =
+    "Public accessibility of this repository does not grant a licence or authorize public distribution.";
+  const hebrewReadmeBoundary =
+    "המאגר הציבורי כעת אינו מעניק רישיון ואינו מאשר הפצה ציבורית.";
+  if (
+    !containsNormalized(readme, englishReadmeBoundary)
+    && !containsNormalized(readme, hebrewReadmeBoundary)
+  ) {
     errors.push("README must state that public accessibility grants no licence");
   }
 
+  const normalizedLicence = normalizeWhitespace(licence);
   for (const token of [
     "RUSH ISRAEL PROPRIETARY LICENSE",
     "All rights reserved",
@@ -214,8 +268,11 @@ export function validateProductMetadata({
     "Third-party and unverified materials",
     "prior written permission",
   ]) {
-    if (!licence.includes(token)) errors.push(`LICENSE is missing required boundary: ${token}`);
+    if (!normalizedLicence.includes(token)) {
+      errors.push(`LICENSE is missing required boundary: ${token}`);
+    }
   }
+  const normalizedNotices = normalizeWhitespace(notices);
   for (const token of [
     "Basis Universal",
     "Apache License 2.0",
@@ -225,7 +282,9 @@ export function validateProductMetadata({
     "Root branding assets",
     "Not cleared",
   ]) {
-    if (!notices.includes(token)) errors.push(`third-party notices are missing: ${token}`);
+    if (!normalizedNotices.includes(token)) {
+      errors.push(`third-party notices are missing: ${token}`);
+    }
   }
 
   if (
@@ -262,6 +321,7 @@ function loadInputs() {
     notices: readFileSync(fromRoot("THIRD-PARTY-NOTICES.md"), "utf8"),
     rootSource: readFileSync(fromRoot("src", "routes", "__root.tsx"), "utf8"),
     middlewareSource: readFileSync(fromRoot("server", "middleware", "grok-pwa.ts"), "utf8"),
+    vitePluginSource: readFileSync(fromRoot("scripts", "grok-pwa-plugin.mjs"), "utf8"),
     rushPwaSource: readFileSync(fromRoot("scripts", "rush-pwa.mjs"), "utf8"),
   };
 }
@@ -282,5 +342,7 @@ if (isMainModule(import.meta.url)) {
     console.error("product-metadata fail\n" + errors.map((error) => `- ${error}`).join("\n"));
     process.exit(1);
   }
-  console.log("product-metadata ok: RUSH Israel 0.0.0-private; UNLICENSED; PWA aligned; 66 assets blocked; 0/13 gates");
+  console.log(
+    "product-metadata ok: RUSH Israel 0.0.0-private; Vite/Nitro PWA aligned; 66 assets blocked; 0/13 gates",
+  );
 }

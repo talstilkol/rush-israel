@@ -1,15 +1,15 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 2.7.0  
+**Schema:** 2.8.0  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**Verified base:** `d8259877740a2feab6533f1723fd21be8fb2f6c2`  
-**Active unit:** RSH-011 / PR #14  
-**Established by:** RSH-001  
-**Governance policy:** RSH-002  
+**RSH-012 implementation base:** `aab3b725f256ff5a0a145c5cd3ac749860bdaeb9`  
+**State effective on:** merge of PR #15  
+**Next eligible unit:** RSH-013  
 **Product-definition authority:** `PRODUCT-DEFINITION.json`  
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`  
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`  
+**Product-metadata authority:** `PRODUCT-METADATA.json`  
 **Date:** 29 August 2026
 
 ## 1. Authority
@@ -17,8 +17,8 @@
 GitHub is the sole source of truth. `CURRENT-STATE.json`, `QUEUE.json`, this document,
 `NEXT-CONTRACT.md`, `FINDINGS-REGISTER.md`, `BASELINE-REGISTER.json`,
 `MILESTONE-REGISTER.md`, `PRODUCT-DEFINITION.json`,
-`TRACK-CATALOGUE-CLASSIFICATION.json`, `ASSET-PROVENANCE.json` and
-`REPOSITORY-GOVERNANCE.md` control program state and sequencing.
+`TRACK-CATALOGUE-CLASSIFICATION.json`, `ASSET-PROVENANCE.json`,
+`PRODUCT-METADATA.json` and `REPOSITORY-GOVERNANCE.md` control program state.
 
 Historical planning files are evidence only. They do not control queue order,
 accepted progress, asset clearance or release-gate counts.
@@ -46,12 +46,18 @@ multiplayer, mandatory accounts/backend, monetisation, UGC, WebGPU as default,
 native-store release, GIS/navigation accuracy and console-photorealism claims remain
 outside Version 1 unless an explicit owner-authorised change preserves history.
 
-## 3. Asset and legal truth
+## 3. Identity, asset and legal truth
 
-RSH-011 inventories every tracked file recursively under `public/`.
+RSH-011 inventories every tracked file recursively under `public/`. RSH-012 establishes
+the product identity, package metadata, proprietary root licence and product-specific
+PWA integration.
 
 | Metric | Exact value |
 |---|---:|
+| Product name | RUSH Israel |
+| Product version | `0.0.0-private` |
+| Package licence | `UNLICENSED` |
+| Root licence | Proprietary — All Rights Reserved |
 | Public shipping files | 134 |
 | Public asset files | 131 |
 | Unverified shipping files | 67 |
@@ -59,10 +65,9 @@ RSH-011 inventories every tracked file recursively under `public/`.
 | Legal clearance complete | No |
 | Public distribution authorised | No |
 
-Complete inventory coverage is not legal clearance. The 56 track-card images, seven
-Grok visual assets and three root-branding assets lack sufficient source/licence
-evidence. RSH-012 may establish a proprietary root licence but may not silently clear
-those assets.
+Complete inventory coverage and a root proprietary licence do not clear third-party or
+unverified assets. The 56 track-card images, seven Grok visual assets and three
+root-branding assets remain unverified.
 
 ## 4. Operating rules
 
@@ -71,33 +76,35 @@ those assets.
 3. Use one dedicated branch and PR per unit; never write directly to `main`.
 4. Never force-push, rewrite history or pre-create a later unit.
 5. Exact-head `required-ci / validate` success and resolved blocking review findings are mandatory before merge.
-6. A unit is accepted only when merged GitHub evidence and canonical state agree.
+6. A unit becomes accepted when its PR merges; exact self-referential merge evidence is reconciled in the following preflight.
 7. Accepted-unit progress is not release readiness; all 13 release gates remain authoritative.
 8. The current owner batch is exactly RSH-010–RSH-014 and closes after RSH-014.
-9. RSH-015 is not authorised.
+9. RSH-013 requires a new `next`; RSH-015 is not authorised.
 
-## 5. Current program state
+## 5. Post-RSH-012 program state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 10 |
-| In review | 1 |
-| Remaining | 57 |
-| Queue head | RSH-011 |
-| Active PR | #14 |
-| Current batch completed | 1/5 |
+| Accepted | 12 |
+| In review | 0 |
+| Eligible | 1 |
+| Deferred | 54 |
+| Remaining | 55 |
+| Queue head | RSH-013 |
+| Active PR | none |
+| Current batch completed | 3/5 |
 | Release gates green | 0/13 |
-| Findings OPEN / MITIGATED / CLOSED | 25 / 9 / 8 |
+| Findings OPEN / MITIGATED / CLOSED | 24 / 7 / 11 |
 
 ## 6. Stage map
 
-| Stage | Units | Count | Purpose | State |
+| Stage | Units | Count | Purpose | Post-merge state |
 |---|---:|---:|---|---|
 | G0 | RSH-001–003 | 3 | Control and governance | ACCEPTED |
 | G1 | RSH-004–008 | 5 | Reproducible toolchain and CI | UNITS ACCEPTED; EXIT GATE BLOCKED BY OWNER SETTING |
-| G2 | RSH-009–012 | 4 | Scope, licensing and assets | ACTIVE — RSH-011 |
-| G3 | RSH-013–020 | 8 | Architecture decomposition | RSH-013–014 AUTHORISED; RSH-015–020 DEFERRED |
+| G2 | RSH-009–012 | 4 | Scope, licensing and assets | ACCEPTED ON PR #15 MERGE |
+| G3 | RSH-013–020 | 8 | Architecture decomposition | ACTIVE — RSH-013 eligible; RSH-014 authorised |
 | G4 | RSH-021–024 | 4 | Data integrity and production security | DEFERRED |
 | G5 | RSH-025–036 | 12 | Ayalon vertical slice | DEFERRED |
 | G6 | RSH-037–043 | 7 | Performance and reliability | DEFERRED |
@@ -181,7 +188,7 @@ those assets.
 
 | # | Gate | Current state |
 |---:|---|---|
-| 1 | Visibility and licensing agree with owner policy | RED |
+| 1 | Visibility and licensing agree with owner policy | RED — repository remains public and 66 assets remain unverified |
 | 2 | `main` is protected and PR delivery is enforced | RED |
 | 3 | A clean clone installs and builds reproducibly | RED — evidence exists, release authority not closed |
 | 4 | Required CI is complete and green | RED — workflow exists, repository setting absent |
@@ -199,9 +206,10 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-RSH-011 creates complete file coverage and truthful legal blockers. PR #14 must pass
-exact-head CI and review without changing binary assets, game source or dependencies.
+PR #15 is the sole RSH-012 delivery vehicle. It aligns README, package metadata, root
+licence, Open Graph, root document metadata and both Vite and Nitro PWA paths while
+preserving 66 unverified-asset blockers.
 
-After RSH-011 merges, RSH-012 may align root licence and metadata while preserving all
-unverified-asset blockers. RSH-013 and RSH-014 may then run strictly serially. The
-batch ends after RSH-014; RSH-015 must not be created automatically.
+After PR #15 passes exact-head CI and review and merges, RSH-013 becomes eligible but
+must not start without a new `next`. RSH-014 remains the final authorised batch unit.
+RSH-015 must not be created automatically.
