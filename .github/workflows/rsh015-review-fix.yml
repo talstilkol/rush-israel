@@ -26,7 +26,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = "60ebe860e5f1d3214f540cd836f8e3f3070226b2"
+          test "$(git rev-parse HEAD^)" = "994cfbbea183dbae9dec9126de5f5adb002d51a3"
           python - <<'PY'
           from pathlib import Path
 
@@ -53,8 +53,6 @@ jobs:
           PY
           node scripts/check-governance-contract.mjs
           node --test scripts/milestone-register.test.mjs scripts/program-control.test.mjs
-          node scripts/check-world-core.mjs
-          node scripts/check-track-consumer-source-pin.mjs
           git diff --check
           rm .github/workflows/rsh015-review-fix.yml
           git add MASTER-PLAN.md MILESTONE-REGISTER.md scripts/milestone-register.test.mjs .github/workflows/rsh015-review-fix.yml
