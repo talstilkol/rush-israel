@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.0.1",
   "document_type": "rush-asset-provenance-inventory",
-  "generated_at": "2026-08-29T06:15:00+03:00",
+  "generated_at": "2026-08-29T06:29:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "observed_source_commit": "d8259877740a2feab6533f1723fd21be8fb2f6c2",
@@ -16,25 +16,9 @@
     "legal_clearance_complete": false
   },
   "asset_extensions": [
-    ".png",
-    ".jpg",
-    ".jpeg",
-    ".svg",
-    ".webp",
-    ".glb",
-    ".gltf",
-    ".wasm",
-    ".ktx2",
-    ".hdr",
-    ".exr",
-    ".mp3",
-    ".wav",
-    ".ogg",
-    ".woff",
-    ".woff2",
-    ".ttf",
-    ".otf",
-    ".ico"
+    ".png", ".jpg", ".jpeg", ".svg", ".webp", ".glb", ".gltf", ".wasm",
+    ".ktx2", ".hdr", ".exr", ".mp3", ".wav", ".ogg", ".woff", ".woff2",
+    ".ttf", ".otf", ".ico"
   ],
   "groups": [
     {
@@ -42,6 +26,9 @@
       "path_rule": "public/game/* excluding public/game/LICENSES.md",
       "expected_file_count": 64,
       "expected_asset_count": 64,
+      "pinned_directory_entry_count": 65,
+      "pinned_git_tree_sha1": "332fe666fd91590787856c32cf2040b8f6adb7d0",
+      "pin_scope": "the complete flat public/game directory, including LICENSES.md",
       "provenance_status": "owner_generated_claim_recorded",
       "licence_status": "owner_controlled_private_use",
       "evidence": ["public/game/LICENSES.md"],
@@ -106,35 +93,10 @@
     }
   ],
   "release_blockers": [
-    {
-      "id": "AP-001",
-      "severity": "P0",
-      "group": "track_card_images",
-      "affected_asset_files": 56,
-      "required_resolution": "Replace with owner-generated assets or record verifiable source and licence evidence."
-    },
-    {
-      "id": "AP-002",
-      "severity": "P0",
-      "group": "platform_install_material",
-      "affected_asset_files": 7,
-      "affected_non_asset_files": 1,
-      "required_resolution": "Remove, replace or record explicit permission and licence evidence."
-    },
-    {
-      "id": "AP-003",
-      "severity": "P0",
-      "group": "root_branding_assets",
-      "affected_asset_files": 3,
-      "required_resolution": "Replace with owner-generated branding or record verifiable source and licence evidence."
-    },
-    {
-      "id": "AP-004",
-      "severity": "P0",
-      "group": "game_generated_assets",
-      "affected_asset_files": 64,
-      "required_resolution": "RSH-012 must establish the root proprietary licence and align repository visibility with owner policy."
-    }
+    { "id": "AP-001", "severity": "P0", "group": "track_card_images", "affected_asset_files": 56, "required_resolution": "Replace with owner-generated assets or record verifiable source and licence evidence." },
+    { "id": "AP-002", "severity": "P0", "group": "platform_install_material", "affected_asset_files": 7, "affected_non_asset_files": 1, "required_resolution": "Remove, replace or record explicit permission and licence evidence." },
+    { "id": "AP-003", "severity": "P0", "group": "root_branding_assets", "affected_asset_files": 3, "required_resolution": "Replace with owner-generated branding or record verifiable source and licence evidence." },
+    { "id": "AP-004", "severity": "P0", "group": "game_generated_assets", "affected_asset_files": 64, "required_resolution": "RSH-012 must establish the root proprietary licence and align repository visibility with owner policy." }
   ],
   "truth_boundaries": {
     "inventory_coverage_complete": true,
@@ -149,6 +111,7 @@
   "change_control": {
     "new_public_file_requires_inventory_classification": true,
     "unverified_asset_may_not_be_reclassified_without_evidence": true,
+    "generated_game_asset_replacement_requires_tree_pin_update_and_review": true,
     "public_distribution_requires_explicit_owner_authorization": true,
     "validator": "scripts/check-asset-provenance.mjs"
   }
