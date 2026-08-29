@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.0.1",
+  "schema_version": "1.0.2",
   "document_type": "rush-asset-provenance-inventory",
-  "generated_at": "2026-08-29T06:29:00+03:00",
+  "generated_at": "2026-08-29T06:36:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "observed_source_commit": "d8259877740a2feab6533f1723fd21be8fb2f6c2",
@@ -31,7 +31,11 @@
       "pin_scope": "the complete flat public/game directory, including LICENSES.md",
       "provenance_status": "owner_generated_claim_recorded",
       "licence_status": "owner_controlled_private_use",
-      "evidence": ["public/game/LICENSES.md"],
+      "evidence": ["public/game/LICENSES.md", "scripts/bake-gantry.mjs"],
+      "evidence_partition": {
+        "public/game/LICENSES.md": "procedural textures and five extrusion-car GLB/GLTF pairs",
+        "scripts/bake-gantry.mjs": "six gantry, five station and one destination-rail PNG"
+      },
       "public_distribution_clearance": false,
       "blocker": "Root product licence and public-distribution authorization remain absent."
     },
@@ -110,6 +114,7 @@
   },
   "change_control": {
     "new_public_file_requires_inventory_classification": true,
+    "duplicate_group_ids_allowed": false,
     "unverified_asset_may_not_be_reclassified_without_evidence": true,
     "generated_game_asset_replacement_requires_tree_pin_update_and_review": true,
     "public_distribution_requires_explicit_owner_authorization": true,
