@@ -8,6 +8,7 @@ import {
 } from "./check-track-schema-core.mjs";
 import { validateTrackSchemaExports } from "./check-track-schema-exports.mjs";
 import { validateTrackSchemaHardening } from "./check-track-schema-hardening.mjs";
+import { validateTrackDefinitionClosure } from "./check-track-schema-definition-guard.mjs";
 import { validateTrackMutationEdges } from "./check-track-schema-mutation-edges.mjs";
 import { validateTrackMutationGuard } from "./check-track-schema-mutation-guard.mjs";
 
@@ -42,6 +43,7 @@ export function validateTrackSchema(inputs) {
   const exportErrors = validateTrackSchemaExports(trackSchemaSource);
   const mutationErrors = validateTrackMutationGuard(inputs?.trackSource);
   const mutationEdgeErrors = validateTrackMutationEdges(inputs?.trackSource);
+  const definitionClosureErrors = validateTrackDefinitionClosure(inputs?.trackSource);
   return {
     ...coreResult,
     errors: [
@@ -50,6 +52,7 @@ export function validateTrackSchema(inputs) {
       ...exportErrors,
       ...mutationErrors,
       ...mutationEdgeErrors,
+      ...definitionClosureErrors,
     ],
     aggregateDigest: hardening.aggregateDigest,
     supportSourceIdentities: hardening.supportSourceIdentities,
