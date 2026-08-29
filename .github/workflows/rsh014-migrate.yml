@@ -33,6 +33,7 @@ jobs:
           set -euo pipefail
           cat scripts/rsh014-migrate.mjs.gz.b64.* | base64 --decode | gzip -dc > scripts/rsh014-migrate.mjs
           node scripts/rsh014-migrate.mjs
+          sed -i 's/[[:space:]]\+$//' MASTER-PLAN.md NEXT-CONTRACT.md TRACK-SCHEMA.md
           rm -f scripts/rsh014-migrate.mjs.gz.b64.*
       - name: Commit generated RSH-014 candidate
         shell: bash
