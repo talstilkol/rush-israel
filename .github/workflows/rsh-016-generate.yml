@@ -50,7 +50,7 @@ jobs:
             ('    function_close_suffix: functionCloseSuffix,', '    function_close_suffix: functionCloseSuffix,\n    legacy_builder_order: observedIds,'),
             (
               '  for (const module of manifest.extraction.modules) {\\n    const moduleSource = readFileSync(fromRoot(...module.path.split("/")), "utf8");',
-              '  for (const id of layout.legacy_builder_order) {\\n    const module = manifest.extraction.modules.find((candidate) => candidate.id === id);\\n    if (!module) throw new Error(`legacy-order world builder ${id} is missing`);\\n    const moduleSource = readFileSync(fromRoot(...module.path.split("/")), "utf8");'
+              '  for (const id of layout.legacy_builder_order) {\\n    const module = manifest.extraction.modules.find((candidate) => candidate.id === id);\\n    if (!module) throw new Error(\`legacy-order world builder \${id} is missing\`);\\n    const moduleSource = readFileSync(fromRoot(...module.path.split("/")), "utf8");'
             ),
           ]
           for before, after in replacements:
