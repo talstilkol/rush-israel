@@ -1,97 +1,75 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 2.8.0  
+**Version:** 2.9.0  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**RSH-012 implementation base:** `aab3b725f256ff5a0a145c5cd3ac749860bdaeb9`  
-**State effective on:** merge of PR #15  
-**Next eligible unit after merge:** `RSH-013`  
-**Active branch after merge:** none  
-**Active PR after merge:** none
+**RSH-013 implementation base:** `94524201dfe87f1f22f8d8bdd9d97aad507c0438`  
+**State effective on:** merge of PR #16  
+**Next eligible unit after merge:** `RSH-014`  
+**RSH-015 authorised:** no
 
 ## 1. Authority
 
 GitHub and the canonical control documents govern the program. Live GitHub evidence
 supersedes chat summaries and recorded SHAs whenever they differ.
 
-The owner instruction `next 5` authorises exactly:
+The owner instruction `next 2` authorises exactly the serial sequence RSH-013 then
+RSH-014. It does not authorise RSH-015. RSH-014 starts only after RSH-013 is validated,
+reviewed, merged and live `main` is re-read.
 
-1. RSH-010 — accepted;
-2. RSH-011 — accepted;
-3. RSH-012 — accepted when PR #15 merges;
-4. RSH-013 — next eligible unit, not pre-created;
-5. RSH-014 — final authorised unit, blocked by RSH-013.
+## 2. RSH-013 acceptance boundary
 
-The batch closes after RSH-014. RSH-015 is not authorised.
+PR #16 may merge only when its exact final head proves:
 
-## 2. RSH-012 acceptance boundary
-
-PR #15 may merge only when its exact final head proves all of the following:
-
-- product identity is exactly `RUSH Israel`;
-- package version is `0.0.0-private`, package privacy is `true`, and package licence is `UNLICENSED`;
-- the proprietary root `LICENSE` grants no public licence;
-- `THIRD-PARTY-NOTICES.md` and `ASSET-PROVENANCE.json` preserve all third-party and unverified-asset boundaries;
-- README documents Node `22.16.0`, npm `10.9.2`, `npm ci`, `npm test`, `npm run qa:ci` and `npm run build:dev`;
-- root title and description contain no obsolete “Israel and New York” claim;
-- Open Graph, Vite dev/preview and deployed Nitro PWA surfaces use the exact RUSH Israel identity;
-- 66 public asset files remain unverified;
-- public distribution remains unauthorised;
+- one machine-readable schema agrees with `TrackId`, `CityId` and `TrackDef`;
+- all 56 definitions are present exactly once;
+- the frozen classification remains 8 MVP and 48 deferred;
+- canonical ID order and runtime definition order are treated as distinct authorities;
+- the committed Ayalon point-builder IIFE is accepted only by the narrow reviewed form;
+- the ordered runtime-definition digest is exactly `9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230`;
+- valid-looking runtime-data mutations fail the digest check;
+- runtime data and runtime ordering changed by this unit are both zero;
 - release gates remain 0/13;
-- `required-ci / validate` and Codex review pass on the same exact head.
+- exact-head `required-ci / validate` and Codex review pass with no unresolved blocking thread.
 
-## 3. Post-merge queue head
+## 3. Transition to RSH-014
 
-`RSH-013 — Define and validate the canonical track schema`
-
-RSH-013 remains unstarted until a new `next` instruction. Its branch and PR must both
-be absent after the RSH-012 merge.
+After PR #16 merges, RSH-014 is the sole eligible queue head and the second unit of
+the current `next 2` instruction. It must use a new branch and PR from verified live
+`main`. It may relocate definitions into one module per track only if the exact
+ordered runtime digest remains unchanged.
 
 ## 4. Truth boundaries
 
 - Repository visibility remains public against the private owner policy.
 - `main` remains unprotected with zero required checks and zero rulesets.
-- The root proprietary licence covers owner-created material only.
-- The 56 track-card images, seven Grok visual assets and three root-branding assets remain unverified.
-- Legal clearance remains incomplete.
-- Public distribution remains unauthorised.
-- A candidate cannot encode its own future merge SHA. The PR #15 exact head and merge
-  SHA are read from live GitHub and reconciled in the RSH-013 preflight.
+- Exactly 66 public asset files remain unverified.
+- Legal clearance and public distribution remain blocked.
+- A candidate cannot encode its own future merge SHA; PR #16 evidence is reconciled in RSH-014 preflight.
 - Release gates remain 0/13.
 
-## 5. Transition to RSH-013
+## 5. Prohibited actions
 
-RSH-013 starts only after:
-
-1. PR #15 exact final head passes `required-ci / validate`;
-2. Codex reports no unresolved blocking finding on that same head;
-3. PR #15 merges;
-4. live `main` is re-read;
-5. a new explicit `next` instruction is received.
-
-## 6. Prohibited actions
-
-- starting or pre-creating RSH-013 during the RSH-012 session;
+- starting RSH-014 before PR #16 merges;
 - starting or pre-creating RSH-015;
-- claiming the repository is private or `main` is protected;
-- claiming legal clearance while 66 assets remain unverified;
-- enabling public distribution;
+- changing track runtime data, runtime order, IDs or MVP membership in RSH-014;
+- claiming repository privacy, branch protection or legal clearance without live evidence;
 - direct `main` writes, force-push or history rewrite.
 
-## 7. Post-merge metrics
+## 6. Post-merge metrics
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted units | 12 |
+| Accepted units | 13 |
 | In review | 0 |
 | Eligible | 1 |
-| Deferred | 54 |
-| Remaining units | 55 |
-| Queue head | RSH-013 |
+| Deferred | 53 |
+| Remaining units | 54 |
+| Queue head | RSH-014 |
 | Active PR | none |
-| Batch units completed | 3/5 |
-| Batch authority remaining | 2 |
+| Batch units completed | 4/5 |
+| Batch authority remaining | 1 |
 | Unverified asset files | 66 |
 | Legal clearance complete | No |
 | Release gates | 0/13 |

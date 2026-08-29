@@ -1,11 +1,11 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 2.8.0  
+**Schema:** 2.9.0  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**RSH-012 implementation base:** `aab3b725f256ff5a0a145c5cd3ac749860bdaeb9`  
-**State effective on:** merge of PR #15  
-**Next eligible unit:** RSH-013  
+**RSH-013 implementation base:** `94524201dfe87f1f22f8d8bdd9d97aad507c0438`  
+**State effective on:** merge of PR #16  
+**Next eligible unit:** RSH-014  
 **Product-definition authority:** `PRODUCT-DEFINITION.json`  
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`  
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`  
@@ -18,7 +18,7 @@ GitHub is the sole source of truth. `CURRENT-STATE.json`, `QUEUE.json`, this doc
 `NEXT-CONTRACT.md`, `FINDINGS-REGISTER.md`, `BASELINE-REGISTER.json`,
 `MILESTONE-REGISTER.md`, `PRODUCT-DEFINITION.json`,
 `TRACK-CATALOGUE-CLASSIFICATION.json`, `ASSET-PROVENANCE.json`,
-`PRODUCT-METADATA.json` and `REPOSITORY-GOVERNANCE.md` control program state.
+`PRODUCT-METADATA.json`, `TRACK-SCHEMA.json` and `REPOSITORY-GOVERNANCE.md` control program state.
 
 Historical planning files are evidence only. They do not control queue order,
 accepted progress, asset clearance or release-gate counts.
@@ -79,21 +79,21 @@ root-branding assets remain unverified.
 6. A unit becomes accepted when its PR merges; exact self-referential merge evidence is reconciled in the following preflight.
 7. Accepted-unit progress is not release readiness; all 13 release gates remain authoritative.
 8. The current owner batch is exactly RSH-010–RSH-014 and closes after RSH-014.
-9. RSH-013 requires a new `next`; RSH-015 is not authorised.
+9. The current `next 2` continues with RSH-014 after PR #16 merges; RSH-015 is not authorised.
 
-## 5. Post-RSH-012 program state
+## 5. Post-RSH-013 program state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 12 |
+| Accepted | 13 |
 | In review | 0 |
 | Eligible | 1 |
-| Deferred | 54 |
-| Remaining | 55 |
-| Queue head | RSH-013 |
+| Deferred | 53 |
+| Remaining | 54 |
+| Queue head | RSH-014 |
 | Active PR | none |
-| Current batch completed | 3/5 |
+| Current batch completed | 4/5 |
 | Release gates green | 0/13 |
 | Findings OPEN / MITIGATED / CLOSED | 24 / 7 / 11 |
 
@@ -103,8 +103,8 @@ root-branding assets remain unverified.
 |---|---:|---:|---|---|
 | G0 | RSH-001–003 | 3 | Control and governance | ACCEPTED |
 | G1 | RSH-004–008 | 5 | Reproducible toolchain and CI | UNITS ACCEPTED; EXIT GATE BLOCKED BY OWNER SETTING |
-| G2 | RSH-009–012 | 4 | Scope, licensing and assets | ACCEPTED ON PR #15 MERGE |
-| G3 | RSH-013–020 | 8 | Architecture decomposition | ACTIVE — RSH-013 eligible; RSH-014 authorised |
+| G2 | RSH-009–012 | 4 | Scope, licensing and assets | ACCEPTED |
+| G3 | RSH-013–020 | 8 | Architecture decomposition | ACTIVE — RSH-013 accepted on PR #16 merge; RSH-014 eligible |
 | G4 | RSH-021–024 | 4 | Data integrity and production security | DEFERRED |
 | G5 | RSH-025–036 | 12 | Ayalon vertical slice | DEFERRED |
 | G6 | RSH-037–043 | 7 | Performance and reliability | DEFERRED |
@@ -206,10 +206,10 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-PR #15 is the sole RSH-012 delivery vehicle. It aligns README, package metadata, root
-licence, Open Graph, root document metadata and both Vite and Nitro PWA paths while
-preserving 66 unverified-asset blockers.
+PR #16 is the sole RSH-013 delivery vehicle. It establishes one machine-readable
+track schema, compile-time helpers, TypeScript-AST validation and the pinned ordered
+runtime-definition digest `9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230` without changing runtime data or order.
 
-After PR #15 passes exact-head CI and review and merges, RSH-013 becomes eligible but
-must not start without a new `next`. RSH-014 remains the final authorised batch unit.
-RSH-015 must not be created automatically.
+After exact-head CI and review pass and PR #16 merges, RSH-014 becomes eligible as
+the second unit authorised by the current `next 2` instruction and the final unit
+in the RSH-010–RSH-014 batch. RSH-015 must not be created or executed automatically.

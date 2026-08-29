@@ -1,11 +1,11 @@
 {
-  "schema_version": "2.8.0",
+  "schema_version": "2.9.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-29T08:58:00+03:00",
+  "generated_at": "2026-08-29T10:55:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9",
-  "state_effective_on": "merge_of_pull_request_15",
+  "verified_base_sha": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
+  "state_effective_on": "merge_of_pull_request_16",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -18,11 +18,12 @@
         "RSH-013",
         "RSH-014"
       ],
-      "completed": 3,
+      "completed": 4,
       "total": 5,
       "closed_after": "RSH-014",
       "separate_branch_and_pr_per_unit": true,
-      "merge_after_validation": true
+      "merge_after_validation": true,
+      "continuation_instruction": "next 2"
     },
     "direct_main_writes": false,
     "automatic_merge_without_validation": false,
@@ -32,24 +33,24 @@
   },
   "counts": {
     "total": 67,
-    "accepted": 12,
+    "accepted": 13,
     "in_review": 0,
     "eligible": 1,
-    "deferred": 54,
-    "remaining": 55
+    "deferred": 53,
+    "remaining": 54
   },
   "queue_head": {
-    "id": "RSH-013",
-    "title": "Define and validate the canonical track schema",
-    "state": "eligible",
-    "branch": null,
-    "pull_request": null,
-    "acceptance_condition": "A new next instruction starts one clean RSH-013 branch from live main; exact-head required-ci / validate and review must pass before merge."
-  },
-  "next_after_acceptance": {
     "id": "RSH-014",
     "title": "Split tracks.ts into one module per track",
-    "state": "authorized_batch_blocked_by_RSH-013"
+    "state": "eligible_under_owner_next_2",
+    "branch": null,
+    "pull_request": null,
+    "acceptance_condition": "Start one clean RSH-014 branch from the live RSH-013 merge; preserve the pinned runtime definition digest; pass exact-head required-ci / validate and review before merge."
+  },
+  "next_after_acceptance": {
+    "id": "RSH-015",
+    "title": "Extract the world core from world.ts",
+    "state": "deferred_not_authorized"
   },
   "accepted": {
     "RSH-001": {
@@ -137,12 +138,24 @@
     },
     "RSH-012": {
       "pull_request": 15,
+      "merge_sha": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
+      "validated_head_sha": "32ad65d756013ac2ec13ff1b78940cd12061fb27",
+      "workflow_run": 33238573169,
+      "workflow_job": 99063868307,
+      "artifact_id": 9710694253,
+      "artifact_digest": "sha256:37aa46870012bb483e1a845abc46fa39fb15870708a05afcc985040e3cdd4c99",
+      "post_merge_workflow_run": 33238995506,
+      "post_merge_workflow_job": 99064943903,
+      "post_merge_artifact_id": 9710813024,
+      "post_merge_artifact_digest": "sha256:f8377306405db4c7470fe8f2c14693636aee445c670d10ecdd342cf8a3313259"
+    },
+    "RSH-013": {
+      "pull_request": 16,
       "state": "accepted_on_merge",
-      "validated_head_resolution": "the exact PR #15 head that passes required-ci / validate and Codex review",
-      "merge_sha_resolution": "the live main HEAD created by merging PR #15",
-      "exact_evidence_reconciliation": "RSH-013 preflight",
-      "public_distribution_authorized": false,
-      "unverified_asset_files": 66
+      "validated_head_resolution": "exact PR #16 head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging PR #16",
+      "exact_evidence_reconciliation": "RSH-014 preflight",
+      "runtime_definition_digest": "9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230"
     }
   },
   "unit_order": [
@@ -215,21 +228,20 @@
     "RSH-067"
   ],
   "state_rules": {
-    "RSH-001–RSH-012": "accepted",
-    "RSH-013": "eligible",
-    "RSH-014": "authorized_batch_deferred",
-    "RSH-015–RSH-067": "deferred"
+    "RSH-001–RSH-013": "accepted",
+    "RSH-014": "eligible_under_owner_next_2",
+    "RSH-015–RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
-    "current_action": "No automatic work. On the next instruction, start RSH-013 only from the verified live main.",
-    "after_RSH-013": "RSH-014 remains the final authorised batch unit.",
-    "batch_authority_remaining": 2,
-    "RSH-013_precreated": false,
-    "RSH-015_authorized": false
+    "current_action": "After PR #16 merges, continue the current next 2 instruction by starting RSH-014 only from verified live main.",
+    "after_RSH_014": "The bounded batch closes; RSH-015 requires a new explicit owner instruction.",
+    "batch_authority_remaining": 1,
+    "RSH_014_precreated": false,
+    "RSH_015_authorized": false
   },
   "self_reference_boundary": {
-    "RSH-012_merge_sha": "resolve from the live main HEAD after PR #15 merges",
-    "RSH-012_validated_head": "resolve from the exact merged PR #15 head",
-    "reconcile_in": "RSH-013 preflight"
+    "RSH_013_merge_sha": "resolve from live main after PR #16 merges",
+    "RSH_013_validated_head": "resolve from the exact merged PR #16 head",
+    "reconcile_in": "RSH-014 preflight"
   }
 }

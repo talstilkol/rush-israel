@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.8.0",
+  "schema_version": "1.9.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-08-29T08:58:00+03:00",
+  "generated_at": "2026-08-29T10:55:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -161,31 +161,60 @@
       "unverified_asset_files": 66,
       "public_game_tree_sha1": "332fe666fd91590787856c32cf2040b8f6adb7d0",
       "description": "Complete public-file inventory, exact public/game tree pin and fail-closed legal blockers accepted after exact-head CI and Codex review."
+    },
+    {
+      "id": "B012-rsh-012-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-012",
+      "pull_request": 15,
+      "commit_sha": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
+      "tree_sha": "53ec197fefc4c4f44b8992e04164d30d8d6a18f8",
+      "validated_head_sha": "32ad65d756013ac2ec13ff1b78940cd12061fb27",
+      "workflow_run": 33238573169,
+      "workflow_job": 99063868307,
+      "artifact_id": 9710694253,
+      "artifact_digest": "sha256:37aa46870012bb483e1a845abc46fa39fb15870708a05afcc985040e3cdd4c99",
+      "recorded_at": "2026-08-29T09:39:30+03:00",
+      "description": "Canonical RUSH Israel metadata, proprietary licence, package/lock identity, root head and Vite/Nitro PWA alignment accepted after exact-head CI and Codex review."
+    },
+    {
+      "id": "B013-rsh-013-accepted",
+      "kind": "accepted-unit-on-merge",
+      "unit": "RSH-013",
+      "pull_request": 16,
+      "validated_head_resolution": "exact PR #16 head accepted by required-ci / validate and Codex review",
+      "commit_sha_resolution": "live main HEAD created by merging PR #16",
+      "tree_sha_resolution": "tree of the live PR #16 merge commit",
+      "exact_evidence_reconciliation": "RSH-014 preflight",
+      "runtime_definition_digest": "9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230",
+      "recorded_at": "2026-08-29T10:55:00+03:00",
+      "description": "Canonical track schema, TypeScript-AST validation and exact ordered runtime-definition digest accepted on PR #16 merge without changing runtime data or order."
     }
   ],
   "working_state": {
-    "unit": "RSH-012",
-    "state": "accepted_on_merge_of_PR_15",
-    "base_commit_sha": "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9",
-    "branch": "agent/rsh-012-metadata-license-pwa",
-    "pull_request": 15,
-    "head_sha_resolution": "the exact PR #15 head accepted by required-ci / validate and Codex review",
-    "merge_sha_resolution": "the live main HEAD created by merging PR #15",
-    "exact_evidence_reconciliation": "RSH-013 preflight",
+    "unit": "RSH-013",
+    "state": "accepted_on_merge_of_PR_16",
+    "base_commit_sha": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
+    "branch": "agent/rsh-013-canonical-track-schema",
+    "pull_request": 16,
+    "head_sha_resolution": "the exact PR #16 head accepted by required-ci / validate and Codex review",
+    "merge_sha_resolution": "the live main HEAD created by merging PR #16",
+    "exact_evidence_reconciliation": "RSH-014 preflight",
+    "runtime_definition_digest": "9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230",
     "is_release": false,
     "tag_created": false,
     "release_created": false,
     "live_branch_protection": false,
     "settings_application_state": "owner_action_required",
-    "runtime_evidence": "Exact final head must pass metadata, README, licence, Vite/Nitro PWA, complete unit, self-starting QA and deterministic build validation."
+    "runtime_evidence": "Exactly 56 definitions, 8 MVP and 48 deferred IDs; the ordered source digest is pinned and runtime data/order changes are zero."
   },
   "post_merge_queue": {
-    "queue_head": "RSH-013",
-    "state": "eligible",
+    "queue_head": "RSH-014",
+    "state": "eligible_under_owner_next_2",
     "branch": null,
     "pull_request": null,
-    "requires_new_next": true,
-    "RSH-015_authorized": false
+    "requires_new_next": false,
+    "RSH_015_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

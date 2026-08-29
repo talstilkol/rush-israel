@@ -1,8 +1,8 @@
 # RUSH Israel — Findings Register
 
-**Version:** 1.5.0  
-**RSH-012 implementation base:** `aab3b725f256ff5a0a145c5cd3ac749860bdaeb9`  
-**State effective on:** merge of PR #15  
+**Version:** 1.6.0  
+**RSH-013 implementation base:** `94524201dfe87f1f22f8d8bdd9d97aad507c0438`  
+**State effective on:** merge of PR #16  
 **Date:** 29 August 2026  
 **Total:** 42 findings — 12 P0, 18 P1, 12 P2  
 **Status:** 24 OPEN, 7 MITIGATED, 11 CLOSED
@@ -21,7 +21,7 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 |---|---|---|---|---|---|
 | P0-01 | P0 | **OPEN** | Repository visibility conflicts with the private-code statement | GitHub still reports public visibility. RSH-012 establishes an explicit proprietary licence but does not change repository visibility. | Owner changes visibility to private; live re-verification |
 | P0-02 | P0 | **OPEN** | `main` is not protected | GitHub reports `protected=false`, required checks 0 and rulesets 0. RSH-008 records the desired ruleset, but no administrative mutation has been applied. | Owner applies `REPOSITORY-RULESET-DESIRED.json`; live re-verification |
-| P0-03 | P0 | **MITIGATED** | No branch-and-PR delivery workflow exists | RSH-001–RSH-012 use isolated branches and PRs; governance, CODEOWNERS and templates are versioned. Live settings enforcement remains absent. | Apply the RSH-008 desired ruleset |
+| P0-03 | P0 | **MITIGATED** | No branch-and-PR delivery workflow exists | RSH-001–RSH-013 use isolated branches and PRs; governance, CODEOWNERS and templates are versioned. Live settings enforcement remains absent. | Apply the RSH-008 desired ruleset |
 | P0-04 | P0 | **CLOSED** | No GitHub Actions CI is present | RSH-007 merged `required-ci / validate`; exact-head CI remains the acceptance authority. | RSH-007 |
 | P0-05 | P0 | **CLOSED** | The QA command is not self-contained | The RSH-006 harness starts, validates and stops its own server in CI. | RSH-006, RSH-007 |
 | P0-06 | P0 | **CLOSED** | Automation contains absolute `/workspace` paths | RSH-005 migrated executable automation to module-relative roots; `check:paths` prevents recurrence. | RSH-005 |
@@ -45,7 +45,7 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P1-12 | P1 | **OPEN** | Important validation scripts are outside the main gate | Golden, damage, Ayalon lock, HaShalom, auth and long-soak checks are not all required on every PR. | RSH-035, RSH-042 and later CI expansion |
 | P1-13 | P1 | **OPEN** | No accepted real-device performance baseline exists | No verified desktop/mobile p95, memory or draw-call evidence exists. | RSH-037, RSH-043 |
 | P1-14 | P1 | **OPEN** | Core source files are excessively large | `world.ts`, `tracks.ts`, `engine.ts`, `game-app.tsx` and `vehicle.ts` concentrate unrelated responsibilities. | RSH-014 through RSH-018 |
-| P1-15 | P1 | **OPEN** | Content, rendering, physics, UI and QA are tightly coupled | Large modules mix world construction, gameplay, rendering and test hooks. | RSH-013 through RSH-020 |
+| P1-15 | P1 | **OPEN** | Content, rendering, physics, UI and QA are tightly coupled | RSH-013 adds a canonical track schema and runtime-data pin; module decomposition remains pending from RSH-014 onward. | RSH-013 through RSH-020 |
 | P1-16 | P1 | **OPEN** | Catalogue breadth precedes a verified vertical slice | RSH-010 classifies 8 MVP and 48 deferred tracks, but no track has an owner-approved release freeze. | RSH-025 through RSH-036 |
 | P1-17 | P1 | **OPEN** | Golden evidence does not yet form a trusted acceptance authority | Agent-generated captures exist; owner approval and unique authority are not recorded. | RSH-035, RSH-036 |
 | P1-18 | P1 | **MITIGATED** | `EXECUTION_PLAN.md` is an operational monolith | RSH-001 removed it from queue authority, but the historic monolith remains. | RSH-001 |
