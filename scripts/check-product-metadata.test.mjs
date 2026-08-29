@@ -39,6 +39,26 @@ test("committed product metadata contract passes", () => {
   assert.deepEqual(validateProductMetadata(readInputs()), []);
 });
 
+test("package-lock identity, version and licence match package.json exactly", () => {
+  const { packageJson, packageLock } = readInputs();
+  const root = packageLock.packages[""];
+  assert.equal(packageLock.name, packageJson.name);
+  assert.equal(packageLock.version, packageJson.version);
+  assert.equal(root.name, packageJson.name);
+  assert.equal(root.version, packageJson.version);
+  assert.equal(root.license, packageJson.license);
+
+  for (const mutate of [
+    (lock) => { lock.version = "0.0.0"; },
+    (lock) => { lock.packages[""].version = "0.0.0"; },
+    (lock) => { lock.packages[""].license = "MIT"; },
+  ]) {
+    const inputs = readInputs();
+    mutate(inputs.packageLock);
+    assert.match(validateProductMetadata(inputs).join("\n"), /package-lock top-level and root/);
+  }
+});
+
 test("dynamic PWA manifest uses the exact RUSH Israel identity", () => {
   const site = { title: "RUSH Israel" };
   const manifest = JSON.parse(renderRushWebManifest("localhost:8080", site));

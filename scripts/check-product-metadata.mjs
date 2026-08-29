@@ -79,8 +79,15 @@ export function validateProductMetadata({
   ) {
     errors.push("package.json identity, version, privacy, licence or description is incorrect");
   }
-  if (packageLock?.packages?.[""]?.name !== packageJson?.name) {
-    errors.push("package-lock root name must retain the internal package name");
+  const lockRoot = packageLock?.packages?.[""];
+  if (
+    packageLock?.name !== packageJson?.name
+    || packageLock?.version !== packageJson?.version
+    || lockRoot?.name !== packageJson?.name
+    || lockRoot?.version !== packageJson?.version
+    || lockRoot?.license !== packageJson?.license
+  ) {
+    errors.push("package-lock top-level and root identity, version and licence must match package.json");
   }
   if (!sameJson(metadata.package, {
     internal_name: "app-builder-workspace",
