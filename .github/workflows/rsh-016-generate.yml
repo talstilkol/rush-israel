@@ -1,0 +1,50 @@
+name: rsh-016-generate
+
+on:
+  push:
+    branches:
+      - agent/rsh-016-track-builders
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rsh-016-generate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    if: ${{ !contains(github.event.head_commit.message || '', '[rsh-016-generated]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/rsh-016-track-builders
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm install --global npm@10.9.2
+      - run: npm ci
+      - name: Generate isolated track builders
+        run: |
+          base64 --decode .rsh016/generator.gz.b64 | gzip --decompress > /tmp/rsh-016-generate.mjs
+          node /tmp/rsh-016-generate.mjs
+      - name: Commit generated candidate
+        run: |
+          rm -rf .rsh016
+          rm -f .github/workflows/rsh-016-generate.yml
+          rm -f scripts/rsh-016-analyze.mjs
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "RSH-016: generate isolated world builders [rsh-016-generated]"
+          git push origin HEAD:agent/rsh-016-track-builders
+      - name: Validate generated boundary
+        run: |
+          node scripts/check-world-builders.mjs
+          npm run typecheck
+          npm test
