@@ -1,7 +1,7 @@
 {
-  "schema_version": "2.6.0",
+  "schema_version": "2.6.1",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-29T05:44:00+03:00",
+  "generated_at": "2026-08-29T05:49:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "verified_base_sha": "69765febef85d732d9ba79fe260fec78ee76b2df",
@@ -41,7 +41,8 @@
     "title": "Classify the track catalogue into 8 MVP and 48 deferred tracks",
     "state": "pr_open",
     "branch": "agent/rsh-010-track-catalogue-classification",
-    "pull_request": 12,
+    "pull_request": 13,
+    "replaced_draft_pull_request": 12,
     "base_sha": "69765febef85d732d9ba79fe260fec78ee76b2df",
     "acceptance_condition": "Exact final head passes required-ci / validate; all 56 live IDs are classified exactly once as 8 MVP and 48 deferred; no track is deleted; canonical state agrees."
   },
@@ -90,7 +91,7 @@
     "RSH-015–RSH-067": "deferred"
   },
   "next_instruction_contract": {
-    "current_action": "Finish, validate and merge RSH-010 only.",
+    "current_action": "Finish, validate and merge RSH-010 only through replacement PR #13.",
     "after_merge": "Start RSH-011 from the new live main.",
     "batch_authority_remaining_after_RSH-010": 4,
     "RSH-015_authorized": false
