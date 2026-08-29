@@ -17,6 +17,7 @@ function readInputs() {
     ),
     publicFiles: listPublicFiles(),
     licencesText: readFileSync(fromRoot("public", "game", "LICENSES.md"), "utf8"),
+    bakeGantryText: readFileSync(fromRoot("scripts", "bake-gantry.mjs"), "utf8"),
     gameTreeSha: computeFlatGitTreeSha(),
   };
 }
@@ -44,6 +45,17 @@ test("every public file maps to exactly one provenance group", () => {
   for (const filePath of publicFiles) {
     assert.equal(classifyPublicPath(filePath).length, 1, filePath);
   }
+});
+
+test("duplicate or substituted provenance group IDs fail closed", () => {
+  const duplicate = readInputs();
+  duplicate.manifest.groups.unshift(structuredClone(duplicate.manifest.groups[0]));
+  duplicate.manifest.groups[0].public_distribution_clearance = true;
+  assert.match(validateAssetProvenance(duplicate).join("\n"), /exactly six|unique/);
+
+  const substituted = readInputs();
+  substituted.manifest.groups[0].id = "unknown_group";
+  assert.match(validateAssetProvenance(substituted).join("\n"), /exact six-group authority/);
 });
 
 test("all 56 track cards map one-to-one to the canonical catalogue", () => {
@@ -102,7 +114,11 @@ test("public release and legal-clearance claims remain blocked", () => {
   );
 });
 
-test("Basis and generated-asset evidence cannot silently disappear", () => {
+test("both generated-asset evidence families are mandatory", () => {
+  const inputs = readInputs();
+  const generated = inputs.manifest.groups.find((group) => group.id === "game_generated_assets");
+  assert.deepEqual(generated.evidence, ["public/game/LICENSES.md", "scripts/bake-gantry.mjs"]);
+
   const missingBasis = readInputs();
   missingBasis.licencesText = missingBasis.licencesText.replace(/Basis Universal/g, "Removed");
   assert.match(validateAssetProvenance(missingBasis).join("\n"), /Basis Universal/);
@@ -110,4 +126,17 @@ test("Basis and generated-asset evidence cannot silently disappear", () => {
   const missingGenerated = readInputs();
   missingGenerated.licencesText = missingGenerated.licencesText.replace(/generated/gi, "made");
   assert.match(validateAssetProvenance(missingGenerated).join("\n"), /generated-asset/);
+
+  const missingBakedId = readInputs();
+  missingBakedId.bakeGantryText = missingBakedId.bakeGantryText.replace(
+    'id: "dest-rail"',
+    'id: "removed-destination"',
+  );
+  assert.match(validateAssetProvenance(missingBakedId).join("\n"), /exact 12/);
+
+  const missingScriptEvidence = readInputs();
+  missingScriptEvidence.manifest.groups.find(
+    (group) => group.id === "game_generated_assets",
+  ).evidence.pop();
+  assert.match(validateAssetProvenance(missingScriptEvidence).join("\n"), /both generation evidence/);
 });
