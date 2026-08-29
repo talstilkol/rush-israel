@@ -8,7 +8,7 @@ const ACCEPTED_TRACK_CONSUMERS = Object.freeze({
   "src/components/game-app.tsx": "956cfa131200b3c9d9d0902a1b2d6d4d9a8d8728",
   "src/game/daily.ts": "f4bdd7c7d3fb7e18f22797dd8ae6d7beff4b5e6c",
   "src/game/engine.ts": "692663c6d05ab59c1d99c7a357999839b9ebb0ec",
-  "src/game/world.ts": "856eeac77c3ce4b88deb65b5e599bb9bed7a75dc",
+  "src/game/world.ts": "07b7e0b559e66f89641357db5aa2be8bcd8c3135",
 });
 
 const SOURCE_EXTENSIONS = new Set([
