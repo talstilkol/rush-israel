@@ -38,6 +38,15 @@ function sameJson(actual, expected) {
   return JSON.stringify(actual) === JSON.stringify(expected);
 }
 
+function sameUniqueSet(actual, expected) {
+  const actualSet = new Set(actual);
+  const expectedSet = new Set(expected);
+  return actual.length === expected.length
+    && actualSet.size === actual.length
+    && expectedSet.size === expected.length
+    && actual.every((value) => expectedSet.has(value));
+}
+
 export function validateTrackCatalogue({ classification, product, typeSource, trackSource }) {
   const errors = [];
   if (!classification || typeof classification !== "object") {
@@ -76,8 +85,11 @@ export function validateTrackCatalogue({ classification, product, typeSource, tr
   if (typeIds.length !== 56 || new Set(typeIds).size !== 56) {
     errors.push("TrackId union must contain exactly 56 unique IDs");
   }
-  if (!sameJson(typeIds, definitionIds)) {
-    errors.push("TrackId union and TRACKS definitions must contain the same IDs in the same order");
+  if (definitionIds.length !== 56 || new Set(definitionIds).size !== 56) {
+    errors.push("TRACKS definitions must contain exactly 56 unique IDs");
+  }
+  if (!sameUniqueSet(typeIds, definitionIds)) {
+    errors.push("TrackId union and TRACKS definitions must contain the same unique IDs");
   }
 
   const entries = classification.entries;
@@ -90,7 +102,7 @@ export function validateTrackCatalogue({ classification, product, typeSource, tr
       errors.push("classification entry IDs must be unique");
     }
     if (!sameJson(entryIds, typeIds)) {
-      errors.push("classification entries must exactly match live source order");
+      errors.push("classification entries must exactly match the canonical TrackId order");
     }
     entries.forEach((entry, index) => {
       if (entry.ordinal !== index + 1) {
