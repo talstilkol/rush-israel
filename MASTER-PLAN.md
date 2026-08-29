@@ -3,7 +3,7 @@
 **Schema:** 2.9.0  
 **Repository:** `talstilkol/rush-israel`  
 **Canonical branch:** `main`  
-**RSH-013 implementation base:** `94524201dfe87f1f22f8d8bdd9d97aad507c0438`  
+**RSH-013 reconciled implementation base:** `e9b7683330bb288e9e5005e595f699b58d7ad20f`  
 **State effective on:** merge of PR #16  
 **Next eligible unit:** RSH-014  
 **Product-definition authority:** `PRODUCT-DEFINITION.json`  
@@ -207,8 +207,10 @@ Current verified result: **0/13**.
 ## 9. Current execution boundary
 
 PR #16 is the sole RSH-013 delivery vehicle. It establishes one machine-readable
-track schema, compile-time helpers, TypeScript-AST validation and the pinned ordered
-runtime-definition digest `27c256ee36387d02d986132e5e8505c1ca1cecad5588857286f400c78c215e3f` without changing runtime data or order.
+track schema, compile-time helpers, TypeScript-AST validation and the reconciled
+ordered runtime-definition digest `a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d`
+without changing runtime data or order relative to live `main` commit
+`e9b7683330bb288e9e5005e595f699b58d7ad20f`.
 
 After exact-head CI and review pass and PR #16 merges, RSH-014 becomes eligible as
 the second unit authorised by the current `next 2` instruction and the final unit
