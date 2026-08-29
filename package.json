@@ -1,6 +1,9 @@
 {
   "name": "app-builder-workspace",
+  "version": "0.0.0-private",
+  "description": "Private owner-controlled Three.js WebGL simcade driving game on fictional routes inspired by Israeli places.",
   "private": true,
+  "license": "UNLICENSED",
   "sideEffects": false,
   "type": "module",
   "packageManager": "npm@10.9.2",
