@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-repository-settings-status",
+  "observed_at": "2026-08-29T03:02:00+03:00",
+  "repository": "talstilkol/rush-israel",
+  "branch": "main",
+  "live": {
+    "head_sha": "88c7754b62c66cfdf59f8bfce847db2113eb09de",
+    "protected": false,
+    "required_status_checks": 0,
+    "rulesets_count": 0,
+    "branch_protection_read": {
+      "status": 403,
+      "message": "Resource not accessible by integration"
+    },
+    "required_ci_workflow_present": true,
+    "required_ci_last_accepted_head": "3cb2ca2ac6d34b25f77f313b70590bcc36190f76",
+    "required_ci_last_accepted_run": 33221919501,
+    "required_ci_last_accepted_conclusion": "success"
+  },
+  "desired_state_file": "REPOSITORY-RULESET-DESIRED.json",
+  "application_state": "owner_action_required",
+  "claims": {
+    "branch_protection_applied": false,
+    "required_check_enforced_by_repository_setting": false,
+    "force_push_blocked_by_repository_setting": false,
+    "deletion_blocked_by_repository_setting": false,
+    "diagnostic_artifacts_enforced_by_workflow": true
+  },
+  "recheck_condition": "Re-read live GitHub settings after the owner applies the desired ruleset; only then may the protection claims become true."
+}
