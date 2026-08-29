@@ -34,7 +34,7 @@ test("missing, substituted and reordered module authorities fail closed", () => 
   [reordered.manifest.modules[0], reordered.manifest.modules[1]] = [
     reordered.manifest.modules[1], reordered.manifest.modules[0],
   ];
-  assert.match(validateTrackModuleManifest({ bundle: reordered }).errors.join("\n"), /manifest differs|IDs/order|path/ordinal/);
+  assert.match(validateTrackModuleManifest({ bundle: reordered }).errors.join("\n"), /manifest differs|IDs\/order|path\/ordinal/);
 });
 
 test("RSH-015 remains unauthorized after the batch closes", () => {

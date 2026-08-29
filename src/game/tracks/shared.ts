@@ -1,5 +1,5 @@
 import { clamp, lerp, lerpColor } from "../math";
-import type { CityId, SkyPreset, TrackDef, TrackId, Weather } from "../types";
+import type { CityId } from "../types";
 
 const TLV_DUSK = {
   elevation: 6.5,

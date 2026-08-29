@@ -1,5 +1,5 @@
 import { clamp, lerp, lerpColor } from "./math";
-import type { CityId, SkyPreset, TrackDef, TrackId, Weather } from "./types";
+import type { SkyPreset, TrackDef, TrackId, Weather } from "./types";
 import { TRACKS } from "./tracks/index";
 
 export { TRACKS };

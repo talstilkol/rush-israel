@@ -5,7 +5,6 @@ import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { fromRoot } from "./project-root.mjs";
 import { readCanonicalTrackSource } from "./load-track-modules.mjs";
-import { readCanonicalTrackSource } from "./load-track-modules.mjs";
 
 export const EXPECTED_RSH_012_MERGE = "94524201dfe87f1f22f8d8bdd9d97aad507c0438";
 

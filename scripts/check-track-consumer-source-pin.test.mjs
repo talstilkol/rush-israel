@@ -28,7 +28,6 @@ function completeInputs(consumerSources = readConsumerSources()) {
     classification: JSON.parse(
       readFileSync(fromRoot("TRACK-CATALOGUE-CLASSIFICATION.json"), "utf8"),
     ),
-    sourcePin: JSON.parse(readFileSync(fromRoot("TRACK-SOURCE-PIN.json"), "utf8")),
     typeSource: readFileSync(fromRoot("src", "game", "types.ts"), "utf8"),
     trackSource: readCanonicalTrackSource(),
     trackSchemaSource: readFileSync(fromRoot("src", "game", "track-schema.ts"), "utf8"),

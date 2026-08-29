@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 import { createHash } from "node:crypto";
-import { readFileSync, realpathSync } from "node:fs";
+import { realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { fromRoot } from "./project-root.mjs";
-import { readCanonicalTrackSource } from "./load-track-modules.mjs";
+import { validateTrackModuleManifest } from "./check-track-module-manifest.mjs";
 
 export const EXPECTED_TRACK_SOURCE_PATH = "src/game/tracks.ts";
 export const EXPECTED_TRACK_SOURCE_GIT_BLOB_SHA1 =
@@ -81,14 +80,15 @@ function isMainModule(moduleUrl) {
 }
 
 if (isMainModule(import.meta.url)) {
-  const pin = JSON.parse(readFileSync(fromRoot("TRACK-SOURCE-PIN.json"), "utf8"));
-  const trackSource = readCanonicalTrackSource();
-  const result = validateTrackSourcePin({ pin, trackSource });
+  const result = validateTrackModuleManifest();
   if (result.errors.length) {
-    console.error("track-source-pin fail\n" + result.errors.map((error) => `- ${error}`).join("\n"));
+    console.error(
+      "track-module-manifest replacement fail\n"
+      + result.errors.map((error) => `- ${error}`).join("\n"),
+    );
     process.exit(1);
   }
   console.log(
-    `track-source-pin ok: ${EXPECTED_TRACK_SOURCE_PATH} ${result.actualGitBlobSha1}; RSH-014 owner transition only`,
+    `track-source-pin compatibility ok: replaced by ${result.moduleCount} track modules; reconstructed ${EXPECTED_TRACK_SOURCE_PATH} ${result.legacyBlob}`,
   );
 }

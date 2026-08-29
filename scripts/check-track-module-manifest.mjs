@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readdirSync, readFileSync, realpathSync } from "node:fs";
+import { readdirSync, realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { fromRoot } from "./project-root.mjs";
