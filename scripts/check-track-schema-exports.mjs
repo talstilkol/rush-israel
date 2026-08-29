@@ -4,15 +4,17 @@ const REQUIRED_ARRAY_AUTHORITIES = Object.freeze([
   "TRACK_REQUIRED_PROPERTIES",
   "TRACK_OPTIONAL_PROPERTIES",
 ]);
-const REQUIRED_IDENTITY_HELPERS = Object.freeze([
-  "defineTrack",
-  "defineTracks",
-]);
+const IDENTITY_HELPER_CONTRACTS = Object.freeze({
+  defineTrack: Object.freeze({ constraint: "TrackDef" }),
+  defineTracks: Object.freeze({ constraint: "readonly TrackDef[]" }),
+});
+
+function hasModifier(node, kind) {
+  return Boolean(node.modifiers?.some((modifier) => modifier.kind === kind));
+}
 
 function hasExportModifier(statement) {
-  return Boolean(
-    statement.modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword),
-  );
+  return hasModifier(statement, ts.SyntaxKind.ExportKeyword);
 }
 
 function unwrapExpression(node) {
@@ -29,7 +31,74 @@ function unwrapExpression(node) {
   return current;
 }
 
-function validateIdentityHelper(file, name, errors) {
+function unwrapTypeNode(node) {
+  let current = node;
+  while (current && ts.isParenthesizedTypeNode(current)) current = current.type;
+  return current;
+}
+
+function isNamedTypeReference(node, name) {
+  const type = unwrapTypeNode(node);
+  return Boolean(
+    type
+    && ts.isTypeReferenceNode(type)
+    && ts.isIdentifier(type.typeName)
+    && type.typeName.text === name
+    && (!type.typeArguments || type.typeArguments.length === 0),
+  );
+}
+
+function constraintMatches(node, expected) {
+  const constraint = unwrapTypeNode(node);
+  if (expected === "TrackDef") return isNamedTypeReference(constraint, "TrackDef");
+  if (expected !== "readonly TrackDef[]") return false;
+  if (
+    !constraint
+    || !ts.isTypeOperatorNode(constraint)
+    || constraint.operator !== ts.SyntaxKind.ReadonlyKeyword
+  ) {
+    return false;
+  }
+  const array = unwrapTypeNode(constraint.type);
+  return Boolean(
+    array
+    && ts.isArrayTypeNode(array)
+    && isNamedTypeReference(array.elementType, "TrackDef"),
+  );
+}
+
+function validateGenericContract(helper, name, contract, errors) {
+  const typeParameters = helper.typeParameters ?? [];
+  if (typeParameters.length !== 1) {
+    errors.push(`${name} must declare exactly one const generic parameter`);
+    return;
+  }
+  const typeParameter = typeParameters[0];
+  if (!hasModifier(typeParameter, ts.SyntaxKind.ConstKeyword)) {
+    errors.push(`${name} generic parameter must remain const`);
+  }
+  if (typeParameter.default) {
+    errors.push(`${name} generic parameter must not declare a default`);
+  }
+  if (!constraintMatches(typeParameter.constraint, contract.constraint)) {
+    errors.push(`${name} generic constraint must remain ${contract.constraint}`);
+  }
+
+  const genericName = typeParameter.name.text;
+  const parameter = helper.parameters[0];
+  if (
+    !parameter
+    || parameter.questionToken
+    || parameter.dotDotDotToken
+    || parameter.initializer
+    || !isNamedTypeReference(parameter.type, genericName)
+    || !isNamedTypeReference(helper.type, genericName)
+  ) {
+    errors.push(`${name} parameter and return types must both remain the exact generic parameter`);
+  }
+}
+
+function validateIdentityHelper(file, name, contract, errors) {
   const helpers = file.statements.filter(
     (statement) => ts.isFunctionDeclaration(statement) && statement.name?.text === name,
   );
@@ -51,6 +120,8 @@ function validateIdentityHelper(file, name, errors) {
     errors.push(`${name} must remain the one-parameter identity helper`);
     return;
   }
+  validateGenericContract(helper, name, contract, errors);
+
   const parameter = helper.parameters[0].name.text;
   const returned = helper.body.statements[0].expression
     && unwrapExpression(helper.body.statements[0].expression);
@@ -91,8 +162,8 @@ export function validateTrackSchemaExports(trackSchemaSource) {
     }
   }
 
-  for (const name of REQUIRED_IDENTITY_HELPERS) {
-    validateIdentityHelper(file, name, errors);
+  for (const [name, contract] of Object.entries(IDENTITY_HELPER_CONTRACTS)) {
+    validateIdentityHelper(file, name, contract, errors);
   }
 
   return errors;
