@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-version-1-product-definition",
+  "product": {
+    "id": "rush-israel",
+    "name": "RUSH Israel",
+    "version_scope": "Version 1",
+    "definition_state": "frozen",
+    "owner": "@talstilkol",
+    "ownership_model": "private_owner_controlled",
+    "public_distribution_authorized": false
+  },
+  "classification": {
+    "category": "browser_driving_game",
+    "handling": "simcade",
+    "world_basis": "fictional_routes_inspired_by_Israeli_places",
+    "default_renderer": "WebGLRenderer",
+    "physics_frequency_hz": 120
+  },
+  "technology_invariants": {
+    "runtime": "modern_web_browser",
+    "engine": "Three.js",
+    "application": "React_and_TypeScript",
+    "build_system": "Vite",
+    "default_graphics_api": "WebGL",
+    "webgpu_default": false,
+    "native_engine_dependency": false
+  },
+  "version_1_scope": {
+    "tracks": {
+      "target_count": 8,
+      "identity_state": "owner_approved_names_pending_exact_repository_id_mapping_in_RSH-010",
+      "names": [
+        "Ayalon",
+        "Rothschild",
+        "Yarkon–Reading",
+        "Jaffa",
+        "Jerusalem–Scopus",
+        "Haifa–Carmel",
+        "Ramon",
+        "Hermon"
+      ],
+      "catalogue_expansion_authorized": false
+    },
+    "vehicles": {
+      "target_count": 5,
+      "identity": "fictional",
+      "balance_and_claims_frozen": false,
+      "calibration_authority": "RSH-033"
+    },
+    "gameplay": [
+      "local_single_player_driving",
+      "race_and_free_drive_flows_exposed_by_the_accepted_product_surface",
+      "simcade_handling_with_fixed_step_physics",
+      "local_progress_save_and_timed_records",
+      "day_night_and_weather_variants_subject_to_later_acceptance",
+      "photo_capture_flow_subject_to_later_acceptance"
+    ],
+    "inputs": [
+      "keyboard",
+      "touch",
+      "gamepad"
+    ],
+    "languages": [
+      "Hebrew",
+      "English"
+    ],
+    "delivery": {
+      "form": "private_owner_controlled_web_build",
+      "public_release": false,
+      "native_mobile_store_release": false
+    }
+  },
+  "explicit_non_claims": [
+    "GIS",
+    "digital_twin",
+    "measurement_simulator",
+    "automotive_engineering_simulator",
+    "real_road_navigation",
+    "survey_grade_geospatial_accuracy",
+    "Unreal_Engine",
+    "Unity",
+    "photogrammetry",
+    "scanned_vehicles",
+    "licensed_real_vehicle_models",
+    "photorealistic_console_equivalence"
+  ],
+  "version_1_exclusions": [
+    "public_distribution",
+    "public_licensing",
+    "public_archive_submission",
+    "online_multiplayer",
+    "mandatory_user_accounts",
+    "backend_database_as_a_game_requirement",
+    "monetization",
+    "user_generated_content",
+    "WebGPU_as_the_default_renderer",
+    "catalogue_expansion_beyond_eight_tracks",
+    "native_iOS_or_Android_store_packages",
+    "real_map_or_navigation_accuracy_claims"
+  ],
+  "acceptance_authority": {
+    "release_gate_count": 13,
+    "all_release_gates_required": true,
+    "accepted_units_are_not_release_readiness": true,
+    "current_release_gates_green": 0,
+    "current_release_gates_total": 13
+  },
+  "known_unresolved_authorities": [
+    {
+      "topic": "exact_track_ids_and_56_entry_classification",
+      "unit": "RSH-010"
+    },
+    {
+      "topic": "asset_provenance_and_licensing",
+      "unit": "RSH-011"
+    },
+    {
+      "topic": "README_metadata_branding_root_license_and_PWA_alignment",
+      "unit": "RSH-012"
+    },
+    {
+      "topic": "vehicle_performance_and_zero_to_100_claims",
+      "unit": "RSH-033"
+    },
+    {
+      "topic": "browser_and_device_support_matrix",
+      "unit": "RSH-043"
+    },
+    {
+      "topic": "accessibility_privacy_and_alpha_UX",
+      "unit": "RSH-048"
+    }
+  ],
+  "change_control": {
+    "definition_frozen_by": "RSH-009",
+    "implicit_scope_expansion_allowed": false,
+    "change_requires": [
+      "explicit_owner_authorization",
+      "canonical_plan_and_queue_update",
+      "separate_reviewed_change_unit",
+      "preservation_of_historical_definition"
+    ]
+  }
+}
