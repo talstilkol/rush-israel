@@ -52,6 +52,7 @@ function unwrapExpression(node) {
   while (
     current
     && (ts.isAsExpression(current)
+      || ts.isTypeAssertionExpression(current)
       || ts.isSatisfiesExpression(current)
       || ts.isParenthesizedExpression(current)
       || ts.isNonNullExpression(current)
@@ -149,24 +150,39 @@ function functionLikeFromExpression(node) {
   return value && (ts.isArrowFunction(value) || ts.isFunctionExpression(value)) ? value : null;
 }
 
+function symbolForCallable(value, checker) {
+  if (ts.isIdentifier(value)) return checker.getSymbolAtLocation(value);
+  if (ts.isPropertyAccessExpression(value)) return checker.getSymbolAtLocation(value.name);
+  if (ts.isElementAccessExpression(value) && value.argumentExpression) {
+    return checker.getSymbolAtLocation(value.argumentExpression)
+      ?? checker.getSymbolAtLocation(value);
+  }
+  return checker.getSymbolAtLocation(value);
+}
+
 function functionLikeDeclarations(node, checker) {
   const value = unwrapExpression(node);
   const inline = functionLikeFromExpression(value);
   if (inline) return [inline];
-  if (!ts.isIdentifier(value)) return [];
-  const symbol = checker.getSymbolAtLocation(value);
+  const symbol = symbolForCallable(value, checker);
   if (!symbol) return [];
   const declarations = [];
   for (const declaration of symbol.declarations ?? []) {
-    if (ts.isFunctionDeclaration(declaration) && declaration.body) {
+    if (
+      (ts.isFunctionDeclaration(declaration)
+        || ts.isMethodDeclaration(declaration)
+        || ts.isGetAccessorDeclaration(declaration)
+        || ts.isSetAccessorDeclaration(declaration))
+      && declaration.body
+    ) {
       declarations.push(declaration);
     }
-    if (ts.isVariableDeclaration(declaration)) {
+    if (ts.isVariableDeclaration(declaration) || ts.isPropertyAssignment(declaration)) {
       const initializer = declaration.initializer && functionLikeFromExpression(declaration.initializer);
       if (initializer) declarations.push(initializer);
     }
   }
-  return declarations;
+  return [...new Set(declarations)];
 }
 
 function addParameterSymbols(callable, indexes, tainted, checker) {
@@ -195,7 +211,51 @@ function addBindingSymbols(name, tainted, checker) {
   return changed;
 }
 
-function expressionIsTainted(node, tainted, checker) {
+function templateSubstitutions(node) {
+  if (!ts.isTaggedTemplateExpression(node)) return [];
+  return ts.isTemplateExpression(node.template)
+    ? node.template.templateSpans.map((span) => span.expression)
+    : [];
+}
+
+function callableReturnsTainted(callable, tainted, checker, resolvingCallables) {
+  if (resolvingCallables.has(callable)) return false;
+  resolvingCallables.add(callable);
+  try {
+    if (ts.isArrowFunction(callable) && !ts.isBlock(callable.body)) {
+      return expressionIsTainted(callable.body, tainted, checker, resolvingCallables);
+    }
+    if (!callable.body || !ts.isBlock(callable.body)) return false;
+    let found = false;
+    const visit = (current) => {
+      if (found) return;
+      if (
+        current !== callable
+        && (ts.isFunctionDeclaration(current)
+          || ts.isFunctionExpression(current)
+          || ts.isArrowFunction(current)
+          || ts.isMethodDeclaration(current)
+          || ts.isGetAccessorDeclaration(current)
+          || ts.isSetAccessorDeclaration(current))
+      ) {
+        return;
+      }
+      if (ts.isReturnStatement(current) && current.expression) {
+        if (expressionIsTainted(current.expression, tainted, checker, resolvingCallables)) {
+          found = true;
+        }
+        return;
+      }
+      ts.forEachChild(current, visit);
+    };
+    visit(callable.body);
+    return found;
+  } finally {
+    resolvingCallables.delete(callable);
+  }
+}
+
+function expressionIsTainted(node, tainted, checker, resolvingCallables = new Set()) {
   if (!node) return false;
   const value = unwrapExpression(node);
   if (ts.isIdentifier(value)) {
@@ -203,7 +263,10 @@ function expressionIsTainted(node, tainted, checker) {
     return Boolean(symbol && tainted.has(symbol));
   }
   if (ts.isPropertyAccessExpression(value) || ts.isElementAccessExpression(value)) {
-    return expressionIsTainted(value.expression, tainted, checker);
+    if (expressionIsTainted(value.expression, tainted, checker, resolvingCallables)) return true;
+    return functionLikeDeclarations(value, checker).some(
+      (callable) => callableReturnsTainted(callable, tainted, checker, resolvingCallables),
+    );
   }
   if (ts.isCallExpression(value) || ts.isNewExpression(value)) {
     const callee = value.expression && unwrapExpression(value.expression);
@@ -211,41 +274,64 @@ function expressionIsTainted(node, tainted, checker) {
       && (ts.isPropertyAccessExpression(callee) || ts.isElementAccessExpression(callee))
       ? callee.expression
       : null;
-    return expressionIsTainted(receiver, tainted, checker)
-      || (value.arguments ?? []).some(
-        (argument) => expressionIsTainted(argument, tainted, checker),
+    if (expressionIsTainted(receiver, tainted, checker, resolvingCallables)) return true;
+    if ((value.arguments ?? []).some(
+      (argument) => expressionIsTainted(argument, tainted, checker, resolvingCallables),
+    )) {
+      return true;
+    }
+    if (ts.isCallExpression(value)) {
+      return functionLikeDeclarations(callee, checker).some(
+        (callable) => callableReturnsTainted(callable, tainted, checker, resolvingCallables),
       );
+    }
+    return false;
+  }
+  if (ts.isTaggedTemplateExpression(value)) {
+    if (templateSubstitutions(value).some(
+      (expression) => expressionIsTainted(expression, tainted, checker, resolvingCallables),
+    )) {
+      return true;
+    }
+    return functionLikeDeclarations(value.tag, checker).some(
+      (callable) => callableReturnsTainted(callable, tainted, checker, resolvingCallables),
+    );
   }
   if (ts.isConditionalExpression(value)) {
-    return expressionIsTainted(value.whenTrue, tainted, checker)
-      || expressionIsTainted(value.whenFalse, tainted, checker);
+    return expressionIsTainted(value.whenTrue, tainted, checker, resolvingCallables)
+      || expressionIsTainted(value.whenFalse, tainted, checker, resolvingCallables);
   }
   if (ts.isBinaryExpression(value)) {
     if (value.operatorToken.kind === ts.SyntaxKind.CommaToken) {
-      return expressionIsTainted(value.right, tainted, checker);
+      return expressionIsTainted(value.right, tainted, checker, resolvingCallables);
     }
     if (isAssignmentOperator(value.operatorToken.kind)) {
-      return expressionIsTainted(value.right, tainted, checker);
+      return expressionIsTainted(value.right, tainted, checker, resolvingCallables);
     }
-    return expressionIsTainted(value.left, tainted, checker)
-      || expressionIsTainted(value.right, tainted, checker);
+    return expressionIsTainted(value.left, tainted, checker, resolvingCallables)
+      || expressionIsTainted(value.right, tainted, checker, resolvingCallables);
   }
   if (ts.isAwaitExpression(value) || ts.isYieldExpression(value) || ts.isSpreadElement(value)) {
-    return expressionIsTainted(value.expression, tainted, checker);
+    return expressionIsTainted(value.expression, tainted, checker, resolvingCallables);
   }
   if (ts.isArrayLiteralExpression(value)) {
-    return value.elements.some((element) => expressionIsTainted(element, tainted, checker));
+    return value.elements.some(
+      (element) => expressionIsTainted(element, tainted, checker, resolvingCallables),
+    );
   }
   if (ts.isObjectLiteralExpression(value)) {
     return value.properties.some((property) => {
       if (ts.isSpreadAssignment(property)) {
-        return expressionIsTainted(property.expression, tainted, checker);
+        return expressionIsTainted(property.expression, tainted, checker, resolvingCallables);
       }
       if (ts.isPropertyAssignment(property)) {
-        return expressionIsTainted(property.initializer, tainted, checker);
+        return expressionIsTainted(property.initializer, tainted, checker, resolvingCallables);
       }
       if (ts.isShorthandPropertyAssignment(property)) {
-        return expressionIsTainted(property.name, tainted, checker);
+        return expressionIsTainted(property.name, tainted, checker, resolvingCallables);
+      }
+      if (ts.isMethodDeclaration(property) || ts.isGetAccessorDeclaration(property)) {
+        return callableReturnsTainted(property, tainted, checker, resolvingCallables);
       }
       return false;
     });
@@ -261,6 +347,13 @@ function collectTaintedAliases(sourceFile, tracksSymbol, checker) {
     const visit = (node) => {
       if (
         ts.isVariableDeclaration(node)
+        && node.initializer
+        && expressionIsTainted(node.initializer, tainted, checker)
+      ) {
+        changed = addBindingSymbols(node.name, tainted, checker) || changed;
+      }
+      if (
+        (ts.isBindingElement(node) || ts.isParameter(node))
         && node.initializer
         && expressionIsTainted(node.initializer, tainted, checker)
       ) {
@@ -319,6 +412,25 @@ function collectTaintedAliases(sourceFile, tracksSymbol, checker) {
               changed = addParameterSymbols(callable, [index], tainted, checker) || changed;
             }
           });
+        }
+      }
+      if (ts.isTaggedTemplateExpression(node)) {
+        const substitutions = templateSubstitutions(node);
+        const protectedParameterIndexes = [];
+        substitutions.forEach((expression, index) => {
+          if (expressionIsTainted(expression, tainted, checker)) {
+            protectedParameterIndexes.push(index + 1);
+          }
+        });
+        if (protectedParameterIndexes.length) {
+          for (const callable of functionLikeDeclarations(node.tag, checker)) {
+            changed = addParameterSymbols(
+              callable,
+              protectedParameterIndexes,
+              tainted,
+              checker,
+            ) || changed;
+          }
         }
       }
       ts.forEachChild(node, visit);
@@ -460,6 +572,14 @@ export function validateTrackMutationGuard(trackSource) {
           report(node, `protected value passed to unreviewed call ${callName ?? "<expression>"}`);
         }
       }
+    }
+    if (
+      ts.isTaggedTemplateExpression(node)
+      && templateSubstitutions(node).some(
+        (expression) => expressionIsTainted(expression, tainted, checker),
+      )
+    ) {
+      report(node, `protected value passed through tagged template ${dottedName(node.tag) ?? "<expression>"}`);
     }
     ts.forEachChild(node, visit);
   };
