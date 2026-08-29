@@ -121,9 +121,12 @@ test("imported defineTracks must itself remain an identity helper", () => {
 
 test("configured math support source is pinned by Git blob identity and aggregate", () => {
   const inputs = readInputs();
+  const original = "export function clamp(v: number, a: number, b: number) {\n  return Math.max(a, Math.min(b, v));\n}";
+  const replacement = "export function clamp(v: number, a: number, b: number) {\n  return Math.min(b, Math.max(a, v));\n}";
+  assert.ok(inputs.supportSources["src/game/math.ts"].includes(original));
   inputs.supportSources["src/game/math.ts"] = inputs.supportSources["src/game/math.ts"].replace(
-    "export const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));",
-    "export const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));",
+    original,
+    replacement,
   );
   const result = resultOf(inputs);
   assert.equal(result.digest, TRACK_DIGEST);
