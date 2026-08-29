@@ -1,16 +1,16 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 3.0.0
+**Schema:** 4.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-014 implementation base:** `0273520da4924cb3e71ff41b2ea75788a45bf757`
-**State effective on:** merge of the RSH-014 pull request
-**Next unit:** RSH-015 — deferred and not authorised
+**RSH-015 implementation base:** `076dabb754dba1676c6685a4a8d6f6d3c0b153ea`
+**State effective on:** merge of the RSH-015 pull request
+**Next unit:** RSH-016 — deferred and not authorised
 **Product-definition authority:** `PRODUCT-DEFINITION.json`
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`
 **Product-metadata authority:** `PRODUCT-METADATA.json`
-**Date:** 29 August 2026
+**Date:** 30 August 2026
 
 ## 1. Authority
 
@@ -18,7 +18,8 @@ GitHub is the sole source of truth. `CURRENT-STATE.json`, `QUEUE.json`, this doc
 `NEXT-CONTRACT.md`, `FINDINGS-REGISTER.md`, `BASELINE-REGISTER.json`,
 `MILESTONE-REGISTER.md`, `PRODUCT-DEFINITION.json`,
 `TRACK-CATALOGUE-CLASSIFICATION.json`, `ASSET-PROVENANCE.json`,
-`PRODUCT-METADATA.json`, `TRACK-SCHEMA.json` and `REPOSITORY-GOVERNANCE.md` control program state.
+`PRODUCT-METADATA.json`, `TRACK-SCHEMA.json`, `TRACK-MODULE-MANIFEST.json`,
+`WORLD-CORE-MANIFEST.json` and `REPOSITORY-GOVERNANCE.md` control program state.
 
 Historical planning files are evidence only. They do not control queue order,
 accepted progress, asset clearance or release-gate counts.
@@ -78,22 +79,22 @@ root-branding assets remain unverified.
 5. Exact-head `required-ci / validate` success and resolved blocking review findings are mandatory before merge.
 6. A unit becomes accepted when its PR merges; exact self-referential merge evidence is reconciled in the following preflight.
 7. Accepted-unit progress is not release readiness; all 13 release gates remain authoritative.
-8. The current owner batch is exactly RSH-010–RSH-014 and closes after RSH-014.
-9. The current `next 2` continues with RSH-014 after PR #16 merges; RSH-015 is not authorised.
+8. The RSH-010–RSH-014 owner batch is closed at 5/5.
+9. The latest explicit owner authority covers exactly RSH-015 and is consumed on its validated merge; RSH-016 is not authorised.
 
-## 5. Post-RSH-013 program state
+## 5. Post-RSH-015 program state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 14 |
+| Accepted | 15 |
 | In review | 0 |
 | Eligible | 0 |
-| Deferred | 53 |
-| Remaining | 53 |
-| Queue head | RSH-015 — deferred/not authorised |
+| Deferred | 52 |
+| Remaining | 52 |
+| Queue head | RSH-016 — deferred/not authorised |
 | Active PR | none |
-| Current batch completed | 5/5 — closed |
+| RSH-015 one-unit authority | 1/1 — consumed |
 | Release gates green | 0/13 |
 | Findings OPEN / MITIGATED / CLOSED | 24 / 7 / 11 |
 
@@ -104,7 +105,7 @@ root-branding assets remain unverified.
 | G0 | RSH-001–003 | 3 | Control and governance | ACCEPTED |
 | G1 | RSH-004–008 | 5 | Reproducible toolchain and CI | UNITS ACCEPTED; EXIT GATE BLOCKED BY OWNER SETTING |
 | G2 | RSH-009–012 | 4 | Scope, licensing and assets | ACCEPTED |
-| G3 | RSH-013–020 | 8 | Architecture decomposition | ACTIVE — RSH-013 and RSH-014 accepted; RSH-015 deferred/not authorised |
+| G3 | RSH-013–020 | 8 | Architecture decomposition | ACTIVE — RSH-013–RSH-015 accepted; RSH-016 deferred/not authorised |
 | G4 | RSH-021–024 | 4 | Data integrity and production security | DEFERRED |
 | G5 | RSH-025–036 | 12 | Ayalon vertical slice | DEFERRED |
 | G6 | RSH-037–043 | 7 | Performance and reliability | DEFERRED |
@@ -206,6 +207,6 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-RSH-014 is accepted on merge only after exact-head CI and review. It replaces the monolithic track catalogue with exactly 56 per-track modules while preserving the exact RSH-013 legacy blob, semantic digests, runtime data/order and 8/48 classification.
+RSH-015 is accepted on merge only after exact-head CI and review. It moves the canonical `World` contract and 22-key lifecycle assembly to `src/game/world-core.ts`, retains `src/game/world.ts` as the concrete composition root and facade, and reconstructs the accepted pre-extraction source byte-for-byte.
 
-The owner-bounded RSH-010–RSH-014 batch is then closed. RSH-015 is deferred and cannot start without a new explicit owner instruction.
+The RSH-015 one-unit owner authority is then consumed. RSH-016 remains deferred and cannot start without a new explicit owner instruction.

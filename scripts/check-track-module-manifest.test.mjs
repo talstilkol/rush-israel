@@ -37,7 +37,7 @@ test("missing, substituted and reordered module authorities fail closed", () => 
   assert.match(validateTrackModuleManifest({ bundle: reordered }).errors.join("\n"), /manifest differs|IDs\/order|path\/ordinal/);
 });
 
-test("RSH-015 remains unauthorized after the batch closes", () => {
+test("the accepted RSH-014 manifest remains immutable after later authorization", () => {
   const bundle = structuredClone(readTrackModuleBundle());
   bundle.manifest.change_control["RSH-015_authorized"] = true;
   bundle.manifestSource = JSON.stringify(bundle.manifest, null, 2) + "\n";

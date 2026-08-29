@@ -3812,7 +3812,15 @@
       }
     ],
     "assignment_count": 325,
-    "call_count": 1041
+    "call_count": 1041,
+    "disposal": {
+      "resolved": true,
+      "owner": "src/game/world.ts",
+      "collection": "bag",
+      "iteration_order": "insertion_order",
+      "exact_statement": "for (const d of bag) d.dispose();",
+      "calls_per_item": 1
+    }
   },
   "consumers": {
     "direct_imports": [
@@ -4944,5 +4952,26 @@
     ],
     "source_track_module_file_count": 58,
     "unauthorized_rsh_016_paths": []
+  },
+  "reconciled_at": "2026-08-30T01:15:00+03:00",
+  "owner_authorization": {
+    "authorized_unit": "RSH-015",
+    "authorized_scope": "Extract the world core from world.ts",
+    "authorization_count": 1,
+    "RSH-016_authorized": false,
+    "later_units_authorized": false
+  },
+  "planned_extraction": {
+    "core_path": "src/game/world-core.ts",
+    "facade_path": "src/game/world.ts",
+    "machine_authority": "WORLD-CORE-MANIFEST.json",
+    "validator": "scripts/check-world-core.mjs",
+    "world_lines_after": 9006,
+    "world_bytes_after": 352625,
+    "core_lines": 116,
+    "core_bytes": 2604,
+    "legacy_reconstruction_sha256": "db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056",
+    "runtime_behavior_changes": 0,
+    "RSH-016_structures_created": 0
   }
 }

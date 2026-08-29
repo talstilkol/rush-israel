@@ -2,7 +2,8 @@
 
 - Unit: `RSH-015`
 - Verified base commit: `076dabb754dba1676c6685a4a8d6f6d3c0b153ea`
-- Evidence generated: `2026-08-29T21:30:59.957Z`
+- Pre-extraction evidence generated: `2026-08-29T21:30:59.957Z`
+- Contract reconciled: `2026-08-30T01:15:00+03:00`
 - Source baseline: `src/game/world.ts` — **9034 lines**, **353285 bytes**
 - Source SHA-256: `db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056`
 - Source Git blob SHA-1: `07b7e0b559e66f89641357db5aa2be8bcd8c3135`
@@ -17,7 +18,7 @@ Extract the reusable, track-agnostic world contract and lifecycle assembly from 
 2. `src/game/world.ts` remains the concrete composition root for scene construction, physics bodies and colliders, rendering resources, checkpoints, track selection and every existing track-specific builder.
 3. `src/game/world.ts` remains the compatibility facade imported by current consumers. It re-exports the world API types and exports `createWorld`.
 4. The core is pure assembly: it receives completed implementations and returns the canonical world object in the accepted key order. It creates no rendering, physics, track, storage or QA side effects.
-5. Each responsibility has one owner. `world.ts` must not duplicate the public World/WorldMeshes type declarations after extraction.
+5. Each responsibility has one owner. `world.ts` must not duplicate the public `World` type declaration after extraction.
 
 ## 3. Frozen public boundary
 
@@ -54,9 +55,11 @@ Direct consumers:
 
 ## 4. Lifecycle and disposal preservation
 
-The implementation must preserve the exact lifecycle method names and order recorded above. The accepted pre-extraction dispose call sequence is:
+The implementation must preserve the exact lifecycle method names and order recorded above. The accepted pre-extraction disposal sequence is:
 
-1. No local dispose function was resolved.
+1. Iterate the local `bag` in insertion order.
+2. Call `dispose()` exactly once on each item using `for (const d of bag) d.dispose();`.
+3. The extracted core delegates to this concrete disposer; it does not reorder, reverse, duplicate or replace resource ownership.
 
 `engine.ts` remains wired through `./world`; its 120 Hz physics step and its call/disposal order are unchanged.
 
@@ -96,7 +99,7 @@ RSH-015 must fail closed on:
 7. `world.ts` bypassing the extracted core or regrowing duplicate ownership;
 8. track, physics, asset, dependency, save/record, rendering or QA drift.
 
-The complete required CI, all unit tests, all self-starting QA smoke tests and deterministic development build must pass on the exact final PR head.
+The complete required CI, all unit tests, all self-starting QA smoke tests and deterministic development build must pass on the exact final PR head. `WORLD-CORE-MANIFEST.json` and `scripts/check-world-core.mjs` are the machine-readable boundary and validator.
 
 ## 8. Explicit non-changes
 
@@ -105,3 +108,10 @@ RSH-015 makes no track-data, physics tuning, renderer-default, asset, dependency
 ## 9. Deferred authority
 
 RSH-016 remains deferred and unauthorized. This contract does not create, activate or partially implement it.
+
+## 10. Implemented extraction dimensions
+
+- `src/game/world.ts`: **9006 lines**, **352625 bytes** after extraction.
+- `src/game/world-core.ts`: **116 lines**, **2604 bytes**.
+- Accepted pre-extraction reconstruction: **9034 lines**, **353285 bytes**, SHA-256 `db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056`.
+- Observable runtime-behaviour changes: **0**.

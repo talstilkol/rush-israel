@@ -3,6 +3,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { extname, join, posix, relative, sep } from "node:path";
 import ts from "typescript";
 import { fromRoot, projectRoot } from "./project-root.mjs";
+import { reconstructLegacyWorldSource } from "./load-world-core.mjs";
 
 const ACCEPTED_TRACK_CONSUMERS = Object.freeze({
   "src/components/game-app.tsx": "956cfa131200b3c9d9d0902a1b2d6d4d9a8d8728",
@@ -175,6 +176,20 @@ function readRepositorySources() {
   return sources;
 }
 
+function identitySourceForAcceptedBaseline(filePath, source, expectedGitBlobSha1, errors) {
+  const rawIdentity = gitBlobSha1(source);
+  if (rawIdentity === expectedGitBlobSha1 || filePath !== "src/game/world.ts") {
+    return { source, rawIdentity, reconstructed: false };
+  }
+  try {
+    const reconstructed = reconstructLegacyWorldSource(source);
+    return { source: reconstructed, rawIdentity, reconstructed: true };
+  } catch (error) {
+    errors.push(`src/game/world.ts controlled RSH-015 reconstruction failed: ${error.message}`);
+    return { source, rawIdentity, reconstructed: false };
+  }
+}
+
 export function validateTrackConsumerSourcePin({ consumerSources } = {}) {
   const errors = [];
   const sources = consumerSources ?? readRepositorySources();
@@ -206,8 +221,9 @@ export function validateTrackConsumerSourcePin({ consumerSources } = {}) {
       errors.push(`accepted runtime track consumer ${filePath} is missing`);
       continue;
     }
-    const actualGitBlobSha1 = gitBlobSha1(source);
     const expectedGitBlobSha1 = ACCEPTED_TRACK_CONSUMERS[filePath];
+    const identitySource = identitySourceForAcceptedBaseline(filePath, source, expectedGitBlobSha1, errors);
+    const actualGitBlobSha1 = gitBlobSha1(identitySource.source);
     if (actualGitBlobSha1 !== expectedGitBlobSha1) {
       errors.push(
         `${filePath} Git blob identity ${actualGitBlobSha1}`
@@ -217,6 +233,8 @@ export function validateTrackConsumerSourcePin({ consumerSources } = {}) {
     identities.push({
       path: filePath,
       git_blob_sha1: actualGitBlobSha1,
+      current_git_blob_sha1: identitySource.rawIdentity,
+      controlled_reconstruction: identitySource.reconstructed,
     });
   }
 
