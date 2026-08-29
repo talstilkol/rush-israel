@@ -85,6 +85,30 @@ test("a new dynamic runtime consumer fails closed", () => {
   );
 });
 
+test("aliased runtime consumers normalize every supported source extension", () => {
+  const moduleNames = [
+    "@/game/tracks.js",
+    "@/game/tracks.jsx",
+    "@/game/tracks.mjs",
+    "@/game/tracks.cjs",
+    "@/game/tracks.ts",
+    "@/game/tracks.tsx",
+    "@/game/tracks.mts",
+    "@/game/tracks.cts",
+    "@/game/tracks/index.js",
+  ];
+  for (const [index, moduleName] of moduleNames.entries()) {
+    const sources = readConsumerSources();
+    sources[`src/game/unreviewed-alias-${index}.ts`] =
+      `import { TRACKS } from "${moduleName}";\nTRACKS.reverse();\n`;
+    assert.match(
+      validateTrackConsumerSourcePin({ consumerSources: sources }).errors.join("\n"),
+      /runtime track consumer set differs/,
+      moduleName,
+    );
+  }
+});
+
 test("type-only imports do not expand the runtime consumer authority", () => {
   const sources = readConsumerSources();
   sources["src/game/type-only.ts"] =
