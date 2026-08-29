@@ -12,21 +12,31 @@ function readInputs() {
     ),
     typeSource: readFileSync(fromRoot("src", "game", "types.ts"), "utf8"),
     trackSource: readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8"),
+    supportSources: {
+      "./math": readFileSync(fromRoot("src", "game", "math.ts"), "utf8"),
+    },
   };
 }
 
-function errorsOf(inputs) {
+function resultOf(inputs) {
   const result = validateTrackSchema(inputs);
-  return Array.isArray(result) ? result : result.errors;
+  assert.equal(Array.isArray(result), false);
+  return result;
+}
+
+function errorsOf(inputs) {
+  return resultOf(inputs).errors;
 }
 
 test("committed 56-track catalogue satisfies the canonical schema", () => {
   const inputs = readInputs();
-  const result = validateTrackSchema(inputs);
-  assert.equal(Array.isArray(result), false);
+  const result = resultOf(inputs);
   assert.deepEqual(result.errors, []);
   assert.equal(result.summaries.length, 56);
-  assert.equal(result.digest, "9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230");
+  assert.match(result.digest, /^[0-9a-f]{64}$/);
+  if (inputs.schema.runtime_definition_integrity.expected_digest !== null) {
+    assert.equal(result.digest, inputs.schema.runtime_definition_integrity.expected_digest);
+  }
   assert.notDeepEqual(
     result.summaries.map((entry) => entry.id),
     inputs.schema.catalogue.ids_in_canonical_order,
@@ -94,9 +104,7 @@ test("invalid normalized street ranges fail closed", () => {
 });
 
 test("the Ayalon zero-argument point-builder IIFE is explicitly accepted", () => {
-  const inputs = readInputs();
-  const result = validateTrackSchema(inputs);
-  assert.equal(Array.isArray(result), false);
+  const result = resultOf(readInputs());
   assert.doesNotMatch(result.errors.join("\n"), /track\[8\]\.points/);
 });
 
@@ -109,15 +117,86 @@ test("MVP membership cannot expand implicitly", () => {
 
 test("RSH-015 remains outside the authorised schema change", () => {
   const inputs = readInputs();
-  inputs.schema.change_control.RSH_015_authorized = true;
+  inputs.schema.change_control["RSH-015_authorized"] = true;
   assert.match(errorsOf(inputs).join("\n"), /over-authorized/);
 });
 
-test("runtime data mutation changes the pinned digest", () => {
+test("noncanonical underscore RSH control keys fail closed", () => {
   const inputs = readInputs();
-  const original = '    descriptionEn: "The promenade on the Mediterranean — Hilton, Opera Tower, Gordon Beach and the marina. Inspired by the place — not a map, not GIS.",';
-  const replacement = '    descriptionEn: "A changed but still valid localized description for the same track.",';
-  assert.ok(inputs.trackSource.includes(original));
-  inputs.trackSource = inputs.trackSource.replace(original, replacement);
+  inputs.schema.change_control.RSH_015_authorized = false;
+  assert.match(errorsOf(inputs).join("\n"), /hyphenated RSH IDs/);
+});
+
+test("runtime object mutation changes the closure digest", () => {
+  const baseline = readInputs();
+  const baselineDigest = resultOf(baseline).digest;
+  const changed = readInputs();
+  const original =
+    '    descriptionEn: "The promenade on the Mediterranean — Hilton, Opera Tower, Gordon Beach and the marina. Inspired by the place — not a map, not GIS.",';
+  const replacement =
+    '    descriptionEn: "A changed but still valid localized description for the same track.",';
+  assert.ok(changed.trackSource.includes(original));
+  changed.trackSource = changed.trackSource.replace(original, replacement);
+  assert.notEqual(resultOf(changed).digest, baselineDigest);
+});
+
+test("referenced sky preset mutation changes the closure digest", () => {
+  const baselineDigest = resultOf(readInputs()).digest;
+  const changed = readInputs();
+  assert.ok(changed.trackSource.includes("const TLV_BLUE = {\n  elevation: 8.4,"));
+  changed.trackSource = changed.trackSource.replace(
+    "const TLV_BLUE = {\n  elevation: 8.4,",
+    "const TLV_BLUE = {\n  elevation: 8.5,",
+  );
+  assert.notEqual(resultOf(changed).digest, baselineDigest);
+});
+
+test("referenced coordinate helper mutation changes the closure digest", () => {
+  const baselineDigest = resultOf(readInputs()).digest;
+  const changed = readInputs();
+  assert.ok(changed.trackSource.includes("x: (lon - 34.77) * 94350 * 0.45,"));
+  changed.trackSource = changed.trackSource.replace(
+    "x: (lon - 34.77) * 94350 * 0.45,",
+    "x: (lon - 34.77) * 94350 * 0.46,",
+  );
+  assert.notEqual(resultOf(changed).digest, baselineDigest);
+});
+
+test("referenced imported runtime source mutation changes the closure digest", () => {
+  const baselineDigest = resultOf(readInputs()).digest;
+  const changed = readInputs();
+  changed.supportSources["./math"] += "\n// reviewed semantic support mutation\n";
+  assert.notEqual(resultOf(changed).digest, baselineDigest);
+});
+
+test("TRACKS rejects wrappers other than defineTracks", () => {
+  const inputs = readInputs();
+  const start = "export const TRACKS: TrackDef[] = [";
+  const end = "\n];\n\nexport function getTrack";
+  assert.ok(inputs.trackSource.includes(start));
+  assert.ok(inputs.trackSource.includes(end));
+  inputs.trackSource = inputs.trackSource
+    .replace(
+      start,
+      "const reverseTracks = (tracks: TrackDef[]) => [...tracks].reverse();\n"
+        + "export const TRACKS: TrackDef[] = reverseTracks([",
+    )
+    .replace(end, "\n]);\n\nexport function getTrack");
+  assert.match(errorsOf(inputs).join("\n"), /wrapper must be the identity helper defineTracks/);
+});
+
+test("declared field contracts cannot drift from enforcement", () => {
+  const inputs = readInputs();
+  inputs.schema.field_contracts.width.maximum = 1;
+  assert.match(errorsOf(inputs).join("\n"), /declared field contracts/);
+});
+
+test("pinned digest fails closed when any effective runtime helper changes", () => {
+  const inputs = readInputs();
+  if (inputs.schema.runtime_definition_integrity.expected_digest === null) return;
+  inputs.trackSource = inputs.trackSource.replace(
+    "const TLV_BLUE = {\n  elevation: 8.4,",
+    "const TLV_BLUE = {\n  elevation: 8.5,",
+  );
   assert.match(errorsOf(inputs).join("\n"), /runtime definition digest/);
 });

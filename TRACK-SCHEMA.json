@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.0.1",
+  "schema_version": "1.0.2",
   "document_type": "rush-canonical-track-schema",
-  "generated_at": "2026-08-29T10:45:00+03:00",
+  "generated_at": "2026-08-29T11:05:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "observed_source_commit": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
@@ -264,11 +264,14 @@
   },
   "runtime_definition_integrity": {
     "algorithm": "sha256",
-    "basis": "ordered array of TrackId plus SHA-256 of each TypeScript ObjectLiteralExpression.getText()",
+    "basis": "ordered array of TrackId, canonical TypeScript AST hash of each track object, and recursive hashes of referenced top-level runtime definitions plus imported runtime support sources",
     "source_order_is_runtime_order": true,
     "canonical_track_id_order_is_independent": true,
-    "expected_digest": "9f30d10a8be5d7388c23720a96ead370f9acaf38aa55aeac2f8166d8b8555230",
-    "capture_state": "pinned"
+    "support_sources": [
+      "src/game/math.ts"
+    ],
+    "expected_digest": null,
+    "capture_state": "pending_exact_ci_capture"
   },
   "semantic_invariants": {
     "track_ids_unique": true,
@@ -276,6 +279,7 @@
     "track_definition_set_matches_catalogue_entries": true,
     "runtime_definition_order_preserved_by_RSH_014": true,
     "canonical_track_id_order_independent_from_runtime_definition_order": true,
+    "referenced_runtime_helpers_are_hashed": true,
     "image_path_matches_track_id": true,
     "all_tracks_classified_exactly_once": true,
     "mvp_set_exactly_frozen": true,
@@ -290,7 +294,7 @@
     "schema_changes_require_owner_authorization": true,
     "track_id_addition_or_removal_requires_owner_authorization": true,
     "mvp_mapping_changes_require_owner_authorization": true,
-    "RSH_014_may_relocate_definitions_without_changing_runtime_data": true,
-    "RSH_015_authorized": false
+    "RSH-014_may_relocate_definitions_without_changing_runtime_data": true,
+    "RSH-015_authorized": false
   }
 }

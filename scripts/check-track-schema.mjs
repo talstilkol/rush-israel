@@ -7,6 +7,88 @@ import { fromRoot } from "./project-root.mjs";
 
 export const EXPECTED_RSH_012_MERGE = "94524201dfe87f1f22f8d8bdd9d97aad507c0438";
 
+const EXPECTED_FIELD_CONTRACTS = {
+  localized_strings: {
+    properties: [
+      "nameHe",
+      "nameEn",
+      "cityHe",
+      "cityEn",
+      "lengthHint",
+      "description",
+      "descriptionEn",
+    ],
+    non_empty: true,
+  },
+  image: {
+    kind: "string_literal",
+    pattern: "^/tracks/<id>\\.jpg$",
+  },
+  width: {
+    kind: "finite_number_literal",
+    exclusive_minimum: 0,
+    maximum: 200,
+  },
+  seed: {
+    kind: "positive_integer_literal",
+  },
+  checkpointCount: {
+    kind: "positive_integer_literal",
+    minimum: 1,
+    maximum: 128,
+  },
+  points: {
+    kind: "array_literal_or_zero_argument_array_builder_iife",
+    minimum_literal_items: 3,
+    builder_requires_local_array_return: true,
+    builder_requires_push: true,
+  },
+  elevation: {
+    kind: "arrow_function",
+    maximum_parameters: 1,
+  },
+  sky: {
+    kind: "object_literal",
+    spread_allowed: true,
+  },
+  ground: {
+    kind: "finite_number_expression",
+  },
+  sand: {
+    kind: "finite_number_expression",
+  },
+  streets: {
+    kind: "array_literal",
+    minimum_items: 1,
+    required_item_properties: ["from", "to", "he", "en"],
+  },
+  pois: {
+    kind: "array_literal",
+    minimum_items: 0,
+    required_item_properties: ["x", "z", "r", "he", "en"],
+    spread_coordinates_allowed: true,
+  },
+  water: {
+    kind: "object_literal",
+    required_properties: ["x", "z", "w", "d", "color"],
+  },
+  waters: {
+    kind: "array_literal",
+    required_item_properties: ["x", "z", "w", "d", "color"],
+  },
+  clearZones: {
+    kind: "array_literal",
+    required_item_properties: ["x", "z", "w", "d"],
+  },
+  open: {
+    kind: "boolean_literal",
+  },
+};
+
+function sha256(value) {
+  return createHash("sha256").update(value).digest("hex");
+}
+
 function sameJson(actual, expected) {
   return JSON.stringify(actual) === JSON.stringify(expected);
 }
@@ -45,7 +127,8 @@ function unwrapExpression(node) {
     current
     && (ts.isAsExpression(current)
       || ts.isSatisfiesExpression(current)
-      || ts.isParenthesizedExpression(current))
+      || ts.isParenthesizedExpression(current)
+      || ts.isNonNullExpression(current))
   ) {
     current = current.expression;
   }
@@ -116,7 +199,16 @@ function findTrackArray(file, errors) {
       }
       const initializer = unwrapExpression(declaration.initializer);
       if (ts.isArrayLiteralExpression(initializer)) return initializer;
-      if (ts.isCallExpression(initializer) && initializer.arguments.length > 0) {
+      if (ts.isCallExpression(initializer)) {
+        const callee = unwrapExpression(initializer.expression);
+        if (!ts.isIdentifier(callee) || callee.text !== "defineTracks") {
+          errors.push("TRACKS array wrapper must be the identity helper defineTracks");
+          return null;
+        }
+        if (initializer.arguments.length !== 1) {
+          errors.push("defineTracks must receive exactly one array literal");
+          return null;
+        }
         const first = unwrapExpression(initializer.arguments[0]);
         if (ts.isArrayLiteralExpression(first)) return first;
       }
@@ -227,34 +319,166 @@ function isGeneratedPointArrayIife(node) {
     if (ts.isReturnStatement(current) && current.expression) {
       const returned = unwrapExpression(current.expression);
       if (ts.isIdentifier(returned)) returnedArrays.add(returned.text);
-      if (ts.isArrayLiteralExpression(returned) && returned.elements.length >= 3) {
-        returnedArrays.add("__direct_array__");
+      if (ts.isArrayLiteralExpression(returned)) {
+        returnedArrays.add(`__direct_array_${returned.elements.length}`);
       }
     }
     ts.forEachChild(current, visit);
   };
   visit(callable.body);
 
-  if (returnedArrays.has("__direct_array__")) return true;
+  const minimum = EXPECTED_FIELD_CONTRACTS.points.minimum_literal_items;
+  if ([...returnedArrays].some((name) => name.startsWith("__direct_array_")
+    && Number(name.slice("__direct_array_".length)) >= minimum)) {
+    return true;
+  }
   return [...returnedArrays].some(
     (name) => localArrays.has(name) && pushedArrays.has(name),
   );
 }
 
-function validatePoints(node, context, errors) {
-  if (node && ts.isArrayLiteralExpression(node) && node.elements.length >= 3) return;
+function validatePoints(node, context, contract, errors) {
+  if (
+    node
+    && ts.isArrayLiteralExpression(node)
+    && node.elements.length >= contract.minimum_literal_items
+  ) {
+    return;
+  }
   if (node && isGeneratedPointArrayIife(node)) return;
   errors.push(
-    `${context}.points must be an array literal with at least three entries or a zero-argument array-builder IIFE`,
+    `${context}.points must be an array literal with at least ${contract.minimum_literal_items} entries or a zero-argument array-builder IIFE`,
   );
 }
 
-function validateTrackObject(node, index, schema, errors) {
+function canonicalAst(node) {
+  const record = { kind: ts.SyntaxKind[node.kind] };
+  if (
+    ts.isIdentifier(node)
+    || ts.isStringLiteral(node)
+    || ts.isNumericLiteral(node)
+    || ts.isNoSubstitutionTemplateLiteral(node)
+    || ts.isBigIntLiteral(node)
+    || ts.isRegularExpressionLiteral(node)
+  ) {
+    record.text = node.text;
+  }
+  const children = [];
+  ts.forEachChild(node, (child) => children.push(canonicalAst(child)));
+  if (children.length) record.children = children;
+  return record;
+}
+
+function astSha(node) {
+  return sha256(JSON.stringify(canonicalAst(node)));
+}
+
+function buildTopLevelDefinitions(file) {
+  const definitions = new Map();
+  const runtimeImports = new Map();
+
+  for (const statement of file.statements) {
+    if (ts.isFunctionDeclaration(statement) && statement.name) {
+      definitions.set(statement.name.text, statement);
+      continue;
+    }
+    if (ts.isVariableStatement(statement)) {
+      for (const declaration of statement.declarationList.declarations) {
+        if (
+          ts.isIdentifier(declaration.name)
+          && declaration.name.text !== "TRACKS"
+          && declaration.initializer
+        ) {
+          definitions.set(declaration.name.text, declaration);
+        }
+      }
+      continue;
+    }
+    if (!ts.isImportDeclaration(statement) || !ts.isStringLiteral(statement.moduleSpecifier)) {
+      continue;
+    }
+    const clause = statement.importClause;
+    if (!clause || clause.isTypeOnly) continue;
+    const moduleName = statement.moduleSpecifier.text;
+    if (clause.name) {
+      runtimeImports.set(clause.name.text, {
+        moduleName,
+        importedName: "default",
+      });
+    }
+    const bindings = clause.namedBindings;
+    if (bindings && ts.isNamedImports(bindings)) {
+      for (const element of bindings.elements) {
+        if (element.isTypeOnly) continue;
+        runtimeImports.set(element.name.text, {
+          moduleName,
+          importedName: element.propertyName?.text ?? element.name.text,
+        });
+      }
+    }
+    if (bindings && ts.isNamespaceImport(bindings)) {
+      runtimeImports.set(bindings.name.text, {
+        moduleName,
+        importedName: "*",
+      });
+    }
+  }
+
+  return { definitions, runtimeImports };
+}
+
+function identifierNames(node) {
+  const names = new Set();
+  const visit = (current) => {
+    if (ts.isIdentifier(current)) names.add(current.text);
+    ts.forEachChild(current, visit);
+  };
+  visit(node);
+  return names;
+}
+
+function definitionClosure(node, fileAuthority, supportSources) {
+  const definitionNames = new Set();
+  const importEntries = new Map();
+  const pending = [...identifierNames(node)];
+
+  while (pending.length) {
+    const name = pending.pop();
+    if (fileAuthority.definitions.has(name) && !definitionNames.has(name)) {
+      definitionNames.add(name);
+      for (const nested of identifierNames(fileAuthority.definitions.get(name))) {
+        if (!definitionNames.has(nested)) pending.push(nested);
+      }
+    }
+    const imported = fileAuthority.runtimeImports.get(name);
+    if (imported) {
+      const source = supportSources?.[imported.moduleName];
+      importEntries.set(name, {
+        key: `import:${imported.moduleName}:${imported.importedName}:${name}`,
+        source_sha256: typeof source === "string" ? sha256(source) : null,
+      });
+    }
+  }
+
+  const local = [...definitionNames]
+    .sort()
+    .map((name) => ({
+      key: `local:${name}`,
+      ast_sha256: astSha(fileAuthority.definitions.get(name)),
+    }));
+  const imported = [...importEntries.values()].sort((left, right) =>
+    left.key.localeCompare(right.key),
+  );
+  return [...local, ...imported];
+}
+
+function validateTrackObject(node, index, schema, fileAuthority, supportSources, errors) {
   const context = `track[${index}]`;
   const props = objectProperties(node, context, errors);
   const required = schema.type_contract.required_properties;
   const optional = schema.type_contract.optional_properties;
   const allowed = new Set([...required, ...optional]);
+  const fields = schema.field_contracts;
 
   for (const key of required) {
     if (!props.has(key)) errors.push(`${context} is missing required property ${key}`);
@@ -271,9 +495,9 @@ function validateTrackObject(node, index, schema, errors) {
   if (!city) errors.push(`${context}.city must be a non-empty string literal`);
   if (!theme) errors.push(`${context}.theme must be a non-empty string literal`);
 
-  for (const key of schema.field_contracts.localized_strings.properties) {
+  for (const key of fields.localized_strings.properties) {
     const value = stringValue(props.get(key));
-    if (value === null || value.trim() === "") {
+    if (value === null || (fields.localized_strings.non_empty && value.trim() === "")) {
       errors.push(`${context}.${key} must be a non-empty string literal`);
     }
   }
@@ -289,21 +513,32 @@ function validateTrackObject(node, index, schema, errors) {
   }
 
   const width = numberValue(props.get("width"));
-  if (width === null || !Number.isFinite(width) || width <= 0 || width > 200) {
-    errors.push(`${context}.width must be a finite number literal in (0, 200]`);
+  const widthContract = fields.width;
+  if (
+    width === null
+    || !Number.isFinite(width)
+    || width <= widthContract.exclusive_minimum
+    || width > widthContract.maximum
+  ) {
+    errors.push(
+      `${context}.width must be a finite number literal in (${widthContract.exclusive_minimum}, ${widthContract.maximum}]`,
+    );
   }
   const seed = numberValue(props.get("seed"));
   if (seed === null || !Number.isInteger(seed) || seed <= 0) {
     errors.push(`${context}.seed must be a positive integer literal`);
   }
   const checkpoints = numberValue(props.get("checkpointCount"));
+  const checkpointContract = fields.checkpointCount;
   if (
     checkpoints === null
     || !Number.isInteger(checkpoints)
-    || checkpoints < 1
-    || checkpoints > 128
+    || checkpoints < checkpointContract.minimum
+    || checkpoints > checkpointContract.maximum
   ) {
-    errors.push(`${context}.checkpointCount must be an integer in [1, 128]`);
+    errors.push(
+      `${context}.checkpointCount must be an integer in [${checkpointContract.minimum}, ${checkpointContract.maximum}]`,
+    );
   }
   for (const key of ["ground", "sand"]) {
     const value = numberValue(props.get(key));
@@ -312,11 +547,17 @@ function validateTrackObject(node, index, schema, errors) {
     }
   }
 
-  validatePoints(props.get("points"), context, errors);
+  validatePoints(props.get("points"), context, fields.points, errors);
 
   const elevation = props.get("elevation");
-  if (!elevation || !ts.isArrowFunction(elevation) || elevation.parameters.length > 1) {
-    errors.push(`${context}.elevation must be an arrow function with at most one parameter`);
+  if (
+    !elevation
+    || !ts.isArrowFunction(elevation)
+    || elevation.parameters.length > fields.elevation.maximum_parameters
+  ) {
+    errors.push(
+      `${context}.elevation must be an arrow function with at most ${fields.elevation.maximum_parameters} parameter`,
+    );
   }
   const sky = props.get("sky");
   if (!sky || !ts.isObjectLiteralExpression(sky)) {
@@ -324,15 +565,21 @@ function validateTrackObject(node, index, schema, errors) {
   }
 
   const streets = props.get("streets");
-  if (!streets || !ts.isArrayLiteralExpression(streets) || streets.elements.length < 1) {
-    errors.push(`${context}.streets must be a non-empty array literal`);
+  if (
+    !streets
+    || !ts.isArrayLiteralExpression(streets)
+    || streets.elements.length < fields.streets.minimum_items
+  ) {
+    errors.push(
+      `${context}.streets must be an array literal with at least ${fields.streets.minimum_items} item`,
+    );
   } else {
     let previousFrom = -Infinity;
     streets.elements.forEach((element, streetIndex) => {
       const streetContext = `${context}.streets[${streetIndex}]`;
       const street = validateStructuredObject(
         unwrapExpression(element),
-        ["from", "to", "he", "en"],
+        fields.streets.required_item_properties,
         streetContext,
         errors,
       );
@@ -359,17 +606,21 @@ function validateTrackObject(node, index, schema, errors) {
   }
 
   const pois = props.get("pois");
-  if (!pois || !ts.isArrayLiteralExpression(pois)) {
+  if (
+    !pois
+    || !ts.isArrayLiteralExpression(pois)
+    || pois.elements.length < fields.pois.minimum_items
+  ) {
     errors.push(`${context}.pois must be an array literal`);
   } else {
     pois.elements.forEach((element, poiIndex) => {
       const poiContext = `${context}.pois[${poiIndex}]`;
       const poi = validateStructuredObject(
         unwrapExpression(element),
-        ["x", "z", "r", "he", "en"],
+        fields.pois.required_item_properties,
         poiContext,
         errors,
-        { allowSpread: true },
+        { allowSpread: fields.pois.spread_coordinates_allowed },
       );
       const radius = numberValue(poi.get("r"));
       if (radius === null || radius <= 0) errors.push(`${poiContext}.r must be positive`);
@@ -385,7 +636,7 @@ function validateTrackObject(node, index, schema, errors) {
   if (props.has("water")) {
     validateStructuredObject(
       props.get("water"),
-      ["x", "z", "w", "d", "color"],
+      fields.water.required_properties,
       `${context}.water`,
       errors,
     );
@@ -398,7 +649,7 @@ function validateTrackObject(node, index, schema, errors) {
       waters.elements.forEach((element, waterIndex) => {
         validateStructuredObject(
           unwrapExpression(element),
-          ["x", "z", "w", "d", "color"],
+          fields.waters.required_item_properties,
           `${context}.waters[${waterIndex}]`,
           errors,
         );
@@ -413,7 +664,7 @@ function validateTrackObject(node, index, schema, errors) {
       zones.elements.forEach((element, zoneIndex) => {
         validateStructuredObject(
           unwrapExpression(element),
-          ["x", "z", "w", "d"],
+          fields.clearZones.required_item_properties,
           `${context}.clearZones[${zoneIndex}]`,
           errors,
         );
@@ -426,14 +677,21 @@ function validateTrackObject(node, index, schema, errors) {
 
   return {
     id,
-    source_sha256: createHash("sha256").update(node.getText()).digest("hex"),
+    object_ast_sha256: astSha(node),
+    referenced_runtime_definitions: definitionClosure(node, fileAuthority, supportSources),
   };
 }
 
-export function validateTrackSchema({ schema, classification, typeSource, trackSource }) {
+export function validateTrackSchema({
+  schema,
+  classification,
+  typeSource,
+  trackSource,
+  supportSources = {},
+}) {
   const errors = [];
   if (!schema || typeof schema !== "object") return ["track schema is not an object"];
-  if (schema.schema_version !== "1.0.1") errors.push("schema version must be 1.0.1");
+  if (schema.schema_version !== "1.0.2") errors.push("schema version must be 1.0.2");
   if (schema.document_type !== "rush-canonical-track-schema") {
     errors.push("document type must be rush-canonical-track-schema");
   }
@@ -443,6 +701,9 @@ export function validateTrackSchema({ schema, classification, typeSource, trackS
   if (schema.observed_source_commit !== EXPECTED_RSH_012_MERGE) {
     errors.push("schema source commit must match the accepted RSH-012 merge");
   }
+  if (!sameJson(schema.field_contracts, EXPECTED_FIELD_CONTRACTS)) {
+    errors.push("declared field contracts must exactly match the enforced RSH-013 authority");
+  }
 
   const typeFile = parseTypeScript("src/game/types.ts", typeSource, errors);
   const trackFile = parseTypeScript("src/game/tracks.ts", trackSource, errors);
@@ -450,6 +711,7 @@ export function validateTrackSchema({ schema, classification, typeSource, trackS
   const cityIds = extractStringUnion(typeFile, "CityId", errors);
   const typeContract = extractTrackDefContract(typeFile, errors);
   const array = findTrackArray(trackFile, errors);
+  const fileAuthority = buildTopLevelDefinitions(trackFile);
 
   if (!sameJson(schema.catalogue?.ids_in_canonical_order, trackIds)) {
     errors.push("schema TrackId order must exactly match src/game/types.ts");
@@ -498,7 +760,9 @@ export function validateTrackSchema({ schema, classification, typeSource, trackS
         errors.push(`TRACKS[${index}] must be an object literal`);
         return;
       }
-      summaries.push(validateTrackObject(value, index, schema, errors));
+      summaries.push(
+        validateTrackObject(value, index, schema, fileAuthority, supportSources, errors),
+      );
     });
   }
 
@@ -514,13 +778,22 @@ export function validateTrackSchema({ schema, classification, typeSource, trackS
   }
 
   const integrity = schema.runtime_definition_integrity;
+  const expectedBasis =
+    "ordered array of TrackId, canonical TypeScript AST hash of each track object, and recursive hashes of referenced top-level runtime definitions plus imported runtime support sources";
   if (
     integrity?.algorithm !== "sha256"
-    || integrity?.basis !== "ordered array of TrackId plus SHA-256 of each TypeScript ObjectLiteralExpression.getText()"
+    || integrity?.basis !== expectedBasis
     || integrity?.source_order_is_runtime_order !== true
     || integrity?.canonical_track_id_order_is_independent !== true
+    || !sameJson(integrity?.support_sources, ["src/game/math.ts"])
   ) {
     errors.push("runtime-definition integrity contract is incomplete");
+  }
+  if (
+    fileAuthority.runtimeImports.has("clamp")
+    && typeof supportSources["./math"] !== "string"
+  ) {
+    errors.push("runtime support source ./math must be supplied for digest closure");
   }
 
   const invariants = schema.semantic_invariants;
@@ -530,6 +803,7 @@ export function validateTrackSchema({ schema, classification, typeSource, trackS
     "track_definition_set_matches_catalogue_entries",
     "runtime_definition_order_preserved_by_RSH_014",
     "canonical_track_id_order_independent_from_runtime_definition_order",
+    "referenced_runtime_helpers_are_hashed",
     "image_path_matches_track_id",
     "all_tracks_classified_exactly_once",
     "mvp_set_exactly_frozen",
@@ -547,13 +821,19 @@ export function validateTrackSchema({ schema, classification, typeSource, trackS
     schema.change_control?.schema_changes_require_owner_authorization !== true
     || schema.change_control?.track_id_addition_or_removal_requires_owner_authorization !== true
     || schema.change_control?.mvp_mapping_changes_require_owner_authorization !== true
-    || schema.change_control?.RSH_014_may_relocate_definitions_without_changing_runtime_data !== true
-    || schema.change_control?.RSH_015_authorized !== false
+    || schema.change_control?.["RSH-014_may_relocate_definitions_without_changing_runtime_data"] !== true
+    || schema.change_control?.["RSH-015_authorized"] !== false
   ) {
     errors.push("track-schema change control is incomplete or over-authorized");
   }
+  if (
+    Object.hasOwn(schema.change_control ?? {}, "RSH_014_may_relocate_definitions_without_changing_runtime_data")
+    || Object.hasOwn(schema.change_control ?? {}, "RSH_015_authorized")
+  ) {
+    errors.push("canonical change-control keys must use hyphenated RSH IDs");
+  }
 
-  const digest = createHash("sha256").update(JSON.stringify(summaries)).digest("hex");
+  const digest = sha256(JSON.stringify(summaries));
   if (integrity?.expected_digest === null) {
     if (integrity.capture_state !== "pending_exact_ci_capture") {
       errors.push("unpinned runtime digest must remain in pending exact-CI capture state");
@@ -586,10 +866,19 @@ if (isMainModule(import.meta.url)) {
   );
   const typeSource = readFileSync(fromRoot("src", "game", "types.ts"), "utf8");
   const trackSource = readFileSync(fromRoot("src", "game", "tracks.ts"), "utf8");
-  const result = validateTrackSchema({ schema, classification, typeSource, trackSource });
+  const mathSource = readFileSync(fromRoot("src", "game", "math.ts"), "utf8");
+  const result = validateTrackSchema({
+    schema,
+    classification,
+    typeSource,
+    trackSource,
+    supportSources: { "./math": mathSource },
+  });
   if (result.errors.length) {
     console.error("track-schema fail\n" + result.errors.map((error) => `- ${error}`).join("\n"));
     process.exit(1);
   }
-  console.log(`track-schema ok: 56 definitions; digest ${result.digest}; 8 MVP; 48 deferred; 0/13 gates`);
+  console.log(
+    `track-schema ok: 56 definitions; digest ${result.digest}; helper closure pinned; 8 MVP; 48 deferred; 0/13 gates`,
+  );
 }
