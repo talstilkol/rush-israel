@@ -1,5 +1,6 @@
 name: RSH-015 inventory and contract
 
+# Trigger revision: canonical TRACK-SCHEMA field names
 on:
   push:
     branches:
