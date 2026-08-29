@@ -1,10 +1,11 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 1.6.0  
+**Version:** 1.6.1  
 **Established by:** RSH-003  
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`  
 **Verified base:** `69765febef85d732d9ba79fe260fec78ee76b2df`  
-**Active unit:** RSH-010 / PR #12
+**Active unit:** RSH-010 / replacement PR #13  
+**Closed unmerged draft:** PR #12
 
 ## Status vocabulary
 
@@ -36,7 +37,8 @@
 | Accepted units | 9 |
 | Units in review | 1 |
 | Queue head | RSH-010 |
-| Active PR | #12 |
+| Active PR | #13 |
+| Replaced unmerged draft | #12 |
 | Remaining units | 58 |
 | Active owner batch | RSH-010–RSH-014 |
 | Verified release gates | 0/13 |
@@ -60,9 +62,11 @@ RSH-007 produced successful clean-checkout GitHub-hosted validation. RSH-008 add
 | Unit | Status |
 |---|---|
 | RSH-009 — frozen Version 1 product definition | ACCEPTED — PR #11 |
-| RSH-010 — 8 MVP / 48 deferred catalogue classification | IN REVIEW — PR #12 |
+| RSH-010 — 8 MVP / 48 deferred catalogue classification | IN REVIEW — replacement PR #13 |
 | RSH-011 — complete asset provenance and licence inventory | AUTHORISED, BLOCKED BY RSH-010 |
 | RSH-012 — README, metadata, branding, root licence and PWA alignment | AUTHORISED, DEFERRED |
+
+Draft PR #12 was closed without merge solely because the connector could not execute its Ready-for-review GraphQL mutation. Replacement PR #13 carries the same branch and history.
 
 ## M3 authorised boundary
 
