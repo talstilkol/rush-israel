@@ -1,0 +1,134 @@
+name: rsh-019-repair
+
+on:
+  push:
+    branches:
+      - agent/rsh-019-resource-ownership
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rsh-019-repair
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/rsh-019-resource-ownership
+          fetch-depth: 0
+
+      - name: Repair fallback environment ownership and authorities
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import re
+
+          def replace_once(source, before, after, label):
+              count = source.count(before)
+              if count != 1:
+                  raise SystemExit(f"{label}: expected 1 match, found {count}")
+              return source.replace(before, after)
+
+          postfx_path = Path("src/game/postfx.ts")
+          postfx = postfx_path.read_text()
+          postfx = replace_once(
+              postfx,
+              'import { PHOTO_AA } from "../rendering/traa";\n',
+              'import { PHOTO_AA } from "../rendering/traa";\nimport { disposeObject3D } from "../rendering/disposeObject3D";\n',
+              "postfx disposer import",
+          )
+          postfx = replace_once(
+              postfx,
+              '''  const pmrem = new THREE.PMREMGenerator(renderer);\n  const env = pmrem.fromScene(tmp, 0.04);\n  pmrem.dispose();\n  return env;\n''',
+              '''  const pmrem = new THREE.PMREMGenerator(renderer);\n  try {\n    return pmrem.fromScene(tmp, 0.04);\n  } finally {\n    pmrem.dispose();\n    disposeObject3D(tmp);\n  }\n''',
+              "postfx temporary-scene disposal",
+          )
+          postfx_path.write_text(postfx)
+
+          data = postfx.encode()
+          git_blob = hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
+          manifest_path = Path("RESOURCE-OWNERSHIP-MANIFEST.json")
+          manifest = json.loads(manifest_path.read_text())
+          identity = manifest["runtime_sources"]["src/game/postfx.ts"]
+          identity.update({
+              "lines": postfx.count("\n"),
+              "bytes": len(data),
+              "sha256": hashlib.sha256(data).hexdigest(),
+              "git_blob_sha1": git_blob,
+          })
+          manifest["shared_process_lifetime"]["rationale"] = (
+              "A later engine instance reuses the asset caches; per-engine Object3D disposal excludes textures, "
+              "while cloned car bodies own independent geometry."
+          )
+          manifest_source = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
+          manifest_path.write_text(manifest_source)
+
+          checker_path = Path("scripts/check-resource-ownership.mjs")
+          checker = checker_path.read_text()
+          digest = hashlib.sha256(manifest_source.encode()).hexdigest()
+          checker, count = re.subn(
+              r'export const EXPECTED_MANIFEST_SHA256 = "[0-9a-f]{64}";',
+              f'export const EXPECTED_MANIFEST_SHA256 = "{digest}";',
+              checker,
+              count=1,
+          )
+          if count != 1:
+              raise SystemExit("checker manifest digest replacement failed")
+          checker = replace_once(
+              checker,
+              '  if (/\\b(?:map|texture)\\.dispose\\s*\\(/.test(objectDisposer)) errors.push("per-engine Object3D disposal must not destroy shared textures");\n',
+              '  if (/\\b(?:map|texture)\\.dispose\\s*\\(/.test(objectDisposer)) errors.push("per-engine Object3D disposal must not destroy shared textures");\n  const postfx = input.sources["src/game/postfx.ts"] ?? "";\n  if (!postfx.includes("disposeObject3D(tmp)")) errors.push("fallback PMREM scene resources are not released");\n',
+              "checker fallback PMREM guard",
+          )
+          checker_path.write_text(checker)
+
+          test_path = Path("scripts/car-resource-ownership.test.mjs")
+          test_source = test_path.read_text()
+          test_source = replace_once(
+              test_source,
+              '  const engine = readFileSync(fromRoot("src", "game", "engine.ts"), "utf8");\n\n',
+              '  const engine = readFileSync(fromRoot("src", "game", "engine.ts"), "utf8");\n  const postfx = readFileSync(fromRoot("src", "game", "postfx.ts"), "utf8");\n\n',
+              "test postfx source",
+          )
+          test_source = replace_once(
+              test_source,
+              '  assert.match(carMesh, /export function disposeCarVisual/);\n',
+              '  assert.match(carMesh, /export function disposeCarVisual/);\n  assert.match(postfx, /disposeObject3D\\(tmp\\)/);\n',
+              "test PMREM assertion",
+          )
+          test_path.write_text(test_source)
+
+          Path(".github/workflows/rsh-019-repair.yml").unlink()
+          PY
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm install --global npm@10.9.2
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: node scripts/check-resource-ownership.mjs
+
+      - name: Commit repaired candidate
+        run: |
+          test ! -e .github/workflows/rsh-019-repair.yml
+          test ! -e .vercel
+          git config user.name "talsitelkol"
+          git config user.email "tal_stilkol@hotmail.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Close RSH-019 fallback PMREM resources"
+          git push origin HEAD:agent/rsh-019-resource-ownership
