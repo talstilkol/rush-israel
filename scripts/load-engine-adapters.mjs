@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { fromRoot } from "./project-root.mjs";
 import { gitBlobSha1, sha256 } from "./load-world-builders.mjs";
+import { stripRsh019Overlay } from "./rsh019-overlay.mjs";
 
 export const RSH016_ENGINE_SHA256 = "3f4d54bbe0b68f9654ae8a92a2f56ce378a59a9790e8fbbe2ee05199ced192c1";
 export const RSH016_ENGINE_GIT_BLOB_SHA1 = "692663c6d05ab59c1d99c7a357999839b9ebb0ec";
@@ -39,6 +40,13 @@ export function reconstructRsh016EngineSource(
     ]),
   ),
 ) {
+  source = stripRsh019Overlay("src/game/engine.ts", source);
+  adapterSources = Object.fromEntries(
+    Object.entries(adapterSources).map(([path, adapterSource]) => [
+      path,
+      stripRsh019Overlay(path, adapterSource),
+    ]),
+  );
   let engine = replaceOnce(
     source,
     manifest.reconstruction.adapter_import_block,

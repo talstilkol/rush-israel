@@ -150,6 +150,7 @@ export function createPost(
 
   let useComposer = !lite;
   let tier: "low" | "mid" | "high" = lite ? "low" : "high";
+  let disposed = false;
 
   return {
     composer,
@@ -196,6 +197,8 @@ export function createPost(
       else renderer.render(scene, camera);
     },
     dispose() {
+      if (disposed) return;
+      disposed = true;
       composer.dispose();
       rt.dispose();
     },

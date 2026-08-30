@@ -20,10 +20,10 @@
   "extraction": {
     "facade": {
       "path": "src/game/world.ts",
-      "lines": 9006,
-      "bytes": 352625,
-      "sha256": "64d3aed2e9d4a6dca0fcdbd7d27bb924783afc441549d76cb4079f399b11b107",
-      "git_blob_sha1": "a6586b78725573f97ef9d938f592ab545aba793d"
+      "lines": 2820,
+      "bytes": 111378,
+      "sha256": "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc",
+      "git_blob_sha1": "17d63b8d56c53f0945b64184aefec917009b2c15"
     },
     "core": {
       "path": "src/game/world-core.ts",
@@ -88,10 +88,13 @@
     ],
     "dispose_contract": {
       "owner": "src/game/world.ts",
-      "collection": "bag",
-      "iteration_order": "insertion_order",
-      "exact_statement": "for (const d of bag) d.dispose();",
-      "core_role": "delegate_only"
+      "collection": "bag plus unique Object3D sweep",
+      "iteration_order": "reverse_creation_order",
+      "exact_statement": "for (let index = bag.length - 1; index >= 0; index -= 1)",
+      "idempotent": true,
+      "shared_textures_disposed_per_engine": false,
+      "core_role": "delegate_only",
+      "authority": "RESOURCE-OWNERSHIP-MANIFEST.json"
     }
   },
   "boundaries": {
@@ -188,10 +191,10 @@
     },
     "resource_registry": {
       "path": "src/rendering/ResourceRegistry.ts",
-      "lines": 38,
-      "bytes": 794,
-      "sha256": "64781dfb6d7cc53c0052374a1d2f647b0436e2017382902110f40a09262dc873",
-      "git_blob_sha1": "fb421f99514f5b7c86618e4e90a00101993ddc9d"
+      "lines": 163,
+      "bytes": 4118,
+      "sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
+      "git_blob_sha1": "58c1a16b6b2e59eeda656adfb9b502d18829e0ab"
     },
     "asset_registry": {
       "path": "src/world/AssetRegistry.ts",
@@ -321,5 +324,10 @@
     "active_branch_after_completion": null,
     "active_pull_request_after_completion": null,
     "rsh016_authorized": false
+  },
+  "rsh_019_overlay": {
+    "state": "accepted_on_merge",
+    "normalized_reconstruction": true,
+    "record_count": 4
   }
 }

@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { fromRoot } from "./project-root.mjs";
+import { stripRsh019Overlay } from "./rsh019-overlay.mjs";
 
 export const LEGACY_WORLD_SHA256 = "db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056";
 export const LEGACY_WORLD_GIT_BLOB_SHA1 = "07b7e0b559e66f89641357db5aa2be8bcd8c3135";
@@ -21,6 +22,7 @@ export function gitBlobSha1(source) {
 }
 
 export function reconstructLegacyWorldSource(source = readFileSync(fromRoot("src", "game", "world.ts"), "utf8")) {
+  source = stripRsh019Overlay("src/game/world.ts", source);
   if (source.split(EXTRACTED_WORLD_TYPE_EDGE).length !== 2) {
     throw new Error("world.ts must contain the extracted world-core import/re-export edge exactly once");
   }

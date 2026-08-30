@@ -3,6 +3,7 @@ import type { CarDef, Tune } from "./types";
 import { cloneCarBody } from "./car-assets";
 import { getBeam } from "./beam-assets";
 import { getFlake } from "./flake-assets";
+import { disposeObject3D, type Object3DDisposalTracker } from "../rendering/disposeObject3D";
 
 export type CarVisual = {
   group: THREE.Group;
@@ -652,4 +653,12 @@ export function updateCarVisual(
     mat.color.setHex(reversing ? 0xf4f6f8 : 0x3a0608);
     mat.emissiveIntensity = reversing || braking ? 4.6 : 0.45;
   }
+}
+
+/** RSH-019: releases one complete per-engine car visual without touching shared textures. */
+export function disposeCarVisual(
+  visual: CarVisual,
+  tracker?: Object3DDisposalTracker,
+) {
+  return disposeObject3D(visual.group, tracker);
 }

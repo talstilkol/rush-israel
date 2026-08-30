@@ -45,13 +45,19 @@ async function driveOnce() {
 await toTitle();
 let first = { textures: 0, geometries: 0 };
 let last = first;
+let peakTextures = 0;
+let peakGeometries = 0;
 for (let i = 0; i < CYCLES; i++) {
   last = await driveOnce();
   if (i === 0) first = last;
+  peakTextures = Math.max(peakTextures, last.textures);
+  peakGeometries = Math.max(peakGeometries, last.geometries);
   if (errs.length) throw new Error(errs.join("\n"));
   console.log("cycle", i + 1, "/", CYCLES, "tex", last.textures, "geo", last.geometries);
 }
 await browser.close();
 const dTex = last.textures - first.textures;
-if (dTex > 2) throw new Error("texture leak " + dTex + " " + JSON.stringify({ first, last }));
-console.log("soak ok", CYCLES, "dTex", dTex, first, last);
+const dGeo = last.geometries - first.geometries;
+if (dTex > 2) throw new Error("texture leak " + dTex + " " + JSON.stringify({ first, last, peakTextures }));
+if (dGeo > 2) throw new Error("geometry leak " + dGeo + " " + JSON.stringify({ first, last, peakGeometries }));
+console.log("soak ok", CYCLES, "dTex", dTex, "dGeo", dGeo, first, last);

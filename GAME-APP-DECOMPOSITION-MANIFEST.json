@@ -371,12 +371,12 @@
     ]
   },
   "preserved_sources": {
-    "src/game/engine.ts": "e0de91cd924cab7c936a0658ec08a8b9afad00b5eb06861e602df72b69e804f7",
-    "src/game/world.ts": "08d4e7c230bef3c67f0250fb672e1b1ca351cb5149266e0161dcb470f5274fd9",
+    "src/game/engine.ts": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
+    "src/game/world.ts": "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc",
     "src/game/physics.ts": "cbff35aa2e2e4b509decf38e9f1ca3d262667675af81e0352ba02f460f5723c1",
     "src/game/save.ts": "d7c681b9e00942c91135a579d47f7f9f8def717d22232470b3990a5b0a644d87",
     "src/game/records.ts": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
-    "ENGINE-ADAPTER-MANIFEST.json": "6a567b90ee71552b86985d6dbac8c8c8ce8e5ba65a579891c088777e51a472ec",
+    "ENGINE-ADAPTER-MANIFEST.json": "c19a9b9fe933d3c877d3e44cc10ebf7361623561d5f114ec742ec5d807d249e4",
     "WORLD-BUILDER-MANIFEST.json": "5921e14be99509e8b812bc3f556643b98d2244d1f8b77c2b928e02a99de90f00",
     "TRACK-MODULE-MANIFEST.json": "a8891a4af9345dbfa34fcb998302b77383f3b14f19fd240c9a8c46d2e5a43fdd",
     "TRACK-SCHEMA.json": "56f2f29c131d8df1b98c5fdc909fd1fe35cf21de2346d6f9f8189b6d1abec208",
@@ -401,14 +401,17 @@
     "dependency_changes": 0
   },
   "deferred_boundary": {
-    "rsh_019_started": false,
-    "rsh_019_authorized": false,
+    "rsh_019_started": true,
+    "rsh_019_authorized": true,
+    "rsh_019_state": "accepted_on_merge",
+    "rsh_020_started": false,
+    "rsh_020_authorized": false,
     "forbidden_prefixes": [
-      "RSH-019-",
-      "scripts/check-resource-ownership",
-      "src/game/resource-ownership/",
-      "src/game/disposal/",
-      ".github/workflows/rsh-019-"
+      ".rsh020",
+      ".github/workflows/rsh-020-",
+      "RSH-020-",
+      "src/auth-v2/",
+      "src/multiplayer-v2/"
     ]
   }
 }

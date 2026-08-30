@@ -33,11 +33,16 @@ export function upgradeGraphics(this: EngineAdapterHost)
     this.scene.environmentIntensity = this.world.night ? 0.52 : 0.88;
     if (this.disposed) return;
     try {
+      // RSH-019-OVERLAY-BEGIN:adapter-upgrade-post
       const post = createPost(this.renderer, this.scene, this.camera, this.world.night, this.lite);
-      this.leases.release("post");
-      this.post.dispose();
+      const released = this.leases.release("post");
+      if (!released) this.post.dispose();
       this.post = post;
-      this.leases.retain("post", () => this.post.dispose());
+      this.leases.retain("post", () => post.dispose(), {
+        owner: "race-engine",
+        kind: "post-stack",
+      });
+      // RSH-019-OVERLAY-END:adapter-upgrade-post
       this.post.setTier(this.quality);
       this.applyGfxStep();
       this.onResize();
@@ -250,30 +255,41 @@ export function captureSceneEnv(this: EngineAdapterHost)
 // RSH-017-BODY-BEGIN:captureSceneEnv
 {
     if (this.disposed || this.soft || this.quality === "low") return false;
+    // RSH-019-OVERLAY-BEGIN:adapter-capture-env
+    let renderTarget: THREE.WebGLCubeRenderTarget | null = null;
+    const hidden: THREE.Object3D[] = [];
     try {
       const size = this.trackDef.id === "ayalon" ? 128 : 96;
-      const rt = new THREE.WebGLCubeRenderTarget(size);
-      const cam = new THREE.CubeCamera(4, 400, rt);
+      renderTarget = new THREE.WebGLCubeRenderTarget(size);
+      const cam = new THREE.CubeCamera(4, 400, renderTarget);
       cam.position.set(this.player.x, this.player.y + 26, this.player.z);
-      const hidden: THREE.Object3D[] = [];
-      const stash = (g: THREE.Object3D) => {
-        if (g.visible) {
-          g.visible = false;
-          hidden.push(g);
+      const stash = (group: THREE.Object3D) => {
+        if (group.visible) {
+          group.visible = false;
+          hidden.push(group);
         }
       };
-      for (const v of this.visuals) stash(v.group);
-      for (const v of this.trafficVis) stash(v.group);
-      for (const v of this.copVis) stash(v.group);
+      for (const visual of this.visuals) stash(visual.group);
+      for (const visual of this.trafficVis) stash(visual.group);
+      for (const visual of this.copVis) stash(visual.group);
       cam.update(this.renderer, this.scene);
-      for (const g of hidden) g.visible = true;
       this.leases.release("boot-env");
-      this.scene.environment = rt.texture;
-      this.leases.retain("boot-env", () => rt.dispose());
+      const ownedTarget = renderTarget;
+      this.scene.environment = ownedTarget.texture;
+      this.leases.retain("boot-env", () => ownedTarget.dispose(), {
+        owner: "race-engine",
+        kind: "render-target",
+      });
+      renderTarget = null;
       return true;
     } catch {
+      renderTarget?.dispose();
       return false;
+    } finally {
+      for (const group of hidden) group.visible = true;
     }
+    // RSH-019-OVERLAY-END:adapter-capture-env
+
   }
 // RSH-017-BODY-END:captureSceneEnv
 // RSH-017-END:captureSceneEnv
@@ -774,9 +790,14 @@ export function pushHud(this: EngineAdapterHost)
 export function setEnvRT(this: EngineAdapterHost, rt: Parameters<RaceEngine["setEnvRT"]>[0])
 // RSH-017-BODY-BEGIN:setEnvRT
 {
+    // RSH-019-OVERLAY-BEGIN:adapter-env-lease
     this.leases.release("env-rt");
     this.envRT = rt;
-    this.leases.retain("env-rt", () => this.envRT.dispose());
+    this.leases.retain("env-rt", () => rt.dispose(), {
+      owner: "race-engine",
+      kind: "render-target",
+    });
+    // RSH-019-OVERLAY-END:adapter-env-lease
   }
 // RSH-017-BODY-END:setEnvRT
 // RSH-017-END:setEnvRT

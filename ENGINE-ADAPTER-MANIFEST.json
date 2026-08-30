@@ -20,10 +20,10 @@
   "extraction": {
     "engine": {
       "path": "src/game/engine.ts",
-      "lines": 1207,
-      "bytes": 41703,
-      "sha256": "e0de91cd924cab7c936a0658ec08a8b9afad00b5eb06861e602df72b69e804f7",
-      "git_blob_sha1": "a04661751400830bed28e4995cafea04b691496e"
+      "lines": 1216,
+      "bytes": 42367,
+      "sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
+      "git_blob_sha1": "62ca95b765f374f9c375a27b628a0c9268cb858f"
     },
     "directory": "src/game/engine",
     "adapter_count": 4,
@@ -93,10 +93,10 @@
           "trimCsm",
           "updateCsm"
         ],
-        "lines": 851,
-        "bytes": 32439,
-        "sha256": "079e0b2c1d1e73b5605686ba03d137528746396e8d3a9d425bc746aa757aa10f",
-        "git_blob_sha1": "3564931e36d123eee0a228c35eeeb2722c674a0e"
+        "lines": 872,
+        "bytes": 33219,
+        "sha256": "947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132",
+        "git_blob_sha1": "28146ebf914bd874dff7e34014d136b191a8af1e"
       },
       {
         "ordinal": 3,
@@ -1210,5 +1210,11 @@
     "permissive_index_signature": false,
     "ambient_module_overloads": false,
     "support_contains_any": false
+  },
+  "rsh_019_overlay": {
+    "state": "accepted_on_merge",
+    "authority": "RESOURCE-OWNERSHIP-MANIFEST.json",
+    "normalized_reconstruction": true,
+    "records": 8
   }
 }

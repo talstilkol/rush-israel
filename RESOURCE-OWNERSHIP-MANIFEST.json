@@ -1,0 +1,305 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-resource-ownership-manifest",
+  "unit": "RSH-019",
+  "title": "Complete resource ownership, disposal and leak accounting",
+  "generated_at": "2026-08-31T01:15:00+03:00",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "bf1af8015a36cbe3ef34494f6d2b24eace3f153b",
+    "tree_sha": "04ac9411f9c180b8da7d377888b074c97b1630bd",
+    "branch": "agent/rsh-019-resource-ownership"
+  },
+  "runtime_sources": {
+    "src/rendering/ResourceRegistry.ts": {
+      "path": "src/rendering/ResourceRegistry.ts",
+      "lines": 163,
+      "bytes": 4118,
+      "sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
+      "git_blob_sha1": "58c1a16b6b2e59eeda656adfb9b502d18829e0ab"
+    },
+    "src/rendering/disposeObject3D.ts": {
+      "path": "src/rendering/disposeObject3D.ts",
+      "lines": 61,
+      "bytes": 1777,
+      "sha256": "606e9905b68a2949d2d49407d5815672763b0252c41ffb36aa1484c8e3315264",
+      "git_blob_sha1": "030d98632163779e40d4626d1f8d08295a497ea1"
+    },
+    "src/game/engine.ts": {
+      "path": "src/game/engine.ts",
+      "lines": 1216,
+      "bytes": 42367,
+      "sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
+      "git_blob_sha1": "62ca95b765f374f9c375a27b628a0c9268cb858f"
+    },
+    "src/game/engine/rendering-adapter.ts": {
+      "path": "src/game/engine/rendering-adapter.ts",
+      "lines": 872,
+      "bytes": 33219,
+      "sha256": "947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132",
+      "git_blob_sha1": "28146ebf914bd874dff7e34014d136b191a8af1e"
+    },
+    "src/game/world.ts": {
+      "path": "src/game/world.ts",
+      "lines": 2820,
+      "bytes": 111378,
+      "sha256": "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc",
+      "git_blob_sha1": "17d63b8d56c53f0945b64184aefec917009b2c15"
+    },
+    "src/game/car-mesh.ts": {
+      "path": "src/game/car-mesh.ts",
+      "lines": 664,
+      "bytes": 26090,
+      "sha256": "b89ec24ddb76a8ab362b036aa6d97a02484d5f305fbdc8f7b1452eea0e92aca3",
+      "git_blob_sha1": "688c1da94fd7aab237f0c74feeb2c0981491f0d1"
+    },
+    "src/game/audio.ts": {
+      "path": "src/game/audio.ts",
+      "lines": 529,
+      "bytes": 16574,
+      "sha256": "bf83db8b5e0929dcd7d057172db6dedbaff1cad84405f152a3ef6ca884a3b650",
+      "git_blob_sha1": "91d15d07172fc43c560454a2776131c242557d48"
+    },
+    "src/game/postfx.ts": {
+      "path": "src/game/postfx.ts",
+      "lines": 235,
+      "bytes": 7602,
+      "sha256": "b88c617d259af12583925fdefba19fe917ac18d51a8d5797b017d624df256d2d",
+      "git_blob_sha1": "74bd2dfa63856a7aca82a383538d2f27a45cfce7"
+    },
+    "scripts/soak-menu-race.mjs": {
+      "path": "scripts/soak-menu-race.mjs",
+      "lines": 63,
+      "bytes": 2622,
+      "sha256": "a684508627830a4fff5030232ba36dd1b81df82b4924aa307f94116a5dc7df60",
+      "git_blob_sha1": "603997c18fdad89dbbfa6610354ac087dab4fa1e"
+    },
+    "scripts/rsh019-overlay.mjs": {
+      "path": "scripts/rsh019-overlay.mjs",
+      "lines": 44,
+      "bytes": 4932,
+      "sha256": "d68681fde24cd31ec1c43686dd667d2e53172564cb022d9aaad3f73ebede61b9",
+      "git_blob_sha1": "71ae9f8d17b3c6ae3786a180b7a0a22b6e6756b5"
+    }
+  },
+  "ownership": [
+    {
+      "id": "animation-loop",
+      "owner": "RaceEngine",
+      "disposer": "renderer.setAnimationLoop(null)",
+      "multiplicity": "one per engine"
+    },
+    {
+      "id": "dom-listeners",
+      "owner": "RaceEngine/GameInput/GameAudio",
+      "disposer": "explicit unbind callbacks",
+      "multiplicity": "bounded"
+    },
+    {
+      "id": "post-stack",
+      "owner": "ResourceRegistry",
+      "kind": "post-stack",
+      "multiplicity": "zero or one"
+    },
+    {
+      "id": "environment-targets",
+      "owner": "ResourceRegistry",
+      "kind": "render-target",
+      "multiplicity": "env/probe/boot"
+    },
+    {
+      "id": "csm",
+      "owner": "ResourceRegistry",
+      "kind": "csm",
+      "multiplicity": "zero or one"
+    },
+    {
+      "id": "world",
+      "owner": "World.dispose",
+      "disposer": "unique scene sweep plus reverse bag",
+      "multiplicity": "one"
+    },
+    {
+      "id": "car-visuals",
+      "owner": "RaceEngine",
+      "disposer": "disposeCarVisual",
+      "multiplicity": "racers+traffic+cops+ghosts"
+    },
+    {
+      "id": "transient-scene-resources",
+      "owner": "RaceEngine",
+      "disposer": "disposeObject3D(scene)",
+      "multiplicity": "bounded"
+    },
+    {
+      "id": "renderer",
+      "owner": "RendererFacade",
+      "disposer": "WebGLRenderer.dispose",
+      "multiplicity": "one"
+    }
+  ],
+  "disposal_order": [
+    "stop animation loop",
+    "detach canvas/window/input/audio listeners",
+    "release dynamic roadblock",
+    "release registry leases in reverse creation order",
+    "dispose world",
+    "dispose all car visual families",
+    "sweep remaining engine scene geometries/materials uniquely",
+    "clear renderer lists and dispose renderer",
+    "remove QA globals"
+  ],
+  "shared_process_lifetime": {
+    "owner": "asset module caches",
+    "resources": [
+      "road/sky/tree/facade/curb/sign/water/flare/blob/flake/car textures and meshes"
+    ],
+    "per_engine_disposal_forbidden": true,
+    "rationale": "A later engine instance reuses these caches; Object3D disposal intentionally excludes textures."
+  },
+  "leak_accounting": {
+    "required_ci_cycles": 2,
+    "texture_delta_max": 2,
+    "geometry_delta_max": 2,
+    "release_gate_20_cycles": "RSH-040 remains deferred",
+    "context_loss_gate": "RSH-041 remains deferred",
+    "soak_30_minutes": "RSH-042 remains deferred"
+  },
+  "historical_preservation": {
+    "overlay_records": {
+      "src/game/world.ts": {
+        "world-disposal-import": {
+          "legacy_sha256": "0f39a4d55d3c08984799afa07b468ebff3a154ad05ff4e5f407e14d1b7e4d91d",
+          "legacy_bytes": 46
+        },
+        "world-disposed-state": {
+          "legacy_sha256": "edd7282d3b6d39ee7b80c40e91c165309bf272699e0c03ab5c9e7d4eefd86576",
+          "legacy_bytes": 67
+        },
+        "world-reflector-disposal": {
+          "legacy_sha256": "c4df2ce44c2887ea0004dae8120bb5505b04f949ffe11bacd96ba58fa25cee84",
+          "legacy_bytes": 96
+        },
+        "world-dispose": {
+          "legacy_sha256": "3a3a6749f9efa4cf0da3bf566d981518af710433e0882c9257659586d43efb7c",
+          "legacy_bytes": 63
+        }
+      },
+      "src/game/engine.ts": {
+        "engine-disposal-imports": {
+          "legacy_sha256": "a6084c43ff667e4af2b48bebfbd635955d21e22b088c77532c1a4b17eb8026ab",
+          "legacy_bytes": 66
+        },
+        "engine-car-disposer-import": {
+          "legacy_sha256": "35d6d6099da17211dc830cdb48bc890de953624925801d132dd06c99735d949b",
+          "legacy_bytes": 119
+        },
+        "engine-csm-lease": {
+          "legacy_sha256": "29350927f399f6a44021ea6abe21626464ddf7c95ebb41b12e4e4e4c9401453e",
+          "legacy_bytes": 132
+        },
+        "engine-probe-lease": {
+          "legacy_sha256": "8494fac8a177b4c05973721639c313ff0e5a3663c8a474ee67c712e2db930e9c",
+          "legacy_bytes": 117
+        },
+        "engine-dispose": {
+          "legacy_sha256": "06a13d86fc2d356781989b4dd2d294b257c49276412abf3d2dc1887fc71941bb",
+          "legacy_bytes": 1485
+        }
+      },
+      "src/game/engine/rendering-adapter.ts": {
+        "adapter-upgrade-post": {
+          "legacy_sha256": "cfd0c78a796f59d8fe1d9d9c7a98c38dee151d97b10eb352ed9986b18c31260c",
+          "legacy_bytes": 247
+        },
+        "adapter-capture-env": {
+          "legacy_sha256": "ef888ef50c4eaf03d0d7677d3005a993b17e96ea963df55c03d7832d3525af64",
+          "legacy_bytes": 889
+        },
+        "adapter-env-lease": {
+          "legacy_sha256": "8d983011bbf617431162068c8bd06289065aaaaa82bd5469ae779ed146981c58",
+          "legacy_bytes": 118
+        }
+      }
+    },
+    "base_identities": {
+      "src/game/car-mesh.ts": {
+        "path": "src/game/car-mesh.ts",
+        "lines": 655,
+        "bytes": 25754,
+        "sha256": "1bf9079a807d37b83b3b7cfc79f7ef2d54e04f62b2ef0272192eb411a47706f2",
+        "git_blob_sha1": "78cfc86e5181c64ab3624770767e38808111d39c"
+      },
+      "src/game/audio.ts": {
+        "path": "src/game/audio.ts",
+        "lines": 500,
+        "bytes": 15628,
+        "sha256": "21e5ffebe7c7f75e126feb643d8303c0843fd3684034bb43202be44f85349e65",
+        "git_blob_sha1": "624e583011ac8b9f8bdf158f09e867cb43816ad7"
+      },
+      "src/game/postfx.ts": {
+        "path": "src/game/postfx.ts",
+        "lines": 231,
+        "bytes": 7526,
+        "sha256": "3733162f3c274dd24524c5510255748f09f40a82c602f03601e0a3f5687dd4f9",
+        "git_blob_sha1": "4992944b3685159e9205621273803ff92917426a"
+      },
+      "src/game/world.ts": {
+        "path": "src/game/world.ts",
+        "lines": 2790,
+        "bytes": 110205,
+        "sha256": "08d4e7c230bef3c67f0250fb672e1b1ca351cb5149266e0161dcb470f5274fd9",
+        "git_blob_sha1": "e13e66744ce3b2e8610aca2e14cb5932fc3c8fd6"
+      },
+      "src/game/engine.ts": {
+        "path": "src/game/engine.ts",
+        "lines": 1207,
+        "bytes": 41703,
+        "sha256": "e0de91cd924cab7c936a0658ec08a8b9afad00b5eb06861e602df72b69e804f7",
+        "git_blob_sha1": "a04661751400830bed28e4995cafea04b691496e"
+      },
+      "src/game/engine/rendering-adapter.ts": {
+        "path": "src/game/engine/rendering-adapter.ts",
+        "lines": 851,
+        "bytes": 32439,
+        "sha256": "079e0b2c1d1e73b5605686ba03d137528746396e8d3a9d425bc746aa757aa10f",
+        "git_blob_sha1": "3564931e36d123eee0a228c35eeeb2722c674a0e"
+      },
+      "scripts/soak-menu-race.mjs": {
+        "path": "scripts/soak-menu-race.mjs",
+        "lines": 57,
+        "bytes": 2269,
+        "sha256": "6e9900d801b49f7e4790fe101be1454713638f18eb63b434c6ccff6922b881a7",
+        "git_blob_sha1": "b2cb750851f620addd736fd8606e9d39a6d94796"
+      }
+    },
+    "rsh_016_engine_sha256": "3f4d54bbe0b68f9654ae8a92a2f56ce378a59a9790e8fbbe2ee05199ced192c1",
+    "legacy_world_sha256": "db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056"
+  },
+  "preservation_boundary": {
+    "runtime_behavior_changes": 0,
+    "public_api_changes": 0,
+    "track_data_changes": 0,
+    "track_order_changes": 0,
+    "physics_changes": 0,
+    "save_record_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "track_count": 56,
+    "world_builder_modules": 56,
+    "mvp_tracks": 8,
+    "deferred_tracks": 48,
+    "physics_hz": 120,
+    "unverified_asset_files": 66,
+    "release_gates_green": 0,
+    "release_gates_total": 13,
+    "public_distribution_authorized": false
+  },
+  "deferred_boundary": {
+    "next_unit": "RSH-020",
+    "title": "Isolate or remove unused auth, DB, multiplayer and template dependencies",
+    "authorized": false,
+    "created": false
+  }
+}

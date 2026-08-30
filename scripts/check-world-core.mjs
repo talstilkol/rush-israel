@@ -4,6 +4,7 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { fromRoot } from "./project-root.mjs";
+import { stripRsh019Overlay } from "./rsh019-overlay.mjs";
 import {
   readEngineAdapterInputs,
   validateEngineAdapters,
@@ -20,8 +21,8 @@ import {
 } from "./load-world-core.mjs";
 import { reconstructRsh015WorldSource } from "./load-world-builders.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "7472e912a2e3e67be9c29dd53acbcaed72095e368bd5c63a54e4ce25da2f995b";
-export const EXPECTED_WORLD_SHA256 = "08d4e7c230bef3c67f0250fb672e1b1ca351cb5149266e0161dcb470f5274fd9";
+export const EXPECTED_MANIFEST_SHA256 = "3d0b85bd8b3646dac24490b5b3480db246a853ca2648b665eb66d48ad2a73629";
+export const EXPECTED_WORLD_SHA256 = "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc";
 export const EXPECTED_CORE_SHA256 = "cbb9ac1f9de387cb1b31290fbc617b0ca34536b97067198b61e82ffcaf31fafe";
 export const EXPECTED_DEPENDENCY_MAP_SHA256 = "043847573b5f3b3fd66f2174b052539b34899b864e2fe0fedbcf4ce33dd10471";
 export const EXPECTED_TRACK_MANIFEST_SHA256 = "a8891a4af9345dbfa34fcb998302b77383f3b14f19fd240c9a8c46d2e5a43fdd";
@@ -234,8 +235,13 @@ function validateWorldAst(worldSource, errors) {
       const keys = arg.properties.map(propertyName);
       if (JSON.stringify(keys) !== JSON.stringify(INPUT_KEYS)) errors.push("world.ts lifecycle assembly wiring is missing or reordered");
       const dispose = arg.properties.find((property) => propertyName(property) === "dispose");
-      if (!dispose || !dispose.getText(file).includes("for (const d of bag) d.dispose();")) {
-        errors.push("world.ts disposal no longer preserves bag insertion order");
+      const disposalSource = dispose?.getText(file) ?? "";
+      if (
+        !disposalSource.includes("if (disposed) return;") ||
+        !disposalSource.includes("disposeObject3D(group, tracker)") ||
+        !disposalSource.includes("for (let index = bag.length - 1; index >= 0; index -= 1)")
+      ) {
+        errors.push("world.ts disposal no longer preserves the RSH-019 ownership contract");
       }
     }
   }
@@ -387,8 +393,8 @@ export function validateWorldCore(overrides = {}) {
   validatePreservation(input, manifest, errors);
   return {
     errors,
-    worldLines: lineCount(input.worldSource),
-    worldBytes: Buffer.byteLength(input.worldSource),
+    worldLines: lineCount(stripRsh019Overlay("src/game/world.ts", input.worldSource)),
+    worldBytes: Buffer.byteLength(stripRsh019Overlay("src/game/world.ts", input.worldSource)),
     coreLines: lineCount(input.coreSource),
     coreBytes: Buffer.byteLength(input.coreSource),
     reconstructedWorldSha256: errors.length ? null : LEGACY_WORLD_SHA256,
