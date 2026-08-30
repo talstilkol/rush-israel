@@ -1,6 +1,6 @@
 name: rsh-019-apply
 
-# deterministic rerun 9
+# deterministic rerun 10
 on:
   push:
     branches:
@@ -146,17 +146,15 @@ jobs:
           source = read(path)
           source = replace_once_text(
               source,
-              '''  disposal.worldSource = disposal.worldSource.replace(
-            "for (const d of bag) d.dispose();",
-            "for (const d of [...bag].reverse()) d.dispose();",
-          );
-          ''',
-              '''  disposal.worldSource = disposal.worldSource.replace(
-            "for (let index = bag.length - 1; index >= 0; index -= 1)",
-            "for (let index = 0; index < bag.length; index += 1)",
-          );
-          ''',
-              "world-core disposal mutation",
+              '"for (const d of bag) d.dispose();"',
+              '"for (let index = bag.length - 1; index >= 0; index -= 1)"',
+              "world-core old disposal loop",
+          )
+          source = replace_once_text(
+              source,
+              '"for (const d of [...bag].reverse()) d.dispose();"',
+              '"for (let index = 0; index < bag.length; index += 1)"',
+              "world-core altered disposal loop",
           )
           write(path, source)
 
