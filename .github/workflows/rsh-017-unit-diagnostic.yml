@@ -9,6 +9,8 @@ on:
       - src/game/engine.ts
       - src/game/engine/**
       - scripts/check-engine-adapters*
+      - scripts/check-track-consumer-source-pin*
+      - scripts/check-world-core*
       - ENGINE-ADAPTER-MANIFEST.json
       - CURRENT-STATE.json
       - QUEUE.json
@@ -46,12 +48,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Capture exact candidate source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          git archive --format=tar.gz --output=artifacts/rsh-017-candidate-source.tar.gz "${GITHUB_SHA}"
+
       - name: Capture complete unit-test output
         id: tests
         shell: bash
         run: |
           set +e
-          mkdir -p artifacts
           npm test 2>&1 | tee artifacts/rsh-017-unit-tests.log
           code=${PIPESTATUS[0]}
           echo "exit_code=${code}" >> "$GITHUB_OUTPUT"
@@ -62,7 +70,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: rsh-017-unit-diagnostic-${{ github.run_id }}-${{ github.run_attempt }}
-          path: artifacts/rsh-017-unit-tests.log
+          path: |
+            artifacts/rsh-017-unit-tests.log
+            artifacts/rsh-017-candidate-source.tar.gz
           if-no-files-found: error
           retention-days: 14
 
