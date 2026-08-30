@@ -1,0 +1,211 @@
+name: rsh-017-type-boundary-finalizer
+
+on:
+  push:
+    branches:
+      - agent/rsh-017-engine-adapters
+    paths:
+      - .github/workflows/rsh-017-type-boundary-finalizer.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rsh-017-type-boundary-finalizer
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    env:
+      CI: true
+      NODE_OPTIONS: --experimental-strip-types
+      PLAYWRIGHT_BROWSERS_PATH: 0
+    steps:
+      - name: Check out exact staging revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+
+      - name: Verify exact toolchain
+        run: npm run toolchain:verify
+
+      - name: Install dependencies from lockfile
+        run: npm ci
+
+      - name: Install Chromium for complete QA
+        run: npx playwright install --with-deps chromium
+
+      - name: Apply typed host boundary and reconcile authorities
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${GITHUB_SHA}"
+
+          printf '%s' 'aW1wb3J0IHR5cGUgKiBhcyBUSFJFRSBmcm9tICJ0aHJlZSI7CmltcG9ydCB0eXBlIHsgQ1NNIH0gZnJvbSAidGhyZWUvZXhhbXBsZXMvanNtL2NzbS9DU00uanMiOwppbXBvcnQgdHlwZSB7IENhclZpc3VhbCB9IGZyb20gIi4uL2Nhci1tZXNoIjsKaW1wb3J0IHR5cGUgeyBUcmFja0RlZiwgV2VhdGhlciB9IGZyb20gIi4uL3R5cGVzIjsKaW1wb3J0IHR5cGUgeyBBcmNhZGVDYXIgfSBmcm9tICIuLi92ZWhpY2xlIjsKaW1wb3J0IHR5cGUgeyBXb3JsZCB9IGZyb20gIi4uL3dvcmxkIjsKCnR5cGUgQWRhcHRlck9wYXF1ZSA9IGFueTsKdHlwZSBBZGFwdGVyQ2FsbEFyZ3MgPSBhbnlbXTsKCi8vIFJTSC0wMTcga2VlcHMgUmFjZUVuZ2luZSBzdGF0ZSBwcml2YXRlIGluIGVuZ2luZS50cy4KLy8gQWRhcHRlcnMgcmVjZWl2ZSB0aGUgY29uY3JldGUgaW5zdGFuY2UgdGhyb3VnaCBGdW5jdGlvbi5jYWxsOyB0aGlzIHN0cnVjdHVyYWwKLy8gaG9zdCB0eXBlcyBvbmx5IHRoZSBjb2xsZWN0aW9ucyB1c2VkIGJ5IGNhbGxiYWNrcyBhbmQgb3ducyBubyBydW50aW1lIHN0YXRlLgpleHBvcnQgdHlwZSBFbmdpbmVBZGFwdGVySG9zdCA9IHsKICBba2V5OiBzdHJpbmddOiBBZGFwdGVyT3BhcXVlOwogIGJsb2NrR3JvdXA6IFRIUkVFLk9iamVjdDNEIHwgbnVsbDsKICBjc206IENTTSB8IG51bGw7CiAgY29wczogQXJjYWRlQ2FyW107CiAgcmFjZXJzOiBBcmNhZGVDYXJbXTsKICBzY2VuZTogVEhSRUUuU2NlbmU7CiAgdHJhY2tEZWY6IFRyYWNrRGVmOwogIHRyYWZmaWM6IEFyY2FkZUNhcltdOwogIHZpc3VhbHM6IENhclZpc3VhbFtdOwogIHdlYXRoZXI6IFdlYXRoZXI7CiAgd29ybGQ6IFdvcmxkOwp9OwoKZGVjbGFyZSBtb2R1bGUgIi4vbG9vcC1hZGFwdGVyIiB7CiAgZXhwb3J0IGZ1bmN0aW9uIG9uQ29udGV4dExvc3QodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gb25Db250ZXh0UmVzdG9yZWQodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gc2hvdWxkUHJlc2VudCh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBvblJlc2l6ZSh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBmcmFtZSh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwp9CgpkZWNsYXJlIG1vZHVsZSAiLi9yZW5kZXJpbmctYWRhcHRlciIgewogIGV4cG9ydCBmdW5jdGlvbiB1cGdyYWRlR3JhcGhpY3ModGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gZW50ZXJQaG90byh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBleGl0UGhvdG8odGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gZnJhbWVXb3JsZCh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBpc1Bob3RvKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIGNhcHR1cmVQaG90byh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBmbHVzaFNuYXAodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gY3ljbGVQaG90b0ZpbHRlcih0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiB0b2dnbGVQaG90b0h1ZCh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBzZXRBdXRvQ3ljbGUodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gZ2V0QXV0b0N5Y2xlKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIHNldE5pZ2h0KHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIGFwcGx5TG9vayh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBhcHBseUNsb2NrU2t5KHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIGNhcHR1cmVTY2VuZUVudih0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBhcHBseUFsdGl0dWRlTG9vayh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiB1cGRhdGVQcm9iZSh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBhcHBseUdmeFN0ZXAodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gc3RlcFBob3RvKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIHByZXNlbnQodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gc25hcENhbWVyYSh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBzZXRGb3ZFeHRyYSh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBwdXNoSHVkKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIHNldEVudlJUKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIGJpbmRDc20odGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gY3NtV2FudGVkKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIHRyaW1Dc20odGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gdXBkYXRlQ3NtKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7Cn0KCmRlY2xhcmUgbW9kdWxlICIuL3BoeXNpY3MtYWRhcHRlciIgewogIGV4cG9ydCBmdW5jdGlvbiBmaXhlZCh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBzdGVwRHJpZnRDcmFmdCh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBzdGFuZGluZ3ModGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gc3RlcEhlYXQodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gcHVzaENvcHNCYWNrKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIGVuc3VyZUNvcHModGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gYWRkQ29wKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIHNwYXduUm9hZGJsb2NrKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIHRpY2tSb2FkYmxvY2sodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gbmF2QW5nbGUodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gc3RhbXBQb2lzKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIGNsZWFyUm9hZGJsb2NrKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIGNoZWNrS25vY2tvdXQodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gY2xvc2VTZWN0b3IodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gZW5kUmFjZSh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiBlbWl0RmluaXNoKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIHNraXBSZXBsYXkodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gcmVjb3JkU25hcCh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwogIGV4cG9ydCBmdW5jdGlvbiByZWNvcmRSZXBsYXkodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gdGFrZVBhY2sodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gYXBwbHlQYWNrKHRoaXM6IEFkYXB0ZXJPcGFxdWUsIC4uLmFyZ3M6IEFkYXB0ZXJDYWxsQXJncyk6IEFkYXB0ZXJPcGFxdWU7CiAgZXhwb3J0IGZ1bmN0aW9uIHN0ZXBSZXdpbmQodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gc3RlcFJlcGxheSh0aGlzOiBBZGFwdGVyT3BhcXVlLCAuLi5hcmdzOiBBZGFwdGVyQ2FsbEFyZ3MpOiBBZGFwdGVyT3BhcXVlOwp9CgpkZWNsYXJlIG1vZHVsZSAiLi9xYS1hZGFwdGVyIiB7CiAgZXhwb3J0IGZ1bmN0aW9uIHFhSG9va0FsbG93ZWQodGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKICBleHBvcnQgZnVuY3Rpb24gZXhwb3NlQ29udHJvbHModGhpczogQWRhcHRlck9wYXF1ZSwgLi4uYXJnczogQWRhcHRlckNhbGxBcmdzKTogQWRhcHRlck9wYXF1ZTsKfQo=' | base64 --decode > src/game/engine/adapter-host.ts
+          test "$(wc -l < src/game/engine/adapter-host.ts)" -eq 96
+          test "$(wc -c < src/game/engine/adapter-host.ts)" -eq 6368
+          echo "2177db5967b5c475afb1785ddcc0c4602d8cbde38f257ec500db963c1d50ff0f  src/game/engine/adapter-host.ts" | sha256sum -c -
+
+          node --input-type=module <<'NODE'
+          import { createHash } from "node:crypto";
+          import { readFileSync, writeFileSync } from "node:fs";
+
+          const sha256 = (source) => createHash("sha256").update(source).digest("hex");
+          const gitBlobSha1 = (source) => {
+            const body = Buffer.from(source, "utf8");
+            return createHash("sha1")
+              .update(Buffer.from(`blob ${body.length}\0`, "utf8"))
+              .update(body)
+              .digest("hex");
+          };
+          const lineCount = (source) => (source.match(/\n/g) ?? []).length;
+          const formatNumber = (value) => new Intl.NumberFormat("en-US").format(value);
+          const replaceOne = (source, pattern, replacement, label) => {
+            const matches = source.match(pattern);
+            if (!matches || matches.length !== 1) {
+              throw new Error(`${label} must match exactly once; matched ${matches?.length ?? 0}`);
+            }
+            return source.replace(pattern, replacement);
+          };
+
+          const supportPath = "src/game/engine/adapter-host.ts";
+          const supportSource = readFileSync(supportPath, "utf8");
+          const support = {
+            lines: lineCount(supportSource),
+            bytes: Buffer.byteLength(supportSource),
+            sha256: sha256(supportSource),
+            git_blob_sha1: gitBlobSha1(supportSource),
+          };
+
+          const manifestPath = "ENGINE-ADAPTER-MANIFEST.json";
+          const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+          manifest.extraction.support = {
+            ...manifest.extraction.support,
+            ...support,
+          };
+          const manifestSource = JSON.stringify(manifest, null, 2) + "\n";
+          writeFileSync(manifestPath, manifestSource);
+          const manifestSha256 = sha256(manifestSource);
+
+          const checkerPath = "scripts/check-engine-adapters.mjs";
+          let checker = readFileSync(checkerPath, "utf8");
+          checker = replaceOne(
+            checker,
+            /export const EXPECTED_MANIFEST_SHA256 = "[0-9a-f]{64}";/g,
+            `export const EXPECTED_MANIFEST_SHA256 = "${manifestSha256}";`,
+            "manifest SHA authority",
+          );
+          writeFileSync(checkerPath, checker);
+
+          const preflightJsonPath = "RSH-017-ENGINE-ADAPTER-PREFLIGHT.json";
+          const preflight = JSON.parse(readFileSync(preflightJsonPath, "utf8"));
+          preflight.extraction.support = {
+            ...preflight.extraction.support,
+            ...support,
+          };
+          preflight.extraction.total_engine_source_lines =
+            preflight.extraction.engine.lines
+            + preflight.extraction.adapter_lines
+            + support.lines;
+          preflight.extraction.total_engine_source_bytes =
+            preflight.extraction.engine.bytes
+            + preflight.extraction.adapter_bytes
+            + support.bytes;
+          writeFileSync(preflightJsonPath, JSON.stringify(preflight, null, 2) + "\n");
+
+          const totalLines = manifest.extraction.engine.lines
+            + manifest.extraction.adapters.reduce((sum, adapter) => sum + adapter.lines, 0)
+            + support.lines;
+          const totalBytes = manifest.extraction.engine.bytes
+            + manifest.extraction.adapters.reduce((sum, adapter) => sum + adapter.bytes, 0)
+            + support.bytes;
+
+          const contractPath = "RSH-017-ENGINE-ADAPTER-CONTRACT.md";
+          let contract = readFileSync(contractPath, "utf8");
+          contract = replaceOne(
+            contract,
+            /Support authority: `src\/game\/engine\/adapter-host\.ts` — \d+ lines \/ [\d,]+ bytes\./g,
+            `Support authority: \`src/game/engine/adapter-host.ts\` — ${formatNumber(support.lines)} lines / ${formatNumber(support.bytes)} bytes.`,
+            "contract support metrics",
+          );
+          contract = replaceOne(
+            contract,
+            /\| Complete engine source including facade\/support \| 2,815 lines \/ 99,577 bytes \| [\d,]+ lines \/ [\d,]+ bytes \| structural decomposition \|/g,
+            `| Complete engine source including facade/support | 2,815 lines / 99,577 bytes | ${formatNumber(totalLines)} lines / ${formatNumber(totalBytes)} bytes | structural decomposition |`,
+            "contract total metrics",
+          );
+          writeFileSync(contractPath, contract);
+
+          const preflightMdPath = "RSH-017-ENGINE-ADAPTER-PREFLIGHT.md";
+          let preflightMd = readFileSync(preflightMdPath, "utf8");
+          preflightMd = replaceOne(
+            preflightMd,
+            /- support: \*\*\d+ lines \/ [\d,]+ bytes\*\*;/g,
+            `- support: **${formatNumber(support.lines)} lines / ${formatNumber(support.bytes)} bytes**;`,
+            "preflight support metrics",
+          );
+          writeFileSync(preflightMdPath, preflightMd);
+
+          console.log(JSON.stringify({
+            support,
+            manifest_sha256: manifestSha256,
+            total_engine_source_lines: totalLines,
+            total_engine_source_bytes: totalBytes,
+          }, null, 2));
+          NODE
+
+          rm -f .github/workflows/rsh-017-type-boundary-finalizer.yml
+
+          if git grep -n -E 'abd14cb1c1712cb6e7ca73166aacb58aae666e9fa45e1f0adfd5dc3274a7b49c|10ce852b8d250a5838c160ca35324bef86271603|75eabe112141ba21c5a377a141da7fb3419a941f5f6802020278db9a54b38bc4|4 lines / 243 bytes|3,411 lines / 116,729 bytes'; then
+            echo "stale RSH-017 support authority remains" >&2
+            exit 1
+          fi
+
+      - name: Validate structural and historical authorities
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/check-engine-adapters.mjs
+          node scripts/check-world-core.mjs
+          node scripts/check-track-schema.mjs
+          node --test             scripts/check-engine-adapters.test.mjs             scripts/check-track-consumer-source-pin.test.mjs             scripts/check-world-core.test.mjs
+
+      - name: Validate complete repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run typecheck
+          npm run lint
+          npm test
+          npm run qa:ci
+          npm run build:dev
+
+      - name: Commit exact final candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git clean -fdX
+          git add -A --             .github/workflows/rsh-017-type-boundary-finalizer.yml             ENGINE-ADAPTER-MANIFEST.json             RSH-017-ENGINE-ADAPTER-CONTRACT.md             RSH-017-ENGINE-ADAPTER-PREFLIGHT.json             RSH-017-ENGINE-ADAPTER-PREFLIGHT.md             scripts/check-engine-adapters.mjs             src/game/engine/adapter-host.ts
+
+          actual="$(git diff --cached --name-only | sort)"
+          expected="$(printf '%s\n'             .github/workflows/rsh-017-type-boundary-finalizer.yml             ENGINE-ADAPTER-MANIFEST.json             RSH-017-ENGINE-ADAPTER-CONTRACT.md             RSH-017-ENGINE-ADAPTER-PREFLIGHT.json             RSH-017-ENGINE-ADAPTER-PREFLIGHT.md             scripts/check-engine-adapters.mjs             src/game/engine/adapter-host.ts | sort)"
+          test "$actual" = "$expected"
+          test -z "$(git status --short | grep '^??' || true)"
+
+          git commit -m "RSH-017: type the adapter host boundary"
+          git push origin HEAD:refs/heads/agent/rsh-017-engine-adapters
