@@ -52,18 +52,20 @@ jobs:
           if start < 0 or end_start < 0:
               raise SystemExit('consumer mapping bounds missing')
           end = end_start + len(end_marker)
-          replacement = '''  const consumers = Object.entries(sources)
-    .filter(([filePath, source]) => (
-      !internalWorldBuilderPaths.has(filePath)
-      && !engineAuthority.paths.has(filePath)
-      && !gameAppAuthority.paths.has(filePath)
-      && importsTrackRuntime(filePath, source)
-    ))
-    .map(([filePath]) => filePath);
-  if (gameAppAuthority.manifest) {
-    consumers.push("src/components/game-app.tsx");
-  }
-  consumers.sort();'''
+          replacement = '\n'.join([
+              '  const consumers = Object.entries(sources)',
+              '    .filter(([filePath, source]) => (',
+              '      !internalWorldBuilderPaths.has(filePath)',
+              '      && !engineAuthority.paths.has(filePath)',
+              '      && !gameAppAuthority.paths.has(filePath)',
+              '      && importsTrackRuntime(filePath, source)',
+              '    ))',
+              '    .map(([filePath]) => filePath);',
+              '  if (gameAppAuthority.manifest) {',
+              '    consumers.push("src/components/game-app.tsx");',
+              '  }',
+              '  consumers.sort();',
+          ])
           checker_path.write_text(checker[:start] + replacement + checker[end:], encoding='utf-8')
 
           test_path = Path('scripts/check-track-consumer-source-pin.test.mjs')
