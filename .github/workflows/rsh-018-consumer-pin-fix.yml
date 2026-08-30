@@ -1,0 +1,95 @@
+name: rsh-018-consumer-pin-fix
+
+on:
+  push:
+    branches:
+      - agent/rsh-018-game-app-decomposition
+    paths:
+      - .github/workflows/rsh-018-consumer-pin-fix.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rsh-018-consumer-pin-fix
+  cancel-in-progress: false
+
+jobs:
+  fix:
+    runs-on: ubuntu-24.04
+    env:
+      CI: true
+      NODE_OPTIONS: --experimental-strip-types
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Correct canonical consumer mapping and regression expectation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          checker_path = Path('scripts/check-track-consumer-source-pin.mjs')
+          checker = checker_path.read_text(encoding='utf-8')
+          start = checker.find('  const consumers = Object.entries(sources)')
+          end_marker = 'consumers.sort();'
+          end_start = checker.find(end_marker, start)
+          if start < 0 or end_start < 0:
+              raise SystemExit('consumer mapping bounds missing')
+          end = end_start + len(end_marker)
+          replacement = '''  const consumers = Object.entries(sources)
+    .filter(([filePath, source]) => (
+      !internalWorldBuilderPaths.has(filePath)
+      && !engineAuthority.paths.has(filePath)
+      && !gameAppAuthority.paths.has(filePath)
+      && importsTrackRuntime(filePath, source)
+    ))
+    .map(([filePath]) => filePath);
+  if (gameAppAuthority.manifest) {
+    consumers.push("src/components/game-app.tsx");
+  }
+  consumers.sort();'''
+          checker_path.write_text(checker[:start] + replacement + checker[end:], encoding='utf-8')
+
+          test_path = Path('scripts/check-track-consumer-source-pin.test.mjs')
+          test_source = test_path.read_text(encoding='utf-8')
+          old = r'/src\/components\/game-app\.tsx Git blob identity/'
+          new = r'/RSH-018 game-app authority invalid: game-app facade identity changed/'
+          if test_source.count(old) != 1:
+              raise SystemExit('consumer regression expectation target mismatch')
+          test_path.write_text(test_source.replace(old, new, 1), encoding='utf-8')
+          PY
+          node --check scripts/check-track-consumer-source-pin.mjs
+
+      - name: Remove temporary workflow
+        run: rm -f .github/workflows/rsh-018-consumer-pin-fix.yml
+
+      - name: Run focused regression tests
+        run: node --test scripts/check-track-consumer-source-pin.test.mjs
+
+      - name: Run complete unit-test suite
+        run: npm test
+
+      - name: Commit clean fix
+        run: |
+          git config user.name "talstilkol"
+          git config user.email "tal_stilkol@hotmail.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "fix(rsh-018): preserve canonical track consumer identity"
+          git push origin HEAD:agent/rsh-018-game-app-decomposition
