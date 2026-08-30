@@ -23,10 +23,10 @@
 
 | Concern | Path | Methods | Lines | Bytes | SHA-256 |
 |---|---|---:|---:|---:|---|
-| loop | `src/game/engine/loop-adapter.ts` | 5 | 166 | 4,975 | `88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8` |
-| rendering | `src/game/engine/rendering-adapter.ts` | 28 | 850 | 31,856 | `079e0b2c1d1e73b5605686ba03d137528746396e8d3a9d425bc746aa757aa10f` |
-| physics | `src/game/engine/physics-adapter.ts` | 23 | 747 | 26,040 | `5dac2313c067ec4a84424bdeea3baabe640cec1ab416392ba156b8f337c0d620` |
-| qa | `src/game/engine/qa-adapter.ts` | 2 | 442 | 13,198 | `973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c` |
+| loop | `src/game/engine/loop-adapter.ts` | 5 | 167 | 5,098 | `88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8` |
+| rendering | `src/game/engine/rendering-adapter.ts` | 28 | 851 | 32,439 | `079e0b2c1d1e73b5605686ba03d137528746396e8d3a9d425bc746aa757aa10f` |
+| physics | `src/game/engine/physics-adapter.ts` | 23 | 748 | 26,440 | `5dac2313c067ec4a84424bdeea3baabe640cec1ab416392ba156b8f337c0d620` |
+| qa | `src/game/engine/qa-adapter.ts` | 2 | 443 | 13,243 | `973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c` |
 
 Support authority: `src/game/engine/adapter-host.ts` — 206 lines / 7,539 bytes.
 
@@ -34,8 +34,8 @@ Support authority: `src/game/engine/adapter-host.ts` — 206 lines / 7,539 bytes
 
 | Metric | Before | RSH-017 candidate | Change |
 |---|---:|---:|---:|
-| `engine.ts` lines | 2,815 | 1,202 | −1,613 |
-| `engine.ts` bytes | 99,577 | 40,417 | −59,160 |
+| `engine.ts` lines | 2,815 | 1,207 | −1,608 |
+| `engine.ts` bytes | 99,577 | 41,703 | −57,874 |
 | Adapter files | 0 | 4 | +4 |
 | Extracted methods | 0 | 58 | +58 |
 | Adapter source | 0 | 2,209 lines / 77,220 bytes | added |

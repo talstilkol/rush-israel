@@ -211,7 +211,7 @@ Current verified result: **0/13**.
 RSH-017 is accepted on merge only after exact-head CI and review. It extracts exactly
 58 existing methods from `engine.ts` into four bounded concern adapters: loop,
 rendering, physics and QA. `engine.ts` remains the sole concrete state, constructor,
-assembly and disposal owner and falls from 2,815 to 1,202 lines. The accepted RSH-016
+assembly and disposal owner and falls from 2,815 to 1,207 lines. The accepted RSH-016
 engine reconstructs byte-for-byte, and runtime, public API, physics, rendering, QA,
 track, asset, dependency and save/record changes remain zero.
 
