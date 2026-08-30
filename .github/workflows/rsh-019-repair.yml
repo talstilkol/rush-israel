@@ -9,6 +9,9 @@ on:
 permissions:
   contents: write
 
+env:
+  NODE_OPTIONS: --experimental-strip-types
+
 concurrency:
   group: rsh-019-repair
   cancel-in-progress: false
