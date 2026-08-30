@@ -1,6 +1,6 @@
 name: rsh-019-apply
 
-# deterministic rerun 8
+# deterministic rerun 9
 on:
   push:
     branches:
@@ -70,7 +70,6 @@ jobs:
                   raise SystemExit(f"{label}: expected 1 match, found {count}")
               return source.replace(before, after)
 
-          # RSH-018 now accepts the authorized RSH-019 authority and blocks RSH-020.
           path = "scripts/check-game-app-decomposition.test.mjs"
           source = read(path)
           before = '''test("temporary RSH-018 files and RSH-019 precreation fail closed", () => {
@@ -94,8 +93,6 @@ jobs:
           source = replace_once_text(source, before, after, "game-app deferred-boundary test")
           write(path, source)
 
-          # RSH-016 compares the normalized historical world facade while accepting the
-          # current RSH-019 ResourceRegistry authority.
           path = "scripts/check-world-builders.mjs"
           source = read(path)
           source = replace_once_text(
@@ -129,8 +126,6 @@ jobs:
           source = replace_once_text(source, old_registry_hash, registry_hash, "world-builders registry authority")
           write(path, source)
 
-          # WORLD-CORE keeps the reconstructed RSH-016 engine identity historical while
-          # reporting current world dimensions through the authorized overlay normalizer.
           path = "scripts/check-world-core.mjs"
           source = read(path)
           source = replace_once_text(
@@ -141,30 +136,12 @@ jobs:
           )
           source = replace_once_text(
               source,
-              '''  return {
-            errors,
-            worldLines: lineCount(input.worldSource),
-            worldBytes: Buffer.byteLength(input.worldSource),
-            coreLines: lineCount(input.coreSource),
-            coreBytes: Buffer.byteLength(input.coreSource),
-            reconstructedWorldSha256: errors.length ? null : LEGACY_WORLD_SHA256,
-          };
-          ''',
-              '''  const normalizedWorldSource = stripRsh019Overlay("src/game/world.ts", input.worldSource);
-            return {
-            errors,
-            worldLines: lineCount(normalizedWorldSource),
-            worldBytes: Buffer.byteLength(normalizedWorldSource),
-            coreLines: lineCount(input.coreSource),
-            coreBytes: Buffer.byteLength(input.coreSource),
-            reconstructedWorldSha256: errors.length ? null : LEGACY_WORLD_SHA256,
-          };
-          ''',
+              '    worldLines: lineCount(input.worldSource),\n    worldBytes: Buffer.byteLength(input.worldSource),\n',
+              '    worldLines: lineCount(stripRsh019Overlay("src/game/world.ts", input.worldSource)),\n    worldBytes: Buffer.byteLength(stripRsh019Overlay("src/game/world.ts", input.worldSource)),\n',
               "world-core normalized dimensions",
           )
           write(path, source)
 
-          # Update the historical disposal mutation to target the accepted RSH-019 loop.
           path = "scripts/check-world-core.test.mjs"
           source = read(path)
           source = replace_once_text(
