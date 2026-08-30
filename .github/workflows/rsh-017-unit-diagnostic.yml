@@ -1,0 +1,72 @@
+name: rsh-017-unit-diagnostic
+
+on:
+  push:
+    branches:
+      - agent/rsh-017-engine-adapters
+    paths:
+      - .github/workflows/rsh-017-unit-diagnostic.yml
+      - src/game/engine.ts
+      - src/game/engine/**
+      - scripts/check-engine-adapters*
+      - ENGINE-ADAPTER-MANIFEST.json
+      - CURRENT-STATE.json
+      - QUEUE.json
+      - MILESTONE-REGISTER.md
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rsh-017-unit-diagnostic
+  cancel-in-progress: false
+
+jobs:
+  unit-diagnostic:
+    runs-on: ubuntu-24.04
+    env:
+      CI: true
+      NODE_OPTIONS: --experimental-strip-types
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Capture complete unit-test output
+        id: tests
+        shell: bash
+        run: |
+          set +e
+          mkdir -p artifacts
+          npm test 2>&1 | tee artifacts/rsh-017-unit-tests.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=${code}" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload unit-test diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rsh-017-unit-diagnostic-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/rsh-017-unit-tests.log
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Preserve test verdict
+        if: always()
+        shell: bash
+        run: exit "${{ steps.tests.outputs.exit_code }}"
