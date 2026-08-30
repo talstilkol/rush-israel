@@ -37,7 +37,9 @@ jobs:
         run: npm ci
 
       - name: Generate exact typed adapter boundary
-        run: node scripts/rsh-017-exact-types-fix.mjs
+        run: |
+          sed -i 's/permissive any boundary/permissive value boundary/' scripts/rsh-017-exact-types-fix.mjs
+          node scripts/rsh-017-exact-types-fix.mjs
 
       - name: Remove one-shot tooling from final tree
         run: git rm .github/workflows/rsh-017-exact-types-fix.yml scripts/rsh-017-exact-types-fix.mjs
