@@ -72,8 +72,19 @@ jobs:
               raise SystemExit('finalizer reconstruction cursor target mismatch')
           decoded = decoded.replace(cursor_old, cursor_new, 1)
 
+          time_old = '''function nowJerusalem() {
+            const shifted = new Date(Date.now() + 3 * 60 * 60 * 1000);
+            return shifted.toISOString().replace("Z", "+03:00");
+          }'''
+          time_new = '''function nowJerusalem() {
+            return "2026-08-31T00:30:00+03:00";
+          }'''
+          if decoded.count(time_old) != 1:
+              raise SystemExit('finalizer deterministic timestamp target mismatch')
+          decoded = decoded.replace(time_old, time_new, 1)
+
           patched_sha = hashlib.sha256(decoded.encode('utf-8')).hexdigest()
-          expected_patched_sha = '1f57e316ae1ede06950043188382e6bbb6a3ca49d88fa813a0028ccd55ae3f2d'
+          expected_patched_sha = '61bcaeb3853e1fe1d3fb67d0e88c2daa982f09420e6b8b4a40dd30c7968ff787'
           if patched_sha != expected_patched_sha:
               raise SystemExit(f'patched finalizer mismatch: sha256={patched_sha}')
           Path('/tmp/rsh-018-finalize.mjs').write_text(decoded, encoding='utf-8')
@@ -123,6 +134,11 @@ jobs:
           }
           consumers.sort();'''
           path.write_text(source[:start] + new + source[end:], encoding='utf-8')
+
+          contract = Path('NEXT-CONTRACT.md')
+          contract_source = contract.read_text(encoding='utf-8')
+          normalized = '\n'.join(line.rstrip() for line in contract_source.splitlines()) + '\n'
+          contract.write_text(normalized, encoding='utf-8')
           PY
           node --check scripts/check-track-consumer-source-pin.mjs
 
