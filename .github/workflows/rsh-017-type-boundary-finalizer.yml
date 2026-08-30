@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - agent/rsh-017-engine-adapters
-    paths:
-      - .github/workflows/rsh-017-type-boundary-finalizer.yml
   workflow_dispatch:
 
 permissions:
@@ -199,13 +197,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git clean -fdX
           git add -A --             .github/workflows/rsh-017-type-boundary-finalizer.yml             ENGINE-ADAPTER-MANIFEST.json             RSH-017-ENGINE-ADAPTER-CONTRACT.md             RSH-017-ENGINE-ADAPTER-PREFLIGHT.json             RSH-017-ENGINE-ADAPTER-PREFLIGHT.md             scripts/check-engine-adapters.mjs             src/game/engine/adapter-host.ts
 
           actual="$(git diff --cached --name-only | sort)"
           expected="$(printf '%s\n'             .github/workflows/rsh-017-type-boundary-finalizer.yml             ENGINE-ADAPTER-MANIFEST.json             RSH-017-ENGINE-ADAPTER-CONTRACT.md             RSH-017-ENGINE-ADAPTER-PREFLIGHT.json             RSH-017-ENGINE-ADAPTER-PREFLIGHT.md             scripts/check-engine-adapters.mjs             src/game/engine/adapter-host.ts | sort)"
           test "$actual" = "$expected"
-          test -z "$(git status --short | grep '^??' || true)"
+          git diff --cached --check
 
           git commit -m "RSH-017: type the adapter host boundary"
           git push origin HEAD:refs/heads/agent/rsh-017-engine-adapters
