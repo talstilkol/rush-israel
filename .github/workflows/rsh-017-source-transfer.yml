@@ -31,13 +31,12 @@ jobs:
             --exclude=.git \
             --exclude=node_modules \
             --exclude=.vercel \
-            --exclude=source-transfer.tar.gz \
-            -czf source-transfer.tar.gz .
+            -czf "$RUNNER_TEMP/source-transfer.tar.gz" .
 
       - name: Upload exact source package
         uses: actions/upload-artifact@v4
         with:
           name: rsh-017-source-${{ github.run_id }}-${{ github.run_attempt }}
-          path: source-transfer.tar.gz
+          path: ${{ runner.temp }}/source-transfer.tar.gz
           if-no-files-found: error
           retention-days: 1
