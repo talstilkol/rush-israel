@@ -1,6 +1,6 @@
 name: rsh-019-apply
 
-# deterministic rerun 7
+# deterministic rerun 8
 on:
   push:
     branches:
@@ -49,9 +49,172 @@ jobs:
           echo "881fcae97fe4a87ae31f4d751fafe34a8fd76391d3e2b2082485f35a7456c51c  /tmp/rsh019-apply.mjs" | sha256sum --check
           node --check /tmp/rsh019-apply.mjs
 
-      - name: Apply RSH-019 and remove temporary transfer files
+      - name: Apply RSH-019 and reconcile historical validators
         run: |
           node /tmp/rsh019-apply.mjs
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import re
+
+          def read(path):
+              return Path(path).read_text()
+
+          def write(path, source):
+              Path(path).write_text(source)
+
+          def replace_once_text(source, before, after, label):
+              count = source.count(before)
+              if count != 1:
+                  raise SystemExit(f"{label}: expected 1 match, found {count}")
+              return source.replace(before, after)
+
+          # RSH-018 now accepts the authorized RSH-019 authority and blocks RSH-020.
+          path = "scripts/check-game-app-decomposition.test.mjs"
+          source = read(path)
+          before = '''test("temporary RSH-018 files and RSH-019 precreation fail closed", () => {
+            const temp = baseline();
+            temp.repositoryFiles.push(".github/workflows/rsh-018-finalizer.yml");
+            assert.match(messages(validateGameAppDecomposition(temp)), /temporary RSH-018 files/);
+            const later = baseline();
+            later.repositoryFiles.push("RSH-019-RESOURCE-OWNERSHIP-CONTRACT.md");
+            assert.match(messages(validateGameAppDecomposition(later)), /unauthorized RSH-019 structure/);
+          });
+          '''
+          after = '''test("temporary RSH-018 files and RSH-020 precreation fail closed", () => {
+            const temp = baseline();
+            temp.repositoryFiles.push(".github/workflows/rsh-018-finalizer.yml");
+            assert.match(messages(validateGameAppDecomposition(temp)), /temporary RSH-018 files/);
+            const later = baseline();
+            later.repositoryFiles.push("RSH-020-PREFLIGHT.json");
+            assert.match(messages(validateGameAppDecomposition(later)), /unauthorized later-unit structure/);
+          });
+          '''
+          source = replace_once_text(source, before, after, "game-app deferred-boundary test")
+          write(path, source)
+
+          # RSH-016 compares the normalized historical world facade while accepting the
+          # current RSH-019 ResourceRegistry authority.
+          path = "scripts/check-world-builders.mjs"
+          source = read(path)
+          source = replace_once_text(
+              source,
+              'import { gitBlobSha1, reconstructRsh015WorldSource, sha256 } from "./load-world-builders.mjs";\n',
+              'import { gitBlobSha1, reconstructRsh015WorldSource, sha256 } from "./load-world-builders.mjs";\nimport { stripRsh019Overlay } from "./rsh019-overlay.mjs";\n',
+              "world-builders overlay import",
+          )
+          source = replace_once_text(
+              source,
+              '  if (sha256(input.worldSource) !== EXPECTED_WORLD_SHA256) errors.push("world.ts differs from the accepted RSH-016 facade");\n',
+              '  const normalizedWorldSource = stripRsh019Overlay("src/game/world.ts", input.worldSource);\n  if (sha256(normalizedWorldSource) !== EXPECTED_WORLD_SHA256) errors.push("world.ts differs from the accepted RSH-016 facade");\n',
+              "world-builders normalized facade",
+          )
+          source = replace_once_text(
+              source,
+              '    const reconstructed = reconstructRsh015WorldSource(input.worldSource);\n',
+              '    const reconstructed = reconstructRsh015WorldSource(normalizedWorldSource);\n',
+              "world-builders normalized reconstruction",
+          )
+          source = replace_once_text(
+              source,
+              r'''  return { errors, moduleCount: manifest.extraction.modules.length, worldLines: (input.worldSource.match(/\n/g) ?? []).length, worldBytes: Buffer.byteLength(input.worldSource) };
+          ''',
+              r'''  return { errors, moduleCount: manifest.extraction.modules.length, worldLines: (normalizedWorldSource.match(/\n/g) ?? []).length, worldBytes: Buffer.byteLength(normalizedWorldSource) };
+          ''',
+              "world-builders normalized dimensions",
+          )
+          old_registry_hash = "64781dfb6d7cc53c0052374a1d2f647b0436e2017382902110f40a09262dc873"
+          registry_hash = hashlib.sha256(Path("src/rendering/ResourceRegistry.ts").read_bytes()).hexdigest()
+          source = replace_once_text(source, old_registry_hash, registry_hash, "world-builders registry authority")
+          write(path, source)
+
+          # WORLD-CORE keeps the reconstructed RSH-016 engine identity historical while
+          # reporting current world dimensions through the authorized overlay normalizer.
+          path = "scripts/check-world-core.mjs"
+          source = read(path)
+          source = replace_once_text(
+              source,
+              'import { fromRoot } from "./project-root.mjs";\n',
+              'import { fromRoot } from "./project-root.mjs";\nimport { stripRsh019Overlay } from "./rsh019-overlay.mjs";\n',
+              "world-core overlay import",
+          )
+          source = replace_once_text(
+              source,
+              '''  return {
+            errors,
+            worldLines: lineCount(input.worldSource),
+            worldBytes: Buffer.byteLength(input.worldSource),
+            coreLines: lineCount(input.coreSource),
+            coreBytes: Buffer.byteLength(input.coreSource),
+            reconstructedWorldSha256: errors.length ? null : LEGACY_WORLD_SHA256,
+          };
+          ''',
+              '''  const normalizedWorldSource = stripRsh019Overlay("src/game/world.ts", input.worldSource);
+            return {
+            errors,
+            worldLines: lineCount(normalizedWorldSource),
+            worldBytes: Buffer.byteLength(normalizedWorldSource),
+            coreLines: lineCount(input.coreSource),
+            coreBytes: Buffer.byteLength(input.coreSource),
+            reconstructedWorldSha256: errors.length ? null : LEGACY_WORLD_SHA256,
+          };
+          ''',
+              "world-core normalized dimensions",
+          )
+          write(path, source)
+
+          # Update the historical disposal mutation to target the accepted RSH-019 loop.
+          path = "scripts/check-world-core.test.mjs"
+          source = read(path)
+          source = replace_once_text(
+              source,
+              '''  disposal.worldSource = disposal.worldSource.replace(
+            "for (const d of bag) d.dispose();",
+            "for (const d of [...bag].reverse()) d.dispose();",
+          );
+          ''',
+              '''  disposal.worldSource = disposal.worldSource.replace(
+            "for (let index = bag.length - 1; index >= 0; index -= 1)",
+            "for (let index = 0; index < bag.length; index += 1)",
+          );
+          ''',
+              "world-core disposal mutation",
+          )
+          write(path, source)
+
+          manifest_path = Path("WORLD-CORE-MANIFEST.json")
+          manifest = json.loads(manifest_path.read_text())
+          manifest["preservation_identities"]["engine"] = {
+              "path": "src/game/engine.ts",
+              "lines": 2815,
+              "bytes": 99577,
+              "sha256": "3f4d54bbe0b68f9654ae8a92a2f56ce378a59a9790e8fbbe2ee05199ced192c1",
+              "git_blob_sha1": "692663c6d05ab59c1d99c7a357999839b9ebb0ec",
+          }
+          manifest_source = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
+          manifest_path.write_text(manifest_source)
+          manifest_hash = hashlib.sha256(manifest_source.encode()).hexdigest()
+
+          path = "scripts/check-world-core.mjs"
+          source = read(path)
+          source, count = re.subn(
+              r'export const EXPECTED_MANIFEST_SHA256 = "[a-f0-9]+";',
+              f'export const EXPECTED_MANIFEST_SHA256 = "{manifest_hash}";',
+              source,
+              count=1,
+          )
+          if count != 1:
+              raise SystemExit(f"world-core manifest hash: expected 1 match, found {count}")
+          write(path, source)
+
+          print(json.dumps({
+              "historical_engine_sha256": manifest["preservation_identities"]["engine"]["sha256"],
+              "world_core_manifest_sha256": manifest_hash,
+              "resource_registry_sha256": registry_hash,
+              "deferred_boundary": "RSH-020",
+          }, indent=2))
+          PY
           sed -i 's/[[:space:]]\+$//' NEXT-CONTRACT.md
           git rm .rsh019-payload.gz.b64 .rsh019-payload.part-* .github/workflows/rsh-019-apply.yml
           git diff --check
