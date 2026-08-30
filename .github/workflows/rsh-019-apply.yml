@@ -1,6 +1,6 @@
 name: rsh-019-apply
 
-# deterministic rerun 5
+# deterministic rerun 6
 on:
   push:
     branches:
@@ -84,7 +84,34 @@ jobs:
         run: npm run lint
 
       - name: Run complete unit-test suite
-        run: npm test
+        run: |
+          set +e
+          npm test > /tmp/unit-tests.log 2>&1
+          status=$?
+          set -e
+          if [ "$status" -ne 0 ]; then
+            python - <<'PY'
+            from pathlib import Path
+            lines = Path('/tmp/unit-tests.log').read_text(errors='replace').splitlines()
+            indexes = [i for i, line in enumerate(lines) if 'not ok ' in line]
+            if not indexes:
+                print('\n'.join(lines[-200:]))
+            else:
+                emitted = set()
+                for index in indexes:
+                    start = max(0, index - 4)
+                    end = min(len(lines), index + 80)
+                    for cursor in range(start, end):
+                        if cursor not in emitted:
+                            print(lines[cursor])
+                            emitted.add(cursor)
+                print('\n--- unit-test summary ---')
+                for line in lines[-30:]:
+                    print(line)
+            PY
+            exit "$status"
+          fi
+          tail -n 20 /tmp/unit-tests.log
 
       - name: Run complete self-starting QA gate
         run: npm run qa:ci
