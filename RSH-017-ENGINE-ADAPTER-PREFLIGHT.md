@@ -1,6 +1,6 @@
 # RSH-017 — Engine adapter preflight
 
-**Verified:** 30 August 2026, 16:15 IDT  
+**Verified:** 30 August 2026, 21:30 IDT  
 **Source of truth:** live GitHub  
 **Scope:** RSH-017 only
 
@@ -46,5 +46,23 @@ The existing branch contained only the temporary source-transfer workflow and on
 
 - facade: **1,202 lines / 40,417 bytes**;
 - support: **96 lines / 6,368 bytes**;
+- complete facade + adapters + support: **3,503 lines / 122,854 bytes**;
 - legacy reconstruction: **byte-for-byte exact**;
 - RSH-018 files: **0**.
+
+## Exact-head validation reconciliation
+
+| Evidence | Exact value |
+|---|---|
+| Required-CI correction-parent run | `33318523617` |
+| Required-CI correction-parent job | `99276258416` |
+| Unit-test result on correction parent | `368 / 368` passed |
+| Remaining correction-parent failure | TypeScript adapter-host boundary — `24` diagnostics |
+| Typed-boundary correction commit | `b9797d1ebc0583453db487256c9861681e455637` |
+| Typed-boundary correction tree | `fa05807291a1b6bd019f6573b6092e80b15ad5a2` |
+| Typed support SHA-256 | `2177db5967b5c475afb1785ddcc0c4602d8cbde38f257ec500db963c1d50ff0f` |
+| Typed support Git blob | `7c82b03801cd9ef009ade005f0ad955e36d4547a` |
+| Temporary RSH-017 workflows in candidate tree | `0` |
+| Product/runtime change in this reconciliation | `0` |
+
+The typed-boundary correction was authored by `github-actions[bot]`, so its automatic pull-request run was marked `action_required` before a validation job was created. This owner-authored reconciliation commit changes documentation only and establishes a normal exact-head `required-ci / validate` trigger. Acceptance still requires the complete CI gate and Codex review on the resulting exact final head.
