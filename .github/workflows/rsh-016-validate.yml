@@ -1,4 +1,4 @@
-name: rsh-016-validate
+name: rsh-016-finalize
 
 on:
   push:
@@ -7,32 +7,65 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 env:
   CI: "true"
   NODE_OPTIONS: "--experimental-strip-types"
 
 concurrency:
-  group: rsh-016-validate-${{ github.ref }}
+  group: rsh-016-finalize-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  validate:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out the exact branch head
+        uses: actions/checkout@v4
         with:
           ref: agent/rsh-016-track-builders
-      - uses: actions/setup-node@v4
+          fetch-depth: 0
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: npm
-      - run: npm install --global npm@10.9.2
-      - run: npm run toolchain:verify
-      - run: npm ci
-      - run: node scripts/check-world-builders.mjs
-      - run: npm run lint
-      - run: npm test
-      - run: npm run typecheck
+
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+
+      - name: Verify toolchain
+        run: npm run toolchain:verify
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Finalize RSH-016 canonical authorities
+        run: python3 scripts/finalize-rsh-016.py
+
+      - name: Validate governance and world-builder boundaries
+        run: |
+          node scripts/check-governance-contract.mjs
+          node scripts/check-world-builders.mjs
+
+      - name: Run complete unit-test suite
+        run: npm test
+
+      - name: Run TypeScript typecheck
+        run: npm run typecheck
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Commit finalized authorities
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CURRENT-STATE.json QUEUE.json NEXT-CONTRACT.md MASTER-PLAN.md MILESTONE-REGISTER.md FINDINGS-REGISTER.md BASELINE-REGISTER.json RSH-016-WORLD-BUILDER-CONTRACT.md scripts/program-control.test.mjs scripts/milestone-register.test.mjs
+          git diff --cached --check
+          git commit -m "RSH-016: finalize canonical controls"
+          git push origin HEAD:refs/heads/agent/rsh-016-track-builders
