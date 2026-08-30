@@ -1,4 +1,4 @@
-name: rsh-018-source-export
+name: rsh-018-source-finalizer
 
 on:
   push:
@@ -6,29 +6,50 @@ on:
       - agent/rsh-018-game-app-decomposition
     paths:
       - .github/workflows/rsh-018-source-export.yml
+      - .rsh018-source-overlay.tgz
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: rsh-018-source-export
+  group: rsh-018-source-finalizer
   cancel-in-progress: false
 
 jobs:
-  export:
+  finalize:
     runs-on: ubuntu-24.04
     steps:
-      - name: Check out exact revision
+      - name: Check out exact staged revision
         uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
           fetch-depth: 1
-      - name: Export exact tracked tree
-        run: git archive --format=zip --output=rsh018-source.zip HEAD
-      - name: Upload exact source archive
-        uses: actions/upload-artifact@v4
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
         with:
-          name: rsh018-source-${{ github.run_id }}
-          path: rsh018-source.zip
-          if-no-files-found: error
-          retention-days: 1
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+      - name: Verify toolchain
+        run: npm run toolchain:verify
+      - name: Apply exact source overlay
+        run: tar -xzf .rsh018-source-overlay.tgz
+      - name: Install dependencies from lockfile
+        run: npm ci
+      - name: Typecheck decomposed application
+        run: npm run typecheck
+      - name: Lint decomposed application
+        run: npm run lint
+      - name: Build deterministic development bundle
+        run: npm run build:dev
+      - name: Commit validated source only
+        run: |
+          rm -f .rsh018-source-overlay.tgz
+          rm -f .github/workflows/rsh-018-source-export.yml
+          git config user.name "talsitelkol"
+          git config user.email "tal_stilkol@hotmail.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "RSH-018: split game app into race controller, HUD and screens"
+          git push origin HEAD:agent/rsh-018-game-app-decomposition
