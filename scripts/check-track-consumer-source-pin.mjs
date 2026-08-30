@@ -3,6 +3,11 @@ import { readdirSync, readFileSync } from "node:fs";
 import { extname, join, posix, relative, sep } from "node:path";
 import ts from "typescript";
 import { fromRoot, projectRoot } from "./project-root.mjs";
+import {
+  readEngineAdapterInputs,
+  validateEngineAdapters,
+} from "./check-engine-adapters.mjs";
+import { reconstructRsh016EngineSource } from "./load-engine-adapters.mjs";
 import { reconstructLegacyWorldSource } from "./load-world-core.mjs";
 import { reconstructRsh015WorldSource } from "./load-world-builders.mjs";
 
@@ -217,18 +222,78 @@ function acceptedInternalWorldBuilderPaths(errors) {
   }
 }
 
-function identitySourceForAcceptedBaseline(filePath, source, expectedGitBlobSha1, errors) {
-  const rawIdentity = gitBlobSha1(source);
-  if (rawIdentity === expectedGitBlobSha1 || filePath !== "src/game/world.ts") {
-    return { source, rawIdentity, reconstructed: false };
-  }
+function acceptedInternalEngineAdapterAuthority(errors, sources) {
+  let input;
+  let manifest;
   try {
-    const reconstructed = reconstructLegacyWorldSource(reconstructRsh015WorldSource(source));
-    return { source: reconstructed, rawIdentity, reconstructed: true };
+    input = readEngineAdapterInputs();
+    manifest = JSON.parse(input.manifestSource);
   } catch (error) {
-    errors.push(`src/game/world.ts controlled RSH-016 reconstruction failed: ${error.message}`);
+    errors.push(`RSH-017 engine-adapter authority cannot be read: ${error.message}`);
+    return { paths: new Set(), manifest: null, adapterSources: {} };
+  }
+
+  const adapterSources = Object.fromEntries(
+    manifest.extraction.adapters.map((adapter) => [
+      adapter.path,
+      typeof sources[adapter.path] === "string"
+        ? sources[adapter.path]
+        : input.adapterSources[adapter.path],
+    ]),
+  );
+  const validation = validateEngineAdapters({ ...input, adapterSources });
+  if (validation.errors.length) {
+    errors.push(...validation.errors.map(
+      (error) => `RSH-017 engine-adapter authority invalid: ${error}`,
+    ));
+    return { paths: new Set(), manifest, adapterSources };
+  }
+
+  return {
+    paths: new Set(manifest.extraction.adapters.map((adapter) => adapter.path)),
+    manifest,
+    adapterSources,
+  };
+}
+
+function identitySourceForAcceptedBaseline(
+  filePath,
+  source,
+  expectedGitBlobSha1,
+  errors,
+  engineAuthority,
+) {
+  const rawIdentity = gitBlobSha1(source);
+  if (rawIdentity === expectedGitBlobSha1) {
     return { source, rawIdentity, reconstructed: false };
   }
+  if (filePath === "src/game/world.ts") {
+    try {
+      const reconstructed = reconstructLegacyWorldSource(reconstructRsh015WorldSource(source));
+      return { source: reconstructed, rawIdentity, reconstructed: true };
+    } catch (error) {
+      errors.push(`src/game/world.ts controlled RSH-016 reconstruction failed: ${error.message}`);
+      return { source, rawIdentity, reconstructed: false };
+    }
+  }
+  if (filePath === "src/game/engine.ts") {
+    if (!engineAuthority.manifest) {
+      errors.push("src/game/engine.ts controlled RSH-017 authority is unavailable");
+      return { source, rawIdentity, reconstructed: false };
+    }
+    try {
+      const reconstructed = reconstructRsh016EngineSource(
+        source,
+        engineAuthority.manifest,
+        engineAuthority.adapterSources,
+      );
+      return { source: reconstructed, rawIdentity, reconstructed: true };
+    } catch (error) {
+      errors.push(`src/game/engine.ts controlled RSH-017 reconstruction failed: ${error.message}`);
+      return { source, rawIdentity, reconstructed: false };
+    }
+  }
+  return { source, rawIdentity, reconstructed: false };
 }
 
 export function validateTrackConsumerSourcePin({ consumerSources } = {}) {
@@ -243,10 +308,12 @@ export function validateTrackConsumerSourcePin({ consumerSources } = {}) {
   }
 
   const internalWorldBuilderPaths = acceptedInternalWorldBuilderPaths(errors);
+  const engineAuthority = acceptedInternalEngineAdapterAuthority(errors, sources);
   const expectedPaths = Object.keys(ACCEPTED_TRACK_CONSUMERS).sort();
   const consumers = Object.entries(sources)
     .filter(([filePath, source]) => (
       !internalWorldBuilderPaths.has(filePath)
+      && !engineAuthority.paths.has(filePath)
       && importsTrackRuntime(filePath, source)
     ))
     .map(([filePath]) => filePath)
@@ -272,6 +339,7 @@ export function validateTrackConsumerSourcePin({ consumerSources } = {}) {
       source,
       expectedGitBlobSha1,
       errors,
+      engineAuthority,
     );
     const actualGitBlobSha1 = gitBlobSha1(identitySource.source);
     if (actualGitBlobSha1 !== expectedGitBlobSha1) {
