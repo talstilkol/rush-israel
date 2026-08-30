@@ -227,6 +227,6 @@ test("the complete schema gate incorporates runtime consumer protection", () => 
   assert.equal(Array.isArray(result), false);
   assert.match(
     result.errors.join("\n"),
-    /src\/components\/game-app\.tsx Git blob identity/,
+    /RSH-018 game-app authority invalid: game-app facade identity changed/,
   );
 });

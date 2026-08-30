@@ -363,23 +363,17 @@ export function validateTrackConsumerSourcePin({ consumerSources } = {}) {
   const gameAppAuthority = acceptedInternalGameAppAuthority(errors, sources);
   const expectedPaths = Object.keys(ACCEPTED_TRACK_CONSUMERS).sort();
   const consumers = Object.entries(sources)
-  .filter(([filePath, source]) => (
-    !internalWorldBuilderPaths.has(filePath)
-    && !engineAuthority.paths.has(filePath)
-    && !gameAppAuthority.paths.has(filePath)
-    && importsTrackRuntime(filePath, source)
-  ))
-  .map(([filePath]) => filePath);
-if (
-  gameAppAuthority.manifest
-  && [...gameAppAuthority.paths].some((filePath) => (
-    typeof sources[filePath] === "string"
-    && importsTrackRuntime(filePath, sources[filePath])
-  ))
-) {
-  consumers.push("src/components/game-app.tsx");
-}
-consumers.sort();
+    .filter(([filePath, source]) => (
+      !internalWorldBuilderPaths.has(filePath)
+      && !engineAuthority.paths.has(filePath)
+      && !gameAppAuthority.paths.has(filePath)
+      && importsTrackRuntime(filePath, source)
+    ))
+    .map(([filePath]) => filePath);
+  if (gameAppAuthority.manifest) {
+    consumers.push("src/components/game-app.tsx");
+  }
+  consumers.sort();
 
   if (JSON.stringify(consumers) !== JSON.stringify(expectedPaths)) {
     errors.push(
