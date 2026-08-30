@@ -11,7 +11,7 @@ import {
   reconstructRsh016EngineSource,
 } from "./load-engine-adapters.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "75eabe112141ba21c5a377a141da7fb3419a941f5f6802020278db9a54b38bc4";
+export const EXPECTED_MANIFEST_SHA256 = "4b3931db2a1ed2ac8a15e4cf9d9a71537786a13500dcd55e8e65538871e2953e";
 export const EXPECTED_ENGINE_SHA256 = "cd2e30b1ae1badfd712a7ac8fe3dbb8ae0aeba80827d10464c6c2dcfcf043d84";
 export const EXPECTED_ADAPTER_PATHS = [
   "src/game/engine/loop-adapter.ts",

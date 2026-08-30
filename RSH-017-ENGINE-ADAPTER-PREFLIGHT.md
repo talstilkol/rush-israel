@@ -45,6 +45,6 @@ The existing branch contained only the temporary source-transfer workflow and on
 | **Total adapters** | **58** | **2,205** | **76,069** |
 
 - facade: **1,202 lines / 40,417 bytes**;
-- support: **4 lines / 243 bytes**;
+- support: **96 lines / 6,368 bytes**;
 - legacy reconstruction: **byte-for-byte exact**;
 - RSH-018 files: **0**.

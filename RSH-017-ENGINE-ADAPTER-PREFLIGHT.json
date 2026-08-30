@@ -82,13 +82,13 @@
     "adapter_bytes": 76069,
     "support": {
       "path": "src/game/engine/adapter-host.ts",
-      "lines": 4,
-      "bytes": 243,
-      "sha256": "abd14cb1c1712cb6e7ca73166aacb58aae666e9fa45e1f0adfd5dc3274a7b49c",
-      "git_blob_sha1": "10ce852b8d250a5838c160ca35324bef86271603"
+      "lines": 96,
+      "bytes": 6368,
+      "sha256": "2177db5967b5c475afb1785ddcc0c4602d8cbde38f257ec500db963c1d50ff0f",
+      "git_blob_sha1": "7c82b03801cd9ef009ade005f0ad955e36d4547a"
     },
-    "total_engine_source_lines": 3411,
-    "total_engine_source_bytes": 116729,
+    "total_engine_source_lines": 3503,
+    "total_engine_source_bytes": 122854,
     "adapters": [
       {
         "id": "loop",
