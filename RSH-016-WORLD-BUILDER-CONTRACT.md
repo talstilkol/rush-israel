@@ -31,3 +31,14 @@
 ## Validation
 
 `WORLD-BUILDER-MANIFEST.json`, `scripts/load-world-builders.mjs` and `scripts/check-world-builders.mjs` fail closed on module count/order/identity, cross-track imports, ID branching, duplicate ownership, facade bypass, historical reconstruction drift, preserved-source drift and unauthorized RSH-017 structures.
+
+## Authorization and implemented dimensions
+
+- Owner instruction: plain `next`, interpreted by `QUEUE.json` as exactly one queue-head unit.
+- Authorization scope: RSH-016 only; RSH-017 and later units remain unauthorized.
+- `src/game/world.ts`: 9,006 lines / 352,625 bytes before; 2,790 lines / 110,205 bytes after.
+- Per-track builder modules: 56.
+- Per-track builder source: 6,256 lines / 230,235 bytes.
+- Complete builder source including registry, shared context and types: 7,475 lines / 272,702 bytes.
+- Observable runtime-behaviour changes: 0.
+- State becomes accepted only on validated merge and successful post-merge required CI.
