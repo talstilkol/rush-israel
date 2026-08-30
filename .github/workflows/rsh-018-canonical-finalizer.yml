@@ -45,13 +45,18 @@ jobs:
 
       - name: Decode and run canonical finalizer
         run: |
-          cat .rsh018-finalizer/part-* > /tmp/rsh018.b64
+          cat .rsh018-finalizer/part-01 .rsh018-finalizer/part-02-* .rsh018-finalizer/part-03 .rsh018-finalizer/part-04 > /tmp/rsh018.b64
           python - <<'PY'
           import base64
           import gzip
+          import hashlib
           from pathlib import Path
 
           encoded = Path('/tmp/rsh018.b64').read_text(encoding='utf-8')
+          expected = '16aa891264cbb7a054c23d3776cfcdc4adb593ad4cb2891dbc708c0a8ca12cbd'
+          actual = hashlib.sha256(encoded.encode('utf-8')).hexdigest()
+          if len(encoded) != 21180 or actual != expected:
+              raise SystemExit(f'finalizer payload mismatch: length={len(encoded)} sha256={actual}')
           decoded = gzip.decompress(base64.b64decode(encoded))
           Path('/tmp/rsh-018-finalize.mjs').write_bytes(decoded)
           PY
