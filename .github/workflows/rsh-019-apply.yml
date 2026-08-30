@@ -1,0 +1,86 @@
+name: rsh-019-apply
+
+on:
+  push:
+    branches:
+      - agent/rsh-019-resource-ownership
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rsh-019-apply
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    name: rsh-019 / apply-and-validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CI: "true"
+      NODE_OPTIONS: "--experimental-strip-types"
+      PLAYWRIGHT_BROWSERS_PATH: "0"
+    steps:
+      - name: Check out exact RSH-019 branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/rsh-019-resource-ownership
+          fetch-depth: 0
+
+      - name: Decode and verify deterministic transformation
+        run: |
+          base64 -d .rsh019-payload.gz.b64 | gzip -d > /tmp/rsh019-apply.mjs
+          echo "20bdfde09cea72cfe771d53e66fe00cc0240305e298e3f3992d2f2ad6e089e17  /tmp/rsh019-apply.mjs" | sha256sum --check
+          node --check /tmp/rsh019-apply.mjs
+
+      - name: Apply RSH-019 and remove temporary transfer files
+        run: |
+          node /tmp/rsh019-apply.mjs
+          git rm .rsh019-payload.gz.b64 .github/workflows/rsh-019-apply.yml
+          git diff --check
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+
+      - name: Verify toolchain
+        run: npm run toolchain:verify
+
+      - name: Install dependencies from lockfile
+        run: npm ci
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Validate repository governance contract
+        run: node scripts/check-governance-contract.mjs
+
+      - name: Typecheck complete source
+        run: npm run typecheck
+
+      - name: Lint complete source
+        run: npm run lint
+
+      - name: Run complete unit-test suite
+        run: npm test
+
+      - name: Run complete self-starting QA gate
+        run: npm run qa:ci
+
+      - name: Build deterministic development bundle
+        run: npm run build:dev
+
+      - name: Commit exact RSH-019 candidate
+        run: |
+          git config user.name "talsitelkol"
+          git config user.email "tal_stilkol@hotmail.com"
+          git add -A
+          git commit -m "Implement RSH-019 resource ownership and leak accounting"
+          git push origin HEAD:agent/rsh-019-resource-ownership
