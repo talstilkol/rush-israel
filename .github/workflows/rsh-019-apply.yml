@@ -1,6 +1,9 @@
 name: rsh-019-apply
 
 on:
+  push:
+    branches:
+      - agent/rsh-019-resource-ownership
   workflow_dispatch:
 
 permissions:
@@ -28,7 +31,9 @@ jobs:
 
       - name: Decode and verify deterministic transformation
         run: |
-          cat .rsh019-payload.part-* | base64 -d | gzip -d > /tmp/rsh019-apply.mjs
+          cat .rsh019-payload.part-* > /tmp/rsh019-payload.gz.b64
+          echo "fb109b1e02dd2d1eedced90bc62e151a0fc1a8cfee351ada735df5d95e1440c3  /tmp/rsh019-payload.gz.b64" | sha256sum --check
+          base64 -d /tmp/rsh019-payload.gz.b64 | gzip -d > /tmp/rsh019-apply.mjs
           echo "20bdfde09cea72cfe771d53e66fe00cc0240305e298e3f3992d2f2ad6e089e17  /tmp/rsh019-apply.mjs" | sha256sum --check
           node --check /tmp/rsh019-apply.mjs
 
