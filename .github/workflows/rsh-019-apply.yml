@@ -1,6 +1,6 @@
 name: rsh-019-apply
 
-# deterministic rerun 3
+# deterministic rerun 5
 on:
   push:
     branches:
@@ -52,6 +52,7 @@ jobs:
       - name: Apply RSH-019 and remove temporary transfer files
         run: |
           node /tmp/rsh019-apply.mjs
+          sed -i 's/[[:space:]]\+$//' NEXT-CONTRACT.md
           git rm .rsh019-payload.gz.b64 .rsh019-payload.part-* .github/workflows/rsh-019-apply.yml
           git diff --check
 
