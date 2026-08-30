@@ -1,6 +1,6 @@
 name: rsh-019-apply
 
-# deterministic rerun 6
+# deterministic rerun 7
 on:
   push:
     branches:
@@ -90,25 +90,9 @@ jobs:
           status=$?
           set -e
           if [ "$status" -ne 0 ]; then
-            python - <<'PY'
-            from pathlib import Path
-            lines = Path('/tmp/unit-tests.log').read_text(errors='replace').splitlines()
-            indexes = [i for i, line in enumerate(lines) if 'not ok ' in line]
-            if not indexes:
-                print('\n'.join(lines[-200:]))
-            else:
-                emitted = set()
-                for index in indexes:
-                    start = max(0, index - 4)
-                    end = min(len(lines), index + 80)
-                    for cursor in range(start, end):
-                        if cursor not in emitted:
-                            print(lines[cursor])
-                            emitted.add(cursor)
-                print('\n--- unit-test summary ---')
-                for line in lines[-30:]:
-                    print(line)
-            PY
+            grep -n -B 4 -A 80 '^not ok ' /tmp/unit-tests.log || tail -n 200 /tmp/unit-tests.log
+            echo '--- unit-test summary ---'
+            tail -n 30 /tmp/unit-tests.log
             exit "$status"
           fi
           tail -n 20 /tmp/unit-tests.log
