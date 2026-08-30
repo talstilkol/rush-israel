@@ -1,11 +1,11 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 6.0.0
+**Schema:** 7.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-017 implementation base:** `ec35e159a9722812d945eaab984f9dc92645205f`
-**State effective on:** merge of the RSH-017 pull request
-**Next unit:** RSH-018 — deferred and not authorised
+**RSH-018 implementation base:** `d3bd207a98989398ead0e6804519d4a0d2eb19a1`
+**State effective on:** merge of the RSH-018 pull request
+**Next unit:** RSH-019 — deferred and not authorised
 **Product-definition authority:** `PRODUCT-DEFINITION.json`
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`
@@ -20,7 +20,7 @@ GitHub is the sole source of truth. `CURRENT-STATE.json`, `QUEUE.json`, this doc
 `TRACK-CATALOGUE-CLASSIFICATION.json`, `ASSET-PROVENANCE.json`,
 `PRODUCT-METADATA.json`, `TRACK-SCHEMA.json`, `TRACK-MODULE-MANIFEST.json`,
 `WORLD-CORE-MANIFEST.json`, `WORLD-BUILDER-MANIFEST.json`,
-`ENGINE-ADAPTER-MANIFEST.json` and `REPOSITORY-GOVERNANCE.md` control program state.
+`ENGINE-ADAPTER-MANIFEST.json`, `GAME-APP-DECOMPOSITION-MANIFEST.json` and `REPOSITORY-GOVERNANCE.md` control program state.
 
 Historical planning files are evidence only. They do not control queue order,
 accepted progress, asset clearance or release-gate counts.
@@ -81,23 +81,23 @@ root-branding assets remain unverified.
 6. A unit becomes accepted when its PR merges; exact self-referential merge evidence is reconciled in the following preflight.
 7. Accepted-unit progress is not release readiness; all 13 release gates remain authoritative.
 8. The RSH-010–RSH-014 owner batch is closed at 5/5.
-9. The plain `next` authority covers exactly RSH-017 and is consumed on its validated merge; RSH-018 is not authorised.
+9. The plain `next` authority covers exactly RSH-018 and is consumed on its validated merge; RSH-019 is not authorised.
 
-## 5. Post-RSH-017 program state
+## 5. Post-RSH-018 program state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 17 |
+| Accepted | 18 |
 | In review | 0 |
 | Eligible | 0 |
-| Deferred | 50 |
-| Remaining | 50 |
-| Queue head | RSH-018 — deferred/not authorised |
+| Deferred | 49 |
+| Remaining | 49 |
+| Queue head | RSH-019 — deferred/not authorised |
 | Active PR | none |
-| RSH-017 one-unit authority | 1/1 — consumed |
+| RSH-018 one-unit authority | 1/1 — consumed |
 | Release gates green | 0/13 |
-| Findings OPEN / MITIGATED / CLOSED | 22 / 9 / 11 |
+| Findings OPEN / MITIGATED / CLOSED | 22 / 8 / 12 |
 
 ## 6. Stage map
 
@@ -106,7 +106,7 @@ root-branding assets remain unverified.
 | G0 | RSH-001–003 | 3 | Control and governance | ACCEPTED |
 | G1 | RSH-004–008 | 5 | Reproducible toolchain and CI | UNITS ACCEPTED; EXIT GATE BLOCKED BY OWNER SETTING |
 | G2 | RSH-009–012 | 4 | Scope, licensing and assets | ACCEPTED |
-| G3 | RSH-013–020 | 8 | Architecture decomposition | DEFERRED — RSH-013–RSH-017 accepted; RSH-018 deferred/not authorised |
+| G3 | RSH-013–020 | 8 | Architecture decomposition | DEFERRED — RSH-013–RSH-018 accepted; RSH-019 deferred/not authorised |
 | G4 | RSH-021–024 | 4 | Data integrity and production security | DEFERRED |
 | G5 | RSH-025–036 | 12 | Ayalon vertical slice | DEFERRED |
 | G6 | RSH-037–043 | 7 | Performance and reliability | DEFERRED |
@@ -208,12 +208,12 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-RSH-017 is accepted on merge only after exact-head CI and review. It extracts exactly
-58 existing methods from `engine.ts` into four bounded concern adapters: loop,
-rendering, physics and QA. `engine.ts` remains the sole concrete state, constructor,
-assembly and disposal owner and falls from 2,815 to 1,207 lines. The accepted RSH-016
-engine reconstructs byte-for-byte, and runtime, public API, physics, rendering, QA,
-track, asset, dependency and save/record changes remain zero.
+RSH-018 is accepted on merge only after exact-head CI and review. The accepted
+`game-app.tsx` source is decomposed into a thin application facade and exactly three
+canonical modules: screens, HUD and race controller. Every extracted source block is
+manifest-bound, and the accepted RSH-017 game-app source reconstructs byte-for-byte.
+Runtime behaviour, public API, screen flow, HUD behaviour, RaceEngine lifecycle,
+tracks, physics, rendering, saves, assets and dependencies change by zero.
 
-The RSH-017 one-unit `next` authority is then consumed. RSH-018 remains deferred and
+The RSH-018 one-unit `next` authority is then consumed. RSH-019 remains deferred and
 cannot start without a new explicit owner instruction.

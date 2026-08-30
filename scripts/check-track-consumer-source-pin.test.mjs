@@ -13,6 +13,12 @@ const CONSUMER_PATHS = [
   "src/game/world.ts",
 ];
 
+const INTERNAL_GAME_APP_PATHS = [
+  "src/components/game-app/screens.tsx",
+  "src/components/game-app/hud.tsx",
+  "src/components/game-app/race-controller.tsx"
+];
+
 const INTERNAL_ENGINE_ADAPTER_PATHS = [
   "src/game/engine/loop-adapter.ts",
   "src/game/engine/rendering-adapter.ts",
@@ -68,6 +74,21 @@ test("RSH-017 manifest-bound adapters remain internal to the accepted engine con
   for (const path of INTERNAL_ENGINE_ADAPTER_PATHS) {
     assert.equal(result.consumers.includes(path), false);
   }
+});
+
+test("RSH-018 manifest-bound modules remain internal to the accepted game-app consumer", () => {
+  const result = validateTrackConsumerSourcePin();
+  assert.deepEqual(result.errors, []);
+  assert.deepEqual(result.consumers, CONSUMER_PATHS);
+  for (const path of INTERNAL_GAME_APP_PATHS) assert.equal(result.consumers.includes(path), false);
+});
+
+test("RSH-018 game-app extraction is accepted only through byte-exact legacy reconstruction", () => {
+  const result = validateTrackConsumerSourcePin({ consumerSources: readConsumerSources() });
+  const gameApp = result.identities.find((entry) => entry.path === "src/components/game-app.tsx");
+  assert.equal(gameApp.controlled_reconstruction, true);
+  assert.equal(gameApp.git_blob_sha1, "956cfa131200b3c9d9d0902a1b2d6d4d9a8d8728");
+  assert.notEqual(gameApp.current_git_blob_sha1, gameApp.git_blob_sha1);
 });
 
 test("RSH-016 world extraction is accepted only through byte-exact legacy reconstruction", () => {

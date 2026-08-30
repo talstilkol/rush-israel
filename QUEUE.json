@@ -1,11 +1,11 @@
 {
-  "schema_version": "6.0.0",
+  "schema_version": "7.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-30T16:20:00+03:00",
+  "generated_at": "2026-08-31T00:30:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "ec35e159a9722812d945eaab984f9dc92645205f",
-  "state_effective_on": "merge_of_RSH_017_pull_request",
+  "verified_base_sha": "d3bd207a98989398ead0e6804519d4a0d2eb19a1",
+  "state_effective_on": "merge_of_RSH_018_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "next",
       "authorized_units": [
+        "RSH-018"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-018_merge",
+      "RSH_019_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": [
         "RSH-017"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-017_merge",
       "RSH_018_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "plain next authorizing RSH-016",
-      "authorized_units": [
-        "RSH-016"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-016_merge",
-      "RSH_017_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 17,
+    "accepted": 18,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 50,
-    "remaining": 50
+    "deferred": 49,
+    "remaining": 49
   },
   "queue_head": {
-    "id": "RSH-018",
-    "title": "Split game-app.tsx into screens, HUD and race controller",
+    "id": "RSH-019",
+    "title": "Complete resource ownership, disposal and leak accounting",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-018 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-019 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-018",
-    "title": "Split game-app.tsx into screens, HUD and race controller",
+    "id": "RSH-019",
+    "title": "Complete resource ownership, disposal and leak accounting",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -311,7 +311,7 @@
       "RSH_017_authorized": true
     },
     "RSH-017": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-017-engine-adapters",
       "pull_request_resolution": "the pull request created from agent/rsh-017-engine-adapters",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -349,8 +349,67 @@
       "dependency_changes": 0,
       "save_record_changes": 0,
       "temporary_transfer_files": 0,
-      "RSH_018_created": false,
-      "RSH_018_authorized": false
+      "RSH_018_created": true,
+      "RSH_018_authorized": true,
+      "pull_request": 20,
+      "validated_head_sha": "de15ef3703d65fb4302e9e7c5c638c226aab24c9",
+      "candidate_tree_sha": "3535dfaaf96f01a64f6ec79a09358aff4e6cf4c8",
+      "merge_sha": "d3bd207a98989398ead0e6804519d4a0d2eb19a1",
+      "tree_sha": "3535dfaaf96f01a64f6ec79a09358aff4e6cf4c8",
+      "workflow_run": 33330794321,
+      "workflow_job": 99308864537,
+      "artifact_id": 9737604724,
+      "artifact_digest": "sha256:84c8ffd5383c336e45b1be3b98cb01a89e696018998d5dc521e5bc0a94ccacd4",
+      "post_merge_workflow_run": 33331039626,
+      "post_merge_workflow_job": 99309526561,
+      "post_merge_artifact_id": 9737684123,
+      "post_merge_artifact_digest": "sha256:d4898af37b28937bf42990eab59a5ba37c0007086883660a04738b497ee40cc2",
+      "codex_reviewed_head_sha": "de15ef3703d65fb4302e9e7c5c638c226aab24c9",
+      "codex_review_state": "completed_no_major_findings",
+      "unresolved_review_threads": 0
+    },
+    "RSH-018": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-018-game-app-decomposition",
+      "pull_request_resolution": "the pull request created from agent/rsh-018-game-app-decomposition",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the RSH-018 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-018 merge SHA",
+      "manifest": "GAME-APP-DECOMPOSITION-MANIFEST.json",
+      "contract": "RSH-018-GAME-APP-CONTRACT.md",
+      "preflight_json": "RSH-018-GAME-APP-PREFLIGHT.json",
+      "preflight_markdown": "RSH-018-GAME-APP-PREFLIGHT.md",
+      "facade_path": "src/components/game-app.tsx",
+      "module_directory": "src/components/game-app",
+      "facade_lines_before": 1540,
+      "facade_bytes_before": 57429,
+      "facade_lines_after": 179,
+      "facade_bytes_after": 4431,
+      "facade_sha256": "4569f67f6a8659252e3c3cf332fa377f263d3f41fcd03ced60a007aa0148cc4b",
+      "module_count": 3,
+      "block_count": 16,
+      "module_lines": 1552,
+      "module_bytes": 56965,
+      "app_source_lines_total": 1731,
+      "app_source_bytes_total": 61396,
+      "legacy_game_app_sha256": "04f0c06e69a7a8c91bc4524eba1fcc066a05e7f4a5199d7492b330ee70e7829e",
+      "legacy_game_app_git_blob_sha1": "956cfa131200b3c9d9d0902a1b2d6d4d9a8d8728",
+      "runtime_behavior_changes": 0,
+      "public_api_changes": 0,
+      "screen_flow_changes": 0,
+      "hud_behavior_changes": 0,
+      "race_controller_behavior_changes": 0,
+      "engine_behavior_changes": 0,
+      "track_data_changes": 0,
+      "track_order_changes": 0,
+      "physics_changes": 0,
+      "renderer_changes": 0,
+      "save_record_changes": 0,
+      "asset_changes": 0,
+      "dependency_changes": 0,
+      "temporary_transfer_files": 0,
+      "RSH_019_created": false,
+      "RSH_019_authorized": false
     }
   },
   "unit_order": [
@@ -423,38 +482,41 @@
     "RSH-067"
   ],
   "state_rules": {
-    "RSH-001–RSH-017": "accepted",
-    "RSH-018–RSH-067": "deferred_not_authorized",
+    "RSH-001–RSH-018": "accepted",
+    "RSH-019–RSH-067": "deferred_not_authorized",
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-017"
+      "through": "RSH-018"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-018",
+      "from": "RSH-019",
       "through": "RSH-067"
     }
   },
   "next_instruction_contract": {
-    "current_action": "No unit is authorized; RSH-018 remains deferred until a new explicit owner instruction.",
-    "after_RSH_017": "The one-unit next authorization is consumed; RSH-018 requires a new explicit owner instruction.",
+    "current_action": "No unit is authorized; RSH-019 remains deferred until a new explicit owner instruction.",
+    "after_RSH_018": "The one-unit next authorization is consumed; RSH-019 requires a new explicit owner instruction.",
     "authorization_remaining": 0,
-    "RSH_017_completed": true,
-    "RSH_017_authorization_consumed": true,
-    "RSH_018_authorized": false,
+    "RSH_018_completed": true,
+    "RSH_018_authorization_consumed": true,
+    "RSH_019_authorized": false,
     "authorized_sequence": [
-      "RSH-017"
+      "RSH-018"
     ],
     "completed_sequence": [
-      "RSH-017"
+      "RSH-018"
     ],
     "authorization_closed": true,
     "continuation": "A new explicit owner instruction is required."
   },
   "self_reference_boundary": {
-    "RSH_017_merge_sha": "resolve from live main after the RSH-017 pull request merges",
-    "RSH_017_validated_head": "resolve from the exact merged RSH-017 pull-request head",
-    "RSH_017_post_merge_ci": "resolve from required-ci on the exact merge SHA",
-    "reconcile_in": "RSH-018 preflight"
+    "RSH_017_merge_sha": "d3bd207a98989398ead0e6804519d4a0d2eb19a1",
+    "RSH_017_validated_head": "de15ef3703d65fb4302e9e7c5c638c226aab24c9",
+    "RSH_017_post_merge_ci": 33331039626,
+    "RSH_018_merge_sha": "resolve from live main after the RSH-018 pull request merges",
+    "RSH_018_validated_head": "resolve from the exact merged RSH-018 pull-request head",
+    "RSH_018_post_merge_ci": "resolve from required-ci on the exact merge SHA",
+    "reconcile_in": "RSH-019 preflight"
   }
 }
