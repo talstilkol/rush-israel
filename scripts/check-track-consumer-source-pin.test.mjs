@@ -13,6 +13,13 @@ const CONSUMER_PATHS = [
   "src/game/world.ts",
 ];
 
+const INTERNAL_ENGINE_ADAPTER_PATHS = [
+  "src/game/engine/loop-adapter.ts",
+  "src/game/engine/rendering-adapter.ts",
+  "src/game/engine/physics-adapter.ts",
+  "src/game/engine/qa-adapter.ts",
+];
+
 function readConsumerSources() {
   return Object.fromEntries(
     CONSUMER_PATHS.map((filePath) => [
@@ -54,12 +61,29 @@ test("RSH-016 manifest-bound builders remain internal to the accepted world cons
   assert.equal(result.identities.length, 4);
 });
 
+test("RSH-017 manifest-bound adapters remain internal to the accepted engine consumer", () => {
+  const result = validateTrackConsumerSourcePin();
+  assert.deepEqual(result.errors, []);
+  assert.deepEqual(result.consumers, CONSUMER_PATHS);
+  for (const path of INTERNAL_ENGINE_ADAPTER_PATHS) {
+    assert.equal(result.consumers.includes(path), false);
+  }
+});
+
 test("RSH-016 world extraction is accepted only through byte-exact legacy reconstruction", () => {
   const result = validateTrackConsumerSourcePin({ consumerSources: readConsumerSources() });
   const world = result.identities.find((entry) => entry.path === "src/game/world.ts");
   assert.equal(world.controlled_reconstruction, true);
   assert.equal(world.git_blob_sha1, "07b7e0b559e66f89641357db5aa2be8bcd8c3135");
   assert.notEqual(world.current_git_blob_sha1, world.git_blob_sha1);
+});
+
+test("RSH-017 engine extraction is accepted only through byte-exact legacy reconstruction", () => {
+  const result = validateTrackConsumerSourcePin({ consumerSources: readConsumerSources() });
+  const engine = result.identities.find((entry) => entry.path === "src/game/engine.ts");
+  assert.equal(engine.controlled_reconstruction, true);
+  assert.equal(engine.git_blob_sha1, "692663c6d05ab59c1d99c7a357999839b9ebb0ec");
+  assert.notEqual(engine.current_git_blob_sha1, engine.git_blob_sha1);
 });
 
 test("world changes outside the bounded RSH-015 and RSH-016 extractions fail closed", () => {
@@ -106,6 +130,16 @@ test("an unregistered world-builder path cannot hide a new runtime consumer", ()
   const sources = readConsumerSources();
   sources["src/game/world-builders/tracks/unreviewed.ts"] =
     'import { TRACKS } from "../../tracks";\nTRACKS.reverse();\n';
+  assert.match(
+    validateTrackConsumerSourcePin({ consumerSources: sources }).errors.join("\n"),
+    /runtime track consumer set differs/,
+  );
+});
+
+test("an unregistered engine-adapter path cannot hide a new runtime consumer", () => {
+  const sources = readConsumerSources();
+  sources["src/game/engine/unreviewed-adapter.ts"] =
+    'import { TRACKS } from "../tracks";\nTRACKS.reverse();\n';
   assert.match(
     validateTrackConsumerSourcePin({ consumerSources: sources }).errors.join("\n"),
     /runtime track consumer set differs/,

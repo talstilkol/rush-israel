@@ -10,7 +10,6 @@ export const EXPECTED_TRACK_MANIFEST_SHA256 = "a8891a4af9345dbfa34fcb998302b7738
 export const EXPECTED_RUNTIME_DIGEST = "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d";
 export const EXPECTED_AGGREGATE_DIGEST = "1f10ef1b656fb61b414aed82a1918ade65c5093fcedf486b2aa3b37527d5dfb7";
 export const EXPECTED_PRESERVED = {
-  "src/game/engine.ts": "3f4d54bbe0b68f9654ae8a92a2f56ce378a59a9790e8fbbe2ee05199ced192c1",
   "src/game/physics.ts": "cbff35aa2e2e4b509decf38e9f1ca3d262667675af81e0352ba02f460f5723c1",
   "src/game/world-core.ts": "cbb9ac1f9de387cb1b31290fbc617b0ca34536b97067198b61e82ffcaf31fafe",
   "src/game/save.ts": "d7c681b9e00942c91135a579d47f7f9f8def717d22232470b3990a5b0a644d87",
@@ -93,8 +92,17 @@ export function validateWorldBuilders(overrides = {}) {
   for (const [path, expected] of Object.entries(EXPECTED_PRESERVED)) if (sha256(input.preservedSources[path] ?? "") !== expected) errors.push(`preserved source changed: ${path}`);
   const asset = JSON.parse(input.assetSource);
   if (asset.scope.unverified_asset_files !== 66 || asset.scope.public_distribution_authorized !== false || asset.truth_boundaries.release_gates_green !== 0 || asset.truth_boundaries.release_gates_total !== 13) errors.push("asset/distribution/release boundary changed");
-  const rsh017 = input.repositoryFiles.filter((path) => path.startsWith("src/game/engine/") || path.startsWith("src/game/engine-adapters/") || path === "src/game/engine-core.ts");
-  if (rsh017.length) errors.push(`unauthorized RSH-017 structure: ${rsh017.join(", ")}`);
+  const rsh017 = input.repositoryFiles.filter((path) => path.startsWith("src/game/engine/")).sort();
+  const acceptedRsh017 = [
+    "src/game/engine/adapter-host.ts",
+    "src/game/engine/loop-adapter.ts",
+    "src/game/engine/physics-adapter.ts",
+    "src/game/engine/qa-adapter.ts",
+    "src/game/engine/rendering-adapter.ts",
+  ];
+  if (JSON.stringify(rsh017) !== JSON.stringify(acceptedRsh017)) errors.push(`RSH-017 engine structure differs from its bounded adapter set: ${rsh017.join(", ")}`);
+  const legacyRsh017 = input.repositoryFiles.filter((path) => path.startsWith("src/game/engine-adapters/") || path === "src/game/engine-core.ts");
+  if (legacyRsh017.length) errors.push(`unauthorized alternate RSH-017 structure: ${legacyRsh017.join(", ")}`);
   return { errors, moduleCount: manifest.extraction.modules.length, worldLines: (input.worldSource.match(/\n/g) ?? []).length, worldBytes: Buffer.byteLength(input.worldSource) };
 }
 function isMainModule(url) {

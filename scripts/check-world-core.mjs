@@ -5,6 +5,11 @@ import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { fromRoot } from "./project-root.mjs";
 import {
+  readEngineAdapterInputs,
+  validateEngineAdapters,
+} from "./check-engine-adapters.mjs";
+import { reconstructRsh016EngineSource } from "./load-engine-adapters.mjs";
+import {
   LEGACY_WORLD_BYTES,
   LEGACY_WORLD_GIT_BLOB_SHA1,
   LEGACY_WORLD_LINES,
@@ -116,11 +121,15 @@ function readGameSources(repositoryFiles) {
 }
 export function readWorldCoreInputs() {
   const repositoryFiles = walkFiles(fromRoot());
+  const engineAdapterInputs = readEngineAdapterInputs();
   return {
     manifestSource: readFileSync(fromRoot("WORLD-CORE-MANIFEST.json"), "utf8"),
     worldSource: readFileSync(fromRoot("src", "game", "world.ts"), "utf8"),
     coreSource: readFileSync(fromRoot("src", "game", "world-core.ts"), "utf8"),
     engineSource: readFileSync(fromRoot("src", "game", "engine.ts"), "utf8"),
+    engineAdapterManifestSource: engineAdapterInputs.manifestSource,
+    engineAdapterSupportSource: engineAdapterInputs.supportSource,
+    engineAdapterSources: engineAdapterInputs.adapterSources,
     packageSource: readFileSync(fromRoot("package.json"), "utf8"),
     trackManifestSource: readFileSync(fromRoot("TRACK-MODULE-MANIFEST.json"), "utf8"),
     trackSchemaSource: readFileSync(fromRoot("TRACK-SCHEMA.json"), "utf8"),
@@ -269,6 +278,37 @@ function validateOwnership(gameSources, errors) {
   if (JSON.stringify(worldOwners) !== JSON.stringify(["src/game/world-core.ts"])) errors.push(`duplicate world-contract ownership: ${worldOwners.join(", ")}`);
   if (JSON.stringify(assemblyOwners) !== JSON.stringify(["src/game/world-core.ts"])) errors.push(`duplicate world-core assembly ownership: ${assemblyOwners.join(", ")}`);
 }
+function reconstructPreservedEngine(input, errors) {
+  let engineManifest;
+  try {
+    engineManifest = JSON.parse(input.engineAdapterManifestSource);
+  } catch (error) {
+    errors.push(`RSH-017 engine-adapter manifest is invalid JSON: ${error.message}`);
+    return input.engineSource;
+  }
+
+  const validation = validateEngineAdapters({
+    manifestSource: input.engineAdapterManifestSource,
+    engineSource: input.engineSource,
+    supportSource: input.engineAdapterSupportSource,
+    adapterSources: input.engineAdapterSources,
+  });
+  errors.push(...validation.errors.map(
+    (error) => `RSH-017 engine-adapter authority invalid: ${error}`,
+  ));
+
+  try {
+    return reconstructRsh016EngineSource(
+      input.engineSource,
+      engineManifest,
+      input.engineAdapterSources,
+    );
+  } catch (error) {
+    errors.push(`RSH-017 engine reconstruction failed: ${error.message}`);
+    return input.engineSource;
+  }
+}
+
 function validatePreservation(input, manifest, errors) {
   if (sha256(input.manifestSource) !== EXPECTED_MANIFEST_SHA256) errors.push("world-core manifest differs from the accepted RSH-015 authority");
   if (manifest.schema_version !== "1.0.0" || manifest.document_type !== "rush-world-core-manifest" || manifest.unit !== "RSH-015") {
@@ -301,9 +341,12 @@ function validatePreservation(input, manifest, errors) {
     errors.push("track runtime-definition digest changed");
   }
 
+  const reconstructedEngineSource = reconstructPreservedEngine(input, errors);
   for (const [name, authority] of Object.entries(manifest.preservation_identities)) {
     if (name === "smokes") continue;
-    const source = input.preservedSources[authority.path];
+    const source = authority.path === "src/game/engine.ts"
+      ? reconstructedEngineSource
+      : input.preservedSources[authority.path];
     if (typeof source !== "string" || sha256(source) !== authority.sha256) errors.push(`${authority.path} preservation identity changed`);
   }
   for (const authority of Object.values(manifest.preservation_identities.smokes)) {

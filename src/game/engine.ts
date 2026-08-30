@@ -54,6 +54,15 @@ import { ResourceRegistry } from "../rendering/ResourceRegistry";
 import { DynamicQualityController, gfxPassFlags } from "../rendering/DynamicQualityController";
 import { exportPhotoPng } from "./photo-export";
 import { MESH_STREAMING } from "./stream-flag";
+import type { EngineAdapterHost } from "./engine/adapter-host";
+import * as engineLoop from "./engine/loop-adapter";
+import * as engineRendering from "./engine/rendering-adapter";
+import * as enginePhysics from "./engine/physics-adapter";
+import * as engineQa from "./engine/qa-adapter";
+
+function engineAdapterHost(engine: RaceEngine): EngineAdapterHost {
+  return engine as unknown as EngineAdapterHost;
+}
 
 const FIXED = PHYSICS_DT;
 
@@ -774,30 +783,7 @@ export class RaceEngine {
   }
 
   private upgradeGraphics() {
-    if (this.disposed) return;
-    if (!this.captureSceneEnv()) {
-      try {
-        const env = bakeEnv(this.renderer, this.world.night);
-        this.setEnvRT(env);
-        this.scene.environment = env.texture;
-      } catch {
-        /* keep fallback */
-      }
-    }
-    this.scene.environmentIntensity = this.world.night ? 0.52 : 0.88;
-    if (this.disposed) return;
-    try {
-      const post = createPost(this.renderer, this.scene, this.camera, this.world.night, this.lite);
-      this.leases.release("post");
-      this.post.dispose();
-      this.post = post;
-      this.leases.retain("post", () => this.post.dispose());
-      this.post.setTier(this.quality);
-      this.applyGfxStep();
-      this.onResize();
-    } catch {
-      /* keep direct render */
-    }
+    return engineRendering.upgradeGraphics.call(engineAdapterHost(this));
   }
 
   unlockAudio() {
@@ -856,79 +842,35 @@ export class RaceEngine {
   }
 
   enterPhoto() {
-    if (this.replaying || this.disposed) return;
-    this.photo = true;
-    this.paused = true;
-    this.photoYaw = this.player.yaw + Math.PI;
-    this.photoPitch = 0.22;
-    this.photoDist = 8;
-    this.photoHide = false;
-    this.photoLock = null;
-    this.drivePR = this.renderer.getPixelRatio();
-    this.driveExposure = this.renderer.toneMappingExposure;
-    const cap = Math.min(window.devicePixelRatio || 1, 1.35);
-    this.renderer.setPixelRatio(Math.max(this.drivePR, cap));
-    this.renderer.toneMappingExposure = this.driveExposure * 1.05;
-    this.onResize();
-    this.pushHud();
+    return engineRendering.enterPhoto.call(engineAdapterHost(this));
   }
 
   exitPhoto() {
-    this.photo = false;
-    this.photoHide = false;
-    this.photoLock = null;
-    this.post.setFilter(0);
-    this.renderer.setPixelRatio(this.drivePR);
-    this.renderer.toneMappingExposure = this.driveExposure;
-    this.onResize();
-    this.pushHud();
+    return engineRendering.exitPhoto.call(engineAdapterHost(this));
   }
 
   frameWorld(x: number, z: number, y = 52, camY = 22, back = 28, fov = 40) {
-    this.enterPhoto();
-    this.photoHide = true;
-    const n = nearestIndex(this.built.samples, x, z, 0);
-    const s = this.built.samples[n.index];
-    this.player.spawn(this.built, n.index / Math.max(1, this.built.samples.length - 1), 0);
-    this.photoLock = {
-      px: s.x - s.tx * back,
-      py: camY,
-      pz: s.z - s.tz * back,
-      lx: x,
-      ly: y,
-      lz: z,
-      fov,
-    };
-    this.pushHud();
+    return engineRendering.frameWorld.call(engineAdapterHost(this), x, z, y, camY, back, fov);
   }
 
   isPhoto() {
-    return this.photo;
+    return engineRendering.isPhoto.call(engineAdapterHost(this));
   }
 
   capturePhoto() {
-    this.snapPhoto = true;
+    return engineRendering.capturePhoto.call(engineAdapterHost(this));
   }
 
   private flushSnap() {
-    if (!this.snapPhoto) return;
-    this.snapPhoto = false;
-    try {
-      exportPhotoPng(this.renderer.domElement);
-    } catch {
-      /* ignore */
-    }
+    return engineRendering.flushSnap.call(engineAdapterHost(this));
   }
 
   cyclePhotoFilter() {
-    this.photoFilter = (this.photoFilter + 1) % this.filterNames.length;
-    this.post.setFilter(this.photoFilter);
-    this.pushHud();
+    return engineRendering.cyclePhotoFilter.call(engineAdapterHost(this));
   }
 
   togglePhotoHud() {
-    this.photoHide = !this.photoHide;
-    this.pushHud();
+    return engineRendering.togglePhotoHud.call(engineAdapterHost(this));
   }
 
   cycleRadio() {
@@ -938,1745 +880,195 @@ export class RaceEngine {
   }
 
   setAutoCycle(on: boolean) {
-    this.autoCycle = on;
-    this.clockBake = 0;
-    this.pushHud();
+    return engineRendering.setAutoCycle.call(engineAdapterHost(this), on);
   }
 
   getAutoCycle() {
-    return this.autoCycle;
+    return engineRendering.getAutoCycle.call(engineAdapterHost(this));
   }
 
   setNight(night: boolean) {
-    if (this.disposed) return;
-    this.clock = night ? 0.9 : 0.5;
-    this.applyClockSky(false);
+    return engineRendering.setNight.call(engineAdapterHost(this), night);
   }
 
   private applyLook() {
-    const n = nightAmt(this.clock);
-    const morning = n <= 0.5 && this.clock < 0.38;
-    const look = lookFromFlags(n > 0.5, this.weather, morning);
-    this.gfx.setEnvironment(LOOKS[look].exposure);
-    const spec = FOG[fogKey(this.trackDef.theme, this.trackDef.id)];
-    this.fog.color.setHex(n > 0.5 ? spec.nightCol : spec.dayCol);
-    this.fog.density = n > 0.5 ? spec.night : spec.day;
-    this.scene.fog = this.fog;
-    this.applyAltitudeLook();
+    return engineRendering.applyLook.call(engineAdapterHost(this));
   }
 
   private applyClockSky(rebake: boolean) {
-    if (this.disposed) return;
-    this.world.setClock(this.clock);
-    const n = nightAmt(this.clock);
-    this.applyLook();
-    this.scene.background = new THREE.Color(n > 0.5 ? 0x2a4a6c : 0x3c9ee0);
-    this.scene.environmentIntensity = n > 0.5 ? 0.52 : 0.7;
-    this.post.setNight(n > 0.5);
-    const lamps = n > 0.42;
-    for (const vis of this.visuals) setCarLights(vis, lamps);
-    for (const vis of this.trafficVis) setCarLights(vis, lamps);
-    for (const vis of this.copVis) setCarLights(vis, lamps);
-    if (!rebake || this.soft) {
-      this.pushHud();
-      return;
-    }
-    if (!this.captureSceneEnv()) {
-      try {
-        const env = bakeEnv(this.renderer, this.world.night);
-        this.setEnvRT(env);
-        this.scene.environment = env.texture;
-      } catch {
-        /* keep previous env */
-      }
-    }
-    this.pushHud();
+    return engineRendering.applyClockSky.call(engineAdapterHost(this), rebake);
   }
 
   private captureSceneEnv() {
-    if (this.disposed || this.soft || this.quality === "low") return false;
-    try {
-      const size = this.trackDef.id === "ayalon" ? 128 : 96;
-      const rt = new THREE.WebGLCubeRenderTarget(size);
-      const cam = new THREE.CubeCamera(4, 400, rt);
-      cam.position.set(this.player.x, this.player.y + 26, this.player.z);
-      const hidden: THREE.Object3D[] = [];
-      const stash = (g: THREE.Object3D) => {
-        if (g.visible) {
-          g.visible = false;
-          hidden.push(g);
-        }
-      };
-      for (const v of this.visuals) stash(v.group);
-      for (const v of this.trafficVis) stash(v.group);
-      for (const v of this.copVis) stash(v.group);
-      cam.update(this.renderer, this.scene);
-      for (const g of hidden) g.visible = true;
-      this.leases.release("boot-env");
-      this.scene.environment = rt.texture;
-      this.leases.retain("boot-env", () => rt.dispose());
-      return true;
-    } catch {
-      return false;
-    }
+    return engineRendering.captureSceneEnv.call(engineAdapterHost(this));
   }
 
   private applyAltitudeLook() {
-    const spec = FOG[fogKey(this.trackDef.theme, this.trackDef.id)];
-    if (this.trackDef.id !== "ramon" && this.trackDef.id !== "hermon" && this.trackDef.id !== "jerusalem" && this.trackDef.id !== "scopus" && this.trackDef.theme !== "carmel") return;
-    const n = nightAmt(this.clock);
-    if (n > 0.5) return;
-    if (this.trackDef.id === "hermon") {
-      const u = clamp(this.player.y / 110, 0, 1);
-      this.fog.density = lerp(spec.day, spec.night * 0.62, u);
-      this.fog.color.lerp(new THREE.Color(0xc8d8e8), u * 0.28);
-      return;
-    }
-    if (this.trackDef.id === "scopus") {
-      const u = clamp(this.player.y / 52, 0, 1);
-      this.fog.density = lerp(spec.day, spec.night * 0.5, u);
-      this.fog.color.lerp(new THREE.Color(0xd0dce8), u * 0.2);
-      return;
-    }
-    if (this.trackDef.id === "jerusalem") {
-      const u = clamp(this.player.y / 54, 0, 1);
-      this.fog.density = lerp(spec.day, spec.day * 0.85, u);
-      return;
-    }
-    if (this.trackDef.theme === "carmel") {
-      const u = clamp(this.player.y / 48, 0, 1);
-      this.fog.density = lerp(spec.day, spec.night * 0.7, u);
-      return;
-    }
-    const u = clamp(1 - this.player.y / 110, 0, 1);
-    this.fog.density = lerp(spec.day, spec.night * 0.9, u);
-    this.fog.color.lerp(new THREE.Color(0xd8c4a0), u * 0.4);
+    return engineRendering.applyAltitudeLook.call(engineAdapterHost(this));
   }
 
   private updateProbe() {
-    if (!this.probeCam || !this.probeRT || this.soft) return;
-    this.probeTick++;
-    if (this.probeTick % 8 !== 1) return;
-    for (const vis of this.visuals) vis.group.visible = false;
-    this.probeCam.position.set(this.player.x, this.player.y + 1.05, this.player.z);
-    this.probeCam.update(this.renderer, this.scene);
-    const inten = nightAmt(this.clock) > 0.5 ? 0.8 : 1.2;
-    for (const vis of this.visuals) {
-      vis.group.visible = true;
-      vis.group.traverse((o) => {
-        const mesh = o as THREE.Mesh;
-        const mat = mesh.material as THREE.MeshPhysicalMaterial | undefined;
-        if (mat && mat.isMeshPhysicalMaterial) {
-          mat.envMap = this.probeRT!.texture;
-          if (mat === vis.bodyMat) mat.envMapIntensity = inten;
-        }
-      });
-    }
+    return engineRendering.updateProbe.call(engineAdapterHost(this));
   }
 
-  private onContextLost = (e: Event) => {
-    e.preventDefault();
-    this.glLost = true;
-  };
+  private onContextLost = (e: Event) => engineLoop.onContextLost.call(engineAdapterHost(this), e);
 
-  private onContextRestored = () => {
-    this.glLost = false;
-    this.opts.onRestore?.();
-  };
+  private onContextRestored = () => engineLoop.onContextRestored.call(engineAdapterHost(this));
 
   private applyGfxStep() {
-    const s = this.dyn.step;
-    const f = gfxPassFlags(s);
-    this.droppedTier = s > 0;
-    this.world.setPlanar(f.planar);
-    this.post.setBloom(f.bloom);
-    this.csmMuted = !f.csm || this.quality === "low" || this.soft;
-    const base = this.lite ? 1 : this.quality === "mid" ? 0.75 : 0.85;
-    const scale = Math.max(0.5, base * Math.pow(0.85, f.pixelExtra));
-    const mobile = typeof navigator !== "undefined" && /mobi|android|iphone|ipad/i.test(navigator.userAgent);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1) * scale);
-    this.onResize();
-    if (import.meta.env.DEV) console.info("[gfx]", s, "planar", f.planar, "bloom", f.bloom, "csm", f.csm, "px", scale.toFixed(2));
-    this.trimCsm();
+    return engineRendering.applyGfxStep.call(engineAdapterHost(this));
   }
 
   private shouldPresent(now: number) {
-    if (this.quality !== "low" && !this.lite) return true;
-    return now - this.lastPresent >= 1000 / 30;
+    return engineLoop.shouldPresent.call(engineAdapterHost(this), now);
   }
 
   private onResize() {
-    const w = this.canvas.clientWidth;
-    const h = Math.max(1, this.canvas.clientHeight);
-    this.gfx.resize(w, h, this.renderer.getPixelRatio());
-    this.camera.aspect = w / h;
-    this.camera.updateProjectionMatrix();
-    const size = new THREE.Vector2();
-    this.renderer.getDrawingBufferSize(size);
-    this.post.setSize(size.x, size.y);
+    return engineLoop.onResize.call(engineAdapterHost(this));
   }
 
   private frame() {
-    if (this.disposed || this.glLost) return;
-    if (this.disposed) return;
-    const now = performance.now();
-    let dt = (now - this.last) / 1000;
-    this.last = now;
-    dt = Math.min(dt, 0.1);
-    this.telem.push(dt * 1000);
-    if (!this.soft && this.quality !== "low") {
-      const snap = this.telem.snapshot();
-      const act = this.dyn.note(snap.p95, dt);
-      if (act) this.applyGfxStep();
-    }
-
-    const hoodDown = this.input.keys.has("KeyC") || this.input.keys.has("KeyV") || !!navigator.getGamepads?.()?.[0]?.buttons[3]?.pressed;
-    if (hoodDown && !this.hoodEdge && !this.photo) {
-      this.camMode = 0;
-      this.hood = false;
-    }
-    this.hoodEdge = hoodDown;
-
-    const radioDown = this.input.keys.has("KeyT");
-    if (radioDown && !this.radioEdge) this.cycleRadio();
-    this.radioEdge = radioDown;
-    if (this.radioToast > 0) this.radioToast = Math.max(0, this.radioToast - dt);
-    if (this.banterT > 0) {
-      this.banterT -= dt;
-      if (this.banterT <= 0) this.banter = "";
-    }
-
-    if (this.autoCycle && !this.photo && !this.paused && this.racing) {
-      this.clock = (this.clock + dt / 120) % 1;
-      this.clockBake += dt;
-      const n = nightAmt(this.clock);
-      const crossed = n > 0.5 !== this.world.night;
-      if (crossed) {
-        this.applyClockSky(true);
-        this.clockBake = 0;
-      } else {
-        this.world.setClock(this.clock);
-        this.applyLook();
-      }
-    }
-
-    if (this.photo) {
-      this.stepPhoto(dt);
-      this.world.tick(now, this.player.x, this.player.z);
-      this.world.followMirror(this.player.x, this.player.y, this.player.z, this.player.yaw);
-      this.post.setDrive(0, false);
-      this.post.render();
-      this.flushSnap();
-      this.hudTimer += dt;
-      if (this.hudTimer > 0.08) {
-        this.hudTimer = 0;
-        this.pushHud();
-      }
-      return;
-    }
-
-    if (this.replaying && (this.input.keys.has("Enter") || this.input.keys.has("KeyX"))) {
-      this.skipReplay();
-    }
-
-    if (this.paused && !this.photo) {
-      this.post.render();
-      this.flushSnap();
-      return;
-    }
-
-    this.acc = Math.min(this.acc + dt, MAX_ACCUMULATOR);
-    let steps = 0;
-    while (this.acc >= FIXED && steps < MAX_CATCHUP_STEPS) {
-      this.fixed(FIXED);
-      this.acc -= FIXED;
-      steps++;
-    }
-    if (this.acc >= FIXED && steps >= MAX_CATCHUP_STEPS) this.timeVoided = true;
-
-    this.world.tick(now, this.player.x, this.player.z);
-    this.nowSec = now / 1000;
-    if (!this.shouldPresent(now)) {
-      this.hudTimer += dt;
-      if (this.hudTimer > 0.08) {
-        this.hudTimer = 0;
-        this.pushHud();
-      }
-      return;
-    }
-    this.lastPresent = now;
-    this.present(dt);
-    this.world.followShadows(this.player.x, this.player.y, this.player.z);
-    this.updateCsm();
-    this.updateProbe();
-    const spd = clamp(Math.abs(this.player.speed) / 52, 0, 1);
-    this.post.setDrive(spd, this.player.boostT > 0);
-    this.post.render();
-    this.flushSnap();
-
-    this.hudTimer += dt;
-    if (this.hudTimer > 0.08) {
-      this.hudTimer = 0;
-      this.pushHud();
-    }
+    return engineLoop.frame.call(engineAdapterHost(this));
   }
 
   private fixed(dt: number) {
-    this.tickId += 1;
-    if (this.replaying) {
-      this.stepReplay(dt);
-      return;
-    }
-
-    const wantRewind =
-      (this.input.keys.has("KeyR") || this.input.touchRewind || !!navigator.getGamepads?.()?.[0]?.buttons[2]?.pressed) &&
-      this.racing &&
-      this.countdown <= 0 &&
-      !this.player.finished &&
-      this.rewindBuf.length > 1;
-    if (wantRewind) {
-      this.stepRewind(dt);
-      return;
-    }
-    if (this.rewinding) this.post.setFilter(0);
-    this.rewinding = false;
-
-    if (this.countdown > 0) {
-      const prev = this.countdown;
-      this.countdown -= dt;
-      if (Math.floor(prev) !== Math.floor(this.countdown) && this.countdown > 0) {
-        this.audio.beep(this.countdown > 1 ? 520 : 780, 0.1, 0.16);
-      }
-      if (prev > 0 && this.countdown <= 0) {
-        this.racing = true;
-        this.audio.beep(980, 0.22, 0.2);
-      }
-    }
-
-    if (this.freeze > 0) {
-      this.freeze -= dt;
-      this.recordReplay(dt);
-      if (this.countdown > 0 || this.totalTime < 2.5) this.freeze = 0;
-      else return;
-    }
-    this.impactCd = Math.max(0, this.impactCd - dt);
-
-    const playerInput = this.input.poll();
-    if (this.countdown > 0) {
-      playerInput.throttle = 0;
-      playerInput.brake = 0;
-      playerInput.nitro = false;
-      playerInput.drift = false;
-    }
-
-    if (this.racing && !this.player.finished) {
-      this.totalTime += dt;
-      this.lapTime += dt;
-    }
-
-    for (let i = 0; i < this.racers.length; i++) {
-      const car = this.racers[i];
-      const prev = car.progress;
-      const inp = i === 0 ? playerInput : aiInput(car, this.built, this.player);
-      if (i !== 0 && this.countdown > 0) {
-        inp.throttle = 0;
-        inp.brake = 0;
-        inp.drift = false;
-      }
-      car.step(dt, inp, this.built, this.racing && this.countdown <= 0, this.world.colliders.concat(this.extraHits), this.world.streets, this.world.ramps);
-      const ev = car.consumeCheckpoints(this.built, prev);
-      if (ev.checkpoint && i === 0) {
-        this.audio.checkpoint();
-        this.ping = 1;
-      }
-      if (i === 0 && this.racing && this.countdown <= 0 && !this.player.finished) {
-        this.sectorClock += dt;
-        const idx = ev.lapComplete ? 0 : Math.min(2, Math.floor(this.player.progress * 3));
-        if (ev.lapComplete) {
-          this.closeSector(2);
-          this.sectorIdx = 0;
-        } else if (idx !== this.sectorIdx) {
-          this.closeSector(this.sectorIdx);
-          this.sectorIdx = idx;
-        }
-      }
-      if (ev.lapComplete && i === 0) {
-        this.laps.push(this.lapTime);
-        if (this.lapTime < this.bestLap) this.bestLap = this.lapTime;
-        this.lapTime = 0;
-        if (car.lap >= this.totalLaps && this.mode !== "roam") this.endRace();
-      }
-      if (ev.lapComplete && this.mode === "knockout") this.checkKnockout();
-    }
-
-    this.applyAltitudeLook();
-
-    if (this.mode === "roam") this.stampPois();
-
-    if (this.player.wrongWayT > 0.45 && this.racing && !this.player.finished) {
-      this.wrongBeep -= dt;
-      if (this.wrongBeep <= 0) {
-        this.audio.beep(220, 0.16, 0.12);
-        this.wrongBeep = 0.9;
-      }
-    } else this.wrongBeep = 0;
-
-    for (const cab of this.traffic) {
-      const inp = trafficInput(cab, this.built);
-      if (this.countdown > 0) {
-        inp.throttle = 0;
-        inp.brake = 0;
-      }
-      cab.step(dt, inp, this.built, this.racing && this.countdown <= 0, this.world.colliders.concat(this.extraHits), this.world.streets, this.world.ramps);
-    }
-
-    for (const cop of this.cops) {
-      const inp = copInput(cop, this.built, this.player, this.heat);
-      if (this.countdown > 0) {
-        inp.throttle = 0;
-        inp.brake = 0;
-        inp.nitro = false;
-      }
-      cop.step(dt, inp, this.built, this.racing && this.countdown <= 0, this.world.colliders.concat(this.extraHits), this.world.streets, this.world.ramps);
-    }
-
-    if (this.mode === "heat" && this.racing && !this.player.finished) this.stepHeat(dt);
-
-    if (this.racing && this.countdown <= 0 && !this.player.finished) {
-      updateDrafting(this.player, this.racers);
-    } else {
-      this.player.drafting = false;
-    }
-
-    const hit = separateCars([...this.racers, ...this.traffic, ...this.cops]);
-    if (this.player.nitroPulse) this.audio.whoosh();
-    if (this.player.impact > 0.55 && this.impactCd <= 0) {
-      this.audio.impact(this.player.impact);
-      this.trauma = Math.min(1, this.trauma + this.player.impact * 0.7);
-      this.freeze = 0.012;
-      this.impactCd = 0.22;
-      this.player.damage = Math.min(1, this.player.damage + this.player.impact * (this.player.lastHit === "building" ? 0.08 : 0.04));
-      applyDamage(this.visuals[0], this.player.damage, this.player.dirt);
-      rumblePad(this.player.impact);
-      if (this.mode === "heat") this.bustAcc = Math.min(2.7, this.bustAcc + 0.38);
-      this.combo = 0;
-      this.comboHold = 0;
-    } else if (hit > 10 && this.impactCd <= 0) {
-      this.audio.impact(Math.min(1, hit / 18));
-      this.trauma = Math.min(1, this.trauma + 0.28);
-      this.impactCd = 0.18;
-      this.player.damage = Math.min(1, this.player.damage + 0.05);
-      applyDamage(this.visuals[0], this.player.damage, this.player.dirt);
-      rumblePad(0.35);
-    }
-
-    this.audio.updateEngine(Math.abs(this.player.speed), this.player.boostT > 0, this.player.drifting, this.player.slip, this.player.rpm);
-    this.audio.pulseMusic(this.world.night, dt);
-    this.audio.updateSiren(this.mode === "heat" && this.racing && !this.busted && !this.escaping, dt);
-    this.audio.updateRain(this.weather === "rain" || this.weather === "storm", this.weather === "storm");
-    if (this.racing && !this.player.finished) {
-      this.ghostAcc += dt;
-      if (this.ghostAcc >= 0.16) {
-        this.ghostAcc = 0;
-        this.ghostBuf.push({ x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.player.yaw });
-      }
-      this.recordReplay(dt);
-    }
-    if (this.player.drifting) this.trauma = Math.min(0.35, this.trauma + dt * 0.12);
-    if (this.player.surfaceKind === "curb") this.trauma = Math.min(0.45, this.trauma + dt * 0.35);
-    if (this.player.surfaceKind === "sand") this.trauma = Math.min(0.3, this.trauma + dt * 0.12);
-    this.trauma = Math.max(0, this.trauma - dt * 2.4);
-    if (this.racing && this.countdown <= 0) this.stepDriftCraft(dt);
-    if (this.racing && this.countdown <= 0 && this.racers.length > 1 && !this.player.finished) {
-      const place = this.standings().indexOf(this.player) + 1;
-      if (place !== this.lastPlace && this.totalTime > 2.2) {
-        this.banter = overtakeLine(place < this.lastPlace, this.opts.langHe, this.rivalIdx);
-        this.banterT = 2.8;
-      }
-      this.lastPlace = place;
-    }
+    return enginePhysics.fixed.call(engineAdapterHost(this), dt);
   }
 
   private stepDriftCraft(dt: number) {
-    this.bonusT = Math.max(0, this.bonusT - dt);
-    this.missCd = Math.max(0, this.missCd - dt);
-    if (this.player.drifting) {
-      if (!this.lastDrifting) this.combo = Math.min(12, Math.max(1, this.combo + 1));
-      this.comboHold = 1.25;
-    } else {
-      this.comboHold -= dt;
-      if (this.comboHold <= 0) this.combo = 0;
-    }
-    this.lastDrifting = this.player.drifting;
-    this.player.comboMul = 1 + this.combo * 0.18;
-    if (!this.player.drifting || this.missCd > 0 || this.player.finished) {
-      if (this.bonusT <= 0) this.driftBonus = "";
-      return;
-    }
-    const others = [...this.racers, ...this.traffic, ...this.cops];
-    for (const o of others) {
-      if (o === this.player || o.eliminated) continue;
-      const d = Math.hypot(o.x - this.player.x, o.z - this.player.z);
-      if (d < 2.3 || d > 6.4) continue;
-      const rel = Math.abs(this.player.speed - o.speed);
-      if (rel < 6) continue;
-      const pts = Math.round((220 + (6.4 - d) * 80) * this.player.comboMul);
-      this.player.driftScore += pts;
-      this.combo = Math.min(12, this.combo + 1);
-      this.missCd = 0.7;
-      this.bonusT = 1.4;
-      this.driftBonus = this.opts.langHe ? `ניר-מיס +${pts}` : `Near miss +${pts}`;
-      this.trauma = Math.min(1, this.trauma + 0.22);
-      break;
-    }
+    return enginePhysics.stepDriftCraft.call(engineAdapterHost(this), dt);
   }
 
   private standings() {
-    return [...this.racers].sort((a, b) => b.raceScore() - a.raceScore());
+    return enginePhysics.standings.call(engineAdapterHost(this));
   }
 
   private stepHeat(dt: number) {
-    if (this.busted || this.player.finished) return;
-    let nearest = Infinity;
-    for (const cop of this.cops) {
-      nearest = Math.min(nearest, Math.hypot(cop.x - this.player.x, cop.z - this.player.z));
-    }
-    this.wanted = 1 + Math.min(4, Math.floor(this.heatMax * 4.2));
-    if (nearest < 18) {
-      this.escaping = false;
-      this.cooldown = Math.max(0, this.cooldown - dt * 0.55);
-      const close = 1 - nearest / 18;
-      const speedEase = 1.15 - clamp(Math.abs(this.player.speed) / 52, 0, 0.7);
-      this.bustAcc += dt * close * speedEase * (0.85 + this.wanted * 0.08);
-    } else if (nearest > 40) {
-      this.escaping = true;
-      this.cooldown = Math.min(1, this.cooldown + dt / 7.2);
-      this.bustAcc = Math.max(0, this.bustAcc - dt * 0.45);
-      if (this.cooldown >= 1) {
-        this.wanted = Math.max(1, this.wanted - 1);
-        this.heatMax = Math.max(0.12, this.heatMax - 0.22);
-        this.cooldown = 0;
-        this.escaping = false;
-        this.bustAcc *= 0.35;
-        this.banter = this.opts.langHe ? "איבדת אותם. קירור." : "You lost them. Cooldown.";
-        this.banterT = 2.8;
-        this.pushCopsBack();
-      }
-    } else {
-      this.escaping = false;
-      this.cooldown = Math.max(0, this.cooldown - dt * 0.18);
-    }
-    this.heat = clamp(this.bustAcc / 2.7, 0, 1);
-    this.heatMax = Math.max(this.heatMax, this.heat);
-    if (this.totalTime > 5) this.ensureCops(Math.min(this.lite ? 3 : 5, this.wanted + 1));
-    this.blockCd = Math.max(0, this.blockCd - dt);
-    if (this.heat > 0.32 && this.blockCd <= 0 && this.totalTime > 8 && !this.blockGroup) {
-      this.spawnRoadblock();
-    }
-    this.tickRoadblock();
-    if (this.bustAcc >= 2.7) {
-      this.busted = true;
-      this.player.finished = true;
-      this.audio.bust();
-      this.trauma = 1;
-      this.endRace();
-    }
+    return enginePhysics.stepHeat.call(engineAdapterHost(this), dt);
   }
 
   private pushCopsBack() {
-    for (let i = 0; i < this.cops.length; i++) {
-      const t = (this.player.progress - 0.12 - i * 0.03 + 1) % 1;
-      this.cops[i].spawn(this.built, t, this.cops[i].aiOffset);
-      this.cops[i].speed = 18;
-    }
+    return enginePhysics.pushCopsBack.call(engineAdapterHost(this));
   }
 
   private ensureCops(n: number) {
-    while (this.cops.length < n) {
-      this.addCop(this.cops.length);
-    }
+    return enginePhysics.ensureCops.call(engineAdapterHost(this), n);
   }
 
   private addCop(i: number) {
-    const nyc = this.trackDef.city === "nyc";
-    const color = 0xf2eee8;
-    const accent = nyc ? 0x1a3a6a : 0x163048;
-    const base = CARS[0];
-    const def = {
-      ...base,
-      id: base.id,
-      color,
-      accent,
-      maxSpeed: 54 + i * 1.1,
-      accel: 5.4,
-      brake: 32,
-      turnRate: 2.35,
-      grip: 0.94,
-      drag: 0.48,
-      mass: 1.18,
-    };
-    const cop = new ArcadeCar(def, nyc ? "NYPD" : "Police");
-    cop.isAi = true;
-    cop.isCop = true;
-    cop.aiSkill = 0.96;
-    cop.aiOffset = (i % 2 === 0 ? -1 : 1) * 2.4;
-    cop.nitro = 0.55;
-    cop.baseGrip = SURFACE_GRIP[this.trackDef.theme] ?? 1;
-    cop.surfaceGrip = cop.baseGrip;
-    cop.spawn(this.built, (this.player.progress - 0.1 - i * 0.03 + 1) % 1, cop.aiOffset);
-    this.cops.push(cop);
-    const vis = createCarVisual(color, accent, false, false, "gt", true);
-    setCarLights(vis, this.world.night);
-    this.scene.add(vis.group);
-    this.copVis.push(vis);
+    return enginePhysics.addCop.call(engineAdapterHost(this), i);
   }
 
   private spawnRoadblock() {
-    const t = (this.player.progress + 0.15) % 1;
-    const s = sampleAtT(this.built.samples, t);
-    const yaw = Math.atan2(-s.tx, -s.tz);
-    const gap = this.built.width * 0.22;
-    const side = hashStr(`${this.opts.trackId}|${t.toFixed(4)}`) > 0.5 ? 1 : -1;
-    const group = new THREE.Group();
-    const mat = new THREE.MeshStandardMaterial({ color: 0x8a9098, roughness: 0.72, metalness: 0.12 });
-    const coneMat = new THREE.MeshStandardMaterial({ color: 0xe86020, roughness: 0.55 });
-    const hits: Collider[] = [];
-    const place = (lat: number, r: number) => {
-      const x = s.x + s.rx * lat;
-      const z = s.z + s.rz * lat;
-      const box = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.15, 2.6), mat);
-      box.position.set(x, s.y + 0.6, z);
-      box.rotation.y = yaw;
-      box.castShadow = !this.lite;
-      group.add(box);
-      hits.push({ x, z, r, kind: "barrier" });
-    };
-    place(side * (this.built.width * 0.38), 2.4);
-    place(side * (this.built.width * 0.18), 2.2);
-    place(-side * (this.built.width * 0.4), 2.1);
-    for (let i = 0; i < 4; i++) {
-      const lat = side * (0.08 + i * 0.12) * this.built.width;
-      const cone = new THREE.Mesh(new THREE.ConeGeometry(0.28, 0.9, 6), coneMat);
-      cone.position.set(s.x + s.rx * lat, s.y + 0.48, s.z + s.rz * lat);
-      group.add(cone);
-    }
-    this.scene.add(group);
-    this.blockGroup = group;
-    this.extraHits = hits;
-    this.blockT = t;
-    this.blockCd = 20;
-    this.banter = this.opts.langHe ? "מחסום קדימה. יש פער." : "Roadblock ahead. There's a gap.";
-    this.banterT = 2.6;
+    return enginePhysics.spawnRoadblock.call(engineAdapterHost(this));
   }
 
   private tickRoadblock() {
-    if (!this.blockGroup || this.blockT < 0) return;
-    let ds = this.player.progress - this.blockT;
-    if (ds < -0.5) ds += 1;
-    if (ds > 0.12) this.clearRoadblock();
+    return enginePhysics.tickRoadblock.call(engineAdapterHost(this));
   }
 
   private navAngle() {
-    const p = this.player;
-    const cps = this.built.checkpoints;
-    if (!cps.length) return 0;
-    const idx = ((p.nextCheckpoint % cps.length) + cps.length) % cps.length;
-    const s = this.built.samples[Math.floor(cps[idx] * this.built.samples.length) % this.built.samples.length];
-    const dx = s.x - p.x;
-    const dz = s.z - p.z;
-    const fx = -Math.sin(p.yaw);
-    const fz = -Math.cos(p.yaw);
-    const rx = Math.cos(p.yaw);
-    const rz = -Math.sin(p.yaw);
-    return Math.atan2(dx * rx + dz * rz, dx * fx + dz * fz);
+    return enginePhysics.navAngle.call(engineAdapterHost(this));
   }
 
   private stampPois() {
-    if (this.player.finished || this.countdown > 0) return;
-    const pois = this.trackDef.pois;
-    for (let i = 0; i < pois.length; i++) {
-      if (this.poiGot.has(i)) continue;
-      const p = pois[i];
-      if (Math.hypot(this.player.x - p.x, this.player.z - p.z) < p.r * 0.72) {
-        this.poiGot.add(i);
-        this.audio.checkpoint();
-        this.ping = 1;
-        this.banter = this.opts.langHe ? p.he : p.en;
-        this.banterT = 2.2;
-      }
-    }
-    if (pois.length > 0 && this.poiGot.size >= pois.length) this.endRace();
+    return enginePhysics.stampPois.call(engineAdapterHost(this));
   }
 
   private clearRoadblock() {
-    if (this.blockGroup) {
-      this.scene.remove(this.blockGroup);
-      this.blockGroup.traverse((o) => {
-        const m = o as THREE.Mesh;
-        if (m.geometry) m.geometry.dispose();
-        const mat = m.material as THREE.Material | THREE.Material[] | undefined;
-        if (Array.isArray(mat)) mat.forEach((x) => x.dispose());
-        else mat?.dispose();
-      });
-    }
-    this.blockGroup = null;
-    this.extraHits = [];
-    this.blockT = -1;
+    return enginePhysics.clearRoadblock.call(engineAdapterHost(this));
   }
 
   private checkKnockout() {
-    const alive = this.racers.filter((r) => !r.eliminated && !r.finished);
-    const leadLap = Math.max(0, ...alive.map((r) => r.lap));
-    if (leadLap <= this.koMarked) return;
-    this.koMarked = leadLap;
-    if (alive.length <= 1) return;
-    const last = [...alive].sort((a, b) => a.raceScore() - b.raceScore())[0];
-    last.eliminated = true;
-    last.finished = true;
-    this.audio.impact(0.65);
-    if (last === this.player) {
-      this.endRace();
-      return;
-    }
-    const remain = this.racers.filter((r) => !r.eliminated && !r.finished);
-    if (remain.length === 1 && remain[0] === this.player) {
-      this.player.lap = this.totalLaps;
-      this.endRace();
-    }
+    return enginePhysics.checkKnockout.call(engineAdapterHost(this));
   }
 
   private closeSector(i: number) {
-    const t = this.sectorClock;
-    this.sectorClock = 0;
-    if (t < 0.4) return;
-    const idx = ((i % 3) + 3) % 3;
-    const best = this.bestSectors[idx];
-    this.sectorDelta = Number.isFinite(best) && best < 1e8 ? t - best : 0;
-    if (t < best) this.bestSectors[idx] = t;
+    return enginePhysics.closeSector.call(engineAdapterHost(this), i);
   }
 
   private endRace() {
-    if (this.finishedSent || this.pendingResult) return;
-    this.player.finished = true;
-    this.audio.finish();
-    this.audio.cheer();
-    let place = this.standings().indexOf(this.player) + 1;
-    if (this.mode === "heat") place = this.busted ? 4 : 1;
-    if (this.mode === "time" || this.mode === "drift" || this.mode === "roam") place = 1;
-    if (this.mode === "knockout" && this.player.eliminated) {
-      place = this.racers.filter((r) => !r.eliminated).length + 1;
-    }
-    const eligible =
-      !this.timeVoided &&
-      !this.qaForcedFinish &&
-      Number.isFinite(this.totalTime) &&
-      this.totalTime >= 8;
-    const resultDraft: RaceResult = {
-      place,
-      totalTime: this.totalTime,
-      bestLap: Number.isFinite(this.bestLap) ? this.bestLap : this.totalTime,
-      laps: this.laps.slice(),
-      trackId: this.opts.trackId,
-      carId: this.opts.carId,
-      mode: this.mode,
-      driftScore: Math.round(this.player.driftScore),
-      busted: this.busted,
-      heatMax: this.heatMax,
-      eventId: this.opts.eventId,
-      weather: this.weather,
-      cash: 0,
-      ghostBeaten: false,
-      line: finishLine(place, this.busted, this.opts.langHe, this.rivalIdx),
-      eligible,
-    };
-    this.cashWon = eligible ? racePayout(resultDraft) : 0;
-    resultDraft.cash = this.cashWon;
-    if (eligible && !this.busted) {
-      this.ghostBeaten = recordGhost(this.opts.trackId, this.totalTime, this.ghostBuf);
-      resultDraft.ghostBeaten = this.ghostBeaten;
-    }
-    setDamage(this.opts.carId, this.player.damage);
-    this.pendingResult = resultDraft;
-    this.emitFinish();
+    return enginePhysics.endRace.call(engineAdapterHost(this));
   }
 
   private emitFinish() {
-    if (this.finishedSent || !this.pendingResult) return;
-    this.finishedSent = true;
-    this.replaying = false;
-    this.opts.onFinish(this.pendingResult);
+    return enginePhysics.emitFinish.call(engineAdapterHost(this));
   }
 
   skipReplay() {
-    if (!this.replaying) return;
-    this.replaying = false;
-    this.emitFinish();
+    return enginePhysics.skipReplay.call(engineAdapterHost(this));
   }
 
   private recordSnap() {
-    this.replayBuf.push(this.racers.map((r) => ({ x: r.x, y: r.y, z: r.z, yaw: r.yaw, speed: r.speed })));
-    if (this.replayBuf.length > 140) this.replayBuf.shift();
+    return enginePhysics.recordSnap.call(engineAdapterHost(this));
   }
 
   private recordReplay(dt: number) {
-    if (!this.racing || this.player.finished) return;
-    this.replayAcc += dt;
-    if (this.replayAcc >= 0.1) {
-      this.replayAcc = 0;
-      this.recordSnap();
-    }
-    this.rewindAcc += dt;
-    if (this.rewindAcc >= 0.05) {
-      this.rewindAcc = 0;
-      this.rewindBuf.push(this.takePack());
-      if (this.rewindBuf.length > 100) this.rewindBuf.shift();
-    }
+    return enginePhysics.recordReplay.call(engineAdapterHost(this), dt);
   }
 
   private takePack(): RewindPack {
-    return {
-      totalTime: this.totalTime,
-      lapTime: this.lapTime,
-      heat: this.heat,
-      bustAcc: this.bustAcc,
-      cooldown: this.cooldown,
-      wanted: this.wanted,
-      cars: this.racers.map((c) => c.snap()),
-      traffic: this.traffic.map((c) => c.snap()),
-      cops: this.cops.map((c) => c.snap()),
-    };
+    return enginePhysics.takePack.call(engineAdapterHost(this));
   }
 
   private applyPack(p: RewindPack) {
-    this.totalTime = p.totalTime;
-    this.lapTime = p.lapTime;
-    this.heat = p.heat;
-    this.bustAcc = p.bustAcc;
-    this.cooldown = p.cooldown ?? this.cooldown;
-    this.wanted = p.wanted ?? this.wanted;
-    for (let i = 0; i < this.racers.length; i++) {
-      const s = p.cars[i];
-      if (s) this.racers[i].load(s);
-    }
-    for (let i = 0; i < this.traffic.length; i++) {
-      const s = p.traffic[i];
-      if (s) this.traffic[i].load(s);
-    }
-    for (let i = 0; i < this.cops.length; i++) {
-      const s = p.cops[i];
-      if (s) this.cops[i].load(s);
-    }
-    applyDamage(this.visuals[0], this.player.damage);
-    const keepGhost = Math.max(0, Math.floor(this.totalTime / 0.16));
-    if (this.ghostBuf.length > keepGhost) this.ghostBuf.length = keepGhost;
-    const keepRep = Math.max(0, Math.floor(this.totalTime / 0.1));
-    if (this.replayBuf.length > keepRep) this.replayBuf.length = keepRep;
+    return enginePhysics.applyPack.call(engineAdapterHost(this), p);
   }
 
   private stepRewind(dt: number) {
-    this.rewinding = true;
-    this.rewindTickT += dt;
-    if (this.rewindTickT > 0.08) {
-      this.rewindTickT = 0;
-      this.audio.rewindTick();
-    }
-    this.rewindAcc += dt;
-    while (this.rewindAcc >= 0.05 && this.rewindBuf.length > 1) {
-      this.rewindAcc -= 0.05;
-      this.rewindBuf.pop();
-      const last = this.rewindBuf[this.rewindBuf.length - 1];
-      if (last) this.applyPack(last);
-    }
-    this.post.setFilter(0);
+    return enginePhysics.stepRewind.call(engineAdapterHost(this), dt);
   }
 
   private stepPhoto(dt: number) {
-    if (this.photoLock) {
-      const L = this.photoLock;
-      this.camera.position.set(L.px, L.py, L.pz);
-      this.camera.lookAt(L.lx, L.ly, L.lz);
-      if (Math.abs(this.camera.fov - L.fov) > 0.2) {
-        this.camera.fov = L.fov;
-        this.camera.updateProjectionMatrix();
-      }
-      this.post.setFilter(this.photoFilter);
-      return;
-    }
-    const inp = this.input.poll();
-    this.photoYaw += inp.steer * 1.55 * dt;
-    this.photoPitch = clamp(this.photoPitch + (inp.throttle - inp.brake) * 0.7 * dt, -0.4, 0.85);
-    if (inp.nitro) this.photoDist = Math.max(3.2, this.photoDist - 9 * dt);
-    if (inp.drift) this.photoDist = Math.min(22, this.photoDist + 9 * dt);
-    const p = this.player;
-    const fx = -Math.sin(this.photoYaw);
-    const fz = -Math.cos(this.photoYaw);
-    const cy = Math.sin(this.photoPitch);
-    const cz = Math.cos(this.photoPitch);
-    this.camera.position.set(p.x - fx * this.photoDist * cz, p.y + 1.1 + this.photoDist * cy, p.z - fz * this.photoDist * cz);
-    this.camera.lookAt(p.x, p.y + 0.55, p.z);
-    if (Math.abs(this.camera.fov - (48 + this.fovExtra)) > 0.2) {
-      this.camera.fov = 48 + this.fovExtra;
-      this.camera.updateProjectionMatrix();
-    }
-    this.post.setFilter(this.photoFilter);
-    for (let i = 0; i < this.racers.length; i++) {
-      const c = this.racers[i];
-      updateCarVisual(this.visuals[i], c.yaw, 0, 0, 0, dt, c.x, c.y, c.z, c.pitch, 0);
-    }
+    return engineRendering.stepPhoto.call(engineAdapterHost(this), dt);
   }
 
   private stepReplay(dt: number) {
-    const dur = this.replayBuf.length * 0.1;
-    const slow = this.replayT < 1.35 || this.replayT > dur - 2.1;
-    this.replayT += slow ? dt * 0.42 : dt;
-    this.replaySlow = slow;
-    if (this.replayT >= dur) {
-      this.skipReplay();
-      return;
-    }
-    const i = Math.min(this.replayBuf.length - 1, Math.floor(this.replayT / 0.1));
-    const a = this.replayBuf[i];
-    const b = this.replayBuf[Math.min(this.replayBuf.length - 1, i + 1)];
-    const f = Math.min(1, (this.replayT - i * 0.1) / 0.1);
-    for (let c = 0; c < this.racers.length; c++) {
-      const ra = a[c];
-      const rb = b[c] ?? ra;
-      if (!ra) continue;
-      const car = this.racers[c];
-      car.x = ra.x + (rb.x - ra.x) * f;
-      car.y = ra.y + (rb.y - ra.y) * f;
-      car.z = ra.z + (rb.z - ra.z) * f;
-      let dy = rb.yaw - ra.yaw;
-      while (dy > Math.PI) dy -= Math.PI * 2;
-      while (dy < -Math.PI) dy += Math.PI * 2;
-      car.yaw = ra.yaw + dy * f;
-      car.speed = ra.speed + (rb.speed - ra.speed) * f;
-    }
-    if (Math.floor(this.replayT / 2.8) !== Math.floor((this.replayT - dt) / 2.8)) {
-      this.camMode = 0;
-      this.hood = false;
-    }
+    return enginePhysics.stepReplay.call(engineAdapterHost(this), dt);
   }
 
   private present(dt: number) {
-    const p = this.player;
-    if (Math.abs(p.dirt - this.lastDirt) > 0.035) {
-      applyDamage(this.visuals[0], p.damage, p.dirt);
-      this.lastDirt = p.dirt;
-    }
-    for (let i = 0; i < this.racers.length; i++) {
-      const c = this.racers[i];
-      const steer = i === 0 ? this.input.poll().steer : clamp(c.roll * -3, -1, 1);
-      updateCarVisual(this.visuals[i], c.yaw, c.speed, steer, i === 0 ? this.input.poll().brake : 0, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
-      const blob = this.blobs[i];
-      if (blob) {
-        const sun = this.world.sunDir;
-        blob.position.set(c.x - sun.x * 0.7, c.y + 0.04, c.z - sun.z * 0.7);
-        const stretch = 1.05 + Math.abs(c.speed) * 0.014;
-        blob.scale.set(stretch, 1, 0.92 + Math.abs(c.speed) * 0.008);
-        blob.rotation.y = c.yaw;
-        blob.visible = !c.eliminated;
-        (blob.material as THREE.MeshBasicMaterial).opacity = (this.world.night ? 0.68 : 0.5) * (c.airborne ? 0.12 : 1);
-      }
-    }
-    for (let i = 0; i < this.traffic.length; i++) {
-      const c = this.traffic[i];
-      updateCarVisual(this.trafficVis[i], c.yaw, c.speed, 0, 0, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
-    }
-    for (let i = 0; i < this.cops.length; i++) {
-      const c = this.cops[i];
-      updateCarVisual(this.copVis[i], c.yaw, c.speed, 0, 0, dt, c.x, c.y, c.z, c.roll, c.pitch);
-      pulsePolice(this.copVis[i], this.nowSec + i * 0.17);
-    }
-
-    const fx = -Math.sin(p.yaw);
-    const fz = -Math.cos(p.yaw);
-    if (p.drifting || p.impact > 0.18 || p.wheelsLocked) {
-      const spread = p.impact > 0.18 ? 1.4 : 0.8;
-      for (let k = 0; k < 8; k++) {
-        const i = Math.floor(hash01(this.tickId, k, 1) * 60) * 3;
-        this.sparkPos[i] = p.x - fx * 1.6 + (hash01(this.tickId, k, 2) - 0.5) * spread;
-        this.sparkPos[i + 1] = p.y + 0.12 + hash01(this.tickId, k, 3) * 0.35;
-        this.sparkPos[i + 2] = p.z - fz * 1.6 + (hash01(this.tickId, k, 4) - 0.5) * spread;
-      }
-      (this.sparks.geometry.getAttribute("position") as THREE.BufferAttribute).needsUpdate = true;
-      this.sparks.visible = true;
-      const sm = this.sparks.material as THREE.PointsMaterial;
-      sm.color.setHex(p.lastHit === "building" ? 0xff7a38 : p.lastHit === "car" ? 0xf4f6f8 : 0xffe080);
-      sm.size = p.lastHit === "building" ? 0.26 : 0.16;
-      this.skidAcc += Math.abs(p.speed) * dt;
-      if (this.skidAcc > 0.55) {
-        this.skidAcc = 0;
-        this.skidDummy.position.set(p.x - fx * 1.5, p.y + 0.03, p.z - fz * 1.5);
-        this.skidDummy.rotation.y = p.yaw;
-        this.skidDummy.scale.set(1, 1, 1.1 + Math.abs(p.speed) * 0.018);
-        this.skidDummy.updateMatrix();
-        const idx = this.skidI % 180;
-        this.skidMesh.setMatrixAt(idx, this.skidDummy.matrix);
-        this.skidI += 1;
-        this.skidMesh.count = Math.min(180, this.skidI);
-        this.skidMesh.instanceMatrix.needsUpdate = true;
-      }
-    } else {
-      this.sparks.visible = false;
-    }
-
-    this.ping = Math.max(0, this.ping - dt * 1.7);
-    const cps = this.built.checkpoints;
-    const gt = cps[this.player.nextCheckpoint] ?? 0;
-    const gs = this.built.samples[Math.floor(gt * this.built.samples.length) % this.built.samples.length];
-    this.gate.position.set(gs.x, gs.y + 2.55, gs.z);
-    this.gate.lookAt(gs.x + gs.tx, gs.y + 2.55, gs.z + gs.tz);
-    this.gate.scale.setScalar(1 + this.ping * 0.18);
-    (this.gate.material as THREE.MeshStandardMaterial).emissiveIntensity = 1.15 + this.ping * 2.2;
-    this.gate.visible = this.racing && !this.player.finished && !this.replaying;
-
-    if ((p.drifting || (!p.onTrack && Math.abs(p.speed) > 10) || (this.weather !== "clear" && Math.abs(p.speed) > 14)) && this.smokes.length < 64) {
-      if (hash01(this.tickId, 21) < (!p.onTrack ? 0.88 : 0.55)) {
-        this.smokes.push({
-          x: p.x - fx * 1.7 + (hash01(this.tickId, 22) - 0.5) * 0.9,
-          y: p.y + 0.08,
-          z: p.z - fz * 1.7 + (hash01(this.tickId, 23) - 0.5) * 0.9,
-          s: 0.45,
-          life: 1,
-          yaw: p.yaw,
-        });
-      }
-    }
-    for (let i = this.smokes.length - 1; i >= 0; i--) {
-      const s = this.smokes[i];
-      s.life -= dt * 1.15;
-      s.s += dt * 1.6;
-      s.y += dt * 0.35;
-      if (s.life <= 0) this.smokes.splice(i, 1);
-    }
-    for (let i = 0; i < this.smokes.length; i++) {
-      const s = this.smokes[i];
-      this.smokeDummy.position.set(s.x, s.y, s.z);
-      this.smokeDummy.rotation.y = s.yaw;
-      this.smokeDummy.scale.setScalar(s.s);
-      this.smokeDummy.updateMatrix();
-      this.smokeMesh.setMatrixAt(i, this.smokeDummy.matrix);
-    }
-    this.smokeMesh.count = this.smokes.length;
-    this.smokeMesh.instanceMatrix.needsUpdate = true;
-    const off = !p.onTrack;
-    (this.smokeMesh.material as THREE.MeshBasicMaterial).opacity = this.weather !== "clear" ? 0.32 : off ? 0.38 : 0.24;
-    (this.smokeMesh.material as THREE.MeshBasicMaterial).color.setHex(off ? 0x8a6a48 : this.weather !== "clear" ? 0xc8d4dc : 0xb0b8be);
-
-    if (p.boostT > 0 || p.drafting) {
-      for (let k = 0; k < 10; k++) {
-        const i = k * 3;
-        this.boostPos[i] = p.x - fx * (1.8 + k * 0.12) + (hash01(this.tickId, k, 31) - 0.5) * 0.35;
-        this.boostPos[i + 1] = p.y + 0.28 + hash01(this.tickId, k, 32) * 0.12;
-        this.boostPos[i + 2] = p.z - fz * (1.8 + k * 0.12) + (hash01(this.tickId, k, 33) - 0.5) * 0.35;
-      }
-      (this.boostPts.geometry.getAttribute("position") as THREE.BufferAttribute).needsUpdate = true;
-      this.boostPts.visible = true;
-    } else {
-      this.boostPts.visible = false;
-    }
-
-    this.snapCamera(false, dt);
-    this.world.followShadows(this.player.x, this.player.y, this.player.z);
-    this.updateCsm();
-    this.world.followMirror(this.player.x, this.player.y, this.player.z, this.player.yaw);
-
-    if (this.rainMesh && this.rainPos) {
-      this.rainMesh.visible = this.quality !== "low";
-      const cam = this.camera.position;
-      const fall = this.trackDef.theme === "snow" ? 9 : this.weather === "hamsin" ? 5 : this.weather === "storm" ? 38 : 26;
-      const n = this.rainPos.length / 3;
-      for (let i = 0; i < n; i++) {
-        const i3 = i * 3;
-        this.rainPos[i3 + 1] -= fall * dt;
-        if (this.weather === "hamsin") this.rainPos[i3] += 6 * dt;
-        if (this.rainPos[i3 + 1] < cam.y - 4) {
-          this.rainPos[i3] = cam.x + (hash01(this.tickId, i, 41) - 0.5) * 34;
-          this.rainPos[i3 + 1] = cam.y + 8 + hash01(this.tickId, i, 42) * 10;
-          this.rainPos[i3 + 2] = cam.z + (hash01(this.tickId, i, 43) - 0.5) * 34;
-        }
-      }
-      (this.rainMesh.geometry.getAttribute("position") as THREE.BufferAttribute).needsUpdate = true;
-    }
-
-    if (this.ghostVis && this.ghostFrames.length && !this.replaying) {
-      const g = sampleGhost(this.ghostFrames, this.racing ? this.totalTime : 0);
-      if (g) {
-        this.ghostVis.group.visible = true;
-        updateCarVisual(this.ghostVis, g.yaw, 18, 0, 0, dt, g.x, g.y, g.z, 0, 0);
-        this.ghostDelta = this.totalTime - this.ghostFrames.length * 0.16 * this.player.progress;
-      }
-    }
-    if (this.rivalGhostVis && this.rivalGhostFrames.length && !this.replaying) {
-      const g = sampleGhostLoop(this.rivalGhostFrames, this.racing ? this.totalTime : 0);
-      if (g) {
-        this.rivalGhostVis.group.visible = true;
-        updateCarVisual(this.rivalGhostVis, g.yaw, 22, 0, 0, dt, g.x, g.y, g.z, 0, 0);
-        const lapT = this.rivalGhostFrames.length * 0.16;
-        const mine = (this.player.progress + this.player.lap) * lapT;
-        this.rivalGhostDelta = this.totalTime - mine;
-      }
-    }
+    return engineRendering.present.call(engineAdapterHost(this), dt);
   }
 
   private snapCamera(instant: boolean, dt = 0.016) {
-    const p = this.player;
-    this.lookBack = !this.replaying && (this.input.keys.has("KeyB") || !!navigator.getGamepads?.()?.[0]?.buttons[11]?.pressed || !!navigator.getGamepads?.()?.[0]?.buttons[13]?.pressed);
-    const fx = -Math.sin(p.yaw);
-    const fz = -Math.cos(p.yaw);
-    const rx = Math.cos(p.yaw);
-    const rz = -Math.sin(p.yaw);
-    const dir = this.lookBack ? -1 : 1;
-    const mode = this.lookBack ? 0 : this.camMode;
-    let follow = 9.2 + clamp(Math.abs(p.speed) / 22, 0, 2.6);
-    let height = 2.28;
-    let side = 0;
-    if (mode === 1) {
-      follow = 0.18;
-      height = 1.16;
-      side = 0.36;
-    } else if (mode === 2) {
-      follow = 1.35;
-      height = 0.52;
-    } else if (mode === 3) {
-      follow = 0.4;
-      height = 16;
-      side = 0.2;
-    }
-    this.desired.set(p.x - fx * follow * dir + rx * side, p.y + height, p.z - fz * follow * dir + rz * side);
-    if (instant) this.cam.copy(this.desired);
-    else {
-      const k = mode === 1 || mode === 2 || this.lookBack ? 14 : mode === 3 ? 4.5 : 7.5;
-      this.cam.x = expSmooth(this.cam.x, this.desired.x, k, dt);
-      this.cam.y = expSmooth(this.cam.y, this.desired.y, k, dt);
-      this.cam.z = expSmooth(this.cam.z, this.desired.z, k, dt);
-    }
-    if (mode !== 3 && mode !== 1 && p.onTrack && !p.sideStreet && this.mode !== "roam") {
-      const near = nearestIndex(this.built.samples, this.cam.x, this.cam.z, p.sampleIndex);
-      const maxCam = this.built.width / 2 + 7;
-      if (near.dist > maxCam) {
-        const s = this.built.samples[near.index];
-        const nx = (this.cam.x - s.x) / (near.dist || 1);
-        const nz = (this.cam.z - s.z) / (near.dist || 1);
-        this.cam.x = s.x + nx * maxCam;
-        this.cam.z = s.z + nz * maxCam;
-      }
-      for (const c of this.world.colliders) {
-        const dx = this.cam.x - c.x;
-        const dz = this.cam.z - c.z;
-        const d = Math.hypot(dx, dz);
-        const keep = c.r + 2.4;
-        if (d < keep && d > 0.0001) {
-          this.cam.x = c.x + (dx / d) * keep;
-          this.cam.z = c.z + (dz / d) * keep;
-        }
-      }
-      const road = this.built.samples[p.sampleIndex];
-      if (this.cam.y < road.y + 1.55) this.cam.y = road.y + 1.55;
-    }
-    const shake = this.replaying ? 0 : this.trauma * this.trauma;
-    this.camera.position.set(
-      this.cam.x + Math.sin(this.tickId * 0.73) * shake * 0.14,
-      this.cam.y + Math.cos(this.tickId * 1.17) * shake * 0.08,
-      this.cam.z + Math.sin(this.tickId * 0.91) * shake * 0.14,
-    );
-    const lookAhead = mode === 3 ? 0.2 : mode === 1 ? 9 : 8 + clamp(Math.abs(p.speed) / 14, 0, 8);
-    this.look.set(p.x + fx * lookAhead * dir, p.y + (mode === 3 ? 0.4 : mode === 1 ? 0.98 : 0.62), p.z + fz * lookAhead * dir);
-    this.camera.lookAt(this.look);
-    const fov =
-      (mode === 1 ? 64 : mode === 2 ? 78 : mode === 3 ? 52 : 58 + clamp(Math.abs(p.speed) / 14, 0, 8) + (p.boostT > 0 || p.drafting ? 3 : 0)) +
-      this.fovExtra;
-    if (Math.abs(this.camera.fov - fov) > 0.2) {
-      this.camera.fov = fov;
-      this.camera.updateProjectionMatrix();
-    }
+    return engineRendering.snapCamera.call(engineAdapterHost(this), instant, dt);
   }
 
   setFovExtra(v: number) {
-    this.fovExtra = clamp(v, 0, 12);
+    return engineRendering.setFovExtra.call(engineAdapterHost(this), v);
   }
 
   private pushHud() {
-    const order = this.standings();
-    const place = order.indexOf(this.player) + 1;
-    const lapEst = this.bestLap > 12 && this.bestLap < 400 ? this.bestLap : 75;
-    let rivalName = "";
-    let rivalGap = 0;
-    if (order.length > 1) {
-      const rival = place > 1 ? order[place - 2] : order[1];
-      if (rival) {
-        rivalName = rival.name;
-        const ds = rival.lap + rival.progress - (this.player.lap + this.player.progress);
-        rivalGap = place > 1 ? ds * lapEst : -ds * lapEst;
-      }
-    }
-    this.opts.onHud({
-      speedKmh: Math.abs(this.player.speed) * 3.6,
-      lap: Math.min(this.totalLaps, this.player.lap + 1),
-      totalLaps: this.totalLaps,
-      pointToPoint: !!this.trackDef.open,
-      lapTime: this.lapTime,
-      bestLap: Number.isFinite(this.bestLap) ? this.bestLap : 0,
-      totalTime: this.totalTime,
-      position: place,
-      totalRacers: this.racers.length,
-      street: streetName(this.trackDef, this.player.progress, this.opts.langHe),
-      poi: nearestPoi(this.trackDef, this.player.x, this.player.z, this.opts.langHe),
-      night: this.world.night,
-      driftCharge: this.player.driftCharge / 2.1,
-      nitro: this.player.nitro,
-      boosting: this.player.boostT > 0,
-      drifting: this.player.drifting,
-      wrongWay: this.player.wrongWayT > 0.45,
-      countdown: this.countdown,
-      finished: this.player.finished,
-      place,
-      onTrack: this.player.onTrack,
-      sideStreet: this.opts.langHe ? this.player.sideStreet : this.player.sideStreetEn,
-      minimap: [
-        ...this.racers.map((r, i) => ({ x: r.x, z: r.z, yaw: r.yaw, isPlayer: i === 0 })),
-        ...this.traffic.map((r) => ({ x: r.x, z: r.z, yaw: r.yaw, isPlayer: false, traffic: true })),
-        ...this.cops.map((r) => ({ x: r.x, z: r.z, yaw: r.yaw, isPlayer: false, cop: true })),
-      ],
-      trackPoly: this.poly,
-      poiMarks: this.trackDef.pois.map((p) => ({ x: p.x, z: p.z })),
-      progress: this.player.progress,
-      mode: this.mode,
-      driftScore: Math.round(this.player.driftScore),
-      heat: this.heat,
-      heatMax: this.heatMax,
-      busted: this.busted,
-      chasing: this.mode === "heat" && this.racing && !this.busted && !this.escaping,
-      copCount: this.cops.length,
-      cooldown: this.cooldown,
-      wanted: this.wanted,
-      escaping: this.escaping,
-      knockoutAlive: this.racers.filter((r) => !r.eliminated).length,
-      weather: this.weather,
-      ghost: !!this.ghostVis && !this.replaying,
-      ghostDelta: this.ghostDelta,
-      drafting: this.player.drafting,
-      damage: this.player.damage,
-      replay: this.replaying,
-      camName: this.camNames[this.camMode] ?? "chase",
-      rewind: this.rewinding,
-      rewinds: this.rewindBuf.length * 0.05,
-      photo: this.photo,
-      photoFilter: this.opts.langHe ? (this.filterHe[this.photoFilter] ?? "ללא") : (this.filterNames[this.photoFilter] ?? "none"),
-      photoHide: this.photoHide,
-      radio: this.opts.langHe ? RADIO[this.audio.getStation()].he : RADIO[this.audio.getStation()].en,
-      rpm: this.player.rpm,
-      cycle: this.autoCycle,
-      replaySlow: this.replaySlow,
-      checkpointPing: this.ping,
-      rivalName,
-      rivalGap,
-      sector: this.sectorIdx,
-      sectorDelta: this.sectorDelta,
-      gear: this.player.gear,
-      surface: this.player.surfaceKind,
-      tod: todLabel(this.clock, this.opts.langHe),
-      dirt: this.player.dirt,
-      banter: this.banter,
-      combo: this.combo,
-      driftBonus: this.bonusT > 0 ? this.driftBonus : "",
-      driftAngle: this.player.driftAngle,
-      poiHunt: this.poiGot.size,
-      poiNeed: this.trackDef.pois.length,
-      ghostRival: !!this.rivalGhostVis && !this.replaying,
-      ghostRivalDelta: this.rivalGhostDelta,
-      navAngle: this.navAngle(),
-      handling: this.player.handling,
-      absOn: this.player.assists.abs,
-      tcsOn: this.player.assists.tcs,
-      escOn: this.player.assists.esc,
-      absActive: this.player.absActive,
-      tcsActive: this.player.tcsActive,
-      escActive: this.player.escActive,
-      slipRatio: this.player.slipRatio,
-      physicsHz: PHYSICS_HZ,
-      msP95: this.telem.snapshot().p95,
-      backend: this.telem.backend,
-      kinMix: this.player.kinMix,
-      drawCalls: this.renderer.info.render.calls,
-      triangles: this.renderer.info.render.triangles,
-      geometries: this.renderer.info.memory.geometries,
-      textures: this.renderer.info.memory.textures,
-    });
+    return engineRendering.pushHud.call(engineAdapterHost(this));
   }
 
   private qaHookAllowed() {
-    if (import.meta.env.VITE_QA === "1") return true;
-    if (import.meta.env.DEV && typeof location !== "undefined") {
-      const h = location.hostname;
-      if (h === "127.0.0.1" || h === "localhost") return true;
-    }
-    return false;
+    return engineQa.qaHookAllowed.call(engineAdapterHost(this));
   }
 
   private exposeControls() {
-    if (import.meta.env.PROD && import.meta.env.VITE_QA !== "1") return;
-    if (!this.qaHookAllowed()) return;
-    window.__controlsTest = {
-      getYaw: () => this.player.yaw,
-      getSpeed: () => this.player.speed,
-      getOnTrack: () => this.player.onTrack,
-      getProgress: () => this.player.progress,
-      getX: () => this.player.x,
-      getZ: () => this.player.z,
-      getNitro: () => this.player.nitro,
-      getTrafficCount: () => this.traffic.length,
-      getStreetCount: () => this.world.streets.length,
-      getSideStreet: () => this.player.sideStreet,
-      getMode: () => this.mode,
-      getCopCount: () => this.cops.length,
-      getHeat: () => this.heat,
-      getDriftScore: () => this.player.driftScore,
-      getLaps: () => this.totalLaps,
-      getWeather: () => this.weather,
-      getGhost: () => this.ghostFrames.length,
-      getTuneSpeed: () => this.player.stats.maxSpeed,
-      getCamMode: () => this.camMode,
-      getDrafting: () => this.player.drafting,
-      getDamage: () => this.player.damage,
-      getRoll: () => this.player.roll,
-      getSurface: () => this.player.surfaceGrip,
-      getGear: () => this.player.gear,
-      getSteer: () => this.input.poll().steer,
-      getKinMix: () => this.player.kinMix,
-      getCsmCascades: () => this.csmWanted(),
-      getCycle: () => this.autoCycle,
-      isReplay: () => this.replaying,
-      skipReplay: () => this.skipReplay(),
-      finishNow: () => {
-        this.qaForcedFinish = true;
-        this.endRace();
-      },
-      enterPhoto: () => this.enterPhoto(),
-      exitPhoto: () => this.exitPhoto(),
-      isRewinding: () => this.rewinding,
-      rewindLen: () => this.rewindBuf.length,
-      setSteer: (v: number) => {
-        this.input.steerOverride = v;
-      },
-      setKeys: (codes: string[]) => {
-        this.input.keys.clear();
-        for (const c of codes) this.input.keys.add(c);
-      },
-      setThrottle: (v: number) => {
-        this.input.throttleOverride = v;
-      },
-      setCarId: (id: string) => {
-        this.player.stats = getCar(id);
-      },
-      setAssists: (a: { abs?: boolean; tcs?: boolean; esc?: boolean }) => {
-        this.player.assists = {
-          abs: !!a.abs,
-          tcs: !!a.tcs,
-          esc: !!a.esc,
-        };
-      },
-      setNitro: (v: number) => {
-        this.player.nitro = v;
-        this.player.boostT = 0;
-      },
-      setDamage: (v: number) => {
-        this.player.damage = v;
-      },
-      skipCountdown: () => {
-        this.countdown = 0;
-        this.racing = true;
-      },
-      resetStart: () => {
-        this.restartRace();
-      },
-      setProgress: (t: number) => {
-        this.player.spawn(this.built, t, 0);
-        this.countdown = 0;
-        this.racing = true;
-      },
-      getY: () => this.player.y,
-      getAirborne: () => this.player.airborne,
-      getColliders: () =>
-        this.world.colliders.map((c) => ({
-          x: c.x,
-          z: c.z,
-          r: c.r,
-          kind: c.kind ?? "building",
-        })),
-      getTrackWidth: () => this.built.width,
-      getNearestDist: (x: number, z: number) => nearestIndex(this.built.samples, x, z, 0).dist,
-      getSide: () => this.player.sideStreet,
-      getRamps: () =>
-        this.world.ramps.map((r) => ({
-          x: r.x,
-          z: r.z,
-          sx: r.sx,
-          sz: r.sz,
-          len: r.len,
-          y0: r.y0,
-          y1: r.y1,
-          he: r.he,
-        })),
-      teleport: (x: number, z: number, yaw: number, y = 1) => {
-        this.player.x = x;
-        this.player.z = z;
-        this.player.y = y;
-        this.player.yaw = yaw;
-        this.player.vx = 0;
-        this.player.vz = 0;
-        this.player.vy = 0;
-        this.player.speed = 14;
-        this.player.airborne = false;
-        this.player.airMs = 0;
-        this.countdown = 0;
-        this.racing = true;
-      },
-      getTick: () => this.tickId,
-      isTimeVoided: () => this.timeVoided,
-      isGlLost: () => this.glLost,
-      getHandling: () => this.player.handling,
-      getAbs: () => this.player.absActive,
-      getPhysicsHz: () => PHYSICS_HZ,
-      getPhysicsVersion: () => PHYSICS_VERSION,
-      getVis: () => WEATHER_SPEC[this.weather]?.vis ?? 1,
-      exportTelemetry: () => this.telem.snapshot(),
-      gotoGolden: (id: string) => {
-        const g = AYALON_GOLDEN.find((c) => c.id === id);
-        if (!g) return false;
-        this.player.spawn(this.built, g.t, 0);
-        this.countdown = 0;
-        this.racing = true;
-        return true;
-      },
-      frameWorld: (x: number, z: number, y?: number) => this.frameWorld(x, z, y),
-      frameAzrieli: () => {
-        const p = tlv(32.07455, 34.79195);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 48,
-          pz: s.z,
-          lx: p.x,
-          ly: 95,
-          lz: p.z,
-          fov: 28,
-        };
-        this.pushHud();
-      },
-      frameToHa: () => {
-        const p = tlv(32.0695, 34.7894);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 36,
-          pz: s.z,
-          lx: p.x,
-          ly: 70,
-          lz: p.z,
-          fov: 32,
-        };
-        this.pushHud();
-      },
-      frameCityGate: () => {
-        const p = tlv(32.0832, 34.8027);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 42,
-          pz: s.z,
-          lx: p.x,
-          ly: 110,
-          lz: p.z,
-          fov: 30,
-        };
-        this.pushHud();
-      },
-      frameMidtown: () => {
-        const p = tlv(32.0806, 34.7926);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 38,
-          pz: s.z,
-          lx: p.x,
-          ly: 80,
-          lz: p.z,
-          fov: 32,
-        };
-        this.pushHud();
-      },
-      frameElectra: () => {
-        const p = tlv(32.0699, 34.7918);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 34,
-          pz: s.z,
-          lx: p.x,
-          ly: 72,
-          lz: p.z,
-          fov: 32,
-        };
-        this.pushHud();
-      },
-      frameSavidor: () => {
-        const p = tlv(32.0837, 34.79835);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 22,
-          pz: s.z,
-          lx: p.x,
-          ly: 16,
-          lz: p.z,
-          fov: 40,
-        };
-        this.pushHud();
-      },
-      frameHagana: () => {
-        const p = tlv(32.0547, 34.7982);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 18,
-          pz: s.z,
-          lx: p.x,
-          ly: 10,
-          lz: p.z,
-          fov: 42,
-        };
-        this.pushHud();
-      },
-      frameUniversity: () => {
-        const p = tlv(32.1035, 34.79815);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 20,
-          pz: s.z,
-          lx: p.x,
-          ly: 12,
-          lz: p.z,
-          fov: 42,
-        };
-        this.pushHud();
-      },
-      frameGaluyot: () => {
-        const p = tlv(32.0525, 34.79605);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 28,
-          pz: s.z - 40,
-          lx: p.x,
-          ly: 8,
-          lz: p.z,
-          fov: 48,
-        };
-        this.pushHud();
-      },
-      framePlatinum: () => {
-        const p = tlv(32.0842, 34.8036);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 36,
-          pz: s.z,
-          lx: p.x,
-          ly: 80,
-          lz: p.z,
-          fov: 34,
-        };
-        this.pushHud();
-      },
-      frameTau: () => {
-        const p = tlv(32.1124, 34.8046);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 22,
-          pz: s.z,
-          lx: p.x,
-          ly: 14,
-          lz: p.z,
-          fov: 40,
-        };
-        this.pushHud();
-      },
-      frameSarona: () => {
-        const p = tlv(32.0714, 34.7866);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 40,
-          pz: s.z,
-          lx: p.x,
-          ly: 120,
-          lz: p.z,
-          fov: 30,
-        };
-        this.pushHud();
-      },
-      frameHakirya: () => {
-        const p = tlv(32.0756, 34.7878);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 32,
-          pz: s.z,
-          lx: p.x,
-          ly: 70,
-          lz: p.z,
-          fov: 36,
-        };
-        this.pushHud();
-      },
-      frameShalomMeir: () => {
-        const p = tlv(32.0639, 34.7704);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
-        const s = this.built.samples[n.index];
-        this.enterPhoto();
-        this.photoHide = true;
-        this.photoLock = {
-          px: s.x,
-          py: 36,
-          pz: s.z,
-          lx: p.x,
-          ly: 55,
-          lz: p.z,
-          fov: 34,
-        };
-        this.pushHud();
-      },
-      getPhotoLock: () => this.photoLock,
-      setNight: (n: boolean) => this.setNight(n),
-      webgpuTried: () => this.webgpuTried,
-      webgpuOk: () => this.webgpuOk,
-      webgpuReason: () => this.webgpuReason,
-      blobKtx2: () => blobIsKtx2(),
-      getMemory: () => ({
-        textures: this.renderer.info.memory.textures,
-        geometries: this.renderer.info.memory.geometries,
-      }),
-      advanceTime: (ms: number) => {
-        const steps = Math.max(0, Math.floor(ms / (FIXED * 1000)));
-        for (let i = 0; i < steps && i < 600; i++) this.fixed(FIXED);
-      },
-    };
-    window.render_game_to_text = () =>
-      JSON.stringify({
-        track: this.trackDef.id,
-        quality: this.quality,
-        weather: this.weather,
-        night: nightAmt(this.clock) > 0.5,
-        speed: +this.player.speed.toFixed(2),
-        progress: +this.player.progress.toFixed(3),
-        onTrack: this.player.onTrack,
-        telem: this.telem.snapshot(),
-        csm: !!this.csm,
-        photo: this.photo,
-        webgpuTried: this.webgpuTried,
-        webgpuOk: this.webgpuOk,
-        webgpuReason: this.webgpuReason,
-        blobKtx2: blobIsKtx2(),
-        ssgiOff: SSGI_OFF,
-        photoAa: PHOTO_AA,
-      });
+    return engineQa.exposeControls.call(engineAdapterHost(this));
   }
 
   private setEnvRT(rt: THREE.WebGLRenderTarget) {
-    this.leases.release("env-rt");
-    this.envRT = rt;
-    this.leases.retain("env-rt", () => this.envRT.dispose());
+    return engineRendering.setEnvRT.call(engineAdapterHost(this), rt);
   }
 
   private bindCsm() {
-    if (!this.csm) return;
-    this.scene.traverse((o) => {
-      const mesh = o as THREE.Mesh;
-      const m = mesh.material;
-      if (!m) return;
-      const list = Array.isArray(m) ? m : [m];
-      for (const mat of list) {
-        if (!mat) continue;
-        const std = mat as THREE.MeshStandardMaterial;
-        if (std.isMeshStandardMaterial || (mat as THREE.MeshPhysicalMaterial).isMeshPhysicalMaterial) {
-          this.csm!.setupMaterial(mat);
-          bindRoadCompile(mat as { userData: { lanes?: number } });
-        }
-      }
-    });
+    return engineRendering.bindCsm.call(engineAdapterHost(this));
   }
 
   private csmWanted() {
-    if (this.soft || this.quality === "low" || this.csmMuted) return 0;
-    return this.quality === "high" ? 3 : 1;
+    return engineRendering.csmWanted.call(engineAdapterHost(this));
   }
 
   private trimCsm() {
-    if (!this.csm) return;
-    const n = this.csmWanted();
-    this.csm.lights.forEach((L, i) => {
-      L.visible = i < n;
-    });
+    return engineRendering.trimCsm.call(engineAdapterHost(this));
   }
 
   private updateCsm() {
-    if (!this.csm) return;
-    const n = this.csmWanted();
-    if (n === 0) {
-      for (const L of this.csm.lights) L.intensity = 0;
-      return;
-    }
-    this.csm.lightDirection.copy(this.world.sunDir).multiplyScalar(-1).normalize();
-    const night = nightAmt(this.clock);
-    const I = night > 0.5 ? 0.16 : 1.22;
-    this.csm.lights.forEach((L, i) => {
-      L.visible = i < n;
-      L.intensity = i < n ? I : 0;
-    });
-    this.csm.update();
+    return engineRendering.updateCsm.call(engineAdapterHost(this));
   }
 
   dispose() {

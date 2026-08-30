@@ -13,6 +13,7 @@ import {
   reconstructLegacyWorldSource,
   sha256,
 } from "./load-world-core.mjs";
+import { reconstructRsh016EngineSource } from "./load-engine-adapters.mjs";
 import { reconstructRsh015WorldSource } from "./load-world-builders.mjs";
 
 function baseline() {
@@ -38,6 +39,26 @@ test("the extracted facade reconstructs the accepted world.ts byte-for-byte", ()
   assert.equal(gitBlobSha1(source), LEGACY_WORLD_GIT_BLOB_SHA1);
   assert.equal((source.match(/\n/g) ?? []).length, LEGACY_WORLD_LINES);
   assert.equal(Buffer.byteLength(source), LEGACY_WORLD_BYTES);
+});
+
+test("RSH-017 engine extraction preserves the accepted engine byte-for-byte", () => {
+  const input = baseline();
+  const source = reconstructRsh016EngineSource(
+    input.engineSource,
+    JSON.parse(input.engineAdapterManifestSource),
+    input.engineAdapterSources,
+  );
+  assert.equal(sha256(source), "3f4d54bbe0b68f9654ae8a92a2f56ce378a59a9790e8fbbe2ee05199ced192c1");
+  assert.equal(gitBlobSha1(source), "692663c6d05ab59c1d99c7a357999839b9ebb0ec");
+});
+
+test("engine-adapter source drift cannot satisfy the world-core preservation gate", () => {
+  const input = baseline();
+  input.engineAdapterSources["src/game/engine/loop-adapter.ts"] += "\n// unauthorized drift\n";
+  assert.match(
+    messages(validateWorldCore(input)),
+    /RSH-017 engine-adapter authority invalid|RSH-017 engine reconstruction failed/,
+  );
 });
 
 test("track-specific or runtime implementation entering world-core fails closed", () => {

@@ -111,12 +111,19 @@ test("track, physics, asset and dependency identities remain closed", () => {
   assert.match(messages(validateWorldBuilders(dependencies)), /package-lock/);
 });
 
-test("RSH-017 structures remain unauthorized", () => {
+test("RSH-017 engine structure remains bounded to the accepted adapter set", () => {
   const input = baseline();
-  input.repositoryFiles.push("src/game/engine/loop.ts");
+  input.repositoryFiles.push("src/game/engine/extra.ts");
   assert.match(
     messages(validateWorldBuilders(input)),
-    /unauthorized RSH-017 structure/,
+    /RSH-017 engine structure differs/,
+  );
+
+  const alternate = baseline();
+  alternate.repositoryFiles.push("src/game/engine-core.ts");
+  assert.match(
+    messages(validateWorldBuilders(alternate)),
+    /unauthorized alternate RSH-017 structure/,
   );
 });
 
