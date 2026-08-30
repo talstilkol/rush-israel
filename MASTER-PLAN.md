@@ -1,11 +1,11 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 5.0.0
+**Schema:** 6.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-016 implementation base:** `973e68d6e1d3fa8ed628f4461cdfae3096d01ea3`
-**State effective on:** merge of the RSH-016 pull request
-**Next unit:** RSH-017 — deferred and not authorised
+**RSH-017 implementation base:** `ec35e159a9722812d945eaab984f9dc92645205f`
+**State effective on:** merge of the RSH-017 pull request
+**Next unit:** RSH-018 — deferred and not authorised
 **Product-definition authority:** `PRODUCT-DEFINITION.json`
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`
@@ -19,7 +19,8 @@ GitHub is the sole source of truth. `CURRENT-STATE.json`, `QUEUE.json`, this doc
 `MILESTONE-REGISTER.md`, `PRODUCT-DEFINITION.json`,
 `TRACK-CATALOGUE-CLASSIFICATION.json`, `ASSET-PROVENANCE.json`,
 `PRODUCT-METADATA.json`, `TRACK-SCHEMA.json`, `TRACK-MODULE-MANIFEST.json`,
-`WORLD-CORE-MANIFEST.json`, `WORLD-BUILDER-MANIFEST.json` and `REPOSITORY-GOVERNANCE.md` control program state.
+`WORLD-CORE-MANIFEST.json`, `WORLD-BUILDER-MANIFEST.json`,
+`ENGINE-ADAPTER-MANIFEST.json` and `REPOSITORY-GOVERNANCE.md` control program state.
 
 Historical planning files are evidence only. They do not control queue order,
 accepted progress, asset clearance or release-gate counts.
@@ -80,23 +81,23 @@ root-branding assets remain unverified.
 6. A unit becomes accepted when its PR merges; exact self-referential merge evidence is reconciled in the following preflight.
 7. Accepted-unit progress is not release readiness; all 13 release gates remain authoritative.
 8. The RSH-010–RSH-014 owner batch is closed at 5/5.
-9. The plain `next` authority covers exactly RSH-016 and is consumed on its validated merge; RSH-017 is not authorised.
+9. The plain `next` authority covers exactly RSH-017 and is consumed on its validated merge; RSH-018 is not authorised.
 
-## 5. Post-RSH-016 program state
+## 5. Post-RSH-017 program state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 16 |
+| Accepted | 17 |
 | In review | 0 |
 | Eligible | 0 |
-| Deferred | 51 |
-| Remaining | 51 |
-| Queue head | RSH-017 — deferred/not authorised |
+| Deferred | 50 |
+| Remaining | 50 |
+| Queue head | RSH-018 — deferred/not authorised |
 | Active PR | none |
-| RSH-016 one-unit authority | 1/1 — consumed |
+| RSH-017 one-unit authority | 1/1 — consumed |
 | Release gates green | 0/13 |
-| Findings OPEN / MITIGATED / CLOSED | 24 / 7 / 11 |
+| Findings OPEN / MITIGATED / CLOSED | 22 / 9 / 11 |
 
 ## 6. Stage map
 
@@ -105,7 +106,7 @@ root-branding assets remain unverified.
 | G0 | RSH-001–003 | 3 | Control and governance | ACCEPTED |
 | G1 | RSH-004–008 | 5 | Reproducible toolchain and CI | UNITS ACCEPTED; EXIT GATE BLOCKED BY OWNER SETTING |
 | G2 | RSH-009–012 | 4 | Scope, licensing and assets | ACCEPTED |
-| G3 | RSH-013–020 | 8 | Architecture decomposition | DEFERRED — RSH-013–RSH-016 accepted; RSH-017 deferred/not authorised |
+| G3 | RSH-013–020 | 8 | Architecture decomposition | DEFERRED — RSH-013–RSH-017 accepted; RSH-018 deferred/not authorised |
 | G4 | RSH-021–024 | 4 | Data integrity and production security | DEFERRED |
 | G5 | RSH-025–036 | 12 | Ayalon vertical slice | DEFERRED |
 | G6 | RSH-037–043 | 7 | Performance and reliability | DEFERRED |
@@ -207,11 +208,12 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-RSH-016 is accepted on merge only after exact-head CI and review. It replaces the
-6,240-line monolithic `addLandmarks` dispatcher with exactly 56 per-track builder
-modules, one registry and one shared-context authority. The accepted RSH-015
-`world.ts` reconstructs byte-for-byte, and runtime, track-data, physics, asset and
-dependency changes remain zero.
+RSH-017 is accepted on merge only after exact-head CI and review. It extracts exactly
+58 existing methods from `engine.ts` into four bounded concern adapters: loop,
+rendering, physics and QA. `engine.ts` remains the sole concrete state, constructor,
+assembly and disposal owner and falls from 2,815 to 1,202 lines. The accepted RSH-016
+engine reconstructs byte-for-byte, and runtime, public API, physics, rendering, QA,
+track, asset, dependency and save/record changes remain zero.
 
-The RSH-016 one-unit `next` authority is then consumed. RSH-017 remains deferred and
+The RSH-017 one-unit `next` authority is then consumed. RSH-018 remains deferred and
 cannot start without a new explicit owner instruction.

@@ -1,0 +1,240 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-rsh-017-engine-adapter-preflight",
+  "unit": "RSH-017",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "generated_at": "2026-08-30T16:15:00+03:00",
+  "owner_authorization": {
+    "instruction": "next",
+    "authorized_units": [
+      "RSH-017"
+    ],
+    "units_authorized": 1,
+    "rsh_018_authorized": false
+  },
+  "live_base": {
+    "commit_sha": "ec35e159a9722812d945eaab984f9dc92645205f",
+    "tree_sha": "8aff09cb4cc582a240f99a8711d56780fd60acb9",
+    "verified_at": "2026-08-30T15:55:00+03:00",
+    "open_pull_requests": 0
+  },
+  "reconciled_existing_branch": {
+    "branch": "agent/rsh-017-engine-adapters",
+    "head_before_implementation": "57b34767c3a1a3ae1bbf8d01a7d10984a23ea99e",
+    "tree_before_implementation": "a6b648d7fe23b137d700554ed5d84b64c83c73a5",
+    "ahead_of_main": 3,
+    "behind_main": 0,
+    "product_source_changes": 0,
+    "temporary_files": [
+      ".github/workflows/rsh-017-source-transfer.yml",
+      ".rsh017-overlay.part-00"
+    ],
+    "history_policy": "preserve_and_fast_forward_only"
+  },
+  "source_transfer": {
+    "workflow_run": 33310680226,
+    "head_sha": "cb99ba919423d39b06323b13c1e22c5abc8f9f7d",
+    "tree_sha": "c5d4389368c601002295717e9fcafb1c58c1b49c",
+    "artifact_id": 9731874712,
+    "artifact_size_bytes": 42990105,
+    "artifact_digest": "sha256:534dc86cb7684b93346e8bb183c7d8aa3ae775963560a76a7fef7ee406b7a1ed",
+    "retention_days": 1
+  },
+  "reconciled_rsh_016": {
+    "pull_request": 19,
+    "validated_head_sha": "300e08941e57167bb7ff583378d7833c292ef23a",
+    "candidate_tree_sha": "8aff09cb4cc582a240f99a8711d56780fd60acb9",
+    "merge_sha": "ec35e159a9722812d945eaab984f9dc92645205f",
+    "merge_tree_sha": "8aff09cb4cc582a240f99a8711d56780fd60acb9",
+    "pre_merge_workflow_run": 33282485982,
+    "pre_merge_workflow_job": 99179882016,
+    "pre_merge_artifact_id": 9723427805,
+    "pre_merge_artifact_digest": "sha256:c9ee74985f4624e12d47373ce418cae87e7a2853d2857a577a020fc959ba271b",
+    "post_merge_workflow_run": 33282738585,
+    "post_merge_workflow_job": 99180547601,
+    "post_merge_artifact_id": 9723500214,
+    "post_merge_artifact_digest": "sha256:2f1c7dfec2dacb7bb2bd3ac1a708c3d61095eb00a82a755a11f146a5bc67343b",
+    "unit_tests_passed": 356,
+    "unit_tests_total": 356,
+    "codex_review_state": "completed_no_major_findings",
+    "codex_reviewed_head": "300e08941e57167bb7ff583378d7833c292ef23a",
+    "unresolved_review_threads": 0
+  },
+  "source_before": {
+    "path": "src/game/engine.ts",
+    "lines": 2815,
+    "bytes": 99577,
+    "sha256": "3f4d54bbe0b68f9654ae8a92a2f56ce378a59a9790e8fbbe2ee05199ced192c1",
+    "git_blob_sha1": "692663c6d05ab59c1d99c7a357999839b9ebb0ec"
+  },
+  "extraction": {
+    "engine": {
+      "path": "src/game/engine.ts",
+      "lines": 1202,
+      "bytes": 40417,
+      "sha256": "cd2e30b1ae1badfd712a7ac8fe3dbb8ae0aeba80827d10464c6c2dcfcf043d84",
+      "git_blob_sha1": "a54d690d877d614efc6acef1fab20aa7dab8ca8d"
+    },
+    "adapter_count": 4,
+    "moved_method_count": 58,
+    "adapter_lines": 2205,
+    "adapter_bytes": 76069,
+    "support": {
+      "path": "src/game/engine/adapter-host.ts",
+      "lines": 4,
+      "bytes": 243,
+      "sha256": "abd14cb1c1712cb6e7ca73166aacb58aae666e9fa45e1f0adfd5dc3274a7b49c",
+      "git_blob_sha1": "10ce852b8d250a5838c160ca35324bef86271603"
+    },
+    "total_engine_source_lines": 3411,
+    "total_engine_source_bytes": 116729,
+    "adapters": [
+      {
+        "id": "loop",
+        "path": "src/game/engine/loop-adapter.ts",
+        "method_count": 5,
+        "methods": [
+          "onContextLost",
+          "onContextRestored",
+          "shouldPresent",
+          "onResize",
+          "frame"
+        ],
+        "lines": 166,
+        "bytes": 4975,
+        "sha256": "ab4c7f8378d426506ae3655f4b429bfe392bde0c31783733eeeea99a53edf06c",
+        "git_blob_sha1": "f923d25485648e74ebda582f84a0385e250af109"
+      },
+      {
+        "id": "rendering",
+        "path": "src/game/engine/rendering-adapter.ts",
+        "method_count": 28,
+        "methods": [
+          "upgradeGraphics",
+          "enterPhoto",
+          "exitPhoto",
+          "frameWorld",
+          "isPhoto",
+          "capturePhoto",
+          "flushSnap",
+          "cyclePhotoFilter",
+          "togglePhotoHud",
+          "setAutoCycle",
+          "getAutoCycle",
+          "setNight",
+          "applyLook",
+          "applyClockSky",
+          "captureSceneEnv",
+          "applyAltitudeLook",
+          "updateProbe",
+          "applyGfxStep",
+          "stepPhoto",
+          "present",
+          "snapCamera",
+          "setFovExtra",
+          "pushHud",
+          "setEnvRT",
+          "bindCsm",
+          "csmWanted",
+          "trimCsm",
+          "updateCsm"
+        ],
+        "lines": 850,
+        "bytes": 31856,
+        "sha256": "11a9e1716c977e3c2d4e4050358540ee0d6eb85ee93f2d297749e447b34cdb0d",
+        "git_blob_sha1": "130cfbf9cc8d72e3a156d8c352c16f84534b9882"
+      },
+      {
+        "id": "physics",
+        "path": "src/game/engine/physics-adapter.ts",
+        "method_count": 23,
+        "methods": [
+          "fixed",
+          "stepDriftCraft",
+          "standings",
+          "stepHeat",
+          "pushCopsBack",
+          "ensureCops",
+          "addCop",
+          "spawnRoadblock",
+          "tickRoadblock",
+          "navAngle",
+          "stampPois",
+          "clearRoadblock",
+          "checkKnockout",
+          "closeSector",
+          "endRace",
+          "emitFinish",
+          "skipReplay",
+          "recordSnap",
+          "recordReplay",
+          "takePack",
+          "applyPack",
+          "stepRewind",
+          "stepReplay"
+        ],
+        "lines": 747,
+        "bytes": 26040,
+        "sha256": "d888b4fd944ad9ebd06353a080be84187c27ac65329e5271aeeec7471f402aa2",
+        "git_blob_sha1": "d0330a5ef5a62c5d5e30e12ccb23cc4c0bbf6df4"
+      },
+      {
+        "id": "qa",
+        "path": "src/game/engine/qa-adapter.ts",
+        "method_count": 2,
+        "methods": [
+          "qaHookAllowed",
+          "exposeControls"
+        ],
+        "lines": 442,
+        "bytes": 13198,
+        "sha256": "24f3b27cbe097d5ec70646cc1760e706e44e4ecac73c434d208735ab53c6fcc0",
+        "git_blob_sha1": "be76d23207da4e9a0389caf8de9b29548dc30370"
+      }
+    ]
+  },
+  "reconstruction": {
+    "expected_sha256": "3f4d54bbe0b68f9654ae8a92a2f56ce378a59a9790e8fbbe2ee05199ced192c1",
+    "expected_git_blob_sha1": "692663c6d05ab59c1d99c7a357999839b9ebb0ec",
+    "expected_lines": 2815,
+    "expected_bytes": 99577,
+    "state": "byte_exact"
+  },
+  "preservation": {
+    "runtime_behavior_changes": 0,
+    "public_api_changes": 0,
+    "physics_changes": 0,
+    "rendering_behavior_changes": 0,
+    "qa_interface_changes": 0,
+    "track_data_changes": 0,
+    "track_order_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "save_record_changes": 0,
+    "physics_hz": 120,
+    "track_ids": 56,
+    "mvp_tracks": 8,
+    "deferred_tracks": 48,
+    "unverified_asset_files": 66,
+    "release_gates_green": 0,
+    "release_gates_total": 13,
+    "public_distribution_authorized": false
+  },
+  "final_tree_requirements": {
+    "temporary_transfer_files": 0,
+    "alternate_engine_adapter_directories": 0,
+    "rsh_018_files": 0,
+    "force_push": false,
+    "history_rewrite": false
+  },
+  "acceptance": {
+    "required_ci_context": "required-ci / validate",
+    "exact_head_required": true,
+    "codex_review_exact_head_required": true,
+    "blocking_findings_required": 0,
+    "unresolved_review_threads_required": 0,
+    "merge_after_validation": true,
+    "post_merge_ci_required": true
+  }
+}

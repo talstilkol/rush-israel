@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 4.0.0
+**Version:** 5.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-016 implementation base:** `973e68d6e1d3fa8ed628f4461cdfae3096d01ea3`
-**State effective on:** merge of the RSH-016 pull request
+**RSH-017 implementation base:** `ec35e159a9722812d945eaab984f9dc92645205f`
+**State effective on:** merge of the RSH-017 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-017 — deferred and not authorised
+**Next scheduled unit:** RSH-018 — deferred and not authorised
 
 ## Status vocabulary
 
@@ -23,7 +23,7 @@
 | M0 | Control and governance | RSH-001–RSH-003 | 3 | ACCEPTED | Canonical state, queue, governance, baselines and registers agree. |
 | M1 | Reproducible toolchain and CI | RSH-004–RSH-008 | 5 | BLOCKED — owner setting | A clean clone passes required CI and `main` is technically protected. |
 | M2 | Product scope, licensing and assets | RSH-009–RSH-012 | 4 | ACCEPTED | Scope, package identity, root licence and every shipped asset’s legal status are explicit. |
-| M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | DEFERRED — RSH-013–RSH-016 accepted; RSH-017 not authorised | Core responsibilities and resource ownership are separated. |
+| M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | DEFERRED — RSH-013–RSH-017 accepted; RSH-018 not authorised | Core responsibilities and resource ownership are separated. |
 | M4 | Data integrity and production security | RSH-021–RSH-024 | 4 | DEFERRED | Save data is recoverable and production has no debug or secret exposure. |
 | M5 | Ayalon vertical slice | RSH-025–RSH-036 | 12 | DEFERRED | Ayalon is owner-approved, golden-locked and dependency-frozen. |
 | M6 | Performance and reliability | RSH-037–RSH-043 | 7 | DEFERRED | Performance, leak, recovery, soak and compatibility targets pass. |
@@ -35,14 +35,14 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 16 |
+| Accepted units | 17 |
 | Units in review | 0 |
 | Eligible units | 0 |
 | Queue head | none |
 | Active PR | none |
-| Remaining units | 51 |
-| RSH-016 one-unit authority | consumed 1/1 |
-| Next scheduled unit | RSH-017 — deferred and not authorised |
+| Remaining units | 50 |
+| RSH-017 one-unit authority | consumed 1/1 |
+| Next scheduled unit | RSH-018 — deferred and not authorised |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -72,11 +72,12 @@ Exactly 66 public asset files remain unverified and public distribution remains 
 | RSH-013 — canonical track schema | ACCEPTED — PR #16 |
 | RSH-014 — one module per track | ACCEPTED — PR #17 |
 | RSH-015 — world-core extraction | ACCEPTED — PR #18 |
-| RSH-016 — isolated world builders per track | ACCEPTED ON MERGE — RSH-016 PR |
-| RSH-017–RSH-020 | DEFERRED — NOT AUTHORISED |
+| RSH-016 — isolated world builders per track | ACCEPTED — PR #19 |
+| RSH-017 — loop/rendering/physics/QA engine adapters | ACCEPTED ON MERGE — RSH-017 PR |
+| RSH-018–RSH-020 | DEFERRED — NOT AUTHORISED |
 
-The plain `next` authority covers exactly RSH-016 and is consumed on its validated merge.
-No unit remains eligible. RSH-017 requires a new explicit owner instruction.
+The plain `next` authority covers exactly RSH-017 and is consumed on its validated merge.
+No unit remains eligible. RSH-018 requires a new explicit owner instruction.
 
 ## GitHub-native milestone policy
 
