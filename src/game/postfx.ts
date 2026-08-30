@@ -6,6 +6,7 @@ import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
 import { SMAAPass } from "three/examples/jsm/postprocessing/SMAAPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { PHOTO_AA } from "../rendering/traa";
+import { disposeObject3D } from "../rendering/disposeObject3D";
 
 /** Codex 78: no SSGI/volumetric GI. Fog is Exp2 in engine. Rain is Points. */
 export const SSGI_OFF = true;
@@ -229,7 +230,10 @@ export function bakeEnv(renderer: THREE.WebGLRenderer, night = false) {
     tmp.add(ground);
   }
   const pmrem = new THREE.PMREMGenerator(renderer);
-  const env = pmrem.fromScene(tmp, 0.04);
-  pmrem.dispose();
-  return env;
+  try {
+    return pmrem.fromScene(tmp, 0.04);
+  } finally {
+    pmrem.dispose();
+    disposeObject3D(tmp);
+  }
 }

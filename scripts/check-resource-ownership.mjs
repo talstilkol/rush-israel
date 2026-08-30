@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
 import { stripRsh019Overlay } from "./rsh019-overlay.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "f634fc9f3e9f8613cbab70cb1cfe6760542d45324d4ac384df6c6109f03592a2";
+export const EXPECTED_MANIFEST_SHA256 = "e121116947d63d986d60e57c6d56462e2d9e166aa2c4c285a5b10af06aff7fdd";
 
 function sha256(source) {
   return createHash("sha256").update(source).digest("hex");
@@ -77,6 +77,8 @@ export function validateResourceOwnership(overrides = {}) {
 
   const objectDisposer = input.sources["src/rendering/disposeObject3D.ts"] ?? "";
   if (/\b(?:map|texture)\.dispose\s*\(/.test(objectDisposer)) errors.push("per-engine Object3D disposal must not destroy shared textures");
+  const postfx = input.sources["src/game/postfx.ts"] ?? "";
+  if (!postfx.includes("disposeObject3D(tmp)")) errors.push("fallback PMREM scene resources are not released");
   if (!objectDisposer.includes("tracker.geometries") || !objectDisposer.includes("tracker.materials")) errors.push("unique geometry/material accounting missing");
 
   const adapter = input.sources["src/game/engine/rendering-adapter.ts"] ?? "";

@@ -15,9 +15,11 @@ test("RSH-019 car disposal stays texture-safe and covers every visual family", (
   const disposer = readFileSync(fromRoot("src", "rendering", "disposeObject3D.ts"), "utf8");
   const carMesh = readFileSync(fromRoot("src", "game", "car-mesh.ts"), "utf8");
   const engine = readFileSync(fromRoot("src", "game", "engine.ts"), "utf8");
+  const postfx = readFileSync(fromRoot("src", "game", "postfx.ts"), "utf8");
 
   assert.doesNotMatch(disposer, /\b(?:map|texture)\.dispose\s*\(/);
   assert.match(carMesh, /export function disposeCarVisual/);
+  assert.match(postfx, /disposeObject3D\(tmp\)/);
   for (const family of [
     "this.visuals ?? []",
     "this.trafficVis ?? []",

@@ -63,10 +63,10 @@
     },
     "src/game/postfx.ts": {
       "path": "src/game/postfx.ts",
-      "lines": 235,
-      "bytes": 7602,
-      "sha256": "b88c617d259af12583925fdefba19fe917ac18d51a8d5797b017d624df256d2d",
-      "git_blob_sha1": "74bd2dfa63856a7aca82a383538d2f27a45cfce7"
+      "lines": 239,
+      "bytes": 7703,
+      "sha256": "c847b0fdfe1eb5fd30322a3723900e8675b31791b0d5edb71c47d31ce630e761",
+      "git_blob_sha1": "3d7d268a5c50e8ef6d123949f50fab7c2d56d0d6"
     },
     "scripts/soak-menu-race.mjs": {
       "path": "scripts/soak-menu-race.mjs",
@@ -156,7 +156,7 @@
       "road/sky/tree/facade/curb/sign/water/flare/blob/flake/car textures and meshes"
     ],
     "per_engine_disposal_forbidden": true,
-    "rationale": "A later engine instance reuses these caches; Object3D disposal intentionally excludes textures."
+    "rationale": "A later engine instance reuses the asset caches; per-engine Object3D disposal excludes textures, while cloned car bodies own independent geometry."
   },
   "leak_accounting": {
     "required_ci_cycles": 2,
