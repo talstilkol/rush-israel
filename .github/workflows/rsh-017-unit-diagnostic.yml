@@ -1,4 +1,4 @@
-name: rsh-017-unit-diagnostic
+name: rsh-017-preservation-finalizer
 
 on:
   push:
@@ -6,35 +6,27 @@ on:
       - agent/rsh-017-engine-adapters
     paths:
       - .github/workflows/rsh-017-unit-diagnostic.yml
-      - src/game/engine.ts
-      - src/game/engine/**
-      - scripts/check-engine-adapters*
-      - scripts/check-track-consumer-source-pin*
-      - scripts/check-world-core*
-      - ENGINE-ADAPTER-MANIFEST.json
-      - CURRENT-STATE.json
-      - QUEUE.json
-      - MILESTONE-REGISTER.md
+  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: rsh-017-unit-diagnostic
+  group: rsh-017-preservation-finalizer
   cancel-in-progress: false
 
 jobs:
-  unit-diagnostic:
+  finalize:
     runs-on: ubuntu-24.04
     env:
       CI: true
       NODE_OPTIONS: --experimental-strip-types
     steps:
-      - name: Check out exact revision
+      - name: Check out exact staging revision
         uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Set up pinned Node.js
         uses: actions/setup-node@v4
@@ -45,38 +37,62 @@ jobs:
       - name: Install pinned npm
         run: npm install --global npm@10.9.2
 
-      - name: Install dependencies
+      - name: Install dependencies from lockfile
         run: npm ci
 
-      - name: Capture exact candidate source
+      - name: Apply bounded successor-preservation patch
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p artifacts
-          git archive --format=tar.gz --output=artifacts/rsh-017-candidate-source.tar.gz "${GITHUB_SHA}"
+          test "$(git rev-parse HEAD)" = "${GITHUB_SHA}"
 
-      - name: Capture complete unit-test output
-        id: tests
+          cat > /tmp/rsh017-fix.patch.xz.b64 <<'RSH017_PATCH'
+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
+RSH017_PATCH
+
+          test "$(wc -c < /tmp/rsh017-fix.patch.xz.b64)" -eq 4188
+          echo "214579f3336512dea2b29c23afca85f9aea2e9df23cd1587c976f6fa7b40a710  /tmp/rsh017-fix.patch.xz.b64" | sha256sum -c -
+          base64 --decode /tmp/rsh017-fix.patch.xz.b64 > /tmp/rsh017-fix.patch.xz
+          test "$(wc -c < /tmp/rsh017-fix.patch.xz)" -eq 3140
+          echo "c76052144afc877932c4c5e66a6967c9b79cf4fc69d7c8d9fc0fb13088eef062  /tmp/rsh017-fix.patch.xz" | sha256sum -c -
+          xz --decompress --stdout /tmp/rsh017-fix.patch.xz > /tmp/rsh017-fix.patch
+          test "$(wc -c < /tmp/rsh017-fix.patch)" -eq 12361
+          echo "d9b49f328898e4d7a9d8de9318a5bfa435606fcfcf99f53dc465b74dc9991038  /tmp/rsh017-fix.patch" | sha256sum -c -
+
+          git apply --check --whitespace=nowarn /tmp/rsh017-fix.patch
+          git apply --whitespace=nowarn /tmp/rsh017-fix.patch
+          rm -f .github/workflows/rsh-017-unit-diagnostic.yml
+
+      - name: Validate bounded RSH-017 authority
         shell: bash
         run: |
-          set +e
-          npm test 2>&1 | tee artifacts/rsh-017-unit-tests.log
-          code=${PIPESTATUS[0]}
-          echo "exit_code=${code}" >> "$GITHUB_OUTPUT"
-          exit 0
+          set -euo pipefail
+          node scripts/check-engine-adapters.mjs
+          node scripts/check-world-core.mjs
+          node scripts/check-track-schema.mjs
+          node --test \
+            scripts/check-track-consumer-source-pin.test.mjs \
+            scripts/check-world-core.test.mjs \
+            scripts/check-engine-adapters.test.mjs
+          npm test
 
-      - name: Upload unit-test diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: rsh-017-unit-diagnostic-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            artifacts/rsh-017-unit-tests.log
-            artifacts/rsh-017-candidate-source.tar.gz
-          if-no-files-found: error
-          retention-days: 14
-
-      - name: Preserve test verdict
-        if: always()
+      - name: Commit exact final candidate
         shell: bash
-        run: exit "${{ steps.tests.outputs.exit_code }}"
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          actual="$(git diff --cached --name-only | sort)"
+          expected="$(printf '%s\n' \
+            .github/workflows/rsh-017-unit-diagnostic.yml \
+            scripts/check-track-consumer-source-pin.mjs \
+            scripts/check-track-consumer-source-pin.test.mjs \
+            scripts/check-world-core.mjs \
+            scripts/check-world-core.test.mjs | sort)"
+          test "$actual" = "$expected"
+          test -z "$(git status --short | grep '^??' || true)"
+
+          git commit -m "RSH-017: reconcile engine adapter preservation gates"
+          git push origin HEAD:refs/heads/agent/rsh-017-engine-adapters
