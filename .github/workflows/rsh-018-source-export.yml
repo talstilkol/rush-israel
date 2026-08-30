@@ -1,0 +1,34 @@
+name: rsh-018-source-export
+
+on:
+  push:
+    branches:
+      - agent/rsh-018-game-app-decomposition
+    paths:
+      - .github/workflows/rsh-018-source-export.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rsh-018-source-export
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+      - name: Export exact tracked tree
+        run: git archive --format=zip --output=rsh018-source.zip HEAD
+      - name: Upload exact source archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: rsh018-source-${{ github.run_id }}
+          path: rsh018-source.zip
+          if-no-files-found: error
+          retention-days: 1
