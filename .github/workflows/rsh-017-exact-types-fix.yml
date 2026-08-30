@@ -1,0 +1,59 @@
+name: rsh-017-exact-types-fix
+
+on:
+  push:
+    branches:
+      - agent/rsh-017-engine-adapters
+    paths:
+      - .github/workflows/rsh-017-exact-types-fix.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rsh-017-exact-types-fix
+  cancel-in-progress: false
+
+jobs:
+  fix:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/rsh-017-engine-adapters
+          fetch-depth: 0
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate exact typed adapter boundary
+        run: node scripts/rsh-017-exact-types-fix.mjs
+
+      - name: Remove one-shot tooling from final tree
+        run: git rm .github/workflows/rsh-017-exact-types-fix.yml scripts/rsh-017-exact-types-fix.mjs
+
+      - name: Validate exact type boundary and repository suite
+        run: |
+          node scripts/check-engine-adapters.mjs
+          npm test
+          npm run typecheck
+          npm run lint
+
+      - name: Commit exact typed boundary
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "RSH-017: enforce exact adapter type boundary"
+          git push origin HEAD:agent/rsh-017-engine-adapters
