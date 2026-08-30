@@ -26,7 +26,7 @@ export const EXPECTED_PRESERVED = {
   "src/game/world-core.ts": "cbb9ac1f9de387cb1b31290fbc617b0ca34536b97067198b61e82ffcaf31fafe",
   "src/game/save.ts": "d7c681b9e00942c91135a579d47f7f9f8def717d22232470b3990a5b0a644d87",
   "src/game/records.ts": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
-  "src/components/game-app.tsx": "04f0c06e69a7a8c91bc4524eba1fcc066a05e7f4a5199d7492b330ee70e7829e",
+  "src/components/game-app.tsx": "4569f67f6a8659252e3c3cf332fa377f263d3f41fcd03ced60a007aa0148cc4b",
   "WORLD-BUILDER-MANIFEST.json": "5921e14be99509e8b812bc3f556643b98d2244d1f8b77c2b928e02a99de90f00",
   "TRACK-MODULE-MANIFEST.json": "a8891a4af9345dbfa34fcb998302b77383f3b14f19fd240c9a8c46d2e5a43fdd",
   "TRACK-SCHEMA.json": "56f2f29c131d8df1b98c5fdc909fd1fe35cf21de2346d6f9f8189b6d1abec208",
@@ -154,8 +154,8 @@ export function validateEngineAdapters(overrides = {}) {
   const engineDirectory = input.repositoryFiles.filter((path) => path.startsWith("src/game/engine/"));
   const expectedDirectory = [...EXPECTED_ADAPTER_PATHS, EXPECTED_SUPPORT_PATH].sort();
   if (JSON.stringify(engineDirectory.sort()) !== JSON.stringify(expectedDirectory)) errors.push(`unmanifested engine structure: ${engineDirectory.join(", ")}`);
-  const rsh018 = input.repositoryFiles.filter((path) => path.startsWith("src/components/game/") || path.startsWith("src/game/screens/") || path.startsWith("src/game/hud/") || path === "src/game/race-controller.ts");
-  if (rsh018.length) errors.push(`unauthorized RSH-018 structure: ${rsh018.join(", ")}`);
+  const noncanonicalGameApp = input.repositoryFiles.filter((path) => path.startsWith("src/components/game/") || path.startsWith("src/game/screens/") || path.startsWith("src/game/hud/") || path === "src/game/race-controller.ts");
+  if (noncanonicalGameApp.length) errors.push(`noncanonical game-app structure: ${noncanonicalGameApp.join(", ")}`);
   const temp = input.repositoryFiles.filter((path) => path.startsWith(".github/workflows/rsh-017-") || path.startsWith(".rsh017-overlay.part-"));
   if (temp.length) errors.push(`temporary RSH-017 transfer files remain: ${temp.join(", ")}`);
 

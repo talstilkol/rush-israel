@@ -96,7 +96,7 @@ test("physics, rendering, QA, tracks, assets and dependencies remain closed", ()
   assert.match(messages(validateEngineAdapters(dependencies)), /package-lock/);
 });
 
-test("temporary transfer files, unmanifested engine files and RSH-018 structures fail closed", () => {
+test("temporary transfer files, unmanifested engine files and noncanonical game-app structures fail closed", () => {
   const temp = baseline();
   temp.repositoryFiles.push(".rsh017-overlay.part-01");
   assert.match(messages(validateEngineAdapters(temp)), /temporary RSH-017 transfer files/);
@@ -107,7 +107,7 @@ test("temporary transfer files, unmanifested engine files and RSH-018 structures
 
   const later = baseline();
   later.repositoryFiles.push("src/game/race-controller.ts");
-  assert.match(messages(validateEngineAdapters(later)), /unauthorized RSH-018 structure/);
+  assert.match(messages(validateEngineAdapters(later)), /noncanonical game-app structure/);
 });
 
 test("@ts-nocheck and adapter body-marker drift fail closed", () => {

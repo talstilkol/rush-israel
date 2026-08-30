@@ -8,6 +8,11 @@ import {
   validateEngineAdapters,
 } from "./check-engine-adapters.mjs";
 import { reconstructRsh016EngineSource } from "./load-engine-adapters.mjs";
+import {
+  readGameAppDecompositionInputs,
+  validateGameAppDecomposition,
+} from "./check-game-app-decomposition.mjs";
+import { reconstructRsh017GameAppSource } from "./load-game-app-decomposition.mjs";
 import { reconstructLegacyWorldSource } from "./load-world-core.mjs";
 import { reconstructRsh015WorldSource } from "./load-world-builders.mjs";
 
@@ -256,16 +261,62 @@ function acceptedInternalEngineAdapterAuthority(errors, sources) {
   };
 }
 
+function acceptedInternalGameAppAuthority(errors, sources) {
+  let input;
+  let manifest;
+  try {
+    input = readGameAppDecompositionInputs();
+    manifest = JSON.parse(input.manifestSource);
+  } catch (error) {
+    errors.push(`RSH-018 game-app authority cannot be read: ${error.message}`);
+    return { paths: new Set(), manifest: null, moduleSources: {} };
+  }
+  const moduleSources = Object.fromEntries(manifest.extraction.modules.map((module) => [
+    module.path,
+    typeof sources[module.path] === "string" ? sources[module.path] : input.moduleSources[module.path],
+  ]));
+  const facadeSource = typeof sources[manifest.extraction.facade.path] === "string"
+    ? sources[manifest.extraction.facade.path]
+    : input.facadeSource;
+  const validation = validateGameAppDecomposition({ ...input, facadeSource, moduleSources });
+  if (validation.errors.length) {
+    errors.push(...validation.errors.map((error) => `RSH-018 game-app authority invalid: ${error}`));
+    return { paths: new Set(), manifest, moduleSources };
+  }
+  return {
+    paths: new Set(manifest.extraction.modules.map((module) => module.path)),
+    manifest,
+    moduleSources,
+  };
+}
+
 function identitySourceForAcceptedBaseline(
   filePath,
   source,
   expectedGitBlobSha1,
   errors,
   engineAuthority,
+  gameAppAuthority,
 ) {
   const rawIdentity = gitBlobSha1(source);
   if (rawIdentity === expectedGitBlobSha1) {
     return { source, rawIdentity, reconstructed: false };
+  }
+  if (filePath === "src/components/game-app.tsx") {
+    if (!gameAppAuthority.manifest) {
+      errors.push("src/components/game-app.tsx controlled RSH-018 authority is unavailable");
+      return { source, rawIdentity, reconstructed: false };
+    }
+    try {
+      const reconstructed = reconstructRsh017GameAppSource(
+        gameAppAuthority.manifest,
+        gameAppAuthority.moduleSources,
+      );
+      return { source: reconstructed, rawIdentity, reconstructed: true };
+    } catch (error) {
+      errors.push(`src/components/game-app.tsx controlled RSH-018 reconstruction failed: ${error.message}`);
+      return { source, rawIdentity, reconstructed: false };
+    }
   }
   if (filePath === "src/game/world.ts") {
     try {
@@ -309,15 +360,20 @@ export function validateTrackConsumerSourcePin({ consumerSources } = {}) {
 
   const internalWorldBuilderPaths = acceptedInternalWorldBuilderPaths(errors);
   const engineAuthority = acceptedInternalEngineAdapterAuthority(errors, sources);
+  const gameAppAuthority = acceptedInternalGameAppAuthority(errors, sources);
   const expectedPaths = Object.keys(ACCEPTED_TRACK_CONSUMERS).sort();
   const consumers = Object.entries(sources)
     .filter(([filePath, source]) => (
       !internalWorldBuilderPaths.has(filePath)
       && !engineAuthority.paths.has(filePath)
+      && !gameAppAuthority.paths.has(filePath)
       && importsTrackRuntime(filePath, source)
     ))
-    .map(([filePath]) => filePath)
-    .sort();
+    .map(([filePath]) => filePath);
+  if (gameAppAuthority.manifest) {
+    consumers.push("src/components/game-app.tsx");
+  }
+  consumers.sort();
 
   if (JSON.stringify(consumers) !== JSON.stringify(expectedPaths)) {
     errors.push(
@@ -340,6 +396,7 @@ export function validateTrackConsumerSourcePin({ consumerSources } = {}) {
       expectedGitBlobSha1,
       errors,
       engineAuthority,
+      gameAppAuthority,
     );
     const actualGitBlobSha1 = gitBlobSha1(identitySource.source);
     if (actualGitBlobSha1 !== expectedGitBlobSha1) {

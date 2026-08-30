@@ -1,0 +1,382 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rsh-018-game-app-preflight",
+  "generated_at": "2026-08-31T00:30:00+03:00",
+  "unit": "RSH-018",
+  "implementation_base": {
+    "sha": "d3bd207a98989398ead0e6804519d4a0d2eb19a1",
+    "tree": "3535dfaaf96f01a64f6ec79a09358aff4e6cf4c8"
+  },
+  "reconciled_rsh_017": {
+    "state": "accepted",
+    "branch": "agent/rsh-017-engine-adapters",
+    "pull_request": 20,
+    "validated_head_sha": "de15ef3703d65fb4302e9e7c5c638c226aab24c9",
+    "candidate_tree_sha": "3535dfaaf96f01a64f6ec79a09358aff4e6cf4c8",
+    "merge_sha": "d3bd207a98989398ead0e6804519d4a0d2eb19a1",
+    "tree_sha": "3535dfaaf96f01a64f6ec79a09358aff4e6cf4c8",
+    "workflow_run": 33330794321,
+    "workflow_job": 99308864537,
+    "artifact_id": 9737604724,
+    "artifact_digest": "sha256:84c8ffd5383c336e45b1be3b98cb01a89e696018998d5dc521e5bc0a94ccacd4",
+    "post_merge_workflow_run": 33331039626,
+    "post_merge_workflow_job": 99309526561,
+    "post_merge_artifact_id": 9737684123,
+    "post_merge_artifact_digest": "sha256:d4898af37b28937bf42990eab59a5ba37c0007086883660a04738b497ee40cc2",
+    "codex_reviewed_head_sha": "de15ef3703d65fb4302e9e7c5c638c226aab24c9",
+    "codex_review_state": "completed_no_major_findings",
+    "unresolved_review_threads": 0
+  },
+  "candidate": {
+    "branch": "agent/rsh-018-game-app-decomposition",
+    "head_resolution": "live branch head after canonical finalization",
+    "manifest": "GAME-APP-DECOMPOSITION-MANIFEST.json",
+    "facade": {
+      "path": "src/components/game-app.tsx",
+      "lines": 179,
+      "bytes": 4431,
+      "sha256": "4569f67f6a8659252e3c3cf332fa377f263d3f41fcd03ced60a007aa0148cc4b",
+      "git_blob_sha1": "2876f990368492c045ea734dee1c7eeeea48f681",
+      "exports": {
+        "values": [
+          "GameApp"
+        ],
+        "types": []
+      },
+      "internal_imports": [
+        "@/components/game-app/race-controller",
+        "@/components/game-app/screens"
+      ]
+    },
+    "modules": [
+      {
+        "id": "screens",
+        "path": "src/components/game-app/screens.tsx",
+        "lines": 822,
+        "bytes": 32524,
+        "sha256": "37e532f6920a249564eeacfc3473d14b6731da97cff1763eec5e78a1c6cce91d",
+        "git_blob_sha1": "b53aa58dfa1d0dd1daa927025397f8778e37a8ae",
+        "exports": {
+          "values": [
+            "Menu",
+            "Overlay",
+            "resolveTrack"
+          ],
+          "types": [
+            "CopyFn",
+            "MenuProps"
+          ]
+        },
+        "internal_imports": [],
+        "blocks": [
+          {
+            "id": "themeWash",
+            "sha256": "874ba7c18779a89924aa381e1c1a70e826cde121dfa5adcc3cbcb1afc0d0122f",
+            "lines": 13,
+            "bytes": 484
+          },
+          {
+            "id": "Overlay",
+            "sha256": "879f0f76dc513c88229faf0513b947381b126c3d6ce76e9135acc6ec2171d127",
+            "lines": 9,
+            "bytes": 324
+          },
+          {
+            "id": "CopyFn",
+            "sha256": "1ea89899fa9e26bcf5e201be14374ec58dcf9da54d43089d8f9edc3ffff467b2",
+            "lines": 1,
+            "bytes": 63
+          },
+          {
+            "id": "MenuProps",
+            "sha256": "642beff4abe44fe9688800eae74fbd7be05da3c9554a087edbf94d74131dd7d4",
+            "lines": 37,
+            "bytes": 1006
+          },
+          {
+            "id": "Menu",
+            "sha256": "9e279c77a5e10ffd7168279bca6ae60ed0ba52438d31bd5bae1e39dd1aec3544",
+            "lines": 397,
+            "bytes": 17421
+          },
+          {
+            "id": "CareerPanel",
+            "sha256": "0becff71f32062616946152815d6edf873fd66d7ed1c8640034784cadede96fc",
+            "lines": 92,
+            "bytes": 3972
+          },
+          {
+            "id": "GaragePanel",
+            "sha256": "05cd59339a763735311e434d0ac922a5ce917b46d754f0a7fc89f43de34b7d12",
+            "lines": 206,
+            "bytes": 7648
+          }
+        ]
+      },
+      {
+        "id": "hud",
+        "path": "src/components/game-app/hud.tsx",
+        "lines": 218,
+        "bytes": 9432,
+        "sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+        "git_blob_sha1": "19aca4c1ddbbd7e440a76419793ea78eccb71847",
+        "exports": {
+          "values": [
+            "Hud"
+          ],
+          "types": [
+            "HudProps"
+          ]
+        },
+        "internal_imports": [],
+        "blocks": [
+          {
+            "id": "clamp01",
+            "sha256": "cd4b13f8e2a3a3f90bcd1f0466471ba8dcf0109590985b592c0b6e9928e5d464",
+            "lines": 3,
+            "bytes": 82
+          },
+          {
+            "id": "HudProps",
+            "sha256": "a9d0d03d7664ec09a16329e5a069e88ed3a451e5d87baf5933dfe4c7acde4d3e",
+            "lines": 15,
+            "bytes": 333
+          },
+          {
+            "id": "Hud",
+            "sha256": "67fd1cae01abaf4f08b1fe67cf8cdcc545d1fb8659b937bcad19f047e6968493",
+            "lines": 184,
+            "bytes": 8545
+          }
+        ]
+      },
+      {
+        "id": "race-controller",
+        "path": "src/components/game-app/race-controller.tsx",
+        "lines": 512,
+        "bytes": 15009,
+        "sha256": "e01c955f700b0f7c1fa20f876a8f3ad8b294f3edbdf3bcdf4ed16e6821188670",
+        "git_blob_sha1": "1f156fe0cced5aa8ec287c68af062e1e1be819c1",
+        "exports": {
+          "values": [
+            "RaceController"
+          ],
+          "types": [
+            "RaceControllerProps"
+          ]
+        },
+        "internal_imports": [
+          "./hud",
+          "./screens"
+        ],
+        "blocks": [
+          {
+            "id": "boot-effect",
+            "sha256": "06ad84d60ee7755d1b806841dc9cb88a8d0abaad2d6a61754dfa4ba667bbe6c6",
+            "lines": 18,
+            "bytes": 272
+          },
+          {
+            "id": "engine-effect",
+            "sha256": "e996f217321d9cde9894467d9613e553fb82ebee85e9b174db536ed5a4e475be",
+            "lines": 78,
+            "bytes": 2277
+          },
+          {
+            "id": "keyboard-effect",
+            "sha256": "36bcab68f23918ec78e79b3407b934fa857471a4f581423c073893d3f1de45a3",
+            "lines": 30,
+            "bytes": 697
+          },
+          {
+            "id": "minimap-effect",
+            "sha256": "83758e412e72a2cd1c96d383e0c9b3f37f912e2fb101ab2078bdde447e7e74db",
+            "lines": 74,
+            "bytes": 2145
+          },
+          {
+            "id": "toggleNight",
+            "sha256": "62c2b812cda97f63cf5675c440f67828b42d620240ce8bcc5b756bc84efefb8d",
+            "lines": 6,
+            "bytes": 133
+          },
+          {
+            "id": "race-view",
+            "sha256": "e05f405465a058b7f6985a056add90a830f2005af6b9022b9e0d7d85e477393d",
+            "lines": 186,
+            "bytes": 6496
+          }
+        ]
+      }
+    ],
+    "reconstruction": {
+      "expected_sha256": "04f0c06e69a7a8c91bc4524eba1fcc066a05e7f4a5199d7492b330ee70e7829e",
+      "expected_git_blob_sha1": "956cfa131200b3c9d9d0902a1b2d6d4d9a8d8728",
+      "expected_lines": 1540,
+      "expected_bytes": 57429,
+      "sequence": [
+        {
+          "type": "literal",
+          "base64": "aW1wb3J0IHsgdXNlRWZmZWN0LCB1c2VMYXlvdXRFZmZlY3QsIHVzZVJlZiwgdXNlU3RhdGUsIHR5cGUgRGlzcGF0Y2gsIHR5cGUgUmVhY3ROb2RlLCB0eXBlIFJlZk9iamVjdCwgdHlwZSBTZXRTdGF0ZUFjdGlvbiB9IGZyb20gInJlYWN0IjsKaW1wb3J0IHsgRnJhZ21lbnQsIGpzeCwganN4cyB9IGZyb20gInJlYWN0L2pzeC1ydW50aW1lIjsKaW1wb3J0IHsKICBGbGFnLAogIEdhdWdlLAogIE1vb24sCiAgUGF1c2UsCiAgUGxheSwKICBSb3RhdGVDY3csCiAgU2V0dGluZ3MsCiAgU2hpZWxkLAogIFN0YXIsCiAgU3VuLAogIFRpbWVyLAogIFRyb3BoeSwKICBWb2x1bWUyLAogIFZvbHVtZVgsCn0gZnJvbSAibHVjaWRlLXJlYWN0IjsKaW1wb3J0IHsgQnV0dG9uIH0gZnJvbSAiQC9jb21wb25lbnRzL3VpL2J1dHRvbiI7CmltcG9ydCB7IFRvdWNoQ29udHJvbHMgfSBmcm9tICJAL2NvbXBvbmVudHMvdG91Y2gtY29udHJvbHMiOwppbXBvcnQgeyBCb290T3ZlcmxheSB9IGZyb20gIkAvY29tcG9uZW50cy9ib290LW92ZXJsYXkiOwppbXBvcnQgeyBDQVJTIH0gZnJvbSAiQC9nYW1lL2NhcnMiOwppbXBvcnQgeyBjaGFwdGVycywgZGFpbHlFdmVudCwgZ2V0RXZlbnQsIG1heFN0YXJzLCBzdGFyc0Zvciwgd2Vla2x5RXZlbnQsIENBUl9VTkxPQ0sgfSBmcm9tICJAL2dhbWUvY2FyZWVyIjsKaW1wb3J0IHsgYXBwbHlUdW5lLCBlbXB0eVR1bmUsIExJVkVSSUVTLCBMSVZFUllfQ09TVCwgbmV4dENvc3QsIFBBSU5UX0NPU1QsIFBBSU5UUywgcmFjZVBheW91dCB9IGZyb20gIkAvZ2FtZS9nYXJhZ2UiOwppbXBvcnQgeyBmb3JtYXRUaW1lIH0gZnJvbSAiQC9nYW1lL21hdGgiOwppbXBvcnQgeyBNT0RFX0lORk8sIFJBQ0VfTU9ERVMgfSBmcm9tICJAL2dhbWUvbW9kZXMiOwppbXBvcnQgewogIGFkZENhc2gsCiAgYWxsQmVzdHMsCiAgYWxsRXZlbnRTdGFycywKICBnZXRBc3Npc3RzLAogIGdldENhc2gsCiAgZ2V0RGFtYWdlLAogIGdldEZvdiwKICBnZXRIYW5kbGluZywKICBnZXRMYW5nLAogIGdldE11dGVkLAogIGdldE5pZ2h0LAogIGdldFF1YWxpdHksCiAgZ2V0VHVuZSwKICBpc0NhclVubG9ja2VkLAogIG1hcmtEYWlseURvbmUsCiAgbWFya1dlZWtseURvbmUsCiAgcmVjb3JkQmVzdCwKICByZWNvcmRFdmVudFN0YXJzLAogIHJlcGFpckNhciwKICByZXBhaXJDb3N0LAogIHNldEFzc2lzdHNTYXZlLAogIHNldEZvdlNhdmUsCiAgc2V0SGFuZGxpbmdTYXZlLAogIHNldExhbmdTYXZlLAogIHNldE11dGVkU2F2ZSwKICBzZXROaWdodFNhdmUsCiAgc2V0UXVhbGl0eVNhdmUsCiAgc2V0VHVuZSwKICBzcGVuZENhc2gsCiAgdG90YWxTdGFycywKfSBmcm9tICJAL2dhbWUvc2F2ZSI7CmltcG9ydCB7IENJVFlfRklMVEVSUywgVFJBQ0tTLCBpc0RyaXZlYWJsZSB9IGZyb20gIkAvZ2FtZS90cmFja3MiOwppbXBvcnQgeyBlc3RpbWF0ZUxvYWRNcywgcmVjb3JkTG9hZE1zIH0gZnJvbSAiQC9nYW1lL2xvYWQtZXRhIjsKaW1wb3J0IHsgY29weSwgZGlyRm9yLCBsYW5nU2hvcnQsIG5leHRMYW5nLCB0eXBlIExhbmcgfSBmcm9tICJAL2dhbWUvaTE4biI7CmltcG9ydCB7IGNuIH0gZnJvbSAiQC9saWIvdXRpbHMiOwppbXBvcnQgdHlwZSB7IEFzc2lzdEZsYWdzLCBDYXJEZWYsIENhcklkLCBIYW5kbGluZ01vZGUsIEh1ZFN0YXRlLCBRdWFsaXR5LCBSYWNlTW9kZSwgUmFjZVJlc3VsdCwgVHJhY2tEZWYsIFRyYWNrSWQsIFR1bmUsIFdlYXRoZXIgfSBmcm9tICJAL2dhbWUvdHlwZXMiOwppbXBvcnQgdHlwZSB7IFJhY2VFbmdpbmUgfSBmcm9tICJAL2dhbWUvZW5naW5lIjsKCg=="
+        },
+        {
+          "type": "block",
+          "id": "themeWash",
+          "path": "src/components/game-app/screens.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "literal",
+          "base64": "CmV4cG9ydCBmdW5jdGlvbiBHYW1lQXBwKCkgewoJY29uc3QgW3NjcmVlbiwgc2V0U2NyZWVuXSA9IHVzZVN0YXRlKCJ0aXRsZSIpOwoJY29uc3QgW3RyYWNrSWQsIHNldFRyYWNrSWRdID0gdXNlU3RhdGU8VHJhY2tJZD4oImF5YWxvbiIpOwoJY29uc3QgW2NhcklkLCBzZXRDYXJJZF0gPSB1c2VTdGF0ZTxDYXJJZD4oInNhYnJhIik7Cgljb25zdCBbaHVkLCBzZXRIdWRdID0gdXNlU3RhdGU8SHVkU3RhdGUgfCBudWxsPihudWxsKTsKCWNvbnN0IFtyZXN1bHQsIHNldFJlc3VsdF0gPSB1c2VTdGF0ZTxSYWNlUmVzdWx0IHwgbnVsbD4obnVsbCk7Cgljb25zdCBbcGF1c2VkLCBzZXRQYXVzZWRdID0gdXNlU3RhdGUoZmFsc2UpOwoJY29uc3QgW211dGVkLCBzZXRNdXRlZF0gPSB1c2VTdGF0ZShmYWxzZSk7Cgljb25zdCBbbmlnaHQsIHNldE5pZ2h0XSA9IHVzZVN0YXRlKGZhbHNlKTsKCWNvbnN0IFtxdWFsaXR5LCBzZXRRdWFsaXR5XSA9IHVzZVN0YXRlPFF1YWxpdHk+KCJoaWdoIik7Cgljb25zdCBbZm92LCBzZXRGb3ZdID0gdXNlU3RhdGUoMCk7Cgljb25zdCBbbGFuZywgc2V0TGFuZ10gPSB1c2VTdGF0ZTxMYW5nPigiaGUiKTsKCWNvbnN0IGxhbmdIZSA9IGxhbmcgPT09ICJoZSI7Cgljb25zdCBbaGFuZGxpbmcsIHNldEhhbmRsaW5nXSA9IHVzZVN0YXRlPEhhbmRsaW5nTW9kZT4oImFyY2FkZSIpOwoJY29uc3QgW2Fzc2lzdHMsIHNldEFzc2lzdHNdID0gdXNlU3RhdGU8QXNzaXN0RmxhZ3M+KHsgYWJzOiB0cnVlLCB0Y3M6IHRydWUsIGVzYzogdHJ1ZSB9KTsKCWNvbnN0IFtyZWNvcmQsIHNldFJlY29yZF0gPSB1c2VTdGF0ZShmYWxzZSk7Cgljb25zdCBbcmFjZUtleSwgc2V0UmFjZUtleV0gPSB1c2VTdGF0ZSgwKTsKCWNvbnN0IFttb2RlLCBzZXRNb2RlXSA9IHVzZVN0YXRlPFJhY2VNb2RlPigiY2lyY3VpdCIpOwoJY29uc3QgW2V2ZW50SWQsIHNldEV2ZW50SWRdID0gdXNlU3RhdGU8c3RyaW5nIHwgbnVsbD4obnVsbCk7Cgljb25zdCBbZWFybmVkLCBzZXRFYXJuZWRdID0gdXNlU3RhdGUoMCk7Cgljb25zdCBbc3RhclRvdGFsLCBzZXRTdGFyVG90YWxdID0gdXNlU3RhdGUoMCk7Cgljb25zdCBbd2VhdGhlciwgc2V0V2VhdGhlcl0gPSB1c2VTdGF0ZTxXZWF0aGVyPigiY2xlYXIiKTsKCWNvbnN0IFtjYXNoLCBzZXRDYXNoXSA9IHVzZVN0YXRlKDUwMCk7Cgljb25zdCBbdHVuZVRpY2ssIHNldFR1bmVUaWNrXSA9IHVzZVN0YXRlKDApOwoJY29uc3QgW2Jvb3QsIHNldEJvb3RdID0gdXNlU3RhdGU8eyBldGFNczogbnVtYmVyOyBmcmFjOiBudW1iZXIgfSB8IG51bGw+KG51bGwpOwoJY29uc3QgY2FudmFzUmVmID0gdXNlUmVmPEhUTUxDYW52YXNFbGVtZW50PihudWxsKTsKCWNvbnN0IGVuZ2luZVJlZiA9IHVzZVJlZjxSYWNlRW5naW5lIHwgbnVsbD4obnVsbCk7Cgljb25zdCBtYXBSZWYgPSB1c2VSZWY8SFRNTENhbnZhc0VsZW1lbnQ+KG51bGwpOwoJdXNlRWZmZWN0KCgpID0+IHsKCQlpZiAoc2NyZWVuID09PSAiY2FycyIgfHwgc2NyZWVuID09PSAiY2FyZWVyIiB8fCBzY3JlZW4gPT09ICJnYXJhZ2UiKSBzZXRTY3JlZW4oc2NyZWVuID09PSAiY2FycyIgPyAicmFjZSIgOiAidHJhY2tzIik7Cgl9LCBbc2NyZWVuXSk7Cgl1c2VFZmZlY3QoKCkgPT4gewoJCXNldE11dGVkKGdldE11dGVkKCkpOwoJCXNldE5pZ2h0KGdldE5pZ2h0KCkpOwoJCXNldFF1YWxpdHkoZ2V0UXVhbGl0eSgpKTsKCQlzZXRGb3YoZ2V0Rm92KCkpOwoJCXNldFN0YXJUb3RhbCh0b3RhbFN0YXJzKCkpOwoJCXNldENhc2goZ2V0Q2FzaCgpKTsKCQlzZXRIYW5kbGluZyhnZXRIYW5kbGluZygpKTsKCQlzZXRBc3Npc3RzKGdldEFzc2lzdHMoKSk7CgkJY29uc3Qgc2F2ZWRMYW5nID0gZ2V0TGFuZygpOwoJCWlmIChzYXZlZExhbmcpIHNldExhbmcoc2F2ZWRMYW5nKTsKCX0sIFtdKTsK"
+        },
+        {
+          "type": "block",
+          "id": "boot-effect",
+          "path": "src/components/game-app/race-controller.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "block",
+          "id": "engine-effect",
+          "path": "src/components/game-app/race-controller.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "block",
+          "id": "keyboard-effect",
+          "path": "src/components/game-app/race-controller.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "block",
+          "id": "minimap-effect",
+          "path": "src/components/game-app/race-controller.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "literal",
+          "base64": "CWNvbnN0IHQgPSAoaGU6IHN0cmluZywgZW46IHN0cmluZywgYXI/OiBzdHJpbmcpID0+IGNvcHkobGFuZywgaGUsIGVuLCBhcik7Cgljb25zdCB0cmFjayA9IFRSQUNLUy5maW5kKCh4KSA9PiB4LmlkID09PSB0cmFja0lkKSA/PyBUUkFDS1NbMF0hOwoJY29uc3QgY2FyID0gQ0FSUy5maW5kKCh4KSA9PiB4LmlkID09PSBjYXJJZCkgPz8gQ0FSU1swXSE7Cg=="
+        },
+        {
+          "type": "block",
+          "id": "toggleNight",
+          "path": "src/components/game-app/race-controller.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "literal",
+          "base64": "CWNvbnN0IGN5Y2xlTGFuZyA9ICgpID0+IHsKCQljb25zdCBuZXh0ID0gbmV4dExhbmcobGFuZyk7CgkJc2V0TGFuZyhuZXh0KTsKCQlzZXRMYW5nU2F2ZShuZXh0KTsKCX07CglyZXR1cm4gLyogQF9fUFVSRV9fICovIGpzeCgiZGl2IiwgewoJCWRpcjogZGlyRm9yKGxhbmcpLAoJCWNsYXNzTmFtZTogInJlbGF0aXZlIGgtZHZoIHctZnVsbCBvdmVyZmxvdy1oaWRkZW4gYmctYmcgdGV4dC1mZyIsCgkJY2hpbGRyZW46IHNjcmVlbiA9PT0gInJhY2UiID8g"
+        },
+        {
+          "type": "block",
+          "id": "race-view",
+          "path": "src/components/game-app/race-controller.tsx",
+          "trim_start": 8,
+          "trim_end": 2
+        },
+        {
+          "type": "literal",
+          "base64": "IDogLyogQF9fUFVSRV9fICovIGpzeChNZW51LCB7CgkJCXNjcmVlbiwKCQkJc2V0U2NyZWVuLAoJCQl0cmFja0lkLAoJCQlzZXRUcmFja0lkLAoJCQljYXJJZCwKCQkJc2V0Q2FySWQsCgkJCWxhbmdIZSwKCQkJbGFuZywKCQkJY3ljbGVMYW5nLAoJCQltdXRlZCwKCQkJc2V0TXV0ZWQ6IChtOiBib29sZWFuKSA9PiB7CgkJCQlzZXRNdXRlZChtKTsKCQkJCXNldE11dGVkU2F2ZShtKTsKCQkJfSwKCQkJbmlnaHQsCgkJCXNldE5pZ2h0TW9kZTogKG46IGJvb2xlYW4pID0+IHsKCQkJCXNldE5pZ2h0KG4pOwoJCQkJc2V0TmlnaHRTYXZlKG4pOwoJCQl9LAoJCQl0LAoJCQl0cmFjaywKCQkJY2FyLAoJCQlxdWFsaXR5LAoJCQlzZXRRdWFsaXR5TW9kZTogKHE6IFF1YWxpdHkpID0+IHsKCQkJCXNldFF1YWxpdHkocSk7CgkJCQlzZXRRdWFsaXR5U2F2ZShxKTsKCQkJfSwKCQkJZm92LAoJCQlzZXRGb3ZNb2RlOiAodjogbnVtYmVyKSA9PiB7CgkJCQlzZXRGb3Yodik7CgkJCQlzZXRGb3ZTYXZlKHYpOwoJCQkJZW5naW5lUmVmLmN1cnJlbnQ/LnNldEZvdkV4dHJhKHYpOwoJCQl9LAoJCQltb2RlLAoJCQlzZXRNb2RlLAoJCQlzdGFyVG90YWwsCgkJCWV2ZW50SWQsCgkJCXNldEV2ZW50SWQsCgkJCXdlYXRoZXIsCgkJCXNldFdlYXRoZXJNb2RlOiBzZXRXZWF0aGVyLAoJCQljYXNoLAoJCQlzZXRDYXNoLAoJCQloYW5kbGluZywKCQkJc2V0SGFuZGxpbmdNb2RlOiAoaDogSGFuZGxpbmdNb2RlKSA9PiB7CgkJCQlzZXRIYW5kbGluZyhoKTsKCQkJCXNldEhhbmRsaW5nU2F2ZShoKTsKCQkJfSwKCQkJYXNzaXN0cywKCQkJc2V0QXNzaXN0c01vZGU6IChhOiBBc3Npc3RGbGFncykgPT4gewoJCQkJc2V0QXNzaXN0cyhhKTsKCQkJCXNldEFzc2lzdHNTYXZlKGEpOwoJCQl9LAoJCQlvblR1bmVkOiAoKSA9PiBzZXRUdW5lVGljaygobikgPT4gbiArIDEpLAoJCQlzdGFydENhcmVlcjogKGlkOiBzdHJpbmcpID0+IHsKCQkJCWNvbnN0IGV2ID0gZ2V0RXZlbnQoaWQpOwoJCQkJaWYgKCFldikgcmV0dXJuOwoJCQkJaWYgKHRvdGFsU3RhcnMoKSA8IGV2LnVubG9ja1N0YXJzKSByZXR1cm47CgkJCQlzZXRFdmVudElkKGV2LmlkKTsKCQkJCXNldFRyYWNrSWQoZXYudHJhY2tJZCk7CgkJCQlzZXRNb2RlKGV2Lm1vZGUpOwoJCQkJc2V0TmlnaHQoZXYubmlnaHQpOwoJCQkJc2V0TmlnaHRTYXZlKGV2Lm5pZ2h0KTsKCQkJCXNldFdlYXRoZXIoZXYud2VhdGhlciA/PyAiY2xlYXIiKTsKCQkJCWlmICghaXNDYXJVbmxvY2tlZChjYXJJZCkpIHNldENhcklkKCJzYWJyYSIpOwoJCQkJc2V0U2NyZWVuKCJyYWNlIik7CgkJCX0KCQl9KQoJfSk7Cn0K"
+        },
+        {
+          "type": "block",
+          "id": "clamp01",
+          "path": "src/components/game-app/hud.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "block",
+          "id": "Overlay",
+          "path": "src/components/game-app/screens.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "block",
+          "id": "CopyFn",
+          "path": "src/components/game-app/screens.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "block",
+          "id": "HudProps",
+          "path": "src/components/game-app/hud.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "block",
+          "id": "Hud",
+          "path": "src/components/game-app/hud.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "block",
+          "id": "MenuProps",
+          "path": "src/components/game-app/screens.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "block",
+          "id": "Menu",
+          "path": "src/components/game-app/screens.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "block",
+          "id": "CareerPanel",
+          "path": "src/components/game-app/screens.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "block",
+          "id": "GaragePanel",
+          "path": "src/components/game-app/screens.tsx",
+          "trim_start": 0,
+          "trim_end": 0
+        },
+        {
+          "type": "literal",
+          "base64": "Ly8jZW5kcmVnaW9uCi8vI3JlZ2lvbiBzcmMvcm91dGVzL2luZGV4LnRzeD90c3Itc3BsaXQ9Y29tcG9uZW50Cg=="
+        }
+      ]
+    }
+  },
+  "preservation": {
+    "runtime_behavior_changes": 0,
+    "public_api_changes": 0,
+    "screen_flow_changes": 0,
+    "hud_behavior_changes": 0,
+    "race_controller_behavior_changes": 0,
+    "engine_behavior_changes": 0,
+    "track_data_changes": 0,
+    "track_order_changes": 0,
+    "physics_changes": 0,
+    "renderer_changes": 0,
+    "save_record_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0
+  },
+  "program_state_effective_on_merge": {
+    "total": 67,
+    "accepted": 18,
+    "in_review": 0,
+    "eligible": 0,
+    "deferred": 49,
+    "remaining": 49,
+    "queue_head": "RSH-019",
+    "RSH_019_authorized": false
+  }
+}

@@ -1,11 +1,11 @@
 # RUSH Israel — Findings Register
 
-**Version:** 1.8.0
-**RSH-017 implementation base:** `ec35e159a9722812d945eaab984f9dc92645205f`
-**State effective on:** merge of the RSH-017 pull request
+**Version:** 1.9.0
+**RSH-018 implementation base:** `d3bd207a98989398ead0e6804519d4a0d2eb19a1`
+**State effective on:** merge of the RSH-018 pull request
 **Date:** 30 August 2026
 **Total:** 42 findings — 12 P0, 18 P1, 12 P2
-**Status:** 22 OPEN, 9 MITIGATED, 11 CLOSED
+**Status:** 22 OPEN, 8 MITIGATED, 12 CLOSED
 
 ## Status rules
 
@@ -44,8 +44,8 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P1-11 | P1 | **CLOSED** | The complete test suite is not part of the required validation gate | `required-ci / validate` executes complete `npm test`. | RSH-007 |
 | P1-12 | P1 | **OPEN** | Important validation scripts are outside the main gate | Golden, damage, Ayalon lock, HaShalom, auth and long-soak checks are not all required on every PR. | RSH-035, RSH-042 and later CI expansion |
 | P1-13 | P1 | **OPEN** | No accepted real-device performance baseline exists | No verified desktop/mobile p95, memory or draw-call evidence exists. | RSH-037, RSH-043 |
-| P1-14 | P1 | **MITIGATED** | Core source files are excessively large | RSH-014–RSH-016 reduce track/world monoliths; RSH-017 extracts 58 methods into four adapters and reduces `engine.ts` from 2,815 to 1,207 lines. `game-app.tsx` decomposition remains pending. | RSH-018 |
-| P1-15 | P1 | **MITIGATED** | Content, rendering, physics, UI and QA are tightly coupled | RSH-013–RSH-016 establish track/world boundaries; RSH-017 creates bounded loop, rendering, physics and QA adapters with byte-exact legacy reconstruction and zero runtime drift. UI separation and complete resource/dependency accounting remain pending. | RSH-018 through RSH-020 |
+| P1-14 | P1 | **CLOSED** | Core source files are excessively large | RSH-014–RSH-017 establish track, world and engine boundaries. RSH-018 reduces `game-app.tsx` from 1540 to 179 lines and moves screens, HUD and race control into three manifest-bound modules with byte-exact reconstruction. | RSH-014–RSH-018 |
+| P1-15 | P1 | **MITIGATED** | Content, rendering, physics, UI and QA are tightly coupled | RSH-013–RSH-016 establish track/world boundaries; RSH-017 creates bounded loop, rendering, physics and QA adapters with byte-exact legacy reconstruction and zero runtime drift. UI separation is accepted in RSH-018; complete resource and dependency accounting remain pending. | RSH-019 through RSH-020 |
 | P1-16 | P1 | **OPEN** | Catalogue breadth precedes a verified vertical slice | RSH-010 classifies 8 MVP and 48 deferred tracks, but no track has an owner-approved release freeze. | RSH-025 through RSH-036 |
 | P1-17 | P1 | **OPEN** | Golden evidence does not yet form a trusted acceptance authority | Agent-generated captures exist; owner approval and unique authority are not recorded. | RSH-035, RSH-036 |
 | P1-18 | P1 | **MITIGATED** | `EXECUTION_PLAN.md` is an operational monolith | RSH-001 removed it from queue authority, but the historic monolith remains. | RSH-001 |
