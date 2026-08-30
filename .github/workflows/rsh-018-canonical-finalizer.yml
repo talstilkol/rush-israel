@@ -88,15 +88,22 @@ jobs:
 
           path = Path('scripts/check-track-consumer-source-pin.mjs')
           source = path.read_text(encoding='utf-8')
-          old = '''  const consumers = Object.entries(sources)
-            .filter(([filePath, source]) => (
-              !internalWorldBuilderPaths.has(filePath)
-              && !engineAuthority.paths.has(filePath)
-              && !gameAppAuthority.paths.has(filePath)
-              && importsTrackRuntime(filePath, source)
-            ))
-            .map(([filePath]) => filePath)
-            .sort();'''
+          start_marker = '  const consumers = Object.entries(sources)'
+          start = source.find(start_marker)
+          sort_start = source.find('.sort();', start)
+          if start < 0 or sort_start < 0:
+              raise SystemExit('track-consumer canonical mapping bounds missing')
+          end = sort_start + len('.sort();')
+          old = source[start:end]
+          required = (
+              '!internalWorldBuilderPaths.has(filePath)',
+              '!engineAuthority.paths.has(filePath)',
+              '!gameAppAuthority.paths.has(filePath)',
+              'importsTrackRuntime(filePath, source)',
+              '.map(([filePath]) => filePath)',
+          )
+          if not all(token in old for token in required):
+              raise SystemExit('track-consumer canonical mapping structure mismatch')
           new = '''  const consumers = Object.entries(sources)
             .filter(([filePath, source]) => (
               !internalWorldBuilderPaths.has(filePath)
@@ -115,9 +122,7 @@ jobs:
             consumers.push("src/components/game-app.tsx");
           }
           consumers.sort();'''
-          if source.count(old) != 1:
-              raise SystemExit('track-consumer canonical mapping target mismatch')
-          path.write_text(source.replace(old, new, 1), encoding='utf-8')
+          path.write_text(source[:start] + new + source[end:], encoding='utf-8')
           PY
           node --check scripts/check-track-consumer-source-pin.mjs
 
