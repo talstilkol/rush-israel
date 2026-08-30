@@ -59,23 +59,81 @@ jobs:
               raise SystemExit(f'finalizer payload mismatch: length={len(encoded)} sha256={actual}')
 
           decoded = gzip.decompress(base64.b64decode(encoded)).decode('utf-8')
-          needle = '  const variants = [\n'
-          insertion = '    ...(block.id === "race-view"\n      ? [{ body: block.body.slice("\\treturn ".length, -2), trim_start: "\\treturn ".length, trim_end: 2 }]\n      : []),\n'
-          if decoded.count(needle) != 1:
+
+          variants_needle = '  const variants = [\n'
+          race_variant = '    ...(block.id === "race-view"\n      ? [{ body: block.body.slice("\\treturn ".length, -2), trim_start: "\\treturn ".length, trim_end: 2 }]\n      : []),\n'
+          if decoded.count(variants_needle) != 1:
               raise SystemExit('finalizer race-view insertion target mismatch')
-          decoded = decoded.replace(needle, needle + insertion, 1)
+          decoded = decoded.replace(variants_needle, variants_needle + race_variant, 1)
+
+          cursor_old = '  cursor = block.index + block.body.length;\n  if (block.trim_end) cursor -= block.trim_end;'
+          cursor_new = '  cursor = block.index + block.body.length;'
+          if decoded.count(cursor_old) != 1:
+              raise SystemExit('finalizer reconstruction cursor target mismatch')
+          decoded = decoded.replace(cursor_old, cursor_new, 1)
+
           patched_sha = hashlib.sha256(decoded.encode('utf-8')).hexdigest()
-          if patched_sha != '06d3dbd25fc9f8fd7fc7b60e4031cface75613ef9cc2be0e9c7849cdb14066de':
+          expected_patched_sha = '1f57e316ae1ede06950043188382e6bbb6a3ca49d88fa813a0028ccd55ae3f2d'
+          if patched_sha != expected_patched_sha:
               raise SystemExit(f'patched finalizer mismatch: sha256={patched_sha}')
           Path('/tmp/rsh-018-finalize.mjs').write_text(decoded, encoding='utf-8')
           PY
           node --check /tmp/rsh-018-finalize.mjs
           node /tmp/rsh-018-finalize.mjs
 
+      - name: Map internal track use to the canonical game-app consumer
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('scripts/check-track-consumer-source-pin.mjs')
+          source = path.read_text(encoding='utf-8')
+          old = '''  const consumers = Object.entries(sources)
+            .filter(([filePath, source]) => (
+              !internalWorldBuilderPaths.has(filePath)
+              && !engineAuthority.paths.has(filePath)
+              && !gameAppAuthority.paths.has(filePath)
+              && importsTrackRuntime(filePath, source)
+            ))
+            .map(([filePath]) => filePath)
+            .sort();'''
+          new = '''  const consumers = Object.entries(sources)
+            .filter(([filePath, source]) => (
+              !internalWorldBuilderPaths.has(filePath)
+              && !engineAuthority.paths.has(filePath)
+              && !gameAppAuthority.paths.has(filePath)
+              && importsTrackRuntime(filePath, source)
+            ))
+            .map(([filePath]) => filePath);
+          if (
+            gameAppAuthority.manifest
+            && [...gameAppAuthority.paths].some((filePath) => (
+              typeof sources[filePath] === "string"
+              && importsTrackRuntime(filePath, sources[filePath])
+            ))
+          ) {
+            consumers.push("src/components/game-app.tsx");
+          }
+          consumers.sort();'''
+          if source.count(old) != 1:
+              raise SystemExit('track-consumer canonical mapping target mismatch')
+          path.write_text(source.replace(old, new, 1), encoding='utf-8')
+          PY
+          node --check scripts/check-track-consumer-source-pin.mjs
+
       - name: Remove temporary finalizer inputs
         run: |
           rm -rf .rsh018-finalizer
           rm -f .github/workflows/rsh-018-canonical-finalizer.yml
+
+      - name: Commit clean RSH-018 candidate
+        run: |
+          git config user.name "talstilkol"
+          git config user.email "tal_stilkol@hotmail.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "feat(rsh-018): finalize game-app decomposition"
+          git push origin HEAD:agent/rsh-018-game-app-decomposition
 
       - name: Run complete unit-test suite
         run: npm test
@@ -88,12 +146,3 @@ jobs:
 
       - name: Build deterministic development bundle
         run: npm run build:dev
-
-      - name: Commit validated RSH-018 authority
-        run: |
-          git config user.name "talstilkol"
-          git config user.email "tal_stilkol@hotmail.com"
-          git add -A
-          git diff --cached --check
-          git commit -m "feat(rsh-018): finalize game-app decomposition"
-          git push origin HEAD:agent/rsh-018-game-app-decomposition
