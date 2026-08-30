@@ -13,6 +13,7 @@ import {
   reconstructLegacyWorldSource,
   sha256,
 } from "./load-world-core.mjs";
+import { reconstructRsh015WorldSource } from "./load-world-builders.mjs";
 
 function baseline() {
   return structuredClone(readWorldCoreInputs());
@@ -24,15 +25,15 @@ function messages(result) {
 test("RSH-015 extracts one canonical world core without runtime drift", () => {
   const result = validateWorldCore();
   assert.deepEqual(result.errors, []);
-  assert.equal(result.worldLines, 9006);
-  assert.equal(result.worldBytes, 352625);
+  assert.equal(result.worldLines, 2790);
+  assert.equal(result.worldBytes, 110205);
   assert.equal(result.coreLines, 116);
   assert.equal(result.coreBytes, 2604);
   assert.equal(result.reconstructedWorldSha256, LEGACY_WORLD_SHA256);
 });
 
 test("the extracted facade reconstructs the accepted world.ts byte-for-byte", () => {
-  const source = reconstructLegacyWorldSource();
+  const source = reconstructLegacyWorldSource(reconstructRsh015WorldSource());
   assert.equal(sha256(source), LEGACY_WORLD_SHA256);
   assert.equal(gitBlobSha1(source), LEGACY_WORLD_GIT_BLOB_SHA1);
   assert.equal((source.match(/\n/g) ?? []).length, LEGACY_WORLD_LINES);

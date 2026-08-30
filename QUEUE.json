@@ -1,11 +1,11 @@
 {
-  "schema_version": "4.0.0",
+  "schema_version": "5.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-30T01:18:00+03:00",
+  "generated_at": "2026-08-30T03:02:27+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "076dabb754dba1676c6685a4a8d6f6d3c0b153ea",
-  "state_effective_on": "merge_of_RSH_015_pull_request",
+  "verified_base_sha": "973e68d6e1d3fa8ed628f4461cdfae3096d01ea3",
+  "state_effective_on": "merge_of_RSH_016_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -32,6 +32,16 @@
     "history_rewrite": false,
     "later_unit_precreation": false,
     "latest_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": [
+        "RSH-016"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-016_merge",
+      "RSH-017_authorized": false
+    },
+    "previous_single_unit_authorization": {
       "instruction": "explicit owner authorization for RSH-015",
       "authorized_units": [
         "RSH-015"
@@ -44,23 +54,23 @@
   },
   "counts": {
     "total": 67,
-    "accepted": 15,
+    "accepted": 16,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 52,
-    "remaining": 52
+    "deferred": 51,
+    "remaining": 51
   },
   "queue_head": {
-    "id": "RSH-016",
-    "title": "Create isolated world builders per track",
+    "id": "RSH-017",
+    "title": "Split engine.ts into loop, rendering, physics and QA adapters",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-016 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-017 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-016",
-    "title": "Create isolated world builders per track",
+    "id": "RSH-017",
+    "title": "Split engine.ts into loop, rendering, physics and QA adapters",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -203,12 +213,25 @@
       "runtime_order_changes": 0
     },
     "RSH-015": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-015-world-core",
-      "pull_request_resolution": "the pull request created from agent/rsh-015-world-core",
-      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
-      "merge_sha_resolution": "live main HEAD created by merging the RSH-015 pull request",
-      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-015 merge SHA",
+      "pull_request": 18,
+      "merge_sha": "973e68d6e1d3fa8ed628f4461cdfae3096d01ea3",
+      "tree_sha": "27e88997f6127a045b0c260850cabcf0c0d650fd",
+      "validated_head_sha": "d061eb6adcf84ddbc9361f4f5fe3b0b5c83b05e4",
+      "workflow_run": 33279513653,
+      "workflow_job": 99172185122,
+      "artifact_id": 9722594860,
+      "artifact_digest": "sha256:43dc4aec7ce824c525356ad1a4e02f3b0fc42723ad6a2510e302bf66b88b2b8a",
+      "post_merge_workflow_run": 33279921857,
+      "post_merge_workflow_job": 99173247441,
+      "post_merge_artifact_id": 9722713132,
+      "post_merge_artifact_digest": "sha256:9f3c8c95a0fcadaaf9c0f00a9c73c9716d79e84d34d1f8c34021c327c3d8649b",
+      "codex_review_exact_head": true,
+      "resolved_review_threads": 1,
+      "unresolved_review_threads": 0,
+      "unit_tests_passed": 344,
+      "unit_tests_failed": 0,
       "manifest": "WORLD-CORE-MANIFEST.json",
       "contract": "RSH-015-WORLD-CORE-CONTRACT.md",
       "inventory": "RSH-015-WORLD-INVENTORY.json",
@@ -227,8 +250,47 @@
       "physics_changes": 0,
       "asset_changes": 0,
       "dependency_changes": 0,
-      "RSH-016_created": false,
-      "RSH-016_authorized": false
+      "RSH-016_created_at_acceptance": false,
+      "RSH-016_authorized_at_acceptance": false
+    },
+    "RSH-016": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-016-track-builders",
+      "pull_request_resolution": "the pull request created from agent/rsh-016-track-builders",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the RSH-016 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-016 merge SHA",
+      "manifest": "WORLD-BUILDER-MANIFEST.json",
+      "contract": "RSH-016-WORLD-BUILDER-CONTRACT.md",
+      "preflight_json": "RSH-016-WORLD-BUILDER-PREFLIGHT.json",
+      "preflight_markdown": "RSH-016-WORLD-BUILDER-PREFLIGHT.md",
+      "create_world_preflight": "RSH-016-CREATE-WORLD-PREFLIGHT.md",
+      "world_path": "src/game/world.ts",
+      "world_lines_before": 9006,
+      "world_bytes_before": 352625,
+      "world_lines_after": 2790,
+      "world_bytes_after": 110205,
+      "world_sha256": "08d4e7c230bef3c67f0250fb672e1b1ca351cb5149266e0161dcb470f5274fd9",
+      "builder_module_count": 56,
+      "track_builder_lines": 6256,
+      "track_builder_bytes": 230235,
+      "builder_support_lines": 1219,
+      "builder_support_bytes": 42467,
+      "builder_lines_total": 7475,
+      "builder_bytes_total": 272702,
+      "legacy_world_sha256": "64d3aed2e9d4a6dca0fcdbd7d27bb924783afc441549d76cb4079f399b11b107",
+      "legacy_world_git_blob_sha1": "a6586b78725573f97ef9d938f592ab545aba793d",
+      "runtime_behavior_changes": 0,
+      "track_data_changes": 0,
+      "track_order_changes": 0,
+      "physics_changes": 0,
+      "asset_changes": 0,
+      "dependency_changes": 0,
+      "renderer_changes": 0,
+      "save_record_changes": 0,
+      "qa_interface_changes": 0,
+      "RSH-017_created": false,
+      "RSH-017_authorized": false
     }
   },
   "unit_order": [
@@ -301,38 +363,38 @@
     "RSH-067"
   ],
   "state_rules": {
-    "RSH-001–RSH-015": "accepted",
-    "RSH-016–RSH-067": "deferred_not_authorized",
+    "RSH-001–RSH-016": "accepted",
+    "RSH-017–RSH-067": "deferred_not_authorized",
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-015"
+      "through": "RSH-016"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-016",
+      "from": "RSH-017",
       "through": "RSH-067"
     }
   },
   "next_instruction_contract": {
-    "current_action": "No unit is authorized; RSH-016 remains deferred until a new explicit owner instruction.",
-    "after_RSH_015": "The one-unit authorization is consumed; RSH-016 requires a new explicit owner instruction.",
+    "current_action": "No unit is authorized; RSH-017 remains deferred until a new explicit owner instruction.",
+    "after_RSH_016": "The one-unit next authorization is consumed; RSH-017 requires a new explicit owner instruction.",
     "authorization_remaining": 0,
-    "RSH-015_completed": true,
-    "RSH-015_authorization_consumed": true,
-    "RSH-016_authorized": false,
+    "RSH-016_completed": true,
+    "RSH-016_authorization_consumed": true,
+    "RSH-017_authorized": false,
     "authorized_sequence": [
-      "RSH-015"
+      "RSH-016"
     ],
     "completed_sequence": [
-      "RSH-015"
+      "RSH-016"
     ],
     "authorization_closed": true,
     "continuation": "A new explicit owner instruction is required."
   },
   "self_reference_boundary": {
-    "RSH-015_merge_sha": "resolve from live main after the RSH-015 pull request merges",
-    "RSH-015_validated_head": "resolve from the exact merged RSH-015 pull-request head",
-    "RSH-015_post_merge_ci": "resolve from required-ci on the exact merge SHA",
-    "reconcile_in": "RSH-016 preflight"
+    "RSH-016_merge_sha": "resolve from live main after the RSH-016 pull request merges",
+    "RSH-016_validated_head": "resolve from the exact merged RSH-016 pull-request head",
+    "RSH-016_post_merge_ci": "resolve from required-ci on the exact merge SHA",
+    "reconcile_in": "RSH-017 preflight"
   }
 }

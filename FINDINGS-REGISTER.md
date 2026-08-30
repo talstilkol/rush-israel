@@ -1,10 +1,10 @@
 # RUSH Israel — Findings Register
 
-**Version:** 1.6.0  
-**RSH-013 implementation base:** `94524201dfe87f1f22f8d8bdd9d97aad507c0438`  
-**State effective on:** merge of PR #16  
-**Date:** 29 August 2026  
-**Total:** 42 findings — 12 P0, 18 P1, 12 P2  
+**Version:** 1.7.0
+**RSH-016 implementation base:** `973e68d6e1d3fa8ed628f4461cdfae3096d01ea3`
+**State effective on:** merge of the RSH-016 pull request
+**Date:** 30 August 2026
+**Total:** 42 findings — 12 P0, 18 P1, 12 P2
 **Status:** 24 OPEN, 7 MITIGATED, 11 CLOSED
 
 ## Status rules
@@ -44,8 +44,8 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P1-11 | P1 | **CLOSED** | The complete test suite is not part of the required validation gate | `required-ci / validate` executes complete `npm test`. | RSH-007 |
 | P1-12 | P1 | **OPEN** | Important validation scripts are outside the main gate | Golden, damage, Ayalon lock, HaShalom, auth and long-soak checks are not all required on every PR. | RSH-035, RSH-042 and later CI expansion |
 | P1-13 | P1 | **OPEN** | No accepted real-device performance baseline exists | No verified desktop/mobile p95, memory or draw-call evidence exists. | RSH-037, RSH-043 |
-| P1-14 | P1 | **OPEN** | Core source files are excessively large | RSH-014 split all 56 track modules; RSH-015 extracts the typed world contract and lifecycle core, but `world.ts` remains 9006 lines and RSH-016–RSH-018 decomposition is still required. | RSH-014 through RSH-018 |
-| P1-15 | P1 | **OPEN** | Content, rendering, physics, UI and QA are tightly coupled | RSH-013–RSH-015 establish track-schema, per-track-module and world-core boundaries with zero runtime drift; isolated builders, engine/UI adapters and resource accounting remain pending. | RSH-013 through RSH-020 |
+| P1-14 | P1 | **OPEN** | Core source files are excessively large | RSH-014 split all 56 track modules; RSH-015 extracted the typed world core; RSH-016 replaces the 6,240-line monolithic landmark dispatcher with 56 isolated builders and reduces `world.ts` to 2,790 lines. `engine.ts` and UI decomposition remain pending. | RSH-017 through RSH-018 |
+| P1-15 | P1 | **OPEN** | Content, rendering, physics, UI and QA are tightly coupled | RSH-013–RSH-016 establish track-schema, per-track-module, world-core and isolated world-builder boundaries with zero runtime drift; engine/UI adapters and complete resource accounting remain pending. | RSH-017 through RSH-020 |
 | P1-16 | P1 | **OPEN** | Catalogue breadth precedes a verified vertical slice | RSH-010 classifies 8 MVP and 48 deferred tracks, but no track has an owner-approved release freeze. | RSH-025 through RSH-036 |
 | P1-17 | P1 | **OPEN** | Golden evidence does not yet form a trusted acceptance authority | Agent-generated captures exist; owner approval and unique authority are not recorded. | RSH-035, RSH-036 |
 | P1-18 | P1 | **MITIGATED** | `EXECUTION_PLAN.md` is an operational monolith | RSH-001 removed it from queue authority, but the historic monolith remains. | RSH-001 |

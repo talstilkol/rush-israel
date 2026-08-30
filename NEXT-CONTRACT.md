@@ -1,44 +1,43 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 4.0.0
+**Version:** 5.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-015 implementation base:** `076dabb754dba1676c6685a4a8d6f6d3c0b153ea`
-**State effective on:** merge of the RSH-015 pull request
-**Next unit:** `RSH-016` — deferred and not authorised
+**RSH-016 implementation base:** `973e68d6e1d3fa8ed628f4461cdfae3096d01ea3`
+**State effective on:** merge of the RSH-016 pull request
+**Next unit:** `RSH-017` — deferred and not authorised
 
 ## Authority
 
-GitHub is the sole source of truth. The owner authorised exactly RSH-015. That one-unit authority is consumed on its validated merge; it does not extend to RSH-016.
+GitHub is the sole source of truth. The plain `next` instruction authorised exactly RSH-016 under the canonical one-unit queue rule. That authority is consumed on the validated RSH-016 merge and does not extend to RSH-017.
 
-## RSH-015 acceptance boundary
+## RSH-016 acceptance boundary
 
-- `src/game/world-core.ts` is the sole owner of the typed `World` contract and lifecycle assembly;
-- `src/game/world.ts` remains the concrete composition root and compatibility facade;
-- the facade still exports exactly `World` and `createWorld`;
-- the core returns exactly 22 public keys in the accepted order;
-- the concrete disposer still iterates `bag` in insertion order and calls every `dispose()` once;
-- `world.ts` falls from 9034 lines / 353285 bytes to 9006 lines / 352625 bytes;
-- `world-core.ts` contains 116 lines / 2604 bytes;
-- reconstruction returns the accepted pre-extraction world SHA-256 `db0fd7cada42d3f3479fa6fffca61d3668a6ce3e7977152935480c7dce124056` byte-for-byte;
-- `WORLD-CORE-MANIFEST.json` and `scripts/check-world-core.mjs` fail closed on ownership, lifecycle, disposal, facade, RSH-016 and preservation drift;
+- exactly **56** builder modules exist under `src/game/world-builders/tracks`, one per accepted runtime Track ID;
+- `src/game/world-builders/index.ts` is the sole registry and dispatch authority;
+- `src/game/world-builders/shared.ts` is the sole shared-context authority;
+- `src/game/world.ts` remains the concrete world composition root and public compatibility facade;
+- `world.ts` falls from **9,006 lines / 352,625 bytes** to **2,790 lines / 110,205 bytes**;
+- the extracted builder source totals **7,475 lines / 272,702 bytes**, including **6,256 lines / 230,235 bytes** in the 56 per-track modules;
+- the accepted RSH-015 `world.ts` reconstructs byte-for-byte with SHA-256 `64d3aed2e9d4a6dca0fcdbd7d27bb924783afc441549d76cb4079f399b11b107`;
 - track data/order, physics, assets, dependencies, rendering, save/record and QA behaviour change by **0**;
-- exact-head required CI and Codex review must pass before merge.
+- exact-head required CI and Codex review must pass before merge;
+- no RSH-017 structure may be created.
 
 ## Post-merge state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 15 |
+| Accepted | 16 |
 | In review | 0 |
 | Eligible | 0 |
-| Deferred | 52 |
-| Remaining | 52 |
-| Queue head | RSH-016 |
-| RSH-016 authorised | No |
+| Deferred | 51 |
+| Remaining | 51 |
+| Queue head | RSH-017 |
+| RSH-017 authorised | No |
 | Current one-unit authority remaining | 0 |
 | Release gates | 0/13 |
 | Unverified asset files | 66 |
 
-A new explicit owner instruction is required before RSH-016 may be created or executed.
+A new explicit owner instruction is required before RSH-017 may be created or executed.

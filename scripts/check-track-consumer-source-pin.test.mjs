@@ -47,7 +47,14 @@ test("the accepted runtime track consumer set and four source identities are pin
   assert.equal(result.identities.length, 4);
 });
 
-test("RSH-015 world extraction is accepted only through byte-exact legacy reconstruction", () => {
+test("RSH-016 manifest-bound builders remain internal to the accepted world consumer", () => {
+  const result = validateTrackConsumerSourcePin();
+  assert.deepEqual(result.errors, []);
+  assert.deepEqual(result.consumers, CONSUMER_PATHS);
+  assert.equal(result.identities.length, 4);
+});
+
+test("RSH-016 world extraction is accepted only through byte-exact legacy reconstruction", () => {
   const result = validateTrackConsumerSourcePin({ consumerSources: readConsumerSources() });
   const world = result.identities.find((entry) => entry.path === "src/game/world.ts");
   assert.equal(world.controlled_reconstruction, true);
@@ -55,7 +62,7 @@ test("RSH-015 world extraction is accepted only through byte-exact legacy recons
   assert.notEqual(world.current_git_blob_sha1, world.git_blob_sha1);
 });
 
-test("world changes outside the bounded RSH-015 extraction fail closed", () => {
+test("world changes outside the bounded RSH-015 and RSH-016 extractions fail closed", () => {
   const sources = readConsumerSources();
   sources["src/game/world.ts"] = sources["src/game/world.ts"].replace(
     "var _dummy = new THREE.Object3D();",
@@ -63,7 +70,7 @@ test("world changes outside the bounded RSH-015 extraction fail closed", () => {
   );
   assert.match(
     validateTrackConsumerSourcePin({ consumerSources: sources }).errors.join("\n"),
-    /src\/game\/world\.ts Git blob identity/,
+    /src\/game\/world\.ts Git blob identity|controlled RSH-016 reconstruction failed/,
   );
 });
 
@@ -89,6 +96,16 @@ test("a new static runtime consumer fails closed", () => {
   const sources = readConsumerSources();
   sources["src/game/unreviewed-consumer.ts"] =
     'import { TRACKS } from "./tracks";\nTRACKS.reverse();\n';
+  assert.match(
+    validateTrackConsumerSourcePin({ consumerSources: sources }).errors.join("\n"),
+    /runtime track consumer set differs/,
+  );
+});
+
+test("an unregistered world-builder path cannot hide a new runtime consumer", () => {
+  const sources = readConsumerSources();
+  sources["src/game/world-builders/tracks/unreviewed.ts"] =
+    'import { TRACKS } from "../../tracks";\nTRACKS.reverse();\n';
   assert.match(
     validateTrackConsumerSourcePin({ consumerSources: sources }).errors.join("\n"),
     /runtime track consumer set differs/,
