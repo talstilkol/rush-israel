@@ -59,20 +59,11 @@ jobs:
               raise SystemExit(f'finalizer payload mismatch: length={len(encoded)} sha256={actual}')
 
           decoded = gzip.decompress(base64.b64decode(encoded)).decode('utf-8')
-          old = '''  const variants = [
-            { body: block.body, trim_start: 0, trim_end: 0 },
-            ...(block.body.endsWith("\\n") ? [{ body: block.body.slice(0, -1), trim_start: 0, trim_end: 1 }] : []),
-          ];'''
-          new = '''  const variants = [
-            ...(block.id === "race-view"
-              ? [{ body: block.body.slice("\\treturn ".length, -2), trim_start: "\\treturn ".length, trim_end: 2 }]
-              : []),
-            { body: block.body, trim_start: 0, trim_end: 0 },
-            ...(block.body.endsWith("\\n") ? [{ body: block.body.slice(0, -1), trim_start: 0, trim_end: 1 }] : []),
-          ];'''
-          if decoded.count(old) != 1:
-              raise SystemExit('finalizer race-view patch target mismatch')
-          decoded = decoded.replace(old, new, 1)
+          needle = '  const variants = [\n'
+          insertion = '    ...(block.id === "race-view"\n      ? [{ body: block.body.slice("\\treturn ".length, -2), trim_start: "\\treturn ".length, trim_end: 2 }]\n      : []),\n'
+          if decoded.count(needle) != 1:
+              raise SystemExit('finalizer race-view insertion target mismatch')
+          decoded = decoded.replace(needle, needle + insertion, 1)
           patched_sha = hashlib.sha256(decoded.encode('utf-8')).hexdigest()
           if patched_sha != '06d3dbd25fc9f8fd7fc7b60e4031cface75613ef9cc2be0e9c7849cdb14066de':
               raise SystemExit(f'patched finalizer mismatch: sha256={patched_sha}')
