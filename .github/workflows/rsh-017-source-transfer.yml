@@ -1,0 +1,43 @@
+name: rsh-017-source-transfer
+
+on:
+  push:
+    branches:
+      - agent/rsh-017-engine-adapters
+    paths:
+      - .github/workflows/rsh-017-source-transfer.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package-source:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Package exact repository source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD > RSH-017-SOURCE-HEAD.txt
+          git rev-parse HEAD^{tree} > RSH-017-SOURCE-TREE.txt
+          tar \
+            --exclude=.git \
+            --exclude=node_modules \
+            --exclude=.vercel \
+            --exclude=source-transfer.tar.gz \
+            -czf source-transfer.tar.gz .
+
+      - name: Upload exact source package
+        uses: actions/upload-artifact@v4
+        with:
+          name: rsh-017-source-${{ github.run_id }}-${{ github.run_attempt }}
+          path: source-transfer.tar.gz
+          if-no-files-found: error
+          retention-days: 1
