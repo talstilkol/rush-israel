@@ -18,8 +18,8 @@ validated RSH-017 merge and does not extend to RSH-018.
 - `src/game/engine.ts` remains the sole `RaceEngine` state, constructor, assembly and disposal owner;
 - exactly four concern adapters exist under `src/game/engine`: loop, rendering, physics and QA;
 - exactly 58 existing methods are delegated to those adapters;
-- `engine.ts` falls from **2,815 lines / 99,577 bytes** to **1,202 lines / 40,417 bytes**;
-- adapter source totals **2,205 lines / 76,069 bytes**;
+- `engine.ts` falls from **2,815 lines / 99,577 bytes** to **1,207 lines / 41,703 bytes**;
+- adapter source totals **2,209 lines / 77,220 bytes**;
 - the accepted RSH-016 `engine.ts` reconstructs byte-for-byte with SHA-256 `3f4d54bbe0b68f9654ae8a92a2f56ce378a59a9790e8fbbe2ee05199ced192c1`;
 - runtime behaviour, public API, physics, rendering behaviour, QA interfaces, tracks, assets, dependencies and save/record behaviour change by **0**;
 - all temporary source-transfer files are absent from the final tree;

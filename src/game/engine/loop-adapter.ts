@@ -4,12 +4,13 @@ import * as THREE from "three";
 import { clamp } from "../math";
 import { MAX_ACCUMULATOR, MAX_CATCHUP_STEPS, PHYSICS_DT } from "../physics";
 import { nightAmt } from "../tracks";
+import type { RaceEngine } from "../engine";
 import type { EngineAdapterHost } from "./adapter-host";
 
 const FIXED = PHYSICS_DT;
 
 // RSH-017-BEGIN:onContextLost
-export function onContextLost(this: EngineAdapterHost, e: any)
+export function onContextLost(this: EngineAdapterHost, e: Parameters<RaceEngine["onContextLost"]>[0])
 // RSH-017-BODY-BEGIN:onContextLost
 {
     e.preventDefault();
@@ -29,7 +30,7 @@ export function onContextRestored(this: EngineAdapterHost)
 // RSH-017-END:onContextRestored
 
 // RSH-017-BEGIN:shouldPresent
-export function shouldPresent(this: EngineAdapterHost, now: any)
+export function shouldPresent(this: EngineAdapterHost, now: Parameters<RaceEngine["shouldPresent"]>[0])
 // RSH-017-BODY-BEGIN:shouldPresent
 {
     if (this.quality !== "low" && !this.lite) return true;

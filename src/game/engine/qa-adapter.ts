@@ -7,6 +7,7 @@ import { nearestIndex } from "../spline";
 import { nightAmt, tlv } from "../tracks";
 import { blobIsKtx2 } from "../blob-assets";
 import { AYALON_GOLDEN } from "../../world/goldenCameras";
+import type { RaceEngine } from "../engine";
 import type { EngineAdapterHost } from "./adapter-host";
 
 const FIXED = PHYSICS_DT;

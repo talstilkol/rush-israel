@@ -13,6 +13,7 @@ import { bindRoadCompile } from "../roadShader";
 import { FOG, fogKey, LOOKS, lookFromFlags } from "../../rendering/EnvironmentState";
 import { gfxPassFlags } from "../../rendering/DynamicQualityController";
 import { exportPhotoPng } from "../photo-export";
+import type { RaceEngine } from "../engine";
 import type { EngineAdapterHost } from "./adapter-host";
 
 // RSH-017-BEGIN:upgradeGraphics
@@ -87,7 +88,7 @@ export function exitPhoto(this: EngineAdapterHost)
 // RSH-017-END:exitPhoto
 
 // RSH-017-BEGIN:frameWorld
-export function frameWorld(this: EngineAdapterHost, x: any, z: any, y: any = 52, camY: any = 22, back: any = 28, fov: any = 40)
+export function frameWorld(this: EngineAdapterHost, x: Parameters<RaceEngine["frameWorld"]>[0], z: Parameters<RaceEngine["frameWorld"]>[1], y: Parameters<RaceEngine["frameWorld"]>[2] = 52, camY: Parameters<RaceEngine["frameWorld"]>[3] = 22, back: Parameters<RaceEngine["frameWorld"]>[4] = 28, fov: Parameters<RaceEngine["frameWorld"]>[5] = 40)
 // RSH-017-BODY-BEGIN:frameWorld
 {
     this.enterPhoto();
@@ -164,7 +165,7 @@ export function togglePhotoHud(this: EngineAdapterHost)
 // RSH-017-END:togglePhotoHud
 
 // RSH-017-BEGIN:setAutoCycle
-export function setAutoCycle(this: EngineAdapterHost, on: any)
+export function setAutoCycle(this: EngineAdapterHost, on: Parameters<RaceEngine["setAutoCycle"]>[0])
 // RSH-017-BODY-BEGIN:setAutoCycle
 {
     this.autoCycle = on;
@@ -184,7 +185,7 @@ export function getAutoCycle(this: EngineAdapterHost)
 // RSH-017-END:getAutoCycle
 
 // RSH-017-BEGIN:setNight
-export function setNight(this: EngineAdapterHost, night: any)
+export function setNight(this: EngineAdapterHost, night: Parameters<RaceEngine["setNight"]>[0])
 // RSH-017-BODY-BEGIN:setNight
 {
     if (this.disposed) return;
@@ -212,7 +213,7 @@ export function applyLook(this: EngineAdapterHost)
 // RSH-017-END:applyLook
 
 // RSH-017-BEGIN:applyClockSky
-export function applyClockSky(this: EngineAdapterHost, rebake: any)
+export function applyClockSky(this: EngineAdapterHost, rebake: Parameters<RaceEngine["applyClockSky"]>[0])
 // RSH-017-BODY-BEGIN:applyClockSky
 {
     if (this.disposed) return;
@@ -362,7 +363,7 @@ export function applyGfxStep(this: EngineAdapterHost)
 // RSH-017-END:applyGfxStep
 
 // RSH-017-BEGIN:stepPhoto
-export function stepPhoto(this: EngineAdapterHost, dt: any)
+export function stepPhoto(this: EngineAdapterHost, dt: Parameters<RaceEngine["stepPhoto"]>[0])
 // RSH-017-BODY-BEGIN:stepPhoto
 {
     if (this.photoLock) {
@@ -402,7 +403,7 @@ export function stepPhoto(this: EngineAdapterHost, dt: any)
 // RSH-017-END:stepPhoto
 
 // RSH-017-BEGIN:present
-export function present(this: EngineAdapterHost, dt: any)
+export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine["present"]>[0])
 // RSH-017-BODY-BEGIN:present
 {
     const p = this.player;
@@ -569,7 +570,7 @@ export function present(this: EngineAdapterHost, dt: any)
 // RSH-017-END:present
 
 // RSH-017-BEGIN:snapCamera
-export function snapCamera(this: EngineAdapterHost, instant: any, dt: any = 0.016)
+export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngine["snapCamera"]>[0], dt: Parameters<RaceEngine["snapCamera"]>[1] = 0.016)
 // RSH-017-BODY-BEGIN:snapCamera
 {
     const p = this.player;
@@ -647,7 +648,7 @@ export function snapCamera(this: EngineAdapterHost, instant: any, dt: any = 0.01
 // RSH-017-END:snapCamera
 
 // RSH-017-BEGIN:setFovExtra
-export function setFovExtra(this: EngineAdapterHost, v: any)
+export function setFovExtra(this: EngineAdapterHost, v: Parameters<RaceEngine["setFovExtra"]>[0])
 // RSH-017-BODY-BEGIN:setFovExtra
 {
     this.fovExtra = clamp(v, 0, 12);
@@ -770,7 +771,7 @@ export function pushHud(this: EngineAdapterHost)
 // RSH-017-END:pushHud
 
 // RSH-017-BEGIN:setEnvRT
-export function setEnvRT(this: EngineAdapterHost, rt: any)
+export function setEnvRT(this: EngineAdapterHost, rt: Parameters<RaceEngine["setEnvRT"]>[0])
 // RSH-017-BODY-BEGIN:setEnvRT
 {
     this.leases.release("env-rt");

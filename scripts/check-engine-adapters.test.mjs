@@ -19,8 +19,8 @@ test("RSH-017 owns exactly four engine adapters and reconstructs the accepted en
   assert.deepEqual(result.errors, []);
   assert.equal(result.adapterCount, 4);
   assert.equal(result.movedMethodCount, 58);
-  assert.equal(result.engineLines, 1202);
-  assert.equal(result.engineBytes, 40417);
+  assert.equal(result.engineLines, 1207);
+  assert.equal(result.engineBytes, 41703);
   const input = baseline();
   const manifest = JSON.parse(input.manifestSource);
   const reconstructed = reconstructRsh016EngineSource(input.engineSource, manifest, input.adapterSources);
@@ -60,7 +60,7 @@ test("facade bypass, wrapper drift and method duplication fail closed", () => {
 
   const wrapper = baseline();
   wrapper.engineSource = wrapper.engineSource.replace(
-    "return engineLoop.frame.call(this);",
+    "return engineLoop.frame.call(engineAdapterHost(this));",
     "return engineLoop.frame.call({});",
   );
   assert.match(messages(validateEngineAdapters(wrapper)), /engine\.ts differs|facade wrapper|reconstruction/);
@@ -119,4 +119,21 @@ test("@ts-nocheck and adapter body-marker drift fail closed", () => {
   const markers = baseline();
   markers.adapterSources[path] = markers.adapterSources[path].replace("RSH-017-BODY-BEGIN:fixed", "RSH-017-BODY-BEGIN:fixed-x");
   assert.match(messages(validateEngineAdapters(markers)), /markers|reconstruction|identity changed/);
+});
+
+test("permissive adapter typing and bridge drift fail closed", () => {
+  const host = baseline();
+  host.supportSource = host.supportSource.replace("export type EngineAdapterHost = {", "export type EngineAdapterHost = {\n  [key: string]: any;");
+  assert.match(messages(validateEngineAdapters(host)), /host must not contain any|index signature|host changed/);
+
+  const signature = baseline();
+  signature.adapterSources["src/game/engine/physics-adapter.ts"] = signature.adapterSources["src/game/engine/physics-adapter.ts"].replace(
+    `Parameters<RaceEngine["fixed"]>[0]`,
+    "any",
+  );
+  assert.match(messages(validateEngineAdapters(signature)), /exact signature|identity changed/);
+
+  const bridge = baseline();
+  bridge.engineSource = bridge.engineSource.replace("engineAdapterHost(this)", "this as any");
+  assert.match(messages(validateEngineAdapters(bridge)), /bridge|engine\.ts differs|facade wrapper/);
 });

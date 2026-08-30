@@ -23,12 +23,12 @@
 
 | Concern | Path | Methods | Lines | Bytes | SHA-256 |
 |---|---|---:|---:|---:|---|
-| loop | `src/game/engine/loop-adapter.ts` | 5 | 166 | 4,975 | `ab4c7f8378d426506ae3655f4b429bfe392bde0c31783733eeeea99a53edf06c` |
-| rendering | `src/game/engine/rendering-adapter.ts` | 28 | 850 | 31,856 | `11a9e1716c977e3c2d4e4050358540ee0d6eb85ee93f2d297749e447b34cdb0d` |
-| physics | `src/game/engine/physics-adapter.ts` | 23 | 747 | 26,040 | `d888b4fd944ad9ebd06353a080be84187c27ac65329e5271aeeec7471f402aa2` |
-| qa | `src/game/engine/qa-adapter.ts` | 2 | 442 | 13,198 | `24f3b27cbe097d5ec70646cc1760e706e44e4ecac73c434d208735ab53c6fcc0` |
+| loop | `src/game/engine/loop-adapter.ts` | 5 | 166 | 4,975 | `88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8` |
+| rendering | `src/game/engine/rendering-adapter.ts` | 28 | 850 | 31,856 | `079e0b2c1d1e73b5605686ba03d137528746396e8d3a9d425bc746aa757aa10f` |
+| physics | `src/game/engine/physics-adapter.ts` | 23 | 747 | 26,040 | `5dac2313c067ec4a84424bdeea3baabe640cec1ab416392ba156b8f337c0d620` |
+| qa | `src/game/engine/qa-adapter.ts` | 2 | 442 | 13,198 | `973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c` |
 
-Support authority: `src/game/engine/adapter-host.ts` — 96 lines / 6,368 bytes.
+Support authority: `src/game/engine/adapter-host.ts` — 206 lines / 7,539 bytes.
 
 ## Exact source dimensions
 
@@ -38,8 +38,8 @@ Support authority: `src/game/engine/adapter-host.ts` — 96 lines / 6,368 bytes.
 | `engine.ts` bytes | 99,577 | 40,417 | −59,160 |
 | Adapter files | 0 | 4 | +4 |
 | Extracted methods | 0 | 58 | +58 |
-| Adapter source | 0 | 2,205 lines / 76,069 bytes | added |
-| Complete engine source including facade/support | 2,815 lines / 99,577 bytes | 3,503 lines / 122,854 bytes | structural decomposition |
+| Adapter source | 0 | 2,209 lines / 77,220 bytes | added |
+| Complete engine source including facade/support | 2,815 lines / 99,577 bytes | 3,622 lines / 126,462 bytes | structural decomposition |
 
 ## Preservation
 
@@ -62,3 +62,12 @@ Support authority: `src/game/engine/adapter-host.ts` — 96 lines / 6,368 bytes.
 `ENGINE-ADAPTER-MANIFEST.json`, `scripts/load-engine-adapters.mjs`, `scripts/check-engine-adapters.mjs` and `scripts/check-engine-adapters.test.mjs` fail closed on adapter count/order/identity, missing or duplicate methods, adapter cross-imports, facade bypass, wrapper drift, historical reconstruction drift, preserved-source drift, transfer-file residue, unmanifested engine files and RSH-018 precreation.
 
 The unit becomes accepted only after exact-head `required-ci / validate`, exact-head Codex review with no blocking findings, resolved review threads, merge, and successful post-merge required CI.
+
+## Exact Type Boundary
+
+- the host declares exactly **199** adapter-visible RaceEngine members;
+- every host member uses its exact `RaceEngine["member"]` type;
+- every adapter parameter is bound to `Parameters<RaceEngine["method"]>[index]`;
+- adapter return types are inferred from the preserved accepted method bodies;
+- every facade wrapper crosses one explicit `engineAdapterHost(this)` bridge;
+- index signatures, ambient module overloads and `any` are forbidden in the host boundary.

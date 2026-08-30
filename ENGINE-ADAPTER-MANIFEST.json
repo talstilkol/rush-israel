@@ -20,19 +20,19 @@
   "extraction": {
     "engine": {
       "path": "src/game/engine.ts",
-      "lines": 1202,
-      "bytes": 40417,
-      "sha256": "cd2e30b1ae1badfd712a7ac8fe3dbb8ae0aeba80827d10464c6c2dcfcf043d84",
-      "git_blob_sha1": "a54d690d877d614efc6acef1fab20aa7dab8ca8d"
+      "lines": 1207,
+      "bytes": 41703,
+      "sha256": "e0de91cd924cab7c936a0658ec08a8b9afad00b5eb06861e602df72b69e804f7",
+      "git_blob_sha1": "a04661751400830bed28e4995cafea04b691496e"
     },
     "directory": "src/game/engine",
     "adapter_count": 4,
     "support": {
       "path": "src/game/engine/adapter-host.ts",
-      "lines": 96,
-      "bytes": 6368,
-      "sha256": "2177db5967b5c475afb1785ddcc0c4602d8cbde38f257ec500db963c1d50ff0f",
-      "git_blob_sha1": "7c82b03801cd9ef009ade005f0ad955e36d4547a"
+      "lines": 206,
+      "bytes": 7539,
+      "sha256": "1304ae1070b2509eb42bcc9942f6ab141bca0d6c7be4b96068be8ac79409b51b",
+      "git_blob_sha1": "2da01d857ca5b22958bcabb93e51bf9fcdbae947"
     },
     "adapter_order": [
       "loop",
@@ -53,10 +53,10 @@
           "onResize",
           "frame"
         ],
-        "lines": 166,
-        "bytes": 4975,
-        "sha256": "ab4c7f8378d426506ae3655f4b429bfe392bde0c31783733eeeea99a53edf06c",
-        "git_blob_sha1": "f923d25485648e74ebda582f84a0385e250af109"
+        "lines": 167,
+        "bytes": 5098,
+        "sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
+        "git_blob_sha1": "857e133d6e6306f75d3929d885594b3ca775d40c"
       },
       {
         "ordinal": 2,
@@ -93,10 +93,10 @@
           "trimCsm",
           "updateCsm"
         ],
-        "lines": 850,
-        "bytes": 31856,
-        "sha256": "11a9e1716c977e3c2d4e4050358540ee0d6eb85ee93f2d297749e447b34cdb0d",
-        "git_blob_sha1": "130cfbf9cc8d72e3a156d8c352c16f84534b9882"
+        "lines": 851,
+        "bytes": 32439,
+        "sha256": "079e0b2c1d1e73b5605686ba03d137528746396e8d3a9d425bc746aa757aa10f",
+        "git_blob_sha1": "3564931e36d123eee0a228c35eeeb2722c674a0e"
       },
       {
         "ordinal": 3,
@@ -128,10 +128,10 @@
           "stepRewind",
           "stepReplay"
         ],
-        "lines": 747,
-        "bytes": 26040,
-        "sha256": "d888b4fd944ad9ebd06353a080be84187c27ac65329e5271aeeec7471f402aa2",
-        "git_blob_sha1": "d0330a5ef5a62c5d5e30e12ccb23cc4c0bbf6df4"
+        "lines": 748,
+        "bytes": 26440,
+        "sha256": "5dac2313c067ec4a84424bdeea3baabe640cec1ab416392ba156b8f337c0d620",
+        "git_blob_sha1": "03eb2ac26ff7c68833226a9130e0ca268ae62909"
       },
       {
         "ordinal": 4,
@@ -142,10 +142,10 @@
           "qaHookAllowed",
           "exposeControls"
         ],
-        "lines": 442,
-        "bytes": 13198,
-        "sha256": "24f3b27cbe097d5ec70646cc1760e706e44e4ecac73c434d208735ab53c6fcc0",
-        "git_blob_sha1": "be76d23207da4e9a0389caf8de9b29548dc30370"
+        "lines": 443,
+        "bytes": 13243,
+        "sha256": "973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c",
+        "git_blob_sha1": "a9666f0eb6aea8335ef88817374d508f665e35fd"
       }
     ],
     "moved_method_count": 58,
@@ -215,7 +215,7 @@
     "expected_git_blob_sha1": "692663c6d05ab59c1d99c7a357999839b9ebb0ec",
     "expected_lines": 2815,
     "expected_bytes": 99577,
-    "adapter_import_block": "import * as engineLoop from \"./engine/loop-adapter\";\nimport * as engineRendering from \"./engine/rendering-adapter\";\nimport * as enginePhysics from \"./engine/physics-adapter\";\nimport * as engineQa from \"./engine/qa-adapter\";\n",
+    "adapter_import_block": "import type { EngineAdapterHost } from \"./engine/adapter-host\";\nimport * as engineLoop from \"./engine/loop-adapter\";\nimport * as engineRendering from \"./engine/rendering-adapter\";\nimport * as enginePhysics from \"./engine/physics-adapter\";\nimport * as engineQa from \"./engine/qa-adapter\";\n\nfunction engineAdapterHost(engine: RaceEngine): EngineAdapterHost {\n  return engine as unknown as EngineAdapterHost;\n}\n",
     "methods": [
       {
         "ordinal": 1,
@@ -225,9 +225,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private upgradeGraphics() ",
         "original_suffix": "",
-        "wrapper_source": "  private upgradeGraphics() {\n    return engineRendering.upgradeGraphics.call(this);\n  }",
+        "wrapper_source": "  private upgradeGraphics() {\n    return engineRendering.upgradeGraphics.call(engineAdapterHost(this));\n  }",
         "body_sha256": "c44ca6e9b439a2407361a4256f32ad44177ec93094837f0d8c7e5fc549b5acc2",
-        "original_member_sha256": "d777f2fd1c80253cc4e4db6e09e33aa1c5d38053de8eb570a994917020e3dffb"
+        "original_member_sha256": "d777f2fd1c80253cc4e4db6e09e33aa1c5d38053de8eb570a994917020e3dffb",
+        "adapter_signature": "export function upgradeGraphics(this: EngineAdapterHost)"
       },
       {
         "ordinal": 2,
@@ -237,9 +238,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  enterPhoto() ",
         "original_suffix": "",
-        "wrapper_source": "  enterPhoto() {\n    return engineRendering.enterPhoto.call(this);\n  }",
+        "wrapper_source": "  enterPhoto() {\n    return engineRendering.enterPhoto.call(engineAdapterHost(this));\n  }",
         "body_sha256": "2ff5dcc9053d24678ecb6c519b2dcd3c8e35cdcdd80d9e92c435f51bfe3c2729",
-        "original_member_sha256": "7826f0931370a1b023c7c10eba6391245eb7c2b86f922c1aaa600eeb75463c30"
+        "original_member_sha256": "7826f0931370a1b023c7c10eba6391245eb7c2b86f922c1aaa600eeb75463c30",
+        "adapter_signature": "export function enterPhoto(this: EngineAdapterHost)"
       },
       {
         "ordinal": 3,
@@ -249,9 +251,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  exitPhoto() ",
         "original_suffix": "",
-        "wrapper_source": "  exitPhoto() {\n    return engineRendering.exitPhoto.call(this);\n  }",
+        "wrapper_source": "  exitPhoto() {\n    return engineRendering.exitPhoto.call(engineAdapterHost(this));\n  }",
         "body_sha256": "74ebb5d8b48ab464afc7469fba45562412b49ac863b27ed38c30ebd6f5622e47",
-        "original_member_sha256": "04d8f35e78af5d78b9ab50ec84f4f9c09a740e65e54c10d58644c4c4f71ef4b5"
+        "original_member_sha256": "04d8f35e78af5d78b9ab50ec84f4f9c09a740e65e54c10d58644c4c4f71ef4b5",
+        "adapter_signature": "export function exitPhoto(this: EngineAdapterHost)"
       },
       {
         "ordinal": 4,
@@ -261,9 +264,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  frameWorld(x: number, z: number, y = 52, camY = 22, back = 28, fov = 40) ",
         "original_suffix": "",
-        "wrapper_source": "  frameWorld(x: number, z: number, y = 52, camY = 22, back = 28, fov = 40) {\n    return engineRendering.frameWorld.call(this, x, z, y, camY, back, fov);\n  }",
+        "wrapper_source": "  frameWorld(x: number, z: number, y = 52, camY = 22, back = 28, fov = 40) {\n    return engineRendering.frameWorld.call(engineAdapterHost(this), x, z, y, camY, back, fov);\n  }",
         "body_sha256": "94fc3b5eada514c7c3c52aa721fc2ae78b541af7a560b3143d4cbc77be51d4c5",
-        "original_member_sha256": "439d9436a2456850f336e35b8bbd5d5f508d2c85bd1aaee7aac2a2b7a8a14445"
+        "original_member_sha256": "439d9436a2456850f336e35b8bbd5d5f508d2c85bd1aaee7aac2a2b7a8a14445",
+        "adapter_signature": "export function frameWorld(this: EngineAdapterHost, x: Parameters<RaceEngine[\"frameWorld\"]>[0], z: Parameters<RaceEngine[\"frameWorld\"]>[1], y: Parameters<RaceEngine[\"frameWorld\"]>[2] = 52, camY: Parameters<RaceEngine[\"frameWorld\"]>[3] = 22, back: Parameters<RaceEngine[\"frameWorld\"]>[4] = 28, fov: Parameters<RaceEngine[\"frameWorld\"]>[5] = 40)"
       },
       {
         "ordinal": 5,
@@ -273,9 +277,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  isPhoto() ",
         "original_suffix": "",
-        "wrapper_source": "  isPhoto() {\n    return engineRendering.isPhoto.call(this);\n  }",
+        "wrapper_source": "  isPhoto() {\n    return engineRendering.isPhoto.call(engineAdapterHost(this));\n  }",
         "body_sha256": "c7912b26731f43b2aa9cc2ed2a31ae391aadddc2c2a776ad07d713d059f694c9",
-        "original_member_sha256": "828de9a064b1a347cbfd610f42d0446fda86e8a1845331fa24b777807e1390a5"
+        "original_member_sha256": "828de9a064b1a347cbfd610f42d0446fda86e8a1845331fa24b777807e1390a5",
+        "adapter_signature": "export function isPhoto(this: EngineAdapterHost)"
       },
       {
         "ordinal": 6,
@@ -285,9 +290,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  capturePhoto() ",
         "original_suffix": "",
-        "wrapper_source": "  capturePhoto() {\n    return engineRendering.capturePhoto.call(this);\n  }",
+        "wrapper_source": "  capturePhoto() {\n    return engineRendering.capturePhoto.call(engineAdapterHost(this));\n  }",
         "body_sha256": "98e8569788e538ab6439c8264908de492d90fae02473fb9af6221befa10a82b4",
-        "original_member_sha256": "698c2c9850a7ba37cf561ed31ac9b6f8811d7cb6221c183938f02df038cd4d82"
+        "original_member_sha256": "698c2c9850a7ba37cf561ed31ac9b6f8811d7cb6221c183938f02df038cd4d82",
+        "adapter_signature": "export function capturePhoto(this: EngineAdapterHost)"
       },
       {
         "ordinal": 7,
@@ -297,9 +303,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private flushSnap() ",
         "original_suffix": "",
-        "wrapper_source": "  private flushSnap() {\n    return engineRendering.flushSnap.call(this);\n  }",
+        "wrapper_source": "  private flushSnap() {\n    return engineRendering.flushSnap.call(engineAdapterHost(this));\n  }",
         "body_sha256": "20fcefee17fd28354807d6d102f92e3eefdf92d71e6222582660c02d723cbc23",
-        "original_member_sha256": "8dc66a16dc07cfde9d7dfc9b20504ac3de9409f64eced0adedde5f8b41c4aedc"
+        "original_member_sha256": "8dc66a16dc07cfde9d7dfc9b20504ac3de9409f64eced0adedde5f8b41c4aedc",
+        "adapter_signature": "export function flushSnap(this: EngineAdapterHost)"
       },
       {
         "ordinal": 8,
@@ -309,9 +316,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  cyclePhotoFilter() ",
         "original_suffix": "",
-        "wrapper_source": "  cyclePhotoFilter() {\n    return engineRendering.cyclePhotoFilter.call(this);\n  }",
+        "wrapper_source": "  cyclePhotoFilter() {\n    return engineRendering.cyclePhotoFilter.call(engineAdapterHost(this));\n  }",
         "body_sha256": "2d78ca22476bce994a2d6f0088fd2b29b36a585610eadaff965faeff845476c2",
-        "original_member_sha256": "03c6c80b68f33c2397c8c511e8e860bbcbc30b0272bf23d6e3dd38d94eb987b3"
+        "original_member_sha256": "03c6c80b68f33c2397c8c511e8e860bbcbc30b0272bf23d6e3dd38d94eb987b3",
+        "adapter_signature": "export function cyclePhotoFilter(this: EngineAdapterHost)"
       },
       {
         "ordinal": 9,
@@ -321,9 +329,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  togglePhotoHud() ",
         "original_suffix": "",
-        "wrapper_source": "  togglePhotoHud() {\n    return engineRendering.togglePhotoHud.call(this);\n  }",
+        "wrapper_source": "  togglePhotoHud() {\n    return engineRendering.togglePhotoHud.call(engineAdapterHost(this));\n  }",
         "body_sha256": "a1f04a57697bafa381ef2e79c7765ed4c6fa86a7b38d67dd150bd4b2905e9496",
-        "original_member_sha256": "478c52f83a17f4bed5fa753235b4420ee0facaa05477e96d5791f5b6c40fb43b"
+        "original_member_sha256": "478c52f83a17f4bed5fa753235b4420ee0facaa05477e96d5791f5b6c40fb43b",
+        "adapter_signature": "export function togglePhotoHud(this: EngineAdapterHost)"
       },
       {
         "ordinal": 10,
@@ -333,9 +342,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  setAutoCycle(on: boolean) ",
         "original_suffix": "",
-        "wrapper_source": "  setAutoCycle(on: boolean) {\n    return engineRendering.setAutoCycle.call(this, on);\n  }",
+        "wrapper_source": "  setAutoCycle(on: boolean) {\n    return engineRendering.setAutoCycle.call(engineAdapterHost(this), on);\n  }",
         "body_sha256": "1cfe58de335504a284131b13f380d3fb092411ba26ce91444c5127dd841f5051",
-        "original_member_sha256": "cc1c8c23ef0ac80013074faad950e287057ec9f2574654bbe76b611553d6d9d9"
+        "original_member_sha256": "cc1c8c23ef0ac80013074faad950e287057ec9f2574654bbe76b611553d6d9d9",
+        "adapter_signature": "export function setAutoCycle(this: EngineAdapterHost, on: Parameters<RaceEngine[\"setAutoCycle\"]>[0])"
       },
       {
         "ordinal": 11,
@@ -345,9 +355,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  getAutoCycle() ",
         "original_suffix": "",
-        "wrapper_source": "  getAutoCycle() {\n    return engineRendering.getAutoCycle.call(this);\n  }",
+        "wrapper_source": "  getAutoCycle() {\n    return engineRendering.getAutoCycle.call(engineAdapterHost(this));\n  }",
         "body_sha256": "3288cd3d375749d2fbec4c2dc7ca6a73afe3e6277ba8cedfd27c5bd008c106b6",
-        "original_member_sha256": "4925adbf87ca2b3d97581e269fea2fbf7778a927a4e861edea82b8bc5938b779"
+        "original_member_sha256": "4925adbf87ca2b3d97581e269fea2fbf7778a927a4e861edea82b8bc5938b779",
+        "adapter_signature": "export function getAutoCycle(this: EngineAdapterHost)"
       },
       {
         "ordinal": 12,
@@ -357,9 +368,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  setNight(night: boolean) ",
         "original_suffix": "",
-        "wrapper_source": "  setNight(night: boolean) {\n    return engineRendering.setNight.call(this, night);\n  }",
+        "wrapper_source": "  setNight(night: boolean) {\n    return engineRendering.setNight.call(engineAdapterHost(this), night);\n  }",
         "body_sha256": "3e3a0b9dad96fafd36bfc51232a6ba71bc907f18f0c55820bc20169fbb5bd4d8",
-        "original_member_sha256": "7c0e8cb6f941657c23550449c5a3094b97edc27b8fd998c68d29d16d167dc680"
+        "original_member_sha256": "7c0e8cb6f941657c23550449c5a3094b97edc27b8fd998c68d29d16d167dc680",
+        "adapter_signature": "export function setNight(this: EngineAdapterHost, night: Parameters<RaceEngine[\"setNight\"]>[0])"
       },
       {
         "ordinal": 13,
@@ -369,9 +381,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private applyLook() ",
         "original_suffix": "",
-        "wrapper_source": "  private applyLook() {\n    return engineRendering.applyLook.call(this);\n  }",
+        "wrapper_source": "  private applyLook() {\n    return engineRendering.applyLook.call(engineAdapterHost(this));\n  }",
         "body_sha256": "06c7711bf4585610bb9b96f6e59223f2be3de60f387537056eec846112f11ea5",
-        "original_member_sha256": "2d82d69493f93ff73d3391272f7776769806c8a797ee4c895637071235a6db64"
+        "original_member_sha256": "2d82d69493f93ff73d3391272f7776769806c8a797ee4c895637071235a6db64",
+        "adapter_signature": "export function applyLook(this: EngineAdapterHost)"
       },
       {
         "ordinal": 14,
@@ -381,9 +394,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private applyClockSky(rebake: boolean) ",
         "original_suffix": "",
-        "wrapper_source": "  private applyClockSky(rebake: boolean) {\n    return engineRendering.applyClockSky.call(this, rebake);\n  }",
+        "wrapper_source": "  private applyClockSky(rebake: boolean) {\n    return engineRendering.applyClockSky.call(engineAdapterHost(this), rebake);\n  }",
         "body_sha256": "b3b6c6f2038441f71c461a848cd90b2e0f171be85abe7431666e0c5be6f8db7c",
-        "original_member_sha256": "6c5acbdd5f04350097ffb2db618f96000aa5d8434a7ce1840fc33b731c2e8d5a"
+        "original_member_sha256": "6c5acbdd5f04350097ffb2db618f96000aa5d8434a7ce1840fc33b731c2e8d5a",
+        "adapter_signature": "export function applyClockSky(this: EngineAdapterHost, rebake: Parameters<RaceEngine[\"applyClockSky\"]>[0])"
       },
       {
         "ordinal": 15,
@@ -393,9 +407,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private captureSceneEnv() ",
         "original_suffix": "",
-        "wrapper_source": "  private captureSceneEnv() {\n    return engineRendering.captureSceneEnv.call(this);\n  }",
+        "wrapper_source": "  private captureSceneEnv() {\n    return engineRendering.captureSceneEnv.call(engineAdapterHost(this));\n  }",
         "body_sha256": "6f1d47615c411109deb9d7b699c3b20138b1be76b0b7d6cea98dbca921634c1f",
-        "original_member_sha256": "c30c7e32413fec4f382bb26e4519728b0aede4bd5fdc6553dfbd4b585c2d47da"
+        "original_member_sha256": "c30c7e32413fec4f382bb26e4519728b0aede4bd5fdc6553dfbd4b585c2d47da",
+        "adapter_signature": "export function captureSceneEnv(this: EngineAdapterHost)"
       },
       {
         "ordinal": 16,
@@ -405,9 +420,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private applyAltitudeLook() ",
         "original_suffix": "",
-        "wrapper_source": "  private applyAltitudeLook() {\n    return engineRendering.applyAltitudeLook.call(this);\n  }",
+        "wrapper_source": "  private applyAltitudeLook() {\n    return engineRendering.applyAltitudeLook.call(engineAdapterHost(this));\n  }",
         "body_sha256": "5542ef7dbb534625e571811b04c820aaf84e243fae1dbc595dfc57bbaf266187",
-        "original_member_sha256": "3b81c354ecf3cdf68c2e1ce45b73145437d999e74d22f173e54705ddf38dfcd3"
+        "original_member_sha256": "3b81c354ecf3cdf68c2e1ce45b73145437d999e74d22f173e54705ddf38dfcd3",
+        "adapter_signature": "export function applyAltitudeLook(this: EngineAdapterHost)"
       },
       {
         "ordinal": 17,
@@ -417,9 +433,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private updateProbe() ",
         "original_suffix": "",
-        "wrapper_source": "  private updateProbe() {\n    return engineRendering.updateProbe.call(this);\n  }",
+        "wrapper_source": "  private updateProbe() {\n    return engineRendering.updateProbe.call(engineAdapterHost(this));\n  }",
         "body_sha256": "2c23ace14b908febe9552af7cedab1f68f7d1bd01164018118ca22a9022f816c",
-        "original_member_sha256": "5b5bd0e8ef1994d31c8361bcb9241a8d9b06a53c953e125105b9535f052ffac5"
+        "original_member_sha256": "5b5bd0e8ef1994d31c8361bcb9241a8d9b06a53c953e125105b9535f052ffac5",
+        "adapter_signature": "export function updateProbe(this: EngineAdapterHost)"
       },
       {
         "ordinal": 18,
@@ -429,9 +446,10 @@
         "path": "src/game/engine/loop-adapter.ts",
         "original_prefix": "  private onContextLost = (e: Event) => ",
         "original_suffix": ";",
-        "wrapper_source": "  private onContextLost = (e: Event) => engineLoop.onContextLost.call(this, e);",
+        "wrapper_source": "  private onContextLost = (e: Event) => engineLoop.onContextLost.call(engineAdapterHost(this), e);",
         "body_sha256": "0f890e8c0ed8f7fdd6470e303e10bed41eb10fd060fd3bc7ec036b03aad77689",
-        "original_member_sha256": "7fcc7bfb324d9be84691a0b8f26f8a6aca9594baa0832b99433807d908153acc"
+        "original_member_sha256": "7fcc7bfb324d9be84691a0b8f26f8a6aca9594baa0832b99433807d908153acc",
+        "adapter_signature": "export function onContextLost(this: EngineAdapterHost, e: Parameters<RaceEngine[\"onContextLost\"]>[0])"
       },
       {
         "ordinal": 19,
@@ -441,9 +459,10 @@
         "path": "src/game/engine/loop-adapter.ts",
         "original_prefix": "  private onContextRestored = () => ",
         "original_suffix": ";",
-        "wrapper_source": "  private onContextRestored = () => engineLoop.onContextRestored.call(this);",
+        "wrapper_source": "  private onContextRestored = () => engineLoop.onContextRestored.call(engineAdapterHost(this));",
         "body_sha256": "e1513b6a87e3feebf71026f3973e6ec98a64521246ff4afe7faefe29152c94d0",
-        "original_member_sha256": "87b4717ec6efe4d3334fce9fd73ea578872b2283599d126c30d5189a2524364f"
+        "original_member_sha256": "87b4717ec6efe4d3334fce9fd73ea578872b2283599d126c30d5189a2524364f",
+        "adapter_signature": "export function onContextRestored(this: EngineAdapterHost)"
       },
       {
         "ordinal": 20,
@@ -453,9 +472,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private applyGfxStep() ",
         "original_suffix": "",
-        "wrapper_source": "  private applyGfxStep() {\n    return engineRendering.applyGfxStep.call(this);\n  }",
+        "wrapper_source": "  private applyGfxStep() {\n    return engineRendering.applyGfxStep.call(engineAdapterHost(this));\n  }",
         "body_sha256": "5158812dd396ccdc996a84cf50aadc39d3d7fcda7d6f8e1ffed92220ef709eb7",
-        "original_member_sha256": "21a819651215424e7061f4b369e825cf6682e3e2efb1507425ab941a6f8de828"
+        "original_member_sha256": "21a819651215424e7061f4b369e825cf6682e3e2efb1507425ab941a6f8de828",
+        "adapter_signature": "export function applyGfxStep(this: EngineAdapterHost)"
       },
       {
         "ordinal": 21,
@@ -465,9 +485,10 @@
         "path": "src/game/engine/loop-adapter.ts",
         "original_prefix": "  private shouldPresent(now: number) ",
         "original_suffix": "",
-        "wrapper_source": "  private shouldPresent(now: number) {\n    return engineLoop.shouldPresent.call(this, now);\n  }",
+        "wrapper_source": "  private shouldPresent(now: number) {\n    return engineLoop.shouldPresent.call(engineAdapterHost(this), now);\n  }",
         "body_sha256": "b88850360d8144b7b37ad4ea2c94fc612fcfac8f88d9aee12f878e323e309c26",
-        "original_member_sha256": "47cd6bac4a766c1e0a7d66cb02ecbe83308a027b7bb86d9256258775817320de"
+        "original_member_sha256": "47cd6bac4a766c1e0a7d66cb02ecbe83308a027b7bb86d9256258775817320de",
+        "adapter_signature": "export function shouldPresent(this: EngineAdapterHost, now: Parameters<RaceEngine[\"shouldPresent\"]>[0])"
       },
       {
         "ordinal": 22,
@@ -477,9 +498,10 @@
         "path": "src/game/engine/loop-adapter.ts",
         "original_prefix": "  private onResize() ",
         "original_suffix": "",
-        "wrapper_source": "  private onResize() {\n    return engineLoop.onResize.call(this);\n  }",
+        "wrapper_source": "  private onResize() {\n    return engineLoop.onResize.call(engineAdapterHost(this));\n  }",
         "body_sha256": "9e74a6c831aa3d3e4dc1e75abf74edab2b7050587cea19e83a40fc82067bf220",
-        "original_member_sha256": "98d1fb8f16239d3b2c77d49adb3aad75d0d0036b2eb97b66c431d30c0ed46ea5"
+        "original_member_sha256": "98d1fb8f16239d3b2c77d49adb3aad75d0d0036b2eb97b66c431d30c0ed46ea5",
+        "adapter_signature": "export function onResize(this: EngineAdapterHost)"
       },
       {
         "ordinal": 23,
@@ -489,9 +511,10 @@
         "path": "src/game/engine/loop-adapter.ts",
         "original_prefix": "  private frame() ",
         "original_suffix": "",
-        "wrapper_source": "  private frame() {\n    return engineLoop.frame.call(this);\n  }",
+        "wrapper_source": "  private frame() {\n    return engineLoop.frame.call(engineAdapterHost(this));\n  }",
         "body_sha256": "57a15a860cc953357e786763b6ea95f8d52038616cc01ea40428963bc657ee85",
-        "original_member_sha256": "98e0f47b4c0b1015017ff75eb3ba44a6b1f26d9d59ed5ab5c2f6da0ddf3676c1"
+        "original_member_sha256": "98e0f47b4c0b1015017ff75eb3ba44a6b1f26d9d59ed5ab5c2f6da0ddf3676c1",
+        "adapter_signature": "export function frame(this: EngineAdapterHost)"
       },
       {
         "ordinal": 24,
@@ -501,9 +524,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private fixed(dt: number) ",
         "original_suffix": "",
-        "wrapper_source": "  private fixed(dt: number) {\n    return enginePhysics.fixed.call(this, dt);\n  }",
+        "wrapper_source": "  private fixed(dt: number) {\n    return enginePhysics.fixed.call(engineAdapterHost(this), dt);\n  }",
         "body_sha256": "bd063b93146fbd3ee8ea4f4d954c2696a0204cbb82564bbca9b379288b1f97a9",
-        "original_member_sha256": "92e4112519ef9653e91b5d3d4dde59c14918cf238792ce9a0d6eef802388972f"
+        "original_member_sha256": "92e4112519ef9653e91b5d3d4dde59c14918cf238792ce9a0d6eef802388972f",
+        "adapter_signature": "export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine[\"fixed\"]>[0])"
       },
       {
         "ordinal": 25,
@@ -513,9 +537,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private stepDriftCraft(dt: number) ",
         "original_suffix": "",
-        "wrapper_source": "  private stepDriftCraft(dt: number) {\n    return enginePhysics.stepDriftCraft.call(this, dt);\n  }",
+        "wrapper_source": "  private stepDriftCraft(dt: number) {\n    return enginePhysics.stepDriftCraft.call(engineAdapterHost(this), dt);\n  }",
         "body_sha256": "6a25a9192c67287c507f734bae771af5c9c7c70e4846a2c48a01dd6f0f0f9f08",
-        "original_member_sha256": "7f1294652e05889acb2f7ceafef160dde496d71ba691d371155b2805299a3338"
+        "original_member_sha256": "7f1294652e05889acb2f7ceafef160dde496d71ba691d371155b2805299a3338",
+        "adapter_signature": "export function stepDriftCraft(this: EngineAdapterHost, dt: Parameters<RaceEngine[\"stepDriftCraft\"]>[0])"
       },
       {
         "ordinal": 26,
@@ -525,9 +550,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private standings() ",
         "original_suffix": "",
-        "wrapper_source": "  private standings() {\n    return enginePhysics.standings.call(this);\n  }",
+        "wrapper_source": "  private standings() {\n    return enginePhysics.standings.call(engineAdapterHost(this));\n  }",
         "body_sha256": "34c345a534b8fab690f5f8aec55e56fb60d71c6b23f6942f6a74c0ce1b7b8053",
-        "original_member_sha256": "842937131bed2201249bf4502ade79c608888ef03172d37ed48e9d15fc12458d"
+        "original_member_sha256": "842937131bed2201249bf4502ade79c608888ef03172d37ed48e9d15fc12458d",
+        "adapter_signature": "export function standings(this: EngineAdapterHost)"
       },
       {
         "ordinal": 27,
@@ -537,9 +563,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private stepHeat(dt: number) ",
         "original_suffix": "",
-        "wrapper_source": "  private stepHeat(dt: number) {\n    return enginePhysics.stepHeat.call(this, dt);\n  }",
+        "wrapper_source": "  private stepHeat(dt: number) {\n    return enginePhysics.stepHeat.call(engineAdapterHost(this), dt);\n  }",
         "body_sha256": "3394cf18756dfe4e8ed8eb3bf8ed9acbe21c844bbe2b0e8af4233f1fcbfacfa4",
-        "original_member_sha256": "f79fe0c9925b6dec6473d950fcfe63f4e1cdac33cd67ce9ce671ee5fa493e312"
+        "original_member_sha256": "f79fe0c9925b6dec6473d950fcfe63f4e1cdac33cd67ce9ce671ee5fa493e312",
+        "adapter_signature": "export function stepHeat(this: EngineAdapterHost, dt: Parameters<RaceEngine[\"stepHeat\"]>[0])"
       },
       {
         "ordinal": 28,
@@ -549,9 +576,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private pushCopsBack() ",
         "original_suffix": "",
-        "wrapper_source": "  private pushCopsBack() {\n    return enginePhysics.pushCopsBack.call(this);\n  }",
+        "wrapper_source": "  private pushCopsBack() {\n    return enginePhysics.pushCopsBack.call(engineAdapterHost(this));\n  }",
         "body_sha256": "96f1b6c86aa6d8cdb9e71910581f8a693e4653afb724aa2d281d14f69b0e836b",
-        "original_member_sha256": "dd68307488aabb07325fe24ec030bc7d691cadd5a40f3fcdf7431aff849a6900"
+        "original_member_sha256": "dd68307488aabb07325fe24ec030bc7d691cadd5a40f3fcdf7431aff849a6900",
+        "adapter_signature": "export function pushCopsBack(this: EngineAdapterHost)"
       },
       {
         "ordinal": 29,
@@ -561,9 +589,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private ensureCops(n: number) ",
         "original_suffix": "",
-        "wrapper_source": "  private ensureCops(n: number) {\n    return enginePhysics.ensureCops.call(this, n);\n  }",
+        "wrapper_source": "  private ensureCops(n: number) {\n    return enginePhysics.ensureCops.call(engineAdapterHost(this), n);\n  }",
         "body_sha256": "f5383b3d9bbd7d59f2183c6c90b0c17ffb9e1299c17a4c3eba481b87621a109d",
-        "original_member_sha256": "ff1668bf8c8ee6ac3133731ab106ff67f1eaf02d1746b7b1856cdb4e0a74780f"
+        "original_member_sha256": "ff1668bf8c8ee6ac3133731ab106ff67f1eaf02d1746b7b1856cdb4e0a74780f",
+        "adapter_signature": "export function ensureCops(this: EngineAdapterHost, n: Parameters<RaceEngine[\"ensureCops\"]>[0])"
       },
       {
         "ordinal": 30,
@@ -573,9 +602,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private addCop(i: number) ",
         "original_suffix": "",
-        "wrapper_source": "  private addCop(i: number) {\n    return enginePhysics.addCop.call(this, i);\n  }",
+        "wrapper_source": "  private addCop(i: number) {\n    return enginePhysics.addCop.call(engineAdapterHost(this), i);\n  }",
         "body_sha256": "e3d7d8c8cb661d3031ac1e9a360c3cc1f7544723fd171c91de19abf097aa9117",
-        "original_member_sha256": "eadf30fb7385f7beb38b616ee686f2bce8934252ca60bb3f92f83ffe3b9ffcff"
+        "original_member_sha256": "eadf30fb7385f7beb38b616ee686f2bce8934252ca60bb3f92f83ffe3b9ffcff",
+        "adapter_signature": "export function addCop(this: EngineAdapterHost, i: Parameters<RaceEngine[\"addCop\"]>[0])"
       },
       {
         "ordinal": 31,
@@ -585,9 +615,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private spawnRoadblock() ",
         "original_suffix": "",
-        "wrapper_source": "  private spawnRoadblock() {\n    return enginePhysics.spawnRoadblock.call(this);\n  }",
+        "wrapper_source": "  private spawnRoadblock() {\n    return enginePhysics.spawnRoadblock.call(engineAdapterHost(this));\n  }",
         "body_sha256": "7ad7f1c026c7524deafebca79feca22686549014aef9a23c122465911494eb38",
-        "original_member_sha256": "edc9f3e1215aca2d3ed11c5249f41e222b59db796fddc64ccbf06c9d92002873"
+        "original_member_sha256": "edc9f3e1215aca2d3ed11c5249f41e222b59db796fddc64ccbf06c9d92002873",
+        "adapter_signature": "export function spawnRoadblock(this: EngineAdapterHost)"
       },
       {
         "ordinal": 32,
@@ -597,9 +628,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private tickRoadblock() ",
         "original_suffix": "",
-        "wrapper_source": "  private tickRoadblock() {\n    return enginePhysics.tickRoadblock.call(this);\n  }",
+        "wrapper_source": "  private tickRoadblock() {\n    return enginePhysics.tickRoadblock.call(engineAdapterHost(this));\n  }",
         "body_sha256": "4ecc19fc038fc9284b9a43ba418d70d0ff8ae17bc8b52e84aae963f142884ff4",
-        "original_member_sha256": "04009fc702f2668f4428280797df1cd1a0ac93fa12175e93eb256bd46acb3389"
+        "original_member_sha256": "04009fc702f2668f4428280797df1cd1a0ac93fa12175e93eb256bd46acb3389",
+        "adapter_signature": "export function tickRoadblock(this: EngineAdapterHost)"
       },
       {
         "ordinal": 33,
@@ -609,9 +641,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private navAngle() ",
         "original_suffix": "",
-        "wrapper_source": "  private navAngle() {\n    return enginePhysics.navAngle.call(this);\n  }",
+        "wrapper_source": "  private navAngle() {\n    return enginePhysics.navAngle.call(engineAdapterHost(this));\n  }",
         "body_sha256": "0e83576ed1acdc612ba3cb68aa6d1fa01a94687cbf8ba0c2fc20e0ca5277ad2f",
-        "original_member_sha256": "0e4d5f925551727148082fa4c2c186fc08e3dd2aa6a1d7ddf408e4b3ea71c3ef"
+        "original_member_sha256": "0e4d5f925551727148082fa4c2c186fc08e3dd2aa6a1d7ddf408e4b3ea71c3ef",
+        "adapter_signature": "export function navAngle(this: EngineAdapterHost)"
       },
       {
         "ordinal": 34,
@@ -621,9 +654,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private stampPois() ",
         "original_suffix": "",
-        "wrapper_source": "  private stampPois() {\n    return enginePhysics.stampPois.call(this);\n  }",
+        "wrapper_source": "  private stampPois() {\n    return enginePhysics.stampPois.call(engineAdapterHost(this));\n  }",
         "body_sha256": "c5267c55bfe44ddb91944f9e589464fff6f712616cf060bd9603b030fb8cb856",
-        "original_member_sha256": "49ad48c1733faddb00350c80451dbf1b5642553fb800178aa5620f3a63268637"
+        "original_member_sha256": "49ad48c1733faddb00350c80451dbf1b5642553fb800178aa5620f3a63268637",
+        "adapter_signature": "export function stampPois(this: EngineAdapterHost)"
       },
       {
         "ordinal": 35,
@@ -633,9 +667,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private clearRoadblock() ",
         "original_suffix": "",
-        "wrapper_source": "  private clearRoadblock() {\n    return enginePhysics.clearRoadblock.call(this);\n  }",
+        "wrapper_source": "  private clearRoadblock() {\n    return enginePhysics.clearRoadblock.call(engineAdapterHost(this));\n  }",
         "body_sha256": "02351ac98a10bdb31a0cae9de98bf168b52247f7a1edfe702cb4a6de874acf7e",
-        "original_member_sha256": "53b45508fb1cda0e1e558f4b18f492648c11de10a5a0c3149ee2391e267ff370"
+        "original_member_sha256": "53b45508fb1cda0e1e558f4b18f492648c11de10a5a0c3149ee2391e267ff370",
+        "adapter_signature": "export function clearRoadblock(this: EngineAdapterHost)"
       },
       {
         "ordinal": 36,
@@ -645,9 +680,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private checkKnockout() ",
         "original_suffix": "",
-        "wrapper_source": "  private checkKnockout() {\n    return enginePhysics.checkKnockout.call(this);\n  }",
+        "wrapper_source": "  private checkKnockout() {\n    return enginePhysics.checkKnockout.call(engineAdapterHost(this));\n  }",
         "body_sha256": "b50d92cf1ccdcbe3c54f68bfb99c3477d9d0bcf3e2914d21eaf05e5a2f902279",
-        "original_member_sha256": "228f69ab05f97c9261e7d93a3dcd8d16b294ee45a5eb1762ff9db2a46b296c31"
+        "original_member_sha256": "228f69ab05f97c9261e7d93a3dcd8d16b294ee45a5eb1762ff9db2a46b296c31",
+        "adapter_signature": "export function checkKnockout(this: EngineAdapterHost)"
       },
       {
         "ordinal": 37,
@@ -657,9 +693,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private closeSector(i: number) ",
         "original_suffix": "",
-        "wrapper_source": "  private closeSector(i: number) {\n    return enginePhysics.closeSector.call(this, i);\n  }",
+        "wrapper_source": "  private closeSector(i: number) {\n    return enginePhysics.closeSector.call(engineAdapterHost(this), i);\n  }",
         "body_sha256": "dc7e7d527488b4e65433f57876512824f4b32aa09f1575d3d4ebcec067fb3461",
-        "original_member_sha256": "469b1948f98b51e7e31b9c974bb48091259f80d962e3d24cea9569fcfb3b8553"
+        "original_member_sha256": "469b1948f98b51e7e31b9c974bb48091259f80d962e3d24cea9569fcfb3b8553",
+        "adapter_signature": "export function closeSector(this: EngineAdapterHost, i: Parameters<RaceEngine[\"closeSector\"]>[0])"
       },
       {
         "ordinal": 38,
@@ -669,9 +706,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private endRace() ",
         "original_suffix": "",
-        "wrapper_source": "  private endRace() {\n    return enginePhysics.endRace.call(this);\n  }",
+        "wrapper_source": "  private endRace() {\n    return enginePhysics.endRace.call(engineAdapterHost(this));\n  }",
         "body_sha256": "a061236d16810a118fabf2d53621ee528b6e1185fde4640e03771275f591d8a2",
-        "original_member_sha256": "907332c35fb1834631fa1a7b9bbc0fa611d8d997ef3f347186460099c5fbc1e5"
+        "original_member_sha256": "907332c35fb1834631fa1a7b9bbc0fa611d8d997ef3f347186460099c5fbc1e5",
+        "adapter_signature": "export function endRace(this: EngineAdapterHost)"
       },
       {
         "ordinal": 39,
@@ -681,9 +719,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private emitFinish() ",
         "original_suffix": "",
-        "wrapper_source": "  private emitFinish() {\n    return enginePhysics.emitFinish.call(this);\n  }",
+        "wrapper_source": "  private emitFinish() {\n    return enginePhysics.emitFinish.call(engineAdapterHost(this));\n  }",
         "body_sha256": "9c60ff666c6559b37873394a583922d4e262a3a70749c71b1fce0d0671fb7abf",
-        "original_member_sha256": "5da2e402aec61517f5a01b44977b51d080b286e362dcebb3d704cda65eb433ed"
+        "original_member_sha256": "5da2e402aec61517f5a01b44977b51d080b286e362dcebb3d704cda65eb433ed",
+        "adapter_signature": "export function emitFinish(this: EngineAdapterHost)"
       },
       {
         "ordinal": 40,
@@ -693,9 +732,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  skipReplay() ",
         "original_suffix": "",
-        "wrapper_source": "  skipReplay() {\n    return enginePhysics.skipReplay.call(this);\n  }",
+        "wrapper_source": "  skipReplay() {\n    return enginePhysics.skipReplay.call(engineAdapterHost(this));\n  }",
         "body_sha256": "0d6b60f9ea7882c37e5d954219087d9cd1b3a20c9c1adcbe641f884992a24a85",
-        "original_member_sha256": "d8c63f9a7d0af820a55e4ad82a85c3f72cba29a6f3d28d0a0b36672a0c7d69b8"
+        "original_member_sha256": "d8c63f9a7d0af820a55e4ad82a85c3f72cba29a6f3d28d0a0b36672a0c7d69b8",
+        "adapter_signature": "export function skipReplay(this: EngineAdapterHost)"
       },
       {
         "ordinal": 41,
@@ -705,9 +745,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private recordSnap() ",
         "original_suffix": "",
-        "wrapper_source": "  private recordSnap() {\n    return enginePhysics.recordSnap.call(this);\n  }",
+        "wrapper_source": "  private recordSnap() {\n    return enginePhysics.recordSnap.call(engineAdapterHost(this));\n  }",
         "body_sha256": "5ef23a5d961c076d98932b5dd42761576406a24df37d235f275d677a95ab2c97",
-        "original_member_sha256": "422e78ec65c992281c878439d079583c5ad0284e6a815a9544a5676058638459"
+        "original_member_sha256": "422e78ec65c992281c878439d079583c5ad0284e6a815a9544a5676058638459",
+        "adapter_signature": "export function recordSnap(this: EngineAdapterHost)"
       },
       {
         "ordinal": 42,
@@ -717,9 +758,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private recordReplay(dt: number) ",
         "original_suffix": "",
-        "wrapper_source": "  private recordReplay(dt: number) {\n    return enginePhysics.recordReplay.call(this, dt);\n  }",
+        "wrapper_source": "  private recordReplay(dt: number) {\n    return enginePhysics.recordReplay.call(engineAdapterHost(this), dt);\n  }",
         "body_sha256": "7e414c882f5368151d69ed434bfeabe41dc8fe0f19358d41c8fe2ad647b42e3e",
-        "original_member_sha256": "5a91a3836902cc59bff4781810cbc9509a46b09fda8e2c77256dbc3a6352450c"
+        "original_member_sha256": "5a91a3836902cc59bff4781810cbc9509a46b09fda8e2c77256dbc3a6352450c",
+        "adapter_signature": "export function recordReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine[\"recordReplay\"]>[0])"
       },
       {
         "ordinal": 43,
@@ -729,9 +771,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private takePack(): RewindPack ",
         "original_suffix": "",
-        "wrapper_source": "  private takePack(): RewindPack {\n    return enginePhysics.takePack.call(this);\n  }",
+        "wrapper_source": "  private takePack(): RewindPack {\n    return enginePhysics.takePack.call(engineAdapterHost(this));\n  }",
         "body_sha256": "a8e68e2768571c4c36ff7c97e41e8f21bd8bb82d8dfa3112a074d73eb7380f60",
-        "original_member_sha256": "9d9d2379354ff0f444f1ae730d991f4def1c756a42e553f1375b4f918bf7a78c"
+        "original_member_sha256": "9d9d2379354ff0f444f1ae730d991f4def1c756a42e553f1375b4f918bf7a78c",
+        "adapter_signature": "export function takePack(this: EngineAdapterHost)"
       },
       {
         "ordinal": 44,
@@ -741,9 +784,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private applyPack(p: RewindPack) ",
         "original_suffix": "",
-        "wrapper_source": "  private applyPack(p: RewindPack) {\n    return enginePhysics.applyPack.call(this, p);\n  }",
+        "wrapper_source": "  private applyPack(p: RewindPack) {\n    return enginePhysics.applyPack.call(engineAdapterHost(this), p);\n  }",
         "body_sha256": "9327946ec2280cc7727f0f94ca12e2c422aeedeb8a0d3731dfc423b267065e85",
-        "original_member_sha256": "0c203540842d33fa4e99282629a91f1eed4534c8b7680ecab1663604059c0d6e"
+        "original_member_sha256": "0c203540842d33fa4e99282629a91f1eed4534c8b7680ecab1663604059c0d6e",
+        "adapter_signature": "export function applyPack(this: EngineAdapterHost, p: Parameters<RaceEngine[\"applyPack\"]>[0])"
       },
       {
         "ordinal": 45,
@@ -753,9 +797,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private stepRewind(dt: number) ",
         "original_suffix": "",
-        "wrapper_source": "  private stepRewind(dt: number) {\n    return enginePhysics.stepRewind.call(this, dt);\n  }",
+        "wrapper_source": "  private stepRewind(dt: number) {\n    return enginePhysics.stepRewind.call(engineAdapterHost(this), dt);\n  }",
         "body_sha256": "9a66e5b29a953ca49f6be6be75180dbc2e56e38f53daa90e8eb68efba720f54e",
-        "original_member_sha256": "04e8ffa5a5d4dcbf4c51e86c7da0cddc3694c539bf6cd3307a5fbb72bac9d1d7"
+        "original_member_sha256": "04e8ffa5a5d4dcbf4c51e86c7da0cddc3694c539bf6cd3307a5fbb72bac9d1d7",
+        "adapter_signature": "export function stepRewind(this: EngineAdapterHost, dt: Parameters<RaceEngine[\"stepRewind\"]>[0])"
       },
       {
         "ordinal": 46,
@@ -765,9 +810,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private stepPhoto(dt: number) ",
         "original_suffix": "",
-        "wrapper_source": "  private stepPhoto(dt: number) {\n    return engineRendering.stepPhoto.call(this, dt);\n  }",
+        "wrapper_source": "  private stepPhoto(dt: number) {\n    return engineRendering.stepPhoto.call(engineAdapterHost(this), dt);\n  }",
         "body_sha256": "203b9b227c53b80517188121ab075c3e4b40543d55f55ed2ca1e5cb1f0ec3583",
-        "original_member_sha256": "9cbfb2a395478f125b6b360e8f3a239721aa15510a98025542684d0427d2051b"
+        "original_member_sha256": "9cbfb2a395478f125b6b360e8f3a239721aa15510a98025542684d0427d2051b",
+        "adapter_signature": "export function stepPhoto(this: EngineAdapterHost, dt: Parameters<RaceEngine[\"stepPhoto\"]>[0])"
       },
       {
         "ordinal": 47,
@@ -777,9 +823,10 @@
         "path": "src/game/engine/physics-adapter.ts",
         "original_prefix": "  private stepReplay(dt: number) ",
         "original_suffix": "",
-        "wrapper_source": "  private stepReplay(dt: number) {\n    return enginePhysics.stepReplay.call(this, dt);\n  }",
+        "wrapper_source": "  private stepReplay(dt: number) {\n    return enginePhysics.stepReplay.call(engineAdapterHost(this), dt);\n  }",
         "body_sha256": "19a393b15aa13770f8e281380c9457f26b64b23b12d2f2ba856fadcd3ad29097",
-        "original_member_sha256": "e30d0fb9a61e49effa16f55dc7d7dd8cd3d90772919adb91980a767cee339931"
+        "original_member_sha256": "e30d0fb9a61e49effa16f55dc7d7dd8cd3d90772919adb91980a767cee339931",
+        "adapter_signature": "export function stepReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine[\"stepReplay\"]>[0])"
       },
       {
         "ordinal": 48,
@@ -789,9 +836,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private present(dt: number) ",
         "original_suffix": "",
-        "wrapper_source": "  private present(dt: number) {\n    return engineRendering.present.call(this, dt);\n  }",
+        "wrapper_source": "  private present(dt: number) {\n    return engineRendering.present.call(engineAdapterHost(this), dt);\n  }",
         "body_sha256": "70a6948425d0e7320dea52b709993bafe3026fb82ee377f56031449cc881365d",
-        "original_member_sha256": "3ff87f84376b3e09413c58915dec03db8c9efed80e0ed6cedd0c5ae1f60691f7"
+        "original_member_sha256": "3ff87f84376b3e09413c58915dec03db8c9efed80e0ed6cedd0c5ae1f60691f7",
+        "adapter_signature": "export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine[\"present\"]>[0])"
       },
       {
         "ordinal": 49,
@@ -801,9 +849,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private snapCamera(instant: boolean, dt = 0.016) ",
         "original_suffix": "",
-        "wrapper_source": "  private snapCamera(instant: boolean, dt = 0.016) {\n    return engineRendering.snapCamera.call(this, instant, dt);\n  }",
+        "wrapper_source": "  private snapCamera(instant: boolean, dt = 0.016) {\n    return engineRendering.snapCamera.call(engineAdapterHost(this), instant, dt);\n  }",
         "body_sha256": "73ef8f510400b4642b58435e2e1666c2a504f8348bb8f6d41731b4cab3d9f579",
-        "original_member_sha256": "31ecb212e2b44686522deb87cd765ad9f1091273ba9a05de463f647f245f2cad"
+        "original_member_sha256": "31ecb212e2b44686522deb87cd765ad9f1091273ba9a05de463f647f245f2cad",
+        "adapter_signature": "export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngine[\"snapCamera\"]>[0], dt: Parameters<RaceEngine[\"snapCamera\"]>[1] = 0.016)"
       },
       {
         "ordinal": 50,
@@ -813,9 +862,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  setFovExtra(v: number) ",
         "original_suffix": "",
-        "wrapper_source": "  setFovExtra(v: number) {\n    return engineRendering.setFovExtra.call(this, v);\n  }",
+        "wrapper_source": "  setFovExtra(v: number) {\n    return engineRendering.setFovExtra.call(engineAdapterHost(this), v);\n  }",
         "body_sha256": "37db59bf0e8502802d013d941d89052c15b7a3acbb9f7e3e718391918c284300",
-        "original_member_sha256": "85a5d0c7441c7fd4ed9550d73647c8b1150aaef2a14579e0e97c1555b72e351d"
+        "original_member_sha256": "85a5d0c7441c7fd4ed9550d73647c8b1150aaef2a14579e0e97c1555b72e351d",
+        "adapter_signature": "export function setFovExtra(this: EngineAdapterHost, v: Parameters<RaceEngine[\"setFovExtra\"]>[0])"
       },
       {
         "ordinal": 51,
@@ -825,9 +875,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private pushHud() ",
         "original_suffix": "",
-        "wrapper_source": "  private pushHud() {\n    return engineRendering.pushHud.call(this);\n  }",
+        "wrapper_source": "  private pushHud() {\n    return engineRendering.pushHud.call(engineAdapterHost(this));\n  }",
         "body_sha256": "c7777f87a503898dfaacdbd37312b34385f92a6d16f78fbd417e93e83aba8bf3",
-        "original_member_sha256": "ffd02a5e4c006b1123d3a01158b9fec3a52a2e77e49ea7fd05fe844e907de71c"
+        "original_member_sha256": "ffd02a5e4c006b1123d3a01158b9fec3a52a2e77e49ea7fd05fe844e907de71c",
+        "adapter_signature": "export function pushHud(this: EngineAdapterHost)"
       },
       {
         "ordinal": 52,
@@ -837,9 +888,10 @@
         "path": "src/game/engine/qa-adapter.ts",
         "original_prefix": "  private qaHookAllowed() ",
         "original_suffix": "",
-        "wrapper_source": "  private qaHookAllowed() {\n    return engineQa.qaHookAllowed.call(this);\n  }",
+        "wrapper_source": "  private qaHookAllowed() {\n    return engineQa.qaHookAllowed.call(engineAdapterHost(this));\n  }",
         "body_sha256": "f5ededcb7e816ebcf570af4803d731e6f458570513e13e1ed2f430c25c530e78",
-        "original_member_sha256": "96a681884238d2910e6898e159cdbc5b3fab5be7f3df58827119e8e378b95012"
+        "original_member_sha256": "96a681884238d2910e6898e159cdbc5b3fab5be7f3df58827119e8e378b95012",
+        "adapter_signature": "export function qaHookAllowed(this: EngineAdapterHost)"
       },
       {
         "ordinal": 53,
@@ -849,9 +901,10 @@
         "path": "src/game/engine/qa-adapter.ts",
         "original_prefix": "  private exposeControls() ",
         "original_suffix": "",
-        "wrapper_source": "  private exposeControls() {\n    return engineQa.exposeControls.call(this);\n  }",
+        "wrapper_source": "  private exposeControls() {\n    return engineQa.exposeControls.call(engineAdapterHost(this));\n  }",
         "body_sha256": "a93bfe0744c10e0139fbcde6a6622c435334f38d710dba98ede61b09a737c2ee",
-        "original_member_sha256": "fab2bb427b7f198e2fb6f06272746d5d0eb592ed55f25d74f22eb11a854c0a95"
+        "original_member_sha256": "fab2bb427b7f198e2fb6f06272746d5d0eb592ed55f25d74f22eb11a854c0a95",
+        "adapter_signature": "export function exposeControls(this: EngineAdapterHost)"
       },
       {
         "ordinal": 54,
@@ -861,9 +914,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private setEnvRT(rt: THREE.WebGLRenderTarget) ",
         "original_suffix": "",
-        "wrapper_source": "  private setEnvRT(rt: THREE.WebGLRenderTarget) {\n    return engineRendering.setEnvRT.call(this, rt);\n  }",
+        "wrapper_source": "  private setEnvRT(rt: THREE.WebGLRenderTarget) {\n    return engineRendering.setEnvRT.call(engineAdapterHost(this), rt);\n  }",
         "body_sha256": "291c5fc78edd51f589d2cdfc8d349797030973b187f6f7bf3cd278c3ee3fd73c",
-        "original_member_sha256": "f362efc335ce22348e409ba3bca4f851e44cb3c4686ba86528ec7393e0a290d7"
+        "original_member_sha256": "f362efc335ce22348e409ba3bca4f851e44cb3c4686ba86528ec7393e0a290d7",
+        "adapter_signature": "export function setEnvRT(this: EngineAdapterHost, rt: Parameters<RaceEngine[\"setEnvRT\"]>[0])"
       },
       {
         "ordinal": 55,
@@ -873,9 +927,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private bindCsm() ",
         "original_suffix": "",
-        "wrapper_source": "  private bindCsm() {\n    return engineRendering.bindCsm.call(this);\n  }",
+        "wrapper_source": "  private bindCsm() {\n    return engineRendering.bindCsm.call(engineAdapterHost(this));\n  }",
         "body_sha256": "c6e4d76b302cf5da48bc8b7ddbd8d4c86b1066bca5c7ffa9648d6174e4de1aae",
-        "original_member_sha256": "78c5e45bf9c36684cba2474a37dcb7500cdeea93e6be60536137e4c93ed5b102"
+        "original_member_sha256": "78c5e45bf9c36684cba2474a37dcb7500cdeea93e6be60536137e4c93ed5b102",
+        "adapter_signature": "export function bindCsm(this: EngineAdapterHost)"
       },
       {
         "ordinal": 56,
@@ -885,9 +940,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private csmWanted() ",
         "original_suffix": "",
-        "wrapper_source": "  private csmWanted() {\n    return engineRendering.csmWanted.call(this);\n  }",
+        "wrapper_source": "  private csmWanted() {\n    return engineRendering.csmWanted.call(engineAdapterHost(this));\n  }",
         "body_sha256": "b963212673ebea4c60a25d9d6cfa567e53febc23909e8cd67a84b176802a3c85",
-        "original_member_sha256": "756d358fe45ac3424db88cd340989559a88499c40e4ec71459ae9720f37dc418"
+        "original_member_sha256": "756d358fe45ac3424db88cd340989559a88499c40e4ec71459ae9720f37dc418",
+        "adapter_signature": "export function csmWanted(this: EngineAdapterHost)"
       },
       {
         "ordinal": 57,
@@ -897,9 +953,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private trimCsm() ",
         "original_suffix": "",
-        "wrapper_source": "  private trimCsm() {\n    return engineRendering.trimCsm.call(this);\n  }",
+        "wrapper_source": "  private trimCsm() {\n    return engineRendering.trimCsm.call(engineAdapterHost(this));\n  }",
         "body_sha256": "67ec64459fead8a0b871af4e51af447a18b54d4f67dd991d39733a692d388182",
-        "original_member_sha256": "a09b0dd0eb0b3595c606d9b39a1ab2e943448e9fd8a493e93c4380e0224a2c7c"
+        "original_member_sha256": "a09b0dd0eb0b3595c606d9b39a1ab2e943448e9fd8a493e93c4380e0224a2c7c",
+        "adapter_signature": "export function trimCsm(this: EngineAdapterHost)"
       },
       {
         "ordinal": 58,
@@ -909,9 +966,10 @@
         "path": "src/game/engine/rendering-adapter.ts",
         "original_prefix": "  private updateCsm() ",
         "original_suffix": "",
-        "wrapper_source": "  private updateCsm() {\n    return engineRendering.updateCsm.call(this);\n  }",
+        "wrapper_source": "  private updateCsm() {\n    return engineRendering.updateCsm.call(engineAdapterHost(this));\n  }",
         "body_sha256": "6fface954a31e41a287c4e5c7a8484f4df79be5904c12d7ab07a4ee60d10097b",
-        "original_member_sha256": "4505aaf6470bb868d7cec02cb02d2b2c6e0131ec089d8810a16126cf49b6d921"
+        "original_member_sha256": "4505aaf6470bb868d7cec02cb02d2b2c6e0131ec089d8810a16126cf49b6d921",
+        "adapter_signature": "export function updateCsm(this: EngineAdapterHost)"
       }
     ]
   },
@@ -939,5 +997,218 @@
     "next_unit": "RSH-018",
     "rsh_018_started": false,
     "rsh_018_authorized": false
+  },
+  "typing": {
+    "strategy": "explicit_private_member_indexed_access",
+    "race_engine_type_import": "../engine",
+    "host_member_count": 199,
+    "host_members": [
+      "acc",
+      "addCop",
+      "applyAltitudeLook",
+      "applyClockSky",
+      "applyGfxStep",
+      "applyLook",
+      "applyPack",
+      "audio",
+      "autoCycle",
+      "banter",
+      "banterT",
+      "bestLap",
+      "bestSectors",
+      "blobs",
+      "blockCd",
+      "blockGroup",
+      "blockT",
+      "bonusT",
+      "boostPos",
+      "boostPts",
+      "built",
+      "bustAcc",
+      "busted",
+      "cam",
+      "camera",
+      "camMode",
+      "camNames",
+      "canvas",
+      "captureSceneEnv",
+      "cashWon",
+      "checkKnockout",
+      "clearRoadblock",
+      "clock",
+      "clockBake",
+      "closeSector",
+      "combo",
+      "comboHold",
+      "cooldown",
+      "cops",
+      "copVis",
+      "countdown",
+      "csm",
+      "csmMuted",
+      "csmWanted",
+      "cycleRadio",
+      "desired",
+      "disposed",
+      "driftBonus",
+      "driveExposure",
+      "drivePR",
+      "droppedTier",
+      "dyn",
+      "emitFinish",
+      "endRace",
+      "ensureCops",
+      "enterPhoto",
+      "envRT",
+      "escaping",
+      "exitPhoto",
+      "extraHits",
+      "filterHe",
+      "filterNames",
+      "finishedSent",
+      "fixed",
+      "flushSnap",
+      "fog",
+      "fovExtra",
+      "frameWorld",
+      "freeze",
+      "gate",
+      "gfx",
+      "ghostAcc",
+      "ghostBeaten",
+      "ghostBuf",
+      "ghostDelta",
+      "ghostFrames",
+      "ghostVis",
+      "glLost",
+      "heat",
+      "heatMax",
+      "hood",
+      "hoodEdge",
+      "hudTimer",
+      "impactCd",
+      "input",
+      "koMarked",
+      "laps",
+      "lapTime",
+      "last",
+      "lastDirt",
+      "lastDrifting",
+      "lastPlace",
+      "lastPresent",
+      "leases",
+      "lite",
+      "look",
+      "lookBack",
+      "missCd",
+      "mode",
+      "navAngle",
+      "nowSec",
+      "onResize",
+      "opts",
+      "paused",
+      "pendingResult",
+      "photo",
+      "photoDist",
+      "photoFilter",
+      "photoHide",
+      "photoLock",
+      "photoPitch",
+      "photoYaw",
+      "ping",
+      "player",
+      "poiGot",
+      "poly",
+      "post",
+      "present",
+      "probeCam",
+      "probeRT",
+      "probeTick",
+      "pushCopsBack",
+      "pushHud",
+      "qaForcedFinish",
+      "qaHookAllowed",
+      "quality",
+      "racers",
+      "racing",
+      "radioEdge",
+      "radioToast",
+      "rainMesh",
+      "rainPos",
+      "recordReplay",
+      "recordSnap",
+      "renderer",
+      "replayAcc",
+      "replayBuf",
+      "replaying",
+      "replaySlow",
+      "replayT",
+      "restartRace",
+      "rewindAcc",
+      "rewindBuf",
+      "rewinding",
+      "rewindTickT",
+      "rivalGhostDelta",
+      "rivalGhostFrames",
+      "rivalGhostVis",
+      "rivalIdx",
+      "scene",
+      "sectorClock",
+      "sectorDelta",
+      "sectorIdx",
+      "setEnvRT",
+      "setNight",
+      "shouldPresent",
+      "skidAcc",
+      "skidDummy",
+      "skidI",
+      "skidMesh",
+      "skipReplay",
+      "smokeDummy",
+      "smokeMesh",
+      "smokes",
+      "snapCamera",
+      "snapPhoto",
+      "soft",
+      "sparkPos",
+      "sparks",
+      "spawnRoadblock",
+      "stampPois",
+      "standings",
+      "stepDriftCraft",
+      "stepHeat",
+      "stepPhoto",
+      "stepReplay",
+      "stepRewind",
+      "takePack",
+      "telem",
+      "tickId",
+      "tickRoadblock",
+      "timeVoided",
+      "totalLaps",
+      "totalTime",
+      "trackDef",
+      "traffic",
+      "trafficVis",
+      "trauma",
+      "trimCsm",
+      "updateCsm",
+      "updateProbe",
+      "visuals",
+      "wanted",
+      "weather",
+      "webgpuOk",
+      "webgpuReason",
+      "webgpuTried",
+      "world",
+      "wrongBeep"
+    ],
+    "parameter_strategy": "Parameters<RaceEngine[method]>[index]",
+    "return_strategy": "inferred_from_preserved_method_body",
+    "bridge_name": "engineAdapterHost",
+    "bridge_source": "function engineAdapterHost(engine: RaceEngine): EngineAdapterHost {\n  return engine as unknown as EngineAdapterHost;\n}",
+    "permissive_index_signature": false,
+    "ambient_module_overloads": false,
+    "support_contains_any": false
   }
 }

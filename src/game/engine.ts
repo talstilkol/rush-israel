@@ -54,10 +54,15 @@ import { ResourceRegistry } from "../rendering/ResourceRegistry";
 import { DynamicQualityController, gfxPassFlags } from "../rendering/DynamicQualityController";
 import { exportPhotoPng } from "./photo-export";
 import { MESH_STREAMING } from "./stream-flag";
+import type { EngineAdapterHost } from "./engine/adapter-host";
 import * as engineLoop from "./engine/loop-adapter";
 import * as engineRendering from "./engine/rendering-adapter";
 import * as enginePhysics from "./engine/physics-adapter";
 import * as engineQa from "./engine/qa-adapter";
+
+function engineAdapterHost(engine: RaceEngine): EngineAdapterHost {
+  return engine as unknown as EngineAdapterHost;
+}
 
 const FIXED = PHYSICS_DT;
 
@@ -778,7 +783,7 @@ export class RaceEngine {
   }
 
   private upgradeGraphics() {
-    return engineRendering.upgradeGraphics.call(this);
+    return engineRendering.upgradeGraphics.call(engineAdapterHost(this));
   }
 
   unlockAudio() {
@@ -837,35 +842,35 @@ export class RaceEngine {
   }
 
   enterPhoto() {
-    return engineRendering.enterPhoto.call(this);
+    return engineRendering.enterPhoto.call(engineAdapterHost(this));
   }
 
   exitPhoto() {
-    return engineRendering.exitPhoto.call(this);
+    return engineRendering.exitPhoto.call(engineAdapterHost(this));
   }
 
   frameWorld(x: number, z: number, y = 52, camY = 22, back = 28, fov = 40) {
-    return engineRendering.frameWorld.call(this, x, z, y, camY, back, fov);
+    return engineRendering.frameWorld.call(engineAdapterHost(this), x, z, y, camY, back, fov);
   }
 
   isPhoto() {
-    return engineRendering.isPhoto.call(this);
+    return engineRendering.isPhoto.call(engineAdapterHost(this));
   }
 
   capturePhoto() {
-    return engineRendering.capturePhoto.call(this);
+    return engineRendering.capturePhoto.call(engineAdapterHost(this));
   }
 
   private flushSnap() {
-    return engineRendering.flushSnap.call(this);
+    return engineRendering.flushSnap.call(engineAdapterHost(this));
   }
 
   cyclePhotoFilter() {
-    return engineRendering.cyclePhotoFilter.call(this);
+    return engineRendering.cyclePhotoFilter.call(engineAdapterHost(this));
   }
 
   togglePhotoHud() {
-    return engineRendering.togglePhotoHud.call(this);
+    return engineRendering.togglePhotoHud.call(engineAdapterHost(this));
   }
 
   cycleRadio() {
@@ -875,195 +880,195 @@ export class RaceEngine {
   }
 
   setAutoCycle(on: boolean) {
-    return engineRendering.setAutoCycle.call(this, on);
+    return engineRendering.setAutoCycle.call(engineAdapterHost(this), on);
   }
 
   getAutoCycle() {
-    return engineRendering.getAutoCycle.call(this);
+    return engineRendering.getAutoCycle.call(engineAdapterHost(this));
   }
 
   setNight(night: boolean) {
-    return engineRendering.setNight.call(this, night);
+    return engineRendering.setNight.call(engineAdapterHost(this), night);
   }
 
   private applyLook() {
-    return engineRendering.applyLook.call(this);
+    return engineRendering.applyLook.call(engineAdapterHost(this));
   }
 
   private applyClockSky(rebake: boolean) {
-    return engineRendering.applyClockSky.call(this, rebake);
+    return engineRendering.applyClockSky.call(engineAdapterHost(this), rebake);
   }
 
   private captureSceneEnv() {
-    return engineRendering.captureSceneEnv.call(this);
+    return engineRendering.captureSceneEnv.call(engineAdapterHost(this));
   }
 
   private applyAltitudeLook() {
-    return engineRendering.applyAltitudeLook.call(this);
+    return engineRendering.applyAltitudeLook.call(engineAdapterHost(this));
   }
 
   private updateProbe() {
-    return engineRendering.updateProbe.call(this);
+    return engineRendering.updateProbe.call(engineAdapterHost(this));
   }
 
-  private onContextLost = (e: Event) => engineLoop.onContextLost.call(this, e);
+  private onContextLost = (e: Event) => engineLoop.onContextLost.call(engineAdapterHost(this), e);
 
-  private onContextRestored = () => engineLoop.onContextRestored.call(this);
+  private onContextRestored = () => engineLoop.onContextRestored.call(engineAdapterHost(this));
 
   private applyGfxStep() {
-    return engineRendering.applyGfxStep.call(this);
+    return engineRendering.applyGfxStep.call(engineAdapterHost(this));
   }
 
   private shouldPresent(now: number) {
-    return engineLoop.shouldPresent.call(this, now);
+    return engineLoop.shouldPresent.call(engineAdapterHost(this), now);
   }
 
   private onResize() {
-    return engineLoop.onResize.call(this);
+    return engineLoop.onResize.call(engineAdapterHost(this));
   }
 
   private frame() {
-    return engineLoop.frame.call(this);
+    return engineLoop.frame.call(engineAdapterHost(this));
   }
 
   private fixed(dt: number) {
-    return enginePhysics.fixed.call(this, dt);
+    return enginePhysics.fixed.call(engineAdapterHost(this), dt);
   }
 
   private stepDriftCraft(dt: number) {
-    return enginePhysics.stepDriftCraft.call(this, dt);
+    return enginePhysics.stepDriftCraft.call(engineAdapterHost(this), dt);
   }
 
   private standings() {
-    return enginePhysics.standings.call(this);
+    return enginePhysics.standings.call(engineAdapterHost(this));
   }
 
   private stepHeat(dt: number) {
-    return enginePhysics.stepHeat.call(this, dt);
+    return enginePhysics.stepHeat.call(engineAdapterHost(this), dt);
   }
 
   private pushCopsBack() {
-    return enginePhysics.pushCopsBack.call(this);
+    return enginePhysics.pushCopsBack.call(engineAdapterHost(this));
   }
 
   private ensureCops(n: number) {
-    return enginePhysics.ensureCops.call(this, n);
+    return enginePhysics.ensureCops.call(engineAdapterHost(this), n);
   }
 
   private addCop(i: number) {
-    return enginePhysics.addCop.call(this, i);
+    return enginePhysics.addCop.call(engineAdapterHost(this), i);
   }
 
   private spawnRoadblock() {
-    return enginePhysics.spawnRoadblock.call(this);
+    return enginePhysics.spawnRoadblock.call(engineAdapterHost(this));
   }
 
   private tickRoadblock() {
-    return enginePhysics.tickRoadblock.call(this);
+    return enginePhysics.tickRoadblock.call(engineAdapterHost(this));
   }
 
   private navAngle() {
-    return enginePhysics.navAngle.call(this);
+    return enginePhysics.navAngle.call(engineAdapterHost(this));
   }
 
   private stampPois() {
-    return enginePhysics.stampPois.call(this);
+    return enginePhysics.stampPois.call(engineAdapterHost(this));
   }
 
   private clearRoadblock() {
-    return enginePhysics.clearRoadblock.call(this);
+    return enginePhysics.clearRoadblock.call(engineAdapterHost(this));
   }
 
   private checkKnockout() {
-    return enginePhysics.checkKnockout.call(this);
+    return enginePhysics.checkKnockout.call(engineAdapterHost(this));
   }
 
   private closeSector(i: number) {
-    return enginePhysics.closeSector.call(this, i);
+    return enginePhysics.closeSector.call(engineAdapterHost(this), i);
   }
 
   private endRace() {
-    return enginePhysics.endRace.call(this);
+    return enginePhysics.endRace.call(engineAdapterHost(this));
   }
 
   private emitFinish() {
-    return enginePhysics.emitFinish.call(this);
+    return enginePhysics.emitFinish.call(engineAdapterHost(this));
   }
 
   skipReplay() {
-    return enginePhysics.skipReplay.call(this);
+    return enginePhysics.skipReplay.call(engineAdapterHost(this));
   }
 
   private recordSnap() {
-    return enginePhysics.recordSnap.call(this);
+    return enginePhysics.recordSnap.call(engineAdapterHost(this));
   }
 
   private recordReplay(dt: number) {
-    return enginePhysics.recordReplay.call(this, dt);
+    return enginePhysics.recordReplay.call(engineAdapterHost(this), dt);
   }
 
   private takePack(): RewindPack {
-    return enginePhysics.takePack.call(this);
+    return enginePhysics.takePack.call(engineAdapterHost(this));
   }
 
   private applyPack(p: RewindPack) {
-    return enginePhysics.applyPack.call(this, p);
+    return enginePhysics.applyPack.call(engineAdapterHost(this), p);
   }
 
   private stepRewind(dt: number) {
-    return enginePhysics.stepRewind.call(this, dt);
+    return enginePhysics.stepRewind.call(engineAdapterHost(this), dt);
   }
 
   private stepPhoto(dt: number) {
-    return engineRendering.stepPhoto.call(this, dt);
+    return engineRendering.stepPhoto.call(engineAdapterHost(this), dt);
   }
 
   private stepReplay(dt: number) {
-    return enginePhysics.stepReplay.call(this, dt);
+    return enginePhysics.stepReplay.call(engineAdapterHost(this), dt);
   }
 
   private present(dt: number) {
-    return engineRendering.present.call(this, dt);
+    return engineRendering.present.call(engineAdapterHost(this), dt);
   }
 
   private snapCamera(instant: boolean, dt = 0.016) {
-    return engineRendering.snapCamera.call(this, instant, dt);
+    return engineRendering.snapCamera.call(engineAdapterHost(this), instant, dt);
   }
 
   setFovExtra(v: number) {
-    return engineRendering.setFovExtra.call(this, v);
+    return engineRendering.setFovExtra.call(engineAdapterHost(this), v);
   }
 
   private pushHud() {
-    return engineRendering.pushHud.call(this);
+    return engineRendering.pushHud.call(engineAdapterHost(this));
   }
 
   private qaHookAllowed() {
-    return engineQa.qaHookAllowed.call(this);
+    return engineQa.qaHookAllowed.call(engineAdapterHost(this));
   }
 
   private exposeControls() {
-    return engineQa.exposeControls.call(this);
+    return engineQa.exposeControls.call(engineAdapterHost(this));
   }
 
   private setEnvRT(rt: THREE.WebGLRenderTarget) {
-    return engineRendering.setEnvRT.call(this, rt);
+    return engineRendering.setEnvRT.call(engineAdapterHost(this), rt);
   }
 
   private bindCsm() {
-    return engineRendering.bindCsm.call(this);
+    return engineRendering.bindCsm.call(engineAdapterHost(this));
   }
 
   private csmWanted() {
-    return engineRendering.csmWanted.call(this);
+    return engineRendering.csmWanted.call(engineAdapterHost(this));
   }
 
   private trimCsm() {
-    return engineRendering.trimCsm.call(this);
+    return engineRendering.trimCsm.call(engineAdapterHost(this));
   }
 
   private updateCsm() {
-    return engineRendering.updateCsm.call(this);
+    return engineRendering.updateCsm.call(engineAdapterHost(this));
   }
 
   dispose() {

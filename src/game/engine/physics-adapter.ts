@@ -10,6 +10,7 @@ import { recordGhost, setDamage } from "../save";
 import { sampleAtT } from "../spline";
 import type { Collider, RaceResult } from "../types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting } from "../vehicle";
+import type { RaceEngine } from "../engine";
 import type { EngineAdapterHost } from "./adapter-host";
 
 function rumblePad(mag: number) {
@@ -29,7 +30,7 @@ function rumblePad(mag: number) {
 }
 
 // RSH-017-BEGIN:fixed
-export function fixed(this: EngineAdapterHost, dt: any)
+export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"]>[0])
 // RSH-017-BODY-BEGIN:fixed
 {
     this.tickId += 1;
@@ -210,7 +211,7 @@ export function fixed(this: EngineAdapterHost, dt: any)
 // RSH-017-END:fixed
 
 // RSH-017-BEGIN:stepDriftCraft
-export function stepDriftCraft(this: EngineAdapterHost, dt: any)
+export function stepDriftCraft(this: EngineAdapterHost, dt: Parameters<RaceEngine["stepDriftCraft"]>[0])
 // RSH-017-BODY-BEGIN:stepDriftCraft
 {
     this.bonusT = Math.max(0, this.bonusT - dt);
@@ -258,7 +259,7 @@ export function standings(this: EngineAdapterHost)
 // RSH-017-END:standings
 
 // RSH-017-BEGIN:stepHeat
-export function stepHeat(this: EngineAdapterHost, dt: any)
+export function stepHeat(this: EngineAdapterHost, dt: Parameters<RaceEngine["stepHeat"]>[0])
 // RSH-017-BODY-BEGIN:stepHeat
 {
     if (this.busted || this.player.finished) return;
@@ -324,7 +325,7 @@ export function pushCopsBack(this: EngineAdapterHost)
 // RSH-017-END:pushCopsBack
 
 // RSH-017-BEGIN:ensureCops
-export function ensureCops(this: EngineAdapterHost, n: any)
+export function ensureCops(this: EngineAdapterHost, n: Parameters<RaceEngine["ensureCops"]>[0])
 // RSH-017-BODY-BEGIN:ensureCops
 {
     while (this.cops.length < n) {
@@ -335,7 +336,7 @@ export function ensureCops(this: EngineAdapterHost, n: any)
 // RSH-017-END:ensureCops
 
 // RSH-017-BEGIN:addCop
-export function addCop(this: EngineAdapterHost, i: any)
+export function addCop(this: EngineAdapterHost, i: Parameters<RaceEngine["addCop"]>[0])
 // RSH-017-BODY-BEGIN:addCop
 {
     const nyc = this.trackDef.city === "nyc";
@@ -518,7 +519,7 @@ export function checkKnockout(this: EngineAdapterHost)
 // RSH-017-END:checkKnockout
 
 // RSH-017-BEGIN:closeSector
-export function closeSector(this: EngineAdapterHost, i: any)
+export function closeSector(this: EngineAdapterHost, i: Parameters<RaceEngine["closeSector"]>[0])
 // RSH-017-BODY-BEGIN:closeSector
 {
     const t = this.sectorClock;
@@ -616,7 +617,7 @@ export function recordSnap(this: EngineAdapterHost)
 // RSH-017-END:recordSnap
 
 // RSH-017-BEGIN:recordReplay
-export function recordReplay(this: EngineAdapterHost, dt: any)
+export function recordReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine["recordReplay"]>[0])
 // RSH-017-BODY-BEGIN:recordReplay
 {
     if (!this.racing || this.player.finished) return;
@@ -655,7 +656,7 @@ export function takePack(this: EngineAdapterHost)
 // RSH-017-END:takePack
 
 // RSH-017-BEGIN:applyPack
-export function applyPack(this: EngineAdapterHost, p: any)
+export function applyPack(this: EngineAdapterHost, p: Parameters<RaceEngine["applyPack"]>[0])
 // RSH-017-BODY-BEGIN:applyPack
 {
     this.totalTime = p.totalTime;
@@ -686,7 +687,7 @@ export function applyPack(this: EngineAdapterHost, p: any)
 // RSH-017-END:applyPack
 
 // RSH-017-BEGIN:stepRewind
-export function stepRewind(this: EngineAdapterHost, dt: any)
+export function stepRewind(this: EngineAdapterHost, dt: Parameters<RaceEngine["stepRewind"]>[0])
 // RSH-017-BODY-BEGIN:stepRewind
 {
     this.rewinding = true;
@@ -708,7 +709,7 @@ export function stepRewind(this: EngineAdapterHost, dt: any)
 // RSH-017-END:stepRewind
 
 // RSH-017-BEGIN:stepReplay
-export function stepReplay(this: EngineAdapterHost, dt: any)
+export function stepReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine["stepReplay"]>[0])
 // RSH-017-BODY-BEGIN:stepReplay
 {
     const dur = this.replayBuf.length * 0.1;

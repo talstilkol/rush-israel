@@ -44,9 +44,9 @@ The existing branch contained only the temporary source-transfer workflow and on
 | qa | 2 | 442 | 13,198 |
 | **Total adapters** | **58** | **2,205** | **76,069** |
 
-- facade: **1,202 lines / 40,417 bytes**;
-- support: **96 lines / 6,368 bytes**;
-- complete facade + adapters + support: **3,503 lines / 122,854 bytes**;
+- facade: **1,207 lines / 41,703 bytes**;
+- support: **206 lines / 7,539 bytes**;
+- complete facade + adapters + support: **3,622 lines / 126,462 bytes**;
 - legacy reconstruction: **byte-for-byte exact**;
 - RSH-018 files: **0**.
 
@@ -60,8 +60,8 @@ The existing branch contained only the temporary source-transfer workflow and on
 | Remaining correction-parent failure | TypeScript adapter-host boundary — `24` diagnostics |
 | Typed-boundary correction commit | `b9797d1ebc0583453db487256c9861681e455637` |
 | Typed-boundary correction tree | `fa05807291a1b6bd019f6573b6092e80b15ad5a2` |
-| Typed support SHA-256 | `2177db5967b5c475afb1785ddcc0c4602d8cbde38f257ec500db963c1d50ff0f` |
-| Typed support Git blob | `7c82b03801cd9ef009ade005f0ad955e36d4547a` |
+| Typed support SHA-256 | `1304ae1070b2509eb42bcc9942f6ab141bca0d6c7be4b96068be8ac79409b51b` |
+| Typed support Git blob | `2da01d857ca5b22958bcabb93e51bf9fcdbae947` |
 | Temporary RSH-017 workflows in candidate tree | `0` |
 | Product/runtime change in this reconciliation | `0` |
 

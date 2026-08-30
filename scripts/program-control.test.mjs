@@ -205,13 +205,13 @@ test("RSH-017 becomes accepted on merge and consumes exactly one authorization",
   assert.equal(current.accepted_units["RSH-016"].state, "accepted");
   assert.equal(current.accepted_units["RSH-017"].state, "accepted_on_merge");
   assert.equal(current.accepted_units["RSH-017"].engine_lines_before, 2815);
-  assert.equal(current.accepted_units["RSH-017"].engine_lines_after, 1202);
+  assert.equal(current.accepted_units["RSH-017"].engine_lines_after, 1207);
   assert.equal(current.accepted_units["RSH-017"].adapter_count, 4);
   assert.equal(current.accepted_units["RSH-017"].moved_method_count, 58);
   assert.equal(current.accepted_units["RSH-017"].runtime_behavior_changes, 0);
   assert.equal(engine.extraction.adapters.length, 4);
   assert.equal(engine.extraction.moved_method_count, 58);
-  assert.equal(engine.extraction.engine.lines, 1202);
+  assert.equal(engine.extraction.engine.lines, 1207);
   assert.equal(engine.deferred_boundary.rsh_018_started, false);
   assert.equal(engine.deferred_boundary.rsh_018_authorized, false);
   assert.equal(builders.extraction.modules.length, 56);

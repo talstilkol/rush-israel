@@ -11,8 +11,8 @@ import {
   reconstructRsh016EngineSource,
 } from "./load-engine-adapters.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "4b3931db2a1ed2ac8a15e4cf9d9a71537786a13500dcd55e8e65538871e2953e";
-export const EXPECTED_ENGINE_SHA256 = "cd2e30b1ae1badfd712a7ac8fe3dbb8ae0aeba80827d10464c6c2dcfcf043d84";
+export const EXPECTED_MANIFEST_SHA256 = "6a567b90ee71552b86985d6dbac8c8c8ce8e5ba65a579891c088777e51a472ec";
+export const EXPECTED_ENGINE_SHA256 = "e0de91cd924cab7c936a0658ec08a8b9afad00b5eb06861e602df72b69e804f7";
 export const EXPECTED_ADAPTER_PATHS = [
   "src/game/engine/loop-adapter.ts",
   "src/game/engine/rendering-adapter.ts",
@@ -119,6 +119,21 @@ export function validateEngineAdapters(overrides = {}) {
     if ((input.engineSource.split(method.wrapper_source).length - 1) !== 1) errors.push(`engine facade wrapper changed: ${method.name}`);
   }
   if (sha256(input.supportSource) !== manifest.extraction.support.sha256 || gitBlobSha1(input.supportSource) !== manifest.extraction.support.git_blob_sha1) errors.push("engine adapter host changed");
+  if (/\bany\b/.test(input.supportSource)) errors.push("engine adapter host must not contain any");
+  if (/\[[^\]]*:\s*string\s*\]/.test(input.supportSource)) errors.push("engine adapter host must not contain an index signature");
+  if (/declare\s+module/.test(input.supportSource)) errors.push("engine adapter host must not contain ambient module overloads");
+  if (!manifest.typing || manifest.typing.permissive_index_signature !== false || manifest.typing.ambient_module_overloads !== false || manifest.typing.support_contains_any !== false) errors.push("engine adapter typing authority is invalid");
+  if (manifest.typing && manifest.typing.host_member_count !== manifest.typing.host_members?.length) errors.push("engine adapter host member authority is inconsistent");
+  for (const key of manifest.typing?.host_members ?? []) {
+    const declaration = `${key}: RaceEngine[${JSON.stringify(key)}];`;
+    if (!input.supportSource.includes(declaration)) errors.push(`engine adapter host member type changed: ${key}`);
+  }
+  if (!input.engineSource.includes(manifest.typing?.bridge_source ?? "__missing_bridge__")) errors.push("engine adapter bridge changed");
+  for (const method of manifest.reconstruction.methods) {
+    const source = input.adapterSources[method.path] ?? "";
+    if (!method.adapter_signature || (source.split(method.adapter_signature).length - 1) !== 1) errors.push(`engine adapter exact signature changed: ${method.name}`);
+    if (!method.wrapper_source.includes(`${manifest.typing?.bridge_name}(this)`)) errors.push(`engine facade typed bridge changed: ${method.name}`);
+  }
   if (/^\s*\/\/\s*@ts-nocheck/m.test(input.engineSource + input.supportSource)) errors.push("@ts-nocheck is forbidden in the engine facade/support");
 
   try {
@@ -141,7 +156,7 @@ export function validateEngineAdapters(overrides = {}) {
   if (JSON.stringify(engineDirectory.sort()) !== JSON.stringify(expectedDirectory)) errors.push(`unmanifested engine structure: ${engineDirectory.join(", ")}`);
   const rsh018 = input.repositoryFiles.filter((path) => path.startsWith("src/components/game/") || path.startsWith("src/game/screens/") || path.startsWith("src/game/hud/") || path === "src/game/race-controller.ts");
   if (rsh018.length) errors.push(`unauthorized RSH-018 structure: ${rsh018.join(", ")}`);
-  const temp = input.repositoryFiles.filter((path) => path === ".github/workflows/rsh-017-source-transfer.yml" || path.startsWith(".rsh017-overlay.part-"));
+  const temp = input.repositoryFiles.filter((path) => path.startsWith(".github/workflows/rsh-017-") || path.startsWith(".rsh017-overlay.part-"));
   if (temp.length) errors.push(`temporary RSH-017 transfer files remain: ${temp.join(", ")}`);
 
   return {
