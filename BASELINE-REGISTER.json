@@ -1,7 +1,7 @@
 {
   "schema_version": "6.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-08-31T00:30:00+03:00",
+  "generated_at": "2026-08-31T01:15:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -338,25 +338,12 @@
     }
   ],
   "working_state": {
-    "unit": "RSH-018",
+    "unit": "RSH-019",
     "state": "accepted_on_merge",
-    "base_commit_sha": "d3bd207a98989398ead0e6804519d4a0d2eb19a1",
-    "branch": "agent/rsh-018-game-app-decomposition",
-    "pull_request_resolution": "live GitHub pull request for this branch",
-    "head_sha_resolution": "exact PR head accepted by required-ci / validate and Codex review",
-    "merge_sha_resolution": "live main HEAD created by merging the RSH-018 pull request",
-    "post_merge_ci_resolution": "required-ci on the exact merge SHA",
-    "game_app_manifest": "GAME-APP-DECOMPOSITION-MANIFEST.json",
-    "facade_lines_before": 1540,
-    "facade_lines_after": 179,
-    "module_count": 3,
-    "block_count": 16,
-    "runtime_behavior_changes": 0,
-    "is_release": false,
-    "tag_created": false,
-    "release_created": false,
-    "live_branch_protection": false,
-    "settings_application_state": "owner_action_required"
+    "implementation_base_sha": "bf1af8015a36cbe3ef34494f6d2b24eace3f153b",
+    "branch": "agent/rsh-019-resource-ownership",
+    "manifest": "RESOURCE-OWNERSHIP-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-019 pull request"
   },
   "post_merge_queue": {
     "queue_head": "RSH-019",

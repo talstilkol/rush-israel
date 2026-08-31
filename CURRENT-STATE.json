@@ -1,24 +1,24 @@
 {
-  "schema_version": "7.0.0",
+  "schema_version": "8.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-31T00:30:00+03:00",
+  "generated_at": "2026-08-31T01:15:00+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_018_pull_request",
-    "implementation_base_sha": "d3bd207a98989398ead0e6804519d4a0d2eb19a1",
-    "self_reference_boundary": "The RSH-018 candidate cannot contain its own future merge SHA. Exact PR, merge and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_019_pull_request",
+    "implementation_base_sha": "bf1af8015a36cbe3ef34494f6d2b24eace3f153b",
+    "self_reference_boundary": "The RSH-019 candidate cannot contain its own future merge SHA. Exact PR, merge and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "d3bd207a98989398ead0e6804519d4a0d2eb19a1",
-    "tree_sha": "3535dfaaf96f01a64f6ec79a09358aff4e6cf4c8",
-    "commit_authored_at": "2026-08-30T22:30:14+03:00",
-    "commit_message": "Merge PR #20: RSH-017 — Split engine.ts into loop, rendering, physics and QA adapters",
+    "head_sha": "bf1af8015a36cbe3ef34494f6d2b24eace3f153b",
+    "tree_sha": "04ac9411f9c180b8da7d377888b074c97b1630bd",
+    "commit_authored_at": "2026-08-31T00:49:51+03:00",
+    "commit_message": "Merge PR #21: RSH-018 — Split game-app.tsx into screens, HUD and race controller",
     "commit_signature_verified": true,
-    "role": "RSH-018 exact implementation base"
+    "role": "RSH-019 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 18,
+    "accepted_units": 19,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 49,
-    "remaining_units": 49,
-    "queue_head": "RSH-019",
+    "deferred_units": 48,
+    "remaining_units": 48,
+    "queue_head": "RSH-020",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -412,16 +412,37 @@
       "temporary_transfer_files": 0,
       "RSH_019_created": false,
       "RSH_019_authorized": false
+    },
+    "RSH-019": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-019-resource-ownership",
+      "pull_request_resolution": "the pull request created from the exact RSH-019 candidate head",
+      "merge_sha_resolution": "the live main HEAD created by merging the validated RSH-019 pull request",
+      "validated_head_resolution": "the exact RSH-019 PR head that passes required-ci / validate and Codex review",
+      "manifest": "RESOURCE-OWNERSHIP-MANIFEST.json",
+      "owner_count": 9,
+      "runtime_source_count": 10,
+      "registry_reverse_order": true,
+      "engine_dispose_idempotent": true,
+      "world_dispose_idempotent": true,
+      "car_visual_families_accounted": 5,
+      "audio_visibility_listeners_released": true,
+      "texture_delta_max": 2,
+      "geometry_delta_max": 2,
+      "runtime_behavior_changes": 0,
+      "public_api_changes": 0,
+      "dependency_changes": 0,
+      "rsh_020_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-018",
+    "unit": "RSH-019",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-018-game-app-decomposition",
-    "pull_request_resolution": "the pull request created from this branch",
-    "merge_sha_resolution": "live main HEAD created by merge",
-    "post_merge_ci_resolution": "required-ci / validate on the exact merge SHA"
+    "branch": "agent/rsh-019-resource-ownership",
+    "authority_consumed": true,
+    "next_unit": "RSH-020",
+    "next_unit_authorized": false
   },
   "batch_authorization": {
     "instruction": "next 5",
@@ -450,7 +471,9 @@
     "RSH-018_authorized": false,
     "RSH-018_was_separately_authorized": true,
     "RSH-018_authorization_consumed": true,
-    "RSH-019_authorized": false
+    "RSH-019_authorized": true,
+    "RSH-019_authorization_consumed": true,
+    "RSH-020_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -626,15 +649,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-018"
+      "RSH-019"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-018_merge",
-    "separate_branch_and_pr": true,
-    "merge_after_validation": true,
-    "RSH_019_authorized": false,
-    "next_instruction_required": true
+    "state": "consumed_on_RSH-019_merge",
+    "RSH_020_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -673,15 +693,11 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-017"
+      "RSH-018"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-017_merge",
-    "separate_branch_and_pr": true,
-    "merge_after_validation": true,
-    "RSH_018_authorized": false,
-    "next_instruction_required": true
+    "state": "consumed_on_RSH-018_merge"
   },
   "rsh_016_world_builders": {
     "state": "accepted",

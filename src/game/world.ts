@@ -28,7 +28,10 @@ import { getAyalonRoad, getBakedRoad } from "./road-assets";
 import { getSkyDay, getSkyNight } from "./sky-assets";
 import { getBlob } from "./blob-assets";
 
+// RSH-019-OVERLAY-BEGIN:world-disposal-import
 import { assembleWorld } from "./world-core";
+import { createObject3DDisposalTracker, disposeObject3D } from "../rendering/disposeObject3D";
+// RSH-019-OVERLAY-END:world-disposal-import
 export type { World } from "./world-core";
 import { addLandmarks } from "./world-builders";
 
@@ -455,8 +458,11 @@ function starField() {
   };
 }
 export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boolean, night: boolean, weather: Weather = "clear") {
+  // RSH-019-OVERLAY-BEGIN:world-disposed-state
   const group = new THREE.Group();
   const bag: Disposable[] = [];
+  let disposed = false;
+  // RSH-019-OVERLAY-END:world-disposed-state
   const shared = new Set<Disposable>();
   for (const tex of [
       getFoliage(),
@@ -1284,10 +1290,11 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     mmat.transparent = true;
     mmat.opacity = isNight ? 0.36 : 0.22;
     group.add(mirror);
+    // RSH-019-OVERLAY-BEGIN:world-reflector-disposal
     bag.push({ dispose() {
       mirror?.dispose();
-      mirror?.geometry.dispose();
     } });
+    // RSH-019-OVERLAY-END:world-reflector-disposal
   }
   const bodies = def.waters?.length ? def.waters : def.water ? [def.water] : [];
   const streets = generateStreets(def, built, bodies);
@@ -2782,9 +2789,32 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     getClock: () => clock,
     setWeather,
     setLod,
+    // RSH-019-OVERLAY-BEGIN:world-dispose
     dispose() {
-      for (const d of bag) d.dispose();
+      if (disposed) return;
+      disposed = true;
+      const tracker = createObject3DDisposalTracker();
+      disposeObject3D(group, tracker);
+      const disposedSceneResources = new Set<Disposable>([
+        ...tracker.geometries,
+        ...tracker.materials,
+      ]);
+      for (let index = bag.length - 1; index >= 0; index -= 1) {
+        const resource = bag[index];
+        if (disposedSceneResources.has(resource)) continue;
+        try {
+          resource.dispose();
+        } catch {
+          /* continue releasing the remaining owned resources */
+        }
+      }
+      bag.length = 0;
+      dir.shadow.map?.dispose();
+      dir.shadow.mapPass?.dispose();
+      dirNear.shadow.map?.dispose();
+      dirNear.shadow.mapPass?.dispose();
     },
+    // RSH-019-OVERLAY-END:world-dispose
   });
 }
 

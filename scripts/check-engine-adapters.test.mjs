@@ -14,13 +14,13 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("RSH-017 owns exactly four engine adapters and reconstructs the accepted engine", () => {
+test("RSH-017 structure remains exact beneath the authorized RSH-019 overlay", () => {
   const result = validateEngineAdapters();
   assert.deepEqual(result.errors, []);
   assert.equal(result.adapterCount, 4);
   assert.equal(result.movedMethodCount, 58);
-  assert.equal(result.engineLines, 1207);
-  assert.equal(result.engineBytes, 41703);
+  assert.equal(result.engineLines, 1216);
+  assert.equal(result.engineBytes, 42367);
   const input = baseline();
   const manifest = JSON.parse(input.manifestSource);
   const reconstructed = reconstructRsh016EngineSource(input.engineSource, manifest, input.adapterSources);

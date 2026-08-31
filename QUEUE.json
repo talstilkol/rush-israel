@@ -1,11 +1,11 @@
 {
-  "schema_version": "7.0.0",
+  "schema_version": "8.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-31T00:30:00+03:00",
+  "generated_at": "2026-08-31T01:15:00+03:00",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "d3bd207a98989398ead0e6804519d4a0d2eb19a1",
-  "state_effective_on": "merge_of_RSH_018_pull_request",
+  "verified_base_sha": "bf1af8015a36cbe3ef34494f6d2b24eace3f153b",
+  "state_effective_on": "merge_of_RSH_019_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "next",
       "authorized_units": [
+        "RSH-019"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-019_merge",
+      "RSH_020_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": [
         "RSH-018"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-018_merge",
       "RSH_019_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "next",
-      "authorized_units": [
-        "RSH-017"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-017_merge",
-      "RSH_018_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 18,
+    "accepted": 19,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 49,
-    "remaining": 49
+    "deferred": 48,
+    "remaining": 48
   },
   "queue_head": {
-    "id": "RSH-019",
-    "title": "Complete resource ownership, disposal and leak accounting",
+    "id": "RSH-020",
+    "title": "Isolate or remove unused auth, DB, multiplayer and template dependencies",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-019 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-020 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-019",
-    "title": "Complete resource ownership, disposal and leak accounting",
+    "id": "RSH-020",
+    "title": "Isolate or remove unused auth, DB, multiplayer and template dependencies",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -410,6 +410,13 @@
       "temporary_transfer_files": 0,
       "RSH_019_created": false,
       "RSH_019_authorized": false
+    },
+    "RSH-019": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-019-resource-ownership",
+      "pull_request_resolution": "live RSH-019 pull request",
+      "merge_sha_resolution": "live main HEAD after validated merge",
+      "manifest": "RESOURCE-OWNERSHIP-MANIFEST.json"
     }
   },
   "unit_order": [
@@ -482,7 +489,6 @@
     "RSH-067"
   ],
   "state_rules": {
-    "RSH-001–RSH-018": "accepted",
     "RSH-019–RSH-067": "deferred_not_authorized",
     "accepted": {
       "from": "RSH-001",
@@ -492,23 +498,18 @@
     "deferred": {
       "from": "RSH-019",
       "through": "RSH-067"
-    }
+    },
+    "RSH-001–RSH-019": "accepted"
   },
   "next_instruction_contract": {
-    "current_action": "No unit is authorized; RSH-019 remains deferred until a new explicit owner instruction.",
-    "after_RSH_018": "The one-unit next authorization is consumed; RSH-019 requires a new explicit owner instruction.",
+    "instruction": "next",
+    "units_per_instruction": 1,
     "authorization_remaining": 0,
-    "RSH_018_completed": true,
-    "RSH_018_authorization_consumed": true,
-    "RSH_019_authorized": false,
-    "authorized_sequence": [
-      "RSH-018"
-    ],
-    "completed_sequence": [
-      "RSH-018"
-    ],
     "authorization_closed": true,
-    "continuation": "A new explicit owner instruction is required."
+    "current_action": "No unit is authorized; RSH-020 remains deferred until a new explicit owner instruction.",
+    "RSH_019_completed": true,
+    "RSH_019_authorization_consumed": true,
+    "RSH_020_authorized": false
   },
   "self_reference_boundary": {
     "RSH_017_merge_sha": "d3bd207a98989398ead0e6804519d4a0d2eb19a1",

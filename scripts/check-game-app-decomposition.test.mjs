@@ -78,13 +78,13 @@ test("engine, world, tracks, physics, saves, assets and dependencies remain clos
   }
 });
 
-test("temporary RSH-018 files and RSH-019 precreation fail closed", () => {
+test("temporary RSH-018 files and RSH-020 precreation fail closed", () => {
   const temp = baseline();
   temp.repositoryFiles.push(".github/workflows/rsh-018-finalizer.yml");
   assert.match(messages(validateGameAppDecomposition(temp)), /temporary RSH-018 files/);
   const later = baseline();
-  later.repositoryFiles.push("RSH-019-RESOURCE-OWNERSHIP-CONTRACT.md");
-  assert.match(messages(validateGameAppDecomposition(later)), /unauthorized RSH-019 structure/);
+  later.repositoryFiles.push("RSH-020-PREFLIGHT.json");
+  assert.match(messages(validateGameAppDecomposition(later)), /unauthorized later-unit structure/);
 });
 
 test("@ts-nocheck is forbidden across the game-app boundary", () => {

@@ -108,6 +108,7 @@ export class GameAudio {
   private noise: AudioBuffer | null = null;
 
   private visBound = false;
+  private unbindVisibility: (() => void) | null = null;
 
   unlock() {
     if (!this.started) this.bootGraph();
@@ -129,6 +130,11 @@ export class GameAudio {
     };
     document.addEventListener("visibilitychange", onVis);
     window.addEventListener("focus", onVis);
+    this.unbindVisibility = () => {
+      document.removeEventListener("visibilitychange", onVis);
+      window.removeEventListener("focus", onVis);
+      this.visBound = false;
+    };
   }
 
   private bootGraph() {
@@ -484,17 +490,40 @@ export class GameAudio {
   }
 
   dispose() {
-    try {
-      this.engineOsc?.stop();
-      this.engineOsc2?.stop();
-      this.driftSrc?.stop();
-      this.sirenOsc?.stop();
-      this.rainSrc?.stop();
-      void this.ctx?.close();
-    } catch {
-      /* ignore */
-    }
+    this.unbindVisibility?.();
+    this.unbindVisibility = null;
+    const safeStop = (node: OscillatorNode | AudioBufferSourceNode | null) => {
+      try {
+        node?.stop();
+      } catch {
+        /* already stopped */
+      }
+    };
+    safeStop(this.engineOsc);
+    safeStop(this.engineOsc2);
+    safeStop(this.driftSrc);
+    safeStop(this.sirenOsc);
+    safeStop(this.rainSrc);
+    const context = this.ctx;
     this.ctx = null;
+    this.master = null;
+    this.sfx = null;
+    this.engineGain = null;
+    this.engineOsc = null;
+    this.engineOsc2 = null;
+    this.driftGain = null;
+    this.driftSrc = null;
+    this.musicGain = null;
+    this.sirenOsc = null;
+    this.sirenGain = null;
+    this.rainGain = null;
+    this.rainSrc = null;
+    this.noise = null;
     this.started = false;
+    if (context && context.state !== "closed") {
+      void context.close().catch(() => {
+        /* teardown is best-effort after every node has been detached */
+      });
+    }
   }
 }

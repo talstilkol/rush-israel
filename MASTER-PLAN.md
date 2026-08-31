@@ -88,14 +88,14 @@ root-branding assets remain unverified.
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 18 |
+| Accepted | 19 |
 | In review | 0 |
 | Eligible | 0 |
-| Deferred | 49 |
-| Remaining | 49 |
-| Queue head | RSH-019 — deferred/not authorised |
+| Deferred | 48 |
+| Remaining | 48 |
+| Queue head | RSH-020 — deferred/not authorised |
 | Active PR | none |
-| RSH-018 one-unit authority | 1/1 — consumed |
+| RSH-019 one-unit authority | 1/1 — consumed |
 | Release gates green | 0/13 |
 | Findings OPEN / MITIGATED / CLOSED | 22 / 8 / 12 |
 
@@ -106,7 +106,7 @@ root-branding assets remain unverified.
 | G0 | RSH-001–003 | 3 | Control and governance | ACCEPTED |
 | G1 | RSH-004–008 | 5 | Reproducible toolchain and CI | UNITS ACCEPTED; EXIT GATE BLOCKED BY OWNER SETTING |
 | G2 | RSH-009–012 | 4 | Scope, licensing and assets | ACCEPTED |
-| G3 | RSH-013–020 | 8 | Architecture decomposition | DEFERRED — RSH-013–RSH-018 accepted; RSH-019 deferred/not authorised |
+| G3 | RSH-013–020 | 8 | Architecture decomposition | DEFERRED — RSH-013–RSH-019 accepted; RSH-020 deferred/not authorised |
 | G4 | RSH-021–024 | 4 | Data integrity and production security | DEFERRED |
 | G5 | RSH-025–036 | 12 | Ayalon vertical slice | DEFERRED |
 | G6 | RSH-037–043 | 7 | Performance and reliability | DEFERRED |
@@ -208,12 +208,10 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-RSH-018 is accepted on merge only after exact-head CI and review. The accepted
-`game-app.tsx` source is decomposed into a thin application facade and exactly three
-canonical modules: screens, HUD and race controller. Every extracted source block is
-manifest-bound, and the accepted RSH-017 game-app source reconstructs byte-for-byte.
-Runtime behaviour, public API, screen flow, HUD behaviour, RaceEngine lifecycle,
-tracks, physics, rendering, saves, assets and dependencies change by zero.
+RSH-019 is accepted on merge only after exact-head CI and review. Per-engine resource
+ownership is explicit and fail-closed: listener teardown, reverse-order leases, world
+resources, all car-visual families, scene geometry/materials and renderer disposal each
+have one idempotent owner. Shared asset-cache textures remain process-lifetime owned.
 
-The RSH-018 one-unit `next` authority is then consumed. RSH-019 remains deferred and
+The RSH-019 one-unit `next` authority is then consumed. RSH-020 remains deferred and
 cannot start without a new explicit owner instruction.

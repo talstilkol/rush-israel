@@ -11,8 +11,8 @@ import {
   reconstructRsh016EngineSource,
 } from "./load-engine-adapters.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "6a567b90ee71552b86985d6dbac8c8c8ce8e5ba65a579891c088777e51a472ec";
-export const EXPECTED_ENGINE_SHA256 = "e0de91cd924cab7c936a0658ec08a8b9afad00b5eb06861e602df72b69e804f7";
+export const EXPECTED_MANIFEST_SHA256 = "c19a9b9fe933d3c877d3e44cc10ebf7361623561d5f114ec742ec5d807d249e4";
+export const EXPECTED_ENGINE_SHA256 = "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b";
 export const EXPECTED_ADAPTER_PATHS = [
   "src/game/engine/loop-adapter.ts",
   "src/game/engine/rendering-adapter.ts",
@@ -22,7 +22,7 @@ export const EXPECTED_ADAPTER_PATHS = [
 export const EXPECTED_SUPPORT_PATH = "src/game/engine/adapter-host.ts";
 export const EXPECTED_PRESERVED = {
   "src/game/physics.ts": "cbff35aa2e2e4b509decf38e9f1ca3d262667675af81e0352ba02f460f5723c1",
-  "src/game/world.ts": "08d4e7c230bef3c67f0250fb672e1b1ca351cb5149266e0161dcb470f5274fd9",
+  "src/game/world.ts": "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc",
   "src/game/world-core.ts": "cbb9ac1f9de387cb1b31290fbc617b0ca34536b97067198b61e82ffcaf31fafe",
   "src/game/save.ts": "d7c681b9e00942c91135a579d47f7f9f8def717d22232470b3990a5b0a644d87",
   "src/game/records.ts": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
@@ -36,7 +36,7 @@ export const EXPECTED_PRESERVED = {
   "package-lock.json": "62ec6d2fe00b439855a06803789a03fe4cac5072f7e1e3437ba4aef9d87244ec",
   "src/rendering/RendererFacade.ts": "90d8b440c1dcbb2020196ea1b99c854ae4e44c3a30b094f015fef6e98fefc904",
   "src/rendering/EnvironmentState.ts": "a4471989af161d1e9d195cf1b9972c3ba4b6a9e85d09a1d9c60a9beb309b69a2",
-  "src/rendering/ResourceRegistry.ts": "64781dfb6d7cc53c0052374a1d2f647b0436e2017382902110f40a09262dc873",
+  "src/rendering/ResourceRegistry.ts": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
 };
 
 function walkFiles(directory, prefix = "") {

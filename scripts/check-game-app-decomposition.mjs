@@ -9,7 +9,7 @@ import {
   sha256,
 } from "./load-game-app-decomposition.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "6b8c5de0f696e3ca91262bc9b1071fdf912d8dbf8d7c69657f8168c1b878a4da";
+export const EXPECTED_MANIFEST_SHA256 = "f1dbaa4fb3fd7a95a2bfe8473286eae875133b9debede8b413248d55cd0a8e49";
 export const EXPECTED_MODULE_PATHS = [
   "src/components/game-app/screens.tsx",
   "src/components/game-app/hud.tsx",
@@ -139,7 +139,7 @@ export function validateGameAppDecomposition(overrides = {}) {
   const temp = input.repositoryFiles.filter((path) => path.startsWith(".rsh018") || path.startsWith(".github/workflows/rsh-018-") || path === ".github/rsh-018-finalize.mjs");
   if (temp.length) errors.push(`temporary RSH-018 files remain: ${temp.join(", ")}`);
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary.forbidden_prefixes.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`unauthorized RSH-019 structure: ${later.join(", ")}`);
+  if (later.length) errors.push(`unauthorized later-unit structure: ${later.join(", ")}`);
   if (/^\s*\/\/\s*@ts-nocheck/m.test(input.facadeSource)) errors.push("@ts-nocheck is forbidden in game-app facade");
 
   return {

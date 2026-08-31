@@ -15,6 +15,8 @@ export function cloneCarBody(kind: CarDef["body"], color: number, shadows: boole
   });
   if (!src) return;
   const mesh = src.clone();
+  // RSH-019: each per-engine visual owns its geometry; the cached template remains process-owned.
+  mesh.geometry = src.geometry.clone();
   const mat = (src.material as THREE.MeshPhysicalMaterial).clone();
   mat.color.setHex(color);
   mesh.material = mat;

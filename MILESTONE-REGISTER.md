@@ -85,3 +85,16 @@ No unit remains eligible. RSH-019 requires a new explicit owner instruction.
 This file is the canonical milestone definition. GitHub-native milestone objects may
 mirror it when connector support exists. A missing GitHub UI object does not change
 queue eligibility, accepted-unit counts or gate status.
+
+## RSH-019 — Resource ownership and leak accounting
+
+| Field | Value |
+|---|---|
+| State | ACCEPTED ON VALIDATED MERGE |
+| Implementation base | `bf1af8015a36cbe3ef34494f6d2b24eace3f153b` |
+| Branch | `agent/rsh-019-resource-ownership` |
+| Authority | one plain `next`, consumed on merge |
+| Runtime owners | 9 |
+| Pinned runtime sources | 10 |
+| Texture/geometry smoke delta | maximum +2 / +2 |
+| Next | RSH-020 — deferred, not authorised |

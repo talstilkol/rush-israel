@@ -93,8 +93,8 @@ test("missing or reordered lifecycle keys fail closed", () => {
 test("altered disposal order or world.ts bypass fails closed", () => {
   const disposal = baseline();
   disposal.worldSource = disposal.worldSource.replace(
-    "for (const d of bag) d.dispose();",
-    "for (const d of [...bag].reverse()) d.dispose();",
+    "for (let index = bag.length - 1; index >= 0; index -= 1)",
+    "for (let index = 0; index < bag.length; index += 1)",
   );
   assert.match(messages(validateWorldCore(disposal)), /disposal|reconstruction|bounded extracted facade/);
 

@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import { GameAudio, RADIO } from "./audio";
-import { createCarVisual, pulsePolice, setCarLights, updateCarVisual, applyDamage, type CarVisual } from "./car-mesh";
+// RSH-019-OVERLAY-BEGIN:engine-car-disposer-import
+import { createCarVisual, disposeCarVisual, pulsePolice, setCarLights, updateCarVisual, applyDamage, type CarVisual } from "./car-mesh";
+// RSH-019-OVERLAY-END:engine-car-disposer-import
 import { getEvent } from "./career";
 import { finishLine, introLine, overtakeLine } from "./dialog";
 import { applyTune, emptyTune, paceGhost, racePayout, sampleGhost, sampleGhostLoop, WEATHER_GRIP, type GhostFrame } from "./garage";
@@ -50,7 +52,10 @@ import { AYALON_GOLDEN } from "../world/goldenCameras";
 import { RendererFacade } from "../rendering/RendererFacade";
 import { profileFromLegacy } from "../rendering/QualityProfile";
 import { FOG, fogKey, LOOKS, lookFromFlags } from "../rendering/EnvironmentState";
+// RSH-019-OVERLAY-BEGIN:engine-disposal-imports
 import { ResourceRegistry } from "../rendering/ResourceRegistry";
+import { createObject3DDisposalTracker, disposeObject3D } from "../rendering/disposeObject3D";
+// RSH-019-OVERLAY-END:engine-disposal-imports
 import { DynamicQualityController, gfxPassFlags } from "../rendering/DynamicQualityController";
 import { exportPhotoPng } from "./photo-export";
 import { MESH_STREAMING } from "./stream-flag";
@@ -383,11 +388,14 @@ export class RaceEngine {
         lightMargin: 28,
         shadowBias: -0.00008,
       });
+      // RSH-019-OVERLAY-BEGIN:engine-csm-lease
+      const csm = this.csm;
       this.leases.retain("csm", () => {
-        this.csm?.remove();
-        this.csm?.dispose();
-        this.csm = null;
-      });
+        csm.remove();
+        csm.dispose();
+        if (this.csm === csm) this.csm = null;
+      }, { owner: "race-engine", kind: "csm" });
+      // RSH-019-OVERLAY-END:engine-csm-lease
       this.bindCsm();
     }
 
@@ -468,10 +476,13 @@ export class RaceEngine {
     });
     if (!soft && this.quality !== "low") {
       this.probeRT = new THREE.WebGLCubeRenderTarget(96);
+      // RSH-019-OVERLAY-BEGIN:engine-probe-lease
+      const probeRT = this.probeRT;
       this.leases.retain("probe-rt", () => {
-        this.probeRT?.dispose();
-        this.probeRT = null;
-      });
+        probeRT.dispose();
+        if (this.probeRT === probeRT) this.probeRT = null;
+      }, { owner: "race-engine", kind: "render-target" });
+      // RSH-019-OVERLAY-END:engine-probe-lease
       this.probeCam = new THREE.CubeCamera(1.2, 220, this.probeRT);
     }
 
@@ -1071,46 +1082,44 @@ export class RaceEngine {
     return engineRendering.updateCsm.call(engineAdapterHost(this));
   }
 
+  // RSH-019-OVERLAY-BEGIN:engine-dispose
   dispose() {
+    if (this.disposed) return;
     this.disposed = true;
     this.renderer.setAnimationLoop(null);
     this.canvas.removeEventListener("webglcontextlost", this.onContextLost);
     this.canvas.removeEventListener("webglcontextrestored", this.onContextRestored);
     window.removeEventListener("resize", this.onResize);
-    if (this.booted) {
-      this.input.dispose();
-      this.audio.dispose();
-      this.leases.release("csm");
-      this.world.dispose();
-      this.leases.disposeAll();
-      this.sparks.geometry.dispose();
-      (this.sparks.material as THREE.Material).dispose();
-      if (this.blobs[0]) {
-        this.blobs[0].geometry.dispose();
-        (this.blobs[0].material as THREE.Material).dispose();
-      }
-      this.gate.geometry.dispose();
-      (this.gate.material as THREE.Material).dispose();
-      this.skidMesh.geometry.dispose();
-      (this.skidMesh.material as THREE.Material).dispose();
-      this.smokeMesh.geometry.dispose();
-      (this.smokeMesh.material as THREE.Material).dispose();
-      this.boostPts.geometry.dispose();
-      (this.boostPts.material as THREE.Material).dispose();
-      if (this.rainMesh) {
-        this.rainMesh.geometry.dispose();
-        (this.rainMesh.material as THREE.Material).dispose();
-      }
-      this.clearRoadblock();
-    }
+
+    this.clearRoadblock();
+    this.input?.dispose();
+    this.audio?.dispose();
+
+    // Reverse-order leases release post-processing, render targets and CSM
+    // before world materials and the renderer are destroyed.
     this.leases.disposeAll();
+    this.world?.dispose();
+
+    const tracker = createObject3DDisposalTracker();
+    for (const visual of this.visuals ?? []) disposeCarVisual(visual, tracker);
+    for (const visual of this.trafficVis ?? []) disposeCarVisual(visual, tracker);
+    for (const visual of this.copVis ?? []) disposeCarVisual(visual, tracker);
+    if (this.ghostVis) disposeCarVisual(this.ghostVis, tracker);
+    if (this.rivalGhostVis) disposeCarVisual(this.rivalGhostVis, tracker);
+    disposeObject3D(this.scene, tracker);
+    this.scene.environment = null;
+    this.scene.background = null;
+    this.renderer.renderLists.dispose();
     this.gfx.dispose();
+
     if (import.meta.env.DEV || import.meta.env.VITE_QA === "1") {
       delete window.__controlsTest;
       delete window.render_game_to_text;
     }
   }
 }
+  // RSH-019-OVERLAY-END:engine-dispose
+
 
 declare global {
   interface Window {
