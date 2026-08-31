@@ -1,0 +1,26 @@
+name: rsh-020-audit
+
+on:
+  push:
+    branches:
+      - agent/rsh-020-template-dependency-isolation
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Run dependency and template-surface audit
+        run: node scripts/rsh020-dependency-audit.mjs | tee rsh020-audit.json
+      - name: Upload audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: rsh-020-audit-${{ github.run_id }}
+          path: rsh020-audit.json
+          retention-days: 2
