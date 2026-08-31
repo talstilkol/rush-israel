@@ -43,7 +43,7 @@ jobs:
 
           git fetch origin main
           git checkout origin/main -- scripts/write-ci-summary.mjs .github/workflows/required-ci.yml
-          git rm --recursive .rsh022-transport
+          git rm -r .rsh022-transport
           git apply --index /tmp/rsh022.patch
 
           candidate_tree="$(git write-tree)"
