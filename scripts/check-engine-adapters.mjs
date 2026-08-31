@@ -24,7 +24,7 @@ export const EXPECTED_PRESERVED = {
   "src/game/physics.ts": "cbff35aa2e2e4b509decf38e9f1ca3d262667675af81e0352ba02f460f5723c1",
   "src/game/world.ts": "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc",
   "src/game/world-core.ts": "cbb9ac1f9de387cb1b31290fbc617b0ca34536b97067198b61e82ffcaf31fafe",
-  "src/game/save.ts": "c0b7715aa5b533465de7f140630a1cf527ee5d8560374b6f87af06d4a16852ef",
+  "src/game/save.ts": "8c32ea6530768f1113409986e0e04dadc456958437b17d3eda805ae1119c9362",
   "src/game/records.ts": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
   "src/components/game-app.tsx": "4569f67f6a8659252e3c3cf332fa377f263d3f41fcd03ced60a007aa0148cc4b",
   "WORLD-BUILDER-MANIFEST.json": "5921e14be99509e8b812bc3f556643b98d2244d1f8b77c2b928e02a99de90f00",

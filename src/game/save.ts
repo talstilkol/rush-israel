@@ -44,7 +44,11 @@ export function getSaveStatus() {
 }
 
 function browserStorage(): SaveStorage | null {
-  return typeof localStorage === "undefined" ? null : localStorage;
+  try {
+    return typeof localStorage === "undefined" ? null : localStorage;
+  } catch {
+    return null;
+  }
 }
 
 function load(): SaveData {
@@ -59,6 +63,9 @@ function load(): SaveData {
 }
 
 function write(data: SaveData) {
+  // A rejected read owns the source bytes until RSH-022 provides an explicit
+  // recovery decision. Automatic flushes and setters must not destroy them.
+  if (lastSaveStatus.state === "rejected") return false;
   const storage = browserStorage();
   if (!storage) return false;
   const raw = canonicalSaveString(data);

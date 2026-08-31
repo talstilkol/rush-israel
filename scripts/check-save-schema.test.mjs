@@ -170,3 +170,20 @@ test("the committed RSH-021 save-schema authority passes and RSH-022 remains abs
   assert.equal(manifest.deferred_boundary.rsh_022_started, false);
   assert.equal(manifest.deferred_boundary.rsh_022_authorized, false);
 });
+
+
+test("the save facade catches storage acquisition and preserves rejected source bytes", () => {
+  const source = readFileSync(fromRoot("src", "game", "save.ts"), "utf8");
+  assert.ok(source.includes(`function browserStorage(): SaveStorage | null {
+  try {
+    return typeof localStorage === "undefined" ? null : localStorage;
+  } catch {
+    return null;
+  }
+}`));
+  assert.ok(source.includes(`function write(data: SaveData) {
+  // A rejected read owns the source bytes until RSH-022 provides an explicit
+  // recovery decision. Automatic flushes and setters must not destroy them.
+  if (lastSaveStatus.state === "rejected") return false;
+  const storage = browserStorage();`));
+});

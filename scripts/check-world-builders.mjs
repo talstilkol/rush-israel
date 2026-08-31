@@ -13,7 +13,7 @@ export const EXPECTED_AGGREGATE_DIGEST = "1f10ef1b656fb61b414aed82a1918ade65c509
 export const EXPECTED_PRESERVED = {
   "src/game/physics.ts": "cbff35aa2e2e4b509decf38e9f1ca3d262667675af81e0352ba02f460f5723c1",
   "src/game/world-core.ts": "cbb9ac1f9de387cb1b31290fbc617b0ca34536b97067198b61e82ffcaf31fafe",
-  "src/game/save.ts": "c0b7715aa5b533465de7f140630a1cf527ee5d8560374b6f87af06d4a16852ef",
+  "src/game/save.ts": "8c32ea6530768f1113409986e0e04dadc456958437b17d3eda805ae1119c9362",
   "src/game/records.ts": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
   "TRACK-MODULE-MANIFEST.json": "a8891a4af9345dbfa34fcb998302b77383f3b14f19fd240c9a8c46d2e5a43fdd",
   "TRACK-SCHEMA.json": "56f2f29c131d8df1b98c5fdc909fd1fe35cf21de2346d6f9f8189b6d1abec208",

@@ -11,7 +11,7 @@ import {
 } from "./load-game-app-decomposition.mjs";
 
 export const EXPECTED_MANIFEST_SHA256 = "a2943e491ca875bcc26bc43e7403e775cdb5cc8fea85f29293bb2b40ca5c7c76";
-export const EXPECTED_RSH021_SAVE_SHA256 = "c0b7715aa5b533465de7f140630a1cf527ee5d8560374b6f87af06d4a16852ef";
+export const EXPECTED_RSH021_SAVE_SHA256 = "8c32ea6530768f1113409986e0e04dadc456958437b17d3eda805ae1119c9362";
 export const EXPECTED_MODULE_PATHS = [
   "src/components/game-app/screens.tsx",
   "src/components/game-app/hud.tsx",

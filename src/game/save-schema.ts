@@ -11,9 +11,6 @@ export const SAVE_KEY = "rush-v1";
 export const LEGACY_SAVE_KEY = "tlv-rush-v1";
 export const GHOST_KEY = "rush-ghosts-v1";
 
-const KEY = SAVE_KEY;
-const LEGACY = LEGACY_SAVE_KEY;
-
 type SupportedSaveVersion = 0 | 1 | 2 | 3;
 type SaveSource = "none" | "current" | "legacy";
 export type SaveStorage = { getItem(key: string): string | null; setItem(key: string, value: string): void };
