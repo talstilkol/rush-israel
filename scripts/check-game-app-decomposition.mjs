@@ -2,6 +2,7 @@
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
+import { EXPECTED_PACKAGE_LOCK_SHA256, EXPECTED_PACKAGE_SOURCE_SHA256 } from "./check-dependency-boundary.mjs";
 import {
   gitBlobSha1,
   parseRsh018Blocks,
@@ -9,7 +10,7 @@ import {
   sha256,
 } from "./load-game-app-decomposition.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "f1dbaa4fb3fd7a95a2bfe8473286eae875133b9debede8b413248d55cd0a8e49";
+export const EXPECTED_MANIFEST_SHA256 = "d9079643d13559ce96cade5797b8244d295cc21ec20fc903de3d1b7847ab0424";
 export const EXPECTED_MODULE_PATHS = [
   "src/components/game-app/screens.tsx",
   "src/components/game-app/hud.tsx",
@@ -129,7 +130,8 @@ export function validateGameAppDecomposition(overrides = {}) {
   }
 
   for (const [path, expected] of Object.entries(manifest.preserved_sources)) {
-    if (sha256(input.preservedSources[path] ?? "") !== expected) errors.push(`preserved source changed: ${path}`);
+    const acceptedExpected = path === "package.json" ? EXPECTED_PACKAGE_SOURCE_SHA256 : path === "package-lock.json" ? EXPECTED_PACKAGE_LOCK_SHA256 : expected;
+    if (sha256(input.preservedSources[path] ?? "") !== acceptedExpected) errors.push(`preserved source changed: ${path}`);
   }
   const asset = JSON.parse(input.preservedSources["ASSET-PROVENANCE.json"] ?? "{}");
   if (asset.scope?.unverified_asset_files !== 66 || asset.scope?.public_distribution_authorized !== false || asset.truth_boundaries?.release_gates_green !== 0 || asset.truth_boundaries?.release_gates_total !== 13) errors.push("asset/distribution/release boundary changed");

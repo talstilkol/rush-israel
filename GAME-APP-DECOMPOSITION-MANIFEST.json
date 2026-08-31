@@ -403,15 +403,18 @@
   "deferred_boundary": {
     "rsh_019_started": true,
     "rsh_019_authorized": true,
-    "rsh_019_state": "accepted_on_merge",
-    "rsh_020_started": false,
-    "rsh_020_authorized": false,
+    "rsh_019_state": "accepted",
+    "rsh_020_started": true,
+    "rsh_020_authorized": true,
+    "rsh_020_state": "accepted_on_merge",
+    "rsh_021_started": false,
+    "rsh_021_authorized": false,
     "forbidden_prefixes": [
-      ".rsh020",
-      ".github/workflows/rsh-020-",
-      "RSH-020-",
-      "src/auth-v2/",
-      "src/multiplayer-v2/"
+      ".rsh021",
+      ".github/workflows/rsh-021-",
+      "RSH-021-",
+      "src/auth-v3/",
+      "src/multiplayer-v3/"
     ]
   }
 }

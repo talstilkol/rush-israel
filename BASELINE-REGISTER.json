@@ -1,7 +1,7 @@
 {
-  "schema_version": "6.0.0",
+  "schema_version": "7.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-08-31T01:15:00+03:00",
+  "generated_at": "2026-08-31T03:24:46.948Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -335,23 +335,44 @@
       "runtime_behavior_changes": 0,
       "recorded_at": "2026-08-31T00:30:00+03:00",
       "description": "The accepted game-app source is split into a thin application facade plus screens, HUD and race-controller modules with byte-exact legacy reconstruction."
+    },
+    {
+      "id": "B019-rsh-019-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-019",
+      "branch": "agent/rsh-019-resource-ownership",
+      "pull_request": 22,
+      "commit_sha": "53a23eb22952f8ea077b6a164757f03eb1d5ac1c",
+      "tree_sha": "1e7fe9add68074c0aa46ed656f3a4199603d6598",
+      "validated_head_sha": "07766efa03a8a2d2787e7bb4439a08fe55591a52",
+      "workflow_run": 33342692946,
+      "workflow_job": 99341101156,
+      "artifact_id": 9741078667,
+      "artifact_digest": "sha256:2356588c24493d2af0b9df5baf999c035b1895f8da6feaafd0839732d898f93b",
+      "post_merge_workflow_run": 33343340937,
+      "post_merge_workflow_job": 99342821520,
+      "post_merge_artifact_id": 9741260355,
+      "post_merge_artifact_digest": "sha256:673e92c2ea0fa2e12cbbf96937b17348eba80411aae5d5a341a38b5adf479df9",
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-08-31T03:24:46.948Z",
+      "description": "Typed resource ownership, deterministic disposal and zero-delta two-cycle texture/geometry accounting accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-019",
+    "unit": "RSH-020",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "bf1af8015a36cbe3ef34494f6d2b24eace3f153b",
-    "branch": "agent/rsh-019-resource-ownership",
-    "manifest": "RESOURCE-OWNERSHIP-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-019 pull request"
+    "implementation_base_sha": "53a23eb22952f8ea077b6a164757f03eb1d5ac1c",
+    "branch": "agent/rsh-020-template-dependency-isolation",
+    "manifest": "DEPENDENCY-BOUNDARY-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-020 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-019",
+    "queue_head": "RSH-021",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_019_authorized": false
+    "RSH_021_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

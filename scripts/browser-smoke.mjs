@@ -6,12 +6,6 @@ import { checkedOutputPath, checkedUrl } from "./browser-guard.mjs";
 import { computeBrandWarnings } from "./brand-check.mjs";
 import { projectRoot } from "./project-root.mjs";
 import {
-  authInvariantWarnings,
-  buildAuthEnabled,
-  compareAuthInvariant,
-  probeDevAuthEnabled,
-} from "./check-auth-invariant.mjs";
-import {
   baselineComparison,
   bodyTextPrefix,
   derivedPaths,
@@ -140,12 +134,9 @@ try {
   }
 
   const brandWarnings = computeBrandWarnings({ hasCanvas: viewports.desktop.hasCanvas });
-  const authWarnings = authInvariantWarnings(
-    compareAuthInvariant({
-      devAuthEnabled: await probeDevAuthEnabled(url),
-      buildAuthEnabled: buildAuthEnabled(),
-    }),
-  );
+  // RSH-020 removes the template authentication subsystem. Keep the stable
+  // verdict field for downstream consumers, but it is intentionally empty.
+  const authWarnings = [];
   const verdict = { url, viewports, brandWarnings, authWarnings, verdictFile: outJson };
   if (baselineRequested) {
     const { divergesFromBaseline, reasons } = compareAgainstBaseline(verdict);
@@ -155,7 +146,7 @@ try {
 
   writeFileSync(outJson, JSON.stringify(verdict, null, 2));
   console.log(JSON.stringify(verdict, null, 2));
-  for (const w of [...brandWarnings, ...authWarnings]) console.error(w);
+  for (const w of brandWarnings) console.error(w);
   process.exitCode = exitCodeFor(viewports);
 } catch (err) {
   const failure = { ok: false, url, error: String(err?.message || err) };
