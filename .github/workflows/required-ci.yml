@@ -37,7 +37,8 @@ jobs:
           gzip --decompress --stdout /tmp/rsh022-codex-fixes.patch.gz > /tmp/rsh022-codex-fixes.patch
           echo "18f1da5c2bf68744f57f1e6eef14d4ab1ea70a1e89da69a8fddb1925d877f679  /tmp/rsh022-codex-fixes.patch" | sha256sum --check --strict
 
-          git checkout HEAD^ -- .github/workflows/required-ci.yml
+          git fetch origin main
+          git checkout origin/main -- .github/workflows/required-ci.yml
           git rm -r .rsh022-fix
           git apply --index /tmp/rsh022-codex-fixes.patch
 
