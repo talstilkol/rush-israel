@@ -10,8 +10,8 @@ import {
   sha256,
 } from "./load-game-app-decomposition.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "a2943e491ca875bcc26bc43e7403e775cdb5cc8fea85f29293bb2b40ca5c7c76";
-export const EXPECTED_RSH021_SAVE_SHA256 = "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24";
+export const EXPECTED_MANIFEST_SHA256 = "8150296992f2fdfe356ee14ec243d65b03b896c0d6740cee5b67d4a412f36c00";
+export const EXPECTED_RSH022_SAVE_SHA256 = "0a90fcca530c76ed9581a9fbb984b29f7c2fd751d76c54c524b5114dbc17ac67";
 export const EXPECTED_MODULE_PATHS = [
   "src/components/game-app/screens.tsx",
   "src/components/game-app/hud.tsx",
@@ -136,7 +136,7 @@ export function validateGameAppDecomposition(overrides = {}) {
       : path === "package-lock.json"
         ? EXPECTED_PACKAGE_LOCK_SHA256
         : path === "src/game/save.ts"
-          ? EXPECTED_RSH021_SAVE_SHA256
+          ? EXPECTED_RSH022_SAVE_SHA256
           : expected;
     if (sha256(input.preservedSources[path] ?? "") !== acceptedExpected) errors.push(`preserved source changed: ${path}`);
   }

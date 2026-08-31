@@ -144,16 +144,19 @@
     "asset_changes": 0
   },
   "deferred_boundary": {
-    "queue_head": "RSH-022",
+    "queue_head": "RSH-023",
     "rsh_021_authorized": true,
     "rsh_021_started": true,
+    "rsh_021_state": "accepted",
+    "rsh_022_authorized": true,
+    "rsh_022_started": true,
+    "rsh_022_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh022",
-      ".github/workflows/rsh-022-",
-      "RSH-022-"
+      ".rsh023",
+      ".github/workflows/rsh-023-",
+      "RSH-023-"
     ],
-    "rsh_021_state": "accepted_on_merge",
-    "rsh_022_authorized": false,
-    "rsh_022_started": false
+    "rsh_023_authorized": false,
+    "rsh_023_started": false
   }
 }

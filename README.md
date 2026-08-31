@@ -78,7 +78,7 @@ npm run build:dev
 
 Authentication, database, migrations, multiplayer and preview-host template code are not part of Version 1 and are absent from the runtime. The retained `/__grok/*` URLs serve the product-specific PWA only. See `DEPENDENCY-POLICY.md` and `DEPENDENCY-BOUNDARY-MANIFEST.json`.
 
-## סכמת שמירה — RSH-021
+## שמירה ושחזור — RSH-021–RSH-022
 
 | מדד | ערך |
 |---|---:|
@@ -86,11 +86,16 @@ Authentication, database, migrations, multiplayer and preview-host template code
 | גרסאות מקור נתמכות | 0, 1, 2, 3 |
 | מסלול מיגרציה | 0→1→2→3 |
 | כתיבה קנונית דטרמיניסטית | כן |
+| גיבוי מאומת | כן — דור אחד |
+| חריצי שמירת bytes פגומים | 2 |
+| שחזור אוטומטי | לא |
+| שחזור מפורש עם UI נגיש | כן |
 | דריסת שמירה פגומה/עתידית | לא |
 | מחיקת מפתח Legacy | לא |
-| Backup ושחזור | נדחה ל־RSH-022 |
+| `removeItem()` / `clear()` | לא |
 
-הסמכות: `SAVE-SCHEMA-MANIFEST.json` ו־`RSH-021-SAVE-SCHEMA-CONTRACT.md`.
+הסמכויות: `SAVE-SCHEMA-MANIFEST.json`, `RSH-021-SAVE-SCHEMA-CONTRACT.md`,
+`SAVE-RECOVERY-MANIFEST.json` ו־`RSH-022-SAVE-RECOVERY-CONTRACT.md`.
 
 ## שליטה
 
@@ -106,6 +111,8 @@ Version 1 אך קבלת מטריצת הדפדפנים והמכשירים מתב�
 | נכסים ורישיונות | `ASSET-PROVENANCE.json` |
 | Metadata ו־PWA | `PRODUCT-METADATA.json` |
 | גבול תלויות | `DEPENDENCY-BOUNDARY-MANIFEST.json` |
+| סכמת שמירה | `SAVE-SCHEMA-MANIFEST.json` |
+| גיבוי ושחזור | `SAVE-RECOVERY-MANIFEST.json` |
 | מדיניות עדכונים | `DEPENDENCY-POLICY.md` |
 | מצב התוכנית | `CURRENT-STATE.json` |
 | תור הביצוע | `QUEUE.json` |

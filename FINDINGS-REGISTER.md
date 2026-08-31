@@ -1,11 +1,11 @@
 # RUSH Israel — Findings Register
 
-**Version:** 2.1.0
-**RSH-021 implementation base:** `7cff508a4cfa95c03ac34c5503912e70bed47b90`
-**State effective on:** merge of the RSH-021 pull request
+**Version:** 2.2.0
+**RSH-022 implementation base:** `9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b`
+**State effective on:** merge of the RSH-022 pull request
 **Date:** 31 August 2026
 **Total:** 42 findings — 12 P0, 18 P1, 12 P2
-**Status:** 16 OPEN, 8 MITIGATED, 18 CLOSED
+**Status:** 16 OPEN, 7 MITIGATED, 19 CLOSED
 
 ## Status rules
 
@@ -34,7 +34,7 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P1-01 | P1 | **MITIGATED** | Production QA-hook removal is not enforced by GitHub | `check:qa` passes inside the required workflow, but GitHub does not yet require that check through branch settings. | Apply the RSH-008 desired ruleset; RSH-024 hardening |
 | P1-02 | P1 | **OPEN** | Timed-record hashes are generated but not verified on read | Record liveness checks `physicsVersion` only. | RSH-023 |
 | P1-03 | P1 | **OPEN** | Timed-record writes are fire-and-forget | `recordBest` starts asynchronous persistence without awaiting or serialising. | RSH-023 |
-| P1-04 | P1 | **MITIGATED** | Save failures and corruption are silently swallowed | RSH-021 adds explicit schema/version rejection, deterministic migrations, non-destructive corrupt/future handling and structured read/write/repair status. Backup recovery and user-visible failure handling remain open in RSH-022. | RSH-021, RSH-022 |
+| P1-04 | P1 | **CLOSED** | Save failures and corruption are silently swallowed | RSH-021 establishes deterministic schema/version handling. RSH-022 adds verified backup rotation, bounded exact-byte quarantine, explicit restore/fresh-start decisions, structured failures and accessible bilingual failure UI without deleting source or legacy bytes. | RSH-021, RSH-022 |
 | P1-05 | P1 | **CLOSED** | The build command performs database migration | RSH-020 removes the DB subsystem and migration scripts; `npm run build` is exactly `vite build`. | RSH-020 |
 | P1-06 | P1 | **CLOSED** | Template auth, DB, multiplayer and Grok infrastructure is not product-scoped | RSH-020 removes auth, DB, migrations, multiplayer, app-env and preview-host bridges. The retained `/__grok/*` PWA URLs are explicitly product-owned compatibility paths. | RSH-020 |
 | P1-07 | P1 | **CLOSED** | The dependency set is broader than the observed product surface | RSH-020 reduces direct packages from 74 to 30: 10 runtime and 20 development packages; 44 unused direct packages are removed. | RSH-020 |

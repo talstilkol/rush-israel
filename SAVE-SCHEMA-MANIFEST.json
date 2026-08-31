@@ -80,10 +80,12 @@
     "write_or_verify_failure": "structured_status_with_in_memory_data"
   },
   "recovery": {
-    "backups_created": false,
-    "backup_restore": false,
-    "user_visible_failure_ui": false,
-    "assigned_unit": "RSH-022"
+    "backups_created": true,
+    "backup_restore": true,
+    "user_visible_failure_ui": true,
+    "assigned_unit": "RSH-022",
+    "state": "accepted_on_merge",
+    "authority": "SAVE-RECOVERY-MANIFEST.json"
   },
   "preservation": {
     "timed_record_changes": 0,
@@ -106,14 +108,35 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-022",
-    "rsh_022_authorized": false,
-    "rsh_022_started": false,
+    "queue_head": "RSH-023",
+    "rsh_022_authorized": true,
+    "rsh_022_started": true,
+    "rsh_022_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh022",
-      ".github/workflows/rsh-022-",
-      "RSH-022-",
-      "src/game/save-recovery/"
-    ]
+      ".rsh023",
+      ".github/workflows/rsh-023-",
+      "RSH-023-",
+      "scripts/rsh023-",
+      "src/game/records-v2/"
+    ],
+    "rsh_023_authorized": false,
+    "rsh_023_started": false
+  },
+  "rsh_022_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "SAVE-RECOVERY-MANIFEST.json",
+    "contract": "RSH-022-SAVE-RECOVERY-CONTRACT.md",
+    "recovery_source": "src/game/save-recovery.ts",
+    "ui_source": "src/game/save-recovery-ui.ts",
+    "backup_generations": 1,
+    "rejected_current_quarantine_slots": 2,
+    "automatic_restore": false,
+    "explicit_restore": true,
+    "timed_record_changes": 0,
+    "ghost_schema_changes": 0,
+    "recovery_source_sha256": "06b47c2be56baf0e77637f117cb01d49154dc3c9e612f1f176dfefa7e1614641",
+    "ui_source_sha256": "f30ce6dac7d45f3b334c317d9eb3577e466d04197c204f167e25354fdd2e4e1e",
+    "save_facade_sha256": "0a90fcca530c76ed9581a9fbb984b29f7c2fd751d76c54c524b5114dbc17ac67",
+    "schema_guard_test_sha256": "0d16b7d447187ae03225e77926f442d63fb92b7f57e98bd5ea21ac2b30642a3e"
   }
 }
