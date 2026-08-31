@@ -65,7 +65,8 @@
     "html_injection_used": false,
     "dismiss_mutates_storage": false,
     "focus_enters_dialog": true,
-    "focus_restored_on_close": true
+    "focus_restored_on_close": true,
+    "success_to_failure_focus_capture": true
   },
   "preservation": {
     "timed_record_changes": 0,
@@ -82,9 +83,9 @@
   },
   "identities": {
     "recovery_source_sha256": "e86c5ebacf6208602d7f4ddcaee1ca8f378df533936a365a3dc2bb2d706c9028",
-    "ui_source_sha256": "ba6f397ec90d4b71ce0b93fa188932c977d3be8ad6c31ddb2fd008ad8072145c",
+    "ui_source_sha256": "82fd7900ea252f3793ba6a54859083223a36cd052cea0745145cbc4a2f0875d5",
     "save_facade_sha256": "0a90fcca530c76ed9581a9fbb984b29f7c2fd751d76c54c524b5114dbc17ac67",
-    "test_source_sha256": "1bfc04953ba1453292192178ca9bff5f5ed207b5df4adc36f313dca4f71430cb",
+    "test_source_sha256": "a2930c84e2ae12a85b76bc9133be337b85f7444c935af269bc70a97087101a1a",
     "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
     "records_source_sha256": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",

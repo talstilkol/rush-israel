@@ -5,11 +5,11 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "3ca31bac992720c8b32a381e7f1a4b215f962c9431f958fbbd344ed075e002e2";
+export const EXPECTED_MANIFEST_SHA256 = "15d32b5ea2fa2ea313dfa768893702a112bbe64ede035389924eb265e224c502";
 export const EXPECTED_RECOVERY_SHA256 = "e86c5ebacf6208602d7f4ddcaee1ca8f378df533936a365a3dc2bb2d706c9028";
-export const EXPECTED_UI_SHA256 = "ba6f397ec90d4b71ce0b93fa188932c977d3be8ad6c31ddb2fd008ad8072145c";
+export const EXPECTED_UI_SHA256 = "82fd7900ea252f3793ba6a54859083223a36cd052cea0745145cbc4a2f0875d5";
 export const EXPECTED_SAVE_FACADE_SHA256 = "0a90fcca530c76ed9581a9fbb984b29f7c2fd751d76c54c524b5114dbc17ac67";
-export const EXPECTED_TEST_SHA256 = "1bfc04953ba1453292192178ca9bff5f5ed207b5df4adc36f313dca4f71430cb";
+export const EXPECTED_TEST_SHA256 = "a2930c84e2ae12a85b76bc9133be337b85f7444c935af269bc70a97087101a1a";
 export const EXPECTED_SCHEMA_SHA256 = "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358";
 export const EXPECTED_RECORDS_SHA256 = "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
@@ -105,7 +105,7 @@ export function validateSaveRecovery(overrides = {}) {
   if (JSON.stringify(manifest.schema_authority?.migration_edges) !== JSON.stringify(["0→1", "1→2", "2→3"]) || manifest.schema_authority?.changed !== false) errors.push("accepted RSH-021 migration authority changed");
   if (manifest.backup_policy?.generations !== 1 || manifest.backup_policy?.seed_before_first_current_write !== true || manifest.backup_policy?.rotate_exact_previous_current_before_overwrite !== true || manifest.backup_policy?.verify_every_backup_write !== true || manifest.backup_policy?.unsafe_current_overwrite_on_backup_failure !== false || manifest.backup_policy?.prefer_valid_backup_when_current_missing !== true) errors.push("backup rotation/fail-closed policy changed");
   if (manifest.recovery_policy?.automatic_restore !== false || manifest.recovery_policy?.explicit_restore !== true || manifest.recovery_policy?.rejected_current_quarantine_slots !== 2 || manifest.recovery_policy?.fresh_start_confirmation_steps !== 2 || manifest.recovery_policy?.fail_closed_when_quarantine_full !== true || manifest.recovery_policy?.valid_legacy_does_not_block_explicit_backup_restore !== true) errors.push("explicit recovery/quarantine policy changed");
-  if (manifest.failure_ui?.event !== "rush-save-status" || manifest.failure_ui?.failure_role !== "alertdialog" || manifest.failure_ui?.failure_live_region !== "assertive" || manifest.failure_ui?.html_injection_used !== false || manifest.failure_ui?.focus_enters_dialog !== true || manifest.failure_ui?.focus_restored_on_close !== true) errors.push("user-visible failure contract changed");
+  if (manifest.failure_ui?.event !== "rush-save-status" || manifest.failure_ui?.failure_role !== "alertdialog" || manifest.failure_ui?.failure_live_region !== "assertive" || manifest.failure_ui?.html_injection_used !== false || manifest.failure_ui?.focus_enters_dialog !== true || manifest.failure_ui?.focus_restored_on_close !== true || manifest.failure_ui?.success_to_failure_focus_capture !== true) errors.push("user-visible failure contract changed");
 
   const expectedKeys = {
     current_key: "rush-v1",
@@ -136,6 +136,7 @@ export function validateSaveRecovery(overrides = {}) {
     "textContent",
     "Press again to confirm",
     "rememberFocus(existing)",
+    'existing?.getAttribute("role") === "alertdialog"',
     "restorePreviousFocus()",
     "(primaryAction ?? notice).focus()",
   ]) if (!input.uiSource.includes(token)) errors.push(`failure UI lost required token: ${token}`);

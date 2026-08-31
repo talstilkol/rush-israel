@@ -6,7 +6,8 @@ let dismissedSignature = "";
 let focusReturnTarget: HTMLElement | null = null;
 
 function rememberFocus(existing: HTMLElement | null) {
-  if (focusReturnTarget !== null || existing !== null) return;
+  if (focusReturnTarget !== null) return;
+  if (existing?.getAttribute("role") === "alertdialog") return;
   const active = document.activeElement;
   if (active && typeof (active as HTMLElement).focus === "function") {
     focusReturnTarget = active as HTMLElement;

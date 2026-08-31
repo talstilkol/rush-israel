@@ -61,6 +61,7 @@ class FakeElement {
     this.type = "";
   }
   setAttribute(name, value) { this.attributes.set(name, value); }
+  getAttribute(name) { return this.attributes.get(name) ?? null; }
   addEventListener(name, listener) { this.listeners.set(name, listener); }
   append(...children) {
     for (const child of children) {
@@ -379,8 +380,34 @@ test("the visible recovery notice preserves confirmation state and reappears aft
   recoveryUi.publishSavePersistenceStatus(healthy, actions);
   assert.equal(document.activeElement, previousFocus);
   recoveryUi.publishSavePersistenceStatus(rejected, actions);
-  assert.ok(document.getElementById("rush-save-recovery-notice"));
+  const finalDialog = document.getElementById("rush-save-recovery-notice");
+  assert.ok(finalDialog);
   assert.notEqual(document.activeElement, previousFocus);
+  const finalDismiss = allElements(finalDialog).find((element) => element.textContent.includes("Dismiss"));
+  assert.ok(finalDismiss);
+  finalDismiss.click();
+  assert.equal(document.activeElement, previousFocus);
+
+  recoveryUi.publishSavePersistenceStatus(healthy, actions);
+  const recovered = recovery.createSavePersistenceStatus(
+    schema.createSaveStatus("loaded", "current", 3),
+    { state: "recovered", backupAvailable: true, recovered: true, notice: "success" },
+  );
+  recoveryUi.publishSavePersistenceStatus(recovered, actions);
+  const successNotice = document.getElementById("rush-save-recovery-notice");
+  assert.ok(successNotice);
+  assert.equal(successNotice.getAttribute("role"), "status");
+  assert.equal(document.activeElement, previousFocus);
+
+  recoveryUi.publishSavePersistenceStatus(rejected, actions);
+  const replacementDialog = document.getElementById("rush-save-recovery-notice");
+  assert.ok(replacementDialog);
+  assert.equal(replacementDialog.getAttribute("role"), "alertdialog");
+  assert.notEqual(document.activeElement, previousFocus);
+  const replacementDismiss = allElements(replacementDialog).find((element) => element.textContent.includes("Dismiss"));
+  assert.ok(replacementDismiss);
+  replacementDismiss.click();
+  assert.equal(document.activeElement, previousFocus);
   assert.equal(events.every((event) => event.type === recoveryUi.SAVE_STATUS_EVENT), true);
 });
 
