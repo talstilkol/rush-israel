@@ -1,24 +1,24 @@
 {
-  "schema_version": "9.0.0",
+  "schema_version": "10.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-31T03:24:46.948Z",
+  "generated_at": "2026-08-31T06:05:19.924Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_020_pull_request",
-    "implementation_base_sha": "53a23eb22952f8ea077b6a164757f03eb1d5ac1c",
-    "self_reference_boundary": "The RSH-020 candidate cannot contain its own future merge SHA. Exact PR, merge and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_021_pull_request",
+    "implementation_base_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
+    "self_reference_boundary": "The RSH-021 candidate cannot contain its own future merge SHA. Exact PR, merge and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "53a23eb22952f8ea077b6a164757f03eb1d5ac1c",
-    "tree_sha": "1e7fe9add68074c0aa46ed656f3a4199603d6598",
-    "commit_authored_at": "2026-08-31T03:01:39+03:00",
-    "commit_message": "Merge PR #22: RSH-019 — Complete resource ownership, disposal and leak accounting",
+    "head_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
+    "tree_sha": "c9a90bf17214b51a8247b814ac38b15c616b2252",
+    "commit_authored_at": "2026-08-31T06:55:18+03:00",
+    "commit_message": "Merge PR #23: RSH-020 — Isolate unused auth, DB, multiplayer and template dependencies",
     "commit_signature_verified": true,
-    "role": "RSH-020 exact implementation base"
+    "role": "RSH-021 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 20,
+    "accepted_units": 21,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 47,
-    "remaining_units": 47,
-    "queue_head": "RSH-021",
+    "deferred_units": 46,
+    "remaining_units": 46,
+    "queue_head": "RSH-022",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -449,7 +449,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-020": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-020-template-dependency-isolation",
       "pull_request_resolution": "the pull request created from the exact RSH-020 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -473,16 +473,66 @@
       "physics_changes": 0,
       "save_record_changes": 0,
       "asset_changes": 0,
-      "rsh_021_created": false
+      "rsh_021_created": false,
+      "pull_request": 23,
+      "validated_head_sha": "c189aa85fdc60f4821d359158dfd86137ab341d0",
+      "candidate_tree_sha": "c9a90bf17214b51a8247b814ac38b15c616b2252",
+      "merge_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
+      "tree_sha": "c9a90bf17214b51a8247b814ac38b15c616b2252",
+      "workflow_run": 33354723382,
+      "workflow_job": 99374612704,
+      "artifact_id": 9744813820,
+      "artifact_digest": "sha256:e69b650da275a1135bbf0c7e20e46a34775935ac05d3a249b33c70ec4ab09856",
+      "artifact_size": 1208,
+      "post_merge_workflow_run": 33355375432,
+      "post_merge_workflow_job": 99376374677,
+      "post_merge_artifact_id": 9745001664,
+      "post_merge_artifact_digest": "sha256:dfbb1b9c39f699cfc4cfd690987de2d0d24e70133a38883c9724eb3e999f720b",
+      "post_merge_artifact_size": 1178,
+      "codex_review": 5062984826,
+      "unresolved_review_threads": 0
+    },
+    "RSH-021": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-021-save-schema-migrations",
+      "pull_request_resolution": "the pull request created from the exact RSH-021 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-021 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-021 merge SHA",
+      "manifest": "SAVE-SCHEMA-MANIFEST.json",
+      "contract": "RSH-021-SAVE-SCHEMA-CONTRACT.md",
+      "current_schema_version": 3,
+      "compatible_source_versions": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "deterministic_migration_edges": 3,
+      "canonical_serialization": true,
+      "corrupt_source_overwrite": false,
+      "legacy_source_removed": false,
+      "backup_created": false,
+      "user_visible_failure_ui": false,
+      "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
+      "save_facade_source_sha256": "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24",
+      "timed_record_changes": 0,
+      "ghost_schema_changes": 0,
+      "track_data_changes": 0,
+      "physics_changes": 0,
+      "rendering_changes": 0,
+      "asset_changes": 0,
+      "dependency_changes": 0,
+      "rsh_022_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-020",
+    "unit": "RSH-021",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-020-template-dependency-isolation",
+    "branch": "agent/rsh-021-save-schema-migrations",
     "authority_consumed": true,
-    "next_unit": "RSH-021",
+    "next_unit": "RSH-022",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -517,7 +567,10 @@
     "RSH-020_authorized": false,
     "RSH-020_was_separately_authorized": true,
     "RSH-020_authorization_consumed": true,
-    "RSH-021_authorized": false
+    "RSH-021_authorized": false,
+    "RSH-021_was_separately_authorized": true,
+    "RSH-021_authorization_consumed": true,
+    "RSH-022_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -583,8 +636,8 @@
     "p0": 12,
     "p1": 18,
     "p2": 12,
-    "open": 17,
-    "mitigated": 7,
+    "open": 16,
+    "mitigated": 8,
     "closed": 18,
     "register": "FINDINGS-REGISTER.md"
   },
@@ -592,8 +645,8 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The plain next instruction authorized exactly RSH-020 and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-021.",
+    "The plain next instruction authorized exactly RSH-021 and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-022.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13."
   ],
@@ -668,7 +721,19 @@
     "development_direct_packages_after": 20,
     "RSH_020_authorized": true,
     "RSH_020_authorization_consumed_on_merge": true,
-    "RSH_021_precreated": false
+    "RSH_021_precreated": false,
+    "RSH_020_merge_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
+    "RSH_020_validated_head": "c189aa85fdc60f4821d359158dfd86137ab341d0",
+    "RSH_020_post_merge_ci": 33355375432,
+    "RSH_021_authorized": true,
+    "RSH_021_authorization_consumed_on_merge": true,
+    "RSH_021_save_schema_version": 3,
+    "RSH_021_migration_edges": 3,
+    "RSH_021_schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
+    "RSH_021_save_facade_source_sha256": "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24",
+    "RSH_021_record_changes": 0,
+    "RSH_021_ghost_changes": 0,
+    "RSH_022_precreated": false
   },
   "rsh_013_schema": {
     "machine_authority": "TRACK-SCHEMA.json",
@@ -701,12 +766,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-020"
+      "RSH-021"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-020_merge",
-    "RSH_021_authorized": false
+    "state": "consumed_on_RSH-021_merge",
+    "RSH_022_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -745,11 +810,11 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-019"
+      "RSH-020"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-019_merge"
+    "state": "consumed_on_RSH-020_merge"
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -909,5 +974,31 @@
     "retained_pwa_compatibility_path": "/__grok/*",
     "RSH_021_created": false,
     "RSH_021_authorized": false
+  },
+  "rsh_021_save_schema": {
+    "state": "accepted_on_merge",
+    "machine_authority": "SAVE-SCHEMA-MANIFEST.json",
+    "human_contract": "RSH-021-SAVE-SCHEMA-CONTRACT.md",
+    "validator": "scripts/check-save-schema.mjs",
+    "test": "scripts/check-save-schema.test.mjs",
+    "source": "src/game/save.ts",
+    "current_version": 3,
+    "source_versions": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "migration_edges": [
+      "0→1",
+      "1→2",
+      "2→3"
+    ],
+    "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
+    "save_facade_source_sha256": "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24",
+    "backup_created": false,
+    "user_visible_failure_ui": false,
+    "RSH_022_created": false,
+    "RSH_022_authorized": false
   }
 }

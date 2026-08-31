@@ -10,7 +10,8 @@ import {
   sha256,
 } from "./load-game-app-decomposition.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "d9079643d13559ce96cade5797b8244d295cc21ec20fc903de3d1b7847ab0424";
+export const EXPECTED_MANIFEST_SHA256 = "a2943e491ca875bcc26bc43e7403e775cdb5cc8fea85f29293bb2b40ca5c7c76";
+export const EXPECTED_RSH021_SAVE_SHA256 = "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24";
 export const EXPECTED_MODULE_PATHS = [
   "src/components/game-app/screens.tsx",
   "src/components/game-app/hud.tsx",
@@ -130,7 +131,13 @@ export function validateGameAppDecomposition(overrides = {}) {
   }
 
   for (const [path, expected] of Object.entries(manifest.preserved_sources)) {
-    const acceptedExpected = path === "package.json" ? EXPECTED_PACKAGE_SOURCE_SHA256 : path === "package-lock.json" ? EXPECTED_PACKAGE_LOCK_SHA256 : expected;
+    const acceptedExpected = path === "package.json"
+      ? EXPECTED_PACKAGE_SOURCE_SHA256
+      : path === "package-lock.json"
+        ? EXPECTED_PACKAGE_LOCK_SHA256
+        : path === "src/game/save.ts"
+          ? EXPECTED_RSH021_SAVE_SHA256
+          : expected;
     if (sha256(input.preservedSources[path] ?? "") !== acceptedExpected) errors.push(`preserved source changed: ${path}`);
   }
   const asset = JSON.parse(input.preservedSources["ASSET-PROVENANCE.json"] ?? "{}");

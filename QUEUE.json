@@ -1,11 +1,11 @@
 {
-  "schema_version": "9.0.0",
+  "schema_version": "10.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-08-31T03:24:46.948Z",
+  "generated_at": "2026-08-31T06:05:19.924Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "53a23eb22952f8ea077b6a164757f03eb1d5ac1c",
-  "state_effective_on": "merge_of_RSH_020_pull_request",
+  "verified_base_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
+  "state_effective_on": "merge_of_RSH_021_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "next",
       "authorized_units": [
+        "RSH-021"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-021_merge",
+      "RSH_022_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": [
         "RSH-020"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-020_merge",
       "RSH_021_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "next",
-      "authorized_units": [
-        "RSH-019"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-019_merge",
-      "RSH_020_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 20,
+    "accepted": 21,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 47,
-    "remaining": 47
+    "deferred": 46,
+    "remaining": 46
   },
   "queue_head": {
-    "id": "RSH-021",
-    "title": "Version the save schema and implement deterministic migrations",
+    "id": "RSH-022",
+    "title": "Add save backup, corruption recovery and user-visible failure handling",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-021 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-022 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-021",
-    "title": "Version the save schema and implement deterministic migrations",
+    "id": "RSH-022",
+    "title": "Add save backup, corruption recovery and user-visible failure handling",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -427,7 +427,7 @@
       "post_merge_workflow_job": 99342821520
     },
     "RSH-020": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-020-template-dependency-isolation",
       "pull_request_resolution": "live RSH-020 pull request",
       "validated_head_resolution": "exact RSH-020 PR head accepted by required-ci / validate and Codex review",
@@ -435,7 +435,28 @@
       "manifest": "DEPENDENCY-BOUNDARY-MANIFEST.json",
       "direct_packages_before": 74,
       "direct_packages_after": 30,
-      "removed_direct_packages": 44
+      "removed_direct_packages": 44,
+      "pull_request": 23,
+      "validated_head_sha": "c189aa85fdc60f4821d359158dfd86137ab341d0",
+      "merge_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
+      "tree_sha": "c9a90bf17214b51a8247b814ac38b15c616b2252",
+      "workflow_run": 33354723382,
+      "workflow_job": 99374612704,
+      "post_merge_workflow_run": 33355375432,
+      "post_merge_workflow_job": 99376374677
+    },
+    "RSH-021": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-021-save-schema-migrations",
+      "pull_request_resolution": "live RSH-021 pull request",
+      "validated_head_resolution": "exact RSH-021 PR head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD after validated merge",
+      "manifest": "SAVE-SCHEMA-MANIFEST.json",
+      "current_schema_version": 3,
+      "migration_edges": 3,
+      "corrupt_source_overwrite": false,
+      "backup_created": false,
+      "rsh_022_created": false
     }
   },
   "unit_order": [
@@ -508,35 +529,35 @@
     "RSH-067"
   ],
   "state_rules": {
-    "RSH-001–RSH-020": "accepted",
+    "RSH-001–RSH-021": "accepted",
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-020"
+      "through": "RSH-021"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-021",
+      "from": "RSH-022",
       "through": "RSH-067"
     },
-    "RSH-021–RSH-067": "deferred_not_authorized"
+    "RSH-022–RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-021 remains deferred until a new explicit owner instruction.",
-    "RSH_020_completed": true,
-    "RSH_020_authorization_consumed": true,
-    "RSH_021_authorized": false
+    "current_action": "No unit is authorized; RSH-022 remains deferred until a new explicit owner instruction.",
+    "RSH_021_completed": true,
+    "RSH_021_authorization_consumed": true,
+    "RSH_022_authorized": false
   },
   "self_reference_boundary": {
-    "RSH_019_merge_sha": "53a23eb22952f8ea077b6a164757f03eb1d5ac1c",
-    "RSH_019_validated_head": "07766efa03a8a2d2787e7bb4439a08fe55591a52",
-    "RSH_019_post_merge_ci": 33343340937,
-    "RSH_020_merge_sha": "resolve from live main after the RSH-020 pull request merges",
-    "RSH_020_validated_head": "resolve from the exact merged RSH-020 pull-request head",
-    "RSH_020_post_merge_ci": "resolve from required-ci on the exact merge SHA",
-    "reconcile_in": "RSH-021 preflight"
+    "RSH_020_merge_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
+    "RSH_020_validated_head": "c189aa85fdc60f4821d359158dfd86137ab341d0",
+    "RSH_020_post_merge_ci": 33355375432,
+    "RSH_021_merge_sha": "resolve from live main after the RSH-021 pull request merges",
+    "RSH_021_validated_head": "resolve from the exact merged RSH-021 pull-request head",
+    "RSH_021_post_merge_ci": "resolve from required-ci on the exact merge SHA",
+    "reconcile_in": "RSH-022 preflight"
   }
 }

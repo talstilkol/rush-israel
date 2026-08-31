@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-save-schema-manifest",
+  "unit": "RSH-021",
+  "title": "Version the save schema and implement deterministic migrations",
+  "generated_at": "2026-08-31T06:05:19.924Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
+    "tree_sha": "c9a90bf17214b51a8247b814ac38b15c616b2252",
+    "branch": "agent/rsh-021-save-schema-migrations"
+  },
+  "storage": {
+    "current_key": "rush-v1",
+    "legacy_key": "tlv-rush-v1",
+    "ghost_key": "rush-ghosts-v1",
+    "current_key_precedence": true,
+    "legacy_bytes_removed_or_rewritten": false
+  },
+  "current_schema": {
+    "version": 3,
+    "historical_byte_reconstruction_claimed": false,
+    "compatible_source_versions": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "unversioned_compatibility_envelope": 0,
+    "idempotent_current_version": true,
+    "canonical_recursive_key_sort": true
+  },
+  "migration_graph": [
+    {
+      "id": "v0-to-v1",
+      "from": 0,
+      "to": 1,
+      "deterministic": true,
+      "mutates_input": false
+    },
+    {
+      "id": "v1-to-v2",
+      "from": 1,
+      "to": 2,
+      "deterministic": true,
+      "mutates_input": false
+    },
+    {
+      "id": "v2-to-v3",
+      "from": 2,
+      "to": 3,
+      "deterministic": true,
+      "mutates_input": false
+    }
+  ],
+  "normalization": {
+    "single_pass_after_migration": true,
+    "issue_reporting": "structured",
+    "issue_order": [
+      "best",
+      "career.stars",
+      "tunes",
+      "damage",
+      "quality",
+      "lang",
+      "handling",
+      "assists",
+      "fov",
+      "cash"
+    ],
+    "unknown_or_invalid_recognized_values": "drop_default_or_clamp_deterministically"
+  },
+  "failure_policy": {
+    "invalid_json": "reject_without_overwrite",
+    "invalid_root": "reject_without_overwrite",
+    "invalid_version": "reject_without_overwrite",
+    "future_version": "reject_without_overwrite",
+    "read_failure": "reject_without_overwrite_with_structured_status",
+    "write_or_verify_failure": "structured_status_with_in_memory_data"
+  },
+  "recovery": {
+    "backups_created": false,
+    "backup_restore": false,
+    "user_visible_failure_ui": false,
+    "assigned_unit": "RSH-022"
+  },
+  "preservation": {
+    "timed_record_changes": 0,
+    "ghost_schema_changes": 0,
+    "track_data_changes": 0,
+    "physics_changes": 0,
+    "rendering_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "unverified_asset_files": 66,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
+    "save_facade_source_sha256": "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24",
+    "test_source_sha256": "8ac32e38ac4b11cf63319faec0a49e95498a041a3703d06d85c3f4a8b0eb84a3",
+    "records_source_sha256": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-022",
+    "rsh_022_authorized": false,
+    "rsh_022_started": false,
+    "forbidden_prefixes": [
+      ".rsh022",
+      ".github/workflows/rsh-022-",
+      "RSH-022-",
+      "src/game/save-recovery/"
+    ]
+  }
+}

@@ -62,8 +62,8 @@ test("shared texture disposal, world order drift and leak-gate drift fail closed
   assert.match(messages(validateResourceOwnership(soak)), /identity changed|geometry leak/);
 });
 
-test("RSH-021 precreation fails closed", () => {
+test("RSH-022 precreation fails closed", () => {
   const input = baseline();
-  input.repositoryFiles.push("RSH-021-PREFLIGHT.json");
-  assert.match(messages(validateResourceOwnership(input)), /RSH-021 was precreated/);
+  input.repositoryFiles.push("RSH-022-PREFLIGHT.json");
+  assert.match(messages(validateResourceOwnership(input)), /RSH-022 was precreated/);
 });
