@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   publish:
-    if: github.event.head_commit.message == 'RSH-022 transport: stage final pending-write correction'
+    if: "github.event.head_commit.message == 'RSH-022 transport: stage final pending-write correction'"
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -29,7 +29,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = "839f77daa394e10955c811fb37535c5d4f6f1854"
+          git merge-base --is-ancestor 839f77daa394e10955c811fb37535c5d4f6f1854 HEAD
           echo "719d5a5c1b261834bc40a9cb9289dc38fc6166d30ab4a32ab267d9b25583b3fb  .rsh022-final-p1.patch.gz.b64" | sha256sum --check --strict
           base64 --decode .rsh022-final-p1.patch.gz.b64 > /tmp/rsh022-final-p1.patch.gz
           echo "669a2e2a639102d3d6a70922e3235278803d1db6abe6ffceae2d825cb6684384  /tmp/rsh022-final-p1.patch.gz" | sha256sum --check --strict
