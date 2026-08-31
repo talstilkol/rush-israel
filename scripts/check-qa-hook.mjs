@@ -5,10 +5,9 @@ import { readdir, readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
 
 if (!process.env.SKIP_BUILD) {
-  const path = `${process.cwd()}/node_modules/.bin:${process.env.PATH ?? ""}`;
-  execSync("node scripts/with-app-env.mjs vite build", {
+  execSync("npm run build", {
     stdio: "inherit",
-    env: { ...process.env, PATH: path, VITE_QA: "" },
+    env: { ...process.env, VITE_QA: "" },
   });
 }
 
