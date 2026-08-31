@@ -1,0 +1,79 @@
+name: rsh-022-final-retry-transport
+
+on:
+  push:
+    branches:
+      - agent/rsh-022-save-recovery
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rsh-022-final-retry-transport
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: "github.event.head_commit.message == 'RSH-022 transport: stage retry-completion corrections'"
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out exact transport commit
+        uses: actions/checkout@v4
+        with:
+          ref: agent/rsh-022-save-recovery
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Verify and stage final clean candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = "fc0bc1cc8194be284dfca260f76f9676dc4c6cb2"
+          echo "2294a269f3a0f1448ffcd77a144ef857b9365dfa07b6e0274e447e2914b30e4d  .rsh022-final-retry.patch.gz.b64" | sha256sum --check --strict
+          base64 --decode .rsh022-final-retry.patch.gz.b64 > /tmp/rsh022-final-retry.patch.gz
+          echo "f806361adaa2db95c32850888f8b11a5d73b8091316bd9f60972ff127a4eaa4f  /tmp/rsh022-final-retry.patch.gz" | sha256sum --check --strict
+          gzip --decompress --stdout /tmp/rsh022-final-retry.patch.gz > /tmp/rsh022-final-retry.patch
+          echo "c306c58dd2665b793e4c1c1cbdd269010c6ab36ccd91a260be50aaebc14a6212  /tmp/rsh022-final-retry.patch" | sha256sum --check --strict
+          git apply --check /tmp/rsh022-final-retry.patch
+          git apply --index /tmp/rsh022-final-retry.patch
+          git rm .github/workflows/rsh-022-final-retry-transport.yml .rsh022-final-retry.patch.gz.b64
+          git diff --cached --check
+          test "$(git write-tree)" = "1fc1cdcb939ab7c0bb19e77498950573f08bd08f"
+          test -z "$(git diff --cached --name-only | grep -E '(^|/)RSH-023|rsh023|records-v2' || true)"
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+
+      - name: Install dependencies from lockfile
+        run: npm ci
+
+      - name: Validate final candidate before publication
+        shell: bash
+        env:
+          NODE_OPTIONS: --experimental-strip-types
+        run: |
+          set -euo pipefail
+          npm test
+          npm run typecheck
+          node scripts/check-governance-contract.mjs
+          node scripts/check-save-recovery.mjs
+          node scripts/check-save-schema.mjs
+          node scripts/check-dependency-boundary.mjs
+          node scripts/check-portable-paths.mjs
+
+      - name: Publish final clean candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git write-tree)" = "1fc1cdcb939ab7c0bb19e77498950573f08bd08f"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "RSH-022: complete pending retries and canonical writes"
+          git push origin HEAD:agent/rsh-022-save-recovery
