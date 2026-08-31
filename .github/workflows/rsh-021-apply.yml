@@ -39,6 +39,17 @@ jobs:
           echo "2a561670a2a4fd06ec79b77756443d64f8240ec5f75dfef61d61afa860253ee1  /tmp/rsh021-apply.mjs" | sha256sum --check
           node --check /tmp/rsh021-apply.mjs
           node /tmp/rsh021-apply.mjs
+          python - <<'PY'
+          from pathlib import Path
+
+          contract = Path("RSH-021-SAVE-SCHEMA-CONTRACT.md")
+          contract.write_text(
+              "\n".join(line.rstrip() for line in contract.read_text().splitlines()) + "\n"
+          )
+
+          schema = Path("src/game/save-schema.ts")
+          schema.write_text(schema.read_text().rstrip() + "\n")
+          PY
           git add -A
           git diff --cached --check
 
