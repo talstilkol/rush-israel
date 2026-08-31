@@ -6,7 +6,7 @@ simcade בקצב קבוע של 120Hz ומסלולים בדיוניים בהשר�
 Private owner-controlled Three.js WebGL simcade driving game on fictional routes
 inspired by Israeli places.
 
-## מצב מדויק — 29.08.2026
+## מצב מדויק — 31.08.2026
 
 | מדד | מצב |
 |---|---:|
@@ -67,6 +67,17 @@ npm run build:dev
 - `npm run qa:ci` — QA עצמאי שמפעיל וסוגר שרת בעצמו.
 - `npm run build:dev` — Build דטרמיניסטי ללא Migration למסד הנתונים.
 
+## גבול התלויות — RSH-020
+
+| מדד | לפני | אחרי |
+|---|---:|---:|
+| חבילות Runtime ישירות | 52 | 10 |
+| חבילות Development ישירות | 22 | 20 |
+| סך חבילות ישירות | 74 | 30 |
+| חבילות שהוסרו | — | 44 |
+
+Authentication, database, migrations, multiplayer and preview-host template code are not part of Version 1 and are absent from the runtime. The retained `/__grok/*` URLs serve the product-specific PWA only. See `DEPENDENCY-POLICY.md` and `DEPENDENCY-BOUNDARY-MANIFEST.json`.
+
 ## שליטה
 
 `W` גז · `A`/`D` הגה · `Esc` תפריט. תמיכת Touch ו־Gamepad כלולה בגבול
@@ -80,6 +91,8 @@ Version 1 אך קבלת מטריצת הדפדפנים והמכשירים מתב�
 | מיפוי 8/48 המסלולים | `TRACK-CATALOGUE-CLASSIFICATION.json` |
 | נכסים ורישיונות | `ASSET-PROVENANCE.json` |
 | Metadata ו־PWA | `PRODUCT-METADATA.json` |
+| גבול תלויות | `DEPENDENCY-BOUNDARY-MANIFEST.json` |
+| מדיניות עדכונים | `DEPENDENCY-POLICY.md` |
 | מצב התוכנית | `CURRENT-STATE.json` |
 | תור הביצוע | `QUEUE.json` |
 

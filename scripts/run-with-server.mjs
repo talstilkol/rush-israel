@@ -81,8 +81,6 @@ export function devServerSpec(env = process.env) {
   return {
     command: process.execPath,
     args: [
-      fromRoot("scripts", "with-app-env.mjs"),
-      process.execPath,
       fromRoot("node_modules", "vite", "bin", "vite.js"),
       "dev",
       "--host",

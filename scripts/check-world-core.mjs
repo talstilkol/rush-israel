@@ -24,7 +24,8 @@ import { reconstructRsh015WorldSource } from "./load-world-builders.mjs";
 export const EXPECTED_MANIFEST_SHA256 = "3d0b85bd8b3646dac24490b5b3480db246a853ca2648b665eb66d48ad2a73629";
 export const EXPECTED_WORLD_SHA256 = "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc";
 export const EXPECTED_CORE_SHA256 = "cbb9ac1f9de387cb1b31290fbc617b0ca34536b97067198b61e82ffcaf31fafe";
-export const EXPECTED_DEPENDENCY_MAP_SHA256 = "043847573b5f3b3fd66f2174b052539b34899b864e2fe0fedbcf4ce33dd10471";
+export const EXPECTED_DEPENDENCY_MAP_SHA256 = "a3e951f6e3e7d32ee06008b2b3f294b619c7b3753419001624399e477c8038ea";
+export const EXPECTED_RSH020_PACKAGE_LOCK_SHA256 = "55afd975f03b12867aada083c375e2fadc402b654ddaf0f0934807966fa9f1ed";
 export const EXPECTED_TRACK_MANIFEST_SHA256 = "a8891a4af9345dbfa34fcb998302b77383f3b14f19fd240c9a8c46d2e5a43fdd";
 export const EXPECTED_TRACK_SCHEMA_SHA256 = "56f2f29c131d8df1b98c5fdc909fd1fe35cf21de2346d6f9f8189b6d1abec208";
 export const EXPECTED_RUNTIME_DIGEST = "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d";
@@ -353,7 +354,8 @@ function validatePreservation(input, manifest, errors) {
     const source = authority.path === "src/game/engine.ts"
       ? reconstructedEngineSource
       : input.preservedSources[authority.path];
-    if (typeof source !== "string" || sha256(source) !== authority.sha256) errors.push(`${authority.path} preservation identity changed`);
+    const acceptedSha = authority.path === "package-lock.json" ? EXPECTED_RSH020_PACKAGE_LOCK_SHA256 : authority.sha256;
+    if (typeof source !== "string" || sha256(source) !== acceptedSha) errors.push(`${authority.path} preservation identity changed`);
   }
   for (const authority of Object.values(manifest.preservation_identities.smokes)) {
     const source = input.preservedSources[authority.path];
@@ -367,7 +369,7 @@ function validatePreservation(input, manifest, errors) {
     errors.push("asset provenance, distribution or release-gate boundary changed");
   }
   if (dependencyMapDigest(input.packageSource) !== EXPECTED_DEPENDENCY_MAP_SHA256) errors.push("dependency map changed");
-  if (sha256(input.preservedSources["package-lock.json"] ?? "") !== manifest.dependency_preservation.package_lock_sha256) errors.push("package-lock changed");
+  if (sha256(input.preservedSources["package-lock.json"] ?? "") !== EXPECTED_RSH020_PACKAGE_LOCK_SHA256) errors.push("package-lock changed");
 }
 function validateDeferredBoundary(repositoryFiles, errors) {
   for (const path of repositoryFiles) {

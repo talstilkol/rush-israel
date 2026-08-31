@@ -14,7 +14,7 @@ npm run qa:ci
 Both commands now:
 
 1. refuse to test an unknown process already listening on port 8080;
-2. start the repository-local Vite binary through `with-app-env.mjs`;
+2. start the repository-local Vite binary directly;
 3. enable the QA build flag;
 4. wait until the server responds;
 5. execute the requested QA command;

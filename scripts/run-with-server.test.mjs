@@ -76,15 +76,13 @@ test("self-start is restricted to the exact canonical IPv4 loopback URL", () => 
   assert.equal(canSelfStartUrl("http://127.0.0.1:8080/qa"), false);
 });
 
-test("dev server uses local Vite through the app-env wrapper", () => {
+test("dev server uses the repository-local Vite binary directly", () => {
   const spec = devServerSpec({ EXAMPLE: "1" });
   assert.equal(spec.command, process.execPath);
   assert.equal(spec.options.cwd, projectRoot);
   assert.equal(spec.options.env.VITE_QA, "1");
   assert.equal(spec.options.detached, process.platform !== "win32");
-  assert.equal(spec.args[0], fromRoot("scripts", "with-app-env.mjs"));
-  assert.equal(spec.args[1], process.execPath);
-  assert.equal(spec.args[2], fromRoot("node_modules", "vite", "bin", "vite.js"));
+  assert.equal(spec.args[0], fromRoot("node_modules", "vite", "bin", "vite.js"));
   assert.deepEqual(spec.args.slice(-6), ["dev", "--host", "0.0.0.0", "--port", "8080", "--strictPort"]);
 });
 

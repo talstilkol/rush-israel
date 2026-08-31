@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-dependency-boundary-manifest",
+  "unit": "RSH-020",
+  "title": "Isolate or remove unused auth, DB, multiplayer and template dependencies",
+  "generated_at": "2026-08-31T03:24:46.948Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "53a23eb22952f8ea077b6a164757f03eb1d5ac1c",
+    "tree_sha": "1e7fe9add68074c0aa46ed656f3a4199603d6598",
+    "branch": "agent/rsh-020-template-dependency-isolation"
+  },
+  "audit_evidence": {
+    "scanned_files": 382,
+    "declared_packages_before": 74,
+    "directly_used_candidates": 30,
+    "unused_candidates": 44,
+    "workflow_runs": [
+      33351769170,
+      33351867061
+    ],
+    "workflow_jobs": [
+      99366403785,
+      99366680138
+    ],
+    "registry_observation_date": "2026-08-31",
+    "nitro_latest_dist_tag": "3.0.260610-beta"
+  },
+  "direct_packages": {
+    "before": {
+      "runtime": 52,
+      "development": 22,
+      "total": 74
+    },
+    "after": {
+      "runtime": 10,
+      "development": 20,
+      "total": 30
+    },
+    "removed": 44,
+    "moved_runtime_to_development": [
+      "ktx-parse"
+    ],
+    "runtime": [
+      "@tailwindcss/vite",
+      "@tanstack/react-router",
+      "@tanstack/react-start",
+      "clsx",
+      "lucide-react",
+      "react",
+      "react-dom",
+      "tailwind-merge",
+      "tailwindcss",
+      "three"
+    ],
+    "development": [
+      "@eslint/js",
+      "@types/node",
+      "@types/react",
+      "@types/react-dom",
+      "@types/three",
+      "@vitejs/plugin-react",
+      "eslint",
+      "eslint-config-prettier",
+      "eslint-plugin-react-hooks",
+      "eslint-plugin-react-refresh",
+      "globals",
+      "ktx-parse",
+      "nitro",
+      "pixelmatch",
+      "playwright",
+      "pngjs",
+      "prettier",
+      "typescript",
+      "typescript-eslint",
+      "vite"
+    ]
+  },
+  "removed_surfaces": {
+    "directories": [
+      ".grok",
+      "migrations",
+      "src/lib/auth",
+      "src/lib/multiplayer"
+    ],
+    "files": [
+      "src/lib/db.ts",
+      "src/components/preview-host-bridge.tsx",
+      "src/lib/preview-host-bridge.ts",
+      "src/lib/preview-embedder-origin.ts",
+      "scripts/app-env-plugin.mjs",
+      "scripts/check-auth-invariant.mjs",
+      "scripts/migrate.mjs",
+      "scripts/migration-plan.mjs",
+      "scripts/sign-out-plan.mjs",
+      "scripts/with-app-env.mjs"
+    ],
+    "capabilities": [
+      "authentication",
+      "database",
+      "database-migration",
+      "multiplayer",
+      "preview-host-bridge",
+      "template-app-env"
+    ]
+  },
+  "retained_product_surfaces": {
+    "local_game_state": true,
+    "pwa_compatibility_paths": [
+      "/__grok/manifest.webmanifest",
+      "/__grok/manifest.json",
+      "/__grok/icon-180.png"
+    ],
+    "pwa_owner": "RUSH Israel",
+    "nitro_version": "3.0.260610-beta",
+    "nitro_exact_pin": true
+  },
+  "identities": {
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "dependency_map_sha256": "a3e951f6e3e7d32ee06008b2b3f294b619c7b3753419001624399e477c8038ea",
+    "package_lock_sha256": "55afd975f03b12867aada083c375e2fadc402b654ddaf0f0934807966fa9f1ed"
+  },
+  "findings_closed": [
+    "P1-05",
+    "P1-06",
+    "P1-07",
+    "P1-15",
+    "P2-06",
+    "P2-07"
+  ],
+  "preservation": {
+    "track_count": 56,
+    "mvp_tracks": 8,
+    "deferred_tracks": 48,
+    "physics_hz": 120,
+    "unverified_asset_files": 66,
+    "release_gates_green": 0,
+    "release_gates_total": 13,
+    "public_distribution_authorized": false,
+    "track_data_changes": 0,
+    "physics_changes": 0,
+    "save_record_changes": 0,
+    "asset_changes": 0
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-021",
+    "rsh_021_authorized": false,
+    "rsh_021_started": false,
+    "forbidden_prefixes": [
+      ".rsh021",
+      ".github/workflows/rsh-021-",
+      "RSH-021-"
+    ]
+  }
+}

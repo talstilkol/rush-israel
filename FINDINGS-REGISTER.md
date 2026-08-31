@@ -1,11 +1,11 @@
 # RUSH Israel — Findings Register
 
-**Version:** 1.9.0
-**RSH-018 implementation base:** `d3bd207a98989398ead0e6804519d4a0d2eb19a1`
-**State effective on:** merge of the RSH-018 pull request
-**Date:** 30 August 2026
+**Version:** 2.0.0
+**RSH-020 implementation base:** `53a23eb22952f8ea077b6a164757f03eb1d5ac1c`
+**State effective on:** merge of the RSH-020 pull request
+**Date:** 31 August 2026
 **Total:** 42 findings — 12 P0, 18 P1, 12 P2
-**Status:** 22 OPEN, 8 MITIGATED, 12 CLOSED
+**Status:** 17 OPEN, 7 MITIGATED, 18 CLOSED
 
 ## Status rules
 
@@ -35,17 +35,17 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P1-02 | P1 | **OPEN** | Timed-record hashes are generated but not verified on read | Record liveness checks `physicsVersion` only. | RSH-023 |
 | P1-03 | P1 | **OPEN** | Timed-record writes are fire-and-forget | `recordBest` starts asynchronous persistence without awaiting or serialising. | RSH-023 |
 | P1-04 | P1 | **OPEN** | Save failures and corruption are silently swallowed | Write errors are ignored and malformed saves fall back to empty state. | RSH-021, RSH-022 |
-| P1-05 | P1 | **OPEN** | The build command performs database migration | `npm run build` still invokes `db:migrate`; CI deliberately uses `build:dev`. | RSH-024 |
-| P1-06 | P1 | **OPEN** | Template auth, DB, multiplayer and Grok infrastructure is not product-scoped | Large template subsystems remain while the game uses local state. | RSH-020 |
-| P1-07 | P1 | **OPEN** | The dependency set is broader than the observed product surface | UI, auth, query, table and chart packages require a usage audit. | RSH-020 |
+| P1-05 | P1 | **CLOSED** | The build command performs database migration | RSH-020 removes the DB subsystem and migration scripts; `npm run build` is exactly `vite build`. | RSH-020 |
+| P1-06 | P1 | **CLOSED** | Template auth, DB, multiplayer and Grok infrastructure is not product-scoped | RSH-020 removes auth, DB, migrations, multiplayer, app-env and preview-host bridges. The retained `/__grok/*` PWA URLs are explicitly product-owned compatibility paths. | RSH-020 |
+| P1-07 | P1 | **CLOSED** | The dependency set is broader than the observed product surface | RSH-020 reduces direct packages from 74 to 30: 10 runtime and 20 development packages; 44 unused direct packages are removed. | RSH-020 |
 | P1-08 | P1 | **CLOSED** | Package identity and runtime requirements are undefined | RSH-004 fixes Node 22.16.0/npm 10.9.2; RSH-012 fixes product name, version `0.0.0-private`, private package status and `UNLICENSED` boundary. | RSH-004, RSH-012 |
 | P1-09 | P1 | **CLOSED** | The toolchain cannot be reproduced exactly | RSH-007 clean checkout verified the pinned Node/npm toolchain and `npm ci`. | RSH-004, RSH-007 |
 | P1-10 | P1 | **CLOSED** | Lint is not part of the required validation gate | `required-ci / validate` executes blocking ESLint. | RSH-007 |
 | P1-11 | P1 | **CLOSED** | The complete test suite is not part of the required validation gate | `required-ci / validate` executes complete `npm test`. | RSH-007 |
-| P1-12 | P1 | **OPEN** | Important validation scripts are outside the main gate | Golden, damage, Ayalon lock, HaShalom, auth and long-soak checks are not all required on every PR. | RSH-035, RSH-042 and later CI expansion |
+| P1-12 | P1 | **OPEN** | Important validation scripts are outside the main gate | Golden, damage, Ayalon lock, HaShalom and long-soak checks are not all required on every PR. | RSH-035, RSH-042 and later CI expansion |
 | P1-13 | P1 | **OPEN** | No accepted real-device performance baseline exists | No verified desktop/mobile p95, memory or draw-call evidence exists. | RSH-037, RSH-043 |
 | P1-14 | P1 | **CLOSED** | Core source files are excessively large | RSH-014–RSH-017 establish track, world and engine boundaries. RSH-018 reduces `game-app.tsx` from 1540 to 179 lines and moves screens, HUD and race control into three manifest-bound modules with byte-exact reconstruction. | RSH-014–RSH-018 |
-| P1-15 | P1 | **MITIGATED** | Content, rendering, physics, UI and QA are tightly coupled | RSH-013–RSH-016 establish track/world boundaries; RSH-017 creates bounded loop, rendering, physics and QA adapters with byte-exact legacy reconstruction and zero runtime drift. UI separation is accepted in RSH-018; complete resource and dependency accounting remain pending. | RSH-019 through RSH-020 | RSH-019 closes per-engine ownership/disposal/leak accounting; unused template/dependency isolation remains assigned to RSH-020.
+| P1-15 | P1 | **CLOSED** | Content, rendering, physics, UI and QA are tightly coupled | RSH-013–RSH-019 establish track, world, engine, UI and resource boundaries. RSH-020 removes unused template subsystems and pins the final direct dependency surface. | RSH-013–RSH-020 |
 | P1-16 | P1 | **OPEN** | Catalogue breadth precedes a verified vertical slice | RSH-010 classifies 8 MVP and 48 deferred tracks, but no track has an owner-approved release freeze. | RSH-025 through RSH-036 |
 | P1-17 | P1 | **OPEN** | Golden evidence does not yet form a trusted acceptance authority | Agent-generated captures exist; owner approval and unique authority are not recorded. | RSH-035, RSH-036 |
 | P1-18 | P1 | **MITIGATED** | `EXECUTION_PLAN.md` is an operational monolith | RSH-001 removed it from queue authority, but the historic monolith remains. | RSH-001 |
@@ -54,8 +54,8 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P2-03 | P2 | **OPEN** | Commit-signing policy is not enforced | Recent GitHub merge commits are verified, but historical commits and future enforcement are not governed by a required rule. | RSH-063 |
 | P2-04 | P2 | **OPEN** | Commit cadence and direct-main history reduce reviewability | New work uses PRs, but historical rapid direct-main changes remain and technical settings enforcement is pending. | Apply desired ruleset |
 | P2-05 | P2 | **OPEN** | No changelog or architecture-decision register exists | Baseline and release registers exist, but no changelog or ADR register exists. | RSH-063 and architecture units |
-| P2-06 | P2 | **OPEN** | No dependency-update policy exists | Dependabot/Renovate and dependency-audit cadence are undefined. | RSH-020 |
-| P2-07 | P2 | **OPEN** | A beta Nitro version is on the build path | The package uses a beta Nitro version without an accepted stability decision. | RSH-020 |
+| P2-06 | P2 | **CLOSED** | No dependency-update policy exists | `DEPENDENCY-POLICY.md` defines lockfile authority, monthly/release review, isolated updates, exact-head validation and serial-queue restrictions. | RSH-020 |
+| P2-07 | P2 | **CLOSED** | A beta Nitro version is on the build path | RSH-020 records npm registry evidence that `3.0.260610-beta` is the `latest` dist-tag, retains an exact pin and requires full validation for replacement. | RSH-020 |
 | P2-08 | P2 | **CLOSED** | README does not document reproducible setup and validation | RSH-012 documents exact Node/npm versions, `npm ci`, development, full tests, self-starting QA and deterministic build commands. | RSH-012 |
 | P2-09 | P2 | **OPEN** | No bundle or asset budget is enforced | No accepted size threshold or CI budget exists. | RSH-039 |
 | P2-10 | P2 | **OPEN** | Touch-action behaviour is not explicitly locked | Pointer cancellation exists, but browser gesture suppression is not a verified contract. | RSH-044 |
