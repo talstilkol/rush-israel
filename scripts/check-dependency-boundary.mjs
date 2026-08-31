@@ -86,6 +86,7 @@ export function readDependencyBoundaryInputs() {
     productSource: readFileSync(fromRoot("PRODUCT-DEFINITION.json"), "utf8"),
     qaHookSource: readFileSync(fromRoot("scripts", "check-qa-hook.mjs"), "utf8"),
     serverRunnerSource: readFileSync(fromRoot("scripts", "run-with-server.mjs"), "utf8"),
+    browserSmokeSource: readFileSync(fromRoot("scripts", "browser-smoke.mjs"), "utf8"),
     repositoryFiles: trackedRepositoryFiles(),
   };
 }
@@ -114,6 +115,7 @@ export function validateDependencyBoundary(overrides = {}) {
   if (pkg.scripts?.["check:dependencies"] !== "node scripts/check-dependency-boundary.mjs" || !pkg.scripts?.["qa:ci:raw"]?.includes("npm run check:dependencies")) errors.push("dependency boundary is not in the QA gate");
   if (/with-app-env\.mjs|app-env\.json/.test(input.qaHookSource) || !input.qaHookSource.includes('execSync("npm run build"')) errors.push("QA hook build reintroduced the removed app-env wrapper");
   if (/with-app-env\.mjs|app-env\.json/.test(input.serverRunnerSource) || !input.serverRunnerSource.includes('fromRoot("node_modules", "vite", "bin", "vite.js")')) errors.push("QA server launcher reintroduced the removed app-env wrapper");
+  if (/check-auth-invariant\.mjs|authInvariantWarnings|buildAuthEnabled|compareAuthInvariant|probeDevAuthEnabled/.test(input.browserSmokeSource) || !input.browserSmokeSource.includes("const authWarnings = [];")) errors.push("browser smoke reintroduced the removed auth invariant helper");
   if (/AuthProvider|PreviewHostBridge|lib\/auth|preview-host-bridge/.test(input.rootSource)) errors.push("root route reintroduced template auth or preview bridge");
   if (!input.rootSource.includes("<Outlet />") || !input.rootSource.includes("/__grok/manifest.webmanifest")) errors.push("root route lost the product or retained PWA boundary");
   if (/pgliteBootstrapPlugin|authPopupPlugin|appEnvPlugin|migration-plan|src\/lib\/db|src\/lib\/auth/.test(input.viteSource)) errors.push("Vite reintroduced auth, DB or app-env template plugins");
