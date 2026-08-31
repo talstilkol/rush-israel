@@ -1,8 +1,9 @@
 #!/usr/bin/env node
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { fromRoot } from "./project-root.mjs";
+import { fromRoot, projectRoot } from "./project-root.mjs";
 
 export const EXPECTED_MANIFEST_SHA256 = "8101b22df42a411f57317f8265df39d4de1c9d5d6e5db589930d3c58711c3959";
 export const EXPECTED_PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
@@ -53,12 +54,23 @@ function dependencyMapSource(pkg) { return JSON.stringify(stable({ dependencies:
 function walk(directory, prefix = "") {
   const out = [];
   for (const name of readdirSync(directory).sort()) {
-    if ([".git", "node_modules", "dist", ".output", ".nitro", ".vercel", "coverage"].includes(name)) continue;
+    if ([".git", "node_modules", "coverage"].includes(name)) continue;
     const absolute = directory + "/" + name;
     const path = prefix ? prefix + "/" + name : name;
     if (statSync(absolute).isDirectory()) out.push(...walk(absolute, path)); else out.push(path);
   }
   return out;
+}
+function trackedRepositoryFiles() {
+  try {
+    return execFileSync("git", ["ls-files", "-z"], {
+      cwd: projectRoot,
+      encoding: "utf8",
+      maxBuffer: 16 * 1024 * 1024,
+    }).split("\0").filter(Boolean).sort();
+  } catch {
+    return walk(fromRoot());
+  }
 }
 export function readDependencyBoundaryInputs() {
   return {
@@ -68,10 +80,11 @@ export function readDependencyBoundaryInputs() {
     rootSource: readFileSync(fromRoot("src", "routes", "__root.tsx"), "utf8"),
     viteSource: readFileSync(fromRoot("vite.config.ts"), "utf8"),
     envSource: readFileSync(fromRoot(".env.example"), "utf8"),
+    ignoreSource: readFileSync(fromRoot(".gitignore"), "utf8"),
     policySource: readFileSync(fromRoot("DEPENDENCY-POLICY.md"), "utf8"),
     metadataSource: readFileSync(fromRoot("PRODUCT-METADATA.json"), "utf8"),
     productSource: readFileSync(fromRoot("PRODUCT-DEFINITION.json"), "utf8"),
-    repositoryFiles: walk(fromRoot()),
+    repositoryFiles: trackedRepositoryFiles(),
   };
 }
 export function validateDependencyBoundary(overrides = {}) {
@@ -102,6 +115,7 @@ export function validateDependencyBoundary(overrides = {}) {
   if (/pgliteBootstrapPlugin|authPopupPlugin|appEnvPlugin|migration-plan|src\/lib\/db|src\/lib\/auth/.test(input.viteSource)) errors.push("Vite reintroduced auth, DB or app-env template plugins");
   for (const token of ["grokPwaPlugin()", "gameCachePlugin()", "tailwindcss()", "tanstackStart()", "nitro({", "viteReact()"] ) if (!input.viteSource.includes(token)) errors.push("Vite lost retained product plugin: " + token);
   if (/DATABASE_URL|BETTER_AUTH|GROK_AUTH|GROK_PREVIEW|VITE_AUTH_ENABLED/.test(input.envSource) || !input.envSource.includes("VITE_QA=")) errors.push("environment example contains removed backend/auth configuration");
+  if (!input.ignoreSource.split(/\r?\n/).includes(".vercel/")) errors.push("generated Vercel output is not excluded by .gitignore");
   for (const prefix of [".grok", "migrations", "src/lib/auth", "src/lib/multiplayer"]) if (input.repositoryFiles.some((path) => path === prefix || path.startsWith(prefix + "/"))) errors.push("removed directory returned: " + prefix);
   for (const path of manifest.removed_surfaces.files) if (input.repositoryFiles.includes(path)) errors.push("removed file returned: " + path);
   const forbiddenRuntime = ["better-auth", "@electric-sql/pglite", "kysely", "from \"pg\"", "RTCPeerConnection", "preview-host-bridge"];
@@ -118,7 +132,9 @@ export function validateDependencyBoundary(overrides = {}) {
   if (product.product?.public_distribution_authorized !== false || product.version_1_scope?.tracks?.target_count !== 8) errors.push("frozen product boundary changed");
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary.forbidden_prefixes.some((prefix) => path.startsWith(prefix)));
   if (later.length) errors.push("RSH-021 was precreated: " + later.join(", "));
-  const temp = input.repositoryFiles.filter((path) => path === ".github/workflows/rsh-020-apply.yml" || path === ".github/workflows/rsh-020-audit.yml" || path === ".github/workflows/rsh-020-snapshot.yml" || path === "scripts/rsh020-apply.mjs" || path === "scripts/rsh020-dependency-audit.mjs");
+  const generated = input.repositoryFiles.filter((path) => [".vercel/", "dist/", ".output/", ".nitro/"].some((prefix) => path.startsWith(prefix)));
+  if (generated.length) errors.push("generated build output is tracked: " + generated.join(", "));
+  const temp = input.repositoryFiles.filter((path) => path.startsWith(".rsh020") || path.startsWith(".github/workflows/rsh-020-") || path.startsWith("scripts/rsh020-"));
   if (temp.length) errors.push("temporary RSH-020 files remain: " + temp.join(", "));
   return { errors, runtimePackages: runtime.length, developmentPackages: development.length, totalPackages: runtime.length + development.length, removedPackages: 74 - runtime.length - development.length };
 }
