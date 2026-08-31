@@ -140,6 +140,37 @@ test("legacy migration verifies the exact legacy bytes in backup before creating
   assert.equal(JSON.parse(storage.values.get(schema.SAVE_KEY)).version, 3);
 });
 
+
+test("a valid backup wins over retained legacy bytes when the current key is missing", () => {
+  const legacyRaw = schema.canonicalSaveString(save(410));
+  const backupRaw = schema.canonicalSaveString(save(910));
+  const storage = memoryStorage({
+    [schema.LEGACY_SAVE_KEY]: legacyRaw,
+    [recovery.SAVE_BACKUP_KEY]: backupRaw,
+  });
+
+  const loaded = recovery.loadSaveWithRecovery(storage);
+  assert.equal(loaded.status.state, "recovery-available");
+  assert.equal(loaded.status.source, "legacy");
+  assert.equal(loaded.status.recoveryAction, "restore-backup");
+  assert.equal(storage.values.get(recovery.SAVE_BACKUP_KEY), backupRaw);
+  assert.equal(storage.values.get(schema.LEGACY_SAVE_KEY), legacyRaw);
+  assert.equal(storage.values.has(schema.SAVE_KEY), false);
+  assert.equal(storage.writes.length, 0);
+
+  const blockedWrite = recovery.writeSaveWithBackup(storage, save(920));
+  assert.equal(blockedWrite.status.state, "recovery-available");
+  assert.equal(storage.values.get(recovery.SAVE_BACKUP_KEY), backupRaw);
+  assert.equal(storage.values.has(schema.SAVE_KEY), false);
+  assert.equal(storage.writes.length, 0);
+
+  const restored = recovery.restoreSaveFromBackup(storage);
+  assert.equal(restored.status.state, "recovered");
+  assert.equal(storage.values.get(schema.SAVE_KEY), backupRaw);
+  assert.equal(storage.values.get(recovery.SAVE_BACKUP_KEY), backupRaw);
+  assert.equal(storage.values.get(schema.LEGACY_SAVE_KEY), legacyRaw);
+});
+
 test("legacy migration fails closed before creating the current key when backup verification fails", () => {
   const legacyRaw = JSON.stringify({ version: 1, best: { ayalon: 43 } });
   for (const options of [
@@ -271,6 +302,9 @@ test("user-visible failure handling is accessible and avoids HTML injection", ()
   for (const token of [
     'setAttribute("role", status.notice === "success" ? "status" : "alertdialog")',
     'setAttribute("aria-live", status.notice === "success" ? "polite" : "assertive")',
+    "rememberFocus(existing)",
+    "restorePreviousFocus()",
+    "(primaryAction ?? notice).focus()",
     "textContent",
     "Restore backup",
     "Press again to confirm",
@@ -290,6 +324,9 @@ test("the visible recovery notice preserves confirmation state and reappears aft
   const originalDocument = globalThis.document;
   const originalCustomEvent = globalThis.CustomEvent;
   const document = new FakeDocument();
+  const previousFocus = document.createElement("button");
+  document.body.append(previousFocus);
+  previousFocus.focus();
   const events = [];
   globalThis.document = document;
   globalThis.window = { dispatchEvent(event) { events.push(event); return true; } };
@@ -322,6 +359,7 @@ test("the visible recovery notice preserves confirmation state and reappears aft
   assert.ok(firstNotice);
   const freshButton = allElements(firstNotice).find((element) => element.textContent.includes("Start fresh"));
   assert.ok(freshButton);
+  assert.equal(document.activeElement, freshButton);
   freshButton.click();
   assert.ok(freshButton.textContent.includes("Press again to confirm"));
 
@@ -333,13 +371,16 @@ test("the visible recovery notice preserves confirmation state and reappears aft
   const dismiss = allElements(firstNotice).find((element) => element.textContent.includes("Dismiss"));
   assert.ok(dismiss);
   dismiss.click();
+  assert.equal(document.activeElement, previousFocus);
   recoveryUi.publishSavePersistenceStatus(rejected, actions);
   assert.equal(document.getElementById("rush-save-recovery-notice"), null);
 
   const healthy = recovery.createSavePersistenceStatus(schema.createSaveStatus("loaded", "current", 3));
   recoveryUi.publishSavePersistenceStatus(healthy, actions);
+  assert.equal(document.activeElement, previousFocus);
   recoveryUi.publishSavePersistenceStatus(rejected, actions);
   assert.ok(document.getElementById("rush-save-recovery-notice"));
+  assert.notEqual(document.activeElement, previousFocus);
   assert.equal(events.every((event) => event.type === recoveryUi.SAVE_STATUS_EVENT), true);
 });
 

@@ -3,6 +3,25 @@ import type { SavePersistenceStatus } from "./save-recovery";
 export const SAVE_STATUS_EVENT = "rush-save-status";
 const NOTICE_ID = "rush-save-recovery-notice";
 let dismissedSignature = "";
+let focusReturnTarget: HTMLElement | null = null;
+
+function rememberFocus(existing: HTMLElement | null) {
+  if (focusReturnTarget !== null || existing !== null) return;
+  const active = document.activeElement;
+  if (active && typeof (active as HTMLElement).focus === "function") {
+    focusReturnTarget = active as HTMLElement;
+  }
+}
+
+function restorePreviousFocus() {
+  const target = focusReturnTarget;
+  focusReturnTarget = null;
+  try {
+    target?.focus();
+  } catch {
+    // The original control may have been removed while recovery was visible.
+  }
+}
 
 export type SaveRecoveryUiActions = {
   restore(): void;
@@ -87,21 +106,30 @@ export function publishSavePersistenceStatus(status: SavePersistenceStatus, acti
 
   const visible = ["rejected", "write-failed", "recovery-available", "recovered", "fresh-started"].includes(status.state);
   const existing = document.getElementById(NOTICE_ID);
+  const isDialog = status.notice !== "success";
   if (!visible) {
     // A successful/ordinary state closes the dismissal cycle. A later failure,
     // even with the same shape, must become visible again.
     dismissedSignature = "";
-    existing?.remove();
+    if (existing) {
+      existing.remove();
+      restorePreviousFocus();
+    }
     return;
   }
   if (dismissedSignature === signature(status)) {
-    existing?.remove();
+    if (existing) {
+      existing.remove();
+      restorePreviousFocus();
+    }
     return;
   }
   if (!document.body) return;
   const currentSignature = signature(status);
   if (existing?.dataset.saveStatusSignature === currentSignature) return;
+  if (isDialog) rememberFocus(existing);
   existing?.remove();
+  if (!isDialog) restorePreviousFocus();
 
   const notice = document.createElement("section");
   notice.id = NOTICE_ID;
@@ -110,6 +138,7 @@ export function publishSavePersistenceStatus(status: SavePersistenceStatus, acti
   notice.setAttribute("aria-live", status.notice === "success" ? "polite" : "assertive");
   notice.setAttribute("aria-atomic", "true");
   notice.setAttribute("aria-label", "Save recovery");
+  notice.tabIndex = -1;
   Object.assign(notice.style, {
     position: "fixed",
     insetInline: "12px",
@@ -137,9 +166,11 @@ export function publishSavePersistenceStatus(status: SavePersistenceStatus, acti
   Object.assign(body.style, { margin: "0 0 14px", fontSize: "14px" });
   const controls = document.createElement("div");
   Object.assign(controls.style, { display: "flex", flexWrap: "wrap", gap: "8px" });
+  let primaryAction: HTMLButtonElement | null = null;
 
   if (status.recoveryAction === "restore-backup") {
-    controls.append(button("שחזר גיבוי · Restore backup", actions.restore));
+    primaryAction = button("שחזר גיבוי · Restore backup", actions.restore);
+    controls.append(primaryAction);
   } else if (status.recoveryAction === "start-fresh") {
     let armed = false;
     const fresh = button("התחל מחדש ושמור עותק פגום · Start fresh and preserve rejected copy", () => {
@@ -151,9 +182,11 @@ export function publishSavePersistenceStatus(status: SavePersistenceStatus, acti
       }
       actions.startFresh();
     });
+    primaryAction = fresh;
     controls.append(fresh);
   } else if (status.recoveryAction === "retry") {
-    controls.append(button("נסה שוב · Retry", actions.retry));
+    primaryAction = button("נסה שוב · Retry", actions.retry);
+    controls.append(primaryAction);
   }
 
   if (status.state === "recovered" || status.state === "fresh-started") {
@@ -163,7 +196,9 @@ export function publishSavePersistenceStatus(status: SavePersistenceStatus, acti
   controls.append(button("סגור · Dismiss", () => {
     dismissedSignature = signature(status);
     notice.remove();
+    restorePreviousFocus();
   }));
   notice.append(heading, body, controls);
   document.body.append(notice);
+  if (isDialog) (primaryAction ?? notice).focus();
 }

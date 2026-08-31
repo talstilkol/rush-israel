@@ -4,49 +4,86 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: rsh-022-codex-fix-${{ github.ref }}
+  group: required-ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  transport:
-    name: RSH-022 verified Codex fix transport
-    if: github.event.pull_request.head.ref == 'agent/rsh-022-save-recovery'
+  validate:
+    name: required-ci / validate
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 45
+    env:
+      CI: "true"
+      NODE_OPTIONS: "--experimental-strip-types"
+      PLAYWRIGHT_BROWSERS_PATH: "0"
     steps:
-      - name: Check out exact feature branch
+      - name: Check out exact revision
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
-          persist-credentials: true
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
 
-      - name: Verify, apply and publish exact fixes
-        shell: bash
-        run: |
-          set -euo pipefail
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
 
-          echo "19f8b2f7ba6f430c22293ecd04f2b798e98a73497c07c344cf39534795b614b3  .rsh022-fix/patch.gz.b64" | sha256sum --check --strict
-          base64 --decode .rsh022-fix/patch.gz.b64 > /tmp/rsh022-codex-fixes.patch.gz
-          echo "beaf311b9b52476f605adff35670ed3dd24ec6b9092e224f0d6b43a014383128  /tmp/rsh022-codex-fixes.patch.gz" | sha256sum --check --strict
-          gzip --decompress --stdout /tmp/rsh022-codex-fixes.patch.gz > /tmp/rsh022-codex-fixes.patch
-          echo "18f1da5c2bf68744f57f1e6eef14d4ab1ea70a1e89da69a8fddb1925d877f679  /tmp/rsh022-codex-fixes.patch" | sha256sum --check --strict
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
 
-          git fetch origin main
-          git checkout origin/main -- .github/workflows/required-ci.yml
-          git rm -r .rsh022-fix
-          git apply --index /tmp/rsh022-codex-fixes.patch
+      - name: Verify toolchain
+        run: npm run toolchain:verify
 
-          candidate_tree="$(git write-tree)"
-          test "$candidate_tree" = "ffca13f82f0a4c9217576b44952a36ebe3d8f67e"
-          test -z "$(git status --porcelain | grep -E 'RSH-023|rsh023|records-v2' || true)"
+      - name: Install dependencies from lockfile
+        run: npm ci
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "RSH-022: preserve newer backup and manage recovery focus"
-          git push origin HEAD:agent/rsh-022-save-recovery
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Validate repository governance contract
+        run: node scripts/check-governance-contract.mjs
+
+      - name: Lint all tracked source
+        run: npm run lint
+
+      - name: Run complete unit-test suite
+        run: npm test
+
+      - name: Run self-starting QA gate
+        run: npm run qa:ci
+
+      - name: Build deterministic development bundle
+        run: npm run build:dev
+
+      - name: Write deterministic diagnostic summary
+        if: always()
+        env:
+          CI_JOB_STATUS: ${{ job.status }}
+        run: node scripts/write-ci-summary.mjs
+
+      - name: Upload required-CI diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: required-ci-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/**
+            screenshots/**
+            dist/**
+            .output/**
+            test-results/**
+            playwright-report/**
+            npm-debug.log*
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 6
+          include-hidden-files: true

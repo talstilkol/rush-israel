@@ -247,6 +247,22 @@ function writeFailure(
   };
 }
 
+function recoveryAvailableResult(
+  source: SaveLoadStatus["source"],
+  backup: SaveBackupInspection,
+): SavePersistenceResult {
+  const base = createSaveStatus("empty", source, backup.sourceVersion);
+  return {
+    data: emptySave(),
+    status: createSavePersistenceStatus(base, {
+      state: "recovery-available",
+      backupAvailable: true,
+      recoveryAction: "restore-backup",
+      notice: "warning",
+    }),
+  };
+}
+
 function rejectedResult(
   source: SaveLoadStatus["source"],
   error: SaveMigrationError,
@@ -299,18 +315,7 @@ export function loadSaveWithRecovery(storage: SaveStorage): SavePersistenceResul
   const activeRaw = currentRead.raw ?? legacyRead.raw;
 
   if (activeRaw === null) {
-    if (backup.state === "valid") {
-      const base = createSaveStatus("empty", "none", null);
-      return {
-        data: emptySave(),
-        status: createSavePersistenceStatus(base, {
-          state: "recovery-available",
-          backupAvailable: true,
-          recoveryAction: "restore-backup",
-          notice: "warning",
-        }),
-      };
-    }
+    if (backup.state === "valid") return recoveryAvailableResult("none", backup);
     if (backup.state === "read-failed") {
       return writeFailure("none", emptySave(), null, backup.error ?? "backup read failed", "backup-read-failed", false);
     }
@@ -324,6 +329,13 @@ export function loadSaveWithRecovery(storage: SaveStorage): SavePersistenceResul
 
   const parsed = parseRaw(activeRaw);
   if ("error" in parsed) return rejectedResult(source, parsed.error, backup);
+
+  // A retained legacy key can be older than the verified backup. When the
+  // current key is missing, preserve the backup and require an explicit restore
+  // decision instead of silently replacing newer progress with legacy bytes.
+  if (source === "legacy" && backup.state === "valid") {
+    return recoveryAvailableResult("legacy", backup);
+  }
 
   if (source === "current") {
     const needsCanonicalWrite = activeRaw !== parsed.canonical
@@ -423,6 +435,9 @@ export function writeSaveWithBackup(storage: SaveStorage, data: SaveData): SaveP
   }
 
   const backup = inspectSaveBackup(storage);
+  if (currentRead.raw === null && backup.state === "valid") {
+    return recoveryAvailableResult(source, backup);
+  }
   const backupRaw = priorRaw ?? nextRaw;
   if (priorRaw === null || priorRaw !== nextRaw || backup.state !== "valid") {
     const rotated = rotateBackup(storage, backupRaw, backup);
@@ -474,7 +489,7 @@ export function restoreSaveFromBackup(storage: SaveStorage): SavePersistenceResu
   let quarantined = false;
   if (activeRaw !== null) {
     const parsed = parseRaw(activeRaw);
-    if (!("error" in parsed)) {
+    if (!("error" in parsed) && source === "current") {
       const base = createSaveStatus("loaded", source, parsed.migration.sourceVersion, parsed.migration.appliedMigrations, parsed.migration.issues, true, true);
       return {
         data: parsed.data,

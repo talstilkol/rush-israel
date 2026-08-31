@@ -30,6 +30,9 @@ assets, dependencies or distribution policy.
 
 - Recovery is explicit; corrupt or missing current data is never restored or
   reset automatically.
+- When the current key is missing and both a retained legacy save and a valid
+  backup exist, the backup is preserved and offered before any legacy migration;
+  no silent rollback to older legacy bytes is allowed.
 - A valid backup is migrated through the accepted RSH-021 graph, serialized
   canonically, written to the current key and verified.
 - Rejected current bytes are preserved before replacement in one of two bounded
@@ -46,9 +49,10 @@ assets, dependencies or distribution policy.
 
 The persistence facade dispatches `rush-save-status` and renders an accessible,
 bilingual recovery notice outside the React application tree. The notice uses
-`role="alertdialog"` with assertive live-region behavior for failures, exposes
-explicit restore/retry/fresh-start actions, and uses only `textContent` for
-copy. Dismissing a notice does not change storage.
+`role="alertdialog"` with assertive live-region behavior for failures, moves
+focus to the first recovery action when it opens, restores the prior focus when
+it closes, exposes explicit restore/retry/fresh-start actions, and uses only
+`textContent` for copy. Dismissing a notice does not change storage.
 
 ## Preservation
 
