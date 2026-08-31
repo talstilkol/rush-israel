@@ -188,7 +188,9 @@ test("the save facade preserves rejected bytes and delegates explicit recovery",
   assert.ok(source.includes('errorCode: "read-failed"'));
   assert.ok(source.includes("const result = loadSaveWithRecovery(storage);"));
   assert.ok(source.includes('if (lastSaveStatus.state === "rejected" || lastSaveStatus.state === "recovery-available")'));
-  assert.ok(source.includes("const result = writeSaveWithBackup(storage, data);"));
+  assert.ok(source.includes("retryPendingSaveWithBackup(storage, data)"));
+  assert.ok(source.includes('if (result.status.state === "write-failed" && result.status.recoveryAction === "retry")'));
+  assert.ok(source.includes("write(cloneSaveData(pending), true)"));
   assert.ok(source.includes("export function restoreSaveBackup()"));
   assert.ok(source.includes("export function startFreshSaveAfterFailure()"));
   assert.ok(source.includes("export function retrySavePersistence()"));

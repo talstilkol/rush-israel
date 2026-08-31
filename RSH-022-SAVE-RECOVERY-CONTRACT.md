@@ -39,6 +39,12 @@ assets, dependencies or distribution policy.
   backed up, the new state remains in a canonical in-memory pending buffer and
   the visible action retries that exact pending write before any stale reload.
   Restoring the unchanged older backup is not presented as a substitute.
+- A pending Retry carries explicit in-memory authority: it may complete a
+  first-ever current-key write after its identical verified backup was seeded,
+  while an ordinary write still exposes explicit recovery when current data is
+  absent and a backup exists.
+- Failed canonical migration or repair writes retain the migrated v3 data and
+  expose Retry so the canonical write is attempted again.
 - Rejected current bytes are preserved before replacement in one of two bounded
   slots: `rush-v1-rejected` and `rush-v1-rejected-previous`.
 - If both rejected-save slots contain different bytes, recovery fails closed

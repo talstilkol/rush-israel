@@ -355,7 +355,7 @@ export function loadSaveWithRecovery(storage: SaveStorage): SavePersistenceResul
         data: loaded.data,
         status: createSavePersistenceStatus(loaded.status, {
           backupAvailable,
-          recoveryAction: "restore-backup",
+          recoveryAction: "retry",
           notice: "error",
           recoveryErrorCode: "recovery-write-failed",
         }),
@@ -411,7 +411,11 @@ export function loadSaveWithRecovery(storage: SaveStorage): SavePersistenceResul
   };
 }
 
-export function writeSaveWithBackup(storage: SaveStorage, data: SaveData): SavePersistenceResult {
+function writeSaveWithBackupMode(
+  storage: SaveStorage,
+  data: SaveData,
+  pendingRetry: boolean,
+): SavePersistenceResult {
   const nextRaw = canonicalSaveString(data);
   const currentRead = readKey(storage, SAVE_KEY);
   if (!currentRead.ok) {
@@ -436,7 +440,10 @@ export function writeSaveWithBackup(storage: SaveStorage, data: SaveData): SaveP
 
   const backup = inspectSaveBackup(storage);
   if (currentRead.raw === null && backup.state === "valid") {
-    return recoveryAvailableResult(source, backup);
+    const matchesSeededFirstSave = source === "none" && backup.canonical === nextRaw;
+    if (!pendingRetry || (source === "none" && !matchesSeededFirstSave)) {
+      return recoveryAvailableResult(source, backup);
+    }
   }
   const backupRaw = priorRaw ?? nextRaw;
   if (priorRaw === null || priorRaw !== nextRaw || backup.state !== "valid") {
@@ -455,6 +462,14 @@ export function writeSaveWithBackup(storage: SaveStorage, data: SaveData): SaveP
     data,
     status: createSavePersistenceStatus(base, { backupAvailable: true }),
   };
+}
+
+export function writeSaveWithBackup(storage: SaveStorage, data: SaveData): SavePersistenceResult {
+  return writeSaveWithBackupMode(storage, data, false);
+}
+
+export function retryPendingSaveWithBackup(storage: SaveStorage, data: SaveData): SavePersistenceResult {
+  return writeSaveWithBackupMode(storage, data, true);
 }
 
 export function restoreSaveFromBackup(storage: SaveStorage): SavePersistenceResult {

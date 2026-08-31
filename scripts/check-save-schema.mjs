@@ -5,14 +5,14 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "5474a3e94f72b8d9800838eaf500caa985104698ecc8badc8c742340acee92b6";
+export const EXPECTED_MANIFEST_SHA256 = "477a894fea47c3b69fd3da261379b2a0a87b0e8f9a6621bcf62e5fd0d2a66d09";
 export const EXPECTED_SCHEMA_SHA256 = "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358";
 export const EXPECTED_RSH021_SAVE_FACADE_SHA256 = "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24";
 export const EXPECTED_RSH021_TEST_SHA256 = "8ac32e38ac4b11cf63319faec0a49e95498a041a3703d06d85c3f4a8b0eb84a3";
-export const EXPECTED_RSH022_SAVE_FACADE_SHA256 = "ab30fa558c2174eafa3a41d210ec8569da27470def62a9c30e0a41229144f3fb";
-export const EXPECTED_RSH022_RECOVERY_SHA256 = "34ac79d2e31f6ae630f66b8e8020b5a724f5d9874ad7d348e0beb1a8344476a0";
+export const EXPECTED_RSH022_SAVE_FACADE_SHA256 = "8e36a852cb116212f84d9953adb0d184b061bf108d54bd5362873216836b4c91";
+export const EXPECTED_RSH022_RECOVERY_SHA256 = "dc55d7ae3411cf748500b35010fca82280fcdb872513e1b7a625efbee2edd25b";
 export const EXPECTED_RSH022_UI_SHA256 = "82fd7900ea252f3793ba6a54859083223a36cd052cea0745145cbc4a2f0875d5";
-export const EXPECTED_RSH022_SCHEMA_GUARD_TEST_SHA256 = "0d16b7d447187ae03225e77926f442d63fb92b7f57e98bd5ea21ac2b30642a3e";
+export const EXPECTED_RSH022_SCHEMA_GUARD_TEST_SHA256 = "2df753b00041a1a03061af10243bdb81c3efd10b04af7a8a8d5bfb6bb928cbb8";
 export const EXPECTED_RECORDS_SHA256 = "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 
@@ -92,17 +92,18 @@ export function validateSaveSchema(overrides = {}) {
     'errorCode: "read-failed"',
     "const result = loadSaveWithRecovery(storage);",
     'if (lastSaveStatus.state === "rejected" || lastSaveStatus.state === "recovery-available")',
-    "const result = writeSaveWithBackup(storage, data);",
+    "retryPendingSaveWithBackup(storage, data)",
     "export function restoreSaveBackup()",
     "export function startFreshSaveAfterFailure()",
     "export function retrySavePersistence()",
     "let pendingSaveData: SaveData | null = null",
     "pendingSaveData = cloneSaveData(result.data)",
-    "write(cloneSaveData(pending))",
+    'if (result.status.state === "write-failed" && result.status.recoveryAction === "retry")',
+    "write(cloneSaveData(pending), true)",
   ]) if (!input.saveFacadeSource.includes(token)) errors.push("save facade lost RSH-022 recovery contract token: " + token);
 
   if (manifest.recovery.backups_created !== true || manifest.recovery.backup_restore !== true || manifest.recovery.user_visible_failure_ui !== true || manifest.recovery.state !== "accepted_on_merge") errors.push("RSH-022 recovery state is not accepted-on-merge");
-  if (manifest.rsh_022_overlay.backup_generations !== 1 || manifest.rsh_022_overlay.rejected_current_quarantine_slots !== 2 || manifest.rsh_022_overlay.automatic_restore !== false || manifest.rsh_022_overlay.explicit_restore !== true || manifest.rsh_022_overlay.pending_write_retained_in_memory !== true || manifest.rsh_022_overlay.pending_write_retry_before_reload !== true || manifest.rsh_022_overlay.failed_current_write_action !== "retry") errors.push("RSH-022 recovery/pending-write boundary changed");
+  if (manifest.rsh_022_overlay.backup_generations !== 1 || manifest.rsh_022_overlay.rejected_current_quarantine_slots !== 2 || manifest.rsh_022_overlay.automatic_restore !== false || manifest.rsh_022_overlay.explicit_restore !== true || manifest.rsh_022_overlay.pending_write_retained_in_memory !== true || manifest.rsh_022_overlay.pending_write_retry_before_reload !== true || manifest.rsh_022_overlay.failed_current_write_action !== "retry" || manifest.rsh_022_overlay.pending_retry_requires_explicit_context !== true || manifest.rsh_022_overlay.pending_retry_completes_seeded_first_save !== true || manifest.rsh_022_overlay.canonicalization_write_failure_action !== "retry" || manifest.rsh_022_overlay.canonicalization_pending_data_retained !== true) errors.push("RSH-022 recovery/pending-write boundary changed");
   if (manifest.deferred_boundary.queue_head !== "RSH-023" || manifest.deferred_boundary.rsh_022_started !== true || manifest.deferred_boundary.rsh_022_authorized !== true || manifest.deferred_boundary.rsh_022_state !== "accepted_on_merge" || manifest.deferred_boundary.rsh_023_started !== false || manifest.deferred_boundary.rsh_023_authorized !== false) errors.push("RSH-023 deferred boundary changed");
 
   const storageSources = input.schemaSource + input.saveFacadeSource + input.recoverySource;

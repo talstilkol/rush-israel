@@ -110,6 +110,34 @@ test("the first save writes and verifies a recoverable backup before the current
   assert.equal(storage.values.get(recovery.SAVE_BACKUP_KEY), storage.values.get(schema.SAVE_KEY));
 });
 
+test("Retry completes a first save after the verified backup was seeded", () => {
+  const storage = memoryStorage();
+  const setItem = storage.setItem.bind(storage);
+  let failCurrentOnce = true;
+  storage.setItem = (key, value) => {
+    if (key === schema.SAVE_KEY && failCurrentOnce) {
+      failCurrentOnce = false;
+      throw new Error("transient current write failure");
+    }
+    setItem(key, value);
+  };
+
+  const first = recovery.writeSaveWithBackup(storage, save(905));
+  assert.equal(first.status.state, "write-failed");
+  assert.equal(first.status.recoveryAction, "retry");
+  assert.equal(storage.values.has(schema.SAVE_KEY), false);
+  assert.equal(JSON.parse(storage.values.get(recovery.SAVE_BACKUP_KEY)).cash, 905);
+
+  const ordinaryWrite = recovery.writeSaveWithBackup(storage, first.data);
+  assert.equal(ordinaryWrite.status.state, "recovery-available");
+  assert.equal(storage.values.has(schema.SAVE_KEY), false);
+
+  const retried = recovery.retryPendingSaveWithBackup(storage, first.data);
+  assert.equal(retried.status.state, "saved");
+  assert.equal(JSON.parse(storage.values.get(schema.SAVE_KEY)).cash, 905);
+  assert.equal(storage.values.get(recovery.SAVE_BACKUP_KEY), storage.values.get(schema.SAVE_KEY));
+});
+
 test("a later save rotates the exact prior current bytes into the backup", () => {
   const oldRaw = schema.canonicalSaveString(save(700));
   const storage = memoryStorage({ [schema.SAVE_KEY]: oldRaw, [recovery.SAVE_BACKUP_KEY]: schema.canonicalSaveString(save(600)) });
@@ -143,6 +171,32 @@ test("migration and repair back up exact source bytes before canonical overwrite
   assert.equal(result.status.backupAvailable, true);
   assert.equal(storage.values.get(recovery.SAVE_BACKUP_KEY), oldRaw);
   assert.equal(JSON.parse(storage.values.get(schema.SAVE_KEY)).version, 3);
+});
+
+test("Retry persists migrated current data after a transient canonicalization write failure", () => {
+  const oldRaw = JSON.stringify({ version: 1, best: { ayalon: 47 }, cash: 735 });
+  const storage = memoryStorage({ [schema.SAVE_KEY]: oldRaw });
+  const setItem = storage.setItem.bind(storage);
+  let failCurrentOnce = true;
+  storage.setItem = (key, value) => {
+    if (key === schema.SAVE_KEY && failCurrentOnce) {
+      failCurrentOnce = false;
+      throw new Error("transient canonical write failure");
+    }
+    setItem(key, value);
+  };
+
+  const first = recovery.loadSaveWithRecovery(storage);
+  assert.equal(first.status.state, "write-failed");
+  assert.equal(first.status.recoveryAction, "retry");
+  assert.equal(first.data.cash, 735);
+  assert.equal(storage.values.get(schema.SAVE_KEY), oldRaw);
+  assert.equal(storage.values.get(recovery.SAVE_BACKUP_KEY), oldRaw);
+
+  const retried = recovery.retryPendingSaveWithBackup(storage, first.data);
+  assert.equal(retried.status.state, "saved");
+  assert.equal(JSON.parse(storage.values.get(schema.SAVE_KEY)).version, 3);
+  assert.equal(JSON.parse(storage.values.get(schema.SAVE_KEY)).cash, 735);
 });
 
 test("legacy migration verifies the exact legacy bytes in backup before creating the current key", () => {
@@ -435,9 +489,11 @@ test("the save facade retains a canonical pending write and retries it before re
     "if (pendingSaveData !== null)",
     "pendingSaveData = cloneSaveData(data)",
     "pendingSaveData = cloneSaveData(result.data)",
+    "if (result.status.state === \"write-failed\" && result.status.recoveryAction === \"retry\")",
+    "retryPendingSaveWithBackup(storage, data)",
     "if (result.status.state === \"saved\") pendingSaveData = null",
     "const pending = pendingSaveData",
-    "write(cloneSaveData(pending))",
+    "write(cloneSaveData(pending), true)",
   ]) assert.ok(source.includes(token), `missing pending-write token: ${token}`);
   assert.ok(source.indexOf("const pending = pendingSaveData") < source.indexOf("load();\n  return lastSaveStatus;"));
 });

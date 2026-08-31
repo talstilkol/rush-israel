@@ -3,7 +3,7 @@
   "document_type": "rush-save-recovery-manifest",
   "unit": "RSH-022",
   "title": "Add save backup, corruption recovery and user-visible failure handling",
-  "generated_at": "2026-08-31T17:18:00.000Z",
+  "generated_at": "2026-08-31T17:35:03.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "implementation_base": {
@@ -42,7 +42,8 @@
     "verify_every_backup_write": true,
     "unsafe_current_overwrite_on_backup_failure": false,
     "invalid_backup_quarantined_before_reuse": true,
-    "prefer_valid_backup_when_current_missing": true
+    "prefer_valid_backup_when_current_missing": true,
+    "pending_first_save_retry_requires_matching_backup": true
   },
   "recovery_policy": {
     "automatic_restore": false,
@@ -57,7 +58,11 @@
     "valid_legacy_does_not_block_explicit_backup_restore": true,
     "pending_write_retained_in_memory": true,
     "pending_write_retry_before_reload": true,
-    "failed_current_write_action": "retry"
+    "failed_current_write_action": "retry",
+    "pending_retry_requires_explicit_context": true,
+    "pending_retry_completes_seeded_first_save": true,
+    "canonicalization_write_failure_action": "retry",
+    "canonicalization_pending_data_retained": true
   },
   "failure_ui": {
     "event": "rush-save-status",
@@ -86,10 +91,10 @@
     "release_gates_total": 13
   },
   "identities": {
-    "recovery_source_sha256": "34ac79d2e31f6ae630f66b8e8020b5a724f5d9874ad7d348e0beb1a8344476a0",
+    "recovery_source_sha256": "dc55d7ae3411cf748500b35010fca82280fcdb872513e1b7a625efbee2edd25b",
     "ui_source_sha256": "82fd7900ea252f3793ba6a54859083223a36cd052cea0745145cbc4a2f0875d5",
-    "save_facade_sha256": "ab30fa558c2174eafa3a41d210ec8569da27470def62a9c30e0a41229144f3fb",
-    "test_source_sha256": "8e8fe66b1e637dc687550a45508e04f2175c6250e213971c512eccdb659edefa",
+    "save_facade_sha256": "8e36a852cb116212f84d9953adb0d184b061bf108d54bd5362873216836b4c91",
+    "test_source_sha256": "d514d299d6178cb0228e1d967a31cae058911d3dc5ced711823805d456a9a7bb",
     "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
     "records_source_sha256": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",

@@ -18,6 +18,7 @@ import {
   inspectSaveBackup,
   loadSaveWithRecovery,
   restoreSaveFromBackup,
+  retryPendingSaveWithBackup,
   startFreshSaveAfterRejection,
   writeSaveWithBackup,
   type SavePersistenceStatus,
@@ -129,11 +130,14 @@ function load(): SaveData {
   }
   const result = loadSaveWithRecovery(storage);
   lastSaveStatus = result.status;
+  if (result.status.state === "write-failed" && result.status.recoveryAction === "retry") {
+    pendingSaveData = cloneSaveData(result.data);
+  }
   publishStatus();
   return result.data;
 }
 
-function write(data: SaveData) {
+function write(data: SaveData, pendingRetry = false) {
   // Rejected or recoverable source bytes remain locked until the player makes
   // an explicit recovery decision. Automatic flushes and setters cannot destroy them.
   if (lastSaveStatus.state === "rejected" || lastSaveStatus.state === "recovery-available") {
@@ -150,7 +154,9 @@ function write(data: SaveData) {
     return false;
   }
   if (!storage) return false;
-  const result = writeSaveWithBackup(storage, data);
+  const result = pendingRetry
+    ? retryPendingSaveWithBackup(storage, data)
+    : writeSaveWithBackup(storage, data);
   lastSaveStatus = result.status;
   if (result.status.state === "saved") pendingSaveData = null;
   else if (result.status.state === "write-failed") pendingSaveData = cloneSaveData(result.data);
@@ -205,7 +211,7 @@ export function startFreshSaveAfterFailure() {
 export function retrySavePersistence() {
   const pending = pendingSaveData;
   if (pending !== null) {
-    write(cloneSaveData(pending));
+    write(cloneSaveData(pending), true);
     return lastSaveStatus;
   }
   load();
