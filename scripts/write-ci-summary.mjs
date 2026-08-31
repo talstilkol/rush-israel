@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { execFileSync } from "node:child_process";
 import { mkdir, readdir, stat, writeFile } from "node:fs/promises";
 import { relative } from "node:path";
 import { fromRoot, projectRoot } from "./project-root.mjs";
@@ -52,6 +53,9 @@ export async function buildSummary(env = process.env) {
 
 const outDir = fromRoot("artifacts");
 await mkdir(outDir, { recursive: true });
+execFileSync("git", ["archive", "--format=zip", "--output", fromRoot("artifacts", "source-snapshot.zip"), "HEAD"], {
+  cwd: projectRoot,
+});
 const summary = await buildSummary();
 await writeFile(fromRoot("artifacts", "ci-summary.json"), JSON.stringify(summary, null, 2) + "\n");
 console.log(
