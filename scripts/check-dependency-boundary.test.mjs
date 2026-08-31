@@ -27,6 +27,19 @@ test("forbidden direct dependencies and backend scripts fail closed", () => {
   assert.match(messages(validateDependencyBoundary(script)), /package.json identity|product script|template script/);
 });
 
+test("QA build and server entry points cannot restore the removed app-env wrapper", () => {
+  const hook = baseline();
+  hook.qaHookSource = hook.qaHookSource.replace(
+    'execSync("npm run build"',
+    'execSync("node scripts/with-app-env.mjs vite build"',
+  );
+  assert.match(messages(validateDependencyBoundary(hook)), /QA hook build reintroduced/);
+
+  const server = baseline();
+  server.serverRunnerSource += "\nnode scripts/with-app-env.mjs vite dev\n";
+  assert.match(messages(validateDependencyBoundary(server)), /QA server launcher reintroduced/);
+});
+
 test("auth, DB, multiplayer and preview-host paths fail closed", () => {
   for (const path of ["src/lib/auth/client.ts", "src/lib/db.ts", "src/lib/multiplayer/p2p.ts", "src/components/preview-host-bridge.tsx"]) {
     const input = baseline();
