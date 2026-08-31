@@ -1,0 +1,85 @@
+name: RSH-021 apply and validate
+
+on:
+  push:
+    branches:
+      - agent/rsh-021-save-schema-migrations
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rsh-021-apply
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact RSH-021 branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/rsh-021-save-schema-migrations
+          fetch-depth: 0
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+
+      - name: Reconstruct and apply exact RSH-021 payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .rsh021-payload/part-* | base64 --decode | gzip --decompress > /tmp/rsh021-apply.mjs
+          echo "2a561670a2a4fd06ec79b77756443d64f8240ec5f75dfef61d61afa860253ee1  /tmp/rsh021-apply.mjs" | sha256sum --check
+          node --check /tmp/rsh021-apply.mjs
+          node /tmp/rsh021-apply.mjs
+          git add -A
+          git diff --cached --check
+
+      - name: Install dependencies from lockfile
+        run: npm ci
+
+      - name: Validate save-schema authority
+        run: node scripts/check-save-schema.mjs
+
+      - name: Run complete unit-test suite
+        env:
+          NODE_OPTIONS: --experimental-strip-types
+        run: npm test
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build deterministic development bundle
+        run: npm run build:dev
+
+      - name: Verify exact final-tree boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --cached --check
+          test ! -e .rsh021-payload
+          test ! -e .github/workflows/rsh-021-apply.yml
+          test ! -e scripts/rsh021-apply.mjs
+          test ! -e RSH-022-PREFLIGHT.json
+          test ! -e src/game/save-recovery
+          test "$(git rev-parse origin/main)" = "7cff508a4cfa95c03ac34c5503912e70bed47b90"
+          node scripts/check-save-schema.mjs
+
+      - name: Commit and push exact RSH-021 candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "talsitelkol"
+          git config user.email "tal_stilkol@hotmail.com"
+          git commit -m "RSH-021: version save schema and deterministic migrations"
+          git push origin HEAD:agent/rsh-021-save-schema-migrations
