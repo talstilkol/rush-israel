@@ -18,6 +18,14 @@ jobs:
           ref: ${{ github.sha }}
       - name: Run dependency and template-surface audit
         run: node scripts/rsh020-dependency-audit.mjs | tee rsh020-audit.json
+      - name: Read registry stability evidence
+        run: |
+          echo 'nitro dist-tags:'
+          npm view nitro dist-tags --json
+          echo 'nitro current package:'
+          npm view nitro@3.0.260610-beta version deprecated --json
+          echo 'tanstack-start dist-tags:'
+          npm view @tanstack/react-start dist-tags --json
       - name: Upload audit
         uses: actions/upload-artifact@v4
         with:
