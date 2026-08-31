@@ -5,10 +5,10 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "31d249c81bdf260d4a9df1e74a89ee488f21172604a036e72f51f3ff22e73df2";
+export const EXPECTED_MANIFEST_SHA256 = "a7c0f2fc856e58cd51688197f41a0e8531cb7618576e0311284c7765b7948111";
 export const EXPECTED_SCHEMA_SHA256 = "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358";
-export const EXPECTED_SAVE_FACADE_SHA256 = "8c32ea6530768f1113409986e0e04dadc456958437b17d3eda805ae1119c9362";
-export const EXPECTED_TEST_SHA256 = "b56c9fee385b07c871d453e564a109b59a75001ec2f6d17b17d89d0aeda7b17d";
+export const EXPECTED_SAVE_FACADE_SHA256 = "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24";
+export const EXPECTED_TEST_SHA256 = "8ac32e38ac4b11cf63319faec0a49e95498a041a3703d06d85c3f4a8b0eb84a3";
 export const EXPECTED_RECORDS_SHA256 = "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 
@@ -56,6 +56,7 @@ export function validateSaveSchema(overrides = {}) {
   if (sha256(input.recordsSource) !== EXPECTED_RECORDS_SHA256 || manifest.identities.records_source_sha256 !== EXPECTED_RECORDS_SHA256) errors.push("RSH-023 records source changed early");
   if (sha256(input.packageSource) !== EXPECTED_PACKAGE_SHA256) errors.push("dependency/package boundary changed");
   if (manifest.unit !== "RSH-021" || manifest.current_schema.version !== 3 || manifest.migration_graph.length !== 3) errors.push("save-schema identity/count changed");
+  if (manifest.failure_policy.read_failure !== "reject_without_overwrite_with_structured_status") errors.push("storage read failure policy changed");
   const graph = manifest.migration_graph.map(({ id, from, to }) => ({ id, from, to }));
   if (JSON.stringify(graph) !== JSON.stringify([
     { id: "v0-to-v1", from: 0, to: 1 },
@@ -73,6 +74,11 @@ export function validateSaveSchema(overrides = {}) {
     "function migrate2To3",
   ]) if (!input.schemaSource.includes(token)) errors.push("save-schema source lost required contract token: " + token);
   if (!input.saveFacadeSource.includes("export function getSaveStatus")) errors.push("save facade lost getSaveStatus");
+  for (const token of [
+  'lastSaveStatus = createSaveStatus("rejected", "none", null',
+  'errorCode: "read-failed"',
+  'if (lastSaveStatus.state === "rejected") return false;',
+]) if (!input.saveFacadeSource.includes(token)) errors.push("save facade lost storage-failure contract token: " + token);
   if (/^\s*\/\/\s*@ts-nocheck/m.test(input.schemaSource + input.saveFacadeSource)) errors.push("save sources must not use @ts-nocheck");
   if (/removeItem\s*\(\s*LEGACY_SAVE_KEY|localStorage\.clear\s*\(/.test(input.schemaSource + input.saveFacadeSource)) errors.push("migration may not destroy legacy/source bytes");
   if (/rush-(?:save-)?backup|backupSave|restoreSave/i.test(input.schemaSource + input.saveFacadeSource)) errors.push("RSH-022 backup/recovery was started early");

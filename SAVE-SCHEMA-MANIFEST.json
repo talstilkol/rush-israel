@@ -76,7 +76,7 @@
     "invalid_root": "reject_without_overwrite",
     "invalid_version": "reject_without_overwrite",
     "future_version": "reject_without_overwrite",
-    "read_failure": "structured_status",
+    "read_failure": "reject_without_overwrite_with_structured_status",
     "write_or_verify_failure": "structured_status_with_in_memory_data"
   },
   "recovery": {
@@ -100,8 +100,8 @@
   },
   "identities": {
     "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
-    "save_facade_source_sha256": "8c32ea6530768f1113409986e0e04dadc456958437b17d3eda805ae1119c9362",
-    "test_source_sha256": "b56c9fee385b07c871d453e564a109b59a75001ec2f6d17b17d89d0aeda7b17d",
+    "save_facade_source_sha256": "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24",
+    "test_source_sha256": "8ac32e38ac4b11cf63319faec0a49e95498a041a3703d06d85c3f4a8b0eb84a3",
     "records_source_sha256": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },

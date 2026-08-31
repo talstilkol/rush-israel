@@ -44,15 +44,20 @@ export function getSaveStatus() {
 }
 
 function browserStorage(): SaveStorage | null {
-  try {
-    return typeof localStorage === "undefined" ? null : localStorage;
-  } catch {
-    return null;
-  }
+  return typeof localStorage === "undefined" ? null : localStorage;
 }
 
 function load(): SaveData {
-  const storage = browserStorage();
+  let storage: SaveStorage | null;
+  try {
+    storage = browserStorage();
+  } catch (error) {
+    lastSaveStatus = createSaveStatus("rejected", "none", null, [], [], false, false, {
+      errorCode: "read-failed",
+      error: String(error instanceof Error ? error.message : error),
+    });
+    return emptySave();
+  }
   if (!storage) {
     lastSaveStatus = createSaveStatus("empty", "none", null);
     return emptySave();
@@ -66,7 +71,16 @@ function write(data: SaveData) {
   // A rejected read owns the source bytes until RSH-022 provides an explicit
   // recovery decision. Automatic flushes and setters must not destroy them.
   if (lastSaveStatus.state === "rejected") return false;
-  const storage = browserStorage();
+  let storage: SaveStorage | null;
+  try {
+    storage = browserStorage();
+  } catch (error) {
+    lastSaveStatus = createSaveStatus("write-failed", "current", SAVE_SCHEMA_VERSION, [], [], false, false, {
+      errorCode: "write-failed",
+      error: String(error instanceof Error ? error.message : error),
+    });
+    return false;
+  }
   if (!storage) return false;
   const raw = canonicalSaveString(data);
   try {

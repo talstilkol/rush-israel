@@ -171,19 +171,27 @@ test("the committed RSH-021 save-schema authority passes and RSH-022 remains abs
   assert.equal(manifest.deferred_boundary.rsh_022_authorized, false);
 });
 
-
-test("the save facade catches storage acquisition and preserves rejected source bytes", () => {
+test("the save facade rejects storage acquisition failures and preserves rejected source bytes", () => {
   const source = readFileSync(fromRoot("src", "game", "save.ts"), "utf8");
   assert.ok(source.includes(`function browserStorage(): SaveStorage | null {
-  try {
-    return typeof localStorage === "undefined" ? null : localStorage;
-  } catch {
-    return null;
-  }
+  return typeof localStorage === "undefined" ? null : localStorage;
 }`));
+  assert.ok(source.includes(`function load(): SaveData {
+  let storage: SaveStorage | null;
+  try {
+    storage = browserStorage();
+  } catch (error) {
+    lastSaveStatus = createSaveStatus("rejected", "none", null, [], [], false, false, {
+      errorCode: "read-failed",
+      error: String(error instanceof Error ? error.message : error),
+    });
+    return emptySave();
+  }`));
   assert.ok(source.includes(`function write(data: SaveData) {
   // A rejected read owns the source bytes until RSH-022 provides an explicit
   // recovery decision. Automatic flushes and setters must not destroy them.
   if (lastSaveStatus.state === "rejected") return false;
-  const storage = browserStorage();`));
+  let storage: SaveStorage | null;`));
+  const manifest = JSON.parse(readFileSync(fromRoot("SAVE-SCHEMA-MANIFEST.json"), "utf8"));
+  assert.equal(manifest.failure_policy.read_failure, "reject_without_overwrite_with_structured_status");
 });
