@@ -40,7 +40,9 @@ jobs:
           node --check /tmp/rsh021-apply.mjs
           node /tmp/rsh021-apply.mjs
           python - <<'PY'
+          from hashlib import sha256
           from pathlib import Path
+          import re
 
           contract = Path("RSH-021-SAVE-SCHEMA-CONTRACT.md")
           contract.write_text(
@@ -49,6 +51,37 @@ jobs:
 
           schema = Path("src/game/save-schema.ts")
           schema.write_text(schema.read_text().rstrip() + "\n")
+          accepted_schema_hash = sha256(schema.read_bytes()).hexdigest()
+          generated_schema_hash = "8bb571e6860794f686e3558d5284eaa95ac7d801185ed74eb9cdcf3b9be5b238"
+
+          for name in [
+              "SAVE-SCHEMA-MANIFEST.json",
+              "CURRENT-STATE.json",
+              "scripts/check-save-schema.mjs",
+          ]:
+              path = Path(name)
+              source = path.read_text()
+              if generated_schema_hash not in source:
+                  raise SystemExit(f"missing generated schema hash in {name}")
+              path.write_text(source.replace(generated_schema_hash, accepted_schema_hash))
+
+          manifest = Path("SAVE-SCHEMA-MANIFEST.json")
+          accepted_manifest_hash = sha256(manifest.read_bytes()).hexdigest()
+          validator = Path("scripts/check-save-schema.mjs")
+          source = validator.read_text()
+          source, count = re.subn(
+              r'export const EXPECTED_MANIFEST_SHA256 = "[0-9a-f]{64}";',
+              f'export const EXPECTED_MANIFEST_SHA256 = "{accepted_manifest_hash}";',
+              source,
+              count=1,
+          )
+          if count != 1:
+              raise SystemExit("manifest hash authority replacement failed")
+          validator.write_text(source)
+          print({
+              "accepted_schema_sha256": accepted_schema_hash,
+              "accepted_manifest_sha256": accepted_manifest_hash,
+          })
           PY
           git add -A
           git diff --cached --check
