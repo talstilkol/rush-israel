@@ -86,6 +86,9 @@ jobs:
           });
           EOF
 
+      - name: Normalize Markdown patch hygiene
+        run: sed -i 's/[[:space:]]\+$//' MILESTONE-REGISTER.md NEXT-CONTRACT.md
+
       - name: Install exact reduced dependency tree
         run: npm ci
 
