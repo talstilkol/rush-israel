@@ -46,11 +46,33 @@ test("retained PWA compatibility and Nitro pin fail closed", () => {
   assert.match(messages(validateDependencyBoundary(nitro)), /package.json identity|dependency map|Nitro/);
 });
 
-test("RSH-021 precreation and temporary RSH-020 files fail closed", () => {
+test("tracked build output and a missing ignore rule fail closed", () => {
+  for (const path of [
+    ".vercel/output/config.json",
+    "dist/assets/index.js",
+    ".output/server/index.mjs",
+    ".nitro/types/nitro.d.ts",
+  ]) {
+    const input = baseline();
+    input.repositoryFiles.push(path);
+    assert.match(messages(validateDependencyBoundary(input)), /generated build output is tracked/, path);
+  }
+  const ignore = baseline();
+  ignore.ignoreSource = ignore.ignoreSource.replace(/^\.vercel\/\r?\n?/m, "");
+  assert.match(messages(validateDependencyBoundary(ignore)), /not excluded by \.gitignore/);
+});
+
+test("RSH-021 precreation and every temporary RSH-020 transport fail closed", () => {
   const later = baseline();
   later.repositoryFiles.push("RSH-021-PREFLIGHT.json");
   assert.match(messages(validateDependencyBoundary(later)), /RSH-021 was precreated/);
-  const temp = baseline();
-  temp.repositoryFiles.push("scripts/rsh020-apply.mjs");
-  assert.match(messages(validateDependencyBoundary(temp)), /temporary RSH-020 files remain/);
+  for (const path of [
+    ".rsh020-apply.00",
+    ".github/workflows/rsh-020-cleanup.yml",
+    "scripts/rsh020-apply.mjs",
+  ]) {
+    const input = baseline();
+    input.repositoryFiles.push(path);
+    assert.match(messages(validateDependencyBoundary(input)), /temporary RSH-020 files remain/, path);
+  }
 });
