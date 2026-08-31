@@ -35,6 +35,10 @@ assets, dependencies or distribution policy.
   no silent rollback to older legacy bytes is allowed.
 - A valid backup is migrated through the accepted RSH-021 graph, serialized
   canonically, written to the current key and verified.
+- If writing a new valid state fails after the previous current bytes were
+  backed up, the new state remains in a canonical in-memory pending buffer and
+  the visible action retries that exact pending write before any stale reload.
+  Restoring the unchanged older backup is not presented as a substitute.
 - Rejected current bytes are preserved before replacement in one of two bounded
   slots: `rush-v1-rejected` and `rush-v1-rejected-previous`.
 - If both rejected-save slots contain different bytes, recovery fails closed

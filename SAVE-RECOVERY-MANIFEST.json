@@ -3,7 +3,7 @@
   "document_type": "rush-save-recovery-manifest",
   "unit": "RSH-022",
   "title": "Add save backup, corruption recovery and user-visible failure handling",
-  "generated_at": "2026-08-31T11:05:30.630Z",
+  "generated_at": "2026-08-31T17:18:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "implementation_base": {
@@ -54,7 +54,10 @@
     "fresh_start_requires_no_valid_active_save": true,
     "fresh_start_confirmation_steps": 2,
     "fail_closed_when_quarantine_full": true,
-    "valid_legacy_does_not_block_explicit_backup_restore": true
+    "valid_legacy_does_not_block_explicit_backup_restore": true,
+    "pending_write_retained_in_memory": true,
+    "pending_write_retry_before_reload": true,
+    "failed_current_write_action": "retry"
   },
   "failure_ui": {
     "event": "rush-save-status",
@@ -66,7 +69,8 @@
     "dismiss_mutates_storage": false,
     "focus_enters_dialog": true,
     "focus_restored_on_close": true,
-    "success_to_failure_focus_capture": true
+    "success_to_failure_focus_capture": true,
+    "write_failure_action": "retry"
   },
   "preservation": {
     "timed_record_changes": 0,
@@ -82,10 +86,10 @@
     "release_gates_total": 13
   },
   "identities": {
-    "recovery_source_sha256": "e86c5ebacf6208602d7f4ddcaee1ca8f378df533936a365a3dc2bb2d706c9028",
+    "recovery_source_sha256": "34ac79d2e31f6ae630f66b8e8020b5a724f5d9874ad7d348e0beb1a8344476a0",
     "ui_source_sha256": "82fd7900ea252f3793ba6a54859083223a36cd052cea0745145cbc4a2f0875d5",
-    "save_facade_sha256": "0a90fcca530c76ed9581a9fbb984b29f7c2fd751d76c54c524b5114dbc17ac67",
-    "test_source_sha256": "a2930c84e2ae12a85b76bc9133be337b85f7444c935af269bc70a97087101a1a",
+    "save_facade_sha256": "ab30fa558c2174eafa3a41d210ec8569da27470def62a9c30e0a41229144f3fb",
+    "test_source_sha256": "8e8fe66b1e637dc687550a45508e04f2175c6250e213971c512eccdb659edefa",
     "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
     "records_source_sha256": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",

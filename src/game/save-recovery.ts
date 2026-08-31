@@ -448,7 +448,7 @@ export function writeSaveWithBackup(storage: SaveStorage, data: SaveData): SaveP
 
   const write = writeVerified(storage, SAVE_KEY, nextRaw);
   if (!write.ok) {
-    return writeFailure(source, data, priorParsed, write.error, "recovery-write-failed", true, "restore-backup");
+    return writeFailure(source, data, priorParsed, write.error, "recovery-write-failed", true);
   }
   const base = createSaveStatus("saved", "current", SAVE_SCHEMA_VERSION, [], [], true, true);
   return {

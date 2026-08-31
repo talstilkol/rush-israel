@@ -119,6 +119,22 @@ test("a later save rotates the exact prior current bytes into the backup", () =>
   assert.equal(JSON.parse(storage.values.get(schema.SAVE_KEY)).cash, 800);
 });
 
+test("a failed current write preserves the new data and requests retry instead of stale restore", () => {
+  const oldRaw = schema.canonicalSaveString(save(805));
+  const olderBackup = schema.canonicalSaveString(save(790));
+  const storage = memoryStorage(
+    { [schema.SAVE_KEY]: oldRaw, [recovery.SAVE_BACKUP_KEY]: olderBackup },
+    { failWrite: schema.SAVE_KEY },
+  );
+  const result = recovery.writeSaveWithBackup(storage, save(930));
+  assert.equal(result.status.state, "write-failed");
+  assert.equal(result.status.recoveryAction, "retry");
+  assert.equal(result.status.backupAvailable, true);
+  assert.equal(result.data.cash, 930);
+  assert.equal(storage.values.get(schema.SAVE_KEY), oldRaw);
+  assert.equal(storage.values.get(recovery.SAVE_BACKUP_KEY), oldRaw);
+});
+
 test("migration and repair back up exact source bytes before canonical overwrite", () => {
   const oldRaw = JSON.stringify({ version: 1, best: { ayalon: 45 } });
   const storage = memoryStorage({ [schema.SAVE_KEY]: oldRaw });
@@ -409,6 +425,21 @@ test("the visible recovery notice preserves confirmation state and reappears aft
   replacementDismiss.click();
   assert.equal(document.activeElement, previousFocus);
   assert.equal(events.every((event) => event.type === recoveryUi.SAVE_STATUS_EVENT), true);
+});
+
+test("the save facade retains a canonical pending write and retries it before reloading stale storage", () => {
+  const source = readFileSync(fromRoot("src", "game", "save.ts"), "utf8");
+  for (const token of [
+    "let pendingSaveData: SaveData | null = null",
+    "function cloneSaveData(data: SaveData): SaveData",
+    "if (pendingSaveData !== null)",
+    "pendingSaveData = cloneSaveData(data)",
+    "pendingSaveData = cloneSaveData(result.data)",
+    "if (result.status.state === \"saved\") pendingSaveData = null",
+    "const pending = pendingSaveData",
+    "write(cloneSaveData(pending))",
+  ]) assert.ok(source.includes(token), `missing pending-write token: ${token}`);
+  assert.ok(source.indexOf("const pending = pendingSaveData") < source.indexOf("load();\n  return lastSaveStatus;"));
 });
 
 test("the committed RSH-022 recovery authority passes and RSH-023 remains absent", () => {

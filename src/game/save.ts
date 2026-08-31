@@ -7,6 +7,7 @@ import { isLiveRecord, recordPayload, sha256hex, writeRecords, REC_KEY, type Tim
 import {
   GHOST_KEY,
   SAVE_SCHEMA_VERSION,
+  canonicalSaveString,
   createSaveStatus,
   emptySave,
   type SaveData,
@@ -64,6 +65,11 @@ export { SAVE_STATUS_EVENT } from "./save-recovery-ui";
 let lastSaveStatus: SavePersistenceStatus = createSavePersistenceStatus(
   createSaveStatus("empty", "none", null),
 );
+let pendingSaveData: SaveData | null = null;
+
+function cloneSaveData(data: SaveData): SaveData {
+  return JSON.parse(canonicalSaveString(data)) as SaveData;
+}
 
 export function getSaveStatus() {
   return lastSaveStatus;
@@ -105,6 +111,10 @@ function writeStorageStatus(error: unknown) {
 }
 
 function load(): SaveData {
+  if (pendingSaveData !== null) {
+    publishStatus();
+    return cloneSaveData(pendingSaveData);
+  }
   let storage: SaveStorage | null;
   try {
     storage = browserStorage();
@@ -134,6 +144,7 @@ function write(data: SaveData) {
   try {
     storage = browserStorage();
   } catch (error) {
+    pendingSaveData = cloneSaveData(data);
     lastSaveStatus = writeStorageStatus(error);
     publishStatus();
     return false;
@@ -141,6 +152,8 @@ function write(data: SaveData) {
   if (!storage) return false;
   const result = writeSaveWithBackup(storage, data);
   lastSaveStatus = result.status;
+  if (result.status.state === "saved") pendingSaveData = null;
+  else if (result.status.state === "write-failed") pendingSaveData = cloneSaveData(result.data);
   publishStatus();
   return result.status.state === "saved";
 }
@@ -167,6 +180,7 @@ export function restoreSaveBackup() {
   if (!storage) return false;
   const result = restoreSaveFromBackup(storage);
   lastSaveStatus = result.status;
+  if (result.status.state === "recovered") pendingSaveData = null;
   publishStatus();
   return result.status.state === "recovered";
 }
@@ -183,11 +197,17 @@ export function startFreshSaveAfterFailure() {
   if (!storage) return false;
   const result = startFreshSaveAfterRejection(storage);
   lastSaveStatus = result.status;
+  if (result.status.state === "fresh-started") pendingSaveData = null;
   publishStatus();
   return result.status.state === "fresh-started";
 }
 
 export function retrySavePersistence() {
+  const pending = pendingSaveData;
+  if (pending !== null) {
+    write(cloneSaveData(pending));
+    return lastSaveStatus;
+  }
   load();
   return lastSaveStatus;
 }
