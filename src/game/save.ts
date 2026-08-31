@@ -4,71 +4,76 @@ import { CAR_UNLOCK } from "./career";
 import { emptyTune, type GhostFrame } from "./garage";
 import { PHYSICS_VERSION } from "./physics";
 import { isLiveRecord, recordPayload, sha256hex, writeRecords, REC_KEY, type TimedRecord } from "./records";
+import {
+  GHOST_KEY,
+  SAVE_KEY,
+  SAVE_SCHEMA_VERSION,
+  canonicalSaveString,
+  createSaveStatus,
+  emptySave,
+  loadSaveFromStorage,
+  type SaveData,
+  type SaveLoadStatus,
+  type SaveStorage,
+} from "./save-schema";
 
-const KEY = "rush-v1";
-const LEGACY = "tlv-rush-v1";
-const GHOST_KEY = "rush-ghosts-v1";
+export {
+  GHOST_KEY,
+  LEGACY_SAVE_KEY,
+  SAVE_KEY,
+  SAVE_MIGRATIONS,
+  SAVE_SCHEMA_VERSION,
+  SaveMigrationError,
+  canonicalSaveString,
+  emptySave,
+  loadSaveFromStorage,
+  migrateSave,
+  type SaveData,
+  type SaveLoadStatus,
+  type SaveMigrationCode,
+  type SaveMigrationResult,
+  type SaveStorage,
+} from "./save-schema";
 
-type SaveData = {
-  version: 3;
-  best: Partial<Record<TrackId, number>>;
-  muted?: boolean;
-  night?: boolean;
-  quality?: Quality;
-  fov?: number;
-  career: { stars: Partial<Record<string, number>> };
-  cash: number;
-  tunes: Partial<Record<CarId, Tune>>;
-  damage: Partial<Record<CarId, number>>;
-  dailyDone?: string;
-  weeklyDone?: string;
-  handling?: HandlingMode;
-  assists?: AssistFlags;
-  lang?: Lang;
-};
+const KEY = SAVE_KEY;
 
-function empty(): SaveData {
-  return { version: 3, best: {}, career: { stars: {} }, cash: 500, tunes: {}, damage: {}, handling: "arcade" };
+let lastSaveStatus: SaveLoadStatus = createSaveStatus("empty", "none", null);
+
+export function getSaveStatus() {
+  return lastSaveStatus;
+}
+
+function browserStorage(): SaveStorage | null {
+  return typeof localStorage === "undefined" ? null : localStorage;
 }
 
 function load(): SaveData {
-  try {
-    const raw = localStorage.getItem(KEY) ?? localStorage.getItem(LEGACY);
-    if (!raw) return empty();
-    const p = JSON.parse(raw) as Partial<SaveData> & { version?: number };
-    return {
-      version: 3,
-      best: p.best ?? {},
-      muted: p.muted,
-      night: p.night,
-      quality: p.quality,
-      fov: p.fov,
-      career: { stars: p.career?.stars ?? {} },
-      cash: typeof p.cash === "number" ? p.cash : 500,
-      tunes: p.tunes ?? {},
-      damage: p.damage ?? {},
-      dailyDone: p.dailyDone,
-      weeklyDone: p.weeklyDone,
-      handling: p.handling === "simcade" ? "simcade" : "arcade",
-      assists: {
-        abs: p.assists?.abs !== false,
-        tcs: p.assists?.tcs !== false,
-        esc: p.assists?.esc !== false,
-      },
-      lang: p.lang === "ar" || p.lang === "en" || p.lang === "he" ? p.lang : undefined,
-    };
-  } catch {
-    return empty();
+  const storage = browserStorage();
+  if (!storage) {
+    lastSaveStatus = createSaveStatus("empty", "none", null);
+    return emptySave();
   }
+  const result = loadSaveFromStorage(storage);
+  lastSaveStatus = result.status;
+  return result.data;
 }
 
 function write(data: SaveData) {
+  const storage = browserStorage();
+  if (!storage) return false;
+  const raw = canonicalSaveString(data);
   try {
-    const raw = JSON.stringify(data);
-    localStorage.setItem(KEY, raw);
-    if (localStorage.getItem(KEY) !== raw) throw new Error("save mismatch");
-  } catch {
-    /* quota or verify fail */
+    storage.setItem(KEY, raw);
+    const verified = storage.getItem(KEY) === raw;
+    if (!verified) throw new Error("save verification mismatch");
+    lastSaveStatus = createSaveStatus("saved", "current", SAVE_SCHEMA_VERSION, [], [], true, true);
+    return true;
+  } catch (error) {
+    lastSaveStatus = createSaveStatus("write-failed", "current", SAVE_SCHEMA_VERSION, [], [], false, false, {
+      errorCode: "write-failed",
+      error: String(error instanceof Error ? error.message : error),
+    });
+    return false;
   }
 }
 

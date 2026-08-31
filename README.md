@@ -78,6 +78,20 @@ npm run build:dev
 
 Authentication, database, migrations, multiplayer and preview-host template code are not part of Version 1 and are absent from the runtime. The retained `/__grok/*` URLs serve the product-specific PWA only. See `DEPENDENCY-POLICY.md` and `DEPENDENCY-BOUNDARY-MANIFEST.json`.
 
+## סכמת שמירה — RSH-021
+
+| מדד | ערך |
+|---|---:|
+| גרסה נוכחית | 3 |
+| גרסאות מקור נתמכות | 0, 1, 2, 3 |
+| מסלול מיגרציה | 0→1→2→3 |
+| כתיבה קנונית דטרמיניסטית | כן |
+| דריסת שמירה פגומה/עתידית | לא |
+| מחיקת מפתח Legacy | לא |
+| Backup ושחזור | נדחה ל־RSH-022 |
+
+הסמכות: `SAVE-SCHEMA-MANIFEST.json` ו־`RSH-021-SAVE-SCHEMA-CONTRACT.md`.
+
 ## שליטה
 
 `W` גז · `A`/`D` הגה · `Esc` תפריט. תמיכת Touch ו־Gamepad כלולה בגבול

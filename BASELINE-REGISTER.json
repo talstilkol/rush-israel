@@ -1,7 +1,7 @@
 {
-  "schema_version": "7.0.0",
+  "schema_version": "8.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-08-31T03:24:46.948Z",
+  "generated_at": "2026-08-31T06:05:19.924Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -356,23 +356,45 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-08-31T03:24:46.948Z",
       "description": "Typed resource ownership, deterministic disposal and zero-delta two-cycle texture/geometry accounting accepted."
+    },
+    {
+      "id": "B020-rsh-020-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-020",
+      "branch": "agent/rsh-020-template-dependency-isolation",
+      "pull_request": 23,
+      "commit_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
+      "tree_sha": "c9a90bf17214b51a8247b814ac38b15c616b2252",
+      "validated_head_sha": "c189aa85fdc60f4821d359158dfd86137ab341d0",
+      "workflow_run": 33354723382,
+      "workflow_job": 99374612704,
+      "artifact_id": 9744813820,
+      "artifact_digest": "sha256:e69b650da275a1135bbf0c7e20e46a34775935ac05d3a249b33c70ec4ab09856",
+      "post_merge_workflow_run": 33355375432,
+      "post_merge_workflow_job": 99376374677,
+      "post_merge_artifact_id": 9745001664,
+      "post_merge_artifact_digest": "sha256:dfbb1b9c39f699cfc4cfd690987de2d0d24e70133a38883c9724eb3e999f720b",
+      "codex_review": 5062984826,
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-08-31T06:05:19.924Z",
+      "description": "Unused auth, DB, multiplayer and template surfaces removed; direct package boundary reduced from 74 to 30 and accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-020",
+    "unit": "RSH-021",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "53a23eb22952f8ea077b6a164757f03eb1d5ac1c",
-    "branch": "agent/rsh-020-template-dependency-isolation",
-    "manifest": "DEPENDENCY-BOUNDARY-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-020 pull request"
+    "implementation_base_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
+    "branch": "agent/rsh-021-save-schema-migrations",
+    "manifest": "SAVE-SCHEMA-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-021 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-021",
+    "queue_head": "RSH-022",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_021_authorized": false
+    "RSH_022_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

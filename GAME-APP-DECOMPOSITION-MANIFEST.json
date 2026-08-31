@@ -406,15 +406,19 @@
     "rsh_019_state": "accepted",
     "rsh_020_started": true,
     "rsh_020_authorized": true,
-    "rsh_020_state": "accepted_on_merge",
-    "rsh_021_started": false,
-    "rsh_021_authorized": false,
+    "rsh_020_state": "accepted",
+    "rsh_021_started": true,
+    "rsh_021_authorized": true,
     "forbidden_prefixes": [
-      ".rsh021",
-      ".github/workflows/rsh-021-",
-      "RSH-021-",
+      ".rsh022",
+      ".github/workflows/rsh-022-",
+      "RSH-022-",
       "src/auth-v3/",
-      "src/multiplayer-v3/"
-    ]
+      "src/multiplayer-v3/",
+      "src/game/save-recovery/"
+    ],
+    "rsh_021_state": "accepted_on_merge",
+    "rsh_022_started": false,
+    "rsh_022_authorized": false
   }
 }
