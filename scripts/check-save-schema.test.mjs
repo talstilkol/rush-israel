@@ -161,37 +161,42 @@ test("read and write failures return explicit structured status", () => {
   assert.equal(write.data.best.ayalon, 44);
 });
 
-test("the committed RSH-021 save-schema authority passes and RSH-022 remains absent", () => {
+test("the RSH-021 schema remains exact beneath the accepted RSH-022 recovery overlay", () => {
   const result = validateSaveSchema();
   assert.deepEqual(result.errors, []);
   assert.equal(result.currentVersion, 3);
   assert.equal(result.migrationCount, 3);
   const manifest = JSON.parse(readFileSync(fromRoot("SAVE-SCHEMA-MANIFEST.json"), "utf8"));
-  assert.equal(manifest.deferred_boundary.rsh_022_started, false);
-  assert.equal(manifest.deferred_boundary.rsh_022_authorized, false);
+  assert.equal(manifest.identities.schema_source_sha256, "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358");
+  assert.equal(manifest.identities.save_facade_source_sha256, "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24");
+  assert.equal(manifest.recovery.backups_created, true);
+  assert.equal(manifest.recovery.backup_restore, true);
+  assert.equal(manifest.recovery.user_visible_failure_ui, true);
+  assert.equal(manifest.deferred_boundary.rsh_022_started, true);
+  assert.equal(manifest.deferred_boundary.rsh_022_authorized, true);
+  assert.equal(manifest.deferred_boundary.rsh_022_state, "accepted_on_merge");
+  assert.equal(manifest.deferred_boundary.rsh_023_started, false);
+  assert.equal(manifest.deferred_boundary.rsh_023_authorized, false);
 });
 
-test("the save facade rejects storage acquisition failures and preserves rejected source bytes", () => {
+test("the save facade preserves rejected bytes and delegates explicit recovery", () => {
   const source = readFileSync(fromRoot("src", "game", "save.ts"), "utf8");
   assert.ok(source.includes(`function browserStorage(): SaveStorage | null {
   return typeof localStorage === "undefined" ? null : localStorage;
 }`));
-  assert.ok(source.includes(`function load(): SaveData {
-  let storage: SaveStorage | null;
-  try {
-    storage = browserStorage();
-  } catch (error) {
-    lastSaveStatus = createSaveStatus("rejected", "none", null, [], [], false, false, {
-      errorCode: "read-failed",
-      error: String(error instanceof Error ? error.message : error),
-    });
-    return emptySave();
-  }`));
-  assert.ok(source.includes(`function write(data: SaveData) {
-  // A rejected read owns the source bytes until RSH-022 provides an explicit
-  // recovery decision. Automatic flushes and setters must not destroy them.
-  if (lastSaveStatus.state === "rejected") return false;
-  let storage: SaveStorage | null;`));
+  assert.ok(source.includes("function rejectedStorageStatus(error: unknown)"));
+  assert.ok(source.includes('errorCode: "read-failed"'));
+  assert.ok(source.includes("const result = loadSaveWithRecovery(storage);"));
+  assert.ok(source.includes('if (lastSaveStatus.state === "rejected" || lastSaveStatus.state === "recovery-available")'));
+  assert.ok(source.includes("retryPendingSaveWithBackup(storage, data)"));
+  assert.ok(source.includes("const retryFromPending = pendingRetry || pendingSaveData !== null"));
+  assert.ok(source.includes('if (result.status.state === "write-failed" && result.status.recoveryAction === "retry")'));
+  assert.ok(source.includes("write(cloneSaveData(pending), true)"));
+  assert.ok(source.includes("export function restoreSaveBackup()"));
+  assert.ok(source.includes("export function startFreshSaveAfterFailure()"));
+  assert.ok(source.includes("export function retrySavePersistence()"));
   const manifest = JSON.parse(readFileSync(fromRoot("SAVE-SCHEMA-MANIFEST.json"), "utf8"));
   assert.equal(manifest.failure_policy.read_failure, "reject_without_overwrite_with_structured_status");
+  assert.equal(manifest.rsh_022_overlay.automatic_restore, false);
+  assert.equal(manifest.rsh_022_overlay.explicit_restore, true);
 });

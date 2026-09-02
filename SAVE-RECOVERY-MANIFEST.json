@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-save-recovery-manifest",
+  "unit": "RSH-022",
+  "title": "Add save backup, corruption recovery and user-visible failure handling",
+  "generated_at": "2026-08-31T17:35:03.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b",
+    "tree_sha": "56da87772e707c7e4002264db25f447aa1074346",
+    "branch": "agent/rsh-022-save-recovery"
+  },
+  "schema_authority": {
+    "manifest": "SAVE-SCHEMA-MANIFEST.json",
+    "version": 3,
+    "migration_edges": [
+      "0→1",
+      "1→2",
+      "2→3"
+    ],
+    "changed": false
+  },
+  "storage": {
+    "current_key": "rush-v1",
+    "legacy_key": "tlv-rush-v1",
+    "backup_key": "rush-v1-backup",
+    "rejected_current_keys": [
+      "rush-v1-rejected",
+      "rush-v1-rejected-previous"
+    ],
+    "rejected_backup_key": "rush-v1-backup-rejected",
+    "legacy_bytes_removed_or_rewritten": false,
+    "remove_item_used": false,
+    "clear_used": false
+  },
+  "backup_policy": {
+    "generations": 1,
+    "seed_before_first_current_write": true,
+    "rotate_exact_previous_current_before_overwrite": true,
+    "backup_before_migration_or_repair": true,
+    "verify_every_backup_write": true,
+    "unsafe_current_overwrite_on_backup_failure": false,
+    "invalid_backup_quarantined_before_reuse": true,
+    "prefer_valid_backup_when_current_missing": true,
+    "pending_first_save_retry_requires_matching_backup": true
+  },
+  "recovery_policy": {
+    "automatic_restore": false,
+    "explicit_restore": true,
+    "restore_migrates_and_canonicalizes": true,
+    "rejected_current_quarantine_slots": 2,
+    "exact_rejected_bytes_preserved": true,
+    "fresh_start_requires_no_valid_backup": true,
+    "fresh_start_requires_no_valid_active_save": true,
+    "fresh_start_confirmation_steps": 2,
+    "fail_closed_when_quarantine_full": true,
+    "valid_legacy_does_not_block_explicit_backup_restore": true,
+    "pending_write_retained_in_memory": true,
+    "pending_write_retry_before_reload": true,
+    "failed_current_write_action": "retry",
+    "pending_retry_requires_explicit_context": true,
+    "pending_retry_completes_seeded_first_save": true,
+    "canonicalization_write_failure_action": "retry",
+    "canonicalization_pending_data_retained": true,
+    "pending_retry_applies_follow_up_mutations": true,
+    "pending_retry_overwrites_untrusted_current": true
+  },
+  "failure_ui": {
+    "event": "rush-save-status",
+    "bilingual_hebrew_english": true,
+    "failure_role": "alertdialog",
+    "failure_live_region": "assertive",
+    "success_role": "status",
+    "html_injection_used": false,
+    "dismiss_mutates_storage": false,
+    "focus_enters_dialog": true,
+    "focus_restored_on_close": true,
+    "success_to_failure_focus_capture": true,
+    "focus_ignores_replaced_notice_controls": true,
+    "write_failure_action": "retry"
+  },
+  "preservation": {
+    "timed_record_changes": 0,
+    "ghost_schema_changes": 0,
+    "track_data_changes": 0,
+    "physics_changes": 0,
+    "rendering_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "unverified_asset_files": 66,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "recovery_source_sha256": "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f",
+    "ui_source_sha256": "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26",
+    "save_facade_sha256": "9baf63c3ec5f9f1b50984db4f184103c65b09709409af33204aa28ea7cd497e7",
+    "test_source_sha256": "fc504c6985cf7d21f68b86a6e2bdcba06144397cc9b499d78aa369aacaafa442",
+    "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
+    "records_source_sha256": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "package_lock_sha256": "55afd975f03b12867aada083c375e2fadc402b654ddaf0f0934807966fa9f1ed",
+    "timed_record_block_sha256": "cc6e8965d45653f1a1f3f4f506589b8729ec54a8c9c0b7667d9a4cf0e3d717e7",
+    "ghost_block_sha256": "59948dace66f2683d4f7cfc480f270579727dd94be257f5ea6637bd18e217674"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-023",
+    "rsh_023_authorized": false,
+    "rsh_023_started": false,
+    "forbidden_prefixes": [
+      ".rsh023",
+      ".github/workflows/rsh-023-",
+      "RSH-023-",
+      "scripts/rsh023-",
+      "src/game/records-v2/"
+    ]
+  }
+}

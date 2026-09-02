@@ -1,24 +1,24 @@
 {
-  "schema_version": "10.0.0",
+  "schema_version": "11.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-31T06:05:19.924Z",
+  "generated_at": "2026-08-31T07:45:28.147Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_021_pull_request",
-    "implementation_base_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
-    "self_reference_boundary": "The RSH-021 candidate cannot contain its own future merge SHA. Exact PR, merge and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_022_pull_request",
+    "implementation_base_sha": "9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b",
+    "self_reference_boundary": "The RSH-022 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
-    "tree_sha": "c9a90bf17214b51a8247b814ac38b15c616b2252",
-    "commit_authored_at": "2026-08-31T06:55:18+03:00",
-    "commit_message": "Merge PR #23: RSH-020 — Isolate unused auth, DB, multiplayer and template dependencies",
+    "head_sha": "9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b",
+    "tree_sha": "56da87772e707c7e4002264db25f447aa1074346",
+    "commit_authored_at": "2026-08-31T09:46:25+03:00",
+    "commit_message": "Merge PR #24: RSH-021 — Version save schema and deterministic migrations",
     "commit_signature_verified": true,
-    "role": "RSH-021 exact implementation base"
+    "role": "RSH-022 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 21,
+    "accepted_units": 22,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 46,
-    "remaining_units": 46,
-    "queue_head": "RSH-022",
+    "deferred_units": 45,
+    "remaining_units": 45,
+    "queue_head": "RSH-023",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -493,7 +493,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-021": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-021-save-schema-migrations",
       "pull_request_resolution": "the pull request created from the exact RSH-021 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -523,16 +523,70 @@
       "rendering_changes": 0,
       "asset_changes": 0,
       "dependency_changes": 0,
-      "rsh_022_created": false
+      "rsh_022_created": true,
+      "pull_request": 24,
+      "validated_head_sha": "19cb2f24002f916153e4e4af092f7173fd8fbb20",
+      "candidate_tree_sha": "56da87772e707c7e4002264db25f447aa1074346",
+      "merge_sha": "9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b",
+      "tree_sha": "56da87772e707c7e4002264db25f447aa1074346",
+      "workflow_run": 33364964128,
+      "workflow_job": 99403593924,
+      "artifact_id": 9748018424,
+      "artifact_digest": "sha256:d9ea1530a76d4fbf849602790272a6a233f5a168de4e05ffcab902af4051655d",
+      "artifact_size": 1207,
+      "post_merge_workflow_run": 33365553536,
+      "post_merge_workflow_job": 99405336791,
+      "post_merge_artifact_id": 9748222110,
+      "post_merge_artifact_digest": "sha256:f46e71bb5b3dfacf2792cdff1056075afa7e27fd68464bdbb58c4a54429d57a0",
+      "post_merge_artifact_size": 1177,
+      "codex_review": 5063773430,
+      "unresolved_review_threads": 0
+    },
+    "RSH-022": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-022-save-recovery",
+      "pull_request_resolution": "the pull request created from the exact RSH-022 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-022 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-022 merge SHA",
+      "manifest": "SAVE-RECOVERY-MANIFEST.json",
+      "contract": "RSH-022-SAVE-RECOVERY-CONTRACT.md",
+      "recovery_source": "src/game/save-recovery.ts",
+      "ui_source": "src/game/save-recovery-ui.ts",
+      "save_facade": "src/game/save.ts",
+      "backup_key": "rush-v1-backup",
+      "rejected_current_keys": [
+        "rush-v1-rejected",
+        "rush-v1-rejected-previous"
+      ],
+      "rejected_backup_key": "rush-v1-backup-rejected",
+      "backup_generations": 1,
+      "automatic_restore": false,
+      "explicit_restore": true,
+      "fresh_start_confirmation_steps": 2,
+      "user_visible_failure_ui": true,
+      "schema_version": 3,
+      "migration_edges": 3,
+      "legacy_source_removed": false,
+      "remove_item_used": false,
+      "clear_used": false,
+      "timed_record_changes": 0,
+      "ghost_schema_changes": 0,
+      "track_data_changes": 0,
+      "physics_changes": 0,
+      "rendering_changes": 0,
+      "asset_changes": 0,
+      "dependency_changes": 0,
+      "rsh_023_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-021",
+    "unit": "RSH-022",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-021-save-schema-migrations",
+    "branch": "agent/rsh-022-save-recovery",
     "authority_consumed": true,
-    "next_unit": "RSH-022",
+    "next_unit": "RSH-023",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -570,7 +624,10 @@
     "RSH-021_authorized": false,
     "RSH-021_was_separately_authorized": true,
     "RSH-021_authorization_consumed": true,
-    "RSH-022_authorized": false
+    "RSH-022_authorized": false,
+    "RSH-022_was_separately_authorized": true,
+    "RSH-022_authorization_consumed": true,
+    "RSH-023_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -637,16 +694,16 @@
     "p1": 18,
     "p2": 12,
     "open": 16,
-    "mitigated": 8,
-    "closed": 18,
+    "mitigated": 7,
+    "closed": 19,
     "register": "FINDINGS-REGISTER.md"
   },
   "constraints": [
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The plain next instruction authorized exactly RSH-021 and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-022.",
+    "The plain next instruction authorized exactly RSH-022 and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-023.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13."
   ],
@@ -658,10 +715,10 @@
     "public_shipping_files": 134,
     "public_asset_files": 131,
     "unverified_public_asset_files": 66,
-    "game_source_changes": 4,
+    "game_source_changes": 3,
     "asset_binary_changes": 0,
     "dependency_version_changes": 0,
-    "package_lock_changes": 1,
+    "package_lock_changes": 0,
     "RSH-013_precreated": false,
     "RSH-015_authorized": true,
     "track_schema_version": "1.0.2",
@@ -733,7 +790,15 @@
     "RSH_021_save_facade_source_sha256": "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24",
     "RSH_021_record_changes": 0,
     "RSH_021_ghost_changes": 0,
-    "RSH_022_precreated": false
+    "RSH_022_precreated": false,
+    "RSH_022_authorized": true,
+    "RSH_022_authorization_consumed_on_merge": true,
+    "RSH_022_backup_generations": 1,
+    "RSH_022_quarantine_slots": 2,
+    "RSH_022_schema_version": 3,
+    "RSH_022_record_changes": 0,
+    "RSH_022_ghost_changes": 0,
+    "RSH_023_precreated": false
   },
   "rsh_013_schema": {
     "machine_authority": "TRACK-SCHEMA.json",
@@ -766,12 +831,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-021"
+      "RSH-022"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-021_merge",
-    "RSH_022_authorized": false
+    "state": "consumed_on_RSH-022_merge",
+    "RSH_023_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -810,11 +875,12 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-020"
+      "RSH-021"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-020_merge"
+    "state": "consumed_on_RSH-021_merge",
+    "RSH_022_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -976,7 +1042,7 @@
     "RSH_021_authorized": false
   },
   "rsh_021_save_schema": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "SAVE-SCHEMA-MANIFEST.json",
     "human_contract": "RSH-021-SAVE-SCHEMA-CONTRACT.md",
     "validator": "scripts/check-save-schema.mjs",
@@ -998,7 +1064,28 @@
     "save_facade_source_sha256": "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24",
     "backup_created": false,
     "user_visible_failure_ui": false,
-    "RSH_022_created": false,
-    "RSH_022_authorized": false
+    "RSH_022_created": true,
+    "RSH_022_authorized": true,
+    "RSH_022_state": "accepted_on_merge"
+  },
+  "rsh_022_save_recovery": {
+    "state": "accepted_on_merge",
+    "machine_authority": "SAVE-RECOVERY-MANIFEST.json",
+    "human_contract": "RSH-022-SAVE-RECOVERY-CONTRACT.md",
+    "validator": "scripts/check-save-recovery.mjs",
+    "test": "scripts/check-save-recovery.test.mjs",
+    "recovery_source": "src/game/save-recovery.ts",
+    "ui_source": "src/game/save-recovery-ui.ts",
+    "save_facade": "src/game/save.ts",
+    "schema_version": 3,
+    "backup_generations": 1,
+    "quarantine_slots": 2,
+    "automatic_restore": false,
+    "explicit_restore": true,
+    "user_visible_failure_ui": true,
+    "timed_record_changes": 0,
+    "ghost_schema_changes": 0,
+    "RSH_023_created": false,
+    "RSH_023_authorized": false
   }
 }

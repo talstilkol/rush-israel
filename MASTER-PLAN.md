@@ -1,11 +1,11 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 10.0.0
+**Schema:** 11.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-021 implementation base:** `7cff508a4cfa95c03ac34c5503912e70bed47b90`
-**State effective on:** merge of the RSH-021 pull request
-**Next unit:** RSH-022 — deferred and not authorised
+**RSH-022 implementation base:** `9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b`
+**State effective on:** merge of the RSH-022 pull request
+**Next unit:** RSH-023 — deferred and not authorised
 **Product-definition authority:** `PRODUCT-DEFINITION.json`
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`
@@ -20,7 +20,7 @@ GitHub is the sole source of truth. `CURRENT-STATE.json`, `QUEUE.json`, this doc
 `TRACK-CATALOGUE-CLASSIFICATION.json`, `ASSET-PROVENANCE.json`,
 `PRODUCT-METADATA.json`, `TRACK-SCHEMA.json`, `TRACK-MODULE-MANIFEST.json`,
 `WORLD-CORE-MANIFEST.json`, `WORLD-BUILDER-MANIFEST.json`,
-`ENGINE-ADAPTER-MANIFEST.json`, `GAME-APP-DECOMPOSITION-MANIFEST.json`, `RESOURCE-OWNERSHIP-MANIFEST.json`, `DEPENDENCY-BOUNDARY-MANIFEST.json`, `DEPENDENCY-POLICY.md`, `SAVE-SCHEMA-MANIFEST.json` and `REPOSITORY-GOVERNANCE.md` control program state.
+`ENGINE-ADAPTER-MANIFEST.json`, `GAME-APP-DECOMPOSITION-MANIFEST.json`, `RESOURCE-OWNERSHIP-MANIFEST.json`, `DEPENDENCY-BOUNDARY-MANIFEST.json`, `DEPENDENCY-POLICY.md`, `SAVE-SCHEMA-MANIFEST.json`, `SAVE-RECOVERY-MANIFEST.json`, `RSH-022-SAVE-RECOVERY-CONTRACT.md` and `REPOSITORY-GOVERNANCE.md` control program state.
 
 Historical planning files are evidence only. They do not control queue order,
 accepted progress, asset clearance or release-gate counts.
@@ -81,23 +81,23 @@ root-branding assets remain unverified.
 6. A unit becomes accepted when its PR merges; exact self-referential merge evidence is reconciled in the following preflight.
 7. Accepted-unit progress is not release readiness; all 13 release gates remain authoritative.
 8. The RSH-010–RSH-014 owner batch is closed at 5/5.
-9. The plain `next` authority covers exactly RSH-021 and is consumed on its validated merge; RSH-022 is not authorised.
+9. The plain `next` authority covers exactly RSH-022 and is consumed on its validated merge; RSH-023 is not authorised.
 
-## 5. Post-RSH-021 program state
+## 5. Post-RSH-022 program state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 21 |
+| Accepted | 22 |
 | In review | 0 |
 | Eligible | 0 |
-| Deferred | 46 |
-| Remaining | 46 |
-| Queue head | RSH-022 — deferred/not authorised |
+| Deferred | 45 |
+| Remaining | 45 |
+| Queue head | RSH-023 — deferred/not authorised |
 | Active PR | none |
-| RSH-021 one-unit authority | 1/1 — consumed |
+| RSH-022 one-unit authority | 1/1 — consumed |
 | Release gates green | 0/13 |
-| Findings OPEN / MITIGATED / CLOSED | 16 / 8 / 18 |
+| Findings OPEN / MITIGATED / CLOSED | 16 / 7 / 19 |
 
 ## 6. Stage map
 
@@ -107,7 +107,7 @@ root-branding assets remain unverified.
 | G1 | RSH-004–008 | 5 | Reproducible toolchain and CI | UNITS ACCEPTED; EXIT GATE BLOCKED BY OWNER SETTING |
 | G2 | RSH-009–012 | 4 | Scope, licensing and assets | ACCEPTED |
 | G3 | RSH-013–020 | 8 | Architecture decomposition | ACCEPTED |
-| G4 | RSH-021–024 | 4 | Data integrity and production security | ACTIVE — RSH-021 accepted; RSH-022 deferred/not authorised |
+| G4 | RSH-021–024 | 4 | Data integrity and production security | ACTIVE — RSH-021–RSH-022 accepted; RSH-023 deferred/not authorised |
 | G5 | RSH-025–036 | 12 | Ayalon vertical slice | DEFERRED |
 | G6 | RSH-037–043 | 7 | Performance and reliability | DEFERRED |
 | G7 | RSH-044–048 | 5 | UX, accessibility and mobile | DEFERRED |
@@ -208,6 +208,6 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-RSH-021 is accepted on merge only after exact-head CI and review. Save schema version 3 is explicit; compatibility envelopes 0, 1 and 2 follow one deterministic 0→1→2→3 graph, canonical serialization is byte-deterministic, legacy bytes are retained, and invalid/corrupt/future source bytes are never overwritten.
+RSH-021 and RSH-022 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. RSH-022 adds one verified backup generation, two bounded rejected-current quarantine slots, explicit backup restore, explicit two-step fresh start and accessible Hebrew/English persistence-failure handling. Invalid, corrupt, future-version and rejected source bytes remain non-destructive, and automatic restore is forbidden.
 
-RSH-022 remains responsible for backups, corruption recovery and user-visible failure handling. Timed records and ghosts are unchanged. The RSH-021 one-unit `next` authority is consumed on merge. RSH-022 remains deferred and cannot start without a new explicit owner instruction.
+Timed records and ghosts are byte-preserved and remain assigned to RSH-023. The RSH-022 one-unit `next` authority is consumed on merge. RSH-023 remains deferred and cannot start without a new explicit owner instruction.

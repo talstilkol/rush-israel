@@ -1,7 +1,7 @@
 {
-  "schema_version": "8.0.0",
+  "schema_version": "9.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-08-31T06:05:19.924Z",
+  "generated_at": "2026-08-31T07:45:28.147Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -378,23 +378,45 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-08-31T06:05:19.924Z",
       "description": "Unused auth, DB, multiplayer and template surfaces removed; direct package boundary reduced from 74 to 30 and accepted."
+    },
+    {
+      "id": "B021-rsh-021-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-021",
+      "branch": "agent/rsh-021-save-schema-migrations",
+      "pull_request": 24,
+      "commit_sha": "9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b",
+      "tree_sha": "56da87772e707c7e4002264db25f447aa1074346",
+      "validated_head_sha": "19cb2f24002f916153e4e4af092f7173fd8fbb20",
+      "workflow_run": 33364964128,
+      "workflow_job": 99403593924,
+      "artifact_id": 9748018424,
+      "artifact_digest": "sha256:d9ea1530a76d4fbf849602790272a6a233f5a168de4e05ffcab902af4051655d",
+      "post_merge_workflow_run": 33365553536,
+      "post_merge_workflow_job": 99405336791,
+      "post_merge_artifact_id": 9748222110,
+      "post_merge_artifact_digest": "sha256:f46e71bb5b3dfacf2792cdff1056075afa7e27fd68464bdbb58c4a54429d57a0",
+      "codex_review": 5063773430,
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-08-31T07:45:28.147Z",
+      "description": "Save schema v3, deterministic 0→1→2→3 migrations and fail-closed source-byte preservation accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-021",
+    "unit": "RSH-022",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
-    "branch": "agent/rsh-021-save-schema-migrations",
-    "manifest": "SAVE-SCHEMA-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-021 pull request"
+    "implementation_base_sha": "9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b",
+    "branch": "agent/rsh-022-save-recovery",
+    "manifest": "SAVE-RECOVERY-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-022 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-022",
+    "queue_head": "RSH-023",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_022_authorized": false
+    "RSH_023_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

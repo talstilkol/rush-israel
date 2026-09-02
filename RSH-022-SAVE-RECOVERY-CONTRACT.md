@@ -1,0 +1,93 @@
+# RSH-022 — Save Backup, Corruption Recovery and Visible Failure Handling
+
+**Unit:** RSH-022
+**Implementation base:** `9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b`
+**Base tree:** `56da87772e707c7e4002264db25f447aa1074346`
+**Branch:** `agent/rsh-022-save-recovery`
+**State effective on:** validated merge of the RSH-022 pull request
+
+## Acceptance boundary
+
+RSH-022 adds a bounded, verified recovery layer around the accepted RSH-021
+save-schema authority. It does not change schema version `3`, the deterministic
+`0→1→2→3` migration graph, timed records, ghosts, tracks, physics, rendering,
+assets, dependencies or distribution policy.
+
+## Backup contract
+
+1. The backup key is `rush-v1-backup`.
+2. The first write verifies the backup before writing the current key.
+3. A later write copies the exact previous current bytes to the backup and
+   verifies them before replacing the current key.
+4. Migration or normalization backs up the exact source bytes before the
+   RSH-021 loader writes canonical v3 bytes.
+5. A backup read, write or verification failure prevents an unsafe current-key
+   overwrite and returns structured status.
+6. An invalid backup is copied byte-for-byte to
+   `rush-v1-backup-rejected` before the backup slot is reused.
+
+## Recovery contract
+
+- Recovery is explicit; corrupt or missing current data is never restored or
+  reset automatically.
+- When the current key is missing and both a retained legacy save and a valid
+  backup exist, the backup is preserved and offered before any legacy migration;
+  no silent rollback to older legacy bytes is allowed.
+- A valid backup is migrated through the accepted RSH-021 graph, serialized
+  canonically, written to the current key and verified.
+- If writing a new valid state fails after the previous current bytes were
+  backed up, the new state remains in a canonical in-memory pending buffer and
+  the visible action retries that exact pending write before any stale reload.
+  Restoring the unchanged older backup is not presented as a substitute.
+- A pending Retry carries explicit in-memory authority: it may complete a
+  first-ever current-key write after its identical verified backup was seeded,
+  while an ordinary write still exposes explicit recovery when current data is
+  absent and a backup exists. Follow-up mutations made while that pending
+  buffer exists keep retry authority, update the buffer, and persist the new
+  canonical bytes instead of switching the player to Restore.
+- If a current-key write changes storage but verification returns corrupt or
+  mismatched bytes, Retry overwrites that untrusted current key with the
+  retained pending save and does not treat the mismatch as a rejected source.
+- Failed canonical migration or repair writes retain the migrated v3 data and
+  expose Retry so the canonical write is attempted again.
+- Rejected current bytes are preserved before replacement in one of two bounded
+  slots: `rush-v1-rejected` and `rush-v1-rejected-previous`.
+- If both rejected-save slots contain different bytes, recovery fails closed
+  instead of discarding evidence.
+- A fresh start is allowed only when no valid active save and no valid backup
+  exist. It requires a two-step UI confirmation and preserves rejected bytes
+  before writing a new canonical v3 save.
+- Legacy bytes under `tlv-rush-v1` are never deleted or rewritten.
+- No recovery path calls `removeItem()` or `localStorage.clear()`.
+
+## User-visible failure handling
+
+The persistence facade dispatches `rush-save-status` and renders an accessible,
+bilingual recovery notice outside the React application tree. The notice uses
+`role="alertdialog"` with assertive live-region behavior for failures, moves
+focus to the first recovery action when it opens, restores the prior focus when
+it closes, and never records a control that belongs to a notice about to be
+removed as the return target. It exposes explicit restore/retry/fresh-start
+actions, and uses only `textContent` for copy. Dismissing a notice does not
+change storage.
+
+## Preservation
+
+| Domain | Change |
+|---|---:|
+| Save schema version | `0` |
+| Migration edges | `0` |
+| Timed-record code | `0` |
+| Ghost code/schema | `0` |
+| Tracks | `0` |
+| Physics | `0` |
+| Rendering | `0` |
+| Assets | `0` |
+| Direct dependencies | `0` |
+| Public-distribution authority | `0` |
+
+## Deferred boundary
+
+RSH-023 — timed-record integrity and write ordering — remains deferred,
+unauthorized and uncreated. RSH-022 does not modify `src/game/records.ts`,
+record hashes, asynchronous record persistence or ghost storage.

@@ -6,16 +6,24 @@ import { PHYSICS_VERSION } from "./physics";
 import { isLiveRecord, recordPayload, sha256hex, writeRecords, REC_KEY, type TimedRecord } from "./records";
 import {
   GHOST_KEY,
-  SAVE_KEY,
   SAVE_SCHEMA_VERSION,
   canonicalSaveString,
   createSaveStatus,
   emptySave,
-  loadSaveFromStorage,
   type SaveData,
-  type SaveLoadStatus,
   type SaveStorage,
 } from "./save-schema";
+import {
+  createSavePersistenceStatus,
+  inspectSaveBackup,
+  loadSaveWithRecovery,
+  restoreSaveFromBackup,
+  retryPendingSaveWithBackup,
+  startFreshSaveAfterRejection,
+  writeSaveWithBackup,
+  type SavePersistenceStatus,
+} from "./save-recovery";
+import { publishSavePersistenceStatus } from "./save-recovery-ui";
 
 export {
   GHOST_KEY,
@@ -35,9 +43,34 @@ export {
   type SaveStorage,
 } from "./save-schema";
 
-const KEY = SAVE_KEY;
+export {
+  SAVE_BACKUP_KEY,
+  SAVE_BACKUP_QUARANTINE_KEY,
+  SAVE_QUARANTINE_KEY,
+  SAVE_QUARANTINE_PREVIOUS_KEY,
+  inspectSaveBackup,
+  loadSaveWithRecovery,
+  restoreSaveFromBackup,
+  startFreshSaveAfterRejection,
+  writeSaveWithBackup,
+  type SaveBackupInspection,
+  type SavePersistenceResult,
+  type SavePersistenceStatus,
+  type SaveRecoveryAction,
+  type SaveRecoveryErrorCode,
+  type SaveRecoveryNotice,
+  type SaveRecoveryState,
+} from "./save-recovery";
+export { SAVE_STATUS_EVENT } from "./save-recovery-ui";
 
-let lastSaveStatus: SaveLoadStatus = createSaveStatus("empty", "none", null);
+let lastSaveStatus: SavePersistenceStatus = createSavePersistenceStatus(
+  createSaveStatus("empty", "none", null),
+);
+let pendingSaveData: SaveData | null = null;
+
+function cloneSaveData(data: SaveData): SaveData {
+  return JSON.parse(canonicalSaveString(data)) as SaveData;
+}
 
 export function getSaveStatus() {
   return lastSaveStatus;
@@ -47,55 +80,148 @@ function browserStorage(): SaveStorage | null {
   return typeof localStorage === "undefined" ? null : localStorage;
 }
 
+function publishStatus() {
+  publishSavePersistenceStatus(lastSaveStatus, {
+    restore: () => { restoreSaveBackup(); },
+    startFresh: () => { startFreshSaveAfterFailure(); },
+    retry: () => { retrySavePersistence(); },
+    reload: () => {
+      if (typeof location !== "undefined") location.reload();
+    },
+  });
+}
+
+function rejectedStorageStatus(error: unknown) {
+  return createSavePersistenceStatus(
+    createSaveStatus("rejected", "none", null, [], [], false, false, {
+      errorCode: "read-failed",
+      error: String(error instanceof Error ? error.message : error),
+    }),
+    { recoveryAction: "retry", notice: "error" },
+  );
+}
+
+function writeStorageStatus(error: unknown) {
+  return createSavePersistenceStatus(
+    createSaveStatus("write-failed", "current", SAVE_SCHEMA_VERSION, [], [], false, false, {
+      errorCode: "write-failed",
+      error: String(error instanceof Error ? error.message : error),
+    }),
+    { recoveryAction: "retry", notice: "error", recoveryErrorCode: "recovery-write-failed" },
+  );
+}
+
 function load(): SaveData {
+  if (pendingSaveData !== null) {
+    publishStatus();
+    return cloneSaveData(pendingSaveData);
+  }
   let storage: SaveStorage | null;
   try {
     storage = browserStorage();
   } catch (error) {
-    lastSaveStatus = createSaveStatus("rejected", "none", null, [], [], false, false, {
-      errorCode: "read-failed",
-      error: String(error instanceof Error ? error.message : error),
-    });
+    lastSaveStatus = rejectedStorageStatus(error);
+    publishStatus();
     return emptySave();
   }
   if (!storage) {
-    lastSaveStatus = createSaveStatus("empty", "none", null);
+    lastSaveStatus = createSavePersistenceStatus(createSaveStatus("empty", "none", null));
     return emptySave();
   }
-  const result = loadSaveFromStorage(storage);
+  const result = loadSaveWithRecovery(storage);
   lastSaveStatus = result.status;
+  if (result.status.state === "write-failed" && result.status.recoveryAction === "retry") {
+    pendingSaveData = cloneSaveData(result.data);
+  }
+  publishStatus();
   return result.data;
 }
 
-function write(data: SaveData) {
-  // A rejected read owns the source bytes until RSH-022 provides an explicit
-  // recovery decision. Automatic flushes and setters must not destroy them.
-  if (lastSaveStatus.state === "rejected") return false;
+function write(data: SaveData, pendingRetry = false) {
+  // Rejected or recoverable source bytes remain locked until the player makes
+  // an explicit recovery decision. Automatic flushes and setters cannot destroy them.
+  // An in-memory pending buffer is the exception: follow-up mutations keep retry
+  // authority and update that buffer instead of falling through to Restore.
+  const retryFromPending = pendingRetry || pendingSaveData !== null;
+  if (lastSaveStatus.state === "rejected" || lastSaveStatus.state === "recovery-available") {
+    if (!retryFromPending) {
+      publishStatus();
+      return false;
+    }
+  }
   let storage: SaveStorage | null;
   try {
     storage = browserStorage();
   } catch (error) {
-    lastSaveStatus = createSaveStatus("write-failed", "current", SAVE_SCHEMA_VERSION, [], [], false, false, {
-      errorCode: "write-failed",
-      error: String(error instanceof Error ? error.message : error),
-    });
+    pendingSaveData = cloneSaveData(data);
+    lastSaveStatus = writeStorageStatus(error);
+    publishStatus();
     return false;
   }
   if (!storage) return false;
-  const raw = canonicalSaveString(data);
+  if (retryFromPending) pendingSaveData = cloneSaveData(data);
+  const result = retryFromPending
+    ? retryPendingSaveWithBackup(storage, data)
+    : writeSaveWithBackup(storage, data);
+  lastSaveStatus = result.status;
+  if (result.status.state === "saved") pendingSaveData = null;
+  else if (result.status.state === "write-failed") pendingSaveData = cloneSaveData(result.data);
+  publishStatus();
+  return result.status.state === "saved";
+}
+
+export function inspectBrowserSaveBackup() {
+  let storage: SaveStorage | null;
   try {
-    storage.setItem(KEY, raw);
-    const verified = storage.getItem(KEY) === raw;
-    if (!verified) throw new Error("save verification mismatch");
-    lastSaveStatus = createSaveStatus("saved", "current", SAVE_SCHEMA_VERSION, [], [], true, true);
-    return true;
+    storage = browserStorage();
+  } catch {
+    return null;
+  }
+  return storage ? inspectSaveBackup(storage) : null;
+}
+
+export function restoreSaveBackup() {
+  let storage: SaveStorage | null;
+  try {
+    storage = browserStorage();
   } catch (error) {
-    lastSaveStatus = createSaveStatus("write-failed", "current", SAVE_SCHEMA_VERSION, [], [], false, false, {
-      errorCode: "write-failed",
-      error: String(error instanceof Error ? error.message : error),
-    });
+    lastSaveStatus = writeStorageStatus(error);
+    publishStatus();
     return false;
   }
+  if (!storage) return false;
+  const result = restoreSaveFromBackup(storage);
+  lastSaveStatus = result.status;
+  if (result.status.state === "recovered") pendingSaveData = null;
+  publishStatus();
+  return result.status.state === "recovered";
+}
+
+export function startFreshSaveAfterFailure() {
+  let storage: SaveStorage | null;
+  try {
+    storage = browserStorage();
+  } catch (error) {
+    lastSaveStatus = writeStorageStatus(error);
+    publishStatus();
+    return false;
+  }
+  if (!storage) return false;
+  const result = startFreshSaveAfterRejection(storage);
+  lastSaveStatus = result.status;
+  if (result.status.state === "fresh-started") pendingSaveData = null;
+  publishStatus();
+  return result.status.state === "fresh-started";
+}
+
+export function retrySavePersistence() {
+  const pending = pendingSaveData;
+  if (pending !== null) {
+    write(cloneSaveData(pending), true);
+    return lastSaveStatus;
+  }
+  load();
+  return lastSaveStatus;
 }
 
 export function getBest(id: TrackId) {
