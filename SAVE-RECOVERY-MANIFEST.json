@@ -62,7 +62,9 @@
     "pending_retry_requires_explicit_context": true,
     "pending_retry_completes_seeded_first_save": true,
     "canonicalization_write_failure_action": "retry",
-    "canonicalization_pending_data_retained": true
+    "canonicalization_pending_data_retained": true,
+    "pending_retry_applies_follow_up_mutations": true,
+    "pending_retry_overwrites_untrusted_current": true
   },
   "failure_ui": {
     "event": "rush-save-status",
@@ -75,6 +77,7 @@
     "focus_enters_dialog": true,
     "focus_restored_on_close": true,
     "success_to_failure_focus_capture": true,
+    "focus_ignores_replaced_notice_controls": true,
     "write_failure_action": "retry"
   },
   "preservation": {
@@ -91,10 +94,10 @@
     "release_gates_total": 13
   },
   "identities": {
-    "recovery_source_sha256": "dc55d7ae3411cf748500b35010fca82280fcdb872513e1b7a625efbee2edd25b",
-    "ui_source_sha256": "82fd7900ea252f3793ba6a54859083223a36cd052cea0745145cbc4a2f0875d5",
-    "save_facade_sha256": "8e36a852cb116212f84d9953adb0d184b061bf108d54bd5362873216836b4c91",
-    "test_source_sha256": "d514d299d6178cb0228e1d967a31cae058911d3dc5ced711823805d456a9a7bb",
+    "recovery_source_sha256": "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f",
+    "ui_source_sha256": "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26",
+    "save_facade_sha256": "9baf63c3ec5f9f1b50984db4f184103c65b09709409af33204aa28ea7cd497e7",
+    "test_source_sha256": "fc504c6985cf7d21f68b86a6e2bdcba06144397cc9b499d78aa369aacaafa442",
     "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
     "records_source_sha256": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",

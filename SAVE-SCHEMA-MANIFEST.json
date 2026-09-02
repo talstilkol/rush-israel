@@ -134,16 +134,18 @@
     "explicit_restore": true,
     "timed_record_changes": 0,
     "ghost_schema_changes": 0,
-    "recovery_source_sha256": "dc55d7ae3411cf748500b35010fca82280fcdb872513e1b7a625efbee2edd25b",
-    "ui_source_sha256": "82fd7900ea252f3793ba6a54859083223a36cd052cea0745145cbc4a2f0875d5",
-    "save_facade_sha256": "8e36a852cb116212f84d9953adb0d184b061bf108d54bd5362873216836b4c91",
-    "schema_guard_test_sha256": "2df753b00041a1a03061af10243bdb81c3efd10b04af7a8a8d5bfb6bb928cbb8",
+    "recovery_source_sha256": "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f",
+    "ui_source_sha256": "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26",
+    "save_facade_sha256": "9baf63c3ec5f9f1b50984db4f184103c65b09709409af33204aa28ea7cd497e7",
+    "schema_guard_test_sha256": "408cb2d070aa9b42f3921f8bf599c1b49bc17987b6375230c8869238e5b8dab4",
     "pending_write_retained_in_memory": true,
     "pending_write_retry_before_reload": true,
     "failed_current_write_action": "retry",
     "pending_retry_requires_explicit_context": true,
     "pending_retry_completes_seeded_first_save": true,
     "canonicalization_write_failure_action": "retry",
-    "canonicalization_pending_data_retained": true
+    "canonicalization_pending_data_retained": true,
+    "pending_retry_applies_follow_up_mutations": true,
+    "pending_retry_overwrites_untrusted_current": true
   }
 }

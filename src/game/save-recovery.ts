@@ -429,24 +429,33 @@ function writeSaveWithBackupMode(
   const source: SaveLoadStatus["source"] = currentRead.raw !== null ? "current" : legacyRead.raw !== null ? "legacy" : "none";
   const priorRaw = currentRead.raw ?? legacyRead.raw;
   let priorParsed: ParsedSave | null = null;
+  let currentUntrusted = false;
   if (priorRaw !== null) {
     const parsed = parseRaw(priorRaw);
     if ("error" in parsed) {
-      const backup = inspectSaveBackup(storage);
-      return rejectedResult(source, parsed.error, backup);
+      if (!pendingRetry || currentRead.raw === null) {
+        const backup = inspectSaveBackup(storage);
+        return rejectedResult(source, parsed.error, backup);
+      }
+      currentUntrusted = true;
+    } else {
+      priorParsed = parsed;
     }
-    priorParsed = parsed;
   }
 
   const backup = inspectSaveBackup(storage);
   if (currentRead.raw === null && backup.state === "valid") {
     const matchesSeededFirstSave = source === "none" && backup.canonical === nextRaw;
-    if (!pendingRetry || (source === "none" && !matchesSeededFirstSave)) {
+    if (!pendingRetry) {
       return recoveryAvailableResult(source, backup);
     }
+    void matchesSeededFirstSave;
   }
-  const backupRaw = priorRaw ?? nextRaw;
-  if (priorRaw === null || priorRaw !== nextRaw || backup.state !== "valid") {
+  const backupRaw = currentUntrusted ? nextRaw : (priorRaw ?? nextRaw);
+  const shouldRotateBackup = currentUntrusted
+    ? backup.state !== "valid"
+    : (priorRaw === null || priorRaw !== nextRaw || backup.state !== "valid");
+  if (shouldRotateBackup) {
     const rotated = rotateBackup(storage, backupRaw, backup);
     if (!rotated.ok) {
       return writeFailure(source, data, priorParsed, rotated.error, rotated.code, backup.state === "valid");

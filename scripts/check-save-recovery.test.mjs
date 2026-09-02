@@ -76,6 +76,10 @@ class FakeElement {
   }
   focus() { this.ownerDocument.activeElement = this; }
   click() { this.listeners.get("click")?.(); }
+  contains(node) {
+    if (node === this) return true;
+    return this.children.some((child) => child.contains(node));
+  }
 }
 
 class FakeDocument {
@@ -87,6 +91,11 @@ class FakeDocument {
   getElementById(id) {
     const visit = (node) => node.id === id ? node : node.children.map(visit).find(Boolean) ?? null;
     return visit(this.body);
+  }
+  contains(node) {
+    if (!node) return false;
+    if (node === this || node === this.body) return true;
+    return this.body.contains(node);
   }
 }
 
@@ -136,6 +145,60 @@ test("Retry completes a first save after the verified backup was seeded", () => 
   assert.equal(retried.status.state, "saved");
   assert.equal(JSON.parse(storage.values.get(schema.SAVE_KEY)).cash, 905);
   assert.equal(storage.values.get(recovery.SAVE_BACKUP_KEY), storage.values.get(schema.SAVE_KEY));
+});
+
+test("a follow-up mutation keeps pending retry authority and updates the seeded backup", () => {
+  const storage = memoryStorage();
+  const setItem = storage.setItem.bind(storage);
+  let failCurrentOnce = true;
+  storage.setItem = (key, value) => {
+    if (key === schema.SAVE_KEY && failCurrentOnce) {
+      failCurrentOnce = false;
+      throw new Error("transient current write failure");
+    }
+    setItem(key, value);
+  };
+
+  const first = recovery.writeSaveWithBackup(storage, save(905));
+  assert.equal(first.status.state, "write-failed");
+  const mutated = save(977);
+  const followUp = recovery.retryPendingSaveWithBackup(storage, mutated);
+  assert.equal(followUp.status.state, "saved");
+  assert.equal(JSON.parse(storage.values.get(schema.SAVE_KEY)).cash, 977);
+  assert.equal(JSON.parse(storage.values.get(recovery.SAVE_BACKUP_KEY)).cash, 977);
+});
+
+test("Retry overwrites a verification-mismatched current key instead of rejecting", () => {
+  const oldRaw = schema.canonicalSaveString(save(812));
+  const storage = memoryStorage({
+    [schema.SAVE_KEY]: oldRaw,
+    [recovery.SAVE_BACKUP_KEY]: oldRaw,
+  });
+  const setItem = storage.setItem.bind(storage);
+  let mismatchOnce = true;
+  storage.setItem = (key, value) => {
+    if (key === schema.SAVE_KEY && mismatchOnce) {
+      mismatchOnce = false;
+      storage.writes.push([key, value]);
+      storage.values.set(key, `${value}!`);
+      return;
+    }
+    setItem(key, value);
+  };
+
+  const first = recovery.writeSaveWithBackup(storage, save(944));
+  assert.equal(first.status.state, "write-failed");
+  assert.equal(first.status.recoveryAction, "retry");
+  assert.equal(first.data.cash, 944);
+  assert.equal(storage.values.get(schema.SAVE_KEY).endsWith("!"), true);
+
+  const ordinary = recovery.writeSaveWithBackup(storage, first.data);
+  assert.equal(ordinary.status.state, "rejected");
+
+  const retried = recovery.retryPendingSaveWithBackup(storage, first.data);
+  assert.equal(retried.status.state, "saved");
+  assert.equal(JSON.parse(storage.values.get(schema.SAVE_KEY)).cash, 944);
+  assert.equal(storage.values.get(recovery.SAVE_BACKUP_KEY), oldRaw);
 });
 
 test("a later save rotates the exact prior current bytes into the backup", () => {
@@ -376,6 +439,8 @@ test("user-visible failure handling is accessible and avoids HTML injection", ()
     "rememberFocus(existing)",
     "restorePreviousFocus()",
     "(primaryAction ?? notice).focus()",
+    "nodeContainedBy(existing, active)",
+    "documentContains(focusReturnTarget)",
     "textContent",
     "Restore backup",
     "Press again to confirm",
@@ -479,6 +544,26 @@ test("the visible recovery notice preserves confirmation state and reappears aft
   replacementDismiss.click();
   assert.equal(document.activeElement, previousFocus);
   assert.equal(events.every((event) => event.type === recoveryUi.SAVE_STATUS_EVENT), true);
+
+  const healthyAfterDismiss = recovery.createSavePersistenceStatus(schema.createSaveStatus("loaded", "current", 3));
+  recoveryUi.publishSavePersistenceStatus(healthyAfterDismiss, actions);
+  recoveryUi.publishSavePersistenceStatus(recovered, actions);
+  const secondSuccess = document.getElementById("rush-save-recovery-notice");
+  assert.ok(secondSuccess);
+  const successDismiss = allElements(secondSuccess).find((element) => element.textContent.includes("Dismiss"));
+  assert.ok(successDismiss);
+  successDismiss.focus();
+  assert.equal(document.activeElement, successDismiss);
+  recoveryUi.publishSavePersistenceStatus(rejected, actions);
+  const afterInternalFocus = document.getElementById("rush-save-recovery-notice");
+  assert.ok(afterInternalFocus);
+  assert.equal(afterInternalFocus.getAttribute("role"), "alertdialog");
+  assert.equal(document.contains(successDismiss), false);
+  const afterInternalDismiss = allElements(afterInternalFocus).find((element) => element.textContent.includes("Dismiss"));
+  assert.ok(afterInternalDismiss);
+  afterInternalDismiss.click();
+  assert.notEqual(document.activeElement, successDismiss);
+  assert.equal(document.contains(document.activeElement), true);
 });
 
 test("the save facade retains a canonical pending write and retries it before reloading stale storage", () => {
@@ -494,6 +579,7 @@ test("the save facade retains a canonical pending write and retries it before re
     "if (result.status.state === \"saved\") pendingSaveData = null",
     "const pending = pendingSaveData",
     "write(cloneSaveData(pending), true)",
+    "const retryFromPending = pendingRetry || pendingSaveData !== null",
   ]) assert.ok(source.includes(token), `missing pending-write token: ${token}`);
   assert.ok(source.indexOf("const pending = pendingSaveData") < source.indexOf("load();\n  return lastSaveStatus;"));
 });

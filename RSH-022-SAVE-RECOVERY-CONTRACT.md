@@ -42,7 +42,12 @@ assets, dependencies or distribution policy.
 - A pending Retry carries explicit in-memory authority: it may complete a
   first-ever current-key write after its identical verified backup was seeded,
   while an ordinary write still exposes explicit recovery when current data is
-  absent and a backup exists.
+  absent and a backup exists. Follow-up mutations made while that pending
+  buffer exists keep retry authority, update the buffer, and persist the new
+  canonical bytes instead of switching the player to Restore.
+- If a current-key write changes storage but verification returns corrupt or
+  mismatched bytes, Retry overwrites that untrusted current key with the
+  retained pending save and does not treat the mismatch as a rejected source.
 - Failed canonical migration or repair writes retain the migrated v3 data and
   expose Retry so the canonical write is attempted again.
 - Rejected current bytes are preserved before replacement in one of two bounded
@@ -61,8 +66,10 @@ The persistence facade dispatches `rush-save-status` and renders an accessible,
 bilingual recovery notice outside the React application tree. The notice uses
 `role="alertdialog"` with assertive live-region behavior for failures, moves
 focus to the first recovery action when it opens, restores the prior focus when
-it closes, exposes explicit restore/retry/fresh-start actions, and uses only
-`textContent` for copy. Dismissing a notice does not change storage.
+it closes, and never records a control that belongs to a notice about to be
+removed as the return target. It exposes explicit restore/retry/fresh-start
+actions, and uses only `textContent` for copy. Dismissing a notice does not
+change storage.
 
 ## Preservation
 

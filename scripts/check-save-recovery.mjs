@@ -5,11 +5,11 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "2a24ad1ebf818dec71bd9fa3baefd63fd6598fc405b923dc8a3f370bdcb5654d";
-export const EXPECTED_RECOVERY_SHA256 = "dc55d7ae3411cf748500b35010fca82280fcdb872513e1b7a625efbee2edd25b";
-export const EXPECTED_UI_SHA256 = "82fd7900ea252f3793ba6a54859083223a36cd052cea0745145cbc4a2f0875d5";
-export const EXPECTED_SAVE_FACADE_SHA256 = "8e36a852cb116212f84d9953adb0d184b061bf108d54bd5362873216836b4c91";
-export const EXPECTED_TEST_SHA256 = "d514d299d6178cb0228e1d967a31cae058911d3dc5ced711823805d456a9a7bb";
+export const EXPECTED_MANIFEST_SHA256 = "7f12126059259cb474ab832850f4310ba5a3c5f4c1a143e7b95b60d15245f692";
+export const EXPECTED_RECOVERY_SHA256 = "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f";
+export const EXPECTED_UI_SHA256 = "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26";
+export const EXPECTED_SAVE_FACADE_SHA256 = "9baf63c3ec5f9f1b50984db4f184103c65b09709409af33204aa28ea7cd497e7";
+export const EXPECTED_TEST_SHA256 = "fc504c6985cf7d21f68b86a6e2bdcba06144397cc9b499d78aa369aacaafa442";
 export const EXPECTED_SCHEMA_SHA256 = "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358";
 export const EXPECTED_RECORDS_SHA256 = "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
@@ -104,7 +104,7 @@ export function validateSaveRecovery(overrides = {}) {
   if (manifest.unit !== "RSH-022" || manifest.schema_authority?.version !== 3) errors.push("RSH-022 unit or save-schema version changed");
   if (JSON.stringify(manifest.schema_authority?.migration_edges) !== JSON.stringify(["0→1", "1→2", "2→3"]) || manifest.schema_authority?.changed !== false) errors.push("accepted RSH-021 migration authority changed");
   if (manifest.backup_policy?.generations !== 1 || manifest.backup_policy?.seed_before_first_current_write !== true || manifest.backup_policy?.rotate_exact_previous_current_before_overwrite !== true || manifest.backup_policy?.verify_every_backup_write !== true || manifest.backup_policy?.unsafe_current_overwrite_on_backup_failure !== false || manifest.backup_policy?.prefer_valid_backup_when_current_missing !== true || manifest.backup_policy?.pending_first_save_retry_requires_matching_backup !== true) errors.push("backup rotation/fail-closed policy changed");
-  if (manifest.recovery_policy?.automatic_restore !== false || manifest.recovery_policy?.explicit_restore !== true || manifest.recovery_policy?.rejected_current_quarantine_slots !== 2 || manifest.recovery_policy?.fresh_start_confirmation_steps !== 2 || manifest.recovery_policy?.fail_closed_when_quarantine_full !== true || manifest.recovery_policy?.valid_legacy_does_not_block_explicit_backup_restore !== true || manifest.recovery_policy?.pending_write_retained_in_memory !== true || manifest.recovery_policy?.pending_write_retry_before_reload !== true || manifest.recovery_policy?.failed_current_write_action !== "retry" || manifest.recovery_policy?.pending_retry_requires_explicit_context !== true || manifest.recovery_policy?.pending_retry_completes_seeded_first_save !== true || manifest.recovery_policy?.canonicalization_write_failure_action !== "retry" || manifest.recovery_policy?.canonicalization_pending_data_retained !== true) errors.push("explicit recovery/quarantine/pending-write policy changed");
+  if (manifest.recovery_policy?.automatic_restore !== false || manifest.recovery_policy?.explicit_restore !== true || manifest.recovery_policy?.rejected_current_quarantine_slots !== 2 || manifest.recovery_policy?.fresh_start_confirmation_steps !== 2 || manifest.recovery_policy?.fail_closed_when_quarantine_full !== true || manifest.recovery_policy?.valid_legacy_does_not_block_explicit_backup_restore !== true || manifest.recovery_policy?.pending_write_retained_in_memory !== true || manifest.recovery_policy?.pending_write_retry_before_reload !== true || manifest.recovery_policy?.failed_current_write_action !== "retry" || manifest.recovery_policy?.pending_retry_requires_explicit_context !== true || manifest.recovery_policy?.pending_retry_completes_seeded_first_save !== true || manifest.recovery_policy?.canonicalization_write_failure_action !== "retry" || manifest.recovery_policy?.canonicalization_pending_data_retained !== true || manifest.recovery_policy?.pending_retry_applies_follow_up_mutations !== true || manifest.recovery_policy?.pending_retry_overwrites_untrusted_current !== true) errors.push("explicit recovery/quarantine/pending-write policy changed");
   if (manifest.failure_ui?.event !== "rush-save-status" || manifest.failure_ui?.failure_role !== "alertdialog" || manifest.failure_ui?.failure_live_region !== "assertive" || manifest.failure_ui?.html_injection_used !== false || manifest.failure_ui?.focus_enters_dialog !== true || manifest.failure_ui?.focus_restored_on_close !== true || manifest.failure_ui?.success_to_failure_focus_capture !== true || manifest.failure_ui?.write_failure_action !== "retry") errors.push("user-visible failure contract changed");
 
   const expectedKeys = {
@@ -124,6 +124,7 @@ export function validateSaveRecovery(overrides = {}) {
     "export function retryPendingSaveWithBackup",
     "function writeSaveWithBackupMode",
     "const matchesSeededFirstSave = source === \"none\" && backup.canonical === nextRaw",
+    "let currentUntrusted = false",
     "export function restoreSaveFromBackup",
     "export function startFreshSaveAfterRejection",
     "function quarantineCurrent",
@@ -141,6 +142,8 @@ export function validateSaveRecovery(overrides = {}) {
     "Press again to confirm",
     "rememberFocus(existing)",
     'existing?.getAttribute("role") === "alertdialog"',
+    "nodeContainedBy(existing, active)",
+    "documentContains(focusReturnTarget)",
     "restorePreviousFocus()",
     "(primaryAction ?? notice).focus()",
   ]) if (!input.uiSource.includes(token)) errors.push(`failure UI lost required token: ${token}`);
@@ -158,6 +161,7 @@ export function validateSaveRecovery(overrides = {}) {
     "retryPendingSaveWithBackup(storage, data)",
     "const pending = pendingSaveData",
     "write(cloneSaveData(pending), true)",
+    "const retryFromPending = pendingRetry || pendingSaveData !== null",
   ]) if (!input.saveFacadeSource.includes(token)) errors.push(`save facade lost RSH-022 integration token: ${token}`);
 
   const destructive = input.recoverySource + input.saveFacadeSource + input.uiSource;

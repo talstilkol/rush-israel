@@ -140,9 +140,14 @@ function load(): SaveData {
 function write(data: SaveData, pendingRetry = false) {
   // Rejected or recoverable source bytes remain locked until the player makes
   // an explicit recovery decision. Automatic flushes and setters cannot destroy them.
+  // An in-memory pending buffer is the exception: follow-up mutations keep retry
+  // authority and update that buffer instead of falling through to Restore.
+  const retryFromPending = pendingRetry || pendingSaveData !== null;
   if (lastSaveStatus.state === "rejected" || lastSaveStatus.state === "recovery-available") {
-    publishStatus();
-    return false;
+    if (!retryFromPending) {
+      publishStatus();
+      return false;
+    }
   }
   let storage: SaveStorage | null;
   try {
@@ -154,7 +159,8 @@ function write(data: SaveData, pendingRetry = false) {
     return false;
   }
   if (!storage) return false;
-  const result = pendingRetry
+  if (retryFromPending) pendingSaveData = cloneSaveData(data);
+  const result = retryFromPending
     ? retryPendingSaveWithBackup(storage, data)
     : writeSaveWithBackup(storage, data);
   lastSaveStatus = result.status;

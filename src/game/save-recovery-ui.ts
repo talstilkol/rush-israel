@@ -5,20 +5,47 @@ const NOTICE_ID = "rush-save-recovery-notice";
 let dismissedSignature = "";
 let focusReturnTarget: HTMLElement | null = null;
 
+function nodeContainedBy(container: HTMLElement | null, node: Node | null) {
+  if (!container || !node) return false;
+  if (typeof container.contains === "function") return container.contains(node);
+  let current: { parent?: unknown } | Node | null = node;
+  while (current) {
+    if (current === container) return true;
+    current = ((current as { parent?: unknown }).parent ?? (current as Node).parentNode ?? null) as Node | null;
+  }
+  return false;
+}
+
+function documentContains(node: Node | null) {
+  if (!node || typeof document === "undefined") return false;
+  if (typeof document.contains === "function") return document.contains(node);
+  return nodeContainedBy(document.body, node) || node === document.body;
+}
+
 function rememberFocus(existing: HTMLElement | null) {
-  if (focusReturnTarget !== null) return;
+  if (focusReturnTarget !== null && documentContains(focusReturnTarget)) return;
+  focusReturnTarget = null;
   if (existing?.getAttribute("role") === "alertdialog") return;
   const active = document.activeElement;
-  if (active && typeof (active as HTMLElement).focus === "function") {
+  if (
+    active &&
+    typeof (active as HTMLElement).focus === "function" &&
+    documentContains(active) &&
+    !nodeContainedBy(existing, active)
+  ) {
     focusReturnTarget = active as HTMLElement;
+    return;
   }
+  const fallback = document.body;
+  if (fallback && typeof fallback.focus === "function") focusReturnTarget = fallback;
 }
 
 function restorePreviousFocus() {
   const target = focusReturnTarget;
   focusReturnTarget = null;
+  if (!target || !documentContains(target)) return;
   try {
-    target?.focus();
+    target.focus();
   } catch {
     // The original control may have been removed while recovery was visible.
   }
