@@ -1,7 +1,7 @@
 {
   "schema_version": "10.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-02T22:20:00.000Z",
+  "generated_at": "2026-09-02T22:40:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -421,23 +421,44 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-09-02T22:20:00.000Z",
       "description": "Verified one-generation backup, bounded rejected-byte quarantine, explicit recovery and accessible visible failure handling accepted."
+    },
+    {
+      "id": "B023-rsh-023-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-023",
+      "branch": "agent/rsh-023-timed-records",
+      "pull_request": 26,
+      "commit_sha": "10d0624fce7813b7ad7082adc3c4e92e56c1b851",
+      "tree_sha": "4a035b9f738d66e4dc825023024d3cd714a4eb96",
+      "validated_head_sha": "192a1c2e6977c965576490714f171188a0d1c6a5",
+      "workflow_run": 33690225109,
+      "workflow_job": 100447034394,
+      "artifact_id": 9869819091,
+      "artifact_digest": "sha256:388ea36f81fc2096b11a72aa71a0c2af28bc546844014c19c63103a838c0ac04",
+      "post_merge_workflow_run": 33690727964,
+      "post_merge_workflow_job": 100448620357,
+      "post_merge_artifact_id": 9870004047,
+      "post_merge_artifact_digest": "sha256:981d3d804e37df518607e16ea7b25ad0a3d303a9b400f1ffc38d99e09cdda616",
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-09-02T22:40:00.000Z",
+      "description": "Timed-record SHA-256 verification on read, serial persist, duplicate collapse and 24/200 storage limits accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-023",
+    "unit": "RSH-024",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "33b280767913ef93b1dd8b73ab0e41a73636db38",
-    "branch": "agent/rsh-023-timed-records",
-    "manifest": "TIMED-RECORDS-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-023 pull request"
+    "implementation_base_sha": "10d0624fce7813b7ad7082adc3c4e92e56c1b851",
+    "branch": "agent/rsh-024-production-security",
+    "manifest": "PRODUCTION-SECURITY-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-024 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-024",
+    "queue_head": "RSH-025",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_024_authorized": false
+    "RSH_025_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

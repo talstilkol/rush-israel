@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "06b3b59fa0db394fa3566dbb06dce1fbab424ab9e70a05a91e7ac61ed77e124b";
+export const EXPECTED_MANIFEST_SHA256 = "219f21b10cb9833c2c7d43016368807b06e4289b495ee505b20b3c4d3e37789b";
 export const EXPECTED_RECOVERY_SHA256 = "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f";
 export const EXPECTED_UI_SHA256 = "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26";
 export const EXPECTED_SAVE_FACADE_SHA256 = "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2";
@@ -181,8 +181,8 @@ export function validateSaveRecovery(overrides = {}) {
   const recoveryFiles = input.repositoryFiles.filter((path) => /^src\/game\/save-recovery(?:-ui)?\.ts$/.test(path));
   if (JSON.stringify(recoveryFiles) !== JSON.stringify(["src/game/save-recovery-ui.ts", "src/game/save-recovery.ts"])) errors.push(`RSH-022 recovery source set changed: ${recoveryFiles.join(", ")}`);
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-024 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-024" || manifest.deferred_boundary?.rsh_023_authorized !== true || manifest.deferred_boundary?.rsh_023_started !== true || manifest.deferred_boundary?.rsh_024_started !== false) errors.push("RSH-024 deferred boundary changed");
+  if (later.length) errors.push(`RSH-025 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-025" || manifest.deferred_boundary?.rsh_023_authorized !== true || manifest.deferred_boundary?.rsh_023_started !== true || manifest.deferred_boundary?.rsh_024_started !== true || manifest.deferred_boundary?.rsh_025_started !== false) errors.push("RSH-025 deferred boundary changed");
 
   return {
     errors,
@@ -204,5 +204,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`save-recovery fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`save-recovery ok: schema v${result.schemaVersion}; ${result.backupKeys} bounded keys; ${result.quarantineSlots} rejected-save slots; RSH-023 accepted; RSH-024 deferred`);
+  console.log(`save-recovery ok: schema v${result.schemaVersion}; ${result.backupKeys} bounded keys; ${result.quarantineSlots} rejected-save slots; RSH-023 accepted; RSH-024 overlay accepted; RSH-025 deferred`);
 }
