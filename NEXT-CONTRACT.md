@@ -1,41 +1,38 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 13.0.0
+**Version:** 14.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-024 implementation base:** `10d0624fce7813b7ad7082adc3c4e92e56c1b851`
-**State effective on:** merge of the RSH-024 pull request
-**Next unit:** `RSH-025` — deferred and not authorised
+**RSH-025 implementation base:** `6597d7251d0f9c7ef24bf4b20ca44506bf651970`
+**State effective on:** merge of the RSH-025 pull request
+**Next unit:** `RSH-026` — deferred and not authorised
 
 ## Authority
 
-The current plain `next` instruction authorised exactly RSH-024. That authority is consumed on validated merge and does not extend to RSH-025.
+The current plain `next` instruction authorised exactly RSH-025. That authority is consumed on validated merge and does not extend to RSH-026.
 
-## RSH-024 acceptance boundary
+## RSH-025 acceptance boundary
 
-- canonical save schema version remains `3` and migration graph remains exactly `0→1→2→3`;
-- `npm run build` remains exactly `vite build`; database-migration and auth-check scripts stay absent;
-- secret scanning covers tracked text under `src/`, `scripts/`, `server/` and `.github/` with eight fail-closed patterns;
-- production client bundles still fail `check:qa` if they contain `finishNow` or `__controlsTest`;
-- GitHub branch-protection application remains an owner setting; finding P1-01 stays mitigated and release gate 5 stays red;
-- timed records, recovery, tracks, physics, rendering, assets, dependencies and public-distribution policy remain unchanged;
-- no RSH-025 implementation structure exists.
+- Version 1 Ayalon identity remains id `ayalon`, width `28`, theme `highway`, open A→B;
+- the existing golden/reference pack is hashed, including four byte-identical HaShalom placeholders;
+- pixel-golden remains threshold `0.12` and fail `>8%`;
+- GIS/navigation claims and owner freeze are forbidden;
+- track source, world, physics, rendering, save/records and `ayalon.lock` are unchanged;
+- no RSH-026 implementation structure exists.
 
 ## Post-merge state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 24 |
-| Deferred | 43 |
-| Remaining | 43 |
-| Queue head | RSH-025 |
-| RSH-025 authorised | No |
+| Accepted | 25 |
+| Deferred | 42 |
+| Remaining | 42 |
+| Queue head | RSH-026 |
+| RSH-026 authorised | No |
 | Current authority remaining | 0 |
 | Save schema version | 3 |
-| Secret-scan roots | 4 |
-| Secret-scan patterns | 8 |
-| Release gates | 0/13 |
 | Unverified asset files | 66 |
+| Release gates | 0/13 |
 
-A new explicit owner instruction is required before RSH-025 may be created or executed.
+A new explicit owner instruction is required before RSH-026 may be created or executed.

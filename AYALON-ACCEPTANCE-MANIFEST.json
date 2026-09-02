@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-ayalon-acceptance-manifest",
+  "unit": "RSH-025",
+  "title": "Define Ayalon acceptance criteria and reference pack",
+  "generated_at": "2026-09-02T23:45:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "6597d7251d0f9c7ef24bf4b20ca44506bf651970",
+    "tree_sha": "1fb7bd783dba974ff1957f96841161f0c9db3323",
+    "branch": "agent/rsh-025-ayalon-acceptance"
+  },
+  "track_identity": {
+    "id": "ayalon",
+    "name_he": "נתיבי איילון",
+    "name_en": "Ayalon Highway",
+    "theme": "highway",
+    "open": true,
+    "width": 28,
+    "checkpoint_count": 8,
+    "street_segment_count": 6,
+    "poi_count": 9,
+    "gis_claim": false,
+    "owner_freeze": false
+  },
+  "street_segments": [
+    "Kibbutz Galuyot",
+    "HaHagana",
+    "LaGuardia",
+    "HaShalom",
+    "Savidor Center",
+    "Tel Aviv University"
+  ],
+  "inspired_pois": [
+    "HaHagana Station",
+    "HaShalom Station",
+    "Savidor Center",
+    "University Station",
+    "Azrieli",
+    "ToHa Tower",
+    "Electra Tower",
+    "Moshe Aviv Tower",
+    "Midtown TLV"
+  ],
+  "pixel_golden": {
+    "script": "scripts/pixel-golden.mjs",
+    "threshold": 0.12,
+    "fail_percent": 8,
+    "frames": [
+      "ayalon-day-g01.png",
+      "ayalon-day-g05.png",
+      "ayalon-day-g07.png",
+      "ayalon-night-g08.png"
+    ]
+  },
+  "reference_pack": {
+    "directory": "golden-baseline",
+    "lock_file": "golden-baseline/ayalon.lock",
+    "lock_generation": 11,
+    "hashalom_index": "golden-baseline/hashalom-photo.json",
+    "unique_placeholder_hash": "38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094",
+    "duplicate_placeholder_shots": [
+      "hashalom-g04.png",
+      "hashalom-g05.png",
+      "hashalom-g06.png",
+      "hashalom-ramp.png"
+    ],
+    "files": {
+      "ayalon-chase.png": "8dc20838b036b175755a36cb0d64fe435d26dcd56f276185b29bf48dbf45aefe",
+      "ayalon-day-g01.png": "6621099ae48187cc400ddeb7cc203d0e27e94312e8a4a1dff324bfc99516e455",
+      "ayalon-day-g05.png": "7aa736559f1d4300a33db7807237ef7b790c81a46a7a52c0f259894fa2094b79",
+      "ayalon-day-g07.png": "7008f9d9e29b333b1a3e36bf3e1f73a2f6ae8b3b86924a30f41173b632e12c97",
+      "ayalon-night-chase.png": "a19d833248ba0258a8e2582d0148126bcc0ee93437d55cb8a87d33a31f14ffc3",
+      "ayalon-night-g08.png": "72545851e488664b6d06319115414ee25b166f4608ab4d5c5df3b8bfa8fb3966",
+      "hashalom-azrieli.png": "574aa689a1ecf8d0c8cfca20e7941105ac79bebcccd4ba9a97e52dd41b119893",
+      "hashalom-citygate.png": "7d38bd78ef2cbf4e89e415169cef0a693cda51a3405a530d90029d8059e0aa2b",
+      "hashalom-electra.png": "baedacbae1ff163e128105b62cee7392c039181e39afaa1df37b1f9c74d2f7bc",
+      "hashalom-g04.png": "38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094",
+      "hashalom-g05.png": "38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094",
+      "hashalom-g06.png": "38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094",
+      "hashalom-galuyot.png": "9c5d48d2ae12a567c2c5e07d90229a3240867ce7debf7db0793eae7f2fe8f393",
+      "hashalom-hagana.png": "6f92f47c92b452f638361c5d9695335826848b81e7b128d53e5b9d1bacd2009d",
+      "hashalom-hakirya.png": "6c4510fade21d4a3baa0045fa98b2a761e4d8a9db26dab3c7ddd1fb17cf5ccb5",
+      "hashalom-midtown.png": "a13a57859c25396cddd44072d534dc6a14b112da8952e08f36891fd2e816bded",
+      "hashalom-platinum.png": "b63bd78b0b1f5e2edd0d1540624f45187982fe6635e23057407c8c20a8a7c364",
+      "hashalom-ramp.png": "38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094",
+      "hashalom-sarona.png": "d48ba7ca0bac2bcc124fb8f928a396813ed6bca4191eadb93e750a5d785d5a8a",
+      "hashalom-savidor.png": "62c54e53bb0902df2fddb4f0abe028c18d1566a840ab3537ff6bb717dc8d2673",
+      "hashalom-shalommeir.png": "c0ed46c8998af999a411e2a014ce243840e414c75827ffbc1282b319c779ca4f",
+      "hashalom-tau.png": "93317f411ea66ab98abed22dcf83ba1c6b54942c01f119d5d8ca955415a17e34",
+      "hashalom-toha.png": "b40bd13aa1fb2783ac23edaa5bdaae4981d5977ac3e718eed0c57122e283f322",
+      "hashalom-university.png": "a3bb9843e14555b197aae808984ee110dfefda3596297fde0fb4bdf0f7aa22d8"
+    }
+  },
+  "preservation": {
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "rendering_changes": 0,
+    "save_record_changes": 0,
+    "ayalon_lock_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "unverified_asset_files": 66,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
+    "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
+    "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
+    "pixel_golden_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
+    "ayalon_hash_script_sha256": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
+    "checker_test_sha256": "d8affc425c169377c2da55ae205b03d8a143042a57b13e9587f9b10152c82a86",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-026",
+    "rsh_026_authorized": false,
+    "rsh_026_started": false,
+    "forbidden_prefixes": [
+      ".rsh026",
+      ".github/workflows/rsh-026-",
+      "RSH-026-",
+      "scripts/rsh026-",
+      "src/game/ayalon-lock/"
+    ]
+  }
+}

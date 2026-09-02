@@ -5,11 +5,11 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "1f86cd0cbf3f5663aa9cefaa744a5bfa26a6e876af1c3c87bc6c27329c34946b";
+export const EXPECTED_MANIFEST_SHA256 = "c463593595718f8478d610286c931e2c0acac7b2935450e7c0421b937ed42d81";
 export const EXPECTED_RECORDS_SHA256 = "1394102cc0c744a3000a0ad191bca61efc79880b874a7ded3794b51bf0d3a502";
 export const EXPECTED_SAVE_FACADE_SHA256 = "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2";
 export const EXPECTED_RECORDS_TEST_SHA256 = "78152e01ab5e44436b87e41311aeaaabc602983106bf123192a3b441d8d2e8b5";
-export const EXPECTED_CHECKER_TEST_SHA256 = "efc8c6e378726c573bb49aeaec77586e36b095cb38c7ec1cf8db49daa5512bd0";
+export const EXPECTED_CHECKER_TEST_SHA256 = "a91e8dedf08880ac25cee87f20b3cbce59d29e1b352ed4ac761798075e4727e7";
 export const EXPECTED_SCHEMA_SHA256 = "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358";
 export const EXPECTED_RECOVERY_SHA256 = "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f";
 export const EXPECTED_UI_SHA256 = "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26";
@@ -136,8 +136,8 @@ export function validateTimedRecords(overrides = {}) {
   if (tracks.modules?.length !== 56 || tracks.counts?.mvp !== 8 || tracks.counts?.deferred !== 48) errors.push("track boundary changed");
 
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-025 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-025" || manifest.deferred_boundary?.rsh_025_authorized !== false || manifest.deferred_boundary?.rsh_025_started !== false) errors.push("RSH-025 deferred boundary changed");
+  if (later.length) errors.push(`RSH-026 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-026" || manifest.deferred_boundary?.rsh_026_authorized !== false || manifest.deferred_boundary?.rsh_026_started !== false) errors.push("RSH-026 deferred boundary changed");
 
   return {
     errors,
@@ -159,5 +159,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`timed-records fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`timed-records ok: schema v${result.schemaVersion}; limit ${result.recordLimit}; per-car ${result.perTrackCarLimit}; RSH-025 deferred`);
+  console.log(`timed-records ok: schema v${result.schemaVersion}; limit ${result.recordLimit}; per-car ${result.perTrackCarLimit}; RSH-026 deferred`);
 }

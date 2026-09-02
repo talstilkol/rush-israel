@@ -1,7 +1,7 @@
 {
   "schema_version": "10.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-02T22:40:00.000Z",
+  "generated_at": "2026-09-03T00:00:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -442,23 +442,44 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-09-02T22:40:00.000Z",
       "description": "Timed-record SHA-256 verification on read, serial persist, duplicate collapse and 24/200 storage limits accepted."
+    },
+    {
+      "id": "B024-rsh-024-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-024",
+      "branch": "agent/rsh-024-production-security",
+      "pull_request": 27,
+      "commit_sha": "6597d7251d0f9c7ef24bf4b20ca44506bf651970",
+      "tree_sha": "1fb7bd783dba974ff1957f96841161f0c9db3323",
+      "validated_head_sha": "810c2fc86939d48cd7df166a1071224bc57a5406",
+      "workflow_run": 33692724390,
+      "workflow_job": 100454845582,
+      "artifact_id": 9870728803,
+      "artifact_digest": "sha256:7b1d4b23ccfd1fff14254fff01976a7c712bfbd72e1d5d17b6988175b2b2f675",
+      "post_merge_workflow_run": 33696253106,
+      "post_merge_workflow_job": 100465638607,
+      "post_merge_artifact_id": 9871953607,
+      "post_merge_artifact_digest": "sha256:410f63b38e62b16ad94783c48bdeb4d6a427a33f712e36dc5f990a12fc6cc6ca",
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-09-03T00:00:00.000Z",
+      "description": "Expanded secret scanning, production QA-hook pin and build/migration separation accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-024",
+    "unit": "RSH-025",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "10d0624fce7813b7ad7082adc3c4e92e56c1b851",
-    "branch": "agent/rsh-024-production-security",
-    "manifest": "PRODUCTION-SECURITY-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-024 pull request"
+    "implementation_base_sha": "6597d7251d0f9c7ef24bf4b20ca44506bf651970",
+    "branch": "agent/rsh-025-ayalon-acceptance",
+    "manifest": "AYALON-ACCEPTANCE-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-025 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-025",
+    "queue_head": "RSH-026",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_025_authorized": false
+    "RSH_026_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
