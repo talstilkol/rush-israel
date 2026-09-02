@@ -106,18 +106,20 @@
     "ghost_block_sha256": "59948dace66f2683d4f7cfc480f270579727dd94be257f5ea6637bd18e217674"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-024",
+    "queue_head": "RSH-025",
     "rsh_023_authorized": true,
     "rsh_023_started": true,
     "rsh_023_state": "accepted_on_merge",
+    "rsh_024_authorized": true,
+    "rsh_024_started": true,
+    "rsh_024_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh024",
-      ".github/workflows/rsh-024-",
-      "RSH-024-",
-      "scripts/rsh024-",
-      "src/game/security/"
+      ".rsh025",
+      ".github/workflows/rsh-025-",
+      "RSH-025-",
+      "scripts/rsh025-"
     ],
-    "rsh_024_authorized": false,
-    "rsh_024_started": false
+    "rsh_025_authorized": false,
+    "rsh_025_started": false
   }
 }

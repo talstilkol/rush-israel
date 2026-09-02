@@ -1,11 +1,11 @@
 # RUSH Israel — Findings Register
 
-**Version:** 2.3.0
-**RSH-023 implementation base:** `33b280767913ef93b1dd8b73ab0e41a73636db38`
-**State effective on:** merge of the RSH-023 pull request
+**Version:** 2.4.0
+**RSH-024 implementation base:** `10d0624fce7813b7ad7082adc3c4e92e56c1b851`
+**State effective on:** merge of the RSH-024 pull request
 **Date:** 2 September 2026
 **Total:** 42 findings — 12 P0, 18 P1, 12 P2
-**Status:** 14 OPEN, 7 MITIGATED, 21 CLOSED
+**Status:** 13 OPEN, 7 MITIGATED, 22 CLOSED
 
 ## Status rules
 
@@ -25,7 +25,7 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P0-04 | P0 | **CLOSED** | No GitHub Actions CI is present | RSH-007 merged `required-ci / validate`; exact-head CI remains the acceptance authority. | RSH-007 |
 | P0-05 | P0 | **CLOSED** | The QA command is not self-contained | The RSH-006 harness starts, validates and stops its own server in CI. | RSH-006, RSH-007 |
 | P0-06 | P0 | **CLOSED** | Automation contains absolute `/workspace` paths | RSH-005 migrated executable automation to module-relative roots; `check:paths` prevents recurrence. | RSH-005 |
-| P0-07 | P0 | **OPEN** | Secret scanning is too narrow | The current scan still covers only `src/game` and a small pattern set. | RSH-024 |
+| P0-07 | P0 | **CLOSED** | Secret scanning is too narrow | RSH-024 scans tracked text under `src/`, `scripts/`, `server/` and `.github/` with eight fail-closed patterns instead of only `src/game`. | RSH-024 |
 | P0-08 | P0 | **MITIGATED** | Operational contracts are ignored by Git | Governance, contribution, security, toolchain, QA, CI, product and metadata contracts are versioned; ignored AGENTS/startup files still require a decision. | RSH-002, RSH-004, RSH-012 |
 | P0-09 | P0 | **CLOSED** | Program status sources contradict one another | Canonical state, queue, master plan and NEXT authority are merged; historical files are explicitly non-controlling. | RSH-001 |
 | P0-10 | P0 | **MITIGATED** | The last audit is stale and sequencing rules were violated | The queue was reset, product scope was frozen, all 56 tracks were classified and asset/metadata authorities were established; vertical-slice enforcement remains pending. | RSH-009–RSH-012, RSH-025 |

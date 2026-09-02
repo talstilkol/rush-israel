@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-production-security-manifest",
+  "unit": "RSH-024",
+  "title": "Harden production security and separate DB migration from build",
+  "generated_at": "2026-09-02T22:40:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "10d0624fce7813b7ad7082adc3c4e92e56c1b851",
+    "tree_sha": "4a035b9f738d66e4dc825023024d3cd714a4eb96",
+    "branch": "agent/rsh-024-production-security"
+  },
+  "schema_authority": {
+    "manifest": "SAVE-SCHEMA-MANIFEST.json",
+    "version": 3,
+    "migration_edges": [
+      "0→1",
+      "1→2",
+      "2→3"
+    ],
+    "changed": false
+  },
+  "recovery_authority": {
+    "manifest": "SAVE-RECOVERY-MANIFEST.json",
+    "changed": false
+  },
+  "timed_records_authority": {
+    "manifest": "TIMED-RECORDS-MANIFEST.json",
+    "changed": false
+  },
+  "build_policy": {
+    "command": "vite build",
+    "db_migrate_script": false,
+    "auth_check_script": false,
+    "with_app_env": false
+  },
+  "secret_scan": {
+    "roots": [
+      "src",
+      "scripts",
+      "server",
+      ".github"
+    ],
+    "src_game_only": false,
+    "pattern_count": 8,
+    "fail_closed": true
+  },
+  "production_qa": {
+    "needles": [
+      "finishNow",
+      "__controlsTest"
+    ],
+    "checker": "scripts/check-qa-hook.mjs",
+    "in_required_qa_gate": true,
+    "github_required_check": false,
+    "adapter_identity_preserved": true
+  },
+  "findings": {
+    "closed": [
+      "P0-07"
+    ],
+    "still_mitigated": [
+      "P1-01"
+    ]
+  },
+  "preservation": {
+    "schema_version_changes": 0,
+    "migration_edge_changes": 0,
+    "timed_record_changes": 0,
+    "recovery_code_changes": 0,
+    "ghost_schema_changes": 0,
+    "track_data_changes": 0,
+    "physics_changes": 0,
+    "rendering_changes": 0,
+    "engine_adapter_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "unverified_asset_files": 66,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "policy_source_sha256": "90516317124c1ad86e1a059959a498e2e2d32b9b23834feb8cfc2026a1b0bb88",
+    "secrets_check_sha256": "9a2b1ffceaae9602c4134b47cbca9209f7d6a684d335b0ac4b9cc2914b8fc322",
+    "secrets_test_sha256": "eb436ab5108a6679d52f22684c3cc0a330729a3106d0ed1d6c044fea8fd5db73",
+    "checker_test_sha256": "be62e09ad5042bf363215315202c3477b9a416e4b670f3ec27ad1c4dbe9db73d",
+    "qa_hook_sha256": "14db672bdc1311b3fcd14a2230a8f4240ff88cf9a279659d9559e2959b694460",
+    "qa_adapter_sha256": "973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "records_source_sha256": "1394102cc0c744a3000a0ad191bca61efc79880b874a7ded3794b51bf0d3a502",
+    "save_facade_sha256": "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2",
+    "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
+    "recovery_source_sha256": "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-025",
+    "rsh_025_authorized": false,
+    "rsh_025_started": false,
+    "forbidden_prefixes": [
+      ".rsh025",
+      ".github/workflows/rsh-025-",
+      "RSH-025-",
+      "scripts/rsh025-",
+      "src/game/ayalon-lock/"
+    ]
+  }
+}

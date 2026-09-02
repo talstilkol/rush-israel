@@ -1,24 +1,24 @@
 {
-  "schema_version": "12.0.0",
+  "schema_version": "13.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-02T22:20:00.000Z",
+  "generated_at": "2026-09-02T22:40:00.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_023_pull_request",
-    "implementation_base_sha": "33b280767913ef93b1dd8b73ab0e41a73636db38",
-    "self_reference_boundary": "The RSH-023 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_024_pull_request",
+    "implementation_base_sha": "10d0624fce7813b7ad7082adc3c4e92e56c1b851",
+    "self_reference_boundary": "The RSH-024 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "33b280767913ef93b1dd8b73ab0e41a73636db38",
-    "tree_sha": "913b40f399144c18ceb20c61a35353bc38a99d35",
-    "commit_authored_at": "2026-09-03T01:05:14+03:00",
-    "commit_message": "Merge PR #25: RSH-022 — Save backup, corruption recovery and visible failure handling",
+    "head_sha": "10d0624fce7813b7ad7082adc3c4e92e56c1b851",
+    "tree_sha": "4a035b9f738d66e4dc825023024d3cd714a4eb96",
+    "commit_authored_at": "2026-09-02T22:30:43Z",
+    "commit_message": "Merge PR #26: RSH-023 — Harden timed records, write ordering, deduplication and storage limits",
     "commit_signature_verified": true,
-    "role": "RSH-023 exact implementation base"
+    "role": "RSH-024 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 23,
+    "accepted_units": 24,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 44,
-    "remaining_units": 44,
-    "queue_head": "RSH-024",
+    "deferred_units": 43,
+    "remaining_units": 43,
+    "queue_head": "RSH-025",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -594,7 +594,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-023": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-023-timed-records",
       "pull_request_resolution": "the pull request created from the exact RSH-023 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -617,16 +617,57 @@
       "rendering_changes": 0,
       "asset_changes": 0,
       "dependency_changes": 0,
-      "rsh_024_created": false
+      "rsh_024_created": true,
+      "pull_request": 26,
+      "validated_head_sha": "192a1c2e6977c965576490714f171188a0d1c6a5",
+      "candidate_tree_sha": "4a035b9f738d66e4dc825023024d3cd714a4eb96",
+      "merge_sha": "10d0624fce7813b7ad7082adc3c4e92e56c1b851",
+      "tree_sha": "4a035b9f738d66e4dc825023024d3cd714a4eb96",
+      "workflow_run": 33690225109,
+      "workflow_job": 100447034394,
+      "artifact_id": 9869819091,
+      "artifact_digest": "sha256:388ea36f81fc2096b11a72aa71a0c2af28bc546844014c19c63103a838c0ac04",
+      "post_merge_workflow_run": 33690727964,
+      "post_merge_workflow_job": 100448620357,
+      "post_merge_artifact_id": 9870004047,
+      "post_merge_artifact_digest": "sha256:981d3d804e37df518607e16ea7b25ad0a3d303a9b400f1ffc38d99e09cdda616",
+      "unresolved_review_threads": 0
+    },
+    "RSH-024": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-024-production-security",
+      "pull_request_resolution": "the pull request created from the exact RSH-024 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-024 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-024 merge SHA",
+      "manifest": "PRODUCTION-SECURITY-MANIFEST.json",
+      "contract": "RSH-024-PRODUCTION-SECURITY-CONTRACT.md",
+      "policy_source": "src/game/security/production-policy.ts",
+      "secrets_checker": "scripts/secrets-check.mjs",
+      "qa_hook_checker": "scripts/check-qa-hook.mjs",
+      "build_command": "vite build",
+      "secret_scan_src_game_only": false,
+      "secret_pattern_count": 8,
+      "github_required_check": false,
+      "schema_version": 3,
+      "migration_edges": 3,
+      "timed_record_changes": 0,
+      "ghost_schema_changes": 0,
+      "track_data_changes": 0,
+      "physics_changes": 0,
+      "rendering_changes": 0,
+      "asset_changes": 0,
+      "dependency_changes": 0,
+      "rsh_025_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-023",
+    "unit": "RSH-024",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-023-timed-records",
+    "branch": "agent/rsh-024-production-security",
     "authority_consumed": true,
-    "next_unit": "RSH-024",
+    "next_unit": "RSH-025",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -670,7 +711,10 @@
     "RSH-023_authorized": false,
     "RSH-023_was_separately_authorized": true,
     "RSH-023_authorization_consumed": true,
-    "RSH-024_authorized": false
+    "RSH-024_authorized": false,
+    "RSH-024_was_separately_authorized": true,
+    "RSH-024_authorization_consumed": true,
+    "RSH-025_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -736,17 +780,17 @@
     "p0": 12,
     "p1": 18,
     "p2": 12,
-    "open": 14,
+    "open": 13,
     "mitigated": 7,
-    "closed": 21,
+    "closed": 22,
     "register": "FINDINGS-REGISTER.md"
   },
   "constraints": [
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The plain next instruction authorized exactly RSH-023 and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-024.",
+    "The plain next instruction authorized exactly RSH-024 and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-025.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13."
   ],
@@ -874,12 +918,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-023"
+      "RSH-024"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-023_merge",
-    "RSH_024_authorized": false
+    "state": "consumed_on_RSH-024_merge",
+    "RSH_025_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -918,12 +962,12 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-022"
+      "RSH-023"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-022_merge",
-    "RSH_023_authorized": false
+    "state": "consumed_on_RSH-023_merge",
+    "RSH_024_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
