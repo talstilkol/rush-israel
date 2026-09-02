@@ -1,11 +1,11 @@
 # RUSH Israel — Findings Register
 
-**Version:** 2.2.0
-**RSH-022 implementation base:** `9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b`
-**State effective on:** merge of the RSH-022 pull request
-**Date:** 31 August 2026
+**Version:** 2.3.0
+**RSH-023 implementation base:** `33b280767913ef93b1dd8b73ab0e41a73636db38`
+**State effective on:** merge of the RSH-023 pull request
+**Date:** 2 September 2026
 **Total:** 42 findings — 12 P0, 18 P1, 12 P2
-**Status:** 16 OPEN, 7 MITIGATED, 19 CLOSED
+**Status:** 14 OPEN, 7 MITIGATED, 21 CLOSED
 
 ## Status rules
 
@@ -32,8 +32,8 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P0-11 | P0 | **MITIGATED** | No version, tag, release or rollback baseline exists | Immutable baseline, milestone, label and release registers exist; tags, releases and rollback proof remain absent. | RSH-063, RSH-064, RSH-067 |
 | P0-12 | P0 | **MITIGATED** | Root licensing and asset provenance are incomplete | RSH-011 inventories 134/134 public files; RSH-012 establishes the proprietary root licence. Exactly 66 asset files remain unverified and uncleared. | Replace or document every unverified asset; keep public distribution blocked |
 | P1-01 | P1 | **MITIGATED** | Production QA-hook removal is not enforced by GitHub | `check:qa` passes inside the required workflow, but GitHub does not yet require that check through branch settings. | Apply the RSH-008 desired ruleset; RSH-024 hardening |
-| P1-02 | P1 | **OPEN** | Timed-record hashes are generated but not verified on read | Record liveness checks `physicsVersion` only. | RSH-023 |
-| P1-03 | P1 | **OPEN** | Timed-record writes are fire-and-forget | `recordBest` starts asynchronous persistence without awaiting or serialising. | RSH-023 |
+| P1-02 | P1 | **CLOSED** | Timed-record hashes are generated but not verified on read | RSH-023 verifies SHA-256 record hashes on every load, drops stale physics versions and structurally invalid rows, and bounds storage to 24 per track/car plus 200 overall. | RSH-023 |
+| P1-03 | P1 | **CLOSED** | Timed-record writes are fire-and-forget | RSH-023 serialises persist through one in-module chain, replaces `rush.records.v3` with canonical JSON, verifies the write, and returns structured duplicate/rejected/write-failed status without deleting source bytes. | RSH-023 |
 | P1-04 | P1 | **CLOSED** | Save failures and corruption are silently swallowed | RSH-021 establishes deterministic schema/version handling. RSH-022 adds verified backup rotation, bounded exact-byte quarantine, explicit restore/fresh-start decisions, structured failures and accessible bilingual failure UI without deleting source or legacy bytes. | RSH-021, RSH-022 |
 | P1-05 | P1 | **CLOSED** | The build command performs database migration | RSH-020 removes the DB subsystem and migration scripts; `npm run build` is exactly `vite build`. | RSH-020 |
 | P1-06 | P1 | **CLOSED** | Template auth, DB, multiplayer and Grok infrastructure is not product-scoped | RSH-020 removes auth, DB, migrations, multiplayer, app-env and preview-host bridges. The retained `/__grok/*` PWA URLs are explicitly product-owned compatibility paths. | RSH-020 |

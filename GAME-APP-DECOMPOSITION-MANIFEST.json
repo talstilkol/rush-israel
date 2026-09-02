@@ -375,7 +375,7 @@
     "src/game/world.ts": "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc",
     "src/game/physics.ts": "cbff35aa2e2e4b509decf38e9f1ca3d262667675af81e0352ba02f460f5723c1",
     "src/game/save.ts": "d7c681b9e00942c91135a579d47f7f9f8def717d22232470b3990a5b0a644d87",
-    "src/game/records.ts": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
+    "src/game/records.ts": "1394102cc0c744a3000a0ad191bca61efc79880b874a7ded3794b51bf0d3a502",
     "ENGINE-ADAPTER-MANIFEST.json": "c19a9b9fe933d3c877d3e44cc10ebf7361623561d5f114ec742ec5d807d249e4",
     "WORLD-BUILDER-MANIFEST.json": "5921e14be99509e8b812bc3f556643b98d2244d1f8b77c2b928e02a99de90f00",
     "TRACK-MODULE-MANIFEST.json": "a8891a4af9345dbfa34fcb998302b77383f3b14f19fd240c9a8c46d2e5a43fdd",
@@ -410,18 +410,21 @@
     "rsh_021_started": true,
     "rsh_021_authorized": true,
     "forbidden_prefixes": [
-      ".rsh023",
-      ".github/workflows/rsh-023-",
-      "RSH-023-",
+      ".rsh024",
+      ".github/workflows/rsh-024-",
+      "RSH-024-",
       "src/auth-v3/",
       "src/multiplayer-v3/",
-      "src/game/records-v2/"
+      "src/game/security/"
     ],
     "rsh_021_state": "accepted",
     "rsh_022_started": true,
     "rsh_022_authorized": true,
     "rsh_022_state": "accepted_on_merge",
-    "rsh_023_started": false,
-    "rsh_023_authorized": false
+    "rsh_023_started": true,
+    "rsh_023_authorized": true,
+    "rsh_023_state": "accepted_on_merge",
+    "rsh_024_started": false,
+    "rsh_024_authorized": false
   }
 }
