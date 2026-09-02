@@ -26,7 +26,8 @@ export const EXPECTED_WORLD_SHA256 = "b750d1ffc51a34a5b5d557e821577f6c679cef903c
 export const EXPECTED_CORE_SHA256 = "cbb9ac1f9de387cb1b31290fbc617b0ca34536b97067198b61e82ffcaf31fafe";
 export const EXPECTED_DEPENDENCY_MAP_SHA256 = "a3e951f6e3e7d32ee06008b2b3f294b619c7b3753419001624399e477c8038ea";
 export const EXPECTED_RSH020_PACKAGE_LOCK_SHA256 = "55afd975f03b12867aada083c375e2fadc402b654ddaf0f0934807966fa9f1ed";
-export const EXPECTED_RSH022_SAVE_SHA256 = "9baf63c3ec5f9f1b50984db4f184103c65b09709409af33204aa28ea7cd497e7";
+export const EXPECTED_RSH022_SAVE_SHA256 = "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2";
+export const EXPECTED_RSH023_RECORDS_SHA256 = "1394102cc0c744a3000a0ad191bca61efc79880b874a7ded3794b51bf0d3a502";
 export const EXPECTED_TRACK_MANIFEST_SHA256 = "a8891a4af9345dbfa34fcb998302b77383f3b14f19fd240c9a8c46d2e5a43fdd";
 export const EXPECTED_TRACK_SCHEMA_SHA256 = "56f2f29c131d8df1b98c5fdc909fd1fe35cf21de2346d6f9f8189b6d1abec208";
 export const EXPECTED_RUNTIME_DIGEST = "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d";
@@ -359,7 +360,9 @@ function validatePreservation(input, manifest, errors) {
       ? EXPECTED_RSH020_PACKAGE_LOCK_SHA256
       : authority.path === "src/game/save.ts"
         ? EXPECTED_RSH022_SAVE_SHA256
-        : authority.sha256;
+        : authority.path === "src/game/records.ts"
+          ? EXPECTED_RSH023_RECORDS_SHA256
+          : authority.sha256;
     if (typeof source !== "string" || sha256(source) !== acceptedSha) errors.push(`${authority.path} preservation identity changed`);
   }
   for (const authority of Object.values(manifest.preservation_identities.smokes)) {

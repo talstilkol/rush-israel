@@ -88,7 +88,7 @@
     "authority": "SAVE-RECOVERY-MANIFEST.json"
   },
   "preservation": {
-    "timed_record_changes": 0,
+    "timed_record_changes": 1,
     "ghost_schema_changes": 0,
     "track_data_changes": 0,
     "physics_changes": 0,
@@ -104,23 +104,26 @@
     "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
     "save_facade_source_sha256": "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24",
     "test_source_sha256": "8ac32e38ac4b11cf63319faec0a49e95498a041a3703d06d85c3f4a8b0eb84a3",
-    "records_source_sha256": "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6",
+    "records_source_sha256": "1394102cc0c744a3000a0ad191bca61efc79880b874a7ded3794b51bf0d3a502",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-023",
+    "queue_head": "RSH-024",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
+    "rsh_023_authorized": true,
+    "rsh_023_started": true,
+    "rsh_023_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh023",
-      ".github/workflows/rsh-023-",
-      "RSH-023-",
-      "scripts/rsh023-",
+      ".rsh024",
+      ".github/workflows/rsh-024-",
+      "RSH-024-",
+      "scripts/rsh024-",
       "src/game/records-v2/"
     ],
-    "rsh_023_authorized": false,
-    "rsh_023_started": false
+    "rsh_024_authorized": false,
+    "rsh_024_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -136,8 +139,8 @@
     "ghost_schema_changes": 0,
     "recovery_source_sha256": "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f",
     "ui_source_sha256": "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26",
-    "save_facade_sha256": "9baf63c3ec5f9f1b50984db4f184103c65b09709409af33204aa28ea7cd497e7",
-    "schema_guard_test_sha256": "408cb2d070aa9b42f3921f8bf599c1b49bc17987b6375230c8869238e5b8dab4",
+    "save_facade_sha256": "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2",
+    "schema_guard_test_sha256": "49247df6bc6f23155b9f17b3460370ccbd38527e55e907b0f6fa088deb062c52",
     "pending_write_retained_in_memory": true,
     "pending_write_retry_before_reload": true,
     "failed_current_write_action": "retry",
@@ -147,5 +150,21 @@
     "canonicalization_pending_data_retained": true,
     "pending_retry_applies_follow_up_mutations": true,
     "pending_retry_overwrites_untrusted_current": true
+  },
+  "rsh_023_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "TIMED-RECORDS-MANIFEST.json",
+    "contract": "RSH-023-TIMED-RECORDS-CONTRACT.md",
+    "records_source": "src/game/records.ts",
+    "records_source_sha256": "1394102cc0c744a3000a0ad191bca61efc79880b874a7ded3794b51bf0d3a502",
+    "save_facade_sha256": "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2",
+    "records_test_sha256": "78152e01ab5e44436b87e41311aeaaabc602983106bf123192a3b441d8d2e8b5",
+    "timed_record_block_sha256": "b1fc74ba1ea85e830f8afaf058d3fca710508147c7bc537211a9b2039a8b88b9",
+    "ghost_block_sha256": "59948dace66f2683d4f7cfc480f270579727dd94be257f5ea6637bd18e217674",
+    "record_limit": 200,
+    "record_limit_per_track_car": 24,
+    "hash_verified_on_read": true,
+    "serial_writes": true,
+    "ghost_schema_changes": 0
   }
 }

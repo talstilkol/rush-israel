@@ -584,7 +584,7 @@ test("the save facade retains a canonical pending write and retries it before re
   assert.ok(source.indexOf("const pending = pendingSaveData") < source.indexOf("load();\n  return lastSaveStatus;"));
 });
 
-test("the committed RSH-022 recovery authority passes and RSH-023 remains absent", () => {
+test("the committed RSH-022 recovery authority passes under the RSH-023 overlay", () => {
   const result = validateSaveRecovery();
   assert.deepEqual(result.errors, []);
   assert.equal(result.backupKeys, 4);

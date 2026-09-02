@@ -1,7 +1,7 @@
 {
-  "schema_version": "9.0.0",
+  "schema_version": "10.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-08-31T07:45:28.147Z",
+  "generated_at": "2026-09-02T22:20:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -400,23 +400,44 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-08-31T07:45:28.147Z",
       "description": "Save schema v3, deterministic 0→1→2→3 migrations and fail-closed source-byte preservation accepted."
+    },
+    {
+      "id": "B022-rsh-022-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-022",
+      "branch": "agent/rsh-022-save-recovery",
+      "pull_request": 25,
+      "commit_sha": "33b280767913ef93b1dd8b73ab0e41a73636db38",
+      "tree_sha": "913b40f399144c18ceb20c61a35353bc38a99d35",
+      "validated_head_sha": "21d0b5969c5a99bb30336ded347ac251b6d988ac",
+      "workflow_run": 33688243143,
+      "workflow_job": 100440729723,
+      "artifact_id": 9869076147,
+      "artifact_digest": "sha256:5f3eb4bbfd816255dbce3d20b66547602e9827c2488927379498a0c49f0b2812",
+      "post_merge_workflow_run": 33688592656,
+      "post_merge_workflow_job": 100441837547,
+      "post_merge_artifact_id": 9869217416,
+      "post_merge_artifact_digest": "sha256:9fd2bf5f7abba478f5715f9ffa996e6f8d15177c44fbf09246a8805f14fce30b",
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-09-02T22:20:00.000Z",
+      "description": "Verified one-generation backup, bounded rejected-byte quarantine, explicit recovery and accessible visible failure handling accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-022",
+    "unit": "RSH-023",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b",
-    "branch": "agent/rsh-022-save-recovery",
-    "manifest": "SAVE-RECOVERY-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-022 pull request"
+    "implementation_base_sha": "33b280767913ef93b1dd8b73ab0e41a73636db38",
+    "branch": "agent/rsh-023-timed-records",
+    "manifest": "TIMED-RECORDS-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-023 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-023",
+    "queue_head": "RSH-024",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_023_authorized": false
+    "RSH_024_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

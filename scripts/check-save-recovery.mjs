@@ -5,16 +5,16 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "7f12126059259cb474ab832850f4310ba5a3c5f4c1a143e7b95b60d15245f692";
+export const EXPECTED_MANIFEST_SHA256 = "06b3b59fa0db394fa3566dbb06dce1fbab424ab9e70a05a91e7ac61ed77e124b";
 export const EXPECTED_RECOVERY_SHA256 = "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f";
 export const EXPECTED_UI_SHA256 = "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26";
-export const EXPECTED_SAVE_FACADE_SHA256 = "9baf63c3ec5f9f1b50984db4f184103c65b09709409af33204aa28ea7cd497e7";
-export const EXPECTED_TEST_SHA256 = "fc504c6985cf7d21f68b86a6e2bdcba06144397cc9b499d78aa369aacaafa442";
+export const EXPECTED_SAVE_FACADE_SHA256 = "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2";
+export const EXPECTED_TEST_SHA256 = "6306077ad7368bfb8d213de7283d262db980d219cb11aa640a8c8a02e1b9f5c1";
 export const EXPECTED_SCHEMA_SHA256 = "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358";
-export const EXPECTED_RECORDS_SHA256 = "5bfea6496befb107f0ae6f60810692b3612c98f15dc39274596903bcaed1aad6";
+export const EXPECTED_RECORDS_SHA256 = "1394102cc0c744a3000a0ad191bca61efc79880b874a7ded3794b51bf0d3a502";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_PACKAGE_LOCK_SHA256 = "55afd975f03b12867aada083c375e2fadc402b654ddaf0f0934807966fa9f1ed";
-export const EXPECTED_TIMED_BLOCK_SHA256 = "cc6e8965d45653f1a1f3f4f506589b8729ec54a8c9c0b7667d9a4cf0e3d717e7";
+export const EXPECTED_TIMED_BLOCK_SHA256 = "b1fc74ba1ea85e830f8afaf058d3fca710508147c7bc537211a9b2039a8b88b9";
 export const EXPECTED_GHOST_BLOCK_SHA256 = "59948dace66f2683d4f7cfc480f270579727dd94be257f5ea6637bd18e217674";
 export const EXPECTED_WORKFLOW_SHA256 = "678cd0da7572f6f0debc9531594fedad25b6db886c41a7bb5291767edda9d17e";
 export const EXPECTED_CI_SUMMARY_SHA256 = "41e158628e2a58f6cb77d34d26c357a9c89ce51f5cadf1739a2350fb198d0feb";
@@ -171,18 +171,18 @@ export function validateSaveRecovery(overrides = {}) {
 
   const timed = sourceBlock(input.saveFacadeSource, "async function persistTimed", "export function getMuted");
   const ghost = sourceBlock(input.saveFacadeSource, "type GhostBlob", "export function isDailyDone");
-  if (timed === null || sha256(timed) !== EXPECTED_TIMED_BLOCK_SHA256 || manifest.identities?.timed_record_block_sha256 !== EXPECTED_TIMED_BLOCK_SHA256) errors.push("timed-record block changed in RSH-022");
-  if (ghost === null || sha256(ghost) !== EXPECTED_GHOST_BLOCK_SHA256 || manifest.identities?.ghost_block_sha256 !== EXPECTED_GHOST_BLOCK_SHA256) errors.push("ghost block changed in RSH-022");
+  if (timed === null || sha256(timed) !== EXPECTED_TIMED_BLOCK_SHA256 || manifest.identities?.timed_record_block_sha256 !== EXPECTED_TIMED_BLOCK_SHA256) errors.push("timed-record block identity changed");
+  if (ghost === null || sha256(ghost) !== EXPECTED_GHOST_BLOCK_SHA256 || manifest.identities?.ghost_block_sha256 !== EXPECTED_GHOST_BLOCK_SHA256) errors.push("ghost block changed in RSH-023");
 
-  if (manifest.preservation?.timed_record_changes !== 0 || manifest.preservation?.ghost_schema_changes !== 0 || manifest.preservation?.track_data_changes !== 0 || manifest.preservation?.physics_changes !== 0 || manifest.preservation?.rendering_changes !== 0 || manifest.preservation?.asset_changes !== 0 || manifest.preservation?.dependency_changes !== 0) errors.push("RSH-022 preservation counts changed");
+  if (manifest.preservation?.timed_record_changes !== 1 || manifest.preservation?.ghost_schema_changes !== 0 || manifest.preservation?.track_data_changes !== 0 || manifest.preservation?.physics_changes !== 0 || manifest.preservation?.rendering_changes !== 0 || manifest.preservation?.asset_changes !== 0 || manifest.preservation?.dependency_changes !== 0) errors.push("RSH-023 preservation counts changed");
   if (asset.scope?.unverified_asset_files !== 66 || asset.scope?.public_distribution_authorized !== false || asset.truth_boundaries?.release_gates_green !== 0 || asset.truth_boundaries?.release_gates_total !== 13) errors.push("asset/distribution/release boundary changed");
   if (tracks.modules?.length !== 56 || tracks.counts?.mvp !== 8 || tracks.counts?.deferred !== 48) errors.push("track boundary changed");
 
   const recoveryFiles = input.repositoryFiles.filter((path) => /^src\/game\/save-recovery(?:-ui)?\.ts$/.test(path));
   if (JSON.stringify(recoveryFiles) !== JSON.stringify(["src/game/save-recovery-ui.ts", "src/game/save-recovery.ts"])) errors.push(`RSH-022 recovery source set changed: ${recoveryFiles.join(", ")}`);
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-023 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-023" || manifest.deferred_boundary?.rsh_023_authorized !== false || manifest.deferred_boundary?.rsh_023_started !== false) errors.push("RSH-023 deferred boundary changed");
+  if (later.length) errors.push(`RSH-024 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-024" || manifest.deferred_boundary?.rsh_023_authorized !== true || manifest.deferred_boundary?.rsh_023_started !== true || manifest.deferred_boundary?.rsh_024_started !== false) errors.push("RSH-024 deferred boundary changed");
 
   return {
     errors,
@@ -204,5 +204,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`save-recovery fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`save-recovery ok: schema v${result.schemaVersion}; ${result.backupKeys} bounded keys; ${result.quarantineSlots} rejected-save slots; RSH-023 deferred`);
+  console.log(`save-recovery ok: schema v${result.schemaVersion}; ${result.backupKeys} bounded keys; ${result.quarantineSlots} rejected-save slots; RSH-023 accepted; RSH-024 deferred`);
 }

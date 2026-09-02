@@ -1,24 +1,24 @@
 {
-  "schema_version": "11.0.0",
+  "schema_version": "12.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-08-31T07:45:28.147Z",
+  "generated_at": "2026-09-02T22:20:00.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_022_pull_request",
-    "implementation_base_sha": "9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b",
-    "self_reference_boundary": "The RSH-022 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_023_pull_request",
+    "implementation_base_sha": "33b280767913ef93b1dd8b73ab0e41a73636db38",
+    "self_reference_boundary": "The RSH-023 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b",
-    "tree_sha": "56da87772e707c7e4002264db25f447aa1074346",
-    "commit_authored_at": "2026-08-31T09:46:25+03:00",
-    "commit_message": "Merge PR #24: RSH-021 — Version save schema and deterministic migrations",
+    "head_sha": "33b280767913ef93b1dd8b73ab0e41a73636db38",
+    "tree_sha": "913b40f399144c18ceb20c61a35353bc38a99d35",
+    "commit_authored_at": "2026-09-03T01:05:14+03:00",
+    "commit_message": "Merge PR #25: RSH-022 — Save backup, corruption recovery and visible failure handling",
     "commit_signature_verified": true,
-    "role": "RSH-022 exact implementation base"
+    "role": "RSH-023 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 22,
+    "accepted_units": 23,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 45,
-    "remaining_units": 45,
-    "queue_head": "RSH-023",
+    "deferred_units": 44,
+    "remaining_units": 44,
+    "queue_head": "RSH-024",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -543,7 +543,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-022": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-022-save-recovery",
       "pull_request_resolution": "the pull request created from the exact RSH-022 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -577,16 +577,56 @@
       "rendering_changes": 0,
       "asset_changes": 0,
       "dependency_changes": 0,
-      "rsh_023_created": false
+      "rsh_023_created": true,
+      "pull_request": 25,
+      "validated_head_sha": "21d0b5969c5a99bb30336ded347ac251b6d988ac",
+      "candidate_tree_sha": "913b40f399144c18ceb20c61a35353bc38a99d35",
+      "merge_sha": "33b280767913ef93b1dd8b73ab0e41a73636db38",
+      "tree_sha": "913b40f399144c18ceb20c61a35353bc38a99d35",
+      "workflow_run": 33688243143,
+      "workflow_job": 100440729723,
+      "artifact_id": 9869076147,
+      "artifact_digest": "sha256:5f3eb4bbfd816255dbce3d20b66547602e9827c2488927379498a0c49f0b2812",
+      "post_merge_workflow_run": 33688592656,
+      "post_merge_workflow_job": 100441837547,
+      "post_merge_artifact_id": 9869217416,
+      "post_merge_artifact_digest": "sha256:9fd2bf5f7abba478f5715f9ffa996e6f8d15177c44fbf09246a8805f14fce30b",
+      "unresolved_review_threads": 0
+    },
+    "RSH-023": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-023-timed-records",
+      "pull_request_resolution": "the pull request created from the exact RSH-023 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-023 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-023 merge SHA",
+      "manifest": "TIMED-RECORDS-MANIFEST.json",
+      "contract": "RSH-023-TIMED-RECORDS-CONTRACT.md",
+      "records_source": "src/game/records.ts",
+      "save_facade": "src/game/save.ts",
+      "records_key": "rush.records.v3",
+      "record_limit": 200,
+      "record_limit_per_track_car": 24,
+      "hash_verified_on_read": true,
+      "serial_writes": true,
+      "schema_version": 3,
+      "migration_edges": 3,
+      "ghost_schema_changes": 0,
+      "track_data_changes": 0,
+      "physics_changes": 0,
+      "rendering_changes": 0,
+      "asset_changes": 0,
+      "dependency_changes": 0,
+      "rsh_024_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-022",
+    "unit": "RSH-023",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-022-save-recovery",
+    "branch": "agent/rsh-023-timed-records",
     "authority_consumed": true,
-    "next_unit": "RSH-023",
+    "next_unit": "RSH-024",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -627,7 +667,10 @@
     "RSH-022_authorized": false,
     "RSH-022_was_separately_authorized": true,
     "RSH-022_authorization_consumed": true,
-    "RSH-023_authorized": false
+    "RSH-023_authorized": false,
+    "RSH-023_was_separately_authorized": true,
+    "RSH-023_authorization_consumed": true,
+    "RSH-024_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -693,17 +736,17 @@
     "p0": 12,
     "p1": 18,
     "p2": 12,
-    "open": 16,
+    "open": 14,
     "mitigated": 7,
-    "closed": 19,
+    "closed": 21,
     "register": "FINDINGS-REGISTER.md"
   },
   "constraints": [
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The plain next instruction authorized exactly RSH-022 and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-023.",
+    "The plain next instruction authorized exactly RSH-023 and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-024.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13."
   ],
@@ -831,12 +874,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-022"
+      "RSH-023"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-022_merge",
-    "RSH_023_authorized": false
+    "state": "consumed_on_RSH-023_merge",
+    "RSH_024_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -875,12 +918,12 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-021"
+      "RSH-022"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-021_merge",
-    "RSH_022_authorized": false
+    "state": "consumed_on_RSH-022_merge",
+    "RSH_023_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -1069,7 +1112,7 @@
     "RSH_022_state": "accepted_on_merge"
   },
   "rsh_022_save_recovery": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "SAVE-RECOVERY-MANIFEST.json",
     "human_contract": "RSH-022-SAVE-RECOVERY-CONTRACT.md",
     "validator": "scripts/check-save-recovery.mjs",
@@ -1085,7 +1128,26 @@
     "user_visible_failure_ui": true,
     "timed_record_changes": 0,
     "ghost_schema_changes": 0,
-    "RSH_023_created": false,
-    "RSH_023_authorized": false
+    "RSH_023_created": true,
+    "RSH_023_authorized": true,
+    "RSH_023_state": "accepted_on_merge"
+  },
+  "rsh_023_timed_records": {
+    "state": "accepted_on_merge",
+    "machine_authority": "TIMED-RECORDS-MANIFEST.json",
+    "human_contract": "RSH-023-TIMED-RECORDS-CONTRACT.md",
+    "validator": "scripts/check-timed-records.mjs",
+    "test": "scripts/check-timed-records.test.mjs",
+    "records_source": "src/game/records.ts",
+    "save_facade": "src/game/save.ts",
+    "records_key": "rush.records.v3",
+    "record_limit": 200,
+    "record_limit_per_track_car": 24,
+    "hash_verified_on_read": true,
+    "serial_writes": true,
+    "schema_version": 3,
+    "ghost_schema_changes": 0,
+    "RSH_024_created": false,
+    "RSH_024_authorized": false
   }
 }

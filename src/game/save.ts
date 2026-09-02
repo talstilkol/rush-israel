@@ -3,7 +3,12 @@ import type { Lang } from "./i18n";
 import { CAR_UNLOCK } from "./career";
 import { emptyTune, type GhostFrame } from "./garage";
 import { PHYSICS_VERSION } from "./physics";
-import { isLiveRecord, recordPayload, sha256hex, writeRecords, REC_KEY, type TimedRecord } from "./records";
+import {
+  hashTimedRecord,
+  loadTimedRecords,
+  persistTimedRecord,
+  type TimedRecord,
+} from "./records";
 import {
   GHOST_KEY,
   SAVE_SCHEMA_VERSION,
@@ -239,16 +244,20 @@ export function recordBest(id: TrackId, time: number, opts?: { eligible?: boolea
     write(data);
   }
   const carId = opts?.carId ?? "sabra";
-  void persistTimed({ t: time, trackId: id, carId, physicsVersion: PHYSICS_VERSION, hash: "" });
+  void persistTimed({
+    t: time,
+    trackId: id,
+    carId,
+    physicsVersion: PHYSICS_VERSION,
+    hash: hashTimedRecord({ t: time, trackId: id, carId, physicsVersion: PHYSICS_VERSION }),
+  });
   return better;
 }
 
 async function persistTimed(rec: TimedRecord) {
+  rec.hash = rec.hash || hashTimedRecord(rec);
   try {
-    rec.hash = await sha256hex(recordPayload(rec.trackId, rec.carId, rec.t, rec.physicsVersion));
-    const all = loadTimed().filter((r) => isLiveRecord(r, PHYSICS_VERSION));
-    all.push(rec);
-    writeRecords(all);
+    await persistTimedRecord(rec, localStorage, PHYSICS_VERSION);
   } catch {
     /* quota / crypto */
   }
@@ -256,17 +265,14 @@ async function persistTimed(rec: TimedRecord) {
 
 function loadTimed(): TimedRecord[] {
   try {
-    const raw = localStorage.getItem(REC_KEY);
-    if (!raw) return [];
-    const p = JSON.parse(raw) as TimedRecord[];
-    return Array.isArray(p) ? p : [];
+    return loadTimedRecords(localStorage, PHYSICS_VERSION).records;
   } catch {
     return [];
   }
 }
 
 export function liveRecords() {
-  return loadTimed().filter((r) => isLiveRecord(r, PHYSICS_VERSION));
+  return loadTimed();
 }
 
 export function getMuted() {
