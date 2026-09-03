@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-physics-calibration-manifest",
+  "unit": "RSH-033",
+  "title": "Calibrate driving physics and the five-car performance table",
+  "generated_at": "2026-09-03T08:00:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "f8d055c86b80ba1a72555e41668e071f74b32536",
+    "branch": "agent/rsh-033-physics-calibration"
+  },
+  "calibration": {
+    "physics_version": 7,
+    "physics_hz": 120,
+    "v100_mps": 27.778,
+    "claim_tolerance": 0.15,
+    "claims": [8.4, 6.6, 4.9, 5.8, 3.5],
+    "cars": ["sabra", "carmel", "kfir", "negev", "yam"],
+    "cars_rewritten": false,
+    "package_json_changed": false,
+    "gear_dump_below_v100": false,
+    "launch_drag_compensate": true,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "public_distribution": false
+  },
+  "lock_module": {
+    "directory": "src/game/physics-lock",
+    "physics": "src/game/physics-lock/physics.ts",
+    "index": "src/game/physics-lock/index.ts"
+  },
+  "preservation": {
+    "cars_source_changes": 0,
+    "package_json_changes": 0,
+    "ayalon_lock_changes": 0,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "lock_source_sha256": "3cf5d97955b7b8f232d4d86953e42316923c4cf5b83c6ef51e75e6d3c5c892a2",
+    "index_source_sha256": "2b5f492fe352e34b2adaba7645a3ec8c4ec1a60db7a7bbe9bbc7192a55ccfce9",
+    "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-034",
+    "rsh_034_authorized": false,
+    "rsh_034_started": false,
+    "forbidden_prefixes": [
+      ".rsh034",
+      ".github/workflows/rsh-034-",
+      "RSH-034-",
+      "scripts/rsh034-",
+      "src/game/ayalon-feel/"
+    ]
+  }
+}
