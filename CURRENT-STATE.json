@@ -1,24 +1,24 @@
 {
-  "schema_version": "15.0.0",
+  "schema_version": "16.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-03T07:00:00.000Z",
+  "generated_at": "2026-09-03T09:00:00.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_032_pull_request",
-    "implementation_base_sha": "04d922adc712a73cb0ccc7bd444a64b7b9157afd",
-    "self_reference_boundary": "The RSH-032 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_033_pull_request",
+    "implementation_base_sha": "f8d055c86b80ba1a72555e41668e071f74b32536",
+    "self_reference_boundary": "The RSH-033 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "04d922adc712a73cb0ccc7bd444a64b7b9157afd",
-    "tree_sha": "56b1c30df3411c828ae06dc2b03e2f46093a6902",
-    "commit_authored_at": "2026-09-03T03:51:25Z",
-    "commit_message": "Merge PR #34: RSH-031 — Lock daylight, sky and image-based lighting",
+    "head_sha": "f8d055c86b80ba1a72555e41668e071f74b32536",
+    "tree_sha": "9fd7f5b578f5be33f835527883f8b55342f279f5",
+    "commit_authored_at": "2026-09-03T04:15:39Z",
+    "commit_message": "Merge PR #35: RSH-032 — Lock night lighting, headlights and weather",
     "commit_signature_verified": true,
-    "role": "RSH-032 exact implementation base"
+    "role": "RSH-033 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 32,
+    "accepted_units": 33,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 35,
-    "remaining_units": 35,
-    "queue_head": "RSH-033",
+    "deferred_units": 34,
+    "remaining_units": 34,
+    "queue_head": "RSH-034",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -949,12 +949,22 @@
       "unresolved_review_threads": 0
     },
     "RSH-032": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-032-night-weather",
-      "pull_request_resolution": "the pull request created from the exact RSH-032 candidate head",
-      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
-      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-032 pull request",
-      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-032 merge SHA",
+      "pr": 35,
+      "pull_request": 35,
+      "validated_head_sha": "2a826fd20cb2c45e13a322443c4d9c1186ee53a9",
+      "merge_sha": "f8d055c86b80ba1a72555e41668e071f74b32536",
+      "tree_sha": "9fd7f5b578f5be33f835527883f8b55342f279f5",
+      "workflow_run": 33713967588,
+      "workflow_job": 100519143847,
+      "artifact_id": 9877916538,
+      "artifact_digest": "sha256:80f1b47e9dcfd37adea80166c9986bf1014f666cfaa109dbb563bd3c637c19de",
+      "post_merge_workflow_run": 33714396567,
+      "post_merge_workflow_job": 100520390415,
+      "post_merge_artifact_id": 9878041600,
+      "post_merge_artifact_digest": "sha256:9de7d79729766b4090243bbdc768350ea2863adcca9e7ac475bd9f87954feddf",
+      "unresolved_review_threads": 0,
       "manifest": "NIGHT-WEATHER-MANIFEST.json",
       "contract": "RSH-032-NIGHT-CONTRACT.md",
       "look": "night",
@@ -966,24 +976,43 @@
       "default_boot": "day/clear",
       "owner_freeze": false,
       "gis_claim": false,
-      "sky_assets_changes": 0,
-      "postfx_changes": 0,
-      "world_changes": 0,
-      "physics_changes": 0,
-      "mesh_changes": 0,
-      "rendering_runtime_changes": 0,
-      "asset_changes": 0,
-      "dependency_changes": 0,
-      "rsh_033_created": false
+      "rsh_033_created": true
+    },
+    "RSH-033": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-033-physics-calibration",
+      "pull_request_resolution": "the pull request created from the exact RSH-033 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-033 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-033 merge SHA",
+      "manifest": "PHYSICS-CALIBRATION-MANIFEST.json",
+      "contract": "RSH-033-PHYSICS-CONTRACT.md",
+      "physics_version": 7,
+      "physics_hz": 120,
+      "v100_mps": 27.778,
+      "claim_tolerance": 0.15,
+      "claims": [
+        8.4,
+        6.6,
+        4.9,
+        5.8,
+        3.5
+      ],
+      "cars_rewritten": false,
+      "gear_dump_below_v100": false,
+      "launch_drag_compensate": true,
+      "owner_freeze": false,
+      "gis_claim": false,
+      "rsh_034_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-032",
+    "unit": "RSH-033",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-032-night-weather",
+    "branch": "agent/rsh-033-physics-calibration",
     "authority_consumed": true,
-    "next_unit": "RSH-033",
+    "next_unit": "RSH-034",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -1055,7 +1084,10 @@
     "RSH_031_authorized": false,
     "RSH-032_was_separately_authorized": true,
     "RSH-032_authorization_consumed": true,
-    "RSH-033_authorized": false
+    "RSH-033_authorized": false,
+    "RSH-033_was_separately_authorized": true,
+    "RSH-033_authorization_consumed": true,
+    "RSH-034_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -1130,8 +1162,8 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The plain next instruction authorized exactly RSH-032 and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-033.",
+    "The plain next instruction authorized exactly RSH-033 and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-034.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13."
   ],
@@ -1259,12 +1291,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-032"
+      "RSH-033"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-032_merge",
-    "RSH_033_authorized": false
+    "state": "consumed_on_RSH-033_merge",
+    "RSH_034_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -1303,12 +1335,12 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-031"
+      "RSH-032"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-031_merge",
-    "RSH_032_authorized": false
+    "state": "consumed_on_RSH-032_merge",
+    "RSH_033_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -1699,7 +1731,7 @@
     "post_merge_workflow_run": 33710717424
   },
   "rsh_031_daylight_sky": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "DAYLIGHT-SKY-MANIFEST.json",
     "human_contract": "RSH-031-DAYLIGHT-CONTRACT.md",
     "validator": "scripts/check-daylight-sky.mjs",
@@ -1711,7 +1743,62 @@
     "sky_width": 1024,
     "owner_freeze": false,
     "gis_claim": false,
-    "RSH_032_created": false,
-    "RSH_032_authorized": false
+    "RSH_032_created": true,
+    "RSH_032_authorized": true,
+    "RSH_032_state": "accepted",
+    "pull_request": 34,
+    "validated_head_sha": "9f0eaeca265d44505e6dbc34e9e8b08a2dfd35fd",
+    "merge_sha": "04d922adc712a73cb0ccc7bd444a64b7b9157afd",
+    "tree_sha": "56b1c30df3411c828ae06dc2b03e2f46093a6902",
+    "workflow_run": 33712522927,
+    "post_merge_workflow_run": 33712887704
+  },
+  "rsh_032_night_weather": {
+    "state": "accepted",
+    "machine_authority": "NIGHT-WEATHER-MANIFEST.json",
+    "human_contract": "RSH-032-NIGHT-CONTRACT.md",
+    "validator": "scripts/check-night-weather.mjs",
+    "test": "scripts/check-night-weather.test.mjs",
+    "look": "night",
+    "hdri": false,
+    "real_sky_ibl": false,
+    "weather_default": "clear",
+    "ibl_kind": "tiny_pmrem",
+    "sky_width": 1024,
+    "owner_freeze": false,
+    "gis_claim": false,
+    "RSH_033_created": true,
+    "RSH_033_authorized": true,
+    "pull_request": 35,
+    "validated_head_sha": "2a826fd20cb2c45e13a322443c4d9c1186ee53a9",
+    "merge_sha": "f8d055c86b80ba1a72555e41668e071f74b32536",
+    "tree_sha": "9fd7f5b578f5be33f835527883f8b55342f279f5",
+    "workflow_run": 33713967588,
+    "post_merge_workflow_run": 33714396567
+  },
+  "rsh_033_physics_calibration": {
+    "state": "accepted_on_merge",
+    "machine_authority": "PHYSICS-CALIBRATION-MANIFEST.json",
+    "human_contract": "RSH-033-PHYSICS-CONTRACT.md",
+    "validator": "scripts/check-physics-calibration.mjs",
+    "test": "scripts/check-physics-calibration.test.mjs",
+    "physics_version": 7,
+    "physics_hz": 120,
+    "v100_mps": 27.778,
+    "claim_tolerance": 0.15,
+    "claims": [
+      8.4,
+      6.6,
+      4.9,
+      5.8,
+      3.5
+    ],
+    "cars_rewritten": false,
+    "gear_dump_below_v100": false,
+    "launch_drag_compensate": true,
+    "owner_freeze": false,
+    "gis_claim": false,
+    "RSH_034_created": false,
+    "RSH_034_authorized": false
   }
 }

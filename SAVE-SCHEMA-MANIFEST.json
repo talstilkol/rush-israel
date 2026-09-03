@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-033",
+    "queue_head": "RSH-034",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -122,11 +122,11 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh033",
-      ".github/workflows/rsh-033-",
-      "RSH-033-",
-      "scripts/rsh033-",
-      "src/game/ayalon-physics/",
+      ".rsh034",
+      ".github/workflows/rsh-034-",
+      "RSH-034-",
+      "scripts/rsh034-",
+      "src/game/ayalon-feel/",
       "src/game/records-v2/"
     ],
     "rsh_026_authorized": true,
@@ -150,8 +150,11 @@
     "rsh_032_authorized": true,
     "rsh_032_started": true,
     "rsh_032_state": "accepted_on_merge",
-    "rsh_033_authorized": false,
-    "rsh_033_started": false
+    "rsh_033_authorized": true,
+    "rsh_033_started": true,
+    "rsh_033_state": "accepted_on_merge",
+    "rsh_034_authorized": false,
+    "rsh_034_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -284,7 +287,7 @@
     "schema_guard_test_sha256": "0b001df024e9f5b3599e8e003b808f3e1eecb56e53ceb866c45a2ef808fe36c3"
   },
   "rsh_032_overlay": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "manifest": "NIGHT-WEATHER-MANIFEST.json",
     "contract": "RSH-032-NIGHT-CONTRACT.md",
     "look": "night",
@@ -294,5 +297,15 @@
     "owner_freeze": false,
     "gis_claim": false,
     "schema_guard_test_sha256": "2470c9b8745ec6a653b5f3918848ab7a1213768f95110f8b7f695497b70404f5"
+  },
+  "rsh_033_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "PHYSICS-CALIBRATION-MANIFEST.json",
+    "contract": "RSH-033-PHYSICS-CONTRACT.md",
+    "physics_version": 7,
+    "claim_tolerance": 0.15,
+    "owner_freeze": false,
+    "gis_claim": false,
+    "schema_guard_test_sha256": "2fffdcc5c45e8c97a6f0cb8d0d981b872568b7ae353413f4553f350e0696a7b5"
   }
 }

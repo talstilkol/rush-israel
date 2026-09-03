@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
 import { gitBlobSha1, reconstructRsh015WorldSource, sha256 } from "./load-world-builders.mjs";
 import { stripRsh019Overlay } from "./rsh019-overlay.mjs";
+import { stripRsh033Overlay } from "./rsh033-overlay.mjs";
 
 export const EXPECTED_MANIFEST_SHA256 = "5921e14be99509e8b812bc3f556643b98d2244d1f8b77c2b928e02a99de90f00";
 export const EXPECTED_WORLD_SHA256 = "08d4e7c230bef3c67f0250fb672e1b1ca351cb5149266e0161dcb470f5274fd9";
@@ -91,7 +92,11 @@ export function validateWorldBuilders(overrides = {}) {
   const tracks = JSON.parse(input.trackManifestSource);
   if (tracks.layout.module_count !== 56 || tracks.counts.total !== 56 || tracks.counts.mvp !== 8 || tracks.counts.deferred !== 48 || tracks.runtime_order.length !== 56) errors.push("track count/classification/order changed");
   if (tracks.semantic_integrity.ordered_runtime_definition_digest_sha256 !== EXPECTED_RUNTIME_DIGEST || tracks.semantic_integrity.aggregate_runtime_definition_digest_sha256 !== EXPECTED_AGGREGATE_DIGEST) errors.push("track definition digest changed");
-  for (const [path, expected] of Object.entries(EXPECTED_PRESERVED)) if (sha256(input.preservedSources[path] ?? "") !== expected) errors.push(`preserved source changed: ${path}`);
+  for (const [path, expected] of Object.entries(EXPECTED_PRESERVED)) {
+    let source = input.preservedSources[path] ?? "";
+    if (path === "src/game/physics.ts") source = stripRsh033Overlay(path, source);
+    if (sha256(source) !== expected) errors.push(`preserved source changed: ${path}`);
+  }
   const asset = JSON.parse(input.assetSource);
   if (asset.scope.unverified_asset_files !== 66 || asset.scope.public_distribution_authorized !== false || asset.truth_boundaries.release_gates_green !== 0 || asset.truth_boundaries.release_gates_total !== 13) errors.push("asset/distribution/release boundary changed");
   const rsh017 = input.repositoryFiles.filter((path) => path.startsWith("src/game/engine/")).sort();

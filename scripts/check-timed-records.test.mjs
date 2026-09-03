@@ -16,7 +16,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-023 timed-record authority passes under the RSH-029 overlay and RSH-033 remains absent", () => {
+test("committed RSH-023 timed-record authority passes under the RSH-029 overlay and RSH-034 remains absent", () => {
   const result = validateTimedRecords();
   assert.deepEqual(result.errors, []);
   assert.equal(result.recordLimit, 200);
@@ -24,11 +24,11 @@ test("committed RSH-023 timed-record authority passes under the RSH-029 overlay 
   assert.equal(result.schemaVersion, 3);
 });
 
-test("RSH-033 precreation fails closed", () => {
+test("RSH-034 precreation fails closed", () => {
   const result = validateTimedRecords({
-    repositoryFiles: ["RSH-033-PREFLIGHT.json", "src/game/records.ts"],
+    repositoryFiles: ["RSH-034-PREFLIGHT.json", "src/game/records.ts"],
   });
-  assert.match(messages(result), /RSH-033 was precreated/);
+  assert.match(messages(result), /RSH-034 was precreated/);
 });
 
 test("hash, serial-write and limit tokens are required", () => {

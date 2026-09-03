@@ -6,9 +6,11 @@ import {
   escYaw,
   HANDLING,
   hydroplane,
+  launchAccel,
   pacejka,
   SURFACE_SPEC,
   tcsModulate,
+  V100_MPS,
   WEATHER_SPEC,
   type AssistFlags,
   type HandlingMode,
@@ -199,7 +201,9 @@ export class ArcadeCar {
       let g = this.gear;
       if (n > tops[g - 1] + 0.02) g = Math.min(5, g + 1);
       if (g > 1 && n < tops[g - 2] - 0.04) g = g - 1;
-      if (g !== this.gear && racing) this.speed *= 0.94;
+      // RSH-033-OVERLAY-BEGIN:gear-dump
+      if (g !== this.gear && racing && Math.abs(this.speed) > V100_MPS) this.speed *= 0.94;
+      // RSH-033-OVERLAY-END:gear-dump
       this.gear = g;
       const lo = g === 1 ? 0 : tops[g - 2];
       const hi = tops[g - 1];
@@ -241,11 +245,13 @@ export class ArcadeCar {
 
     if (racing) {
       if (throttle > 0 && brakeIn <= 0.1) {
-        const v100 = 27.778;
-        const t100 = Math.max(3.2, stats.zeroTo100 ?? 8);
-        const pull = throttle * (v100 / t100) * mass * wx.long * surf.long * (boosting ? 1.08 : 1) * (this.drafting ? 1.05 : 1);
-        const top = vAbs <= v100 ? 1 : Math.max(0.02, driveCurve);
+        // RSH-033-OVERLAY-BEGIN:launch-law
+        const dragAccel = aero / mass + rolling;
+        const aLaunch = launchAccel(stats.zeroTo100 ?? 8, dragAccel, vAbs);
+        const pull = throttle * aLaunch * mass * wx.long * surf.long * (boosting ? 1.08 : 1) * (this.drafting ? 1.05 : 1);
+        const top = vAbs <= V100_MPS ? 1 : Math.max(0.02, driveCurve);
         this.speed += (pull / mass) * top * dt;
+        // RSH-033-OVERLAY-END:launch-law
       }
       if (brakeIn > 0) {
         const speedAbs0 = Math.abs(this.speed);
