@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-034",
+    "queue_head": "RSH-035",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -122,11 +122,11 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh034",
-      ".github/workflows/rsh-034-",
-      "RSH-034-",
-      "scripts/rsh034-",
-      "src/game/ayalon-feel/",
+      ".rsh035",
+      ".github/workflows/rsh-035-",
+      "RSH-035-",
+      "scripts/rsh035-",
+      "src/game/ayalon-golden/",
       "src/game/records-v2/"
     ],
     "rsh_026_authorized": true,
@@ -153,8 +153,11 @@
     "rsh_033_authorized": true,
     "rsh_033_started": true,
     "rsh_033_state": "accepted_on_merge",
-    "rsh_034_authorized": false,
-    "rsh_034_started": false
+    "rsh_034_authorized": true,
+    "rsh_034_started": true,
+    "rsh_034_state": "accepted_on_merge",
+    "rsh_035_authorized": false,
+    "rsh_035_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -307,5 +310,16 @@
     "owner_freeze": false,
     "gis_claim": false,
     "schema_guard_test_sha256": "2fffdcc5c45e8c97a6f0cb8d0d981b872568b7ae353413f4553f350e0696a7b5"
+  },
+  "rsh_034_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "AUDIO-HUD-INPUT-MANIFEST.json",
+    "contract": "RSH-034-AUDIO-HUD-CONTRACT.md",
+    "backend": "oscillator",
+    "radio_count": 4,
+    "hud_speed_scale": 3.6,
+    "owner_freeze": false,
+    "gis_claim": false,
+    "schema_guard_test_sha256": "c12f657bfe00f15092981db032d65767772f2af6a87b7674f6ddcc42a5c9e0f2"
   }
 }

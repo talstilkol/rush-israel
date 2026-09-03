@@ -144,7 +144,7 @@
     "asset_changes": 0
   },
   "deferred_boundary": {
-    "queue_head": "RSH-034",
+    "queue_head": "RSH-035",
     "rsh_021_authorized": true,
     "rsh_021_started": true,
     "rsh_021_state": "accepted",
@@ -152,11 +152,11 @@
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh034",
-      ".github/workflows/rsh-034-",
-      "RSH-034-",
-      "scripts/rsh034-",
-      "src/game/ayalon-feel/"
+      ".rsh035",
+      ".github/workflows/rsh-035-",
+      "RSH-035-",
+      "scripts/rsh035-",
+      "src/game/ayalon-golden/"
     ],
     "rsh_023_authorized": true,
     "rsh_023_started": true,
@@ -191,8 +191,11 @@
     "rsh_033_authorized": true,
     "rsh_033_started": true,
     "rsh_033_state": "accepted_on_merge",
-    "rsh_034_authorized": false,
-    "rsh_034_started": false
+    "rsh_034_authorized": true,
+    "rsh_034_started": true,
+    "rsh_034_state": "accepted_on_merge",
+    "rsh_035_authorized": false,
+    "rsh_035_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

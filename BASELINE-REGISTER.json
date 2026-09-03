@@ -1,5 +1,5 @@
 {
-  "schema_version": "10.0.0",
+  "schema_version": "17.0.0",
   "document_type": "rush-baseline-register",
   "generated_at": "2026-09-03T07:00:00.000Z",
   "repository": "talstilkol/rush-israel",
@@ -631,23 +631,44 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-09-03T04:18:58.000Z",
       "description": "Night lighting, headlights and weather locked on validated merge."
+    },
+    {
+      "id": "B033-rsh-033-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-033",
+      "branch": "agent/rsh-033-physics-calibration",
+      "pull_request": 36,
+      "commit_sha": "550c681445b2473cbd377131b60715ade0e58774",
+      "tree_sha": "4a2e0d3a02cb721a87b0a9485937c0a4dc5b1788",
+      "validated_head_sha": "ea95c3197ac547960c7096561034d3471fe5bd4d",
+      "workflow_run": 33725688108,
+      "workflow_job": 100554024149,
+      "artifact_id": 9881976228,
+      "artifact_digest": "sha256:5a050f79deecd920e906c1f86e7b7ca2472ef9543337a62082ea5eda55dcf69b",
+      "post_merge_workflow_run": 33726086520,
+      "post_merge_workflow_job": 100555250358,
+      "post_merge_artifact_id": 9882094521,
+      "post_merge_artifact_digest": "sha256:aa4f5c8304dda1d1fe6524a4b9e850046c1e13e5fea704ae445270402c1f36ed",
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-09-03T07:05:27.000Z",
+      "description": "Driving physics calibration accepted on validated merge."
     }
   ],
   "working_state": {
-    "unit": "RSH-033",
+    "unit": "RSH-034",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "f8d055c86b80ba1a72555e41668e071f74b32536",
-    "branch": "agent/rsh-033-physics-calibration",
-    "manifest": "PHYSICS-CALIBRATION-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-033 pull request"
+    "implementation_base_sha": "550c681445b2473cbd377131b60715ade0e58774",
+    "branch": "agent/rsh-034-audio-hud-input",
+    "manifest": "AUDIO-HUD-INPUT-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-034 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-034",
+    "queue_head": "RSH-035",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_034_authorized": false
+    "RSH_035_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
