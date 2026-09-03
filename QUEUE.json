@@ -1,11 +1,11 @@
 {
-  "schema_version": "16.0.0",
+  "schema_version": "17.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-09-03T09:00:00.000Z",
+  "generated_at": "2026-09-03T10:00:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "f8d055c86b80ba1a72555e41668e071f74b32536",
-  "state_effective_on": "merge_of_RSH_033_pull_request",
+  "verified_base_sha": "550c681445b2473cbd377131b60715ade0e58774",
+  "state_effective_on": "merge_of_RSH_034_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "next",
       "authorized_units": [
+        "RSH-034"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-034_merge",
+      "RSH_035_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": [
         "RSH-033"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-033_merge",
       "RSH_034_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "next",
-      "authorized_units": [
-        "RSH-032"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-032_merge",
-      "RSH_033_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 33,
+    "accepted": 34,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 34,
-    "remaining": 34
+    "deferred": 33,
+    "remaining": 33
   },
   "queue_head": {
-    "id": "RSH-034",
-    "title": "Lock audio, HUD, keyboard, touch and gamepad behaviour",
+    "id": "RSH-035",
+    "title": "Produce the unique Ayalon golden pack and owner approval record",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-034 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-035 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-034",
-    "title": "Lock audio, HUD, keyboard, touch and gamepad behaviour",
+    "id": "RSH-035",
+    "title": "Produce the unique Ayalon golden pack and owner approval record",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -800,7 +800,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-033": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-033-physics-calibration",
       "pull_request_resolution": "live RSH-033 pull request",
       "validated_head_resolution": "exact RSH-033 PR head accepted by required-ci / validate and Codex review",
@@ -823,7 +823,39 @@
       "launch_drag_compensate": true,
       "owner_freeze": false,
       "gis_claim": false,
-      "rsh_034_created": false
+      "rsh_034_created": true,
+      "pr": 36,
+      "pull_request": 36,
+      "validated_head_sha": "ea95c3197ac547960c7096561034d3471fe5bd4d",
+      "merge_sha": "550c681445b2473cbd377131b60715ade0e58774",
+      "tree_sha": "4a2e0d3a02cb721a87b0a9485937c0a4dc5b1788",
+      "workflow_run": 33725688108,
+      "workflow_job": 100554024149,
+      "artifact_id": 9881976228,
+      "artifact_digest": "sha256:5a050f79deecd920e906c1f86e7b7ca2472ef9543337a62082ea5eda55dcf69b",
+      "post_merge_workflow_run": 33726086520,
+      "post_merge_workflow_job": 100555250358,
+      "post_merge_artifact_id": 9882094521,
+      "post_merge_artifact_digest": "sha256:aa4f5c8304dda1d1fe6524a4b9e850046c1e13e5fea704ae445270402c1f36ed",
+      "unresolved_review_threads": 0
+    },
+    "RSH-034": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-034-audio-hud-input",
+      "pull_request_resolution": "the pull request created from the exact RSH-034 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-034 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-034 merge SHA",
+      "manifest": "AUDIO-HUD-INPUT-MANIFEST.json",
+      "contract": "RSH-034-AUDIO-HUD-CONTRACT.md",
+      "backend": "oscillator",
+      "radio_count": 4,
+      "hud_speed_scale": 3.6,
+      "ffb": false,
+      "cars_rewritten": false,
+      "owner_freeze": false,
+      "gis_claim": false,
+      "rsh_035_created": false
     }
   },
   "unit_order": [
@@ -898,25 +930,25 @@
   "state_rules": {
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-033"
+      "through": "RSH-034"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-034",
+      "from": "RSH-035",
       "through": "RSH-067"
     },
-    "RSH-001–RSH-033": "accepted",
-    "RSH-034–RSH-067": "deferred_not_authorized"
+    "RSH-001–RSH-034": "accepted",
+    "RSH-035–RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-034 remains deferred until a new explicit owner instruction.",
-    "RSH_033_completed": true,
-    "RSH_033_authorization_consumed": true,
-    "RSH_034_authorized": false
+    "current_action": "No unit is authorized; RSH-035 remains deferred until a new explicit owner instruction.",
+    "RSH_034_completed": true,
+    "RSH_034_authorization_consumed": true,
+    "RSH_035_authorized": false
   },
-  "self_reference_boundary": "The RSH-033 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-034 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }

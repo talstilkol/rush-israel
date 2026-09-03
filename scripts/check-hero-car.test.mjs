@@ -19,7 +19,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-030 hero-car lock passes and RSH-034 remains absent", () => {
+test("committed RSH-030 hero-car lock passes and RSH-035 remains absent", () => {
   const result = validateHeroCar();
   assert.deepEqual(result.errors, []);
   assert.equal(result.carCount, 5);
@@ -28,11 +28,11 @@ test("committed RSH-030 hero-car lock passes and RSH-034 remains absent", () => 
   assert.equal(result.lod0, 40000);
 });
 
-test("RSH-034 precreation fails closed", () => {
+test("RSH-035 precreation fails closed", () => {
   const result = validateHeroCar({
-    repositoryFiles: ["RSH-034-PREFLIGHT.json", "src/game/hero-car/hero.ts"],
+    repositoryFiles: ["RSH-035-PREFLIGHT.json", "src/game/hero-car/hero.ts"],
   });
-  assert.match(messages(result), /RSH-034 was precreated/);
+  assert.match(messages(result), /RSH-035 was precreated/);
 });
 
 test("live hero cars stay five fictional extrusions with distinct silhouettes", () => {

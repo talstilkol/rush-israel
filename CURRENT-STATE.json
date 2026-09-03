@@ -1,24 +1,24 @@
 {
-  "schema_version": "16.0.0",
+  "schema_version": "17.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-03T09:00:00.000Z",
+  "generated_at": "2026-09-03T10:00:00.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_033_pull_request",
-    "implementation_base_sha": "f8d055c86b80ba1a72555e41668e071f74b32536",
-    "self_reference_boundary": "The RSH-033 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_034_pull_request",
+    "implementation_base_sha": "550c681445b2473cbd377131b60715ade0e58774",
+    "self_reference_boundary": "The RSH-034 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "f8d055c86b80ba1a72555e41668e071f74b32536",
-    "tree_sha": "9fd7f5b578f5be33f835527883f8b55342f279f5",
-    "commit_authored_at": "2026-09-03T04:15:39Z",
-    "commit_message": "Merge PR #35: RSH-032 — Lock night lighting, headlights and weather",
+    "head_sha": "550c681445b2473cbd377131b60715ade0e58774",
+    "tree_sha": "4a2e0d3a02cb721a87b0a9485937c0a4dc5b1788",
+    "commit_authored_at": "2026-09-03T07:02:12Z",
+    "commit_message": "Merge PR #36: RSH-033 — Calibrate driving physics and the five-car performance table",
     "commit_signature_verified": true,
-    "role": "RSH-033 exact implementation base"
+    "role": "RSH-034 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 33,
+    "accepted_units": 34,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 34,
-    "remaining_units": 34,
-    "queue_head": "RSH-034",
+    "deferred_units": 33,
+    "remaining_units": 33,
+    "queue_head": "RSH-035",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -979,7 +979,7 @@
       "rsh_033_created": true
     },
     "RSH-033": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-033-physics-calibration",
       "pull_request_resolution": "the pull request created from the exact RSH-033 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -1003,16 +1003,48 @@
       "launch_drag_compensate": true,
       "owner_freeze": false,
       "gis_claim": false,
-      "rsh_034_created": false
+      "rsh_034_created": true,
+      "pr": 36,
+      "pull_request": 36,
+      "validated_head_sha": "ea95c3197ac547960c7096561034d3471fe5bd4d",
+      "merge_sha": "550c681445b2473cbd377131b60715ade0e58774",
+      "tree_sha": "4a2e0d3a02cb721a87b0a9485937c0a4dc5b1788",
+      "workflow_run": 33725688108,
+      "workflow_job": 100554024149,
+      "artifact_id": 9881976228,
+      "artifact_digest": "sha256:5a050f79deecd920e906c1f86e7b7ca2472ef9543337a62082ea5eda55dcf69b",
+      "post_merge_workflow_run": 33726086520,
+      "post_merge_workflow_job": 100555250358,
+      "post_merge_artifact_id": 9882094521,
+      "post_merge_artifact_digest": "sha256:aa4f5c8304dda1d1fe6524a4b9e850046c1e13e5fea704ae445270402c1f36ed",
+      "unresolved_review_threads": 0
+    },
+    "RSH-034": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-034-audio-hud-input",
+      "pull_request_resolution": "the pull request created from the exact RSH-034 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-034 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-034 merge SHA",
+      "manifest": "AUDIO-HUD-INPUT-MANIFEST.json",
+      "contract": "RSH-034-AUDIO-HUD-CONTRACT.md",
+      "backend": "oscillator",
+      "radio_count": 4,
+      "hud_speed_scale": 3.6,
+      "ffb": false,
+      "cars_rewritten": false,
+      "owner_freeze": false,
+      "gis_claim": false,
+      "rsh_035_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-033",
+    "unit": "RSH-034",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-033-physics-calibration",
+    "branch": "agent/rsh-034-audio-hud-input",
     "authority_consumed": true,
-    "next_unit": "RSH-034",
+    "next_unit": "RSH-035",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -1087,7 +1119,10 @@
     "RSH-033_authorized": false,
     "RSH-033_was_separately_authorized": true,
     "RSH-033_authorization_consumed": true,
-    "RSH-034_authorized": false
+    "RSH-034_authorized": false,
+    "RSH-034_was_separately_authorized": true,
+    "RSH-034_authorization_consumed": true,
+    "RSH-035_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -1162,8 +1197,8 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The plain next instruction authorized exactly RSH-033 and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-034.",
+    "The plain next instruction authorized exactly RSH-034 and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-035.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13."
   ],
@@ -1291,12 +1326,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-033"
+      "RSH-034"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-033_merge",
-    "RSH_034_authorized": false
+    "state": "consumed_on_RSH-034_merge",
+    "RSH_035_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -1335,12 +1370,12 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-032"
+      "RSH-033"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-032_merge",
-    "RSH_033_authorized": false
+    "state": "consumed_on_RSH-033_merge",
+    "RSH_034_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -1777,7 +1812,7 @@
     "post_merge_workflow_run": 33714396567
   },
   "rsh_033_physics_calibration": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "PHYSICS-CALIBRATION-MANIFEST.json",
     "human_contract": "RSH-033-PHYSICS-CONTRACT.md",
     "validator": "scripts/check-physics-calibration.mjs",
@@ -1798,7 +1833,29 @@
     "launch_drag_compensate": true,
     "owner_freeze": false,
     "gis_claim": false,
-    "RSH_034_created": false,
-    "RSH_034_authorized": false
+    "RSH_034_created": true,
+    "RSH_034_authorized": true,
+    "pull_request": 36,
+    "validated_head_sha": "ea95c3197ac547960c7096561034d3471fe5bd4d",
+    "merge_sha": "550c681445b2473cbd377131b60715ade0e58774",
+    "tree_sha": "4a2e0d3a02cb721a87b0a9485937c0a4dc5b1788",
+    "workflow_run": 33725688108,
+    "post_merge_workflow_run": 33726086520
+  },
+  "rsh_034_audio_hud_input": {
+    "state": "accepted_on_merge",
+    "machine_authority": "AUDIO-HUD-INPUT-MANIFEST.json",
+    "human_contract": "RSH-034-AUDIO-HUD-CONTRACT.md",
+    "validator": "scripts/check-audio-hud-input.mjs",
+    "test": "scripts/check-audio-hud-input.test.mjs",
+    "backend": "oscillator",
+    "radio_count": 4,
+    "hud_speed_scale": 3.6,
+    "ffb": false,
+    "cars_rewritten": false,
+    "owner_freeze": false,
+    "gis_claim": false,
+    "RSH_035_created": false,
+    "RSH_035_authorized": false
   }
 }
