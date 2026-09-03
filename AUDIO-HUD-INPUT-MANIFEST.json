@@ -14,68 +14,28 @@
   "lock": {
     "backend": "oscillator",
     "radio_count": 4,
-    "radio": [
-      "Pulse 101",
-      "Yam FM",
-      "Underground",
-      "White Night"
-    ],
-    "bpm": [
-      126,
-      94,
-      138,
-      108
-    ],
+    "radio": ["Pulse 101", "Yam FM", "Underground", "White Night"],
+    "bpm": [126, 94, 138, 108],
     "fmod": false,
     "howler": false,
     "streaming_music": false,
     "mute": "esc_settings",
-    "keyboard_steer_left": [
-      "KeyA",
-      "ArrowLeft"
-    ],
+    "keyboard_steer_left": ["KeyA", "ArrowLeft"],
     "keyboard_steer_left_sign": 1,
-    "keyboard_steer_right": [
-      "KeyD",
-      "ArrowRight"
-    ],
+    "keyboard_steer_right": ["KeyD", "ArrowRight"],
     "keyboard_steer_right_sign": -1,
-    "keyboard_throttle": [
-      "KeyW",
-      "ArrowUp"
-    ],
-    "keyboard_brake": [
-      "KeyS",
-      "ArrowDown"
-    ],
-    "keyboard_drift": [
-      "Space",
-      "ShiftLeft",
-      "ShiftRight"
-    ],
-    "keyboard_nitro": [
-      "KeyE",
-      "KeyQ"
-    ],
-    "keyboard_pause": [
-      "Escape",
-      "KeyP"
-    ],
-    "keyboard_rewind": [
-      "KeyR"
-    ],
+    "keyboard_throttle": ["KeyW", "ArrowUp"],
+    "keyboard_brake": ["KeyS", "ArrowDown"],
+    "keyboard_drift": ["Space", "ShiftLeft", "ShiftRight"],
+    "keyboard_nitro": ["KeyE", "KeyQ"],
+    "keyboard_pause": ["Escape", "KeyP"],
+    "keyboard_rewind": ["KeyR"],
     "gamepad_index": 0,
     "pad_curve_deadzone": 0.12,
     "pad_curve_exponent": 1.6,
     "ffb": false,
     "touch_visible": "md:hidden",
-    "touch_buttons": [
-      "rewind",
-      "brake",
-      "drift",
-      "nitro",
-      "gas"
-    ],
+    "touch_buttons": ["rewind", "brake", "drift", "nitro", "gas"],
     "hud_speed_unit": "km/h",
     "hud_speed_scale": 3.6,
     "hud_qa_query": "qa=1",
@@ -120,20 +80,17 @@
     "hud_digest_sha256": "a4516f8b7784d8270fbb8a766515e40ca9ffa70103fe81b63af3733ce05faecb"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-036",
+    "queue_head": "RSH-037",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "rsh_035_authorized": true,
     "rsh_035_started": true,
-    "forbidden_prefixes": [
-      ".rsh036",
-      ".github/workflows/rsh-036-",
-      "RSH-036-",
-      "scripts/rsh036-",
-      "src/game/ayalon-freeze/"
-    ],
+    "forbidden_prefixes": [".rsh037", ".github/workflows/rsh-037-", "RSH-037-", "scripts/rsh037-", "src/game/perf-instrument/", "src/game/quality-profiles/"],
     "rsh_035_state": "accepted_on_merge",
-    "rsh_036_authorized": false,
-    "rsh_036_started": false
+    "rsh_036_authorized": true,
+    "rsh_036_started": true,
+    "rsh_036_state": "accepted_on_merge",
+    "rsh_037_authorized": false,
+    "rsh_037_started": false
   }
 }
