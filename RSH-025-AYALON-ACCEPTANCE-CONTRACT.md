@@ -74,6 +74,5 @@ Honest pack defects that later units must not treat as unique evidence:
 
 ## Deferred boundary
 
-RSH-026 — Lock Ayalon road geometry, widths and lanes — remains deferred,
-unauthorized and uncreated. RSH-025 does not add `src/game/ayalon-lock/` or
-RSH-026 transport files.
+RSH-026 — Lock Ayalon road geometry, widths and lanes — is accepted on
+validated merge. RSH-027 remains deferred, unauthorized and uncreated.

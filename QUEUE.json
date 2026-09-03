@@ -1,11 +1,11 @@
 {
-  "schema_version": "14.0.0",
+  "schema_version": "15.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-09-03T00:00:00.000Z",
+  "generated_at": "2026-09-03T00:15:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "6597d7251d0f9c7ef24bf4b20ca44506bf651970",
-  "state_effective_on": "merge_of_RSH_025_pull_request",
+  "verified_base_sha": "1714aa96dc2a0fd402eed004b591541b41bfdb83",
+  "state_effective_on": "merge_of_RSH_026_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "next",
       "authorized_units": [
+        "RSH-026"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-026_merge",
+      "RSH_027_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": [
         "RSH-025"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-025_merge",
       "RSH_026_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "next",
-      "authorized_units": [
-        "RSH-024"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-024_merge",
-      "RSH_025_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 25,
+    "accepted": 26,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 42,
-    "remaining": 42
+    "deferred": 41,
+    "remaining": 41
   },
   "queue_head": {
-    "id": "RSH-026",
-    "title": "Lock Ayalon road geometry, widths and lanes",
+    "id": "RSH-027",
+    "title": "Lock Ayalon ramps, barriers, colliders and checkpoints",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-026 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-027 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-026",
-    "title": "Lock Ayalon road geometry, widths and lanes",
+    "id": "RSH-027",
+    "title": "Lock Ayalon ramps, barriers, colliders and checkpoints",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -557,7 +557,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-025": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-025-ayalon-acceptance",
       "pull_request_resolution": "live RSH-025 pull request",
       "validated_head_resolution": "exact RSH-025 PR head accepted by required-ci / validate and Codex review",
@@ -572,7 +572,37 @@
       "duplicate_placeholder_shots": 4,
       "owner_freeze": false,
       "gis_claim": false,
-      "rsh_026_created": false
+      "rsh_026_created": true,
+      "pull_request": 28,
+      "validated_head_sha": "bf72190aeb56ac8ef1f5829c2b716aa7f6141003",
+      "merge_sha": "1714aa96dc2a0fd402eed004b591541b41bfdb83",
+      "tree_sha": "bc52c03279e69d0ba1bc42fe16b2235a113e2ac1",
+      "workflow_run": 33697526960,
+      "workflow_job": 100469542850,
+      "artifact_id": 9872403688,
+      "artifact_digest": "sha256:89b4a4670f06673ea8c1591e0369cb27270880af6ed1e80f6b1947a90c85f7c8",
+      "post_merge_workflow_run": 33698105045,
+      "post_merge_workflow_job": 100471295610,
+      "post_merge_artifact_id": 9872573479,
+      "post_merge_artifact_digest": "sha256:64f19eb1ea9945e86f250c615d4c6af57651bef96057082c5ce5fea211bb1a66"
+    },
+    "RSH-026": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-026-ayalon-geometry",
+      "pull_request_resolution": "live RSH-026 pull request",
+      "validated_head_resolution": "exact RSH-026 PR head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD after validated merge",
+      "manifest": "AYALON-GEOMETRY-MANIFEST.json",
+      "contract": "RSH-026-AYALON-GEOMETRY-CONTRACT.md",
+      "track_id": "ayalon",
+      "width": 28,
+      "lanes": 8,
+      "lane_width": 3.5,
+      "point_count": 27,
+      "opposite_carriageway_offset": 46,
+      "owner_freeze": false,
+      "gis_claim": false,
+      "rsh_027_created": false
     }
   },
   "unit_order": [
@@ -645,27 +675,27 @@
     "RSH-067"
   ],
   "state_rules": {
-    "RSH-001–RSH-025": "accepted",
+    "RSH-001–RSH-026": "accepted",
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-025"
+      "through": "RSH-026"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-026",
+      "from": "RSH-027",
       "through": "RSH-067"
     },
-    "RSH-026–RSH-067": "deferred_not_authorized"
+    "RSH-027–RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-026 remains deferred until a new explicit owner instruction.",
-    "RSH_025_completed": true,
-    "RSH_025_authorization_consumed": true,
-    "RSH_026_authorized": false
+    "current_action": "No unit is authorized; RSH-027 remains deferred until a new explicit owner instruction.",
+    "RSH_026_completed": true,
+    "RSH_026_authorization_consumed": true,
+    "RSH_027_authorized": false
   },
-  "self_reference_boundary": "The RSH-025 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-026 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }
