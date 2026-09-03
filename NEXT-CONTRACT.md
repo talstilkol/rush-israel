@@ -1,42 +1,40 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 15.0.0
+**Version:** 16.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-032 implementation base:** `04d922adc712a73cb0ccc7bd444a64b7b9157afd`
-**State effective on:** merge of the RSH-032 pull request
-**Next unit:** `RSH-033` — deferred and not authorised
+**RSH-033 implementation base:** `f8d055c86b80ba1a72555e41668e071f74b32536`
+**State effective on:** merge of the RSH-033 pull request
+**Next unit:** `RSH-034` — deferred and not authorised
 
 ## Authority
 
-The current plain `next` / `המשך` instruction authorised exactly RSH-032. That authority is consumed on validated merge and does not extend to RSH-033.
+The current plain `next` / `המשך` instruction authorised exactly RSH-033. That authority is consumed on validated merge and does not extend to RSH-034.
 
-## RSH-032 acceptance boundary
+## RSH-033 acceptance boundary
 
-- Night look stays `night` (exposure 1.22, wetness 0.22, night 1, vis 0.9);
-- night lights stay hemi `0x6a88b0/0x2a241c/0.52`, key `0xc8d4e8/0.38`, fill `0xffc070/0.48`, ambient `0x4a6080/0.28`;
-- baked night sky stays `/game/sky-night.png` 1024×512 equirect, not HDRI;
-- IBL stays the live tiny three-object PMREM (`bakeEnv(night=true)`), no disc/ground at night;
-- headlights stay two `0xfff1c8` spots at intensity 28 with emissive 5.2;
-- weather stays `clear,rain,storm,hamsin` with default `clear`;
-- default boot stays day / clear;
-- GIS/navigation claims and owner freeze remain forbidden;
-- `sky-assets.ts`, `postfx.ts`, `world.ts`, `car-mesh.ts`, `physics.ts`, engine lighting, Ayalon locks and `ayalon.lock` are unchanged;
-- no RSH-033 physics-calibration structure exists.
+- `PHYSICS_VERSION` becomes `7`;
+- five fictional `zeroTo100` claims stay `8.4 / 6.6 / 4.9 / 5.8 / 3.5` and `cars.ts` is not rewritten;
+- launch law uses `launchAccel` with aero/rolling compensation below `V100_MPS` so net 0–100 matches the claim band `±15%`;
+- gear dump `speed *= 0.94` is not applied while `|speed| <= V100_MPS`;
+- `qa:accel` fails closed on `claimGaps` as well as regression drift;
+- GIS/navigation claims, owner freeze and public distribution remain forbidden;
+- night/daylight/Ayalon locks, `ayalon.lock` and package.json stay unchanged;
+- no RSH-034 audio / HUD / input structure exists.
 
 ## Post-merge state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 32 |
-| Deferred | 35 |
-| Remaining | 35 |
-| Queue head | RSH-033 |
-| RSH-033 authorised | No |
+| Accepted | 33 |
+| Deferred | 34 |
+| Remaining | 34 |
+| Queue head | RSH-034 |
+| RSH-034 authorised | No |
 | Current authority remaining | 0 |
 | Save schema version | 3 |
 | Unverified asset files | 66 |
 | Release gates | 0/13 |
 
-A new explicit owner instruction is required before RSH-033 may be created or executed.
+A new explicit owner instruction is required before RSH-034 may be created or executed.
