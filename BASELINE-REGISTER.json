@@ -505,23 +505,44 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-09-03T00:45:00.000Z",
       "description": "Ayalon road geometry, width 28 and 8 lanes locked on validated merge."
+    },
+    {
+      "id": "B027-rsh-027-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-027",
+      "branch": "agent/rsh-027-ayalon-colliders",
+      "pull_request": 30,
+      "commit_sha": "d9b25b6ad8a035041c699d64860f9dac357b774d",
+      "tree_sha": "3534d98bf73f21656f7344d2c03a088f1fae698a",
+      "validated_head_sha": "da0ea1f1dee79d30772c2a6cef6370c98e3e0c78",
+      "workflow_run": 33702664486,
+      "workflow_job": 100485094289,
+      "artifact_id": 9874151699,
+      "artifact_digest": "sha256:fe1b4b69437b17068d14e441176e75a2e36e11f758fb62fe19f118313b13a9da",
+      "post_merge_workflow_run": 33703049952,
+      "post_merge_workflow_job": 100486252474,
+      "post_merge_artifact_id": 9874276818,
+      "post_merge_artifact_digest": "sha256:7d6a3c71ea84c0e54b7cfad22dbafbf7b182336b7cce30b2074986a441a21c02",
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-09-03T01:21:00.000Z",
+      "description": "Ayalon ramps, barriers, colliders and checkpoints locked on validated merge."
     }
   ],
   "working_state": {
-    "unit": "RSH-027",
+    "unit": "RSH-028",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "dddae060b76ac2b4abe8de1046a374e8eb7725fc",
-    "branch": "agent/rsh-027-ayalon-colliders",
-    "manifest": "AYALON-COLLIDER-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-027 pull request"
+    "implementation_base_sha": "d9b25b6ad8a035041c699d64860f9dac357b774d",
+    "branch": "agent/rsh-028-ayalon-landmarks",
+    "manifest": "AYALON-LANDMARK-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-028 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-028",
+    "queue_head": "RSH-029",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_028_authorized": false
+    "RSH_029_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

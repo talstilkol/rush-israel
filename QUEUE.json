@@ -1,11 +1,11 @@
 {
   "schema_version": "15.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-09-03T03:45:00.000Z",
+  "generated_at": "2026-09-03T04:30:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "dddae060b76ac2b4abe8de1046a374e8eb7725fc",
-  "state_effective_on": "merge_of_RSH_027_pull_request",
+  "verified_base_sha": "d9b25b6ad8a035041c699d64860f9dac357b774d",
+  "state_effective_on": "merge_of_RSH_028_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "next",
       "authorized_units": [
+        "RSH-028"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-028_merge",
+      "RSH_029_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": [
         "RSH-027"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-027_merge",
       "RSH_028_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "next",
-      "authorized_units": [
-        "RSH-026"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-026_merge",
-      "RSH_027_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 27,
+    "accepted": 28,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 40,
-    "remaining": 40
+    "deferred": 39,
+    "remaining": 39
   },
   "queue_head": {
-    "id": "RSH-028",
-    "title": "Lock Ayalon landmark placement",
+    "id": "RSH-029",
+    "title": "Lock Ayalon asphalt, sidewalks, markings and signs",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-028 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-029 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-028",
-    "title": "Lock Ayalon landmark placement",
+    "id": "RSH-029",
+    "title": "Lock Ayalon asphalt, sidewalks, markings and signs",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -618,7 +618,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-027": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-027-ayalon-colliders",
       "pull_request_resolution": "live RSH-027 pull request",
       "validated_head_resolution": "exact RSH-027 PR head accepted by required-ci / validate and Codex review",
@@ -634,7 +634,37 @@
       "interchange_count": 6,
       "owner_freeze": false,
       "gis_claim": false,
-      "rsh_028_created": false
+      "rsh_028_created": true,
+      "pull_request": 30,
+      "validated_head_sha": "da0ea1f1dee79d30772c2a6cef6370c98e3e0c78",
+      "merge_sha": "d9b25b6ad8a035041c699d64860f9dac357b774d",
+      "tree_sha": "3534d98bf73f21656f7344d2c03a088f1fae698a",
+      "workflow_run": 33702664486,
+      "workflow_job": 100485094289,
+      "artifact_id": 9874151699,
+      "artifact_digest": "sha256:fe1b4b69437b17068d14e441176e75a2e36e11f758fb62fe19f118313b13a9da",
+      "post_merge_workflow_run": 33703049952,
+      "post_merge_workflow_job": 100486252474,
+      "post_merge_artifact_id": 9874276818,
+      "post_merge_artifact_digest": "sha256:7d6a3c71ea84c0e54b7cfad22dbafbf7b182336b7cce30b2074986a441a21c02",
+      "unresolved_review_threads": 0
+    },
+    "RSH-028": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-028-ayalon-landmarks",
+      "pull_request_resolution": "live RSH-028 pull request",
+      "validated_head_resolution": "exact RSH-028 PR head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD after validated merge",
+      "manifest": "AYALON-LANDMARK-MANIFEST.json",
+      "contract": "RSH-028-AYALON-LANDMARK-CONTRACT.md",
+      "track_id": "ayalon",
+      "width": 28,
+      "track_poi_count": 9,
+      "builder_place_calls": 8,
+      "builder_extra_landmarks": 6,
+      "owner_freeze": false,
+      "gis_claim": false,
+      "rsh_029_created": false
     }
   },
   "unit_order": [
@@ -707,27 +737,27 @@
     "RSH-067"
   ],
   "state_rules": {
-    "RSH-001–RSH-027": "accepted",
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-027"
+      "through": "RSH-028"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-028",
+      "from": "RSH-029",
       "through": "RSH-067"
     },
-    "RSH-028–RSH-067": "deferred_not_authorized"
+    "RSH-001–RSH-028": "accepted",
+    "RSH-029–RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-028 remains deferred until a new explicit owner instruction.",
-    "RSH_027_completed": true,
-    "RSH_027_authorization_consumed": true,
-    "RSH_028_authorized": false
+    "current_action": "No unit is authorized; RSH-029 remains deferred until a new explicit owner instruction.",
+    "RSH_028_completed": true,
+    "RSH_028_authorization_consumed": true,
+    "RSH_029_authorized": false
   },
-  "self_reference_boundary": "The RSH-027 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-028 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }

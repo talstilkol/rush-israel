@@ -64,6 +64,6 @@ still match the lock.
 
 ## Deferred boundary
 
-RSH-028 — Lock Ayalon landmark placement — remains deferred, unauthorized and
-uncreated. RSH-027 does not add `src/game/ayalon-landmarks/` or RSH-028
-transport files.
+RSH-028 — Lock Ayalon landmark placement — is accepted on validated merge.
+RSH-029 — Lock Ayalon asphalt, sidewalks, markings and signs — remains deferred,
+unauthorized and uncreated.

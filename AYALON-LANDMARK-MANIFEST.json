@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-ayalon-landmark-manifest",
+  "unit": "RSH-028",
+  "title": "Lock Ayalon landmark placement",
+  "generated_at": "2026-09-03T01:30:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "d9b25b6ad8a035041c699d64860f9dac357b774d",
+    "tree_sha": "3534d98bf73f21656f7344d2c03a088f1fae698a",
+    "branch": "agent/rsh-028-ayalon-landmarks"
+  },
+  "landmarks": {
+    "id": "ayalon",
+    "name_he": "נתיבי איילון",
+    "name_en": "Ayalon Highway",
+    "open": true,
+    "width": 28,
+    "track_poi_count": 9,
+    "builder_place_calls": 8,
+    "builder_extra_landmarks": 6,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "poi_sha256": "653400d559e6e34f7fb009d8620f7bc94fbb0bfca48537d3c7e2be98a0028063",
+    "placement_sha256": "ca016b04811f2d6184ee36311d805bbd6f77083a1395d7d6a753b7f1963d77a8",
+    "ieee_note": "RSH-028 records the live Version 1 Ayalon POI and builder placement recipes. It does not rewrite them."
+  },
+  "lock_module": {
+    "directory": "src/game/ayalon-landmarks",
+    "landmarks": "src/game/ayalon-landmarks/landmarks.ts",
+    "index": "src/game/ayalon-landmarks/index.ts"
+  },
+  "preservation": {
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "rendering_changes": 0,
+    "save_record_changes": 0,
+    "ayalon_lock_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "unverified_asset_files": 66,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "landmark_source_sha256": "d830e1440e6daaf302cca68409208dc2db440f8712dbfae8a32b722b9009209e",
+    "index_source_sha256": "d51244ebc8e3b0793a9b17796ea7db044eab4432d6d9e0a54d7c19b21515e86b",
+    "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
+    "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
+    "checker_test_sha256": "cabc7ae15655d980463010e6d5762a6747e6a6f3bd2baf3cfe424c9b4c7d8ae5",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "poi_sha256": "653400d559e6e34f7fb009d8620f7bc94fbb0bfca48537d3c7e2be98a0028063",
+    "placement_sha256": "ca016b04811f2d6184ee36311d805bbd6f77083a1395d7d6a753b7f1963d77a8"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-029",
+    "rsh_029_authorized": false,
+    "rsh_029_started": false,
+    "forbidden_prefixes": [
+      ".rsh029",
+      ".github/workflows/rsh-029-",
+      "RSH-029-",
+      "scripts/rsh029-",
+      "src/game/ayalon-asphalt/"
+    ]
+  }
+}

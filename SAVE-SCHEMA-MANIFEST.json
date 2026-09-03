@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-028",
+    "queue_head": "RSH-029",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -122,11 +122,11 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh028",
-      ".github/workflows/rsh-028-",
-      "RSH-028-",
-      "scripts/rsh028-",
-      "src/game/ayalon-landmarks/",
+      ".rsh029",
+      ".github/workflows/rsh-029-",
+      "RSH-029-",
+      "scripts/rsh029-",
+      "src/game/ayalon-asphalt/",
       "src/game/records-v2/",
       "src/game/records-v2/"
     ],
@@ -136,8 +136,11 @@
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
-    "rsh_028_authorized": false,
-    "rsh_028_started": false
+    "rsh_028_authorized": true,
+    "rsh_028_started": true,
+    "rsh_028_state": "accepted_on_merge",
+    "rsh_029_authorized": false,
+    "rsh_029_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -220,5 +223,16 @@
     "world_changes": 0,
     "owner_freeze": false,
     "gis_claim": false
+  },
+  "rsh_028_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "AYALON-LANDMARK-MANIFEST.json",
+    "contract": "RSH-028-AYALON-LANDMARK-CONTRACT.md",
+    "track_poi_count": 9,
+    "builder_place_calls": 8,
+    "builder_extra_landmarks": 6,
+    "owner_freeze": false,
+    "gis_claim": false,
+    "schema_guard_test_sha256": "f38c98516c0fa85a50d93350986fc046244bebcb8d2c8e987ddaf6e814d5d4f9"
   }
 }
