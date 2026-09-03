@@ -3,9 +3,9 @@
 **Schema:** 15.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-026 implementation base:** `1714aa96dc2a0fd402eed004b591541b41bfdb83`
-**State effective on:** merge of the RSH-026 pull request
-**Next unit:** RSH-027 — deferred and not authorised
+**RSH-027 implementation base:** `dddae060b76ac2b4abe8de1046a374e8eb7725fc`
+**State effective on:** merge of the RSH-027 pull request
+**Next unit:** RSH-028 — deferred and not authorised
 **Product-definition authority:** `PRODUCT-DEFINITION.json`
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`
@@ -20,7 +20,7 @@ GitHub is the sole source of truth. `CURRENT-STATE.json`, `QUEUE.json`, this doc
 `TRACK-CATALOGUE-CLASSIFICATION.json`, `ASSET-PROVENANCE.json`,
 `PRODUCT-METADATA.json`, `TRACK-SCHEMA.json`, `TRACK-MODULE-MANIFEST.json`,
 `WORLD-CORE-MANIFEST.json`, `WORLD-BUILDER-MANIFEST.json`,
-`ENGINE-ADAPTER-MANIFEST.json`, `GAME-APP-DECOMPOSITION-MANIFEST.json`, `RESOURCE-OWNERSHIP-MANIFEST.json`, `DEPENDENCY-BOUNDARY-MANIFEST.json`, `DEPENDENCY-POLICY.md`, `SAVE-SCHEMA-MANIFEST.json`, `SAVE-RECOVERY-MANIFEST.json`, `RSH-022-SAVE-RECOVERY-CONTRACT.md`, `TIMED-RECORDS-MANIFEST.json`, `RSH-023-TIMED-RECORDS-CONTRACT.md`, `PRODUCTION-SECURITY-MANIFEST.json`, `RSH-024-PRODUCTION-SECURITY-CONTRACT.md`, `AYALON-ACCEPTANCE-MANIFEST.json`, `RSH-025-AYALON-ACCEPTANCE-CONTRACT.md`, `AYALON-GEOMETRY-MANIFEST.json`, `RSH-026-AYALON-GEOMETRY-CONTRACT.md` and `REPOSITORY-GOVERNANCE.md` control program state.
+`ENGINE-ADAPTER-MANIFEST.json`, `GAME-APP-DECOMPOSITION-MANIFEST.json`, `RESOURCE-OWNERSHIP-MANIFEST.json`, `DEPENDENCY-BOUNDARY-MANIFEST.json`, `DEPENDENCY-POLICY.md`, `SAVE-SCHEMA-MANIFEST.json`, `SAVE-RECOVERY-MANIFEST.json`, `RSH-022-SAVE-RECOVERY-CONTRACT.md`, `TIMED-RECORDS-MANIFEST.json`, `RSH-023-TIMED-RECORDS-CONTRACT.md`, `PRODUCTION-SECURITY-MANIFEST.json`, `RSH-024-PRODUCTION-SECURITY-CONTRACT.md`, `AYALON-ACCEPTANCE-MANIFEST.json`, `RSH-025-AYALON-ACCEPTANCE-CONTRACT.md`, `AYALON-GEOMETRY-MANIFEST.json`, `RSH-026-AYALON-GEOMETRY-CONTRACT.md`, `AYALON-COLLIDER-MANIFEST.json`, `RSH-027-AYALON-COLLIDER-CONTRACT.md` and `REPOSITORY-GOVERNANCE.md` control program state.
 
 Historical planning files are evidence only. They do not control queue order,
 accepted progress, asset clearance or release-gate counts.
@@ -81,21 +81,21 @@ root-branding assets remain unverified.
 6. A unit becomes accepted when its PR merges; exact self-referential merge evidence is reconciled in the following preflight.
 7. Accepted-unit progress is not release readiness; all 13 release gates remain authoritative.
 8. The RSH-010–RSH-014 owner batch is closed at 5/5.
-9. The plain `next` authority covers exactly RSH-026 and is consumed on its validated merge; RSH-027 is not authorised.
+9. The plain `next` / `המשך` authority covers exactly RSH-027 and is consumed on its validated merge; RSH-028 is not authorised.
 
-## 5. Post-RSH-026 program state
+## 5. Post-RSH-027 program state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 26 |
+| Accepted | 27 |
 | In review | 0 |
 | Eligible | 0 |
-| Deferred | 41 |
-| Remaining | 41 |
-| Queue head | RSH-027 — deferred/not authorised |
+| Deferred | 40 |
+| Remaining | 40 |
+| Queue head | RSH-028 — deferred/not authorised |
 | Active PR | none |
-| RSH-026 one-unit authority | 1/1 — consumed |
+| RSH-027 one-unit authority | 1/1 — consumed |
 | Release gates green | 0/13 |
 | Findings OPEN / MITIGATED / CLOSED | 13 / 7 / 22 |
 
@@ -208,6 +208,6 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-RSH-021 through RSH-026 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28, 8 lanes of 3.5, 27 hashed spline samples). The opposite carriageway stays visual-only. Owner freeze and GIS claims remain forbidden. GitHub still does not require production checks through branch settings.
+RSH-021 through RSH-027 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28, 8 lanes of 3.5, 27 hashed spline samples, 50 interchange ramps, 8 open checkpoints). The opposite carriageway stays visual-only. Owner freeze and GIS claims remain forbidden. GitHub still does not require production checks through branch settings.
 
-Ghosts remain byte-preserved and remain assigned outside this unit. The RSH-026 one-unit `next` authority is consumed on merge. RSH-027 remains deferred and cannot start without a new explicit owner instruction.
+Ghosts remain byte-preserved and remain assigned outside this unit. The RSH-027 one-unit `next` / `המשך` authority is consumed on merge. RSH-028 remains deferred and cannot start without a new explicit owner instruction.

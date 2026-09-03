@@ -3,36 +3,37 @@
 **Version:** 15.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-026 implementation base:** `1714aa96dc2a0fd402eed004b591541b41bfdb83`
-**State effective on:** merge of the RSH-026 pull request
-**Next unit:** `RSH-027` — deferred and not authorised
+**RSH-027 implementation base:** `dddae060b76ac2b4abe8de1046a374e8eb7725fc`
+**State effective on:** merge of the RSH-027 pull request
+**Next unit:** `RSH-028` — deferred and not authorised
 
 ## Authority
 
-The current plain `next` instruction authorised exactly RSH-026. That authority is consumed on validated merge and does not extend to RSH-027.
+The current plain `next` / `המשך` instruction authorised exactly RSH-027. That authority is consumed on validated merge and does not extend to RSH-028.
 
-## RSH-026 acceptance boundary
+## RSH-027 acceptance boundary
 
 - Version 1 Ayalon remains id `ayalon`, width `28`, 8 lanes of 3.5, theme `highway`, open A→B;
-- the live IEEE spline stays 27 samples (last latitude 32.104) and is hashed, not rewritten;
-- the opposite carriageway stays visual-only at offset 46;
+- interchange ramps stay 50 (6×7 plus Galuyot 4, LaGuardia 2, flyovers 2) with deck height 9.4;
+- edge barriers stay visual/physical walls at `width/2 + 1.55` with radii `+0.62` / `-1.05`;
+- open-track checkpoints stay eight fractions of `(i + 1) / 8.15`;
 - GIS/navigation claims and owner freeze remain forbidden;
-- track source, world, physics, rendering, save/records and `ayalon.lock` are unchanged;
-- no RSH-027 collider/ramp lock structure exists.
+- track source, world, builders, spline, physics, rendering, save/records and `ayalon.lock` are unchanged;
+- no RSH-028 landmark lock structure exists.
 
 ## Post-merge state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 26 |
-| Deferred | 41 |
-| Remaining | 41 |
-| Queue head | RSH-027 |
-| RSH-027 authorised | No |
+| Accepted | 27 |
+| Deferred | 40 |
+| Remaining | 40 |
+| Queue head | RSH-028 |
+| RSH-028 authorised | No |
 | Current authority remaining | 0 |
 | Save schema version | 3 |
 | Unverified asset files | 66 |
 | Release gates | 0/13 |
 
-A new explicit owner instruction is required before RSH-027 may be created or executed.
+A new explicit owner instruction is required before RSH-028 may be created or executed.

@@ -74,7 +74,7 @@
     "records_source_sha256": "1394102cc0c744a3000a0ad191bca61efc79880b874a7ded3794b51bf0d3a502",
     "save_facade_sha256": "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2",
     "records_test_sha256": "78152e01ab5e44436b87e41311aeaaabc602983106bf123192a3b441d8d2e8b5",
-    "checker_test_sha256": "166df023eef7136cf00089bb9b9a5705127bafcba6c843ab67cd435911bbe44a",
+    "checker_test_sha256": "cbfd1fa87c91ce4afdfe1fa4091b6faed7d60e2178bf064be9f31bf54c680d50",
     "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
     "recovery_source_sha256": "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f",
     "ui_source_sha256": "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26",
@@ -83,7 +83,7 @@
     "ghost_block_sha256": "59948dace66f2683d4f7cfc480f270579727dd94be257f5ea6637bd18e217674"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-027",
+    "queue_head": "RSH-028",
     "rsh_024_authorized": true,
     "rsh_024_started": true,
     "rsh_024_state": "accepted_on_merge",
@@ -93,14 +93,17 @@
     "rsh_026_authorized": true,
     "rsh_026_started": true,
     "forbidden_prefixes": [
-      ".rsh027",
-      ".github/workflows/rsh-027-",
-      "RSH-027-",
-      "scripts/rsh027-",
-      "src/game/ayalon-colliders/"
+      ".rsh028",
+      ".github/workflows/rsh-028-",
+      "RSH-028-",
+      "scripts/rsh028-",
+      "src/game/ayalon-landmarks/"
     ],
     "rsh_026_state": "accepted_on_merge",
-    "rsh_027_authorized": false,
-    "rsh_027_started": false
+    "rsh_027_authorized": true,
+    "rsh_027_started": true,
+    "rsh_027_state": "accepted_on_merge",
+    "rsh_028_authorized": false,
+    "rsh_028_started": false
   }
 }

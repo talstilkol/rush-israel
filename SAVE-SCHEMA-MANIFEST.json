@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-027",
+    "queue_head": "RSH-028",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -122,19 +122,22 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh027",
-      ".github/workflows/rsh-027-",
-      "RSH-027-",
-      "scripts/rsh027-",
-      "src/game/ayalon-colliders/",
+      ".rsh028",
+      ".github/workflows/rsh-028-",
+      "RSH-028-",
+      "scripts/rsh028-",
+      "src/game/ayalon-landmarks/",
       "src/game/records-v2/",
       "src/game/records-v2/"
     ],
     "rsh_026_authorized": true,
     "rsh_026_started": true,
     "rsh_026_state": "accepted_on_merge",
-    "rsh_027_authorized": false,
-    "rsh_027_started": false
+    "rsh_027_authorized": true,
+    "rsh_027_started": true,
+    "rsh_027_state": "accepted_on_merge",
+    "rsh_028_authorized": false,
+    "rsh_028_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -203,6 +206,16 @@
     "manifest": "AYALON-GEOMETRY-MANIFEST.json",
     "contract": "RSH-026-AYALON-GEOMETRY-CONTRACT.md",
     "schema_guard_test_sha256": "8e051db73426918fa77cbbc1d4ab78cfcb6e4dd98789673dc831088aa66f0d98",
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "owner_freeze": false,
+    "gis_claim": false
+  },
+  "rsh_027_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "AYALON-COLLIDER-MANIFEST.json",
+    "contract": "RSH-027-AYALON-COLLIDER-CONTRACT.md",
+    "schema_guard_test_sha256": "b46ea09b43b0755b47d41e39df51f50f5a05f156c12931aa899095d021da457b",
     "track_source_changes": 0,
     "world_changes": 0,
     "owner_freeze": false,

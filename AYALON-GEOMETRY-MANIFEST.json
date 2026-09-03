@@ -67,19 +67,32 @@
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
-    "checker_test_sha256": "b78b54ac18e789f4e2a379ee8ed5fa502b68d4817178d4323aefbaed84d13a22",
+    "checker_test_sha256": "5efb173ce364f464a572dd7ddb9400c0eee67471deceb7c97f69c6b1fbe35391",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-027",
-    "rsh_027_authorized": false,
-    "rsh_027_started": false,
+    "queue_head": "RSH-028",
+    "rsh_027_authorized": true,
+    "rsh_027_started": true,
+    "rsh_027_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh027",
-      ".github/workflows/rsh-027-",
-      "RSH-027-",
-      "scripts/rsh027-",
-      "src/game/ayalon-colliders/"
-    ]
+      ".rsh028",
+      ".github/workflows/rsh-028-",
+      "RSH-028-",
+      "scripts/rsh028-",
+      "src/game/ayalon-landmarks/"
+    ],
+    "rsh_028_authorized": false,
+    "rsh_028_started": false
+  },
+  "rsh_027_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "AYALON-COLLIDER-MANIFEST.json",
+    "contract": "RSH-027-AYALON-COLLIDER-CONTRACT.md",
+    "ramp_count": 50,
+    "checkpoint_count": 8,
+    "interchange_count": 6,
+    "owner_freeze": false,
+    "gis_claim": false
   }
 }

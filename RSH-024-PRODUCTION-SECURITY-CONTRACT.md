@@ -68,6 +68,5 @@ not mutate repository visibility, rulesets or required-check settings.
 
 ## Deferred boundary
 
-RSH-025 and RSH-026 are accepted on validated merge. RSH-027 — Lock Ayalon
-ramps, barriers, colliders and checkpoints — remains deferred, unauthorized
-and uncreated.
+RSH-025, RSH-026 and RSH-027 are accepted on validated merge. RSH-028 — Lock
+Ayalon landmark placement — remains deferred, unauthorized and uncreated.

@@ -65,6 +65,7 @@ match the lock.
 
 ## Deferred boundary
 
-RSH-027 — Lock Ayalon ramps, barriers, colliders and checkpoints — remains
-deferred, unauthorized and uncreated. RSH-026 does not add
-`src/game/ayalon-colliders/` or RSH-027 transport files.
+RSH-027 — Lock Ayalon ramps, barriers, colliders and checkpoints — is accepted
+on validated merge. RSH-028 — Lock Ayalon landmark placement — remains deferred,
+unauthorized and uncreated. RSH-026 does not add `src/game/ayalon-landmarks/` or
+RSH-028 transport files.
