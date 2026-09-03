@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-ayalon-golden-manifest",
+  "unit": "RSH-035",
+  "title": "Produce the unique Ayalon golden pack and owner approval record",
+  "generated_at": "2026-09-03T08:03:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4",
+    "tree_sha": "3700c72ab79aefb96a0ba65adf92102a8058522f",
+    "branch": "agent/rsh-035-ayalon-golden"
+  },
+  "lock": {
+    "track_id": "ayalon",
+    "unique_count": 20,
+    "placeholder_count": 4,
+    "placeholder_hash": "38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094",
+    "placeholders": [
+      "hashalom-g04.png",
+      "hashalom-g05.png",
+      "hashalom-g06.png",
+      "hashalom-ramp.png"
+    ],
+    "pixel_frames": [
+      "ayalon-day-g01.png",
+      "ayalon-day-g05.png",
+      "ayalon-day-g07.png",
+      "ayalon-night-g08.png"
+    ],
+    "pixel_threshold": 0.12,
+    "pixel_fail_percent": 8,
+    "ayalon_lock_generation": 11,
+    "ayalon_lock_hash": "0c34b9d1f9ded36eaa8400c7aaba48a4f725033bfe25412a4648c36c73910d48",
+    "unique_pack_approved": true,
+    "placeholders_are_unique_evidence": false,
+    "freeze_granted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "public_distribution": false,
+    "unique_files": {
+      "ayalon-chase.png": "8dc20838b036b175755a36cb0d64fe435d26dcd56f276185b29bf48dbf45aefe",
+      "ayalon-day-g01.png": "6621099ae48187cc400ddeb7cc203d0e27e94312e8a4a1dff324bfc99516e455",
+      "ayalon-day-g05.png": "7aa736559f1d4300a33db7807237ef7b790c81a46a7a52c0f259894fa2094b79",
+      "ayalon-day-g07.png": "7008f9d9e29b333b1a3e36bf3e1f73a2f6ae8b3b86924a30f41173b632e12c97",
+      "ayalon-night-chase.png": "a19d833248ba0258a8e2582d0148126bcc0ee93437d55cb8a87d33a31f14ffc3",
+      "ayalon-night-g08.png": "72545851e488664b6d06319115414ee25b166f4608ab4d5c5df3b8bfa8fb3966",
+      "hashalom-azrieli.png": "574aa689a1ecf8d0c8cfca20e7941105ac79bebcccd4ba9a97e52dd41b119893",
+      "hashalom-citygate.png": "7d38bd78ef2cbf4e89e415169cef0a693cda51a3405a530d90029d8059e0aa2b",
+      "hashalom-electra.png": "baedacbae1ff163e128105b62cee7392c039181e39afaa1df37b1f9c74d2f7bc",
+      "hashalom-galuyot.png": "9c5d48d2ae12a567c2c5e07d90229a3240867ce7debf7db0793eae7f2fe8f393",
+      "hashalom-hagana.png": "6f92f47c92b452f638361c5d9695335826848b81e7b128d53e5b9d1bacd2009d",
+      "hashalom-hakirya.png": "6c4510fade21d4a3baa0045fa98b2a761e4d8a9db26dab3c7ddd1fb17cf5ccb5",
+      "hashalom-midtown.png": "a13a57859c25396cddd44072d534dc6a14b112da8952e08f36891fd2e816bded",
+      "hashalom-platinum.png": "b63bd78b0b1f5e2edd0d1540624f45187982fe6635e23057407c8c20a8a7c364",
+      "hashalom-sarona.png": "d48ba7ca0bac2bcc124fb8f928a396813ed6bca4191eadb93e750a5d785d5a8a",
+      "hashalom-savidor.png": "62c54e53bb0902df2fddb4f0abe028c18d1566a840ab3537ff6bb717dc8d2673",
+      "hashalom-shalommeir.png": "c0ed46c8998af999a411e2a014ce243840e414c75827ffbc1282b319c779ca4f",
+      "hashalom-tau.png": "93317f411ea66ab98abed22dcf83ba1c6b54942c01f119d5d8ca955415a17e34",
+      "hashalom-toha.png": "b40bd13aa1fb2783ac23edaa5bdaae4981d5977ac3e718eed0c57122e283f322",
+      "hashalom-university.png": "a3bb9843e14555b197aae808984ee110dfefda3596297fde0fb4bdf0f7aa22d8"
+    }
+  },
+  "lock_module": {
+    "directory": "src/game/ayalon-golden",
+    "pack": "src/game/ayalon-golden/pack.ts",
+    "index": "src/game/ayalon-golden/index.ts"
+  },
+  "owner_approval": "AYALON-OWNER-APPROVAL.json",
+  "contract": "RSH-035-AYALON-GOLDEN-CONTRACT.md",
+  "preservation": {
+    "golden_png_changes": 0,
+    "ayalon_lock_changes": 0,
+    "hashalom_index_changes": 0,
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "audio_hud_changes": 0,
+    "package_json_changes": 0,
+    "asset_changes": 0,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "pack_source_sha256": "ce1b6f6c3cb5db8e3695864e5a54df2be480caa8ff852aadc8fb4fd693f920ed",
+    "index_source_sha256": "8326432974994dddd7c3b4015693f1833bd02c7a0a6ebf5c947fd92d8b5efb3e",
+    "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
+    "contract_sha256": "0328becc41d5ed9568778a8630ffd06dbea46ee11ce0d7301906616336c64c3d",
+    "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
+    "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
+    "pixel_golden_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
+    "checker_test_sha256": "30fc5360e39b53fea02fd116fa08e8a64d938701d89bb93dfbe67b510179a57e",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-036",
+    "rsh_035_authorized": true,
+    "rsh_035_started": true,
+    "rsh_036_authorized": false,
+    "rsh_036_started": false,
+    "forbidden_prefixes": [
+      ".rsh036",
+      ".github/workflows/rsh-036-",
+      "RSH-036-",
+      "scripts/rsh036-",
+      "src/game/ayalon-freeze/"
+    ]
+  }
+}

@@ -1,24 +1,24 @@
 {
-  "schema_version": "17.0.0",
+  "schema_version": "18.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-03T10:00:00.000Z",
+  "generated_at": "2026-09-03T08:03:00.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_034_pull_request",
-    "implementation_base_sha": "550c681445b2473cbd377131b60715ade0e58774",
-    "self_reference_boundary": "The RSH-034 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_035_pull_request",
+    "implementation_base_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4",
+    "self_reference_boundary": "The RSH-035 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "550c681445b2473cbd377131b60715ade0e58774",
-    "tree_sha": "4a2e0d3a02cb721a87b0a9485937c0a4dc5b1788",
-    "commit_authored_at": "2026-09-03T07:02:12Z",
-    "commit_message": "Merge PR #36: RSH-033 — Calibrate driving physics and the five-car performance table",
+    "head_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4",
+    "tree_sha": "3700c72ab79aefb96a0ba65adf92102a8058522f",
+    "commit_authored_at": "2026-09-03T07:39:06Z",
+    "commit_message": "Merge PR #37: RSH-034 — Lock audio, HUD, keyboard, touch and gamepad behaviour",
     "commit_signature_verified": true,
-    "role": "RSH-034 exact implementation base"
+    "role": "RSH-035 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 34,
+    "accepted_units": 35,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 33,
-    "remaining_units": 33,
-    "queue_head": "RSH-035",
+    "deferred_units": 32,
+    "remaining_units": 32,
+    "queue_head": "RSH-036",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -1020,12 +1020,21 @@
       "unresolved_review_threads": 0
     },
     "RSH-034": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-034-audio-hud-input",
-      "pull_request_resolution": "the pull request created from the exact RSH-034 candidate head",
-      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
-      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-034 pull request",
-      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-034 merge SHA",
+      "pull_request": 37,
+      "validated_head_sha": "285d871ee9a22b02ace7f732ac096eb7405c43e8",
+      "merge_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4",
+      "tree_sha": "3700c72ab79aefb96a0ba65adf92102a8058522f",
+      "workflow_run": 33728755421,
+      "workflow_job": 100563648474,
+      "artifact_id": 9883097658,
+      "artifact_digest": "sha256:b50299d22059e772f8b688b427c642f83bd4ea3d85f7119d974080d2efee99e5",
+      "post_merge_workflow_run": 33729193130,
+      "post_merge_workflow_job": 100565024476,
+      "post_merge_artifact_id": 9883256104,
+      "post_merge_artifact_digest": "sha256:361abb9dc15e0223c470568695b82aaf1df5e4023ec0e15fce155787f859d665",
+      "unresolved_review_threads": 0,
       "manifest": "AUDIO-HUD-INPUT-MANIFEST.json",
       "contract": "RSH-034-AUDIO-HUD-CONTRACT.md",
       "backend": "oscillator",
@@ -1035,16 +1044,37 @@
       "cars_rewritten": false,
       "owner_freeze": false,
       "gis_claim": false,
-      "rsh_035_created": false
+      "rsh_035_created": true
+    },
+    "RSH-035": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-035-ayalon-golden",
+      "pull_request_resolution": "the pull request created from the exact RSH-035 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-035 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-035 merge SHA",
+      "manifest": "AYALON-GOLDEN-MANIFEST.json",
+      "contract": "RSH-035-AYALON-GOLDEN-CONTRACT.md",
+      "owner_approval": "AYALON-OWNER-APPROVAL.json",
+      "unique_count": 20,
+      "placeholder_count": 4,
+      "pixel_threshold": 0.12,
+      "ayalon_lock_generation": 11,
+      "unique_pack_approved": true,
+      "placeholders_are_unique_evidence": false,
+      "freeze_granted": false,
+      "owner_freeze": false,
+      "gis_claim": false,
+      "rsh_036_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-034",
+    "unit": "RSH-035",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-034-audio-hud-input",
+    "branch": "agent/rsh-035-ayalon-golden",
     "authority_consumed": true,
-    "next_unit": "RSH-035",
+    "next_unit": "RSH-036",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -1122,7 +1152,10 @@
     "RSH-034_authorized": false,
     "RSH-034_was_separately_authorized": true,
     "RSH-034_authorization_consumed": true,
-    "RSH-035_authorized": false
+    "RSH-035_authorized": false,
+    "RSH-035_was_separately_authorized": true,
+    "RSH-035_authorization_consumed": true,
+    "RSH-036_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -1188,8 +1221,8 @@
     "p0": 12,
     "p1": 18,
     "p2": 12,
-    "open": 13,
-    "mitigated": 7,
+    "open": 12,
+    "mitigated": 8,
     "closed": 22,
     "register": "FINDINGS-REGISTER.md"
   },
@@ -1197,8 +1230,8 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The plain next instruction authorized exactly RSH-034 and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-035.",
+    "The plain next instruction authorized exactly RSH-035 and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-036.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13."
   ],
@@ -1326,12 +1359,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-034"
+      "RSH-035"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-034_merge",
-    "RSH_035_authorized": false
+    "state": "consumed_on_RSH-035_merge",
+    "RSH_036_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -1370,12 +1403,12 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-033"
+      "RSH-034"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-033_merge",
-    "RSH_034_authorized": false
+    "state": "consumed_on_RSH-034_merge",
+    "RSH_035_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -1843,7 +1876,7 @@
     "post_merge_workflow_run": 33726086520
   },
   "rsh_034_audio_hud_input": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "AUDIO-HUD-INPUT-MANIFEST.json",
     "human_contract": "RSH-034-AUDIO-HUD-CONTRACT.md",
     "validator": "scripts/check-audio-hud-input.mjs",
@@ -1855,7 +1888,32 @@
     "cars_rewritten": false,
     "owner_freeze": false,
     "gis_claim": false,
-    "RSH_035_created": false,
-    "RSH_035_authorized": false
+    "RSH_035_created": true,
+    "RSH_035_authorized": true,
+    "pull_request": 37,
+    "validated_head_sha": "285d871ee9a22b02ace7f732ac096eb7405c43e8",
+    "merge_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4",
+    "tree_sha": "3700c72ab79aefb96a0ba65adf92102a8058522f",
+    "workflow_run": 33728755421,
+    "post_merge_workflow_run": 33729193130
+  },
+  "rsh_035_ayalon_golden": {
+    "state": "accepted_on_merge",
+    "machine_authority": "AYALON-GOLDEN-MANIFEST.json",
+    "human_contract": "RSH-035-AYALON-GOLDEN-CONTRACT.md",
+    "owner_approval": "AYALON-OWNER-APPROVAL.json",
+    "validator": "scripts/check-ayalon-golden.mjs",
+    "test": "scripts/check-ayalon-golden.test.mjs",
+    "unique_count": 20,
+    "placeholder_count": 4,
+    "pixel_threshold": 0.12,
+    "ayalon_lock_generation": 11,
+    "unique_pack_approved": true,
+    "placeholders_are_unique_evidence": false,
+    "freeze_granted": false,
+    "owner_freeze": false,
+    "gis_claim": false,
+    "RSH_036_created": false,
+    "RSH_036_authorized": false
   }
 }

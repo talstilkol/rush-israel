@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 17.0.0
+**Version:** 18.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-034 implementation base:** `550c681445b2473cbd377131b60715ade0e58774`
-**State effective on:** merge of the RSH-034 pull request
+**RSH-035 implementation base:** `0f53ae1e1451c3eff30a15829c0c0f43762feeb4`
+**State effective on:** merge of the RSH-035 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-035 — deferred and not authorised
+**Next scheduled unit:** RSH-036 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 34 |
+| Accepted units | 35 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-035 — deferred/not authorised |
+| Queue head | RSH-036 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 33 |
-| RSH-034 one-unit authority | consumed 1/1 |
+| Remaining units | 32 |
+| RSH-035 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -59,5 +59,6 @@
 | RSH-032 | Night lighting, headlights and weather locked on validated merge |
 | RSH-033 | Driving physics calibration accepted on validated merge |
 | RSH-034 | Audio, HUD, keyboard, touch and gamepad behaviour locked on validated merge |
+| RSH-035 | Unique Ayalon golden pack and owner approval recorded on validated merge |
 
-No RSH-035 branch, PR or implementation structure is authorised by this state.
+No RSH-036 branch, PR or implementation structure is authorised by this state.

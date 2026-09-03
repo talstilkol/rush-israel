@@ -1,11 +1,11 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 17.0.0
+**Schema:** 18.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-034 implementation base:** `550c681445b2473cbd377131b60715ade0e58774`
-**State effective on:** merge of the RSH-034 pull request
-**Next unit:** RSH-035 — deferred and not authorised
+**RSH-035 implementation base:** `0f53ae1e1451c3eff30a15829c0c0f43762feeb4`
+**State effective on:** merge of the RSH-035 pull request
+**Next unit:** RSH-036 — deferred and not authorised
 **Product-definition authority:** `PRODUCT-DEFINITION.json`
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`
@@ -81,23 +81,23 @@ root-branding assets remain unverified.
 6. A unit becomes accepted when its PR merges; exact self-referential merge evidence is reconciled in the following preflight.
 7. Accepted-unit progress is not release readiness; all 13 release gates remain authoritative.
 8. The RSH-010–RSH-014 owner batch is closed at 5/5.
-9. The plain `next` / `המשך` authority covers exactly RSH-034 and is consumed on its validated merge; RSH-035 is not authorised.
+9. The plain `next` / `המשך` authority covers exactly RSH-035 and is consumed on its validated merge; RSH-036 is not authorised.
 
-## 5. Post-RSH-034 program state
+## 5. Post-RSH-035 program state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 34 |
+| Accepted | 35 |
 | In review | 0 |
 | Eligible | 0 |
-| Deferred | 33 |
-| Remaining | 33 |
-| Queue head | RSH-035 — deferred/not authorised |
+| Deferred | 32 |
+| Remaining | 32 |
+| Queue head | RSH-036 — deferred/not authorised |
 | Active PR | none |
-| RSH-034 one-unit authority | 1/1 — consumed |
+| RSH-035 one-unit authority | 1/1 — consumed |
 | Release gates green | 0/13 |
-| Findings OPEN / MITIGATED / CLOSED | 13 / 7 / 22 |
+| Findings OPEN / MITIGATED / CLOSED | 12 / 8 / 22 |
 
 ## 6. Stage map
 
@@ -208,6 +208,6 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-RSH-021 through RSH-034 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28, 8 lanes of 3.5, 27 hashed spline samples, 50 interchange ramps, 8 open checkpoints, 9 inspired POIs, baked 8-lane asphalt, no sidewalks, 6 gantries). Daylight stays the live `summer14` look with baked `sky-day.png` and tiny non-HDRI PMREM. Night stays look `night` with baked `sky-night.png`, two headlight spots, ten street lamps and four weather specs. Default boot stays day / clear. Driving physics version 7 matches the five fictional 0–100 claims inside a ±15% band without rewriting `cars.ts`. Audio stays Web Audio oscillators with four radio stations; HUD speed is integer km/h from `speed * 3.6`; keyboard/touch/gamepad maps stay the live Version 1 lock. The opposite carriageway stays visual-only. Owner freeze and GIS claims remain forbidden. GitHub still does not require production checks through branch settings.
+RSH-021 through RSH-035 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28, 8 lanes of 3.5, 27 hashed spline samples, 50 interchange ramps, 8 open checkpoints, 9 inspired POIs, baked 8-lane asphalt, no sidewalks, 6 gantries). Daylight stays the live `summer14` look with baked `sky-day.png` and tiny non-HDRI PMREM. Night stays look `night` with baked `sky-night.png`, two headlight spots, ten street lamps and four weather specs. Default boot stays day / clear. Driving physics version 7 matches the five fictional 0–100 claims inside a ±15% band without rewriting `cars.ts`. Audio stays Web Audio oscillators with four radio stations; HUD speed is integer km/h from `speed * 3.6`; keyboard/touch/gamepad maps stay the live Version 1 lock. The unique Ayalon golden pack is the 20 non-placeholder frames with owner approval recorded; the four byte-identical HaShalom placeholders stay non-authority. The opposite carriageway stays visual-only. Owner freeze and GIS claims remain forbidden. GitHub still does not require production checks through branch settings.
 
-Ghosts remain byte-preserved and remain assigned outside this unit. The RSH-034 one-unit `next` / `המשך` authority is consumed on merge. RSH-035 remains deferred and cannot start without a new explicit owner instruction.
+Ghosts remain byte-preserved and remain assigned outside this unit. The RSH-035 one-unit `next` / `המשך` authority is consumed on merge. RSH-036 remains deferred and cannot start without a new explicit owner instruction.

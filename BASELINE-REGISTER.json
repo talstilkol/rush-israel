@@ -1,7 +1,7 @@
 {
-  "schema_version": "17.0.0",
+  "schema_version": "18.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-03T07:00:00.000Z",
+  "generated_at": "2026-09-03T08:03:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -652,23 +652,44 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-09-03T07:05:27.000Z",
       "description": "Driving physics calibration accepted on validated merge."
+    },
+    {
+      "id": "B034-rsh-034-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-034",
+      "branch": "agent/rsh-034-audio-hud-input",
+      "pull_request": 37,
+      "commit_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4",
+      "tree_sha": "3700c72ab79aefb96a0ba65adf92102a8058522f",
+      "validated_head_sha": "285d871ee9a22b02ace7f732ac096eb7405c43e8",
+      "workflow_run": 33728755421,
+      "workflow_job": 100563648474,
+      "artifact_id": 9883097658,
+      "artifact_digest": "sha256:b50299d22059e772f8b688b427c642f83bd4ea3d85f7119d974080d2efee99e5",
+      "post_merge_workflow_run": 33729193130,
+      "post_merge_workflow_job": 100565024476,
+      "post_merge_artifact_id": 9883256104,
+      "post_merge_artifact_digest": "sha256:361abb9dc15e0223c470568695b82aaf1df5e4023ec0e15fce155787f859d665",
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-09-03T07:42:36.000Z",
+      "description": "Audio, HUD, keyboard, touch and gamepad behaviour locked on validated merge."
     }
   ],
   "working_state": {
-    "unit": "RSH-034",
+    "unit": "RSH-035",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "550c681445b2473cbd377131b60715ade0e58774",
-    "branch": "agent/rsh-034-audio-hud-input",
-    "manifest": "AUDIO-HUD-INPUT-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-034 pull request"
+    "implementation_base_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4",
+    "branch": "agent/rsh-035-ayalon-golden",
+    "manifest": "AYALON-GOLDEN-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-035 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-035",
+    "queue_head": "RSH-036",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_035_authorized": false
+    "RSH_036_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

@@ -106,7 +106,7 @@
     "ghost_block_sha256": "59948dace66f2683d4f7cfc480f270579727dd94be257f5ea6637bd18e217674"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-035",
+    "queue_head": "RSH-036",
     "rsh_023_authorized": true,
     "rsh_023_started": true,
     "rsh_023_state": "accepted_on_merge",
@@ -117,11 +117,11 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh035",
-      ".github/workflows/rsh-035-",
-      "RSH-035-",
-      "scripts/rsh035-",
-      "src/game/ayalon-golden/"
+      ".rsh036",
+      ".github/workflows/rsh-036-",
+      "RSH-036-",
+      "scripts/rsh036-",
+      "src/game/ayalon-freeze/"
     ],
     "rsh_026_authorized": true,
     "rsh_026_started": true,
@@ -150,8 +150,11 @@
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "rsh_034_state": "accepted_on_merge",
-    "rsh_035_authorized": false,
-    "rsh_035_started": false
+    "rsh_035_authorized": true,
+    "rsh_035_started": true,
+    "rsh_035_state": "accepted_on_merge",
+    "rsh_036_authorized": false,
+    "rsh_036_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",
