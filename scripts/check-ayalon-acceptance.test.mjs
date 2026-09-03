@@ -16,11 +16,11 @@ test("committed RSH-025 Ayalon acceptance authority passes under the RSH-029 ove
   assert.equal(result.duplicatePlaceholders, 4);
 });
 
-test("RSH-036 precreation fails closed", () => {
+test("RSH-037 precreation fails closed", () => {
   const result = validateAyalonAcceptance({
-    repositoryFiles: ["RSH-036-PREFLIGHT.json", "src/game/tracks/ayalon.ts"],
+    repositoryFiles: ["RSH-037-PREFLIGHT.json", "src/game/tracks/ayalon.ts"],
   });
-  assert.match(messages(result), /RSH-036 was precreated/);
+  assert.match(messages(result), /RSH-037 was precreated/);
 });
 
 test("Ayalon V1 identity stays a fictional one-carriageway highway", () => {
