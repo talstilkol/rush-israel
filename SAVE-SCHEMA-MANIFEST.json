@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-032",
+    "queue_head": "RSH-033",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -122,11 +122,11 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh032",
-      ".github/workflows/rsh-032-",
-      "RSH-032-",
-      "scripts/rsh032-",
-      "src/game/ayalon-night/",
+      ".rsh033",
+      ".github/workflows/rsh-033-",
+      "RSH-033-",
+      "scripts/rsh033-",
+      "src/game/ayalon-physics/",
       "src/game/records-v2/"
     ],
     "rsh_026_authorized": true,
@@ -147,8 +147,11 @@
     "rsh_031_authorized": true,
     "rsh_031_started": true,
     "rsh_031_state": "accepted_on_merge",
-    "rsh_032_authorized": false,
-    "rsh_032_started": false
+    "rsh_032_authorized": true,
+    "rsh_032_started": true,
+    "rsh_032_state": "accepted_on_merge",
+    "rsh_033_authorized": false,
+    "rsh_033_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -279,5 +282,17 @@
     "owner_freeze": false,
     "gis_claim": false,
     "schema_guard_test_sha256": "0b001df024e9f5b3599e8e003b808f3e1eecb56e53ceb866c45a2ef808fe36c3"
+  },
+  "rsh_032_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "NIGHT-WEATHER-MANIFEST.json",
+    "contract": "RSH-032-NIGHT-CONTRACT.md",
+    "look": "night",
+    "hdri": false,
+    "real_sky_ibl": false,
+    "weather_default": "clear",
+    "owner_freeze": false,
+    "gis_claim": false,
+    "schema_guard_test_sha256": "2470c9b8745ec6a653b5f3918848ab7a1213768f95110f8b7f695497b70404f5"
   }
 }

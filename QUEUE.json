@@ -1,11 +1,11 @@
 {
   "schema_version": "15.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-09-03T06:30:00.000Z",
+  "generated_at": "2026-09-03T07:00:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "7a4451f4c55fe8aa44ad7999fc6de6e1c78c868c",
-  "state_effective_on": "merge_of_RSH_031_pull_request",
+  "verified_base_sha": "04d922adc712a73cb0ccc7bd444a64b7b9157afd",
+  "state_effective_on": "merge_of_RSH_032_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "next",
       "authorized_units": [
+        "RSH-032"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-032_merge",
+      "RSH_033_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": [
         "RSH-031"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-031_merge",
       "RSH_032_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "next",
-      "authorized_units": [
-        "RSH-030"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-030_merge",
-      "RSH_031_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 31,
+    "accepted": 32,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 36,
-    "remaining": 36
+    "deferred": 35,
+    "remaining": 35
   },
   "queue_head": {
-    "id": "RSH-032",
-    "title": "Lock night lighting, headlights and weather",
+    "id": "RSH-033",
+    "title": "Calibrate driving physics and the five-car performance table",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-032 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-033 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-032",
-    "title": "Lock night lighting, headlights and weather",
+    "id": "RSH-033",
+    "title": "Calibrate driving physics and the five-car performance table",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -741,7 +741,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-031": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-031-daylight-sky",
       "pull_request_resolution": "live RSH-031 pull request",
       "validated_head_resolution": "exact RSH-031 PR head accepted by required-ci / validate and Codex review",
@@ -754,7 +754,37 @@
       "ibl_kind": "tiny_pmrem",
       "owner_freeze": false,
       "gis_claim": false,
-      "rsh_032_created": false
+      "rsh_032_created": true,
+      "pull_request": 34,
+      "validated_head_sha": "9f0eaeca265d44505e6dbc34e9e8b08a2dfd35fd",
+      "merge_sha": "04d922adc712a73cb0ccc7bd444a64b7b9157afd",
+      "tree_sha": "56b1c30df3411c828ae06dc2b03e2f46093a6902",
+      "workflow_run": 33712522927,
+      "workflow_job": 100514841628,
+      "artifact_id": 9877456791,
+      "artifact_digest": "sha256:8c877863435b9ce747439a61db63d3ca32fbb80c1846a20f21f0563a23726279",
+      "post_merge_workflow_run": 33712887704,
+      "post_merge_workflow_job": 100515933294,
+      "post_merge_artifact_id": 9877558388,
+      "post_merge_artifact_digest": "sha256:1d2f1df16e278e64eac33b4681bb15771a7c33bc7683cbbe3a527670131e34ee",
+      "unresolved_review_threads": 0
+    },
+    "RSH-032": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-032-night-weather",
+      "pull_request_resolution": "live RSH-032 pull request",
+      "validated_head_resolution": "exact RSH-032 PR head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD after validated merge",
+      "manifest": "NIGHT-WEATHER-MANIFEST.json",
+      "contract": "RSH-032-NIGHT-CONTRACT.md",
+      "look": "night",
+      "hdri": false,
+      "real_sky_ibl": false,
+      "weather_default": "clear",
+      "ibl_kind": "tiny_pmrem",
+      "owner_freeze": false,
+      "gis_claim": false,
+      "rsh_033_created": false
     }
   },
   "unit_order": [
@@ -829,25 +859,25 @@
   "state_rules": {
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-031"
+      "through": "RSH-032"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-032",
+      "from": "RSH-033",
       "through": "RSH-067"
     },
-    "RSH-001–RSH-031": "accepted",
-    "RSH-032–RSH-067": "deferred_not_authorized"
+    "RSH-001–RSH-032": "accepted",
+    "RSH-033–RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-032 remains deferred until a new explicit owner instruction.",
-    "RSH_031_completed": true,
-    "RSH_031_authorization_consumed": true,
-    "RSH_032_authorized": false
+    "current_action": "No unit is authorized; RSH-033 remains deferred until a new explicit owner instruction.",
+    "RSH_032_completed": true,
+    "RSH_032_authorization_consumed": true,
+    "RSH_033_authorized": false
   },
-  "self_reference_boundary": "The RSH-031 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-032 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }

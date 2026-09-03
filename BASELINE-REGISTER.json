@@ -1,7 +1,7 @@
 {
   "schema_version": "10.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-03T06:30:00.000Z",
+  "generated_at": "2026-09-03T07:00:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -589,23 +589,44 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-09-03T03:19:05.000Z",
       "description": "Version 1 hero car, LODs and silhouette gate delivered on validated merge."
+    },
+    {
+      "id": "B031-rsh-031-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-031",
+      "branch": "agent/rsh-031-daylight-sky",
+      "pull_request": 34,
+      "commit_sha": "04d922adc712a73cb0ccc7bd444a64b7b9157afd",
+      "tree_sha": "56b1c30df3411c828ae06dc2b03e2f46093a6902",
+      "validated_head_sha": "9f0eaeca265d44505e6dbc34e9e8b08a2dfd35fd",
+      "workflow_run": 33712522927,
+      "workflow_job": 100514841628,
+      "artifact_id": 9877456791,
+      "artifact_digest": "sha256:8c877863435b9ce747439a61db63d3ca32fbb80c1846a20f21f0563a23726279",
+      "post_merge_workflow_run": 33712887704,
+      "post_merge_workflow_job": 100515933294,
+      "post_merge_artifact_id": 9877558388,
+      "post_merge_artifact_digest": "sha256:1d2f1df16e278e64eac33b4681bb15771a7c33bc7683cbbe3a527670131e34ee",
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-09-03T03:54:34.000Z",
+      "description": "Daylight, sky and image-based lighting locked on validated merge."
     }
   ],
   "working_state": {
-    "unit": "RSH-031",
+    "unit": "RSH-032",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "7a4451f4c55fe8aa44ad7999fc6de6e1c78c868c",
-    "branch": "agent/rsh-031-daylight-sky",
-    "manifest": "DAYLIGHT-SKY-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-031 pull request"
+    "implementation_base_sha": "04d922adc712a73cb0ccc7bd444a64b7b9157afd",
+    "branch": "agent/rsh-032-night-weather",
+    "manifest": "NIGHT-WEATHER-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-032 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-032",
+    "queue_head": "RSH-033",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_032_authorized": false
+    "RSH_033_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

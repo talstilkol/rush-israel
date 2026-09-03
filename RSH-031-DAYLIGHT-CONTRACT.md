@@ -66,6 +66,6 @@ import. Fail-closed checking proves the live tokens still match the lock.
 
 ## Deferred boundary
 
-RSH-032 — Lock night lighting, headlights and weather — remains deferred,
-unauthorized and uncreated. RSH-031 does not add `src/game/ayalon-night/`
-or RSH-032 transport files.
+RSH-032 — Lock night lighting, headlights and weather — is accepted on
+validated merge. RSH-033 remains deferred, unauthorized and uncreated.
+RSH-031 does not rewrite `src/game/ayalon-night/` or RSH-033 transport files.

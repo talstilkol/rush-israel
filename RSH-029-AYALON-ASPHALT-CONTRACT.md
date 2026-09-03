@@ -65,4 +65,4 @@ the lock.
 ## Deferred boundary
 
 RSH-030 — Deliver the Version 1 hero car, LODs and silhouette gate — is accepted
-on validated merge. RSH-031 is accepted on validated merge. RSH-032 remains deferred, unauthorized and uncreated.
+on validated merge. RSH-031 is accepted on validated merge. RSH-032 is accepted on validated merge. RSH-033 remains deferred, unauthorized and uncreated.
