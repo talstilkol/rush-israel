@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-ayalon-geometry-manifest",
+  "unit": "RSH-026",
+  "title": "Lock Ayalon road geometry, widths and lanes",
+  "generated_at": "2026-09-03T00:15:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "1714aa96dc2a0fd402eed004b591541b41bfdb83",
+    "tree_sha": "bc52c03279e69d0ba1bc42fe16b2235a113e2ac1",
+    "branch": "agent/rsh-026-ayalon-geometry"
+  },
+  "geometry": {
+    "id": "ayalon",
+    "name_he": "נתיבי איילון",
+    "name_en": "Ayalon Highway",
+    "theme": "highway",
+    "open": true,
+    "width": 28,
+    "lanes": 8,
+    "lane_width": 3.5,
+    "seed": 2020,
+    "west_lon": 34.795,
+    "lat_start": 32.052,
+    "lat_loop_end": 32.106,
+    "lat_step": 0.002,
+    "lat_last_sample": 32.104,
+    "point_count": 27,
+    "opposite_carriageway_offset": 46,
+    "opposite_driveable": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "elevation": "0.5 + 1.7 * sin(tπ) + 0.85 * sin(5tπ)",
+    "tlv_origin": {
+      "lat": 32.075,
+      "lon": 34.77,
+      "lon_scale": 94350,
+      "lat_scale": 111320,
+      "game_scale": 0.45
+    },
+    "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
+    "ieee_loop_note": "The existing inclusive lat += 0.002 loop yields 27 samples and last latitude 32.104. RSH-026 records that live spline and does not rewrite it."
+  },
+  "lock_module": {
+    "directory": "src/game/ayalon-lock",
+    "geometry": "src/game/ayalon-lock/geometry.ts",
+    "index": "src/game/ayalon-lock/index.ts"
+  },
+  "preservation": {
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "rendering_changes": 0,
+    "save_record_changes": 0,
+    "ayalon_lock_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "unverified_asset_files": 66,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "geometry_source_sha256": "b5be3e5838fb99449fb7d5a5684177e8626a7a283c54275461fd45faf42a94f7",
+    "index_source_sha256": "878d7834dfac9c7756b0929eea515f03ff23b2f8500a63fd49f1fb369c4e3ae6",
+    "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
+    "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
+    "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
+    "checker_test_sha256": "b78b54ac18e789f4e2a379ee8ed5fa502b68d4817178d4323aefbaed84d13a22",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-027",
+    "rsh_027_authorized": false,
+    "rsh_027_started": false,
+    "forbidden_prefixes": [
+      ".rsh027",
+      ".github/workflows/rsh-027-",
+      "RSH-027-",
+      "scripts/rsh027-",
+      "src/game/ayalon-colliders/"
+    ]
+  }
+}

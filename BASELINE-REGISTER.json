@@ -1,7 +1,7 @@
 {
   "schema_version": "10.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-03T00:00:00.000Z",
+  "generated_at": "2026-09-03T00:15:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -463,23 +463,44 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-09-03T00:00:00.000Z",
       "description": "Expanded secret scanning, production QA-hook pin and build/migration separation accepted."
+    },
+    {
+      "id": "B025-rsh-025-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-025",
+      "branch": "agent/rsh-025-ayalon-acceptance",
+      "pull_request": 28,
+      "commit_sha": "1714aa96dc2a0fd402eed004b591541b41bfdb83",
+      "tree_sha": "bc52c03279e69d0ba1bc42fe16b2235a113e2ac1",
+      "validated_head_sha": "bf72190aeb56ac8ef1f5829c2b716aa7f6141003",
+      "workflow_run": 33697526960,
+      "workflow_job": 100469542850,
+      "artifact_id": 9872403688,
+      "artifact_digest": "sha256:89b4a4670f06673ea8c1591e0369cb27270880af6ed1e80f6b1947a90c85f7c8",
+      "post_merge_workflow_run": 33698105045,
+      "post_merge_workflow_job": 100471295610,
+      "post_merge_artifact_id": 9872573479,
+      "post_merge_artifact_digest": "sha256:64f19eb1ea9945e86f250c615d4c6af57651bef96057082c5ce5fea211bb1a66",
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-09-03T00:15:00.000Z",
+      "description": "Ayalon V1 acceptance criteria and existing golden/reference pack inventory accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-025",
+    "unit": "RSH-026",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "6597d7251d0f9c7ef24bf4b20ca44506bf651970",
-    "branch": "agent/rsh-025-ayalon-acceptance",
-    "manifest": "AYALON-ACCEPTANCE-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-025 pull request"
+    "implementation_base_sha": "1714aa96dc2a0fd402eed004b591541b41bfdb83",
+    "branch": "agent/rsh-026-ayalon-geometry",
+    "manifest": "AYALON-GEOMETRY-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-026 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-026",
+    "queue_head": "RSH-027",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_026_authorized": false
+    "RSH_027_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

@@ -68,5 +68,6 @@ not mutate repository visibility, rulesets or required-check settings.
 
 ## Deferred boundary
 
-RSH-025 is accepted on validated merge. RSH-026 — Lock Ayalon road geometry,
-widths and lanes — remains deferred, unauthorized and uncreated.
+RSH-025 and RSH-026 are accepted on validated merge. RSH-027 — Lock Ayalon
+ramps, barriers, colliders and checkpoints — remains deferred, unauthorized
+and uncreated.

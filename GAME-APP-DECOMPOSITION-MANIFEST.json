@@ -410,9 +410,13 @@
     "rsh_021_started": true,
     "rsh_021_authorized": true,
     "forbidden_prefixes": [
-      ".rsh026",
-      ".github/workflows/rsh-026-",
-      "RSH-026-",
+      ".rsh027",
+      ".github/workflows/rsh-027-",
+      "RSH-027-",
+      "scripts/rsh027-",
+      "src/game/ayalon-colliders/",
+      "src/auth-v3/",
+      "src/multiplayer-v3/",
       "src/auth-v3/",
       "src/multiplayer-v3/"
     ],
@@ -429,7 +433,10 @@
     "rsh_025_started": true,
     "rsh_025_authorized": true,
     "rsh_025_state": "accepted_on_merge",
-    "rsh_026_started": false,
-    "rsh_026_authorized": false
+    "rsh_026_started": true,
+    "rsh_026_authorized": true,
+    "rsh_026_state": "accepted_on_merge",
+    "rsh_027_authorized": false,
+    "rsh_027_started": false
   }
 }

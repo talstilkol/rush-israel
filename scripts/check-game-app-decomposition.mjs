@@ -10,7 +10,7 @@ import {
   sha256,
 } from "./load-game-app-decomposition.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "e12429d137c345a94072e060418d50220eec2f3f18846ab6b4a3dd5fb5b427c0";
+export const EXPECTED_MANIFEST_SHA256 = "634e688dc546b4b9088f734fbe19bf84d6e5c72d34de5ae2ca45429a4c9ce7a0";
 export const EXPECTED_RSH022_SAVE_SHA256 = "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2";
 export const EXPECTED_RSH023_RECORDS_SHA256 = "1394102cc0c744a3000a0ad191bca61efc79880b874a7ded3794b51bf0d3a502";
 export const EXPECTED_MODULE_PATHS = [
