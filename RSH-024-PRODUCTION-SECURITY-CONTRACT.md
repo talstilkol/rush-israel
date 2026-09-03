@@ -68,5 +68,5 @@ not mutate repository visibility, rulesets or required-check settings.
 
 ## Deferred boundary
 
-RSH-025 through RSH-030 are accepted on validated merge. RSH-031 — Lock
-daylight, sky and image-based lighting — remains deferred, unauthorized and uncreated.
+RSH-025 through RSH-031 are accepted on validated merge. RSH-032 — Lock
+night lighting, headlights and weather — remains deferred, unauthorized and uncreated.

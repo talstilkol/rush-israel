@@ -67,20 +67,20 @@
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
-    "checker_test_sha256": "b7a9ca7f4a81fca182aaf3f71b6443658344c227cdc033fad49aedd369d6c0d3",
+    "checker_test_sha256": "516816164e88fc090931ed045d6a8b95992127b74574ec8a435611cae2744ed5",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-031",
+    "queue_head": "RSH-032",
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh031",
-      ".github/workflows/rsh-031-",
-      "RSH-031-",
-      "scripts/rsh031-",
-      "src/game/ayalon-light/"
+      ".rsh032",
+      ".github/workflows/rsh-032-",
+      "RSH-032-",
+      "scripts/rsh032-",
+      "src/game/ayalon-night/"
     ],
     "rsh_028_authorized": true,
     "rsh_028_started": true,
@@ -91,8 +91,11 @@
     "rsh_030_authorized": true,
     "rsh_030_started": true,
     "rsh_030_state": "accepted_on_merge",
-    "rsh_031_authorized": false,
-    "rsh_031_started": false
+    "rsh_031_authorized": true,
+    "rsh_031_started": true,
+    "rsh_031_state": "accepted_on_merge",
+    "rsh_032_authorized": false,
+    "rsh_032_started": false
   },
   "rsh_027_overlay": {
     "state": "accepted_on_merge",

@@ -67,4 +67,4 @@ still match the lock.
 
 RSH-029 — Lock Ayalon asphalt, sidewalks, markings and signs — and RSH-030 —
 Deliver the Version 1 hero car, LODs and silhouette gate — are accepted on
-validated merge. RSH-031 remains deferred, unauthorized and uncreated.
+validated merge. RSH-031 is accepted on validated merge. RSH-032 remains deferred, unauthorized and uncreated.

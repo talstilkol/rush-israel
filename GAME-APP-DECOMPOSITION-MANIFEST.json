@@ -410,11 +410,11 @@
     "rsh_021_started": true,
     "rsh_021_authorized": true,
     "forbidden_prefixes": [
-      ".rsh031",
-      ".github/workflows/rsh-031-",
-      "RSH-031-",
-      "scripts/rsh031-",
-      "src/game/ayalon-light/",
+      ".rsh032",
+      ".github/workflows/rsh-032-",
+      "RSH-032-",
+      "scripts/rsh032-",
+      "src/game/ayalon-night/",
       "src/auth-v3/",
       "src/multiplayer-v3/"
     ],
@@ -446,8 +446,12 @@
     "rsh_030_authorized": true,
     "rsh_030_started": true,
     "rsh_030_state": "accepted_on_merge",
-    "rsh_031_authorized": false,
-    "rsh_031_started": false
+    "rsh_031_authorized": true,
+    "rsh_031_started": true,
+    "queue_head": "RSH-032",
+    "rsh_031_state": "accepted_on_merge",
+    "rsh_032_authorized": false,
+    "rsh_032_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

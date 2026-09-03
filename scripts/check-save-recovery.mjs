@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "5aeb71ac5480d970a4a129f986e0d39dae2e24274cc4ab412ead47e23d14034d";
+export const EXPECTED_MANIFEST_SHA256 = "71d759e319534f5e5a06d38b729e1aa2a7cb401b710c30f8205fac68432f2640";
 export const EXPECTED_RECOVERY_SHA256 = "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f";
 export const EXPECTED_UI_SHA256 = "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26";
 export const EXPECTED_SAVE_FACADE_SHA256 = "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2";
@@ -181,8 +181,8 @@ export function validateSaveRecovery(overrides = {}) {
   const recoveryFiles = input.repositoryFiles.filter((path) => /^src\/game\/save-recovery(?:-ui)?\.ts$/.test(path));
   if (JSON.stringify(recoveryFiles) !== JSON.stringify(["src/game/save-recovery-ui.ts", "src/game/save-recovery.ts"])) errors.push(`RSH-022 recovery source set changed: ${recoveryFiles.join(", ")}`);
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-031 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-031" || manifest.deferred_boundary?.rsh_023_authorized !== true || manifest.deferred_boundary?.rsh_023_started !== true || manifest.deferred_boundary?.rsh_024_started !== true || manifest.deferred_boundary?.rsh_025_started !== true || manifest.deferred_boundary?.rsh_026_started !== true || manifest.deferred_boundary?.rsh_027_started !== true || manifest.deferred_boundary?.rsh_028_started !== true || manifest.deferred_boundary?.rsh_029_started !== true || manifest.deferred_boundary?.rsh_030_started !== true || manifest.deferred_boundary?.rsh_031_started !== false) errors.push("RSH-031 deferred boundary changed");
+  if (later.length) errors.push(`RSH-032 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-032" || manifest.deferred_boundary?.rsh_023_authorized !== true || manifest.deferred_boundary?.rsh_023_started !== true || manifest.deferred_boundary?.rsh_024_started !== true || manifest.deferred_boundary?.rsh_025_started !== true || manifest.deferred_boundary?.rsh_026_started !== true || manifest.deferred_boundary?.rsh_027_started !== true || manifest.deferred_boundary?.rsh_028_started !== true || manifest.deferred_boundary?.rsh_029_started !== true || manifest.deferred_boundary?.rsh_030_started !== true || manifest.deferred_boundary?.rsh_031_started !== true) errors.push("RSH-032 deferred boundary changed");
 
   return {
     errors,

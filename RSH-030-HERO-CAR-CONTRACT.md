@@ -66,6 +66,6 @@ Fail-closed checking proves the live tokens still match the lock.
 
 ## Deferred boundary
 
-RSH-031 — Lock daylight, sky and image-based lighting — remains deferred,
-unauthorized and uncreated. RSH-030 does not add `src/game/ayalon-light/`
-or RSH-031 transport files.
+RSH-031 — Lock daylight, sky and image-based lighting — is accepted on
+validated merge. RSH-032 — Lock night lighting, headlights and weather —
+remains deferred, unauthorized and uncreated.

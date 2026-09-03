@@ -1,7 +1,7 @@
 {
   "schema_version": "10.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-03T03:45:00.000Z",
+  "generated_at": "2026-09-03T06:30:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -568,23 +568,44 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-09-03T02:39:00.000Z",
       "description": "Ayalon asphalt, sidewalks, markings and signs locked on validated merge."
+    },
+    {
+      "id": "B030-rsh-030-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-030",
+      "branch": "agent/rsh-030-hero-car",
+      "pull_request": 33,
+      "commit_sha": "7a4451f4c55fe8aa44ad7999fc6de6e1c78c868c",
+      "tree_sha": "17cf5e70eac866aee7422f8f0e94279b7088683e",
+      "validated_head_sha": "a89bd428a2db94695c7729da4908d0bd2f4d6bb0",
+      "workflow_run": 33710365905,
+      "workflow_job": 100508326545,
+      "artifact_id": 9876755030,
+      "artifact_digest": "sha256:f3e08238b924d0b99727481aa38dd184d0800a624c1f85bbd6cf436f1b50df68",
+      "post_merge_workflow_run": 33710717424,
+      "post_merge_workflow_job": 100509391733,
+      "post_merge_artifact_id": 9876864050,
+      "post_merge_artifact_digest": "sha256:a3ac4a75aac9e6dca12332f8bf0deeaf5ce2ca8fb64b0cd9b6d3630bfa0c723c",
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-09-03T03:19:05.000Z",
+      "description": "Version 1 hero car, LODs and silhouette gate delivered on validated merge."
     }
   ],
   "working_state": {
-    "unit": "RSH-030",
+    "unit": "RSH-031",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "a42a99bed98c4a55b343e744cf374e68d3b51899",
-    "branch": "agent/rsh-030-hero-car",
-    "manifest": "HERO-CAR-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-030 pull request"
+    "implementation_base_sha": "7a4451f4c55fe8aa44ad7999fc6de6e1c78c868c",
+    "branch": "agent/rsh-031-daylight-sky",
+    "manifest": "DAYLIGHT-SKY-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-031 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-031",
+    "queue_head": "RSH-032",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_031_authorized": false
+    "RSH_032_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
