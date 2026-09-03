@@ -64,6 +64,5 @@ the lock.
 
 ## Deferred boundary
 
-RSH-030 — Deliver the Version 1 hero car, LODs and silhouette gate — remains
-deferred, unauthorized and uncreated. RSH-029 does not add
-`src/game/hero-car/` or RSH-030 transport files.
+RSH-030 — Deliver the Version 1 hero car, LODs and silhouette gate — is accepted
+on validated merge. RSH-031 remains deferred, unauthorized and uncreated.

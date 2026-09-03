@@ -144,7 +144,7 @@
     "asset_changes": 0
   },
   "deferred_boundary": {
-    "queue_head": "RSH-030",
+    "queue_head": "RSH-031",
     "rsh_021_authorized": true,
     "rsh_021_started": true,
     "rsh_021_state": "accepted",
@@ -152,11 +152,11 @@
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh030",
-      ".github/workflows/rsh-030-",
-      "RSH-030-",
-      "scripts/rsh030-",
-      "src/game/hero-car/"
+      ".rsh031",
+      ".github/workflows/rsh-031-",
+      "RSH-031-",
+      "scripts/rsh031-",
+      "src/game/ayalon-light/"
     ],
     "rsh_023_authorized": true,
     "rsh_023_started": true,
@@ -179,8 +179,11 @@
     "rsh_029_authorized": true,
     "rsh_029_started": true,
     "rsh_029_state": "accepted_on_merge",
-    "rsh_030_authorized": false,
-    "rsh_030_started": false
+    "rsh_030_authorized": true,
+    "rsh_030_started": true,
+    "rsh_030_state": "accepted_on_merge",
+    "rsh_031_authorized": false,
+    "rsh_031_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

@@ -68,5 +68,5 @@ not mutate repository visibility, rulesets or required-check settings.
 
 ## Deferred boundary
 
-RSH-025 through RSH-029 are accepted on validated merge. RSH-030 — Deliver
-the Version 1 hero car, LODs and silhouette gate — remains deferred, unauthorized and uncreated.
+RSH-025 through RSH-030 are accepted on validated merge. RSH-031 — Lock
+daylight, sky and image-based lighting — remains deferred, unauthorized and uncreated.

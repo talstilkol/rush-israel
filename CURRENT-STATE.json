@@ -8,17 +8,17 @@
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_029_pull_request",
-    "implementation_base_sha": "e068f7a93b7a9d2febb86d25a7e9ba57f5733a39",
-    "self_reference_boundary": "The RSH-029 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_030_pull_request",
+    "implementation_base_sha": "a42a99bed98c4a55b343e744cf374e68d3b51899",
+    "self_reference_boundary": "The RSH-030 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "e068f7a93b7a9d2febb86d25a7e9ba57f5733a39",
-    "tree_sha": "2a1878e6c49ec3bb8c06a93d737110ff724a49e4",
-    "commit_authored_at": "2026-09-03T02:06:34Z",
-    "commit_message": "Merge PR #31: RSH-028 — Lock Ayalon landmark placement",
+    "head_sha": "a42a99bed98c4a55b343e744cf374e68d3b51899",
+    "tree_sha": "6337499af1a77cdc6f5516758b8f2c845aad3c43",
+    "commit_authored_at": "2026-09-03T02:35:55Z",
+    "commit_message": "Merge PR #32: RSH-029 — Lock Ayalon asphalt, sidewalks, markings and signs",
     "commit_signature_verified": true,
-    "role": "RSH-029 exact implementation base"
+    "role": "RSH-030 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 29,
+    "accepted_units": 30,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 38,
-    "remaining_units": 38,
-    "queue_head": "RSH-030",
+    "deferred_units": 37,
+    "remaining_units": 37,
+    "queue_head": "RSH-031",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -833,7 +833,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-029": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-029-ayalon-asphalt",
       "pull_request_resolution": "the pull request created from the exact RSH-029 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -855,16 +855,56 @@
       "rendering_changes": 0,
       "asset_changes": 0,
       "dependency_changes": 0,
-      "rsh_030_created": false
+      "rsh_030_created": true,
+      "pull_request": 32,
+      "validated_head_sha": "09b00d9f143ea6d43c8c72e679cc5c02bd38de97",
+      "merge_sha": "a42a99bed98c4a55b343e744cf374e68d3b51899",
+      "tree_sha": "6337499af1a77cdc6f5516758b8f2c845aad3c43",
+      "workflow_run": 33707956418,
+      "workflow_job": 100501088757,
+      "artifact_id": 9875970618,
+      "artifact_digest": "sha256:eb7d4b779f8ea3547d9d5315cc725bb98b84a21e2113b49a872b050f5e7f5a12",
+      "post_merge_workflow_run": 33708235679,
+      "post_merge_workflow_job": 100501942400,
+      "post_merge_artifact_id": 9876052073,
+      "post_merge_artifact_digest": "sha256:a4840bc19f92277ccbb7a7d4b3c2920963d69baf1e64016a9a1e820887ed4630",
+      "unresolved_review_threads": 0
+    },
+    "RSH-030": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-030-hero-car",
+      "pull_request_resolution": "the pull request created from the exact RSH-030 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-030 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-030 merge SHA",
+      "manifest": "HERO-CAR-MANIFEST.json",
+      "contract": "RSH-030-HERO-CAR-CONTRACT.md",
+      "car_count": 5,
+      "fictional": true,
+      "scanned": false,
+      "hero_gltf_present": false,
+      "lod0_max_triangles": 40000,
+      "lod1_max_triangles": 12000,
+      "lod2_max_triangles": 4000,
+      "silhouette_gate": true,
+      "owner_freeze": false,
+      "gis_claim": false,
+      "cars_source_changes": 0,
+      "mesh_source_changes": 0,
+      "physics_changes": 0,
+      "rendering_changes": 0,
+      "asset_changes": 0,
+      "dependency_changes": 0,
+      "rsh_031_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-029",
+    "unit": "RSH-030",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-029-ayalon-asphalt",
+    "branch": "agent/rsh-030-hero-car",
     "authority_consumed": true,
-    "next_unit": "RSH-030",
+    "next_unit": "RSH-031",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -926,7 +966,10 @@
     "RSH-029_authorized": false,
     "RSH-029_was_separately_authorized": true,
     "RSH-029_authorization_consumed": true,
-    "RSH-030_authorized": false
+    "RSH-030_authorized": false,
+    "RSH-030_was_separately_authorized": true,
+    "RSH-030_authorization_consumed": true,
+    "RSH-031_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -1001,8 +1044,8 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The plain next instruction authorized exactly RSH-029 and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-030.",
+    "The plain next instruction authorized exactly RSH-030 and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-031.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13."
   ],
@@ -1130,12 +1173,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-029"
+      "RSH-030"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-029_merge",
-    "RSH_030_authorized": false
+    "state": "consumed_on_RSH-030_merge",
+    "RSH_031_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -1174,12 +1217,12 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-028"
+      "RSH-029"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-028_merge",
-    "RSH_029_authorized": false
+    "state": "consumed_on_RSH-029_merge",
+    "RSH_030_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -1524,7 +1567,7 @@
     "RSH_029_state": "accepted_on_merge"
   },
   "rsh_029_ayalon_asphalt": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "AYALON-ASPHALT-MANIFEST.json",
     "human_contract": "RSH-029-AYALON-ASPHALT-CONTRACT.md",
     "validator": "scripts/check-ayalon-asphalt.mjs",
@@ -1537,7 +1580,30 @@
     "station_gantry_count": 5,
     "owner_freeze": false,
     "gis_claim": false,
-    "RSH_030_created": false,
-    "RSH_030_authorized": false
+    "RSH_030_created": true,
+    "RSH_030_authorized": true,
+    "pull_request": 32,
+    "validated_head_sha": "09b00d9f143ea6d43c8c72e679cc5c02bd38de97",
+    "merge_sha": "a42a99bed98c4a55b343e744cf374e68d3b51899",
+    "tree_sha": "6337499af1a77cdc6f5516758b8f2c845aad3c43",
+    "workflow_run": 33707956418,
+    "post_merge_workflow_run": 33708235679,
+    "RSH_030_state": "accepted_on_merge"
+  },
+  "rsh_030_hero_car": {
+    "state": "accepted_on_merge",
+    "machine_authority": "HERO-CAR-MANIFEST.json",
+    "human_contract": "RSH-030-HERO-CAR-CONTRACT.md",
+    "validator": "scripts/check-hero-car.mjs",
+    "test": "scripts/check-hero-car.test.mjs",
+    "car_count": 5,
+    "fictional": true,
+    "scanned": false,
+    "hero_gltf_present": false,
+    "lod0_max_triangles": 40000,
+    "owner_freeze": false,
+    "gis_claim": false,
+    "RSH_031_created": false,
+    "RSH_031_authorized": false
   }
 }

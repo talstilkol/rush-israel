@@ -75,10 +75,10 @@ test("tracked build output and a missing ignore rule fail closed", () => {
   assert.match(messages(validateDependencyBoundary(ignore)), /not excluded by \.gitignore/);
 });
 
-test("RSH-030 precreation and every temporary RSH-020 transport fail closed", () => {
+test("RSH-031 precreation and every temporary RSH-020 transport fail closed", () => {
   const later = baseline();
-  later.repositoryFiles.push("RSH-030-PREFLIGHT.json");
-  assert.match(messages(validateDependencyBoundary(later)), /RSH-030 was precreated/);
+  later.repositoryFiles.push("RSH-031-PREFLIGHT.json");
+  assert.match(messages(validateDependencyBoundary(later)), /RSH-031 was precreated/);
   for (const path of [
     ".rsh020-apply.00",
     ".github/workflows/rsh-020-cleanup.yml",
