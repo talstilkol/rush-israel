@@ -67,26 +67,29 @@
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
-    "checker_test_sha256": "096fba930dd4042841670cb30a0aee47bd08d17d25acdce22476a150e8c72d89",
+    "checker_test_sha256": "3b04c14d38da6881e702909124d2cead8c76d356fa72a61096c1953f7547ccc5",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-029",
+    "queue_head": "RSH-030",
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh029",
-      ".github/workflows/rsh-029-",
-      "RSH-029-",
-      "scripts/rsh029-",
-      "src/game/ayalon-asphalt/"
+      ".rsh030",
+      ".github/workflows/rsh-030-",
+      "RSH-030-",
+      "scripts/rsh030-",
+      "src/game/hero-car/"
     ],
     "rsh_028_authorized": true,
     "rsh_028_started": true,
     "rsh_028_state": "accepted_on_merge",
-    "rsh_029_authorized": false,
-    "rsh_029_started": false
+    "rsh_029_authorized": true,
+    "rsh_029_started": true,
+    "rsh_029_state": "accepted_on_merge",
+    "rsh_030_authorized": false,
+    "rsh_030_started": false
   },
   "rsh_027_overlay": {
     "state": "accepted_on_merge",
@@ -105,6 +108,17 @@
     "track_poi_count": 9,
     "builder_place_calls": 8,
     "builder_extra_landmarks": 6,
+    "owner_freeze": false,
+    "gis_claim": false
+  },
+  "rsh_029_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "AYALON-ASPHALT-MANIFEST.json",
+    "contract": "RSH-029-AYALON-ASPHALT-CONTRACT.md",
+    "asphalt_lanes": 8,
+    "sidewalk_present": false,
+    "gantry_count": 6,
+    "station_gantry_count": 5,
     "owner_freeze": false,
     "gis_claim": false
   }

@@ -68,5 +68,5 @@ not mutate repository visibility, rulesets or required-check settings.
 
 ## Deferred boundary
 
-RSH-025 through RSH-028 are accepted on validated merge. RSH-029 — Lock
-Ayalon landmark placement — remains deferred, unauthorized and uncreated.
+RSH-025 through RSH-029 are accepted on validated merge. RSH-030 — Deliver
+the Version 1 hero car, LODs and silhouette gate — remains deferred, unauthorized and uncreated.

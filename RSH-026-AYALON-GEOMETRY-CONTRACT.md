@@ -65,6 +65,5 @@ match the lock.
 
 ## Deferred boundary
 
-RSH-027 — Lock Ayalon ramps, barriers, colliders and checkpoints — is accepted
-on validated merge. RSH-028 is accepted on validated merge. RSH-029 remains
+RSH-027 through RSH-029 are accepted on validated merge. RSH-030 remains
 deferred, unauthorized and uncreated.
