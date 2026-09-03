@@ -3,10 +3,10 @@
 **Version:** 13.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-026 implementation base:** `1714aa96dc2a0fd402eed004b591541b41bfdb83`
-**State effective on:** merge of the RSH-026 pull request
+**RSH-027 implementation base:** `dddae060b76ac2b4abe8de1046a374e8eb7725fc`
+**State effective on:** merge of the RSH-027 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-027 — deferred and not authorised
+**Next scheduled unit:** RSH-028 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 26 |
+| Accepted units | 27 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-027 — deferred/not authorised |
+| Queue head | RSH-028 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 41 |
-| RSH-026 one-unit authority | consumed 1/1 |
+| Remaining units | 40 |
+| RSH-027 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -51,5 +51,6 @@
 | RSH-024 | Expanded secret scanning, production QA-hook pin and build/migration separation accepted on validated merge |
 | RSH-025 | Ayalon V1 acceptance criteria and existing golden/reference pack inventory accepted |
 | RSH-026 | Ayalon road geometry, width 28 and 8 lanes locked on validated merge |
+| RSH-027 | Ayalon ramps, barriers, colliders and checkpoints locked on validated merge |
 
-No RSH-027 branch, PR or implementation structure is authorised by this state.
+No RSH-028 branch, PR or implementation structure is authorised by this state.

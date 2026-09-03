@@ -144,7 +144,7 @@
     "asset_changes": 0
   },
   "deferred_boundary": {
-    "queue_head": "RSH-027",
+    "queue_head": "RSH-028",
     "rsh_021_authorized": true,
     "rsh_021_started": true,
     "rsh_021_state": "accepted",
@@ -152,11 +152,11 @@
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh027",
-      ".github/workflows/rsh-027-",
-      "RSH-027-",
-      "scripts/rsh027-",
-      "src/game/ayalon-colliders/"
+      ".rsh028",
+      ".github/workflows/rsh-028-",
+      "RSH-028-",
+      "scripts/rsh028-",
+      "src/game/ayalon-landmarks/"
     ],
     "rsh_023_authorized": true,
     "rsh_023_started": true,
@@ -170,7 +170,10 @@
     "rsh_026_authorized": true,
     "rsh_026_started": true,
     "rsh_026_state": "accepted_on_merge",
-    "rsh_027_authorized": false,
-    "rsh_027_started": false
+    "rsh_027_authorized": true,
+    "rsh_027_started": true,
+    "rsh_027_state": "accepted_on_merge",
+    "rsh_028_authorized": false,
+    "rsh_028_started": false
   }
 }

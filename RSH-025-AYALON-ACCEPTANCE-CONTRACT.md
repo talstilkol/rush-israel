@@ -74,5 +74,6 @@ Honest pack defects that later units must not treat as unique evidence:
 
 ## Deferred boundary
 
-RSH-026 — Lock Ayalon road geometry, widths and lanes — is accepted on
-validated merge. RSH-027 remains deferred, unauthorized and uncreated.
+RSH-026 — Lock Ayalon road geometry, widths and lanes — and RSH-027 — Lock
+Ayalon ramps, barriers, colliders and checkpoints — are accepted on validated
+merge. RSH-028 remains deferred, unauthorized and uncreated.
