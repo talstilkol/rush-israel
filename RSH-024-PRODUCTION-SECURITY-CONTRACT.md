@@ -68,6 +68,5 @@ not mutate repository visibility, rulesets or required-check settings.
 
 ## Deferred boundary
 
-RSH-025 — Ayalon acceptance criteria and reference pack — remains deferred,
-unauthorized and uncreated. RSH-024 does not add Ayalon lock files, golden
-authority or track-geometry edits.
+RSH-025 is accepted on validated merge. RSH-026 — Lock Ayalon road geometry,
+widths and lanes — remains deferred, unauthorized and uncreated.

@@ -29,8 +29,8 @@ test("canonical queue contains exactly RSH-001 through RSH-067", () => {
 test("current state and queue agree on every post-merge program count", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
-  assert.equal(current.state_semantics.effective_event, "merge_of_RSH_024_pull_request");
-  assert.equal(queue.state_effective_on, "merge_of_RSH_024_pull_request");
+  assert.equal(current.state_semantics.effective_event, "merge_of_RSH_025_pull_request");
+  assert.equal(queue.state_effective_on, "merge_of_RSH_025_pull_request");
   assert.equal(current.program_status.program_units_total, queue.counts.total);
   assert.equal(current.program_status.accepted_units, queue.counts.accepted);
   assert.equal(current.program_status.units_in_review, queue.counts.in_review);
@@ -61,21 +61,24 @@ test("the historical batch and all completed one-unit authorizations are closed"
   assert.equal(current.batch_authorization["RSH-024_authorization_consumed"], true);
   assert.equal(current.batch_authorization["RSH-024_authorized"], false);
   assert.equal(current.batch_authorization["RSH-025_authorized"], false);
-  assert.deepEqual(current.prior_single_unit_authorization.authorized_units, ["RSH-023"]);
-  assert.equal(current.prior_single_unit_authorization.state, "consumed_on_RSH-023_merge");
-  assert.deepEqual(current.single_unit_authorization.authorized_units, ["RSH-024"]);
+  assert.equal(current.batch_authorization["RSH-025_was_separately_authorized"], true);
+  assert.equal(current.batch_authorization["RSH-025_authorization_consumed"], true);
+  assert.equal(current.batch_authorization["RSH-026_authorized"], false);
+  assert.deepEqual(current.prior_single_unit_authorization.authorized_units, ["RSH-024"]);
+  assert.equal(current.prior_single_unit_authorization.state, "consumed_on_RSH-024_merge");
+  assert.deepEqual(current.single_unit_authorization.authorized_units, ["RSH-025"]);
   assert.equal(current.single_unit_authorization.completed_units, 1);
-  assert.equal(current.single_unit_authorization.state, "consumed_on_RSH-024_merge");
+  assert.equal(current.single_unit_authorization.state, "consumed_on_RSH-025_merge");
   assert.equal(queue.next_instruction_contract.authorization_remaining, 0);
   assert.equal(queue.next_instruction_contract.authorization_closed, true);
-  assert.equal(queue.state_rules["RSH-001–RSH-024"], "accepted");
+  assert.equal(queue.state_rules["RSH-001–RSH-025"], "accepted");
   assert.deepEqual(queue.state_rules.eligible, []);
-  assert.equal(queue.next_instruction_contract.current_action, "No unit is authorized; RSH-025 remains deferred until a new explicit owner instruction.");
-  assert.equal(queue.next_instruction_contract.RSH_024_completed, true);
-  assert.equal(queue.next_instruction_contract.RSH_024_authorization_consumed, true);
-  assert.equal(queue.next_instruction_contract.RSH_025_authorized, false);
-  assert.deepEqual(queue.policy.latest_single_unit_authorization.authorized_units, ["RSH-024"]);
-  assert.equal(queue.policy.latest_single_unit_authorization.state, "consumed_on_RSH-024_merge");
+  assert.equal(queue.next_instruction_contract.current_action, "No unit is authorized; RSH-026 remains deferred until a new explicit owner instruction.");
+  assert.equal(queue.next_instruction_contract.RSH_025_completed, true);
+  assert.equal(queue.next_instruction_contract.RSH_025_authorization_consumed, true);
+  assert.equal(queue.next_instruction_contract.RSH_026_authorized, false);
+  assert.deepEqual(queue.policy.latest_single_unit_authorization.authorized_units, ["RSH-025"]);
+  assert.equal(queue.policy.latest_single_unit_authorization.state, "consumed_on_RSH-025_merge");
 });
 
 test("RSH-007 through RSH-012 are reconciled to exact accepted evidence", () => {
@@ -304,38 +307,64 @@ test("RSH-023 evidence is fully reconciled before RSH-024 acceptance", () => {
   assert.equal(entry.pull_request, 26);
 });
 
-test("RSH-024 becomes accepted on merge and consumes exactly one authorization", () => {
+test("RSH-024 exact evidence is reconciled before RSH-025 acceptance", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
   const baseline = readJson("BASELINE-REGISTER.json");
+  const accepted = current.accepted_units["RSH-024"];
+  assert.equal(accepted.state, "accepted");
+  assert.equal(accepted.pull_request, 27);
+  assert.equal(accepted.validated_head_sha, "810c2fc86939d48cd7df166a1071224bc57a5406");
+  assert.equal(accepted.merge_sha, "6597d7251d0f9c7ef24bf4b20ca44506bf651970");
+  assert.equal(accepted.tree_sha, "1fb7bd783dba974ff1957f96841161f0c9db3323");
+  assert.equal(accepted.workflow_run, 33692724390);
+  assert.equal(accepted.workflow_job, 100454845582);
+  assert.equal(accepted.post_merge_workflow_run, 33696253106);
+  assert.equal(accepted.post_merge_workflow_job, 100465638607);
+  assert.equal(accepted.unresolved_review_threads, 0);
+  assert.equal(queue.accepted["RSH-024"].merge_sha, accepted.merge_sha);
+  const entry = baseline.baselines.find((item) => item.id === "B024-rsh-024-accepted");
+  assert.equal(entry.commit_sha, accepted.merge_sha);
+  assert.equal(entry.validated_head_sha, accepted.validated_head_sha);
+  assert.equal(entry.pull_request, 27);
+});
+
+test("RSH-025 becomes accepted on merge and consumes exactly one authorization", () => {
+  const current = readJson("CURRENT-STATE.json");
+  const queue = readJson("QUEUE.json");
+  const baseline = readJson("BASELINE-REGISTER.json");
+  const ayalon = readJson("AYALON-ACCEPTANCE-MANIFEST.json");
   const security = readJson("PRODUCTION-SECURITY-MANIFEST.json");
   const records = readJson("TIMED-RECORDS-MANIFEST.json");
   const schema = readJson("SAVE-SCHEMA-MANIFEST.json");
-  assert.equal(queue.counts.accepted, 24);
+  assert.equal(queue.counts.accepted, 25);
   assert.equal(queue.counts.in_review, 0);
   assert.equal(queue.counts.eligible, 0);
-  assert.equal(queue.counts.deferred, 43);
-  assert.equal(queue.counts.remaining, 43);
-  assert.equal(queue.queue_head.id, "RSH-025");
+  assert.equal(queue.counts.deferred, 42);
+  assert.equal(queue.counts.remaining, 42);
+  assert.equal(queue.queue_head.id, "RSH-026");
   assert.equal(queue.queue_head.state, "deferred_not_authorized");
   assert.equal(queue.queue_head.branch, null);
   assert.equal(queue.queue_head.pull_request, null);
   assert.equal(current.active_change, null);
-  assert.equal(current.last_transition.unit, "RSH-024");
-  assert.equal(current.accepted_units["RSH-024"].state, "accepted_on_merge");
+  assert.equal(current.last_transition.unit, "RSH-025");
+  assert.equal(current.accepted_units["RSH-025"].state, "accepted_on_merge");
   assert.equal(schema.current_schema.version, 3);
   assert.equal(schema.migration_graph.length, 3);
   assert.equal(security.build_policy.command, "vite build");
   assert.equal(security.secret_scan.src_game_only, false);
-  assert.equal(security.secret_scan.pattern_count, 8);
-  assert.equal(security.production_qa.github_required_check, false);
-  assert.equal(records.deferred_boundary.rsh_025_started, false);
-  assert.equal(records.deferred_boundary.rsh_025_authorized, false);
-  assert.equal(baseline.working_state.unit, "RSH-024");
+  assert.equal(ayalon.track_identity.id, "ayalon");
+  assert.equal(ayalon.track_identity.width, 28);
+  assert.equal(ayalon.track_identity.gis_claim, false);
+  assert.equal(ayalon.track_identity.owner_freeze, false);
+  assert.equal(ayalon.reference_pack.duplicate_placeholder_shots.length, 4);
+  assert.equal(records.deferred_boundary.rsh_026_started, false);
+  assert.equal(records.deferred_boundary.rsh_026_authorized, false);
+  assert.equal(baseline.working_state.unit, "RSH-025");
   assert.equal(baseline.working_state.state, "accepted_on_merge");
   assert.equal(queue.next_instruction_contract.authorization_remaining, 0);
-  assert.equal(queue.next_instruction_contract.RSH_025_authorized, false);
-  assert.equal(queue.next_after_acceptance.id, "RSH-025");
+  assert.equal(queue.next_instruction_contract.RSH_026_authorized, false);
+  assert.equal(queue.next_after_acceptance.id, "RSH-026");
 });
 
 test("findings close RSH-024 secret scanning without overstating GitHub enforcement", () => {
@@ -435,6 +464,7 @@ test("product, architecture, save and recovery tests are in the complete suite",
   assert.equal(readJson("SAVE-RECOVERY-MANIFEST.json").unit, "RSH-022");
   assert.equal(readJson("TIMED-RECORDS-MANIFEST.json").unit, "RSH-023");
   assert.equal(readJson("PRODUCTION-SECURITY-MANIFEST.json").unit, "RSH-024");
+  assert.equal(readJson("AYALON-ACCEPTANCE-MANIFEST.json").unit, "RSH-025");
   const recoveryTest = readFileSync(fromRoot("scripts", "check-save-recovery.test.mjs"), "utf8");
   assert.match(recoveryTest, /committed RSH-022 recovery authority passes under the RSH-023 overlay/);
 });

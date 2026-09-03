@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 11.0.0
+**Version:** 12.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-024 implementation base:** `10d0624fce7813b7ad7082adc3c4e92e56c1b851`
-**State effective on:** merge of the RSH-024 pull request
+**RSH-025 implementation base:** `6597d7251d0f9c7ef24bf4b20ca44506bf651970`
+**State effective on:** merge of the RSH-025 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-025 — deferred and not authorised
+**Next scheduled unit:** RSH-026 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 24 |
+| Accepted units | 25 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-025 — deferred/not authorised |
+| Queue head | RSH-026 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 43 |
-| RSH-024 one-unit authority | consumed 1/1 |
+| Remaining units | 42 |
+| RSH-025 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -49,5 +49,6 @@
 | RSH-022 | Verified one-generation backup, bounded rejected-byte quarantine, explicit recovery and accessible visible failure handling accepted |
 | RSH-023 | Timed-record hash verification, serial writes, deduplication and storage limits accepted |
 | RSH-024 | Expanded secret scanning, production QA-hook pin and build/migration separation accepted on validated merge |
+| RSH-025 | Ayalon V1 acceptance criteria and existing golden/reference pack inventory accepted on validated merge |
 
-No RSH-025 branch, PR or implementation structure is authorised by this state.
+No RSH-026 branch, PR or implementation structure is authorised by this state.

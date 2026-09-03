@@ -410,9 +410,9 @@
     "rsh_021_started": true,
     "rsh_021_authorized": true,
     "forbidden_prefixes": [
-      ".rsh025",
-      ".github/workflows/rsh-025-",
-      "RSH-025-",
+      ".rsh026",
+      ".github/workflows/rsh-026-",
+      "RSH-026-",
       "src/auth-v3/",
       "src/multiplayer-v3/"
     ],
@@ -426,7 +426,10 @@
     "rsh_024_started": true,
     "rsh_024_authorized": true,
     "rsh_024_state": "accepted_on_merge",
-    "rsh_025_started": false,
-    "rsh_025_authorized": false
+    "rsh_025_started": true,
+    "rsh_025_authorized": true,
+    "rsh_025_state": "accepted_on_merge",
+    "rsh_026_started": false,
+    "rsh_026_authorized": false
   }
 }

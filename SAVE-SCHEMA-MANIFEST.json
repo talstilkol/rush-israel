@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-025",
+    "queue_head": "RSH-026",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -118,15 +118,18 @@
     "rsh_024_authorized": true,
     "rsh_024_started": true,
     "rsh_024_state": "accepted_on_merge",
+    "rsh_025_authorized": true,
+    "rsh_025_started": true,
+    "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh025",
-      ".github/workflows/rsh-025-",
-      "RSH-025-",
-      "scripts/rsh025-",
+      ".rsh026",
+      ".github/workflows/rsh-026-",
+      "RSH-026-",
+      "scripts/rsh026-",
       "src/game/records-v2/"
     ],
-    "rsh_025_authorized": false,
-    "rsh_025_started": false
+    "rsh_026_authorized": false,
+    "rsh_026_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -179,5 +182,15 @@
     "build_command": "vite build",
     "timed_record_changes": 0,
     "ghost_schema_changes": 0
+  },
+  "rsh_025_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "AYALON-ACCEPTANCE-MANIFEST.json",
+    "contract": "RSH-025-AYALON-ACCEPTANCE-CONTRACT.md",
+    "schema_guard_test_sha256": "a8a56cfd0a2affe65f3108791344afb73c7f32892506ad0cc023288193d9b144",
+    "track_source_changes": 0,
+    "ayalon_lock_changes": 0,
+    "owner_freeze": false,
+    "gis_claim": false
   }
 }

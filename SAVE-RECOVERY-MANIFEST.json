@@ -15,9 +15,9 @@
     "manifest": "SAVE-SCHEMA-MANIFEST.json",
     "version": 3,
     "migration_edges": [
-      "0\u21921",
-      "1\u21922",
-      "2\u21923"
+      "0→1",
+      "1→2",
+      "2→3"
     ],
     "changed": false
   },
@@ -106,20 +106,23 @@
     "ghost_block_sha256": "59948dace66f2683d4f7cfc480f270579727dd94be257f5ea6637bd18e217674"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-025",
+    "queue_head": "RSH-026",
     "rsh_023_authorized": true,
     "rsh_023_started": true,
     "rsh_023_state": "accepted_on_merge",
     "rsh_024_authorized": true,
     "rsh_024_started": true,
     "rsh_024_state": "accepted_on_merge",
+    "rsh_025_authorized": true,
+    "rsh_025_started": true,
+    "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh025",
-      ".github/workflows/rsh-025-",
-      "RSH-025-",
-      "scripts/rsh025-"
+      ".rsh026",
+      ".github/workflows/rsh-026-",
+      "RSH-026-",
+      "scripts/rsh026-"
     ],
-    "rsh_025_authorized": false,
-    "rsh_025_started": false
+    "rsh_026_authorized": false,
+    "rsh_026_started": false
   }
 }

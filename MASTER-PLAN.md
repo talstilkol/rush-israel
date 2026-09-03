@@ -1,11 +1,11 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 13.0.0
+**Schema:** 14.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-024 implementation base:** `10d0624fce7813b7ad7082adc3c4e92e56c1b851`
-**State effective on:** merge of the RSH-024 pull request
-**Next unit:** RSH-025 — deferred and not authorised
+**RSH-025 implementation base:** `6597d7251d0f9c7ef24bf4b20ca44506bf651970`
+**State effective on:** merge of the RSH-025 pull request
+**Next unit:** RSH-026 — deferred and not authorised
 **Product-definition authority:** `PRODUCT-DEFINITION.json`
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`
@@ -20,7 +20,7 @@ GitHub is the sole source of truth. `CURRENT-STATE.json`, `QUEUE.json`, this doc
 `TRACK-CATALOGUE-CLASSIFICATION.json`, `ASSET-PROVENANCE.json`,
 `PRODUCT-METADATA.json`, `TRACK-SCHEMA.json`, `TRACK-MODULE-MANIFEST.json`,
 `WORLD-CORE-MANIFEST.json`, `WORLD-BUILDER-MANIFEST.json`,
-`ENGINE-ADAPTER-MANIFEST.json`, `GAME-APP-DECOMPOSITION-MANIFEST.json`, `RESOURCE-OWNERSHIP-MANIFEST.json`, `DEPENDENCY-BOUNDARY-MANIFEST.json`, `DEPENDENCY-POLICY.md`, `SAVE-SCHEMA-MANIFEST.json`, `SAVE-RECOVERY-MANIFEST.json`, `RSH-022-SAVE-RECOVERY-CONTRACT.md`, `TIMED-RECORDS-MANIFEST.json`, `RSH-023-TIMED-RECORDS-CONTRACT.md`, `PRODUCTION-SECURITY-MANIFEST.json`, `RSH-024-PRODUCTION-SECURITY-CONTRACT.md` and `REPOSITORY-GOVERNANCE.md` control program state.
+`ENGINE-ADAPTER-MANIFEST.json`, `GAME-APP-DECOMPOSITION-MANIFEST.json`, `RESOURCE-OWNERSHIP-MANIFEST.json`, `DEPENDENCY-BOUNDARY-MANIFEST.json`, `DEPENDENCY-POLICY.md`, `SAVE-SCHEMA-MANIFEST.json`, `SAVE-RECOVERY-MANIFEST.json`, `RSH-022-SAVE-RECOVERY-CONTRACT.md`, `TIMED-RECORDS-MANIFEST.json`, `RSH-023-TIMED-RECORDS-CONTRACT.md`, `PRODUCTION-SECURITY-MANIFEST.json`, `RSH-024-PRODUCTION-SECURITY-CONTRACT.md`, `AYALON-ACCEPTANCE-MANIFEST.json`, `RSH-025-AYALON-ACCEPTANCE-CONTRACT.md` and `REPOSITORY-GOVERNANCE.md` control program state.
 
 Historical planning files are evidence only. They do not control queue order,
 accepted progress, asset clearance or release-gate counts.
@@ -81,21 +81,21 @@ root-branding assets remain unverified.
 6. A unit becomes accepted when its PR merges; exact self-referential merge evidence is reconciled in the following preflight.
 7. Accepted-unit progress is not release readiness; all 13 release gates remain authoritative.
 8. The RSH-010–RSH-014 owner batch is closed at 5/5.
-9. The plain `next` authority covers exactly RSH-024 and is consumed on its validated merge; RSH-025 is not authorised.
+9. The plain `next` authority covers exactly RSH-025 and is consumed on its validated merge; RSH-026 is not authorised.
 
-## 5. Post-RSH-024 program state
+## 5. Post-RSH-025 program state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 24 |
+| Accepted | 25 |
 | In review | 0 |
 | Eligible | 0 |
-| Deferred | 43 |
-| Remaining | 43 |
-| Queue head | RSH-025 — deferred/not authorised |
+| Deferred | 42 |
+| Remaining | 42 |
+| Queue head | RSH-026 — deferred/not authorised |
 | Active PR | none |
-| RSH-024 one-unit authority | 1/1 — consumed |
+| RSH-025 one-unit authority | 1/1 — consumed |
 | Release gates green | 0/13 |
 | Findings OPEN / MITIGATED / CLOSED | 13 / 7 / 22 |
 
@@ -208,6 +208,6 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-RSH-021, RSH-022, RSH-023 and RSH-024 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Secret scanning covers `src/`, `scripts/`, `server/` and `.github/` with eight fail-closed patterns. Production QA-hook strings remain forbidden in client bundles. GitHub still does not require those checks through branch settings.
+RSH-021 through RSH-025 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28). The existing golden/reference pack is inventoried, including four duplicate HaShalom placeholders. Owner freeze and GIS claims remain forbidden. GitHub still does not require production checks through branch settings.
 
-Ghosts remain byte-preserved and remain assigned outside this unit. The RSH-024 one-unit `next` authority is consumed on merge. RSH-025 remains deferred and cannot start without a new explicit owner instruction.
+Ghosts remain byte-preserved and remain assigned outside this unit. The RSH-025 one-unit `next` authority is consumed on merge. RSH-026 remains deferred and cannot start without a new explicit owner instruction.
