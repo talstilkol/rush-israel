@@ -194,7 +194,9 @@ const report = {
   gate: "current-behaviour regression",
   claimGate: "RSH-033",
   note:
-    "CI fails on acceleration regression. zeroTo100 claim mismatches remain explicit and are calibrated in RSH-033.",
+    // RSH-033-OVERLAY-BEGIN:claim-note
+    "CI fails on acceleration regression and on zeroTo100 claim gaps after RSH-033 calibration.",
+    // RSH-033-OVERLAY-END:claim-note
   regressionOk: regressionFailures.length === 0,
   claimsOk: claimGaps.length === 0,
   claimGaps,
@@ -222,9 +224,11 @@ if (process.env.UPDATE_ACCEL_BASELINE === "1") {
   console.log("qa:accel baseline updated by explicit local request");
 }
 
+// RSH-033-OVERLAY-BEGIN:claim-fail
 if (claimGaps.length) {
-  console.warn("qa:accel known zeroTo100 claim gaps (RSH-033):\n" + claimGaps.join("\n"));
+  throw new Error("qa:accel claim fail\n" + claimGaps.join("\n"));
 }
+// RSH-033-OVERLAY-END:claim-fail
 if (regressionFailures.length) {
   throw new Error("qa:accel regression fail\n" + regressionFailures.join("\n"));
 }

@@ -610,23 +610,44 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-09-03T03:54:34.000Z",
       "description": "Daylight, sky and image-based lighting locked on validated merge."
+    },
+    {
+      "id": "B032-rsh-032-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-032",
+      "branch": "agent/rsh-032-night-weather",
+      "pull_request": 35,
+      "commit_sha": "f8d055c86b80ba1a72555e41668e071f74b32536",
+      "tree_sha": "9fd7f5b578f5be33f835527883f8b55342f279f5",
+      "validated_head_sha": "2a826fd20cb2c45e13a322443c4d9c1186ee53a9",
+      "workflow_run": 33713967588,
+      "workflow_job": 100519143847,
+      "artifact_id": 9877916538,
+      "artifact_digest": "sha256:80f1b47e9dcfd37adea80166c9986bf1014f666cfaa109dbb563bd3c637c19de",
+      "post_merge_workflow_run": 33714396567,
+      "post_merge_workflow_job": 100520390415,
+      "post_merge_artifact_id": 9878041600,
+      "post_merge_artifact_digest": "sha256:9de7d79729766b4090243bbdc768350ea2863adcca9e7ac475bd9f87954feddf",
+      "unresolved_review_threads": 0,
+      "recorded_at": "2026-09-03T04:18:58.000Z",
+      "description": "Night lighting, headlights and weather locked on validated merge."
     }
   ],
   "working_state": {
-    "unit": "RSH-032",
+    "unit": "RSH-033",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "04d922adc712a73cb0ccc7bd444a64b7b9157afd",
-    "branch": "agent/rsh-032-night-weather",
-    "manifest": "NIGHT-WEATHER-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-032 pull request"
+    "implementation_base_sha": "f8d055c86b80ba1a72555e41668e071f74b32536",
+    "branch": "agent/rsh-033-physics-calibration",
+    "manifest": "PHYSICS-CALIBRATION-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-033 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-033",
+    "queue_head": "RSH-034",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_033_authorized": false
+    "RSH_034_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

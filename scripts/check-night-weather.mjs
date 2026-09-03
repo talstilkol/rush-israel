@@ -4,8 +4,9 @@ import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
+import { stripRsh033Overlay } from "./rsh033-overlay.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "03b573465210853e0bdf9468a50037f57b9cb3689201c3367eaf379354068ce4";
+export const EXPECTED_MANIFEST_SHA256 = "553e90da0bce4cfaf7fc72b4e08c3fe7790213aed07ccf37a52cf06c25cc8bdb";
 export const EXPECTED_NIGHT_SHA256 = "9538e17393b21728628fb2d55b2ea697a02f425d17cec8804380d3d8cf335914";
 export const EXPECTED_INDEX_SHA256 = "27a9aec7e8fa3259fcbc44ae876712206510e651830ba35bb9738665d78728c8";
 export const EXPECTED_SKY_ASSETS_SHA256 = "7b3eaf34c76bb6ea0e7305e5a6ac8f151c4ed5497e2640e5ab95a103b6c288c4";
@@ -19,7 +20,7 @@ export const EXPECTED_MESH_SHA256 = "b89ec24ddb76a8ab362b036aa6d97a02484d5f305fb
 export const EXPECTED_PHYSICS_SHA256 = "cbff35aa2e2e4b509decf38e9f1ca3d262667675af81e0352ba02f460f5723c1";
 export const EXPECTED_DAYLIGHT_SHA256 = "362f8c59468b353d7e20accc58d7527baea800bed48e3968061af07780ef0a27";
 export const EXPECTED_LOCK_SHA256 = "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b";
-export const EXPECTED_CHECKER_TEST_SHA256 = "081d6f604c8b2d100d007c3465f897de802b93c5b8bfe6fb5e008eb393e5b610";
+export const EXPECTED_CHECKER_TEST_SHA256 = "8ac06abf25b5519ead64e9b4e05ed79890d4e1c1061944c23ceff35b07327bd5";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_NIGHT_DIGEST_SHA256 = "31238c98dbb76f00c1419264e66a6eefbd91d5b732765fe92311d4345b794808";
 export const EXPECTED_HEADLIGHT_DIGEST_SHA256 = "a843a8133ce4585a054203d132a257356ba30492604240c53281349265c4e790";
@@ -163,7 +164,7 @@ export function validateNightWeather(overrides = {}) {
     engine_source_sha256: [input.engineSource, EXPECTED_ENGINE_SHA256],
     adapter_source_sha256: [input.adapterSource, EXPECTED_ADAPTER_SHA256],
     mesh_source_sha256: [input.meshSource, EXPECTED_MESH_SHA256],
-    physics_source_sha256: [input.physicsSource, EXPECTED_PHYSICS_SHA256],
+    physics_source_sha256: [stripRsh033Overlay("src/game/physics.ts", input.physicsSource), EXPECTED_PHYSICS_SHA256],
     daylight_source_sha256: [input.daylightSource, EXPECTED_DAYLIGHT_SHA256],
     ayalon_lock_sha256: [input.lockSource, EXPECTED_LOCK_SHA256],
     checker_test_sha256: [input.checkerTestSource, EXPECTED_CHECKER_TEST_SHA256],
@@ -272,8 +273,8 @@ export function validateNightWeather(overrides = {}) {
   if (manifest.preservation?.sky_assets_changes !== 0 || manifest.preservation?.postfx_changes !== 0 || manifest.preservation?.world_changes !== 0 || manifest.preservation?.physics_changes !== 0 || manifest.preservation?.mesh_changes !== 0 || manifest.preservation?.ayalon_lock_changes !== 0) errors.push("RSH-032 preservation counts changed");
 
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-033 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-033" || manifest.deferred_boundary?.rsh_033_authorized !== false || manifest.deferred_boundary?.rsh_033_started !== false) errors.push("RSH-033 deferred boundary changed");
+  if (later.length) errors.push(`RSH-034 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-034" || manifest.deferred_boundary?.rsh_033_authorized !== true || manifest.deferred_boundary?.rsh_033_started !== true || manifest.deferred_boundary?.rsh_034_authorized !== false || manifest.deferred_boundary?.rsh_034_started !== false) errors.push("RSH-034 deferred boundary changed");
 
   return {
     errors,
@@ -296,5 +297,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`night-weather fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`night-weather ok: look ${result.look}; HDRI ${result.hdri}; weather ${result.weatherDefault}; RSH-033 deferred`);
+  console.log(`night-weather ok: look ${result.look}; HDRI ${result.hdri}; weather ${result.weatherDefault}; RSH-034 deferred`);
 }

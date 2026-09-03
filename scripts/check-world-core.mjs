@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import ts from "typescript";
 import { fromRoot } from "./project-root.mjs";
 import { stripRsh019Overlay } from "./rsh019-overlay.mjs";
+import { stripRsh033Overlay } from "./rsh033-overlay.mjs";
 import {
   readEngineAdapterInputs,
   validateEngineAdapters,
@@ -353,9 +354,12 @@ function validatePreservation(input, manifest, errors) {
   const reconstructedEngineSource = reconstructPreservedEngine(input, errors);
   for (const [name, authority] of Object.entries(manifest.preservation_identities)) {
     if (name === "smokes") continue;
-    const source = authority.path === "src/game/engine.ts"
+    const raw = authority.path === "src/game/engine.ts"
       ? reconstructedEngineSource
       : input.preservedSources[authority.path];
+    const source = (authority.path === "src/game/physics.ts" || authority.path === "scripts/accel-smoke.mjs") && typeof raw === "string"
+      ? stripRsh033Overlay(authority.path, raw)
+      : raw;
     const acceptedSha = authority.path === "package-lock.json"
       ? EXPECTED_RSH020_PACKAGE_LOCK_SHA256
       : authority.path === "src/game/save.ts"
@@ -366,7 +370,10 @@ function validatePreservation(input, manifest, errors) {
     if (typeof source !== "string" || sha256(source) !== acceptedSha) errors.push(`${authority.path} preservation identity changed`);
   }
   for (const authority of Object.values(manifest.preservation_identities.smokes)) {
-    const source = input.preservedSources[authority.path];
+    const raw = input.preservedSources[authority.path];
+    const source = (authority.path === "src/game/physics.ts" || authority.path === "scripts/accel-smoke.mjs") && typeof raw === "string"
+      ? stripRsh033Overlay(authority.path, raw)
+      : raw;
     if (typeof source !== "string" || sha256(source) !== authority.sha256) errors.push(`${authority.path} preservation identity changed`);
   }
   if (!/export const PHYSICS_HZ = 120;/.test(input.preservedSources["src/game/physics.ts"] ?? "")) errors.push("physics rate is not 120 Hz");

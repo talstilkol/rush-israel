@@ -23,3 +23,7 @@ export function claimAccel(zeroTo100: number) {
 export function claimBand(claim: number, tolerance = CLAIM_TOLERANCE) {
   return { low: claim * (1 - tolerance), high: claim * (1 + tolerance) };
 }
+
+export function launchAccel(zeroTo100: number, dragAccel = 0, speedAbs = 0) {
+  return claimAccel(zeroTo100) + (speedAbs <= V100_MPS ? dragAccel : 0);
+}

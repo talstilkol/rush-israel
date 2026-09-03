@@ -16,4 +16,5 @@ export {
   V100_MPS,
   claimAccel,
   claimBand,
+  launchAccel,
 } from "./physics";

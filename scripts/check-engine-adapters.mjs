@@ -3,6 +3,7 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
 import { gitBlobSha1, sha256 } from "./load-world-builders.mjs";
+import { stripRsh033Overlay } from "./rsh033-overlay.mjs";
 import {
   RSH016_ENGINE_BYTES,
   RSH016_ENGINE_GIT_BLOB_SHA1,
@@ -144,7 +145,9 @@ export function validateEngineAdapters(overrides = {}) {
   }
 
   for (const [path, expected] of Object.entries(EXPECTED_PRESERVED)) {
-    if (sha256(input.preservedSources[path] ?? "") !== expected) errors.push(`preserved source changed: ${path}`);
+    let source = input.preservedSources[path] ?? "";
+    if (path === "src/game/physics.ts") source = stripRsh033Overlay(path, source);
+    if (sha256(source) !== expected) errors.push(`preserved source changed: ${path}`);
   }
   const trackManifest = JSON.parse(input.trackManifestSource);
   if (trackManifest.modules.length !== 56 || trackManifest.counts.mvp !== 8 || trackManifest.counts.deferred !== 48) errors.push("track count/classification changed");

@@ -67,20 +67,20 @@
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
-    "checker_test_sha256": "652bb861d3e044bb884b99a0bb3c206e02b27d04e912afdf380833458c6bbb21",
+    "checker_test_sha256": "ee4e3fae2ae0aad25cc468d5f6f13e72cb23d5a7870a37bb2341d269cea1c807",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-033",
+    "queue_head": "RSH-034",
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh033",
-      ".github/workflows/rsh-033-",
-      "RSH-033-",
-      "scripts/rsh033-",
-      "src/game/ayalon-physics/"
+      ".rsh034",
+      ".github/workflows/rsh-034-",
+      "RSH-034-",
+      "scripts/rsh034-",
+      "src/game/ayalon-feel/"
     ],
     "rsh_028_authorized": true,
     "rsh_028_started": true,
@@ -97,8 +97,11 @@
     "rsh_032_authorized": true,
     "rsh_032_started": true,
     "rsh_032_state": "accepted_on_merge",
-    "rsh_033_authorized": false,
-    "rsh_033_started": false
+    "rsh_033_authorized": true,
+    "rsh_033_started": true,
+    "rsh_033_state": "accepted_on_merge",
+    "rsh_034_authorized": false,
+    "rsh_034_started": false
   },
   "rsh_027_overlay": {
     "state": "accepted_on_merge",

@@ -106,7 +106,7 @@
     "ghost_block_sha256": "59948dace66f2683d4f7cfc480f270579727dd94be257f5ea6637bd18e217674"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-033",
+    "queue_head": "RSH-034",
     "rsh_023_authorized": true,
     "rsh_023_started": true,
     "rsh_023_state": "accepted_on_merge",
@@ -117,11 +117,11 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh033",
-      ".github/workflows/rsh-033-",
-      "RSH-033-",
-      "scripts/rsh033-",
-      "src/game/ayalon-physics/"
+      ".rsh034",
+      ".github/workflows/rsh-034-",
+      "RSH-034-",
+      "scripts/rsh034-",
+      "src/game/ayalon-feel/"
     ],
     "rsh_026_authorized": true,
     "rsh_026_started": true,
@@ -144,8 +144,11 @@
     "rsh_032_authorized": true,
     "rsh_032_started": true,
     "rsh_032_state": "accepted_on_merge",
-    "rsh_033_authorized": false,
-    "rsh_033_started": false
+    "rsh_033_authorized": true,
+    "rsh_033_started": true,
+    "rsh_033_state": "accepted_on_merge",
+    "rsh_034_authorized": false,
+    "rsh_034_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",
