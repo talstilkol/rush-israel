@@ -64,6 +64,6 @@ still match the lock.
 
 ## Deferred boundary
 
-RSH-028 — Lock Ayalon landmark placement — is accepted on validated merge.
-RSH-029 — Lock Ayalon asphalt, sidewalks, markings and signs — remains deferred,
-unauthorized and uncreated.
+RSH-028 — Lock Ayalon landmark placement — and RSH-029 — Lock Ayalon asphalt,
+sidewalks, markings and signs — are accepted on validated merge. RSH-030 remains
+deferred, unauthorized and uncreated.

@@ -5,12 +5,12 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "ef4170ea71adfb8edc9ffeedb93541df59a2d2aa5a6b3b4898bba9e9e936ce7e";
+export const EXPECTED_MANIFEST_SHA256 = "b11d99cc7c47cb4cc2a4c1e2e964a5956f0e249e9e3d157ddd550f1652e6c779";
 export const EXPECTED_COLLIDER_SHA256 = "da611c2867879fa55f6b3db84c76f93725a8b786e0b7dea94079fe6f5ae6708f";
 export const EXPECTED_INDEX_SHA256 = "0da73a7edfc99d806ae884f482175b88644f66cd58709362b9235c7e9de80daa";
 export const EXPECTED_TRACK_SHA256 = "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d";
 export const EXPECTED_LOCK_SHA256 = "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b";
-export const EXPECTED_CHECKER_TEST_SHA256 = "152d4216f16dd9c6ec97472d6868fc90f043bb26bd31eb2db935c9d457d5c0a1";
+export const EXPECTED_CHECKER_TEST_SHA256 = "dda40865fa7f0df54b8a1a70900a1c3f86eaea1aaad69d966073ada192380dac";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_CHECKPOINT_SHA256 = "f53946f17dd4a7a77198057729813d5e5760a325b1f76d7a15a818d4d0c9d22d";
 export const EXPECTED_RAMP_RECIPE_SHA256 = "f0b14d4ca14f17cfd9ec258538ef6f68c079de9fb4fb5c9f390354e404369be5";
@@ -175,8 +175,8 @@ export function validateAyalonColliders(overrides = {}) {
   if (manifest.preservation?.track_source_changes !== 0 || manifest.preservation?.world_changes !== 0 || manifest.preservation?.physics_changes !== 0 || manifest.preservation?.ayalon_lock_changes !== 0) errors.push("RSH-027 preservation counts changed");
 
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-029 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-029" || manifest.deferred_boundary?.rsh_028_authorized !== true || manifest.deferred_boundary?.rsh_028_started !== true || manifest.deferred_boundary?.rsh_029_authorized !== false || manifest.deferred_boundary?.rsh_029_started !== false) errors.push("RSH-029 deferred boundary changed");
+  if (later.length) errors.push(`RSH-030 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-030" || manifest.deferred_boundary?.rsh_028_authorized !== true || manifest.deferred_boundary?.rsh_028_started !== true || manifest.deferred_boundary?.rsh_029_authorized !== true || manifest.deferred_boundary?.rsh_029_started !== true || manifest.deferred_boundary?.rsh_030_authorized !== false || manifest.deferred_boundary?.rsh_030_started !== false) errors.push("RSH-030 deferred boundary changed");
 
   return {
     errors,
@@ -199,5 +199,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`ayalon-colliders fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`ayalon-colliders ok: ${result.trackId}; ${result.rampCount} ramps; ${result.checkpointCount} checkpoints; ${result.interchangeCount} interchanges; RSH-028 overlay accepted; RSH-029 deferred`);
+  console.log(`ayalon-colliders ok: ${result.trackId}; ${result.rampCount} ramps; ${result.checkpointCount} checkpoints; ${result.interchangeCount} interchanges; RSH-029 overlay accepted; RSH-030 deferred`);
 }

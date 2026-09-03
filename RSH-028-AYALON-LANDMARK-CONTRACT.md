@@ -65,6 +65,6 @@ still match the lock.
 
 ## Deferred boundary
 
-RSH-029 — Lock Ayalon asphalt, sidewalks, markings and signs — remains deferred,
-unauthorized and uncreated. RSH-028 does not add `src/game/ayalon-asphalt/` or
-RSH-029 transport files.
+RSH-029 — Lock Ayalon asphalt, sidewalks, markings and signs — is accepted on
+validated merge. RSH-030 — Deliver the Version 1 hero car, LODs and silhouette
+gate — remains deferred, unauthorized and uncreated.

@@ -50,21 +50,35 @@
     "index_source_sha256": "d51244ebc8e3b0793a9b17796ea7db044eab4432d6d9e0a54d7c19b21515e86b",
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
-    "checker_test_sha256": "cabc7ae15655d980463010e6d5762a6747e6a6f3bd2baf3cfe424c9b4c7d8ae5",
+    "checker_test_sha256": "894508e3cde796f79f8a83ef30d480b19ccd9645586301454ba38efd61984b29",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "poi_sha256": "653400d559e6e34f7fb009d8620f7bc94fbb0bfca48537d3c7e2be98a0028063",
     "placement_sha256": "ca016b04811f2d6184ee36311d805bbd6f77083a1395d7d6a753b7f1963d77a8"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-029",
-    "rsh_029_authorized": false,
-    "rsh_029_started": false,
+    "queue_head": "RSH-030",
+    "rsh_029_authorized": true,
+    "rsh_029_started": true,
     "forbidden_prefixes": [
-      ".rsh029",
-      ".github/workflows/rsh-029-",
-      "RSH-029-",
-      "scripts/rsh029-",
-      "src/game/ayalon-asphalt/"
-    ]
+      ".rsh030",
+      ".github/workflows/rsh-030-",
+      "RSH-030-",
+      "scripts/rsh030-",
+      "src/game/hero-car/"
+    ],
+    "rsh_029_state": "accepted_on_merge",
+    "rsh_030_authorized": false,
+    "rsh_030_started": false
+  },
+  "rsh_029_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "AYALON-ASPHALT-MANIFEST.json",
+    "contract": "RSH-029-AYALON-ASPHALT-CONTRACT.md",
+    "asphalt_lanes": 8,
+    "sidewalk_present": false,
+    "gantry_count": 6,
+    "station_gantry_count": 5,
+    "owner_freeze": false,
+    "gis_claim": false
   }
 }

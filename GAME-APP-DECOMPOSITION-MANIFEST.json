@@ -410,11 +410,11 @@
     "rsh_021_started": true,
     "rsh_021_authorized": true,
     "forbidden_prefixes": [
-      ".rsh029",
-      ".github/workflows/rsh-029-",
-      "RSH-029-",
-      "scripts/rsh029-",
-      "src/game/ayalon-asphalt/",
+      ".rsh030",
+      ".github/workflows/rsh-030-",
+      "RSH-030-",
+      "scripts/rsh030-",
+      "src/game/hero-car/",
       "src/auth-v3/",
       "src/multiplayer-v3/",
       "src/auth-v3/",
@@ -442,8 +442,11 @@
     "rsh_028_authorized": true,
     "rsh_028_started": true,
     "rsh_028_state": "accepted_on_merge",
-    "rsh_029_authorized": false,
-    "rsh_029_started": false
+    "rsh_029_authorized": true,
+    "rsh_029_started": true,
+    "rsh_029_state": "accepted_on_merge",
+    "rsh_030_authorized": false,
+    "rsh_030_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",
@@ -452,6 +455,17 @@
     "track_poi_count": 9,
     "builder_place_calls": 8,
     "builder_extra_landmarks": 6,
+    "owner_freeze": false,
+    "gis_claim": false
+  },
+  "rsh_029_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "AYALON-ASPHALT-MANIFEST.json",
+    "contract": "RSH-029-AYALON-ASPHALT-CONTRACT.md",
+    "asphalt_lanes": 8,
+    "sidewalk_present": false,
+    "gantry_count": 6,
+    "station_gantry_count": 5,
     "owner_freeze": false,
     "gis_claim": false
   }

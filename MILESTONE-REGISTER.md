@@ -3,10 +3,10 @@
 **Version:** 13.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-028 implementation base:** `d9b25b6ad8a035041c699d64860f9dac357b774d`
-**State effective on:** merge of the RSH-028 pull request
+**RSH-029 implementation base:** `e068f7a93b7a9d2febb86d25a7e9ba57f5733a39`
+**State effective on:** merge of the RSH-029 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-029 — deferred and not authorised
+**Next scheduled unit:** RSH-030 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 28 |
+| Accepted units | 29 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-029 — deferred/not authorised |
+| Queue head | RSH-030 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 39 |
-| RSH-028 one-unit authority | consumed 1/1 |
+| Remaining units | 38 |
+| RSH-029 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -53,5 +53,6 @@
 | RSH-026 | Ayalon road geometry, width 28 and 8 lanes locked on validated merge |
 | RSH-027 | Ayalon ramps, barriers, colliders and checkpoints locked on validated merge |
 | RSH-028 | Ayalon landmark placement locked on validated merge |
+| RSH-029 | Ayalon asphalt, sidewalks, markings and signs locked on validated merge |
 
-No RSH-029 branch, PR or implementation structure is authorised by this state.
+No RSH-030 branch, PR or implementation structure is authorised by this state.

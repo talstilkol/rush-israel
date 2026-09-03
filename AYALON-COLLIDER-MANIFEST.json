@@ -76,25 +76,28 @@
     "index_source_sha256": "0da73a7edfc99d806ae884f482175b88644f66cd58709362b9235c7e9de80daa",
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
-    "checker_test_sha256": "152d4216f16dd9c6ec97472d6868fc90f043bb26bd31eb2db935c9d457d5c0a1",
+    "checker_test_sha256": "dda40865fa7f0df54b8a1a70900a1c3f86eaea1aaad69d966073ada192380dac",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "checkpoint_sha256": "f53946f17dd4a7a77198057729813d5e5760a325b1f76d7a15a818d4d0c9d22d",
     "ramp_recipe_sha256": "f0b14d4ca14f17cfd9ec258538ef6f68c079de9fb4fb5c9f390354e404369be5"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-029",
+    "queue_head": "RSH-030",
     "rsh_028_authorized": true,
     "rsh_028_started": true,
     "forbidden_prefixes": [
-      ".rsh029",
-      ".github/workflows/rsh-029-",
-      "RSH-029-",
-      "scripts/rsh029-",
-      "src/game/ayalon-asphalt/"
+      ".rsh030",
+      ".github/workflows/rsh-030-",
+      "RSH-030-",
+      "scripts/rsh030-",
+      "src/game/hero-car/"
     ],
     "rsh_028_state": "accepted_on_merge",
-    "rsh_029_authorized": false,
-    "rsh_029_started": false
+    "rsh_029_authorized": true,
+    "rsh_029_started": true,
+    "rsh_029_state": "accepted_on_merge",
+    "rsh_030_authorized": false,
+    "rsh_030_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",
@@ -103,6 +106,17 @@
     "track_poi_count": 9,
     "builder_place_calls": 8,
     "builder_extra_landmarks": 6,
+    "owner_freeze": false,
+    "gis_claim": false
+  },
+  "rsh_029_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "AYALON-ASPHALT-MANIFEST.json",
+    "contract": "RSH-029-AYALON-ASPHALT-CONTRACT.md",
+    "asphalt_lanes": 8,
+    "sidewalk_present": false,
+    "gantry_count": 6,
+    "station_gantry_count": 5,
     "owner_freeze": false,
     "gis_claim": false
   }

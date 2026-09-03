@@ -74,7 +74,7 @@
     "records_source_sha256": "1394102cc0c744a3000a0ad191bca61efc79880b874a7ded3794b51bf0d3a502",
     "save_facade_sha256": "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2",
     "records_test_sha256": "78152e01ab5e44436b87e41311aeaaabc602983106bf123192a3b441d8d2e8b5",
-    "checker_test_sha256": "471591c422ae66ce98be84d0c2a3de533a731ec27511c2c1de0fb27f936b3077",
+    "checker_test_sha256": "107969c63c1d64dcbf48e8269a6b2b7be00d661d7c3baab50a8064c9499389d7",
     "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
     "recovery_source_sha256": "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f",
     "ui_source_sha256": "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26",
@@ -83,7 +83,7 @@
     "ghost_block_sha256": "59948dace66f2683d4f7cfc480f270579727dd94be257f5ea6637bd18e217674"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-029",
+    "queue_head": "RSH-030",
     "rsh_024_authorized": true,
     "rsh_024_started": true,
     "rsh_024_state": "accepted_on_merge",
@@ -93,11 +93,11 @@
     "rsh_026_authorized": true,
     "rsh_026_started": true,
     "forbidden_prefixes": [
-      ".rsh029",
-      ".github/workflows/rsh-029-",
-      "RSH-029-",
-      "scripts/rsh029-",
-      "src/game/ayalon-asphalt/"
+      ".rsh030",
+      ".github/workflows/rsh-030-",
+      "RSH-030-",
+      "scripts/rsh030-",
+      "src/game/hero-car/"
     ],
     "rsh_026_state": "accepted_on_merge",
     "rsh_027_authorized": true,
@@ -106,8 +106,11 @@
     "rsh_028_authorized": true,
     "rsh_028_started": true,
     "rsh_028_state": "accepted_on_merge",
-    "rsh_029_authorized": false,
-    "rsh_029_started": false
+    "rsh_029_authorized": true,
+    "rsh_029_started": true,
+    "rsh_029_state": "accepted_on_merge",
+    "rsh_030_authorized": false,
+    "rsh_030_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",
@@ -116,6 +119,17 @@
     "track_poi_count": 9,
     "builder_place_calls": 8,
     "builder_extra_landmarks": 6,
+    "owner_freeze": false,
+    "gis_claim": false
+  },
+  "rsh_029_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "AYALON-ASPHALT-MANIFEST.json",
+    "contract": "RSH-029-AYALON-ASPHALT-CONTRACT.md",
+    "asphalt_lanes": 8,
+    "sidewalk_present": false,
+    "gantry_count": 6,
+    "station_gantry_count": 5,
     "owner_freeze": false,
     "gis_claim": false
   }
