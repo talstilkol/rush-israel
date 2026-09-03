@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-hero-car-manifest",
+  "unit": "RSH-030",
+  "title": "Deliver the Version 1 hero car, LODs and silhouette gate",
+  "generated_at": "2026-09-03T05:45:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "a42a99bed98c4a55b343e744cf374e68d3b51899",
+    "tree_sha": "6337499af1a77cdc6f5516758b8f2c845aad3c43",
+    "branch": "agent/rsh-030-hero-car"
+  },
+  "hero": {
+    "count": 5,
+    "ids": [
+      "sabra",
+      "carmel",
+      "kfir",
+      "negev",
+      "yam"
+    ],
+    "bodies": [
+      "gt",
+      "hatch",
+      "muscle",
+      "rally",
+      "super"
+    ],
+    "fictional": true,
+    "scanned": false,
+    "licensed_real_models": false,
+    "hero_gltf_present": false,
+    "lod0_max_triangles": 40000,
+    "lod1_max_triangles": 12000,
+    "lod2_max_triangles": 4000,
+    "lod0_distance": 40,
+    "lod1_distance": 90,
+    "player_always_lod0": true,
+    "live_body_triangles": {
+      "gt": 276,
+      "hatch": 256,
+      "muscle": 276,
+      "rally": 256,
+      "super": 256
+    },
+    "silhouette_width": 64,
+    "silhouette_height": 24,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "hero_sha256": "6fed144c9d66dca56270f7500e574cf1041a3b917a8cd13ffa6a64a68f0806cb",
+    "lod_sha256": "0eab1d598a9b90650aafd23f69063bac407002c942311bdb95eab5beebdb6905",
+    "silhouette_sha256": "e482429dd9484b16842d0684f79bb2cfeb2b072ee62cba6fd9f3052f94527a0a",
+    "glb_sha256": {
+      "gt": "7183fadd9e20cdb03c078a7cb9661638129517c45d2201f27410325b610f4654",
+      "hatch": "fc54ab36e0ec3d3928539e19cd77c2c66f097162a9c7a4e297c746d8689b2c5d",
+      "muscle": "44b3bb1b6a1a07b68ce34e219517f90666a6ab0a76ec2abbe9b88c8212569e0b",
+      "rally": "4b556bfdf7f89f260b8be6d8e7637ad280576790a8d9200006e25769ffc53281",
+      "super": "0ad1815803d54a0fa53f7150443569d64803b4ac8590c991cc93546725d0c09b"
+    },
+    "gltf_sha256": {
+      "gt": "0347e3613877fe588bb0d8c2c98c8cec6e9d3664e1f8e64d555075406f8bc55b",
+      "hatch": "ba0d82a4b0e67a7f77646702e2f8ee1aab97ac9bcbdcda5e1109928f61aa5a42",
+      "muscle": "b8966826e0292746913891c6e570307b8d2447b308a3b432ddf9fec8d74a7783",
+      "rally": "1ddaa3656976cecfccd1f98bf26f71d2f54a767155c364bfa61695edec8bb018",
+      "super": "27bdec02c9462a103e8ad3ccf8fbbb0b961f7191e543eecb1f4c3e091a0a0606"
+    },
+    "ieee_note": "RSH-030 records the live Version 1 five-car fictional extrusion kit, LOD caps and silhouette gate. It does not rewrite cars, meshes or physics and does not import a scanned hero."
+  },
+  "lock_module": {
+    "directory": "src/game/hero-car",
+    "hero": "src/game/hero-car/hero.ts",
+    "index": "src/game/hero-car/index.ts"
+  },
+  "preservation": {
+    "cars_source_changes": 0,
+    "mesh_source_changes": 0,
+    "assets_source_changes": 0,
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "rendering_changes": 0,
+    "save_record_changes": 0,
+    "ayalon_lock_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "unverified_asset_files": 66,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "hero_source_sha256": "cdfc64228cfcef3d89f76134541ef9e05b3a68cbcfd3df0c5838588eee05adb7",
+    "index_source_sha256": "105fd7c5d68162fe7652c8731baa60682276f44338f56495a2839bb8989f6266",
+    "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
+    "mesh_source_sha256": "b89ec24ddb76a8ab362b036aa6d97a02484d5f305fbdc8f7b1452eea0e92aca3",
+    "assets_source_sha256": "92ea1de990a318a38e4d4fb363be0ae2d4818fc4fa3711e0a11cf77b6c599a79",
+    "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
+    "checker_test_sha256": "db354dccff3eaaa15b1ece377961ac4389a06689999206e9cafd4ba0e242e25f",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "hero_sha256": "6fed144c9d66dca56270f7500e574cf1041a3b917a8cd13ffa6a64a68f0806cb",
+    "lod_sha256": "0eab1d598a9b90650aafd23f69063bac407002c942311bdb95eab5beebdb6905",
+    "silhouette_sha256": "e482429dd9484b16842d0684f79bb2cfeb2b072ee62cba6fd9f3052f94527a0a"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-031",
+    "rsh_031_authorized": false,
+    "rsh_031_started": false,
+    "forbidden_prefixes": [
+      ".rsh031",
+      ".github/workflows/rsh-031-",
+      "RSH-031-",
+      "scripts/rsh031-",
+      "src/game/ayalon-light/"
+    ]
+  }
+}

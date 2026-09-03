@@ -67,20 +67,20 @@
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
-    "checker_test_sha256": "3b04c14d38da6881e702909124d2cead8c76d356fa72a61096c1953f7547ccc5",
+    "checker_test_sha256": "b7a9ca7f4a81fca182aaf3f71b6443658344c227cdc033fad49aedd369d6c0d3",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-030",
+    "queue_head": "RSH-031",
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh030",
-      ".github/workflows/rsh-030-",
-      "RSH-030-",
-      "scripts/rsh030-",
-      "src/game/hero-car/"
+      ".rsh031",
+      ".github/workflows/rsh-031-",
+      "RSH-031-",
+      "scripts/rsh031-",
+      "src/game/ayalon-light/"
     ],
     "rsh_028_authorized": true,
     "rsh_028_started": true,
@@ -88,8 +88,11 @@
     "rsh_029_authorized": true,
     "rsh_029_started": true,
     "rsh_029_state": "accepted_on_merge",
-    "rsh_030_authorized": false,
-    "rsh_030_started": false
+    "rsh_030_authorized": true,
+    "rsh_030_started": true,
+    "rsh_030_state": "accepted_on_merge",
+    "rsh_031_authorized": false,
+    "rsh_031_started": false
   },
   "rsh_027_overlay": {
     "state": "accepted_on_merge",

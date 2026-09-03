@@ -65,5 +65,5 @@ match the lock.
 
 ## Deferred boundary
 
-RSH-027 through RSH-029 are accepted on validated merge. RSH-030 remains
+RSH-027 through RSH-030 are accepted on validated merge. RSH-031 remains
 deferred, unauthorized and uncreated.

@@ -13,7 +13,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-024 production-security authority passes under the RSH-029 overlay and RSH-030 remains absent", () => {
+test("committed RSH-024 production-security authority passes under the RSH-029 overlay and RSH-031 remains absent", () => {
   const result = validateProductionSecurity();
   assert.deepEqual(result.errors, []);
   assert.equal(result.buildCommand, "vite build");
@@ -21,11 +21,11 @@ test("committed RSH-024 production-security authority passes under the RSH-029 o
   assert.equal(result.schemaVersion, 3);
 });
 
-test("RSH-030 precreation fails closed", () => {
+test("RSH-031 precreation fails closed", () => {
   const result = validateProductionSecurity({
-    repositoryFiles: ["RSH-030-PREFLIGHT.json", "src/game/security/production-policy.ts"],
+    repositoryFiles: ["RSH-031-PREFLIGHT.json", "src/game/security/production-policy.ts"],
   });
-  assert.match(messages(result), /RSH-030 was precreated/);
+  assert.match(messages(result), /RSH-031 was precreated/);
 });
 
 test("production policy pins build, secret-scan roots and QA needles", () => {

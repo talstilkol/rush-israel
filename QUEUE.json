@@ -4,8 +4,8 @@
   "generated_at": "2026-09-03T05:45:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "e068f7a93b7a9d2febb86d25a7e9ba57f5733a39",
-  "state_effective_on": "merge_of_RSH_029_pull_request",
+  "verified_base_sha": "a42a99bed98c4a55b343e744cf374e68d3b51899",
+  "state_effective_on": "merge_of_RSH_030_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "next",
       "authorized_units": [
+        "RSH-030"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-030_merge",
+      "RSH_031_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": [
         "RSH-029"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-029_merge",
       "RSH_030_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "next",
-      "authorized_units": [
-        "RSH-028"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-028_merge",
-      "RSH_029_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 29,
+    "accepted": 30,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 38,
-    "remaining": 38
+    "deferred": 37,
+    "remaining": 37
   },
   "queue_head": {
-    "id": "RSH-030",
-    "title": "Deliver the Version 1 hero car, LODs and silhouette gate",
+    "id": "RSH-031",
+    "title": "Lock daylight, sky and image-based lighting",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-030 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-031 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-030",
-    "title": "Deliver the Version 1 hero car, LODs and silhouette gate",
+    "id": "RSH-031",
+    "title": "Lock daylight, sky and image-based lighting",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -680,7 +680,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-029": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-029-ayalon-asphalt",
       "pull_request_resolution": "live RSH-029 pull request",
       "validated_head_resolution": "exact RSH-029 PR head accepted by required-ci / validate and Codex review",
@@ -695,7 +695,37 @@
       "station_gantry_count": 5,
       "owner_freeze": false,
       "gis_claim": false,
-      "rsh_030_created": false
+      "rsh_030_created": true,
+      "pull_request": 32,
+      "validated_head_sha": "09b00d9f143ea6d43c8c72e679cc5c02bd38de97",
+      "merge_sha": "a42a99bed98c4a55b343e744cf374e68d3b51899",
+      "tree_sha": "6337499af1a77cdc6f5516758b8f2c845aad3c43",
+      "workflow_run": 33707956418,
+      "workflow_job": 100501088757,
+      "artifact_id": 9875970618,
+      "artifact_digest": "sha256:eb7d4b779f8ea3547d9d5315cc725bb98b84a21e2113b49a872b050f5e7f5a12",
+      "post_merge_workflow_run": 33708235679,
+      "post_merge_workflow_job": 100501942400,
+      "post_merge_artifact_id": 9876052073,
+      "post_merge_artifact_digest": "sha256:a4840bc19f92277ccbb7a7d4b3c2920963d69baf1e64016a9a1e820887ed4630",
+      "unresolved_review_threads": 0
+    },
+    "RSH-030": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-030-hero-car",
+      "pull_request_resolution": "live RSH-030 pull request",
+      "validated_head_resolution": "exact RSH-030 PR head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD after validated merge",
+      "manifest": "HERO-CAR-MANIFEST.json",
+      "contract": "RSH-030-HERO-CAR-CONTRACT.md",
+      "car_count": 5,
+      "fictional": true,
+      "scanned": false,
+      "hero_gltf_present": false,
+      "lod0_max_triangles": 40000,
+      "owner_freeze": false,
+      "gis_claim": false,
+      "rsh_031_created": false
     }
   },
   "unit_order": [
@@ -770,25 +800,25 @@
   "state_rules": {
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-029"
+      "through": "RSH-030"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-030",
+      "from": "RSH-031",
       "through": "RSH-067"
     },
-    "RSH-001–RSH-029": "accepted",
-    "RSH-030–RSH-067": "deferred_not_authorized"
+    "RSH-001–RSH-030": "accepted",
+    "RSH-031–RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-030 remains deferred until a new explicit owner instruction.",
-    "RSH_029_completed": true,
-    "RSH_029_authorization_consumed": true,
-    "RSH_030_authorized": false
+    "current_action": "No unit is authorized; RSH-031 remains deferred until a new explicit owner instruction.",
+    "RSH_030_completed": true,
+    "RSH_030_authorization_consumed": true,
+    "RSH_031_authorized": false
   },
-  "self_reference_boundary": "The RSH-029 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-030 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }
