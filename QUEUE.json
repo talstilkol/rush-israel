@@ -1,1 +1,99 @@
-see artifact
+{
+  "schema_version": "19.0.0",
+  "document_type": "rush-program-queue",
+  "generated_at": "2026-09-03T16:54:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "verified_base_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+  "state_effective_on": "merge_of_RSH_036_pull_request",
+  "policy": {
+    "mode": "strict_serial_with_owner_bounded_batch",
+    "units_per_plain_next": 1,
+    "active_bounded_batch": {
+      "instruction": "next 5",
+      "authorized_units": ["RSH-010", "RSH-011", "RSH-012", "RSH-013", "RSH-014"],
+      "completed": 5,
+      "total": 5,
+      "closed_after": "RSH-014",
+      "separate_branch_and_pr_per_unit": true,
+      "merge_after_validation": true,
+      "completion_instruction": "next 2",
+      "state": "closed_after_RSH-014"
+    },
+    "direct_main_writes": false,
+    "automatic_merge_without_validation": false,
+    "force_push": false,
+    "history_rewrite": false,
+    "later_unit_precreation": false,
+    "latest_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": ["RSH-036"],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-036_merge",
+      "RSH_037_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": ["RSH-035"],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-035_merge",
+      "RSH_036_authorized": false
+    }
+  },
+  "counts": {
+    "total": 67,
+    "accepted": 36,
+    "in_review": 0,
+    "eligible": 0,
+    "deferred": 31,
+    "remaining": 31
+  },
+  "queue_head": {
+    "id": "RSH-037",
+    "title": "Instrument p50, p95, p99, draw calls, triangles and memory",
+    "state": "deferred_not_authorized",
+    "branch": null,
+    "pull_request": null,
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-037 may start."
+  },
+  "next_after_acceptance": {
+    "id": "RSH-037",
+    "title": "Instrument p50, p95, p99, draw calls, triangles and memory",
+    "state": "deferred_not_authorized"
+  },
+  "accepted": {
+    "RSH-036": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-036-ayalon-freeze",
+      "pull_request": 39,
+      "manifest": "AYALON-FREEZE-MANIFEST.json",
+      "contract": "RSH-036-AYALON-FREEZE-CONTRACT.md",
+      "RSH_037_created": false,
+      "RSH_037_authorized": false
+    }
+  },
+  "unit_order": ["RSH-001","RSH-002","RSH-003","RSH-004","RSH-005","RSH-006","RSH-007","RSH-008","RSH-009","RSH-010","RSH-011","RSH-012","RSH-013","RSH-014","RSH-015","RSH-016","RSH-017","RSH-018","RSH-019","RSH-020","RSH-021","RSH-022","RSH-023","RSH-024","RSH-025","RSH-026","RSH-027","RSH-028","RSH-029","RSH-030","RSH-031","RSH-032","RSH-033","RSH-034","RSH-035","RSH-036","RSH-037","RSH-038","RSH-039","RSH-040","RSH-041","RSH-042","RSH-043","RSH-044","RSH-045","RSH-046","RSH-047","RSH-048","RSH-049","RSH-050","RSH-051","RSH-052","RSH-053","RSH-054","RSH-055","RSH-056","RSH-057","RSH-058","RSH-059","RSH-060","RSH-061","RSH-062","RSH-063","RSH-064","RSH-065","RSH-066","RSH-067"],
+  "state_rules": {
+    "accepted": {"from": "RSH-001", "through": "RSH-036"},
+    "eligible": [],
+    "deferred": {"from": "RSH-037", "through": "RSH-067"},
+    "RSH-001–RSH-036": "accepted",
+    "RSH-037–RSH-067": "deferred_not_authorized"
+  },
+  "next_instruction_contract": {
+    "instruction": "next",
+    "units_per_instruction": 1,
+    "authorization_remaining": 0,
+    "authorization_closed": true,
+    "current_action": "No unit is authorized; RSH-037 remains deferred until a new explicit owner instruction.",
+    "RSH_035_completed": true,
+    "RSH_035_authorization_consumed": true,
+    "RSH_036_authorized": false,
+    "RSH_036_completed": true,
+    "RSH_036_authorization_consumed": true,
+    "RSH_037_authorized": false
+  },
+  "self_reference_boundary": "The RSH-036 candidate records accepted-on-merge state without inventing its future merge SHA."
+}
