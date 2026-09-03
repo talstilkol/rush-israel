@@ -1,0 +1,220 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-night-weather-manifest",
+  "unit": "RSH-032",
+  "title": "Lock night lighting, headlights and weather",
+  "generated_at": "2026-09-03T07:00:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "04d922adc712a73cb0ccc7bd444a64b7b9157afd",
+    "tree_sha": "56b1c30df3411c828ae06dc2b03e2f46093a6902",
+    "branch": "agent/rsh-032-night-weather"
+  },
+  "night": {
+    "look": "night",
+    "exposure": 1.22,
+    "wetness": 0.22,
+    "night": 1,
+    "vis": 0.9,
+    "nightrain_exposure": 1.18,
+    "nightrain_wetness": 0.7,
+    "nightrain_night": 1,
+    "nightrain_vis": 0.76,
+    "rain_exposure": 0.58,
+    "rain_wetness": 1,
+    "rain_night": 0.08,
+    "rain_vis": 0.55,
+    "hemi_color": "6a88b0",
+    "hemi_ground": "2a241c",
+    "hemi_intensity": 0.52,
+    "dir_color": "c8d4e8",
+    "dir_intensity": 0.38,
+    "fill_color": "ffc070",
+    "fill_intensity": 0.48,
+    "ambient_color": "4a6080",
+    "ambient_intensity": 0.28,
+    "env_intensity_boot": 0.42,
+    "env_intensity_upgrade": 0.52,
+    "fog_night": 0.000045,
+    "fog_far": 10000,
+    "fog_color": "2a4058",
+    "background": "182436",
+    "clock": 0.92,
+    "default_boot": false,
+    "hdri": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "night_sha256": "31238c98dbb76f00c1419264e66a6eefbd91d5b732765fe92311d4345b794808",
+    "ieee_note": "RSH-032 records the live Version 1 night look, headlights and weather table. It does not rewrite lighting runtime or import an HDRI."
+  },
+  "sky": {
+    "asset": "/game/sky-night.png",
+    "width": 1024,
+    "height": 512,
+    "mapping": "EquirectangularReflectionMapping",
+    "color_space": "SRGBColorSpace",
+    "anisotropy": 4,
+    "hdri": false,
+    "stars": 80,
+    "zenith": [
+      10,
+      20,
+      36
+    ],
+    "mid": [
+      21,
+      32,
+      48
+    ],
+    "horizon": [
+      28,
+      44,
+      64
+    ],
+    "png_sha256": "3868cec9a4c9027f2acbc7bd9da2b59d518bf2e7e3617630d7ab5e56049ccdb9"
+  },
+  "ibl": {
+    "kind": "tiny_pmrem",
+    "hdri": false,
+    "real_sky_ibl": false,
+    "background": "182436",
+    "hemi_sky": "4a6080",
+    "hemi_ground": "1a1410",
+    "hemi_intensity": 0.55,
+    "sun_color": "a8c0e0",
+    "sun_intensity": 0.32,
+    "sun_position": [
+      6,
+      14,
+      4
+    ],
+    "disc": false,
+    "ground": false,
+    "sigma": 0.04
+  },
+  "headlights": {
+    "color": "fff1c8",
+    "intensity": 28,
+    "distance": 48,
+    "angle": 0.5,
+    "penumbra": 0.68,
+    "decay": 1.05,
+    "shadow_map": 256,
+    "emissive_night": 5.2,
+    "emissive_day": 0.85,
+    "glow_night": 0.78,
+    "glow_day": 0.16,
+    "pool_opacity": 0.88,
+    "pool_radius": 5.4,
+    "env_night": 1.15,
+    "env_day": 1.4,
+    "lamps": 10,
+    "lamp_color": "ffc070",
+    "lamp_intensity": 200,
+    "neon_intensity": 42,
+    "headlight_sha256": "a843a8133ce4585a054203d132a257356ba30492604240c53281349265c4e790"
+  },
+  "weather": {
+    "ids": [
+      "clear",
+      "rain",
+      "storm",
+      "hamsin"
+    ],
+    "default": "clear",
+    "clear": {
+      "long": 1,
+      "lat": 1,
+      "roll": 1,
+      "hydro": 0,
+      "vis": 1
+    },
+    "rain": {
+      "long": 0.78,
+      "lat": 0.72,
+      "roll": 1.42,
+      "hydro": 0.22,
+      "vis": 0.82
+    },
+    "storm": {
+      "long": 0.62,
+      "lat": 0.55,
+      "roll": 1.7,
+      "hydro": 0.4,
+      "vis": 0.62
+    },
+    "hamsin": {
+      "long": 0.9,
+      "lat": 0.84,
+      "roll": 1.12,
+      "hydro": 0,
+      "vis": 0.7
+    },
+    "precip": {
+      "rain": 560,
+      "storm": 900,
+      "hamsin": 640,
+      "snow": 720,
+      "lite": 280
+    },
+    "weather_sha256": "d93853cd0b8b050175139c84c11f87af9f158d6c5028a5f2f246301ee4366001"
+  },
+  "lock_module": {
+    "directory": "src/game/ayalon-night",
+    "night": "src/game/ayalon-night/night.ts",
+    "index": "src/game/ayalon-night/index.ts"
+  },
+  "preservation": {
+    "sky_assets_changes": 0,
+    "postfx_changes": 0,
+    "environment_changes": 0,
+    "color_pipeline_changes": 0,
+    "world_changes": 0,
+    "engine_changes": 0,
+    "mesh_changes": 0,
+    "physics_changes": 0,
+    "daylight_lock_changes": 0,
+    "track_source_changes": 0,
+    "save_record_changes": 0,
+    "ayalon_lock_changes": 0,
+    "asset_changes": 0,
+    "dependency_changes": 0,
+    "unverified_asset_files": 66,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "night_source_sha256": "9538e17393b21728628fb2d55b2ea697a02f425d17cec8804380d3d8cf335914",
+    "index_source_sha256": "27a9aec7e8fa3259fcbc44ae876712206510e651830ba35bb9738665d78728c8",
+    "sky_assets_source_sha256": "7b3eaf34c76bb6ea0e7305e5a6ac8f151c4ed5497e2640e5ab95a103b6c288c4",
+    "postfx_source_sha256": "c847b0fdfe1eb5fd30322a3723900e8675b31791b0d5edb71c47d31ce630e761",
+    "environment_source_sha256": "a4471989af161d1e9d195cf1b9972c3ba4b6a9e85d09a1d9c60a9beb309b69a2",
+    "color_source_sha256": "4ce598ea500ee8ebce8bdc6b03bfa2d719dc31a9880bec9741758b9c67e9681c",
+    "world_source_sha256": "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc",
+    "engine_source_sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
+    "adapter_source_sha256": "947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132",
+    "mesh_source_sha256": "b89ec24ddb76a8ab362b036aa6d97a02484d5f305fbdc8f7b1452eea0e92aca3",
+    "physics_source_sha256": "cbff35aa2e2e4b509decf38e9f1ca3d262667675af81e0352ba02f460f5723c1",
+    "daylight_source_sha256": "362f8c59468b353d7e20accc58d7527baea800bed48e3968061af07780ef0a27",
+    "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
+    "checker_test_sha256": "081d6f604c8b2d100d007c3465f897de802b93c5b8bfe6fb5e008eb393e5b610",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "night_sha256": "31238c98dbb76f00c1419264e66a6eefbd91d5b732765fe92311d4345b794808",
+    "headlight_sha256": "a843a8133ce4585a054203d132a257356ba30492604240c53281349265c4e790",
+    "weather_sha256": "d93853cd0b8b050175139c84c11f87af9f158d6c5028a5f2f246301ee4366001"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-033",
+    "rsh_033_authorized": false,
+    "rsh_033_started": false,
+    "forbidden_prefixes": [
+      ".rsh033",
+      ".github/workflows/rsh-033-",
+      "RSH-033-",
+      "scripts/rsh033-",
+      "src/game/ayalon-physics/"
+    ]
+  }
+}

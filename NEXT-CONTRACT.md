@@ -3,38 +3,40 @@
 **Version:** 15.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-031 implementation base:** `7a4451f4c55fe8aa44ad7999fc6de6e1c78c868c`
-**State effective on:** merge of the RSH-031 pull request
-**Next unit:** `RSH-032` — deferred and not authorised
+**RSH-032 implementation base:** `04d922adc712a73cb0ccc7bd444a64b7b9157afd`
+**State effective on:** merge of the RSH-032 pull request
+**Next unit:** `RSH-033` — deferred and not authorised
 
 ## Authority
 
-The current plain `next` / `המשך` instruction authorised exactly RSH-031. That authority is consumed on validated merge and does not extend to RSH-032.
+The current plain `next` / `המשך` instruction authorised exactly RSH-032. That authority is consumed on validated merge and does not extend to RSH-033.
 
-## RSH-031 acceptance boundary
+## RSH-032 acceptance boundary
 
-- Daylight look stays `summer14` (exposure 0.56, wetness 0.18, night 0, vis 1);
-- day lights stay hemi `0xa8c8e8/0x4a5248/0.68`, key `0xfff0d0/1.12`, fill `0xc4d8f0/0.28`, ambient `0xb0c4d8/0.32`;
-- baked day sky stays `/game/sky-day.png` 1024×512 equirect, not HDRI;
-- IBL stays the live tiny three-object PMREM (`bakeEnv(night=false)`), not a real-sky IBL;
-- color pipeline stays sRGB + ACES filmic;
+- Night look stays `night` (exposure 1.22, wetness 0.22, night 1, vis 0.9);
+- night lights stay hemi `0x6a88b0/0x2a241c/0.52`, key `0xc8d4e8/0.38`, fill `0xffc070/0.48`, ambient `0x4a6080/0.28`;
+- baked night sky stays `/game/sky-night.png` 1024×512 equirect, not HDRI;
+- IBL stays the live tiny three-object PMREM (`bakeEnv(night=true)`), no disc/ground at night;
+- headlights stay two `0xfff1c8` spots at intensity 28 with emissive 5.2;
+- weather stays `clear,rain,storm,hamsin` with default `clear`;
+- default boot stays day / clear;
 - GIS/navigation claims and owner freeze remain forbidden;
-- `sky-assets.ts`, `postfx.ts`, `world.ts`, engine lighting, Ayalon locks and `ayalon.lock` are unchanged;
-- no RSH-032 night/headlight/weather structure exists.
+- `sky-assets.ts`, `postfx.ts`, `world.ts`, `car-mesh.ts`, `physics.ts`, engine lighting, Ayalon locks and `ayalon.lock` are unchanged;
+- no RSH-033 physics-calibration structure exists.
 
 ## Post-merge state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 31 |
-| Deferred | 36 |
-| Remaining | 36 |
-| Queue head | RSH-032 |
-| RSH-032 authorised | No |
+| Accepted | 32 |
+| Deferred | 35 |
+| Remaining | 35 |
+| Queue head | RSH-033 |
+| RSH-033 authorised | No |
 | Current authority remaining | 0 |
 | Save schema version | 3 |
 | Unverified asset files | 66 |
 | Release gates | 0/13 |
 
-A new explicit owner instruction is required before RSH-032 may be created or executed.
+A new explicit owner instruction is required before RSH-033 may be created or executed.

@@ -3,10 +3,10 @@
 **Version:** 14.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-031 implementation base:** `7a4451f4c55fe8aa44ad7999fc6de6e1c78c868c`
-**State effective on:** merge of the RSH-031 pull request
+**RSH-032 implementation base:** `04d922adc712a73cb0ccc7bd444a64b7b9157afd`
+**State effective on:** merge of the RSH-032 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-032 — deferred and not authorised
+**Next scheduled unit:** RSH-033 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 31 |
+| Accepted units | 32 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-032 — deferred/not authorised |
+| Queue head | RSH-033 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 36 |
-| RSH-031 one-unit authority | consumed 1/1 |
+| Remaining units | 35 |
+| RSH-032 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -56,5 +56,6 @@
 | RSH-029 | Ayalon asphalt, sidewalks, markings and signs locked on validated merge |
 | RSH-030 | Version 1 hero car, LODs and silhouette gate delivered on validated merge |
 | RSH-031 | Daylight, sky and image-based lighting locked on validated merge |
+| RSH-032 | Night lighting, headlights and weather locked on validated merge |
 
-No RSH-032 branch, PR or implementation structure is authorised by this state.
+No RSH-033 branch, PR or implementation structure is authorised by this state.

@@ -67,10 +67,18 @@
     "hemi_intensity": 1.2,
     "sun_color": "ffe8c4",
     "sun_intensity": 1.2,
-    "sun_position": [6, 14, 4],
+    "sun_position": [
+      6,
+      14,
+      4
+    ],
     "disc_color": "fff6d8",
     "disc_radius": 2.4,
-    "disc_position": [10, 16, 7],
+    "disc_position": [
+      10,
+      16,
+      7
+    ],
     "ground_color": "3a4248",
     "ground_radius": 22,
     "sigma": 0.04,
@@ -111,22 +119,25 @@
     "engine_source_sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
     "adapter_source_sha256": "947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
-    "checker_test_sha256": "0901bb6dba8da21d160ae8f63e3fbf6f7d30555609457ceb7d52a67ec013391e",
+    "checker_test_sha256": "33714d46c8119ee1207d2cf152062327ef095706813faefc50bdeed3b4489f1d",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "daylight_sha256": "bcb9d3a3026bcff45ddbf4122b2ef952f68f9e1098f0813cde1e5864775592f8",
     "sky_sha256": "740469181a62335330770e0eaf3cbf25358a1abca8a2ad9e69671ed605406cb6",
     "ibl_sha256": "d3387b77aaf7e782f05b3a4480c0159d0d1bf92d2aff0166fc214b9bfbb232e0"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-032",
-    "rsh_032_authorized": false,
-    "rsh_032_started": false,
+    "queue_head": "RSH-033",
+    "rsh_032_authorized": true,
+    "rsh_032_started": true,
     "forbidden_prefixes": [
-      ".rsh032",
-      ".github/workflows/rsh-032-",
-      "RSH-032-",
-      "scripts/rsh032-",
-      "src/game/ayalon-night/"
-    ]
+      ".rsh033",
+      ".github/workflows/rsh-033-",
+      "RSH-033-",
+      "scripts/rsh033-",
+      "src/game/ayalon-physics/"
+    ],
+    "rsh_032_state": "accepted_on_merge",
+    "rsh_033_authorized": false,
+    "rsh_033_started": false
   }
 }

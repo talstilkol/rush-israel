@@ -78,12 +78,12 @@ test("engine, world, tracks, physics, saves, assets and dependencies remain clos
   }
 });
 
-test("temporary RSH-018 files and RSH-032 precreation fail closed", () => {
+test("temporary RSH-018 files and RSH-033 precreation fail closed", () => {
   const temp = baseline();
   temp.repositoryFiles.push(".github/workflows/rsh-018-finalizer.yml");
   assert.match(messages(validateGameAppDecomposition(temp)), /temporary RSH-018 files/);
   const later = baseline();
-  later.repositoryFiles.push("RSH-032-PREFLIGHT.json");
+  later.repositoryFiles.push("RSH-033-PREFLIGHT.json");
   assert.match(messages(validateGameAppDecomposition(later)), /unauthorized later-unit structure/);
 });
 

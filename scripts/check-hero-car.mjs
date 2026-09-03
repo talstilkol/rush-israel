@@ -5,14 +5,14 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "fd4366fc28e03700c6121a75c6df1aaac5d1cd0a4a93d1105b67b69d0784ba0c";
+export const EXPECTED_MANIFEST_SHA256 = "3481cb59a4330196ae4cadf6af84544f523154d8b3fea91b2c0e0736f3f6cefc";
 export const EXPECTED_HERO_SHA256 = "cdfc64228cfcef3d89f76134541ef9e05b3a68cbcfd3df0c5838588eee05adb7";
 export const EXPECTED_INDEX_SHA256 = "105fd7c5d68162fe7652c8731baa60682276f44338f56495a2839bb8989f6266";
 export const EXPECTED_CARS_SHA256 = "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542";
 export const EXPECTED_MESH_SHA256 = "b89ec24ddb76a8ab362b036aa6d97a02484d5f305fbdc8f7b1452eea0e92aca3";
 export const EXPECTED_ASSETS_SHA256 = "92ea1de990a318a38e4d4fb363be0ae2d4818fc4fa3711e0a11cf77b6c599a79";
 export const EXPECTED_LOCK_SHA256 = "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b";
-export const EXPECTED_CHECKER_TEST_SHA256 = "de38a527e1ae7867ac2a748f646149b5c24ce868809f704ba4674dc5367c0483";
+export const EXPECTED_CHECKER_TEST_SHA256 = "85df51ae39067d4aa85607d1139c9fc571795932fd6f78a5206793f7089c0143";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_HERO_DIGEST_SHA256 = "6fed144c9d66dca56270f7500e574cf1041a3b917a8cd13ffa6a64a68f0806cb";
 export const EXPECTED_LOD_DIGEST_SHA256 = "0eab1d598a9b90650aafd23f69063bac407002c942311bdb95eab5beebdb6905";
@@ -270,8 +270,8 @@ export function validateHeroCar(overrides = {}) {
   if (manifest.preservation?.cars_source_changes !== 0 || manifest.preservation?.mesh_source_changes !== 0 || manifest.preservation?.physics_changes !== 0 || manifest.preservation?.ayalon_lock_changes !== 0) errors.push("RSH-030 preservation counts changed");
 
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-032 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-032" || manifest.deferred_boundary?.rsh_031_authorized !== true || manifest.deferred_boundary?.rsh_031_started !== true) errors.push("RSH-032 deferred boundary changed");
+  if (later.length) errors.push(`RSH-033 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-033" || manifest.deferred_boundary?.rsh_031_authorized !== true || manifest.deferred_boundary?.rsh_031_started !== true || manifest.deferred_boundary?.rsh_032_authorized !== true || manifest.deferred_boundary?.rsh_032_started !== true) errors.push("RSH-033 deferred boundary changed");
 
   return {
     errors,
@@ -294,5 +294,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`hero-car fail\\n${result.errors.map((error) => `- ${error}`).join("\\n")}`);
     process.exit(1);
   }
-  console.log(`hero-car ok: ${result.carCount} fictional cars; scanned ${result.scanned}; LOD0 cap ${result.lod0}; RSH-032 deferred`);
+  console.log(`hero-car ok: ${result.carCount} fictional cars; scanned ${result.scanned}; LOD0 cap ${result.lod0}; RSH-033 deferred`);
 }

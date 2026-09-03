@@ -76,4 +76,4 @@ Honest pack defects that later units must not treat as unique evidence:
 
 RSH-026 — Lock Ayalon road geometry, widths and lanes — and RSH-027 — Lock
 Ayalon ramps, barriers, colliders and checkpoints — are accepted on validated
-merge. RSH-028 through RSH-030 are accepted on validated merge. RSH-031 is accepted on validated merge. RSH-032 remains deferred, unauthorized and uncreated.
+merge. RSH-028 through RSH-030 are accepted on validated merge. RSH-031 is accepted on validated merge. RSH-032 is accepted on validated merge. RSH-033 remains deferred, unauthorized and uncreated.

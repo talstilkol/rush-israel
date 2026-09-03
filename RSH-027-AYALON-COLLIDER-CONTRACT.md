@@ -67,5 +67,5 @@ still match the lock.
 RSH-028 — Lock Ayalon landmark placement — and RSH-029 — Lock Ayalon asphalt,
 sidewalks, markings and signs — and RSH-030 — Deliver the Version 1 hero car,
 LODs and silhouette gate — and RSH-031 — Lock daylight, sky and image-based
-lighting — are accepted on validated merge. RSH-032 remains
-deferred, unauthorized and uncreated.
+lighting — are accepted on validated merge. RSH-032 is accepted on
+validated merge. RSH-033 remains deferred, unauthorized and uncreated.

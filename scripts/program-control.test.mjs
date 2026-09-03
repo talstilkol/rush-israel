@@ -29,8 +29,8 @@ test("canonical queue contains exactly RSH-001 through RSH-067", () => {
 test("current state and queue agree on every post-merge program count", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
-  assert.equal(current.state_semantics.effective_event, "merge_of_RSH_031_pull_request");
-  assert.equal(queue.state_effective_on, "merge_of_RSH_031_pull_request");
+  assert.equal(current.state_semantics.effective_event, "merge_of_RSH_032_pull_request");
+  assert.equal(queue.state_effective_on, "merge_of_RSH_032_pull_request");
   assert.equal(current.program_status.program_units_total, queue.counts.total);
   assert.equal(current.program_status.accepted_units, queue.counts.accepted);
   assert.equal(current.program_status.units_in_review, queue.counts.in_review);
@@ -82,21 +82,24 @@ test("the historical batch and all completed one-unit authorizations are closed"
   assert.equal(current.batch_authorization["RSH-031_was_separately_authorized"], true);
   assert.equal(current.batch_authorization["RSH-031_authorization_consumed"], true);
   assert.equal(current.batch_authorization["RSH-032_authorized"], false);
-  assert.deepEqual(current.prior_single_unit_authorization.authorized_units, ["RSH-030"]);
-  assert.equal(current.prior_single_unit_authorization.state, "consumed_on_RSH-030_merge");
-  assert.deepEqual(current.single_unit_authorization.authorized_units, ["RSH-031"]);
+  assert.equal(current.batch_authorization["RSH-032_was_separately_authorized"], true);
+  assert.equal(current.batch_authorization["RSH-032_authorization_consumed"], true);
+  assert.equal(current.batch_authorization["RSH-033_authorized"], false);
+  assert.deepEqual(current.prior_single_unit_authorization.authorized_units, ["RSH-031"]);
+  assert.equal(current.prior_single_unit_authorization.state, "consumed_on_RSH-031_merge");
+  assert.deepEqual(current.single_unit_authorization.authorized_units, ["RSH-032"]);
   assert.equal(current.single_unit_authorization.completed_units, 1);
-  assert.equal(current.single_unit_authorization.state, "consumed_on_RSH-031_merge");
+  assert.equal(current.single_unit_authorization.state, "consumed_on_RSH-032_merge");
   assert.equal(queue.next_instruction_contract.authorization_remaining, 0);
   assert.equal(queue.next_instruction_contract.authorization_closed, true);
-  assert.equal(queue.state_rules["RSH-001–RSH-031"], "accepted");
+  assert.equal(queue.state_rules["RSH-001–RSH-032"], "accepted");
   assert.deepEqual(queue.state_rules.eligible, []);
-  assert.equal(queue.next_instruction_contract.current_action, "No unit is authorized; RSH-032 remains deferred until a new explicit owner instruction.");
-  assert.equal(queue.next_instruction_contract.RSH_031_completed, true);
-  assert.equal(queue.next_instruction_contract.RSH_031_authorization_consumed, true);
-  assert.equal(queue.next_instruction_contract.RSH_032_authorized, false);
-  assert.deepEqual(queue.policy.latest_single_unit_authorization.authorized_units, ["RSH-031"]);
-  assert.equal(queue.policy.latest_single_unit_authorization.state, "consumed_on_RSH-031_merge");
+  assert.equal(queue.next_instruction_contract.current_action, "No unit is authorized; RSH-033 remains deferred until a new explicit owner instruction.");
+  assert.equal(queue.next_instruction_contract.RSH_032_completed, true);
+  assert.equal(queue.next_instruction_contract.RSH_032_authorization_consumed, true);
+  assert.equal(queue.next_instruction_contract.RSH_033_authorized, false);
+  assert.deepEqual(queue.policy.latest_single_unit_authorization.authorized_units, ["RSH-032"]);
+  assert.equal(queue.policy.latest_single_unit_authorization.state, "consumed_on_RSH-032_merge");
 });
 
 test("RSH-007 through RSH-012 are reconciled to exact accepted evidence", () => {
@@ -479,7 +482,7 @@ test("RSH-030 exact evidence is reconciled before RSH-031 acceptance", () => {
   assert.equal(entry.pull_request, 33);
 });
 
-test("RSH-031 becomes accepted on merge and consumes exactly one authorization", () => {
+test("RSH-031 is reconciled to exact accepted evidence", () => {
   const current = readJson("CURRENT-STATE.json");
   const queue = readJson("QUEUE.json");
   const baseline = readJson("BASELINE-REGISTER.json");
@@ -492,20 +495,11 @@ test("RSH-031 becomes accepted on merge and consumes exactly one authorization",
   const schema = readJson("SAVE-SCHEMA-MANIFEST.json");
   const hero = readJson("HERO-CAR-MANIFEST.json");
   const daylight = readJson("DAYLIGHT-SKY-MANIFEST.json");
-  assert.equal(queue.counts.accepted, 31);
-  assert.equal(queue.counts.in_review, 0);
-  assert.equal(queue.counts.eligible, 0);
-  assert.equal(queue.counts.deferred, 36);
-  assert.equal(queue.counts.remaining, 36);
-  assert.equal(queue.queue_head.id, "RSH-032");
-  assert.equal(queue.queue_head.state, "deferred_not_authorized");
-  assert.equal(queue.queue_head.branch, null);
-  assert.equal(queue.queue_head.pull_request, null);
-  assert.equal(current.active_change, null);
-  assert.equal(current.last_transition.unit, "RSH-031");
-  assert.equal(current.accepted_units["RSH-029"].state, "accepted");
-  assert.equal(current.accepted_units["RSH-030"].state, "accepted");
-  assert.equal(current.accepted_units["RSH-031"].state, "accepted_on_merge");
+  assert.equal(current.accepted_units["RSH-031"].state, "accepted");
+  assert.equal(current.accepted_units["RSH-031"].merge_sha, "04d922adc712a73cb0ccc7bd444a64b7b9157afd");
+  assert.equal(current.accepted_units["RSH-031"].validated_head_sha, "9f0eaeca265d44505e6dbc34e9e8b08a2dfd35fd");
+  assert.equal(current.accepted_units["RSH-031"].pull_request, 34);
+  assert.equal(queue.accepted["RSH-031"].merge_sha, "04d922adc712a73cb0ccc7bd444a64b7b9157afd");
   assert.equal(schema.current_schema.version, 3);
   assert.equal(schema.migration_graph.length, 3);
   assert.equal(security.build_policy.command, "vite build");
@@ -524,13 +518,10 @@ test("RSH-031 becomes accepted on merge and consumes exactly one authorization",
   assert.equal(ayalon.reference_pack.duplicate_placeholder_shots.length, 4);
   assert.equal(records.deferred_boundary.rsh_030_started, true);
   assert.equal(records.deferred_boundary.rsh_031_started, true);
+  assert.equal(records.deferred_boundary.rsh_032_started, true);
   assert.equal(records.deferred_boundary.rsh_030_authorized, true);
   assert.equal(records.deferred_boundary.rsh_031_authorized, true);
-  assert.equal(baseline.working_state.unit, "RSH-031");
-  assert.equal(baseline.working_state.state, "accepted_on_merge");
-  assert.equal(queue.next_instruction_contract.authorization_remaining, 0);
-  assert.equal(queue.next_instruction_contract.RSH_032_authorized, false);
-  assert.equal(queue.next_after_acceptance.id, "RSH-032");
+  assert.equal(records.deferred_boundary.rsh_032_authorized, true);
   assert.equal(landmarks.landmarks.track_poi_count, 9);
   assert.equal(landmarks.landmarks.builder_place_calls, 8);
   assert.equal(landmarks.landmarks.gis_claim, false);
@@ -555,6 +546,10 @@ test("RSH-031 becomes accepted on merge and consumes exactly one authorization",
   assert.equal(daylight.sky.width, 1024);
   assert.equal(daylight.daylight.gis_claim, false);
   assert.equal(daylight.daylight.owner_freeze, false);
+  const entry = baseline.baselines.find((item) => item.id === "B031-rsh-031-accepted");
+  assert.equal(entry.commit_sha, "04d922adc712a73cb0ccc7bd444a64b7b9157afd");
+  assert.equal(entry.validated_head_sha, "9f0eaeca265d44505e6dbc34e9e8b08a2dfd35fd");
+  assert.equal(entry.pull_request, 34);
 });
 
 test("findings close RSH-024 secret scanning without overstating GitHub enforcement", () => {
@@ -669,4 +664,54 @@ test("public QA commands own the server lifecycle", () => {
   assert.match(pkg.scripts["qa:soak-smoke"], /run-with-server\.mjs/);
   assert.doesNotMatch(pkg.scripts["qa:drive:raw"], /run-with-server\.mjs/);
   assert.doesNotMatch(pkg.scripts["qa:ktx2"], /run-with-server\.mjs/);
+});
+
+test("RSH-032 becomes accepted on merge and consumes exactly one authorization", () => {
+  const current = readJson("CURRENT-STATE.json");
+  const queue = readJson("QUEUE.json");
+  const baseline = readJson("BASELINE-REGISTER.json");
+  const night = readJson("NIGHT-WEATHER-MANIFEST.json");
+  const daylight = readJson("DAYLIGHT-SKY-MANIFEST.json");
+  const schema = readJson("SAVE-SCHEMA-MANIFEST.json");
+  assert.equal(queue.counts.accepted, 32);
+  assert.equal(queue.counts.in_review, 0);
+  assert.equal(queue.counts.eligible, 0);
+  assert.equal(queue.counts.deferred, 35);
+  assert.equal(queue.counts.remaining, 35);
+  assert.equal(queue.queue_head.id, "RSH-033");
+  assert.equal(queue.queue_head.state, "deferred_not_authorized");
+  assert.equal(queue.queue_head.branch, null);
+  assert.equal(queue.queue_head.pull_request, null);
+  assert.equal(current.active_change, null);
+  assert.equal(current.last_transition.unit, "RSH-032");
+  assert.equal(current.accepted_units["RSH-031"].state, "accepted");
+  assert.equal(current.accepted_units["RSH-031"].merge_sha, "04d922adc712a73cb0ccc7bd444a64b7b9157afd");
+  assert.equal(current.accepted_units["RSH-031"].validated_head_sha, "9f0eaeca265d44505e6dbc34e9e8b08a2dfd35fd");
+  assert.equal(current.accepted_units["RSH-032"].state, "accepted_on_merge");
+  assert.equal(schema.current_schema.version, 3);
+  assert.equal(schema.migration_graph.length, 3);
+  assert.equal(baseline.working_state.unit, "RSH-032");
+  assert.equal(baseline.working_state.state, "accepted_on_merge");
+  assert.equal(queue.next_instruction_contract.authorization_remaining, 0);
+  assert.equal(queue.next_instruction_contract.RSH_033_authorized, false);
+  assert.equal(queue.next_after_acceptance.id, "RSH-033");
+  assert.equal(daylight.daylight.look, "summer14");
+  assert.equal(daylight.deferred_boundary.queue_head, "RSH-033");
+  assert.equal(night.night.look, "night");
+  assert.equal(night.night.hdri, false);
+  assert.equal(night.night.default_boot, false);
+  assert.equal(night.weather.default, "clear");
+  assert.equal(night.ibl.kind, "tiny_pmrem");
+  assert.equal(night.ibl.real_sky_ibl, false);
+  assert.equal(night.sky.width, 1024);
+  assert.equal(night.night.gis_claim, false);
+  assert.equal(night.night.owner_freeze, false);
+  const accepted = current.accepted_units["RSH-031"];
+  assert.equal(accepted.pull_request, 34);
+  assert.equal(accepted.workflow_run, 33712522927);
+  assert.equal(accepted.post_merge_workflow_run, 33712887704);
+  const entry = baseline.baselines.find((item) => item.id === "B031-rsh-031-accepted");
+  assert.equal(entry.commit_sha, accepted.merge_sha);
+  assert.equal(entry.validated_head_sha, accepted.validated_head_sha);
+  assert.equal(entry.pull_request, 34);
 });

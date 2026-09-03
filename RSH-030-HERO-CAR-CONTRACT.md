@@ -68,4 +68,4 @@ Fail-closed checking proves the live tokens still match the lock.
 
 RSH-031 — Lock daylight, sky and image-based lighting — is accepted on
 validated merge. RSH-032 — Lock night lighting, headlights and weather —
-remains deferred, unauthorized and uncreated.
+is accepted on validated merge. RSH-033 remains deferred, unauthorized and uncreated.
