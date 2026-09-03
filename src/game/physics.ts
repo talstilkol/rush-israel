@@ -8,7 +8,20 @@ export const PHYSICS_HZ = 120;
 export const PHYSICS_DT = 1 / PHYSICS_HZ;
 export const MAX_CATCHUP_STEPS = 24;
 export const MAX_ACCUMULATOR = 0.2;
-export const PHYSICS_VERSION = 6;
+// RSH-033-OVERLAY-BEGIN:physics-version
+export const PHYSICS_VERSION = 7;
+export const V100_MPS = 27.778;
+export const CLAIM_TOLERANCE = 0.15;
+export function claimAccel(zeroTo100: number) {
+  return V100_MPS / Math.max(3.2, zeroTo100);
+}
+export function claimBand(claim: number, tolerance = CLAIM_TOLERANCE) {
+  return { low: claim * (1 - tolerance), high: claim * (1 + tolerance) };
+}
+export function launchAccel(zeroTo100: number, dragAccel = 0, speedAbs = 0) {
+  return claimAccel(zeroTo100) + (speedAbs <= V100_MPS ? dragAccel : 0);
+}
+// RSH-033-OVERLAY-END:physics-version
 
 export type HandlingMode = "arcade" | "simcade";
 
