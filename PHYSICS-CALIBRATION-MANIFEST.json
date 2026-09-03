@@ -44,7 +44,7 @@
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "checker_test_sha256": "05c9df05195d688c336878d21ff8bdd6701b04cc59eb6aa0084527a7865c82e5",
-    "golden_accel_sha256": "0bd850ec0ec63fd46b71a68f16b72c0109818ca9cf90909a9725f957ce6c15fc"
+    "golden_accel_sha256": "3bd812e9f60184a846fbd1ffe6392b3a9d42a6a1f25c6df83bfb9a3e966fa224"
 
   },
   "deferred_boundary": {

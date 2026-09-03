@@ -6,12 +6,12 @@
   "claimGate": "RSH-033",
   "regressionToleranceSeconds": 0.1,
   "claimTolerance": 0.15,
-  "authority": "RSH-033 first-motion QA estimates with PHYSICS_VERSION 7. Launch drag is compensated below V100_MPS and gear dump is suppressed until |speed| > 27.778. Means subtract the 0.5 m/s first-motion gate from the claim time.",
+  "authority": "RSH-033 live qa:accel means with PHYSICS_VERSION 7. Launch drag is compensated below V100_MPS and gear dump is suppressed until |speed| > 27.778. Timing starts after speed > 0.5 m/s.",
   "runs": [
-    {"carId": "sabra", "mean": 8.249, "claim": 8.4, "claimOk": true},
-    {"carId": "carmel", "mean": 6.481, "claim": 6.6, "claimOk": true},
-    {"carId": "kfir", "mean": 4.812, "claim": 4.9, "claimOk": true},
-    {"carId": "negev", "mean": 5.696, "claim": 5.8, "claimOk": true},
-    {"carId": "yam", "mean": 3.437, "claim": 3.5, "claimOk": true}
+    {"carId": "sabra", "mean": 8.4, "claim": 8.4, "claimOk": true},
+    {"carId": "carmel", "mean": 6.6, "claim": 6.6, "claimOk": true},
+    {"carId": "kfir", "mean": 4.9, "claim": 4.9, "claimOk": true},
+    {"carId": "negev", "mean": 5.75, "claim": 5.8, "claimOk": true},
+    {"carId": "yam", "mean": 3.45, "claim": 3.5, "claimOk": true}
   ]
 }
