@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-031",
+    "queue_head": "RSH-032",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -122,11 +122,11 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh031",
-      ".github/workflows/rsh-031-",
-      "RSH-031-",
-      "scripts/rsh031-",
-      "src/game/ayalon-light/",
+      ".rsh032",
+      ".github/workflows/rsh-032-",
+      "RSH-032-",
+      "scripts/rsh032-",
+      "src/game/ayalon-night/",
       "src/game/records-v2/"
     ],
     "rsh_026_authorized": true,
@@ -144,8 +144,11 @@
     "rsh_030_authorized": true,
     "rsh_030_started": true,
     "rsh_030_state": "accepted_on_merge",
-    "rsh_031_authorized": false,
-    "rsh_031_started": false
+    "rsh_031_authorized": true,
+    "rsh_031_started": true,
+    "rsh_031_state": "accepted_on_merge",
+    "rsh_032_authorized": false,
+    "rsh_032_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -264,5 +267,17 @@
     "owner_freeze": false,
     "gis_claim": false,
     "schema_guard_test_sha256": "bd8312995bbae62c63281155ee584c2841fb746bb69c634724969fd49904d02d"
+  },
+  "rsh_031_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "DAYLIGHT-SKY-MANIFEST.json",
+    "contract": "RSH-031-DAYLIGHT-CONTRACT.md",
+    "look": "summer14",
+    "hdri": false,
+    "real_sky_ibl": false,
+    "ibl_kind": "tiny_pmrem",
+    "owner_freeze": false,
+    "gis_claim": false,
+    "schema_guard_test_sha256": "0b001df024e9f5b3599e8e003b808f3e1eecb56e53ceb866c45a2ef808fe36c3"
   }
 }

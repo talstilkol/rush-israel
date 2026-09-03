@@ -3,38 +3,38 @@
 **Version:** 15.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-030 implementation base:** `a42a99bed98c4a55b343e744cf374e68d3b51899`
-**State effective on:** merge of the RSH-030 pull request
-**Next unit:** `RSH-031` — deferred and not authorised
+**RSH-031 implementation base:** `7a4451f4c55fe8aa44ad7999fc6de6e1c78c868c`
+**State effective on:** merge of the RSH-031 pull request
+**Next unit:** `RSH-032` — deferred and not authorised
 
 ## Authority
 
-The current plain `next` / `המשך` instruction authorised exactly RSH-030. That authority is consumed on validated merge and does not extend to RSH-031.
+The current plain `next` / `המשך` instruction authorised exactly RSH-031. That authority is consumed on validated merge and does not extend to RSH-032.
 
-## RSH-030 acceptance boundary
+## RSH-031 acceptance boundary
 
-- Version 1 ships exactly five fictional cars (`sabra`, `carmel`, `kfir`, `negev`, `yam`);
-- bodies stay the live extruded Meshopt kit (`gt`, `hatch`, `muscle`, `rally`, `super`);
-- scanned / licensed-real / user-supplied hero glTF remain absent;
-- LOD caps stay 40000 / 12000 / 4000 with player-car LOD0;
-- silhouette gate stays five distinct 64×24 hashes;
+- Daylight look stays `summer14` (exposure 0.56, wetness 0.18, night 0, vis 1);
+- day lights stay hemi `0xa8c8e8/0x4a5248/0.68`, key `0xfff0d0/1.12`, fill `0xc4d8f0/0.28`, ambient `0xb0c4d8/0.32`;
+- baked day sky stays `/game/sky-day.png` 1024×512 equirect, not HDRI;
+- IBL stays the live tiny three-object PMREM (`bakeEnv(night=false)`), not a real-sky IBL;
+- color pipeline stays sRGB + ACES filmic;
 - GIS/navigation claims and owner freeze remain forbidden;
-- `cars.ts`, `car-mesh.ts`, `car-assets.ts`, physics, rendering, Ayalon locks and `ayalon.lock` are unchanged;
-- no RSH-031 lighting structure exists.
+- `sky-assets.ts`, `postfx.ts`, `world.ts`, engine lighting, Ayalon locks and `ayalon.lock` are unchanged;
+- no RSH-032 night/headlight/weather structure exists.
 
 ## Post-merge state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 30 |
-| Deferred | 37 |
-| Remaining | 37 |
-| Queue head | RSH-031 |
-| RSH-031 authorised | No |
+| Accepted | 31 |
+| Deferred | 36 |
+| Remaining | 36 |
+| Queue head | RSH-032 |
+| RSH-032 authorised | No |
 | Current authority remaining | 0 |
 | Save schema version | 3 |
 | Unverified asset files | 66 |
 | Release gates | 0/13 |
 
-A new explicit owner instruction is required before RSH-031 may be created or executed.
+A new explicit owner instruction is required before RSH-032 may be created or executed.
