@@ -1,24 +1,24 @@
 {
   "schema_version": "15.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-03T03:45:00.000Z",
+  "generated_at": "2026-09-03T04:30:00.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_027_pull_request",
-    "implementation_base_sha": "dddae060b76ac2b4abe8de1046a374e8eb7725fc",
-    "self_reference_boundary": "The RSH-027 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_028_pull_request",
+    "implementation_base_sha": "d9b25b6ad8a035041c699d64860f9dac357b774d",
+    "self_reference_boundary": "The RSH-028 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "dddae060b76ac2b4abe8de1046a374e8eb7725fc",
-    "tree_sha": "2e5ae4dcae29815561c96d69fcdfddc46e318bcb",
-    "commit_authored_at": "2026-09-03T00:36:04Z",
-    "commit_message": "Merge PR #29: RSH-026 — Lock Ayalon road geometry, widths and lanes",
+    "head_sha": "d9b25b6ad8a035041c699d64860f9dac357b774d",
+    "tree_sha": "3534d98bf73f21656f7344d2c03a088f1fae698a",
+    "commit_authored_at": "2026-09-03T01:17:31Z",
+    "commit_message": "Merge PR #30: RSH-027 — Lock Ayalon ramps, barriers, colliders and checkpoints",
     "commit_signature_verified": true,
-    "role": "RSH-027 exact implementation base"
+    "role": "RSH-028 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 27,
+    "accepted_units": 28,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 40,
-    "remaining_units": 40,
-    "queue_head": "RSH-028",
+    "deferred_units": 39,
+    "remaining_units": 39,
+    "queue_head": "RSH-029",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -753,7 +753,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-027": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-027-ayalon-colliders",
       "pull_request_resolution": "the pull request created from the exact RSH-027 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -779,16 +779,53 @@
       "rendering_changes": 0,
       "asset_changes": 0,
       "dependency_changes": 0,
-      "rsh_028_created": false
+      "rsh_028_created": true,
+      "pull_request": 30,
+      "validated_head_sha": "da0ea1f1dee79d30772c2a6cef6370c98e3e0c78",
+      "merge_sha": "d9b25b6ad8a035041c699d64860f9dac357b774d",
+      "tree_sha": "3534d98bf73f21656f7344d2c03a088f1fae698a",
+      "workflow_run": 33702664486,
+      "workflow_job": 100485094289,
+      "artifact_id": 9874151699,
+      "artifact_digest": "sha256:fe1b4b69437b17068d14e441176e75a2e36e11f758fb62fe19f118313b13a9da",
+      "post_merge_workflow_run": 33703049952,
+      "post_merge_workflow_job": 100486252474,
+      "post_merge_artifact_id": 9874276818,
+      "post_merge_artifact_digest": "sha256:7d6a3c71ea84c0e54b7cfad22dbafbf7b182336b7cce30b2074986a441a21c02",
+      "unresolved_review_threads": 0
+    },
+    "RSH-028": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-028-ayalon-landmarks",
+      "pull_request_resolution": "the pull request created from the exact RSH-028 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-028 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-028 merge SHA",
+      "manifest": "AYALON-LANDMARK-MANIFEST.json",
+      "contract": "RSH-028-AYALON-LANDMARK-CONTRACT.md",
+      "track_id": "ayalon",
+      "width": 28,
+      "track_poi_count": 9,
+      "builder_place_calls": 8,
+      "builder_extra_landmarks": 6,
+      "owner_freeze": false,
+      "gis_claim": false,
+      "track_source_changes": 0,
+      "world_changes": 0,
+      "physics_changes": 0,
+      "rendering_changes": 0,
+      "asset_changes": 0,
+      "dependency_changes": 0,
+      "rsh_029_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-027",
+    "unit": "RSH-028",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-027-ayalon-colliders",
+    "branch": "agent/rsh-028-ayalon-landmarks",
     "authority_consumed": true,
-    "next_unit": "RSH-028",
+    "next_unit": "RSH-029",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -844,7 +881,10 @@
     "RSH-027_authorized": false,
     "RSH-027_was_separately_authorized": true,
     "RSH-027_authorization_consumed": true,
-    "RSH-028_authorized": false
+    "RSH-028_authorized": false,
+    "RSH-028_was_separately_authorized": true,
+    "RSH-028_authorization_consumed": true,
+    "RSH-029_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -919,8 +959,8 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The plain next instruction authorized exactly RSH-027 and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-028.",
+    "The plain next instruction authorized exactly RSH-028 and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-029.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13."
   ],
@@ -1048,12 +1088,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-027"
+      "RSH-028"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-027_merge",
-    "RSH_028_authorized": false
+    "state": "consumed_on_RSH-028_merge",
+    "RSH_029_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -1092,12 +1132,12 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-026"
+      "RSH-027"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-026_merge",
-    "RSH_027_authorized": false
+    "state": "consumed_on_RSH-027_merge",
+    "RSH_028_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -1394,7 +1434,7 @@
     "RSH_027_state": "accepted_on_merge"
   },
   "rsh_027_ayalon_colliders": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "AYALON-COLLIDER-MANIFEST.json",
     "human_contract": "RSH-027-AYALON-COLLIDER-CONTRACT.md",
     "validator": "scripts/check-ayalon-colliders.mjs",
@@ -1408,7 +1448,30 @@
     "barrier_wall_d_extra": 1.55,
     "owner_freeze": false,
     "gis_claim": false,
-    "RSH_028_created": false,
-    "RSH_028_authorized": false
+    "RSH_028_created": true,
+    "RSH_028_authorized": true,
+    "pull_request": 30,
+    "validated_head_sha": "da0ea1f1dee79d30772c2a6cef6370c98e3e0c78",
+    "merge_sha": "d9b25b6ad8a035041c699d64860f9dac357b774d",
+    "tree_sha": "3534d98bf73f21656f7344d2c03a088f1fae698a",
+    "workflow_run": 33702664486,
+    "post_merge_workflow_run": 33703049952,
+    "RSH_028_state": "accepted_on_merge"
+  },
+  "rsh_028_ayalon_landmarks": {
+    "state": "accepted_on_merge",
+    "machine_authority": "AYALON-LANDMARK-MANIFEST.json",
+    "human_contract": "RSH-028-AYALON-LANDMARK-CONTRACT.md",
+    "validator": "scripts/check-ayalon-landmarks.mjs",
+    "test": "scripts/check-ayalon-landmarks.test.mjs",
+    "track_id": "ayalon",
+    "width": 28,
+    "track_poi_count": 9,
+    "builder_place_calls": 8,
+    "builder_extra_landmarks": 6,
+    "owner_freeze": false,
+    "gis_claim": false,
+    "RSH_029_created": false,
+    "RSH_029_authorized": false
   }
 }

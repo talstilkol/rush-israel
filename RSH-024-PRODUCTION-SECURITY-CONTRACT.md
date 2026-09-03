@@ -68,5 +68,5 @@ not mutate repository visibility, rulesets or required-check settings.
 
 ## Deferred boundary
 
-RSH-025, RSH-026 and RSH-027 are accepted on validated merge. RSH-028 — Lock
+RSH-025 through RSH-028 are accepted on validated merge. RSH-029 — Lock
 Ayalon landmark placement — remains deferred, unauthorized and uncreated.

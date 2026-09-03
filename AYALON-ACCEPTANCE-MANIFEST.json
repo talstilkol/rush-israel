@@ -113,26 +113,29 @@
     "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
     "pixel_golden_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
     "ayalon_hash_script_sha256": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
-    "checker_test_sha256": "b37e2a4b52cdd1f2ce1bbcf9c13b0486c046ce5154ceb3bd0b7955ea678834e2",
+    "checker_test_sha256": "43477067e68c48819c1b1c68a31c38f5a64844bc3c3dc452e540dc5f3a09e5cc",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-028",
+    "queue_head": "RSH-029",
     "rsh_026_authorized": true,
     "rsh_026_started": true,
     "forbidden_prefixes": [
-      ".rsh028",
-      ".github/workflows/rsh-028-",
-      "RSH-028-",
-      "scripts/rsh028-",
-      "src/game/ayalon-landmarks/"
+      ".rsh029",
+      ".github/workflows/rsh-029-",
+      "RSH-029-",
+      "scripts/rsh029-",
+      "src/game/ayalon-asphalt/"
     ],
     "rsh_026_state": "accepted_on_merge",
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
-    "rsh_028_authorized": false,
-    "rsh_028_started": false
+    "rsh_028_authorized": true,
+    "rsh_028_started": true,
+    "rsh_028_state": "accepted_on_merge",
+    "rsh_029_authorized": false,
+    "rsh_029_started": false
   },
   "rsh_026_overlay": {
     "state": "accepted_on_merge",
@@ -150,6 +153,16 @@
     "contract": "RSH-027-AYALON-COLLIDER-CONTRACT.md",
     "ramp_count": 50,
     "checkpoint_count": 8,
+    "owner_freeze": false,
+    "gis_claim": false
+  },
+  "rsh_028_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "AYALON-LANDMARK-MANIFEST.json",
+    "contract": "RSH-028-AYALON-LANDMARK-CONTRACT.md",
+    "track_poi_count": 9,
+    "builder_place_calls": 8,
+    "builder_extra_landmarks": 6,
     "owner_freeze": false,
     "gis_claim": false
   }

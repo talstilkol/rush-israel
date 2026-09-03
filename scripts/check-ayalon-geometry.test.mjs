@@ -14,7 +14,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-026 Ayalon geometry lock passes under the RSH-027 overlay and RSH-028 remains absent", () => {
+test("committed RSH-026 Ayalon geometry lock passes under the RSH-028 overlay and RSH-029 remains absent", () => {
   const result = validateAyalonGeometry();
   assert.deepEqual(result.errors, []);
   assert.equal(result.trackId, "ayalon");
@@ -23,11 +23,11 @@ test("committed RSH-026 Ayalon geometry lock passes under the RSH-027 overlay an
   assert.equal(result.pointCount, 27);
 });
 
-test("RSH-028 precreation fails closed", () => {
+test("RSH-029 precreation fails closed", () => {
   const result = validateAyalonGeometry({
-    repositoryFiles: ["RSH-028-PREFLIGHT.json", "src/game/ayalon-lock/geometry.ts"],
+    repositoryFiles: ["RSH-029-PREFLIGHT.json", "src/game/ayalon-lock/geometry.ts"],
   });
-  assert.match(messages(result), /RSH-028 was precreated/);
+  assert.match(messages(result), /RSH-029 was precreated/);
 });
 
 test("live spline stays 27 samples of width 28 / 8 lanes", () => {

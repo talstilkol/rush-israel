@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "8a1405e972a5cf9760e1aa8b8a04782720150025ab3d03f9ca3b83222af36cbd";
+export const EXPECTED_MANIFEST_SHA256 = "1da54a83f1af8641a176460567cf40a2c6416e9d236bedfadf93b32327c94037";
 export const EXPECTED_RECOVERY_SHA256 = "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f";
 export const EXPECTED_UI_SHA256 = "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26";
 export const EXPECTED_SAVE_FACADE_SHA256 = "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2";
@@ -181,8 +181,8 @@ export function validateSaveRecovery(overrides = {}) {
   const recoveryFiles = input.repositoryFiles.filter((path) => /^src\/game\/save-recovery(?:-ui)?\.ts$/.test(path));
   if (JSON.stringify(recoveryFiles) !== JSON.stringify(["src/game/save-recovery-ui.ts", "src/game/save-recovery.ts"])) errors.push(`RSH-022 recovery source set changed: ${recoveryFiles.join(", ")}`);
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-028 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-028" || manifest.deferred_boundary?.rsh_023_authorized !== true || manifest.deferred_boundary?.rsh_023_started !== true || manifest.deferred_boundary?.rsh_024_started !== true || manifest.deferred_boundary?.rsh_025_started !== true || manifest.deferred_boundary?.rsh_026_started !== true || manifest.deferred_boundary?.rsh_027_started !== true || manifest.deferred_boundary?.rsh_028_started !== false) errors.push("RSH-028 deferred boundary changed");
+  if (later.length) errors.push(`RSH-029 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-029" || manifest.deferred_boundary?.rsh_023_authorized !== true || manifest.deferred_boundary?.rsh_023_started !== true || manifest.deferred_boundary?.rsh_024_started !== true || manifest.deferred_boundary?.rsh_025_started !== true || manifest.deferred_boundary?.rsh_026_started !== true || manifest.deferred_boundary?.rsh_027_started !== true || manifest.deferred_boundary?.rsh_028_started !== true || manifest.deferred_boundary?.rsh_029_started !== false) errors.push("RSH-029 deferred boundary changed");
 
   return {
     errors,
@@ -204,5 +204,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`save-recovery fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`save-recovery ok: schema v${result.schemaVersion}; ${result.backupKeys} bounded keys; ${result.quarantineSlots} rejected-save slots; RSH-023 accepted; RSH-024 overlay accepted; RSH-025 overlay accepted; RSH-026 overlay accepted; RSH-027 overlay accepted; RSH-028 deferred`);
+  console.log(`save-recovery ok: schema v${result.schemaVersion}; ${result.backupKeys} bounded keys; ${result.quarantineSlots} rejected-save slots; RSH-023 accepted; RSH-024 overlay accepted; RSH-025 overlay accepted; RSH-026 overlay accepted; RSH-027 overlay accepted; RSH-028 overlay accepted; RSH-029 deferred`);
 }
