@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-035",
+    "queue_head": "RSH-036",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -122,11 +122,11 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh035",
-      ".github/workflows/rsh-035-",
-      "RSH-035-",
-      "scripts/rsh035-",
-      "src/game/ayalon-golden/",
+      ".rsh036",
+      ".github/workflows/rsh-036-",
+      "RSH-036-",
+      "scripts/rsh036-",
+      "src/game/ayalon-freeze/",
       "src/game/records-v2/"
     ],
     "rsh_026_authorized": true,
@@ -156,8 +156,11 @@
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "rsh_034_state": "accepted_on_merge",
-    "rsh_035_authorized": false,
-    "rsh_035_started": false
+    "rsh_035_authorized": true,
+    "rsh_035_started": true,
+    "rsh_035_state": "accepted_on_merge",
+    "rsh_036_authorized": false,
+    "rsh_036_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -321,5 +324,19 @@
     "owner_freeze": false,
     "gis_claim": false,
     "schema_guard_test_sha256": "c12f657bfe00f15092981db032d65767772f2af6a87b7674f6ddcc42a5c9e0f2"
+  },
+  "rsh_035_overlay": {
+    "state": "accepted_on_merge",
+    "manifest": "AYALON-GOLDEN-MANIFEST.json",
+    "contract": "RSH-035-AYALON-GOLDEN-CONTRACT.md",
+    "owner_approval": "AYALON-OWNER-APPROVAL.json",
+    "unique_count": 20,
+    "placeholder_count": 4,
+    "unique_pack_approved": true,
+    "placeholders_are_unique_evidence": false,
+    "freeze_granted": false,
+    "owner_freeze": false,
+    "gis_claim": false,
+    "schema_guard_test_sha256": "0cc52a3b1e19ff02d8923d82303f52cb6b79b0e4928c5ba5ff629cec4eec7ba5"
   }
 }

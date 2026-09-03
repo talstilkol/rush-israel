@@ -5,7 +5,7 @@
 **State effective on:** merge of the RSH-024 pull request
 **Date:** 2 September 2026
 **Total:** 42 findings — 12 P0, 18 P1, 12 P2
-**Status:** 13 OPEN, 7 MITIGATED, 22 CLOSED
+**Status:** 12 OPEN, 8 MITIGATED, 22 CLOSED
 
 ## Status rules
 
@@ -47,7 +47,7 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P1-14 | P1 | **CLOSED** | Core source files are excessively large | RSH-014–RSH-017 establish track, world and engine boundaries. RSH-018 reduces `game-app.tsx` from 1540 to 179 lines and moves screens, HUD and race control into three manifest-bound modules with byte-exact reconstruction. | RSH-014–RSH-018 |
 | P1-15 | P1 | **CLOSED** | Content, rendering, physics, UI and QA are tightly coupled | RSH-013–RSH-019 establish track, world, engine, UI and resource boundaries. RSH-020 removes unused template subsystems and pins the final direct dependency surface. | RSH-013–RSH-020 |
 | P1-16 | P1 | **OPEN** | Catalogue breadth precedes a verified vertical slice | RSH-010 classifies 8 MVP and 48 deferred tracks, but no track has an owner-approved release freeze. | RSH-025 through RSH-036 |
-| P1-17 | P1 | **OPEN** | Golden evidence does not yet form a trusted acceptance authority | Agent-generated captures exist; owner approval and unique authority are not recorded. | RSH-035, RSH-036 |
+| P1-17 | P1 | **MITIGATED** | Golden evidence does not yet form a trusted acceptance authority | RSH-035 records owner approval of the 20 unique Ayalon/HaShalom frames and keeps the four duplicate placeholders non-authority. Ayalon freeze and transitive-dependency hashes remain RSH-036. | RSH-036 |
 | P1-18 | P1 | **MITIGATED** | `EXECUTION_PLAN.md` is an operational monolith | RSH-001 removed it from queue authority, but the historic monolith remains. | RSH-001 |
 | P2-01 | P2 | **CLOSED** | Product metadata references Israel and New York | RSH-012 aligns the root title, description, package metadata, Open Graph and both PWA runtime paths to the frozen Israel-inspired private product. | RSH-012 |
 | P2-02 | P2 | **CLOSED** | CODEOWNERS and contribution templates are absent | RSH-002 merged CODEOWNERS, a PR template, contribution policy and governance contract. | RSH-002 |

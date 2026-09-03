@@ -1,42 +1,40 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 17.0.0
+**Version:** 18.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-034 implementation base:** `550c681445b2473cbd377131b60715ade0e58774`
-**State effective on:** merge of the RSH-034 pull request
-**Next unit:** `RSH-035` — deferred and not authorised
+**RSH-035 implementation base:** `0f53ae1e1451c3eff30a15829c0c0f43762feeb4`
+**State effective on:** merge of the RSH-035 pull request
+**Next unit:** `RSH-036` — deferred and not authorised
 
 ## Authority
 
-The current plain `next` / `המשך` instruction authorised exactly RSH-034. That authority is consumed on validated merge and does not extend to RSH-035.
+The current plain `next` / `המשך` instruction authorised exactly RSH-035. That authority is consumed on validated merge and does not extend to RSH-036.
 
-## RSH-034 acceptance boundary
+## RSH-035 acceptance boundary
 
-- live Version 1 audio stays Web Audio `oscillator` with four radio stations Pulse 101 / Yam FM / Underground / White Night at `126 / 94 / 138 / 108` BPM;
-- FMOD, Howler and streamed music stay forbidden;
-- keyboard steer is `A`/`←` = `+1` and `D`/`→` = `-1`; throttle / brake are `W`/`↑` and `S`/`↓`;
-- HUD speed is integer km/h from `speed * 3.6`;
-- touch stays `md:hidden` with Rewind, Brake, Drift, Nitro and Gas;
-- gamepad stays index `0` with `padCurve(dead 0.12, exp 1.6)` and no force-feedback;
-- `audio.ts`, `input.ts`, `hud.tsx`, `touch-controls.tsx`, `cars.ts`, `physics.ts` and `package.json` are not rewritten;
-- GIS/navigation claims, owner freeze and public distribution remain forbidden;
-- night/daylight/Ayalon/physics locks stay unchanged;
-- no RSH-035 golden-pack structure exists.
+- the unique Ayalon golden pack is the existing 20 non-placeholder Ayalon / HaShalom frames;
+- `hashalom-g04.png`, `hashalom-g05.png`, `hashalom-g06.png` and `hashalom-ramp.png` remain non-authority placeholders with SHA-256 `38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094`;
+- pixel-golden stays frames `ayalon-day-g01.png`, `ayalon-day-g05.png`, `ayalon-day-g07.png`, `ayalon-night-g08.png` at threshold `0.12` / fail `8%`;
+- `ayalon.lock` stays generation `11`;
+- owner unique-pack approval is recorded; placeholders are not unique evidence;
+- Ayalon freeze, GIS/navigation claims and public distribution remain forbidden;
+- golden PNG bytes, `ayalon.lock`, `hashalom-photo.json`, track / world / physics / audio / HUD sources and `package.json` are not rewritten;
+- no RSH-036 freeze structure exists.
 
 ## Post-merge state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 34 |
-| Deferred | 33 |
-| Remaining | 33 |
-| Queue head | RSH-035 |
-| RSH-035 authorised | No |
+| Accepted | 35 |
+| Deferred | 32 |
+| Remaining | 32 |
+| Queue head | RSH-036 |
+| RSH-036 authorised | No |
 | Current authority remaining | 0 |
 | Save schema version | 3 |
 | Unverified asset files | 66 |
 | Release gates | 0/13 |
 
-A new explicit owner instruction is required before RSH-035 may be created or executed.
+A new explicit owner instruction is required before RSH-036 may be created or executed.

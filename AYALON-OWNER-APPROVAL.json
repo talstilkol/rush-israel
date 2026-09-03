@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-ayalon-owner-approval",
+  "unit": "RSH-035",
+  "title": "Owner approval of the unique Ayalon golden pack",
+  "generated_at": "2026-09-03T08:03:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "instruction": "המשך",
+  "authorized_unit": "RSH-035",
+  "unique_pack_approved": true,
+  "placeholders_are_unique_evidence": false,
+  "freeze_granted": false,
+  "gis_claim": false,
+  "public_distribution": false,
+  "pixel_golden_required": true,
+  "ayalon_lock_generation": 11,
+  "unique_authority_frame_count": 20,
+  "non_authority_placeholder_count": 4,
+  "approved_by": "owner",
+  "finding": {
+    "id": "P1-17",
+    "status_after": "MITIGATED",
+    "remaining": "RSH-036 still has to freeze Ayalon and hash transitive dependencies"
+  }
+}
