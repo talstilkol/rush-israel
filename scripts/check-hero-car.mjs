@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { historicalRsh036Source } from "./rsh036-runtime-evolution.mjs";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
@@ -165,6 +166,8 @@ export function readHeroCarInputs() {
 
 export function validateHeroCar(overrides = {}) {
   const input = { ...readHeroCarInputs(), ...overrides };
+  // Preserve this historical contract only for hash-pinned, reviewed runtime edits.
+  input.assetsSource = historicalRsh036Source(input.assetsSource);
   const errors = [];
   let manifest, lock, asset;
   try {

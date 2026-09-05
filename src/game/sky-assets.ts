@@ -1,13 +1,20 @@
 import * as THREE from "three";
+import { createAssetCache } from "./asset-cache";
+import { loadOwnedResources } from "./owned-load";
 
-let day: THREE.Texture | undefined;
-let night: THREE.Texture | undefined;
+const cache = createAssetCache(() => {
+  const L = new THREE.TextureLoader();
+  return loadOwnedResources([
+    () => L.loadAsync("/game/sky-day.png"),
+    () => L.loadAsync("/game/sky-night.png"),
+  ], ([d, n]) => [prep(d), prep(n)] as const);
+});
 
 export function getSkyDay() {
-  return day;
+  return cache.peek()?.[0];
 }
 export function getSkyNight() {
-  return night;
+  return cache.peek()?.[1];
 }
 
 function prep(tex: THREE.Texture) {
@@ -20,9 +27,5 @@ function prep(tex: THREE.Texture) {
 
 /** Baked gradient skies. Not HDRI. */
 export async function loadSky() {
-  if (day && night) return;
-  const L = new THREE.TextureLoader();
-  const [d, n] = await Promise.all([L.loadAsync("/game/sky-day.png"), L.loadAsync("/game/sky-night.png")]);
-  day = prep(d);
-  night = prep(n);
+  await cache.load();
 }

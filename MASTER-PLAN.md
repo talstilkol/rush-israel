@@ -406,3 +406,22 @@ pixels. Remote candidate validation is still required. This repair belongs to
 existing AUD-13 and RSH-036, not activation or acceptance of a later track unit.
 The explicit source inventory is46 paths, still partial. Eight asset families
 remain unrepaired; all four original golden comparisons remain blocking failures.
+
+
+## r6.5 — 6 September 2026: transactional asset-cache repairs
+
+Active unit remains RSH-036, accepted35/67, remaining32; RSH-037 is inactive.
+All eight batch families from the preserved RSH-036-ASSET-BATCH-REVIEW.json now
+have atomic single-flight caches and complete rollback/retry tests. No partially
+loaded Map is published. Unpublished GLTF rollback owns geometries, materials,
+textures and bitmap resources; accepted process-owned caches stay alive.
+The same48 regression cases produced5 pass/43 failures on r6.4 and48/48 after
+repair;5 helper cases pass separately. Locked CI and8 actual asset-browser
+cases must run on the new exact head before any validation claim.
+
+Golden provenance: the four pixel images originate at b0e3e525 (26 August2026).
+Run scripts/golden-provenance.mjs with full Git history and retain its byte-level
+report. This is not proof that a particular refactor caused the differences.
+No baselines, thresholds or acceptance histories are rewritten. Generated
+dependency closure and all four original visual comparisons remain blockers.
+See MASTER-PLAN-r6.json and RSH-036-RUNTIME-REPAIR-r6.5.md.

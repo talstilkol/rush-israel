@@ -360,7 +360,7 @@
       "current_sha256": "35810413542c7b57ac5b7cabc0ede8fec5cf19ceff8a3ca2e109ce6b7ab0031d"
     },
     "scripts/runtime-recovery-smoke.mjs": {
-      "current_sha256": "2a6d315bf76c904993e36979e86d20e0b8e5b330fb6d898ff5e526dbdd6f9ea8"
+      "current_sha256": "19ddec35eacfaf0c8c9e485d0096e14cd97bc07c8b196cfb251f42ce146e9018"
     },
     "src/game/road-assets.ts": {
       "previous_sha256": "17cc9cc0ad287a6fcd74e0a40b122ad830733247b50b1e39eb6f2afb8a35146e",
@@ -478,6 +478,273 @@
     },
     "scripts/rothschild-visibility-browser.mjs": {
       "current_sha256": "845be5205471a547a7d10b1642b9f0ae4d235dd958392609801e174884a9f7fe"
+    },
+    "src/game/sky-assets.ts": {
+      "previous_sha256": "7b3eaf34c76bb6ea0e7305e5a6ac8f151c4ed5497e2640e5ab95a103b6c288c4",
+      "current_sha256": "621ff97db2cd2127ff53b679833b961d3a6d4dd5265974b011a7c160c71ffae9",
+      "reverse_edits": [
+        {
+          "start_line": 1,
+          "end_line": 3,
+          "current_segment_sha256": "10a1f59d0191e4d2b51369245bce30d2b52ff9817a653feef02f11f352815f87",
+          "previous_text": ""
+        },
+        {
+          "start_line": 4,
+          "end_line": 11,
+          "current_segment_sha256": "50de05a219236b2c7d2fae138fbd5d5efdfab8a1c5172b83caeeb877a26256d2",
+          "previous_text": "let day: THREE.Texture | undefined;\nlet night: THREE.Texture | undefined;\n"
+        },
+        {
+          "start_line": 13,
+          "end_line": 14,
+          "current_segment_sha256": "36d6b85d2afdb1e6f33516a2afdf80760bf27d64125c6fe436b4233a3e23a9f9",
+          "previous_text": "  return day;\n"
+        },
+        {
+          "start_line": 16,
+          "end_line": 17,
+          "current_segment_sha256": "23b18aa8e42030f1de7223468ef2558a095725ac6957a1325e7488c25f0b9ef2",
+          "previous_text": "  return night;\n"
+        },
+        {
+          "start_line": 29,
+          "end_line": 30,
+          "current_segment_sha256": "c4e93c62e54375884ad5f61989ab76a7fddbd2c59f7f51ef45084a1554a75503",
+          "previous_text": "  if (day && night) return;\n  const L = new THREE.TextureLoader();\n  const [d, n] = await Promise.all([L.loadAsync(\"/game/sky-day.png\"), L.loadAsync(\"/game/sky-night.png\")]);\n  day = prep(d);\n  night = prep(n);\n"
+        }
+      ]
+    },
+    "src/game/tree-assets.ts": {
+      "previous_sha256": "788d3bb7768b065c72bfaabdbd135b61e841b89f0ac2bdce637801e96ebf8a1b",
+      "current_sha256": "fa2349e25fd3f3e46d13c8fa61ba5220e3a905e78c24daa821ec2f0f0fc091e0",
+      "reverse_edits": [
+        {
+          "start_line": 1,
+          "end_line": 3,
+          "current_segment_sha256": "10a1f59d0191e4d2b51369245bce30d2b52ff9817a653feef02f11f352815f87",
+          "previous_text": ""
+        },
+        {
+          "start_line": 4,
+          "end_line": 11,
+          "current_segment_sha256": "5373ae2a6207ffb3df3d0889841fd8b283226520667fdaca721abd46b56aa0c9",
+          "previous_text": "let foliage: THREE.Texture | undefined;\nlet bark: THREE.Texture | undefined;\n"
+        },
+        {
+          "start_line": 13,
+          "end_line": 14,
+          "current_segment_sha256": "36d6b85d2afdb1e6f33516a2afdf80760bf27d64125c6fe436b4233a3e23a9f9",
+          "previous_text": "  return foliage;\n"
+        },
+        {
+          "start_line": 16,
+          "end_line": 17,
+          "current_segment_sha256": "23b18aa8e42030f1de7223468ef2558a095725ac6957a1325e7488c25f0b9ef2",
+          "previous_text": "  return bark;\n"
+        },
+        {
+          "start_line": 29,
+          "end_line": 30,
+          "current_segment_sha256": "c4e93c62e54375884ad5f61989ab76a7fddbd2c59f7f51ef45084a1554a75503",
+          "previous_text": "  if (foliage && bark) return;\n  const L = new THREE.TextureLoader();\n  const [f, b] = await Promise.all([L.loadAsync(\"/game/foliage.png\"), L.loadAsync(\"/game/bark.png\")]);\n  foliage = prep(f, 2);\n  bark = prep(b, 3);\n"
+        }
+      ]
+    },
+    "src/game/flare-assets.ts": {
+      "previous_sha256": "ef209105c1bea4a22c3af8d8d11842377a500ea1d903a88b88065c5a18295dc6",
+      "current_sha256": "4c29b305572b50cf419b5f656bea3f9e72bc5120fd61e625a451a86f72dcf6ce",
+      "reverse_edits": [
+        {
+          "start_line": 1,
+          "end_line": 3,
+          "current_segment_sha256": "10a1f59d0191e4d2b51369245bce30d2b52ff9817a653feef02f11f352815f87",
+          "previous_text": ""
+        },
+        {
+          "start_line": 4,
+          "end_line": 17,
+          "current_segment_sha256": "f8765a427b67d041a2d5d909fe58dad44ae90b3675cb6f34fa13f9d16e6997bd",
+          "previous_text": "let a: THREE.Texture | undefined;\nlet b: THREE.Texture | undefined;\n"
+        },
+        {
+          "start_line": 18,
+          "end_line": 21,
+          "current_segment_sha256": "4fd4580cc93a5bff91bb7ebe5f24dbd34dd6c43ce8b7bfef5eecd6638f26a99e",
+          "previous_text": "export function getFlare0() {\n  return a;\n}\nexport function getFlare1() {\n  return b;\n}\n\nexport async function loadFlares() {\n  if (a && b) return;\n  const L = new THREE.TextureLoader();\n  const [t0, t1] = await Promise.all([L.loadAsync(\"/game/flare-0.png\"), L.loadAsync(\"/game/flare-1.png\")]);\n  t0.colorSpace = THREE.SRGBColorSpace;\n  t1.colorSpace = THREE.SRGBColorSpace;\n  t0.needsUpdate = true;\n  t1.needsUpdate = true;\n  a = t0;\n  b = t1;\n}\n"
+        }
+      ]
+    },
+    "src/game/water-assets.ts": {
+      "previous_sha256": "31d193b1e8bed8d46f0a30dc03bfe9b01827244763679bb76a4c1b9b86305be3",
+      "current_sha256": "c88645b7563dbdc869cbfd1883cb1c34faa442bbe4f7c3338f7b8f311b2c6318",
+      "reverse_edits": [
+        {
+          "start_line": 1,
+          "end_line": 3,
+          "current_segment_sha256": "10a1f59d0191e4d2b51369245bce30d2b52ff9817a653feef02f11f352815f87",
+          "previous_text": ""
+        },
+        {
+          "start_line": 4,
+          "end_line": 21,
+          "current_segment_sha256": "21c3c0bcf841ba0609e212aac73f7af441786609b4a60670c04e27951b9a1192",
+          "previous_text": "let water: THREE.Texture | undefined;\nlet checker: THREE.Texture | undefined;\n"
+        },
+        {
+          "start_line": 22,
+          "end_line": 25,
+          "current_segment_sha256": "d4123fffc75c497fa79c7ae5cfeace93324adbb54495b082ad352fcb19804bec",
+          "previous_text": "export function getWaterNormal() {\n  return water;\n}\nexport function getChecker() {\n  return checker;\n}\n\nexport async function loadWater() {\n  if (water && checker) return;\n  const L = new THREE.TextureLoader();\n  const [n, c] = await Promise.all([L.loadAsync(\"/game/water-n.png\"), L.loadAsync(\"/game/checker.png\")]);\n  n.wrapS = n.wrapT = THREE.RepeatWrapping;\n  n.repeat.set(48, 28);\n  n.anisotropy = 4;\n  n.needsUpdate = true;\n  c.magFilter = THREE.NearestFilter;\n  c.colorSpace = THREE.SRGBColorSpace;\n  c.repeat.set(1, 1);\n  c.needsUpdate = true;\n  water = n;\n  checker = c;\n}\n"
+        }
+      ]
+    },
+    "src/game/curb-assets.ts": {
+      "previous_sha256": "bd58ebb6c54fbd0d8fedd63dbd108d27f448a324672b7e0880462eaa7411ba30",
+      "current_sha256": "7d6778a2db23528c2f98b835602eb7cc7cd0cf9b1c6af97ea5cd0e1612e055a2",
+      "reverse_edits": [
+        {
+          "start_line": 1,
+          "end_line": 3,
+          "current_segment_sha256": "10a1f59d0191e4d2b51369245bce30d2b52ff9817a653feef02f11f352815f87",
+          "previous_text": ""
+        },
+        {
+          "start_line": 4,
+          "end_line": 6,
+          "current_segment_sha256": "8bdf2974b5327aec3f540ac40e520729698a02d86bd2a5791bc2d2b0d55c5a12",
+          "previous_text": "const kits = new Map<string, THREE.Texture>();\n\nexport function getCurb(kind: string) {\n  return kits.get(kind) ?? kits.get(\"city\");\n}\n\nexport async function loadCurbs() {\n  if (kits.size) return;\n"
+        },
+        {
+          "start_line": 7,
+          "end_line": 10,
+          "current_segment_sha256": "f38752d101afedb12460f82131e7a84b11bb3c37799675a922887b2658374862",
+          "previous_text": "  await Promise.all(\n    ([\"city\", \"stone\", \"dirt\", \"sand\"] as const).map(async (k) => {\n      const t = await L.loadAsync(`/game/curb-${k}.png`);\n"
+        },
+        {
+          "start_line": 15,
+          "end_line": 24,
+          "current_segment_sha256": "0e9dbdd3e8dcccbea43dea79348ff1ee831a7598cef319267a92497dbde2cfcb",
+          "previous_text": "      kits.set(k, t);\n    }),\n  );\n"
+        },
+        {
+          "start_line": 25,
+          "end_line": 26,
+          "current_segment_sha256": "7e8a578d4671fa08b92b8c343b312cc7f4d25afc92d5e1164657f3f61dfed1d8",
+          "previous_text": ""
+        }
+      ]
+    },
+    "src/game/facade-assets.ts": {
+      "previous_sha256": "48367fcf166508b0d86545bf87b2eca2ceb09168a3638281208db255c9acd1f3",
+      "current_sha256": "16c25666913980a340ab182865236b273a36cb0444b2ae67d97f1c7198fba588",
+      "reverse_edits": [
+        {
+          "start_line": 1,
+          "end_line": 3,
+          "current_segment_sha256": "10a1f59d0191e4d2b51369245bce30d2b52ff9817a653feef02f11f352815f87",
+          "previous_text": ""
+        },
+        {
+          "start_line": 4,
+          "end_line": 6,
+          "current_segment_sha256": "cc0a7b40222776374767bda231e504eccb5b223973ed47b14fc58123c53c856d",
+          "previous_text": "const kits = new Map<string, THREE.Texture>();\n\nexport function getCurtain(kind: string) {\n  return kits.get(kind) ?? kits.get(\"blue\");\n}\n\nexport async function loadCurtains() {\n  if (kits.size) return;\n"
+        },
+        {
+          "start_line": 7,
+          "end_line": 10,
+          "current_segment_sha256": "30132850d25a0701ef08595a548c1b3685c77457505c903b5711527583984993",
+          "previous_text": "  await Promise.all(\n    ([\"blue\", \"teal\", \"dark\", \"gold\", \"white\"] as const).map(async (k) => {\n      const t = await L.loadAsync(`/game/curtain-${k}.png`);\n"
+        },
+        {
+          "start_line": 15,
+          "end_line": 24,
+          "current_segment_sha256": "fff2d2b340575893a4d5f0336b20a9a79a3eb37a8e9929ebf5abf4007d2fff3a",
+          "previous_text": "      kits.set(k, t);\n    }),\n  );\n"
+        },
+        {
+          "start_line": 25,
+          "end_line": 26,
+          "current_segment_sha256": "df811100dffb1f1df1086f271a42b07105b39b600aa594b3ff43eb7789bf7cb1",
+          "previous_text": ""
+        }
+      ]
+    },
+    "src/game/sign-assets.ts": {
+      "previous_sha256": "e32237575c42ec1efcb9a3edaae8aa2a382920aaaceecabb875ce6c12da8387b",
+      "current_sha256": "b6a27de50bb2386cf10c6347d9497f52d26596cefbd8f6e309cc6b03b070e4df",
+      "reverse_edits": [
+        {
+          "start_line": 1,
+          "end_line": 3,
+          "current_segment_sha256": "10a1f59d0191e4d2b51369245bce30d2b52ff9817a653feef02f11f352815f87",
+          "previous_text": ""
+        },
+        {
+          "start_line": 4,
+          "end_line": 4,
+          "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "previous_text": "const kits = new Map<string, THREE.Texture>();\n"
+        },
+        {
+          "start_line": 19,
+          "end_line": 25,
+          "current_segment_sha256": "6e89c320921afc0edb38ab1efe3e443b80e50d0fa11c056cf80ee97d960a4da3",
+          "previous_text": "export function getSign(kind: string) {\n  return kits.get(kind);\n}\n\nexport function getGantry(id: string) {\n  return kits.get(id);\n}\n\nexport async function loadSigns() {\n  if (kits.size) return;\n"
+        },
+        {
+          "start_line": 26,
+          "end_line": 29,
+          "current_segment_sha256": "fa08381ab597c97aa59164492ecd13cacd265240129d7d163e1b32be39c02ecc",
+          "previous_text": "  const names = [\"stop\", \"yield\", \"none\", \"speed50\", \"speed80\", \"speed90\"] as const;\n  await Promise.all([\n    ...names.map(async (k) => {\n      const t = await L.loadAsync(`/game/sign-${k}.png`);\n"
+        },
+        {
+          "start_line": 32,
+          "end_line": 41,
+          "current_segment_sha256": "ecf20ffe2272ff1d186ba8a8dde4a501199c3ac55ddb248c770533500a02b277",
+          "previous_text": "      kits.set(k, t);\n    }),\n    ...GANTRY.map(async (k) => {\n      const t = await L.loadAsync(`/game/${k}.png`);\n      t.colorSpace = THREE.SRGBColorSpace;\n      t.anisotropy = 4;\n      t.needsUpdate = true;\n      kits.set(k, t);\n    }),\n  ]);\n}\n"
+        }
+      ]
+    },
+    "src/game/car-assets.ts": {
+      "previous_sha256": "92ea1de990a318a38e4d4fb363be0ae2d4818fc4fa3711e0a11cf77b6c599a79",
+      "current_sha256": "f1d2979738d429413f032bc277a208cb1ce4a6440b1307b54486acf15ac69ced",
+      "reverse_edits": [
+        {
+          "start_line": 4,
+          "end_line": 7,
+          "current_segment_sha256": "95be49945c5e0f564d086cbf55ab04782b9f9b26f26dfab0d61fd156e3a3a484",
+          "previous_text": ""
+        },
+        {
+          "start_line": 8,
+          "end_line": 18,
+          "current_segment_sha256": "53dd68452f3e845562d8792a8b2aacb96f48aaac33db4a245a092b83894e1ddd",
+          "previous_text": "const templates = new Map<string, THREE.Object3D>();\n"
+        },
+        {
+          "start_line": 21,
+          "end_line": 23,
+          "current_segment_sha256": "bf23bb2c7d61ea83d007553cf7bcdb04ccb5a07188e8c253adcf56f80a958d3e",
+          "previous_text": "  const template = templates.get(kind) ?? templates.get(\"gt\");\n"
+        },
+        {
+          "start_line": 50,
+          "end_line": 51,
+          "current_segment_sha256": "c4e93c62e54375884ad5f61989ab76a7fddbd2c59f7f51ef45084a1554a75503",
+          "previous_text": "  if (templates.size) return;\n  const loader = new GLTFLoader();\n  loader.setMeshoptDecoder(MeshoptDecoder);\n  const kinds = [\"gt\", \"hatch\", \"muscle\", \"rally\", \"super\"] as const;\n  await Promise.all(\n    kinds.map(async (k) => {\n      const gltf = await loader.loadAsync(`/game/car-${k}.glb`);\n      templates.set(k, gltf.scene);\n    }),\n  );\n"
+        }
+      ]
+    },
+    "src/game/asset-cache.ts": {
+      "current_sha256": "de91927bc569d2c59747eb67d01b53c6801da89734f2cc9d7cef8e4b1e92bcea"
+    },
+    "src/game/unpublished-gltf.ts": {
+      "current_sha256": "562bd829ab7bef93926428faf74b9bb443f9e708304fa086f2b6e7ec829535ae"
+    },
+    "scripts/asset-batches-browser.mjs": {
+      "current_sha256": "32bfda53c77e92efdda4d998c8a27096d6efc5a23e2fdc9387ff66544fbf29e1"
     }
   }
 }

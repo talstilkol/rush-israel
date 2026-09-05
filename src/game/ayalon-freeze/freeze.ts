@@ -58,6 +58,16 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "src/game/owned-load.ts": "3c8cee655cc312b0ae3f79c2699effe650dc252a184cf7990222d052543a74d9",
   "src/game/water-clock.ts": "fd08dc8beb44d54b2839ad82cb8d6386e7ad76ef4b06e382bd80be005c101472",
   "src/game/world-builders/tracks/rothschild.ts": "b857d4624524250ae05b9dd022c3309ae6a60c42da1b1894493de111464b3a7b",
+  "src/game/sky-assets.ts": "621ff97db2cd2127ff53b679833b961d3a6d4dd5265974b011a7c160c71ffae9",
+  "src/game/tree-assets.ts": "fa2349e25fd3f3e46d13c8fa61ba5220e3a905e78c24daa821ec2f0f0fc091e0",
+  "src/game/flare-assets.ts": "4c29b305572b50cf419b5f656bea3f9e72bc5120fd61e625a451a86f72dcf6ce",
+  "src/game/water-assets.ts": "c88645b7563dbdc869cbfd1883cb1c34faa442bbe4f7c3338f7b8f311b2c6318",
+  "src/game/curb-assets.ts": "7d6778a2db23528c2f98b835602eb7cc7cd0cf9b1c6af97ea5cd0e1612e055a2",
+  "src/game/facade-assets.ts": "16c25666913980a340ab182865236b273a36cb0444b2ae67d97f1c7198fba588",
+  "src/game/sign-assets.ts": "b6a27de50bb2386cf10c6347d9497f52d26596cefbd8f6e309cc6b03b070e4df",
+  "src/game/car-assets.ts": "f1d2979738d429413f032bc277a208cb1ce4a6440b1307b54486acf15ac69ced",
+  "src/game/asset-cache.ts": "de91927bc569d2c59747eb67d01b53c6801da89734f2cc9d7cef8e4b1e92bcea",
+  "src/game/unpublished-gltf.ts": "562bd829ab7bef93926428faf74b9bb443f9e708304fa086f2b6e7ec829535ae",
 } as const;
 
 export const FREEZE_APPROVAL = {

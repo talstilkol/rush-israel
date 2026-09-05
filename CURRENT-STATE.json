@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-05",
+  "generated_at": "2026-09-06T00:00:00+03:00",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -1997,31 +1997,33 @@
     "transitive_coverage_complete": false,
     "runtime_remediation_complete": false,
     "freeze_granted": false,
-    "partial_inventory_count": 46,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.4.md",
+    "partial_inventory_count": 56,
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.5.md",
     "local_unit_tests": {
-      "scope": "complete candidate suite on local Node22.16.0/TypeScript5.8.3; locked dependencies validated remotely separately",
-      "passed": 614,
+      "scope": "new controlled asset/cache tests only; Node22.16.0, local TS5.8.3, not a locked dependency install",
+      "passed": 53,
       "failed": 0,
       "skipped": 0,
       "locked_dependency_install": false
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
     "previous_exact_head_ci": {
-      "head": "c7b6bbcd3fea034cc0f872b397134231ec8dc410",
-      "run_id": 33992057910,
-      "tests_passed": 607
+      "head": "3486e3351f596670e9fb0a55387bf0ecdcd442df",
+      "run_id": 33993082441,
+      "tests_passed": 614,
+      "browser_cases_passed": 12
     },
-    "resource_repairs": "prepared_pending_exact_head_ci",
-    "scene_visibility": "foliage_overflow_reproduced_all_instances_preserved_by_capacity_fix_remote_pending",
+    "resource_repairs": "eight_additional_families_implemented_pending_new_exact_head_ci",
+    "scene_visibility": "r6.4_actual_browser_scene_gate_passed_retained",
     "water_clock_repair": "129_transitions_verified_golden0of4_passed",
     "foliage_repair": {
       "previous_capacity": 960,
       "required_instances": 1152,
       "new_capacity": 1536,
       "retained_trees": 96,
-      "status": "implemented_pending_actual_browser_validation",
+      "status": "verified_in_r6.4_exact_head_run33993082441",
       "diagnostic_run": 33992134755
-    }
+    },
+    "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json"
   }
 }
