@@ -1,0 +1,37 @@
+name: rsh036-r64-capacity-diagnostic
+on:
+  push:
+    branches: [agent/rsh-036-r64-capacity-20260905]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      NODE_OPTIONS: --experimental-strip-types
+      PLAYWRIGHT_BROWSERS_PATH: '0'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm install --global npm@10.9.2
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Observe actual instance counts without source repairs
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/capacity
+          git rev-parse HEAD > artifacts/capacity/source-head.txt
+          node scripts/run-with-server.mjs -- node .rsh036-r64-capacity.mjs 2>&1 | tee artifacts/capacity/run.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rsh036-r64-capacity-${{ github.run_id }}
+          path: artifacts/capacity/**
+          if-no-files-found: error
+          retention-days: 14
