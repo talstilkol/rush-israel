@@ -2,11 +2,9 @@ name: required-ci
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -30,6 +28,27 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: Capture exact-head audit sources and complete tree inventory
+        run: |
+          git rev-parse HEAD > "$RUNNER_TEMP/source-head.txt"
+          git ls-tree -r -l HEAD > "$RUNNER_TEMP/source-tree.txt"
+          git archive --format=tar.gz --output="$RUNNER_TEMP/rush-audit-source.tar.gz" HEAD -- . ':(exclude)**/*.woff' ':(exclude)**/*.woff2' ':(exclude)**/*.ttf' ':(exclude)**/*.otf' ':(exclude)**/*.eot'
+          sha256sum "$RUNNER_TEMP/rush-audit-source.tar.gz" > "$RUNNER_TEMP/source-sha256.txt"
+
+      - name: Upload audit sources before validation
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-source-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/rush-audit-source.tar.gz
+            ${{ runner.temp }}/source-head.txt
+            ${{ runner.temp }}/source-tree.txt
+            ${{ runner.temp }}/source-sha256.txt
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
 
       - name: Set up pinned Node.js
         uses: actions/setup-node@v4
