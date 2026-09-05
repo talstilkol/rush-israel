@@ -6,7 +6,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-033 physics calibration lock passes and RSH-036 remains absent", () => {
+test("committed RSH-033 physics calibration lock passes and RSH-037 remains absent", () => {
   const result = validatePhysicsCalibration();
   assert.deepEqual(result.errors, []);
   assert.equal(result.physicsVersion, 7);

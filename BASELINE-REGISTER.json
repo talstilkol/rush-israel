@@ -1,7 +1,7 @@
 {
-  "schema_version": "18.0.0",
+  "schema_version": "20.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-03T08:03:00.000Z",
+  "generated_at": "2026-09-05",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -673,23 +673,34 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-09-03T07:42:36.000Z",
       "description": "Audio, HUD, keyboard, touch and gamepad behaviour locked on validated merge."
+    },
+    {
+      "id": "B035-rsh-035-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-035",
+      "branch": "agent/rsh-035-ayalon-golden",
+      "pull_request": 38,
+      "commit_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+      "tree_sha": "566e932c949ccc246883c28e6e1778fdc9f734a3",
+      "validated_head_sha": "847d88bc094d243a48a07a99da94b488f50e000e",
+      "recorded_at": "2026-09-05",
+      "description": "PR #38 live merged state and exact revision reconciled. No unverified CI or review identifiers are added."
     }
   ],
   "working_state": {
-    "unit": "RSH-035",
-    "state": "accepted_on_merge",
-    "implementation_base_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4",
-    "branch": "agent/rsh-035-ayalon-golden",
-    "manifest": "AYALON-GOLDEN-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-035 pull request"
+    "unit": "RSH-036",
+    "state": "in_review",
+    "implementation_base_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+    "branch": "agent/rsh-036-ayalon-freeze",
+    "pull_request": 39,
+    "manifest": "AYALON-FREEZE-MANIFEST.json",
+    "acceptance_recorded": false
   },
   "post_merge_queue": {
-    "queue_head": "RSH-036",
-    "state": "deferred_not_authorized",
-    "branch": null,
-    "pull_request": null,
-    "requires_new_next": true,
-    "RSH_036_authorized": false
+    "queue_head": "RSH-037",
+    "state": "authorized_not_activated",
+    "requires_new_owner_authorization": false,
+    "activation_requires": "verified acceptance of RSH-036"
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

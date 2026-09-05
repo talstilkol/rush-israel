@@ -1,0 +1,1452 @@
+{
+  "schema_version": "1.0.0",
+  "revision": "r6.1",
+  "date": "2026-09-05",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "status": "owner_authorised_candidate_pending_validation_and_merge",
+  "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+  "source_pr_head": "4878a3bcb48969dd3f8735a4f5b45b12aaa809e1",
+  "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
+  "counts": {
+    "units": 67,
+    "accepted": 35,
+    "in_review": 1,
+    "remaining": 32,
+    "audit_items": 16,
+    "legacy_findings": 42,
+    "repair_bundles": 6
+  },
+  "v1_track_ids": [
+    "ayalon",
+    "rothschild",
+    "namal",
+    "oldjaffa",
+    "scopus",
+    "haifa",
+    "ramon",
+    "hermon"
+  ],
+  "deferred_track_count": 48,
+  "units": [
+    {
+      "id": "RSH-001",
+      "title": "Canonical program control",
+      "status": "accepted",
+      "predecessor": null,
+      "additional_acceptance": [],
+      "audit_items": [
+        "AUD-14"
+      ]
+    },
+    {
+      "id": "RSH-002",
+      "title": "Repository governance and visibility policy",
+      "status": "accepted",
+      "predecessor": "RSH-001",
+      "additional_acceptance": [],
+      "audit_items": [
+        "AUD-03"
+      ]
+    },
+    {
+      "id": "RSH-003",
+      "title": "Baseline, milestones, labels and release register",
+      "status": "accepted",
+      "predecessor": "RSH-002",
+      "additional_acceptance": [],
+      "audit_items": [
+        "AUD-14"
+      ]
+    },
+    {
+      "id": "RSH-004",
+      "title": "Pin Node, npm and reproducible installation",
+      "status": "accepted",
+      "predecessor": "RSH-003",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-005",
+      "title": "Remove absolute workspace paths and make scripts portable",
+      "status": "accepted",
+      "predecessor": "RSH-004",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-006",
+      "title": "Build a self-starting QA harness",
+      "status": "accepted",
+      "predecessor": "RSH-005",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-007",
+      "title": "Create GitHub Actions CI",
+      "status": "accepted",
+      "predecessor": "RSH-006",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-008",
+      "title": "Enforce required checks, branch protection and CI artifacts",
+      "status": "accepted",
+      "predecessor": "RSH-007",
+      "additional_acceptance": [],
+      "audit_items": [
+        "AUD-02",
+        "AUD-05"
+      ]
+    },
+    {
+      "id": "RSH-009",
+      "title": "Freeze the Version 1 product definition",
+      "status": "accepted",
+      "predecessor": "RSH-008",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-010",
+      "title": "Classify the track catalogue into 8 MVP and 48 deferred tracks",
+      "status": "accepted",
+      "predecessor": "RSH-009",
+      "additional_acceptance": [],
+      "audit_items": [
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-011",
+      "title": "Create the complete asset provenance and licence inventory",
+      "status": "accepted",
+      "predecessor": "RSH-010",
+      "additional_acceptance": [],
+      "audit_items": [
+        "AUD-12"
+      ]
+    },
+    {
+      "id": "RSH-012",
+      "title": "Align README, metadata, branding, licence and PWA scope",
+      "status": "accepted",
+      "predecessor": "RSH-011",
+      "additional_acceptance": [],
+      "audit_items": [
+        "AUD-03",
+        "AUD-12"
+      ]
+    },
+    {
+      "id": "RSH-013",
+      "title": "Define and validate the canonical track schema",
+      "status": "accepted",
+      "predecessor": "RSH-012",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-014",
+      "title": "Split `tracks.ts` into one module per track",
+      "status": "accepted",
+      "predecessor": "RSH-013",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-015",
+      "title": "Extract the world core from `world.ts`",
+      "status": "accepted",
+      "predecessor": "RSH-014",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-016",
+      "title": "Create isolated world builders per track",
+      "status": "accepted",
+      "predecessor": "RSH-015",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-017",
+      "title": "Split `engine.ts` into loop, rendering, physics and QA adapters",
+      "status": "accepted",
+      "predecessor": "RSH-016",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-018",
+      "title": "Split `game-app.tsx` into screens, HUD and race controller",
+      "status": "accepted",
+      "predecessor": "RSH-017",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-019",
+      "title": "Complete resource ownership, disposal and leak accounting",
+      "status": "accepted",
+      "predecessor": "RSH-018",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-020",
+      "title": "Isolate or remove unused auth, DB, multiplayer and template dependencies",
+      "status": "accepted",
+      "predecessor": "RSH-019",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-021",
+      "title": "Version the save schema and implement deterministic migrations",
+      "status": "accepted",
+      "predecessor": "RSH-020",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-022",
+      "title": "Add save backup, corruption recovery and user-visible failure handling",
+      "status": "accepted",
+      "predecessor": "RSH-021",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-023",
+      "title": "Harden timed records, write ordering, deduplication and storage limits",
+      "status": "accepted",
+      "predecessor": "RSH-022",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-024",
+      "title": "Harden production security and separate DB migration from build",
+      "status": "accepted",
+      "predecessor": "RSH-023",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-025",
+      "title": "Define Ayalon acceptance criteria and reference pack",
+      "status": "accepted",
+      "predecessor": "RSH-024",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-026",
+      "title": "Lock Ayalon road geometry, widths and lanes",
+      "status": "accepted",
+      "predecessor": "RSH-025",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-027",
+      "title": "Lock Ayalon ramps, barriers, colliders and checkpoints",
+      "status": "accepted",
+      "predecessor": "RSH-026",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-028",
+      "title": "Lock Ayalon landmark placement",
+      "status": "accepted",
+      "predecessor": "RSH-027",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-029",
+      "title": "Lock Ayalon asphalt, sidewalks, markings and signs",
+      "status": "accepted",
+      "predecessor": "RSH-028",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-030",
+      "title": "Deliver the Version 1 hero car, LODs and silhouette gate",
+      "status": "accepted",
+      "predecessor": "RSH-029",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-031",
+      "title": "Lock daylight, sky and image-based lighting",
+      "status": "accepted",
+      "predecessor": "RSH-030",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-032",
+      "title": "Lock night lighting, headlights and weather",
+      "status": "accepted",
+      "predecessor": "RSH-031",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-033",
+      "title": "Calibrate driving physics and the five-car performance table",
+      "status": "accepted",
+      "predecessor": "RSH-032",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-034",
+      "title": "Lock audio, HUD, keyboard, touch and gamepad behaviour",
+      "status": "accepted",
+      "predecessor": "RSH-033",
+      "additional_acceptance": [],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-035",
+      "title": "Produce the unique Ayalon golden pack and owner approval record",
+      "status": "accepted",
+      "predecessor": "RSH-034",
+      "additional_acceptance": [],
+      "audit_items": [
+        "AUD-05"
+      ]
+    },
+    {
+      "id": "RSH-036",
+      "title": "Freeze Ayalon and hash all transitive dependencies",
+      "status": "in_review",
+      "predecessor": "RSH-035",
+      "additional_acceptance": [
+        "Complete CR-02, CR-03 and CR-04 before accepting a freeze.",
+        "Historical golden bytes and lock generation are not refreshed to hide a regression."
+      ],
+      "audit_items": [
+        "AUD-01",
+        "AUD-04",
+        "AUD-05",
+        "AUD-06",
+        "AUD-07",
+        "AUD-08",
+        "AUD-11",
+        "AUD-14",
+        "AUD-15",
+        "AUD-16"
+      ]
+    },
+    {
+      "id": "RSH-037",
+      "title": "Instrument p50, p95, p99, draw calls, triangles and memory",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-036",
+      "additional_acceptance": [
+        "Collect raw percentile, GPU and memory samples with environment metadata.",
+        "Centralise activation fences without changing historical acceptance evidence."
+      ],
+      "audit_items": [
+        "AUD-10",
+        "AUD-16"
+      ]
+    },
+    {
+      "id": "RSH-038",
+      "title": "Define quality profiles and dynamic-quality hysteresis",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-037",
+      "additional_acceptance": [
+        "Test threshold hysteresis and cooldown to prevent oscillation."
+      ],
+      "audit_items": [
+        "AUD-10"
+      ]
+    },
+    {
+      "id": "RSH-039",
+      "title": "Set bundle, asset-streaming and cache budgets",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-038",
+      "additional_acceptance": [
+        "Fail CI on documented bundle/asset/cache budget regressions."
+      ],
+      "audit_items": [
+        "AUD-10"
+      ]
+    },
+    {
+      "id": "RSH-040",
+      "title": "Pass 20 race enter-exit cycles without a resource leak",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-039",
+      "additional_acceptance": [
+        "Prove flat resource ownership after 20 complete race lifecycles."
+      ],
+      "audit_items": [
+        "AUD-10",
+        "AUD-11"
+      ]
+    },
+    {
+      "id": "RSH-041",
+      "title": "Pass WebGL context-loss and recovery tests",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-040",
+      "additional_acceptance": [
+        "Exercise repeated WebGL context loss and recovery without data loss."
+      ],
+      "audit_items": [
+        "AUD-10"
+      ]
+    },
+    {
+      "id": "RSH-042",
+      "title": "Pass the 30-minute soak test",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-041",
+      "additional_acceptance": [
+        "Complete an actual uninterrupted 30-minute soak; smoke runs do not substitute."
+      ],
+      "audit_items": [
+        "AUD-05",
+        "AUD-10"
+      ]
+    },
+    {
+      "id": "RSH-043",
+      "title": "Validate the browser and device support matrix",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-042",
+      "additional_acceptance": [
+        "Document exact tested browser/OS/device versions, unsupported cases and real-device gaps."
+      ],
+      "audit_items": [
+        "AUD-10"
+      ]
+    },
+    {
+      "id": "RSH-044",
+      "title": "Unify keyboard, touch and gamepad input maps",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-043",
+      "additional_acceptance": [
+        "Test keyboard focus, gamepad disconnect, touch-action, pointer cancellation and orientation."
+      ],
+      "audit_items": [
+        "AUD-07",
+        "AUD-11"
+      ]
+    },
+    {
+      "id": "RSH-045",
+      "title": "Complete Hebrew RTL, English LTR and the Arabic-scope decision",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-044",
+      "additional_acceptance": [
+        "Verify mixed Hebrew/English text, numbers, safe areas and language persistence."
+      ],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-046",
+      "title": "Complete onboarding, settings, error and recovery flows",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-045",
+      "additional_acceptance": [
+        "Test initial loading, retries, failed storage, race restart, settings and onboarding errors."
+      ],
+      "audit_items": [
+        "AUD-06",
+        "AUD-08",
+        "AUD-11"
+      ]
+    },
+    {
+      "id": "RSH-047",
+      "title": "Complete PWA, offline, update and manifest behaviour",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-046",
+      "additional_acceptance": [
+        "Exercise offline-first/return visits, failed fetches, cache status, multi-tab upgrades and rollback."
+      ],
+      "audit_items": [
+        "AUD-09"
+      ]
+    },
+    {
+      "id": "RSH-048",
+      "title": "Pass accessibility, privacy and Alpha UX gates",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-047",
+      "additional_acceptance": [
+        "Keyboard and screen-reader checks; explicit privacy/retention/consent decisions; no unapproved telemetry."
+      ],
+      "audit_items": []
+    },
+    {
+      "id": "RSH-049",
+      "title": "Rothschild geometry and driving",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-048",
+      "additional_acceptance": [
+        "Independent driving/geometry validation on this exact canonical track."
+      ],
+      "audit_items": [
+        "AUD-07",
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-050",
+      "title": "Rothschild art, golden and freeze",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-049",
+      "additional_acceptance": [
+        "Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof."
+      ],
+      "audit_items": [
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-051",
+      "title": "Yarkon–Reading geometry and driving",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-050",
+      "additional_acceptance": [
+        "Independent driving/geometry validation on this exact canonical track."
+      ],
+      "audit_items": [
+        "AUD-07",
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-052",
+      "title": "Yarkon–Reading art, golden and freeze",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-051",
+      "additional_acceptance": [
+        "Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof."
+      ],
+      "audit_items": [
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-053",
+      "title": "Jaffa geometry and driving",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-052",
+      "additional_acceptance": [
+        "Independent driving/geometry validation on this exact canonical track."
+      ],
+      "audit_items": [
+        "AUD-07",
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-054",
+      "title": "Jaffa art, golden and freeze",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-053",
+      "additional_acceptance": [
+        "Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof."
+      ],
+      "audit_items": [
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-055",
+      "title": "Jerusalem–Scopus geometry and driving",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-054",
+      "additional_acceptance": [
+        "Independent driving/geometry validation on this exact canonical track."
+      ],
+      "audit_items": [
+        "AUD-07",
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-056",
+      "title": "Jerusalem–Scopus art, golden and freeze",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-055",
+      "additional_acceptance": [
+        "Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof."
+      ],
+      "audit_items": [
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-057",
+      "title": "Haifa–Carmel geometry and driving",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-056",
+      "additional_acceptance": [
+        "Independent driving/geometry validation on this exact canonical track."
+      ],
+      "audit_items": [
+        "AUD-07",
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-058",
+      "title": "Haifa–Carmel art, golden and freeze",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-057",
+      "additional_acceptance": [
+        "Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof."
+      ],
+      "audit_items": [
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-059",
+      "title": "Ramon geometry and driving",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-058",
+      "additional_acceptance": [
+        "Independent driving/geometry validation on this exact canonical track."
+      ],
+      "audit_items": [
+        "AUD-07",
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-060",
+      "title": "Ramon art, golden and freeze",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-059",
+      "additional_acceptance": [
+        "Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof."
+      ],
+      "audit_items": [
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-061",
+      "title": "Hermon geometry and driving",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-060",
+      "additional_acceptance": [
+        "Independent driving/geometry validation on this exact canonical track."
+      ],
+      "audit_items": [
+        "AUD-07",
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-062",
+      "title": "Hermon art, golden and freeze",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-061",
+      "additional_acceptance": [
+        "Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof."
+      ],
+      "audit_items": [
+        "AUD-13"
+      ]
+    },
+    {
+      "id": "RSH-063",
+      "title": "Establish SemVer, changelog and release automation",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-062",
+      "additional_acceptance": [
+        "Versioned changelog and ADRs; dependency/licence re-review; regressions and evidence traceability."
+      ],
+      "audit_items": [
+        "AUD-02",
+        "AUD-08",
+        "AUD-14",
+        "AUD-16"
+      ]
+    },
+    {
+      "id": "RSH-064",
+      "title": "Establish preview, staging, production and rollback",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-063",
+      "additional_acceptance": [
+        "Private preview/staging/production separation; successful rollback plus offline update coverage."
+      ],
+      "audit_items": [
+        "AUD-02",
+        "AUD-05",
+        "AUD-09",
+        "AUD-14"
+      ]
+    },
+    {
+      "id": "RSH-065",
+      "title": "Publish and evaluate `v0.1.0-alpha.1`",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-064",
+      "additional_acceptance": [
+        "Private owner-controlled alpha only; all applicable evidence and licensing gates pass."
+      ],
+      "audit_items": [
+        "AUD-02",
+        "AUD-03",
+        "AUD-05",
+        "AUD-12",
+        "AUD-14"
+      ]
+    },
+    {
+      "id": "RSH-066",
+      "title": "Produce RC1 and close all blocking defects",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-065",
+      "additional_acceptance": [
+        "Triage all open blockers; stable browser/device regression matrix and no unresolved P0/P1 release defects."
+      ],
+      "audit_items": [
+        "AUD-02",
+        "AUD-03",
+        "AUD-05",
+        "AUD-12",
+        "AUD-14"
+      ]
+    },
+    {
+      "id": "RSH-067",
+      "title": "Publish `v1.0.0` with signed tag, dossier and rollback proof",
+      "status": "authorised_not_activated",
+      "predecessor": "RSH-066",
+      "additional_acceptance": [
+        "Private owner-controlled v1 only; signed tag, complete licence/evidence dossier and verified rollback."
+      ],
+      "audit_items": [
+        "AUD-02",
+        "AUD-03",
+        "AUD-05",
+        "AUD-12",
+        "AUD-14"
+      ]
+    }
+  ],
+  "audit_items": [
+    {
+      "id": "AUD-01",
+      "severity": "P0",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [
+        "P0-09",
+        "P1-11"
+      ],
+      "title": "Historical unit boundaries reject the authorised RSH-036 implementation",
+      "acceptance": "Reproduce 30 failures; repair only stale boundary assertions; retain fail-closed future guards; complete exact-head CI.",
+      "status": "candidate_repaired",
+      "bundle": "CR-02"
+    },
+    {
+      "id": "AUD-02",
+      "severity": "P0",
+      "units": [
+        "RSH-008",
+        "RSH-063",
+        "RSH-064",
+        "RSH-065",
+        "RSH-066",
+        "RSH-067"
+      ],
+      "legacy_findings": [
+        "P0-02",
+        "P0-03",
+        "P1-01"
+      ],
+      "title": "Main branch protection is not applied",
+      "acceptance": "Re-read live rules; enforce exact-head required checks, PRs, no force/deletion and resolved threads; retain external blocker until administrative proof.",
+      "status": "open_external",
+      "bundle": "CR-01"
+    },
+    {
+      "id": "AUD-03",
+      "severity": "P0",
+      "units": [
+        "RSH-002",
+        "RSH-012",
+        "RSH-065",
+        "RSH-066",
+        "RSH-067"
+      ],
+      "legacy_findings": [
+        "P0-01"
+      ],
+      "title": "Public repository visibility conflicts with private product policy",
+      "acceptance": "Resolve visibility using authorised settings capability and verify live; do not equate a proprietary licence with private visibility.",
+      "status": "open_external",
+      "bundle": "CR-01"
+    },
+    {
+      "id": "AUD-04",
+      "severity": "P0",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [
+        "P1-16",
+        "P1-17"
+      ],
+      "title": "Manually selected 36 freeze dependencies do not prove transitive completeness",
+      "acceptance": "Generate dependency closure from entry points, dynamic imports, runtime assets and configuration; explicit exclusions and missing-edge tests; freeze exact verified source and asset hashes.",
+      "status": "open",
+      "bundle": "CR-03"
+    },
+    {
+      "id": "AUD-05",
+      "severity": "P1",
+      "units": [
+        "RSH-008",
+        "RSH-035",
+        "RSH-036",
+        "RSH-042",
+        "RSH-064",
+        "RSH-065",
+        "RSH-066",
+        "RSH-067"
+      ],
+      "legacy_findings": [
+        "P1-12",
+        "P1-17"
+      ],
+      "title": "Diagnostic summaries do not establish complete exact-source acceptance evidence",
+      "acceptance": "Retain full tree/source hashes, test details, browser/runtime/golden reports and reproducible command provenance, including failures; keep original golden PNG bytes.",
+      "status": "partially_repaired",
+      "bundle": "CR-05"
+    },
+    {
+      "id": "AUD-06",
+      "severity": "P1",
+      "units": [
+        "RSH-036",
+        "RSH-046"
+      ],
+      "legacy_findings": [],
+      "title": "Runtime loading failure can leave a cached rejected promise and no recovery UI",
+      "acceptance": "Inject failed dynamic import, clear rejected cache, catch every async race-start failure and offer accessible retry; prove subsequent success and no duplicate engine.",
+      "status": "open",
+      "bundle": "CR-04"
+    },
+    {
+      "id": "AUD-07",
+      "severity": "P1",
+      "units": [
+        "RSH-036",
+        "RSH-044",
+        "RSH-049",
+        "RSH-051",
+        "RSH-053",
+        "RSH-055",
+        "RSH-057",
+        "RSH-059",
+        "RSH-061"
+      ],
+      "legacy_findings": [],
+      "title": "Minimap rendering can connect the endpoints of an open track",
+      "acceptance": "Close/wrap only loop tracks; test end-of-route sampling and clamp open-track endpoint; visual evidence for Ayalon and a loop track.",
+      "status": "open",
+      "bundle": "CR-04"
+    },
+    {
+      "id": "AUD-08",
+      "severity": "P1",
+      "units": [
+        "RSH-036",
+        "RSH-046",
+        "RSH-063"
+      ],
+      "legacy_findings": [
+        "P1-02",
+        "P1-03",
+        "P1-04"
+      ],
+      "title": "Timed-record storage acquisition or reading can throw outside the recovery boundary",
+      "acceptance": "Inject throwing storage getter/getItem, denied storage and quota failures; return explicit structured failure, preserve bytes, retry safely and retain integrity/write-order tests.",
+      "status": "open",
+      "bundle": "CR-04"
+    },
+    {
+      "id": "AUD-09",
+      "severity": "P1",
+      "units": [
+        "RSH-047",
+        "RSH-064"
+      ],
+      "legacy_findings": [],
+      "title": "PWA error caching, offline recovery and update behavior need complete acceptance",
+      "acceptance": "Do not cache non-success responses; test first/return offline visits, unavailable chunks, schema-safe upgrades, multiple tabs, rollback and stale-cache cleanup.",
+      "status": "open",
+      "bundle": "CR-06"
+    },
+    {
+      "id": "AUD-10",
+      "severity": "P1",
+      "units": [
+        "RSH-037",
+        "RSH-038",
+        "RSH-039",
+        "RSH-040",
+        "RSH-041",
+        "RSH-042",
+        "RSH-043"
+      ],
+      "legacy_findings": [
+        "P1-13"
+      ],
+      "title": "Real-device GPU, memory and tail-latency evidence is absent",
+      "acceptance": "Instrument p50/p95/p99 and resource metrics; preserve raw samples/device/browser/quality metadata; 20-cycle, context recovery and 30-minute soak evidence. No simulated hardware claims.",
+      "status": "open",
+      "bundle": "CR-06"
+    },
+    {
+      "id": "AUD-11",
+      "severity": "P2",
+      "units": [
+        "RSH-036",
+        "RSH-040",
+        "RSH-044",
+        "RSH-046"
+      ],
+      "legacy_findings": [],
+      "title": "125 lint warnings need risk classification rather than blanket suppression",
+      "acceptance": "Inventory exact rule/path counts; prioritise hook lifecycle and unused critical-path code; fix in appropriate units with zero newly introduced warnings and no rule disabling.",
+      "status": "open",
+      "bundle": "CR-05"
+    },
+    {
+      "id": "AUD-12",
+      "severity": "P0",
+      "units": [
+        "RSH-011",
+        "RSH-012",
+        "RSH-065",
+        "RSH-066",
+        "RSH-067"
+      ],
+      "legacy_findings": [
+        "P0-12"
+      ],
+      "title": "66 asset files remain unverified for use and distribution",
+      "acceptance": "For each asset record source, owner, permission/licence and proof; replace or remove uncleared material. Inventory coverage is not clearance; keep release gate closed.",
+      "status": "open_external",
+      "bundle": "CR-01"
+    },
+    {
+      "id": "AUD-13",
+      "severity": "P1",
+      "units": [
+        "RSH-010",
+        "RSH-049",
+        "RSH-050",
+        "RSH-051",
+        "RSH-052",
+        "RSH-053",
+        "RSH-054",
+        "RSH-055",
+        "RSH-056",
+        "RSH-057",
+        "RSH-058",
+        "RSH-059",
+        "RSH-060",
+        "RSH-061",
+        "RSH-062"
+      ],
+      "legacy_findings": [
+        "P1-16"
+      ],
+      "title": "Catalogue breadth must not substitute for the eight verified V1 tracks",
+      "acceptance": "Preserve canonical eight MVP IDs and 48 deferred tracks; each added V1 track gets geometry/driving and art/golden/freeze acceptance after Ayalon.",
+      "status": "open",
+      "bundle": "CR-06"
+    },
+    {
+      "id": "AUD-14",
+      "severity": "P1",
+      "units": [
+        "RSH-001",
+        "RSH-003",
+        "RSH-036",
+        "RSH-063",
+        "RSH-064",
+        "RSH-065",
+        "RSH-066",
+        "RSH-067"
+      ],
+      "legacy_findings": [
+        "P0-09",
+        "P1-18"
+      ],
+      "title": "Current state, future projections and historical approvals are conflated",
+      "acceptance": "Record actual merged acceptance only; separate in-review and authorised-not-activated work; harmonise JSON, master plan, NEXT and evidence; preserve history.",
+      "status": "candidate_repaired",
+      "bundle": "CR-02"
+    },
+    {
+      "id": "AUD-15",
+      "severity": "P0",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Earlier r6 proposal misassigned canonical unit titles, V1 tracks and legacy finding IDs",
+      "acceptance": "Rebuild mappings from live canonical 67-unit plan, track classification and 42-row findings register; retain earlier report as non-authoritative; add negative mapping tests.",
+      "status": "candidate_repaired",
+      "bundle": "CR-02"
+    },
+    {
+      "id": "AUD-16",
+      "severity": "P1",
+      "units": [
+        "RSH-036",
+        "RSH-037",
+        "RSH-063"
+      ],
+      "legacy_findings": [],
+      "title": "Copied hard-coded phase fences cause recurrent transition failures",
+      "acceptance": "Add central execution invariants and all-future-unit negative tests now; replace duplicated live activation fences in a separately tested transition layer while preserving historical reconstruction hashes.",
+      "status": "partially_repaired",
+      "bundle": "CR-02"
+    }
+  ],
+  "legacy_findings": [
+    {
+      "id": "P0-01",
+      "severity": "P0",
+      "status": "OPEN",
+      "finding": "Repository visibility conflicts with the private-code statement",
+      "evidence": "GitHub still reports public visibility. RSH-012 establishes an explicit proprietary licence but does not change repository visibility.",
+      "remediation": "Owner changes visibility to private; live re-verification"
+    },
+    {
+      "id": "P0-02",
+      "severity": "P0",
+      "status": "OPEN",
+      "finding": "`main` is not protected",
+      "evidence": "GitHub reports `protected=false`, required checks 0 and rulesets 0. RSH-008 records the desired ruleset, but no administrative mutation has been applied.",
+      "remediation": "Owner applies `REPOSITORY-RULESET-DESIRED.json`; live re-verification"
+    },
+    {
+      "id": "P0-03",
+      "severity": "P0",
+      "status": "MITIGATED",
+      "finding": "No branch-and-PR delivery workflow exists",
+      "evidence": "RSH-001–RSH-013 use isolated branches and PRs; governance, CODEOWNERS and templates are versioned. Live settings enforcement remains absent.",
+      "remediation": "Apply the RSH-008 desired ruleset"
+    },
+    {
+      "id": "P0-04",
+      "severity": "P0",
+      "status": "CLOSED",
+      "finding": "No GitHub Actions CI is present",
+      "evidence": "RSH-007 merged `required-ci / validate`; exact-head CI remains the acceptance authority.",
+      "remediation": "RSH-007"
+    },
+    {
+      "id": "P0-05",
+      "severity": "P0",
+      "status": "CLOSED",
+      "finding": "The QA command is not self-contained",
+      "evidence": "The RSH-006 harness starts, validates and stops its own server in CI.",
+      "remediation": "RSH-006, RSH-007"
+    },
+    {
+      "id": "P0-06",
+      "severity": "P0",
+      "status": "CLOSED",
+      "finding": "Automation contains absolute `/workspace` paths",
+      "evidence": "RSH-005 migrated executable automation to module-relative roots; `check:paths` prevents recurrence.",
+      "remediation": "RSH-005"
+    },
+    {
+      "id": "P0-07",
+      "severity": "P0",
+      "status": "CLOSED",
+      "finding": "Secret scanning is too narrow",
+      "evidence": "RSH-024 scans tracked text under `src/`, `scripts/`, `server/` and `.github/` with eight fail-closed patterns instead of only `src/game`.",
+      "remediation": "RSH-024"
+    },
+    {
+      "id": "P0-08",
+      "severity": "P0",
+      "status": "MITIGATED",
+      "finding": "Operational contracts are ignored by Git",
+      "evidence": "Governance, contribution, security, toolchain, QA, CI, product and metadata contracts are versioned; ignored AGENTS/startup files still require a decision.",
+      "remediation": "RSH-002, RSH-004, RSH-012"
+    },
+    {
+      "id": "P0-09",
+      "severity": "P0",
+      "status": "CLOSED",
+      "finding": "Program status sources contradict one another",
+      "evidence": "Canonical state, queue, master plan and NEXT authority are merged; historical files are explicitly non-controlling.",
+      "remediation": "RSH-001"
+    },
+    {
+      "id": "P0-10",
+      "severity": "P0",
+      "status": "MITIGATED",
+      "finding": "The last audit is stale and sequencing rules were violated",
+      "evidence": "The queue was reset, product scope was frozen, all 56 tracks were classified and asset/metadata authorities were established; vertical-slice enforcement remains pending.",
+      "remediation": "RSH-009–RSH-012, RSH-025"
+    },
+    {
+      "id": "P0-11",
+      "severity": "P0",
+      "status": "MITIGATED",
+      "finding": "No version, tag, release or rollback baseline exists",
+      "evidence": "Immutable baseline, milestone, label and release registers exist; tags, releases and rollback proof remain absent.",
+      "remediation": "RSH-063, RSH-064, RSH-067"
+    },
+    {
+      "id": "P0-12",
+      "severity": "P0",
+      "status": "MITIGATED",
+      "finding": "Root licensing and asset provenance are incomplete",
+      "evidence": "RSH-011 inventories 134/134 public files; RSH-012 establishes the proprietary root licence. Exactly 66 asset files remain unverified and uncleared.",
+      "remediation": "Replace or document every unverified asset; keep public distribution blocked"
+    },
+    {
+      "id": "P1-01",
+      "severity": "P1",
+      "status": "MITIGATED",
+      "finding": "Production QA-hook removal is not enforced by GitHub",
+      "evidence": "`check:qa` passes inside the required workflow, but GitHub does not yet require that check through branch settings.",
+      "remediation": "Apply the RSH-008 desired ruleset; RSH-024 hardening"
+    },
+    {
+      "id": "P1-02",
+      "severity": "P1",
+      "status": "CLOSED",
+      "finding": "Timed-record hashes are generated but not verified on read",
+      "evidence": "RSH-023 verifies SHA-256 record hashes on every load, drops stale physics versions and structurally invalid rows, and bounds storage to 24 per track/car plus 200 overall.",
+      "remediation": "RSH-023"
+    },
+    {
+      "id": "P1-03",
+      "severity": "P1",
+      "status": "CLOSED",
+      "finding": "Timed-record writes are fire-and-forget",
+      "evidence": "RSH-023 serialises persist through one in-module chain, replaces `rush.records.v3` with canonical JSON, verifies the write, and returns structured duplicate/rejected/write-failed status without deleting source bytes.",
+      "remediation": "RSH-023"
+    },
+    {
+      "id": "P1-04",
+      "severity": "P1",
+      "status": "CLOSED",
+      "finding": "Save failures and corruption are silently swallowed",
+      "evidence": "RSH-021 establishes deterministic schema/version handling. RSH-022 adds verified backup rotation, bounded exact-byte quarantine, explicit restore/fresh-start decisions, structured failures and accessible bilingual failure UI without deleting source or legacy bytes.",
+      "remediation": "RSH-021, RSH-022"
+    },
+    {
+      "id": "P1-05",
+      "severity": "P1",
+      "status": "CLOSED",
+      "finding": "The build command performs database migration",
+      "evidence": "RSH-020 removes the DB subsystem and migration scripts; `npm run build` is exactly `vite build`.",
+      "remediation": "RSH-020"
+    },
+    {
+      "id": "P1-06",
+      "severity": "P1",
+      "status": "CLOSED",
+      "finding": "Template auth, DB, multiplayer and Grok infrastructure is not product-scoped",
+      "evidence": "RSH-020 removes auth, DB, migrations, multiplayer, app-env and preview-host bridges. The retained `/__grok/*` PWA URLs are explicitly product-owned compatibility paths.",
+      "remediation": "RSH-020"
+    },
+    {
+      "id": "P1-07",
+      "severity": "P1",
+      "status": "CLOSED",
+      "finding": "The dependency set is broader than the observed product surface",
+      "evidence": "RSH-020 reduces direct packages from 74 to 30: 10 runtime and 20 development packages; 44 unused direct packages are removed.",
+      "remediation": "RSH-020"
+    },
+    {
+      "id": "P1-08",
+      "severity": "P1",
+      "status": "CLOSED",
+      "finding": "Package identity and runtime requirements are undefined",
+      "evidence": "RSH-004 fixes Node 22.16.0/npm 10.9.2; RSH-012 fixes product name, version `0.0.0-private`, private package status and `UNLICENSED` boundary.",
+      "remediation": "RSH-004, RSH-012"
+    },
+    {
+      "id": "P1-09",
+      "severity": "P1",
+      "status": "CLOSED",
+      "finding": "The toolchain cannot be reproduced exactly",
+      "evidence": "RSH-007 clean checkout verified the pinned Node/npm toolchain and `npm ci`.",
+      "remediation": "RSH-004, RSH-007"
+    },
+    {
+      "id": "P1-10",
+      "severity": "P1",
+      "status": "CLOSED",
+      "finding": "Lint is not part of the required validation gate",
+      "evidence": "`required-ci / validate` executes blocking ESLint.",
+      "remediation": "RSH-007"
+    },
+    {
+      "id": "P1-11",
+      "severity": "P1",
+      "status": "CLOSED",
+      "finding": "The complete test suite is not part of the required validation gate",
+      "evidence": "`required-ci / validate` executes complete `npm test`.",
+      "remediation": "RSH-007"
+    },
+    {
+      "id": "P1-12",
+      "severity": "P1",
+      "status": "OPEN",
+      "finding": "Important validation scripts are outside the main gate",
+      "evidence": "Golden, damage, Ayalon lock, HaShalom and long-soak checks are not all required on every PR.",
+      "remediation": "RSH-035, RSH-042 and later CI expansion"
+    },
+    {
+      "id": "P1-13",
+      "severity": "P1",
+      "status": "OPEN",
+      "finding": "No accepted real-device performance baseline exists",
+      "evidence": "No verified desktop/mobile p95, memory or draw-call evidence exists.",
+      "remediation": "RSH-037, RSH-043"
+    },
+    {
+      "id": "P1-14",
+      "severity": "P1",
+      "status": "CLOSED",
+      "finding": "Core source files are excessively large",
+      "evidence": "RSH-014–RSH-017 establish track, world and engine boundaries. RSH-018 reduces `game-app.tsx` from 1540 to 179 lines and moves screens, HUD and race control into three manifest-bound modules with byte-exact reconstruction.",
+      "remediation": "RSH-014–RSH-018"
+    },
+    {
+      "id": "P1-15",
+      "severity": "P1",
+      "status": "CLOSED",
+      "finding": "Content, rendering, physics, UI and QA are tightly coupled",
+      "evidence": "RSH-013–RSH-019 establish track, world, engine, UI and resource boundaries. RSH-020 removes unused template subsystems and pins the final direct dependency surface.",
+      "remediation": "RSH-013–RSH-020"
+    },
+    {
+      "id": "P1-16",
+      "severity": "P1",
+      "status": "OPEN",
+      "finding": "Catalogue breadth precedes a verified vertical slice",
+      "evidence": "RSH-010 classifies 8 MVP and 48 deferred tracks, but no track has an owner-approved release freeze.",
+      "remediation": "RSH-025 through RSH-036"
+    },
+    {
+      "id": "P1-17",
+      "severity": "P1",
+      "status": "MITIGATED",
+      "finding": "Golden evidence does not yet form a trusted acceptance authority",
+      "evidence": "RSH-035 records owner approval of the 20 unique Ayalon/HaShalom frames and keeps the four duplicate placeholders non-authority. Ayalon freeze and transitive-dependency hashes remain RSH-036.",
+      "remediation": "RSH-036"
+    },
+    {
+      "id": "P1-18",
+      "severity": "P1",
+      "status": "MITIGATED",
+      "finding": "`EXECUTION_PLAN.md` is an operational monolith",
+      "evidence": "RSH-001 removed it from queue authority, but the historic monolith remains.",
+      "remediation": "RSH-001"
+    },
+    {
+      "id": "P2-01",
+      "severity": "P2",
+      "status": "CLOSED",
+      "finding": "Product metadata references Israel and New York",
+      "evidence": "RSH-012 aligns the root title, description, package metadata, Open Graph and both PWA runtime paths to the frozen Israel-inspired private product.",
+      "remediation": "RSH-012"
+    },
+    {
+      "id": "P2-02",
+      "severity": "P2",
+      "status": "CLOSED",
+      "finding": "CODEOWNERS and contribution templates are absent",
+      "evidence": "RSH-002 merged CODEOWNERS, a PR template, contribution policy and governance contract.",
+      "remediation": "RSH-002"
+    },
+    {
+      "id": "P2-03",
+      "severity": "P2",
+      "status": "OPEN",
+      "finding": "Commit-signing policy is not enforced",
+      "evidence": "Recent GitHub merge commits are verified, but historical commits and future enforcement are not governed by a required rule.",
+      "remediation": "RSH-063"
+    },
+    {
+      "id": "P2-04",
+      "severity": "P2",
+      "status": "OPEN",
+      "finding": "Commit cadence and direct-main history reduce reviewability",
+      "evidence": "New work uses PRs, but historical rapid direct-main changes remain and technical settings enforcement is pending.",
+      "remediation": "Apply desired ruleset"
+    },
+    {
+      "id": "P2-05",
+      "severity": "P2",
+      "status": "OPEN",
+      "finding": "No changelog or architecture-decision register exists",
+      "evidence": "Baseline and release registers exist, but no changelog or ADR register exists.",
+      "remediation": "RSH-063 and architecture units"
+    },
+    {
+      "id": "P2-06",
+      "severity": "P2",
+      "status": "CLOSED",
+      "finding": "No dependency-update policy exists",
+      "evidence": "`DEPENDENCY-POLICY.md` defines lockfile authority, monthly/release review, isolated updates, exact-head validation and serial-queue restrictions.",
+      "remediation": "RSH-020"
+    },
+    {
+      "id": "P2-07",
+      "severity": "P2",
+      "status": "CLOSED",
+      "finding": "A beta Nitro version is on the build path",
+      "evidence": "RSH-020 records npm registry evidence that `3.0.260610-beta` is the `latest` dist-tag, retains an exact pin and requires full validation for replacement.",
+      "remediation": "RSH-020"
+    },
+    {
+      "id": "P2-08",
+      "severity": "P2",
+      "status": "CLOSED",
+      "finding": "README does not document reproducible setup and validation",
+      "evidence": "RSH-012 documents exact Node/npm versions, `npm ci`, development, full tests, self-starting QA and deterministic build commands.",
+      "remediation": "RSH-012"
+    },
+    {
+      "id": "P2-09",
+      "severity": "P2",
+      "status": "OPEN",
+      "finding": "No bundle or asset budget is enforced",
+      "evidence": "No accepted size threshold or CI budget exists.",
+      "remediation": "RSH-039"
+    },
+    {
+      "id": "P2-10",
+      "severity": "P2",
+      "status": "OPEN",
+      "finding": "Touch-action behaviour is not explicitly locked",
+      "evidence": "Pointer cancellation exists, but browser gesture suppression is not a verified contract.",
+      "remediation": "RSH-044"
+    },
+    {
+      "id": "P2-11",
+      "severity": "P2",
+      "status": "OPEN",
+      "finding": "Crash reporting, telemetry and privacy policy are undefined",
+      "evidence": "No accepted collection and retention policy exists.",
+      "remediation": "RSH-048"
+    },
+    {
+      "id": "P2-12",
+      "severity": "P2",
+      "status": "OPEN",
+      "finding": "No browser and device support matrix exists",
+      "evidence": "Supported Chrome, Edge, Firefox, Safari and mobile versions are undefined.",
+      "remediation": "RSH-043"
+    }
+  ],
+  "repair_bundles": [
+    {
+      "id": "CR-01",
+      "title": "Governance, visibility and asset clearance",
+      "state": "open_external",
+      "audit_items": [
+        "AUD-02",
+        "AUD-03",
+        "AUD-12"
+      ]
+    },
+    {
+      "id": "CR-02",
+      "title": "Canonical state, boundary repair and mapping regression protection",
+      "state": "candidate_repaired",
+      "audit_items": [
+        "AUD-01",
+        "AUD-14",
+        "AUD-15",
+        "AUD-16"
+      ]
+    },
+    {
+      "id": "CR-03",
+      "title": "Complete Ayalon dependency closure",
+      "state": "open",
+      "audit_items": [
+        "AUD-04"
+      ]
+    },
+    {
+      "id": "CR-04",
+      "title": "Pre-freeze runtime loading, minimap and records repairs",
+      "state": "open",
+      "audit_items": [
+        "AUD-06",
+        "AUD-07",
+        "AUD-08"
+      ]
+    },
+    {
+      "id": "CR-05",
+      "title": "Complete failure evidence and warning classification",
+      "state": "partial",
+      "audit_items": [
+        "AUD-05",
+        "AUD-11"
+      ]
+    },
+    {
+      "id": "CR-06",
+      "title": "Additional future-unit acceptance criteria",
+      "state": "planned",
+      "audit_items": [
+        "AUD-09",
+        "AUD-10",
+        "AUD-13"
+      ]
+    }
+  ],
+  "counting_rule": "Audit items and legacy findings overlap; they are not additive bug counts. Bundles supplement original units and do not inflate accepted-unit progress.",
+  "acceptance_rule": "Only validated merged work is accepted. A standing grant permits serial execution, not bypassing predecessor, tests, evidence or release gates.",
+  "release": {
+    "gates_green": 0,
+    "gates_total": 13,
+    "unverified_assets": 66,
+    "public_distribution_authorised": false
+  },
+  "limitations": [
+    "689/689 file inventory and Git blob hashes verified; this is not manual review of every line.",
+    "408 JS/TS files parsed using locally available TypeScript 5.8.3; semantic and exact locked-dependency checks require CI.",
+    "Local baseline: 425 passed and 30 failed out of 455; local control repair: 456 passed, no failures before the new program tests.",
+    "Runtime findings AUD-06 through AUD-09 were initially static findings; do not call them runtime-reproduced or fixed without injected/browser tests.",
+    "No real-device performance, complete transitive closure or new owner golden acceptance is claimed."
+  ]
+}

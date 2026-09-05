@@ -1,16 +1,17 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 18.0.0
+**Schema:** 20.0.0
+**Revision:** r6.1 — owner-authorised improvement programme
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-035 implementation base:** `0f53ae1e1451c3eff30a15829c0c0f43762feeb4`
-**State effective on:** merge of the RSH-035 pull request
-**Next unit:** RSH-036 — deferred and not authorised
+**Verified main:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`
+**State effective on:** verified main; RSH-036 remains in review, not accepted
+**Active unit:** RSH-036 — authorised and in review (PR #39)
 **Product-definition authority:** `PRODUCT-DEFINITION.json`
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`
 **Product-metadata authority:** `PRODUCT-METADATA.json`
-**Date:** 3 September 2026
+**Date:** 5 September 2026
 
 ## 1. Authority
 
@@ -81,20 +82,21 @@ root-branding assets remain unverified.
 6. A unit becomes accepted when its PR merges; exact self-referential merge evidence is reconciled in the following preflight.
 7. Accepted-unit progress is not release readiness; all 13 release gates remain authoritative.
 8. The RSH-010–RSH-014 owner batch is closed at 5/5.
-9. The plain `next` / `המשך` authority covers exactly RSH-035 and is consumed on its validated merge; RSH-036 is not authorised.
+9. The owner instruction of 5 September 2026 authorises continuous serial execution and additional improvement planning/repairs. RSH-036 is active; RSH-037–067 are authorised but not activated until predecessor acceptance.
+10. This standing grant does not authorise public distribution, fabricated evidence, force pushes, history rewrite or unvalidated acceptance.
 
-## 5. Post-RSH-035 program state
+## 5. Actual verified program state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
 | Accepted | 35 |
-| In review | 0 |
+| In review | 1 |
 | Eligible | 0 |
-| Deferred | 32 |
+| Authorised, not activated | 31 |
 | Remaining | 32 |
-| Queue head | RSH-036 — deferred/not authorised |
-| Active PR | none |
+| Queue head | RSH-036 — in review |
+| Active PR | #39 |
 | RSH-035 one-unit authority | 1/1 — consumed |
 | Release gates green | 0/13 |
 | Findings OPEN / MITIGATED / CLOSED | 12 / 8 / 22 |
@@ -208,6 +210,140 @@ Current verified result: **0/13**.
 
 ## 9. Current execution boundary
 
-RSH-021 through RSH-035 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28, 8 lanes of 3.5, 27 hashed spline samples, 50 interchange ramps, 8 open checkpoints, 9 inspired POIs, baked 8-lane asphalt, no sidewalks, 6 gantries). Daylight stays the live `summer14` look with baked `sky-day.png` and tiny non-HDRI PMREM. Night stays look `night` with baked `sky-night.png`, two headlight spots, ten street lamps and four weather specs. Default boot stays day / clear. Driving physics version 7 matches the five fictional 0–100 claims inside a ±15% band without rewriting `cars.ts`. Audio stays Web Audio oscillators with four radio stations; HUD speed is integer km/h from `speed * 3.6`; keyboard/touch/gamepad maps stay the live Version 1 lock. The unique Ayalon golden pack is the 20 non-placeholder frames with owner approval recorded; the four byte-identical HaShalom placeholders stay non-authority. The opposite carriageway stays visual-only. Owner freeze and GIS claims remain forbidden. GitHub still does not require production checks through branch settings.
+RSH-021 through RSH-035 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28, 8 lanes of 3.5, 27 hashed spline samples, 50 interchange ramps, 8 open checkpoints, 9 inspired POIs, baked 8-lane asphalt, no sidewalks, 6 gantries). Daylight stays the live `summer14` look with baked `sky-day.png` and tiny non-HDRI PMREM. Night stays look `night` with baked `sky-night.png`, two headlight spots, ten street lamps and four weather specs. Default boot stays day / clear. Driving physics version 7 matches the five fictional 0–100 claims inside a ±15% band without rewriting `cars.ts`. Audio stays Web Audio oscillators with four radio stations; HUD speed is integer km/h from `speed * 3.6`; keyboard/touch/gamepad maps stay the live Version 1 lock. The unique Ayalon golden pack is the 20 non-placeholder frames with owner approval recorded; the four byte-identical HaShalom placeholders stay non-authority. The opposite carriageway stays visual-only. An unvalidated owner freeze and GIS claims remain forbidden. GitHub still does not require production checks through branch settings.
 
-Ghosts remain byte-preserved and remain assigned outside this unit. The RSH-035 one-unit `next` / `המשך` authority is consumed on merge. RSH-036 remains deferred and cannot start without a new explicit owner instruction.
+Ghosts remain byte-preserved and assigned outside this repair. The historical RSH-035 grant is consumed. The standing 5 September owner grant now controls execution. RSH-036 must complete CR-02, CR-03 and CR-04 plus exact-head CI before acceptance; existing freeze files are a candidate, not release approval. Approved runtime repairs need explicit regression evidence and preserved historical identities.
+
+## 10. Improvement register r6.1
+
+`MASTER-PLAN-r6.json` retains all 67 original unit IDs/titles, the 42 original findings and the exact eight V1 tracks. It adds 16 audit items and six repair bundles. These overlap existing work and are **not** 16 additional independent bugs or 16 accepted units. The earlier external r6 proposal is non-authoritative: its mismatched unit/track/finding mappings are corrected here and protected by regression tests. The unmodified previous canonical plan is at `docs/history/master-plan-before-r6.1.md`.
+
+| ID | Severity | Finding / improvement | Units | State |
+|---|---|---|---|---|
+| AUD-01 | P0 | Historical unit boundaries reject the authorised RSH-036 implementation | RSH-036 | candidate_repaired |
+| AUD-02 | P0 | Main branch protection is not applied | RSH-008, RSH-063, RSH-064, RSH-065, RSH-066, RSH-067 | open_external |
+| AUD-03 | P0 | Public repository visibility conflicts with private product policy | RSH-002, RSH-012, RSH-065, RSH-066, RSH-067 | open_external |
+| AUD-04 | P0 | Manually selected 36 freeze dependencies do not prove transitive completeness | RSH-036 | open |
+| AUD-05 | P1 | Diagnostic summaries do not establish complete exact-source acceptance evidence | RSH-008, RSH-035, RSH-036, RSH-042, RSH-064, RSH-065, RSH-066, RSH-067 | partially_repaired |
+| AUD-06 | P1 | Runtime loading failure can leave a cached rejected promise and no recovery UI | RSH-036, RSH-046 | open |
+| AUD-07 | P1 | Minimap rendering can connect the endpoints of an open track | RSH-036, RSH-044, RSH-049, RSH-051, RSH-053, RSH-055, RSH-057, RSH-059, RSH-061 | open |
+| AUD-08 | P1 | Timed-record storage acquisition or reading can throw outside the recovery boundary | RSH-036, RSH-046, RSH-063 | open |
+| AUD-09 | P1 | PWA error caching, offline recovery and update behavior need complete acceptance | RSH-047, RSH-064 | open |
+| AUD-10 | P1 | Real-device GPU, memory and tail-latency evidence is absent | RSH-037, RSH-038, RSH-039, RSH-040, RSH-041, RSH-042, RSH-043 | open |
+| AUD-11 | P2 | 125 lint warnings need risk classification rather than blanket suppression | RSH-036, RSH-040, RSH-044, RSH-046 | open |
+| AUD-12 | P0 | 66 asset files remain unverified for use and distribution | RSH-011, RSH-012, RSH-065, RSH-066, RSH-067 | open_external |
+| AUD-13 | P1 | Catalogue breadth must not substitute for the eight verified V1 tracks | RSH-010, RSH-049, RSH-050, RSH-051, RSH-052, RSH-053, RSH-054, RSH-055, RSH-056, RSH-057, RSH-058, RSH-059, RSH-060, RSH-061, RSH-062 | open |
+| AUD-14 | P1 | Current state, future projections and historical approvals are conflated | RSH-001, RSH-003, RSH-036, RSH-063, RSH-064, RSH-065, RSH-066, RSH-067 | candidate_repaired |
+| AUD-15 | P0 | Earlier r6 proposal misassigned canonical unit titles, V1 tracks and legacy finding IDs | RSH-036 | candidate_repaired |
+| AUD-16 | P1 | Copied hard-coded phase fences cause recurrent transition failures | RSH-036, RSH-037, RSH-063 | partially_repaired |
+
+## 11. Acceptance additions
+
+The original 67-unit order, scope and release gates remain intact. Additional acceptance criteria apply to their existing units; they do not precreate future implementations.
+
+### RSH-036 — Freeze Ayalon and hash all transitive dependencies
+- Complete CR-02, CR-03 and CR-04 before accepting a freeze.
+- Historical golden bytes and lock generation are not refreshed to hide a regression.
+
+### RSH-037 — Instrument p50, p95, p99, draw calls, triangles and memory
+- Collect raw percentile, GPU and memory samples with environment metadata.
+- Centralise activation fences without changing historical acceptance evidence.
+
+### RSH-038 — Define quality profiles and dynamic-quality hysteresis
+- Test threshold hysteresis and cooldown to prevent oscillation.
+
+### RSH-039 — Set bundle, asset-streaming and cache budgets
+- Fail CI on documented bundle/asset/cache budget regressions.
+
+### RSH-040 — Pass 20 race enter-exit cycles without a resource leak
+- Prove flat resource ownership after 20 complete race lifecycles.
+
+### RSH-041 — Pass WebGL context-loss and recovery tests
+- Exercise repeated WebGL context loss and recovery without data loss.
+
+### RSH-042 — Pass the 30-minute soak test
+- Complete an actual uninterrupted 30-minute soak; smoke runs do not substitute.
+
+### RSH-043 — Validate the browser and device support matrix
+- Document exact tested browser/OS/device versions, unsupported cases and real-device gaps.
+
+### RSH-044 — Unify keyboard, touch and gamepad input maps
+- Test keyboard focus, gamepad disconnect, touch-action, pointer cancellation and orientation.
+
+### RSH-045 — Complete Hebrew RTL, English LTR and the Arabic-scope decision
+- Verify mixed Hebrew/English text, numbers, safe areas and language persistence.
+
+### RSH-046 — Complete onboarding, settings, error and recovery flows
+- Test initial loading, retries, failed storage, race restart, settings and onboarding errors.
+
+### RSH-047 — Complete PWA, offline, update and manifest behaviour
+- Exercise offline-first/return visits, failed fetches, cache status, multi-tab upgrades and rollback.
+
+### RSH-048 — Pass accessibility, privacy and Alpha UX gates
+- Keyboard and screen-reader checks; explicit privacy/retention/consent decisions; no unapproved telemetry.
+
+### RSH-049 — Rothschild geometry and driving
+- Independent driving/geometry validation on this exact canonical track.
+
+### RSH-050 — Rothschild art, golden and freeze
+- Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof.
+
+### RSH-051 — Yarkon–Reading geometry and driving
+- Independent driving/geometry validation on this exact canonical track.
+
+### RSH-052 — Yarkon–Reading art, golden and freeze
+- Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof.
+
+### RSH-053 — Jaffa geometry and driving
+- Independent driving/geometry validation on this exact canonical track.
+
+### RSH-054 — Jaffa art, golden and freeze
+- Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof.
+
+### RSH-055 — Jerusalem–Scopus geometry and driving
+- Independent driving/geometry validation on this exact canonical track.
+
+### RSH-056 — Jerusalem–Scopus art, golden and freeze
+- Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof.
+
+### RSH-057 — Haifa–Carmel geometry and driving
+- Independent driving/geometry validation on this exact canonical track.
+
+### RSH-058 — Haifa–Carmel art, golden and freeze
+- Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof.
+
+### RSH-059 — Ramon geometry and driving
+- Independent driving/geometry validation on this exact canonical track.
+
+### RSH-060 — Ramon art, golden and freeze
+- Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof.
+
+### RSH-061 — Hermon geometry and driving
+- Independent driving/geometry validation on this exact canonical track.
+
+### RSH-062 — Hermon art, golden and freeze
+- Unique art/golden approval, dependency closure, resource budgets and track-specific freeze proof.
+
+### RSH-063 — Establish SemVer, changelog and release automation
+- Versioned changelog and ADRs; dependency/licence re-review; regressions and evidence traceability.
+
+### RSH-064 — Establish preview, staging, production and rollback
+- Private preview/staging/production separation; successful rollback plus offline update coverage.
+
+### RSH-065 — Publish and evaluate `v0.1.0-alpha.1`
+- Private owner-controlled alpha only; all applicable evidence and licensing gates pass.
+
+### RSH-066 — Produce RC1 and close all blocking defects
+- Triage all open blockers; stable browser/device regression matrix and no unresolved P0/P1 release defects.
+
+### RSH-067 — Publish `v1.0.0` with signed tag, dossier and rollback proof
+- Private owner-controlled v1 only; signed tag, complete licence/evidence dossier and verified rollback.
+
+## 12. Immediate checkpoint
+
+1. Validate and publish the control-boundary repair and this plan on PR #39. Preserve 35 accepted / 32 remaining until the unit actually merges.
+2. Complete CR-03 dependency-closure proof and CR-04 loading/minimap/records repairs; reproduce each defect with regression tests and preserve historical evidence.
+3. Re-run exact-head lint, all tests, self-starting browser QA, build and applicable golden/freeze checks. Resolve blocking reviews before merge.
+4. Only after verified RSH-036 acceptance activate RSH-037. Continue serially under the standing grant, without asking again to add improvements.
+
+A session ends with a saved exact-head checkpoint, actual tests, open blockers and accepted/remaining counts. No future scheduled/background execution is implied. Administrative restrictions, device access and asset permissions remain explicit blockers rather than fabricated completion.

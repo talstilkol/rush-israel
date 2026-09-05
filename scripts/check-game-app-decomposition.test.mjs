@@ -83,7 +83,7 @@ test("temporary RSH-018 files and RSH-034 precreation fail closed", () => {
   temp.repositoryFiles.push(".github/workflows/rsh-018-finalizer.yml");
   assert.match(messages(validateGameAppDecomposition(temp)), /temporary RSH-018 files/);
   const later = baseline();
-  later.repositoryFiles.push("RSH-036-PREFLIGHT.json");
+  later.repositoryFiles.push("RSH-037-PREFLIGHT.json");
   assert.match(messages(validateGameAppDecomposition(later)), /unauthorized later-unit structure/);
 });
 

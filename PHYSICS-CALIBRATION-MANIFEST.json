@@ -15,8 +15,20 @@
     "physics_hz": 120,
     "v100_mps": 27.778,
     "claim_tolerance": 0.15,
-    "claims": [8.4, 6.6, 4.9, 5.8, 3.5],
-    "cars": ["sabra", "carmel", "kfir", "negev", "yam"],
+    "claims": [
+      8.4,
+      6.6,
+      4.9,
+      5.8,
+      3.5
+    ],
+    "cars": [
+      "sabra",
+      "carmel",
+      "kfir",
+      "negev",
+      "yam"
+    ],
     "cars_rewritten": false,
     "package_json_changed": false,
     "gear_dump_below_v100": false,
@@ -43,21 +55,28 @@
     "index_source_sha256": "e9489dbe34cee8d9768fa75fbe5ea0ce5276f686fdfcdad1c2a95e908988504e",
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "checker_test_sha256": "b583f94595a2647505145324738532925586995f24fc90f05edd4f05b4090893",
+    "checker_test_sha256": "2c0585c1e926f68ec51f37fe5f3797516dfa23ab84b7e5cb7c60a9fcce99a253",
     "golden_accel_sha256": "3bd812e9f60184a846fbd1ffe6392b3a9d42a6a1f25c6df83bfb9a3e966fa224"
   },
   "deferred_boundary": {
     "queue_head": "RSH-037",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
-    "forbidden_prefixes": [".rsh037", ".github/workflows/rsh-037-", "RSH-037-", "scripts/rsh037-", "src/game/perf-instrument/", "src/game/quality-profiles/"],
+    "forbidden_prefixes": [
+      ".rsh037",
+      ".github/workflows/rsh-037-",
+      "RSH-037-",
+      "scripts/rsh037-",
+      "src/game/perf-instrument/",
+      "src/game/quality-profiles/"
+    ],
     "rsh_034_state": "accepted_on_merge",
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "rsh_035_state": "accepted_on_merge",
     "rsh_036_authorized": true,
     "rsh_036_started": true,
-    "rsh_036_state": "accepted_on_merge",
+    "rsh_036_state": "in_review",
     "rsh_037_authorized": false,
     "rsh_037_started": false
   }

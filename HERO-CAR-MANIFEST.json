@@ -96,22 +96,23 @@
     "mesh_source_sha256": "b89ec24ddb76a8ab362b036aa6d97a02484d5f305fbdc8f7b1452eea0e92aca3",
     "assets_source_sha256": "92ea1de990a318a38e4d4fb363be0ae2d4818fc4fa3711e0a11cf77b6c599a79",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
-    "checker_test_sha256": "b7d538d756b21d58e4c9cf0afe5ecbca75ad09fa91d9975a8d92b510ad54b6e9",
+    "checker_test_sha256": "11c52b9098d3ed52f1973758a0142540cbf648dc95d591194285e36e72dc09cf",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "hero_sha256": "6fed144c9d66dca56270f7500e574cf1041a3b917a8cd13ffa6a64a68f0806cb",
     "lod_sha256": "0eab1d598a9b90650aafd23f69063bac407002c942311bdb95eab5beebdb6905",
     "silhouette_sha256": "e482429dd9484b16842d0684f79bb2cfeb2b072ee62cba6fd9f3052f94527a0a"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-036",
+    "queue_head": "RSH-037",
     "rsh_031_authorized": true,
     "rsh_031_started": true,
     "forbidden_prefixes": [
-      ".rsh036",
-      ".github/workflows/rsh-036-",
-      "RSH-036-",
-      "scripts/rsh036-",
-      "src/game/ayalon-freeze/"
+      ".rsh037",
+      ".github/workflows/rsh-037-",
+      "RSH-037-",
+      "scripts/rsh037-",
+      "src/game/perf-instrument/",
+      "src/game/quality-profiles/"
     ],
     "rsh_031_state": "accepted_on_merge",
     "rsh_032_authorized": true,
@@ -126,7 +127,10 @@
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "rsh_035_state": "accepted_on_merge",
-    "rsh_036_authorized": false,
-    "rsh_036_started": false
+    "rsh_036_authorized": true,
+    "rsh_036_started": true,
+    "rsh_036_state": "in_review",
+    "rsh_037_authorized": false,
+    "rsh_037_started": false
   }
 }

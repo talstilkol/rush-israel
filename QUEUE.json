@@ -1,17 +1,23 @@
 {
-  "schema_version": "19.0.0",
+  "schema_version": "20.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-09-03T16:57:00.000Z",
+  "generated_at": "2026-09-05",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "verified_base_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "state_effective_on": "merge_of_RSH_036_pull_request",
+  "state_effective_on": "verified_main_with_RSH_036_in_review",
   "policy": {
-    "mode": "strict_serial_with_owner_bounded_batch",
-    "units_per_plain_next": 1,
+    "mode": "standing_authorization_serial_validation",
+    "units_per_plain_next": null,
     "active_bounded_batch": {
       "instruction": "next 5",
-      "authorized_units": ["RSH-010", "RSH-011", "RSH-012", "RSH-013", "RSH-014"],
+      "authorized_units": [
+        "RSH-010",
+        "RSH-011",
+        "RSH-012",
+        "RSH-013",
+        "RSH-014"
+      ],
       "completed": 5,
       "total": 5,
       "closed_after": "RSH-014",
@@ -27,108 +33,384 @@
     "later_unit_precreation": false,
     "latest_single_unit_authorization": {
       "instruction": "next",
-      "authorized_units": ["RSH-036"],
-      "completed": 1,
+      "authorized_units": [
+        "RSH-036"
+      ],
+      "completed": 0,
       "total": 1,
-      "state": "consumed_on_RSH-036_merge",
+      "state": "in_progress_not_consumed",
       "RSH_037_authorized": false
     },
     "previous_single_unit_authorization": {
       "instruction": "next",
-      "authorized_units": ["RSH-035"],
+      "authorized_units": [
+        "RSH-035"
+      ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-035_merge",
       "RSH_036_authorized": false
+    },
+    "standing_authorization": {
+      "id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
+      "date": "2026-09-05",
+      "source": "Explicit owner instruction in project conversation on 2026-09-05",
+      "permission": "Audit and repair the complete repository, add improvements and continue implementation without repeated improvement approvals.",
+      "authorized_units": [
+        "RSH-036",
+        "RSH-037",
+        "RSH-038",
+        "RSH-039",
+        "RSH-040",
+        "RSH-041",
+        "RSH-042",
+        "RSH-043",
+        "RSH-044",
+        "RSH-045",
+        "RSH-046",
+        "RSH-047",
+        "RSH-048",
+        "RSH-049",
+        "RSH-050",
+        "RSH-051",
+        "RSH-052",
+        "RSH-053",
+        "RSH-054",
+        "RSH-055",
+        "RSH-056",
+        "RSH-057",
+        "RSH-058",
+        "RSH-059",
+        "RSH-060",
+        "RSH-061",
+        "RSH-062",
+        "RSH-063",
+        "RSH-064",
+        "RSH-065",
+        "RSH-066",
+        "RSH-067"
+      ],
+      "improvement_planning_and_repair_authorized": true,
+      "execution_mode": "serial_dependencies_within_interactive_sessions",
+      "max_active_program_units": 1,
+      "active_unit": "RSH-036",
+      "next_means": "Continue from live verified GitHub; no asynchronous execution is implied.",
+      "not_authorized": [
+        "public_distribution",
+        "force_push",
+        "history_rewrite",
+        "invented_test_or_license_evidence",
+        "acceptance_without_validation"
+      ],
+      "activation_is_not_acceptance": true,
+      "future_activation_requires_predecessor_acceptance": true
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 36,
-    "in_review": 0,
+    "accepted": 35,
+    "in_review": 1,
     "eligible": 0,
     "deferred": 31,
-    "remaining": 31
+    "remaining": 32
   },
   "queue_head": {
-    "id": "RSH-037",
-    "title": "Instrument p50, p95, p99, draw calls, triangles and memory",
-    "state": "deferred_not_authorized",
-    "branch": null,
-    "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-037 may start."
+    "id": "RSH-036",
+    "title": "Freeze Ayalon and hash all transitive dependencies",
+    "state": "in_review",
+    "branch": "agent/rsh-036-ayalon-freeze",
+    "pull_request": 39,
+    "acceptance_condition": "Close CR-02, CR-03 and CR-04; pass complete exact-head CI and blocking review; verify merge before counting acceptance."
   },
   "next_after_acceptance": {
     "id": "RSH-037",
     "title": "Instrument p50, p95, p99, draw calls, triangles and memory",
-    "state": "deferred_not_authorized"
+    "state": "authorized_not_activated",
+    "owner_authorized": true,
+    "activation_requires": "accepted RSH-036"
   },
   "accepted": {
-    "RSH-001": {"pull_request": 1, "merge_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9"},
-    "RSH-002": {"pull_request": 2, "merge_sha": "ef86c69ade9bc54585104f90743fb32cb4489898"},
-    "RSH-003": {"pull_request": 3, "merge_sha": "f1af9f507378d5d42c5e06255c8244c78b0c0f22"},
-    "RSH-004": {"pull_request": 5, "merge_sha": "69ac509b39895bb33a68d871f31cc49b3f05726c"},
-    "RSH-005": {"pull_request": 6, "merge_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3"},
-    "RSH-006": {"pull_request": 7, "merge_sha": "7ea076d377225d5db3561faf81fe1cedce091a28"},
-    "RSH-007": {"pull_request": 9, "merge_sha": "88c7754b62c66cfdf59f8bfce847db2113eb09de", "validated_head_sha": "3cb2ca2ac6d34b25f77f313b70590bcc36190f76"},
-    "RSH-008": {"pull_request": 10, "merge_sha": "c7628b1da3d149f1881961148e11564039de4b8d", "validated_head_sha": "bf1add01626e72db660cdd1e195f233c24399d0a"},
-    "RSH-009": {"pull_request": 11, "merge_sha": "69765febef85d732d9ba79fe260fec78ee76b2df", "validated_head_sha": "f71d56ba9d095f4850d95be45f255b1463fb0a92"},
-    "RSH-010": {"pull_request": 13, "merge_sha": "d8259877740a2feab6533f1723fd21be8fb2f6c2", "validated_head_sha": "920cad7837d08808fce441e4b8e25f89adedbfd4"},
-    "RSH-011": {"pull_request": 14, "merge_sha": "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9", "validated_head_sha": "0d88fe23cfb6581c8490962dc316a6cf83cd3c2c"},
-    "RSH-012": {"pull_request": 15, "merge_sha": "94524201dfe87f1f22f8d8bdd9d97aad507c0438", "validated_head_sha": "32ad65d756013ac2ec13ff1b78940cd12061fb27"},
-    "RSH-013": {"pull_request": 16, "merge_sha": "0273520da4924cb3e71ff41b2ea75788a45bf757", "validated_head_sha": "e5a0787ce0c706beef10fa1cc5acf2445a6ea933"},
-    "RSH-014": {"pull_request": 17, "merge_sha": "076dabb754dba1676c6685a4a8d6f6d3c0b153ea", "validated_head_sha": "87c621305e57c2c2dbc4b38f952c3d3bcf335c04"},
-    "RSH-015": {"pull_request": 18, "merge_sha": "973e68d6e1d3fa8ed628f4461cdfae3096d01ea3", "validated_head_sha": "d061eb6adcf84ddbc9361f4f5fe3b0b5c83b05e4"},
-    "RSH-016": {"pull_request": 19, "merge_sha": "ec35e159a9722812d945eaab984f9dc92645205f", "validated_head_sha": "300e08941e57167bb7ff583378d7833c292ef23a"},
-    "RSH-017": {"pull_request": 20, "merge_sha": "d3bd207a98989398ead0e6804519d4a0d2eb19a1", "validated_head_sha": "de15ef3703d65fb4302e9e7c5c638c226aab24c9"},
-    "RSH-018": {"state": "accepted_on_merge", "branch": "agent/rsh-018-game-app-decomposition"},
-    "RSH-019": {"pull_request": 22, "merge_sha": "53a23eb22952f8ea077b6a164757f03eb1d5ac1c", "validated_head_sha": "07766efa03a8a2d2787e7bb4439a08fe55591a52"},
-    "RSH-020": {"pull_request": 23, "merge_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90", "validated_head_sha": "c189aa85fdc60f4821d359158dfd86137ab341d0"},
-    "RSH-021": {"pull_request": 24, "merge_sha": "9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b", "validated_head_sha": "19cb2f24002f916153e4e4af092f7173fd8fbb20"},
-    "RSH-022": {"pull_request": 25, "merge_sha": "33b280767913ef93b1dd8b73ab0e41a73636db38", "validated_head_sha": "21d0b5969c5a99bb30336ded347ac251b6d988ac"},
-    "RSH-023": {"pull_request": 26, "merge_sha": "10d0624fce7813b7ad7082adc3c4e92e56c1b851", "validated_head_sha": "192a1c2e6977c965576490714f171188a0d1c6a5"},
-    "RSH-024": {"pull_request": 27, "merge_sha": "6597d7251d0f9c7ef24bf4b20ca44506bf651970", "validated_head_sha": "810c2fc86939d48cd7df166a1071224bc57a5406"},
-    "RSH-025": {"pull_request": 28, "merge_sha": "1714aa96dc2a0fd402eed004b591541b41bfdb83", "validated_head_sha": "bf72190aeb56ac8ef1f5829c2b716aa7f6141003"},
-    "RSH-026": {"pull_request": 29, "merge_sha": "dddae060b76ac2b4abe8de1046a374e8eb7725fc", "validated_head_sha": "7c6d749e60fad399eaa78dbd75aa34f39552eb8b"},
-    "RSH-027": {"pull_request": 30, "merge_sha": "d9b25b6ad8a035041c699d64860f9dac357b774d", "validated_head_sha": "da0ea1f1dee79d30772c2a6cef6370c98e3e0c78"},
-    "RSH-028": {"pull_request": 31, "merge_sha": "e068f7a93b7a9d2febb86d25a7e9ba57f5733a39", "validated_head_sha": "df9cf152ac308718200a2d8418f3bb4d8c75a9be"},
-    "RSH-029": {"pull_request": 32, "merge_sha": "a42a99bed98c4a55b343e744cf374e68d3b51899", "validated_head_sha": "09b00d9f143ea6d43c8c72e679cc5c02bd38de97"},
-    "RSH-030": {"pull_request": 33, "merge_sha": "7a4451f4c55fe8aa44ad7999fc6de6e1c78c868c", "validated_head_sha": "a89bd428a2db94695c7729da4908d0bd2f4d6bb0"},
-    "RSH-031": {"pull_request": 34, "merge_sha": "04d922adc712a73cb0ccc7bd444a64b7b9157afd", "validated_head_sha": "9f0eaeca265d44505e6dbc34e9e8b08a2dfd35fd"},
-    "RSH-032": {"pull_request": 35, "merge_sha": "f8d055c86b80ba1a72555e41668e071f74b32536", "validated_head_sha": "2a826fd20cb2c45e13a322443c4d9c1186ee53a9"},
-    "RSH-033": {"pull_request": 36, "merge_sha": "550c681445b2473cbd377131b60715ade0e58774", "validated_head_sha": "ea95c3197ac547960c7096561034d3471fe5bd4d"},
-    "RSH-034": {"pull_request": 37, "merge_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4", "validated_head_sha": "285d871ee9a22b02ace7f732ac096eb7405c43e8"},
-    "RSH-035": {"pull_request": 38, "merge_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a", "validated_head_sha": "847d88bc094d243a48a07a99da94b488f50e000e"},
-    "RSH-036": {
+    "RSH-001": {
+      "pull_request": 1,
+      "merge_sha": "0afa4e61086d0d37a05579b037baf6d18b2672a9"
+    },
+    "RSH-002": {
+      "pull_request": 2,
+      "merge_sha": "ef86c69ade9bc54585104f90743fb32cb4489898"
+    },
+    "RSH-003": {
+      "pull_request": 3,
+      "merge_sha": "f1af9f507378d5d42c5e06255c8244c78b0c0f22"
+    },
+    "RSH-004": {
+      "pull_request": 5,
+      "merge_sha": "69ac509b39895bb33a68d871f31cc49b3f05726c"
+    },
+    "RSH-005": {
+      "pull_request": 6,
+      "merge_sha": "6932a74ca23f125e212f37fa0db73da377eaabe3"
+    },
+    "RSH-006": {
+      "pull_request": 7,
+      "merge_sha": "7ea076d377225d5db3561faf81fe1cedce091a28"
+    },
+    "RSH-007": {
+      "pull_request": 9,
+      "merge_sha": "88c7754b62c66cfdf59f8bfce847db2113eb09de",
+      "validated_head_sha": "3cb2ca2ac6d34b25f77f313b70590bcc36190f76"
+    },
+    "RSH-008": {
+      "pull_request": 10,
+      "merge_sha": "c7628b1da3d149f1881961148e11564039de4b8d",
+      "validated_head_sha": "bf1add01626e72db660cdd1e195f233c24399d0a"
+    },
+    "RSH-009": {
+      "pull_request": 11,
+      "merge_sha": "69765febef85d732d9ba79fe260fec78ee76b2df",
+      "validated_head_sha": "f71d56ba9d095f4850d95be45f255b1463fb0a92"
+    },
+    "RSH-010": {
+      "pull_request": 13,
+      "merge_sha": "d8259877740a2feab6533f1723fd21be8fb2f6c2",
+      "validated_head_sha": "920cad7837d08808fce441e4b8e25f89adedbfd4"
+    },
+    "RSH-011": {
+      "pull_request": 14,
+      "merge_sha": "aab3b725f256ff5a0a145c5cd3ac749860bdaeb9",
+      "validated_head_sha": "0d88fe23cfb6581c8490962dc316a6cf83cd3c2c"
+    },
+    "RSH-012": {
+      "pull_request": 15,
+      "merge_sha": "94524201dfe87f1f22f8d8bdd9d97aad507c0438",
+      "validated_head_sha": "32ad65d756013ac2ec13ff1b78940cd12061fb27"
+    },
+    "RSH-013": {
+      "pull_request": 16,
+      "merge_sha": "0273520da4924cb3e71ff41b2ea75788a45bf757",
+      "validated_head_sha": "e5a0787ce0c706beef10fa1cc5acf2445a6ea933"
+    },
+    "RSH-014": {
+      "pull_request": 17,
+      "merge_sha": "076dabb754dba1676c6685a4a8d6f6d3c0b153ea",
+      "validated_head_sha": "87c621305e57c2c2dbc4b38f952c3d3bcf335c04"
+    },
+    "RSH-015": {
+      "pull_request": 18,
+      "merge_sha": "973e68d6e1d3fa8ed628f4461cdfae3096d01ea3",
+      "validated_head_sha": "d061eb6adcf84ddbc9361f4f5fe3b0b5c83b05e4"
+    },
+    "RSH-016": {
+      "pull_request": 19,
+      "merge_sha": "ec35e159a9722812d945eaab984f9dc92645205f",
+      "validated_head_sha": "300e08941e57167bb7ff583378d7833c292ef23a"
+    },
+    "RSH-017": {
+      "pull_request": 20,
+      "merge_sha": "d3bd207a98989398ead0e6804519d4a0d2eb19a1",
+      "validated_head_sha": "de15ef3703d65fb4302e9e7c5c638c226aab24c9"
+    },
+    "RSH-018": {
       "state": "accepted_on_merge",
+      "branch": "agent/rsh-018-game-app-decomposition"
+    },
+    "RSH-019": {
+      "pull_request": 22,
+      "merge_sha": "53a23eb22952f8ea077b6a164757f03eb1d5ac1c",
+      "validated_head_sha": "07766efa03a8a2d2787e7bb4439a08fe55591a52"
+    },
+    "RSH-020": {
+      "pull_request": 23,
+      "merge_sha": "7cff508a4cfa95c03ac34c5503912e70bed47b90",
+      "validated_head_sha": "c189aa85fdc60f4821d359158dfd86137ab341d0"
+    },
+    "RSH-021": {
+      "pull_request": 24,
+      "merge_sha": "9bd606a0e6b054b0edafd4eeb6c7d614b3102b4b",
+      "validated_head_sha": "19cb2f24002f916153e4e4af092f7173fd8fbb20"
+    },
+    "RSH-022": {
+      "pull_request": 25,
+      "merge_sha": "33b280767913ef93b1dd8b73ab0e41a73636db38",
+      "validated_head_sha": "21d0b5969c5a99bb30336ded347ac251b6d988ac"
+    },
+    "RSH-023": {
+      "pull_request": 26,
+      "merge_sha": "10d0624fce7813b7ad7082adc3c4e92e56c1b851",
+      "validated_head_sha": "192a1c2e6977c965576490714f171188a0d1c6a5"
+    },
+    "RSH-024": {
+      "pull_request": 27,
+      "merge_sha": "6597d7251d0f9c7ef24bf4b20ca44506bf651970",
+      "validated_head_sha": "810c2fc86939d48cd7df166a1071224bc57a5406"
+    },
+    "RSH-025": {
+      "pull_request": 28,
+      "merge_sha": "1714aa96dc2a0fd402eed004b591541b41bfdb83",
+      "validated_head_sha": "bf72190aeb56ac8ef1f5829c2b716aa7f6141003"
+    },
+    "RSH-026": {
+      "pull_request": 29,
+      "merge_sha": "dddae060b76ac2b4abe8de1046a374e8eb7725fc",
+      "validated_head_sha": "7c6d749e60fad399eaa78dbd75aa34f39552eb8b"
+    },
+    "RSH-027": {
+      "pull_request": 30,
+      "merge_sha": "d9b25b6ad8a035041c699d64860f9dac357b774d",
+      "validated_head_sha": "da0ea1f1dee79d30772c2a6cef6370c98e3e0c78"
+    },
+    "RSH-028": {
+      "pull_request": 31,
+      "merge_sha": "e068f7a93b7a9d2febb86d25a7e9ba57f5733a39",
+      "validated_head_sha": "df9cf152ac308718200a2d8418f3bb4d8c75a9be"
+    },
+    "RSH-029": {
+      "pull_request": 32,
+      "merge_sha": "a42a99bed98c4a55b343e744cf374e68d3b51899",
+      "validated_head_sha": "09b00d9f143ea6d43c8c72e679cc5c02bd38de97"
+    },
+    "RSH-030": {
+      "pull_request": 33,
+      "merge_sha": "7a4451f4c55fe8aa44ad7999fc6de6e1c78c868c",
+      "validated_head_sha": "a89bd428a2db94695c7729da4908d0bd2f4d6bb0"
+    },
+    "RSH-031": {
+      "pull_request": 34,
+      "merge_sha": "04d922adc712a73cb0ccc7bd444a64b7b9157afd",
+      "validated_head_sha": "9f0eaeca265d44505e6dbc34e9e8b08a2dfd35fd"
+    },
+    "RSH-032": {
+      "pull_request": 35,
+      "merge_sha": "f8d055c86b80ba1a72555e41668e071f74b32536",
+      "validated_head_sha": "2a826fd20cb2c45e13a322443c4d9c1186ee53a9"
+    },
+    "RSH-033": {
+      "pull_request": 36,
+      "merge_sha": "550c681445b2473cbd377131b60715ade0e58774",
+      "validated_head_sha": "ea95c3197ac547960c7096561034d3471fe5bd4d"
+    },
+    "RSH-034": {
+      "pull_request": 37,
+      "merge_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4",
+      "validated_head_sha": "285d871ee9a22b02ace7f732ac096eb7405c43e8"
+    },
+    "RSH-035": {
+      "pull_request": 38,
+      "merge_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+      "validated_head_sha": "847d88bc094d243a48a07a99da94b488f50e000e"
+    }
+  },
+  "unit_order": [
+    "RSH-001",
+    "RSH-002",
+    "RSH-003",
+    "RSH-004",
+    "RSH-005",
+    "RSH-006",
+    "RSH-007",
+    "RSH-008",
+    "RSH-009",
+    "RSH-010",
+    "RSH-011",
+    "RSH-012",
+    "RSH-013",
+    "RSH-014",
+    "RSH-015",
+    "RSH-016",
+    "RSH-017",
+    "RSH-018",
+    "RSH-019",
+    "RSH-020",
+    "RSH-021",
+    "RSH-022",
+    "RSH-023",
+    "RSH-024",
+    "RSH-025",
+    "RSH-026",
+    "RSH-027",
+    "RSH-028",
+    "RSH-029",
+    "RSH-030",
+    "RSH-031",
+    "RSH-032",
+    "RSH-033",
+    "RSH-034",
+    "RSH-035",
+    "RSH-036",
+    "RSH-037",
+    "RSH-038",
+    "RSH-039",
+    "RSH-040",
+    "RSH-041",
+    "RSH-042",
+    "RSH-043",
+    "RSH-044",
+    "RSH-045",
+    "RSH-046",
+    "RSH-047",
+    "RSH-048",
+    "RSH-049",
+    "RSH-050",
+    "RSH-051",
+    "RSH-052",
+    "RSH-053",
+    "RSH-054",
+    "RSH-055",
+    "RSH-056",
+    "RSH-057",
+    "RSH-058",
+    "RSH-059",
+    "RSH-060",
+    "RSH-061",
+    "RSH-062",
+    "RSH-063",
+    "RSH-064",
+    "RSH-065",
+    "RSH-066",
+    "RSH-067"
+  ],
+  "state_rules": {
+    "accepted": {
+      "from": "RSH-001",
+      "through": "RSH-035"
+    },
+    "in_review": [
+      "RSH-036"
+    ],
+    "eligible": [],
+    "deferred": {
+      "from": "RSH-037",
+      "through": "RSH-067"
+    },
+    "RSH-001–RSH-035": "accepted",
+    "RSH-036": "in_review",
+    "RSH-037–RSH-067": "owner_authorized_not_activated"
+  },
+  "next_instruction_contract": {
+    "instruction": "next",
+    "authorization_remaining": 32,
+    "authorization_closed": false,
+    "current_action": "Finish RSH-036 and its remediation, validate the exact head, then activate RSH-037 under standing owner authorization.",
+    "RSH_035_completed": true,
+    "RSH_035_authorization_consumed": true,
+    "RSH_036_authorized": true,
+    "RSH_036_completed": false,
+    "RSH_036_authorization_consumed": false,
+    "RSH_037_authorized": true,
+    "RSH_037_activated": false,
+    "execute_only_active_unit": true,
+    "additional_improvements_require_new_owner_approval": false
+  },
+  "self_reference_boundary": "Accepted counts represent verified main only; candidate acceptance is never predicted.",
+  "in_review": {
+    "RSH-036": {
+      "state": "in_review",
       "branch": "agent/rsh-036-ayalon-freeze",
       "pull_request": 39,
       "manifest": "AYALON-FREEZE-MANIFEST.json",
       "contract": "RSH-036-AYALON-FREEZE-CONTRACT.md",
       "RSH_037_created": false,
-      "RSH_037_authorized": false
+      "RSH_037_authorized": false,
+      "accepted": false
     }
-  },
-  "unit_order": ["RSH-001","RSH-002","RSH-003","RSH-004","RSH-005","RSH-006","RSH-007","RSH-008","RSH-009","RSH-010","RSH-011","RSH-012","RSH-013","RSH-014","RSH-015","RSH-016","RSH-017","RSH-018","RSH-019","RSH-020","RSH-021","RSH-022","RSH-023","RSH-024","RSH-025","RSH-026","RSH-027","RSH-028","RSH-029","RSH-030","RSH-031","RSH-032","RSH-033","RSH-034","RSH-035","RSH-036","RSH-037","RSH-038","RSH-039","RSH-040","RSH-041","RSH-042","RSH-043","RSH-044","RSH-045","RSH-046","RSH-047","RSH-048","RSH-049","RSH-050","RSH-051","RSH-052","RSH-053","RSH-054","RSH-055","RSH-056","RSH-057","RSH-058","RSH-059","RSH-060","RSH-061","RSH-062","RSH-063","RSH-064","RSH-065","RSH-066","RSH-067"],
-  "state_rules": {
-    "accepted": {"from": "RSH-001", "through": "RSH-036"},
-    "eligible": [],
-    "deferred": {"from": "RSH-037", "through": "RSH-067"},
-    "RSH-001–RSH-036": "accepted",
-    "RSH-037–RSH-067": "deferred_not_authorized"
-  },
-  "next_instruction_contract": {
-    "instruction": "next",
-    "units_per_instruction": 1,
-    "authorization_remaining": 0,
-    "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-037 remains deferred until a new explicit owner instruction.",
-    "RSH_035_completed": true,
-    "RSH_035_authorization_consumed": true,
-    "RSH_036_authorized": false,
-    "RSH_036_completed": true,
-    "RSH_036_authorization_consumed": true,
-    "RSH_037_authorized": false
-  },
-  "self_reference_boundary": "The RSH-036 candidate records accepted-on-merge state without inventing its future merge SHA."
+  }
 }

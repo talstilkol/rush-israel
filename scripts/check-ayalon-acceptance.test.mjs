@@ -8,7 +8,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-025 Ayalon acceptance authority passes under the RSH-029 overlay and RSH-036 remains absent", () => {
+test("committed RSH-025 Ayalon acceptance authority passes under the RSH-029 overlay and RSH-037 remains absent", () => {
   const result = validateAyalonAcceptance();
   assert.deepEqual(result.errors, []);
   assert.equal(result.trackId, "ayalon");
