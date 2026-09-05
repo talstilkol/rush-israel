@@ -1,40 +1,40 @@
-name: rsh036-r64-prepare
+name: rsh036-r64-finalize
 on:
   push:
     branches: [agent/rsh-036-r64-validation-20260905]
 permissions:
   contents: write
 jobs:
-  validate-candidate:
+  validate-final-counts:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 10
     env:
       CI: 'true'
       NODE_OPTIONS: --experimental-strip-types
-      PLAYWRIGHT_BROWSERS_PATH: '0'
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
-      - name: Apply hash-pinned candidate with no preparation files
+      - name: Apply exact water repair and count reconciliation
         run: |
           python - <<'PY'
           from pathlib import Path
           import hashlib,lzma,os,subprocess
           tmp=Path(os.environ['RUNNER_TEMP'])
-          (tmp/'inspect.mjs').write_bytes(Path('.rsh036-r64-inspect.mjs').read_bytes())
           patch=lzma.decompress(Path('.rsh036-r64-part1').read_bytes()+Path('.rsh036-r64-part2').read_bytes())
+          delta=Path('.rsh036-r64-final.delta').read_bytes()
           assert hashlib.sha256(patch).hexdigest()=='c923d73517f153ec689eb7fc8150fb6841abe37c2efe24fcc9155588bfaa5dd2'
-          target=tmp/'candidate.patch';target.write_bytes(patch)
+          assert hashlib.sha256(delta).hexdigest()=='fb38683cc11ed1b39d27d2a776dfd179c342dbe84052a71efa8fdc97332f3e5a'
           subprocess.run(['git','checkout','--detach','59b71fccf137296697017e04eef19eef998ac597'],check=True)
-          subprocess.run(['git','apply','--unidiff-zero','--check',str(target)],check=True)
-          subprocess.run(['git','apply','--unidiff-zero',str(target)],check=True)
+          for i,content in enumerate([patch,delta]):
+            p=tmp/f'r64-{i}.patch';p.write_bytes(content)
+            subprocess.run(['git','apply','--unidiff-zero','--check',str(p)],check=True)
+            subprocess.run(['git','apply','--unidiff-zero',str(p)],check=True)
           subprocess.run(['git','add','-A'],check=True)
           tree=subprocess.check_output(['git','write-tree'],text=True).strip()
-          assert tree=='2b883a551a70ffb557295ddf7604fd4adc570ab5',tree
+          assert tree=='b9d17ff594a894cd72e9b8c4901c3e988b978a12',tree
           Path('artifacts').mkdir(exist_ok=True)
-          Path('artifacts/candidate.patch').write_bytes(patch)
           Path('artifacts/candidate-tree.txt').write_text(tree+'\n')
           PY
       - uses: actions/setup-node@v4
@@ -44,29 +44,13 @@ jobs:
       - run: npm install --global npm@10.9.2
       - run: npm run toolchain:verify
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - name: Governance and complete unit suite
+      - name: Validate complete unit suite and lint on final count repair
         run: |
           set -o pipefail
           node scripts/check-governance-contract.mjs 2>&1 | tee artifacts/governance.log
           npm test 2>&1 | tee artifacts/unit-tests.tap
-      - name: Lint
-        run: |
-          set -o pipefail
           npm run lint 2>&1 | tee artifacts/lint.log
-      - name: Full QA and locked typecheck
-        run: |
-          set -o pipefail
-          npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
-      - name: Actual browser water-clock cycles and resource recovery
-        run: |
-          set -o pipefail
-          node scripts/run-with-server.mjs -- node scripts/runtime-recovery-smoke.mjs 2>&1 | tee artifacts/runtime-recovery.log
-      - name: Development build
-        run: |
-          set -o pipefail
-          npm run build:dev 2>&1 | tee artifacts/build-dev.log
-      - name: Store only validated tree objects, never refs
+      - name: Store unreferenced exact final tree; no refs or acceptance
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -75,32 +59,21 @@ jobs:
           import json,os,subprocess,urllib.request
           assert os.environ['GITHUB_REPOSITORY']=='talstilkol/rush-israel'
           tree=subprocess.check_output(['git','write-tree'],text=True).strip()
-          assert tree=='2b883a551a70ffb557295ddf7604fd4adc570ab5'
+          assert tree=='b9d17ff594a894cd72e9b8c4901c3e988b978a12'
           assert not subprocess.check_output(['git','diff','--name-only']).strip()
           paths=subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines()
-          assert len(paths)==19
+          assert len(paths)==22
           assert all(not p.startswith('.github/workflows/') and not p.startswith('.rsh036-') for p in paths)
           entries=[{'path':p,'mode':'100644','type':'blob','content':Path(p).read_text()} for p in paths]
-          data=json.dumps({'base_tree':'a39852f1d72e0ab91f5a07e05b17c97904f87ca4','tree':entries}).encode()
-          req=urllib.request.Request('https://api.github.com/repos/talstilkol/rush-israel/git/trees',data=data,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'})
+          req=urllib.request.Request('https://api.github.com/repos/talstilkol/rush-israel/git/trees',data=json.dumps({'base_tree':'a39852f1d72e0ab91f5a07e05b17c97904f87ca4','tree':entries}).encode(),method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'})
           with urllib.request.urlopen(req,timeout=60) as resp:result=json.load(resp)
           assert result['sha']==tree,result
-          Path('artifacts/validated-tree.json').write_text(json.dumps({'tree':tree,'changed_files':19,'ref_mutations':0,'unit_accepted':False,'run_id':os.environ['GITHUB_RUN_ID']},indent=2)+'\n')
+          Path('artifacts/validated-tree.json').write_text(json.dumps({'tree':tree,'changed_files':22,'ref_mutations':0,'unit_accepted':False,'run_id':os.environ['GITHUB_RUN_ID'],'scope':'Unit/lint/governance validation only; full runtime/golden results are separate and still required.'},indent=2)+'\n')
           PY
-      - name: Read-only scene diagnostic on same candidate
-        run: |
-          set -o pipefail
-          cp "$RUNNER_TEMP/inspect.mjs" artifacts/inspect.mjs
-          node scripts/run-with-server.mjs -- node artifacts/inspect.mjs 2>&1 | tee artifacts/scene-diagnostic.log
-      - name: Unchanged golden gate; never update baselines
-        run: |
-          set -o pipefail
-          test -z "$UPDATE_GOLDEN"
-          npm run qa:golden 2>&1 | tee artifacts/golden.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: rsh036-r64-preparation-${{ github.run_id }}-${{ github.run_attempt }}
+          name: rsh036-r64-finalize-${{ github.run_id }}-${{ github.run_attempt }}
           path: artifacts/**
           if-no-files-found: error
           retention-days: 14
