@@ -1,42 +1,28 @@
 import { chromium } from 'playwright';
-import { PNG } from 'pngjs';
-import { mkdir, writeFile } from 'node:fs/promises';
-import { execFileSync } from 'node:child_process';
-const output='artifacts/rsh036-investigation';await mkdir(output,{recursive:true});
-const report={source:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),samples:[]};
-const save=()=>writeFile(`${output}/report.json`,JSON.stringify(report,null,2)+'\n');
+import { mkdir,writeFile } from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+const dir='artifacts/rsh036-investigation';await mkdir(dir,{recursive:true});
+const out={source:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),console:[]};
 const browser=await chromium.launch({headless:true});
-try {
- const p2=await browser.newPage();await p2.goto('http://127.0.0.1:8080/?qa=1',{waitUntil:'networkidle'});
- report.constructor=await p2.evaluate(async()=>{
-  const {RendererFacade}=await import('/src/rendering/RendererFacade.ts');const {RaceEngine}=await import('/src/game/engine.ts');
-  const init=RendererFacade.init;let resource,disposed=0,error='';const c=document.createElement('canvas');c.style.cssText='width:800px;height:600px';document.body.append(c);
-  RendererFacade.init=function(...args){resource=init.apply(this,args);const release=resource.dispose.bind(resource);resource.dispose=()=>{disposed++;release();};return resource;};
-  try{new RaceEngine(c,{trackId:'ayalon',carId:'sabra',quality:'low',night:false,langHe:true,onHud(){},onFinish(){},onBoot(){throw new Error('injected constructor interruption');}});}catch(e){error=String(e);}finally{RendererFacade.init=init;}
-  const result={error,automaticDisposals:disposed};if(resource&&disposed===0)resource.dispose();c.remove();return result;
- });await save();await p2.close();
- const p3=await browser.newPage();await p3.goto('http://127.0.0.1:8080/?qa=1',{waitUntil:'networkidle'});
- const source=await(await p3.request.get('http://127.0.0.1:8080/src/game/road-assets.ts')).text();
- const three=source.match(/from\s+["']([^"']*\/three\.js[^"']*)["']/)?.[1];if(!three)throw new Error('Cannot resolve actual Vite three import');
- report.texture=await p3.evaluate(async threePath=>{
-  const THREE=await import(threePath);const road=await import('/src/game/road-assets.ts');const load=THREE.TextureLoader.prototype.loadAsync;let created=0,disposed=0,error='';
-  THREE.TextureLoader.prototype.loadAsync=function(url){if(url.includes('-bump'))return new Promise((_,reject)=>setTimeout(()=>reject(new Error('injected batch failure')),5));return new Promise(resolve=>setTimeout(()=>{const t=new THREE.Texture();created++;t.addEventListener('dispose',()=>disposed++);resolve(t);},url.includes('-rough')?40:1));};
-  try{await road.loadHwyRoad();}catch(e){error=String(e);}await new Promise(r=>setTimeout(r,80));THREE.TextureLoader.prototype.loadAsync=load;
-  return {error,created,disposed,committed:!!road.getBakedRoad(4)};
- },three);await save();await p3.close();
- const page=await browser.newPage({viewport:{width:1280,height:800}});const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+try{
+ const page=await browser.newPage({viewport:{width:1280,height:800}});
+ page.on('console',m=>{if(['error','warning'].includes(m.type()))out.console.push(m.text());});
+ page.on('pageerror',e=>out.console.push(String(e)));
  await page.goto('http://127.0.0.1:8080/?qa=1',{waitUntil:'networkidle'});
- await page.evaluate(async()=>{const {RendererFacade}=await import('/src/rendering/RendererFacade.ts');const init=RendererFacade.init;RendererFacade.init=function(...args){const gfx=init.apply(this,args);window.__investigationGfx=gfx;return gfx;};});
- await page.getByRole('button',{name:/בחר מסלול/}).click();const all=page.getByRole('button',{name:/^הכל$/});if(await all.count())await all.click();await page.getByRole('button',{name:/שדרות רוטשילד/}).click();
- await page.waitForFunction(()=>!!window.__controlsTest,{timeout:60000});
- const client=await page.context().newCDPSession(page);
- for(const delay of [0,500,2500]){
-  if(delay)await page.waitForTimeout(delay);
-  const gfx=await page.evaluate(()=>{const gl=window.__investigationGfx.gl;const c=document.querySelector('canvas');return {frame:gl.info.render.frame,calls:gl.info.render.calls,contextLost:gl.getContext().isContextLost(),width:c.width,height:c.height,renderer:String(gl.getContext().getParameter(gl.getContext().RENDERER))};});
-  report.samples.push({delay,...gfx});await save();
-  const shot=await client.send('Page.captureScreenshot',{format:'png',fromSurface:true});const bytes=Buffer.from(shot.data,'base64');await writeFile(`${output}/rothschild-${delay}.png`,bytes);
-  const p=PNG.sync.read(bytes);let visible=0,total=0;const colors=new Set();for(let y=110;y<580;y+=2)for(let x=160;x<1120;x+=2){const i=(y*p.width+x)*4;const [r,g,b]=p.data.subarray(i,i+3);total++;if(Math.max(r,g,b)>12)visible++;colors.add((r>>4)*256+(g>>4)*16+(b>>4));}
-  Object.assign(report.samples.at(-1),{visibleFraction:visible/total,colorBins:colors.size});await save();
- }
- report.pageErrors=errors;await page.close();
-} catch(error){report.error=String(error);process.exitCode=1;} finally{await browser.close();await save();console.log(JSON.stringify(report));}
+ await page.evaluate(async()=>{
+  const {RendererFacade}=await import('/src/rendering/RendererFacade.ts');const init=RendererFacade.init;
+  RendererFacade.init=function(...args){const gfx=init.apply(this,args);window.__gfx=gfx;const draw=gfx.gl.render;gfx.gl.render=function(scene,camera){if(scene.isScene&&camera.isPerspectiveCamera){window.__scene=scene;window.__camera=camera;}return draw.call(this,scene,camera);};return gfx;};
+ });
+ await page.getByRole('button',{name:/בחר מסלול/}).click();const all=page.getByRole('button',{name:/^הכל$/});if(await all.count())await all.click();await page.getByRole('button',{name:/שדרות רוטשילד/}).click();await page.waitForFunction(()=>window.__controlsTest&&window.__scene,{timeout:60000});await page.waitForTimeout(1200);
+ out.probe=await page.evaluate(()=>{
+  const r=window.__gfx.gl,s=window.__scene,c=window.__camera,g=r.getContext();r.setAnimationLoop(null);
+  const styles=[];for(let el=r.domElement;el;el=el.parentElement){const st=getComputedStyle(el);styles.push({tag:el.tagName,class:el.className,opacity:st.opacity,display:st.display,visibility:st.visibility,z:st.zIndex,width:st.width,height:st.height,filter:st.filter});}
+  const shapes=[];s.traverse(o=>{if(o.isMesh&&shapes.length<20)shapes.push({name:o.name,type:o.type,material:o.material?.type,visible:o.visible,position:o.position.toArray(),scale:o.scale.toArray()});});
+  const result={styles,frame:r.info.render.frame,calls:r.info.render.calls,exposure:r.toneMappingExposure,clear:r.autoClear,scene:s.toJSON().object.background,fog:s.fog?.toJSON(),camera:{position:c.position.toArray(),quaternion:c.quaternion.toArray(),projection:c.projectionMatrix.toArray(),world:c.matrixWorld.toArray(),near:c.near,far:c.far},target:r.getRenderTarget()?.width??null,scissorTest:r.getScissorTest(),viewport:Array.from(g.getParameter(g.VIEWPORT)),error:g.getError(),shapes};
+  r.render(s,c);const b=new Uint8Array(4);g.readPixels(500,400,1,1,g.RGBA,g.UNSIGNED_BYTE,b);result.pixel=Array.from(b);result.actual=r.domElement.toDataURL();
+  const vis=s.children.map(o=>o.visible);s.children.forEach(o=>o.visible=false);r.render(s,c);result.backgroundOnly=r.domElement.toDataURL();s.children.forEach((o,i)=>o.visible=vis[i]);
+  r.setRenderTarget(null);r.setClearColor(0x2080e0,1);r.clear();result.clearOnly=r.domElement.toDataURL();return result;
+ });
+ for(const key of ['actual','backgroundOnly','clearOnly']){await writeFile(`${dir}/${key}.png`,Buffer.from(out.probe[key].split(',')[1],'base64'));delete out.probe[key];}
+ await page.close();
+}catch(e){out.error=String(e);process.exitCode=1;}finally{await browser.close();await writeFile(`${dir}/report.json`,JSON.stringify(out,null,2));console.log(JSON.stringify(out));}
