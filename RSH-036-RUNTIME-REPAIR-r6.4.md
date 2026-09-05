@@ -102,3 +102,28 @@ later to record actual outcomes. Normal exact-published-head CI is separately
 required; its verified result must be read from the current PR checkpoint.
 
 RSH-036 is still blocked. No merge, release, freeze grant or later-unit start.
+
+## Further causal isolation and canopy repair
+
+Read-only run33992134755, artifact9976963396 (SHA-256
+0cc19af657c6f115d1b8cebbad05e586707f7c770429ea9409360171a24b709b), found
+one overflowing live InstancedMesh: Rothschild foliage count1152, capacity960.
+All49 sampled positions were black initially. Temporarily bounding the draw count
+made43/49 nonblack; restoring1152 restored49/49 black. These temporary diagnostic
+mutations were not product changes. They establish a causal reproduction on this
+Chromium renderer, not a cross-device rendering qualification.
+
+The actual product fix allocates ficusN *12 =1536 slots. All96 trees and1152
+canopy components are retained; no counts are clamped, no meshes hidden, and no
+material/camera values are changed. Four new unit cases execute the actual source
+construction block with a bounded matrix-store double: current480-sample route,
+old960-slot negative reproduction,19 sampling boundaries and the maximum128-tree
+case. All pass. The intended fix now has a separate actual engine capacity and
+scene-pixel gate, and the existing closed-route UI test checks viewport pixels
+away from HUD edges. Passing status for those gates awaits remote execution.
+
+Local complete candidate suite:614 passed,0 failed/skipped/cancelled. Historical
+builder reconstruction uses only exact known reverse deltas; unknown edits remain
+rejected. The exact current-source inventory has18 entries. The explicit freeze
+inventory is46 paths but remains partial and grants no freeze. This is a further
+repair within r6.4/RSH-036; no new audit ID or accepted unit is created.

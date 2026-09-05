@@ -1997,23 +1997,31 @@
     "transitive_coverage_complete": false,
     "runtime_remediation_complete": false,
     "freeze_granted": false,
-    "partial_inventory_count": 45,
+    "partial_inventory_count": 46,
     "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.4.md",
     "local_unit_tests": {
-      "scope": "new water-clock cases; not locked full-suite CI",
-      "passed": 10,
+      "scope": "complete candidate suite on local Node22.16.0/TypeScript5.8.3; locked dependencies validated remotely separately",
+      "passed": 614,
       "failed": 0,
       "skipped": 0,
       "locked_dependency_install": false
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
     "previous_exact_head_ci": {
-      "head": "59b71fccf137296697017e04eef19eef998ac597",
-      "run_id": 33989155614,
-      "tests_passed": 591
+      "head": "c7b6bbcd3fea034cc0f872b397134231ec8dc410",
+      "run_id": 33992057910,
+      "tests_passed": 607
     },
     "resource_repairs": "prepared_pending_exact_head_ci",
-    "scene_visibility": "persistent_black_on_r61_and_r62_unresolved",
-    "water_clock_repair": "implemented_pending_exact_head_browser_and_golden"
+    "scene_visibility": "foliage_overflow_reproduced_all_instances_preserved_by_capacity_fix_remote_pending",
+    "water_clock_repair": "129_transitions_verified_golden0of4_passed",
+    "foliage_repair": {
+      "previous_capacity": 960,
+      "required_instances": 1152,
+      "new_capacity": 1536,
+      "retained_trees": 96,
+      "status": "implemented_pending_actual_browser_validation",
+      "diagnostic_run": 33992134755
+    }
   }
 }

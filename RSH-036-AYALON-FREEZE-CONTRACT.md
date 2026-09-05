@@ -8,7 +8,7 @@
 
 ## Source inventory versus acceptance
 
-The current explicit inventory contains 45 hashed paths. It is a **partial inventory**, not proof of full static/dynamic/runtime-asset dependency closure. CR-03 remains open. The unaccepted prior 36-path inventory and premature true grant are preserved in Git history at the repair base; they are not accepted authority.
+The current explicit inventory contains 46 hashed paths. It is a **partial inventory**, not proof of full static/dynamic/runtime-asset dependency closure. CR-03 remains open. The unaccepted prior 36-path inventory and premature true grant are preserved in Git history at the repair base; they are not accepted authority.
 
 This revision repairs denied-storage recovery, cancellable race startup, an unmounted minimap and open-route geometry. `RSH-036-RUNTIME-EVOLUTION.json` contains exact current hashes and reverse deltas to the independently verified base. Historical checkers use those deltas solely to verify earlier byte identities. Separate tests require the actual new production bytes and exercise their behavior.
 
@@ -16,7 +16,7 @@ This revision repairs denied-storage recovery, cancellable race startup, an unmo
 
 Keep all original golden PNG bytes, `golden-baseline/ayalon.lock` generation 11, all 20 unique authority frames and four non-authority HaShalom placeholders unchanged. The original RSH-035 owner approval remains byte-identical with `unique_pack_approved=true` and `freeze_granted=false`. Pixel comparison retains threshold 0.12 and failure limit 8%; never update baselines to hide drift.
 
-Track definitions/builders, physics/cars/audio/input data, package.json, package-lock.json and asset bytes are unchanged. World composition changes are limited to per-material water clock association. HUD and runtime sources deliberately evolve under the standing owner repair authorisation and must be revalidated visually. No historic runtime-preservation claim is silently carried forward.
+Track definitions, other track builders, physics/cars/audio/input data, package.json, package-lock.json and asset bytes are unchanged. The Rothschild builder allocation is repaired from 960 to 1536 canopy slots, preserving all 1152 intended instances and its exact historical projection. World composition changes are limited to per-material water clock association. HUD and runtime sources deliberately evolve under the standing owner repair authorisation and must be revalidated visually. No historic runtime-preservation claim is silently carried forward.
 
 ## Mandatory acceptance gates
 

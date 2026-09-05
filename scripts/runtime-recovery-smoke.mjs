@@ -6,6 +6,7 @@ import { chromium } from 'playwright';
 import { fromRoot } from './project-root.mjs';
 import { verifyResourceRecovery } from './resource-recovery-browser.mjs';
 import { verifyWaterClock } from './water-clock-browser.mjs';
+import { verifyRothschildVisibility, assertScenePixels } from './rothschild-visibility-browser.mjs';
 
 const url = process.env.SMOKE_URL ?? 'http://127.0.0.1:8080/?qa=1';
 const output = fromRoot('artifacts', 'runtime-recovery');
@@ -52,6 +53,7 @@ async function raceReady(page) {
 try {
   results.push(...await verifyResourceRecovery(browser, url));
   results.push(...await verifyWaterClock(browser, url));
+  results.push(await verifyRothschildVisibility(browser, url, output));
   {
     const { page, errors } = await pageWithEvidence();
     const route = /\/src\/game\/engine\.ts(?:\?|$)/;
@@ -121,8 +123,8 @@ try {
     await raceReady(page);
     assert.ok(await page.evaluate(() => window.__routeEvidence.routeClosures > 0), 'closed track must close the route');
     assert.deepEqual(errors, []);
-    await page.screenshot({ path: `${output}/closed-route-map.png` });
-    results.push({ case: 'real closed-track HUD mounts and closes minimap route', status: 'passed' });
+    const scenePixels = await assertScenePixels(page, `${output}/closed-route-map.png`);
+    results.push({ case: 'real closed-track HUD mounts and closes minimap route with visible 3D scene', status: 'passed', scenePixels });
     await page.close();
   }
 } catch (error) {

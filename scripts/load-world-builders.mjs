@@ -38,7 +38,7 @@ export function reconstructRsh015WorldSource(source = readFileSync(fromRoot("src
   for (const id of layout.legacy_builder_order) {
     const module = manifest.extraction.modules.find((candidate) => candidate.id === id);
     if (!module) throw new Error(`legacy-order world builder ${id} is missing`);
-    const moduleSource = readFileSync(fromRoot(...module.path.split("/")), "utf8");
+    const moduleSource = historicalRsh036Source(readFileSync(fromRoot(...module.path.split("/")), "utf8"));
     const body = extractBetween(moduleSource, markers.body_begin, markers.body_end, module.id);
     fn += module.layout.prefix + body + module.layout.suffix + module.layout.separator_after;
   }
