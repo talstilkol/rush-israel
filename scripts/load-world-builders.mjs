@@ -1,3 +1,4 @@
+import { historicalRsh036Source } from "./rsh036-runtime-evolution.mjs";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { fromRoot } from "./project-root.mjs";
@@ -26,6 +27,7 @@ function replaceOnce(source, before, after, label) {
   return pieces[0] + after + pieces[1];
 }
 export function reconstructRsh015WorldSource(source = readFileSync(fromRoot("src", "game", "world.ts"), "utf8")) {
+  source = historicalRsh036Source(source);
   const manifest = JSON.parse(readFileSync(fromRoot("WORLD-BUILDER-MANIFEST.json"), "utf8"));
   const layout = manifest.reconstruction;
   const markers = layout.markers;

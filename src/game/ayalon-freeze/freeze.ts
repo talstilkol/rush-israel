@@ -18,7 +18,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/ayalon-hash.mjs": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
   "src/game/tracks/ayalon.ts": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
   "src/game/world-builders/tracks/ayalon.ts": "866afe889a98457a868d1f9e61ca8cb3a803b821bd089ff9d4ab13dae8da2c3c",
-  "src/game/world.ts": "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc",
+  "src/game/world.ts": "f0154d23276f52f68402d1b3758612f596946f4684974d9c4a4fd70276eac5ba",
   "src/game/ayalon-lock/geometry.ts": "b5be3e5838fb99449fb7d5a5684177e8626a7a283c54275461fd45faf42a94f7",
   "src/game/ayalon-lock/index.ts": "878d7834dfac9c7756b0929eea515f03ff23b2f8500a63fd49f1fb369c4e3ae6",
   "src/game/ayalon-colliders/colliders.ts": "da611c2867879fa55f6b3db84c76f93725a8b786e0b7dea94079fe6f5ae6708f",
@@ -55,7 +55,8 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "src/game/minimap-route.ts": "35810413542c7b57ac5b7cabc0ede8fec5cf19ceff8a3ca2e109ce6b7ab0031d",
   "src/game/road-assets.ts": "a2a613b6b4ebf7796aa402709a852cf47181d660e5af8dbd18f863537db2b8a2",
   "src/rendering/RendererFacade.ts": "512425eda35e2514bfe15a9980ca938a0e31b2843631f7410049c69069870159",
-  "src/game/owned-load.ts": "3c8cee655cc312b0ae3f79c2699effe650dc252a184cf7990222d052543a74d9"
+  "src/game/owned-load.ts": "3c8cee655cc312b0ae3f79c2699effe650dc252a184cf7990222d052543a74d9",
+  "src/game/water-clock.ts": "fd08dc8beb44d54b2839ad82cb8d6386e7ad76ef4b06e382bd80be005c101472",
 } as const;
 
 export const FREEZE_APPROVAL = {

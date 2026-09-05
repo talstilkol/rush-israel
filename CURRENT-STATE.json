@@ -1997,22 +1997,23 @@
     "transitive_coverage_complete": false,
     "runtime_remediation_complete": false,
     "freeze_granted": false,
-    "partial_inventory_count": 44,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.3.md",
+    "partial_inventory_count": 45,
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.4.md",
     "local_unit_tests": {
-      "scope": "new batch and actual-loader regression tests only",
-      "passed": 18,
+      "scope": "new water-clock cases; not locked full-suite CI",
+      "passed": 10,
       "failed": 0,
       "skipped": 0,
       "locked_dependency_install": false
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
     "previous_exact_head_ci": {
-      "head": "1ef48b96e8385c6dd3351c9a6ec43d45c1bd7aa8",
-      "run_id": 33983420942,
-      "tests_passed": 567
+      "head": "59b71fccf137296697017e04eef19eef998ac597",
+      "run_id": 33989155614,
+      "tests_passed": 591
     },
     "resource_repairs": "prepared_pending_exact_head_ci",
-    "scene_visibility": "persistent_black_on_r61_and_r62_unresolved"
+    "scene_visibility": "persistent_black_on_r61_and_r62_unresolved",
+    "water_clock_repair": "implemented_pending_exact_head_browser_and_golden"
   }
 }

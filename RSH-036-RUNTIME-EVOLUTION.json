@@ -360,7 +360,7 @@
       "current_sha256": "35810413542c7b57ac5b7cabc0ede8fec5cf19ceff8a3ca2e109ce6b7ab0031d"
     },
     "scripts/runtime-recovery-smoke.mjs": {
-      "current_sha256": "c02372b1ac515ffc3616898472f705cbbabfe3dca4d8ff85eb53b30aa019a204"
+      "current_sha256": "745991cb371a140bf20fbceb638d3a856447620566fd859e7657591a686dbb6b"
     },
     "src/game/road-assets.ts": {
       "previous_sha256": "17cc9cc0ad287a6fcd74e0a40b122ad830733247b50b1e39eb6f2afb8a35146e",
@@ -415,6 +415,54 @@
     },
     "scripts/resource-recovery-browser.mjs": {
       "current_sha256": "18ef870aea0f4f95a3d3711e5db02e27a7a4ff3e106a8461ebb908af3a802721"
+    },
+    "src/game/world.ts": {
+      "previous_sha256": "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc",
+      "current_sha256": "f0154d23276f52f68402d1b3758612f596946f4684974d9c4a4fd70276eac5ba",
+      "reverse_edits": [
+        {
+          "start_line": 29,
+          "end_line": 30,
+          "current_segment_sha256": "f9cf571874055c98d492666d7691ea8c81d872172bb7981f3986e3efb1fb7ebd",
+          "previous_text": ""
+        },
+        {
+          "start_line": 1391,
+          "end_line": 1392,
+          "current_segment_sha256": "9d541ef47135876a7e2471b7825cc75aac0de44ba920244326a4358f570b43ae",
+          "previous_text": "  const waterMats: THREE.MeshPhysicalMaterial[] = [];\n"
+        },
+        {
+          "start_line": 1414,
+          "end_line": 1415,
+          "current_segment_sha256": "55b863b1054bb433d983c23aef61580c51f2c107afbbdb04ed6f77feef1ded20",
+          "previous_text": "      waterMats.push(mat);\n"
+        },
+        {
+          "start_line": 1456,
+          "end_line": 1457,
+          "current_segment_sha256": "4c59fefd332d02a9b373e8c44d08b56052199b698ce102e840024f57cb25f355",
+          "previous_text": "    waterMats.push(canalMat);\n"
+        },
+        {
+          "start_line": 2553,
+          "end_line": 2554,
+          "current_segment_sha256": "1b95a217915d5b23afff38353091b190c770e70c329f31aff01bfb8c47c8834f",
+          "previous_text": "        for (const mat of waterMats) if (mat.normalMap) {\n"
+        },
+        {
+          "start_line": 2715,
+          "end_line": 2716,
+          "current_segment_sha256": "f0ed3b5a09939993f0fa778d1ec11069ad5dce1543d3044a921cf1147bfa2faf",
+          "previous_text": "    if (waterMats.length) for (let i = 0; i < waterMats.length; i++) {\n      const src = bodies[i];\n      const mat = waterMats[i];\n      mat.color.setHex(src.color);\n      if (n > 0.35) mat.color.multiplyScalar(lerp(1, 0.5, n));\n      mat.envMapIntensity = lerp(1.7, 2.6, n);\n      mat.roughness = lerp(0.08, 0.03, n);\n      mat.opacity = lerp(0.82, 0.9, n);\n    }\n"
+        }
+      ]
+    },
+    "src/game/water-clock.ts": {
+      "current_sha256": "fd08dc8beb44d54b2839ad82cb8d6386e7ad76ef4b06e382bd80be005c101472"
+    },
+    "scripts/water-clock-browser.mjs": {
+      "current_sha256": "8a5b0aea13b2762246d1fab32b71510b2059cfabdb2cf861664e48aa12b4fd3c"
     }
   }
 }

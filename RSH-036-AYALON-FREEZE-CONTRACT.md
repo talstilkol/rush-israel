@@ -1,6 +1,6 @@
 # RSH-036 — Ayalon freeze candidate: acceptance blocked
 
-**Revision:** r6.2 / 2026-09-05  
+**Revision:** r6.4 / 2026-09-05  
 **Implementation base:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`  
 **Verified repair base:** `ba89268646bf8890f8074642049b23369eda582d`  
 **Branch:** `agent/rsh-036-ayalon-freeze`  
@@ -8,7 +8,7 @@
 
 ## Source inventory versus acceptance
 
-The current explicit inventory contains 44 hashed paths. It is a **partial inventory**, not proof of full static/dynamic/runtime-asset dependency closure. CR-03 remains open. The unaccepted prior 36-path inventory and premature true grant are preserved in Git history at the repair base; they are not accepted authority.
+The current explicit inventory contains 45 hashed paths. It is a **partial inventory**, not proof of full static/dynamic/runtime-asset dependency closure. CR-03 remains open. The unaccepted prior 36-path inventory and premature true grant are preserved in Git history at the repair base; they are not accepted authority.
 
 This revision repairs denied-storage recovery, cancellable race startup, an unmounted minimap and open-route geometry. `RSH-036-RUNTIME-EVOLUTION.json` contains exact current hashes and reverse deltas to the independently verified base. Historical checkers use those deltas solely to verify earlier byte identities. Separate tests require the actual new production bytes and exercise their behavior.
 
@@ -16,7 +16,7 @@ This revision repairs denied-storage recovery, cancellable race startup, an unmo
 
 Keep all original golden PNG bytes, `golden-baseline/ayalon.lock` generation 11, all 20 unique authority frames and four non-authority HaShalom placeholders unchanged. The original RSH-035 owner approval remains byte-identical with `unique_pack_approved=true` and `freeze_granted=false`. Pixel comparison retains threshold 0.12 and failure limit 8%; never update baselines to hide drift.
 
-Track/world/physics/cars/audio/input data, package.json, package-lock.json and asset bytes are unchanged. HUD and runtime sources deliberately evolve under the standing owner repair authorisation and must be revalidated visually. No historic runtime-preservation claim is silently carried forward.
+Track definitions/builders, physics/cars/audio/input data, package.json, package-lock.json and asset bytes are unchanged. World composition changes are limited to per-material water clock association. HUD and runtime sources deliberately evolve under the standing owner repair authorisation and must be revalidated visually. No historic runtime-preservation claim is silently carried forward.
 
 ## Mandatory acceptance gates
 
@@ -26,3 +26,5 @@ Track/world/physics/cars/audio/input data, package.json, package-lock.json and a
 4. Resolve blocking review findings, confirm source identity, then validate a merge. Only that later accepted checkpoint can grant the freeze and activate RSH-037.
 
 All 13 release gates remain open. GIS/navigation claims, public distribution, owner-settings freeze, force pushes and history rewrites remain forbidden. RSH-037 runtime structures remain absent.
+
+R6.4 water clock repair is authorised but is not visual acceptance. Original golden baselines and thresholds are unchanged. World source changed under exact historical/current guards.

@@ -27,7 +27,7 @@
     "ayalon_lock_generation": 11,
     "ayalon_lock_hash": "0c34b9d1f9ded36eaa8400c7aaba48a4f725033bfe25412a4648c36c73910d48",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74",
-    "source_count": 44,
+    "source_count": 45,
     "freeze_granted": false,
     "unique_pack_approved": true,
     "placeholders_are_unique_evidence": false,
@@ -42,7 +42,7 @@
       "scripts/ayalon-hash.mjs": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
       "src/game/tracks/ayalon.ts": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
       "src/game/world-builders/tracks/ayalon.ts": "866afe889a98457a868d1f9e61ca8cb3a803b821bd089ff9d4ab13dae8da2c3c",
-      "src/game/world.ts": "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc",
+      "src/game/world.ts": "f0154d23276f52f68402d1b3758612f596946f4684974d9c4a4fd70276eac5ba",
       "src/game/ayalon-lock/geometry.ts": "b5be3e5838fb99449fb7d5a5684177e8626a7a283c54275461fd45faf42a94f7",
       "src/game/ayalon-lock/index.ts": "878d7834dfac9c7756b0929eea515f03ff23b2f8500a63fd49f1fb369c4e3ae6",
       "src/game/ayalon-colliders/colliders.ts": "da611c2867879fa55f6b3db84c76f93725a8b786e0b7dea94079fe6f5ae6708f",
@@ -79,7 +79,8 @@
       "src/game/minimap-route.ts": "35810413542c7b57ac5b7cabc0ede8fec5cf19ceff8a3ca2e109ce6b7ab0031d",
       "src/game/road-assets.ts": "a2a613b6b4ebf7796aa402709a852cf47181d660e5af8dbd18f863537db2b8a2",
       "src/rendering/RendererFacade.ts": "512425eda35e2514bfe15a9980ca938a0e31b2843631f7410049c69069870159",
-      "src/game/owned-load.ts": "3c8cee655cc312b0ae3f79c2699effe650dc252a184cf7990222d052543a74d9"
+      "src/game/owned-load.ts": "3c8cee655cc312b0ae3f79c2699effe650dc252a184cf7990222d052543a74d9",
+      "src/game/water-clock.ts": "fd08dc8beb44d54b2839ad82cb8d6386e7ad76ef4b06e382bd80be005c101472"
     }
   },
   "lock_module": {
@@ -93,7 +94,7 @@
     "ayalon_lock_changes": 0,
     "hashalom_index_changes": 0,
     "track_source_changes": 0,
-    "world_changes": 0,
+    "world_changes": 1,
     "physics_changes": 0,
     "audio_hud_changes": 1,
     "owner_approval_changes": 0,
@@ -106,16 +107,16 @@
     "runtime_repair_authorisation": "standing owner instruction 2026-09-05"
   },
   "identities": {
-    "freeze_source_sha256": "8d3016ff5f2bb15d83d3fb2ae24bb6ab071c177fd15f5c8d69983695fd673f7a",
+    "freeze_source_sha256": "ce517525a00a5531d829c7892309a814086174c1df45c6639ab31dc26559a60a",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
-    "contract_sha256": "06805ab4ce6b29df00e9058e310da2174f5cb815445dd56a1e354e3356022ad6",
+    "contract_sha256": "36c65235754bc49778dcf3947b7e27f376b1d99fb04a4020e94aa70d7588f08a",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
     "pixel_golden_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
-    "checker_test_sha256": "6f836100c12ea54d8507c7c9dc496bc8aee0fb2ccdfcbcae6e0baa14344b9ca6",
+    "checker_test_sha256": "dfb797ce739842b72b8d25e38cad6b47f11cfef8398cc94a894fa4e87aab7f83",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "514b84509cf0e652d5134e8c81b8de2a84bc3cde73dd85afc15a4918633cbf34",
+    "freeze_digest_sha256": "406cb3d2293a8fd944abd7eaa6c8a5fd33ef11bf3db0fbe3465ceca5c72088db",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
