@@ -1,0 +1,348 @@
+{
+  "schema_version": 1,
+  "unit": "RSH-036",
+  "base_commit": "ba89268646bf8890f8074642049b23369eda582d",
+  "base_tree": "c74b50f2795c8a87e71fa650aac99969dc2a0672",
+  "purpose": "Exact historical source projection only. Current production hashes are separately mandatory; this does not grant freeze acceptance.",
+  "files": {
+    "src/game/records.ts": {
+      "previous_sha256": "1394102cc0c744a3000a0ad191bca61efc79880b874a7ded3794b51bf0d3a502",
+      "current_sha256": "10bff6426c0ce8d9b406bac66662363ec997883fbff28941dab3f95e1f818aa0",
+      "reverse_edits": [
+        {
+          "start_line": 12,
+          "end_line": 14,
+          "current_segment_sha256": "6224a4045d2dc0df329635d4badfc861ae7c079f66e79859f5166196d8e19d29",
+          "previous_text": "  | \"write-failed\";\n"
+        },
+        {
+          "start_line": 21,
+          "end_line": 34,
+          "current_segment_sha256": "b86968d76790ee87e163fe0a7b82c939dc966f60b8ff1c8517935572a82f0757",
+          "previous_text": ""
+        },
+        {
+          "start_line": 198,
+          "end_line": 199,
+          "current_segment_sha256": "b0cedd80fdae603658b9c695deb5064f1b30614b3c421a003329fa2793368779",
+          "previous_text": "  storage: { getItem: (k: string) => string | null } = globalThis.localStorage,\n"
+        },
+        {
+          "start_line": 200,
+          "end_line": 210,
+          "current_segment_sha256": "7db876f04c21d81161a9e65365a88e9e7fabb31162be95dabb10cdbca1ca2283",
+          "previous_text": ") {\n  return sanitizeTimedRecords(decodeTimedRecords(storage.getItem(REC_KEY)), physicsVersion);\n"
+        },
+        {
+          "start_line": 225,
+          "end_line": 226,
+          "current_segment_sha256": "e8f9479b6dab301c682764d131928948774a195d71281e8a97f6c700b8f876a1",
+          "previous_text": "  storage: { getItem: (k: string) => string | null; setItem: (k: string, v: string) => void },\n"
+        },
+        {
+          "start_line": 228,
+          "end_line": 238,
+          "current_segment_sha256": "60a39beed92010755387d3d86c5f55e3a1cc3058cb5c6a0c6dc18d1b8658357f",
+          "previous_text": ""
+        },
+        {
+          "start_line": 239,
+          "end_line": 239,
+          "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "previous_text": "    const loaded = loadTimedRecords(storage, physicsVersion);\n"
+        },
+        {
+          "start_line": 241,
+          "end_line": 241,
+          "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "previous_text": "  const loaded = loadTimedRecords(storage, physicsVersion);\n"
+        },
+        {
+          "start_line": 246,
+          "end_line": 247,
+          "current_segment_sha256": "943edc1c9735b759dbc189c3d39b602b8be20ef52f54af5e76d56ff91a754eb1",
+          "previous_text": "    writeRecords(next.records, storage);\n"
+        },
+        {
+          "start_line": 248,
+          "end_line": 249,
+          "current_segment_sha256": "5430870d7aba69f6ace64453f8667a4a00a9dd0371b9ff7c602387b7af878f89",
+          "previous_text": "    return {\n      status: \"write-failed\",\n      records: loaded.records,\n      dropped: loaded.dropped,\n      error: String(error instanceof Error ? error.message : error),\n    };\n"
+        },
+        {
+          "start_line": 257,
+          "end_line": 258,
+          "current_segment_sha256": "e151ad0c3ad7efc660b221d0d893aa7de040d276ef1334945d40d3121cae2484",
+          "previous_text": "  storage: { getItem: (k: string) => string | null; setItem: (k: string, v: string) => void } = globalThis.localStorage,\n"
+        },
+        {
+          "start_line": 260,
+          "end_line": 263,
+          "current_segment_sha256": "73ebbfc8a92ecf09d7e748e3f93e0d2cade17e9e6fccb1bda849aef932a9257e",
+          "previous_text": "  const run = () => persistNow(rec, storage, physicsVersion);\n"
+        }
+      ]
+    },
+    "src/game/engine.ts": {
+      "previous_sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
+      "current_sha256": "598676caf41bb8ede1c6a5625719f2dcabaae327f95dcb258c8b8c02d44d995d",
+      "reverse_edits": [
+        {
+          "start_line": 25,
+          "end_line": 26,
+          "current_segment_sha256": "5bdf55cfe5440b4d810ad70cca67ed6337d5c583b1114e256b4d3e3f850d8fd6",
+          "previous_text": ""
+        },
+        {
+          "start_line": 510,
+          "end_line": 511,
+          "current_segment_sha256": "9a8c8d1ee981c8184ac9f0ede6a2ad03e8b4b2ba2a22e9561da4ec2b65e3cdd5",
+          "previous_text": "    const n = this.built.samples.length;\n    this.poly = [];\n    for (let i = 0; i < n; i += 4) this.poly.push({ x: this.built.samples[i].x, z: this.built.samples[i].z });\n"
+        }
+      ]
+    },
+    "src/components/game-app/race-controller.tsx": {
+      "previous_sha256": "e01c955f700b0f7c1fa20f876a8f3ad8b294f3edbdf3bcdf4ed16e6821188670",
+      "current_sha256": "02bf8279185a618488fe730567dd2b742d35c53abffd23864efb6fbb40c54819",
+      "reverse_edits": [
+        {
+          "start_line": 17,
+          "end_line": 19,
+          "current_segment_sha256": "66b58b416d71eb30a469de6721ce177a176f0cd386405f1334f29fe4e3a64a53",
+          "previous_text": ""
+        },
+        {
+          "start_line": 104,
+          "end_line": 105,
+          "current_segment_sha256": "af889280deab600d248a8bd2adb5654d03aea846d175184497391ebd74b6c2b6",
+          "previous_text": ""
+        },
+        {
+          "start_line": 134,
+          "end_line": 135,
+          "current_segment_sha256": "590a789a5aede24932d2ad98cf2eca3482559c250cb7a8f55becc48757ead5cf",
+          "previous_text": "\t\tlet inst: RaceEngine | null = null;\n"
+        },
+        {
+          "start_line": 137,
+          "end_line": 142,
+          "current_segment_sha256": "bc3c120a9596e3217c5a4eb6c397978cb5178687cdd4da481c0d129d2c4e8131",
+          "previous_text": "\t\tvoid (async () => {\n"
+        },
+        {
+          "start_line": 144,
+          "end_line": 144,
+          "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "previous_text": "\t\t\tif (cancelled) return;\n"
+        },
+        {
+          "start_line": 146,
+          "end_line": 147,
+          "current_segment_sha256": "d99b2553d40493b931da9dd58c6168675227600b2aa5d57fd021738b9179631c",
+          "previous_text": ""
+        },
+        {
+          "start_line": 148,
+          "end_line": 149,
+          "current_segment_sha256": "2d15886100b01b9df3eb03a838c7b7b356c23f74c85031e2770b48b90930c301",
+          "previous_text": "\t\t\tif (cancelled) return;\n\t\t\tinst = new RaceEngine(canvas, {\n"
+        },
+        {
+          "start_line": 161,
+          "end_line": 164,
+          "current_segment_sha256": "2bc1e238457880bb6c975eda436d49012b1b2049b061c95f600077ff3d218932",
+          "previous_text": "\t\t\t\tonHud: setHud,\n\t\t\t\tonBoot: (frac) => setBoot((b) => (b ? { ...b, frac } : { etaMs: estimateLoadMs(trackId, quality, night), frac })),\n\t\t\t\tonRestore: () => setRaceKey((k) => k + 1),\n"
+        },
+        {
+          "start_line": 165,
+          "end_line": 166,
+          "current_segment_sha256": "1fcb87b3493a1c1b92e0631a553ec09091cec610b93befb39aa07bc16d033994",
+          "previous_text": ""
+        },
+        {
+          "start_line": 181,
+          "end_line": 198,
+          "current_segment_sha256": "e185466e3c4e4db29ba62949f08f36633b87d441a8e311373283010dd1fe6fc8",
+          "previous_text": "\t\t\tawait inst.ready;\n\t\t\tif (cancelled) {\n\t\t\t\tinst.dispose();\n\t\t\t\treturn;\n\t\t\t}\n\t\t\trecordLoadMs(trackId, quality, night, performance.now() - t0);\n\t\t\tinst.unlockAudio();\n\t\t\tengineRef.current = inst;\n\t\t\tif (muted) inst.toggleMute();\n\t\t\tsetBoot(null);\n\t\t})();\n"
+        },
+        {
+          "start_line": 200,
+          "end_line": 201,
+          "current_segment_sha256": "cc6a8e67c872183b632b45ca4cf87b5be343bcceb76540d0270f2e7df5de8528",
+          "previous_text": "\t\t\tengineRef.current?.dispose();\n"
+        },
+        {
+          "start_line": 202,
+          "end_line": 202,
+          "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "previous_text": "\t\t\tinst?.dispose();\n"
+        },
+        {
+          "start_line": 221,
+          "end_line": 222,
+          "current_segment_sha256": "768ec1c1a0802b2c1348da96d7ac7850379daeb9f68ccc8624c886a226a391cb",
+          "previous_text": ""
+        },
+        {
+          "start_line": 280,
+          "end_line": 281,
+          "current_segment_sha256": "958f327aff8fc92495d2e9753b36caba24cd7add04eb3f2847208ee60ae5a07f",
+          "previous_text": "\t\tctx.beginPath();\n\t\tpts.forEach((p, i) => {\n\t\t\tif (i === 0) ctx.moveTo(mx(p.x), mz(p.z));\n\t\t\telse ctx.lineTo(mx(p.x), mz(p.z));\n\t\t});\n\t\tctx.closePath();\n"
+        },
+        {
+          "start_line": 285,
+          "end_line": 286,
+          "current_segment_sha256": "031ca4b9daccb143c0a5950ad430db8511836c31333cb1b0629012b877b20f61",
+          "previous_text": "\t\tconst n = pts.length;\n\t\tconst start = Math.floor((h.progress % 1 + 1) % 1 * n);\n"
+        },
+        {
+          "start_line": 289,
+          "end_line": 291,
+          "current_segment_sha256": "333764024ab4986839683e75dc851eb5b18a727e5253c1770e308af7808988a6",
+          "previous_text": "\t\tfor (let k = 0; k < Math.max(8, Math.floor(n * .32)); k++) {\n\t\t\tconst p = pts[(start + k) % n];\n"
+        },
+        {
+          "start_line": 318,
+          "end_line": 319,
+          "current_segment_sha256": "85a3dd12912f678b839a641870b1536615c285362029416479abe2247c27c2fa",
+          "previous_text": "\t}, [hud]);\n"
+        },
+        {
+          "start_line": 337,
+          "end_line": 351,
+          "current_segment_sha256": "ccc81b3f9109df9184f07f1972072af9b355ff00c139cfc2f4c730ec94818062",
+          "previous_text": ""
+        }
+      ]
+    },
+    "src/components/game-app/hud.tsx": {
+      "previous_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+      "current_sha256": "041a55c04f8ebd559fdf37b47ac3b84c2813ff8f0938e4b1370d7e823863ebbe",
+      "reverse_edits": [
+        {
+          "start_line": 182,
+          "end_line": 191,
+          "current_segment_sha256": "f0977ce4f624adeb525109b333b94731bdd40b7b6de0ee029ec3d569386bff4d",
+          "previous_text": ""
+        }
+      ]
+    },
+    "scripts/write-ci-summary.mjs": {
+      "previous_sha256": "41e158628e2a58f6cb77d34d26c357a9c89ce51f5cadf1739a2350fb198d0feb",
+      "current_sha256": "bf148167612c419772d28c13a6d62f2d78956e4070d43aacde7f39690b2971ae",
+      "reverse_edits": [
+        {
+          "start_line": 1,
+          "end_line": 6,
+          "current_segment_sha256": "5e588fc8ac3acb167e21e023a2e346a03dc06d91887bf8f374843a7e39e3fd18",
+          "previous_text": "import { mkdir, readdir, stat, writeFile } from \"node:fs/promises\";\nimport { relative } from \"node:path\";\n"
+        },
+        {
+          "start_line": 8,
+          "end_line": 9,
+          "current_segment_sha256": "a4b8875e198e406f6bf6c6e7e9f05651fec0ecf92d4b719d7f3ecfcf95f62bb8",
+          "previous_text": ""
+        },
+        {
+          "start_line": 24,
+          "end_line": 25,
+          "current_segment_sha256": "b8162de0cc87b1cc10fe857fdfb33939fb64fb89d78dbba5b98f721490adec67",
+          "previous_text": "      output.push({\n        path: relative(projectRoot, full).replaceAll(\"\\\\\", \"/\"),\n        bytes: info.size,\n      });\n"
+        },
+        {
+          "start_line": 30,
+          "end_line": 63,
+          "current_segment_sha256": "874464aa4311a6bdcd9d72fdc3997016c94dee1d48ef444de083dc8c85617a3f",
+          "previous_text": ""
+        },
+        {
+          "start_line": 65,
+          "end_line": 66,
+          "current_segment_sha256": "622c4be76786c5c61b18ddb9d7ce1aa4ceaf24399ee4861ff2c695ae8edd92d3",
+          "previous_text": "  for (const root of CAPTURE_ROOTS) {\n    await listFiles(fromRoot(root), files);\n  }\n"
+        },
+        {
+          "start_line": 67,
+          "end_line": 70,
+          "current_segment_sha256": "dc0b9606fa87bf6b2db42ecb4630829ff028953965b609d4b985991a02163437",
+          "previous_text": ""
+        },
+        {
+          "start_line": 71,
+          "end_line": 72,
+          "current_segment_sha256": "f833ca1fc6a5d63cfa5fe81322e74ab0cb7e1734570da2e0ecaf9e9b8992931c",
+          "previous_text": "    schemaVersion: 1,\n"
+        },
+        {
+          "start_line": 79,
+          "end_line": 82,
+          "current_segment_sha256": "3884eaa7e411b088edd5990056b9e63047745226e4472f3a95d4f1f68232909c",
+          "previous_text": "    sha: env.GITHUB_SHA || null,\n"
+        },
+        {
+          "start_line": 85,
+          "end_line": 86,
+          "current_segment_sha256": "caef62bc04839a46c9b598f52478e46fa20be4293597a987326834489c42439f",
+          "previous_text": ""
+        },
+        {
+          "start_line": 90,
+          "end_line": 97,
+          "current_segment_sha256": "a6b6cf441f5b0216d1bc37c46fbab1c3388c23cbf1d4036459edb62f49ac50bc",
+          "previous_text": "const outDir = fromRoot(\"artifacts\");\nawait mkdir(outDir, { recursive: true });\nconst summary = await buildSummary();\nawait writeFile(fromRoot(\"artifacts\", \"ci-summary.json\"), JSON.stringify(summary, null, 2) + \"\\n\");\nconsole.log(\n  `ci-summary wrote artifacts/ci-summary.json with ${summary.capturedFiles.length} captured file(s)`,\n);\n"
+        }
+      ]
+    },
+    ".github/workflows/required-ci.yml": {
+      "previous_sha256": "78c15cab537515fa3225fc35c49ba058a3ddc5b4dd81c2b632f0af24ec67827f",
+      "current_sha256": "8cc128808d8aa5172ce5f1e08216d8270885655c71ef82bfd2afc3facf357dca",
+      "reverse_edits": [
+        {
+          "start_line": 74,
+          "end_line": 78,
+          "current_segment_sha256": "b58de3ad5ce40e2df321cf28f92434da8345f375592a9cde08bd4a5f660e89ec",
+          "previous_text": "        run: npm run lint\n"
+        },
+        {
+          "start_line": 80,
+          "end_line": 84,
+          "current_segment_sha256": "c313cef266be53d73885083cf4508a95af452f5d39957010d8fb5b8a29879455",
+          "previous_text": "        run: npm test\n"
+        },
+        {
+          "start_line": 86,
+          "end_line": 96,
+          "current_segment_sha256": "803e1f86e5f4ba5a4b6f5e845aa9febbf81ad9838c236e4b757c9546e8f9810d",
+          "previous_text": "        run: npm run qa:ci\n"
+        },
+        {
+          "start_line": 98,
+          "end_line": 102,
+          "current_segment_sha256": "48905389f58b95d5ba0c63241a0c3e9aa3136e7568b1efbc67dc54b5d38fd565",
+          "previous_text": "        run: npm run build:dev\n"
+        },
+        {
+          "start_line": 107,
+          "end_line": 108,
+          "current_segment_sha256": "cb610ba82623a928f3404c59c420c3ac11fd37dd39e5a0d18fbc134bafe32135",
+          "previous_text": ""
+        }
+      ]
+    },
+    "src/game/race-startup.ts": {
+      "previous_sha256": null,
+      "current_sha256": "cda8d6d3e3af7d385196e1e0d6702a70b6749be76aae8f4fffc1399ef7075dba",
+      "reverse_edits": []
+    },
+    "src/game/minimap-route.ts": {
+      "previous_sha256": null,
+      "current_sha256": "35810413542c7b57ac5b7cabc0ede8fec5cf19ceff8a3ca2e109ce6b7ab0031d",
+      "reverse_edits": []
+    },
+    "scripts/runtime-recovery-smoke.mjs": {
+      "previous_sha256": null,
+      "current_sha256": "8e24e97772e627482a6e4ce340a10e63c82aee46b646e451e040efc2dad65245",
+      "reverse_edits": []
+    }
+  }
+}

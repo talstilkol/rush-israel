@@ -23,6 +23,7 @@ import {
 } from "./physics";
 import { getDamage, getGhost, recordGhost, setDamage } from "./save";
 import { buildTrack, nearestIndex, sampleAtT } from "./spline";
+import { sampleMinimapPolyline } from "./minimap-route";
 import { getTrack, nearestPoi, nightAmt, streetName, todLabel, tlv } from "./tracks";
 import type { AssistFlags, CarId, Collider, HandlingMode, HudState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting, type CarSnap } from "./vehicle";
@@ -507,9 +508,7 @@ export class RaceEngine {
       return m;
     });
 
-    const n = this.built.samples.length;
-    this.poly = [];
-    for (let i = 0; i < n; i += 4) this.poly.push({ x: this.built.samples[i].x, z: this.built.samples[i].z });
+    this.poly = sampleMinimapPolyline(this.built.samples, this.trackDef.open === true);
 
     this.sparkPos = new Float32Array(180);
     const sparkGeo = new THREE.BufferGeometry();

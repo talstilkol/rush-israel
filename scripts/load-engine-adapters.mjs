@@ -1,3 +1,4 @@
+import { historicalRsh036Source } from "./rsh036-runtime-evolution.mjs";
 import { readFileSync } from "node:fs";
 import { fromRoot } from "./project-root.mjs";
 import { gitBlobSha1, sha256 } from "./load-world-builders.mjs";
@@ -40,6 +41,7 @@ export function reconstructRsh016EngineSource(
     ]),
   ),
 ) {
+  source = historicalRsh036Source(source);
   source = stripRsh019Overlay("src/game/engine.ts", source);
   adapterSources = Object.fromEntries(
     Object.entries(adapterSources).map(([path, adapterSource]) => [

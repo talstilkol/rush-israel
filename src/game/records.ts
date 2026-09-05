@@ -10,7 +10,8 @@ export type TimedPersistStatus =
   | "saved"
   | "duplicate"
   | "rejected"
-  | "write-failed";
+  | "write-failed"
+  | "read-failed";
 
 export type TimedPersistResult = {
   status: TimedPersistStatus;
@@ -18,6 +19,19 @@ export type TimedPersistResult = {
   dropped: number;
   error?: string;
 };
+
+export type TimedReadStorage = { getItem: (key: string) => string | null };
+export type TimedWriteStorage = TimedReadStorage & { setItem: (key: string, value: string) => void };
+export type TimedLoadResult = {
+  status: "loaded" | "read-failed";
+  records: TimedRecord[];
+  dropped: number;
+  error?: string;
+};
+
+function storageError(error: unknown) {
+  return String(error instanceof Error ? error.message : error);
+}
 
 export const REC_KEY = "rush.records.v3";
 export const RECORD_LIMIT = 200;
@@ -182,10 +196,18 @@ export function sanitizeTimedRecords(records: TimedRecord[], physicsVersion: num
 }
 
 export function loadTimedRecords(
-  storage: { getItem: (k: string) => string | null } = globalThis.localStorage,
+  storage: TimedReadStorage | undefined = undefined,
   physicsVersion: number,
-) {
-  return sanitizeTimedRecords(decodeTimedRecords(storage.getItem(REC_KEY)), physicsVersion);
+): TimedLoadResult {
+  try {
+    // Access itself can throw (denied/sandboxed storage). Never treat that as an empty save.
+    const target = storage ?? globalThis.localStorage;
+    if (!target) throw new Error("record storage unavailable");
+    const loaded = sanitizeTimedRecords(decodeTimedRecords(target.getItem(REC_KEY)), physicsVersion);
+    return { status: "loaded", ...loaded };
+  } catch (error) {
+    return { status: "read-failed", records: [], dropped: 0, error: storageError(error) };
+  }
 }
 
 /** Codex 62: one-key atomic replace. No IndexedDB / pglite. */
@@ -201,27 +223,30 @@ export function writeRecords(
 
 function persistNow(
   rec: TimedRecord,
-  storage: { getItem: (k: string) => string | null; setItem: (k: string, v: string) => void },
+  storage: TimedWriteStorage | undefined,
   physicsVersion: number,
 ): TimedPersistResult {
+  let target: TimedWriteStorage;
+  try {
+    target = storage ?? globalThis.localStorage;
+    if (!target) throw new Error("record storage unavailable");
+  } catch (error) {
+    return { status: "read-failed", records: [], dropped: 0, error: storageError(error) };
+  }
+  const loaded = loadTimedRecords(target, physicsVersion);
+  // Do not overwrite records whose existing bytes could not be read.
+  if (loaded.status === "read-failed") return { ...loaded, status: "read-failed" };
   if (!isStructurallyValidRecord(rec) || !isLiveRecord(rec, physicsVersion) || !recordHashMatches(rec)) {
-    const loaded = loadTimedRecords(storage, physicsVersion);
     return { status: "rejected", records: loaded.records, dropped: loaded.dropped + 1, error: "invalid timed record" };
   }
-  const loaded = loadTimedRecords(storage, physicsVersion);
   if (loaded.records.some((item) => timedRecordIdentity(item) === timedRecordIdentity(rec))) {
     return { status: "duplicate", records: loaded.records, dropped: loaded.dropped };
   }
   const next = sanitizeTimedRecords([...loaded.records, rec], physicsVersion);
   try {
-    writeRecords(next.records, storage);
+    writeRecords(next.records, target);
   } catch (error) {
-    return {
-      status: "write-failed",
-      records: loaded.records,
-      dropped: loaded.dropped,
-      error: String(error instanceof Error ? error.message : error),
-    };
+    return { status: "write-failed", records: loaded.records, dropped: loaded.dropped, error: storageError(error) };
   }
   return { status: "saved", records: next.records, dropped: loaded.dropped + next.dropped };
 }
@@ -230,10 +255,12 @@ let persistChain: Promise<unknown> = Promise.resolve();
 
 export function persistTimedRecord(
   rec: TimedRecord,
-  storage: { getItem: (k: string) => string | null; setItem: (k: string, v: string) => void } = globalThis.localStorage,
+  storage: TimedWriteStorage | undefined = undefined,
   physicsVersion: number,
 ) {
-  const run = () => persistNow(rec, storage, physicsVersion);
+  // Keep the requested record stable while a prior write is queued.
+  const snapshot = { ...rec };
+  const run = () => persistNow(snapshot, storage, physicsVersion);
   const next = persistChain.then(run, run);
   persistChain = next.then(() => undefined, () => undefined);
   return next;

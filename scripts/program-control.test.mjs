@@ -837,7 +837,9 @@ test("standing owner authorization covers all remaining units but activates only
   assert.equal(queue.next_instruction_contract.RSH_037_activated, false);
   assert.equal(queue.next_instruction_contract.additional_improvements_require_new_owner_approval, false);
   assert.equal(current.verified_main.head_sha, queue.verified_base_sha);
-  assert.equal(current.active_change.acceptance_blockers.length, 3);
+  for (const required of [/^exact-head required CI/, /^CR-03/, /^AUD-17/, /golden/, /review/]) {
+    assert.ok(current.active_change.acceptance_blockers.some((item) => required.test(item)), `missing acceptance gate: ${required}`);
+  }
   assert.ok(authority.not_authorized.includes("public_distribution"));
   assert.ok(authority.not_authorized.includes("invented_test_or_license_evidence"));
 });

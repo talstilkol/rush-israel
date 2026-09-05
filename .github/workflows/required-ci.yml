@@ -72,21 +72,40 @@ jobs:
         run: node scripts/check-governance-contract.mjs
 
       - name: Lint all tracked source
-        run: npm run lint
+        run: |
+          mkdir -p artifacts
+          set -o pipefail
+          npm run lint 2>&1 | tee artifacts/lint.log
 
       - name: Run complete unit-test suite
-        run: npm test
+        run: |
+          mkdir -p artifacts
+          set -o pipefail
+          npm test 2>&1 | tee artifacts/unit-tests.tap
 
       - name: Run self-starting QA gate
-        run: npm run qa:ci
+        run: |
+          mkdir -p artifacts
+          set -o pipefail
+          npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
+
+      - name: Verify browser runtime failure recovery and minimap
+        run: |
+          mkdir -p artifacts
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node scripts/runtime-recovery-smoke.mjs 2>&1 | tee artifacts/runtime-recovery.log
 
       - name: Build deterministic development bundle
-        run: npm run build:dev
+        run: |
+          mkdir -p artifacts
+          set -o pipefail
+          npm run build:dev 2>&1 | tee artifacts/build-dev.log
 
       - name: Write deterministic diagnostic summary
         if: always()
         env:
           CI_JOB_STATUS: ${{ job.status }}
+          CI_EXPECTED_SOURCE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
         run: node scripts/write-ci-summary.mjs
 
       - name: Upload required-CI diagnostics

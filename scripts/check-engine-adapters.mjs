@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { historicalRsh036Inputs } from "./rsh036-runtime-evolution.mjs";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
@@ -78,7 +79,7 @@ export function readEngineAdapterInputs() {
 }
 
 export function validateEngineAdapters(overrides = {}) {
-  const input = { ...readEngineAdapterInputs(), ...overrides };
+  const input = historicalRsh036Inputs({ ...readEngineAdapterInputs(), ...overrides });
   const errors = [];
   let manifest;
   try {

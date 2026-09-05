@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "document_type": "rush-ayalon-freeze-manifest",
   "unit": "RSH-036",
   "title": "Freeze Ayalon and hash all transitive dependencies",
-  "generated_at": "2026-09-03T08:40:00.000Z",
+  "generated_at": "2026-09-05",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "implementation_base": {
@@ -27,8 +27,8 @@
     "ayalon_lock_generation": 11,
     "ayalon_lock_hash": "0c34b9d1f9ded36eaa8400c7aaba48a4f725033bfe25412a4648c36c73910d48",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74",
-    "source_count": 36,
-    "freeze_granted": true,
+    "source_count": 41,
+    "freeze_granted": false,
     "unique_pack_approved": true,
     "placeholders_are_unique_evidence": false,
     "gis_claim": false,
@@ -68,10 +68,15 @@
       "src/game/audio.ts": "bf83db8b5e0929dcd7d057172db6dedbaff1cad84405f152a3ef6ca884a3b650",
       "src/game/input.ts": "51d638c0a004d080d2b558d34a58e4631e74606129d557eb1ffc835218c124aa",
       "src/game/input-curve.ts": "01abad60b246cc76a389291685f65d1bb0039767af328434169743947aa2f04c",
-      "src/components/game-app/hud.tsx": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+      "src/components/game-app/hud.tsx": "041a55c04f8ebd559fdf37b47ac3b84c2813ff8f0938e4b1370d7e823863ebbe",
       "src/components/touch-controls.tsx": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
       "package.json": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-      "AYALON-OWNER-APPROVAL.json": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84"
+      "AYALON-OWNER-APPROVAL.json": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
+      "src/game/engine.ts": "598676caf41bb8ede1c6a5625719f2dcabaae327f95dcb258c8b8c02d44d995d",
+      "src/game/records.ts": "10bff6426c0ce8d9b406bac66662363ec997883fbff28941dab3f95e1f818aa0",
+      "src/components/game-app/race-controller.tsx": "02bf8279185a618488fe730567dd2b742d35c53abffd23864efb6fbb40c54819",
+      "src/game/race-startup.ts": "cda8d6d3e3af7d385196e1e0d6702a70b6749be76aae8f4fffc1399ef7075dba",
+      "src/game/minimap-route.ts": "35810413542c7b57ac5b7cabc0ede8fec5cf19ceff8a3ca2e109ce6b7ab0031d"
     }
   },
   "lock_module": {
@@ -87,26 +92,27 @@
     "track_source_changes": 0,
     "world_changes": 0,
     "physics_changes": 0,
-    "audio_hud_changes": 0,
+    "audio_hud_changes": 1,
     "owner_approval_changes": 0,
     "golden_pack_changes": 0,
     "package_json_changes": 0,
     "asset_changes": 0,
     "public_distribution_authorized": false,
     "release_gates_green": 0,
-    "release_gates_total": 13
+    "release_gates_total": 13,
+    "runtime_repair_authorisation": "standing owner instruction 2026-09-05"
   },
   "identities": {
-    "freeze_source_sha256": "07ef5ec4a565dc43bd7b24bdf16375319a772fe3d0812516f2a09a491f2af316",
+    "freeze_source_sha256": "28e34f94fc5699301bc53301eec3e4f1f8811bc76ae12d3c68ccf315671e3ab4",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
-    "contract_sha256": "110569dbd0b66ffdedf2ae6fee9e712a9bc8ce72c968936413df4964e9b3c8f2",
+    "contract_sha256": "1dafe6a51e7d09e2c3c2cfc16017eda54842d91673e33ea6632dbd62bf943712",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
     "pixel_golden_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
-    "checker_test_sha256": "aeeae01db4ac44f7d88d77bdef92ba55bf89bacc3412139b18669c428d4e54ec",
+    "checker_test_sha256": "5e4a314682bf85e8cb5afdd6d34f223e6f285d806b64b492a067abd5dcb763cc",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
+    "freeze_digest_sha256": "b932b49a7689fe40b51fcb8b61ca8812c572403c6abd769acb3cb032066c6ff4",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
@@ -122,6 +128,21 @@
       "scripts/rsh037-",
       "src/game/perf-instrument/",
       "src/game/quality-profiles/"
+    ]
+  },
+  "coverage": {
+    "status": "partial",
+    "complete_dependency_closure": false,
+    "runtime_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
+    "remaining_proof": "Generated static/dynamic/runtime-asset closure and additions/removals detection; partial explicit inventory is not sufficient."
+  },
+  "acceptance": {
+    "state": "blocked",
+    "required_gates": [
+      "CR-03 dependency closure",
+      "exact-head required CI and runtime fault injection",
+      "unchanged golden visual/freeze acceptance",
+      "blocking review resolution and validated merge"
     ]
   }
 }

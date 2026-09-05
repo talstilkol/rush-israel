@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { historicalRsh036Inputs } from "./rsh036-runtime-evolution.mjs";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
@@ -129,7 +130,7 @@ export function readDaylightSkyInputs() {
 }
 
 export function validateDaylightSky(overrides = {}) {
-  const input = { ...readDaylightSkyInputs(), ...overrides };
+  const input = historicalRsh036Inputs({ ...readDaylightSkyInputs(), ...overrides });
   const errors = [];
   let manifest, lock, asset;
   try {

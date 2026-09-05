@@ -15,6 +15,8 @@ import { getEvent, starsFor } from "@/game/career";
 import { emptyTune, racePayout } from "@/game/garage";
 import { estimateLoadMs, recordLoadMs } from "@/game/load-eta";
 import { formatTime } from "@/game/math";
+import { beginRaceStartup } from "@/game/race-startup";
+import { drawMinimapRoute, minimapPreviewIndices } from "@/game/minimap-route";
 import {
   addCash,
   getCash,
@@ -100,6 +102,7 @@ export function RaceController({
 	const [record, setRecord] = useState(false);
 	const [raceKey, setRaceKey] = useState(0);
 	const [earned, setEarned] = useState(0);
+	const [loadError, setLoadError] = useState<"retry" | "reload" | null>(null);
 	const [boot, setBoot] = useState<{ etaMs: number; frac: number } | null>(null);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const mapRef = useRef<HTMLCanvasElement>(null);
@@ -129,18 +132,21 @@ export function RaceController({
 		const canvas = canvasRef.current;
 		if (!canvas) return;
 		let cancelled = false;
-		let inst: RaceEngine | null = null;
+		let loadingModules = true;
 		const t0 = performance.now();
 		setHud(null);
-		void (async () => {
+		setResult(null);
+		setPaused(false);
+		setLoadError(null);
+		const startup = beginRaceStartup({
+			prepare: async () => {
 			await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
 			await new Promise((r) => setTimeout(r, 48));
-			if (cancelled) return;
 			const { RaceEngine } = await import("@/game/engine");
 			const { loadAyalonRoad } = await import("@/game/road-assets");
+			loadingModules = false;
 			if (trackId === "ayalon") await loadAyalonRoad();
-			if (cancelled) return;
-			inst = new RaceEngine(canvas, {
+			return () => new RaceEngine(canvas, {
 				trackId,
 				carId,
 				langHe,
@@ -153,10 +159,11 @@ export function RaceController({
 				tune: emptyTune(),
 				handling,
 				assists,
-				onHud: setHud,
-				onBoot: (frac) => setBoot((b) => (b ? { ...b, frac } : { etaMs: estimateLoadMs(trackId, quality, night), frac })),
-				onRestore: () => setRaceKey((k) => k + 1),
+				onHud: (value) => { if (!cancelled) setHud(value); },
+				onBoot: (frac) => { if (!cancelled) setBoot((b) => (b ? { ...b, frac } : { etaMs: estimateLoadMs(trackId, quality, night), frac })); },
+				onRestore: () => { if (!cancelled) setRaceKey((k) => k + 1); },
 				onFinish: (r) => {
+					if (cancelled) return;
 					const ok = r.eligible !== false;
 					const isBest = ok ? recordBest(r.trackId, r.totalTime, { eligible: true, carId }) : false;
 					setRecord(isBest);
@@ -172,22 +179,27 @@ export function RaceController({
 					setResult(r);
 				},
 			});
-			await inst.ready;
-			if (cancelled) {
-				inst.dispose();
-				return;
-			}
-			recordLoadMs(trackId, quality, night, performance.now() - t0);
-			inst.unlockAudio();
-			engineRef.current = inst;
-			if (muted) inst.toggleMute();
-			setBoot(null);
-		})();
+			},
+			onReady: (inst) => {
+				recordLoadMs(trackId, quality, night, performance.now() - t0);
+				inst.unlockAudio();
+				if (muted) inst.toggleMute();
+				engineRef.current = inst;
+				setBoot(null);
+			},
+			onError: (error) => {
+				cancelled = true;
+				console.error("[race] startup failed", error);
+				engineRef.current = null;
+				setHud(null);
+				setBoot(null);
+				setLoadError(loadingModules ? "reload" : "retry");
+			},
+		});
 		return () => {
 			cancelled = true;
-			engineRef.current?.dispose();
+			startup.cancel();
 			engineRef.current = null;
-			inst?.dispose();
 		};
 	}, [
 		screen,
@@ -207,6 +219,7 @@ export function RaceController({
 	useEffect(() => {
 		if (screen !== "race") return;
 		const onKey = (e: KeyboardEvent) => {
+			if (!engineRef.current) return;
 			if (e.code === "KeyN") {
 				if (result) return;
 				const next = !night;
@@ -265,23 +278,17 @@ export function RaceController({
 		ctx.strokeStyle = "#3d484c";
 		ctx.lineWidth = 7;
 		ctx.lineJoin = "round";
-		ctx.beginPath();
-		pts.forEach((p, i) => {
-			if (i === 0) ctx.moveTo(mx(p.x), mz(p.z));
-			else ctx.lineTo(mx(p.x), mz(p.z));
-		});
-		ctx.closePath();
+		drawMinimapRoute(ctx, pts, mx, mz, track.open === true);
 		ctx.stroke();
 		ctx.strokeStyle = "#9aa4aa";
 		ctx.lineWidth = 3;
 		ctx.stroke();
-		const n = pts.length;
-		const start = Math.floor((h.progress % 1 + 1) % 1 * n);
+		const preview = minimapPreviewIndices(pts.length, h.progress, track.open === true);
 		ctx.strokeStyle = "#ffd24a";
 		ctx.lineWidth = 5;
 		ctx.beginPath();
-		for (let k = 0; k < Math.max(8, Math.floor(n * .32)); k++) {
-			const p = pts[(start + k) % n];
+		for (let k = 0; k < preview.length; k++) {
+			const p = pts[preview[k]];
 			if (k === 0) ctx.moveTo(mx(p.x), mz(p.z));
 			else ctx.lineTo(mx(p.x), mz(p.z));
 		}
@@ -309,7 +316,7 @@ export function RaceController({
 				ctx.fill();
 			}
 		}
-	}, [hud]);
+	}, [hud, track.open]);
 // RSH-018-BLOCK-END:minimap-effect
 // RSH-018-BLOCK-BEGIN:toggleNight
 	const toggleNight = () => {
@@ -328,6 +335,20 @@ export function RaceController({
 				className: "block h-full w-full touch-none",
 				onPointerDown: () => engineRef.current?.unlockAudio()
 			}),
+			loadError ? /* @__PURE__ */ jsx(Overlay, {
+				children: jsxs("section", {
+					role: "alert",
+					"aria-live": "assertive",
+					"aria-labelledby": "race-load-error-title",
+					"data-testid": "race-load-error",
+					children: [
+						jsx("h2", { id: "race-load-error-title", className: "text-2xl font-semibold", children: t("טעינת המרוץ נכשלה", "Race could not load") }),
+						jsx("p", { className: "my-4", children: t("בדקו את החיבור ונסו שוב. אם התקלה נמשכת, טענו את הדף מחדש.", "Check the connection and retry. If the problem persists, reload the page.") }),
+						jsx(Button, { autoFocus: true, onClick: () => { if (loadError === "reload") window.location.reload(); else setRaceKey((key) => key + 1); }, children: loadError === "reload" ? t("טעינת הדף מחדש", "Reload page") : t("ניסיון חוזר", "Retry") }),
+						jsx(Button, { variant: "outline", className: "ms-2", onClick: () => setScreen("title"), children: t("מסך ראשי", "Main menu") }),
+					],
+				}),
+			}) : null,
 			boot ? /* @__PURE__ */ jsx(BootOverlay, {
 				etaMs: boot.etaMs,
 				frac: boot.frac,

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { historicalRsh036Inputs } from "./rsh036-runtime-evolution.mjs";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
@@ -69,7 +70,7 @@ export function readTimedRecordsInputs() {
 }
 
 export function validateTimedRecords(overrides = {}) {
-  const input = { ...readTimedRecordsInputs(), ...overrides };
+  const input = historicalRsh036Inputs({ ...readTimedRecordsInputs(), ...overrides });
   const errors = [];
   let manifest, asset, tracks;
   try {

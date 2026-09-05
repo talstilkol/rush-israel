@@ -1080,9 +1080,11 @@
     "pull_request": 39,
     "implementation_base_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
     "acceptance_blockers": [
-      "exact-head required CI",
-      "CR-03 transitive coverage proof",
-      "CR-04 approved pre-freeze runtime repairs"
+      "exact-head required CI including real browser fault injection",
+      "CR-03 complete transitive dependency coverage",
+      "AUD-17 partial resource ownership verification",
+      "unchanged golden visual/freeze acceptance",
+      "blocking review resolution and validated merge"
     ],
     "merge_authorized_without_validation": false
   },
@@ -1993,6 +1995,16 @@
     "pull_request": 39,
     "accepted": false,
     "transitive_coverage_complete": false,
-    "runtime_remediation_complete": false
+    "runtime_remediation_complete": false,
+    "freeze_granted": false,
+    "partial_inventory_count": 41,
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.2.md",
+    "local_unit_tests": {
+      "passed": 567,
+      "failed": 0,
+      "skipped": 0,
+      "locked_dependency_install": false
+    },
+    "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json"
   }
 }
