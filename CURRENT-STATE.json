@@ -1997,14 +1997,22 @@
     "transitive_coverage_complete": false,
     "runtime_remediation_complete": false,
     "freeze_granted": false,
-    "partial_inventory_count": 41,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.2.md",
+    "partial_inventory_count": 44,
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.3.md",
     "local_unit_tests": {
-      "passed": 567,
+      "scope": "new batch and actual-loader regression tests only",
+      "passed": 18,
       "failed": 0,
       "skipped": 0,
       "locked_dependency_install": false
     },
-    "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json"
+    "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
+    "previous_exact_head_ci": {
+      "head": "1ef48b96e8385c6dd3351c9a6ec43d45c1bd7aa8",
+      "run_id": 33983420942,
+      "tests_passed": 567
+    },
+    "resource_repairs": "prepared_pending_exact_head_ci",
+    "scene_visibility": "persistent_black_on_r61_and_r62_unresolved"
   }
 }

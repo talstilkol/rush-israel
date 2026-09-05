@@ -5,17 +5,17 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "6da5199ffb06ecdac1995a31c6d8a093a60acc8d1bbde13ec7d99c817e2283b9";
-export const EXPECTED_FREEZE_SHA256 = "28e34f94fc5699301bc53301eec3e4f1f8811bc76ae12d3c68ccf315671e3ab4";
+export const EXPECTED_MANIFEST_SHA256 = "428d3c9ac48347481de2c17ff9d17cdb50b465cfe4d136d379845f0ca0c602b0";
+export const EXPECTED_FREEZE_SHA256 = "8d3016ff5f2bb15d83d3fb2ae24bb6ab071c177fd15f5c8d69983695fd673f7a";
 export const EXPECTED_INDEX_SHA256 = "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10";
-export const EXPECTED_CONTRACT_SHA256 = "1dafe6a51e7d09e2c3c2cfc16017eda54842d91673e33ea6632dbd62bf943712";
+export const EXPECTED_CONTRACT_SHA256 = "06805ab4ce6b29df00e9058e310da2174f5cb815445dd56a1e354e3356022ad6";
 export const EXPECTED_OWNER_SHA256 = "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84";
 export const EXPECTED_LOCK_SHA256 = "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b";
 export const EXPECTED_HASHALOM_INDEX_SHA256 = "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10";
 export const EXPECTED_PIXEL_GOLDEN_SHA256 = "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621";
-export const EXPECTED_CHECKER_TEST_SHA256 = "5e4a314682bf85e8cb5afdd6d34f223e6f285d806b64b492a067abd5dcb763cc";
+export const EXPECTED_CHECKER_TEST_SHA256 = "6f836100c12ea54d8507c7c9dc496bc8aee0fb2ccdfcbcae6e0baa14344b9ca6";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
-export const EXPECTED_FREEZE_DIGEST_SHA256 = "b932b49a7689fe40b51fcb8b61ca8812c572403c6abd769acb3cb032066c6ff4";
+export const EXPECTED_FREEZE_DIGEST_SHA256 = "514b84509cf0e652d5134e8c81b8de2a84bc3cde73dd85afc15a4918633cbf34";
 export const EXPECTED_GOLDEN_DIGEST_SHA256 = "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74";
 export const DUPLICATE_PLACEHOLDER_HASH = "38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094";
 
@@ -112,7 +112,7 @@ export function validateAyalonFreeze(overrides = {}) {
   if (sha256(canonicalFreezeDigest()) !== EXPECTED_FREEZE_DIGEST_SHA256 || manifest.identities?.freeze_digest_sha256 !== EXPECTED_FREEZE_DIGEST_SHA256) errors.push("freeze digest identity changed");
   if (manifest.unit !== "RSH-036") errors.push("RSH-036 unit identity changed");
   if (manifest.lock?.track_id !== "ayalon") errors.push("freeze track id changed");
-  if (manifest.lock?.source_count !== 41) errors.push("transitive source count changed");
+  if (manifest.lock?.source_count !== 44) errors.push("transitive source count changed");
   if (manifest.lock?.freeze_granted !== false) errors.push("premature Ayalon freeze grant");
   if (manifest.lock?.gis_claim !== false || manifest.lock?.owner_settings_freeze !== false || manifest.lock?.public_distribution !== false) errors.push("RSH-036 must not claim GIS accuracy, owner-settings freeze or public distribution");
   if (owner.freeze_granted !== false || owner.unique_pack_approved !== true) errors.push("historical owner-approval record was rewritten");
@@ -121,7 +121,7 @@ export function validateAyalonFreeze(overrides = {}) {
   if (!/from "\.\/freeze"/.test(input.indexSource)) errors.push("ayalon-freeze index no longer re-exports freeze");
   if (manifest.coverage?.status !== "partial" || manifest.coverage?.complete_dependency_closure !== false || manifest.acceptance?.state !== "blocked") errors.push("partial dependency coverage or blocked acceptance was hidden");
   const files = manifest.lock?.transitive_sources ?? {};
-  if (Object.keys(files).length !== 41) errors.push("transitive source inventory changed");
+  if (Object.keys(files).length !== 44) errors.push("transitive source inventory changed");
   for (const [rel, expected] of Object.entries(files)) {
     if (sha256File(fromRoot(...rel.split("/"))) !== expected) errors.push(`transitive hash drift: ${rel}`);
   }

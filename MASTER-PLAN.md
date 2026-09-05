@@ -1,7 +1,7 @@
 # RUSH Israel — Canonical Master Plan
 
 **Schema:** 20.1.0
-**Revision:** r6.2 — owner-authorised improvement programme
+**Revision:** r6.3 — owner-authorised improvement programme
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
 **Verified main:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`
@@ -358,3 +358,19 @@ The candidate fixes structured records read denial/no-overwrite recovery, cancel
 The unaccepted freeze candidate no longer says `freeze_granted=true`: code and manifest now say false. Its 41 explicit source hashes are still a partial inventory. CR-03 closure proof, unchanged-golden visual acceptance and AUD-17 partial texture/constructor resource ownership remain open. Prior accepted byte identities are independently reconstructed using exact pinned reverse deltas; current code hashes and behavior have separate mandatory checks. No golden baseline or historical approval is rewritten.
 
 The next implementation scope is full dependency closure and resource ownership verification, then exact-head visual/freeze acceptance. Do not activate RSH-037 before RSH-036 acceptance. See `RSH-036-RUNTIME-REPAIR-r6.2.md` for this checkpoint and exact evidence limits.
+
+## r6.3 — resource failure recovery and retained visual blocker
+
+`RSH-036-RUNTIME-REPAIR-r6.3.md` supersedes the r6.2 execution checkpoint, not
+historical acceptance evidence. Road loading now has transactional rollback and
+per-lane request deduplication; renderer and engine constructors release resources
+when ownership transfer fails. Preparation has 18/18 new resource tests and a
+1-pass/5-failure reproduction against the previous road loader. Four additional
+browser cases must pass on the published exact head.
+
+Read-only two-version investigation confirms persistent black rothschild rendering
+predates r6.2; the individual-mesh bisection is inconclusive. Resolve it before
+visual acceptance. Review analogous batch asset loaders. The 44-path inventory is
+still partial and does not grant a freeze. All 67 original units, 42 historical
+findings, 17 audit IDs and six repair bundles are preserved. Accepted 35/67;
+remaining 32; RSH-036 stays active and RSH-037 stays inactive.

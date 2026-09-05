@@ -27,10 +27,29 @@ No public distribution, force-push, history rewrite, invented evidence or accept
 
 ## Next work
 
-- Verify the current PR head and exact-head required CI, including the new `runtime-recovery-smoke.mjs` browser gate. Local preparation: 567/567 tests passed; never substitute that for locked remote CI.
-- Finish CR-03: generated static/dynamic/runtime-asset dependency closure and add/remove detection. The current 41-file explicit inventory is partial; `freeze_granted=false` is mandatory.
-- Finish AUD-17: partial road-texture and interrupted-constructor resource ownership tests and fixes. Startup/records/minimap behavior changes are candidates pending browser and visual gates.
-- Preserve all original golden PNGs, generation-11 `ayalon.lock`, the historical owner approval, 20 unique frames and four non-authority placeholders. Re-run visual/freeze checks with unchanged thresholds; do not refresh baselines to hide drift.
-- Resolve blocking review findings and verify all acceptance evidence before merge. RSH-036 is not accepted; RSH-037 may not activate yet.
+- Re-read live PR/main and verify normal exact-head required CI plus the expanded
+  eight-case runtime browser gate. Local preparation is not a substitute for it.
+- Resolve the persistent rothschild black scene. Read-only investigation runs
+  33986957618 and 33987121204 reproduced it on r6.1 and r6.2; the single-mesh
+  bisection is inconclusive. Add whole-scene visibility assertions, not just HUD.
+- Finish CR-03: generated static/dynamic/runtime-asset closure and add/remove
+  detection. The explicit 44-path inventory is partial; freeze remains false.
+- Verify road-batch and constructor rollback repairs; inspect analogous sky/tree
+  asset batches and report actual remaining ownership defects without extrapolation.
+- Preserve original golden PNGs, generation-11 ayalon.lock and historical owner
+  approval. Run unchanged-threshold golden/freeze gates before any acceptance.
+- RSH-036 remains unaccepted. RSH-037 may not activate before predecessor acceptance.
 
-`MASTER-PLAN-r6.json` r6.2 retains 67 original units, 42 historical findings, 17 audit items and six repair bundles. Read `RSH-036-RUNTIME-REPAIR-r6.2.md` and the PR checkpoint for actual evidence, not estimates or predicted results.
+Master plan r6.3 retains 67 original units, 42 historical findings, 17 audit IDs
+and six repair bundles. Read RSH-036-RUNTIME-REPAIR-r6.3.md and the latest PR
+checkpoint together; later verified CI evidence must not be confused with local
+preparation. No merge or public release has occurred.
+
+## Later verified golden blocker — mandatory next repair
+
+Read `RSH-036-GOLDEN-GATE-FAILURE.md`. Run 33988721068 passed 591 unit tests and
+8 browser cases but FAILED the unchanged golden gate at `setNight(true)`:
+`world.setClock` reads an undefined water-body color. Repair the canal material /
+base-color association and add day/night repeat-cycle regression coverage before
+rerunning golden comparisons. Three captured day frames were not compared, and
+no night frame was produced. Do not treat normal CI success as golden acceptance.

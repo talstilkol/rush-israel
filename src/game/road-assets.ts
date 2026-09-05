@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { loadOwnedResources } from "./owned-load";
 
 export type RoadKit = {
   map: THREE.Texture;
@@ -7,6 +8,7 @@ export type RoadKit = {
 };
 
 const kits = new Map<number, RoadKit>();
+const pending = new Map<number, Promise<RoadKit>>();
 
 export function getBakedRoad(lanes: number): RoadKit | undefined {
   const n = lanes >= 8 ? 8 : lanes >= 4 ? 4 : lanes >= 3 ? 3 : 0;
@@ -26,21 +28,26 @@ function prep(tex: THREE.Texture, srgb: boolean) {
   return tex;
 }
 
-async function loadLane(n: number) {
+async function loadLane(n: number): Promise<RoadKit> {
   if (kits.has(n)) return kits.get(n)!;
+  const inFlight = pending.get(n);
+  if (inFlight) return inFlight;
   const L = new THREE.TextureLoader();
-  const [map, roughnessMap, bumpMap] = await Promise.all([
-    L.loadAsync(`/game/asphalt-${n}.png`),
-    L.loadAsync(`/game/asphalt-${n}-rough.png`),
-    L.loadAsync(`/game/asphalt-${n}-bump.png`),
-  ]);
-  const kit = {
-    map: prep(map, true),
-    roughnessMap: prep(roughnessMap, false),
-    bumpMap: prep(bumpMap, false),
-  };
-  kits.set(n, kit);
-  return kit;
+  const request = loadOwnedResources([
+    () => L.loadAsync(`/game/asphalt-${n}.png`),
+    () => L.loadAsync(`/game/asphalt-${n}-rough.png`),
+    () => L.loadAsync(`/game/asphalt-${n}-bump.png`),
+  ], ([map, roughnessMap, bumpMap]) => {
+    const kit = {
+      map: prep(map, true),
+      roughnessMap: prep(roughnessMap, false),
+      bumpMap: prep(bumpMap, false),
+    };
+    kits.set(n, kit);
+    return kit;
+  }).finally(() => { pending.delete(n); });
+  pending.set(n, request);
+  return request;
 }
 
 /** Baked procedural PNGs. Not photogrammetry. */
