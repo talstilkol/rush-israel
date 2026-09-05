@@ -1,0 +1,49 @@
+name: rsh036-r63-investigate
+on:
+  push:
+    branches: [agent/rsh-036-r63-investigation-20260905]
+permissions:
+  contents: read
+jobs:
+  investigate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        source: [ba89268646bf8890f8074642049b23369eda582d, 1ef48b96e8385c6dd3351c9a6ec43d45c1bd7aa8]
+    env:
+      CI: true
+      NODE_OPTIONS: --experimental-strip-types
+      PLAYWRIGHT_BROWSERS_PATH: '0'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Preserve investigation script outside checkout
+        run: cp .rsh036-investigate.mjs "$RUNNER_TEMP/investigate.mjs"
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.source }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm install --global npm@10.9.2
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Compare real scene frames and resource interruption on exact source
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/rsh036-investigation
+          git rev-parse HEAD > artifacts/rsh036-investigation/source-head.txt
+          cp "$RUNNER_TEMP/investigate.mjs" .rsh036-investigate.mjs
+          node scripts/run-with-server.mjs -- node .rsh036-investigate.mjs 2>&1 | tee artifacts/rsh036-investigation/run.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rsh036-investigation-${{ matrix.source }}-${{ github.run_id }}
+          path: artifacts/rsh036-investigation/**
+          if-no-files-found: error
+          retention-days: 14
