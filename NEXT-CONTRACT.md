@@ -1,7 +1,7 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 20.1.0
-**Date:** 2026-09-05
+**Version:** 20.2.0
+**Checkpoint date (UTC):** 2026-09-05
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
 **Verified main:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`
@@ -9,47 +9,61 @@
 
 ## Standing owner authority
 
-The explicit owner instruction on 5 September 2026 authorises repository-wide review, repairs, master-plan improvements and serial execution of all remaining units. Additional improvement plans do not require renewed permission. Every interactive `next` resumes the actual live GitHub checkpoint. Only one program unit is active at a time; future units cannot bypass predecessor acceptance. Historical one-unit grants remain historical records, not the current authority.
+The owner's 5 September 2026 instruction authorises repository-wide review,
+repairs, master-plan improvements and serial implementation of remaining units.
+Additional improvement plans do not require renewed permission. Each `next`
+resumes live GitHub state. Only one program unit may be active; future units
+cannot bypass predecessor acceptance. No public distribution, force-push,
+history rewrite, invented evidence or acceptance without validation is allowed.
+Do not merge or release a failed/incomplete candidate.
 
-No public distribution, force-push, history rewrite, invented evidence or acceptance without validation is authorised. Do not release or merge a failed/incomplete candidate. Branch candidates are allowed for validation.
-
-## Actual counts
+## Current counts
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
 | Accepted | 35 |
 | In review | 1 |
-| Authorised, not activated | 31 |
+| Authorised but not activated | 31 |
 | Remaining | 32 |
 | Release gates green | 0/13 |
 | Unverified asset files | 66 |
+| Master plan r6.4 audit IDs | 18 |
+| Historical findings retained | 42 |
+| Repair bundles | 6 |
 
-## Next work
+## Verified r6.4 outcome and limits
 
-- Re-read live PR/main and verify normal exact-head required CI plus the expanded
-  eight-case runtime browser gate. Local preparation is not a substitute for it.
-- Resolve the persistent rothschild black scene. Read-only investigation runs
-  33986957618 and 33987121204 reproduced it on r6.1 and r6.2; the single-mesh
-  bisection is inconclusive. Add whole-scene visibility assertions, not just HUD.
-- Finish CR-03: generated static/dynamic/runtime-asset closure and add/remove
-  detection. The explicit 44-path inventory is partial; freeze remains false.
-- Verify road-batch and constructor rollback repairs; inspect analogous sky/tree
-  asset batches and report actual remaining ownership defects without extrapolation.
-- Preserve original golden PNGs, generation-11 ayalon.lock and historical owner
-  approval. Run unchanged-threshold golden/freeze gates before any acceptance.
-- RSH-036 remains unaccepted. RSH-037 may not activate before predecessor acceptance.
+The water material/base-colour association is repaired. Real-engine tests passed
+43 day/night transitions on each of Ayalon, Namal and Rothschild (129 total).
+All 11 runtime browser cases passed in preparation run 33991445999. The original
+r6.3 failed-capture document is retained as history, not the current crash status.
 
-Master plan r6.3 retains 67 original units, 42 historical findings, 17 audit IDs
-and six repair bundles. Read RSH-036-RUNTIME-REPAIR-r6.3.md and the latest PR
-checkpoint together; later verified CI evidence must not be confused with local
-preparation. No merge or public release has occurred.
+The unchanged golden command now captures and compares all four frames, but
+**0/4 pass**: 61.75%, 52.42%, 44.14%, 66.49% differences versus the original
+8% limit and threshold 0.12. Preparation run 33991445999 is an overall FAILURE.
+Finalization run 33991821655 passed 607 unit tests and lint with 124 warnings /
+0 errors. It does not override the golden failure. Read the latest PR checkpoint
+for normal CI on the exact published head; never substitute prior-head results.
 
-## Later verified golden blocker — mandatory next repair
+## Next work — RSH-036 only
 
-Read `RSH-036-GOLDEN-GATE-FAILURE.md`. Run 33988721068 passed 591 unit tests and
-8 browser cases but FAILED the unchanged golden gate at `setNight(true)`:
-`world.setClock` reads an undefined water-body color. Repair the canal material /
-base-color association and add day/night repeat-cycle regression coverage before
-rerunning golden comparisons. Three captured day frames were not compared, and
-no night frame was produced. Do not treat normal CI success as golden acceptance.
+1. Re-read live PR/main, source identity, current branch, CI artifacts and review
+   comments before any write. Read RSH-036-RUNTIME-REPAIR-r6.4.md alongside this.
+2. Isolate the persistent Rothschild rendering interaction. In a read-only
+   diagnostic, hiding all MeshStandardMaterial objects changed a 49-sample grid
+   from all black to all nonblack. That does not identify a single bad object.
+   Fix the actual cause and add meaningful scene-visibility tests; hiding scene
+   geometry is not an acceptable product repair.
+3. Trace all four golden mismatches against source, camera, runtime configuration
+   and baseline provenance. Preserve original PNGs, thresholds, generation-11
+   ayalon.lock and historical owner approval. Do not automatically rebaseline.
+4. Repair and regression-test the eight remaining asset-batch families recorded
+   in RSH-036-ASSET-BATCH-REVIEW.json. Four pair loaders lack rejection cleanup;
+   four Map loaders skip missing members on retry. These controlled mock results
+   are not physical GPU qualification. Road repairs do not close all asset work.
+5. Finish CR-03: generate complete static/dynamic/runtime-asset dependency closure
+   with addition/removal and unresolved-edge tests. The explicit 45-path list is
+   still partial and freeze_granted remains false.
+6. Re-run exact-head normal CI and unchanged golden/freeze gates, resolve review
+   blockers, and only then evaluate acceptance. RSH-037 remains inactive.

@@ -55,6 +55,17 @@ export function validateProgramExecution({ current, queue, files = [], plan, ori
   }
   for (const path of unactivatedFiles(files, counts.accepted + (active ? 1 : 0))) errors.push(`unactivated unit file: ${path}`);
   if (plan) {
+    // Declared dashboard counts must be derived from their actual authorities.
+    const arrays = ["units", "audit_items", "legacy_findings", "repair_bundles"];
+    for (const key of arrays) {
+      const rows = plan[key];
+      if (!Array.isArray(rows) || rows.some((row) => !row || typeof row.id !== "string") || new Set(rows.map((row) => row.id)).size !== rows.length) errors.push(`invalid plan identity list: ${key}`);
+    }
+    const expectedCounts = { units: PROGRAM_TOTAL, accepted: counts.accepted, in_review: counts.in_review, remaining: counts.remaining,
+      audit_items: plan.audit_items?.length, legacy_findings: plan.legacy_findings?.length, repair_bundles: plan.repair_bundles?.length };
+    for (const [key, expected] of Object.entries(expectedCounts)) {
+      if (!Number.isInteger(plan.counts?.[key]) || plan.counts[key] !== expected) errors.push(`plan count disagrees with authority: ${key}`);
+    }
     if (JSON.stringify(plan.units?.map(({ id, title }) => ({ id, title }))) !== JSON.stringify(originalUnits)) errors.push("canonical unit identities were renumbered or renamed");
     if (JSON.stringify(plan.v1_track_ids) !== JSON.stringify(trackIds)) errors.push("V1 track mapping changed");
     for (const item of plan.audit_items ?? []) if (!Array.isArray(item.units) || item.units.some((id) => !order.includes(id))) errors.push(`audit item has unknown unit: ${item.id}`);

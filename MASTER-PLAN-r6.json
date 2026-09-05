@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.3",
+  "revision": "r6.4",
   "date": "2026-09-05",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "1ef48b96e8385c6dd3351c9a6ec43d45c1bd7aa8",
+  "source_pr_head": "59b71fccf137296697017e04eef19eef998ac597",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 17,
+    "audit_items": 18,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -822,7 +822,7 @@
       "acceptance": "Generate dependency closure from entry points, dynamic imports, runtime assets and configuration; explicit exclusions and missing-edge tests; freeze exact verified source and asset hashes.",
       "status": "open",
       "bundle": "CR-03",
-      "evidence": "Freeze grant remains false. Explicit inventory is now 44 paths including resource helpers, but is not a generated complete dependency closure."
+      "evidence": "Freeze grant remains false. Explicit inventory is now 45 paths including resource helpers, but is not a generated complete dependency closure."
     },
     {
       "id": "AUD-05",
@@ -1056,7 +1056,20 @@
       "acceptance": "Inject failure after some road textures load; verify fulfilled textures are released or safely retained, rejected in-flight entries are evicted, concurrent loads do not duplicate ownership, and partially constructed engines cannot leak resources. Preserve healthy visual output.",
       "status": "partially_repaired",
       "bundle": "CR-04",
-      "evidence": "r6.3: owned road batch, in-flight deduplication, renderer-init and synchronous engine-constructor rollback. 18 local resource tests passed; real browser/exact-head CI pending at preparation. Review other batch asset families; no physical GPU leak qualification claimed."
+      "evidence": "r6.3: owned road batch, in-flight deduplication, renderer-init and synchronous engine-constructor rollback. 18 local resource tests passed; real browser/exact-head CI pending at preparation. Review other batch asset families; no physical GPU leak qualification claimed. r6.4 controlled loader audit exercised all 8 remaining Promise.all asset families: 4 pair batches have no explicit successful-member cleanup on rejection; 4 map batches incorrectly skip missing members on retry. RSH-036-ASSET-BATCH-REVIEW.json records mocked-resource results, not GPU memory measurements. These eight families are not repaired by the water-clock fix."
+    },
+    {
+      "id": "AUD-18",
+      "severity": "P0",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Procedural Ayalon canal crashes day-to-night transitions through an unrelated water-body index",
+      "acceptance": "Pair each water material with its own immutable daytime colour; preserve the existing standard-water clock formula; repeatedly exercise day/night with the real Ayalon engine, regular water bodies and no-water tracks. Rerun all four unchanged golden comparisons. No baseline refresh or threshold changes.",
+      "status": "candidate_repaired_pending_browser_and_golden",
+      "bundle": "CR-04",
+      "evidence": "Prior golden run 33988721068 failed before the night capture. Local exact prior-loop expression reproduces the undefined colour error. Ten new water clock tests and current-source/historical checks are present; remote acceptance pending."
     }
   ],
   "legacy_findings": [
@@ -1435,7 +1448,8 @@
         "AUD-06",
         "AUD-07",
         "AUD-08",
-        "AUD-17"
+        "AUD-17",
+        "AUD-18"
       ]
     },
     {
@@ -1474,22 +1488,16 @@
     "No accepted unit count, golden PNG, lock generation, physics, track data, package dependency, asset licence or public distribution permission is changed."
   ],
   "checkpoint": {
-    "document": "RSH-036-RUNTIME-REPAIR-r6.3.md",
-    "state": "resource_repairs_prepared_exact_head_ci_pending",
-    "previous_required_ci_run": 33983420942,
-    "previous_required_ci_tests_passed": 567,
-    "new_resource_tests_local": {
-      "passed": 18,
+    "document": "RSH-036-RUNTIME-REPAIR-r6.4.md",
+    "state": "water_clock_candidate_prepared_remote_validation_pending",
+    "previous_required_ci_run": 33989155614,
+    "previous_required_ci_tests_passed": 591,
+    "local_water_clock_tests": {
+      "passed": 10,
       "failed": 0
     },
-    "road_regressions_previous_code": {
-      "passed": 1,
-      "failed": 5
-    },
-    "visual_investigation_runs": [
-      33986957618,
-      33987121204
-    ],
-    "visual_issue": "Persistent black rothschild scene reproduced on r6.1 and r6.2; exact cause unresolved; individual mesh bisection inconclusive."
+    "golden_gate": "prior_failed_rerun_required_original_baselines_unchanged",
+    "scene_visibility": "persistent_black_rothschild_unresolved",
+    "freeze_inventory_count": 45
   }
 }

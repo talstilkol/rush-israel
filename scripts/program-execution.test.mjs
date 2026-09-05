@@ -104,3 +104,21 @@ test("empty or duplicate evidence cannot make release gates green", () => {
   const proof = { state: "green", id: "G1", verified_head: "a".repeat(40), sources: ["verified-run.json"] };
   assert.match(mutate(({ current }) => { current.program_status.release_gates_green = 2; current.release_gate_evidence = [proof, proof]; }), /release gates lack evidence/);
 });
+
+
+test("plan dashboard counts cannot drift from their collections or accepted queue", () => {
+  for (const field of ["units", "accepted", "in_review", "remaining", "audit_items", "legacy_findings", "repair_bundles"]) {
+    for (const value of [-1, 0.5, NaN, undefined]) {
+      const input = plannedInputs(); input.plan.counts[field] = value;
+      assert.match(validateProgramExecution(input).join("\n"), new RegExp(`plan count disagrees with authority: ${field}`));
+    }
+    const input = plannedInputs(); input.plan.counts[field]++;
+    assert.match(validateProgramExecution(input).join("\n"), /plan count disagrees with authority/);
+  }
+});
+test("duplicate audit or repair identities cannot inflate plan completion statistics", () => {
+  for (const key of ["audit_items", "legacy_findings", "repair_bundles"]) {
+    const input = plannedInputs(); input.plan[key].push({ ...input.plan[key][0] }); input.plan.counts[key]++;
+    assert.match(validateProgramExecution(input).join("\n"), new RegExp(`invalid plan identity list: ${key}`));
+  }
+});

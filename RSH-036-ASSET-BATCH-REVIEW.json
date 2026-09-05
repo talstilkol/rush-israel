@@ -1,0 +1,104 @@
+{
+  "scope": "Controlled JavaScript loader test, transpiled from exact repository sources; simulated texture/GLTF objects, not physical GPU memory measurement.",
+  "cases": [
+    {
+      "filename": "sky-assets.ts",
+      "entry": "loadSky",
+      "firstBatchRejected": true,
+      "firstNetworkCalls": 2,
+      "successfulResources": 1,
+      "explicitDisposals": 0,
+      "firstPublishedGetters": 0,
+      "retryNetworkCalls": 2,
+      "interpretation": "Pair batch has no explicit cleanup of successful members after rejection.",
+      "source_sha256": "7b3eaf34c76bb6ea0e7305e5a6ac8f151c4ed5497e2640e5ab95a103b6c288c4"
+    },
+    {
+      "filename": "tree-assets.ts",
+      "entry": "loadTreeMaps",
+      "firstBatchRejected": true,
+      "firstNetworkCalls": 2,
+      "successfulResources": 1,
+      "explicitDisposals": 0,
+      "firstPublishedGetters": 0,
+      "retryNetworkCalls": 2,
+      "interpretation": "Pair batch has no explicit cleanup of successful members after rejection.",
+      "source_sha256": "788d3bb7768b065c72bfaabdbd135b61e841b89f0ac2bdce637801e96ebf8a1b"
+    },
+    {
+      "filename": "flare-assets.ts",
+      "entry": "loadFlares",
+      "firstBatchRejected": true,
+      "firstNetworkCalls": 2,
+      "successfulResources": 1,
+      "explicitDisposals": 0,
+      "firstPublishedGetters": 0,
+      "retryNetworkCalls": 2,
+      "interpretation": "Pair batch has no explicit cleanup of successful members after rejection.",
+      "source_sha256": "ef209105c1bea4a22c3af8d8d11842377a500ea1d903a88b88065c5a18295dc6"
+    },
+    {
+      "filename": "water-assets.ts",
+      "entry": "loadWater",
+      "firstBatchRejected": true,
+      "firstNetworkCalls": 2,
+      "successfulResources": 1,
+      "explicitDisposals": 0,
+      "firstPublishedGetters": 0,
+      "retryNetworkCalls": 2,
+      "interpretation": "Pair batch has no explicit cleanup of successful members after rejection.",
+      "source_sha256": "31d193b1e8bed8d46f0a30dc03bfe9b01827244763679bb76a4c1b9b86305be3"
+    },
+    {
+      "filename": "curb-assets.ts",
+      "entry": "loadCurbs",
+      "firstBatchRejected": true,
+      "firstNetworkCalls": 4,
+      "successfulResources": 3,
+      "explicitDisposals": 0,
+      "firstPublishedGetters": null,
+      "retryNetworkCalls": 0,
+      "interpretation": "Nonempty Map lets retry return without loading missing members.",
+      "source_sha256": "bd58ebb6c54fbd0d8fedd63dbd108d27f448a324672b7e0880462eaa7411ba30"
+    },
+    {
+      "filename": "facade-assets.ts",
+      "entry": "loadCurtains",
+      "firstBatchRejected": true,
+      "firstNetworkCalls": 5,
+      "successfulResources": 4,
+      "explicitDisposals": 0,
+      "firstPublishedGetters": null,
+      "retryNetworkCalls": 0,
+      "interpretation": "Nonempty Map lets retry return without loading missing members.",
+      "source_sha256": "48367fcf166508b0d86545bf87b2eca2ceb09168a3638281208db255c9acd1f3"
+    },
+    {
+      "filename": "sign-assets.ts",
+      "entry": "loadSigns",
+      "firstBatchRejected": true,
+      "firstNetworkCalls": 18,
+      "successfulResources": 17,
+      "explicitDisposals": 0,
+      "firstPublishedGetters": null,
+      "retryNetworkCalls": 0,
+      "interpretation": "Nonempty Map lets retry return without loading missing members.",
+      "source_sha256": "e32237575c42ec1efcb9a3edaae8aa2a382920aaaceecabb875ce6c12da8387b"
+    },
+    {
+      "filename": "car-assets.ts",
+      "entry": "loadCars",
+      "firstBatchRejected": true,
+      "firstNetworkCalls": 5,
+      "successfulResources": 4,
+      "explicitDisposals": 0,
+      "firstPublishedGetters": null,
+      "retryNetworkCalls": 0,
+      "interpretation": "Nonempty Map lets retry return without loading missing members.",
+      "source_sha256": "92ea1de990a318a38e4d4fb363be0ae2d4818fc4fa3711e0a11cf77b6c599a79"
+    }
+  ],
+  "source_head": "59b71fccf137296697017e04eef19eef998ac597",
+  "repair_status": "unrepaired",
+  "audit_item": "AUD-17"
+}

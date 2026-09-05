@@ -27,6 +27,7 @@ import { getFoliage, getBark } from "./tree-assets";
 import { getAyalonRoad, getBakedRoad } from "./road-assets";
 import { getSkyDay, getSkyNight } from "./sky-assets";
 import { getBlob } from "./blob-assets";
+import { applyWaterClock } from "./water-clock";
 
 // RSH-019-OVERLAY-BEGIN:world-disposal-import
 import { assembleWorld } from "./world-core";
@@ -1388,7 +1389,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   }
   let waterMesh;
   const waterMeshes: THREE.Mesh[] = [];
-  const waterMats: THREE.MeshPhysicalMaterial[] = [];
+  const waterMats: { material: THREE.MeshPhysicalMaterial; baseColor: number }[] = [];
   if (bodies.length) {
     const nrm = keep(waterNormalTex());
     for (const body of bodies) {
@@ -1411,7 +1412,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       mesh.position.set(body.x, -0.12, body.z);
       group.add(mesh);
       waterMeshes.push(mesh);
-      waterMats.push(mat);
+      waterMats.push({ material: mat, baseColor: body.color });
       if (!waterMesh) waterMesh = mesh;
     }
     const sandBody = bodies[0];
@@ -1453,7 +1454,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     canal.receiveShadow = true;
     group.add(canal);
     waterMeshes.push(canal);
-    waterMats.push(canalMat);
+    waterMats.push({ material: canalMat, baseColor: 0x2a6a78 });
     const bankG = keep(new THREE.BoxGeometry(0.32, 1.35, 4.6));
     const bankM = keep(new THREE.MeshStandardMaterial({ color: 0xb4b0a6, roughness: 0.9, metalness: 0 }));
     const nBank = 110;
@@ -2550,7 +2551,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     if (waterMeshes.length) {
       for (const mesh of waterMeshes) mesh.position.y = -0.1 + Math.sin(t * 0.7) * 0.06;
       if (waterMats.length) {
-        for (const mat of waterMats) if (mat.normalMap) {
+        for (const { material: mat } of waterMats) if (mat.normalMap) {
           mat.normalMap.offset.x = t * 0.04;
           mat.normalMap.offset.y = t * 0.026;
         }
@@ -2712,15 +2713,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     walkStd.envMapIntensity = lerp(0.22, 0.16, n);
     shoulderMat.color.setHex(n > 0.5 ? 4867128 : def.sand);
     jerseyMat.color.setHex(n > 0.5 ? 9078396 : 12893358);
-    if (waterMats.length) for (let i = 0; i < waterMats.length; i++) {
-      const src = bodies[i];
-      const mat = waterMats[i];
-      mat.color.setHex(src.color);
-      if (n > 0.35) mat.color.multiplyScalar(lerp(1, 0.5, n));
-      mat.envMapIntensity = lerp(1.7, 2.6, n);
-      mat.roughness = lerp(0.08, 0.03, n);
-      mat.opacity = lerp(0.82, 0.9, n);
-    }
+    applyWaterClock(waterMats, n);
     if (needFacade) {
       bMat.map = n > 0.48 ? facadeNight : facadeDay;
       bMat.emissive.setHex(n > 0.4 ? 16763e3 : 0);

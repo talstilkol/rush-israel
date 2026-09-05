@@ -1,7 +1,7 @@
 # RUSH Israel — Canonical Master Plan
 
 **Schema:** 20.1.0
-**Revision:** r6.3 — owner-authorised improvement programme
+**Revision:** r6.4 — owner-authorised improvement programme
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
 **Verified main:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`
@@ -374,3 +374,21 @@ visual acceptance. Review analogous batch asset loaders. The 44-path inventory i
 still partial and does not grant a freeze. All 67 original units, 42 historical
 findings, 17 audit IDs and six repair bundles are preserved. Accepted 35/67;
 remaining 32; RSH-036 stays active and RSH-037 stays inactive.
+
+
+## r6.4 — water-clock repair and mandatory visual evidence
+
+The active queue is unchanged: 35/67 accepted, 32 remaining; RSH-036 only.
+All 67 original units, 42 historical findings and six repair bundles remain.
+AUD-18 is the eighteenth audit item: the reproduced Ayalon night-switch crash.
+Water materials now carry their own base colour, including the procedural canal;
+clock updates no longer index the catalogue-water array. The prior regular-water
+clock formula is retained. Direct tests cover 100 cycles, idempotence, multiple
+materials, an empty registry and invalid input; three real-engine cases are added
+to the normal browser gate. Historical world bytes remain independently checked.
+
+Read `RSH-036-RUNTIME-REPAIR-r6.4.md` and the latest PR evidence. The 45-file freeze
+inventory is still partial. The four original golden comparisons, persistent
+rothschild black scene, dependency closure and analogous asset batches remain
+acceptance blockers until independently validated. A new green normal-CI result
+must not erase a failing golden result. Never refresh baselines to hide a defect.

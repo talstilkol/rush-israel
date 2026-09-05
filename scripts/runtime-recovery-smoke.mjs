@@ -5,6 +5,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { fromRoot } from './project-root.mjs';
 import { verifyResourceRecovery } from './resource-recovery-browser.mjs';
+import { verifyWaterClock } from './water-clock-browser.mjs';
 
 const url = process.env.SMOKE_URL ?? 'http://127.0.0.1:8080/?qa=1';
 const output = fromRoot('artifacts', 'runtime-recovery');
@@ -50,6 +51,7 @@ async function raceReady(page) {
 }
 try {
   results.push(...await verifyResourceRecovery(browser, url));
+  results.push(...await verifyWaterClock(browser, url));
   {
     const { page, errors } = await pageWithEvidence();
     const route = /\/src\/game\/engine\.ts(?:\?|$)/;
