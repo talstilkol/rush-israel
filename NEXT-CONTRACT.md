@@ -1,6 +1,6 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 20.2.0
+**Version:** 20.3.0
 **Checkpoint date (UTC):** 2026-09-05
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
@@ -50,11 +50,13 @@ for normal CI on the exact published head; never substitute prior-head results.
 
 1. Re-read live PR/main, source identity, current branch, CI artifacts and review
    comments before any write. Read RSH-036-RUNTIME-REPAIR-r6.4.md alongside this.
-2. Isolate the persistent Rothschild rendering interaction. In a read-only
-   diagnostic, hiding all MeshStandardMaterial objects changed a 49-sample grid
-   from all black to all nonblack. That does not identify a single bad object.
-   Fix the actual cause and add meaningful scene-visibility tests; hiding scene
-   geometry is not an acceptable product repair.
+2. Validate the Rothschild canopy allocation repair and full-scene pixel gates.
+   Diagnostic run33992134755 proves a live1152-instance draw overflowed its960
+   matrix slots; capping/restoring the count reversed/reproduced black rendering.
+   The actual repair allocates1536 slots and retains all96 trees/1152 instances,
+   rather than hiding geometry. Run the new real-engine and actual HUD scene
+   gates on the exact head. Preserve failure evidence; do not infer full track
+   or golden acceptance from a visible frame alone.
 3. Trace all four golden mismatches against source, camera, runtime configuration
    and baseline provenance. Preserve original PNGs, thresholds, generation-11
    ayalon.lock and historical owner approval. Do not automatically rebaseline.
@@ -63,7 +65,7 @@ for normal CI on the exact published head; never substitute prior-head results.
    four Map loaders skip missing members on retry. These controlled mock results
    are not physical GPU qualification. Road repairs do not close all asset work.
 5. Finish CR-03: generate complete static/dynamic/runtime-asset dependency closure
-   with addition/removal and unresolved-edge tests. The explicit 45-path list is
+   with addition/removal and unresolved-edge tests. The explicit 46-path list is
    still partial and freeze_granted remains false.
 6. Re-run exact-head normal CI and unchanged golden/freeze gates, resolve review
    blockers, and only then evaluate acceptance. RSH-037 remains inactive.

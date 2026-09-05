@@ -57,6 +57,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "src/rendering/RendererFacade.ts": "512425eda35e2514bfe15a9980ca938a0e31b2843631f7410049c69069870159",
   "src/game/owned-load.ts": "3c8cee655cc312b0ae3f79c2699effe650dc252a184cf7990222d052543a74d9",
   "src/game/water-clock.ts": "fd08dc8beb44d54b2839ad82cb8d6386e7ad76ef4b06e382bd80be005c101472",
+  "src/game/world-builders/tracks/rothschild.ts": "b857d4624524250ae05b9dd022c3309ae6a60c42da1b1894493de111464b3a7b",
 } as const;
 
 export const FREEZE_APPROVAL = {
