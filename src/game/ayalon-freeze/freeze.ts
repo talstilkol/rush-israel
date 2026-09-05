@@ -1,9 +1,9 @@
-/** Canonical Ayalon freeze and transitive-dependency hash lock (RSH-036). */
+/** Partial Ayalon candidate inventory. Acceptance and complete dependency coverage remain blocked. */
 
 export const AYALON_FREEZE_GIS_CLAIM = false;
 export const AYALON_FREEZE_OWNER_SETTINGS = false;
 export const AYALON_FREEZE_PUBLIC_DISTRIBUTION = false;
-export const AYALON_FREEZE_GRANTED = true;
+export const AYALON_FREEZE_GRANTED = false;
 
 export const AYALON_LOCK_GENERATION = 11;
 export const AYALON_LOCK_HASH = "0c34b9d1f9ded36eaa8400c7aaba48a4f725033bfe25412a4648c36c73910d48";
@@ -44,22 +44,29 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "src/game/audio.ts": "bf83db8b5e0929dcd7d057172db6dedbaff1cad84405f152a3ef6ca884a3b650",
   "src/game/input.ts": "51d638c0a004d080d2b558d34a58e4631e74606129d557eb1ffc835218c124aa",
   "src/game/input-curve.ts": "01abad60b246cc76a389291685f65d1bb0039767af328434169743947aa2f04c",
-  "src/components/game-app/hud.tsx": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+  "src/components/game-app/hud.tsx": "041a55c04f8ebd559fdf37b47ac3b84c2813ff8f0938e4b1370d7e823863ebbe",
   "src/components/touch-controls.tsx": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
   "package.json": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
   "AYALON-OWNER-APPROVAL.json": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
+  "src/game/engine.ts": "598676caf41bb8ede1c6a5625719f2dcabaae327f95dcb258c8b8c02d44d995d",
+  "src/game/records.ts": "10bff6426c0ce8d9b406bac66662363ec997883fbff28941dab3f95e1f818aa0",
+  "src/components/game-app/race-controller.tsx": "02bf8279185a618488fe730567dd2b742d35c53abffd23864efb6fbb40c54819",
+  "src/game/race-startup.ts": "cda8d6d3e3af7d385196e1e0d6702a70b6749be76aae8f4fffc1399ef7075dba",
+  "src/game/minimap-route.ts": "35810413542c7b57ac5b7cabc0ede8fec5cf19ceff8a3ca2e109ce6b7ab0031d",
 } as const;
 
 export const FREEZE_APPROVAL = {
   unit: "RSH-036",
   instruction: "המשך",
-  freeze_granted: true,
+  freeze_granted: false,
   unique_pack_approved: true,
   placeholders_are_unique_evidence: false,
   gis_claim: false,
   owner_settings_freeze: false,
   public_distribution: false,
-  approved_by: "owner",
+  approved_by: null,
+  status: "candidate_acceptance_blocked",
+  complete_dependency_closure: false,
 } as const;
 
 export function canonicalFreezeDigest() {
@@ -76,7 +83,7 @@ export function canonicalFreezeDigest() {
     "gis=false",
     "owner_settings_freeze=false",
     "public_distribution=false",
-    "freeze_granted=true",
+    "freeze_granted=false",
     "unique_pack_approved=true",
     "placeholders_are_unique_evidence=false",
     `sources=${sources}`,

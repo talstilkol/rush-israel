@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { historicalRsh036Inputs } from "./rsh036-runtime-evolution.mjs";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
@@ -38,7 +39,7 @@ export function readResourceOwnershipInputs() {
   };
 }
 export function validateResourceOwnership(overrides = {}) {
-  const input = { ...readResourceOwnershipInputs(), ...overrides };
+  const input = historicalRsh036Inputs({ ...readResourceOwnershipInputs(), ...overrides });
   const errors = [];
   let manifest;
   try {

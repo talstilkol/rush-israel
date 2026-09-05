@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { historicalRsh036Inputs } from "./rsh036-runtime-evolution.mjs";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
@@ -81,7 +82,7 @@ export function readGameAppDecompositionInputs() {
 }
 
 export function validateGameAppDecomposition(overrides = {}) {
-  const input = { ...readGameAppDecompositionInputs(), ...overrides };
+  const input = historicalRsh036Inputs({ ...readGameAppDecompositionInputs(), ...overrides });
   const errors = [];
   let manifest;
   try {
