@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { historicalRsh036Inputs } from "./rsh036-runtime-evolution.mjs";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
@@ -63,7 +64,7 @@ export function readSaveSchemaInputs() {
   };
 }
 export function validateSaveSchema(overrides = {}) {
-  const input = { ...readSaveSchemaInputs(), ...overrides };
+  const input = historicalRsh036Inputs({ ...readSaveSchemaInputs(), ...overrides });
   const errors = [];
   let manifest, asset, tracks;
   try { manifest = JSON.parse(input.manifestSource); asset = JSON.parse(input.assetSource); tracks = JSON.parse(input.trackSource); }

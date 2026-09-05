@@ -5,17 +5,17 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "e8816a37cb5b62cab5d0003f6d487b344155ddd88f1a43039ed54f135320749b";
-export const EXPECTED_FREEZE_SHA256 = "07ef5ec4a565dc43bd7b24bdf16375319a772fe3d0812516f2a09a491f2af316";
+export const EXPECTED_MANIFEST_SHA256 = "6da5199ffb06ecdac1995a31c6d8a093a60acc8d1bbde13ec7d99c817e2283b9";
+export const EXPECTED_FREEZE_SHA256 = "28e34f94fc5699301bc53301eec3e4f1f8811bc76ae12d3c68ccf315671e3ab4";
 export const EXPECTED_INDEX_SHA256 = "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10";
-export const EXPECTED_CONTRACT_SHA256 = "110569dbd0b66ffdedf2ae6fee9e712a9bc8ce72c968936413df4964e9b3c8f2";
+export const EXPECTED_CONTRACT_SHA256 = "1dafe6a51e7d09e2c3c2cfc16017eda54842d91673e33ea6632dbd62bf943712";
 export const EXPECTED_OWNER_SHA256 = "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84";
 export const EXPECTED_LOCK_SHA256 = "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b";
 export const EXPECTED_HASHALOM_INDEX_SHA256 = "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10";
 export const EXPECTED_PIXEL_GOLDEN_SHA256 = "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621";
-export const EXPECTED_CHECKER_TEST_SHA256 = "aeeae01db4ac44f7d88d77bdef92ba55bf89bacc3412139b18669c428d4e54ec";
+export const EXPECTED_CHECKER_TEST_SHA256 = "5e4a314682bf85e8cb5afdd6d34f223e6f285d806b64b492a067abd5dcb763cc";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
-export const EXPECTED_FREEZE_DIGEST_SHA256 = "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098";
+export const EXPECTED_FREEZE_DIGEST_SHA256 = "b932b49a7689fe40b51fcb8b61ca8812c572403c6abd769acb3cb032066c6ff4";
 export const EXPECTED_GOLDEN_DIGEST_SHA256 = "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74";
 export const DUPLICATE_PLACEHOLDER_HASH = "38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094";
 
@@ -58,7 +58,7 @@ export function canonicalFreezeDigest() {
     "gis=false",
     "owner_settings_freeze=false",
     "public_distribution=false",
-    "freeze_granted=true",
+    "freeze_granted=false",
     "unique_pack_approved=true",
     "placeholders_are_unique_evidence=false",
     `sources=${sources}`,
@@ -112,15 +112,16 @@ export function validateAyalonFreeze(overrides = {}) {
   if (sha256(canonicalFreezeDigest()) !== EXPECTED_FREEZE_DIGEST_SHA256 || manifest.identities?.freeze_digest_sha256 !== EXPECTED_FREEZE_DIGEST_SHA256) errors.push("freeze digest identity changed");
   if (manifest.unit !== "RSH-036") errors.push("RSH-036 unit identity changed");
   if (manifest.lock?.track_id !== "ayalon") errors.push("freeze track id changed");
-  if (manifest.lock?.source_count !== 36) errors.push("transitive source count changed");
-  if (manifest.lock?.freeze_granted !== true) errors.push("Ayalon freeze is not granted");
+  if (manifest.lock?.source_count !== 41) errors.push("transitive source count changed");
+  if (manifest.lock?.freeze_granted !== false) errors.push("premature Ayalon freeze grant");
   if (manifest.lock?.gis_claim !== false || manifest.lock?.owner_settings_freeze !== false || manifest.lock?.public_distribution !== false) errors.push("RSH-036 must not claim GIS accuracy, owner-settings freeze or public distribution");
   if (owner.freeze_granted !== false || owner.unique_pack_approved !== true) errors.push("historical owner-approval record was rewritten");
   if (lock.lock !== 11) errors.push("ayalon.lock generation changed in RSH-036");
-  if (!/export const AYALON_FREEZE_GRANTED = true/.test(input.freezeSource)) errors.push("freeze granted token missing");
+  if (!/export const AYALON_FREEZE_GRANTED = false/.test(input.freezeSource)) errors.push("pending freeze token missing");
   if (!/from "\.\/freeze"/.test(input.indexSource)) errors.push("ayalon-freeze index no longer re-exports freeze");
+  if (manifest.coverage?.status !== "partial" || manifest.coverage?.complete_dependency_closure !== false || manifest.acceptance?.state !== "blocked") errors.push("partial dependency coverage or blocked acceptance was hidden");
   const files = manifest.lock?.transitive_sources ?? {};
-  if (Object.keys(files).length !== 36) errors.push("transitive source inventory changed");
+  if (Object.keys(files).length !== 41) errors.push("transitive source inventory changed");
   for (const [rel, expected] of Object.entries(files)) {
     if (sha256File(fromRoot(...rel.split("/"))) !== expected) errors.push(`transitive hash drift: ${rel}`);
   }
@@ -143,5 +144,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`ayalon-freeze fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`ayalon-freeze ok: frozen ${result.frozen}; ${result.sourceCount} hashed sources; RSH-037 deferred`);
+  console.log(`ayalon-freeze candidate integrity ok: frozen ${result.frozen}; ${result.sourceCount} partially inventoried sources; RSH-037 deferred`);
 }

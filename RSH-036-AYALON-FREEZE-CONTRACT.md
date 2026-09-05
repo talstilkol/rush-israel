@@ -1,47 +1,28 @@
-# RSH-036 — Freeze Ayalon and hash all transitive dependencies
+# RSH-036 — Ayalon freeze candidate: acceptance blocked
 
-**Unit:** RSH-036
-**Implementation base:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`
-**Base tree:** `566e932c949ccc246883c28e6e1778fdc9f734a3`
-**Branch:** `agent/rsh-036-ayalon-freeze`
-**State effective on:** validated merge of the RSH-036 pull request
+**Revision:** r6.2 / 2026-09-05  
+**Implementation base:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`  
+**Verified repair base:** `ba89268646bf8890f8074642049b23369eda582d`  
+**Branch:** `agent/rsh-036-ayalon-freeze`  
+**Freeze granted:** **false**. Neither general CI success nor owner permission to implement is acceptance.
 
-## Acceptance boundary
+## Source inventory versus acceptance
 
-RSH-036 records the Ayalon vertical-slice freeze and SHA-256 hashes of every
-transitive Ayalon dependency that later G6–G9 units must not silently rewrite.
-It does **not** regenerate golden PNGs, bump `ayalon.lock`, rewrite track /
-world / physics / cars / audio / HUD / input sources or `package.json`, claim
-GIS / navigation accuracy, authorise public distribution, or flip release gates.
+The current explicit inventory contains 41 hashed paths. It is a **partial inventory**, not proof of full static/dynamic/runtime-asset dependency closure. CR-03 remains open. The unaccepted prior 36-path inventory and premature true grant are preserved in Git history at the repair base; they are not accepted authority.
 
-The RSH-035 unique-pack record stays historical: `AYALON-OWNER-APPROVAL.json`
-and `src/game/ayalon-golden/pack.ts` keep `freeze_granted=false`. Freeze
-authority for this unit lives at `src/game/ayalon-freeze/`.
+This revision repairs denied-storage recovery, cancellable race startup, an unmounted minimap and open-route geometry. `RSH-036-RUNTIME-EVOLUTION.json` contains exact current hashes and reverse deltas to the independently verified base. Historical checkers use those deltas solely to verify earlier byte identities. Separate tests require the actual new production bytes and exercise their behavior.
 
-## Locked identity (must remain exact)
+## Locked historical evidence
 
-| Field | Required value |
-|---|---|
-| Track id | `ayalon` |
-| Freeze granted | `true` |
-| Unique authority frames | 20 |
-| Non-authority placeholders | 4 (`hashalom-g04/g05/g06/ramp.png`) |
-| Placeholder SHA-256 | `38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094` |
-| Pixel-golden frames | `ayalon-day-g01/g05/g07`, `ayalon-night-g08` |
-| Pixel threshold / fail | `0.12` / `8%` |
-| `ayalon.lock` generation | `11` |
-| GIS / navigation claim | forbidden |
-| Public distribution | forbidden |
-| Owner-settings freeze | forbidden |
-| Release gates green | `0/13` |
+Keep all original golden PNG bytes, `golden-baseline/ayalon.lock` generation 11, all 20 unique authority frames and four non-authority HaShalom placeholders unchanged. The original RSH-035 owner approval remains byte-identical with `unique_pack_approved=true` and `freeze_granted=false`. Pixel comparison retains threshold 0.12 and failure limit 8%; never update baselines to hide drift.
 
-## Runtime preservation
+Track/world/physics/cars/audio/input data, package.json, package-lock.json and asset bytes are unchanged. HUD and runtime sources deliberately evolve under the standing owner repair authorisation and must be revalidated visually. No historic runtime-preservation claim is silently carried forward.
 
-Golden PNG bytes, `ayalon.lock`, track / world / physics / cars / audio / HUD /
-input sources and `package.json` change by `0`.
+## Mandatory acceptance gates
 
-## Deferred boundary
+1. Complete and independently validate static/dynamic/runtime-asset dependency coverage, including added/removed-file detection.
+2. Exact published-head required CI: unit tests, lint, browser QA, fault-injection recovery and build.
+3. Exact candidate visual/freeze validation against unchanged golden evidence; reconcile minimap and any other visual changes without weakening thresholds.
+4. Resolve blocking review findings, confirm source identity, then validate a merge. Only that later accepted checkpoint can grant the freeze and activate RSH-037.
 
-RSH-037 — Instrument p50, p95, p99, draw calls, triangles and memory — remains
-deferred, unauthorized and uncreated. RSH-036 does not add
-`src/game/perf-instrument/` or `src/game/quality-profiles/`.
+All 13 release gates remain open. GIS/navigation claims, public distribution, owner-settings freeze, force pushes and history rewrites remain forbidden. RSH-037 runtime structures remain absent.

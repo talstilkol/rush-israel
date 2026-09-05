@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.1",
+  "revision": "r6.2",
   "date": "2026-09-05",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 16,
+    "audit_items": 17,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -346,7 +346,8 @@
         "AUD-11",
         "AUD-14",
         "AUD-15",
-        "AUD-16"
+        "AUD-16",
+        "AUD-17"
       ]
     },
     {
@@ -397,7 +398,8 @@
       ],
       "audit_items": [
         "AUD-10",
-        "AUD-11"
+        "AUD-11",
+        "AUD-17"
       ]
     },
     {
@@ -471,7 +473,8 @@
       "audit_items": [
         "AUD-06",
         "AUD-08",
-        "AUD-11"
+        "AUD-11",
+        "AUD-17"
       ]
     },
     {
@@ -815,10 +818,11 @@
         "P1-16",
         "P1-17"
       ],
-      "title": "Manually selected 36 freeze dependencies do not prove transitive completeness",
+      "title": "Partial explicit freeze inventory does not prove transitive completeness",
       "acceptance": "Generate dependency closure from entry points, dynamic imports, runtime assets and configuration; explicit exclusions and missing-edge tests; freeze exact verified source and asset hashes.",
       "status": "open",
-      "bundle": "CR-03"
+      "bundle": "CR-03",
+      "evidence": "Premature true freeze grant revoked in candidate code/manifest. Explicit inventory expanded 36 -> 41 but remains partial, not closure proof."
     },
     {
       "id": "AUD-05",
@@ -840,7 +844,8 @@
       "title": "Diagnostic summaries do not establish complete exact-source acceptance evidence",
       "acceptance": "Retain full tree/source hashes, test details, browser/runtime/golden reports and reproducible command provenance, including failures; keep original golden PNG bytes.",
       "status": "partially_repaired",
-      "bundle": "CR-05"
+      "bundle": "CR-05",
+      "evidence": "Summary now separates trigger SHA from actual checkout SHA/tree, rejects mismatched/dirty source identity and parses complete TAP totals. Ten local identity regressions pass; exact-head CI still required."
     },
     {
       "id": "AUD-06",
@@ -850,10 +855,11 @@
         "RSH-046"
       ],
       "legacy_findings": [],
-      "title": "Runtime loading failure can leave a cached rejected promise and no recovery UI",
-      "acceptance": "Inject failed dynamic import, clear rejected cache, catch every async race-start failure and offer accessible retry; prove subsequent success and no duplicate engine.",
-      "status": "open",
-      "bundle": "CR-04"
+      "title": "Race startup failures lack bounded recovery; native failed module imports may require a page reload",
+      "acceptance": "Catch preparation/construction/readiness failures; cancel/dispose owned engines once; offer explicit page reload after module failure and same-document retry after asset/readiness failure. Prove success via real browser fault injection, without unhandled rejections or stale activation.",
+      "status": "candidate_repaired_browser_validation_pending",
+      "bundle": "CR-04",
+      "diagnostic_correction": "No application-level rejected-promise cache was found. Browser dynamic-module caching requires reload rather than imaginary application-cache clearing."
     },
     {
       "id": "AUD-07",
@@ -870,9 +876,9 @@
         "RSH-061"
       ],
       "legacy_findings": [],
-      "title": "Minimap rendering can connect the endpoints of an open track",
-      "acceptance": "Close/wrap only loop tracks; test end-of-route sampling and clamp open-track endpoint; visual evidence for Ayalon and a loop track.",
-      "status": "open",
+      "title": "Minimap canvas was not mounted; open-route drawing and preview could connect or wrap its endpoints",
+      "acceptance": "Mount accessible HUD canvas; preserve final open sample; close/wrap loop tracks only. Test real Ayalon and loop HUD plus unchanged golden comparison.",
+      "status": "candidate_repaired_browser_and_golden_validation_pending",
       "bundle": "CR-04"
     },
     {
@@ -890,8 +896,9 @@
       ],
       "title": "Timed-record storage acquisition or reading can throw outside the recovery boundary",
       "acceptance": "Inject throwing storage getter/getItem, denied storage and quota failures; return explicit structured failure, preserve bytes, retry safely and retain integrity/write-order tests.",
-      "status": "open",
-      "bundle": "CR-04"
+      "status": "candidate_repaired_browser_validation_pending",
+      "bundle": "CR-04",
+      "evidence": "New regression suite: baseline 4 passed / 6 failed; repaired 10/10 pass locally. Read denial cannot overwrite previous records; failed write retries preserve queue and immutable request."
     },
     {
       "id": "AUD-09",
@@ -1034,6 +1041,21 @@
       "acceptance": "Add central execution invariants and all-future-unit negative tests now; replace duplicated live activation fences in a separately tested transition layer while preserving historical reconstruction hashes.",
       "status": "partially_repaired",
       "bundle": "CR-02"
+    },
+    {
+      "id": "AUD-17",
+      "severity": "P2",
+      "units": [
+        "RSH-036",
+        "RSH-040",
+        "RSH-046"
+      ],
+      "legacy_findings": [],
+      "title": "Partial texture-batch failure and constructor interruption need explicit resource-ownership recovery proof",
+      "acceptance": "Inject failure after some road textures load; verify fulfilled textures are released or safely retained, rejected in-flight entries are evicted, concurrent loads do not duplicate ownership, and partially constructed engines cannot leak resources. Preserve healthy visual output.",
+      "status": "open_static_followup",
+      "bundle": "CR-04",
+      "evidence": "src/game/road-assets.ts uses Promise.all before kits.set; partial success lifetime is not covered by the current ownership tests. This is not yet a reproduced browser leak."
     }
   ],
   "legacy_findings": [
@@ -1407,11 +1429,12 @@
     {
       "id": "CR-04",
       "title": "Pre-freeze runtime loading, minimap and records repairs",
-      "state": "open",
+      "state": "partial_candidate_runtime_repairs",
       "audit_items": [
         "AUD-06",
         "AUD-07",
-        "AUD-08"
+        "AUD-08",
+        "AUD-17"
       ]
     },
     {
@@ -1443,10 +1466,11 @@
     "public_distribution_authorised": false
   },
   "limitations": [
-    "689/689 file inventory and Git blob hashes verified; this is not manual review of every line.",
-    "408 JS/TS files parsed using locally available TypeScript 5.8.3; semantic and exact locked-dependency checks require CI.",
-    "Local baseline: 425 passed and 30 failed out of 455; local control repair: 456 passed, no failures before the new program tests.",
-    "Runtime findings AUD-06 through AUD-09 were initially static findings; do not call them runtime-reproduced or fixed without injected/browser tests.",
-    "No real-device performance, complete transitive closure or new owner golden acceptance is claimed."
-  ]
+    "Exact baseline tree c74b50f2795c8a87e71fa650aac99969dc2a0672 reconstructed from the CI source archive; all 693 source files match the verified live head. This is not manual line-by-line review of all code.",
+    "Local complete suite: 567 passed / 0 failed / 0 skipped using Node 22.16.0 and locally available TypeScript 5.8.3. Locked dependency installation, browser validation and new remote CI remain required.",
+    "Native module failure recovery and actual minimap mounting have browser fault-injection tests committed but not yet claimed as passed at this preparation checkpoint.",
+    "Full dependency closure, partial texture-batch ownership, real-device performance, exact golden/freeze acceptance and release clearance remain incomplete.",
+    "No accepted unit count, golden PNG, lock generation, physics, track data, package dependency, asset licence or public distribution permission is changed."
+  ],
+  "checkpoint": "RSH-036-RUNTIME-REPAIR-r6.2.md"
 }

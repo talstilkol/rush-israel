@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { historicalRsh036Inputs } from "./rsh036-runtime-evolution.mjs";
 import { createHash } from "node:crypto";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -397,7 +398,7 @@ function validateDeferredBoundary(repositoryFiles, errors) {
   }
 }
 export function validateWorldCore(overrides = {}) {
-  const input = { ...readWorldCoreInputs(), ...overrides };
+  const input = historicalRsh036Inputs({ ...readWorldCoreInputs(), ...overrides });
   const errors = [];
   let manifest;
   try { manifest = JSON.parse(input.manifestSource); }

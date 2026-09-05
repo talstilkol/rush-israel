@@ -1,6 +1,6 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 20.0.0
+**Version:** 20.1.0
 **Date:** 2026-09-05
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
@@ -27,10 +27,10 @@ No public distribution, force-push, history rewrite, invented evidence or accept
 
 ## Next work
 
-- Finish CR-02: exact-source control repair, corrected r6.1 mappings, all regression tests and CI.
-- Finish CR-03: prove complete static/dynamic/runtime-asset dependency closure. A manual list of 36 files is not sufficient evidence.
-- Finish CR-04: reproducible failed-import/retry, open-track minimap and denied-storage regressions, then approved fixes.
-- Preserve original golden PNGs, generation-11 `ayalon.lock`, historical approval identities and the 20 unique / four non-authority frame distinction. Do not update goldens to hide a failure.
-- Re-run exact-head required CI, browser QA, build and golden/freeze acceptance; resolve blocking review findings. Only then may RSH-036 become accepted on merge and RSH-037 activate.
+- Verify the current PR head and exact-head required CI, including the new `runtime-recovery-smoke.mjs` browser gate. Local preparation: 567/567 tests passed; never substitute that for locked remote CI.
+- Finish CR-03: generated static/dynamic/runtime-asset dependency closure and add/remove detection. The current 41-file explicit inventory is partial; `freeze_granted=false` is mandatory.
+- Finish AUD-17: partial road-texture and interrupted-constructor resource ownership tests and fixes. Startup/records/minimap behavior changes are candidates pending browser and visual gates.
+- Preserve all original golden PNGs, generation-11 `ayalon.lock`, the historical owner approval, 20 unique frames and four non-authority placeholders. Re-run visual/freeze checks with unchanged thresholds; do not refresh baselines to hide drift.
+- Resolve blocking review findings and verify all acceptance evidence before merge. RSH-036 is not accepted; RSH-037 may not activate yet.
 
-`MASTER-PLAN-r6.json` contains all 67 original units, 42 historical findings, 16 audit items and six repair bundles. Planning a later unit is allowed; prematurely implementing or counting it as accepted is not.
+`MASTER-PLAN-r6.json` r6.2 retains 67 original units, 42 historical findings, 17 audit items and six repair bundles. Read `RSH-036-RUNTIME-REPAIR-r6.2.md` and the PR checkpoint for actual evidence, not estimates or predicted results.
