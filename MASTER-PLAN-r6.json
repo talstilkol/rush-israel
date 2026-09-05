@@ -6,7 +6,7 @@
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "59b71fccf137296697017e04eef19eef998ac597",
+  "source_pr_head": "c7b6bbcd3fea034cc0f872b397134231ec8dc410",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
@@ -822,7 +822,7 @@
       "acceptance": "Generate dependency closure from entry points, dynamic imports, runtime assets and configuration; explicit exclusions and missing-edge tests; freeze exact verified source and asset hashes.",
       "status": "open",
       "bundle": "CR-03",
-      "evidence": "Freeze grant remains false. Explicit inventory is now 45 paths including resource helpers, but is not a generated complete dependency closure."
+      "evidence": "The 46-path explicit inventory includes the corrected Rothschild builder; it remains partial, not generated complete dependency closure. Freeze remains false."
     },
     {
       "id": "AUD-05",
@@ -993,7 +993,7 @@
       "acceptance": "Preserve canonical eight MVP IDs and 48 deferred tracks; each added V1 track gets geometry/driving and art/golden/freeze acceptance after Ayalon.",
       "status": "open",
       "bundle": "CR-06",
-      "evidence": "Read-only runs 33986957618 and 33987121204 reproduce persistent black rothschild scene on both r6.1 and r6.2. Add whole-scene assertions and repair root cause; map visibility is insufficient."
+      "evidence": "Run33992134755 identified exactly one live overflow: Rothschild canopy count1152 / matrix capacity960. Temporarily capping count changed black pixels49/49 to6/49; restoring1152 restored49/49 black. Product fix increases capacity to1536, retaining all96 trees and1152 canopy instances. Actual fixed-scene pixel/capacity gates are pending; this is not full track/golden acceptance."
     },
     {
       "id": "AUD-14",
@@ -1067,9 +1067,9 @@
       "legacy_findings": [],
       "title": "Procedural Ayalon canal crashes day-to-night transitions through an unrelated water-body index",
       "acceptance": "Pair each water material with its own immutable daytime colour; preserve the existing standard-water clock formula; repeatedly exercise day/night with the real Ayalon engine, regular water bodies and no-water tracks. Rerun all four unchanged golden comparisons. No baseline refresh or threshold changes.",
-      "status": "candidate_repaired_pending_browser_and_golden",
+      "status": "runtime_repaired_golden_still_failed",
       "bundle": "CR-04",
-      "evidence": "Prior golden run 33988721068 failed before the night capture. Local exact prior-loop expression reproduces the undefined colour error. Ten new water clock tests and current-source/historical checks are present; remote acceptance pending."
+      "evidence": "129 real-engine day/night transitions passed on Ayalon, Namal and Rothschild in preparation33991445999; all11 browser cases passed. Four original golden comparisons completed but0/4 passed. No baseline or threshold changed."
     }
   ],
   "legacy_findings": [
@@ -1481,23 +1481,25 @@
     "public_distribution_authorised": false
   },
   "limitations": [
-    "Exact baseline tree c74b50f2795c8a87e71fa650aac99969dc2a0672 reconstructed from the CI source archive; all 693 source files match the verified live head. This is not manual line-by-line review of all code.",
-    "Local complete suite: 567 passed / 0 failed / 0 skipped using Node 22.16.0 and locally available TypeScript 5.8.3. Locked dependency installation, browser validation and new remote CI remain required.",
-    "Native module failure recovery and actual minimap mounting have browser fault-injection tests committed but not yet claimed as passed at this preparation checkpoint.",
-    "Full dependency closure, partial texture-batch ownership, real-device performance, exact golden/freeze acceptance and release clearance remain incomplete.",
-    "No accepted unit count, golden PNG, lock generation, physics, track data, package dependency, asset licence or public distribution permission is changed."
+    "Source-file integrity is distinct from manual line-by-line review. See exact-head source artifacts and current PR checkpoint.",
+    "Normal required CI on c7b6bbcd passed in run33992057910; current foliage repair must independently pass a new exact-head run.",
+    "Original golden comparison on the identical water runtime completed: 0/4 passed. No baseline or threshold was changed.",
+    "Rothschild canopy allocation correction preserves all intended instances; full-scene validation of this candidate is pending.",
+    "The explicit 46-path inventory is partial. Generated transitive closure, eight other loader-family repairs, real-device qualification and release clearance remain incomplete."
   ],
   "checkpoint": {
     "document": "RSH-036-RUNTIME-REPAIR-r6.4.md",
-    "state": "water_clock_candidate_prepared_remote_validation_pending",
-    "previous_required_ci_run": 33989155614,
-    "previous_required_ci_tests_passed": 591,
+    "state": "water_clock_validated_foliage_capacity_candidate_pending_remote",
+    "previous_required_ci_run": 33992057910,
+    "previous_required_ci_tests_passed": 607,
     "local_water_clock_tests": {
       "passed": 10,
       "failed": 0
     },
-    "golden_gate": "prior_failed_rerun_required_original_baselines_unchanged",
-    "scene_visibility": "persistent_black_rothschild_unresolved",
-    "freeze_inventory_count": 45
+    "golden_gate": "4_compared_0_passed_original_baselines_unchanged",
+    "scene_visibility": "overflow_root_cause_reproduced_capacity_fix_pending_browser",
+    "freeze_inventory_count": 46,
+    "local_complete_tests": 614,
+    "foliage_diagnostic_run": 33992134755
   }
 }

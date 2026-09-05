@@ -360,7 +360,7 @@
       "current_sha256": "35810413542c7b57ac5b7cabc0ede8fec5cf19ceff8a3ca2e109ce6b7ab0031d"
     },
     "scripts/runtime-recovery-smoke.mjs": {
-      "current_sha256": "745991cb371a140bf20fbceb638d3a856447620566fd859e7657591a686dbb6b"
+      "current_sha256": "2a6d315bf76c904993e36979e86d20e0b8e5b330fb6d898ff5e526dbdd6f9ea8"
     },
     "src/game/road-assets.ts": {
       "previous_sha256": "17cc9cc0ad287a6fcd74e0a40b122ad830733247b50b1e39eb6f2afb8a35146e",
@@ -463,6 +463,21 @@
     },
     "scripts/water-clock-browser.mjs": {
       "current_sha256": "8a5b0aea13b2762246d1fab32b71510b2059cfabdb2cf861664e48aa12b4fd3c"
+    },
+    "src/game/world-builders/tracks/rothschild.ts": {
+      "previous_sha256": "c4b2e7c8d5575214d8c9828bfffff1306c1e272ec7e9d78376443fccc0740c7c",
+      "current_sha256": "b857d4624524250ae05b9dd022c3309ae6a60c42da1b1894493de111464b3a7b",
+      "reverse_edits": [
+        {
+          "start_line": 102,
+          "end_line": 103,
+          "current_segment_sha256": "bac90542dfa4ddd479c58974f751609dd81a40dc47b3b43cf575acc5faba1e54",
+          "previous_text": "    const leaves = new THREE.InstancedMesh(leafG, leafM, 960);\n"
+        }
+      ]
+    },
+    "scripts/rothschild-visibility-browser.mjs": {
+      "current_sha256": "845be5205471a547a7d10b1642b9f0ae4d235dd958392609801e174884a9f7fe"
     }
   }
 }

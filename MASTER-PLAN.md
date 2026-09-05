@@ -392,3 +392,17 @@ inventory is still partial. The four original golden comparisons, persistent
 rothschild black scene, dependency closure and analogous asset batches remain
 acceptance blockers until independently validated. A new green normal-CI result
 must not erase a failing golden result. Never refresh baselines to hide a defect.
+
+## r6.4 continuation — Rothschild full-scene recovery
+
+Read-only run33992134755 linked the black scene to a single live canopy draw with
+1152 instances but only960 matrix slots. Temporary diagnostic count capping
+restored lit pixels and restoring the invalid count reproduced black rendering.
+The product correction allocates1536 slots for128 trees ×12 canopy components.
+It retains the intended96-tree/1152-canopy scene and does not hide any geometry.
+Four new bounded-storage regressions and an actual engine capacity/pixel gate
+are included; the existing closed-route HUD case now also checks interior scene
+pixels. Remote candidate validation is still required. This repair belongs to
+existing AUD-13 and RSH-036, not activation or acceptance of a later track unit.
+The explicit source inventory is46 paths, still partial. Eight asset families
+remain unrepaired; all four original golden comparisons remain blocking failures.

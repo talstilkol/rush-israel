@@ -100,7 +100,7 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
     const leafG = new THREE.SphereGeometry(4.2, 10, 8);
     bag.push(trunkG, leafG);
     const trunks = new THREE.InstancedMesh(trunkG, trunkM, ficusN);
-    const leaves = new THREE.InstancedMesh(leafG, leafM, 960);
+    const leaves = new THREE.InstancedMesh(leafG, leafM, ficusN * 12);
     trunks.castShadow = shadows;
     leaves.castShadow = shadows;
     let ti = 0;
