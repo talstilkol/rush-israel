@@ -1,24 +1,25 @@
 {
-  "schema_version": "18.0.0",
+  "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-03T08:03:00.000Z",
+  "generated_at": "2026-09-05",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_035_pull_request",
-    "implementation_base_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4",
-    "self_reference_boundary": "The RSH-035 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "verified_main_with_RSH_036_in_review",
+    "implementation_base_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+    "accepted_count_semantics": "Merged units only. A prepared candidate or passing test never increments accepted units.",
+    "legacy_authorization_records": "Historical snapshots only; execution_authorization is current.",
+    "self_reference_boundary": "This candidate does not claim its own future head or merge SHA. Resolve live GitHub before each write and reconcile acceptance only after verified merge."
   },
   "verified_main": {
-    "head_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4",
-    "tree_sha": "3700c72ab79aefb96a0ba65adf92102a8058522f",
-    "commit_authored_at": "2026-09-03T07:39:06Z",
-    "commit_message": "Merge PR #37: RSH-034 — Lock audio, HUD, keyboard, touch and gamepad behaviour",
-    "commit_signature_verified": true,
-    "role": "RSH-035 exact implementation base"
+    "head_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+    "tree_sha": "566e932c949ccc246883c28e6e1778fdc9f734a3",
+    "commit_authored_at": "2026-09-03T08:28:41Z",
+    "commit_message": "RSH-035 merge; verified via PR #38",
+    "role": "Verified canonical main before RSH-036 acceptance"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -56,14 +57,14 @@
   "program_status": {
     "program_units_total": 67,
     "accepted_units": 35,
-    "units_in_review": 0,
+    "units_in_review": 1,
     "eligible_units": 0,
-    "deferred_units": 32,
+    "deferred_units": 31,
     "remaining_units": 32,
     "queue_head": "RSH-036",
-    "queue_head_state": "deferred_not_authorized",
-    "queue_head_branch": null,
-    "queue_head_pull_request": null,
+    "queue_head_state": "in_review",
+    "queue_head_branch": "agent/rsh-036-ayalon-freeze",
+    "queue_head_pull_request": 39,
     "automatic_execution": false,
     "release_gates_green": 0,
     "release_gates_total": 13
@@ -1047,7 +1048,7 @@
       "rsh_035_created": true
     },
     "RSH-035": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-035-ayalon-golden",
       "pull_request_resolution": "the pull request created from the exact RSH-035 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -1065,17 +1066,35 @@
       "freeze_granted": false,
       "owner_freeze": false,
       "gis_claim": false,
-      "rsh_036_created": false
+      "rsh_036_created": false,
+      "pull_request": 38,
+      "validated_head_sha": "847d88bc094d243a48a07a99da94b488f50e000e",
+      "merge_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+      "tree_sha": "566e932c949ccc246883c28e6e1778fdc9f734a3"
     }
   },
-  "active_change": null,
+  "active_change": {
+    "unit": "RSH-036",
+    "state": "in_review",
+    "branch": "agent/rsh-036-ayalon-freeze",
+    "pull_request": 39,
+    "implementation_base_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+    "acceptance_blockers": [
+      "exact-head required CI including real browser fault injection",
+      "CR-03 complete transitive dependency coverage",
+      "AUD-17 partial resource ownership verification",
+      "unchanged golden visual/freeze acceptance",
+      "blocking review resolution and validated merge"
+    ],
+    "merge_authorized_without_validation": false
+  },
   "last_transition": {
     "unit": "RSH-035",
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "branch": "agent/rsh-035-ayalon-golden",
     "authority_consumed": true,
     "next_unit": "RSH-036",
-    "next_unit_authorized": false
+    "next_unit_authorized": true
   },
   "batch_authorization": {
     "instruction": "next 5",
@@ -1898,7 +1917,7 @@
     "post_merge_workflow_run": 33729193130
   },
   "rsh_035_ayalon_golden": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "AYALON-GOLDEN-MANIFEST.json",
     "human_contract": "RSH-035-AYALON-GOLDEN-CONTRACT.md",
     "owner_approval": "AYALON-OWNER-APPROVAL.json",
@@ -1913,7 +1932,79 @@
     "freeze_granted": false,
     "owner_freeze": false,
     "gis_claim": false,
-    "RSH_036_created": false,
-    "RSH_036_authorized": false
+    "RSH_036_created": true,
+    "RSH_036_authorized": true
+  },
+  "execution_authorization": {
+    "id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
+    "date": "2026-09-05",
+    "source": "Explicit owner instruction in project conversation on 2026-09-05",
+    "permission": "Audit and repair the complete repository, add improvements and continue implementation without repeated improvement approvals.",
+    "authorized_units": [
+      "RSH-036",
+      "RSH-037",
+      "RSH-038",
+      "RSH-039",
+      "RSH-040",
+      "RSH-041",
+      "RSH-042",
+      "RSH-043",
+      "RSH-044",
+      "RSH-045",
+      "RSH-046",
+      "RSH-047",
+      "RSH-048",
+      "RSH-049",
+      "RSH-050",
+      "RSH-051",
+      "RSH-052",
+      "RSH-053",
+      "RSH-054",
+      "RSH-055",
+      "RSH-056",
+      "RSH-057",
+      "RSH-058",
+      "RSH-059",
+      "RSH-060",
+      "RSH-061",
+      "RSH-062",
+      "RSH-063",
+      "RSH-064",
+      "RSH-065",
+      "RSH-066",
+      "RSH-067"
+    ],
+    "improvement_planning_and_repair_authorized": true,
+    "execution_mode": "serial_dependencies_within_interactive_sessions",
+    "max_active_program_units": 1,
+    "active_unit": "RSH-036",
+    "next_means": "Continue from live verified GitHub; no asynchronous execution is implied.",
+    "not_authorized": [
+      "public_distribution",
+      "force_push",
+      "history_rewrite",
+      "invented_test_or_license_evidence",
+      "acceptance_without_validation"
+    ],
+    "activation_is_not_acceptance": true,
+    "future_activation_requires_predecessor_acceptance": true
+  },
+  "rsh_036_ayalon_freeze": {
+    "state": "in_review",
+    "manifest": "AYALON-FREEZE-MANIFEST.json",
+    "pull_request": 39,
+    "accepted": false,
+    "transitive_coverage_complete": false,
+    "runtime_remediation_complete": false,
+    "freeze_granted": false,
+    "partial_inventory_count": 41,
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.2.md",
+    "local_unit_tests": {
+      "passed": 567,
+      "failed": 0,
+      "skipped": 0,
+      "locked_dependency_install": false
+    },
+    "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json"
   }
 }

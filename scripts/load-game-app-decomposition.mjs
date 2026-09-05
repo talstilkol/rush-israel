@@ -1,3 +1,4 @@
+import { historicalRsh036Inputs } from "./rsh036-runtime-evolution.mjs";
 import { createHash } from "node:crypto";
 
 export function sha256(source) {
@@ -23,6 +24,7 @@ export function parseRsh018Blocks(source, path = "unknown") {
 }
 
 export function reconstructRsh017GameAppSource(manifest, moduleSources) {
+  moduleSources = historicalRsh036Inputs(moduleSources);
   const blocks = {};
   for (const module of manifest.extraction.modules) {
     const source = moduleSources[module.path];

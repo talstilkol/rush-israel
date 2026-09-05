@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-036",
+    "queue_head": "RSH-037",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -122,11 +122,12 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh036",
-      ".github/workflows/rsh-036-",
-      "RSH-036-",
-      "scripts/rsh036-",
-      "src/game/ayalon-freeze/",
+      ".rsh037",
+      ".github/workflows/rsh-037-",
+      "RSH-037-",
+      "scripts/rsh037-",
+      "src/game/perf-instrument/",
+      "src/game/quality-profiles/",
       "src/game/records-v2/"
     ],
     "rsh_026_authorized": true,
@@ -159,8 +160,11 @@
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "rsh_035_state": "accepted_on_merge",
-    "rsh_036_authorized": false,
-    "rsh_036_started": false
+    "rsh_036_authorized": true,
+    "rsh_036_started": true,
+    "rsh_036_state": "in_review",
+    "rsh_037_authorized": false,
+    "rsh_037_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -338,5 +342,11 @@
     "owner_freeze": false,
     "gis_claim": false,
     "schema_guard_test_sha256": "0cc52a3b1e19ff02d8923d82303f52cb6b79b0e4928c5ba5ff629cec4eec7ba5"
+  },
+  "rsh_036_overlay": {
+    "unit": "RSH-036",
+    "state": "in_review",
+    "schema_guard_test_sha256": "b55158f16f39c2b3290c3a3c2d9d8675a1845decf9d8d267cd39545ae5a58a78",
+    "runtime_source_changes": 0
   }
 }

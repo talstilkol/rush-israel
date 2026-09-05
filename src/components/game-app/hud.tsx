@@ -180,6 +180,15 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 					})
 				]
 			}) : null,
+			/* @__PURE__ */ jsx("canvas", {
+				ref: mapRef,
+				width: 144,
+				height: 144,
+				role: "img",
+				"aria-label": langHe ? "מפת מסלול המרוץ" : "Race route minimap",
+				"data-testid": "race-minimap",
+				className: "absolute bottom-28 start-4 rounded-lg border border-border bg-surface/80 md:bottom-6"
+			}),
 			/* @__PURE__ */ jsx("div", {
 				className: "absolute bottom-28 end-4 md:bottom-6",
 				children: /* @__PURE__ */ jsxs("div", {

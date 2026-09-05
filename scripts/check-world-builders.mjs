@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { historicalRsh036Inputs } from "./rsh036-runtime-evolution.mjs";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
@@ -56,7 +57,7 @@ export function readWorldBuilderInputs() {
   };
 }
 export function validateWorldBuilders(overrides = {}) {
-  const input = { ...readWorldBuilderInputs(), ...overrides };
+  const input = historicalRsh036Inputs({ ...readWorldBuilderInputs(), ...overrides });
   const errors = [];
   let manifest;
   try { manifest = JSON.parse(input.manifestSource); } catch (error) { return { errors: [`WORLD-BUILDER-MANIFEST.json invalid: ${error.message}`] }; }

@@ -1,40 +1,36 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 18.0.0
+**Version:** 20.1.0
+**Date:** 2026-09-05
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-035 implementation base:** `0f53ae1e1451c3eff30a15829c0c0f43762feeb4`
-**State effective on:** merge of the RSH-035 pull request
-**Next unit:** `RSH-036` — deferred and not authorised
+**Verified main:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`
+**Active:** `RSH-036`, PR #39, `agent/rsh-036-ayalon-freeze` — in review, not accepted.
 
-## Authority
+## Standing owner authority
 
-The current plain `next` / `המשך` instruction authorised exactly RSH-035. That authority is consumed on validated merge and does not extend to RSH-036.
+The explicit owner instruction on 5 September 2026 authorises repository-wide review, repairs, master-plan improvements and serial execution of all remaining units. Additional improvement plans do not require renewed permission. Every interactive `next` resumes the actual live GitHub checkpoint. Only one program unit is active at a time; future units cannot bypass predecessor acceptance. Historical one-unit grants remain historical records, not the current authority.
 
-## RSH-035 acceptance boundary
+No public distribution, force-push, history rewrite, invented evidence or acceptance without validation is authorised. Do not release or merge a failed/incomplete candidate. Branch candidates are allowed for validation.
 
-- the unique Ayalon golden pack is the existing 20 non-placeholder Ayalon / HaShalom frames;
-- `hashalom-g04.png`, `hashalom-g05.png`, `hashalom-g06.png` and `hashalom-ramp.png` remain non-authority placeholders with SHA-256 `38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094`;
-- pixel-golden stays frames `ayalon-day-g01.png`, `ayalon-day-g05.png`, `ayalon-day-g07.png`, `ayalon-night-g08.png` at threshold `0.12` / fail `8%`;
-- `ayalon.lock` stays generation `11`;
-- owner unique-pack approval is recorded; placeholders are not unique evidence;
-- Ayalon freeze, GIS/navigation claims and public distribution remain forbidden;
-- golden PNG bytes, `ayalon.lock`, `hashalom-photo.json`, track / world / physics / audio / HUD sources and `package.json` are not rewritten;
-- no RSH-036 freeze structure exists.
-
-## Post-merge state
+## Actual counts
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
 | Accepted | 35 |
-| Deferred | 32 |
+| In review | 1 |
+| Authorised, not activated | 31 |
 | Remaining | 32 |
-| Queue head | RSH-036 |
-| RSH-036 authorised | No |
-| Current authority remaining | 0 |
-| Save schema version | 3 |
+| Release gates green | 0/13 |
 | Unverified asset files | 66 |
-| Release gates | 0/13 |
 
-A new explicit owner instruction is required before RSH-036 may be created or executed.
+## Next work
+
+- Verify the current PR head and exact-head required CI, including the new `runtime-recovery-smoke.mjs` browser gate. Local preparation: 567/567 tests passed; never substitute that for locked remote CI.
+- Finish CR-03: generated static/dynamic/runtime-asset dependency closure and add/remove detection. The current 41-file explicit inventory is partial; `freeze_granted=false` is mandatory.
+- Finish AUD-17: partial road-texture and interrupted-constructor resource ownership tests and fixes. Startup/records/minimap behavior changes are candidates pending browser and visual gates.
+- Preserve all original golden PNGs, generation-11 `ayalon.lock`, the historical owner approval, 20 unique frames and four non-authority placeholders. Re-run visual/freeze checks with unchanged thresholds; do not refresh baselines to hide drift.
+- Resolve blocking review findings and verify all acceptance evidence before merge. RSH-036 is not accepted; RSH-037 may not activate yet.
+
+`MASTER-PLAN-r6.json` r6.2 retains 67 original units, 42 historical findings, 17 audit items and six repair bundles. Read `RSH-036-RUNTIME-REPAIR-r6.2.md` and the PR checkpoint for actual evidence, not estimates or predicted results.
