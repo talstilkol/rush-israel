@@ -1,13 +1,20 @@
 import * as THREE from "three";
+import { createAssetCache } from "./asset-cache";
+import { loadOwnedResources } from "./owned-load";
 
-let foliage: THREE.Texture | undefined;
-let bark: THREE.Texture | undefined;
+const cache = createAssetCache(() => {
+  const L = new THREE.TextureLoader();
+  return loadOwnedResources([
+    () => L.loadAsync("/game/foliage.png"),
+    () => L.loadAsync("/game/bark.png"),
+  ], ([f, b]) => [prep(f, 2), prep(b, 3)] as const);
+});
 
 export function getFoliage() {
-  return foliage;
+  return cache.peek()?.[0];
 }
 export function getBark() {
-  return bark;
+  return cache.peek()?.[1];
 }
 
 function prep(t: THREE.Texture, repeatY: number) {
@@ -20,9 +27,5 @@ function prep(t: THREE.Texture, repeatY: number) {
 }
 
 export async function loadTreeMaps() {
-  if (foliage && bark) return;
-  const L = new THREE.TextureLoader();
-  const [f, b] = await Promise.all([L.loadAsync("/game/foliage.png"), L.loadAsync("/game/bark.png")]);
-  foliage = prep(f, 2);
-  bark = prep(b, 3);
+  await cache.load();
 }

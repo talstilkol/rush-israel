@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { fromRoot } from './project-root.mjs';
+import { verifyAssetBatches } from './asset-batches-browser.mjs';
 import { verifyResourceRecovery } from './resource-recovery-browser.mjs';
 import { verifyWaterClock } from './water-clock-browser.mjs';
 import { verifyRothschildVisibility, assertScenePixels } from './rothschild-visibility-browser.mjs';
@@ -51,6 +52,7 @@ async function raceReady(page) {
   assert.equal(await page.getByTestId('race-load-error').count(), 0);
 }
 try {
+  results.push(...await verifyAssetBatches(browser, url));
   results.push(...await verifyResourceRecovery(browser, url));
   results.push(...await verifyWaterClock(browser, url));
   results.push(await verifyRothschildVisibility(browser, url, output));

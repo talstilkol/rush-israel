@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.4",
-  "date": "2026-09-05",
+  "revision": "r6.5",
+  "date": "2026-09-06",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "c7b6bbcd3fea034cc0f872b397134231ec8dc410",
+  "source_pr_head": "3486e3351f596670e9fb0a55387bf0ecdcd442df",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
@@ -1056,7 +1056,7 @@
       "acceptance": "Inject failure after some road textures load; verify fulfilled textures are released or safely retained, rejected in-flight entries are evicted, concurrent loads do not duplicate ownership, and partially constructed engines cannot leak resources. Preserve healthy visual output.",
       "status": "partially_repaired",
       "bundle": "CR-04",
-      "evidence": "r6.3: owned road batch, in-flight deduplication, renderer-init and synchronous engine-constructor rollback. 18 local resource tests passed; real browser/exact-head CI pending at preparation. Review other batch asset families; no physical GPU leak qualification claimed. r6.4 controlled loader audit exercised all 8 remaining Promise.all asset families: 4 pair batches have no explicit successful-member cleanup on rejection; 4 map batches incorrectly skip missing members on retry. RSH-036-ASSET-BATCH-REVIEW.json records mocked-resource results, not GPU memory measurements. These eight families are not repaired by the water-clock fix."
+      "evidence": "r6.3: owned road batch, in-flight deduplication, renderer-init and synchronous engine-constructor rollback. 18 local resource tests passed; real browser/exact-head CI pending at preparation. Review other batch asset families; no physical GPU leak qualification claimed. r6.4 controlled loader audit exercised all 8 remaining Promise.all asset families: 4 pair batches have no explicit successful-member cleanup on rejection; 4 map batches incorrectly skip missing members on retry. RSH-036-ASSET-BATCH-REVIEW.json records mocked-resource results, not GPU memory measurements. These eight families are not repaired by the water-clock fix. r6.5 implements atomic, single-flight caches for all eight named families. The same 48 controlled regressions yield 5 pass/43 failures on r6.4 and 48/48 after repair; 5 helper cases also pass. Real browser and locked exact-head results remain separate, not inferred. Read RSH-036-ASSET-BATCH-REPAIR.json. Historical audit bytes are unchanged."
     },
     {
       "id": "AUD-18",
@@ -1481,25 +1481,19 @@
     "public_distribution_authorised": false
   },
   "limitations": [
-    "Source-file integrity is distinct from manual line-by-line review. See exact-head source artifacts and current PR checkpoint.",
-    "Normal required CI on c7b6bbcd passed in run33992057910; current foliage repair must independently pass a new exact-head run.",
-    "Original golden comparison on the identical water runtime completed: 0/4 passed. No baseline or threshold was changed.",
-    "Rothschild canopy allocation correction preserves all intended instances; full-scene validation of this candidate is pending.",
-    "The explicit 46-path inventory is partial. Generated transitive closure, eight other loader-family repairs, real-device qualification and release clearance remain incomplete."
+    "Original 67 units and all 18 audit IDs/42 historical findings are retained; partial repairs are not extra accepted units.",
+    "Baseline r6.4 exact-head run33993082441 passed614 tests and12 browser cases; the new candidate requires its own CI.",
+    "The four golden baselines date to 2026-08-26 commit b0e3e525689955e6ff944b49f08c814e49cf03fa; source/configuration attribution remains open.",
+    "Partial inventory has 56 paths and does not prove generated dependency closure.",
+    "No physical-device or asset-licence clearance is claimed."
   ],
   "checkpoint": {
-    "document": "RSH-036-RUNTIME-REPAIR-r6.4.md",
-    "state": "water_clock_validated_foliage_capacity_candidate_pending_remote",
-    "previous_required_ci_run": 33992057910,
-    "previous_required_ci_tests_passed": 607,
-    "local_water_clock_tests": {
-      "passed": 10,
-      "failed": 0
-    },
-    "golden_gate": "4_compared_0_passed_original_baselines_unchanged",
-    "scene_visibility": "overflow_root_cause_reproduced_capacity_fix_pending_browser",
-    "freeze_inventory_count": 46,
-    "local_complete_tests": 614,
-    "foliage_diagnostic_run": 33992134755
+    "revision": "r6.5",
+    "base_head": "3486e3351f596670e9fb0a55387bf0ecdcd442df",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.5.md",
+    "unit_accepted": false,
+    "normal_ci": "pending_on_new_candidate",
+    "golden": "last_verified_r6.4_all_four_failed_no_threshold_or_baseline_change",
+    "asset_batches": "eight_families_implemented_53_controlled_tests_passed_browser_pending"
   }
 }

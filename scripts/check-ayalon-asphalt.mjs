@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { historicalRsh036Source } from "./rsh036-runtime-evolution.mjs";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
@@ -129,6 +130,8 @@ export function readAyalonAsphaltInputs() {
 
 export function validateAyalonAsphalt(overrides = {}) {
   const input = { ...readAyalonAsphaltInputs(), ...overrides };
+  // Preserve this historical contract only for hash-pinned, reviewed runtime edits.
+  input.signAssetSource = historicalRsh036Source(input.signAssetSource);
   const errors = [];
   let manifest, lock, asset;
   try {

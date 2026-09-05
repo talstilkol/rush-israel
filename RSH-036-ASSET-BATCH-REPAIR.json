@@ -1,0 +1,86 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.5",
+  "date": "2026-09-06",
+  "base_head": "3486e3351f596670e9fb0a55387bf0ecdcd442df",
+  "historical_review": "RSH-036-ASSET-BATCH-REVIEW.json",
+  "historical_review_sha256": "0cb3daf7c74bc83284f77f0e263cb804c8162b52850cbd31be44be842ee8e5dc",
+  "families": [
+    {
+      "id": "sky-assets.ts",
+      "entry": "loadSky",
+      "previous_sha256": "7b3eaf34c76bb6ea0e7305e5a6ac8f151c4ed5497e2640e5ab95a103b6c288c4",
+      "current_sha256": "621ff97db2cd2127ff53b679833b961d3a6d4dd5265974b011a7c160c71ffae9",
+      "state": "implemented_pending_exact_head_validation"
+    },
+    {
+      "id": "tree-assets.ts",
+      "entry": "loadTreeMaps",
+      "previous_sha256": "788d3bb7768b065c72bfaabdbd135b61e841b89f0ac2bdce637801e96ebf8a1b",
+      "current_sha256": "fa2349e25fd3f3e46d13c8fa61ba5220e3a905e78c24daa821ec2f0f0fc091e0",
+      "state": "implemented_pending_exact_head_validation"
+    },
+    {
+      "id": "flare-assets.ts",
+      "entry": "loadFlares",
+      "previous_sha256": "ef209105c1bea4a22c3af8d8d11842377a500ea1d903a88b88065c5a18295dc6",
+      "current_sha256": "4c29b305572b50cf419b5f656bea3f9e72bc5120fd61e625a451a86f72dcf6ce",
+      "state": "implemented_pending_exact_head_validation"
+    },
+    {
+      "id": "water-assets.ts",
+      "entry": "loadWater",
+      "previous_sha256": "31d193b1e8bed8d46f0a30dc03bfe9b01827244763679bb76a4c1b9b86305be3",
+      "current_sha256": "c88645b7563dbdc869cbfd1883cb1c34faa442bbe4f7c3338f7b8f311b2c6318",
+      "state": "implemented_pending_exact_head_validation"
+    },
+    {
+      "id": "curb-assets.ts",
+      "entry": "loadCurbs",
+      "previous_sha256": "bd58ebb6c54fbd0d8fedd63dbd108d27f448a324672b7e0880462eaa7411ba30",
+      "current_sha256": "7d6778a2db23528c2f98b835602eb7cc7cd0cf9b1c6af97ea5cd0e1612e055a2",
+      "state": "implemented_pending_exact_head_validation"
+    },
+    {
+      "id": "facade-assets.ts",
+      "entry": "loadCurtains",
+      "previous_sha256": "48367fcf166508b0d86545bf87b2eca2ceb09168a3638281208db255c9acd1f3",
+      "current_sha256": "16c25666913980a340ab182865236b273a36cb0444b2ae67d97f1c7198fba588",
+      "state": "implemented_pending_exact_head_validation"
+    },
+    {
+      "id": "sign-assets.ts",
+      "entry": "loadSigns",
+      "previous_sha256": "e32237575c42ec1efcb9a3edaae8aa2a382920aaaceecabb875ce6c12da8387b",
+      "current_sha256": "b6a27de50bb2386cf10c6347d9497f52d26596cefbd8f6e309cc6b03b070e4df",
+      "state": "implemented_pending_exact_head_validation"
+    },
+    {
+      "id": "car-assets.ts",
+      "entry": "loadCars",
+      "previous_sha256": "92ea1de990a318a38e4d4fb363be0ae2d4818fc4fa3711e0a11cf77b6c599a79",
+      "current_sha256": "f1d2979738d429413f032bc277a208cb1ce4a6440b1307b54486acf15ac69ced",
+      "state": "implemented_pending_exact_head_validation"
+    }
+  ],
+  "controlled_regressions": {
+    "baseline": {
+      "passed": 5,
+      "failed": 43,
+      "total": 48
+    },
+    "candidate": {
+      "passed": 48,
+      "failed": 0,
+      "total": 48
+    },
+    "additional_helper_tests": 5
+  },
+  "browser_cases": "8 planned in the normal required browser gate; results must be read from actual CI artifacts",
+  "limits": [
+    "No physical GPU-memory qualification.",
+    "Incomplete parse failures inside third-party loaders are not claimed repaired.",
+    "Other one-resource or engine-level loaders are not automatically closed."
+  ],
+  "acceptance": "blocked_on_golden_dependency_closure_and_exact_head_validation"
+}

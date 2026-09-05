@@ -17,7 +17,7 @@ test("RSH-036 pending candidate inventory is internally consistent and RSH-037 r
   const result = validateAyalonFreeze();
   assert.deepEqual(result.errors, []);
   assert.equal(result.frozen, false);
-  assert.equal(result.sourceCount, 46);
+  assert.equal(result.sourceCount, 56);
 });
 
 test("RSH-037 precreation fails closed", () => {

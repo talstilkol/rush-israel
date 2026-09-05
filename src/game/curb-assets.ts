@@ -1,23 +1,26 @@
 import * as THREE from "three";
+import { createAssetCache } from "./asset-cache";
+import { loadOwnedResources } from "./owned-load";
 
-const kits = new Map<string, THREE.Texture>();
-
-export function getCurb(kind: string) {
-  return kits.get(kind) ?? kits.get("city");
-}
-
-export async function loadCurbs() {
-  if (kits.size) return;
+const names = ["city", "stone", "dirt", "sand"] as const;
+const cache = createAssetCache(() => {
   const L = new THREE.TextureLoader();
-  await Promise.all(
-    (["city", "stone", "dirt", "sand"] as const).map(async (k) => {
-      const t = await L.loadAsync(`/game/curb-${k}.png`);
+  return loadOwnedResources(names.map((k) => () => L.loadAsync(`/game/curb-${k}.png`)), (textures) => {
+    const kits = new Map<string, THREE.Texture>();
+    textures.forEach((t, i) => {
       t.wrapS = t.wrapT = THREE.RepeatWrapping;
       t.colorSpace = THREE.SRGBColorSpace;
       t.anisotropy = 8;
       t.repeat.set(1, 1);
       t.needsUpdate = true;
-      kits.set(k, t);
-    }),
-  );
+      kits.set(names[i], t);
+    });
+    return kits;
+  });
+});
+
+export function getCurb(kind: string) {
+  const kits = cache.peek();
+  return kits?.get(kind) ?? kits?.get("city");
 }
+export async function loadCurbs() { await cache.load(); }
