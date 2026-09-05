@@ -8,7 +8,7 @@
 
 ## Source inventory versus acceptance
 
-The current explicit inventory contains 41 hashed paths. It is a **partial inventory**, not proof of full static/dynamic/runtime-asset dependency closure. CR-03 remains open. The unaccepted prior 36-path inventory and premature true grant are preserved in Git history at the repair base; they are not accepted authority.
+The current explicit inventory contains 44 hashed paths. It is a **partial inventory**, not proof of full static/dynamic/runtime-asset dependency closure. CR-03 remains open. The unaccepted prior 36-path inventory and premature true grant are preserved in Git history at the repair base; they are not accepted authority.
 
 This revision repairs denied-storage recovery, cancellable race startup, an unmounted minimap and open-route geometry. `RSH-036-RUNTIME-EVOLUTION.json` contains exact current hashes and reverse deltas to the independently verified base. Historical checkers use those deltas solely to verify earlier byte identities. Separate tests require the actual new production bytes and exercise their behavior.
 

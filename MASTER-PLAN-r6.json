@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.2",
+  "revision": "r6.3",
   "date": "2026-09-05",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "4878a3bcb48969dd3f8735a4f5b45b12aaa809e1",
+  "source_pr_head": "1ef48b96e8385c6dd3351c9a6ec43d45c1bd7aa8",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
@@ -822,7 +822,7 @@
       "acceptance": "Generate dependency closure from entry points, dynamic imports, runtime assets and configuration; explicit exclusions and missing-edge tests; freeze exact verified source and asset hashes.",
       "status": "open",
       "bundle": "CR-03",
-      "evidence": "Premature true freeze grant revoked in candidate code/manifest. Explicit inventory expanded 36 -> 41 but remains partial, not closure proof."
+      "evidence": "Freeze grant remains false. Explicit inventory is now 44 paths including resource helpers, but is not a generated complete dependency closure."
     },
     {
       "id": "AUD-05",
@@ -992,7 +992,8 @@
       "title": "Catalogue breadth must not substitute for the eight verified V1 tracks",
       "acceptance": "Preserve canonical eight MVP IDs and 48 deferred tracks; each added V1 track gets geometry/driving and art/golden/freeze acceptance after Ayalon.",
       "status": "open",
-      "bundle": "CR-06"
+      "bundle": "CR-06",
+      "evidence": "Read-only runs 33986957618 and 33987121204 reproduce persistent black rothschild scene on both r6.1 and r6.2. Add whole-scene assertions and repair root cause; map visibility is insufficient."
     },
     {
       "id": "AUD-14",
@@ -1053,9 +1054,9 @@
       "legacy_findings": [],
       "title": "Partial texture-batch failure and constructor interruption need explicit resource-ownership recovery proof",
       "acceptance": "Inject failure after some road textures load; verify fulfilled textures are released or safely retained, rejected in-flight entries are evicted, concurrent loads do not duplicate ownership, and partially constructed engines cannot leak resources. Preserve healthy visual output.",
-      "status": "open_static_followup",
+      "status": "partially_repaired",
       "bundle": "CR-04",
-      "evidence": "src/game/road-assets.ts uses Promise.all before kits.set; partial success lifetime is not covered by the current ownership tests. This is not yet a reproduced browser leak."
+      "evidence": "r6.3: owned road batch, in-flight deduplication, renderer-init and synchronous engine-constructor rollback. 18 local resource tests passed; real browser/exact-head CI pending at preparation. Review other batch asset families; no physical GPU leak qualification claimed."
     }
   ],
   "legacy_findings": [
@@ -1472,5 +1473,23 @@
     "Full dependency closure, partial texture-batch ownership, real-device performance, exact golden/freeze acceptance and release clearance remain incomplete.",
     "No accepted unit count, golden PNG, lock generation, physics, track data, package dependency, asset licence or public distribution permission is changed."
   ],
-  "checkpoint": "RSH-036-RUNTIME-REPAIR-r6.2.md"
+  "checkpoint": {
+    "document": "RSH-036-RUNTIME-REPAIR-r6.3.md",
+    "state": "resource_repairs_prepared_exact_head_ci_pending",
+    "previous_required_ci_run": 33983420942,
+    "previous_required_ci_tests_passed": 567,
+    "new_resource_tests_local": {
+      "passed": 18,
+      "failed": 0
+    },
+    "road_regressions_previous_code": {
+      "passed": 1,
+      "failed": 5
+    },
+    "visual_investigation_runs": [
+      33986957618,
+      33987121204
+    ],
+    "visual_issue": "Persistent black rothschild scene reproduced on r6.1 and r6.2; exact cause unresolved; individual mesh bisection inconclusive."
+  }
 }

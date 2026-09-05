@@ -297,31 +297,41 @@ export class RaceEngine {
     this.fovExtra = opts.fovExtra ?? 0;
 
     this.gfx = RendererFacade.init(canvas, profileFromLegacy(this.quality));
-    this.renderer = this.gfx.gl;
-    this.telem = this.gfx.telem;
-    const soft = isSoftwareGL(this.renderer);
-    this.soft = soft;
-    if (soft) this.lite = true;
-    const shadows = !mobile && !soft;
-    this.renderer.shadowMap.enabled = shadows;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    try {
+      this.renderer = this.gfx.gl;
+      this.telem = this.gfx.telem;
+      const soft = isSoftwareGL(this.renderer);
+      this.soft = soft;
+      if (soft) this.lite = true;
+      const shadows = !mobile && !soft;
+      this.renderer.shadowMap.enabled = shadows;
+      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    this.scene = new THREE.Scene();
-    const spec = FOG[fogKey(this.trackDef.theme, opts.trackId)];
-    const skyDay = this.trackDef.theme === "desert" || opts.trackId === "ramon" ? 0x4aa8dc : this.trackDef.theme === "snow" || opts.trackId === "hermon" ? 0x6eb0d8 : 0x2f8fd4;
-    const skyNight = 0x182436;
-    this.gfx.setEnvironment(opts.night ? LOOKS.night.exposure : LOOKS.summer14.exposure);
-    this.fog = new THREE.FogExp2(opts.night ? spec.nightCol : spec.dayCol, opts.night ? spec.night : spec.day);
-    this.scene.fog = this.fog;
-    this.scene.background = new THREE.Color(opts.night ? skyNight : skyDay);
+      this.scene = new THREE.Scene();
+      const spec = FOG[fogKey(this.trackDef.theme, opts.trackId)];
+      const skyDay = this.trackDef.theme === "desert" || opts.trackId === "ramon" ? 0x4aa8dc : this.trackDef.theme === "snow" || opts.trackId === "hermon" ? 0x6eb0d8 : 0x2f8fd4;
+      const skyNight = 0x182436;
+      this.gfx.setEnvironment(opts.night ? LOOKS.night.exposure : LOOKS.summer14.exposure);
+      this.fog = new THREE.FogExp2(opts.night ? spec.nightCol : spec.dayCol, opts.night ? spec.night : spec.day);
+      this.scene.fog = this.fog;
+      this.scene.background = new THREE.Color(opts.night ? skyNight : skyDay);
 
-    const mountain = spec.far >= 12000 || opts.trackId === "scopus" || opts.trackId === "jerusalem";
-    this.camera = new THREE.PerspectiveCamera(68, canvas.clientWidth / Math.max(1, canvas.clientHeight), 0.28, mountain ? Math.max(spec.far, 12000) : spec.far);
+      const mountain = spec.far >= 12000 || opts.trackId === "scopus" || opts.trackId === "jerusalem";
+      this.camera = new THREE.PerspectiveCamera(68, canvas.clientWidth / Math.max(1, canvas.clientHeight), 0.28, mountain ? Math.max(spec.far, 12000) : spec.far);
 
-    this.opts.onBoot?.(0.12);
-    canvas.addEventListener("webglcontextlost", this.onContextLost);
-    canvas.addEventListener("webglcontextrestored", this.onContextRestored);
-    this.ready = this.assemble(shadows, soft);
+      this.opts.onBoot?.(0.12);
+      canvas.addEventListener("webglcontextlost", this.onContextLost);
+      canvas.addEventListener("webglcontextrestored", this.onContextRestored);
+      this.ready = this.assemble(shadows, soft);
+    } catch (error) {
+      // No engine was returned to the startup owner: roll back this constructor.
+      canvas.removeEventListener("webglcontextlost", this.onContextLost);
+      canvas.removeEventListener("webglcontextrestored", this.onContextRestored);
+      try { this.gfx.dispose(); } catch (cleanupError) {
+        throw new AggregateError([error, cleanupError], "Engine construction and rollback failed", { cause: error });
+      }
+      throw error;
+    }
   }
 
   private async assemble(shadows: boolean, soft: boolean) {

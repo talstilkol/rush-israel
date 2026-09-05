@@ -85,7 +85,7 @@
     },
     "src/game/engine.ts": {
       "previous_sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
-      "current_sha256": "598676caf41bb8ede1c6a5625719f2dcabaae327f95dcb258c8b8c02d44d995d",
+      "current_sha256": "8bcc012f62ebff7e3a49d8e5b14a3e1f342344f9700fb3d302eea5f8cc3e9bfe",
       "reverse_edits": [
         {
           "start_line": 25,
@@ -94,8 +94,32 @@
           "previous_text": ""
         },
         {
-          "start_line": 510,
-          "end_line": 511,
+          "start_line": 299,
+          "end_line": 308,
+          "current_segment_sha256": "23932801fa04a39511530de67f74d89760c217be103adeb4847e74970f0ad9c8",
+          "previous_text": "    this.renderer = this.gfx.gl;\n    this.telem = this.gfx.telem;\n    const soft = isSoftwareGL(this.renderer);\n    this.soft = soft;\n    if (soft) this.lite = true;\n    const shadows = !mobile && !soft;\n    this.renderer.shadowMap.enabled = shadows;\n    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;\n"
+        },
+        {
+          "start_line": 309,
+          "end_line": 317,
+          "current_segment_sha256": "79f4dbda951b9f36ab948e5f94160f35ba2d5f29de0a73d3bc41d6b0c34c207c",
+          "previous_text": "    this.scene = new THREE.Scene();\n    const spec = FOG[fogKey(this.trackDef.theme, opts.trackId)];\n    const skyDay = this.trackDef.theme === \"desert\" || opts.trackId === \"ramon\" ? 0x4aa8dc : this.trackDef.theme === \"snow\" || opts.trackId === \"hermon\" ? 0x6eb0d8 : 0x2f8fd4;\n    const skyNight = 0x182436;\n    this.gfx.setEnvironment(opts.night ? LOOKS.night.exposure : LOOKS.summer14.exposure);\n    this.fog = new THREE.FogExp2(opts.night ? spec.nightCol : spec.dayCol, opts.night ? spec.night : spec.day);\n    this.scene.fog = this.fog;\n    this.scene.background = new THREE.Color(opts.night ? skyNight : skyDay);\n"
+        },
+        {
+          "start_line": 318,
+          "end_line": 320,
+          "current_segment_sha256": "eb25598c11842305a23db95f04341487cca91001bf08952f49b62131c2ad5605",
+          "previous_text": "    const mountain = spec.far >= 12000 || opts.trackId === \"scopus\" || opts.trackId === \"jerusalem\";\n    this.camera = new THREE.PerspectiveCamera(68, canvas.clientWidth / Math.max(1, canvas.clientHeight), 0.28, mountain ? Math.max(spec.far, 12000) : spec.far);\n"
+        },
+        {
+          "start_line": 321,
+          "end_line": 334,
+          "current_segment_sha256": "6c76f05237ae1732ad1334740d370465a5d36afab7192c1562e5a3d74d0a6cd1",
+          "previous_text": "    this.opts.onBoot?.(0.12);\n    canvas.addEventListener(\"webglcontextlost\", this.onContextLost);\n    canvas.addEventListener(\"webglcontextrestored\", this.onContextRestored);\n    this.ready = this.assemble(shadows, soft);\n"
+        },
+        {
+          "start_line": 520,
+          "end_line": 521,
           "current_segment_sha256": "9a8c8d1ee981c8184ac9f0ede6a2ad03e8b4b2ba2a22e9561da4ec2b65e3cdd5",
           "previous_text": "    const n = this.built.samples.length;\n    this.poly = [];\n    for (let i = 0; i < n; i += 4) this.poly.push({ x: this.built.samples[i].x, z: this.built.samples[i].z });\n"
         }
@@ -330,19 +354,67 @@
       ]
     },
     "src/game/race-startup.ts": {
-      "previous_sha256": null,
-      "current_sha256": "cda8d6d3e3af7d385196e1e0d6702a70b6749be76aae8f4fffc1399ef7075dba",
-      "reverse_edits": []
+      "current_sha256": "cda8d6d3e3af7d385196e1e0d6702a70b6749be76aae8f4fffc1399ef7075dba"
     },
     "src/game/minimap-route.ts": {
-      "previous_sha256": null,
-      "current_sha256": "35810413542c7b57ac5b7cabc0ede8fec5cf19ceff8a3ca2e109ce6b7ab0031d",
-      "reverse_edits": []
+      "current_sha256": "35810413542c7b57ac5b7cabc0ede8fec5cf19ceff8a3ca2e109ce6b7ab0031d"
     },
     "scripts/runtime-recovery-smoke.mjs": {
-      "previous_sha256": null,
-      "current_sha256": "8e24e97772e627482a6e4ce340a10e63c82aee46b646e451e040efc2dad65245",
-      "reverse_edits": []
+      "current_sha256": "c02372b1ac515ffc3616898472f705cbbabfe3dca4d8ff85eb53b30aa019a204"
+    },
+    "src/game/road-assets.ts": {
+      "previous_sha256": "17cc9cc0ad287a6fcd74e0a40b122ad830733247b50b1e39eb6f2afb8a35146e",
+      "current_sha256": "a2a613b6b4ebf7796aa402709a852cf47181d660e5af8dbd18f863537db2b8a2",
+      "reverse_edits": [
+        {
+          "start_line": 1,
+          "end_line": 2,
+          "current_segment_sha256": "40a0471ca8addc8689731d8fcc17ce15e87e475ea158b02ae768c3f397fca20e",
+          "previous_text": ""
+        },
+        {
+          "start_line": 10,
+          "end_line": 11,
+          "current_segment_sha256": "7164b79632ec925c3431314df64464ca9c4378aa43300261d49372db92f245db",
+          "previous_text": ""
+        },
+        {
+          "start_line": 30,
+          "end_line": 31,
+          "current_segment_sha256": "8b0d65f2bd1279b4643b33d6a16969b783a827f5fe90af33b04e97918471cc1f",
+          "previous_text": "async function loadLane(n: number) {\n"
+        },
+        {
+          "start_line": 32,
+          "end_line": 34,
+          "current_segment_sha256": "4904da9324cf5b3ee60fec6a179b8815f48a5d563bb3605cd97cfb6e35795b50",
+          "previous_text": ""
+        },
+        {
+          "start_line": 35,
+          "end_line": 50,
+          "current_segment_sha256": "490451876a144b5a8f2310df96fec11711c60cecfba7839b427a22d1442affaf",
+          "previous_text": "  const [map, roughnessMap, bumpMap] = await Promise.all([\n    L.loadAsync(`/game/asphalt-${n}.png`),\n    L.loadAsync(`/game/asphalt-${n}-rough.png`),\n    L.loadAsync(`/game/asphalt-${n}-bump.png`),\n  ]);\n  const kit = {\n    map: prep(map, true),\n    roughnessMap: prep(roughnessMap, false),\n    bumpMap: prep(bumpMap, false),\n  };\n  kits.set(n, kit);\n  return kit;\n"
+        }
+      ]
+    },
+    "src/rendering/RendererFacade.ts": {
+      "previous_sha256": "90d8b440c1dcbb2020196ea1b99c854ae4e44c3a30b094f015fef6e98fefc904",
+      "current_sha256": "512425eda35e2514bfe15a9980ca938a0e31b2843631f7410049c69069870159",
+      "reverse_edits": [
+        {
+          "start_line": 24,
+          "end_line": 38,
+          "current_segment_sha256": "8be1e3321268f804272fc9fbd388390dcea2a2258e84f80dc1bdc431c8c03a15",
+          "previous_text": "    const gfx = new RendererFacade(gl, profile);\n    gfx.setQuality(profile);\n    gfx.resize(canvas.clientWidth, Math.max(1, canvas.clientHeight), Math.min(window.devicePixelRatio || 1, 1) * profile.pixelScale);\n    applyColorPipeline(gl);\n    gfx.telem.backend = gl.capabilities.isWebGL2 ? \"webgl2\" : \"webgl1\";\n    return gfx;\n"
+        }
+      ]
+    },
+    "src/game/owned-load.ts": {
+      "current_sha256": "3c8cee655cc312b0ae3f79c2699effe650dc252a184cf7990222d052543a74d9"
+    },
+    "scripts/resource-recovery-browser.mjs": {
+      "current_sha256": "18ef870aea0f4f95a3d3711e5db02e27a7a4ff3e106a8461ebb908af3a802721"
     }
   }
 }

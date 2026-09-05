@@ -22,12 +22,20 @@ export class RendererFacade {
       alpha: false,
       powerPreference: "high-performance",
     });
-    const gfx = new RendererFacade(gl, profile);
-    gfx.setQuality(profile);
-    gfx.resize(canvas.clientWidth, Math.max(1, canvas.clientHeight), Math.min(window.devicePixelRatio || 1, 1) * profile.pixelScale);
-    applyColorPipeline(gl);
-    gfx.telem.backend = gl.capabilities.isWebGL2 ? "webgl2" : "webgl1";
-    return gfx;
+    try {
+      const gfx = new RendererFacade(gl, profile);
+      gfx.setQuality(profile);
+      gfx.resize(canvas.clientWidth, Math.max(1, canvas.clientHeight), Math.min(window.devicePixelRatio || 1, 1) * profile.pixelScale);
+      applyColorPipeline(gl);
+      gfx.telem.backend = gl.capabilities.isWebGL2 ? "webgl2" : "webgl1";
+      return gfx;
+    } catch (error) {
+      // Ownership has not reached RaceEngine yet, so init owns this rollback.
+      try { gl.dispose(); } catch (cleanupError) {
+        throw new AggregateError([error, cleanupError], "Renderer initialization and rollback failed", { cause: error });
+      }
+      throw error;
+    }
   }
 
   /** Dummy canvas. Never attaches to the game. Whole probe capped at 4s. */
