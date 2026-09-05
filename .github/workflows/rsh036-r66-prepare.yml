@@ -1,0 +1,115 @@
+name: rsh036-r66-prepare
+on:
+  push:
+    branches: [agent/rsh-036-r66-validation-20260906]
+permissions:
+  contents: write
+jobs:
+  validate-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CI: 'true'
+      NODE_OPTIONS: --experimental-strip-types
+      PLAYWRIGHT_BROWSERS_PATH: '0'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Apply hash-pinned candidate without temporary files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,lzma,os,subprocess
+          patch=lzma.decompress(b''.join(Path(f'.rsh036-r66-part{i}').read_bytes() for i in range(1,4)))
+          assert hashlib.sha256(patch).hexdigest()=='2c87d58d6bc5d701ba543a7169ea2eb558e02af937ec47d85ea8afce458a0da8'
+          target=Path(os.environ['RUNNER_TEMP'])/'candidate.patch';target.write_bytes(patch)
+          subprocess.run(['git','checkout','--detach','8c6a3be70fc22cbe35dc4a4e40fa14b0ef83c85f'],check=True)
+          subprocess.run(['git','apply','--unidiff-zero','--check',str(target)],check=True)
+          subprocess.run(['git','apply','--unidiff-zero',str(target)],check=True)
+          Path('artifacts').mkdir(exist_ok=True)
+          Path('artifacts/candidate.patch').write_bytes(patch)
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm install --global npm@10.9.2
+      - run: npm run toolchain:verify
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Generate inventory and assert exact candidate tree
+        run: |
+          node scripts/dependency-closure.mjs --write
+          git add -A
+          test "$(git write-tree)" = '063e0c7c4d0d4c9a33704c6e930b92a234ec862f'
+          git write-tree > artifacts/candidate-tree.txt
+          node scripts/dependency-closure.mjs > artifacts/dependency-closure.json
+      - name: Governance and full unit suite
+        run: |
+          set -o pipefail
+          node scripts/check-governance-contract.mjs 2>&1 | tee artifacts/governance.log
+          npm test 2>&1 | tee artifacts/unit-tests.tap
+      - name: Lint
+        run: |
+          set -o pipefail
+          npm run lint 2>&1 | tee artifacts/lint.log
+      - name: Golden readiness harness in Chromium
+        run: |
+          set -o pipefail
+          node scripts/golden-capture-browser.mjs 2>&1 | tee artifacts/golden-harness.log
+      - name: Full QA and locked typecheck
+        run: |
+          set -o pipefail
+          npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
+      - name: Actual game runtime and resource regressions
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node scripts/runtime-recovery-smoke.mjs 2>&1 | tee artifacts/runtime-recovery.log
+      - name: Development build
+        run: |
+          set -o pipefail
+          npm run build:dev 2>&1 | tee artifacts/build-dev.log
+      - name: Store validated non-workflow Git objects only, no refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,subprocess,urllib.request
+          assert os.environ['GITHUB_REPOSITORY']=='talstilkol/rush-israel'
+          base='8c6a3be70fc22cbe35dc4a4e40fa14b0ef83c85f'
+          tree=subprocess.check_output(['git','write-tree'],text=True).strip()
+          assert tree=='063e0c7c4d0d4c9a33704c6e930b92a234ec862f'
+          assert not subprocess.check_output(['git','diff','--name-only']).strip()
+          paths=subprocess.check_output(['git','diff','--cached','--name-only',base],text=True).splitlines()
+          assert len(paths)==24,len(paths)
+          entries=[]
+          for p in paths:
+            assert not p.startswith('.rsh036-') and p!='.github/workflows/rsh036-r66-prepare.yml'
+            if p=='.github/workflows/required-ci.yml': continue
+            mode=subprocess.check_output(['git','ls-files','-s','--',p],text=True).split()[0]
+            assert mode in ('100644','100755')
+            entries.append({'path':p,'mode':mode,'type':'blob','content':Path(p).read_text()})
+          assert len(entries)==23
+          data=json.dumps({'base_tree':'bae88478e01259e1683e6107c2ceffa25e467a9a','tree':entries}).encode()
+          req=urllib.request.Request('https://api.github.com/repos/talstilkol/rush-israel/git/trees',data=data,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'})
+          with urllib.request.urlopen(req,timeout=60) as response: result=json.load(response)
+          assert result['sha']=='14b2ef792591986fd29516994c9f6ff74732c905',result['sha']
+          metadata={'source_base':base,'validated_tree':tree,'non_workflow_object_tree':result['sha'],'changed_files':len(paths),'ref_mutations':0,'merges':0,'acceptance':False,'run_id':os.environ['GITHUB_RUN_ID']}
+          Path('artifacts/validated-tree.json').write_text(json.dumps(metadata,indent=2)+'\n')
+          print(json.dumps(metadata))
+          PY
+      - name: Original golden comparison, unchanged images and thresholds
+        run: |
+          set -o pipefail
+          npm run qa:golden 2>&1 | tee artifacts/golden.log
+      - name: Retain diagnostics even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rsh036-r66-preparation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/**
+          if-no-files-found: error
+          retention-days: 14
