@@ -14,7 +14,7 @@ export const PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f2
 export const TRANSITIVE_SOURCE_SHA256 = {
   "golden-baseline/ayalon.lock": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
   "golden-baseline/hashalom-photo.json": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
-  "scripts/pixel-golden.mjs": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
+  "scripts/pixel-golden.mjs": "2af4d82df61b4a08111a56530f83fedc18746147d4793e4272bdbce7caff4a1d",
   "scripts/ayalon-hash.mjs": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
   "src/game/tracks/ayalon.ts": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
   "src/game/world-builders/tracks/ayalon.ts": "866afe889a98457a868d1f9e61ca8cb3a803b821bd089ff9d4ab13dae8da2c3c",
@@ -68,6 +68,8 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "src/game/car-assets.ts": "f1d2979738d429413f032bc277a208cb1ce4a6440b1307b54486acf15ac69ced",
   "src/game/asset-cache.ts": "de91927bc569d2c59747eb67d01b53c6801da89734f2cc9d7cef8e4b1e92bcea",
   "src/game/unpublished-gltf.ts": "562bd829ab7bef93926428faf74b9bb443f9e708304fa086f2b6e7ec829535ae",
+  "src/components/game-app.tsx": "74685f1a46055ff13edcafcdeffaef683e1efecbc2d6f2ef58f6d9db82bef20a",
+  "scripts/golden-capture.mjs": "5f3d5aaf40b5758fab675e0227bac9c857a49267009877ef9d5f0544c514d4c4",
 } as const;
 
 export const FREEZE_APPROVAL = {

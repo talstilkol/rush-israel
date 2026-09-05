@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.5",
+  "revision": "r6.6",
   "date": "2026-09-06",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "3486e3351f596670e9fb0a55387bf0ecdcd442df",
+  "source_pr_head": "8c6a3be70fc22cbe35dc4a4e40fa14b0ef83c85f",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
@@ -822,7 +822,8 @@
       "acceptance": "Generate dependency closure from entry points, dynamic imports, runtime assets and configuration; explicit exclusions and missing-edge tests; freeze exact verified source and asset hashes.",
       "status": "open",
       "bundle": "CR-03",
-      "evidence": "The 46-path explicit inventory includes the corrected Rothschild builder; it remains partial, not generated complete dependency closure. Freeze remains false."
+      "evidence": "The 46-path explicit inventory includes the corrected Rothschild builder; it remains partial, not generated complete dependency closure. Freeze remains false.",
+      "r6_6_update": "Whole local input inventory and resolved module graph implemented; remote resources and mutable actions require qualification; no freeze grant."
     },
     {
       "id": "AUD-05",
@@ -845,7 +846,8 @@
       "acceptance": "Retain full tree/source hashes, test details, browser/runtime/golden reports and reproducible command provenance, including failures; keep original golden PNG bytes.",
       "status": "partially_repaired",
       "bundle": "CR-05",
-      "evidence": "Summary now separates trigger SHA from actual checkout SHA/tree, rejects mismatched/dirty source identity and parses complete TAP totals. Ten local identity regressions pass; exact-head CI still required."
+      "evidence": "Summary now separates trigger SHA from actual checkout SHA/tree, rejects mismatched/dirty source identity and parses complete TAP totals. Ten local identity regressions pass; exact-head CI still required.",
+      "r6_6_update": "Golden capture waits for hydrated UI and ticking correct engine, keeps baseline bytes and reports capture failures separately from comparison failures."
     },
     {
       "id": "AUD-06",
@@ -1435,10 +1437,11 @@
     {
       "id": "CR-03",
       "title": "Complete Ayalon dependency closure",
-      "state": "open",
+      "state": "local_inventory_implemented_external_qualification_open",
       "audit_items": [
         "AUD-04"
-      ]
+      ],
+      "evidence": "AYALON-DEPENDENCY-CLOSURE.json"
     },
     {
       "id": "CR-04",
@@ -1455,7 +1458,7 @@
     {
       "id": "CR-05",
       "title": "Complete failure evidence and warning classification",
-      "state": "partial",
+      "state": "capture_readiness_and_diagnostics_implemented_pending_validation",
       "audit_items": [
         "AUD-05",
         "AUD-11"
@@ -1481,19 +1484,24 @@
     "public_distribution_authorised": false
   },
   "limitations": [
-    "Original 67 units and all 18 audit IDs/42 historical findings are retained; partial repairs are not extra accepted units.",
-    "Baseline r6.4 exact-head run33993082441 passed614 tests and12 browser cases; the new candidate requires its own CI.",
-    "The four golden baselines date to 2026-08-26 commit b0e3e525689955e6ff944b49f08c814e49cf03fa; source/configuration attribution remains open.",
-    "Partial inventory has 56 paths and does not prove generated dependency closure.",
-    "No physical-device or asset-licence clearance is claimed."
+    "All 67 original units, 18 audit IDs and 42 historical findings retained. No new unit acceptance.",
+    "Verified r6.5 head 8c6a3be7 passed 688 unit and 20 browser cases in run33995840557; prior chat-only 716-test claim is not the live baseline.",
+    "Original PNGs, pixel threshold0.12, failure limit8%, camera recipe and post-pose waits are preserved. Reliable selection does not prove pixel determinism.",
+    "Generated local closure seals all runtime/build/test/public/golden inputs in declared roots. Potential external resources and mutable action tags remain unqualified.",
+    "No physical-device, licence, public release or Ayalon freeze approval is claimed."
   ],
   "checkpoint": {
-    "revision": "r6.5",
-    "base_head": "3486e3351f596670e9fb0a55387bf0ecdcd442df",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.5.md",
+    "revision": "r6.6",
+    "base_head": "8c6a3be70fc22cbe35dc4a4e40fa14b0ef83c85f",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.6.md",
     "unit_accepted": false,
+    "previous_exact_head_ci": {
+      "run_id": 33995840557,
+      "unit_passed": 688,
+      "browser_passed": 20
+    },
     "normal_ci": "pending_on_new_candidate",
-    "golden": "last_verified_r6.4_all_four_failed_no_threshold_or_baseline_change",
-    "asset_batches": "eight_families_implemented_53_controlled_tests_passed_browser_pending"
+    "golden": "r6.5_0_of_4_passed_new_capture_readiness_requires_exact_head_run",
+    "dependency_closure": "generated_local_inventory_with_external_qualification_blockers"
   }
 }

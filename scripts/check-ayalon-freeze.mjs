@@ -1,21 +1,22 @@
 #!/usr/bin/env node
+import { validateDependencyClosure } from "./dependency-closure.mjs";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "929934a9dbe0cbe2c076ab2834c070d1a6ee32aa06ae76d137881d162ce5241e";
-export const EXPECTED_FREEZE_SHA256 = "43050253f7e0cdddc7620c883cdec3b17b0066a786aa2c55d272fb4262101072";
+export const EXPECTED_MANIFEST_SHA256 = "0c3bcd70aa2d6fe640e8e625bf01120ab6774c2b4b0f62388052a2759eb3f7b8";
+export const EXPECTED_FREEZE_SHA256 = "27add4a38909fbd3e03c1b47f58326fe1f9881bc8391d34da71764792b77ac5a";
 export const EXPECTED_INDEX_SHA256 = "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10";
-export const EXPECTED_CONTRACT_SHA256 = "b489327add847b046122dccc7aa4a95410be2adcd6412115ab1b1c47e4d2776c";
+export const EXPECTED_CONTRACT_SHA256 = "4baae4ab5f5e6c9437696f66d0f7062012ece52d635b7874388a12ee13b2854d";
 export const EXPECTED_OWNER_SHA256 = "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84";
 export const EXPECTED_LOCK_SHA256 = "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b";
 export const EXPECTED_HASHALOM_INDEX_SHA256 = "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10";
-export const EXPECTED_PIXEL_GOLDEN_SHA256 = "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621";
-export const EXPECTED_CHECKER_TEST_SHA256 = "f7cbf4247af5dc03397b75870d90b689e08d438281e31f421eb8d49d22fb7422";
+export const EXPECTED_PIXEL_GOLDEN_SHA256 = "2af4d82df61b4a08111a56530f83fedc18746147d4793e4272bdbce7caff4a1d";
+export const EXPECTED_CHECKER_TEST_SHA256 = "12e89fc39c625325a193e0a116af969111209b78f61a8585badbf0fc7e3c9aef";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
-export const EXPECTED_FREEZE_DIGEST_SHA256 = "9ecf20ea67c4db8d505c1a936ad065fe8b3cf74b22507fc7ecf9ace8a2bdeccf";
+export const EXPECTED_FREEZE_DIGEST_SHA256 = "c07b3681d5a8eea3f1b4ee0dfd5a4c24df06048fb0beb8021b55730e36c3de42";
 export const EXPECTED_GOLDEN_DIGEST_SHA256 = "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74";
 export const DUPLICATE_PLACEHOLDER_HASH = "38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094";
 
@@ -84,7 +85,7 @@ export function readAyalonFreezeInputs() {
 
 export function validateAyalonFreeze(overrides = {}) {
   const input = { ...readAyalonFreezeInputs(), ...overrides };
-  const errors = [];
+  const errors = [...validateDependencyClosure().errors];
   let manifest, lock, owner, asset;
   try {
     manifest = JSON.parse(input.manifestSource);
@@ -112,7 +113,7 @@ export function validateAyalonFreeze(overrides = {}) {
   if (sha256(canonicalFreezeDigest()) !== EXPECTED_FREEZE_DIGEST_SHA256 || manifest.identities?.freeze_digest_sha256 !== EXPECTED_FREEZE_DIGEST_SHA256) errors.push("freeze digest identity changed");
   if (manifest.unit !== "RSH-036") errors.push("RSH-036 unit identity changed");
   if (manifest.lock?.track_id !== "ayalon") errors.push("freeze track id changed");
-  if (manifest.lock?.source_count !== 56) errors.push("transitive source count changed");
+  if (manifest.lock?.source_count !== 58) errors.push("transitive source count changed");
   if (manifest.lock?.freeze_granted !== false) errors.push("premature Ayalon freeze grant");
   if (manifest.lock?.gis_claim !== false || manifest.lock?.owner_settings_freeze !== false || manifest.lock?.public_distribution !== false) errors.push("RSH-036 must not claim GIS accuracy, owner-settings freeze or public distribution");
   if (owner.freeze_granted !== false || owner.unique_pack_approved !== true) errors.push("historical owner-approval record was rewritten");
@@ -121,7 +122,7 @@ export function validateAyalonFreeze(overrides = {}) {
   if (!/from "\.\/freeze"/.test(input.indexSource)) errors.push("ayalon-freeze index no longer re-exports freeze");
   if (manifest.coverage?.status !== "partial" || manifest.coverage?.complete_dependency_closure !== false || manifest.acceptance?.state !== "blocked") errors.push("partial dependency coverage or blocked acceptance was hidden");
   const files = manifest.lock?.transitive_sources ?? {};
-  if (Object.keys(files).length !== 56) errors.push("transitive source inventory changed");
+  if (Object.keys(files).length !== 58) errors.push("transitive source inventory changed");
   for (const [rel, expected] of Object.entries(files)) {
     if (sha256File(fromRoot(...rel.split("/"))) !== expected) errors.push(`transitive hash drift: ${rel}`);
   }

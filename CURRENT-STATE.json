@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-06T00:00:00+03:00",
+  "generated_at": "2026-09-06",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -1080,10 +1080,10 @@
     "pull_request": 39,
     "implementation_base_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
     "acceptance_blockers": [
-      "exact-head required CI including real browser fault injection",
-      "CR-03 complete transitive dependency coverage",
-      "AUD-17 partial resource ownership verification",
-      "unchanged golden visual/freeze acceptance",
+      "exact-head required CI and retained runtime regressions",
+      "CR-03 external dependency qualification and generated inventory validation",
+      "AUD-17 retained resource ownership regressions on exact candidate head",
+      "original golden comparisons remain failed until proven otherwise",
       "blocking review resolution and validated merge"
     ],
     "merge_authorized_without_validation": false
@@ -1997,23 +1997,23 @@
     "transitive_coverage_complete": false,
     "runtime_remediation_complete": false,
     "freeze_granted": false,
-    "partial_inventory_count": 56,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.5.md",
+    "partial_inventory_count": 58,
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.6.md",
     "local_unit_tests": {
-      "scope": "new controlled asset/cache tests only; Node22.16.0, local TS5.8.3, not a locked dependency install",
-      "passed": 53,
+      "scope": "new readiness and dependency tests only; local TypeScript, not locked install",
+      "passed": 38,
       "failed": 0,
       "skipped": 0,
       "locked_dependency_install": false
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
     "previous_exact_head_ci": {
-      "head": "3486e3351f596670e9fb0a55387bf0ecdcd442df",
-      "run_id": 33993082441,
-      "tests_passed": 614,
-      "browser_cases_passed": 12
+      "head": "8c6a3be70fc22cbe35dc4a4e40fa14b0ef83c85f",
+      "run_id": 33995840557,
+      "tests_passed": 688,
+      "browser_cases_passed": 20
     },
-    "resource_repairs": "eight_additional_families_implemented_pending_new_exact_head_ci",
+    "resource_repairs": "r6.5_eight_families_verified_in_exact_head_run33995840557_retained",
     "scene_visibility": "r6.4_actual_browser_scene_gate_passed_retained",
     "water_clock_repair": "129_transitions_verified_golden0of4_passed",
     "foliage_repair": {
@@ -2024,6 +2024,8 @@
       "status": "verified_in_r6.4_exact_head_run33993082441",
       "diagnostic_run": 33992134755
     },
-    "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json"
+    "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json",
+    "new_candidate_validation": "pending_exact_head_normal_ci_and_separate_golden",
+    "generated_dependency_inventory": "AYALON-DEPENDENCY-CLOSURE.json"
   }
 }
