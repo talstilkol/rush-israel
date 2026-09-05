@@ -1,0 +1,105 @@
+name: rsh036-r62-prepare
+on:
+  push:
+    branches: [agent/rsh-036-r62-validation-20260905]
+permissions:
+  contents: write
+jobs:
+  validate-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CI: 'true'
+      NODE_OPTIONS: '--experimental-strip-types'
+      PLAYWRIGHT_BROWSERS_PATH: '0'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Apply hash-pinned candidate without transport or workflow files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,lzma,os,subprocess
+          patch=lzma.decompress(b''.join(Path(f'.rsh036-r62-part{i:02d}').read_bytes() for i in range(1,7)))
+          assert hashlib.sha256(patch).hexdigest()=='100b8c114c09f35149b62f670923ab303e2e154d34d8a0f3f33abb326dd334a7'
+          target=Path(os.environ['RUNNER_TEMP'])/'candidate.patch';target.write_bytes(patch)
+          subprocess.run(['git','checkout','--detach','ba89268646bf8890f8074642049b23369eda582d'],check=True)
+          subprocess.run(['git','apply','--unidiff-zero','--check',str(target)],check=True)
+          subprocess.run(['git','apply','--unidiff-zero',str(target)],check=True)
+          subprocess.run(['git','add','-A'],check=True)
+          tree=subprocess.check_output(['git','write-tree'],text=True).strip()
+          assert tree=='e3d9d18b958756443ec83f3dfb5bc838ea684084',tree
+          Path('artifacts').mkdir(exist_ok=True)
+          Path('artifacts/candidate-tree.txt').write_text(tree+'\n')
+          Path('artifacts/candidate.patch').write_bytes(patch)
+          print('Verified candidate tree:',tree)
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm install --global npm@10.9.2
+      - run: npm run toolchain:verify
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Governance and complete regression suite
+        run: |
+          set -o pipefail
+          node scripts/check-governance-contract.mjs 2>&1 | tee artifacts/governance.log
+          npm test 2>&1 | tee artifacts/unit-tests.tap
+      - name: Lint
+        run: |
+          set -o pipefail
+          npm run lint 2>&1 | tee artifacts/lint.log
+      - name: Full QA and typecheck
+        run: |
+          set -o pipefail
+          npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
+      - name: Real browser fault injection and route rendering
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node scripts/runtime-recovery-smoke.mjs 2>&1 | tee artifacts/runtime-recovery.log
+      - name: Build
+        run: |
+          set -o pipefail
+          npm run build:dev 2>&1 | tee artifacts/build-dev.log
+      - name: Create only unreferenced validated Git tree objects
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,subprocess,urllib.request
+          assert os.environ['GITHUB_REPOSITORY']=='talstilkol/rush-israel'
+          base='ba89268646bf8890f8074642049b23369eda582d'
+          tree=subprocess.check_output(['git','write-tree'],text=True).strip()
+          assert tree=='e3d9d18b958756443ec83f3dfb5bc838ea684084'
+          assert not subprocess.check_output(['git','diff','--name-only']).strip(), 'Unstaged source mutation'
+          paths=subprocess.check_output(['git','diff','--cached','--name-only','-z',base]).decode().split('\0')
+          entries=[]
+          for path in filter(None,paths):
+            assert not path.startswith('.rsh036-') and path!='.github/workflows/rsh036-r62-prepare.yml'
+            mode=subprocess.check_output(['git','ls-files','-s','--',path],text=True).split()[0]
+            assert mode in ('100644','100755')
+            entries.append({'path':path,'mode':mode,'type':'blob','content':Path(path).read_text(encoding='utf-8')})
+          assert len(entries)==41,len(entries)
+          data=json.dumps({'base_tree':'c74b50f2795c8a87e71fa650aac99969dc2a0672','tree':entries}).encode()
+          request=urllib.request.Request('https://api.github.com/repos/talstilkol/rush-israel/git/trees',data=data,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'})
+          with urllib.request.urlopen(request,timeout=60) as response: result=json.load(response)
+          assert result['sha']==tree,result['sha']
+          metadata={'base_commit':base,'tree':tree,'changed_files':len(entries),'ref_mutations':0,'merges':0,'unit_accepted':False,'run_id':os.environ['GITHUB_RUN_ID'],'validated':True}
+          Path('artifacts/validated-tree.json').write_text(json.dumps(metadata,indent=2)+'\n')
+          print(json.dumps(metadata))
+          PY
+      - name: Preserve preparation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rsh036-r62-preparation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/**
+            screenshots/**
+          if-no-files-found: error
+          retention-days: 14
