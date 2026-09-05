@@ -1,6 +1,6 @@
 # RSH-036 — Ayalon freeze candidate: acceptance blocked
 
-**Revision:** r6.4 / 2026-09-05  
+**Revision:** r6.6 / 2026-09-06  
 **Implementation base:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`  
 **Verified repair base:** `ba89268646bf8890f8074642049b23369eda582d`  
 **Branch:** `agent/rsh-036-ayalon-freeze`  
@@ -8,7 +8,7 @@
 
 ## Source inventory versus acceptance
 
-The current explicit inventory contains 46 hashed paths. It is a **partial inventory**, not proof of full static/dynamic/runtime-asset dependency closure. CR-03 remains open. The unaccepted prior 36-path inventory and premature true grant are preserved in Git history at the repair base; they are not accepted authority.
+The current explicit inventory contains 58 hashed paths. It is a **partial inventory**, not proof of full static/dynamic/runtime-asset dependency closure. CR-03 remains open. The unaccepted prior 36-path inventory and premature true grant are preserved in Git history at the repair base; they are not accepted authority.
 
 This revision repairs denied-storage recovery, cancellable race startup, an unmounted minimap and open-route geometry. `RSH-036-RUNTIME-EVOLUTION.json` contains exact current hashes and reverse deltas to the independently verified base. Historical checkers use those deltas solely to verify earlier byte identities. Separate tests require the actual new production bytes and exercise their behavior.
 
@@ -28,3 +28,11 @@ Track definitions, other track builders, physics/cars/audio/input data, package.
 All 13 release gates remain open. GIS/navigation claims, public distribution, owner-settings freeze, force pushes and history rewrites remain forbidden. RSH-037 runtime structures remain absent.
 
 R6.4 water clock repair is authorised but is not visual acceptance. Original golden baselines and thresholds are unchanged. World source changed under exact historical/current guards.
+
+R6.6 adds AYALON-DEPENDENCY-CLOSURE.json, consumed by the freeze validator and CI.
+It seals the entire declared local runtime/build/asset surface and import graph.
+External URL expressions, fonts and mutable CI action references remain explicit
+qualifications; full dependency closure and freeze acceptance are still blocked.
+Nonvisual hydration markers and the capture harness may evolve under the owner
+repair grant. All original image bytes, camera calls and comparison thresholds
+remain authoritative; existing post-pose waits remain unchanged.

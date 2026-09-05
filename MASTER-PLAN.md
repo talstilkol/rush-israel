@@ -425,3 +425,14 @@ report. This is not proof that a particular refactor caused the differences.
 No baselines, thresholds or acceptance histories are rewritten. Generated
 dependency closure and all four original visual comparisons remain blockers.
 See MASTER-PLAN-r6.json and RSH-036-RUNTIME-REPAIR-r6.5.md.
+
+## r6.6 — 2026-09-06: reliable capture and generated local dependency closure
+
+Live r6.5 baseline is8c6a3be7 (688 unit/20 browser cases), not the alternate local
+716-test attachment. Retain all67 units,18 audit IDs,42 findings and6 bundles.
+Golden selection now requires hydration and a ticking correct engine. Baselines,
+pixel thresholds and camera/timing recipe stay unchanged; failure evidence persists.
+CR-03 now includes a machine-generated whole-local-surface inventory and module
+graph with drift/added/removed-input enforcement. Remote references and mutable
+action tags still require qualification. See NEXT-CONTRACT20.5 and the r6.6 report.
+No unit acceptance, freeze grant, release or RSH-037 activation is implied.

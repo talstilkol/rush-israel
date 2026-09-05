@@ -37,6 +37,7 @@ import { Menu, resolveTrack } from "@/components/game-app/screens";
 
 export function GameApp() {
 	const [screen, setScreen] = useState("title");
+	const [appReady, setAppReady] = useState(false);
 	const [trackId, setTrackId] = useState<TrackId>("ayalon");
 	const [carId, setCarId] = useState<CarId>("sabra");
 	const [muted, setMuted] = useState(false);
@@ -68,6 +69,7 @@ export function GameApp() {
 		setAssists(getAssists());
 		const savedLang = getLang();
 		if (savedLang) setLang(savedLang);
+		setAppReady(true);
 	}, []);
 	const t = (he: string, en: string, ar?: string) => copy(lang, he, en, ar);
 	const track = resolveTrack(trackId);
@@ -79,6 +81,11 @@ export function GameApp() {
 	};
 	return /* @__PURE__ */ jsxs("div", {
 		dir: dirFor(lang),
+		// SSR controls are inert until saved settings and React handlers are ready.
+		inert: !appReady,
+		"data-rush-ready": String(appReady),
+		"data-rush-screen": screen,
+		"data-rush-track": trackId,
 		className: "relative h-dvh w-full overflow-hidden bg-bg text-fg",
 		children: [
 			/* @__PURE__ */ jsx(RaceController, {

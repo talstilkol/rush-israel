@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { historicalRsh036Source } from "./rsh036-runtime-evolution.mjs";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
@@ -63,6 +64,7 @@ export function readAyalonAcceptanceInputs() {
 
 export function validateAyalonAcceptance(overrides = {}) {
   const input = { ...readAyalonAcceptanceInputs(), ...overrides };
+  input.pixelGoldenSource = historicalRsh036Source(input.pixelGoldenSource);
   const errors = [];
   let manifest, lock, hashalom, asset;
   try {

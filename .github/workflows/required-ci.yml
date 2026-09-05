@@ -71,6 +71,12 @@ jobs:
       - name: Validate repository governance contract
         run: node scripts/check-governance-contract.mjs
 
+      - name: Verify generated local dependency inventory
+        run: node scripts/dependency-closure.mjs
+
+      - name: Verify golden readiness harness
+        run: node scripts/golden-capture-browser.mjs
+
       - name: Lint all tracked source
         run: |
           mkdir -p artifacts

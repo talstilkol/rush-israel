@@ -319,48 +319,60 @@
     },
     ".github/workflows/required-ci.yml": {
       "previous_sha256": "78c15cab537515fa3225fc35c49ba058a3ddc5b4dd81c2b632f0af24ec67827f",
-      "current_sha256": "8cc128808d8aa5172ce5f1e08216d8270885655c71ef82bfd2afc3facf357dca",
+      "current_sha256": "d4722e5f703a40f5202217dd877817481411b105207f4cc05ec3eaa6ca686589",
       "reverse_edits": [
         {
-          "start_line": 74,
-          "end_line": 78,
-          "current_segment_sha256": "b58de3ad5ce40e2df321cf28f92434da8345f375592a9cde08bd4a5f660e89ec",
-          "previous_text": "        run: npm run lint\n"
+          "start_line": 73,
+          "end_line": 79,
+          "current_segment_sha256": "e6c06e52801d389dc3e47890d9d67c42b3292588e300e3935598153ee50dc062",
+          "previous_text": ""
         },
         {
           "start_line": 80,
           "end_line": 84,
+          "current_segment_sha256": "b58de3ad5ce40e2df321cf28f92434da8345f375592a9cde08bd4a5f660e89ec",
+          "previous_text": "        run: npm run lint\n"
+        },
+        {
+          "start_line": 86,
+          "end_line": 90,
           "current_segment_sha256": "c313cef266be53d73885083cf4508a95af452f5d39957010d8fb5b8a29879455",
           "previous_text": "        run: npm test\n"
         },
         {
-          "start_line": 86,
-          "end_line": 96,
+          "start_line": 92,
+          "end_line": 102,
           "current_segment_sha256": "803e1f86e5f4ba5a4b6f5e845aa9febbf81ad9838c236e4b757c9546e8f9810d",
           "previous_text": "        run: npm run qa:ci\n"
         },
         {
-          "start_line": 98,
-          "end_line": 102,
+          "start_line": 104,
+          "end_line": 108,
           "current_segment_sha256": "48905389f58b95d5ba0c63241a0c3e9aa3136e7568b1efbc67dc54b5d38fd565",
           "previous_text": "        run: npm run build:dev\n"
         },
         {
-          "start_line": 107,
-          "end_line": 108,
+          "start_line": 113,
+          "end_line": 114,
           "current_segment_sha256": "cb610ba82623a928f3404c59c420c3ac11fd37dd39e5a0d18fbc134bafe32135",
           "previous_text": ""
         }
       ]
     },
     "src/game/race-startup.ts": {
-      "current_sha256": "cda8d6d3e3af7d385196e1e0d6702a70b6749be76aae8f4fffc1399ef7075dba"
+      "current_sha256": "cda8d6d3e3af7d385196e1e0d6702a70b6749be76aae8f4fffc1399ef7075dba",
+      "previous_sha256": null,
+      "reverse_edits": []
     },
     "src/game/minimap-route.ts": {
-      "current_sha256": "35810413542c7b57ac5b7cabc0ede8fec5cf19ceff8a3ca2e109ce6b7ab0031d"
+      "current_sha256": "35810413542c7b57ac5b7cabc0ede8fec5cf19ceff8a3ca2e109ce6b7ab0031d",
+      "previous_sha256": null,
+      "reverse_edits": []
     },
     "scripts/runtime-recovery-smoke.mjs": {
-      "current_sha256": "19ddec35eacfaf0c8c9e485d0096e14cd97bc07c8b196cfb251f42ce146e9018"
+      "current_sha256": "19ddec35eacfaf0c8c9e485d0096e14cd97bc07c8b196cfb251f42ce146e9018",
+      "previous_sha256": null,
+      "reverse_edits": []
     },
     "src/game/road-assets.ts": {
       "previous_sha256": "17cc9cc0ad287a6fcd74e0a40b122ad830733247b50b1e39eb6f2afb8a35146e",
@@ -411,10 +423,14 @@
       ]
     },
     "src/game/owned-load.ts": {
-      "current_sha256": "3c8cee655cc312b0ae3f79c2699effe650dc252a184cf7990222d052543a74d9"
+      "current_sha256": "3c8cee655cc312b0ae3f79c2699effe650dc252a184cf7990222d052543a74d9",
+      "previous_sha256": null,
+      "reverse_edits": []
     },
     "scripts/resource-recovery-browser.mjs": {
-      "current_sha256": "18ef870aea0f4f95a3d3711e5db02e27a7a4ff3e106a8461ebb908af3a802721"
+      "current_sha256": "18ef870aea0f4f95a3d3711e5db02e27a7a4ff3e106a8461ebb908af3a802721",
+      "previous_sha256": null,
+      "reverse_edits": []
     },
     "src/game/world.ts": {
       "previous_sha256": "b750d1ffc51a34a5b5d557e821577f6c679cef903c3b682514b03d52078b3fdc",
@@ -459,10 +475,14 @@
       ]
     },
     "src/game/water-clock.ts": {
-      "current_sha256": "fd08dc8beb44d54b2839ad82cb8d6386e7ad76ef4b06e382bd80be005c101472"
+      "current_sha256": "fd08dc8beb44d54b2839ad82cb8d6386e7ad76ef4b06e382bd80be005c101472",
+      "previous_sha256": null,
+      "reverse_edits": []
     },
     "scripts/water-clock-browser.mjs": {
-      "current_sha256": "8a5b0aea13b2762246d1fab32b71510b2059cfabdb2cf861664e48aa12b4fd3c"
+      "current_sha256": "8a5b0aea13b2762246d1fab32b71510b2059cfabdb2cf861664e48aa12b4fd3c",
+      "previous_sha256": null,
+      "reverse_edits": []
     },
     "src/game/world-builders/tracks/rothschild.ts": {
       "previous_sha256": "c4b2e7c8d5575214d8c9828bfffff1306c1e272ec7e9d78376443fccc0740c7c",
@@ -477,7 +497,9 @@
       ]
     },
     "scripts/rothschild-visibility-browser.mjs": {
-      "current_sha256": "845be5205471a547a7d10b1642b9f0ae4d235dd958392609801e174884a9f7fe"
+      "current_sha256": "845be5205471a547a7d10b1642b9f0ae4d235dd958392609801e174884a9f7fe",
+      "previous_sha256": null,
+      "reverse_edits": []
     },
     "src/game/sky-assets.ts": {
       "previous_sha256": "7b3eaf34c76bb6ea0e7305e5a6ac8f151c4ed5497e2640e5ab95a103b6c288c4",
@@ -738,13 +760,112 @@
       ]
     },
     "src/game/asset-cache.ts": {
-      "current_sha256": "de91927bc569d2c59747eb67d01b53c6801da89734f2cc9d7cef8e4b1e92bcea"
+      "current_sha256": "de91927bc569d2c59747eb67d01b53c6801da89734f2cc9d7cef8e4b1e92bcea",
+      "previous_sha256": null,
+      "reverse_edits": []
     },
     "src/game/unpublished-gltf.ts": {
-      "current_sha256": "562bd829ab7bef93926428faf74b9bb443f9e708304fa086f2b6e7ec829535ae"
+      "current_sha256": "562bd829ab7bef93926428faf74b9bb443f9e708304fa086f2b6e7ec829535ae",
+      "previous_sha256": null,
+      "reverse_edits": []
     },
     "scripts/asset-batches-browser.mjs": {
-      "current_sha256": "32bfda53c77e92efdda4d998c8a27096d6efc5a23e2fdc9387ff66544fbf29e1"
+      "current_sha256": "32bfda53c77e92efdda4d998c8a27096d6efc5a23e2fdc9387ff66544fbf29e1",
+      "previous_sha256": null,
+      "reverse_edits": []
+    },
+    "src/components/game-app.tsx": {
+      "previous_sha256": "4569f67f6a8659252e3c3cf332fa377f263d3f41fcd03ced60a007aa0148cc4b",
+      "current_sha256": "74685f1a46055ff13edcafcdeffaef683e1efecbc2d6f2ef58f6d9db82bef20a",
+      "reverse_edits": [
+        {
+          "start_line": 39,
+          "end_line": 40,
+          "current_segment_sha256": "955edcbedd2e6ce02aa5f431ace802b054c1235eb91e52c3f23fa95ece012fd6",
+          "previous_text": ""
+        },
+        {
+          "start_line": 71,
+          "end_line": 72,
+          "current_segment_sha256": "359733ba1c0c6987e83e2128f375f8f12925d83667fc770bddfaf01e65ebfb6f",
+          "previous_text": ""
+        },
+        {
+          "start_line": 83,
+          "end_line": 88,
+          "current_segment_sha256": "a2e6e3bdb134a099dfdc1153c22b53e53d83a4f2643963b801b83e0717af572c",
+          "previous_text": ""
+        }
+      ]
+    },
+    "scripts/pixel-golden.mjs": {
+      "previous_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
+      "current_sha256": "2af4d82df61b4a08111a56530f83fedc18746147d4793e4272bdbce7caff4a1d",
+      "reverse_edits": [
+        {
+          "start_line": 2,
+          "end_line": 3,
+          "current_segment_sha256": "6dda3f57f4b90f17dd40609ce4fcc317ed121a30fc2a81f02f00fa41ca730e8c",
+          "previous_text": "import { mkdir, readFile, writeFile, copyFile } from \"node:fs/promises\";\n"
+        },
+        {
+          "start_line": 6,
+          "end_line": 8,
+          "current_segment_sha256": "5c6e3339cbe5c2c884e6356307fc3c1420862c1a7ccf6c194abdc13c43b29acc",
+          "previous_text": ""
+        },
+        {
+          "start_line": 12,
+          "end_line": 13,
+          "current_segment_sha256": "e823416dd5afefc4feda60d97a35b75d4db4322fd0d82e4d858806b174088387",
+          "previous_text": "const UPDATE = process.env.UPDATE_GOLDEN === \"1\";\n"
+        },
+        {
+          "start_line": 16,
+          "end_line": 17,
+          "current_segment_sha256": "5063d3057f1e1c2abbfd03334141cba8942c62d5cc89e2e6e483d35b9d7024b1",
+          "previous_text": ""
+        },
+        {
+          "start_line": 18,
+          "end_line": 68,
+          "current_segment_sha256": "fa8c2262e3074ee6c5cf74448639a251f5bcb70456ca3f49f593b0f9f6759108",
+          "previous_text": "const browser = await chromium.launch({ headless: true });\nconst page = await browser.newPage({ viewport: { width: 1280, height: 800 } });\nconst errs = [];\npage.on(\"pageerror\", (e) => errs.push(String(e)));\nawait page.goto(\"http://127.0.0.1:8080/?qa=1\", { waitUntil: \"domcontentloaded\", timeout: 40000 });\nawait page.waitForTimeout(900);\nawait page.evaluate(() =>\n  [...document.querySelectorAll(\"button\")].find((n) => /בחר מסלול/.test(n.textContent || \"\"))?.click(),\n);\nawait page.waitForTimeout(350);\nawait page.evaluate(() =>\n  [...document.querySelectorAll(\"button\")].find((n) => /^הכל$/.test((n.textContent || \"\").trim()))?.click(),\n);\nawait page.waitForTimeout(250);\nconst ok = await page.evaluate(() => {\n  const el = [...document.querySelectorAll(\"button\")].find((n) => /נתיבי איילון/.test(n.textContent || \"\"));\n  el?.click();\n  return !!el;\n});\nif (!ok) throw new Error(\"ayalon\");\nawait page.waitForFunction(() => !!window.__controlsTest, { timeout: 35000 });\nif (errs.length) throw new Error(errs.join(\"\\n\"));\nawait page.evaluate(() => window.__controlsTest.skipCountdown());\n\nfor (const id of ids) {\n  await page.evaluate((gid) => window.__controlsTest.gotoGolden(gid), id);\n  await page.waitForTimeout(450);\n  await page.screenshot({ path: `${tmp}/ayalon-day-${id}.png` });\n"
+        },
+        {
+          "start_line": 69,
+          "end_line": 69,
+          "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "previous_text": "await page.evaluate(() => window.__controlsTest.setNight(true));\nawait page.waitForTimeout(400);\nawait page.evaluate(() => window.__controlsTest.gotoGolden(\"g08\"));\nawait page.waitForTimeout(500);\nawait page.screenshot({ path: `${tmp}/ayalon-night-g08.png` });\nawait browser.close();\n"
+        },
+        {
+          "start_line": 83,
+          "end_line": 83,
+          "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "previous_text": "    if (UPDATE) {\n      await copyFile(`${tmp}/${f}`, `${baseline}/${f}`);\n      report.push({ f, pct: 1, note: \"created\" });\n      continue;\n    }\n"
+        },
+        {
+          "start_line": 103,
+          "end_line": 103,
+          "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "previous_text": "if (failed && UPDATE) {\n  for (const f of files) await copyFile(`${tmp}/${f}`, `${baseline}/${f}`);\n  console.log(\"pixel-golden updated baselines\");\n  process.exit(0);\n}\n"
+        }
+      ]
+    },
+    "scripts/golden-capture.mjs": {
+      "previous_sha256": null,
+      "current_sha256": "5f3d5aaf40b5758fab675e0227bac9c857a49267009877ef9d5f0544c514d4c4",
+      "reverse_edits": []
+    },
+    "scripts/golden-capture-browser.mjs": {
+      "previous_sha256": null,
+      "current_sha256": "0d5ad533696d45b87555c24f20d660ef461d5a44add7129155dd55dad3954278",
+      "reverse_edits": []
+    },
+    "scripts/dependency-closure.mjs": {
+      "previous_sha256": null,
+      "current_sha256": "98f4e42b164f3ffa1dafd2f0c9286740afe710759d3a845ebae87a54005b89a0",
+      "reverse_edits": []
     }
   }
 }
