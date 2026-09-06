@@ -27,7 +27,7 @@
     "ayalon_lock_generation": 11,
     "ayalon_lock_hash": "0c34b9d1f9ded36eaa8400c7aaba48a4f725033bfe25412a4648c36c73910d48",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74",
-    "source_count": 69,
+    "source_count": 71,
     "freeze_granted": false,
     "unique_pack_approved": true,
     "placeholders_are_unique_evidence": false,
@@ -93,7 +93,7 @@
       "src/game/asset-cache.ts": "de91927bc569d2c59747eb67d01b53c6801da89734f2cc9d7cef8e4b1e92bcea",
       "src/game/unpublished-gltf.ts": "562bd829ab7bef93926428faf74b9bb443f9e708304fa086f2b6e7ec829535ae",
       "src/components/game-app.tsx": "74685f1a46055ff13edcafcdeffaef683e1efecbc2d6f2ef58f6d9db82bef20a",
-      "scripts/golden-capture.mjs": "d78c3e1115d509bac32d8bd405f5270db4bc0c73d2cf01937d65e4fdf07cea03",
+      "scripts/golden-capture.mjs": "eed90669c31b2d66be86320367923cc75ca494c79d107049c22b72f6dc14d7db",
       "scripts/capture-golden.mjs": "cf8c9b1860b370982cf7695980e082545dce2bcd3c3e3d6d7133789d797c1983",
       "scripts/golden-output.mjs": "0c61721b4f52cebfc5f99039ea2c6194a0cded4c8075144f43425a4f4ae11fd6",
       "scripts/ci-action-pins.mjs": "bc5fbd670f451aef455c0f1b33e627b4e7079941c568d1e142b52d7af928dde7",
@@ -103,8 +103,10 @@
       "server/middleware/grok-pwa.ts": "184313168a63c66b4b0d809fa55c656b8ca4436775f6c0502bc9e9cfdfaf0e9f",
       "scripts/product-head-boundary.mjs": "c88328d144b77d1ea54aaab62d0e54f616c404d72097f1e6f232057185c5f3fe",
       "scripts/rush-head-browser.mjs": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
-      "scripts/runtime-recovery-smoke.mjs": "db53b90a1bfa6f9b5ca8446a5f9f9c94ad2da3a7ae1989b1d08a3e1c65e2f017",
-      "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d"
+      "scripts/runtime-recovery-smoke.mjs": "499de5142732122fab7d533626e38168cef4c0568dd2306e164112f7f1e14b3b",
+      "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d",
+      "scripts/font-evidence.mjs": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35",
+      "scripts/font-dependency-browser.mjs": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673"
     }
   },
   "lock_module": {
@@ -131,16 +133,16 @@
     "runtime_repair_authorisation": "standing owner instruction 2026-09-05"
   },
   "identities": {
-    "freeze_source_sha256": "517ba5154c345679ec7df9fc47256c3f2a1073d894b2dd7bfdccee0b8ffff36e",
+    "freeze_source_sha256": "c129f4d300213ebcc61215466a91d32dfb1503e9e0373f8c7349ecb071ff8801",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
     "contract_sha256": "03727dd56eb2c6808ace47c372ab901dc96a22445d8a71fa09bb87f92d27e9d5",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
     "pixel_golden_sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
-    "checker_test_sha256": "adf77c239ac9597ac2bfec87a59fffd7bd4d4a8cd154856314cb6f0839896cd4",
+    "checker_test_sha256": "685278fcbb9c947ca60cb85beac3d9568b54dc05d45790f6075de805935e9c1b",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "0ae24cea7a1af370a01c59cffbe3e80d057ce29466dcbbb8f29303882f411488",
+    "freeze_digest_sha256": "b65574a7ad895454daf10156b18149d067fd705f086ccfa2af9b28e3eb65defc",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
@@ -162,7 +164,7 @@
     "status": "partial",
     "complete_dependency_closure": false,
     "runtime_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
-    "remaining_proof": "Three active remote font references remain unqualified. Four dormant vendor-head references are retained with hash-bound product import qualification. Original golden comparisons and freeze acceptance remain blocked.",
+    "remaining_proof": "Three remote font references remain mutable/unqualified. r6.9 measures real glyph usage and denied-font fallback without distributing font bytes; controlled 2x2 camera/source replay is diagnostic only. Original golden parity and acceptance remain blocked.",
     "generated_inventory": "AYALON-DEPENDENCY-CLOSURE.json"
   },
   "acceptance": {

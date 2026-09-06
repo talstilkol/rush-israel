@@ -1,5 +1,6 @@
 /** Readiness orchestration only: never changes the camera recipe or image authority. */
 import assert from 'node:assert/strict';
+import { readFontEvidence } from './font-evidence.mjs';
 export { assertGoldenDirectories } from './golden-output.mjs';
 
 export function validateGoldenSnapshot(snapshot) {
@@ -35,7 +36,8 @@ export async function openAyalonRace(page, { timeoutMs = 45000 } = {}) {
 }
 
 export async function goldenState(page) {
-  return page.evaluate(() => {
+  const fontEvidence = await readFontEvidence(page);
+  const state = await page.evaluate(() => {
     const controls = window.__controlsTest;
     return { engine: JSON.parse(window.render_game_to_text()), tick: controls.getTick(),
       x: controls.getX(), y: controls.getY(), z: controls.getZ(), yaw: controls.getYaw(),
@@ -43,4 +45,5 @@ export async function goldenState(page) {
       viewport: { width: innerWidth, height: innerHeight, dpr: devicePixelRatio },
       fonts: document.fonts?.status ?? 'unavailable' };
   });
+  return { ...state, fontEvidence };
 }

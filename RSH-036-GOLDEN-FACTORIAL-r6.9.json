@@ -1,0 +1,1304 @@
+{
+  "schema_version": 1,
+  "authority": false,
+  "baselineUpdates": 0,
+  "originalGoldenComparisons": 0,
+  "baselineSource": "b0e3e525689955e6ff944b49f08c814e49cf03fa",
+  "currentSource": "751e1ecabe5e93dcd14215db6fa1bdeac913ed1f",
+  "protocol": "2 source/asset revisions x 2 measured camera matrices; direct renderer, frozen physics, no HUD; each source/frame restores and repeats its historical-camera control",
+  "threshold": 0.12,
+  "probes": [
+    {
+      "source": "historical",
+      "setup": {
+        "ramps": 32,
+        "colliders": 541,
+        "samples": 781,
+        "length": 2604.8979999999788,
+        "soft": true,
+        "pixelRatio": 0.85
+      },
+      "poses": {
+        "g01": {
+          "position": [
+            1061.4374999999397,
+            1.2085515392881334,
+            -1048.6344000000424
+          ],
+          "yaw": -3.141592653589793,
+          "camera": {
+            "position": [
+              1061.4374999999397,
+              3.128551539288133,
+              -1056.0344000000425
+            ],
+            "quaternion": [
+              0,
+              0.9991135907841754,
+              0.04209551888683031,
+              0
+            ],
+            "fov": 58
+          }
+        },
+        "g05": {
+          "position": [
+            1061.4374999999397,
+            2.8764372406394427,
+            46.754399999878984
+          ],
+          "yaw": -3.141592653589793,
+          "camera": {
+            "position": [
+              1061.4374999999397,
+              4.796437240639443,
+              39.354399999878986
+            ],
+            "quaternion": [
+              0,
+              0.9991135907841754,
+              0.042095518886830566,
+              0
+            ],
+            "fov": 58
+          }
+        },
+        "g07": {
+          "position": [
+            1061.4374999999397,
+            1.8104419519267865,
+            464.2044000000011
+          ],
+          "yaw": -3.141592653589793,
+          "camera": {
+            "position": [
+              1061.4374999999397,
+              3.730441951926786,
+              456.8044000000011
+            ],
+            "quaternion": [
+              0,
+              0.9991135907841754,
+              0.042095518886830614,
+              0
+            ],
+            "fov": 58
+          }
+        },
+        "g08": {
+          "position": [
+            1061.4374999999397,
+            3.00272723998352,
+            96.84839999996106
+          ],
+          "yaw": -3.141592653589793,
+          "camera": {
+            "position": [
+              1061.4374999999397,
+              4.922727239983519,
+              89.44839999996105
+            ],
+            "quaternion": [
+              0,
+              0.9991135907841753,
+              0.04209551888683053,
+              0
+            ],
+            "fov": 58
+          }
+        }
+      },
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "source": "current",
+      "setup": {
+        "ramps": 50,
+        "colliders": 546,
+        "samples": 781,
+        "length": 2604.8979999999788,
+        "soft": true,
+        "pixelRatio": 0.85
+      },
+      "poses": {
+        "g01": {
+          "position": [
+            1061.4374999999397,
+            1.2085515392881334,
+            -1048.6344000000424
+          ],
+          "yaw": -3.141592653589793,
+          "camera": {
+            "position": [
+              1061.4374999999397,
+              3.4885515392881334,
+              -1057.8344000000425
+            ],
+            "quaternion": [
+              0,
+              0.9988430900968669,
+              0.0480882664040032,
+              0
+            ],
+            "fov": 58
+          }
+        },
+        "g05": {
+          "position": [
+            1061.4374999999397,
+            2.8764372406394427,
+            46.754399999878984
+          ],
+          "yaw": -3.141592653589793,
+          "camera": {
+            "position": [
+              1061.4374999999397,
+              5.156437240639443,
+              37.55439999987898
+            ],
+            "quaternion": [
+              0,
+              0.9988430900968669,
+              0.04808826640400332,
+              0
+            ],
+            "fov": 58
+          }
+        },
+        "g07": {
+          "position": [
+            1061.4374999999397,
+            1.8104419519267865,
+            464.2044000000011
+          ],
+          "yaw": -3.141592653589793,
+          "camera": {
+            "position": [
+              1061.4374999999397,
+              4.0904419519267865,
+              455.0044000000011
+            ],
+            "quaternion": [
+              0,
+              0.9988430900968668,
+              0.04808826640400335,
+              0
+            ],
+            "fov": 58
+          }
+        },
+        "g08": {
+          "position": [
+            1061.4374999999397,
+            3.00272723998352,
+            96.84839999996106
+          ],
+          "yaw": -3.141592653589793,
+          "camera": {
+            "position": [
+              1061.4374999999397,
+              5.28272723998352,
+              87.64839999996106
+            ],
+            "quaternion": [
+              0,
+              0.9988430900968669,
+              0.04808826640400331,
+              0
+            ],
+            "fov": 58
+          }
+        }
+      },
+      "errors": [],
+      "failedRequests": []
+    }
+  ],
+  "captures": [
+    {
+      "source": "historical",
+      "cameraKind": "historical",
+      "id": "g01",
+      "file": "historical-historical-g01.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            3.128551539288133,
+            -1056.0344000000425
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.04209551888683031,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ]
+      },
+      "sha256": "f88e3033f868738935f44be202cd50e56a5f5359884b5fb50911b92accf30b30"
+    },
+    {
+      "source": "historical",
+      "cameraKind": "current",
+      "id": "g01",
+      "file": "historical-current-g01.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            3.4885515392881334,
+            -1057.8344000000425
+          ],
+          "quaternion": [
+            0,
+            0.9988430900968669,
+            0.0480882664040032,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ]
+      },
+      "sha256": "99e731585e331996102121f09f572eb9a5d847661c63dfa5f1b12d493964ab67"
+    },
+    {
+      "source": "historical",
+      "cameraKind": "historical-repeat",
+      "id": "g01",
+      "file": "historical-historical-repeat-g01.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            3.128551539288133,
+            -1056.0344000000425
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.04209551888683031,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ]
+      },
+      "sha256": "f88e3033f868738935f44be202cd50e56a5f5359884b5fb50911b92accf30b30"
+    },
+    {
+      "source": "historical",
+      "cameraKind": "historical",
+      "id": "g05",
+      "file": "historical-historical-g05.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            4.796437240639443,
+            39.354399999878986
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.042095518886830566,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ]
+      },
+      "sha256": "a84fce986d048e231223758e82680ec0274c677bb54ab719188275e88c60e42d"
+    },
+    {
+      "source": "historical",
+      "cameraKind": "current",
+      "id": "g05",
+      "file": "historical-current-g05.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            5.156437240639443,
+            37.55439999987898
+          ],
+          "quaternion": [
+            0,
+            0.9988430900968669,
+            0.04808826640400332,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ]
+      },
+      "sha256": "a508d7823f015a599b4b4ecb7560006a36eaca1558d242a539e6a4b7932d7ccf"
+    },
+    {
+      "source": "historical",
+      "cameraKind": "historical-repeat",
+      "id": "g05",
+      "file": "historical-historical-repeat-g05.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            4.796437240639443,
+            39.354399999878986
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.042095518886830566,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ]
+      },
+      "sha256": "a84fce986d048e231223758e82680ec0274c677bb54ab719188275e88c60e42d"
+    },
+    {
+      "source": "historical",
+      "cameraKind": "historical",
+      "id": "g07",
+      "file": "historical-historical-g07.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            3.730441951926786,
+            456.8044000000011
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.042095518886830614,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ]
+      },
+      "sha256": "aa8d9b8db5c1dbfcf98cdbd47d44e389222d5daedf44abb952bd7f28b97184c7"
+    },
+    {
+      "source": "historical",
+      "cameraKind": "current",
+      "id": "g07",
+      "file": "historical-current-g07.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            4.0904419519267865,
+            455.0044000000011
+          ],
+          "quaternion": [
+            0,
+            0.9988430900968668,
+            0.04808826640400335,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ]
+      },
+      "sha256": "3a668e4cd9572835e52af723a961a40579c67bc89b07e84af47b207e04a202ba"
+    },
+    {
+      "source": "historical",
+      "cameraKind": "historical-repeat",
+      "id": "g07",
+      "file": "historical-historical-repeat-g07.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            3.730441951926786,
+            456.8044000000011
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.042095518886830614,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ]
+      },
+      "sha256": "aa8d9b8db5c1dbfcf98cdbd47d44e389222d5daedf44abb952bd7f28b97184c7"
+    },
+    {
+      "source": "historical",
+      "cameraKind": "historical",
+      "id": "g08",
+      "file": "historical-historical-g08.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            4.922727239983519,
+            89.44839999996105
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841753,
+            0.04209551888683053,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ]
+      },
+      "sha256": "2779440f260fafd06f50b031072ae89f7746231dacd0cf2b6882eb2cd21f35ee"
+    },
+    {
+      "source": "historical",
+      "cameraKind": "current",
+      "id": "g08",
+      "file": "historical-current-g08.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            5.28272723998352,
+            87.64839999996106
+          ],
+          "quaternion": [
+            0,
+            0.9988430900968669,
+            0.04808826640400331,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ]
+      },
+      "sha256": "347c7e89ddc59b0c13e3d7a429d297092f70e8a232fbcc42ce09109fb69f5f14"
+    },
+    {
+      "source": "historical",
+      "cameraKind": "historical-repeat",
+      "id": "g08",
+      "file": "historical-historical-repeat-g08.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            4.922727239983519,
+            89.44839999996105
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841753,
+            0.04209551888683053,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ]
+      },
+      "sha256": "2779440f260fafd06f50b031072ae89f7746231dacd0cf2b6882eb2cd21f35ee"
+    },
+    {
+      "source": "current",
+      "cameraKind": "historical",
+      "id": "g01",
+      "file": "current-historical-g01.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            3.128551539288133,
+            -1056.0344000000425
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.04209551888683031,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ]
+      },
+      "sha256": "509f9bef7e23d5b90978d30ba0c8b65cb1e85ab282da62e22fd4fe70b0881f6d"
+    },
+    {
+      "source": "current",
+      "cameraKind": "current",
+      "id": "g01",
+      "file": "current-current-g01.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            3.4885515392881334,
+            -1057.8344000000425
+          ],
+          "quaternion": [
+            0,
+            0.9988430900968669,
+            0.0480882664040032,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ]
+      },
+      "sha256": "56451240e2bddb0c7cbc3feb435b4dae40a012778ede6cea27c8a65579dff387"
+    },
+    {
+      "source": "current",
+      "cameraKind": "historical-repeat",
+      "id": "g01",
+      "file": "current-historical-repeat-g01.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            3.128551539288133,
+            -1056.0344000000425
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.04209551888683031,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ]
+      },
+      "sha256": "509f9bef7e23d5b90978d30ba0c8b65cb1e85ab282da62e22fd4fe70b0881f6d"
+    },
+    {
+      "source": "current",
+      "cameraKind": "historical",
+      "id": "g05",
+      "file": "current-historical-g05.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            4.796437240639443,
+            39.354399999878986
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.042095518886830566,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ]
+      },
+      "sha256": "7e6160c27a2f56c4cfc111140fe1d84395e17b626a64fee8add47928fb8fb3ef"
+    },
+    {
+      "source": "current",
+      "cameraKind": "current",
+      "id": "g05",
+      "file": "current-current-g05.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            5.156437240639443,
+            37.55439999987898
+          ],
+          "quaternion": [
+            0,
+            0.9988430900968669,
+            0.04808826640400332,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ]
+      },
+      "sha256": "98ba0baebbf61c8e13e2ef5ccf6c2230f4598f53599e07ae8575f475514c126e"
+    },
+    {
+      "source": "current",
+      "cameraKind": "historical-repeat",
+      "id": "g05",
+      "file": "current-historical-repeat-g05.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            4.796437240639443,
+            39.354399999878986
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.042095518886830566,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ]
+      },
+      "sha256": "7e6160c27a2f56c4cfc111140fe1d84395e17b626a64fee8add47928fb8fb3ef"
+    },
+    {
+      "source": "current",
+      "cameraKind": "historical",
+      "id": "g07",
+      "file": "current-historical-g07.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            3.730441951926786,
+            456.8044000000011
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.042095518886830614,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ]
+      },
+      "sha256": "003529178c9a7211e0b07b77e047e6247d67533f8e898e42309841fdc981c228"
+    },
+    {
+      "source": "current",
+      "cameraKind": "current",
+      "id": "g07",
+      "file": "current-current-g07.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            4.0904419519267865,
+            455.0044000000011
+          ],
+          "quaternion": [
+            0,
+            0.9988430900968668,
+            0.04808826640400335,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ]
+      },
+      "sha256": "5e6faadcfbfc06ccfacd2339a9e6750d4075e95af3b7488f88e9e3a201c44320"
+    },
+    {
+      "source": "current",
+      "cameraKind": "historical-repeat",
+      "id": "g07",
+      "file": "current-historical-repeat-g07.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            3.730441951926786,
+            456.8044000000011
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.042095518886830614,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ]
+      },
+      "sha256": "003529178c9a7211e0b07b77e047e6247d67533f8e898e42309841fdc981c228"
+    },
+    {
+      "source": "current",
+      "cameraKind": "historical",
+      "id": "g08",
+      "file": "current-historical-g08.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            4.922727239983519,
+            89.44839999996105
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841753,
+            0.04209551888683053,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ]
+      },
+      "sha256": "2d3f82ed9f6e85bcfb2dbf1fd3053f2bcb214db3934183e4249f3eb5b82b5247"
+    },
+    {
+      "source": "current",
+      "cameraKind": "current",
+      "id": "g08",
+      "file": "current-current-g08.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            5.28272723998352,
+            87.64839999996106
+          ],
+          "quaternion": [
+            0,
+            0.9988430900968669,
+            0.04808826640400331,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ]
+      },
+      "sha256": "460eb605a634ebef3637d15c232d26deefbde94791fc8d9edcb61e2fcbecede4"
+    },
+    {
+      "source": "current",
+      "cameraKind": "historical-repeat",
+      "id": "g08",
+      "file": "current-historical-repeat-g08.png",
+      "state": {
+        "tick": 0,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ],
+        "camera": {
+          "position": [
+            1061.4374999999397,
+            4.922727239983519,
+            89.44839999996105
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841753,
+            0.04209551888683053,
+            0
+          ],
+          "fov": 58
+        }
+      },
+      "finalState": {
+        "tick": 0,
+        "glError": 0,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ]
+      },
+      "sha256": "2d3f82ed9f6e85bcfb2dbf1fd3053f2bcb214db3934183e4249f3eb5b82b5247"
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "g01",
+      "combinedChange": {
+        "pixels": 669594,
+        "totalPixels": 1024000,
+        "fraction": 0.653900390625
+      },
+      "cameraEffectOnHistorical": {
+        "pixels": 83608,
+        "totalPixels": 1024000,
+        "fraction": 0.0816484375
+      },
+      "cameraEffectOnCurrent": {
+        "pixels": 172470,
+        "totalPixels": 1024000,
+        "fraction": 0.168427734375
+      },
+      "sourceAssetsEffectWithHistoricalCamera": {
+        "pixels": 670900,
+        "totalPixels": 1024000,
+        "fraction": 0.65517578125
+      },
+      "sourceAssetsEffectWithCurrentCamera": {
+        "pixels": 657251,
+        "totalPixels": 1024000,
+        "fraction": 0.6418466796875
+      },
+      "repeatedHistorical": {
+        "pixels": 0,
+        "totalPixels": 1024000,
+        "fraction": 0
+      },
+      "repeatedCurrent": {
+        "pixels": 0,
+        "totalPixels": 1024000,
+        "fraction": 0
+      }
+    },
+    {
+      "id": "g05",
+      "combinedChange": {
+        "pixels": 535187,
+        "totalPixels": 1024000,
+        "fraction": 0.5226435546875
+      },
+      "cameraEffectOnHistorical": {
+        "pixels": 41268,
+        "totalPixels": 1024000,
+        "fraction": 0.04030078125
+      },
+      "cameraEffectOnCurrent": {
+        "pixels": 59770,
+        "totalPixels": 1024000,
+        "fraction": 0.058369140625
+      },
+      "sourceAssetsEffectWithHistoricalCamera": {
+        "pixels": 523792,
+        "totalPixels": 1024000,
+        "fraction": 0.511515625
+      },
+      "sourceAssetsEffectWithCurrentCamera": {
+        "pixels": 533851,
+        "totalPixels": 1024000,
+        "fraction": 0.5213388671875
+      },
+      "repeatedHistorical": {
+        "pixels": 0,
+        "totalPixels": 1024000,
+        "fraction": 0
+      },
+      "repeatedCurrent": {
+        "pixels": 0,
+        "totalPixels": 1024000,
+        "fraction": 0
+      }
+    },
+    {
+      "id": "g07",
+      "combinedChange": {
+        "pixels": 317574,
+        "totalPixels": 1024000,
+        "fraction": 0.310130859375
+      },
+      "cameraEffectOnHistorical": {
+        "pixels": 64165,
+        "totalPixels": 1024000,
+        "fraction": 0.0626611328125
+      },
+      "cameraEffectOnCurrent": {
+        "pixels": 346703,
+        "totalPixels": 1024000,
+        "fraction": 0.3385771484375
+      },
+      "sourceAssetsEffectWithHistoricalCamera": {
+        "pixels": 416260,
+        "totalPixels": 1024000,
+        "fraction": 0.40650390625
+      },
+      "sourceAssetsEffectWithCurrentCamera": {
+        "pixels": 296667,
+        "totalPixels": 1024000,
+        "fraction": 0.2897138671875
+      },
+      "repeatedHistorical": {
+        "pixels": 0,
+        "totalPixels": 1024000,
+        "fraction": 0
+      },
+      "repeatedCurrent": {
+        "pixels": 0,
+        "totalPixels": 1024000,
+        "fraction": 0
+      }
+    },
+    {
+      "id": "g08",
+      "combinedChange": {
+        "pixels": 578017,
+        "totalPixels": 1024000,
+        "fraction": 0.5644697265625
+      },
+      "cameraEffectOnHistorical": {
+        "pixels": 36837,
+        "totalPixels": 1024000,
+        "fraction": 0.0359736328125
+      },
+      "cameraEffectOnCurrent": {
+        "pixels": 75952,
+        "totalPixels": 1024000,
+        "fraction": 0.074171875
+      },
+      "sourceAssetsEffectWithHistoricalCamera": {
+        "pixels": 579355,
+        "totalPixels": 1024000,
+        "fraction": 0.5657763671875
+      },
+      "sourceAssetsEffectWithCurrentCamera": {
+        "pixels": 582775,
+        "totalPixels": 1024000,
+        "fraction": 0.5691162109375
+      },
+      "repeatedHistorical": {
+        "pixels": 0,
+        "totalPixels": 1024000,
+        "fraction": 0
+      },
+      "repeatedCurrent": {
+        "pixels": 0,
+        "totalPixels": 1024000,
+        "fraction": 0
+      }
+    }
+  ],
+  "status": "controlled_diagnostic_complete_not_acceptance",
+  "limitations": [
+    "Source/asset factor includes world, materials, lighting and other source changes together; individual components are not isolated.",
+    "Pairwise pixel differences overlap and are nonlinear; they must not be summed or interpreted as percentages of original golden failures.",
+    "No original baseline comparison; no HUD/post-processing parity claim; historical dependencies/runner are not reproduced."
+  ],
+  "unit": "RSH-036",
+  "revision": "r6.9",
+  "run_id": 34011119090,
+  "job_id": 101427013368,
+  "workflow_conclusion": "success",
+  "artifact_id": 9982561420,
+  "artifact_bytes": 4329757,
+  "artifact_sha256": "3547ac43a413a70408afab1b012cba39b2795a3f1c7fe35a675797de553e6626",
+  "script_sha256": "9ee88aa20eb527a9beae427fc273aff90d8d3c821c2650437b7cda3fc89a986b",
+  "actual_captures": 24,
+  "repeat_controls_byte_identical": 8,
+  "acceptance": false
+}

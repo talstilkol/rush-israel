@@ -1159,12 +1159,12 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "5f957aa9782042a1162a2f5db85f04dda893ea4c97eb76e0cc8197108bbc571f"
+      "sha256": "0b0394693abe44d2ad3491d4b5dbd4d230e686ea48585c4d6c28277498b39e9f"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
       "bytes": 3114,
-      "sha256": "adf77c239ac9597ac2bfec87a59fffd7bd4d4a8cd154856314cb6f0839896cd4"
+      "sha256": "685278fcbb9c947ca60cb85beac3d9568b54dc05d45790f6075de805935e9c1b"
     },
     {
       "path": "scripts/check-ayalon-geometry.mjs",
@@ -1582,6 +1582,21 @@
       "sha256": "b7cf752ca08b7217a08d619d338055867f520e79a9f6bf29c56e0307dc219f59"
     },
     {
+      "path": "scripts/font-dependency-browser.mjs",
+      "bytes": 4998,
+      "sha256": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673"
+    },
+    {
+      "path": "scripts/font-evidence.mjs",
+      "bytes": 3928,
+      "sha256": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35"
+    },
+    {
+      "path": "scripts/font-evidence.test.mjs",
+      "bytes": 6835,
+      "sha256": "a722dacb8128abbca9f2cf7ed986d3b009f6979fa09331080deef64462678fba"
+    },
+    {
       "path": "scripts/forbidden-lock.test.mjs",
       "bytes": 1523,
       "sha256": "2912819ba646052ca8ecb12f6d5bee497f51c571f4ca7ee1836f54b2775cb94b"
@@ -1603,13 +1618,18 @@
     },
     {
       "path": "scripts/golden-capture.mjs",
-      "bytes": 3040,
-      "sha256": "d78c3e1115d509bac32d8bd405f5270db4bc0c73d2cf01937d65e4fdf07cea03"
+      "bytes": 3199,
+      "sha256": "eed90669c31b2d66be86320367923cc75ca494c79d107049c22b72f6dc14d7db"
     },
     {
       "path": "scripts/golden-capture.test.mjs",
       "bytes": 4196,
       "sha256": "87111cf2c94c75dd193c41952c1196ef2c62b54337f980605a562d122c667817"
+    },
+    {
+      "path": "scripts/golden-factorial.mjs",
+      "bytes": 8627,
+      "sha256": "9ee88aa20eb527a9beae427fc273aff90d8d3c821c2650437b7cda3fc89a986b"
     },
     {
       "path": "scripts/golden-output.mjs",
@@ -1859,12 +1879,12 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "fb58acbe4c96fb668a84f2a7486917807060aa8b58fca41316acc40a672e4763"
+      "sha256": "b874090727585fe6c95ba348acbf9ff9741287a3e3d36d7da405fa5e118caaf6"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
       "bytes": 2011,
-      "sha256": "df57489d79682b94755dad0ae834bfc2bfc4fff74c60873d55fecf354ec41ff1"
+      "sha256": "1cc590d63b1687696ea951a19618108640ed3b61675befdf87e5557f7688f7b0"
     },
     {
       "path": "scripts/run-with-server.mjs",
@@ -1878,8 +1898,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 7819,
-      "sha256": "db53b90a1bfa6f9b5ca8446a5f9f9c94ad2da3a7ae1989b1d08a3e1c65e2f017"
+      "bytes": 7954,
+      "sha256": "499de5142732122fab7d533626e38168cef4c0568dd2306e164112f7f1e14b3b"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2088,8 +2108,8 @@
     },
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
-      "bytes": 8844,
-      "sha256": "517ba5154c345679ec7df9fc47256c3f2a1073d894b2dd7bfdccee0b8ffff36e"
+      "bytes": 9052,
+      "sha256": "c129f4d300213ebcc61215466a91d32dfb1503e9e0373f8c7349ecb071ff8801"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -3313,6 +3333,22 @@
       "resolution": "locked_package",
       "version": "1.62.1",
       "integrity": "sha512-0M+L3LAD8/nm554LOla9Ayx0j0tmFZ0FBcoQ7F1VuVHpM/XpiC8RcDzBQB8W5+hA8L22THxELzeF+2WcUzvcLg=="
+    },
+    {
+      "from": "scripts/font-evidence.mjs",
+      "specifier": "node:assert/strict",
+      "kind": "static_import",
+      "typeOnly": false,
+      "target": "node:assert/strict",
+      "resolution": "node_builtin"
+    },
+    {
+      "from": "scripts/golden-capture.mjs",
+      "specifier": "./font-evidence.mjs",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "scripts/font-evidence.mjs"
     },
     {
       "from": "scripts/golden-capture.mjs",
@@ -10228,5 +10264,5 @@
     "Package sources are identified by package-lock integrity, not vendored or executed by this scanner.",
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance."
   ],
-  "digest_sha256": "0afc3c92e6e115a85776e4b1bbe911ffc4006c41c7507f257dffb323ce981e41"
+  "digest_sha256": "223e1c21e8272836addc7a3742e1c2288a2417d4622d1388a1463b3be8f7cbe9"
 }
