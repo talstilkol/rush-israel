@@ -37,10 +37,13 @@ export function injectRoadLanes(shader: { fragmentShader: string; uniforms: Reco
 export function bindRoadCompile(mat: { userData: { lanes?: number; uWet?: { value: number } }; onBeforeCompile?: Function }) {
   const lanes = mat.userData.lanes;
   if (!lanes) return;
+  // Own the look value before compilation; every cached program must share it.
+  const wet = mat.userData.uWet ??= { value: 0 };
   const prev = mat.onBeforeCompile;
   mat.onBeforeCompile = (shader: Parameters<typeof injectRoadLanes>[0], renderer: unknown) => {
-    if (typeof prev === "function") prev(shader, renderer);
+    if (typeof prev === "function") prev.call(mat, shader, renderer);
     injectRoadLanes(shader, lanes);
-    mat.userData.uWet = shader.uniforms.uWet as { value: number };
+    shader.uniforms.uWet = wet;
+    mat.userData.uWet = wet;
   };
 }

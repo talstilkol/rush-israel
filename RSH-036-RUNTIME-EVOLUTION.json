@@ -394,9 +394,7 @@
       "reverse_edits": []
     },
     "scripts/runtime-recovery-smoke.mjs": {
-      "previous_sha256": null,
-      "current_sha256": "499de5142732122fab7d533626e38168cef4c0568dd2306e164112f7f1e14b3b",
-      "reverse_edits": []
+      "current_sha256": "c8b448704b804b2f7d2d17e15b3b162bb718e97da477d632637f11fe208e00ed"
     },
     "src/game/road-assets.ts": {
       "previous_sha256": "17cc9cc0ad287a6fcd74e0a40b122ad830733247b50b1e39eb6f2afb8a35146e",
@@ -1045,6 +1043,33 @@
       "previous_sha256": null,
       "current_sha256": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673",
       "reverse_edits": []
+    },
+    "src/game/roadShader.ts": {
+      "current_sha256": "057bccd519614b3ee23a536c1c12f6524c1ffaf72b858642e94e42eda70441aa",
+      "previous_sha256": "ba3d46e14365173792911d56e5ab5238fc8745f849094bcf7b7f2ea35e9c4803",
+      "reverse_edits": [
+        {
+          "start_line": 39,
+          "end_line": 41,
+          "current_segment_sha256": "a342f19d0d456deb70d6ed80c2c1349fd152d79f71fc22df6b6590345b757dcd",
+          "previous_text": ""
+        },
+        {
+          "start_line": 43,
+          "end_line": 44,
+          "current_segment_sha256": "cbbd56d4031670d171fc428be0ee7e885693bf524a14d59ff9e363e5830b8278",
+          "previous_text": "    if (typeof prev === \"function\") prev(shader, renderer);\n"
+        },
+        {
+          "start_line": 45,
+          "end_line": 47,
+          "current_segment_sha256": "0394e690ba203d1e3a1f17df2c5062c67df72a41ddbdf34fa638ed92eee971f1",
+          "previous_text": "    mat.userData.uWet = shader.uniforms.uWet as { value: number };\n"
+        }
+      ]
+    },
+    "scripts/road-uniform-browser.mjs": {
+      "current_sha256": "aed1f57320633920ef28c803faef0c09802fbcd26fbf6c25d85ac7fbf9919c9d"
     }
   }
 }

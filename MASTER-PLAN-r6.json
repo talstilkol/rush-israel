@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.9",
+  "revision": "r6.10",
   "date": "2026-09-06",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "751e1ecabe5e93dcd14215db6fa1bdeac913ed1f",
+  "source_pr_head": "6d2f814bf057a22a95063c81845798829f0ca22a",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 18,
+    "audit_items": 19,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -347,7 +347,8 @@
         "AUD-14",
         "AUD-15",
         "AUD-16",
-        "AUD-17"
+        "AUD-17",
+        "AUD-19"
       ]
     },
     {
@@ -1081,6 +1082,19 @@
       "status": "runtime_repaired_golden_still_failed",
       "bundle": "CR-04",
       "evidence": "129 real-engine day/night transitions passed on Ayalon, Namal and Rothschild in preparation33991445999; all11 browser cases passed. Four original golden comparisons completed but0/4 passed. No baseline or threshold changed."
+    },
+    {
+      "id": "AUD-19",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Road weather uniform is lost before first compilation and diverges between cached programs",
+      "acceptance": "One material-owned wetness cell exists before compilation; all cached WebGL programs reuse it, including CSM rebind. Verify precompile look selection, actual GL uniform uploads, cached-program return and real Ayalon weather transitions. Preserve original baseline images and visual thresholds.",
+      "status": "repair_candidate_pending_exact_head_browser_validation",
+      "bundle": "CR-04",
+      "evidence": "12 identical new unit cases: old source 3 passed / 9 failed; repaired source 12 passed. Browser GL evidence pending."
     }
   ],
   "legacy_findings": [
@@ -1461,7 +1475,8 @@
         "AUD-07",
         "AUD-08",
         "AUD-17",
-        "AUD-18"
+        "AUD-18",
+        "AUD-19"
       ]
     },
     {
@@ -1493,7 +1508,7 @@
     "public_distribution_authorised": false
   },
   "limitations": [
-    "All 67 original units, 18 audit IDs and 42 historical findings retained. No new unit acceptance.",
+    "All 67 original units, 19 audit IDs and 42 historical findings retained. No new unit acceptance.",
     "Verified r6.5 head 8c6a3be7 passed 688 unit and 20 browser cases in run33995840557; prior chat-only 716-test claim is not the live baseline.",
     "Original PNGs, pixel threshold0.12, failure limit8%, camera recipe and post-pose waits are preserved. Reliable selection does not prove pixel determinism.",
     "Generated local closure seals the declared local runtime/build/test/public/golden surface. Three verified Actions are pinned; all seven external expressions remain recorded, with four dormant vendor-head expressions qualified by the exact product import boundary and three font references unqualified. Overall closure remains false.",
@@ -1501,21 +1516,21 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.9",
-    "base_head": "751e1ecabe5e93dcd14215db6fa1bdeac913ed1f",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.9.md",
+    "revision": "r6.10",
+    "base_head": "6d2f814bf057a22a95063c81845798829f0ca22a",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.10.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "run_id": 34007005223,
-      "unit_passed": 810,
-      "browser_passed": 22,
+      "run_id": 34012562807,
+      "unit_passed": 839,
+      "browser_passed": 25,
       "readiness_fixture_passed": 5
     },
     "normal_ci": "pending_on_new_candidate",
-    "golden": "r6.8_four_failed_comparisons_retained_new_candidate_requires_validation",
-    "dependency_closure": "three_remote_font_references_remain_mutable_unqualified; four_dormant_vendor_expressions_retain_boundary_qualification",
-    "visual_attribution": "RSH-036-GOLDEN-FACTORIAL-r6.9.json",
-    "font_evidence": "RSH-036-FONT-EVIDENCE-r6.9.json"
+    "golden": "r6.9 original 0/4; new shader candidate must rerun original comparisons",
+    "dependency_closure": "three mutable font references remain unqualified; no font distribution or typography change",
+    "material_repair": "AUD-19 material-owned wetness and preserved upstream hook context",
+    "visual_attribution": "neutral-illumination and opaque-normal controls are diagnostic only; see latest PR evidence"
   },
   "r6_9_diagnostic_checkpoint": {
     "run_id": 34011119090,
