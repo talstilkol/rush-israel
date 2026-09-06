@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.11",
+  "revision": "r6.12",
   "date": "2026-09-06",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "c3b87e0e598357f4a49168655a6e30cbbcf71412",
+  "source_pr_head": "c0fa0572747f696ddeb74c754cb7a1a5a4a9d955",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 20,
+    "audit_items": 21,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -1106,9 +1106,22 @@
       "legacy_findings": [],
       "title": "Rendered ramp decks, edge strips and support columns do not conform to the physics height/footprint",
       "acceptance": "Match all50 unchanged ramp recipes: top vertices at the physical plane, unchanged horizontal footprint, 750 downward ray probes, all100 edge strips on the deck and no support protruding through a drivable surface. Preserve ramp recipe/count, collision/checkpoint/physics bytes and original images/thresholds; rerun original golden.",
-      "status": "repair_candidate_pending_exact_head_geometry_validation",
+      "status": "runtime_verified_original_golden_still_failed",
       "bundle": "CR-04",
-      "evidence": "Source analysis: rotated BoxGeometry projects len*cos(pitch), while physics probes full len and top heights y0/y1. Fresh geometry is sheared to the same horizontal footprint; exact browser measurement pending."
+      "evidence": "Exact-head run34030794894: 878 unit and30 runtime browser cases passed. All50 decks/100 strips/750 rays conformed; original golden0/4. Not dynamic clearance acceptance."
+    },
+    {
+      "id": "AUD-21",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Horizontal ramp overlap captures vehicles onto unreachable overhead decks",
+      "acceptance": "Reject ramp surfaces more than1.2 units above vehicle contact height at every query, including wheel corners and grade/pitch. Retain supported ramp traversal, all50 recipes, calibrated constants and original golden gate. Verify actual route samples and no silent contact-test weakening.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-04",
+      "evidence": "Real ArcadeCar on a flat road jumped0 to9.4 in one1/120-second step. Same23 focused regressions: old13pass/10fail; repaired23pass/0fail."
     }
   ],
   "legacy_findings": [
@@ -1491,7 +1504,8 @@
         "AUD-17",
         "AUD-18",
         "AUD-19",
-        "AUD-20"
+        "AUD-20",
+        "AUD-21"
       ]
     },
     {
@@ -1531,20 +1545,21 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.11",
-    "base_head": "c3b87e0e598357f4a49168655a6e30cbbcf71412",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.11.md",
+    "revision": "r6.12",
+    "base_head": "c0fa0572747f696ddeb74c754cb7a1a5a4a9d955",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.12.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "run_id": 34015573599,
-      "unit_passed": 854,
-      "browser_passed": 27,
-      "readiness_fixture_passed": 5
+      "head": "c0fa0572747f696ddeb74c754cb7a1a5a4a9d955",
+      "run_id": 34030794894,
+      "tests_passed": 878,
+      "browser_cases_passed": 30,
+      "readiness_fixture_cases_passed": 5
     },
-    "normal_ci": "pending_on_new_candidate",
-    "golden": "r6.10 original0/4; changed geometry must rerun all original comparisons",
-    "dependency_closure": "three mutable font references unqualified; no font distribution or typography change",
-    "geometry_repair": "AUD-20 conform rendered decks/markings/supports to unchanged physics recipes; no gameplay rollback"
+    "normal_ci": "pending_new_exact_head",
+    "golden": "r6.11 original0/4; must rerun with unchanged references and thresholds",
+    "dependency_closure": "three mutable font references remain unqualified",
+    "contact_repair": "AUD-21 bounded upward ramp eligibility, not full body/roof clearance or airborne landing qualification"
   },
   "r6_9_diagnostic_checkpoint": {
     "run_id": 34011119090,

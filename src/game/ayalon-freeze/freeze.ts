@@ -79,14 +79,17 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "server/middleware/grok-pwa.ts": "184313168a63c66b4b0d809fa55c656b8ca4436775f6c0502bc9e9cfdfaf0e9f",
   "scripts/product-head-boundary.mjs": "c88328d144b77d1ea54aaab62d0e54f616c404d72097f1e6f232057185c5f3fe",
   "scripts/rush-head-browser.mjs": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
-  "scripts/runtime-recovery-smoke.mjs": "99700ab2c852ef745f1816401f98e1369fff982433c2bd049421e908cba61221",
+  "scripts/runtime-recovery-smoke.mjs": "ce4c1b6a3ed8e05de308c5de06ef46f34ce6c5897ec99c80650955c45a122d6f",
   "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d",
   "scripts/font-evidence.mjs": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35",
   "scripts/font-dependency-browser.mjs": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673",
   "src/game/roadShader.ts": "057bccd519614b3ee23a536c1c12f6524c1ffaf72b858642e94e42eda70441aa",
   "scripts/road-uniform-browser.mjs": "aed1f57320633920ef28c803faef0c09802fbcd26fbf6c25d85ac7fbf9919c9d",
   "src/game/ramp-surface.ts": "4072158c03c6728f54f7efdd60fa5e43e831decda461975a528c1e01e1f512ed",
-  "scripts/ramp-surface-browser.mjs": "1e495b420782dff63ab7c3b74f8a21f23378c382cf821c6ec7008df8d6bcd849"
+  "scripts/ramp-surface-browser.mjs": "1e495b420782dff63ab7c3b74f8a21f23378c382cf821c6ec7008df8d6bcd849",
+  "src/game/vehicle.ts": "d37ff1c5cad7cc6c29d05964bf7aeebaa66ca644087abde1601183d6f350f97f",
+  "scripts/ramp-smoke.mjs": "8c35bfd9bde53b5b8487f877e8018bfcf3237efd37bd0e317fe457f610da8a2c",
+  "scripts/ramp-contact-browser.mjs": "8dcdf09ed3a25686df65e3c937f9d8cef974a9e8ecbc7a9e245b0f282e17d616"
 } as const;
 
 export const FREEZE_APPROVAL = {

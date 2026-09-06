@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { fromRoot } from './project-root.mjs';
+import { verifyRampContact } from './ramp-contact-browser.mjs';
 import { verifyRampSurfaces } from './ramp-surface-browser.mjs';
 import { verifyRoadUniforms } from './road-uniform-browser.mjs';
 import { verifyFontDependencies } from './font-dependency-browser.mjs';
@@ -57,6 +58,7 @@ async function raceReady(page) {
 }
 try {
   results.push(...await verifyRampSurfaces(browser, url));
+  results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));
   results.push(...await verifyProductHead(browser, url));
   results.push(...await verifyFontDependencies(browser, url));
