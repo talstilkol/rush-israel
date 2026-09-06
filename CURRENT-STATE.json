@@ -1997,24 +1997,24 @@
     "transitive_coverage_complete": false,
     "runtime_remediation_complete": false,
     "freeze_granted": false,
-    "partial_inventory_count": 71,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.9.md",
+    "partial_inventory_count": 73,
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.10.md",
     "local_unit_tests": {
       "status": "passed_locally_not_locked_remote_install",
-      "passed": 839,
+      "passed": 854,
       "failed": 0,
       "skipped": 0,
-      "new_unique_cases": 29,
-      "font_cases": 27,
-      "new_current_source_guards": 2,
+      "new_unique_cases": 15,
+      "road_cases": 12,
+      "current_historical_guards": 3,
       "locked_dependency_install": false
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
     "previous_exact_head_ci": {
-      "head": "751e1ecabe5e93dcd14215db6fa1bdeac913ed1f",
-      "run_id": 34007005223,
-      "tests_passed": 810,
-      "browser_cases_passed": 22,
+      "head": "6d2f814bf057a22a95063c81845798829f0ca22a",
+      "run_id": 34012562807,
+      "tests_passed": 839,
+      "browser_cases_passed": 25,
       "readiness_fixture_cases_passed": 5
     },
     "resource_repairs": "r6.5_eight_families_verified_in_exact_head_run33995840557_retained",
@@ -2029,12 +2029,24 @@
       "diagnostic_run": 33992134755
     },
     "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json",
-    "new_candidate_validation": "pending_exact_head_normal_ci_font_cases_and_original_golden",
+    "new_candidate_validation": "pending_exact_head_normal_ci_real_webgl_uniforms_and_original_golden",
     "generated_dependency_inventory": "AYALON-DEPENDENCY-CLOSURE.json",
     "safe_capture_output": "both_commands_no_automatic_baseline_writes",
     "ci_action_pins": "three_previously_verified_pins_unchanged",
     "product_head_boundary": "four_dormant_vendor_references_qualified_three_fonts_open",
     "golden_attribution": "RSH-036-GOLDEN-FACTORIAL-r6.9.json",
-    "font_evidence": "RSH-036-FONT-EVIDENCE-r6.9.json"
+    "font_evidence": "RSH-036-FONT-EVIDENCE-r6.9.json",
+    "road_uniform_repair": {
+      "finding": "AUD-19",
+      "old_cases": {
+        "passed": 3,
+        "failed": 9
+      },
+      "new_cases": {
+        "passed": 12,
+        "failed": 0
+      },
+      "browser": "pending"
+    }
   }
 }
