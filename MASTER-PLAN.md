@@ -470,3 +470,20 @@ The plan retains 67 units, 42 historic findings and six repair bundles; audit it
 now total 19. RSH-036 remains unaccepted at 35/67. Neutral-illumination and opaque
 normal geometry controls are diagnostic, never replacement golden authority.
 See RSH-036-RUNTIME-REPAIR-r6.10.md and the latest exact-head PR checkpoint.
+
+## r6.11 — RSH-036 ramp surface/physics conformance (2026-09-06)
+
+The owner-authorised repair program retains all 67 units and 42 historical
+findings; AUD-20 raises the supplementary audit register to 20 items, with six
+existing repair bundles. RSH-036 remains unaccepted: 35/67 accepted, 32 remaining.
+
+AUD-20 corrects the visual realization, not the accepted ramp recipe. Pitching a
+centred box changes its projected footprint and leaves its top above the physics
+plane. Sheared slabs preserve horizontal length/width and match y0/y1. Edge strips
+follow that plane; piers stop below the surface. All 50 recipes, collision counts,
+checkpoint fractions, driving code and original reference images remain unchanged.
+
+Acceptance requires real mesh/raycast/strip/support measurements, old-source
+negative controls, exact-head normal CI and the unchanged original golden gate.
+The three mutable font dependencies and any image-reference transition remain
+separate unresolved gates. No baseline refresh, freeze, merge or RSH-037 activation.

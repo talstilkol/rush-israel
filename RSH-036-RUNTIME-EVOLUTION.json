@@ -394,7 +394,7 @@
       "reverse_edits": []
     },
     "scripts/runtime-recovery-smoke.mjs": {
-      "current_sha256": "c8b448704b804b2f7d2d17e15b3b162bb718e97da477d632637f11fe208e00ed"
+      "current_sha256": "99700ab2c852ef745f1816401f98e1369fff982433c2bd049421e908cba61221"
     },
     "src/game/road-assets.ts": {
       "previous_sha256": "17cc9cc0ad287a6fcd74e0a40b122ad830733247b50b1e39eb6f2afb8a35146e",
@@ -1070,6 +1070,64 @@
     },
     "scripts/road-uniform-browser.mjs": {
       "current_sha256": "aed1f57320633920ef28c803faef0c09802fbcd26fbf6c25d85ac7fbf9919c9d"
+    },
+    "src/game/world-builders/tracks/ayalon.ts": {
+      "previous_sha256": "866afe889a98457a868d1f9e61ca8cb3a803b821bd089ff9d4ab13dae8da2c3c",
+      "current_sha256": "a4d192d406d9eef08d05edd4340fb03ac6b46372ddea35ab13dd8078cc79048d",
+      "reverse_edits": [
+        {
+          "start_line": 1,
+          "end_line": 2,
+          "current_segment_sha256": "a0d1886328865372012b416f8be5b99ae94348799f57496f9b64c88dd2ac439e",
+          "previous_text": ""
+        },
+        {
+          "start_line": 250,
+          "end_line": 254,
+          "current_segment_sha256": "a8abaa4130fc5be934c6ae8eea7c24da72ba919ceb53885f774fe35fdef6ef13",
+          "previous_text": "      const mesh = new THREE.Mesh(new THREE.BoxGeometry(half * 2, 0.95, len), rampAsphalt);\n"
+        },
+        {
+          "start_line": 257,
+          "end_line": 257,
+          "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "previous_text": "      mesh.rotation.x = -Math.atan2(y12 - y0, len);\n"
+        },
+        {
+          "start_line": 264,
+          "end_line": 267,
+          "current_segment_sha256": "e7900a021ba1626efe7bd1805ad3778f83ca285c8447ef080b11ce1d34dced4f",
+          "previous_text": "        const h = Math.max(1.4, py);\n"
+        },
+        {
+          "start_line": 275,
+          "end_line": 279,
+          "current_segment_sha256": "d4a5e214da880fba10f52dcdff3860ca06e26339e96ecca7b60146434e7aa79d",
+          "previous_text": "        const line = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.08, len * 0.94), white);\n"
+        },
+        {
+          "start_line": 281,
+          "end_line": 282,
+          "current_segment_sha256": "04c56e0d7823d51a811d0c33ade166a221f86fe57474c20c48f1f140147a967b",
+          "previous_text": "          (y0 + y12) * 0.5 + 0.52,\n"
+        },
+        {
+          "start_line": 286,
+          "end_line": 286,
+          "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "previous_text": "        line.rotation.x = -Math.atan2(y12 - y0, len);\n"
+        }
+      ]
+    },
+    "src/game/ramp-surface.ts": {
+      "previous_sha256": null,
+      "reverse_edits": [],
+      "current_sha256": "4072158c03c6728f54f7efdd60fa5e43e831decda461975a528c1e01e1f512ed"
+    },
+    "scripts/ramp-surface-browser.mjs": {
+      "previous_sha256": null,
+      "reverse_edits": [],
+      "current_sha256": "1e495b420782dff63ab7c3b74f8a21f23378c382cf821c6ec7008df8d6bcd849"
     }
   }
 }

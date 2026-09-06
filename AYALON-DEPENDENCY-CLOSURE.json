@@ -1159,12 +1159,12 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "9d1cf4f319320e25c5a5076d57d15099e44250cc8789433c84bb2c90bedc3e50"
+      "sha256": "abd4685066936b7346eb83ccd6bafd91072ea156781906741b502133f377eba1"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
       "bytes": 3114,
-      "sha256": "eaa54e403899076dc9258eba806864d18a56f87f430b071de266502c429b890f"
+      "sha256": "dc60819e40c3041aa6525c35825771b0e76b7523de52e7834fc015f490f3d632"
     },
     {
       "path": "scripts/check-ayalon-geometry.mjs",
@@ -1827,6 +1827,16 @@
       "sha256": "57c859162157ae304c750746c8b8946c43d6bba6208a2f880aabcb25e2461e0a"
     },
     {
+      "path": "scripts/ramp-surface-browser.mjs",
+      "bytes": 9303,
+      "sha256": "1e495b420782dff63ab7c3b74f8a21f23378c382cf821c6ec7008df8d6bcd849"
+    },
+    {
+      "path": "scripts/ramp-surface.test.mjs",
+      "bytes": 3148,
+      "sha256": "060dd5b830b8b4ea435cb2a5c8a0e606bbd0aadfc781413d9c7a90178a0d6f9f"
+    },
+    {
       "path": "scripts/records-storage-recovery.test.mjs",
       "bytes": 5438,
       "sha256": "fd80f2714c8e15b2391a79077b6784694b1eb6f24ae4fc5df3ea5b0f75605305"
@@ -1889,12 +1899,12 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "72fc5f094bf9b336ad1f4d0aa1de108ea5678e78ff479cd70bb1dff7cb4e02f0"
+      "sha256": "ccb59ecb922da00a88c896c8f2bfa4833fba31e71bc006d4ffec8a557ad387b1"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
       "bytes": 2011,
-      "sha256": "a195a0988a690bbdda42143e0d73214c03376e7711d44d5703eeade38809d7ea"
+      "sha256": "55a1405972652c4ecb999bf7643e6a946911de59d71321f066e038a75bf907d8"
     },
     {
       "path": "scripts/run-with-server.mjs",
@@ -1908,8 +1918,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 8078,
-      "sha256": "c8b448704b804b2f7d2d17e15b3b162bb718e97da477d632637f11fe208e00ed"
+      "bytes": 8202,
+      "sha256": "99700ab2c852ef745f1816401f98e1369fff982433c2bd049421e908cba61221"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2118,8 +2128,8 @@
     },
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
-      "bytes": 9254,
-      "sha256": "2624e00b25a670b8df59d747886c96fe1956cee5e2151c44f0f1a4cdcd78e35b"
+      "bytes": 9458,
+      "sha256": "c77fbad4dc22a4f866ef9307ad3e7b15770b1c74ae65c0679690c7759d700497"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -2385,6 +2395,11 @@
       "path": "src/game/race-startup.ts",
       "bytes": 1569,
       "sha256": "cda8d6d3e3af7d385196e1e0d6702a70b6749be76aae8f4fffc1399ef7075dba"
+    },
+    {
+      "path": "src/game/ramp-surface.ts",
+      "bytes": 1442,
+      "sha256": "4072158c03c6728f54f7efdd60fa5e43e831decda461975a528c1e01e1f512ed"
     },
     {
       "path": "src/game/records.ts",
@@ -2828,8 +2843,8 @@
     },
     {
       "path": "src/game/world-builders/tracks/ayalon.ts",
-      "bytes": 28392,
-      "sha256": "866afe889a98457a868d1f9e61ca8cb3a803b821bd089ff9d4ab13dae8da2c3c"
+      "bytes": 28569,
+      "sha256": "a4d192d406d9eef08d05edd4340fb03ac6b46372ddea35ab13dd8078cc79048d"
     },
     {
       "path": "src/game/world-builders/tracks/batyam.ts",
@@ -7958,6 +7973,14 @@
     },
     {
       "from": "src/game/world-builders/tracks/ayalon.ts",
+      "specifier": "../../ramp-surface",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "src/game/ramp-surface.ts"
+    },
+    {
+      "from": "src/game/world-builders/tracks/ayalon.ts",
       "specifier": "../../road-assets",
       "kind": "static_import",
       "typeOnly": false,
@@ -10274,5 +10297,5 @@
     "Package sources are identified by package-lock integrity, not vendored or executed by this scanner.",
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance."
   ],
-  "digest_sha256": "7139cd1db1c716ffeba3fcece051b3c1e6535f81ca50c679d465716f43073b0a"
+  "digest_sha256": "200196bdca123fb689341e93d55c62564e2c40c29b9082053f669a857d1ba561"
 }

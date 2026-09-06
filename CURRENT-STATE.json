@@ -1997,24 +1997,24 @@
     "transitive_coverage_complete": false,
     "runtime_remediation_complete": false,
     "freeze_granted": false,
-    "partial_inventory_count": 73,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.10.md",
+    "partial_inventory_count": 75,
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.11.md",
     "local_unit_tests": {
       "status": "passed_locally_not_locked_remote_install",
-      "passed": 854,
+      "passed": 878,
       "failed": 0,
       "skipped": 0,
-      "new_unique_cases": 15,
-      "road_cases": 12,
-      "current_historical_guards": 3,
+      "new_unique_cases": 24,
+      "ramp_surface_cases": 20,
+      "current_historical_guards": 4,
       "locked_dependency_install": false
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
     "previous_exact_head_ci": {
-      "head": "6d2f814bf057a22a95063c81845798829f0ca22a",
-      "run_id": 34012562807,
-      "tests_passed": 839,
-      "browser_cases_passed": 25,
+      "head": "c3b87e0e598357f4a49168655a6e30cbbcf71412",
+      "run_id": 34015573599,
+      "tests_passed": 854,
+      "browser_cases_passed": 27,
       "readiness_fixture_cases_passed": 5
     },
     "resource_repairs": "r6.5_eight_families_verified_in_exact_head_run33995840557_retained",
@@ -2029,7 +2029,7 @@
       "diagnostic_run": 33992134755
     },
     "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json",
-    "new_candidate_validation": "pending_exact_head_normal_ci_real_webgl_uniforms_and_original_golden",
+    "new_candidate_validation": "pending_exact_head_full_ci_ramp_conformance_and_original_golden",
     "generated_dependency_inventory": "AYALON-DEPENDENCY-CLOSURE.json",
     "safe_capture_output": "both_commands_no_automatic_baseline_writes",
     "ci_action_pins": "three_previously_verified_pins_unchanged",
@@ -2046,7 +2046,14 @@
         "passed": 12,
         "failed": 0
       },
-      "browser": "pending"
+      "browser": "verified_in_exact_head_run34015573599"
+    },
+    "ramp_surface_repair": {
+      "finding": "AUD-20",
+      "recipe_changes": 0,
+      "physics_source_changes": 0,
+      "browser": "pending",
+      "original_golden": "pending"
     }
   }
 }
