@@ -69,7 +69,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "src/game/asset-cache.ts": "de91927bc569d2c59747eb67d01b53c6801da89734f2cc9d7cef8e4b1e92bcea",
   "src/game/unpublished-gltf.ts": "562bd829ab7bef93926428faf74b9bb443f9e708304fa086f2b6e7ec829535ae",
   "src/components/game-app.tsx": "74685f1a46055ff13edcafcdeffaef683e1efecbc2d6f2ef58f6d9db82bef20a",
-  "scripts/golden-capture.mjs": "d78c3e1115d509bac32d8bd405f5270db4bc0c73d2cf01937d65e4fdf07cea03",
+  "scripts/golden-capture.mjs": "eed90669c31b2d66be86320367923cc75ca494c79d107049c22b72f6dc14d7db",
   "scripts/capture-golden.mjs": "cf8c9b1860b370982cf7695980e082545dce2bcd3c3e3d6d7133789d797c1983",
   "scripts/golden-output.mjs": "0c61721b4f52cebfc5f99039ea2c6194a0cded4c8075144f43425a4f4ae11fd6",
   "scripts/ci-action-pins.mjs": "bc5fbd670f451aef455c0f1b33e627b4e7079941c568d1e142b52d7af928dde7",
@@ -79,8 +79,10 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "server/middleware/grok-pwa.ts": "184313168a63c66b4b0d809fa55c656b8ca4436775f6c0502bc9e9cfdfaf0e9f",
   "scripts/product-head-boundary.mjs": "c88328d144b77d1ea54aaab62d0e54f616c404d72097f1e6f232057185c5f3fe",
   "scripts/rush-head-browser.mjs": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
-  "scripts/runtime-recovery-smoke.mjs": "db53b90a1bfa6f9b5ca8446a5f9f9c94ad2da3a7ae1989b1d08a3e1c65e2f017",
-  "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d"
+  "scripts/runtime-recovery-smoke.mjs": "499de5142732122fab7d533626e38168cef4c0568dd2306e164112f7f1e14b3b",
+  "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d",
+  "scripts/font-evidence.mjs": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35",
+  "scripts/font-dependency-browser.mjs": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673"
 } as const;
 
 export const FREEZE_APPROVAL = {

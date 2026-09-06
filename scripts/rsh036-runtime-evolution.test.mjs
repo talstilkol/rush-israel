@@ -8,7 +8,7 @@ const hash = s => createHash('sha256').update(s).digest('hex');
 test('RSH-036 requires exact current production sources independently of historical projection', () => {
   const result = validateCurrentRuntime();
   assert.deepEqual(result.errors, []);
-  assert.equal(result.sourceCount, 42);
+  assert.equal(result.sourceCount, 44);
   assert.equal(result.accepted, false);
 });
 test('runtime evolution manifest cannot silently change or add exemptions', () => {

@@ -446,3 +446,16 @@ comparisons. Three official CI action refs are pinned to verified commit identit
 seven font/host qualifications remain open. Preserve all original 67 units, 42 legacy
 findings, 18 audit IDs and six repair bundles. RSH-036 remains unaccepted at 35/67.
 Read RSH-036-RUNTIME-REPAIR-r6.7.md and the latest exact-head PR evidence before resuming.
+
+
+## r6.9 — font evidence and controlled visual factors (2026-09-06)
+
+The merged-unit count remains 35/67. FontFaceSet settlement is no longer the only
+font diagnostic: capture metadata records actual faces, and separate browser
+probes measure platform glyph usage with stylesheet/binary denial. Remote fonts
+remain mutable; fallback success does not close visual or dependency acceptance.
+
+Controlled source/assets x camera experiments provide pairwise pixel measurements
+with repeated restoration controls. No rendering/gameplay or original PNG bytes
+are changed to match old references. The original golden gate remains mandatory.
+Read MASTER-PLAN-r6.json, NEXT-CONTRACT.md and the exact-head PR checkpoint.
