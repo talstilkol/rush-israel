@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { openAyalonRace } from './golden-capture.mjs';
-import { readFontEvidence, assessPlatformFonts } from './font-evidence.mjs';
+import { readFontEvidence, assessPlatformFonts, settleFontProbes } from './font-evidence.mjs';
 const hosts = new Set(['fonts.googleapis.com', 'fonts.gstatic.com']);
 
 export async function verifyFontDependencies(browser, url) {
@@ -45,7 +45,7 @@ export async function verifyFontDependencies(browser, url) {
           document.body.append(span);
         }
       });
-      await page.waitForFunction(() => document.fonts.status === 'loaded', undefined, { timeout: 20000 });
+      await settleFontProbes(page);
       const fontEvidence = await readFontEvidence(page);
       cdp = await page.context().newCDPSession(page); await cdp.send('DOM.enable'); await cdp.send('CSS.enable');
       const { root } = await cdp.send('DOM.getDocument');
@@ -65,7 +65,7 @@ export async function verifyFontDependencies(browser, url) {
       await page.evaluate(() => { document.getElementById('font-probe-he')?.remove(); document.getElementById('font-probe-ar')?.remove(); });
       page.off('response', onResponse); await Promise.all(pending);
       results.push({ case: 'actual app and multilingual text remain usable under font availability condition', mode, status: 'passed',
-        injectedFailures: denied.length, denied, fontEvidence, usage,
+        injectedFailures: denied.length, denied, probeLayoutSettled: true, fontEvidence, usage,
         onlineFamiliesObserved: ['he','ar'].every(lang => usage[lang].expectedCustomGlyphs > 0),
         immutableBytesVerified: false, baselineUpdates: 0, fontFilesWritten: 0,
         resources: resources.sort((a,b) => a.url.localeCompare(b.url)), raceTrack: race.track,

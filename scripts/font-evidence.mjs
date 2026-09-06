@@ -45,3 +45,18 @@ export async function readFontEvidence(page) {
   const snapshot = await page.evaluate(fontSnapshotInDocument);
   return { ...snapshot, assessment: assessFontSnapshot(snapshot) };
 }
+
+/** Trigger layout for diagnostic text before observing this layout's ready promise. */
+export async function settleFontProbes(page, { timeoutMs = 20000 } = {}) {
+  assert.ok(Number.isFinite(timeoutMs) && timeoutMs > 0, 'bounded font readiness timeout required');
+  await page.evaluate(() => {
+    for (const id of ['font-probe-he', 'font-probe-ar']) {
+      const node = document.getElementById(id);
+      if (!node || node.getBoundingClientRect().width <= 0) throw new Error(`font probe not laid out: ${id}`);
+    }
+  });
+  await page.waitForFunction(async () => {
+    await document.fonts.ready;
+    return document.fonts.status === 'loaded';
+  }, undefined, { timeout: timeoutMs });
+}

@@ -19,8 +19,8 @@ poses remain diagnostic, not replacement golden authorities. Actual results and
 limits are in RSH-036-GOLDEN-FACTORIAL-r6.9.json and the latest PR checkpoint.
 
 ## Validation at preparation time
-835 local unit tests passed, zero failures/skips, with local TypeScript 5.8.3.
-25 added unique cases: 23 font-evidence cases and two current-source guards.
+839 local unit tests passed, zero failures/skips, with local TypeScript 5.8.3.
+29 added unique cases: 27 font-evidence cases and two current-source guards.
 Locked remote tests, browser cases, build and original-golden comparison pending.
 Later verified CI is recorded in the PR checkpoint; pending is not acceptance.
 
@@ -50,3 +50,12 @@ difference. These nonlinear, overlapping pairwise comparisons are **not**
 additive fractions of the original golden failures. There were zero original
 golden comparisons in this diagnostic. Further individual world/material
 controls remain required; no accepted gameplay is rolled back.
+
+## Same-session diagnostic correction
+
+The initial 835-test candidate sampled Arabic fallback before its newly inserted
+probe had forced font layout. That snapshot is retained but does not establish
+a persistent product font failure. The final diagnostic forces both probe nodes
+through layout and awaits the current `document.fonts.ready` promise with a
+bounded timeout. Four added regressions cover ordering, absent nodes, timeout
+propagation and invalid bounds. The final suite contains 839 cases (+29).

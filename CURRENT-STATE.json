@@ -2001,11 +2001,11 @@
     "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.9.md",
     "local_unit_tests": {
       "status": "passed_locally_not_locked_remote_install",
-      "passed": 835,
+      "passed": 839,
       "failed": 0,
       "skipped": 0,
-      "new_unique_cases": 25,
-      "font_cases": 23,
+      "new_unique_cases": 29,
+      "font_cases": 27,
       "new_current_source_guards": 2,
       "locked_dependency_install": false
     },

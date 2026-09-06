@@ -1159,7 +1159,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "b86f48c91aa285241f2072174d7e3ccb9964d62c400a539710ff05645c7624d5"
+      "sha256": "0b0394693abe44d2ad3491d4b5dbd4d230e686ea48585c4d6c28277498b39e9f"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -1583,18 +1583,18 @@
     },
     {
       "path": "scripts/font-dependency-browser.mjs",
-      "bytes": 5025,
-      "sha256": "d2cb78cb1f234fb32250717c20758db7aaba8f761884b1f9778143f071275baf"
+      "bytes": 4998,
+      "sha256": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673"
     },
     {
       "path": "scripts/font-evidence.mjs",
-      "bytes": 3238,
-      "sha256": "bbd63630a4b765b98fe3f0f3f87bc906821b96b60f9dba87627931bbf516a1f2"
+      "bytes": 3928,
+      "sha256": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35"
     },
     {
       "path": "scripts/font-evidence.test.mjs",
-      "bytes": 4885,
-      "sha256": "9da31eebac3ec16a52a2ca29fb65ed94b098b4e0e7211d98a7f9d2756da25be9"
+      "bytes": 6835,
+      "sha256": "a722dacb8128abbca9f2cf7ed986d3b009f6979fa09331080deef64462678fba"
     },
     {
       "path": "scripts/forbidden-lock.test.mjs",
@@ -1879,7 +1879,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "e353c03af27065001b61452fa418f59fcddbb1e5fbe626682ce1da96541b8db3"
+      "sha256": "b874090727585fe6c95ba348acbf9ff9741287a3e3d36d7da405fa5e118caaf6"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2109,7 +2109,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 9052,
-      "sha256": "8b942272eeaa27d0b95b83a7c3ffc9897ab48b17a57d4fe0b3ead08033d4e485"
+      "sha256": "c129f4d300213ebcc61215466a91d32dfb1503e9e0373f8c7349ecb071ff8801"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10264,5 +10264,5 @@
     "Package sources are identified by package-lock integrity, not vendored or executed by this scanner.",
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance."
   ],
-  "digest_sha256": "99f15e1bca39b53b3a89e71e124dbc93fa154e8e11e0b7f44c1987eaae737213"
+  "digest_sha256": "223e1c21e8272836addc7a3742e1c2288a2417d4622d1388a1463b3be8f7cbe9"
 }

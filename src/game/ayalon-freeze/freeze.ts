@@ -81,8 +81,8 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/rush-head-browser.mjs": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
   "scripts/runtime-recovery-smoke.mjs": "499de5142732122fab7d533626e38168cef4c0568dd2306e164112f7f1e14b3b",
   "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d",
-  "scripts/font-evidence.mjs": "bbd63630a4b765b98fe3f0f3f87bc906821b96b60f9dba87627931bbf516a1f2",
-  "scripts/font-dependency-browser.mjs": "d2cb78cb1f234fb32250717c20758db7aaba8f761884b1f9778143f071275baf"
+  "scripts/font-evidence.mjs": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35",
+  "scripts/font-dependency-browser.mjs": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673"
 } as const;
 
 export const FREEZE_APPROVAL = {

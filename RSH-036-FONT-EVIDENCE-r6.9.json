@@ -15,7 +15,7 @@
     "stylesheet-denied",
     "font-binary-denied"
   ],
-  "local_unit_tests": 23,
+  "local_unit_tests": 27,
   "new_browser_cases_expected": 3,
   "font_files_written": 0,
   "immutable_bytes_verified": false,
@@ -29,6 +29,13 @@
   ],
   "sources": [
     "https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/check",
-    "https://chromedevtools.github.io/devtools-protocol/tot/CSS/#method-getPlatformFontsForNode"
-  ]
+    "https://chromedevtools.github.io/devtools-protocol/tot/CSS/#method-getPlatformFontsForNode",
+    "https://www.w3.org/TR/css-font-loading/#fontfaceset-ready"
+  ],
+  "layout_readiness": "Force layout of both probe nodes before waiting on document.fonts.ready, with a bounded timeout.",
+  "preliminary_run": {
+    "run_id": 34011774202,
+    "head": "e34e72d4eb26f1bc8d34450760af975d065fef1f",
+    "observation": "An early Arabic fallback snapshot preceded probe-triggered font layout. This is not evidence of a permanent product font failure. The diagnostic now forces layout before awaiting the current ready promise."
+  }
 }

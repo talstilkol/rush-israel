@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFileSync } from 'node:fs';
-import { assessFontSnapshot, assessPlatformFonts, readFontEvidence, fontSnapshotInDocument } from './font-evidence.mjs';
+import { assessFontSnapshot, assessPlatformFonts, readFontEvidence, fontSnapshotInDocument, settleFontProbes } from './font-evidence.mjs';
 const face = (family = 'Heebo', status = 'loaded') => ({ family, status });
 const snapshot = (faces = [], status = 'loaded') => ({ supported: true, status, faces });
 test('settled empty font set cannot establish the requested font', () => {
@@ -55,4 +55,32 @@ test('original typography declarations and external references remain unchanged'
   const css=readFileSync(new URL('../src/styles.css',import.meta.url),'utf8');
   assert.match(css,/family=Heebo:wght@400;500;600;700;800&family=Noto\+Sans\+Arabic:wght@400;500;600;700&display=swap/);
   assert.match(css,/--font-sans: "Heebo", "Noto Sans Arabic", ui-sans-serif, system-ui, sans-serif/);
+});
+
+test('diagnostic layout precedes waiting on the current font readiness promise', async () => {
+  const descriptor = Object.getOwnPropertyDescriptor(globalThis, 'document');
+  const log = [];
+  try {
+    Object.defineProperty(globalThis, 'document', { configurable: true, value: {
+      getElementById(id) { return { getBoundingClientRect() { log.push(id); return { width: 42 }; } }; },
+      fonts: { get ready() { log.push('ready'); return Promise.resolve(); }, status: 'loaded' },
+    } });
+    await settleFontProbes({ evaluate: fn => fn(), async waitForFunction(fn, arg, options) {
+      assert.equal(options.timeout, 1234); assert.equal(await fn(), true);
+    } }, { timeoutMs: 1234 });
+    assert.deepEqual(log, ['font-probe-he', 'font-probe-ar', 'ready']);
+  } finally { if (descriptor) Object.defineProperty(globalThis, 'document', descriptor); else delete globalThis.document; }
+});
+test('missing diagnostic text rejects before font readiness is claimed', async () => {
+  const descriptor = Object.getOwnPropertyDescriptor(globalThis, 'document');
+  try {
+    Object.defineProperty(globalThis, 'document', { configurable: true, value: { getElementById() { return null; } } });
+    await assert.rejects(settleFontProbes({ evaluate: fn => fn(), waitForFunction() { assert.fail('must not claim readiness'); } }), /not laid out/);
+  } finally { if (descriptor) Object.defineProperty(globalThis, 'document', descriptor); else delete globalThis.document; }
+});
+test('font readiness timeout remains a failed diagnostic instead of fallback success', async () => {
+  await assert.rejects(settleFontProbes({ evaluate() {}, waitForFunction() { throw new Error('injected font timeout'); } }), /injected font timeout/);
+});
+test('font readiness requires a positive finite timeout', async () => {
+  for (const timeoutMs of [0, -1, NaN, Infinity]) await assert.rejects(settleFontProbes({}, { timeoutMs }), /bounded font readiness/);
 });
