@@ -1,0 +1,51 @@
+name: rsh036-r69-factorial
+on:
+  push:
+    branches: [agent/rsh-036-r69-factorial-20260906]
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      CI: 'true'
+      NODE_OPTIONS: --experimental-strip-types
+      PLAYWRIGHT_BROWSERS_PATH: '0'
+      FACTOR_SOURCE_SHA: 751e1ecabe5e93dcd14215db6fa1bdeac913ed1f
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Recover exact historical bytes and verified diagnostic script
+        run: |
+          python - <<'PY'
+          import lzma,hashlib
+          from pathlib import Path
+          b=lzma.decompress(Path('.r69-factor.xz').read_bytes())
+          assert hashlib.sha256(b).hexdigest()=='9ee88aa20eb527a9beae427fc273aff90d8d3c821c2650437b7cda3fc89a986b'
+          Path('.r69-factor.mjs').write_bytes(b)
+          PY
+          mkdir -p artifacts/history artifacts/golden-factorial
+          git archive b0e3e525689955e6ff944b49f08c814e49cf03fa src public | tar -xf - -C artifacts/history
+          git diff --exit-code 751e1ecabe5e93dcd14215db6fa1bdeac913ed1f -- src public package.json package-lock.json vite.config.ts
+          cp .r69-factor.mjs artifacts/golden-factorial/diagnostic-source.mjs
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm install --global npm@10.9.2
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Measure two-source two-camera factors and repeated controls
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node .r69-factor.mjs 2>&1 | tee artifacts/golden-factorial/run.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: rsh036-r69-factorial-${{ github.run_id }}
+          path: artifacts/golden-factorial/**
+          if-no-files-found: error
+          retention-days: 14
