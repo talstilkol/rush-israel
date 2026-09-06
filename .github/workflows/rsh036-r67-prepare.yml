@@ -1,0 +1,120 @@
+name: rsh036-r67-prepare
+on:
+  push:
+    branches: [agent/rsh-036-r67-validation-20260906]
+permissions:
+  contents: read
+jobs:
+  validate-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    env:
+      CI: 'true'
+      NODE_OPTIONS: --experimental-strip-types
+      PLAYWRIGHT_BROWSERS_PATH: '0'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Apply hash-pinned candidate without transport or preparation files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,lzma,os,subprocess
+          assert os.environ['GITHUB_REPOSITORY']=='talstilkol/rush-israel'
+          patch=lzma.decompress(b''.join(Path(f'.rsh036-r67-part{i}').read_bytes() for i in range(1,4)))
+          assert hashlib.sha256(patch).hexdigest()=='1c0fb01aa36210050d683b0b95bb8cbe4a01a3cf530e67591bbbab7d79558a62'
+          target=Path(os.environ['RUNNER_TEMP'])/'candidate.patch';target.write_bytes(patch)
+          subprocess.run(['git','checkout','--detach','5f7be6290f84cce752b93946174fbf7b29f8ed73'],check=True)
+          subprocess.run(['git','apply','--check',str(target)],check=True)
+          subprocess.run(['git','apply',str(target)],check=True)
+          subprocess.run(['git','add','-A'],check=True)
+          tree=subprocess.check_output(['git','write-tree'],text=True).strip()
+          assert tree=='1bf890634b5788298fa6040403ff5dfe3b8b5e3a',tree
+          paths=subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines()
+          assert len(paths)==27,len(paths)
+          assert all(not p.startswith('.rsh036-r67') and p!='.github/workflows/rsh036-r67-prepare.yml' for p in paths)
+          Path('artifacts').mkdir(exist_ok=True)
+          Path('artifacts/preparation-tree.txt').write_text(tree+'\n')
+          print('Exact product tree',tree,'changed files',len(paths))
+          PY
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm install --global npm@10.9.2
+      - run: npm run toolchain:verify
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Regenerate dependency inventory with locked parser and assert identical tree
+        run: |
+          node scripts/dependency-closure.mjs --write
+          git add -A
+          test "$(git write-tree)" = 1bf890634b5788298fa6040403ff5dfe3b8b5e3a
+          node scripts/dependency-closure.mjs
+      - name: Governance and complete unit suite
+        run: |
+          set -o pipefail
+          node scripts/check-governance-contract.mjs
+          npm test 2>&1 | tee artifacts/unit-tests.tap
+      - name: Lint all source without suppression
+        run: |
+          set -o pipefail
+          npm run lint 2>&1 | tee artifacts/lint.log
+      - name: Golden readiness fixtures in real Chromium
+        run: node scripts/golden-capture-browser.mjs
+      - name: Full QA and locked typecheck
+        run: |
+          set -o pipefail
+          npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
+      - name: Retained real game and asset recovery regressions
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node scripts/runtime-recovery-smoke.mjs 2>&1 | tee artifacts/runtime-recovery.log
+      - name: Safe legacy Ayalon captures and steering; no comparisons or baseline updates
+        run: |
+          set -o pipefail
+          npm run qa:ayalon 2>&1 | tee artifacts/ayalon-capture.log
+      - name: Development build
+        run: |
+          set -o pipefail
+          npm run build:dev 2>&1 | tee artifacts/build-dev.log
+      - name: Store only unreferenced non-workflow Git tree objects; never refs or merges
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,subprocess,urllib.request,urllib.error
+          expected='1bf890634b5788298fa6040403ff5dfe3b8b5e3a'
+          assert subprocess.check_output(['git','write-tree'],text=True).strip()==expected
+          paths=subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines()
+          assert len(paths)==27
+          assert all(not p.startswith('.rsh036-') for p in paths)
+          elements=[{'path':p,'mode':'100644','type':'blob','content':Path(p).read_text()} for p in paths if not p.startswith('.github/workflows/')]
+          assert len(elements)==26
+          payload=json.dumps({'base_tree':'05ebf0271b6b5fc06ea2bf3fe21885b1437f4384','tree':elements}).encode()
+          request=urllib.request.Request('https://api.github.com/repos/talstilkol/rush-israel/git/trees',data=payload,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'})
+          try:
+            with urllib.request.urlopen(request,timeout=90) as response: result=json.load(response)
+          except urllib.error.HTTPError as error:
+            Path('artifacts/tree-publication-error.txt').write_bytes(error.read());raise
+          meta={'expected_complete_tree':expected,'non_workflow_tree':result['sha'],'changed_files':27,'stored_non_workflow_files':26,'ref_mutations':0,'merges':0,'run_id':os.environ['GITHUB_RUN_ID']}
+          Path('artifacts/validated-tree.json').write_text(json.dumps(meta,indent=2)+'\n')
+          print(json.dumps(meta))
+          PY
+      - name: Original golden comparisons with original PNGs and unchanged thresholds
+        run: |
+          set -o pipefail
+          npm run qa:golden 2>&1 | tee artifacts/golden.log
+      - name: Preserve all actual results including any golden failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: rsh036-r67-preparation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/**
+          if-no-files-found: error
+          retention-days: 14
