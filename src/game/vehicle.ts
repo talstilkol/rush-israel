@@ -58,6 +58,9 @@ function probeRamp(x: number, z: number, ramps: Ramp[], yHint = 0) {
     if (Math.abs(along) <= r.len * 0.5 && Math.abs(across) <= r.half) {
       const t = clamp(along / r.len + 0.5, 0, 1);
       const y = r.y0 + (r.y1 - r.y0) * t;
+      // Horizontal overlap alone must not capture a car onto an overhead deck.
+      // Keep the existing 1.2-unit step allowance and lower-surface selection.
+      if (y > yHint + 1.2) continue;
       const dyds = (r.y1 - r.y0) / r.len;
       const score = Math.abs(y - yHint);
       if (!best || score + 0.04 < best.score || (score <= best.score + 0.04 && y > best.y && y <= yHint + 1.2)) {

@@ -48,12 +48,13 @@ if (!report.ok) throw new Error("no HaShalom ramp n=" + report.n);
 
 const measured = [];
 for (const s of report.samples) {
-  await p.evaluate(({ x, z, yaw }) => {
-    window.__controlsTest.teleport(x, z, yaw, 0.2);
+  await p.evaluate(({ x, z, yaw, y }) => {
+    // Seed on the intended surface; teleporting beneath it must not snap upward.
+    window.__controlsTest.teleport(x, z, yaw, y);
     window.__controlsTest.setThrottle(0);
     window.__controlsTest.setKeys([]);
     window.__controlsTest.setSteer(0);
-  }, { x: s.x, z: s.z, yaw: Math.atan2(-report.r.sx, -report.r.sz) });
+  }, { x: s.x, z: s.z, yaw: Math.atan2(-report.r.sx, -report.r.sz), y: s.expect });
   await p.waitForTimeout(180);
   const y = await p.evaluate(() => window.__controlsTest.getY());
   measured.push({ k: s.k, expect: s.expect, y });

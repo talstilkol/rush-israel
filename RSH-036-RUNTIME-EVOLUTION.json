@@ -394,7 +394,10 @@
       "reverse_edits": []
     },
     "scripts/runtime-recovery-smoke.mjs": {
-      "current_sha256": "99700ab2c852ef745f1816401f98e1369fff982433c2bd049421e908cba61221"
+      "previous_sha256": null,
+      "current_sha256": "ce4c1b6a3ed8e05de308c5de06ef46f34ce6c5897ec99c80650955c45a122d6f",
+      "reverse_edits": [],
+      "reason": "r6.12 AUD-21 overhead-contact repair; exact historical checks only, never production substitution"
     },
     "src/game/road-assets.ts": {
       "previous_sha256": "17cc9cc0ad287a6fcd74e0a40b122ad830733247b50b1e39eb6f2afb8a35146e",
@@ -1128,6 +1131,44 @@
       "previous_sha256": null,
       "reverse_edits": [],
       "current_sha256": "1e495b420782dff63ab7c3b74f8a21f23378c382cf821c6ec7008df8d6bcd849"
+    },
+    "src/game/vehicle.ts": {
+      "previous_sha256": "73bdc89785b583b8749ac83476efaf27d02b01aa2df0914a9677fca1d16c1fc6",
+      "current_sha256": "d37ff1c5cad7cc6c29d05964bf7aeebaa66ca644087abde1601183d6f350f97f",
+      "reverse_edits": [
+        {
+          "start_line": 60,
+          "end_line": 63,
+          "current_segment_sha256": "37d0edf50343bb1720beb4a831ab34ab1dbd566fa35a1278e370db449492da02",
+          "previous_text": ""
+        }
+      ],
+      "reason": "r6.12 AUD-21 overhead-contact repair; exact historical checks only, never production substitution"
+    },
+    "scripts/ramp-smoke.mjs": {
+      "previous_sha256": "57c859162157ae304c750746c8b8946c43d6bba6208a2f880aabcb25e2461e0a",
+      "current_sha256": "8c35bfd9bde53b5b8487f877e8018bfcf3237efd37bd0e317fe457f610da8a2c",
+      "reverse_edits": [
+        {
+          "start_line": 50,
+          "end_line": 53,
+          "current_segment_sha256": "e918497059d12ae1e786f44d06a51c465af8e855d88da63004778d532611ff3c",
+          "previous_text": "  await p.evaluate(({ x, z, yaw }) => {\n    window.__controlsTest.teleport(x, z, yaw, 0.2);\n"
+        },
+        {
+          "start_line": 56,
+          "end_line": 57,
+          "current_segment_sha256": "94e6bb019b910c69a9fce6dd88e62ed29e96537a202d7b94126404eaacf041b2",
+          "previous_text": "  }, { x: s.x, z: s.z, yaw: Math.atan2(-report.r.sx, -report.r.sz) });\n"
+        }
+      ],
+      "reason": "r6.12 AUD-21 overhead-contact repair; exact historical checks only, never production substitution"
+    },
+    "scripts/ramp-contact-browser.mjs": {
+      "previous_sha256": null,
+      "current_sha256": "8dcdf09ed3a25686df65e3c937f9d8cef974a9e8ecbc7a9e245b0f282e17d616",
+      "reverse_edits": [],
+      "reason": "r6.12 AUD-21 overhead-contact repair; exact historical checks only, never production substitution"
     }
   }
 }

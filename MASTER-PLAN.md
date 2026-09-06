@@ -487,3 +487,10 @@ Acceptance requires real mesh/raycast/strip/support measurements, old-source
 negative controls, exact-head normal CI and the unchanged original golden gate.
 The three mutable font dependencies and any image-reference transition remain
 separate unresolved gates. No baseline refresh, freeze, merge or RSH-037 activation.
+
+
+## r6.12 — overhead contact repair, RSH-036 still blocked
+
+AUD-21: reject unreachable ramp surfaces above the vehicle while retaining the existing1.2-unit entry allowance. Contact checks cover the actual car and both centre/wheel queries; the legacy ramp-following smoke starts at its intended surface rather than requiring a teleport through the deck. All50 ramp recipes, calibrated physics constants, original PNGs and thresholds remain preserved. This changes vehicle support selection, not acceleration calibration.
+
+67 original units;35 accepted;32 remaining.21 audit items;42 historical findings;6 repair bundles. RSH-036 remains active/unaccepted. Roof/body clearance, low crossings, downward/airborne attachment behavior, art/material discrepancies and3 mutable font references remain open. No reference transition, merge, freeze or RSH-037 activation.

@@ -1997,24 +1997,26 @@
     "transitive_coverage_complete": false,
     "runtime_remediation_complete": false,
     "freeze_granted": false,
-    "partial_inventory_count": 75,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.11.md",
+    "partial_inventory_count": 78,
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.12.md",
     "local_unit_tests": {
       "status": "passed_locally_not_locked_remote_install",
-      "passed": 878,
+      "passed": 906,
       "failed": 0,
       "skipped": 0,
-      "new_unique_cases": 24,
-      "ramp_surface_cases": 20,
-      "current_historical_guards": 4,
+      "new_unique_cases": 28,
+      "contact_cases": 23,
+      "current_historical_guards": 5,
+      "old_contact_passed": 13,
+      "old_contact_failed": 10,
       "locked_dependency_install": false
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
     "previous_exact_head_ci": {
-      "head": "c3b87e0e598357f4a49168655a6e30cbbcf71412",
-      "run_id": 34015573599,
-      "tests_passed": 854,
-      "browser_cases_passed": 27,
+      "head": "c0fa0572747f696ddeb74c754cb7a1a5a4a9d955",
+      "run_id": 34030794894,
+      "tests_passed": 878,
+      "browser_cases_passed": 30,
       "readiness_fixture_cases_passed": 5
     },
     "resource_repairs": "r6.5_eight_families_verified_in_exact_head_run33995840557_retained",
@@ -2029,7 +2031,7 @@
       "diagnostic_run": 33992134755
     },
     "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json",
-    "new_candidate_validation": "pending_exact_head_full_ci_ramp_conformance_and_original_golden",
+    "new_candidate_validation": "pending_exact_head_normal_ci_and_original_golden",
     "generated_dependency_inventory": "AYALON-DEPENDENCY-CLOSURE.json",
     "safe_capture_output": "both_commands_no_automatic_baseline_writes",
     "ci_action_pins": "three_previously_verified_pins_unchanged",
@@ -2052,8 +2054,16 @@
       "finding": "AUD-20",
       "recipe_changes": 0,
       "physics_source_changes": 0,
-      "browser": "pending",
-      "original_golden": "pending"
+      "browser": "verified_in_exact_head_run34030794894",
+      "original_golden": "0_passed_4_failed"
+    },
+    "overhead_contact_repair": {
+      "finding": "AUD-21",
+      "state": "candidate_pending_exact_head_validation",
+      "maximum_upward_capture": 1.2,
+      "calibration_changes": 0,
+      "ramp_recipe_changes": 0,
+      "downward_support_selection": "unchanged_not_newly_qualified"
     }
   }
 }
