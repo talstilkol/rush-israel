@@ -1,0 +1,36 @@
+name: rsh036-r68-provenance
+on:
+  push:
+    branches: [agent/rsh-036-r68-provenance-20260906]
+permissions:
+  contents: read
+jobs:
+  provenance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Read exact historical bytes and source change ancestry without mutation
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/provenance
+          OLD=b0e3e525689955e6ff944b49f08c814e49cf03fa
+          NEW=46d361365ccde29d528861051f9529c08ec725ab
+          git merge-base --is-ancestor "$OLD" "$NEW"
+          git archive --format=tar.gz -o artifacts/provenance/original-baseline-source.tar.gz "$OLD" -- . ':(exclude)**/*.woff' ':(exclude)**/*.woff2' ':(exclude)**/*.ttf' ':(exclude)**/*.otf' ':(exclude)**/*.eot'
+          git ls-tree -rl "$OLD" > artifacts/provenance/original-tree.txt
+          git show -s --format=fuller "$OLD" > artifacts/provenance/original-commit.txt
+          git log --reverse --format='%H %aI %s' "$OLD..$NEW" -- src/game src/world src/rendering > artifacts/provenance/source-history.txt
+          git diff "$OLD" "$NEW" -- src/game/spline.ts src/game/vehicle.ts src/world/goldenCameras.ts src/rendering/QualityProfile.ts src/game/tracks.ts src/game/tracks/ayalon.ts > artifacts/provenance/geometry-physics.diff
+          git log --format='%H %aI %s' "$NEW" -- golden-baseline/ayalon-day-g01.png golden-baseline/ayalon-day-g05.png golden-baseline/ayalon-day-g07.png golden-baseline/ayalon-night-g08.png > artifacts/provenance/image-history.txt
+          sha256sum artifacts/provenance/* > artifacts/provenance/SHA256SUMS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: rsh036-r68-provenance-${{ github.run_id }}
+          path: artifacts/provenance/**
+          retention-days: 14
+          if-no-files-found: error
