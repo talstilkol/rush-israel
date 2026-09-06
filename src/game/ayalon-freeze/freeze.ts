@@ -73,7 +73,14 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/capture-golden.mjs": "cf8c9b1860b370982cf7695980e082545dce2bcd3c3e3d6d7133789d797c1983",
   "scripts/golden-output.mjs": "0c61721b4f52cebfc5f99039ea2c6194a0cded4c8075144f43425a4f4ae11fd6",
   "scripts/ci-action-pins.mjs": "bc5fbd670f451aef455c0f1b33e627b4e7079941c568d1e142b52d7af928dde7",
-  ".github/workflows/required-ci.yml": "82041e12b38c12ea4ffcb6802db69f362079dcee31ab17bbd092e8fc40011e30"
+  ".github/workflows/required-ci.yml": "82041e12b38c12ea4ffcb6802db69f362079dcee31ab17bbd092e8fc40011e30",
+  "scripts/rush-head.mjs": "a1f031131c4fdb82a56ddd8a61d3538c5849ef1261ace35a502da0de6369f321",
+  "scripts/grok-pwa-plugin.mjs": "86afd273fff692ea3ed059f4457f7e1945e198a03539ba828d0c9ece507fa491",
+  "server/middleware/grok-pwa.ts": "184313168a63c66b4b0d809fa55c656b8ca4436775f6c0502bc9e9cfdfaf0e9f",
+  "scripts/product-head-boundary.mjs": "c88328d144b77d1ea54aaab62d0e54f616c404d72097f1e6f232057185c5f3fe",
+  "scripts/rush-head-browser.mjs": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
+  "scripts/runtime-recovery-smoke.mjs": "db53b90a1bfa6f9b5ca8446a5f9f9c94ad2da3a7ae1989b1d08a3e1c65e2f017",
+  "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d"
 } as const;
 
 export const FREEZE_APPROVAL = {

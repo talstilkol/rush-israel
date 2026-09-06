@@ -1159,12 +1159,12 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "dc2304b2b373f45f379d9c6ab83e6203367904834696643875a01f4dcfd68789"
+      "sha256": "5f957aa9782042a1162a2f5db85f04dda893ea4c97eb76e0cc8197108bbc571f"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
       "bytes": 3114,
-      "sha256": "efffc42135b6e0a2cb370c53745135e6f6ae40d36b62bfa3686111f675d3fbbb"
+      "sha256": "adf77c239ac9597ac2bfec87a59fffd7bd4d4a8cd154856314cb6f0839896cd4"
     },
     {
       "path": "scripts/check-ayalon-geometry.mjs",
@@ -1568,8 +1568,8 @@
     },
     {
       "path": "scripts/dependency-closure.mjs",
-      "bytes": 13250,
-      "sha256": "d250b4d00fefc7f3ce83b9082ea17bee0283c5299e5a86c167c825a7311396ec"
+      "bytes": 14328,
+      "sha256": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d"
     },
     {
       "path": "scripts/dependency-closure.test.mjs",
@@ -1628,8 +1628,8 @@
     },
     {
       "path": "scripts/grok-pwa-plugin.mjs",
-      "bytes": 6535,
-      "sha256": "3401f7f3f059cb87d376ccb9dfa1ea47eb0ff887aab7de33d48d8eeea3f20f23"
+      "bytes": 6500,
+      "sha256": "86afd273fff692ea3ed059f4457f7e1945e198a03539ba828d0c9ece507fa491"
     },
     {
       "path": "scripts/grok-pwa-plugin.test.mjs",
@@ -1767,6 +1767,16 @@
       "sha256": "f22e53012877fc88f44b7df2b7f296807a52448c66f1e7433cebed7e667fdc69"
     },
     {
+      "path": "scripts/product-head-boundary.mjs",
+      "bytes": 3992,
+      "sha256": "c88328d144b77d1ea54aaab62d0e54f616c404d72097f1e6f232057185c5f3fe"
+    },
+    {
+      "path": "scripts/product-head-boundary.test.mjs",
+      "bytes": 3805,
+      "sha256": "85079c345aa120cbcef25b27c0e65b0b76b288c7f787cdd3e16554bec87445ea"
+    },
+    {
       "path": "scripts/program-control.test.mjs",
       "bytes": 49206,
       "sha256": "133463b2fdf5d532720fee7dad7e98208ba95c16a7d8710134584fbfa9fc5071"
@@ -1849,12 +1859,12 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "d42749931056b861c1efcbfa8e322fffa60f3fd7c1911d91996cc90bd40970ea"
+      "sha256": "fb58acbe4c96fb668a84f2a7486917807060aa8b58fca41316acc40a672e4763"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
       "bytes": 2011,
-      "sha256": "c355089eeabac8491be4b8aef5b6eebf4b2de10dee851f9cceaec1671255c9bc"
+      "sha256": "df57489d79682b94755dad0ae834bfc2bfc4fff74c60873d55fecf354ec41ff1"
     },
     {
       "path": "scripts/run-with-server.mjs",
@@ -1868,8 +1878,23 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 7700,
-      "sha256": "19ddec35eacfaf0c8c9e485d0096e14cd97bc07c8b196cfb251f42ce146e9018"
+      "bytes": 7819,
+      "sha256": "db53b90a1bfa6f9b5ca8446a5f9f9c94ad2da3a7ae1989b1d08a3e1c65e2f017"
+    },
+    {
+      "path": "scripts/rush-head-browser.mjs",
+      "bytes": 2038,
+      "sha256": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139"
+    },
+    {
+      "path": "scripts/rush-head.mjs",
+      "bytes": 3949,
+      "sha256": "a1f031131c4fdb82a56ddd8a61d3538c5849ef1261ace35a502da0de6369f321"
+    },
+    {
+      "path": "scripts/rush-head.test.mjs",
+      "bytes": 8941,
+      "sha256": "1e8d0303ec6fcf059ccb05ff9d69116763f4c87f23c35bf9ff7c7515c8d7f192"
     },
     {
       "path": "scripts/rush-pwa.mjs",
@@ -1968,8 +1993,8 @@
     },
     {
       "path": "server/middleware/grok-pwa.ts",
-      "bytes": 3722,
-      "sha256": "c79b5a7d0e283df3397606bc7e99608b0cc0ddd17e4c88bbbc5ba49c159e825b"
+      "bytes": 3740,
+      "sha256": "184313168a63c66b4b0d809fa55c656b8ca4436775f6c0502bc9e9cfdfaf0e9f"
     },
     {
       "path": "server/virtual-grok-og-identity.d.ts",
@@ -2063,8 +2088,8 @@
     },
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
-      "bytes": 8123,
-      "sha256": "539166bb37857a6ebad9bc90192f0c89790074a689506593a81b5d1c861e4a96"
+      "bytes": 8844,
+      "sha256": "517ba5154c345679ec7df9fc47256c3f2a1073d894b2dd7bfdccee0b8ffff36e"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -3347,6 +3372,14 @@
     },
     {
       "from": "scripts/grok-pwa-plugin.mjs",
+      "specifier": "./rush-head.mjs",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "scripts/rush-head.mjs"
+    },
+    {
+      "from": "scripts/grok-pwa-plugin.mjs",
       "specifier": "./rush-pwa.mjs",
       "kind": "static_import",
       "typeOnly": false,
@@ -3520,6 +3553,22 @@
       "resolution": "node_builtin"
     },
     {
+      "from": "scripts/rush-head.mjs",
+      "specifier": "./grok-pwa-shared.mjs",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "scripts/grok-pwa-shared.mjs"
+    },
+    {
+      "from": "scripts/rush-head.mjs",
+      "specifier": "./rush-pwa.mjs",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "scripts/rush-pwa.mjs"
+    },
+    {
       "from": "scripts/rush-pwa.mjs",
       "specifier": "./grok-pwa-shared.mjs",
       "kind": "static_import",
@@ -3542,6 +3591,14 @@
       "typeOnly": false,
       "resolution": "repository",
       "target": "scripts/install-page.html"
+    },
+    {
+      "from": "server/middleware/grok-pwa.ts",
+      "specifier": "../../scripts/rush-head.mjs",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "scripts/rush-head.mjs"
     },
     {
       "from": "server/middleware/grok-pwa.ts",
@@ -10102,6 +10159,66 @@
       "qualification": "immutable_bytes_required"
     }
   ],
+  "product_head_boundary": {
+    "applicable": true,
+    "shared_module": "scripts/grok-pwa-shared.mjs",
+    "reviewed_sha256": "860da7df5e0e5698ccc0ed9def2eb981c2f396831c5523368d031ec740b88b9c",
+    "consumers": [
+      "scripts/grok-pwa-plugin.mjs",
+      "scripts/rush-head.mjs",
+      "scripts/rush-pwa.mjs",
+      "server/middleware/grok-pwa.ts"
+    ],
+    "qualified": true,
+    "errors": [],
+    "limitation": "Qualification covers literal imports in the analysed product/build graph and exact reviewed compatibility bytes, not arbitrary eval or hostile filesystem execution."
+  },
+  "qualified_external_resources": [
+    {
+      "from": "scripts/grok-pwa-shared.mjs",
+      "resource": "`https://${publicHost}${asset.startsWith(\"/\") ? asset : `/${asset}`}`",
+      "kind": "dynamic_remote_expression",
+      "qualification": "dormant_vendor_head_export_blocked_by_reviewed_product_import_boundary"
+    },
+    {
+      "from": "scripts/grok-pwa-shared.mjs",
+      "resource": "`https://${publicHost}${banner.startsWith(\"/\") ? banner : `/${banner}`}`",
+      "kind": "dynamic_remote_expression",
+      "qualification": "dormant_vendor_head_export_blocked_by_reviewed_product_import_boundary"
+    },
+    {
+      "from": "scripts/grok-pwa-shared.mjs",
+      "resource": "https://grok.com/grok-app-builder/extensions.js",
+      "kind": "potential_remote_reference",
+      "qualification": "dormant_vendor_head_export_blocked_by_reviewed_product_import_boundary"
+    },
+    {
+      "from": "scripts/grok-pwa-shared.mjs",
+      "resource": "https://og.grok.me",
+      "kind": "potential_remote_reference",
+      "qualification": "dormant_vendor_head_export_blocked_by_reviewed_product_import_boundary"
+    }
+  ],
+  "unqualified_external_resources": [
+    {
+      "from": "src/routes/__root.tsx",
+      "resource": "https://fonts.googleapis.com",
+      "kind": "potential_remote_reference",
+      "qualification": "usage_and_bytes_review_required"
+    },
+    {
+      "from": "src/routes/__root.tsx",
+      "resource": "https://fonts.gstatic.com",
+      "kind": "potential_remote_reference",
+      "qualification": "usage_and_bytes_review_required"
+    },
+    {
+      "from": "src/styles.css",
+      "resource": "https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap",
+      "kind": "css_url",
+      "qualification": "immutable_bytes_required"
+    }
+  ],
   "errors": [],
   "local_inventory_complete": true,
   "complete_dependency_closure": false,
@@ -10111,5 +10228,5 @@
     "Package sources are identified by package-lock integrity, not vendored or executed by this scanner.",
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance."
   ],
-  "digest_sha256": "8ee2096970409cda03c945b08666d71fa08fb779ccf885859d82b4bf797f6855"
+  "digest_sha256": "0afc3c92e6e115a85776e4b1bbe911ffc4006c41c7507f257dffb323ce981e41"
 }

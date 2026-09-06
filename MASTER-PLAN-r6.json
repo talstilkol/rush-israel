@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.7",
+  "revision": "r6.8",
   "date": "2026-09-06",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "5f7be6290f84cce752b93946174fbf7b29f8ed73",
+  "source_pr_head": "46d361365ccde29d528861051f9529c08ec725ab",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
@@ -824,7 +824,8 @@
       "bundle": "CR-03",
       "evidence": "The 46-path explicit inventory includes the corrected Rothschild builder; it remains partial, not generated complete dependency closure. Freeze remains false.",
       "r6_6_update": "Whole local input inventory and resolved module graph implemented; remote resources and mutable actions require qualification; no freeze grant.",
-      "r6_7_update": "CI uses verified immutable action identities; arbitrary SHAs remain unqualified. Legacy capture is included in the module graph. Seven font/host qualifications remain open."
+      "r6_7_update": "CI uses verified immutable action identities; arbitrary SHAs remain unqualified. Legacy capture is included in the module graph. Seven font/host qualifications remain open.",
+      "r6_8_update": "All seven expressions retained. Four dormant vendor-head expressions qualified with fixed shared bytes and allowed product imports; three active font references unqualified. Complete closure false."
     },
     {
       "id": "AUD-05",
@@ -915,7 +916,8 @@
       "title": "PWA error caching, offline recovery and update behavior need complete acceptance",
       "acceptance": "Do not cache non-success responses; test first/return offline visits, unavailable chunks, schema-safe upgrades, multiple tabs, rollback and stale-cache cleanup.",
       "status": "open",
-      "bundle": "CR-06"
+      "bundle": "CR-06",
+      "r6_8_update": "Actual Vite/Nitro product head isolated from vendor script and host metadata; offline/error-cache/update acceptance remains open."
     },
     {
       "id": "AUD-10",
@@ -998,7 +1000,8 @@
       "status": "open",
       "bundle": "CR-06",
       "evidence": "Run33992134755 identified exactly one live overflow: Rothschild canopy count1152 / matrix capacity960. Temporarily capping count changed black pixels49/49 to6/49; restoring1152 restored49/49 black. Product fix increases capacity to1536, retaining all96 trees and1152 canopy instances. Actual fixed-scene pixel/capacity gates are pending; this is not full track/golden acceptance.",
-      "r6_7_update": "Both capture commands protect canonical baselines and linked output targets. Legacy capture has finally cleanup and explicit zero-comparison diagnostics; exact-head browser validation required."
+      "r6_7_update": "Both capture commands protect canonical baselines and linked output targets. Legacy capture has finally cleanup and explicit zero-comparison diagnostics; exact-head browser validation required.",
+      "r6_8_update": "Original/current direct-engine replay proves camera and world differences at identical spawns. Eight diagnostic frames are not original-golden comparisons or reference approval."
     },
     {
       "id": "AUD-14",
@@ -1440,7 +1443,7 @@
     {
       "id": "CR-03",
       "title": "Complete Ayalon dependency closure",
-      "state": "local_inventory_and_action_pins_implemented_seven_external_qualifications_open",
+      "state": "local_inventory_action_pins_and_product_boundary_implemented_three_font_qualifications_open",
       "audit_items": [
         "AUD-04"
       ],
@@ -1490,22 +1493,23 @@
     "All 67 original units, 18 audit IDs and 42 historical findings retained. No new unit acceptance.",
     "Verified r6.5 head 8c6a3be7 passed 688 unit and 20 browser cases in run33995840557; prior chat-only 716-test claim is not the live baseline.",
     "Original PNGs, pixel threshold0.12, failure limit8%, camera recipe and post-pose waits are preserved. Reliable selection does not prove pixel determinism.",
-    "Generated local closure seals all runtime/build/test/public/golden inputs in declared roots. Potential external resources and mutable action tags remain unqualified.",
+    "Generated local closure seals the declared local runtime/build/test/public/golden surface. Three verified Actions are pinned; all seven external expressions remain recorded, with four dormant vendor-head expressions qualified by the exact product import boundary and three font references unqualified. Overall closure remains false.",
     "No physical-device, licence, public release or Ayalon freeze approval is claimed."
   ],
   "checkpoint": {
-    "revision": "r6.7",
-    "base_head": "5f7be6290f84cce752b93946174fbf7b29f8ed73",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.7.md",
+    "revision": "r6.8",
+    "base_head": "46d361365ccde29d528861051f9529c08ec725ab",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.8.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "run_id": 33999898243,
-      "unit_passed": 733,
+      "run_id": 34004500171,
+      "unit_passed": 770,
       "browser_passed": 20,
       "readiness_fixture_passed": 5
     },
     "normal_ci": "pending_on_new_candidate",
-    "golden": "previous_r6.6_0_of_4_passed_new_candidate_requires_validation",
-    "dependency_closure": "reviewed_action_pins_seven_font_host_qualifications_remain"
+    "golden": "r6.7_four_failed_comparisons_retained_new_candidate_requires_validation",
+    "dependency_closure": "seven_references_retained_four_dormant_vendor_head_expressions_qualified_three_font_references_unqualified",
+    "visual_attribution": "RSH-036-GOLDEN-ATTRIBUTION-r6.8.json"
   }
 }
