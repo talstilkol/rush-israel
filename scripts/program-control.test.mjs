@@ -636,7 +636,7 @@ test("required CI checks exact heads and retains diagnostics", () => {
   assert.match(workflow, /npm test/);
   assert.match(workflow, /npm run qa:ci/);
   assert.match(workflow, /npm run build:dev/);
-  assert.match(workflow, /actions\/upload-artifact@v4/);
+  assert.match(workflow, /actions\/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02/);
   assert.match(workflow, /retention-days:\s*14/);
   assert.doesNotMatch(workflow, /continue-on-error:\s*true/);
 });

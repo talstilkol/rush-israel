@@ -1,44 +1,39 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 20.5.0
+**Version:** 20.6.0
 **Checkpoint date:** 2026-09-06, Asia/Jerusalem
 **Repository:** talstilkol/rush-israel
 **Canonical main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Verified repair base:** 8c6a3be70fc22cbe35dc4a4e40fa14b0ef83c85f
-**Active:** RSH-036 / PR39 / agent/rsh-036-ayalon-freeze — not accepted.
+**Verified repair base:** 5f7be6290f84cce752b93946174fbf7b29f8ed73
+**Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze — not accepted.
 
-## Authority
-Standing owner repair, audit and plan-improvement authority applies. One active
-programme unit. Accepted35/67, remaining32, release gates0/13, unverified assets66.
-No public distribution, history rewrite, force-push or automatic golden updates.
+## Authority and reconciliation
+Standing owner audit/repair/master-plan improvement authority applies. One active
+programme unit; 35/67 accepted, 32 remaining. Release gates 0/13, unverified assets 66.
+No public distribution, history rewrite, force-push or automatic golden replacement.
+Re-read live main, PR, reviews and exact-head artifacts before editing. Never restore
+an older local bundle over a newer published GitHub head.
 
-## Verified base and current work
-Live GitHub r6.5 passed688 unit tests and20 browser cases in run33995840557.
-This supersedes the prior conversation's unpublished local716-test report.
-The eight loader repairs, water-clock repair and full Rothschild scene are retained.
-
-r6.6 makes SSR controls inert until hydration/settings readiness, selects Ayalon
-through awaited locators, checks the actual engine and ticking simulation, and
-preserves original camera calls, frame names, viewport and post-pose waits.
-Capture failures now retain evidence and cannot reuse an old comparison report.
-Automatic baseline writes and baseline/output overlap are rejected.
-
-AYALON-DEPENDENCY-CLOSURE.json is generated from the whole local runtime, server,
-script, public-asset, golden and workflow trees, plus build/toolchain config.
-Its import graph resolves static/dynamic/alias/package/provider dependencies.
-Unresolved module edges and file changes/additions/removals fail. All public bytes
-are included, even for computed URLs. Potential remote references and mutable
-CI action tags remain qualification blockers, so complete_dependency_closure=false.
-The smaller58-path explicit inventory is retained for historical continuity.
+## r6.7 work
+Both capture commands protect canonical and selected reference directories, reject
+linked file targets and write outputs exclusively. `qa:ayalon` defaults to
+`artifacts/ayalon-capture`; override with `GOLDEN_OUTPUT`, never `GOLDEN_DIR`.
+Captures and steering checks are not comparisons or visual acceptance. Failure
+reports and browser cleanup apply to both commands. Image bytes and pixel thresholds
+remain unchanged. Three CI action identities are pinned and validated, with explicit
+provenance rather than trusting any syntactically valid hash. Seven potential remote
+font/host references still require qualification. Full closure remains false.
 
 ## Next work
-1. Re-read live main/PR/reviews and exact-head artifacts; never restore an older bundle.
-2. Validate the new readiness/dependency tests, retained688-unit20-browser baseline,
-   and the five separate browser harness cases on the exact published source.
-3. Run original golden comparisons with threshold0.12 and limit8%. Record actual
-   camera/quality/weather/position/font state and failures; do not refresh PNGs.
-4. Qualify each external reference and pin reviewed CI actions. Prove the resolved
-   local virtual-module provider and host-dependent assets, not just their names.
-5. Attribute remaining golden mismatch to effective runtime, camera, environment
-   and baseline provenance before acceptance. Reliable startup is not pixel parity.
-6. Only validated acceptance can grant the freeze and activate RSH-037.
+1. Read RSH-036-RUNTIME-REPAIR-r6.7.md and the latest PR checkpoint together. Committed
+   preparation status is not a substitute for later exact-head CI results.
+2. Inspect the new normal-CI and actual legacy-capture results. Preserve the existing
+   20 game/resource cases and five readiness-fixture cases; do not add repeated runs
+   to the count of unique tests.
+3. Attribute each of the four original golden failures through source/camera/asset
+   provenance and controlled bisection. Use original 0.12 threshold, 8% limit and PNGs.
+4. Qualify the seven remaining external font/host references and runtime conditions;
+   an action pin is not full proof of the remote execution environment.
+5. Maintain complete generated local inventory and added/removed-file detection,
+   resource rollback, repeated day/night and visible Rothschild scene assertions.
+6. Only validated acceptance can grant a freeze and activate RSH-037.

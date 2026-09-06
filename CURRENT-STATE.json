@@ -1997,21 +1997,22 @@
     "transitive_coverage_complete": false,
     "runtime_remediation_complete": false,
     "freeze_granted": false,
-    "partial_inventory_count": 58,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.6.md",
+    "partial_inventory_count": 62,
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.7.md",
     "local_unit_tests": {
-      "scope": "new readiness and dependency tests only; local TypeScript, not locked install",
-      "passed": 38,
+      "scope": "full unit suite with local TypeScript 5.8.3 only; not the locked dependency install or browser suite",
+      "passed": 770,
       "failed": 0,
       "skipped": 0,
       "locked_dependency_install": false
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
     "previous_exact_head_ci": {
-      "head": "8c6a3be70fc22cbe35dc4a4e40fa14b0ef83c85f",
-      "run_id": 33995840557,
-      "tests_passed": 688,
-      "browser_cases_passed": 20
+      "head": "5f7be6290f84cce752b93946174fbf7b29f8ed73",
+      "run_id": 33999898243,
+      "tests_passed": 733,
+      "browser_cases_passed": 20,
+      "readiness_fixture_cases_passed": 5
     },
     "resource_repairs": "r6.5_eight_families_verified_in_exact_head_run33995840557_retained",
     "scene_visibility": "r6.4_actual_browser_scene_gate_passed_retained",
@@ -2025,7 +2026,9 @@
       "diagnostic_run": 33992134755
     },
     "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json",
-    "new_candidate_validation": "pending_exact_head_normal_ci_and_separate_golden",
-    "generated_dependency_inventory": "AYALON-DEPENDENCY-CLOSURE.json"
+    "new_candidate_validation": "pending_exact_head_normal_ci_actual_legacy_capture_and_separate_golden",
+    "generated_dependency_inventory": "AYALON-DEPENDENCY-CLOSURE.json",
+    "safe_capture_output": "both_commands_no_automatic_baseline_writes",
+    "ci_action_pins": "three_verified_upstream_identities_seven_external_reference_qualifications_open"
   }
 }

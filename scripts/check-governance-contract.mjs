@@ -4,6 +4,8 @@ import { realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
 
+import { inspectActionUses } from "./ci-action-pins.mjs";
+
 export const REQUIRED_CONTEXT = "required-ci / validate";
 
 export function validateDesiredRuleset(value) {
@@ -74,7 +76,6 @@ export function validateWorkflow(text) {
     [/name:\s*required-ci\b/, "workflow name"],
     [/name:\s*required-ci \/ validate\b/, "required job context"],
     [/node scripts\/check-governance-contract\.mjs/, "governance gate"],
-    [/uses:\s*actions\/upload-artifact@v4/, "artifact upload action"],
     [/if:\s*always\(\)/, "always-run artifact condition"],
     [/retention-days:\s*14/, "14-day retention"],
     [/if-no-files-found:\s*warn/, "non-empty diagnostic policy"],
@@ -82,6 +83,9 @@ export function validateWorkflow(text) {
   for (const [pattern, label] of mustMatch) {
     if (!pattern.test(text)) errors.push(`workflow missing ${label}`);
   }
+  const actionCheck = inspectActionUses(text, ".github/workflows/required-ci.yml");
+  if (!actionCheck.actions.some(row => row.action === "actions/upload-artifact")) errors.push("workflow missing reviewed artifact upload action");
+  for (const row of actionCheck.unresolved) errors.push(`workflow action is not a reviewed immutable pin: ${row.resource}`);
   if (/continue-on-error:\s*true/.test(text)) {
     errors.push("workflow may not suppress validation failures");
   }

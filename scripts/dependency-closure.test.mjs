@@ -19,6 +19,7 @@ function fixture(t) {
   put('public/game/a.png', Buffer.from([1, 2, 3]));
   put('scripts/pixel-golden.mjs', 'export const capture = 1;');
   put('scripts/run-with-server.mjs', 'export const harness = 1;');
+  put('scripts/capture-golden.mjs', 'export const capture = 1;');
   return { root, put };
 }
 
@@ -71,10 +72,10 @@ test('CSS remote fonts remain explicit unresolved external qualification', t => 
   assert.deepEqual(result.errors, []); assert.equal(result.local_inventory_complete, true);
   assert.equal(result.complete_dependency_closure, false); assert.equal(result.external_resources[0].kind, 'css_url');
 });
-test('mutable CI actions prevent complete dependency qualification while exact commits do not', t => {
+test('mutable CI actions prevent complete dependency qualification while reviewed exact commits do not', t => {
   const f = fixture(t); f.put('.github/workflows/ci.yml', 'steps:\n - uses: actions/checkout@v4\n');
   assert.equal(buildDependencyClosure(f.root).complete_dependency_closure, false);
-  f.put('.github/workflows/ci.yml', `steps:\n - uses: actions/checkout@${'1'.repeat(40)}\n`);
+  f.put('.github/workflows/ci.yml', `steps:\n - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\n`);
   assert.equal(buildDependencyClosure(f.root).complete_dependency_closure, true);
 });
 test('package names with missing or invalid integrity cannot resolve', t => {

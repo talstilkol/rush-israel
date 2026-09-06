@@ -1,7 +1,7 @@
 # RUSH Israel — Canonical Master Plan
 
 **Schema:** 20.1.0
-**Revision:** r6.4 — owner-authorised improvement programme
+**Revision:** r6.7 — owner-authorised improvement programme
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
 **Verified main:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`
@@ -11,7 +11,7 @@
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`
 **Product-metadata authority:** `PRODUCT-METADATA.json`
-**Date:** 5 September 2026
+**Date:** 6 September 2026
 
 ## 1. Authority
 
@@ -436,3 +436,13 @@ CR-03 now includes a machine-generated whole-local-surface inventory and module
 graph with drift/added/removed-input enforcement. Remote references and mutable
 action tags still require qualification. See NEXT-CONTRACT20.5 and the r6.6 report.
 No unit acceptance, freeze grant, release or RSH-037 activation is implied.
+
+## r6.7 — Safe capture writers and immutable CI actions
+
+Both golden commands now protect canonical baselines, reject linked file targets and
+write diagnostics exclusively. Legacy capture defaults to artifacts/ayalon-capture;
+GOLDEN_OUTPUT is the explicit non-authority output override. Captures are not passed
+comparisons. Three official CI action refs are pinned to verified commit identities;
+seven font/host qualifications remain open. Preserve all original 67 units, 42 legacy
+findings, 18 audit IDs and six repair bundles. RSH-036 remains unaccepted at 35/67.
+Read RSH-036-RUNTIME-REPAIR-r6.7.md and the latest exact-head PR evidence before resuming.
