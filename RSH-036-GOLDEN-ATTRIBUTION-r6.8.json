@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "unit": "RSH-036",
+  "revision": "r6.8",
+  "state": "diagnostic_not_acceptance",
+  "baseline_commit": "b0e3e525689955e6ff944b49f08c814e49cf03fa",
+  "current_commit": "46d361365ccde29d528861051f9529c08ec725ab",
+  "baseline_origin_utc": "2026-08-26T12:00:42Z",
+  "source_archive_verification": {
+    "original_blobs": 306,
+    "mismatches": 0,
+    "artifact_id": 9980833687,
+    "run_id": 34005654970,
+    "zip_sha256": "096dddcf44b0bfb33359d8f37aafa5aa469bf854499483153f1b2fb222af9524"
+  },
+  "replay": {
+    "run_id": 34005914831,
+    "artifact_id": 9980949670,
+    "zip_sha256": "95cf058c2cc3507bd2d602b03666728492424c6bb30d77e2e7af5d31b91f03e3",
+    "protocol": "diagnostic direct-engine replay; same locked dependencies; original historical assets; instant camera; no HUD; NOT original golden protocol",
+    "captures": 8,
+    "original_golden_comparisons": 0,
+    "errors": 0,
+    "failed_requests": 0
+  },
+  "observed": {
+    "historical": {
+      "ramps": 32,
+      "colliders": 541,
+      "samples": 781,
+      "trackLength": 2604.8979999999788,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "soft": true
+    },
+    "current": {
+      "ramps": 50,
+      "colliders": 546,
+      "samples": 781,
+      "trackLength": 2604.8979999999788,
+      "renderer": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+      "soft": true
+    },
+    "frames": [
+      {
+        "frame": "g01",
+        "spawn_identical": true,
+        "position": [
+          1061.4374999999397,
+          1.2085515392881334,
+          -1048.6344000000424
+        ],
+        "historical_camera": {
+          "position": [
+            1061.4374999999397,
+            3.128551539288133,
+            -1056.0344000000425
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.04209551888683031,
+            0
+          ],
+          "fov": 58
+        },
+        "current_camera": {
+          "position": [
+            1061.4374999999397,
+            3.4885515392881334,
+            -1057.8344000000425
+          ],
+          "quaternion": [
+            0,
+            0.9988430900968669,
+            0.0480882664040032,
+            0
+          ],
+          "fov": 58
+        },
+        "delta_camera_y": 0.36,
+        "delta_camera_z": -1.8,
+        "night": false
+      },
+      {
+        "frame": "g05",
+        "spawn_identical": true,
+        "position": [
+          1061.4374999999397,
+          2.8764372406394427,
+          46.754399999878984
+        ],
+        "historical_camera": {
+          "position": [
+            1061.4374999999397,
+            4.796437240639443,
+            39.354399999878986
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.042095518886830566,
+            0
+          ],
+          "fov": 58
+        },
+        "current_camera": {
+          "position": [
+            1061.4374999999397,
+            5.156437240639443,
+            37.55439999987898
+          ],
+          "quaternion": [
+            0,
+            0.9988430900968669,
+            0.04808826640400332,
+            0
+          ],
+          "fov": 58
+        },
+        "delta_camera_y": 0.36,
+        "delta_camera_z": -1.8,
+        "night": false
+      },
+      {
+        "frame": "g07",
+        "spawn_identical": true,
+        "position": [
+          1061.4374999999397,
+          1.8104419519267865,
+          464.2044000000011
+        ],
+        "historical_camera": {
+          "position": [
+            1061.4374999999397,
+            3.730441951926786,
+            456.8044000000011
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841754,
+            0.042095518886830614,
+            0
+          ],
+          "fov": 58
+        },
+        "current_camera": {
+          "position": [
+            1061.4374999999397,
+            4.0904419519267865,
+            455.0044000000011
+          ],
+          "quaternion": [
+            0,
+            0.9988430900968668,
+            0.04808826640400335,
+            0
+          ],
+          "fov": 58
+        },
+        "delta_camera_y": 0.36,
+        "delta_camera_z": -1.8,
+        "night": false
+      },
+      {
+        "frame": "g08",
+        "spawn_identical": true,
+        "position": [
+          1061.4374999999397,
+          3.00272723998352,
+          96.84839999996106
+        ],
+        "historical_camera": {
+          "position": [
+            1061.4374999999397,
+            4.922727239983519,
+            89.44839999996105
+          ],
+          "quaternion": [
+            0,
+            0.9991135907841753,
+            0.04209551888683053,
+            0
+          ],
+          "fov": 58
+        },
+        "current_camera": {
+          "position": [
+            1061.4374999999397,
+            5.28272723998352,
+            87.64839999996106
+          ],
+          "quaternion": [
+            0,
+            0.9988430900968669,
+            0.04808826640400331,
+            0
+          ],
+          "fov": 58
+        },
+        "delta_camera_y": 0.36,
+        "delta_camera_z": -1.8,
+        "night": true
+      }
+    ]
+  },
+  "byte_identical_source": [
+    {
+      "path": "src/game/spline.ts",
+      "sha256": "d6c950548fa64afcb148644a61e1af7c74e90713dbd1ee0ae73b8517261b96f4"
+    },
+    {
+      "path": "src/world/goldenCameras.ts",
+      "sha256": "4b99301640db207b46552e78531b9e4145288bf1b7026e7458b9bf02846d591f"
+    },
+    {
+      "path": "src/rendering/QualityProfile.ts",
+      "sha256": "9da86b5461433767b9851625b5c7346c981f4901d6b67e3db9884c625c0af10e"
+    }
+  ],
+  "image_authority_changes": 0,
+  "freeze_granted": false,
+  "inference": "Different effective chase-camera geometry and different world geometry are established on matched spawn locations in the same dependency/browser environment. This falsifies identical effective setup despite equal camera labels; it does not apportion every original-golden pixel failure or authorize reverting accepted gameplay or refreshing PNGs.",
+  "limits": [
+    "Direct-engine replay uses instant camera and omits HUD; it is NOT the unchanged original golden protocol.",
+    "Old original source with its own asset bytes uses current locked dependencies. It is not reproduction of the original August runner environment.",
+    "Rendering and art quality remain unaccepted; current world geometry differs intentionally in prior history.",
+    "Pixel differences must still be investigated per-frame without suppression or automatic rebaselining."
+  ],
+  "camera_parameters": {
+    "baseline_source": "src/game/engine.ts",
+    "current_source": "src/game/engine/rendering-adapter.ts",
+    "baseline_follow": 7.4,
+    "current_follow": 9.2,
+    "baseline_height": 1.92,
+    "current_height": 2.28,
+    "fov": 58
+  },
+  "post_baseline_geometry_commit": {
+    "sha": "77863771bc697a9b50ae4c05b0e27f8c68e054e5",
+    "timestamp": "2026-08-26T13:26:06Z",
+    "message": "Kibbutz Galuyot spaghetti ramps + LaGuardia diagonals",
+    "source": "git log ancestry from the verified original commit to current source"
+  }
+}

@@ -1,5 +1,5 @@
 /**
- * Dev/preview (Vite) half of the platform PWA chrome: serves the ?install=1
+ * Dev/preview (Vite) half of RUSH-owned PWA integration: serves the ?install=1
  * tutorial and the per-app manifest, and injects missing PWA head tags into
  * app documents. The deployed-app half lives in server/middleware/grok-pwa.ts.
  */
@@ -8,13 +8,12 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   acceptsHtml,
-  createHeadInjector,
-  injectGrokPwaHead,
   isDocumentPath,
   isInstallQuery,
   renderInstallPageHtml,
   snapshotOgIdentity,
 } from "./grok-pwa-shared.mjs";
+import { createRushHeadInjector, injectRushHead } from "./rush-head.mjs";
 import {
   renderRushInstallPageHtml,
   renderRushWebManifest,
@@ -129,11 +128,7 @@ function wrapHtmlResponses(middlewares, cwd) {
 
     const originalWrite = res.write.bind(res);
     const originalEnd = res.end.bind(res);
-    const host = requestHost(req);
-    const injector = createHeadInjector({
-      host,
-      cwd,
-    });
+    const injector = createRushHeadInjector({ site: snapshotOgIdentity(cwd).site });
     let mode = null;
 
     const decideMode = () => {
@@ -192,10 +187,7 @@ export function grokPwaPlugin() {
       return `export const grokOgIdentity = ${JSON.stringify(snapshotOgIdentity(root))};`;
     },
     transformIndexHtml(html) {
-      return injectGrokPwaHead(html, {
-        host: process.env.VITE_PUBLIC_HOSTNAME ?? "",
-        cwd: root,
-      });
+      return injectRushHead(html, { site: snapshotOgIdentity(root).site });
     },
     configureServer(server) {
       serveGrokPwa(server.middlewares, root);

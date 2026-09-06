@@ -1,10 +1,10 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 20.6.0
+**Version:** 20.7.0
 **Checkpoint date:** 2026-09-06, Asia/Jerusalem
 **Repository:** talstilkol/rush-israel
 **Canonical main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Verified repair base:** 5f7be6290f84cce752b93946174fbf7b29f8ed73
+**Verified repair base:** 46d361365ccde29d528861051f9529c08ec725ab
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze — not accepted.
 
 ## Authority and reconciliation
@@ -14,26 +14,30 @@ No public distribution, history rewrite, force-push or automatic golden replacem
 Re-read live main, PR, reviews and exact-head artifacts before editing. Never restore
 an older local bundle over a newer published GitHub head.
 
-## r6.7 work
-Both capture commands protect canonical and selected reference directories, reject
-linked file targets and write outputs exclusively. `qa:ayalon` defaults to
-`artifacts/ayalon-capture`; override with `GOLDEN_OUTPUT`, never `GOLDEN_DIR`.
-Captures and steering checks are not comparisons or visual acceptance. Failure
-reports and browser cleanup apply to both commands. Image bytes and pixel thresholds
-remain unchanged. Three CI action identities are pinned and validated, with explicit
-provenance rather than trusting any syntactically valid hash. Seven potential remote
-font/host references still require qualification. Full closure remains false.
+## r6.8 work
+Actual Vite and Nitro serving now use the product-owned local PWA head. The shared
+platform module is unchanged and restricted to hash-reviewed named exports. All
+seven potential external expressions remain in the inventory: four dormant vendor
+head references qualify through that import boundary; three font references remain
+open. This is not complete external closure or a general JavaScript sandbox.
+
+Original/current direct-engine replay captured eight diagnostic frames and proved
+identical spawn points but different effective chase cameras and world geometry.
+It is not the original four-image golden protocol, a passed comparison or authority
+to revert accepted gameplay. Read RSH-036-GOLDEN-ATTRIBUTION-r6.8.json and
+RSH-036-RUNTIME-REPAIR-r6.8.md alongside the latest exact-head PR checkpoint.
 
 ## Next work
-1. Read RSH-036-RUNTIME-REPAIR-r6.7.md and the latest PR checkpoint together. Committed
-   preparation status is not a substitute for later exact-head CI results.
-2. Inspect the new normal-CI and actual legacy-capture results. Preserve the existing
-   20 game/resource cases and five readiness-fixture cases; do not add repeated runs
-   to the count of unique tests.
-3. Attribute each of the four original golden failures through source/camera/asset
-   provenance and controlled bisection. Use original 0.12 threshold, 8% limit and PNGs.
-4. Qualify the seven remaining external font/host references and runtime conditions;
-   an action pin is not full proof of the remote execution environment.
-5. Maintain complete generated local inventory and added/removed-file detection,
-   resource rollback, repeated day/night and visible Rothschild scene assertions.
-6. Only validated acceptance can grant a freeze and activate RSH-037.
+1. Reconcile the actual candidate CI, served-document/network checks, production
+   typecheck/build, safe Ayalon capture and separate unchanged golden comparison.
+2. Retain 20 game/resource browser cases plus two new product-head cases and five
+   separate readiness fixtures. Repeated executions are not new unique cases.
+3. Attribute remaining visual differences per frame with camera-only and world/
+   material controls. Keep original PNGs, 0.12 threshold, 8% limit and all evidence.
+   A future reference transition requires a separate explicit approval/provenance
+   gate, not automatic baseline replacement or weakening a failed comparison.
+4. Qualify the remaining three font references; do not silently replace typography
+   or distribute unverified fonts. Preserve the dormant-vendor import boundary.
+5. Maintain generated inventory and addition/removal detection, resource rollback,
+   repeated day/night and visible-scene assertions, and both safe capture writers.
+6. Only validated acceptance may grant a freeze and activate RSH-037.
