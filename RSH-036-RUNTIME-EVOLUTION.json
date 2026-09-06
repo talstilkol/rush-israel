@@ -395,7 +395,7 @@
     },
     "scripts/runtime-recovery-smoke.mjs": {
       "previous_sha256": null,
-      "current_sha256": "db53b90a1bfa6f9b5ca8446a5f9f9c94ad2da3a7ae1989b1d08a3e1c65e2f017",
+      "current_sha256": "499de5142732122fab7d533626e38168cef4c0568dd2306e164112f7f1e14b3b",
       "reverse_edits": []
     },
     "src/game/road-assets.ts": {
@@ -890,7 +890,7 @@
     },
     "scripts/golden-capture.mjs": {
       "previous_sha256": null,
-      "current_sha256": "d78c3e1115d509bac32d8bd405f5270db4bc0c73d2cf01937d65e4fdf07cea03",
+      "current_sha256": "eed90669c31b2d66be86320367923cc75ca494c79d107049c22b72f6dc14d7db",
       "reverse_edits": []
     },
     "scripts/golden-capture-browser.mjs": {
@@ -1034,6 +1034,16 @@
     "scripts/rush-head-browser.mjs": {
       "previous_sha256": null,
       "current_sha256": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
+      "reverse_edits": []
+    },
+    "scripts/font-evidence.mjs": {
+      "previous_sha256": null,
+      "current_sha256": "bbd63630a4b765b98fe3f0f3f87bc906821b96b60f9dba87627931bbf516a1f2",
+      "reverse_edits": []
+    },
+    "scripts/font-dependency-browser.mjs": {
+      "previous_sha256": null,
+      "current_sha256": "d2cb78cb1f234fb32250717c20758db7aaba8f761884b1f9778143f071275baf",
       "reverse_edits": []
     }
   }

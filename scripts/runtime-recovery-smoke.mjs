@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { fromRoot } from './project-root.mjs';
+import { verifyFontDependencies } from './font-dependency-browser.mjs';
 import { verifyProductHead } from './rush-head-browser.mjs';
 import { verifyAssetBatches } from './asset-batches-browser.mjs';
 import { verifyResourceRecovery } from './resource-recovery-browser.mjs';
@@ -54,6 +55,7 @@ async function raceReady(page) {
 }
 try {
   results.push(...await verifyProductHead(browser, url));
+  results.push(...await verifyFontDependencies(browser, url));
   results.push(...await verifyAssetBatches(browser, url));
   results.push(...await verifyResourceRecovery(browser, url));
   results.push(...await verifyWaterClock(browser, url));

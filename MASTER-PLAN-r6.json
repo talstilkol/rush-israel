@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.8",
+  "revision": "r6.9",
   "date": "2026-09-06",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "46d361365ccde29d528861051f9529c08ec725ab",
+  "source_pr_head": "751e1ecabe5e93dcd14215db6fa1bdeac913ed1f",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
@@ -825,7 +825,8 @@
       "evidence": "The 46-path explicit inventory includes the corrected Rothschild builder; it remains partial, not generated complete dependency closure. Freeze remains false.",
       "r6_6_update": "Whole local input inventory and resolved module graph implemented; remote resources and mutable actions require qualification; no freeze grant.",
       "r6_7_update": "CI uses verified immutable action identities; arbitrary SHAs remain unqualified. Legacy capture is included in the module graph. Seven font/host qualifications remain open.",
-      "r6_8_update": "All seven expressions retained. Four dormant vendor-head expressions qualified with fixed shared bytes and allowed product imports; three active font references unqualified. Complete closure false."
+      "r6_8_update": "All seven expressions retained. Four dormant vendor-head expressions qualified with fixed shared bytes and allowed product imports; three active font references unqualified. Complete closure false.",
+      "r6_9_update": "Separate FontFaceSet settlement, loaded face inventory, actual per-glyph custom font use, denied-font usability and immutable dependency qualification. No font data vendored or redistributed. Controlled source/camera factorial diagnostics do not replace original golden acceptance."
     },
     {
       "id": "AUD-05",
@@ -850,7 +851,8 @@
       "bundle": "CR-05",
       "evidence": "Summary now separates trigger SHA from actual checkout SHA/tree, rejects mismatched/dirty source identity and parses complete TAP totals. Ten local identity regressions pass; exact-head CI still required.",
       "r6_6_update": "Golden capture waits for hydrated UI and ticking correct engine, keeps baseline bytes and reports capture failures separately from comparison failures.",
-      "r6_7_update": "Both capture commands protect canonical baselines and linked output targets. Legacy capture has finally cleanup and explicit zero-comparison diagnostics; exact-head browser validation required."
+      "r6_7_update": "Both capture commands protect canonical baselines and linked output targets. Legacy capture has finally cleanup and explicit zero-comparison diagnostics; exact-head browser validation required.",
+      "r6_9_update": "Separate FontFaceSet settlement, loaded face inventory, actual per-glyph custom font use, denied-font usability and immutable dependency qualification. No font data vendored or redistributed. Controlled source/camera factorial diagnostics do not replace original golden acceptance."
     },
     {
       "id": "AUD-06",
@@ -917,7 +919,8 @@
       "acceptance": "Do not cache non-success responses; test first/return offline visits, unavailable chunks, schema-safe upgrades, multiple tabs, rollback and stale-cache cleanup.",
       "status": "open",
       "bundle": "CR-06",
-      "r6_8_update": "Actual Vite/Nitro product head isolated from vendor script and host metadata; offline/error-cache/update acceptance remains open."
+      "r6_8_update": "Actual Vite/Nitro product head isolated from vendor script and host metadata; offline/error-cache/update acceptance remains open.",
+      "r6_9_update": "Separate FontFaceSet settlement, loaded face inventory, actual per-glyph custom font use, denied-font usability and immutable dependency qualification. No font data vendored or redistributed. Controlled source/camera factorial diagnostics do not replace original golden acceptance."
     },
     {
       "id": "AUD-10",
@@ -1443,7 +1446,7 @@
     {
       "id": "CR-03",
       "title": "Complete Ayalon dependency closure",
-      "state": "local_inventory_action_pins_and_product_boundary_implemented_three_font_qualifications_open",
+      "state": "local_inventory_and_boundary_retained_font_observation_and_failure_testing_added_remote_bytes_unqualified",
       "audit_items": [
         "AUD-04"
       ],
@@ -1494,22 +1497,33 @@
     "Verified r6.5 head 8c6a3be7 passed 688 unit and 20 browser cases in run33995840557; prior chat-only 716-test claim is not the live baseline.",
     "Original PNGs, pixel threshold0.12, failure limit8%, camera recipe and post-pose waits are preserved. Reliable selection does not prove pixel determinism.",
     "Generated local closure seals the declared local runtime/build/test/public/golden surface. Three verified Actions are pinned; all seven external expressions remain recorded, with four dormant vendor-head expressions qualified by the exact product import boundary and three font references unqualified. Overall closure remains false.",
-    "No physical-device, licence, public release or Ayalon freeze approval is claimed."
+    "No physical-device, licence, public release or Ayalon freeze approval is claimed.",
+    "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.8",
-    "base_head": "46d361365ccde29d528861051f9529c08ec725ab",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.8.md",
+    "revision": "r6.9",
+    "base_head": "751e1ecabe5e93dcd14215db6fa1bdeac913ed1f",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.9.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "run_id": 34004500171,
-      "unit_passed": 770,
-      "browser_passed": 20,
+      "run_id": 34007005223,
+      "unit_passed": 810,
+      "browser_passed": 22,
       "readiness_fixture_passed": 5
     },
     "normal_ci": "pending_on_new_candidate",
-    "golden": "r6.7_four_failed_comparisons_retained_new_candidate_requires_validation",
-    "dependency_closure": "seven_references_retained_four_dormant_vendor_head_expressions_qualified_three_font_references_unqualified",
-    "visual_attribution": "RSH-036-GOLDEN-ATTRIBUTION-r6.8.json"
+    "golden": "r6.8_four_failed_comparisons_retained_new_candidate_requires_validation",
+    "dependency_closure": "three_remote_font_references_remain_mutable_unqualified; four_dormant_vendor_expressions_retain_boundary_qualification",
+    "visual_attribution": "RSH-036-GOLDEN-FACTORIAL-r6.9.json",
+    "font_evidence": "RSH-036-FONT-EVIDENCE-r6.9.json"
+  },
+  "r6_9_diagnostic_checkpoint": {
+    "run_id": 34011119090,
+    "artifact_id": 9982561420,
+    "captures": 24,
+    "byte_identical_repeat_controls": 8,
+    "original_golden_comparisons": 0,
+    "acceptance": false,
+    "remaining": "Isolate world/material components; camera-only restoration does not remove source/assets differences."
   }
 }

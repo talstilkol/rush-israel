@@ -1,43 +1,45 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 20.7.0
+**Version:** 20.8.0
 **Checkpoint date:** 2026-09-06, Asia/Jerusalem
 **Repository:** talstilkol/rush-israel
 **Canonical main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Verified repair base:** 46d361365ccde29d528861051f9529c08ec725ab
-**Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze — not accepted.
+**Verified repair base:** 751e1ecabe5e93dcd14215db6fa1bdeac913ed1f
+**Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze — unaccepted.
 
-## Authority and reconciliation
-Standing owner audit/repair/master-plan improvement authority applies. One active
-programme unit; 35/67 accepted, 32 remaining. Release gates 0/13, unverified assets 66.
-No public distribution, history rewrite, force-push or automatic golden replacement.
-Re-read live main, PR, reviews and exact-head artifacts before editing. Never restore
-an older local bundle over a newer published GitHub head.
+## Authority and continuity
+Standing owner audit/repair/plan-improvement authority applies. Re-read live main,
+PR, source artifacts, CI and reviews before changes. 35/67 accepted, 32 remaining.
+No release, freeze, RSH-037 activation, force-push, historical rewriting, public
+redistribution, automatic rebaselining or relaxed visual thresholds.
 
-## r6.8 work
-Actual Vite and Nitro serving now use the product-owned local PWA head. The shared
-platform module is unchanged and restricted to hash-reviewed named exports. All
-seven potential external expressions remain in the inventory: four dormant vendor
-head references qualify through that import boundary; three font references remain
-open. This is not complete external closure or a general JavaScript sandbox.
+## r6.9 changes
+Font capture evidence now distinguishes a settled FontFaceSet from loaded faces.
+Real-browser font probes measure per-glyph platform usage and exercise stylesheet
+and font-binary denial against real Ayalon startup. Only URLs, counts and hashes
+are recorded; no font binaries are retained or distributed. Successful fallback
+proves usability, not unchanged typography. All three remote font references
+remain mutable/unqualified; prior dormant vendor import protection remains active.
 
-Original/current direct-engine replay captured eight diagnostic frames and proved
-identical spawn points but different effective chase cameras and world geometry.
-It is not the original four-image golden protocol, a passed comparison or authority
-to revert accepted gameplay. Read RSH-036-GOLDEN-ATTRIBUTION-r6.8.json and
-RSH-036-RUNTIME-REPAIR-r6.8.md alongside the latest exact-head PR checkpoint.
+The controlled 2x2 source/assets x measured-camera diagnostic isolates pairwise
+camera and combined scene-source effects at four fixed poses, with same-camera
+restoration checks. Read RSH-036-GOLDEN-FACTORIAL-r6.9.json and the latest PR
+checkpoint for actual completion and repeatability, never infer them from code.
+Direct renderer/no-HUD diagnostics do not reconstruct the original screenshot
+recipe. Overlapping pixel counts must not be summed into an attribution percentage.
 
-## Next work
-1. Reconcile the actual candidate CI, served-document/network checks, production
-   typecheck/build, safe Ayalon capture and separate unchanged golden comparison.
-2. Retain 20 game/resource browser cases plus two new product-head cases and five
-   separate readiness fixtures. Repeated executions are not new unique cases.
-3. Attribute remaining visual differences per frame with camera-only and world/
-   material controls. Keep original PNGs, 0.12 threshold, 8% limit and all evidence.
-   A future reference transition requires a separate explicit approval/provenance
-   gate, not automatic baseline replacement or weakening a failed comparison.
-4. Qualify the remaining three font references; do not silently replace typography
-   or distribute unverified fonts. Preserve the dormant-vendor import boundary.
-5. Maintain generated inventory and addition/removal detection, resource rollback,
-   repeated day/night and visible-scene assertions, and both safe capture writers.
-6. Only validated acceptance may grant a freeze and activate RSH-037.
+## Next acceptance work
+1. Reconcile exact published-head normal CI and original golden comparison.
+2. Read camera-factor and font evidence with its failure/qualification limits.
+3. Continue controlled world/material/lighting and original-protocol attribution.
+   Do not restore obsolete gameplay merely to pass historical screenshots.
+4. Resolve mutable font dependency policy with documented, verified provenance;
+   do not silently replace typography or distribute font files.
+5. Preserve safe capture outputs, resource rollback, day/night, scene visibility,
+   served product-head checks and generated dependency inventory.
+6. Original PNGs, threshold 0.12 and 8% limit stay unchanged. Any reference
+   transition requires its own explicit owner approval and provenance record.
+7. Only validated acceptance may grant the freeze and activate RSH-037.
+
+All 13 release gates remain open; 66 asset licences remain unverified. No physical
+GPU/device qualification or complete every-line manual review is claimed.
