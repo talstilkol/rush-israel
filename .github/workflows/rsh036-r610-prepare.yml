@@ -1,0 +1,114 @@
+name: rsh036-r610-prepare
+on:
+  push:
+    branches: [agent/rsh-036-r610-validation-20260906]
+permissions:
+  contents: write
+jobs:
+  validate-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      CI: 'true'
+      NODE_OPTIONS: --experimental-strip-types
+      PLAYWRIGHT_BROWSERS_PATH: '0'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Apply exact reviewed candidate without temporary files
+        run: |
+          python - <<'PY'
+          import lzma,hashlib,os
+          from pathlib import Path
+          b=lzma.decompress(Path('.r610-patch.xz').read_bytes())
+          assert hashlib.sha256(b).hexdigest()=='a68201f6b06e1ee42daefc66641c6796abdb8f278a07af38aa35d2107eae4a56'
+          Path(os.environ['RUNNER_TEMP'],'repair.patch').write_bytes(b)
+          PY
+          git rm .r610-patch.xz .github/workflows/rsh036-r610-prepare.yml
+          git apply --index "$RUNNER_TEMP/repair.patch"
+          test "$(git write-tree)" = 6ce23b12528a3ac70c6465805855089ae8645cf9
+          mkdir -p artifacts
+          git write-tree > artifacts/candidate-tree.txt
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm install --global npm@10.9.2
+      - run: npm run toolchain:verify
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Locked parser inventory and exact candidate identity
+        run: |
+          node scripts/dependency-closure.mjs --write
+          git add AYALON-DEPENDENCY-CLOSURE.json
+          test "$(git write-tree)" = 6ce23b12528a3ac70c6465805855089ae8645cf9
+          node scripts/dependency-closure.mjs
+      - name: Governance and complete unit suite
+        run: |
+          set -o pipefail
+          node scripts/check-governance-contract.mjs
+          npm test 2>&1 | tee artifacts/unit-tests.tap
+      - name: Lint without suppression
+        run: |
+          set -o pipefail
+          npm run lint 2>&1 | tee artifacts/lint.log
+      - name: Chromium readiness fixtures
+        run: |
+          set -o pipefail
+          node scripts/golden-capture-browser.mjs 2>&1 | tee artifacts/readiness.log
+      - name: Full QA and locked typecheck
+        run: |
+          set -o pipefail
+          npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
+      - name: Actual WebGL road uploads and all retained browser regressions
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node scripts/runtime-recovery-smoke.mjs 2>&1 | tee artifacts/runtime-recovery.log
+      - name: Safe Ayalon capture and steering, no reference updates
+        run: |
+          set -o pipefail
+          npm run qa:ayalon 2>&1 | tee artifacts/ayalon-capture.log
+      - name: Development build
+        run: |
+          set -o pipefail
+          npm run build:dev 2>&1 | tee artifacts/build-dev.log
+      - name: Store validated unreferenced Git objects only; never commits or refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import os,json,base64,hashlib,subprocess,urllib.request
+          from pathlib import Path
+          base='6d2f814bf057a22a95063c81845798829f0ca22a'
+          tree='6ce23b12528a3ac70c6465805855089ae8645cf9'
+          assert subprocess.check_output(['git','write-tree'],text=True).strip()==tree
+          paths=subprocess.check_output(['git','diff','--cached','--name-only',base,'-z']).decode().strip('\0').split('\0')
+          assert len(paths)==17 and all(not p.startswith('.github/') for p in paths)
+          def post(endpoint,data):
+            req=urllib.request.Request('https://api.github.com/repos/talstilkol/rush-israel/git/'+endpoint,data=json.dumps(data).encode(),headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'},method='POST')
+            with urllib.request.urlopen(req,timeout=40) as response:return json.load(response)
+          entries=[]
+          for p in paths:
+            data=Path(p).read_bytes(); expected=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+            actual=post('blobs',{'content':base64.b64encode(data).decode(),'encoding':'base64'})['sha']
+            assert actual==expected
+            entries.append({'path':p,'mode':'100644','type':'blob','sha':actual})
+          result=post('trees',{'base_tree':'41946e084b0a6512f7bf4d83ce7032cc37be9e65','tree':entries})
+          assert result['sha']==tree
+          Path('artifacts/object-store.json').write_text(json.dumps({'tree':tree,'entries':entries,'ref_mutations':0,'commits':0,'merges':0},indent=2))
+          print('Verified stored tree',tree,'files',len(entries),'ref mutations 0')
+          PY
+      - name: Original golden comparison, unchanged PNGs and thresholds
+        run: |
+          set -o pipefail
+          npm run qa:golden 2>&1 | tee artifacts/golden.log
+      - name: Retain actual diagnostics including failed golden comparisons
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: rsh036-r610-preparation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/**
+          if-no-files-found: error
+          retention-days: 14
