@@ -17,7 +17,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/pixel-golden.mjs": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
   "scripts/ayalon-hash.mjs": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
   "src/game/tracks/ayalon.ts": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
-  "src/game/world-builders/tracks/ayalon.ts": "866afe889a98457a868d1f9e61ca8cb3a803b821bd089ff9d4ab13dae8da2c3c",
+  "src/game/world-builders/tracks/ayalon.ts": "a4d192d406d9eef08d05edd4340fb03ac6b46372ddea35ab13dd8078cc79048d",
   "src/game/world.ts": "f0154d23276f52f68402d1b3758612f596946f4684974d9c4a4fd70276eac5ba",
   "src/game/ayalon-lock/geometry.ts": "b5be3e5838fb99449fb7d5a5684177e8626a7a283c54275461fd45faf42a94f7",
   "src/game/ayalon-lock/index.ts": "878d7834dfac9c7756b0929eea515f03ff23b2f8500a63fd49f1fb369c4e3ae6",
@@ -79,12 +79,14 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "server/middleware/grok-pwa.ts": "184313168a63c66b4b0d809fa55c656b8ca4436775f6c0502bc9e9cfdfaf0e9f",
   "scripts/product-head-boundary.mjs": "c88328d144b77d1ea54aaab62d0e54f616c404d72097f1e6f232057185c5f3fe",
   "scripts/rush-head-browser.mjs": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
-  "scripts/runtime-recovery-smoke.mjs": "c8b448704b804b2f7d2d17e15b3b162bb718e97da477d632637f11fe208e00ed",
+  "scripts/runtime-recovery-smoke.mjs": "99700ab2c852ef745f1816401f98e1369fff982433c2bd049421e908cba61221",
   "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d",
   "scripts/font-evidence.mjs": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35",
   "scripts/font-dependency-browser.mjs": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673",
   "src/game/roadShader.ts": "057bccd519614b3ee23a536c1c12f6524c1ffaf72b858642e94e42eda70441aa",
-  "scripts/road-uniform-browser.mjs": "aed1f57320633920ef28c803faef0c09802fbcd26fbf6c25d85ac7fbf9919c9d"
+  "scripts/road-uniform-browser.mjs": "aed1f57320633920ef28c803faef0c09802fbcd26fbf6c25d85ac7fbf9919c9d",
+  "src/game/ramp-surface.ts": "4072158c03c6728f54f7efdd60fa5e43e831decda461975a528c1e01e1f512ed",
+  "scripts/ramp-surface-browser.mjs": "1e495b420782dff63ab7c3b74f8a21f23378c382cf821c6ec7008df8d6bcd849"
 } as const;
 
 export const FREEZE_APPROVAL = {

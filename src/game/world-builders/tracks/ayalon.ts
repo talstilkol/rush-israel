@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { fitRampSlab } from "../../ramp-surface";
 import { nearestIndex } from "../../spline";
 import { tlv } from "../../tracks";
 import { getLaneArrow } from "../../arrow-assets";
@@ -247,11 +248,13 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
         en
       });
       const yaw = Math.atan2(sx, sz);
-      const mesh = new THREE.Mesh(new THREE.BoxGeometry(half * 2, 0.95, len), rampAsphalt);
+      const mesh = new THREE.Mesh(
+        fitRampSlab(new THREE.BoxGeometry(half * 2, 0.95, len), len, y12 - y0, 0.95),
+        rampAsphalt,
+      );
       mesh.position.set(x, (y0 + y12) * 0.5, z);
       mesh.rotation.order = "YXZ";
       mesh.rotation.y = yaw;
-      mesh.rotation.x = -Math.atan2(y12 - y0, len);
       mesh.receiveShadow = true;
       add(mesh);
       for (let i = 0; i < 4; i++) {
@@ -259,7 +262,9 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
         const px = x + sx * t * len;
         const pz = z + sz * t * len;
         const py = (y0 + y12) * 0.5 + (y12 - y0) * t;
-        const h = Math.max(1.4, py);
+        // A support must end at the slab underside, never protrude through a low ramp.
+        const h = py - 0.95;
+        if (h <= 0) continue;
         const pier = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.72, h, 8), conc);
         pier.position.set(px, h * 0.5, pz);
         pier.castShadow = true;
@@ -268,15 +273,17 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
       const rx = sz;
       const rz = -sx;
       for (const side of [-1, 1]) {
-        const line = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.08, len * 0.94), white);
+        const line = new THREE.Mesh(
+          fitRampSlab(new THREE.BoxGeometry(0.18, 0.08, len * 0.94), len, y12 - y0, 0.08, 0.08),
+          white,
+        );
         line.position.set(
           x + rx * (half - 0.22) * side,
-          (y0 + y12) * 0.5 + 0.52,
+          (y0 + y12) * 0.5,
           z + rz * (half - 0.22) * side,
         );
         line.rotation.order = "YXZ";
         line.rotation.y = yaw;
-        line.rotation.x = -Math.atan2(y12 - y0, len);
         add(line);
       }
     };

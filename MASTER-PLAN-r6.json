@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.10",
+  "revision": "r6.11",
   "date": "2026-09-06",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "6d2f814bf057a22a95063c81845798829f0ca22a",
+  "source_pr_head": "c3b87e0e598357f4a49168655a6e30cbbcf71412",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 19,
+    "audit_items": 20,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -348,7 +348,8 @@
         "AUD-15",
         "AUD-16",
         "AUD-17",
-        "AUD-19"
+        "AUD-19",
+        "AUD-20"
       ]
     },
     {
@@ -1092,9 +1093,22 @@
       "legacy_findings": [],
       "title": "Road weather uniform is lost before first compilation and diverges between cached programs",
       "acceptance": "One material-owned wetness cell exists before compilation; all cached WebGL programs reuse it, including CSM rebind. Verify precompile look selection, actual GL uniform uploads, cached-program return and real Ayalon weather transitions. Preserve original baseline images and visual thresholds.",
-      "status": "repair_candidate_pending_exact_head_browser_validation",
+      "status": "runtime_verified_original_golden_still_failed",
       "bundle": "CR-04",
-      "evidence": "12 identical new unit cases: old source 3 passed / 9 failed; repaired source 12 passed. Browser GL evidence pending."
+      "evidence": "Exact-head run34015573599 passed 854 unit cases and 27 runtime browser cases, including real GL uploads and 5 Ayalon weather states. Original golden remained0/4."
+    },
+    {
+      "id": "AUD-20",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Rendered ramp decks, edge strips and support columns do not conform to the physics height/footprint",
+      "acceptance": "Match all50 unchanged ramp recipes: top vertices at the physical plane, unchanged horizontal footprint, 750 downward ray probes, all100 edge strips on the deck and no support protruding through a drivable surface. Preserve ramp recipe/count, collision/checkpoint/physics bytes and original images/thresholds; rerun original golden.",
+      "status": "repair_candidate_pending_exact_head_geometry_validation",
+      "bundle": "CR-04",
+      "evidence": "Source analysis: rotated BoxGeometry projects len*cos(pitch), while physics probes full len and top heights y0/y1. Fresh geometry is sheared to the same horizontal footprint; exact browser measurement pending."
     }
   ],
   "legacy_findings": [
@@ -1476,7 +1490,8 @@
         "AUD-08",
         "AUD-17",
         "AUD-18",
-        "AUD-19"
+        "AUD-19",
+        "AUD-20"
       ]
     },
     {
@@ -1508,7 +1523,7 @@
     "public_distribution_authorised": false
   },
   "limitations": [
-    "All 67 original units, 19 audit IDs and 42 historical findings retained. No new unit acceptance.",
+    "All67 original units,20 audit IDs and42 historical findings retained; no new accepted unit.",
     "Verified r6.5 head 8c6a3be7 passed 688 unit and 20 browser cases in run33995840557; prior chat-only 716-test claim is not the live baseline.",
     "Original PNGs, pixel threshold0.12, failure limit8%, camera recipe and post-pose waits are preserved. Reliable selection does not prove pixel determinism.",
     "Generated local closure seals the declared local runtime/build/test/public/golden surface. Three verified Actions are pinned; all seven external expressions remain recorded, with four dormant vendor-head expressions qualified by the exact product import boundary and three font references unqualified. Overall closure remains false.",
@@ -1516,21 +1531,20 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.10",
-    "base_head": "6d2f814bf057a22a95063c81845798829f0ca22a",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.10.md",
+    "revision": "r6.11",
+    "base_head": "c3b87e0e598357f4a49168655a6e30cbbcf71412",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.11.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "run_id": 34012562807,
-      "unit_passed": 839,
-      "browser_passed": 25,
+      "run_id": 34015573599,
+      "unit_passed": 854,
+      "browser_passed": 27,
       "readiness_fixture_passed": 5
     },
     "normal_ci": "pending_on_new_candidate",
-    "golden": "r6.9 original 0/4; new shader candidate must rerun original comparisons",
-    "dependency_closure": "three mutable font references remain unqualified; no font distribution or typography change",
-    "material_repair": "AUD-19 material-owned wetness and preserved upstream hook context",
-    "visual_attribution": "neutral-illumination and opaque-normal controls are diagnostic only; see latest PR evidence"
+    "golden": "r6.10 original0/4; changed geometry must rerun all original comparisons",
+    "dependency_closure": "three mutable font references unqualified; no font distribution or typography change",
+    "geometry_repair": "AUD-20 conform rendered decks/markings/supports to unchanged physics recipes; no gameplay rollback"
   },
   "r6_9_diagnostic_checkpoint": {
     "run_id": 34011119090,
