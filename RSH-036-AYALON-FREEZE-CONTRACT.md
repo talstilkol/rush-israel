@@ -1,6 +1,6 @@
 # RSH-036 — Ayalon freeze candidate: acceptance blocked
 
-**Revision:** r6.6 / 2026-09-06  
+**Revision:** r6.7 / 2026-09-06  
 **Implementation base:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`  
 **Verified repair base:** `ba89268646bf8890f8074642049b23369eda582d`  
 **Branch:** `agent/rsh-036-ayalon-freeze`  
@@ -8,7 +8,7 @@
 
 ## Source inventory versus acceptance
 
-The current explicit inventory contains 58 hashed paths. It is a **partial inventory**, not proof of full static/dynamic/runtime-asset dependency closure. CR-03 remains open. The unaccepted prior 36-path inventory and premature true grant are preserved in Git history at the repair base; they are not accepted authority.
+The current explicit inventory contains 62 hashed paths. It is a **partial inventory**, not proof of full static/dynamic/runtime-asset dependency closure. CR-03 remains open. The unaccepted prior 36-path inventory and premature true grant are preserved in Git history at the repair base; they are not accepted authority.
 
 This revision repairs denied-storage recovery, cancellable race startup, an unmounted minimap and open-route geometry. `RSH-036-RUNTIME-EVOLUTION.json` contains exact current hashes and reverse deltas to the independently verified base. Historical checkers use those deltas solely to verify earlier byte identities. Separate tests require the actual new production bytes and exercise their behavior.
 
@@ -36,3 +36,9 @@ qualifications; full dependency closure and freeze acceptance are still blocked.
 Nonvisual hydration markers and the capture harness may evolve under the owner
 repair grant. All original image bytes, camera calls and comparison thresholds
 remain authoritative; existing post-pose waits remain unchanged.
+
+R6.7 protects both capture entrypoints against canonical/reference directory overlap,
+linked output files and automatic replacement. Legacy captures are diagnostic only,
+write to artifacts/ayalon-capture by default and preserve zero-comparison semantics.
+Three Actions refs are pinned to verified official commit identities; seven potential
+font/host references remain unqualified. Pinning is not an exhaustive third-party audit.

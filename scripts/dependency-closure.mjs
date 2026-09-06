@@ -5,6 +5,7 @@ import { builtinModules } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
+import { inspectActionUses } from './ci-action-pins.mjs';
 import { projectRoot } from './project-root.mjs';
 
 export const CLOSURE_ROOTS = ['src', 'server', 'scripts', 'public', 'golden-baseline', '.github/workflows'];
@@ -46,11 +47,11 @@ export function buildDependencyClosure(root = projectRoot) {
   try { pkg = JSON.parse(readFileSync(path.join(root, 'package.json'), 'utf8')); }
   catch (error) { errors.push(`invalid package metadata: ${error.message}`); }
   const declared = { ...pkg.dependencies, ...pkg.devDependencies };
-  const imports = [], externalResources = [], dynamicAssetExpressions = [];
+  const imports = [], externalResources = [], dynamicAssetExpressions = [], actions = [];
   const analysed = new Set(), pending = inventory.files.filter(name => /^(src|server)\//.test(name) && codePattern.test(name));
   for (const config of inventory.files.filter(name => configPattern.test(name) && codePattern.test(name))) pending.push(config);
   // Follow real capture/build dependencies too, not test-fixture import expressions.
-  pending.push('scripts/pixel-golden.mjs', 'scripts/run-with-server.mjs');
+  pending.push('scripts/pixel-golden.mjs', 'scripts/run-with-server.mjs', 'scripts/capture-golden.mjs');
   const dependency = (from, specifier, kind, typeOnly = false) => {
     const row = { from, specifier, kind, typeOnly };
     if (builtins.has(specifier)) { row.target = specifier; row.resolution = 'node_builtin'; }
@@ -108,7 +109,7 @@ export function buildDependencyClosure(root = projectRoot) {
       } else if (ts.isStringLiteralLike(node)) {
         for (const match of node.text.matchAll(/https?:\/\/[^\s"'<>`)]+/g)) {
           const resource = match[0];
-          const isHarnessOrigin = ['scripts/pixel-golden.mjs', 'scripts/run-with-server.mjs'].includes(from)
+          const isHarnessOrigin = ['scripts/pixel-golden.mjs', 'scripts/run-with-server.mjs', 'scripts/capture-golden.mjs'].includes(from)
             && /^http:\/\/127\.0\.0\.1:8080\//.test(resource);
           if (!isHarnessOrigin) externalResources.push({ from, resource, kind: 'potential_remote_reference', qualification: 'usage_and_bytes_review_required' });
         }
@@ -125,9 +126,8 @@ export function buildDependencyClosure(root = projectRoot) {
     }
     if (name.startsWith('.github/workflows/') && /\.ya?ml$/.test(name)) {
       const text = readFileSync(path.join(root, name), 'utf8');
-      for (const match of text.matchAll(/\buses:\s*([^\s#]+)@([^\s#]+)/g)) {
-        if (!/^[0-9a-f]{40}$/.test(match[2])) externalResources.push({ from: name, resource: `${match[1]}@${match[2]}`, kind: 'action_tag', qualification: 'immutable_commit_required' });
-      }
+      const result = inspectActionUses(text, name);
+      actions.push(...result.actions); externalResources.push(...result.unresolved);
     }
     if (name.startsWith('public/') && /\.(glb|gltf)$/.test(name)) {
       try {
@@ -154,7 +154,7 @@ export function buildDependencyClosure(root = projectRoot) {
   const unique = rows => ordered([...new Map(rows.map(row => [JSON.stringify(row), row])).values()]);
   const result = { schema_version: 1, unit: 'RSH-036', strategy: 'conservative_full_local_surface_not_minimal_reachability',
     roots: [...CLOSURE_ROOTS], root_files: [...ROOT_FILES], root_config_pattern: configPattern.source,
-    files, imports: unique(imports), dynamic_asset_expressions: unique(dynamicAssetExpressions), external_resources: unique(externalResources),
+    files, imports: unique(imports), actions: unique(actions), dynamic_asset_expressions: unique(dynamicAssetExpressions), external_resources: unique(externalResources),
     errors: [...new Set(errors)].sort(), local_inventory_complete: errors.length === 0,
     complete_dependency_closure: errors.length === 0 && externalResources.length === 0, freeze_granted: false,
     limits: ['All local files in the declared roots are sealed, including currently unused dynamic targets and all public asset bytes.',

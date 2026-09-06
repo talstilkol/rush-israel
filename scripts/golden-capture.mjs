@@ -1,22 +1,6 @@
 /** Readiness orchestration only: never changes the camera recipe or image authority. */
 import assert from 'node:assert/strict';
-import { existsSync, realpathSync } from 'node:fs';
-import path from 'node:path';
-
-export function assertGoldenDirectories(baseline, output) {
-  const canonical = value => {
-    let current = path.resolve(value);
-    const suffix = [];
-    while (!existsSync(current)) { suffix.unshift(path.basename(current)); const parent = path.dirname(current);
-      if (parent === current) throw new Error('unresolvable golden path'); current = parent; }
-    return path.join(realpathSync(current), ...suffix);
-  };
-  const base = canonical(baseline), target = canonical(output);
-  const within = (parent, child) => { const rel = path.relative(parent, child);
-    return rel === '' || (!rel.startsWith(`..${path.sep}`) && rel !== '..' && !path.isAbsolute(rel)); };
-  assert.ok(!within(base, target) && !within(target, base), 'golden output must not overlap the immutable baseline directory');
-  return { baseline: base, output: target };
-}
+export { assertGoldenDirectories } from './golden-output.mjs';
 
 export function validateGoldenSnapshot(snapshot) {
   assert.equal(snapshot?.track, 'ayalon', 'golden capture must use the actual Ayalon engine');

@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.6",
+  "revision": "r6.7",
   "date": "2026-09-06",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "8c6a3be70fc22cbe35dc4a4e40fa14b0ef83c85f",
+  "source_pr_head": "5f7be6290f84cce752b93946174fbf7b29f8ed73",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
@@ -823,7 +823,8 @@
       "status": "open",
       "bundle": "CR-03",
       "evidence": "The 46-path explicit inventory includes the corrected Rothschild builder; it remains partial, not generated complete dependency closure. Freeze remains false.",
-      "r6_6_update": "Whole local input inventory and resolved module graph implemented; remote resources and mutable actions require qualification; no freeze grant."
+      "r6_6_update": "Whole local input inventory and resolved module graph implemented; remote resources and mutable actions require qualification; no freeze grant.",
+      "r6_7_update": "CI uses verified immutable action identities; arbitrary SHAs remain unqualified. Legacy capture is included in the module graph. Seven font/host qualifications remain open."
     },
     {
       "id": "AUD-05",
@@ -847,7 +848,8 @@
       "status": "partially_repaired",
       "bundle": "CR-05",
       "evidence": "Summary now separates trigger SHA from actual checkout SHA/tree, rejects mismatched/dirty source identity and parses complete TAP totals. Ten local identity regressions pass; exact-head CI still required.",
-      "r6_6_update": "Golden capture waits for hydrated UI and ticking correct engine, keeps baseline bytes and reports capture failures separately from comparison failures."
+      "r6_6_update": "Golden capture waits for hydrated UI and ticking correct engine, keeps baseline bytes and reports capture failures separately from comparison failures.",
+      "r6_7_update": "Both capture commands protect canonical baselines and linked output targets. Legacy capture has finally cleanup and explicit zero-comparison diagnostics; exact-head browser validation required."
     },
     {
       "id": "AUD-06",
@@ -995,7 +997,8 @@
       "acceptance": "Preserve canonical eight MVP IDs and 48 deferred tracks; each added V1 track gets geometry/driving and art/golden/freeze acceptance after Ayalon.",
       "status": "open",
       "bundle": "CR-06",
-      "evidence": "Run33992134755 identified exactly one live overflow: Rothschild canopy count1152 / matrix capacity960. Temporarily capping count changed black pixels49/49 to6/49; restoring1152 restored49/49 black. Product fix increases capacity to1536, retaining all96 trees and1152 canopy instances. Actual fixed-scene pixel/capacity gates are pending; this is not full track/golden acceptance."
+      "evidence": "Run33992134755 identified exactly one live overflow: Rothschild canopy count1152 / matrix capacity960. Temporarily capping count changed black pixels49/49 to6/49; restoring1152 restored49/49 black. Product fix increases capacity to1536, retaining all96 trees and1152 canopy instances. Actual fixed-scene pixel/capacity gates are pending; this is not full track/golden acceptance.",
+      "r6_7_update": "Both capture commands protect canonical baselines and linked output targets. Legacy capture has finally cleanup and explicit zero-comparison diagnostics; exact-head browser validation required."
     },
     {
       "id": "AUD-14",
@@ -1437,7 +1440,7 @@
     {
       "id": "CR-03",
       "title": "Complete Ayalon dependency closure",
-      "state": "local_inventory_implemented_external_qualification_open",
+      "state": "local_inventory_and_action_pins_implemented_seven_external_qualifications_open",
       "audit_items": [
         "AUD-04"
       ],
@@ -1458,7 +1461,7 @@
     {
       "id": "CR-05",
       "title": "Complete failure evidence and warning classification",
-      "state": "capture_readiness_and_diagnostics_implemented_pending_validation",
+      "state": "both_capture_writers_hardened_pending_exact_head_validation",
       "audit_items": [
         "AUD-05",
         "AUD-11"
@@ -1491,17 +1494,18 @@
     "No physical-device, licence, public release or Ayalon freeze approval is claimed."
   ],
   "checkpoint": {
-    "revision": "r6.6",
-    "base_head": "8c6a3be70fc22cbe35dc4a4e40fa14b0ef83c85f",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.6.md",
+    "revision": "r6.7",
+    "base_head": "5f7be6290f84cce752b93946174fbf7b29f8ed73",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.7.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "run_id": 33995840557,
-      "unit_passed": 688,
-      "browser_passed": 20
+      "run_id": 33999898243,
+      "unit_passed": 733,
+      "browser_passed": 20,
+      "readiness_fixture_passed": 5
     },
     "normal_ci": "pending_on_new_candidate",
-    "golden": "r6.5_0_of_4_passed_new_capture_readiness_requires_exact_head_run",
-    "dependency_closure": "generated_local_inventory_with_external_qualification_blockers"
+    "golden": "previous_r6.6_0_of_4_passed_new_candidate_requires_validation",
+    "dependency_closure": "reviewed_action_pins_seven_font_host_qualifications_remain"
   }
 }

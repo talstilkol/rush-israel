@@ -319,8 +319,26 @@
     },
     ".github/workflows/required-ci.yml": {
       "previous_sha256": "78c15cab537515fa3225fc35c49ba058a3ddc5b4dd81c2b632f0af24ec67827f",
-      "current_sha256": "d4722e5f703a40f5202217dd877817481411b105207f4cc05ec3eaa6ca686589",
+      "current_sha256": "82041e12b38c12ea4ffcb6802db69f362079dcee31ab17bbd092e8fc40011e30",
       "reverse_edits": [
+        {
+          "start_line": 27,
+          "end_line": 28,
+          "current_segment_sha256": "d8123f1aa5d3b3bc442657d6283ba96aae12254b0e27e48b8c4cad346c8d7054",
+          "previous_text": "        uses: actions/checkout@v4\n"
+        },
+        {
+          "start_line": 40,
+          "end_line": 41,
+          "current_segment_sha256": "04a479e9cb6d2dcff7f7535fe9b72c7ab3de2db74b0d532c3df5160d88859f9b",
+          "previous_text": "        uses: actions/upload-artifact@v4\n"
+        },
+        {
+          "start_line": 53,
+          "end_line": 54,
+          "current_segment_sha256": "89114c7faefdd0977af3c866ebc1aca00003186ca9d162c85abc66ba0b9961c2",
+          "previous_text": "        uses: actions/setup-node@v4\n"
+        },
         {
           "start_line": 73,
           "end_line": 79,
@@ -341,21 +359,27 @@
         },
         {
           "start_line": 92,
-          "end_line": 102,
-          "current_segment_sha256": "803e1f86e5f4ba5a4b6f5e845aa9febbf81ad9838c236e4b757c9546e8f9810d",
+          "end_line": 108,
+          "current_segment_sha256": "5ec600424d144d2ff3f560187cc797ee1c0a2a55d3cf3eed84f0788c6b163b87",
           "previous_text": "        run: npm run qa:ci\n"
         },
         {
-          "start_line": 104,
-          "end_line": 108,
+          "start_line": 110,
+          "end_line": 114,
           "current_segment_sha256": "48905389f58b95d5ba0c63241a0c3e9aa3136e7568b1efbc67dc54b5d38fd565",
           "previous_text": "        run: npm run build:dev\n"
         },
         {
-          "start_line": 113,
-          "end_line": 114,
+          "start_line": 119,
+          "end_line": 120,
           "current_segment_sha256": "cb610ba82623a928f3404c59c420c3ac11fd37dd39e5a0d18fbc134bafe32135",
           "previous_text": ""
+        },
+        {
+          "start_line": 124,
+          "end_line": 125,
+          "current_segment_sha256": "04a479e9cb6d2dcff7f7535fe9b72c7ab3de2db74b0d532c3df5160d88859f9b",
+          "previous_text": "        uses: actions/upload-artifact@v4\n"
         }
       ]
     },
@@ -585,15 +609,15 @@
         },
         {
           "start_line": 4,
-          "end_line": 17,
-          "current_segment_sha256": "f8765a427b67d041a2d5d909fe58dad44ae90b3675cb6f34fa13f9d16e6997bd",
-          "previous_text": "let a: THREE.Texture | undefined;\nlet b: THREE.Texture | undefined;\n"
+          "end_line": 5,
+          "current_segment_sha256": "bb946c4572694b6547be92265221bba65ef956a102e0e07680d56211328ff72d",
+          "previous_text": "let a: THREE.Texture | undefined;\nlet b: THREE.Texture | undefined;\n\nexport function getFlare0() {\n  return a;\n}\nexport function getFlare1() {\n  return b;\n}\n\nexport async function loadFlares() {\n  if (a && b) return;\n"
         },
         {
-          "start_line": 18,
+          "start_line": 6,
           "end_line": 21,
-          "current_segment_sha256": "4fd4580cc93a5bff91bb7ebe5f24dbd34dd6c43ce8b7bfef5eecd6638f26a99e",
-          "previous_text": "export function getFlare0() {\n  return a;\n}\nexport function getFlare1() {\n  return b;\n}\n\nexport async function loadFlares() {\n  if (a && b) return;\n  const L = new THREE.TextureLoader();\n  const [t0, t1] = await Promise.all([L.loadAsync(\"/game/flare-0.png\"), L.loadAsync(\"/game/flare-1.png\")]);\n  t0.colorSpace = THREE.SRGBColorSpace;\n  t1.colorSpace = THREE.SRGBColorSpace;\n  t0.needsUpdate = true;\n  t1.needsUpdate = true;\n  a = t0;\n  b = t1;\n}\n"
+          "current_segment_sha256": "514bf53b11aecebe666064c9a593b05c1e2b90425e5afd1e687668fa9b38935c",
+          "previous_text": "  const [t0, t1] = await Promise.all([L.loadAsync(\"/game/flare-0.png\"), L.loadAsync(\"/game/flare-1.png\")]);\n  t0.colorSpace = THREE.SRGBColorSpace;\n  t1.colorSpace = THREE.SRGBColorSpace;\n  t0.needsUpdate = true;\n  t1.needsUpdate = true;\n  a = t0;\n  b = t1;\n}\n"
         }
       ]
     },
@@ -609,15 +633,15 @@
         },
         {
           "start_line": 4,
-          "end_line": 21,
-          "current_segment_sha256": "21c3c0bcf841ba0609e212aac73f7af441786609b4a60670c04e27951b9a1192",
-          "previous_text": "let water: THREE.Texture | undefined;\nlet checker: THREE.Texture | undefined;\n"
+          "end_line": 5,
+          "current_segment_sha256": "bb946c4572694b6547be92265221bba65ef956a102e0e07680d56211328ff72d",
+          "previous_text": "let water: THREE.Texture | undefined;\nlet checker: THREE.Texture | undefined;\n\nexport function getWaterNormal() {\n  return water;\n}\nexport function getChecker() {\n  return checker;\n}\n\nexport async function loadWater() {\n  if (water && checker) return;\n"
         },
         {
-          "start_line": 22,
+          "start_line": 6,
           "end_line": 25,
-          "current_segment_sha256": "d4123fffc75c497fa79c7ae5cfeace93324adbb54495b082ad352fcb19804bec",
-          "previous_text": "export function getWaterNormal() {\n  return water;\n}\nexport function getChecker() {\n  return checker;\n}\n\nexport async function loadWater() {\n  if (water && checker) return;\n  const L = new THREE.TextureLoader();\n  const [n, c] = await Promise.all([L.loadAsync(\"/game/water-n.png\"), L.loadAsync(\"/game/checker.png\")]);\n  n.wrapS = n.wrapT = THREE.RepeatWrapping;\n  n.repeat.set(48, 28);\n  n.anisotropy = 4;\n  n.needsUpdate = true;\n  c.magFilter = THREE.NearestFilter;\n  c.colorSpace = THREE.SRGBColorSpace;\n  c.repeat.set(1, 1);\n  c.needsUpdate = true;\n  water = n;\n  checker = c;\n}\n"
+          "current_segment_sha256": "a93da0af4707e181c9e406db45c1917a43a01c2509a883945c7a07c870ebe814",
+          "previous_text": "  const [n, c] = await Promise.all([L.loadAsync(\"/game/water-n.png\"), L.loadAsync(\"/game/checker.png\")]);\n  n.wrapS = n.wrapT = THREE.RepeatWrapping;\n  n.repeat.set(48, 28);\n  n.anisotropy = 4;\n  n.needsUpdate = true;\n  c.magFilter = THREE.NearestFilter;\n  c.colorSpace = THREE.SRGBColorSpace;\n  c.repeat.set(1, 1);\n  c.needsUpdate = true;\n  water = n;\n  checker = c;\n}\n"
         }
       ]
     },
@@ -800,53 +824,65 @@
     },
     "scripts/pixel-golden.mjs": {
       "previous_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
-      "current_sha256": "2af4d82df61b4a08111a56530f83fedc18746147d4793e4272bdbce7caff4a1d",
+      "current_sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
       "reverse_edits": [
         {
           "start_line": 2,
           "end_line": 3,
-          "current_segment_sha256": "6dda3f57f4b90f17dd40609ce4fcc317ed121a30fc2a81f02f00fa41ca730e8c",
+          "current_segment_sha256": "debaba638349ab0e90d4c79968777d98a17b305552b568ec07c362aa2097e7e7",
           "previous_text": "import { mkdir, readFile, writeFile, copyFile } from \"node:fs/promises\";\n"
         },
         {
           "start_line": 6,
-          "end_line": 8,
-          "current_segment_sha256": "5c6e3339cbe5c2c884e6356307fc3c1420862c1a7ccf6c194abdc13c43b29acc",
+          "end_line": 9,
+          "current_segment_sha256": "e6ababa83547a21c743571984dc60f4fd5636da68882d6ecb3383cc2aee31acb",
           "previous_text": ""
         },
         {
-          "start_line": 12,
-          "end_line": 13,
+          "start_line": 13,
+          "end_line": 14,
           "current_segment_sha256": "e823416dd5afefc4feda60d97a35b75d4db4322fd0d82e4d858806b174088387",
           "previous_text": "const UPDATE = process.env.UPDATE_GOLDEN === \"1\";\n"
         },
         {
-          "start_line": 16,
-          "end_line": 17,
-          "current_segment_sha256": "5063d3057f1e1c2abbfd03334141cba8942c62d5cc89e2e6e483d35b9d7024b1",
-          "previous_text": ""
+          "start_line": 17,
+          "end_line": 66,
+          "current_segment_sha256": "88a209d88a06da379e17a8b2ff548f7c73804ea6451ad38f4cbd09e4aa184ad0",
+          "previous_text": "await mkdir(tmp, { recursive: true });\nconst browser = await chromium.launch({ headless: true });\nconst page = await browser.newPage({ viewport: { width: 1280, height: 800 } });\nconst errs = [];\npage.on(\"pageerror\", (e) => errs.push(String(e)));\nawait page.goto(\"http://127.0.0.1:8080/?qa=1\", { waitUntil: \"domcontentloaded\", timeout: 40000 });\nawait page.waitForTimeout(900);\nawait page.evaluate(() =>\n  [...document.querySelectorAll(\"button\")].find((n) => /בחר מסלול/.test(n.textContent || \"\"))?.click(),\n);\nawait page.waitForTimeout(350);\nawait page.evaluate(() =>\n  [...document.querySelectorAll(\"button\")].find((n) => /^הכל$/.test((n.textContent || \"\").trim()))?.click(),\n);\nawait page.waitForTimeout(250);\nconst ok = await page.evaluate(() => {\n  const el = [...document.querySelectorAll(\"button\")].find((n) => /נתיבי איילון/.test(n.textContent || \"\"));\n  el?.click();\n  return !!el;\n});\nif (!ok) throw new Error(\"ayalon\");\nawait page.waitForFunction(() => !!window.__controlsTest, { timeout: 35000 });\nif (errs.length) throw new Error(errs.join(\"\\n\"));\nawait page.evaluate(() => window.__controlsTest.skipCountdown());\n\nfor (const id of ids) {\n  await page.evaluate((gid) => window.__controlsTest.gotoGolden(gid), id);\n  await page.waitForTimeout(450);\n  await page.screenshot({ path: `${tmp}/ayalon-day-${id}.png` });\n"
         },
         {
-          "start_line": 18,
-          "end_line": 68,
-          "current_segment_sha256": "fa8c2262e3074ee6c5cf74448639a251f5bcb70456ca3f49f593b0f9f6759108",
-          "previous_text": "const browser = await chromium.launch({ headless: true });\nconst page = await browser.newPage({ viewport: { width: 1280, height: 800 } });\nconst errs = [];\npage.on(\"pageerror\", (e) => errs.push(String(e)));\nawait page.goto(\"http://127.0.0.1:8080/?qa=1\", { waitUntil: \"domcontentloaded\", timeout: 40000 });\nawait page.waitForTimeout(900);\nawait page.evaluate(() =>\n  [...document.querySelectorAll(\"button\")].find((n) => /בחר מסלול/.test(n.textContent || \"\"))?.click(),\n);\nawait page.waitForTimeout(350);\nawait page.evaluate(() =>\n  [...document.querySelectorAll(\"button\")].find((n) => /^הכל$/.test((n.textContent || \"\").trim()))?.click(),\n);\nawait page.waitForTimeout(250);\nconst ok = await page.evaluate(() => {\n  const el = [...document.querySelectorAll(\"button\")].find((n) => /נתיבי איילון/.test(n.textContent || \"\"));\n  el?.click();\n  return !!el;\n});\nif (!ok) throw new Error(\"ayalon\");\nawait page.waitForFunction(() => !!window.__controlsTest, { timeout: 35000 });\nif (errs.length) throw new Error(errs.join(\"\\n\"));\nawait page.evaluate(() => window.__controlsTest.skipCountdown());\n\nfor (const id of ids) {\n  await page.evaluate((gid) => window.__controlsTest.gotoGolden(gid), id);\n  await page.waitForTimeout(450);\n  await page.screenshot({ path: `${tmp}/ayalon-day-${id}.png` });\n"
-        },
-        {
-          "start_line": 69,
-          "end_line": 69,
+          "start_line": 67,
+          "end_line": 67,
           "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "previous_text": "await page.evaluate(() => window.__controlsTest.setNight(true));\nawait page.waitForTimeout(400);\nawait page.evaluate(() => window.__controlsTest.gotoGolden(\"g08\"));\nawait page.waitForTimeout(500);\nawait page.screenshot({ path: `${tmp}/ayalon-night-g08.png` });\nawait browser.close();\n"
         },
         {
-          "start_line": 83,
-          "end_line": 83,
+          "start_line": 75,
+          "end_line": 76,
+          "current_segment_sha256": "beb5968d2b5ed0c6796fbf0ea41847b72805d0052508047e347191a92a0cbbca",
+          "previous_text": "  const aBuf = await readFile(`${tmp}/${f}`);\n"
+        },
+        {
+          "start_line": 81,
+          "end_line": 81,
           "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "previous_text": "    if (UPDATE) {\n      await copyFile(`${tmp}/${f}`, `${baseline}/${f}`);\n      report.push({ f, pct: 1, note: \"created\" });\n      continue;\n    }\n"
         },
         {
-          "start_line": 103,
-          "end_line": 103,
+          "start_line": 94,
+          "end_line": 95,
+          "current_segment_sha256": "9d8ddc484bc9c480fd9c95aafad89155a9a1c7b5226ee1a3dad169630e064d47",
+          "previous_text": "    await writeFile(`${tmp}/diff-${f}`, PNG.sync.write(diff));\n"
+        },
+        {
+          "start_line": 98,
+          "end_line": 99,
+          "current_segment_sha256": "a856047901379c5e3869d484b6cc62ad80dd42ed25ea2afabd7ae5bbc65ce23f",
+          "previous_text": "await writeFile(`${tmp}/report.json`, JSON.stringify(report, null, 2));\n"
+        },
+        {
+          "start_line": 101,
+          "end_line": 101,
           "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "previous_text": "if (failed && UPDATE) {\n  for (const f of files) await copyFile(`${tmp}/${f}`, `${baseline}/${f}`);\n  console.log(\"pixel-golden updated baselines\");\n  process.exit(0);\n}\n"
         }
@@ -854,7 +890,7 @@
     },
     "scripts/golden-capture.mjs": {
       "previous_sha256": null,
-      "current_sha256": "5f3d5aaf40b5758fab675e0227bac9c857a49267009877ef9d5f0544c514d4c4",
+      "current_sha256": "d78c3e1115d509bac32d8bd405f5270db4bc0c73d2cf01937d65e4fdf07cea03",
       "reverse_edits": []
     },
     "scripts/golden-capture-browser.mjs": {
@@ -864,7 +900,47 @@
     },
     "scripts/dependency-closure.mjs": {
       "previous_sha256": null,
-      "current_sha256": "98f4e42b164f3ffa1dafd2f0c9286740afe710759d3a845ebae87a54005b89a0",
+      "current_sha256": "d250b4d00fefc7f3ce83b9082ea17bee0283c5299e5a86c167c825a7311396ec",
+      "reverse_edits": []
+    },
+    "scripts/capture-golden.mjs": {
+      "previous_sha256": "6db44795e007a53682656b07a707331f6ecee4ddf0e9333028c9bee61c0c4a5d",
+      "current_sha256": "cf8c9b1860b370982cf7695980e082545dce2bcd3c3e3d6d7133789d797c1983",
+      "reverse_edits": [
+        {
+          "start_line": 1,
+          "end_line": 9,
+          "current_segment_sha256": "eca432b22cdc994e742bd32b1347a4252797ece332e756cbc5d53624d06b1718",
+          "previous_text": "/** Phase A gate: Ayalon g01/g05/g07/g08 + JSON. Not an art pass. */\nimport { chromium } from \"playwright\";\nimport { mkdir, writeFile, stat } from \"node:fs/promises\";\nimport { fromRoot } from \"./project-root.mjs\";\n"
+        },
+        {
+          "start_line": 10,
+          "end_line": 71,
+          "current_segment_sha256": "83e72a8b855921977bb83a747f269f0bc609a6cc6de50c5f94e9b4458f3d49c1",
+          "previous_text": "const out = process.env.GOLDEN_DIR || fromRoot(\"golden-baseline\");\nawait mkdir(out, { recursive: true });\nconst browser = await chromium.launch({ headless: true });\nconst page = await browser.newPage({ viewport: { width: 1280, height: 800 } });\nconst errs = [];\npage.on(\"pageerror\", (e) => errs.push(String(e)));\nawait page.goto(\"http://127.0.0.1:8080/?qa=1\", { waitUntil: \"domcontentloaded\", timeout: 40000 });\nawait page.waitForTimeout(1200);\nif (errs.length) throw new Error(errs.join(\"\\n\"));\nawait page.evaluate(() =>\n  [...document.querySelectorAll(\"button\")].find((n) => /בחר מסלול/.test(n.textContent || \"\"))?.click(),\n);\nawait page.waitForTimeout(400);\nawait page.evaluate(() =>\n  [...document.querySelectorAll(\"button\")].find((n) => /^הכל$/.test((n.textContent || \"\").trim()))?.click(),\n);\nawait page.waitForTimeout(300);\nconst ok = await page.evaluate(() => {\n  const el = [...document.querySelectorAll(\"button\")].find((n) => /נתיבי איילון/.test(n.textContent || \"\"));\n  if (!el) return false;\n  el.click();\n  return true;\n});\nif (!ok) throw new Error(\"ayalon\");\nawait page.waitForFunction(() => !!window.__controlsTest, { timeout: 28000 });\nawait page.evaluate(() => window.__controlsTest.skipCountdown());\n\nfor (const id of [\"g01\", \"g05\", \"g07\"]) {\n  await page.evaluate((gid) => window.__controlsTest.gotoGolden(gid), id);\n  await page.waitForTimeout(500);\n  await page.screenshot({ path: `${out}/ayalon-day-${id}.png` });\n"
+        },
+        {
+          "start_line": 72,
+          "end_line": 75,
+          "current_segment_sha256": "788615bf818126a157d30826a27432e18ce3d97f50bb0049f4615fa697afa959",
+          "previous_text": "await page.evaluate(() => window.__controlsTest.setNight(true));\nawait page.waitForTimeout(400);\nawait page.evaluate(() => window.__controlsTest.gotoGolden(\"g08\"));\nawait page.waitForTimeout(500);\nawait page.screenshot({ path: `${out}/ayalon-night-g08.png` });\nconst txt = await page.evaluate(() => window.render_game_to_text());\nconst dump = JSON.parse(txt);\nif (dump.track !== \"ayalon\") throw new Error(\"track \" + dump.track);\nif (dump.telem?.backend && dump.telem.backend !== \"webgl2\" && dump.telem.backend !== \"webgl1\") {\n  throw new Error(\"backend \" + dump.telem.backend);\n"
+        },
+        {
+          "start_line": 76,
+          "end_line": 76,
+          "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "previous_text": "await writeFile(`${out}/ayalon-dump.json`, JSON.stringify(dump, null, 2));\nfor (const f of [\"ayalon-day-g01.png\", \"ayalon-day-g05.png\", \"ayalon-day-g07.png\", \"ayalon-night-g08.png\"]) {\n  const s = await stat(`${out}/${f}`);\n  if (s.size < 20000) throw new Error(\"tiny golden \" + f + \" \" + s.size);\n}\nawait page.evaluate(() => {\n  const t = window.__controlsTest;\n  t.resetStart();\n  t.setNight(false);\n  t.setThrottle(1);\n  t.setSteer(0);\n  t.setKeys([\"KeyW\"]);\n});\nawait page.waitForFunction(() => (window.__controlsTest.getSpeed() ?? 0) > 6, { timeout: 16000 });\nconst y0 = await page.evaluate(() => window.__controlsTest.getYaw());\nawait page.evaluate(() => window.__controlsTest.setSteer(1));\nawait page.waitForTimeout(400);\nconst yA = await page.evaluate(() => window.__controlsTest.getYaw());\nconst wrap = (a) => Math.atan2(Math.sin(a), Math.cos(a));\nif (wrap(yA - y0) <= 0.03) throw new Error(\"steer\");\nawait browser.close();\nconsole.log(\"golden-ok\", dump.track, dump.telem?.backend, \"steer\", +wrap(yA - y0).toFixed(3));\n"
+        }
+      ]
+    },
+    "scripts/golden-output.mjs": {
+      "previous_sha256": null,
+      "current_sha256": "0c61721b4f52cebfc5f99039ea2c6194a0cded4c8075144f43425a4f4ae11fd6",
+      "reverse_edits": []
+    },
+    "scripts/ci-action-pins.mjs": {
+      "previous_sha256": null,
+      "current_sha256": "bc5fbd670f451aef455c0f1b33e627b4e7079941c568d1e142b52d7af928dde7",
       "reverse_edits": []
     }
   }

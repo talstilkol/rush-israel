@@ -28,8 +28,8 @@
     },
     {
       "path": ".github/workflows/required-ci.yml",
-      "bytes": 4289,
-      "sha256": "d4722e5f703a40f5202217dd877817481411b105207f4cc05ec3eaa6ca686589"
+      "bytes": 4789,
+      "sha256": "82041e12b38c12ea4ffcb6802db69f362079dcee31ab17bbd092e8fc40011e30"
     },
     {
       "path": ".node-version",
@@ -1098,8 +1098,8 @@
     },
     {
       "path": "scripts/capture-golden.mjs",
-      "bytes": 3303,
-      "sha256": "6db44795e007a53682656b07a707331f6ecee4ddf0e9333028c9bee61c0c4a5d"
+      "bytes": 4640,
+      "sha256": "cf8c9b1860b370982cf7695980e082545dce2bcd3c3e3d6d7133789d797c1983"
     },
     {
       "path": "scripts/car-resource-ownership.test.mjs",
@@ -1159,12 +1159,12 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "f37c59bd4f5adaea39689f9f4b131d05b335dd56fe7b2f98e91da60a3214bc04"
+      "sha256": "dc2304b2b373f45f379d9c6ab83e6203367904834696643875a01f4dcfd68789"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
       "bytes": 3114,
-      "sha256": "12e89fc39c625325a193e0a116af969111209b78f61a8585badbf0fc7e3c9aef"
+      "sha256": "efffc42135b6e0a2cb370c53745135e6f6ae40d36b62bfa3686111f675d3fbbb"
     },
     {
       "path": "scripts/check-ayalon-geometry.mjs",
@@ -1248,13 +1248,13 @@
     },
     {
       "path": "scripts/check-governance-contract.mjs",
-      "bytes": 5112,
-      "sha256": "6383f8d4c1bc4f47931e7c26d01d6d09e6dc47e3fc2d608b1af63f1b41d90e3b"
+      "bytes": 5456,
+      "sha256": "40754d47390bdacf50d846514a01c5b8a0787f2238b60c1ebd6f23b1d0ddb551"
     },
     {
       "path": "scripts/check-governance-contract.test.mjs",
-      "bytes": 2752,
-      "sha256": "c9708f69c7dba4c87776137813a2faed4260c048e25f663210123bca65727949"
+      "bytes": 3321,
+      "sha256": "71a2ceb776acc0e9c1af60afce4dd9d8992b48881fe8057b1ecd11d0d816f669"
     },
     {
       "path": "scripts/check-hero-car.mjs",
@@ -1537,6 +1537,16 @@
       "sha256": "f77b4ddcda503286c99655a1d0e1fb149db94d62555b2e6a261f115a69dbfaec"
     },
     {
+      "path": "scripts/ci-action-pins.mjs",
+      "bytes": 1018,
+      "sha256": "bc5fbd670f451aef455c0f1b33e627b4e7079941c568d1e142b52d7af928dde7"
+    },
+    {
+      "path": "scripts/ci-action-pins.test.mjs",
+      "bytes": 1722,
+      "sha256": "1541f5a98697fe6a003746aac1a7b356592e8f367e31fd54de6f4b4f8ad3afbb"
+    },
+    {
       "path": "scripts/ci-source-identity.test.mjs",
       "bytes": 4210,
       "sha256": "58f140cc0a4fb017955ed2955f02a995a52995972b76a6340bd6db3d43ae277e"
@@ -1558,13 +1568,13 @@
     },
     {
       "path": "scripts/dependency-closure.mjs",
-      "bytes": 13227,
-      "sha256": "98f4e42b164f3ffa1dafd2f0c9286740afe710759d3a845ebae87a54005b89a0"
+      "bytes": 13250,
+      "sha256": "d250b4d00fefc7f3ce83b9082ea17bee0283c5299e5a86c167c825a7311396ec"
     },
     {
       "path": "scripts/dependency-closure.test.mjs",
-      "bytes": 8282,
-      "sha256": "333bf9e61e280b151fe6fc8e8b8a9b1f9560c60468f5c75f20c079ced120ab52"
+      "bytes": 8380,
+      "sha256": "cc8621f9575f5142dff1601773020546e201509112ac0bf5194fbfd9bc6d7a58"
     },
     {
       "path": "scripts/drive-smoke.mjs",
@@ -1593,13 +1603,23 @@
     },
     {
       "path": "scripts/golden-capture.mjs",
-      "bytes": 3906,
-      "sha256": "5f3d5aaf40b5758fab675e0227bac9c857a49267009877ef9d5f0544c514d4c4"
+      "bytes": 3040,
+      "sha256": "d78c3e1115d509bac32d8bd405f5270db4bc0c73d2cf01937d65e4fdf07cea03"
     },
     {
       "path": "scripts/golden-capture.test.mjs",
       "bytes": 4196,
       "sha256": "87111cf2c94c75dd193c41952c1196ef2c62b54337f980605a562d122c667817"
+    },
+    {
+      "path": "scripts/golden-output.mjs",
+      "bytes": 3125,
+      "sha256": "0c61721b4f52cebfc5f99039ea2c6194a0cded4c8075144f43425a4f4ae11fd6"
+    },
+    {
+      "path": "scripts/golden-output.test.mjs",
+      "bytes": 7447,
+      "sha256": "9c6ce64c0791ade106d86fc5330b1ac8319ac832681195a2b47f8f3b5c760292"
     },
     {
       "path": "scripts/golden-provenance.mjs",
@@ -1738,8 +1758,8 @@
     },
     {
       "path": "scripts/pixel-golden.mjs",
-      "bytes": 5182,
-      "sha256": "2af4d82df61b4a08111a56530f83fedc18746147d4793e4272bdbce7caff4a1d"
+      "bytes": 5039,
+      "sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9"
     },
     {
       "path": "scripts/preview-thumbnail.mjs",
@@ -1748,8 +1768,8 @@
     },
     {
       "path": "scripts/program-control.test.mjs",
-      "bytes": 49168,
-      "sha256": "7fd2b81a303c11b5f485e5b8a1d53205a7b46885169be9813ce5fa751bdf26d8"
+      "bytes": 49206,
+      "sha256": "133463b2fdf5d532720fee7dad7e98208ba95c16a7d8710134584fbfa9fc5071"
     },
     {
       "path": "scripts/program-execution.mjs",
@@ -1829,12 +1849,12 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "5a7959da9333c91b9ce277381775925f8eb4ad72acd8374da08dfec1583e9ccf"
+      "sha256": "d42749931056b861c1efcbfa8e322fffa60f3fd7c1911d91996cc90bd40970ea"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
       "bytes": 2011,
-      "sha256": "b8bc690e71cd24656ac86dbd0c45c2c561543aa7c8f6c9fb6ef1dc55d40b793f"
+      "sha256": "c355089eeabac8491be4b8aef5b6eebf4b2de10dee851f9cceaec1671255c9bc"
     },
     {
       "path": "scripts/run-with-server.mjs",
@@ -2043,8 +2063,8 @@
     },
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
-      "bytes": 7718,
-      "sha256": "27add4a38909fbd3e03c1b47f58326fe1f9881bc8391d34da71764792b77ac5a"
+      "bytes": 8123,
+      "sha256": "539166bb37857a6ebad9bc90192f0c89790074a689506593a81b5d1c861e4a96"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -3204,6 +3224,80 @@
       "integrity": "sha512-S2udFs8tCKEKffuJ4TB1idGUZiXdCPGi3IPBGWXarbLQ5UPXORV8QEVzJ4gCRduURMb5EkpNCdjbk0eDIuI8Yg=="
     },
     {
+      "from": "scripts/capture-golden.mjs",
+      "specifier": "./golden-capture.mjs",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "scripts/golden-capture.mjs"
+    },
+    {
+      "from": "scripts/capture-golden.mjs",
+      "specifier": "./golden-output.mjs",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "scripts/golden-output.mjs"
+    },
+    {
+      "from": "scripts/capture-golden.mjs",
+      "specifier": "./project-root.mjs",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "scripts/project-root.mjs"
+    },
+    {
+      "from": "scripts/capture-golden.mjs",
+      "specifier": "node:assert/strict",
+      "kind": "static_import",
+      "typeOnly": false,
+      "target": "node:assert/strict",
+      "resolution": "node_builtin"
+    },
+    {
+      "from": "scripts/capture-golden.mjs",
+      "specifier": "node:fs/promises",
+      "kind": "static_import",
+      "typeOnly": false,
+      "target": "node:fs/promises",
+      "resolution": "node_builtin"
+    },
+    {
+      "from": "scripts/capture-golden.mjs",
+      "specifier": "node:path",
+      "kind": "static_import",
+      "typeOnly": false,
+      "target": "node:path",
+      "resolution": "node_builtin"
+    },
+    {
+      "from": "scripts/capture-golden.mjs",
+      "specifier": "node:url",
+      "kind": "static_import",
+      "typeOnly": false,
+      "target": "node:url",
+      "resolution": "node_builtin"
+    },
+    {
+      "from": "scripts/capture-golden.mjs",
+      "specifier": "playwright",
+      "kind": "dynamic_import",
+      "typeOnly": false,
+      "package": "playwright",
+      "resolution": "locked_package",
+      "version": "1.62.1",
+      "integrity": "sha512-0M+L3LAD8/nm554LOla9Ayx0j0tmFZ0FBcoQ7F1VuVHpM/XpiC8RcDzBQB8W5+hA8L22THxELzeF+2WcUzvcLg=="
+    },
+    {
+      "from": "scripts/golden-capture.mjs",
+      "specifier": "./golden-output.mjs",
+      "kind": "re_export",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "scripts/golden-output.mjs"
+    },
+    {
       "from": "scripts/golden-capture.mjs",
       "specifier": "node:assert/strict",
       "kind": "static_import",
@@ -3212,7 +3306,23 @@
       "resolution": "node_builtin"
     },
     {
-      "from": "scripts/golden-capture.mjs",
+      "from": "scripts/golden-output.mjs",
+      "specifier": "./project-root.mjs",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "scripts/project-root.mjs"
+    },
+    {
+      "from": "scripts/golden-output.mjs",
+      "specifier": "node:assert/strict",
+      "kind": "static_import",
+      "typeOnly": false,
+      "target": "node:assert/strict",
+      "resolution": "node_builtin"
+    },
+    {
+      "from": "scripts/golden-output.mjs",
       "specifier": "node:fs",
       "kind": "static_import",
       "typeOnly": false,
@@ -3220,7 +3330,7 @@
       "resolution": "node_builtin"
     },
     {
-      "from": "scripts/golden-capture.mjs",
+      "from": "scripts/golden-output.mjs",
       "specifier": "node:path",
       "kind": "static_import",
       "typeOnly": false,
@@ -3290,6 +3400,14 @@
       "typeOnly": false,
       "resolution": "repository",
       "target": "scripts/golden-capture.mjs"
+    },
+    {
+      "from": "scripts/pixel-golden.mjs",
+      "specifier": "./golden-output.mjs",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "scripts/golden-output.mjs"
     },
     {
       "from": "scripts/pixel-golden.mjs",
@@ -9878,6 +9996,26 @@
       "integrity": "sha512-cFKLV/PRgAUlIRm5WjMjJ86jrftzpqcgH+Us+DS8mI3CDNiH30Whrz8uHL3+MOLPAgqbMBAqWdAHAphOAM+z/Q=="
     }
   ],
+  "actions": [
+    {
+      "from": ".github/workflows/required-ci.yml",
+      "action": "actions/checkout",
+      "commit": "11d5960a326750d5838078e36cf38b85af677262",
+      "qualification": "verified_upstream_ref_identity"
+    },
+    {
+      "from": ".github/workflows/required-ci.yml",
+      "action": "actions/setup-node",
+      "commit": "49933ea5288caeca8642d1e84afbd3f7d6820020",
+      "qualification": "verified_upstream_ref_identity"
+    },
+    {
+      "from": ".github/workflows/required-ci.yml",
+      "action": "actions/upload-artifact",
+      "commit": "ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "qualification": "verified_upstream_ref_identity"
+    }
+  ],
   "dynamic_asset_expressions": [
     {
       "from": "src/game/car-assets.ts",
@@ -9921,24 +10059,6 @@
     }
   ],
   "external_resources": [
-    {
-      "from": ".github/workflows/required-ci.yml",
-      "resource": "actions/checkout@v4",
-      "kind": "action_tag",
-      "qualification": "immutable_commit_required"
-    },
-    {
-      "from": ".github/workflows/required-ci.yml",
-      "resource": "actions/setup-node@v4",
-      "kind": "action_tag",
-      "qualification": "immutable_commit_required"
-    },
-    {
-      "from": ".github/workflows/required-ci.yml",
-      "resource": "actions/upload-artifact@v4",
-      "kind": "action_tag",
-      "qualification": "immutable_commit_required"
-    },
     {
       "from": "scripts/grok-pwa-shared.mjs",
       "resource": "`https://${publicHost}${asset.startsWith(\"/\") ? asset : `/${asset}`}`",
@@ -9991,5 +10111,5 @@
     "Package sources are identified by package-lock integrity, not vendored or executed by this scanner.",
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance."
   ],
-  "digest_sha256": "7aa9e4bf5bc81928d0dd30252234f3db7d2286c1f1966274664d38c8e8158790"
+  "digest_sha256": "8ee2096970409cda03c945b08666d71fa08fb779ccf885859d82b4bf797f6855"
 }

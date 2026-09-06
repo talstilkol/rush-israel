@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /** 21.16: capture g01/g05/g07/g08 and pixelmatch vs golden-baseline (threshold 0.12, fail >8%). */
-import { mkdir, readFile, writeFile, rm } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import { chromium } from "playwright";
 import { PNG } from "pngjs";
 import pixelmatch from "pixelmatch";
-import { openAyalonRace, goldenState, validateGoldenSnapshot, assertGoldenDirectories } from "./golden-capture.mjs";
+import { openAyalonRace, goldenState, validateGoldenSnapshot } from "./golden-capture.mjs";
+import { prepareGoldenOutput } from "./golden-output.mjs";
 import { createHash } from "node:crypto";
 import { fromRoot } from "./project-root.mjs";
 
@@ -14,11 +15,8 @@ if (process.env.UPDATE_GOLDEN === "1") throw new Error("Automatic golden baselin
 const files = ["ayalon-day-g01.png", "ayalon-day-g05.png", "ayalon-day-g07.png", "ayalon-night-g08.png"];
 const ids = ["g01", "g05", "g07"];
 
-assertGoldenDirectories(baseline, tmp);
-await mkdir(tmp, { recursive: true });
-// A failed new attempt must never leave a previous passing report in this output.
-for (const name of ["report.json", "capture.json", "capture-failure.png", ...files, ...files.map(f => `diff-${f}`)])
-  await rm(`${tmp}/${name}`, { force: true });
+const output = prepareGoldenOutput({ baseline, output: tmp,
+  names: ["report.json", "capture.json", "capture-failure.png", ...files, ...files.map(f => `diff-${f}`)] });
 const baselineHashes = Object.fromEntries(await Promise.all(files.map(async name =>
   [name, createHash("sha256").update(await readFile(`${baseline}/${name}`)).digest("hex")])));
 const capture = { status: "pending", frames: [], errors: [], failedRequests: [], baselineHashes,
@@ -42,7 +40,7 @@ try {
     const state = await goldenState(page);
     validateGoldenSnapshot(state.engine);
     if (capture.errors.length) throw new Error(capture.errors.join("\n"));
-    await page.screenshot({ path: `${tmp}/ayalon-day-${id}.png` });
+    output.write(`ayalon-day-${id}.png`, await page.screenshot());
     capture.frames.push({ file: `ayalon-day-${id}.png`, ...state });
   }
   await page.evaluate(() => window.__controlsTest.setNight(true));
@@ -54,17 +52,17 @@ try {
   validateGoldenSnapshot(state.engine);
   if (state.engine.night !== true) throw new Error("night golden frame remained in daytime");
   if (capture.errors.length) throw new Error(capture.errors.join("\n"));
-  await page.screenshot({ path: `${tmp}/ayalon-night-g08.png` });
+  output.write("ayalon-night-g08.png", await page.screenshot());
   capture.frames.push({ file: "ayalon-night-g08.png", ...state });
   if (capture.errors.length) throw new Error(capture.errors.join("\n"));
   capture.status = "captured_not_compared";
 } catch (error) {
   capture.status = "capture_failed";
   capture.error = String(error);
-  if (page && !page.isClosed()) await page.screenshot({ path: `${tmp}/capture-failure.png` }).catch(() => {});
+  if (page && !page.isClosed()) await page.screenshot().then(bytes => output.write("capture-failure.png", bytes)).catch(() => {});
   throw error;
 } finally {
-  try { await writeFile(`${tmp}/capture.json`, JSON.stringify(capture, null, 2) + "\n"); }
+  try { output.write("capture.json", JSON.stringify(capture, null, 2) + "\n"); }
   finally { await browser?.close(); }
 }
 
@@ -75,7 +73,7 @@ function readPng(buf) {
 const report = [];
 let failed = 0;
 for (const f of files) {
-  const aBuf = await readFile(`${tmp}/${f}`);
+  const aBuf = await readFile(`${output.directory}/${f}`);
   const a = readPng(aBuf);
   let b;
   try {
@@ -94,11 +92,11 @@ for (const f of files) {
   report.push({ f, pct: +pct.toFixed(4), mismatched: n });
   if (pct > 0.08) {
     failed++;
-    await writeFile(`${tmp}/diff-${f}`, PNG.sync.write(diff));
+    output.write(`diff-${f}`, PNG.sync.write(diff));
   }
 }
 
-await writeFile(`${tmp}/report.json`, JSON.stringify(report, null, 2));
+output.write("report.json", JSON.stringify(report, null, 2));
 console.log(JSON.stringify(report, null, 2));
 
 if (failed) {
