@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "unit": "RSH-036",
+  "revision": "r6.10",
+  "date": "2026-09-06",
+  "authority": false,
+  "acceptance": false,
+  "baseline_updates": 0,
+  "original_golden_comparisons": 0,
+  "runtime_source": "6d2f814bf057a22a95063c81845798829f0ca22a",
+  "historical_source": "b0e3e525689955e6ff944b49f08c814e49cf03fa",
+  "run_id": 34014788613,
+  "job_id": 101436587202,
+  "artifact_id": 9983630809,
+  "artifact_bytes": 5056820,
+  "artifact_sha256": "4f4c779081ef92ff71c3d3e68e464e8456b04562ce4053ed18fcba7f6749a44f",
+  "results_sha256": "ee2e32fde1e850e53755c3770d4e6f90237a612c2d19125fea7cf5c729c77fe7",
+  "diagnostic_source_sha256": "c541195637529d85cf11931e085656112c87dc92bad32a2c649473d3a1f9758f",
+  "protocol": "Two source/asset revisions; same measured current camera, frozen physics and current locked dependencies; native, normalized illumination, opaque normal override and restored native captures at four poses. Direct renderer, no HUD.",
+  "pngs_verified": 32,
+  "byte_identical_repeated_controls": 8,
+  "position_or_tick_changes": 0,
+  "gl_errors": 0,
+  "page_errors": [],
+  "pixel_threshold": 0.12,
+  "comparisons": [
+    {
+      "id": "g01",
+      "totalPixels": 1024000,
+      "nativeDifference": 657251,
+      "neutralLightDifference": 654216,
+      "opaqueNormalsDifference": 223741,
+      "historicalRepeat": 0,
+      "currentRepeat": 0
+    },
+    {
+      "id": "g05",
+      "totalPixels": 1024000,
+      "nativeDifference": 533851,
+      "neutralLightDifference": 529623,
+      "opaqueNormalsDifference": 65287,
+      "historicalRepeat": 0,
+      "currentRepeat": 0
+    },
+    {
+      "id": "g07",
+      "totalPixels": 1024000,
+      "nativeDifference": 296667,
+      "neutralLightDifference": 617371,
+      "opaqueNormalsDifference": 255306,
+      "historicalRepeat": 0,
+      "currentRepeat": 0
+    },
+    {
+      "id": "g08",
+      "totalPixels": 1024000,
+      "nativeDifference": 582775,
+      "neutralLightDifference": 125850,
+      "opaqueNormalsDifference": 96852,
+      "historicalRepeat": 0,
+      "currentRepeat": 0
+    }
+  ],
+  "limitations": [
+    "Direct renderer, frozen physics, common measured current camera, no HUD; not the original golden protocol.",
+    "Neutral light also normalizes exposure, fog, environment and background; emissive materials remain native.",
+    "Normal override makes mesh surfaces opaque and double-sided; texture cutouts and material sidedness are intentionally removed.",
+    "Pairwise pixel counts overlap and are not additive shares of original mismatch."
+  ],
+  "interpretation": "Illumination/environment normalization does not remove inter-revision differences at any pose. Opaque normal differences also remain. These combined controls narrow investigation but do not identify one defective mesh or quantitatively partition the original-golden failures.",
+  "next": "Inspect specific expected geometry, occlusion and material changes against accepted specifications; retain current gameplay and original PNGs pending a separate explicit reference transition gate."
+}

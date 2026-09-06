@@ -1159,12 +1159,12 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "0b0394693abe44d2ad3491d4b5dbd4d230e686ea48585c4d6c28277498b39e9f"
+      "sha256": "9d1cf4f319320e25c5a5076d57d15099e44250cc8789433c84bb2c90bedc3e50"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
       "bytes": 3114,
-      "sha256": "685278fcbb9c947ca60cb85beac3d9568b54dc05d45790f6075de805935e9c1b"
+      "sha256": "eaa54e403899076dc9258eba806864d18a56f87f430b071de266502c429b890f"
     },
     {
       "path": "scripts/check-ayalon-geometry.mjs",
@@ -1857,6 +1857,16 @@
       "sha256": "c0e0327276f08eecf85763fd604b1be8c32ff2392cf613667df15f63532e59b6"
     },
     {
+      "path": "scripts/road-uniform-browser.mjs",
+      "bytes": 5365,
+      "sha256": "aed1f57320633920ef28c803faef0c09802fbcd26fbf6c25d85ac7fbf9919c9d"
+    },
+    {
+      "path": "scripts/road-uniform-lifecycle.test.mjs",
+      "bytes": 4358,
+      "sha256": "081a903257387a974bb18645275123cfb0e53a73d6610835abec8721f4d474b9"
+    },
+    {
       "path": "scripts/rothschild-foliage.test.mjs",
       "bytes": 3457,
       "sha256": "5e6b3c69a85a1d8827738697038bedcf517f6fff89cc8b711590a18a4670fb90"
@@ -1879,12 +1889,12 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "b874090727585fe6c95ba348acbf9ff9741287a3e3d36d7da405fa5e118caaf6"
+      "sha256": "72fc5f094bf9b336ad1f4d0aa1de108ea5678e78ff479cd70bb1dff7cb4e02f0"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
       "bytes": 2011,
-      "sha256": "1cc590d63b1687696ea951a19618108640ed3b61675befdf87e5557f7688f7b0"
+      "sha256": "a195a0988a690bbdda42143e0d73214c03376e7711d44d5703eeade38809d7ea"
     },
     {
       "path": "scripts/run-with-server.mjs",
@@ -1898,8 +1908,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 7954,
-      "sha256": "499de5142732122fab7d533626e38168cef4c0568dd2306e164112f7f1e14b3b"
+      "bytes": 8078,
+      "sha256": "c8b448704b804b2f7d2d17e15b3b162bb718e97da477d632637f11fe208e00ed"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2108,8 +2118,8 @@
     },
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
-      "bytes": 9052,
-      "sha256": "c129f4d300213ebcc61215466a91d32dfb1503e9e0373f8c7349ecb071ff8801"
+      "bytes": 9254,
+      "sha256": "2624e00b25a670b8df59d747886c96fe1956cee5e2151c44f0f1a4cdcd78e35b"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -2388,8 +2398,8 @@
     },
     {
       "path": "src/game/roadShader.ts",
-      "bytes": 2116,
-      "sha256": "ba3d46e14365173792911d56e5ab5238fc8745f849094bcf7b7f2ea35e9c4803"
+      "bytes": 2250,
+      "sha256": "057bccd519614b3ee23a536c1c12f6524c1ffaf72b858642e94e42eda70441aa"
     },
     {
       "path": "src/game/save-recovery-ui.ts",
@@ -10264,5 +10274,5 @@
     "Package sources are identified by package-lock integrity, not vendored or executed by this scanner.",
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance."
   ],
-  "digest_sha256": "223e1c21e8272836addc7a3742e1c2288a2417d4622d1388a1463b3be8f7cbe9"
+  "digest_sha256": "7139cd1db1c716ffeba3fcece051b3c1e6535f81ca50c679d465716f43073b0a"
 }

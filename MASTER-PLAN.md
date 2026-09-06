@@ -459,3 +459,14 @@ Controlled source/assets x camera experiments provide pairwise pixel measurement
 with repeated restoration controls. No rendering/gameplay or original PNG bytes
 are changed to match old references. The original golden gate remains mandatory.
 Read MASTER-PLAN-r6.json, NEXT-CONTRACT.md and the exact-head PR checkpoint.
+
+
+## r6.10 — Road material consistency (2026-09-06)
+
+AUD-19 records a reproduced shader-lifecycle defect. Preserve the active weather
+uniform before compilation and across cached programs instead of resetting the
+road to dry. Real WebGL and Ayalon transition cases are required before acceptance.
+The plan retains 67 units, 42 historic findings and six repair bundles; audit items
+now total 19. RSH-036 remains unaccepted at 35/67. Neutral-illumination and opaque
+normal geometry controls are diagnostic, never replacement golden authority.
+See RSH-036-RUNTIME-REPAIR-r6.10.md and the latest exact-head PR checkpoint.
