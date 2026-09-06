@@ -1,0 +1,49 @@
+name: rsh036-r610-scene-controls
+on:
+  push:
+    branches: [agent/rsh-036-r610-scene-20260906]
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      NODE_OPTIONS: --experimental-strip-types
+      PLAYWRIGHT_BROWSERS_PATH: '0'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Recover exact historical inputs and verified diagnostic only
+        run: |
+          python - <<'PY'
+          import lzma,hashlib
+          from pathlib import Path
+          data=lzma.decompress(Path('.r610-scene.xz').read_bytes())
+          assert hashlib.sha256(data).hexdigest()=='c541195637529d85cf11931e085656112c87dc92bad32a2c649473d3a1f9758f'
+          Path('.r610-scene.mjs').write_bytes(data)
+          PY
+          mkdir -p artifacts/history artifacts/scene-controls
+          git archive b0e3e525689955e6ff944b49f08c814e49cf03fa src public | tar -xf - -C artifacts/history
+          git diff --exit-code 6d2f814bf057a22a95063c81845798829f0ca22a -- src public package.json package-lock.json vite.config.ts
+          cp .r610-scene.mjs artifacts/scene-controls/diagnostic-source.mjs
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm install --global npm@10.9.2
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Controlled illumination and opaque-normal geometry diagnostics
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node .r610-scene.mjs 2>&1 | tee artifacts/scene-controls/run.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: rsh036-r610-scene-${{ github.run_id }}
+          path: artifacts/scene-controls/**
+          if-no-files-found: error
+          retention-days: 14
