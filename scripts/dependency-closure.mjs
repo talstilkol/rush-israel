@@ -5,6 +5,7 @@ import { builtinModules } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
+import { inspectProductHeadBoundary, SHARED_TEMPLATE } from './product-head-boundary.mjs';
 import { inspectActionUses } from './ci-action-pins.mjs';
 import { projectRoot } from './project-root.mjs';
 
@@ -151,12 +152,20 @@ export function buildDependencyClosure(root = projectRoot) {
       } catch (error) { errors.push(`invalid model dependency data: ${name}: ${error.message}`); }
     }
   }
+  const productHeadBoundary = analysed.has(SHARED_TEMPLATE)
+    ? { applicable: true, ...inspectProductHeadBoundary(root, analysed) }
+    : { applicable: false, qualified: false, errors: [], note: "No shared platform module in this analysed graph" };
+  errors.push(...productHeadBoundary.errors);
+  const qualifiedExternal = externalResources.filter(row => row.from === SHARED_TEMPLATE && productHeadBoundary.qualified)
+    .map(row => ({ ...row, qualification: 'dormant_vendor_head_export_blocked_by_reviewed_product_import_boundary' }));
+  const unqualifiedExternal = externalResources.filter(row => row.from !== SHARED_TEMPLATE || !productHeadBoundary.qualified);
   const unique = rows => ordered([...new Map(rows.map(row => [JSON.stringify(row), row])).values()]);
   const result = { schema_version: 1, unit: 'RSH-036', strategy: 'conservative_full_local_surface_not_minimal_reachability',
     roots: [...CLOSURE_ROOTS], root_files: [...ROOT_FILES], root_config_pattern: configPattern.source,
     files, imports: unique(imports), actions: unique(actions), dynamic_asset_expressions: unique(dynamicAssetExpressions), external_resources: unique(externalResources),
+    product_head_boundary: productHeadBoundary, qualified_external_resources: unique(qualifiedExternal), unqualified_external_resources: unique(unqualifiedExternal),
     errors: [...new Set(errors)].sort(), local_inventory_complete: errors.length === 0,
-    complete_dependency_closure: errors.length === 0 && externalResources.length === 0, freeze_granted: false,
+    complete_dependency_closure: errors.length === 0 && unqualifiedExternal.length === 0, freeze_granted: false,
     limits: ['All local files in the declared roots are sealed, including currently unused dynamic targets and all public asset bytes.',
       'Package sources are identified by package-lock integrity, not vendored or executed by this scanner.',
       'Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.'] };
@@ -171,14 +180,14 @@ export function validateDependencyClosure(root = projectRoot, manifest) {
     if (JSON.stringify(expected) !== JSON.stringify(actual)) errors.push('dependency inventory drift: changed, added, removed or unresolved inputs; regenerate only after review');
   } catch (error) { errors.push(`missing or invalid dependency inventory: ${error.message}`); }
   return { errors, fileCount: actual.files.length, importCount: actual.imports.length,
-    externalCount: actual.external_resources.length, complete: actual.complete_dependency_closure, freezeGranted: false };
+    externalCount: actual.external_resources.length, unqualifiedExternalCount: actual.unqualified_external_resources.length, complete: actual.complete_dependency_closure, freezeGranted: false };
 }
 
 if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) {
   if (process.argv.includes('--write')) {
     const result = buildDependencyClosure();
     if (result.errors.length) { console.error(JSON.stringify(result.errors)); process.exitCode = 1; }
-    else { writeFileSync(path.join(projectRoot, 'AYALON-DEPENDENCY-CLOSURE.json'), JSON.stringify(result, null, 2) + '\n'); console.log(`Wrote ${result.files.length} local inputs; ${result.external_resources.length} external qualifications remain; no freeze granted`); }
+    else { writeFileSync(path.join(projectRoot, 'AYALON-DEPENDENCY-CLOSURE.json'), JSON.stringify(result, null, 2) + '\n'); console.log(`Wrote ${result.files.length} local inputs; ${result.unqualified_external_resources.length} external qualifications remain (${result.external_resources.length} potential references retained); no freeze granted`); }
   } else {
     const result = validateDependencyClosure();
     console.log(JSON.stringify(result, null, 2));
