@@ -1,4 +1,4 @@
-name: rsh036-r613-grade-revalidated
+name: rsh036-r613-final-validation
 on:
   push:
     branches: [agent/rsh-036-r613-validation-20260907]
@@ -17,7 +17,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Apply three hash-verified candidate patches, no product ref writes
+      - name: Apply exact candidate and reconcile one stale audit count
         run: |
           python - <<'PY'
           import json,lzma,hashlib,os,subprocess
@@ -40,11 +40,18 @@ jobs:
           assert hashlib.sha256(grade['delta_patch'].encode()).hexdigest()==grade['delta_sha256']
           subprocess.run(['git','apply','--index','-'],input=grade['delta_patch'].encode(),check=True)
           assert subprocess.check_output(['git','write-tree'],text=True).strip()==grade['tree']
-          subprocess.run(['git','diff','--exit-code'],check=True)
           d.update(grade)
+          path=Path('MASTER-PLAN-r6.json');plan=json.loads(path.read_text())
+          assert plan['counts']['audit_items']==21 and len(plan['audit_items'])==22
+          plan['counts']['audit_items']=22
+          path.write_text(json.dumps(plan,ensure_ascii=False,indent=2)+'\n')
+          subprocess.run(['git','add','MASTER-PLAN-r6.json'],check=True)
+          d['tree']='ecf736ff767a18ddb1d3339e01a072dc72c5d6b9'
+          assert subprocess.check_output(['git','write-tree'],text=True).strip()==d['tree']
+          subprocess.run(['git','diff','--exit-code'],check=True)
           Path(os.environ['RUNNER_TEMP'],'r613.json').write_text(json.dumps(d))
           Path('artifacts').mkdir(exist_ok=True)
-          Path('artifacts/candidate-identity.json').write_text(json.dumps({'base':d['base'],'tree':d['tree'],'changed':d['changed'],'previous_failed_preparations':[34071681721,34072958959]}))
+          Path('artifacts/candidate-identity.json').write_text(json.dumps({'base':d['base'],'tree':d['tree'],'changed':d['changed'],'previous_failed_preparations':[34071681721,34072958959],'count_only_correction':True}))
           PY
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
@@ -54,7 +61,7 @@ jobs:
       - run: npm run toolchain:verify
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - name: Same16 actual-car grade tests must reproduce14 failures on previous vehicle bytes
+      - name: Same16 actual-car grade tests on previous bytes must reproduce14 failures
         run: |
           python - <<'PY'
           import os,subprocess,re
@@ -62,16 +69,15 @@ jobs:
           path=Path('src/game/vehicle.ts');final=path.read_bytes()
           try:
             path.write_bytes(Path(os.environ['RUNNER_TEMP'],'vehicle-before-grade.ts').read_bytes())
-            result=subprocess.run(['node','--test','scripts/ramp-grade.test.mjs'],stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
-            Path('artifacts/grade-before.tap').write_bytes(result.stdout)
-            assert result.returncode==1
+            r=subprocess.run(['node','--test','scripts/ramp-grade.test.mjs'],stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+            Path('artifacts/grade-before.tap').write_bytes(r.stdout)
+            assert r.returncode==1
             for field,count in [('tests',16),('pass',2),('fail',14),('skipped',0),('cancelled',0)]:
-              assert re.search(r'^# '+field+r' '+str(count)+r'$',result.stdout.decode(),re.M)
-          finally:
-            path.write_bytes(final)
+              assert re.search(r'^# '+field+r' '+str(count)+r'$',r.stdout.decode(),re.M)
+          finally: path.write_bytes(final)
           subprocess.run(['git','diff','--exit-code'],check=True)
           PY
-      - name: Locked parser inventory and governance
+      - name: Locked inventory and governance
         run: |
           cp AYALON-DEPENDENCY-CLOSURE.json "$RUNNER_TEMP/inventory.json"
           node scripts/dependency-closure.mjs --write
@@ -86,7 +92,7 @@ jobs:
         run: |
           set -o pipefail
           npm run lint 2>&1 | tee artifacts/lint.log
-      - name: Actual route and moving contacts with projected grade
+      - name: Bidirectional route and moving contact
         env:
           RAMP_CONTACT_OUTPUT: artifacts/contact-new
         run: |
@@ -94,15 +100,15 @@ jobs:
           node scripts/run-with-server.mjs -- node scripts/ramp-contact-browser.mjs 2>&1 | tee artifacts/contact-new.log
       - name: Controlled readiness fixtures
         run: node scripts/golden-capture-browser.mjs
-      - name: Full QA with restored original combined drive and unchanged five-car acceleration gates
+      - name: Full QA with original combined drive and unchanged acceleration baselines
         run: |
           set -o pipefail
           npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
-      - name: All retained actual runtime and resource regressions
+      - name: All actual runtime and resource regressions
         run: |
           set -o pipefail
           node scripts/run-with-server.mjs -- node scripts/runtime-recovery-smoke.mjs 2>&1 | tee artifacts/runtime-recovery.log
-      - name: Safe Ayalon capture and steering, no reference writes
+      - name: Safe Ayalon capture and steering
         run: |
           set -o pipefail
           npm run qa:ayalon 2>&1 | tee artifacts/ayalon-capture.log
@@ -129,7 +135,7 @@ jobs:
           assert result['sha']==d['tree']
           Path('artifacts/prepared-tree.json').write_text(json.dumps({'tree':result['sha'],'ref_writes':0,'commit_writes':0,'merges':0}))
           PY
-      - name: Original golden comparison with unchanged images and thresholds
+      - name: Original golden comparison without reference or threshold changes
         run: |
           set -o pipefail
           npm run qa:golden 2>&1 | tee artifacts/golden.log
@@ -137,7 +143,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: rsh036-r613-grade-revalidated-${{ github.run_id }}-${{ github.run_attempt }}
+          name: rsh036-r613-final-validation-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             artifacts/**
             golden-tmp/**
