@@ -1,13 +1,13 @@
-name: rsh036-r613-prepare
+name: rsh036-r613-drive-diagnosis
 on:
   push:
     branches: [agent/rsh-036-r613-validation-20260907]
 permissions:
-  contents: write
+  contents: read
 jobs:
-  validate-candidate:
+  diagnose:
     runs-on: ubuntu-24.04
-    timeout-minutes: 40
+    timeout-minutes: 20
     env:
       CI: "true"
       NODE_OPTIONS: "--experimental-strip-types"
@@ -17,146 +17,80 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Recover hash-verified payload and isolate exact r6.12 source
+      - name: Recover verified candidate, never publish it
         run: |
           python - <<'PY'
-          import json,lzma,hashlib,os,subprocess
+          import lzma,hashlib,json,os,subprocess
           from pathlib import Path
           raw=lzma.decompress(b''.join(Path(f'.r613-transfer-{i}').read_bytes() for i in range(3)))
           assert hashlib.sha256(raw).hexdigest()=='63f4c87108607636576f98d9672601a021b1df975a1c7b20d5dbef8ce19f3e30'
-          payload=json.loads(raw)
-          Path(os.environ['RUNNER_TEMP'],'r613.json').write_bytes(raw)
-          subprocess.run(['git','checkout','--detach',payload['base']],check=True)
-          assert subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip()==payload['base_tree']
-          Path('scripts/ramp-support.test.mjs').write_text(payload['baseline_test'])
-          Path('scripts/ramp-contact-browser.mjs').write_text(payload['baseline_browser'])
+          d=json.loads(raw);Path(os.environ['RUNNER_TEMP'],'r613.json').write_bytes(raw)
+          subprocess.run(['git','checkout','--detach',d['base']],check=True)
+          assert subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip()==d['base_tree']
           PY
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version-file: .nvmrc
           cache: npm
       - run: npm install --global npm@10.9.2
-      - run: npm run toolchain:verify
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - name: Same24 real-car cases must reproduce18 failures on r6.12
-        run: |
-          mkdir -p artifacts
-          set +e
-          node --test scripts/ramp-support.test.mjs 2>&1 | tee artifacts/support-before.tap
-          code=${PIPESTATUS[0]}
-          set -e
-          test "$code" -eq 1
-          python - <<'PY'
-          from pathlib import Path
-          import re
-          text=Path('artifacts/support-before.tap').read_text()
-          for name,count in [('tests',24),('pass',6),('fail',18),('cancelled',0),('skipped',0)]:
-            assert re.search(r'^# '+name+r' '+str(count)+r'$',text,re.M), (name,text[-1500:])
-          PY
-          git diff --exit-code -- src public
-      - name: Real old route must reproduce25 downward snaps and the seven known regressions
-        env:
-          RAMP_CONTACT_OUTPUT: artifacts/contact-old
-        run: |
-          set -o pipefail
-          node scripts/run-with-server.mjs -- node scripts/ramp-contact-browser.mjs --expect-downward-snap 2>&1 | tee artifacts/contact-old.log
-      - name: Apply reviewed patch and assert exact complete candidate tree
+      - name: Instrument existing unchanged drive sequence without accepting failures
         run: |
           python - <<'PY'
-          import json,hashlib,os,subprocess
           from pathlib import Path
-          payload=json.loads(Path(os.environ['RUNNER_TEMP'],'r613.json').read_text())
-          subprocess.run(['git','checkout','--','scripts/ramp-contact-browser.mjs'],check=True)
-          Path('scripts/ramp-support.test.mjs').unlink()
-          patch=payload['patch'].encode()
-          assert hashlib.sha256(patch).hexdigest()==payload['patch_sha256']
-          subprocess.run(['git','apply','--index','-'],input=patch,check=True)
-          assert subprocess.check_output(['git','write-tree'],text=True).strip()==payload['tree']
-          subprocess.run(['git','diff','--exit-code'],check=True)
-          Path('artifacts/candidate-identity.json').write_text(json.dumps({'base':payload['base'],'tree':payload['tree'],'changed':payload['changed']}))
+          source=Path('scripts/drive-smoke.mjs').read_text()
+          source=source.replace('import { chromium } from "playwright";','import { chromium } from "playwright";\nimport { mkdir, writeFile } from "node:fs/promises";\nlet diagnosticError = null;')
+          source=source.replace('await p.goto(url,', 'try {\nawait p.goto(url,',1)
+          anchor='await p.waitForFunction(() => !!window.__controlsTest, { timeout: 35000 });'
+          assert source.count(anchor)==1
+          source=source.replace(anchor,anchor+'''
+          await p.evaluate(() => {
+            const t=window.__controlsTest;
+            window.__driveTrace=[];
+            const snap=(event,args=[])=>window.__driveTrace.push({event,args,x:t.getX(),y:t.getY(),z:t.getZ(),yaw:t.getYaw(),speed:t.getSpeed(),damage:t.getDamage(),on:t.getOnTrack(),airborne:t.getAirborne(),steer:t.getSteer(),mix:t.getKinMix()});
+            for (const key of ['advanceTime','resetStart','setSteer','setThrottle']) {
+              const original=t[key]; t[key]=(...args)=>{const value=original(...args);snap(key,args);return value;};
+            }
+            snap('begin');
+          });
+          ''')
+          assert source.count('await b.close();')==1
+          source=source.replace('await b.close();','''
+          } catch(error) { diagnosticError=String(error); }
+          finally {
+            const trace=await p.evaluate(()=>window.__driveTrace??[]).catch(()=>[]);
+            const report={authority:false,protocol:'Unmodified legacy drive sequence and assertions; read-only50ms state trace; diagnostics, not acceptance',tag:process.env.DIAG_TAG,scriptError:diagnosticError,pageErrors:errs,trace};
+            await mkdir('artifacts/drive-diagnosis',{recursive:true});
+            await writeFile(`artifacts/drive-diagnosis/${process.env.DIAG_TAG}.json`,JSON.stringify(report,null,2)+'\\n');
+            console.log(JSON.stringify({tag:report.tag,error:diagnosticError,frames:trace.length,last:trace.at(-1)}));
+            await b.close();
+          }
+          ''')
+          Path('.r613-drive-diag.mjs').write_text(source)
           PY
-      - name: Verify locked-parser dependency inventory without accepting drift
+      - name: Three original-source full sequence diagnoses
         run: |
-          cp AYALON-DEPENDENCY-CLOSURE.json "$RUNNER_TEMP/inventory.json"
-          node scripts/dependency-closure.mjs --write
-          cmp AYALON-DEPENDENCY-CLOSURE.json "$RUNNER_TEMP/inventory.json"
+          for trial in 1 2 3; do DIAG_TAG=old-$trial node scripts/run-with-server.mjs -- node .r613-drive-diag.mjs; done
           git diff --exit-code
-      - name: Governance and complete unit suite
-        run: |
-          node scripts/check-governance-contract.mjs
-          set -o pipefail
-          npm test 2>&1 | tee artifacts/unit-tests.tap
-      - name: Lint without suppression
-        run: |
-          set -o pipefail
-          npm run lint 2>&1 | tee artifacts/lint.log
-      - name: Same real route and1680 motion steps after repair
-        env:
-          RAMP_CONTACT_OUTPUT: artifacts/contact-new
-        run: |
-          set -o pipefail
-          node scripts/run-with-server.mjs -- node scripts/ramp-contact-browser.mjs 2>&1 | tee artifacts/contact-new.log
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          old=json.loads(Path('artifacts/contact-old/results.json').read_text())
-          new=json.loads(Path('artifacts/contact-new/results.json').read_text())
-          assert old['recipe']==new['recipe']
-          assert old['rampCount']==new['rampCount']==50
-          assert old['colliderCount']==new['colliderCount']==546
-          assert old['checkpointCount']==new['checkpointCount']==8
-          PY
-      - name: Controlled readiness fixtures
-        run: node scripts/golden-capture-browser.mjs
-      - name: Full QA and locked typecheck
-        run: |
-          set -o pipefail
-          npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
-      - name: Retained runtime regressions and bidirectional support contracts
-        run: |
-          set -o pipefail
-          node scripts/run-with-server.mjs -- node scripts/runtime-recovery-smoke.mjs 2>&1 | tee artifacts/runtime-recovery.log
-      - name: Safe Ayalon capture and steering with no reference updates
-        run: |
-          set -o pipefail
-          npm run qa:ayalon 2>&1 | tee artifacts/ayalon-capture.log
-      - name: Development build
-        run: |
-          set -o pipefail
-          npm run build:dev 2>&1 | tee artifacts/build-dev.log
-      - name: Store validated unreferenced tree objects only, no commits or refs
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Switch only to exact candidate
         run: |
           python - <<'PY'
-          import json,os,subprocess,urllib.request
+          import os,json,subprocess
           from pathlib import Path
-          payload=json.loads(Path(os.environ['RUNNER_TEMP'],'r613.json').read_text())
-          subprocess.run(['git','diff','--exit-code'],check=True)
-          assert subprocess.check_output(['git','write-tree'],text=True).strip()==payload['tree']
-          entries=[]
-          for name in payload['changed']:
-            assert not name.startswith(('.github/','.r613','/')) and '..' not in Path(name).parts
-            entries.append({'path':name,'mode':'100644','type':'blob','content':Path(name).read_text()})
-          data=json.dumps({'base_tree':payload['base_tree'],'tree':entries}).encode()
-          req=urllib.request.Request('https://api.github.com/repos/talstilkol/rush-israel/git/trees',data=data,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'})
-          with urllib.request.urlopen(req) as response: result=json.load(response)
-          assert result['sha']==payload['tree']
-          Path('artifacts/prepared-tree.json').write_text(json.dumps({'tree':result['sha'],'ref_writes':0,'commit_writes':0,'merges':0}))
-          print('Validated unreferenced tree:',result['sha'])
+          d=json.loads(Path(os.environ['RUNNER_TEMP'],'r613.json').read_text())
+          subprocess.run(['git','apply','--index','-'],input=d['patch'].encode(),check=True)
+          assert subprocess.check_output(['git','write-tree'],text=True).strip()==d['tree']
           PY
-      - name: Original golden comparison with unchanged images and thresholds
+      - name: Three candidate full sequence diagnoses
         run: |
-          set -o pipefail
-          npm run qa:golden 2>&1 | tee artifacts/golden.log
-      - name: Preserve actual results including comparison failures
+          for trial in 1 2 3; do DIAG_TAG=new-$trial node scripts/run-with-server.mjs -- node .r613-drive-diag.mjs; done
+          git diff --exit-code
+      - name: Preserve diagnosis, not acceptance or publication
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: rsh036-r613-preparation-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            artifacts/**
-            golden-tmp/**
+          name: rsh036-r613-drive-diagnosis-${{ github.run_id }}
+          path: artifacts/drive-diagnosis/**
           if-no-files-found: error
           retention-days: 14
