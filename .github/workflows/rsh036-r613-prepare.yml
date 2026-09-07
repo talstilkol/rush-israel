@@ -1,4 +1,4 @@
-name: rsh036-r613-revalidated
+name: rsh036-r613-grade-revalidated
 on:
   push:
     branches: [agent/rsh-036-r613-validation-20260907]
@@ -17,30 +17,34 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Apply both verified patches and assert the complete product tree
+      - name: Apply three hash-verified candidate patches, no product ref writes
         run: |
           python - <<'PY'
           import json,lzma,hashlib,os,subprocess
           from pathlib import Path
-          raw=lzma.decompress(b''.join(Path(f'.r613-transfer-{i}').read_bytes() for i in range(3)))
-          assert hashlib.sha256(raw).hexdigest()=='63f4c87108607636576f98d9672601a021b1df975a1c7b20d5dbef8ce19f3e30'
-          d=json.loads(raw)
-          dr=lzma.decompress(b''.join(Path(f'.r613-delta-{i}').read_bytes() for i in range(2)))
-          assert hashlib.sha256(dr).hexdigest()=='810c542614dd64813a7e85c5639238ae45033da246b576a968204043f8dab3ad'
-          delta=json.loads(dr)
-          assert hashlib.sha256(d['patch'].encode()).hexdigest()==d['patch_sha256']
-          assert hashlib.sha256(delta['delta_patch'].encode()).hexdigest()==delta['delta_sha256']
+          def read(prefix,count,digest):
+            raw=lzma.decompress(b''.join(Path(f'.r613-{prefix}-{i}').read_bytes() for i in range(count)))
+            assert hashlib.sha256(raw).hexdigest()==digest
+            return json.loads(raw)
+          d=read('transfer',3,'63f4c87108607636576f98d9672601a021b1df975a1c7b20d5dbef8ce19f3e30')
+          delta=read('delta',2,'810c542614dd64813a7e85c5639238ae45033da246b576a968204043f8dab3ad')
+          grade=read('grade',3,'02bb26086a4e30b68eb2bf6e7c52c87c91f1cdca13906c48b81deba18a19eb92')
           subprocess.run(['git','checkout','--detach',d['base']],check=True)
           assert subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip()==d['base_tree']
-          subprocess.run(['git','apply','--index','-'],input=d['patch'].encode(),check=True)
-          assert subprocess.check_output(['git','write-tree'],text=True).strip()==d['tree']
-          subprocess.run(['git','apply','--index','-'],input=delta['delta_patch'].encode(),check=True)
-          assert subprocess.check_output(['git','write-tree'],text=True).strip()==delta['tree']
+          for patch,digest,tree in [(d['patch'],d['patch_sha256'],d['tree']),(delta['delta_patch'],delta['delta_sha256'],delta['tree'])]:
+            assert hashlib.sha256(patch.encode()).hexdigest()==digest
+            subprocess.run(['git','apply','--index','-'],input=patch.encode(),check=True)
+            assert subprocess.check_output(['git','write-tree'],text=True).strip()==tree
+          assert delta['tree']==grade['from_tree']
+          Path(os.environ['RUNNER_TEMP'],'vehicle-before-grade.ts').write_bytes(Path('src/game/vehicle.ts').read_bytes())
+          assert hashlib.sha256(grade['delta_patch'].encode()).hexdigest()==grade['delta_sha256']
+          subprocess.run(['git','apply','--index','-'],input=grade['delta_patch'].encode(),check=True)
+          assert subprocess.check_output(['git','write-tree'],text=True).strip()==grade['tree']
           subprocess.run(['git','diff','--exit-code'],check=True)
-          d.update(delta)
+          d.update(grade)
           Path(os.environ['RUNNER_TEMP'],'r613.json').write_text(json.dumps(d))
           Path('artifacts').mkdir(exist_ok=True)
-          Path('artifacts/candidate-identity.json').write_text(json.dumps({'base':d['base'],'tree':d['tree'],'changed':d['changed'],'previous_failed_preparation':34071681721}))
+          Path('artifacts/candidate-identity.json').write_text(json.dumps({'base':d['base'],'tree':d['tree'],'changed':d['changed'],'previous_failed_preparations':[34071681721,34072958959]}))
           PY
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
@@ -50,6 +54,23 @@ jobs:
       - run: npm run toolchain:verify
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      - name: Same16 actual-car grade tests must reproduce14 failures on previous vehicle bytes
+        run: |
+          python - <<'PY'
+          import os,subprocess,re
+          from pathlib import Path
+          path=Path('src/game/vehicle.ts');final=path.read_bytes()
+          try:
+            path.write_bytes(Path(os.environ['RUNNER_TEMP'],'vehicle-before-grade.ts').read_bytes())
+            result=subprocess.run(['node','--test','scripts/ramp-grade.test.mjs'],stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+            Path('artifacts/grade-before.tap').write_bytes(result.stdout)
+            assert result.returncode==1
+            for field,count in [('tests',16),('pass',2),('fail',14),('skipped',0),('cancelled',0)]:
+              assert re.search(r'^# '+field+r' '+str(count)+r'$',result.stdout.decode(),re.M)
+          finally:
+            path.write_bytes(final)
+          subprocess.run(['git','diff','--exit-code'],check=True)
+          PY
       - name: Locked parser inventory and governance
         run: |
           cp AYALON-DEPENDENCY-CLOSURE.json "$RUNNER_TEMP/inventory.json"
@@ -65,7 +86,7 @@ jobs:
         run: |
           set -o pipefail
           npm run lint 2>&1 | tee artifacts/lint.log
-      - name: Actual bidirectional route,250 supported probes and1680 motion steps
+      - name: Actual route and moving contacts with projected grade
         env:
           RAMP_CONTACT_OUTPUT: artifacts/contact-new
         run: |
@@ -73,7 +94,7 @@ jobs:
           node scripts/run-with-server.mjs -- node scripts/ramp-contact-browser.mjs 2>&1 | tee artifacts/contact-new.log
       - name: Controlled readiness fixtures
         run: node scripts/golden-capture-browser.mjs
-      - name: Full QA, real independent forward steering and locked typecheck
+      - name: Full QA with restored original combined drive and unchanged five-car acceleration gates
         run: |
           set -o pipefail
           npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
@@ -112,11 +133,11 @@ jobs:
         run: |
           set -o pipefail
           npm run qa:golden 2>&1 | tee artifacts/golden.log
-      - name: Preserve actual evidence including any comparison failure
+      - name: Preserve actual evidence including failures
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: rsh036-r613-revalidated-${{ github.run_id }}-${{ github.run_attempt }}
+          name: rsh036-r613-grade-revalidated-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             artifacts/**
             golden-tmp/**
