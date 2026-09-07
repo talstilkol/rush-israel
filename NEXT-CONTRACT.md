@@ -1,22 +1,39 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 20.11.0
-**Date:** 2026-09-06, Asia/Jerusalem
+**Version:** 20.12.1
+**Date:** 2026-09-07, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** c0fa0572747f696ddeb74c754cb7a1a5a4a9d955
+**Repair base:** 394a9324dd1fb185335833c12a97b0d71ccc55d2
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
-Re-read live GitHub, source/CI artifacts and reviews before changes. Standing owner audit/repair/master-plan authority continues.35/67 accepted;32 remain. No force-push, history rewrite, merge, release, freeze or RSH-037 activation.
+Re-read live GitHub and exact-source CI evidence before any changes. Standing
+owner audit/repair/master-plan authority continues. 35/67 accepted; 32 remain.
+No force-push, history rewrite, merge, release, freeze or RSH-037 activation.
 
-## r6.12
-AUD-21 corrects upward ramp capture through overhead decks. Preserve the existing1.2-unit entry allowance, lower-surface selection, all50 recipes and calibration constants. The original ramp-following smoke must start on the intended surface; separate regressions must reject under-bridge teleportation. Read actual old/new route results, not merely green test labels. AUD-19 wetness and AUD-20 mesh conformance remain retained.
+## r6.13 candidate
+AUD-21: nearer road versus buried ramps; coherent wheel support; gravity-driven
+falls. AUD-22: ramp grade projected onto body-forward, preserving coefficients.
+AUD-23: airborne validation measures exact physics ticks rather than wall time.
+Read all failed preparations in the repair and driving/grade/airborne reports.
+A green partial test suite must never override raw contradictory evidence.
 
-## Next acceptance work
-1. Verify exact-head normal CI, current contact/mesh/road tests and original golden result.
-2. Inspect low-crossing body/roof clearance, support-column collisions and occlusion against accepted specs. Bounded upward capture does not certify route clearance. Downward/airborne attachment is unchanged and not newly qualified.
-3. Resolve3 mutable font dependencies without silently changing typography or distributing font files.
-4. Retain all capture-output, dependency, product-head, font fallback, road, mesh and resource gates.
-5. Preserve original PNGs,0.12 threshold,8% failure limit and generation11 lock. Any image-reference transition requires separate explicit approval/provenance.
-6. Only validated owner-approved acceptance may grant the freeze and activate RSH-037.
+## Required validation and next work
+1. Finish final-candidate QA and exact published-head CI, including both-direction
+   contact: 781 route starts, indices479-485, seven240-step trajectories and250
+   supported ramp probes. Preserve the original combined drive sequence and
+   all five unchanged acceleration baselines. Run three actual airborne trials
+   with the original50+900ms budget (113 steps at120Hz), not extended wait time.
+2. Read unchanged original-golden results independently of normal CI. Inspect
+   crossing occlusion, materials and art against accepted specifications.
+3. Qualify body/roof/column clearance, complete collision/airborne behavior and
+   physics/record-version policy. Sampled support conformance is not full clearance.
+4. Investigate low rendering throughput separately; a deterministic clock test
+   is not a performance fix. Performance-stage work remains deferred.
+5. Qualify three mutable font dependencies without silent typography changes or
+   distribution of font files. Retain every resource, road, mesh and capture guard.
+6. Preserve original PNGs,0.12 threshold,8% failure limit and generation11 lock.
+   Any image-reference transition requires separate explicit provenance/approval.
+   Only validated owner-approved acceptance can grant the freeze or open RSH-037.
 
-All13 release gates remain open;66 asset licences unverified.
+Master plan r6.13 retains67 units,42 historical findings,6 repair bundles and23
+numbered audit items. All13 release gates open;66 asset licences unverified.

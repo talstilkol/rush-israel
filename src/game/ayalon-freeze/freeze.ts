@@ -87,9 +87,13 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/road-uniform-browser.mjs": "aed1f57320633920ef28c803faef0c09802fbcd26fbf6c25d85ac7fbf9919c9d",
   "src/game/ramp-surface.ts": "4072158c03c6728f54f7efdd60fa5e43e831decda461975a528c1e01e1f512ed",
   "scripts/ramp-surface-browser.mjs": "1e495b420782dff63ab7c3b74f8a21f23378c382cf821c6ec7008df8d6bcd849",
-  "src/game/vehicle.ts": "d37ff1c5cad7cc6c29d05964bf7aeebaa66ca644087abde1601183d6f350f97f",
+  "src/game/vehicle.ts": "7db3128bb337e94838101d1f49fc31aad3b138e9b90dbbeb2635ed6ff93a1cfe",
   "scripts/ramp-smoke.mjs": "8c35bfd9bde53b5b8487f877e8018bfcf3237efd37bd0e317fe457f610da8a2c",
-  "scripts/ramp-contact-browser.mjs": "8dcdf09ed3a25686df65e3c937f9d8cef974a9e8ecbc7a9e245b0f282e17d616"
+  "scripts/ramp-contact-browser.mjs": "b185299e282d4e26ed113abc119bf2677b8e04639920c7ef24e00f45368d69bf",
+  "scripts/drive-smoke.mjs": "2e0f6c36b8f7bf905d30d15f020e1485dda21d5305bcc3d126de211053685b93",
+  "scripts/drive-steering.mjs": "ebdaa2b658e66f848adfb85d74062277758d3f14f004cd73a6d1e0d441d4b6ba",
+  "scripts/airborne-smoke.mjs": "fa321116c26412d51f89c8d3178d97182f7091a54a92f35375f0c320ae32c636",
+  "scripts/airborne-clock.mjs": "fecc996075b4238a926387dc736bdcdd8208af3037623fa55e06aef219bb42fe",
 } as const;
 
 export const FREEZE_APPROVAL = {

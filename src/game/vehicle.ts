@@ -48,7 +48,7 @@ export type CarSnap = {
   yawRate: number;
 };
 
-function probeRamp(x: number, z: number, ramps: Ramp[], yHint = 0) {
+function probeRamp(x: number, z: number, ramps: Ramp[], yHint = 0, roadY?: number) {
   let best: { r: Ramp; y: number; dyds: number; score: number } | null = null;
   for (const r of ramps) {
     const dx = x - r.x;
@@ -59,16 +59,25 @@ function probeRamp(x: number, z: number, ramps: Ramp[], yHint = 0) {
       const t = clamp(along / r.len + 0.5, 0, 1);
       const y = r.y0 + (r.y1 - r.y0) * t;
       // Horizontal overlap alone must not capture a car onto an overhead deck.
-      // Keep the existing 1.2-unit step allowance and lower-surface selection.
+      // Keep the existing 1.2-unit step allowance.
       if (y > yHint + 1.2) continue;
       const dyds = (r.y1 - r.y0) / r.len;
       const score = Math.abs(y - yHint);
+      // A buried deck cannot pull the car through a closer main-road surface.
+      // A car already on a lower deck keeps it; the road is not a global floor.
+      if (roadY !== undefined && y < roadY && roadY <= yHint + 1.2 && Math.abs(roadY - yHint) < score) continue;
       if (!best || score + 0.04 < best.score || (score <= best.score + 0.04 && y > best.y && y <= yHint + 1.2)) {
         best = { r, y, dyds, score };
       }
     }
   }
   return best;
+}
+
+function probeRampOnTrack(x: number, z: number, ramps: Ramp[], yHint: number, track: BuiltTrack, hint: number) {
+  const near = nearestIndex(track.samples, x, z, hint, track.closed);
+  const roadY = near.dist <= track.width / 2 ? track.samples[near.index].y : undefined;
+  return probeRamp(x, z, ramps, yHint, roadY);
 }
 
 export class ArcadeCar {
@@ -302,10 +311,12 @@ export class ArcadeCar {
       const nG = track.samples[Math.min(this.sampleIndex + 1, track.samples.length - 1)];
       const gds = Math.hypot(nG.x - sG.x, nG.z - sG.z) || 1;
       let grade = (nG.y - sG.y) / gds;
-      const rp = probeRamp(this.x, this.z, ramps, this.y);
+      const rp = probeRampOnTrack(this.x, this.z, ramps, this.y, track, this.sampleIndex);
       if (rp) {
-        const alongV = this.vx * rp.r.sx + this.vz * rp.r.sz;
-        grade = rp.dyds * Math.sign(alongV || 1);
+        // Grade is the height derivative along the body's forward axis, not
+        // the sign of motion along the ramp. Crosswise travel has zero grade;
+        // reversing velocity must not reverse gravity in body coordinates.
+        grade = rp.dyds * (fx * rp.r.sx + fz * rp.r.sz);
       }
       if (racing) {
         this.speed += -grade * 16.2 * dt;
@@ -319,7 +330,11 @@ export class ArcadeCar {
     const sG = track.samples[iG];
     const nG = track.samples[Math.min(iG + 1, track.samples.length - 1)];
     const gds = Math.hypot(nG.x - sG.x, nG.z - sG.z) || 1;
-    const terrainPitch = clamp(-(probeRamp(this.x, this.z, ramps, this.y)?.dyds ?? (nG.y - sG.y) / gds) * 3.4, -0.75, 0.75);
+    const pitchRamp = probeRampOnTrack(this.x, this.z, ramps, this.y, track, this.sampleIndex);
+    const forwardGrade = pitchRamp
+      ? pitchRamp.dyds * (fx * pitchRamp.r.sx + fz * pitchRamp.r.sz)
+      : (nG.y - sG.y) / gds;
+    const terrainPitch = clamp(-forwardGrade * 3.4, -0.75, 0.75);
     this.pitch = expSmooth(this.pitch, loadTgt + terrainPitch, 9, dt);
     const rollTgt = racing ? -input.steer * clamp(speedAbs / 24, 0, 1) * 0.34 : 0;
     this.roll = expSmooth(this.roll, rollTgt, 7, dt);
@@ -450,6 +465,8 @@ export class ArcadeCar {
     this.yaw = wrapPi(this.yaw + spin * dt);
     this.vx = fx * this.speed + rx * lat;
     this.vz = fz * this.speed + rz * lat;
+    const previousRamp = probeRampOnTrack(this.x, this.z, ramps, this.y, track, this.sampleIndex);
+    const wasRampSupported = previousRamp !== null && Math.abs(this.y - previousRamp.y) <= 0.04;
     const cuts = speedAbs > 25 ? 2 : 1;
     const h = dt / cuts;
     for (let s = 0; s < cuts; s++) {
@@ -461,7 +478,7 @@ export class ArcadeCar {
     const near = nearestIndex(track.samples, this.x, this.z, this.sampleIndex, track.closed);
     this.sampleIndex = near.index;
     const s = track.samples[near.index];
-    const rp = probeRamp(this.x, this.z, ramps, this.y);
+    const rp = probeRampOnTrack(this.x, this.z, ramps, this.y, track, this.sampleIndex);
     const wb = 1.25;
     const tr = 0.72;
     const corners = [
@@ -474,8 +491,12 @@ export class ArcadeCar {
     let yMin = 1e9;
     let yMax = -1e9;
     for (const [cx, cz] of corners) {
-      const cRp = probeRamp(cx, cz, ramps, this.y);
-      const y = cRp ? cRp.y : track.samples[nearestIndex(track.samples, cx, cz, near.index, track.closed).index].y;
+      const cornerNear = nearestIndex(track.samples, cx, cz, near.index, track.closed);
+      const roadY = track.samples[cornerNear.index].y;
+      // All wheel probes must use the centre's selected deck. Mixing an
+      // overhead deck into road contact can lift the body from underneath.
+      const cRp = rp ? probeRamp(cx, cz, [rp.r], this.y, cornerNear.dist <= track.width / 2 ? roadY : undefined) : null;
+      const y = cRp ? cRp.y : roadY;
       ySum += y;
       if (y < yMin) yMin = y;
       if (y > yMax) yMax = y;
@@ -487,7 +508,11 @@ export class ArcadeCar {
     const half = track.width / 2;
     const lat01 = dist / Math.max(0.5, half);
     const onCurbBand = !rp && lat01 > 0.9 && lat01 < 1.08;
-    if (rp) {
+    // Enter a reachable rise or follow an already-supported slope. A remote
+    // surface below the car is a landing target, not an instantaneous contact.
+    const followRamp = rp && !this.airborne && this.vy <= 0 &&
+      (groundY >= this.y || (wasRampSupported && this.y - groundY <= 1.2));
+    if (followRamp) {
       this.y = groundY;
       this.vy = 0;
       this.airborne = false;
@@ -498,7 +523,7 @@ export class ArcadeCar {
       this.wasCurb = onCurbBand;
       this.vy -= 18 * dt;
       this.y += this.vy * dt;
-      if (this.y <= groundY + 0.04) {
+      if (this.vy <= 0 && this.y <= groundY + 0.04) {
         this.y = groundY;
         if (this.vy < 0) this.vy = 0;
         this.airborne = false;
@@ -507,11 +532,8 @@ export class ArcadeCar {
         if (this.y > groundY + 0.55) this.airMs += dt * 1000;
         else this.airMs = 0;
         this.airborne = this.airMs >= 12;
-        const ceil = this.vy > 2 || this.airborne ? groundY + 8 : groundY + 0.85;
-        if (this.y > ceil) {
-          this.y = ceil;
-          this.vy = Math.min(0, this.vy);
-        }
+        // Preserve integrated height and velocity during a fall. An altitude
+        // clamp here would teleport the car before airborne hysteresis settles.
       }
     }
     const alley = nearestStreet(this.x, this.z, streets);
