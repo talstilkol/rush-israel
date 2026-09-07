@@ -1,13 +1,13 @@
-name: rsh036-r613-drive-diagnosis
+name: rsh036-r613-revalidated
 on:
   push:
     branches: [agent/rsh-036-r613-validation-20260907]
 permissions:
-  contents: read
+  contents: write
 jobs:
-  diagnose:
+  validate-candidate:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 40
     env:
       CI: "true"
       NODE_OPTIONS: "--experimental-strip-types"
@@ -17,80 +17,108 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Recover verified candidate, never publish it
+      - name: Apply both verified patches and assert the complete product tree
         run: |
           python - <<'PY'
-          import lzma,hashlib,json,os,subprocess
+          import json,lzma,hashlib,os,subprocess
           from pathlib import Path
           raw=lzma.decompress(b''.join(Path(f'.r613-transfer-{i}').read_bytes() for i in range(3)))
           assert hashlib.sha256(raw).hexdigest()=='63f4c87108607636576f98d9672601a021b1df975a1c7b20d5dbef8ce19f3e30'
-          d=json.loads(raw);Path(os.environ['RUNNER_TEMP'],'r613.json').write_bytes(raw)
+          d=json.loads(raw)
+          dr=lzma.decompress(b''.join(Path(f'.r613-delta-{i}').read_bytes() for i in range(2)))
+          assert hashlib.sha256(dr).hexdigest()=='810c542614dd64813a7e85c5639238ae45033da246b576a968204043f8dab3ad'
+          delta=json.loads(dr)
+          assert hashlib.sha256(d['patch'].encode()).hexdigest()==d['patch_sha256']
+          assert hashlib.sha256(delta['delta_patch'].encode()).hexdigest()==delta['delta_sha256']
           subprocess.run(['git','checkout','--detach',d['base']],check=True)
           assert subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip()==d['base_tree']
+          subprocess.run(['git','apply','--index','-'],input=d['patch'].encode(),check=True)
+          assert subprocess.check_output(['git','write-tree'],text=True).strip()==d['tree']
+          subprocess.run(['git','apply','--index','-'],input=delta['delta_patch'].encode(),check=True)
+          assert subprocess.check_output(['git','write-tree'],text=True).strip()==delta['tree']
+          subprocess.run(['git','diff','--exit-code'],check=True)
+          d.update(delta)
+          Path(os.environ['RUNNER_TEMP'],'r613.json').write_text(json.dumps(d))
+          Path('artifacts').mkdir(exist_ok=True)
+          Path('artifacts/candidate-identity.json').write_text(json.dumps({'base':d['base'],'tree':d['tree'],'changed':d['changed'],'previous_failed_preparation':34071681721}))
           PY
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version-file: .nvmrc
           cache: npm
       - run: npm install --global npm@10.9.2
+      - run: npm run toolchain:verify
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - name: Instrument existing unchanged drive sequence without accepting failures
+      - name: Locked parser inventory and governance
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          source=Path('scripts/drive-smoke.mjs').read_text()
-          source=source.replace('import { chromium } from "playwright";','import { chromium } from "playwright";\nimport { mkdir, writeFile } from "node:fs/promises";\nlet diagnosticError = null;')
-          source=source.replace('await p.goto(url,', 'try {\nawait p.goto(url,',1)
-          anchor='await p.waitForFunction(() => !!window.__controlsTest, { timeout: 35000 });'
-          assert source.count(anchor)==1
-          source=source.replace(anchor,anchor+'''
-          await p.evaluate(() => {
-            const t=window.__controlsTest;
-            window.__driveTrace=[];
-            const snap=(event,args=[])=>window.__driveTrace.push({event,args,x:t.getX(),y:t.getY(),z:t.getZ(),yaw:t.getYaw(),speed:t.getSpeed(),damage:t.getDamage(),on:t.getOnTrack(),airborne:t.getAirborne(),steer:t.getSteer(),mix:t.getKinMix()});
-            for (const key of ['advanceTime','resetStart','setSteer','setThrottle']) {
-              const original=t[key]; t[key]=(...args)=>{const value=original(...args);snap(key,args);return value;};
-            }
-            snap('begin');
-          });
-          ''')
-          assert source.count('await b.close();')==1
-          source=source.replace('await b.close();','''
-          } catch(error) { diagnosticError=String(error); }
-          finally {
-            const trace=await p.evaluate(()=>window.__driveTrace??[]).catch(()=>[]);
-            const report={authority:false,protocol:'Unmodified legacy drive sequence and assertions; read-only50ms state trace; diagnostics, not acceptance',tag:process.env.DIAG_TAG,scriptError:diagnosticError,pageErrors:errs,trace};
-            await mkdir('artifacts/drive-diagnosis',{recursive:true});
-            await writeFile(`artifacts/drive-diagnosis/${process.env.DIAG_TAG}.json`,JSON.stringify(report,null,2)+'\\n');
-            console.log(JSON.stringify({tag:report.tag,error:diagnosticError,frames:trace.length,last:trace.at(-1)}));
-            await b.close();
-          }
-          ''')
-          Path('.r613-drive-diag.mjs').write_text(source)
-          PY
-      - name: Three original-source full sequence diagnoses
-        run: |
-          for trial in 1 2 3; do DIAG_TAG=old-$trial node scripts/run-with-server.mjs -- node .r613-drive-diag.mjs; done
+          cp AYALON-DEPENDENCY-CLOSURE.json "$RUNNER_TEMP/inventory.json"
+          node scripts/dependency-closure.mjs --write
+          cmp AYALON-DEPENDENCY-CLOSURE.json "$RUNNER_TEMP/inventory.json"
           git diff --exit-code
-      - name: Switch only to exact candidate
+          node scripts/check-governance-contract.mjs
+      - name: Complete unit suite
+        run: |
+          set -o pipefail
+          npm test 2>&1 | tee artifacts/unit-tests.tap
+      - name: Lint without suppression
+        run: |
+          set -o pipefail
+          npm run lint 2>&1 | tee artifacts/lint.log
+      - name: Actual bidirectional route,250 supported probes and1680 motion steps
+        env:
+          RAMP_CONTACT_OUTPUT: artifacts/contact-new
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node scripts/ramp-contact-browser.mjs 2>&1 | tee artifacts/contact-new.log
+      - name: Controlled readiness fixtures
+        run: node scripts/golden-capture-browser.mjs
+      - name: Full QA, real independent forward steering and locked typecheck
+        run: |
+          set -o pipefail
+          npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
+      - name: All retained actual runtime and resource regressions
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node scripts/runtime-recovery-smoke.mjs 2>&1 | tee artifacts/runtime-recovery.log
+      - name: Safe Ayalon capture and steering, no reference writes
+        run: |
+          set -o pipefail
+          npm run qa:ayalon 2>&1 | tee artifacts/ayalon-capture.log
+      - name: Development build
+        run: |
+          set -o pipefail
+          npm run build:dev 2>&1 | tee artifacts/build-dev.log
+      - name: Store validated unreferenced tree only, no commits or refs
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           python - <<'PY'
-          import os,json,subprocess
+          import json,os,subprocess,urllib.request
           from pathlib import Path
           d=json.loads(Path(os.environ['RUNNER_TEMP'],'r613.json').read_text())
-          subprocess.run(['git','apply','--index','-'],input=d['patch'].encode(),check=True)
+          subprocess.run(['git','diff','--exit-code'],check=True)
           assert subprocess.check_output(['git','write-tree'],text=True).strip()==d['tree']
+          entries=[]
+          for name in d['changed']:
+            assert not name.startswith(('.github/','.r613','/')) and '..' not in Path(name).parts
+            entries.append({'path':name,'mode':'100644','type':'blob','content':Path(name).read_text()})
+          req=urllib.request.Request('https://api.github.com/repos/talstilkol/rush-israel/git/trees',data=json.dumps({'base_tree':d['base_tree'],'tree':entries}).encode(),method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'})
+          with urllib.request.urlopen(req) as response: result=json.load(response)
+          assert result['sha']==d['tree']
+          Path('artifacts/prepared-tree.json').write_text(json.dumps({'tree':result['sha'],'ref_writes':0,'commit_writes':0,'merges':0}))
           PY
-      - name: Three candidate full sequence diagnoses
+      - name: Original golden comparison with unchanged images and thresholds
         run: |
-          for trial in 1 2 3; do DIAG_TAG=new-$trial node scripts/run-with-server.mjs -- node .r613-drive-diag.mjs; done
-          git diff --exit-code
-      - name: Preserve diagnosis, not acceptance or publication
+          set -o pipefail
+          npm run qa:golden 2>&1 | tee artifacts/golden.log
+      - name: Preserve actual evidence including any comparison failure
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: rsh036-r613-drive-diagnosis-${{ github.run_id }}
-          path: artifacts/drive-diagnosis/**
+          name: rsh036-r613-revalidated-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/**
+            golden-tmp/**
           if-no-files-found: error
           retention-days: 14
