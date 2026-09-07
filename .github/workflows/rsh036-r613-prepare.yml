@@ -1,51 +1,118 @@
-name: rsh036-r613-recover-exact-candidate
+name: rsh036-r613-physics-clock-validation
 on:
   push:
     branches: [agent/rsh-036-r613-validation-20260907]
 permissions:
-  contents: read
+  contents: write
 jobs:
-  recover:
+  validate-candidate:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 40
     env:
       CI: "true"
       NODE_OPTIONS: "--experimental-strip-types"
+      PLAYWRIGHT_BROWSERS_PATH: "0"
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Recover previously hash-verified candidate without any publication
+      - name: Recover exact prior candidate and apply reviewed physics-clock delta
         run: |
           python - <<'PY'
-          import subprocess, hashlib, json
+          import json,lzma,hashlib,os,subprocess
           from pathlib import Path
+          raw=lzma.decompress(b''.join(Path(f'.r613-clock-{i}').read_bytes() for i in range(3)))
+          assert hashlib.sha256(raw).hexdigest()=='8cffab244c25f8efe8e6e8b7580c79c3ea9c62563814b2b29a7d8b20d7b5be67'
+          d=json.loads(raw)
           workflow=subprocess.check_output(['git','show','5586dbe341680cb701a38a41ba195445e035d11b:.github/workflows/rsh036-r613-prepare.yml'],text=True)
           body=workflow.split('      - name: Apply exact candidate and reconcile one stale audit count\n        run: |\n',1)[1].split('      - uses:',1)[0]
           subprocess.run(['bash','-e','-c','\n'.join(line[10:] for line in body.splitlines())],check=True)
-          tree=subprocess.check_output(['git','write-tree'],text=True).strip()
-          assert tree=='ecf736ff767a18ddb1d3339e01a072dc72c5d6b9'
-          out=Path('artifacts/recovery');out.mkdir(parents=True)
-          patch=subprocess.check_output(['git','diff','--cached','--binary','394a9324dd1fb185335833c12a97b0d71ccc55d2'])
-          (out/'candidate.patch').write_bytes(patch)
-          (out/'tree.txt').write_bytes(subprocess.check_output(['git','ls-files','-s']))
-          (out/'identity.json').write_text(json.dumps({'base':'394a9324dd1fb185335833c12a97b0d71ccc55d2','tree':tree,'patchSha256':hashlib.sha256(patch).hexdigest(),'acceptance':False,'refWrites':0}))
+          assert subprocess.check_output(['git','write-tree'],text=True).strip()==d['from_tree']
+          assert hashlib.sha256(d['patch'].encode()).hexdigest()==d['patch_sha256']
+          subprocess.run(['git','apply','--index','-'],input=d['patch'].encode(),check=True)
+          assert subprocess.check_output(['git','write-tree'],text=True).strip()==d['tree']=='2ee82e46f300a79f16a200ffd0e11552b4333290'
+          subprocess.run(['git','diff','--exit-code'],check=True)
+          Path(os.environ['RUNNER_TEMP'],'r613-final.json').write_bytes(raw)
+          Path('artifacts/candidate-identity.json').write_text(json.dumps({'base':d['base'],'tree':d['tree'],'changed':d['changed'],'acceptance':False,'originalReferencesUnchanged':True}))
           PY
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version-file: .nvmrc
           cache: npm
       - run: npm install --global npm@10.9.2
+      - run: npm run toolchain:verify
       - run: npm ci
-      - name: Retain locked dependencies for local verification only
+      - run: npx playwright install --with-deps chromium
+      - name: Verify locked-parser inventory and governance without accepting drift
         run: |
-          tar -czf artifacts/recovery/locked-node-modules.tar.gz node_modules
-          sha256sum artifacts/recovery/locked-node-modules.tar.gz > artifacts/recovery/dependencies.sha256
+          cp AYALON-DEPENDENCY-CLOSURE.json "$RUNNER_TEMP/inventory.json"
+          node scripts/dependency-closure.mjs --write
+          cmp AYALON-DEPENDENCY-CLOSURE.json "$RUNNER_TEMP/inventory.json"
           git diff --exit-code
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+          node scripts/check-governance-contract.mjs
+      - name: Complete unit suite including negative airborne-clock fixtures
+        run: |
+          set -o pipefail
+          npm test 2>&1 | tee artifacts/unit-tests.tap
+      - name: Lint without suppression
+        run: |
+          set -o pipefail
+          npm run lint 2>&1 | tee artifacts/lint.log
+      - name: Actual bidirectional route and moving contacts
+        env:
+          RAMP_CONTACT_OUTPUT: artifacts/contact-final
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node scripts/ramp-contact-browser.mjs 2>&1 | tee artifacts/contact-final.log
+      - name: Controlled capture-readiness fixtures
+        run: node scripts/golden-capture-browser.mjs
+      - name: Full QA with original drive, unchanged acceleration and three fixed-budget airborne trials
+        run: |
+          set -o pipefail
+          npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
+      - name: All retained actual runtime and resource regressions
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node scripts/runtime-recovery-smoke.mjs 2>&1 | tee artifacts/runtime-recovery.log
+      - name: Safe Ayalon capture and steering without reference writes
+        run: |
+          set -o pipefail
+          npm run qa:ayalon 2>&1 | tee artifacts/ayalon-capture.log
+      - name: Development build
+        run: |
+          set -o pipefail
+          npm run build:dev 2>&1 | tee artifacts/build-dev.log
+      - name: Store validated unreferenced Git tree only, no commits or refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess,urllib.request
+          from pathlib import Path
+          d=json.loads(Path(os.environ['RUNNER_TEMP'],'r613-final.json').read_text())
+          subprocess.run(['git','diff','--exit-code'],check=True)
+          assert subprocess.check_output(['git','write-tree'],text=True).strip()==d['tree']
+          entries=[]
+          for name in d['changed']:
+            assert not name.startswith(('.github/','.r613','/')) and '..' not in Path(name).parts
+            entries.append({'path':name,'mode':'100644','type':'blob','content':Path(name).read_text()})
+          req=urllib.request.Request('https://api.github.com/repos/talstilkol/rush-israel/git/trees',data=json.dumps({'base_tree':d['base_tree'],'tree':entries}).encode(),method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'})
+          with urllib.request.urlopen(req) as response: result=json.load(response)
+          assert result['sha']==d['tree']
+          Path('artifacts/prepared-tree.json').write_text(json.dumps({'tree':result['sha'],'refWrites':0,'commitWrites':0,'merges':0}))
+          PY
+      - name: Original golden comparison with unchanged PNGs and thresholds
+        run: |
+          set -o pipefail
+          npm run qa:golden 2>&1 | tee artifacts/golden.log
+      - name: Preserve actual results including any failed comparisons
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: rsh036-r613-recovery-${{ github.run_id }}
-          path: artifacts/recovery/**
+          name: rsh036-r613-physics-clock-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/**
+            golden-tmp/**
           if-no-files-found: error
           retention-days: 14
