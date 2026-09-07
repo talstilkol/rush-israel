@@ -1,0 +1,261 @@
+{
+  "revision": "r6.13",
+  "unit": "RSH-036",
+  "acceptance": false,
+  "original_sequence_source_sha256": "b7cf752ca08b7217a08d619d338055867f520e79a9f6bf29c56e0307dc219f59",
+  "source_path": "scripts/drive-smoke.mjs",
+  "baseline_commit": "394a9324dd1fb185335833c12a97b0d71ccc55d2",
+  "candidate_tree": "fd2a24c09a5d6bd6805bf1cf3842784544ed6073",
+  "run": 34072084083,
+  "job": 101591156726,
+  "artifact": 10000832914,
+  "artifact_sha256": "06262f2dd25d870b84e9ad01a3441d51c78df880f88fa145f7bb2286bb73e124",
+  "method": "Same legacy full sequence and original assertions, three times per source; read-only controls trace. Successful diagnostic workflow is not product-test success.",
+  "outcome": {
+    "legacy_source_passed": 3,
+    "legacy_source_failed": 0,
+    "candidate_passed": 0,
+    "candidate_failed": 3
+  },
+  "traces": [
+    {
+      "name": "new-1.json",
+      "sha256": "913f2e60a979433f5fc22e6ad7eabc2f7a21aa7bf8a86ee4df1aa30d3b13f7c9",
+      "sequence_error": "Error: steer D right {\"dA\":0.8453456956217664,\"dD\":0.3357558236022633,\"speed\":-0.25944739361439206}",
+      "right_start": {
+        "event": "setSteer",
+        "args": [
+          -1
+        ],
+        "x": 1075.7815062206057,
+        "y": 1.932053232385655,
+        "z": -845.1315998596211,
+        "yaw": -1.7362721562207462,
+        "speed": 1.0873345987477152,
+        "damage": 0.03093446332039771,
+        "on": false,
+        "airborne": false,
+        "steer": -1,
+        "mix": 1
+      },
+      "final_state": {
+        "event": "setSteer",
+        "args": [
+          0
+        ],
+        "x": 1075.708023411244,
+        "y": 1.9327780715448397,
+        "z": -843.4106018807249,
+        "yaw": -1.4005163326184829,
+        "speed": -0.25944739361439206,
+        "damage": 0.03093446332039771,
+        "on": false,
+        "airborne": false,
+        "steer": 0,
+        "mix": 1
+      },
+      "page_errors": []
+    },
+    {
+      "name": "new-2.json",
+      "sha256": "25596dbc1e529b5a08605f6be06a5f141b67e9d6e5faa981f4e5611463d6b5bf",
+      "sequence_error": "Error: steer D right {\"dA\":0.8453456956217664,\"dD\":0.3357558236022633,\"speed\":-0.25944739361439206}",
+      "right_start": {
+        "event": "setSteer",
+        "args": [
+          -1
+        ],
+        "x": 1075.7815062206057,
+        "y": 1.932053232385655,
+        "z": -845.1315998596211,
+        "yaw": -1.7362721562207462,
+        "speed": 1.0873345987477152,
+        "damage": 0.03093446332039771,
+        "on": false,
+        "airborne": false,
+        "steer": -1,
+        "mix": 1
+      },
+      "final_state": {
+        "event": "setSteer",
+        "args": [
+          0
+        ],
+        "x": 1075.708023411244,
+        "y": 1.9327780715448397,
+        "z": -843.4106018807249,
+        "yaw": -1.4005163326184829,
+        "speed": -0.25944739361439206,
+        "damage": 0.03093446332039771,
+        "on": false,
+        "airborne": false,
+        "steer": 0,
+        "mix": 1
+      },
+      "page_errors": []
+    },
+    {
+      "name": "new-3.json",
+      "sha256": "814a30568749823a934c8a4be6370abcf14b689788d3c70775830b391c00e4ba",
+      "sequence_error": "Error: steer D right {\"dA\":0.8453456956217664,\"dD\":0.3357558236022633,\"speed\":-0.25944739361439206}",
+      "right_start": {
+        "event": "setSteer",
+        "args": [
+          -1
+        ],
+        "x": 1075.7815062206057,
+        "y": 1.932053232385655,
+        "z": -845.1315998596211,
+        "yaw": -1.7362721562207462,
+        "speed": 1.0873345987477152,
+        "damage": 0.03093446332039771,
+        "on": false,
+        "airborne": false,
+        "steer": -1,
+        "mix": 1
+      },
+      "final_state": {
+        "event": "setSteer",
+        "args": [
+          0
+        ],
+        "x": 1075.708023411244,
+        "y": 1.9327780715448397,
+        "z": -843.4106018807249,
+        "yaw": -1.4005163326184829,
+        "speed": -0.25944739361439206,
+        "damage": 0.03093446332039771,
+        "on": false,
+        "airborne": false,
+        "steer": 0,
+        "mix": 1
+      },
+      "page_errors": []
+    },
+    {
+      "name": "old-1.json",
+      "sha256": "a0061acc3e73b7b8331e0bb315db1fc9e0ff3b7a0ea4ff19a9cc52f497b12762",
+      "sequence_error": null,
+      "right_start": {
+        "event": "setSteer",
+        "args": [
+          -1
+        ],
+        "x": 1063.57774114287,
+        "y": 1.9359306465915314,
+        "z": -828.0092416870147,
+        "yaw": -2.7682604446348877,
+        "speed": 30.669868771566495,
+        "damage": 0.03601308473099108,
+        "on": true,
+        "airborne": false,
+        "steer": -1,
+        "mix": 0
+      },
+      "final_state": {
+        "event": "setSteer",
+        "args": [
+          0
+        ],
+        "x": 1065.9212305040448,
+        "y": 1.9306397954521022,
+        "z": -809.247219510001,
+        "yaw": -2.8342611956534274,
+        "speed": 30.88731981946948,
+        "damage": 0.03601308473099108,
+        "on": true,
+        "airborne": false,
+        "steer": 0,
+        "mix": 0
+      },
+      "page_errors": []
+    },
+    {
+      "name": "old-2.json",
+      "sha256": "3e0e30c95b6a8c5ae236d5bfc0197a45ff57686decf3c80247c77a2778977444",
+      "sequence_error": null,
+      "right_start": {
+        "event": "setSteer",
+        "args": [
+          -1
+        ],
+        "x": 1063.57774114287,
+        "y": 1.9359306465915314,
+        "z": -828.0092416870147,
+        "yaw": -2.7682604446348877,
+        "speed": 30.669868771566495,
+        "damage": 0.03601308473099108,
+        "on": true,
+        "airborne": false,
+        "steer": -1,
+        "mix": 0
+      },
+      "final_state": {
+        "event": "setSteer",
+        "args": [
+          0
+        ],
+        "x": 1065.9212305040448,
+        "y": 1.9306397954521022,
+        "z": -809.247219510001,
+        "yaw": -2.8342611956534274,
+        "speed": 30.88731981946948,
+        "damage": 0.03601308473099108,
+        "on": true,
+        "airborne": false,
+        "steer": 0,
+        "mix": 0
+      },
+      "page_errors": []
+    },
+    {
+      "name": "old-3.json",
+      "sha256": "23fbef703613dc14e8a922be0cf73d39a2d8791afc6f88be652377da0410a4e9",
+      "sequence_error": null,
+      "right_start": {
+        "event": "setSteer",
+        "args": [
+          -1
+        ],
+        "x": 1063.57774114287,
+        "y": 1.9359306465915314,
+        "z": -828.0092416870147,
+        "yaw": -2.7682604446348877,
+        "speed": 30.669868771566495,
+        "damage": 0.03601308473099108,
+        "on": true,
+        "airborne": false,
+        "steer": -1,
+        "mix": 0
+      },
+      "final_state": {
+        "event": "setSteer",
+        "args": [
+          0
+        ],
+        "x": 1065.9212305040448,
+        "y": 1.9306397954521022,
+        "z": -809.247219510001,
+        "yaw": -2.8342611956534274,
+        "speed": 30.88731981946948,
+        "damage": 0.03601308473099108,
+        "on": true,
+        "airborne": false,
+        "steer": 0,
+        "mix": 0
+      },
+      "page_errors": []
+    }
+  ],
+  "interpretation": "Candidate right-steering began off-track at1.0873345987477152 and finished reversing at-0.25944739361439206. Direction sign is not a valid forward-steering oracle in that state. Support changes affected this traffic sequence; no random-flake or unchanged-product claim.",
+  "test_change": "Candidate2 independent forward checks passed but did not substitute for the original combined sequence. Candidate3 restores that original sequence and both0.03 sign assertions as mandatory, AND keeps the independent forward checks, raw evidence and failure cleanup.",
+  "remaining_blocker": "Original candidate1 three-of-three combined sequence failures are retained; candidate3 directional-grade repair must pass the restored original sequence and unchanged acceleration gates. Complete traffic/collision robustness remains unqualified.",
+  "candidate_2_result": {
+    "run": 34072958959,
+    "independent_left": 0.5040550213558967,
+    "independent_right": -0.5040550213558979,
+    "minimum_forward_speed": 12.205420187002455,
+    "all_24_samples": "on_track_grounded_damage0",
+    "overall_qa": "failed_acceleration_not_steering"
+  }
+}

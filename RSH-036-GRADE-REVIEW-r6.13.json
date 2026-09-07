@@ -1,0 +1,74 @@
+{
+  "revision": "r6.13",
+  "unit": "RSH-036",
+  "finding": "AUD-22",
+  "acceptance": false,
+  "local_protocol": "Actual car,track and ramp recipes; NO engine traffic or collision simulation; local TypeScript5.8.3, not locked browser acceptance",
+  "source_sha256": "96c5c1370ebeba1a917bfa8e65237cf64a1920488f5f819f5b46551010d2f0b3",
+  "raw_results_sha256": "7274425cbaf2ef5932dd1a02611f1e8e51f4df2bddcd5005d54648ba4c2e4964",
+  "base_commit": "394a9324dd1fb185335833c12a97b0d71ccc55d2",
+  "candidate_2_tree": "b6a34cd104688b62337b44e5b92c36ce9439cf0c",
+  "controlled_times_seconds": {
+    "old": {
+      "sabra": 8.4,
+      "carmel": 6.6,
+      "kfir": 4.9,
+      "negev": 5.75,
+      "yam": 3.45
+    },
+    "current": {
+      "sabra": 9.4,
+      "carmel": 7.25,
+      "kfir": 5.3,
+      "negev": 6.3,
+      "yam": 3.45
+    },
+    "directional": {
+      "sabra": 8.45,
+      "carmel": 6.6,
+      "kfir": 4.9,
+      "negev": 5.8,
+      "yam": 3.45
+    },
+    "oldGrade": {
+      "sabra": 8.4,
+      "carmel": 6.6,
+      "kfir": 4.9,
+      "negev": 5.75,
+      "yam": 3.45
+    },
+    "bodyProjection": {
+      "sabra": 8.45,
+      "carmel": 6.6,
+      "kfir": 4.9,
+      "negev": 5.8,
+      "yam": 3.45
+    }
+  },
+  "observation": "Full slope magnitude was applied along the car even during perpendicular ramp travel. Velocity-sign fallback also treated rest as uphill and reversed signed body gravity when backing up.",
+  "repair": "Project ramp height derivative onto body-forward for force and pitch. Keep grade coefficients16.2/7.4, uphill threshold.04, pitch multiplier3.4, gravity18, launch law and all car calibration/reference values unchanged.",
+  "negative_control": {
+    "same_actual_car_cases": 16,
+    "old_passed": 2,
+    "old_failed": 14,
+    "repaired_passed": 16,
+    "repaired_failed": 0,
+    "local_typescript": "5.8.3"
+  },
+  "failed_preparation_2": {
+    "run": 34072958959,
+    "job": 101593602221,
+    "artifact": 10001124142,
+    "sha256": "2168a466f5b715d9f4f98ad7bc434e6fc7546ca3cd8a83f7e9c87298700cd02f",
+    "units_passed": 956,
+    "normal_qa": "FAIL_ACCEL_4_OF_5",
+    "steering_independent": "passed_both_directions",
+    "later_runtime_build_golden": "skipped"
+  },
+  "limitations": [
+    "Isolated simulation omits engine traffic/colliders; times are not final browser acceptance.",
+    "Pairwise code substitutions identify this grade interaction, not every driving defect.",
+    "Original combined traffic sequence is restored as mandatory in candidate3, with new independent direction tests retained.",
+    "Final exact-head QA, unchanged acceleration baseline and original golden must be rerun."
+  ]
+}

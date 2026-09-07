@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 import { chromium } from "playwright";
+import { mkdir, writeFile } from "node:fs/promises";
+import { measureForwardSteering } from "./drive-steering.mjs";
 
-const wrap = (a) => Math.atan2(Math.sin(a), Math.cos(a));
 const url = process.env.SMOKE_URL ?? "http://127.0.0.1:8080/?qa=1";
 
 const b = await chromium.launch({ headless: true });
+const evidence = { authority: false, status: "pending", protocol: "Original200m corridor and combined traffic sequence plus independent forward steering" };
+try {
 const p = await b.newPage({ viewport: { width: 1280, height: 800 } });
 const errs = [];
 p.on("pageerror", (e) => errs.push(String(e).slice(0, 200)));
@@ -62,7 +65,8 @@ const corridor = await p.evaluate(() => {
 });
 if (!corridor.ok) throw new Error("ayalon 200m hit " + JSON.stringify(corridor));
 if (!corridor.on) throw new Error("ayalon 200m left track");
-const yawDelta = await p.evaluate(() => {
+// Retain the original combined traffic sequence and both signed assertions.
+const combinedYawDelta = await p.evaluate(() => {
   const t = window.__controlsTest;
   const wrap = (a) => Math.atan2(Math.sin(a), Math.cos(a));
   t.setThrottle(1);
@@ -81,7 +85,21 @@ const yawDelta = await p.evaluate(() => {
   t.setSteer(0);
   return { dA, dD, speed: t.getSpeed() };
 });
-if (yawDelta.dA <= 0.03) throw new Error("steer A left " + JSON.stringify(yawDelta));
-if (yawDelta.dD >= -0.03) throw new Error("steer D right " + JSON.stringify(yawDelta));
+if (combinedYawDelta.dA <= 0.03) throw new Error("steer A left " + JSON.stringify(combinedYawDelta));
+if (combinedYawDelta.dD >= -0.03) throw new Error("steer D right " + JSON.stringify(combinedYawDelta));
+Object.assign(evidence, { corridor, combinedYawDelta });
+// Also measure each direction under independently verified forward conditions.
+const left = await p.evaluate(measureForwardSteering, 1);
+const right = await p.evaluate(measureForwardSteering, -1);
+const yawDelta = { dA: left.delta, dD: right.delta, left, right };
+Object.assign(evidence, { status: "passed", corridor, yawDelta });
 console.log("drive-smoke ok", yawDelta);
-await b.close();
+} catch (error) {
+  Object.assign(evidence, { status: "failed", error: String(error) });
+  throw error;
+} finally {
+  try {
+    await mkdir("artifacts/drive-smoke", { recursive: true });
+    await writeFile("artifacts/drive-smoke/results.json", JSON.stringify(evidence, null, 2) + "\n");
+  } finally { await b.close(); }
+}

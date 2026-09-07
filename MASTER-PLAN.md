@@ -1,7 +1,7 @@
 # RUSH Israel — Canonical Master Plan
 
 **Schema:** 20.1.0
-**Revision:** r6.7 — owner-authorised improvement programme
+**Revision:** r6.13 — owner-authorised improvement programme
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
 **Verified main:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`
@@ -11,7 +11,7 @@
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`
 **Product-metadata authority:** `PRODUCT-METADATA.json`
-**Date:** 6 September 2026
+**Date:** 7 September 2026
 
 ## 1. Authority
 
@@ -494,3 +494,82 @@ separate unresolved gates. No baseline refresh, freeze, merge or RSH-037 activat
 AUD-21: reject unreachable ramp surfaces above the vehicle while retaining the existing1.2-unit entry allowance. Contact checks cover the actual car and both centre/wheel queries; the legacy ramp-following smoke starts at its intended surface rather than requiring a teleport through the deck. All50 ramp recipes, calibrated physics constants, original PNGs and thresholds remain preserved. This changes vehicle support selection, not acceleration calibration.
 
 67 original units;35 accepted;32 remaining.21 audit items;42 historical findings;6 repair bundles. RSH-036 remains active/unaccepted. Roof/body clearance, low crossings, downward/airborne attachment behavior, art/material discrepancies and3 mutable font references remain open. No reference transition, merge, freeze or RSH-037 activation.
+
+
+## r6.13 — bidirectional contact repair and retained acceptance hold (2026-09-07)
+
+The r6.12 upward-only repair is explicitly partial: raw traces measured25 downward
+snaps, including seven newly regressed starts479-485. AUD-21 now includes nearer
+main-road selection, coherent centre/wheel deck queries, and gravity-driven descent
+instead of instant attachment or an altitude clamp. Supported slopes and reachable
+upward entry remain covered; no geometry or handling constants change.
+
+Acceptance must validate781 starts in both directions,250 supported probes, seven
+moving trajectories, airborne ascent/descent/landing, and the original golden gate.
+The complete raw contact trace is retained in normal CI, not only a green summary.
+Body/roof clearance, support-column collision, reference/art review, three mutable
+font dependencies and record/physics-version policy remain open before freeze.
+
+67 original units;35 accepted;32 remaining.21 audit items,42 historical findings,
+6 bundles. No merge, freeze, new image authority or RSH-037 activation. Read
+RSH-036-RUNTIME-REPAIR-r6.13.md together with the final exact-head PR checkpoint.
+
+
+## Historical candidate1/2 driving validation hold (superseded only by evidence below)
+Initial locked preparation34071681721 passed941 units, all781 bidirectional route
+starts (25->0 downward snaps),250 supported probes and1680 moving steps, then
+FAILED the unchanged combined driving sequence. Later runtime/build/golden steps
+were skipped. This is retained failed evidence, not an accepted preparation.
+
+Controlled run34072084083 repeats that exact sequence3 times per revision: old3/3
+passes; candidate3/3 failures. Candidate right-steering starts off-track at speed
+1.0873345987477152 and ends reversing at-0.25944739361439206 after an earlier
+impact. Its direction sign is not a forward-steering measurement. The impact and
+lateral-drift behavior are not declared fixed, random or unchanged.
+
+The revised smoke retains the original200m straight corridor and separately
+measures both directions after independent reset/warmup. Every steering sample
+must remain forward at>=12, grounded, on-track, without impact and with crawl mix
+<=.001; wrapped angular threshold0.03 is unchanged.12 new harness fixtures test
+these strict preconditions; they are not real vehicle cases. Browser cleanup and
+raw result retention are guaranteed on failures. Full locked QA must run again.
+
+Read RSH-036-DRIVING-REVIEW-r6.13.json and retain the original failed-sequence hold
+for traffic/impact/evasive qualification before freeze. Isolated steering success
+does not make that combined sequence pass. No acceptance or golden waiver.
+
+
+## r6.13 candidate3 — grade-direction correction; earlier failures retained
+Candidate2 run34072958959 passed956 units, both independent forward steering
+checks and bidirectional route/motion probes, but FAILED the unchanged acceleration
+regression for4/5 cars. Runtime/build/golden steps after that failure were skipped.
+This is a real discovered interaction, not a new baseline or a passing workflow.
+
+AUD-22 identifies full ramp slope being applied to perpendicular travel, plus
+velocity-sign dependence of signed body gravity. Force and pitch now use the ramp
+height derivative projected onto body-forward. Coefficients16.2/7.4, uphill
+threshold0.04, pitch3.4, gravity18 and all car/launch calibration bytes are unchanged.
+Sixteen real-car unit cases produced2 passes/14 failures before,16 passes after.
+Local controlled simulation restores all five acceleration times within the
+unchanged0.1-second regression band; it is not locked browser acceptance.
+
+The original combined driving sequence and BOTH unchanged signed0.03 assertions
+are restored as mandatory, in addition to the12-sample independent forward checks.
+No combined-sequence waiver remains. Failed candidate1 and candidate2 evidence
+is retained in the driving/grade reports. Candidate3 full locked QA, exact-head
+source verification, retained runtime and original-golden checks remain pending.
+
+Master plan retains67 units,42 historical findings,6 bundles;22 audit items after
+AUD-22. Missing reverse mappings AUD-18/AUD-21 to RSH-036 were reconciled.35 units
+remain accepted and32 remaining. Body/roof/column clearance, complete traffic and
+airborne behavior, art/immutable fonts and physics/record-version policy remain
+open; a passed sampled trace is not freeze/release/device acceptance.
+
+
+### r6.13 continuation — AUD-23, 7 September 2026
+Physics-clock airborne validation replaces misleading wall-time sampling without
+increasing the simulation budget. Retain the contact and projected-grade repairs,
+original combined driving sequence, unchanged acceleration/visual gates and all
+failed preparations. Total:67 units;35 accepted;32 remaining;23 audit items;42
+historical findings;6 bundles. Full final-candidate and published-head CI pending.
+Low rendering throughput remains open, not fixed by deterministic test stepping.

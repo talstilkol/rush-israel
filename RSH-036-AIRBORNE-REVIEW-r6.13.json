@@ -1,0 +1,232 @@
+{
+  "authority": false,
+  "sourceTree": "ecf736ff767a18ddb1d3339e01a072dc72c5d6b9",
+  "protocol": "Compare original50+900ms wall waits with6+107 explicit120Hz physics steps on the actual Ayalon engine; no product changes",
+  "trials": [
+    {
+      "trial": 1,
+      "wall": {
+        "start": {
+          "tick": 36,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1076.0664437079286,
+          "y": 3.139535951658302,
+          "airborne": true,
+          "onTrack": true,
+          "speed": 13.561172159648905
+        },
+        "mid": {
+          "tick": 48,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1074.734055198,
+          "y": 2.862035951658302,
+          "airborne": true,
+          "onTrack": true,
+          "speed": 13.123230574930192
+        },
+        "end": {
+          "tick": 60,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1073.445414764003,
+          "y": 2.404535951658302,
+          "airborne": true,
+          "onTrack": true,
+          "speed": 12.686144289807462
+        },
+        "elapsedPhysicsSeconds": 0.2
+      },
+      "controlled": {
+        "start": {
+          "tick": 81,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1077.442452342177,
+          "y": 3.237035951658302,
+          "airborne": false,
+          "onTrack": true,
+          "speed": 14
+        },
+        "mid": {
+          "tick": 87,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1076.748856217457,
+          "y": 3.210785951658302,
+          "airborne": true,
+          "onTrack": true,
+          "speed": 13.780470843429903
+        },
+        "end": {
+          "tick": 194,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1066.212063235972,
+          "y": 1.102698387555011,
+          "airborne": false,
+          "onTrack": true,
+          "speed": 9.899826380392504
+        },
+        "elapsedPhysicsSeconds": 0.9416666666666667
+      }
+    },
+    {
+      "trial": 2,
+      "wall": {
+        "start": {
+          "tick": 230,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1076.0664437079286,
+          "y": 3.139535951658302,
+          "airborne": true,
+          "onTrack": true,
+          "speed": 13.561172159648905
+        },
+        "mid": {
+          "tick": 242,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1074.734055198,
+          "y": 2.862035951658302,
+          "airborne": true,
+          "onTrack": true,
+          "speed": 13.123230574930192
+        },
+        "end": {
+          "tick": 254,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1073.445414764003,
+          "y": 2.404535951658302,
+          "airborne": true,
+          "onTrack": true,
+          "speed": 12.686144289807462
+        },
+        "elapsedPhysicsSeconds": 0.2
+      },
+      "controlled": {
+        "start": {
+          "tick": 275,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1077.442452342177,
+          "y": 3.237035951658302,
+          "airborne": false,
+          "onTrack": true,
+          "speed": 14
+        },
+        "mid": {
+          "tick": 281,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1076.748856217457,
+          "y": 3.210785951658302,
+          "airborne": true,
+          "onTrack": true,
+          "speed": 13.780470843429903
+        },
+        "end": {
+          "tick": 388,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1066.212063235972,
+          "y": 1.102698387555011,
+          "airborne": false,
+          "onTrack": true,
+          "speed": 9.899826380392504
+        },
+        "elapsedPhysicsSeconds": 0.9416666666666667
+      }
+    },
+    {
+      "trial": 3,
+      "wall": {
+        "start": {
+          "tick": 424,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1076.0664437079286,
+          "y": 3.139535951658302,
+          "airborne": true,
+          "onTrack": true,
+          "speed": 13.561172159648905
+        },
+        "mid": {
+          "tick": 436,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1074.734055198,
+          "y": 2.862035951658302,
+          "airborne": true,
+          "onTrack": true,
+          "speed": 13.123230574930192
+        },
+        "end": {
+          "tick": 460,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1072.2004369561523,
+          "y": 1.7670359516583016,
+          "airborne": true,
+          "onTrack": true,
+          "speed": 12.24990259383371
+        },
+        "elapsedPhysicsSeconds": 0.3
+      },
+      "controlled": {
+        "start": {
+          "tick": 481,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1077.442452342177,
+          "y": 3.237035951658302,
+          "airborne": false,
+          "onTrack": true,
+          "speed": 14
+        },
+        "mid": {
+          "tick": 487,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1076.748856217457,
+          "y": 3.210785951658302,
+          "airborne": true,
+          "onTrack": true,
+          "speed": 13.780470843429903
+        },
+        "end": {
+          "tick": 594,
+          "hz": 120,
+          "x": 1059.2374999999397,
+          "z": -1066.212063235972,
+          "y": 1.102698387555011,
+          "airborne": false,
+          "onTrack": true,
+          "speed": 9.899826380392504
+        },
+        "elapsedPhysicsSeconds": 0.9416666666666667
+      }
+    }
+  ],
+  "pageErrors": [],
+  "schema_version": 1,
+  "unit": "RSH-036",
+  "finding": "AUD-23",
+  "date": "2026-09-07",
+  "diagnostic_run": 34074531361,
+  "artifact_id": 10001601203,
+  "artifact_sha256": "feb0a5dbf61b37a0336b49a0b0480e816bb6d25ef848f841674beeeed4d47050",
+  "interpretation": "Three wall-clock trials advanced only 24/24/36 physics ticks (0.2/0.2/0.3 seconds); all three explicit 113-step trials landed. This identifies a wall-time test defect, not acceptable rendering performance.",
+  "candidate_repair": "Serializable synchronous actual-engine probe preserves 220 ms ramp and 50+900 ms falling budgets, checks exact tick advance, initial gravity fall and landing on track; three real browser trials; always retain diagnostics and close browser.",
+  "final_validation": "pending_exact_candidate_full_QA_and_published_head_CI",
+  "original_golden_acceptance": false,
+  "limitations": [
+    "The captured diagnostic used earlier candidate ecf736ff, not this new test implementation.",
+    "One 2.2-unit drop is not complete collision or airborne qualification.",
+    "Low rendering throughput remains a performance investigation; deterministic stepping does not fix it.",
+    "No gravity, time budget, images or thresholds are changed by AUD-23."
+  ]
+}

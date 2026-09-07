@@ -1,54 +1,39 @@
 #!/usr/bin/env node
-/** Codex 63: ramp snap is not airborne; a 2m drop is. */
-import { chromium } from "playwright";
+/** Ramp contact is grounded; a 2.2-unit drop must fall and land under real physics. */
+import { chromium } from 'playwright';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { probeAirbornePhysics } from './airborne-clock.mjs';
 
-const url = process.env.SMOKE_URL ?? "http://127.0.0.1:8080/?qa=1";
-const b = await chromium.launch({ headless: true });
-const p = await b.newPage({ viewport: { width: 1280, height: 800 } });
-await p.goto(url, { waitUntil: "networkidle", timeout: 25000 });
-await p.waitForTimeout(500);
-await p.evaluate(() =>
-  [...document.querySelectorAll("button")].find((n) => /בחר מסלול/.test(n.textContent || ""))?.click(),
-);
-await p.waitForTimeout(250);
-await p.evaluate(() =>
-  [...document.querySelectorAll("button")].find((n) => /^הכל$/.test((n.textContent || "").trim()))?.click(),
-);
-await p.waitForTimeout(200);
-await p.evaluate(() => {
-  [...document.querySelectorAll("button")].find((b) => /נתיבי איילון/.test(b.textContent || ""))?.click();
-});
-await p.waitForFunction(() => !!window.__controlsTest, { timeout: 35000 });
-await p.evaluate(() => window.__controlsTest.skipCountdown());
-
-const rampAir = await p.evaluate(async () => {
-  const t = window.__controlsTest;
-  const ramps = t.getRamps?.() ?? [];
-  const r = ramps.find((x) => /שלום|HaShalom/i.test(x.he) && Math.abs(x.y1 - x.y0) > 5);
-  if (!r) return { ok: false };
-  const k = 0.34;
-  const along = (k - 0.5) * r.len;
-  t.teleport(r.x + r.sx * along, r.z + r.sz * along, Math.atan2(-r.sx, -r.sz), r.y0 + (r.y1 - r.y0) * k);
-  return { ok: true };
-});
-if (!rampAir.ok) throw new Error("no HaShalom ramp");
-await p.waitForTimeout(220);
-const onRamp = await p.evaluate(() => window.__controlsTest.getAirborne());
-if (onRamp) throw new Error("ramp set airborne");
-
-await p.evaluate(() => window.__controlsTest.resetStart());
-await p.waitForTimeout(80);
-await p.evaluate(() => {
-  const t = window.__controlsTest;
-  t.teleport(t.getX(), t.getZ(), t.getYaw(), t.getY() + 2.2);
-});
-await p.waitForTimeout(50);
-const mid = await p.evaluate(() => ({ a: window.__controlsTest.getAirborne(), y: window.__controlsTest.getY() }));
-if (!mid.a) throw new Error("drop did not go airborne y=" + mid.y);
-
-await p.waitForTimeout(900);
-const land = await p.evaluate(() => ({ a: window.__controlsTest.getAirborne(), y: window.__controlsTest.getY(), on: window.__controlsTest.getOnTrack() }));
-await b.close();
-if (land.a) throw new Error("stuck airborne y=" + land.y);
-if (!land.on) throw new Error("fell off Ayalon");
-console.log("airborne-smoke ok", { onRamp, mid, land });
+const url = process.env.SMOKE_URL ?? 'http://127.0.0.1:8080/?qa=1';
+const report = { schemaVersion: 1, authority: false, baselineUpdates: 0,
+  protocol: 'Three actual-engine trials; existing 220 ms ramp, 80 ms settle, 50 + 900 ms drop budget; exact 120 Hz tick checks',
+  trials: [], pageErrors: [], ok: false };
+let browser;
+try {
+  browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+  page.on('pageerror', error => report.pageErrors.push(String(error)));
+  await page.goto(url, { waitUntil: 'networkidle', timeout: 40000 });
+  await page.getByRole('button', { name: /בחר מסלול/ }).click();
+  await page.getByRole('button', { name: 'הכל', exact: true }).click();
+  await page.getByRole('button', { name: /נתיבי איילון/ }).click();
+  await page.waitForFunction(() => !!window.__controlsTest, null, { timeout: 35000 });
+  for (let trial = 1; trial <= 3; trial++) {
+    // One synchronous evaluation prevents rendering frames from advancing the
+    // simulation between observations. advanceTime uses the real engine.fixed.
+    const result = await page.evaluate(probeAirbornePhysics);
+    report.trials.push({ trial, ...result });
+    if (!result.ok) throw new Error(`airborne trial ${trial}: ${result.error}`);
+  }
+  if (report.pageErrors.length) throw new Error('airborne page errors: ' + report.pageErrors.join('; '));
+  report.ok = true;
+  console.log('airborne-smoke ok', JSON.stringify(report));
+} catch (error) {
+  report.error = String(error);
+  process.exitCode = 1;
+  console.error(report.error);
+} finally {
+  await browser?.close();
+  await mkdir('artifacts/airborne-smoke', { recursive: true });
+  await writeFile('artifacts/airborne-smoke/results.json', JSON.stringify(report, null, 2) + '\n');
+}

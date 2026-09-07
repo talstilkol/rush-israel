@@ -1134,16 +1134,88 @@
     },
     "src/game/vehicle.ts": {
       "previous_sha256": "73bdc89785b583b8749ac83476efaf27d02b01aa2df0914a9677fca1d16c1fc6",
-      "current_sha256": "d37ff1c5cad7cc6c29d05964bf7aeebaa66ca644087abde1601183d6f350f97f",
+      "current_sha256": "7db3128bb337e94838101d1f49fc31aad3b138e9b90dbbeb2635ed6ff93a1cfe",
       "reverse_edits": [
+        {
+          "start_line": 50,
+          "end_line": 51,
+          "current_segment_sha256": "2f9e1d8889a282a5842c59afd2afb9f0665b606c1407dbb7674ddb64abe9df76",
+          "previous_text": "function probeRamp(x: number, z: number, ramps: Ramp[], yHint = 0) {\n"
+        },
         {
           "start_line": 60,
           "end_line": 63,
-          "current_segment_sha256": "37d0edf50343bb1720beb4a831ab34ab1dbd566fa35a1278e370db449492da02",
+          "current_segment_sha256": "948f7a8be83e89aeda0ab4210b5838084f21469316b1aeab31d809a2ca29572e",
           "previous_text": ""
+        },
+        {
+          "start_line": 65,
+          "end_line": 68,
+          "current_segment_sha256": "a4b25661a64c0de0730bcb5110b38bd69e5da08f0558fe4478e950dc895859fc",
+          "previous_text": ""
+        },
+        {
+          "start_line": 74,
+          "end_line": 80,
+          "current_segment_sha256": "6b001458f1e289d26d92c50539fec3ec83c3c2af05028a6b61cc5feafecce1f8",
+          "previous_text": ""
+        },
+        {
+          "start_line": 313,
+          "end_line": 314,
+          "current_segment_sha256": "23bd385e58243d35384ef70f21b5afc8f1337bd05b5454c9aa9cf77b58533de2",
+          "previous_text": "      const rp = probeRamp(this.x, this.z, ramps, this.y);\n"
+        },
+        {
+          "start_line": 315,
+          "end_line": 319,
+          "current_segment_sha256": "aff368db38d0276deb29e9aed32389df2fd888240783c068cb7485366ca4e0cd",
+          "previous_text": "        const alongV = this.vx * rp.r.sx + this.vz * rp.r.sz;\n        grade = rp.dyds * Math.sign(alongV || 1);\n"
+        },
+        {
+          "start_line": 332,
+          "end_line": 337,
+          "current_segment_sha256": "9c61dff718a1f85e21940bf7f5a4d97628db12890567c29bd053f9cde4119b22",
+          "previous_text": "    const terrainPitch = clamp(-(probeRamp(this.x, this.z, ramps, this.y)?.dyds ?? (nG.y - sG.y) / gds) * 3.4, -0.75, 0.75);\n"
+        },
+        {
+          "start_line": 467,
+          "end_line": 469,
+          "current_segment_sha256": "034d8756a8da7de9585a04664315351ad0d85aef1c1bb535abadab2221cf8897",
+          "previous_text": ""
+        },
+        {
+          "start_line": 480,
+          "end_line": 481,
+          "current_segment_sha256": "38ec1d8297898a3375687101555b930f863c6640bd539d2b3ab5a6af6e3915ab",
+          "previous_text": "    const rp = probeRamp(this.x, this.z, ramps, this.y);\n"
+        },
+        {
+          "start_line": 493,
+          "end_line": 499,
+          "current_segment_sha256": "86ca9cb77b09c48c03dd263b84e314e60467c4e3028a37978b5bf1f08bd5ff74",
+          "previous_text": "      const cRp = probeRamp(cx, cz, ramps, this.y);\n      const y = cRp ? cRp.y : track.samples[nearestIndex(track.samples, cx, cz, near.index, track.closed).index].y;\n"
+        },
+        {
+          "start_line": 510,
+          "end_line": 515,
+          "current_segment_sha256": "7a6362c254dfcf5c5382f921e66e3ffa03784234b76b1bd933700e5bdf4007d7",
+          "previous_text": "    if (rp) {\n"
+        },
+        {
+          "start_line": 525,
+          "end_line": 526,
+          "current_segment_sha256": "9db241c1f9baa802b9ef2aca621504dc91c5737e7773f64f98a882a9ee8fe89e",
+          "previous_text": "      if (this.y <= groundY + 0.04) {\n"
+        },
+        {
+          "start_line": 534,
+          "end_line": 536,
+          "current_segment_sha256": "faf63f6ec2af0f459038693bc8de3b0ee01ad80943791bb9f6cce0a6b8be9e44",
+          "previous_text": "        const ceil = this.vy > 2 || this.airborne ? groundY + 8 : groundY + 0.85;\n        if (this.y > ceil) {\n          this.y = ceil;\n          this.vy = Math.min(0, this.vy);\n        }\n"
         }
       ],
-      "reason": "r6.12 AUD-21 overhead-contact repair; exact historical checks only, never production substitution"
+      "reason": "r6.13 reviewed bidirectional support and directional-grade correction; original combined drive assertions retained, extra clean forward probes; historical projection never substitutes for behavioral checks"
     },
     "scripts/ramp-smoke.mjs": {
       "previous_sha256": "57c859162157ae304c750746c8b8946c43d6bba6208a2f880aabcb25e2461e0a",
@@ -1166,9 +1238,83 @@
     },
     "scripts/ramp-contact-browser.mjs": {
       "previous_sha256": null,
-      "current_sha256": "8dcdf09ed3a25686df65e3c937f9d8cef974a9e8ecbc7a9e245b0f282e17d616",
+      "current_sha256": "b185299e282d4e26ed113abc119bf2677b8e04639920c7ef24e00f45368d69bf",
       "reverse_edits": [],
-      "reason": "r6.12 AUD-21 overhead-contact repair; exact historical checks only, never production substitution"
+      "reason": "r6.13 AUD-21 main-road/low-deck selection, coherent wheel support and gravity-driven descent; exact historical checks only"
+    },
+    "scripts/drive-smoke.mjs": {
+      "previous_sha256": "b7cf752ca08b7217a08d619d338055867f520e79a9f6bf29c56e0307dc219f59",
+      "current_sha256": "2e0f6c36b8f7bf905d30d15f020e1485dda21d5305bcc3d126de211053685b93",
+      "reverse_edits": [
+        {
+          "start_line": 2,
+          "end_line": 4,
+          "current_segment_sha256": "e548b3766ddabe6748cfa39bb60ba74216175dc9dbcc221ce4bb9789ccae4b3c",
+          "previous_text": ""
+        },
+        {
+          "start_line": 5,
+          "end_line": 5,
+          "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "previous_text": "const wrap = (a) => Math.atan2(Math.sin(a), Math.cos(a));\n"
+        },
+        {
+          "start_line": 8,
+          "end_line": 10,
+          "current_segment_sha256": "4e3e04ce82c5cadcd7beadabebfa214cf95391319e70a4d18d7e90d7cdb9fd6b",
+          "previous_text": ""
+        },
+        {
+          "start_line": 67,
+          "end_line": 69,
+          "current_segment_sha256": "2aa2d37eda9486b918ffd9d9e6ee43fac157d13134f5b4539c0e3466eb5f392d",
+          "previous_text": "const yawDelta = await p.evaluate(() => {\n"
+        },
+        {
+          "start_line": 87,
+          "end_line": 95,
+          "current_segment_sha256": "e82c144b497cb006a49531b2fa61ba4b84f6813841c206414ec9a6278c78465c",
+          "previous_text": "if (yawDelta.dA <= 0.03) throw new Error(\"steer A left \" + JSON.stringify(yawDelta));\nif (yawDelta.dD >= -0.03) throw new Error(\"steer D right \" + JSON.stringify(yawDelta));\n"
+        },
+        {
+          "start_line": 96,
+          "end_line": 105,
+          "current_segment_sha256": "0579cd748efc321afd32fb6279a6a41cb7c9e3dab4c3aad8b806902611c477fb",
+          "previous_text": "await b.close();\n"
+        }
+      ],
+      "reason": "r6.13 reviewed bidirectional support and directional-grade correction; original combined drive assertions retained, extra clean forward probes; historical projection never substitutes for behavioral checks"
+    },
+    "scripts/drive-steering.mjs": {
+      "previous_sha256": null,
+      "current_sha256": "ebdaa2b658e66f848adfb85d74062277758d3f14f004cd73a6d1e0d441d4b6ba",
+      "reverse_edits": [],
+      "reason": "r6.13 reviewed direction preconditions; preserve failed combined traffic-sequence evidence separately; no contact, image or release acceptance"
+    },
+    "scripts/airborne-clock.mjs": {
+      "previous_sha256": null,
+      "current_sha256": "fecc996075b4238a926387dc736bdcdd8208af3037623fa55e06aef219bb42fe",
+      "reverse_edits": [],
+      "reason": "AUD-23 exact-physics-clock airborne regression; previous source preserved only for historical checks, never behavioral acceptance"
+    },
+    "scripts/airborne-smoke.mjs": {
+      "previous_sha256": "dbb5ef12c4b7e330309ded7dcbd650e8edf7080b93d41e032e70c07dfb0961f5",
+      "current_sha256": "fa321116c26412d51f89c8d3178d97182f7091a54a92f35375f0c320ae32c636",
+      "reverse_edits": [
+        {
+          "start_line": 1,
+          "end_line": 5,
+          "current_segment_sha256": "ebaf58b11ad3ee29831df6b4e2351f21125e901d7fd4224bb458c2a4da669a88",
+          "previous_text": "/** Codex 63: ramp snap is not airborne; a 2m drop is. */\nimport { chromium } from \"playwright\";\n"
+        },
+        {
+          "start_line": 6,
+          "end_line": 39,
+          "current_segment_sha256": "121c7d96f0987ff406e129a4d473c803d46456c1c050246812e89fba29a6b768",
+          "previous_text": "const url = process.env.SMOKE_URL ?? \"http://127.0.0.1:8080/?qa=1\";\nconst b = await chromium.launch({ headless: true });\nconst p = await b.newPage({ viewport: { width: 1280, height: 800 } });\nawait p.goto(url, { waitUntil: \"networkidle\", timeout: 25000 });\nawait p.waitForTimeout(500);\nawait p.evaluate(() =>\n  [...document.querySelectorAll(\"button\")].find((n) => /בחר מסלול/.test(n.textContent || \"\"))?.click(),\n);\nawait p.waitForTimeout(250);\nawait p.evaluate(() =>\n  [...document.querySelectorAll(\"button\")].find((n) => /^הכל$/.test((n.textContent || \"\").trim()))?.click(),\n);\nawait p.waitForTimeout(200);\nawait p.evaluate(() => {\n  [...document.querySelectorAll(\"button\")].find((b) => /נתיבי איילון/.test(b.textContent || \"\"))?.click();\n});\nawait p.waitForFunction(() => !!window.__controlsTest, { timeout: 35000 });\nawait p.evaluate(() => window.__controlsTest.skipCountdown());\n\nconst rampAir = await p.evaluate(async () => {\n  const t = window.__controlsTest;\n  const ramps = t.getRamps?.() ?? [];\n  const r = ramps.find((x) => /שלום|HaShalom/i.test(x.he) && Math.abs(x.y1 - x.y0) > 5);\n  if (!r) return { ok: false };\n  const k = 0.34;\n  const along = (k - 0.5) * r.len;\n  t.teleport(r.x + r.sx * along, r.z + r.sz * along, Math.atan2(-r.sx, -r.sz), r.y0 + (r.y1 - r.y0) * k);\n  return { ok: true };\n});\nif (!rampAir.ok) throw new Error(\"no HaShalom ramp\");\nawait p.waitForTimeout(220);\nconst onRamp = await p.evaluate(() => window.__controlsTest.getAirborne());\nif (onRamp) throw new Error(\"ramp set airborne\");\n\nawait p.evaluate(() => window.__controlsTest.resetStart());\nawait p.waitForTimeout(80);\nawait p.evaluate(() => {\n  const t = window.__controlsTest;\n  t.teleport(t.getX(), t.getZ(), t.getYaw(), t.getY() + 2.2);\n});\nawait p.waitForTimeout(50);\nconst mid = await p.evaluate(() => ({ a: window.__controlsTest.getAirborne(), y: window.__controlsTest.getY() }));\nif (!mid.a) throw new Error(\"drop did not go airborne y=\" + mid.y);\n\nawait p.waitForTimeout(900);\nconst land = await p.evaluate(() => ({ a: window.__controlsTest.getAirborne(), y: window.__controlsTest.getY(), on: window.__controlsTest.getOnTrack() }));\nawait b.close();\nif (land.a) throw new Error(\"stuck airborne y=\" + land.y);\nif (!land.on) throw new Error(\"fell off Ayalon\");\nconsole.log(\"airborne-smoke ok\", { onRamp, mid, land });\n"
+        }
+      ],
+      "reason": "AUD-23 exact-physics-clock airborne regression; previous source preserved only for historical checks, never behavioral acceptance"
     }
   }
 }
