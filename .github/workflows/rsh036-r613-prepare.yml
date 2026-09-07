@@ -1,34 +1,36 @@
-name: rsh036-r613-air-clock-diagnosis
+name: rsh036-r613-recover-exact-candidate
 on:
   push:
     branches: [agent/rsh-036-r613-validation-20260907]
 permissions:
   contents: read
 jobs:
-  diagnose:
+  recover:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 10
     env:
       CI: "true"
       NODE_OPTIONS: "--experimental-strip-types"
-      PLAYWRIGHT_BROWSERS_PATH: "0"
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Reuse exact verified candidate preparation without executing its validation or writes
+      - name: Recover previously hash-verified candidate without any publication
         run: |
           python - <<'PY'
-          import subprocess
+          import subprocess, hashlib, json
           from pathlib import Path
-          diagnostic=Path('.r613-air-diagnostic.mjs').read_bytes()
           workflow=subprocess.check_output(['git','show','5586dbe341680cb701a38a41ba195445e035d11b:.github/workflows/rsh036-r613-prepare.yml'],text=True)
           body=workflow.split('      - name: Apply exact candidate and reconcile one stale audit count\n        run: |\n',1)[1].split('      - uses:',1)[0]
-          script='\n'.join(line[10:] for line in body.splitlines())
-          subprocess.run(['bash','-e','-c',script],check=True)
-          Path('.r613-air-diagnostic.mjs').write_bytes(diagnostic)
-          assert subprocess.check_output(['git','write-tree'],text=True).strip()=='ecf736ff767a18ddb1d3339e01a072dc72c5d6b9'
+          subprocess.run(['bash','-e','-c','\n'.join(line[10:] for line in body.splitlines())],check=True)
+          tree=subprocess.check_output(['git','write-tree'],text=True).strip()
+          assert tree=='ecf736ff767a18ddb1d3339e01a072dc72c5d6b9'
+          out=Path('artifacts/recovery');out.mkdir(parents=True)
+          patch=subprocess.check_output(['git','diff','--cached','--binary','394a9324dd1fb185335833c12a97b0d71ccc55d2'])
+          (out/'candidate.patch').write_bytes(patch)
+          (out/'tree.txt').write_bytes(subprocess.check_output(['git','ls-files','-s']))
+          (out/'identity.json').write_text(json.dumps({'base':'394a9324dd1fb185335833c12a97b0d71ccc55d2','tree':tree,'patchSha256':hashlib.sha256(patch).hexdigest(),'acceptance':False,'refWrites':0}))
           PY
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
@@ -36,17 +38,14 @@ jobs:
           cache: npm
       - run: npm install --global npm@10.9.2
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - name: Three actual wall-clock and deterministic-clock comparisons, no product changes
+      - name: Retain locked dependencies for local verification only
         run: |
-          set -o pipefail
-          node scripts/run-with-server.mjs -- node .r613-air-diagnostic.mjs 2>&1 | tee artifacts/air-clock.log
+          tar -czf artifacts/recovery/locked-node-modules.tar.gz node_modules
+          sha256sum artifacts/recovery/locked-node-modules.tar.gz > artifacts/recovery/dependencies.sha256
           git diff --exit-code
-      - name: Preserve evidence, never publish a product tree
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: rsh036-r613-air-diagnosis-${{ github.run_id }}
-          path: artifacts/**
+          name: rsh036-r613-recovery-${{ github.run_id }}
+          path: artifacts/recovery/**
           if-no-files-found: error
           retention-days: 14
