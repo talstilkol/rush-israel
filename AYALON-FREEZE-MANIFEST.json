@@ -3,7 +3,7 @@
   "document_type": "rush-ayalon-freeze-manifest",
   "unit": "RSH-036",
   "title": "Freeze Ayalon and hash all transitive dependencies",
-  "generated_at": "2026-09-07",
+  "generated_at": "2026-09-08T13:36:49.444259Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "implementation_base": {
@@ -27,7 +27,7 @@
     "ayalon_lock_generation": 11,
     "ayalon_lock_hash": "0c34b9d1f9ded36eaa8400c7aaba48a4f725033bfe25412a4648c36c73910d48",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74",
-    "source_count": 82,
+    "source_count": 83,
     "freeze_granted": false,
     "unique_pack_approved": true,
     "placeholders_are_unique_evidence": false,
@@ -103,7 +103,7 @@
       "server/middleware/grok-pwa.ts": "184313168a63c66b4b0d809fa55c656b8ca4436775f6c0502bc9e9cfdfaf0e9f",
       "scripts/product-head-boundary.mjs": "c88328d144b77d1ea54aaab62d0e54f616c404d72097f1e6f232057185c5f3fe",
       "scripts/rush-head-browser.mjs": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
-      "scripts/runtime-recovery-smoke.mjs": "ce4c1b6a3ed8e05de308c5de06ef46f34ce6c5897ec99c80650955c45a122d6f",
+      "scripts/runtime-recovery-smoke.mjs": "3ab6b33be149491173c6b31022cebcfd2334c5314154551f70b155e1edd28251",
       "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d",
       "scripts/font-evidence.mjs": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35",
       "scripts/font-dependency-browser.mjs": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673",
@@ -111,13 +111,14 @@
       "scripts/road-uniform-browser.mjs": "aed1f57320633920ef28c803faef0c09802fbcd26fbf6c25d85ac7fbf9919c9d",
       "src/game/ramp-surface.ts": "4072158c03c6728f54f7efdd60fa5e43e831decda461975a528c1e01e1f512ed",
       "scripts/ramp-surface-browser.mjs": "1e495b420782dff63ab7c3b74f8a21f23378c382cf821c6ec7008df8d6bcd849",
-      "src/game/vehicle.ts": "7db3128bb337e94838101d1f49fc31aad3b138e9b90dbbeb2635ed6ff93a1cfe",
+      "src/game/vehicle.ts": "cfef4a7222d073d9b701067276c91efaee2805ed5999a4849fba46feab0935d9",
       "scripts/ramp-smoke.mjs": "8c35bfd9bde53b5b8487f877e8018bfcf3237efd37bd0e317fe457f610da8a2c",
       "scripts/ramp-contact-browser.mjs": "b185299e282d4e26ed113abc119bf2677b8e04639920c7ef24e00f45368d69bf",
       "scripts/drive-smoke.mjs": "2e0f6c36b8f7bf905d30d15f020e1485dda21d5305bcc3d126de211053685b93",
       "scripts/drive-steering.mjs": "ebdaa2b658e66f848adfb85d74062277758d3f14f004cd73a6d1e0d441d4b6ba",
       "scripts/airborne-smoke.mjs": "fa321116c26412d51f89c8d3178d97182f7091a54a92f35375f0c320ae32c636",
-      "scripts/airborne-clock.mjs": "fecc996075b4238a926387dc736bdcdd8208af3037623fa55e06aef219bb42fe"
+      "scripts/airborne-clock.mjs": "fecc996075b4238a926387dc736bdcdd8208af3037623fa55e06aef219bb42fe",
+      "scripts/collider-centre-browser.mjs": "bfbf545929292f23cd6d60bf8eaba8a00051d40ee39f123ba6f2cbda17402ccf"
     }
   },
   "lock_module": {
@@ -143,19 +144,20 @@
     "release_gates_total": 13,
     "runtime_repair_authorisation": "standing owner instruction 2026-09-05",
     "vehicle_support_behavior_changed": true,
-    "physics_calibration_constants_changed": false
+    "physics_calibration_constants_changed": false,
+    "circular_contact_behavior_changed": true
   },
   "identities": {
-    "freeze_source_sha256": "7828cbdd3b0d1eddb729b1877e4795452a10e8f663fa50540ff1f5012457df17",
+    "freeze_source_sha256": "311ddc5b66276ac614a823c14d5ee6973399d56d18a0db728594d885d5ef1338",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
     "contract_sha256": "03727dd56eb2c6808ace47c372ab901dc96a22445d8a71fa09bb87f92d27e9d5",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
     "pixel_golden_sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
-    "checker_test_sha256": "6b319bc3b59e70b23348e4579ca8953342ca55232d3743af2b2d1fa86dd4c9aa",
+    "checker_test_sha256": "09e95dffaa828e083df000920140455679a709ee1884a7dd2190fcad08840958",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "67f44725eabfefb414e83fad6aa6522b070f9b0f25ebd71d7512b13108e36423",
+    "freeze_digest_sha256": "ae576bc21cdd94464b7b7a104fc61040e148bd5e6e27f34365b9308c930fe99c",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
@@ -177,7 +179,7 @@
     "status": "partial",
     "complete_dependency_closure": false,
     "runtime_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
-    "remaining_proof": "Complete font dependency closure, original golden, body/roof/column clearance and rendering-performance qualification remain open. AUD-23 uses measured physics time, not a rendering-speed waiver. Final normal CI remains pending.",
+    "remaining_proof": "Three font references, original golden, body/roof/column clearance and physics/record-version policy remain open. Prior r6.13 checks were verified; r6.14 exact-head CI pending.",
     "generated_inventory": "AYALON-DEPENDENCY-CLOSURE.json"
   },
   "acceptance": {

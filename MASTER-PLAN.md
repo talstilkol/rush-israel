@@ -573,3 +573,12 @@ original combined driving sequence, unchanged acceleration/visual gates and all
 failed preparations. Total:67 units;35 accepted;32 remaining;23 audit items;42
 historical findings;6 bundles. Full final-candidate and published-head CI pending.
 Low rendering throughput remains open, not fixed by deterministic test stepping.
+
+## r6.14 — 8 September 2026
+
+AUD-24 repairs skipped circular centre penetrations, with22 actual-car and10
+report-validator tests plus real-catalogue browser checks. Previous r6.13
+exact-head support, grade and landing validation is reconciled as completed,
+not unit acceptance. All67 units,42 legacy findings,6 bundles and24 audit IDs
+are retained. Complete clearance, physics/record compatibility, mutable fonts
+and original-golden acceptance remain blocked. No RSH-037 activation.

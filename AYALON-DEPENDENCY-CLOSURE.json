@@ -1169,12 +1169,12 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "6510e0fc2dee9efa0a4ccc6b100fb8aa0da2ffa71713d307257f7177d3ae42c7"
+      "sha256": "5488c3f3cb7dccc64be06e1a93cd96ea190549a8cdec2bcd6df23f3f90715e62"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
       "bytes": 3114,
-      "sha256": "6b319bc3b59e70b23348e4579ca8953342ca55232d3743af2b2d1fa86dd4c9aa"
+      "sha256": "09e95dffaa828e083df000920140455679a709ee1884a7dd2190fcad08840958"
     },
     {
       "path": "scripts/check-ayalon-geometry.mjs",
@@ -1567,6 +1567,21 @@
       "sha256": "1e3c1912564373bab78c3f2ad8f75d0c4b229800659255ac8f6f8fcbb615514a"
     },
     {
+      "path": "scripts/collider-centre-browser.mjs",
+      "bytes": 8096,
+      "sha256": "bfbf545929292f23cd6d60bf8eaba8a00051d40ee39f123ba6f2cbda17402ccf"
+    },
+    {
+      "path": "scripts/collider-centre-results.test.mjs",
+      "bytes": 2552,
+      "sha256": "42f9bcc33c6bbf07b00cc735f0b59b1eecd321999c54f910eb8bbb229daa03df"
+    },
+    {
+      "path": "scripts/collider-centre.test.mjs",
+      "bytes": 4993,
+      "sha256": "c645dd94d5515797069409815a7da1c2cc4216b2c0a7a6c993e4a2a656ab75ee"
+    },
+    {
       "path": "scripts/collider-offset-smoke.mjs",
       "bytes": 1985,
       "sha256": "52efbb454ee2c88e134bbcbef5d61b41fada628a966b2544267645254668d10f"
@@ -1944,12 +1959,12 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "0816b0b56ff50369ab88a82ac0d5bd8fd54f325ab4268918cdc6f9834238f85f"
+      "sha256": "c5d8b8c93070481cc77cf53d43fffd1796d835f24017503a45f000025b4a050c"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
       "bytes": 2011,
-      "sha256": "d1375872df503ccba2e50a6af4e60c6f90a92187e86102bf1f0b6242b524704c"
+      "sha256": "ee6677d99abb28f39a91f93d5c76e8cef0ac1d6cea0f55e148ac2de27ce1f008"
     },
     {
       "path": "scripts/run-with-server.mjs",
@@ -1963,8 +1978,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 8324,
-      "sha256": "ce4c1b6a3ed8e05de308c5de06ef46f34ce6c5897ec99c80650955c45a122d6f"
+      "bytes": 8457,
+      "sha256": "3ab6b33be149491173c6b31022cebcfd2334c5314154551f70b155e1edd28251"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2173,8 +2188,8 @@
     },
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
-      "bytes": 10151,
-      "sha256": "7828cbdd3b0d1eddb729b1877e4795452a10e8f663fa50540ff1f5012457df17"
+      "bytes": 10260,
+      "sha256": "311ddc5b66276ac614a823c14d5ee6973399d56d18a0db728594d885d5ef1338"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -2833,8 +2848,8 @@
     },
     {
       "path": "src/game/vehicle.ts",
-      "bytes": 34660,
-      "sha256": "7db3128bb337e94838101d1f49fc31aad3b138e9b90dbbeb2635ed6ff93a1cfe"
+      "bytes": 35014,
+      "sha256": "cfef4a7222d073d9b701067276c91efaee2805ed5999a4849fba46feab0935d9"
     },
     {
       "path": "src/game/walk-assets.ts",
@@ -10342,5 +10357,5 @@
     "Package sources are identified by package-lock integrity, not vendored or executed by this scanner.",
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance."
   ],
-  "digest_sha256": "a17263856af23e4a6bdfaee2c1be575af6f64ae2ef559fb33160122b6af884f4"
+  "digest_sha256": "f243aa5d39a14e1d6572023d4dc1c4f2e3c6631f9637f021bb3e43af095a6060"
 }

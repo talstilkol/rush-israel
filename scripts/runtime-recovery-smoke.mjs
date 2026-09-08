@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { fromRoot } from './project-root.mjs';
+import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
 import { verifyRampSurfaces } from './ramp-surface-browser.mjs';
 import { verifyRoadUniforms } from './road-uniform-browser.mjs';
@@ -57,6 +58,7 @@ async function raceReady(page) {
   assert.equal(await page.getByTestId('race-load-error').count(), 0);
 }
 try {
+  results.push(...await verifyColliderCentres(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));

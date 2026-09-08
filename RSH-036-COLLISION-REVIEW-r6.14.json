@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "unit": "RSH-036",
+  "revision": "r6.14",
+  "date": "2026-09-08",
+  "base": "69e65048f888cbf1a273aaaec16806b27f10410b",
+  "finding": "AUD-24",
+  "status": "candidate_pending_remote_validation",
+  "prior_verified_checkpoint": {
+    "revision": "r6.13",
+    "head": "69e65048f888cbf1a273aaaec16806b27f10410b",
+    "tree": "2ee82e46f300a79f16a200ffd0e11552b4333290",
+    "run_id": 34120397545,
+    "job_id": 101736885090,
+    "unit_passed": 993,
+    "unit_failed": 0,
+    "runtime_cases_passed": 34,
+    "readiness_cases_passed": 5,
+    "airborne_trials_passed": 3,
+    "lint_warnings": 123,
+    "lint_errors": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "not_unit_acceptance": true,
+    "checkpoint_comment": 5570586013
+  },
+  "defect": "The radial collider branch skipped d<0.0001, including coincident centres, leaving a vehicle embedded in an existing obstacle.",
+  "repair": "All positive distances retain the radial normal. Exact coincidence opposes current horizontal velocity; a stationary coincidence uses +X. Existing radius, box path, response coefficients and vertical state are preserved.",
+  "focused_same_cases": {
+    "total": 22,
+    "before_passed": 3,
+    "before_failed": 19,
+    "after_passed": 22,
+    "after_failed": 0,
+    "source": "actual ArcadeCar and local physics imports; same test file on exact base and candidate"
+  },
+  "new_report_validator_cases": 10,
+  "browser_protocol": {
+    "catalogue": "all circular entries from the actual Ayalon world, unchanged total546",
+    "conditions": [
+      "stationary exact-centre overlap",
+      "moving exact-centre overlap"
+    ],
+    "scope": "isolated contact phase; complementary local public step test; not whole-route/multi-obstacle clearance"
+  },
+  "clearance_audit": {
+    "state": "measurement_pending",
+    "output": "artifacts/collider-centre/results.json",
+    "measurements": [
+      "support-pier centres and coverage by existing 2D colliders",
+      "all781 route sample points against all50 ramp slab footprints and heights"
+    ],
+    "not_acceptance": [
+      "no roof/body envelope tested",
+      "no vertical collider or support-column collision implementation",
+      "ramp entries may intentionally intersect the road",
+      "no art/golden approval"
+    ]
+  },
+  "preservation": {
+    "geometry_changes": 0,
+    "ramp_recipe_changes": 0,
+    "calibration_coefficient_changes": 0,
+    "record_storage_writes": 0,
+    "physics_version_changes": 0,
+    "image_reference_changes": 0,
+    "threshold_changes": 0
+  },
+  "remaining": [
+    "body/roof/column collision and clearance",
+    "physics/record compatibility policy before freeze; physicsVersion7 remains unchanged",
+    "three mutable font dependencies",
+    "original golden0/4",
+    "exact-head publication checks"
+  ],
+  "truth_boundary": "Previous verified fixes and this candidate are not an accepted RSH-036 or permission to start RSH-037.",
+  "complete_local_suite": {
+    "passed": 1026,
+    "failed": 0,
+    "skipped": 0,
+    "new_unique_cases": 33,
+    "typescript": "5.9.3",
+    "remote_validation": "pending"
+  }
+}

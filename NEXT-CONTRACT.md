@@ -1,39 +1,38 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 20.12.1
-**Date:** 2026-09-07, Asia/Jerusalem
+**Version:** 20.13.0
+**Date:** 2026-09-08, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 394a9324dd1fb185335833c12a97b0d71ccc55d2
+**Repair base:** 69e65048f888cbf1a273aaaec16806b27f10410b
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
-Re-read live GitHub and exact-source CI evidence before any changes. Standing
-owner audit/repair/master-plan authority continues. 35/67 accepted; 32 remain.
-No force-push, history rewrite, merge, release, freeze or RSH-037 activation.
+GitHub is the current source of truth. Re-read live refs, CI and source evidence
+before changes. Standing owner audit/repair/master-plan authority continues.
+35/67 accepted;32 remain. No merge, release, freeze, force-push, history rewrite
+or RSH-037 activation. Retain original image authority and historical evidence.
 
-## r6.13 candidate
-AUD-21: nearer road versus buried ramps; coherent wheel support; gravity-driven
-falls. AUD-22: ramp grade projected onto body-forward, preserving coefficients.
-AUD-23: airborne validation measures exact physics ticks rather than wall time.
-Read all failed preparations in the repair and driving/grade/airborne reports.
-A green partial test suite must never override raw contradictory evidence.
+## Reconciled baseline and active repair
+r6.13 was published and exact-head validated by run34120397545. Support/grade,
+three fixed-budget landing trials,993 units and fullQA passed. Original golden
+remained0/4. Earlier failed preparations stay historical, not active pending work.
+r6.14 repairs the reproduced circular-centre collision degeneracy (AUD-24).
 
-## Required validation and next work
-1. Finish final-candidate QA and exact published-head CI, including both-direction
-   contact: 781 route starts, indices479-485, seven240-step trajectories and250
-   supported ramp probes. Preserve the original combined drive sequence and
-   all five unchanged acceleration baselines. Run three actual airborne trials
-   with the original50+900ms budget (113 steps at120Hz), not extended wait time.
-2. Read unchanged original-golden results independently of normal CI. Inspect
-   crossing occlusion, materials and art against accepted specifications.
-3. Qualify body/roof/column clearance, complete collision/airborne behavior and
-   physics/record-version policy. Sampled support conformance is not full clearance.
-4. Investigate low rendering throughput separately; a deterministic clock test
-   is not a performance fix. Performance-stage work remains deferred.
-5. Qualify three mutable font dependencies without silent typography changes or
-   distribution of font files. Retain every resource, road, mesh and capture guard.
-6. Preserve original PNGs,0.12 threshold,8% failure limit and generation11 lock.
-   Any image-reference transition requires separate explicit provenance/approval.
-   Only validated owner-approved acceptance can grant the freeze or open RSH-037.
+## Validation and next work
+1. Verify candidate and published-head CI with same22 collision negative controls,
+   all circular Ayalon obstacles, full unit/runtime/resource, acceleration/steering,
+   route-contact,750 ramp-ray and three113-step airborne gates. Keep original budgets.
+2. Read pier-centre and centreline slab-gap observations independently. Complete
+   actual roof/body/column collision and clearance review, including intersecting
+   geometry and multi-obstacle contact. Diagnostic coverage is not clearance.
+3. Review original-golden art/material/occlusion failures. Preserve original PNGs,
+   threshold0.12, failure limit8% and generation11 lock. Reference transition requires
+   explicit approval and provenance, never automatic rebaselining.
+4. Settle physics/record-version policy before freeze. Version7 is still shared
+   with older physics; no compatibility or migration success may be inferred.
+5. Qualify three mutable font dependencies without silently changing typography
+   or distributing font files. Performance-stage work stays deferred; clock tests
+   do not fix low rendering throughput.
+6. Only applicable validated approval may accept the freeze or open RSH-037.
 
-Master plan r6.13 retains67 units,42 historical findings,6 repair bundles and23
-numbered audit items. All13 release gates open;66 asset licences unverified.
+Master plan r6.14 retains67 units,42 historical findings,6 repair bundles and24
+audit IDs. All13 release gates remain open;66 asset licences unverified.

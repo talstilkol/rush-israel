@@ -395,9 +395,8 @@
     },
     "scripts/runtime-recovery-smoke.mjs": {
       "previous_sha256": null,
-      "current_sha256": "ce4c1b6a3ed8e05de308c5de06ef46f34ce6c5897ec99c80650955c45a122d6f",
-      "reverse_edits": [],
-      "reason": "r6.12 AUD-21 overhead-contact repair; exact historical checks only, never production substitution"
+      "current_sha256": "3ab6b33be149491173c6b31022cebcfd2334c5314154551f70b155e1edd28251",
+      "reverse_edits": []
     },
     "src/game/road-assets.ts": {
       "previous_sha256": "17cc9cc0ad287a6fcd74e0a40b122ad830733247b50b1e39eb6f2afb8a35146e",
@@ -1134,7 +1133,7 @@
     },
     "src/game/vehicle.ts": {
       "previous_sha256": "73bdc89785b583b8749ac83476efaf27d02b01aa2df0914a9677fca1d16c1fc6",
-      "current_sha256": "7db3128bb337e94838101d1f49fc31aad3b138e9b90dbbeb2635ed6ff93a1cfe",
+      "current_sha256": "cfef4a7222d073d9b701067276c91efaee2805ed5999a4849fba46feab0935d9",
       "reverse_edits": [
         {
           "start_line": 50,
@@ -1213,9 +1212,14 @@
           "end_line": 536,
           "current_segment_sha256": "faf63f6ec2af0f459038693bc8de3b0ee01ad80943791bb9f6cce0a6b8be9e44",
           "previous_text": "        const ceil = this.vy > 2 || this.airborne ? groundY + 8 : groundY + 0.85;\n        if (this.y > ceil) {\n          this.y = ceil;\n          this.vy = Math.min(0, this.vy);\n        }\n"
+        },
+        {
+          "start_line": 644,
+          "end_line": 655,
+          "current_segment_sha256": "9e4d35c824d4e875ff9ee7d11926074625ed97124a09aa63dae4631e9b7bb28f",
+          "previous_text": "        if (d >= c.r || d < 0.0001) continue;\n        nx = dx / d;\n        nz = dz / d;\n"
         }
-      ],
-      "reason": "r6.13 reviewed bidirectional support and directional-grade correction; original combined drive assertions retained, extra clean forward probes; historical projection never substitutes for behavioral checks"
+      ]
     },
     "scripts/ramp-smoke.mjs": {
       "previous_sha256": "57c859162157ae304c750746c8b8946c43d6bba6208a2f880aabcb25e2461e0a",
@@ -1315,6 +1319,11 @@
         }
       ],
       "reason": "AUD-23 exact-physics-clock airborne regression; previous source preserved only for historical checks, never behavioral acceptance"
+    },
+    "scripts/collider-centre-browser.mjs": {
+      "previous_sha256": null,
+      "current_sha256": "bfbf545929292f23cd6d60bf8eaba8a00051d40ee39f123ba6f2cbda17402ccf",
+      "reverse_edits": []
     }
   }
 }
