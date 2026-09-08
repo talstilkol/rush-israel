@@ -642,9 +642,17 @@ export class ArcadeCar {
         const dx = this.x - c.x;
         const dz = this.z - c.z;
         const d = Math.hypot(dx, dz);
-        if (d >= c.r || d < 0.0001) continue;
-        nx = dx / d;
-        nz = dz / d;
+        if (d >= c.r) continue;
+        if (d > 0) {
+          nx = dx / d;
+          nz = dz / d;
+        } else {
+          // Coincident centres still penetrate. Oppose incoming motion; a
+          // stationary overlap uses a deterministic axis without dividing by zero.
+          const motion = Math.hypot(this.vx, this.vz);
+          nx = motion > 0 ? -this.vx / motion : 1;
+          nz = motion > 0 ? -this.vz / motion : 0;
+        }
         this.x = c.x + nx * c.r;
         this.z = c.z + nz * c.r;
         hitD = c.r - d;

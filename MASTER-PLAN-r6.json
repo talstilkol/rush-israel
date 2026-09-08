@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.13",
-  "date": "2026-09-07",
+  "revision": "r6.14",
+  "date": "2026-09-08",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "394a9324dd1fb185335833c12a97b0d71ccc55d2",
+  "source_pr_head": "69e65048f888cbf1a273aaaec16806b27f10410b",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 23,
+    "audit_items": 24,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -353,7 +353,8 @@
         "AUD-18",
         "AUD-21",
         "AUD-22",
-        "AUD-23"
+        "AUD-23",
+        "AUD-24"
       ]
     },
     {
@@ -1123,9 +1124,10 @@
       "legacy_findings": [],
       "title": "Unreachable overhead capture, buried-deck selection and premature downward attachment",
       "acceptance": "Retain1.2-unit upward entry allowance. A nearer main road must not be displaced by a buried ramp. Wheel support must not mix an overhead deck into road contact. Actual781 route starts must reject jumps above1.2001 in either direction; indices479-485 must remain on the road; test seven moving trajectories and all250 supported ramp probes. Falling/rising vehicles retain gravity-driven height and momentum until actual contact. Preserve all50 ramp recipes, calibration, and original golden gates. Full driving acceptance also requires review of measured traffic-impact/lateral drift; independent direction probes must not hide the original combined-sequence failure.",
-      "status": "repair_candidate_pending_exact_head_validation",
+      "status": "implemented_verified_on_r6_13_head_not_unit_acceptance",
       "bundle": "CR-04",
-      "evidence": "r6.12 exact-head CI passed906 units but raw route traces showed25 downward snaps (18 before r6.12). All seven changed starts479-485 dropped1.4917-1.6052. r6.13 adds actual-car and report-validator regressions; final locked browser/CI evidence remains pending. Candidate1 locked preparation941/941 units, route25->0 downward snaps and1680 moving steps passed; fullQA failed the original combined driving sequence. See RSH-036-DRIVING-REVIEW-r6.13.json. New steering preconditions are pending full rerun. Second preparation repeated support checks successfully but failed4/5 acceleration cases. Candidate3 fixes independently reproduced directional grade defect AUD-22 and restores original driving sequence; no acceptance from earlier counts."
+      "evidence": "Exact head 69e65048f888cbf1a273aaaec16806b27f10410b; run34120397545/job101736885090; PR checkpoint comment5570586013. 993 units,34 runtime cases,3 landing trials, five acceleration baselines and fullQA passed. Original golden0/4. Retain candidate-head regression checks.",
+      "preparation_evidence_history": "r6.12 exact-head CI passed906 units but raw route traces showed25 downward snaps (18 before r6.12). All seven changed starts479-485 dropped1.4917-1.6052. r6.13 adds actual-car and report-validator regressions; final locked browser/CI evidence remains pending. Candidate1 locked preparation941/941 units, route25->0 downward snaps and1680 moving steps passed; fullQA failed the original combined driving sequence. See RSH-036-DRIVING-REVIEW-r6.13.json. New steering preconditions are pending full rerun. Second preparation repeated support checks successfully but failed4/5 acceleration cases. Candidate3 fixes independently reproduced directional grade defect AUD-22 and restores original driving sequence; no acceptance from earlier counts."
     },
     {
       "id": "AUD-22",
@@ -1136,9 +1138,10 @@
       "legacy_findings": [],
       "title": "Ramp force and pitch used full slope instead of the body-forward directional derivative",
       "acceptance": "Pass real-car perpendicular, diagonal, forward/reverse, stationary and axis-invariance cases. Retain grade coefficients and launch/handling calibration; all five cars must pass the original0.1-second acceleration regression limit. Restore and pass the unchanged combined drive sequence plus new independent forward steering. Do not relax golden references.",
-      "status": "repair_candidate_pending_exact_head_validation",
+      "status": "implemented_verified_on_r6_13_head_not_unit_acceptance",
       "bundle": "CR-04",
-      "evidence": "Candidate2 locked fullQA failed acceleration in4/5 cars despite956 units and independent steering passing. Local actual-car ablation reproduced old and candidate times exactly; body-forward projection restored all five within the unchanged0.1-second limit. Same16 targeted cases:2pass/14fail before,16pass after. Final locked browser acceptance pending."
+      "evidence": "Exact head 69e65048f888cbf1a273aaaec16806b27f10410b; run34120397545/job101736885090; PR checkpoint comment5570586013. 993 units,34 runtime cases,3 landing trials, five acceleration baselines and fullQA passed. Original golden0/4. Retain candidate-head regression checks.",
+      "preparation_evidence_history": "Candidate2 locked fullQA failed acceleration in4/5 cars despite956 units and independent steering passing. Local actual-car ablation reproduced old and candidate times exactly; body-forward projection restored all five within the unchanged0.1-second limit. Same16 targeted cases:2pass/14fail before,16pass after. Final locked browser acceptance pending."
     },
     {
       "id": "AUD-23",
@@ -1149,9 +1152,23 @@
       "legacy_findings": [],
       "title": "Airborne smoke used wall-clock delays as if they guaranteed physics progress",
       "acceptance": "Run the real engine synchronously at unchanged120Hz. Preserve220ms ramp and50+900ms falling budgets; assert exact26/6/107 steps, initial gravity fall, airborne midpoint and grounded on-track landing. Fail missing/stalled/extra clocks, bad states and premature contact. Retain three actual trials and diagnostics. Slow rendering remains a separate performance concern.",
+      "status": "implemented_verified_on_r6_13_head_not_unit_acceptance",
+      "bundle": "CR-04",
+      "evidence": "Exact head 69e65048f888cbf1a273aaaec16806b27f10410b; run34120397545/job101736885090; PR checkpoint comment5570586013. 993 units,34 runtime cases,3 landing trials, five acceleration baselines and fullQA passed. Original golden0/4. Retain candidate-head regression checks.",
+      "preparation_evidence_history": "RSH-036-AIRBORNE-REVIEW-r6.13.json; diagnostic34074531361 measured0.2/0.2/0.3 seconds after wall waits versus113 actual steps with three successful landings.18 negative/positive harness tests; not product-device acceptance."
+    },
+    {
+      "id": "AUD-24",
+      "severity": "P2",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Circular collision solver skipped coincident and near-centre penetrations",
+      "acceptance": "Same22 actual-car cases must fail19 on r6.13 and pass after repair. Verify every real Ayalon circular obstacle at stationary and moving coincidence. Retain radius, OBB response, vertical state, full contact/steering/acceleration and original golden gates. Clearance observations must not be labelled a clearance pass.",
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-04",
-      "evidence": "RSH-036-AIRBORNE-REVIEW-r6.13.json; diagnostic34074531361 measured0.2/0.2/0.3 seconds after wall waits versus113 actual steps with three successful landings.18 negative/positive harness tests; not product-device acceptance."
+      "evidence": "RSH-036-COLLISION-REVIEW-r6.14.json"
     }
   ],
   "legacy_findings": [
@@ -1537,7 +1554,8 @@
         "AUD-20",
         "AUD-21",
         "AUD-22",
-        "AUD-23"
+        "AUD-23",
+        "AUD-24"
       ]
     },
     {
@@ -1569,7 +1587,7 @@
     "public_distribution_authorised": false
   },
   "limitations": [
-    "All67 original units,21 audit IDs and42 historical findings retained; no new accepted unit.",
+    "All67 original units,24 audit IDs and42 historical findings retained; no new accepted unit.",
     "Verified r6.5 head 8c6a3be7 passed 688 unit and 20 browser cases in run33995840557; prior chat-only 716-test claim is not the live baseline.",
     "Original PNGs, pixel threshold0.12, failure limit8%, camera recipe and post-pose waits are preserved. Reliable selection does not prove pixel determinism.",
     "Generated local closure seals the declared local runtime/build/test/public/golden surface. Three verified Actions are pinned; all seven external expressions remain recorded, with four dormant vendor-head expressions qualified by the exact product import boundary and three font references unqualified. Overall closure remains false.",
@@ -1577,6 +1595,45 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
+    "revision": "r6.14",
+    "base_head": "69e65048f888cbf1a273aaaec16806b27f10410b",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.14.md",
+    "unit_accepted": false,
+    "previous_exact_head_ci": {
+      "revision": "r6.13",
+      "head": "69e65048f888cbf1a273aaaec16806b27f10410b",
+      "tree": "2ee82e46f300a79f16a200ffd0e11552b4333290",
+      "run_id": 34120397545,
+      "job_id": 101736885090,
+      "unit_passed": 993,
+      "unit_failed": 0,
+      "runtime_cases_passed": 34,
+      "readiness_cases_passed": 5,
+      "airborne_trials_passed": 3,
+      "lint_warnings": 123,
+      "lint_errors": 0,
+      "golden_passed": 0,
+      "golden_failed": 4,
+      "not_unit_acceptance": true,
+      "checkpoint_comment": 5570586013
+    },
+    "normal_ci": "candidate_pending_exact_head_validation",
+    "golden": "r6.13 original0/4; unchanged original references and thresholds must be rerun",
+    "dependency_closure": "three mutable font references remain unqualified",
+    "collision_review": "RSH-036-COLLISION-REVIEW-r6.14.json",
+    "clearance": "diagnostic measurement only; body/roof/column collision acceptance remains blocked",
+    "record_policy": "physicsVersion7 unchanged; explicit compatibility gate before freeze"
+  },
+  "r6_9_diagnostic_checkpoint": {
+    "run_id": 34011119090,
+    "artifact_id": 9982561420,
+    "captures": 24,
+    "byte_identical_repeat_controls": 8,
+    "original_golden_comparisons": 0,
+    "acceptance": false,
+    "remaining": "Isolate world/material components; camera-only restoration does not remove source/assets differences."
+  },
+  "checkpoint_history_r6_13_preparation": {
     "revision": "r6.13",
     "base_head": "394a9324dd1fb185335833c12a97b0d71ccc55d2",
     "document": "RSH-036-RUNTIME-REPAIR-r6.13.md",
@@ -1634,14 +1691,5 @@
       "source": "hash-verified original auxiliary transport; exact delta reproduced locally",
       "not_acceptance": true
     }
-  },
-  "r6_9_diagnostic_checkpoint": {
-    "run_id": 34011119090,
-    "artifact_id": 9982561420,
-    "captures": 24,
-    "byte_identical_repeat_controls": 8,
-    "original_golden_comparisons": 0,
-    "acceptance": false,
-    "remaining": "Isolate world/material components; camera-only restoration does not remove source/assets differences."
   }
 }
