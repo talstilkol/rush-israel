@@ -66,7 +66,7 @@ export async function measureRampContact(browser, url) {
   } finally { await page.close(); }
 }
 export function rampContactResults(report) {
-  assert.equal(report.rampCount, 50); assert.equal(report.colliderCount, 546); assert.equal(report.checkpointCount, 8);
+  assert.equal(report.rampCount, 50); assert.equal(report.colliderCount, 722); assert.equal(report.checkpointCount, 8);
   assert.equal(report.route.length, 781); assert.equal(report.onDeck.length, 250);
   assert.deepEqual(report.route.map(r => r.index), Array.from({ length: 781 }, (_, i) => i), 'all route starts must be present once');
   assert.ok(report.route.every(r => [r.fromY, r.toY, r.rise].every(Number.isFinite)), 'nonfinite route evidence');

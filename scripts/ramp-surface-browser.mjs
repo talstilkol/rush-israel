@@ -94,7 +94,7 @@ export function rampSurfaceResults(report) {
   const common = { ramps: report.rows.length, recipeSha256: report.recipeSha256, colliderCount: report.colliderCount, checkpointCount: report.checkpointCount };
   assert.equal(report.rows.length, 50); assert.equal(report.rows.reduce((n, r) => n + r.rays, 0), 750);
   assert.equal(report.rows.flatMap(r => r.strips).length, 100);
-  assert.equal(report.colliderCount, 546); assert.equal(report.checkpointCount, 8);
+  assert.equal(report.colliderCount, 722); assert.equal(report.checkpointCount, 8);
   assert.deepEqual(report.pageErrors, []); assert.equal(report.glError, 0);
   return [
     { case: '50 real Ayalon ramp meshes match physics height and footprint at 750 ray probes', status: surfaceBad.length ? 'failed' : 'passed', ...common,

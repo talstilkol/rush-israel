@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { colliderCentreResults } from './collider-centre-browser.mjs';
-const report = () => ({ colliderCount: 546, rampCount: 50, routeSamples: 781, checkpointCount: 8, pageErrors: [], glError: 0,
+const report = () => ({ colliderCount: 722, rampCount: 50, routeSamples: 781, checkpointCount: 8, pageErrors: [], glError: 0,
   circularIndices: [0], rows: [
     { index: 0, moving: false, radius: 2, kind: 'barrier', distance: 2, x: 2, y: 3, z: 0, expectedX: 2, expectedZ: 0, velocityInto: 0, lastHit: '', finite: true },
     { index: 0, moving: true, radius: 2, kind: 'barrier', distance: 2, x: -1.2, y: 3, z: -1.6, expectedX: -1.2, expectedZ: -1.6, velocityInto: 1, lastHit: 'barrier', finite: true },

@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.14",
-  "date": "2026-09-08",
+  "revision": "r6.15",
+  "date": "2026-09-09",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "69e65048f888cbf1a273aaaec16806b27f10410b",
+  "source_pr_head": "df42ed916a8a24acb7a580c0ab176305f874fef6",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 24,
+    "audit_items": 25,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -1166,9 +1166,22 @@
       "legacy_findings": [],
       "title": "Circular collision solver skipped coincident and near-centre penetrations",
       "acceptance": "Same22 actual-car cases must fail19 on r6.13 and pass after repair. Verify every real Ayalon circular obstacle at stationary and moving coincidence. Retain radius, OBB response, vertical state, full contact/steering/acceleration and original golden gates. Clearance observations must not be labelled a clearance pass.",
-      "status": "repair_candidate_pending_exact_head_validation",
+      "status": "verified_exact_r6_14_head_retained_pending_regression",
       "bundle": "CR-04",
       "evidence": "RSH-036-COLLISION-REVIEW-r6.14.json"
+    },
+    {
+      "id": "AUD-25",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Visible Ayalon support piers lacked height-bounded obstacle contacts",
+      "acceptance": "Bind every visible pier to a ground-to-slab collider; retain all546 legacy collider bytes. Test all176 piers for all5 cars at contact, above and below. Retain full route, airborne, acceleration, rendering and original-image gates. Explicit1.6-unit proxy is not complete body/roof or multi-obstacle clearance.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-04",
+      "evidence": "RSH-036-PIER-REVIEW-r6.15.json"
     }
   ],
   "legacy_findings": [
@@ -1555,7 +1568,8 @@
         "AUD-21",
         "AUD-22",
         "AUD-23",
-        "AUD-24"
+        "AUD-24",
+        "AUD-25"
       ]
     },
     {
@@ -1595,19 +1609,19 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.14",
-    "base_head": "69e65048f888cbf1a273aaaec16806b27f10410b",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.14.md",
+    "revision": "r6.15",
+    "base_head": "df42ed916a8a24acb7a580c0ab176305f874fef6",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.15.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "revision": "r6.13",
-      "head": "69e65048f888cbf1a273aaaec16806b27f10410b",
-      "tree": "2ee82e46f300a79f16a200ffd0e11552b4333290",
-      "run_id": 34120397545,
-      "job_id": 101736885090,
-      "unit_passed": 993,
+      "revision": "r6.14",
+      "head": "df42ed916a8a24acb7a580c0ab176305f874fef6",
+      "tree": "829f48b9b8d9938c6a6e3d2f3e32b2f13a0ef1eb",
+      "run_id": 34235907029,
+      "job_id": 102093427099,
+      "unit_passed": 1026,
       "unit_failed": 0,
-      "runtime_cases_passed": 34,
+      "runtime_cases_passed": 36,
       "readiness_cases_passed": 5,
       "airborne_trials_passed": 3,
       "lint_warnings": 123,
@@ -1615,14 +1629,13 @@
       "golden_passed": 0,
       "golden_failed": 4,
       "not_unit_acceptance": true,
-      "checkpoint_comment": 5570586013
+      "checkpoint_comment": 5586629645
     },
-    "normal_ci": "candidate_pending_exact_head_validation",
-    "golden": "r6.13 original0/4; unchanged original references and thresholds must be rerun",
-    "dependency_closure": "three mutable font references remain unqualified",
-    "collision_review": "RSH-036-COLLISION-REVIEW-r6.14.json",
-    "clearance": "diagnostic measurement only; body/roof/column collision acceptance remains blocked",
-    "record_policy": "physicsVersion7 unchanged; explicit compatibility gate before freeze"
+    "normal_ci": "pending_exact_published_head_validation",
+    "golden": "r6.14 original0/4; unchanged images/thresholds to be rerun",
+    "dependency_closure": "3 mutable font references still unqualified",
+    "clearance": "176 finite-height pier colliders candidate; 1.6-unit body proxy only; complete roof/mesh and multi-obstacle clearance remains open",
+    "record_policy": "physicsVersion7 unchanged; compatibility remains blocked"
   },
   "r6_9_diagnostic_checkpoint": {
     "run_id": 34011119090,
@@ -1691,5 +1704,46 @@
       "source": "hash-verified original auxiliary transport; exact delta reproduced locally",
       "not_acceptance": true
     }
+  },
+  "checkpoint_history": [
+    {
+      "revision": "r6.14",
+      "base_head": "69e65048f888cbf1a273aaaec16806b27f10410b",
+      "document": "RSH-036-RUNTIME-REPAIR-r6.14.md",
+      "unit_accepted": false,
+      "previous_exact_head_ci": {
+        "revision": "r6.13",
+        "head": "69e65048f888cbf1a273aaaec16806b27f10410b",
+        "tree": "2ee82e46f300a79f16a200ffd0e11552b4333290",
+        "run_id": 34120397545,
+        "job_id": 101736885090,
+        "unit_passed": 993,
+        "unit_failed": 0,
+        "runtime_cases_passed": 34,
+        "readiness_cases_passed": 5,
+        "airborne_trials_passed": 3,
+        "lint_warnings": 123,
+        "lint_errors": 0,
+        "golden_passed": 0,
+        "golden_failed": 4,
+        "not_unit_acceptance": true,
+        "checkpoint_comment": 5570586013
+      },
+      "normal_ci": "candidate_pending_exact_head_validation",
+      "golden": "r6.13 original0/4; unchanged original references and thresholds must be rerun",
+      "dependency_closure": "three mutable font references remain unqualified",
+      "collision_review": "RSH-036-COLLISION-REVIEW-r6.14.json",
+      "clearance": "diagnostic measurement only; body/roof/column collision acceptance remains blocked",
+      "record_policy": "physicsVersion7 unchanged; explicit compatibility gate before freeze"
+    }
+  ],
+  "r6_15_preparation_repair": {
+    "failed_run": 34323947483,
+    "failed_tree": "0ca244f9490a420372d255a1615e7db33b2bae6d",
+    "observed_colliders": 711,
+    "required_colliders": 722,
+    "cause": "spawn scenery clearing removed new structural support colliders",
+    "remediation": "preserve structural pier metadata and verify actual four-car grid; retain raw measurement before assertions",
+    "state": "pending_revalidation"
   }
 }

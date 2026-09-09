@@ -1,3 +1,4 @@
+import { preserveColliderAtSpawn } from "./collider-height";
 import * as THREE from "three";
 import { GameAudio, RADIO } from "./audio";
 // RSH-019-OVERLAY-BEGIN:engine-car-disposer-import
@@ -649,6 +650,7 @@ export class RaceEngine {
     const s0 = this.built.samples[0];
     const pad = this.built.width / 2 + 14;
     const keep = this.world.colliders.filter((c) => {
+      if (preserveColliderAtSpawn(c)) return true;
       if (Math.hypot(c.x - s0.x, c.z - s0.z) < pad) return false;
       for (const r of this.racers) {
         if (Math.hypot(c.x - r.x, c.z - r.z) < c.r + 4.5) return false;

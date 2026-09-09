@@ -1,3 +1,4 @@
+import { overlapsColliderHeight } from "./collider-height";
 import { clamp, expSmooth, wrapPi, forwardDelta } from "./math";
 import {
   absModulate,
@@ -608,6 +609,7 @@ export class ArcadeCar {
   /** 5.5: resolve once per CCD cut. Not PhysX. */
   private hitColliders(colliders: Collider[]) {
     for (const c of colliders) {
+      if (!overlapsColliderHeight(c, this.y)) continue;
       const carR = 1.05;
       let nx = 0;
       let nz = 0;

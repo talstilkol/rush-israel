@@ -1169,12 +1169,12 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "5488c3f3cb7dccc64be06e1a93cd96ea190549a8cdec2bcd6df23f3f90715e62"
+      "sha256": "e86718ecd26d4c9f56a21a24c03e538bc7cf68d8e17300962d95a8a6b43d5cda"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
       "bytes": 3114,
-      "sha256": "09e95dffaa828e083df000920140455679a709ee1884a7dd2190fcad08840958"
+      "sha256": "28fc007c15b971cecb21dee3ff5cac13d87a7cd61d761a6f1c6a1d125418e5a6"
     },
     {
       "path": "scripts/check-ayalon-geometry.mjs",
@@ -1568,13 +1568,13 @@
     },
     {
       "path": "scripts/collider-centre-browser.mjs",
-      "bytes": 8096,
-      "sha256": "bfbf545929292f23cd6d60bf8eaba8a00051d40ee39f123ba6f2cbda17402ccf"
+      "bytes": 8158,
+      "sha256": "7331bdddb064434cff6934ad42437bd1009d4699ff7b3d6057ecca3f496dc3b1"
     },
     {
       "path": "scripts/collider-centre-results.test.mjs",
       "bytes": 2552,
-      "sha256": "42f9bcc33c6bbf07b00cc735f0b59b1eecd321999c54f910eb8bbb229daa03df"
+      "sha256": "bc4dbf5ebf6b08874093f4bc5d338a9e633de77b10c3fa9b8541c8914eb519b5"
     },
     {
       "path": "scripts/collider-centre.test.mjs",
@@ -1812,6 +1812,21 @@
       "sha256": "973afbae712cac548e9d49d5b860a052dc3955871a095379364d242939510ce0"
     },
     {
+      "path": "scripts/pier-collision-browser.mjs",
+      "bytes": 7655,
+      "sha256": "256d9ffb20d5e95b8511effce86c7e1ae1f4580fdccc2ada3883c1a03955c8b8"
+    },
+    {
+      "path": "scripts/pier-height.test.mjs",
+      "bytes": 4467,
+      "sha256": "516f107ab130fd8b1589552794c2ce8ef68c5bb833c9eb36461b499904f361cc"
+    },
+    {
+      "path": "scripts/pier-results.test.mjs",
+      "bytes": 3691,
+      "sha256": "6bb45efc4586f0c3d2af54c0f6b4e3a56e212f123148c05ddf227332c338daa0"
+    },
+    {
       "path": "scripts/pixel-golden.mjs",
       "bytes": 5039,
       "sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9"
@@ -1859,12 +1874,12 @@
     {
       "path": "scripts/ramp-contact-browser.mjs",
       "bytes": 9394,
-      "sha256": "b185299e282d4e26ed113abc119bf2677b8e04639920c7ef24e00f45368d69bf"
+      "sha256": "8929ff4e5772db2f8acabb67a3a3e28a0133602016a5cc49771c94a03abdb45e"
     },
     {
       "path": "scripts/ramp-contact-results.test.mjs",
       "bytes": 2958,
-      "sha256": "89e241c23e521f132a740a8f0cf63fa27966e5daf1d32c82fd2c3b197c9ad5a3"
+      "sha256": "deb96d91dba585268963b9dbe0e431bcbf8a93f70a5af7ac6c27916fbfe732ac"
     },
     {
       "path": "scripts/ramp-contact.test.mjs",
@@ -1889,7 +1904,7 @@
     {
       "path": "scripts/ramp-surface-browser.mjs",
       "bytes": 9303,
-      "sha256": "1e495b420782dff63ab7c3b74f8a21f23378c382cf821c6ec7008df8d6bcd849"
+      "sha256": "665b1dd482d72ae8ba394e597c0d33e6ec9a5846fbd73699b7aa27cf8605930d"
     },
     {
       "path": "scripts/ramp-surface.test.mjs",
@@ -1959,12 +1974,12 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "c5d8b8c93070481cc77cf53d43fffd1796d835f24017503a45f000025b4a050c"
+      "sha256": "e3c1f13e1d50b4a7120c967c41d9e50384500e75491bc7a34c3eaef96fa8d640"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
       "bytes": 2011,
-      "sha256": "ee6677d99abb28f39a91f93d5c76e8cef0ac1d6cea0f55e148ac2de27ce1f008"
+      "sha256": "fb476a2195107d11aaf73cfa6cac03309f7705c08718024ef576d389b5c1402e"
     },
     {
       "path": "scripts/run-with-server.mjs",
@@ -1978,8 +1993,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 8457,
-      "sha256": "3ab6b33be149491173c6b31022cebcfd2334c5314154551f70b155e1edd28251"
+      "bytes": 8587,
+      "sha256": "ab99005fef3aaaf416666395ed09fd578214bcd1ad9656f955c6c6d635acd674"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2188,8 +2203,8 @@
     },
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
-      "bytes": 10260,
-      "sha256": "311ddc5b66276ac614a823c14d5ee6973399d56d18a0db728594d885d5ef1338"
+      "bytes": 10468,
+      "sha256": "fcff14ecd0cbef465f1c3acb551255fbf5f992927c81f07d380ffad26b312271"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -2287,6 +2302,11 @@
       "sha256": "6bff8cfb490813e9680983c54ff8b0be089f41221f012bbc143419de1ae1de40"
     },
     {
+      "path": "src/game/collider-height.ts",
+      "bytes": 1561,
+      "sha256": "ea9fbf003bf304f6690d3ed5423729fe577059afca1e978a4a40c19042d1c7d7"
+    },
+    {
       "path": "src/game/curb-assets.ts",
       "bytes": 868,
       "sha256": "7d6778a2db23528c2f98b835602eb7cc7cd0cf9b1c6af97ea5cd0e1612e055a2"
@@ -2303,8 +2323,8 @@
     },
     {
       "path": "src/game/engine.ts",
-      "bytes": 42862,
-      "sha256": "8bcc012f62ebff7e3a49d8e5b14a3e1f342344f9700fb3d302eea5f8cc3e9bfe"
+      "bytes": 42974,
+      "sha256": "6361695926fc65657c2d8a5da5e71df44451937a54ad841509e61d90e11a61a7"
     },
     {
       "path": "src/game/engine/adapter-host.ts",
@@ -2848,8 +2868,8 @@
     },
     {
       "path": "src/game/vehicle.ts",
-      "bytes": 35014,
-      "sha256": "cfef4a7222d073d9b701067276c91efaee2805ed5999a4849fba46feab0935d9"
+      "bytes": 35130,
+      "sha256": "cdc47ec3045d9a1dd95ca5c4230843624455a8ebe7daf4caf061f5bd293dfd0d"
     },
     {
       "path": "src/game/walk-assets.ts",
@@ -2903,8 +2923,8 @@
     },
     {
       "path": "src/game/world-builders/tracks/ayalon.ts",
-      "bytes": 28569,
-      "sha256": "a4d192d406d9eef08d05edd4340fb03ac6b46372ddea35ab13dd8078cc79048d"
+      "bytes": 28701,
+      "sha256": "3e296a6d794d076181aedc7d31c081f2bd474c60c7d5ef55d019bd4df0214702"
     },
     {
       "path": "src/game/world-builders/tracks/batyam.ts",
@@ -4488,6 +4508,14 @@
       "integrity": "sha512-5aojFCXKwnjBRZvUnt3WFfEcvUJgkN5LlijRFN95hMy8WVkG4I0QNcJE+OuWvuJ0bOdStrbfXn0pkd6/QyiAlg=="
     },
     {
+      "from": "src/game/collider-height.ts",
+      "specifier": "./types",
+      "kind": "static_import",
+      "typeOnly": true,
+      "resolution": "repository",
+      "target": "src/game/types.ts"
+    },
+    {
       "from": "src/game/curb-assets.ts",
       "specifier": "./asset-cache",
       "kind": "static_import",
@@ -4680,6 +4708,14 @@
       "typeOnly": false,
       "resolution": "repository",
       "target": "src/game/clock-assets.ts"
+    },
+    {
+      "from": "src/game/engine.ts",
+      "specifier": "./collider-height",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "src/game/collider-height.ts"
     },
     {
       "from": "src/game/engine.ts",
@@ -7297,6 +7333,14 @@
     },
     {
       "from": "src/game/vehicle.ts",
+      "specifier": "./collider-height",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "src/game/collider-height.ts"
+    },
+    {
+      "from": "src/game/vehicle.ts",
       "specifier": "./math",
       "kind": "static_import",
       "typeOnly": false,
@@ -8030,6 +8074,14 @@
       "typeOnly": false,
       "resolution": "repository",
       "target": "src/game/arrow-assets.ts"
+    },
+    {
+      "from": "src/game/world-builders/tracks/ayalon.ts",
+      "specifier": "../../collider-height",
+      "kind": "static_import",
+      "typeOnly": false,
+      "resolution": "repository",
+      "target": "src/game/collider-height.ts"
     },
     {
       "from": "src/game/world-builders/tracks/ayalon.ts",
@@ -10357,5 +10409,5 @@
     "Package sources are identified by package-lock integrity, not vendored or executed by this scanner.",
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance."
   ],
-  "digest_sha256": "f243aa5d39a14e1d6572023d4dc1c4f2e3c6631f9637f021bb3e43af095a6060"
+  "digest_sha256": "7e18a6ef774e4ceccabaa9114ccb4cf76f23c104049b625879af624d31b8d975"
 }

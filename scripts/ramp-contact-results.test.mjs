@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import { rampContactResults } from './ramp-contact-browser.mjs';
 
 // These are report-validator fixtures only, not simulated driving evidence.
-const report = () => ({ rampCount: 50, colliderCount: 546, checkpointCount: 8, pageErrors: [], glError: 0,
+const report = () => ({ rampCount: 50, colliderCount: 722, checkpointCount: 8, pageErrors: [], glError: 0,
   route: Array.from({ length: 781 }, (_, index) => ({ index, fromY: 2, toY: 2, rise: 0, overhead: 1 })),
   onDeck: Array.from({ length: 250 }, () => ({ error: 0, airborne: false })),
   trajectories: Array.from({ length: 7 }, (_, i) => ({ index: 479 + i, frames: Array.from({ length: 240 }, (_, tick) => ({ tick, x: 0, y: 2, z: tick / 12, vy: 0, change: 0 })) })),

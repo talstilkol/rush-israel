@@ -582,3 +582,13 @@ exact-head support, grade and landing validation is reconciled as completed,
 not unit acceptance. All67 units,42 legacy findings,6 bundles and24 audit IDs
 are retained. Complete clearance, physics/record compatibility, mutable fonts
 and original-golden acceptance remain blocked. No RSH-037 activation.
+
+## r6.15 — 9 September 2026: finite-height support-pier contacts
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-25 binds every
+visible Ayalon support to a conservative finite-height circular obstacle, preserving
+all546 legacy entries. Explicit1.6-unit car-height proxy and1.05 horizontal padding
+are not a full pitched/rolled mesh envelope or multi-obstacle clearance guarantee.
+The complete suite, actual route probes, original golden and immutable-font gates
+remain mandatory. Do not merge, replace PNGs, change thresholds or activate RSH-037.
+Details: RSH-036-PIER-REVIEW-r6.15.json and RSH-036-RUNTIME-REPAIR-r6.15.md.

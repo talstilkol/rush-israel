@@ -20,7 +20,7 @@ export async function measureColliderCentres(browser, url) {
         const colliders = engine.world.colliders, ramps = engine.world.ramps, rows = [];
         for (let index = 0; index < colliders.length; index++) {
           const c = colliders[index];
-          if (c.hx != null && c.hz != null) continue;
+          if (c.role === "support-pier" || (c.hx != null && c.hz != null)) continue;
           for (const moving of [false, true]) {
             const car = new ArcadeCar(engine.player.stats, 'actual circle contact');
             Object.assign(car, { x: c.x, y: 3, z: c.z, vx: moving ? 3 : 0, vz: moving ? 4 : 0, speed: moving ? -4 : 0 });
@@ -59,7 +59,7 @@ export async function measureColliderCentres(browser, url) {
             crossings.push({ sample, ramp, roadY: s.y, deckTop, deckBottom, underDeckGap: deckBottom - s.y });
           }
         }
-        return { rows, circularIndices: colliders.flatMap((c, i) => c.hx != null && c.hz != null ? [] : [i]),
+        return { rows, circularIndices: colliders.flatMap((c, i) => c.role === "support-pier" || (c.hx != null && c.hz != null) ? [] : [i]),
           colliderCount: colliders.length, rampCount: ramps.length, routeSamples: engine.built.samples.length,
           checkpointCount: engine.built.checkpoints.length, glError: engine.renderer.getContext().getError(),
           clearance: { status: 'diagnostic_only_not_qualified', piers, crossings,
@@ -70,7 +70,7 @@ export async function measureColliderCentres(browser, url) {
   } finally { await page.close(); }
 }
 export function colliderCentreResults(report) {
-  assert.equal(report.colliderCount, 546); assert.equal(report.rampCount, 50);
+  assert.equal(report.colliderCount, 722); assert.equal(report.rampCount, 50);
   assert.equal(report.routeSamples, 781); assert.equal(report.checkpointCount, 8);
   assert.deepEqual(report.pageErrors, []); assert.equal(report.glError, 0);
   const stationary = report.rows.filter(r => r.moving === false), moving = report.rows.filter(r => r.moving === true);

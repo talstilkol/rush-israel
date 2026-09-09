@@ -1,0 +1,58 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.15",
+  "date": "2026-09-09",
+  "base": "df42ed916a8a24acb7a580c0ab176305f874fef6",
+  "finding": "AUD-25",
+  "status": "candidate_pending_remote_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.14",
+    "head": "df42ed916a8a24acb7a580c0ab176305f874fef6",
+    "tree": "829f48b9b8d9938c6a6e3d2f3e32b2f13a0ef1eb",
+    "run_id": 34235907029,
+    "job_id": 102093427099,
+    "unit_passed": 1026,
+    "unit_failed": 0,
+    "runtime_cases_passed": 36,
+    "readiness_cases_passed": 5,
+    "airborne_trials_passed": 3,
+    "lint_warnings": 123,
+    "lint_errors": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "not_unit_acceptance": true,
+    "checkpoint_comment": 5586629645
+  },
+  "repair": "Finite-height ground-to-slab colliders for all176 visible piers; conservative0.72+1.05 radius. No change to existing collider dimensions, geometry or driving calibration.",
+  "vehicle_proxy": {
+    "height": 1.6,
+    "horizontal_padding": 1.05,
+    "scope": "upright arcade contact proxy; not whole pitched/rolled vehicle mesh"
+  },
+  "same_vehicle_cases": {
+    "total": 41,
+    "before_passed": 20,
+    "before_failed": 21,
+    "after_passed": 41,
+    "after_failed": 0
+  },
+  "report_validator_cases": 15,
+  "actual_browser_validation": "pending; all176 piers x5 car definitions x4 contact/clearance states; full722 collider catalogue must retain546 legacy records",
+  "remaining": [
+    "slab/roof/tilted-body and multi-obstacle clearance",
+    "physicsVersion7 record compatibility",
+    "original golden",
+    "3 immutable font qualifications",
+    "exact published-head CI"
+  ],
+  "no_freeze_or_acceptance": true,
+  "r6_15_preparation_repair": {
+    "failed_run": 34323947483,
+    "failed_tree": "0ca244f9490a420372d255a1615e7db33b2bae6d",
+    "observed_colliders": 711,
+    "required_colliders": 722,
+    "cause": "spawn scenery clearing removed new structural support colliders",
+    "remediation": "preserve structural pier metadata and verify actual four-car grid; retain raw measurement before assertions",
+    "state": "pending_revalidation"
+  }
+}

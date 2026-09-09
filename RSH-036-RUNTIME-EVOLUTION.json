@@ -85,43 +85,55 @@
     },
     "src/game/engine.ts": {
       "previous_sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
-      "current_sha256": "8bcc012f62ebff7e3a49d8e5b14a3e1f342344f9700fb3d302eea5f8cc3e9bfe",
+      "current_sha256": "6361695926fc65657c2d8a5da5e71df44451937a54ad841509e61d90e11a61a7",
       "reverse_edits": [
         {
-          "start_line": 25,
-          "end_line": 26,
+          "start_line": 0,
+          "end_line": 1,
+          "current_segment_sha256": "9f7199ab792e98e3553abc91e372fbbdf36c817154eee010f833f4e3bf0ce55f",
+          "previous_text": ""
+        },
+        {
+          "start_line": 26,
+          "end_line": 27,
           "current_segment_sha256": "5bdf55cfe5440b4d810ad70cca67ed6337d5c583b1114e256b4d3e3f850d8fd6",
           "previous_text": ""
         },
         {
-          "start_line": 299,
-          "end_line": 308,
+          "start_line": 300,
+          "end_line": 309,
           "current_segment_sha256": "23932801fa04a39511530de67f74d89760c217be103adeb4847e74970f0ad9c8",
           "previous_text": "    this.renderer = this.gfx.gl;\n    this.telem = this.gfx.telem;\n    const soft = isSoftwareGL(this.renderer);\n    this.soft = soft;\n    if (soft) this.lite = true;\n    const shadows = !mobile && !soft;\n    this.renderer.shadowMap.enabled = shadows;\n    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;\n"
         },
         {
-          "start_line": 309,
-          "end_line": 317,
+          "start_line": 310,
+          "end_line": 318,
           "current_segment_sha256": "79f4dbda951b9f36ab948e5f94160f35ba2d5f29de0a73d3bc41d6b0c34c207c",
           "previous_text": "    this.scene = new THREE.Scene();\n    const spec = FOG[fogKey(this.trackDef.theme, opts.trackId)];\n    const skyDay = this.trackDef.theme === \"desert\" || opts.trackId === \"ramon\" ? 0x4aa8dc : this.trackDef.theme === \"snow\" || opts.trackId === \"hermon\" ? 0x6eb0d8 : 0x2f8fd4;\n    const skyNight = 0x182436;\n    this.gfx.setEnvironment(opts.night ? LOOKS.night.exposure : LOOKS.summer14.exposure);\n    this.fog = new THREE.FogExp2(opts.night ? spec.nightCol : spec.dayCol, opts.night ? spec.night : spec.day);\n    this.scene.fog = this.fog;\n    this.scene.background = new THREE.Color(opts.night ? skyNight : skyDay);\n"
         },
         {
-          "start_line": 318,
-          "end_line": 320,
+          "start_line": 319,
+          "end_line": 321,
           "current_segment_sha256": "eb25598c11842305a23db95f04341487cca91001bf08952f49b62131c2ad5605",
           "previous_text": "    const mountain = spec.far >= 12000 || opts.trackId === \"scopus\" || opts.trackId === \"jerusalem\";\n    this.camera = new THREE.PerspectiveCamera(68, canvas.clientWidth / Math.max(1, canvas.clientHeight), 0.28, mountain ? Math.max(spec.far, 12000) : spec.far);\n"
         },
         {
-          "start_line": 321,
-          "end_line": 334,
+          "start_line": 322,
+          "end_line": 335,
           "current_segment_sha256": "6c76f05237ae1732ad1334740d370465a5d36afab7192c1562e5a3d74d0a6cd1",
           "previous_text": "    this.opts.onBoot?.(0.12);\n    canvas.addEventListener(\"webglcontextlost\", this.onContextLost);\n    canvas.addEventListener(\"webglcontextrestored\", this.onContextRestored);\n    this.ready = this.assemble(shadows, soft);\n"
         },
         {
-          "start_line": 520,
-          "end_line": 521,
+          "start_line": 521,
+          "end_line": 522,
           "current_segment_sha256": "9a8c8d1ee981c8184ac9f0ede6a2ad03e8b4b2ba2a22e9561da4ec2b65e3cdd5",
           "previous_text": "    const n = this.built.samples.length;\n    this.poly = [];\n    for (let i = 0; i < n; i += 4) this.poly.push({ x: this.built.samples[i].x, z: this.built.samples[i].z });\n"
+        },
+        {
+          "start_line": 652,
+          "end_line": 653,
+          "current_segment_sha256": "f99a9d6b70c45d6cafcb7747c72a6e3ad7732f4482e680e16c248599753de5ae",
+          "previous_text": ""
         }
       ]
     },
@@ -395,7 +407,7 @@
     },
     "scripts/runtime-recovery-smoke.mjs": {
       "previous_sha256": null,
-      "current_sha256": "3ab6b33be149491173c6b31022cebcfd2334c5314154551f70b155e1edd28251",
+      "current_sha256": "ab99005fef3aaaf416666395ed09fd578214bcd1ad9656f955c6c6d635acd674",
       "reverse_edits": []
     },
     "src/game/road-assets.ts": {
@@ -1075,47 +1087,59 @@
     },
     "src/game/world-builders/tracks/ayalon.ts": {
       "previous_sha256": "866afe889a98457a868d1f9e61ca8cb3a803b821bd089ff9d4ab13dae8da2c3c",
-      "current_sha256": "a4d192d406d9eef08d05edd4340fb03ac6b46372ddea35ab13dd8078cc79048d",
+      "current_sha256": "3e296a6d794d076181aedc7d31c081f2bd474c60c7d5ef55d019bd4df0214702",
       "reverse_edits": [
         {
           "start_line": 1,
-          "end_line": 2,
-          "current_segment_sha256": "a0d1886328865372012b416f8be5b99ae94348799f57496f9b64c88dd2ac439e",
+          "end_line": 3,
+          "current_segment_sha256": "7bb912a0bc6f661aeb21d10a6bd88a8b4f582fae4aeaace6e401018837c6aaa4",
           "previous_text": ""
         },
         {
-          "start_line": 250,
-          "end_line": 254,
+          "start_line": 17,
+          "end_line": 18,
+          "current_segment_sha256": "ef41a5a07ac4499925535107cf9793a06af48d2f57cab9e16ee5e2726d614945",
+          "previous_text": ""
+        },
+        {
+          "start_line": 252,
+          "end_line": 256,
           "current_segment_sha256": "a8abaa4130fc5be934c6ae8eea7c24da72ba919ceb53885f774fe35fdef6ef13",
           "previous_text": "      const mesh = new THREE.Mesh(new THREE.BoxGeometry(half * 2, 0.95, len), rampAsphalt);\n"
         },
         {
-          "start_line": 257,
-          "end_line": 257,
+          "start_line": 259,
+          "end_line": 259,
           "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "previous_text": "      mesh.rotation.x = -Math.atan2(y12 - y0, len);\n"
         },
         {
-          "start_line": 264,
-          "end_line": 267,
+          "start_line": 266,
+          "end_line": 269,
           "current_segment_sha256": "e7900a021ba1626efe7bd1805ad3778f83ca285c8447ef080b11ce1d34dced4f",
           "previous_text": "        const h = Math.max(1.4, py);\n"
         },
         {
-          "start_line": 275,
-          "end_line": 279,
+          "start_line": 273,
+          "end_line": 274,
+          "current_segment_sha256": "5217ee5ded247b179d0d6b1e19c1874feb71270d1442555346c44384192502b2",
+          "previous_text": ""
+        },
+        {
+          "start_line": 278,
+          "end_line": 282,
           "current_segment_sha256": "d4a5e214da880fba10f52dcdff3860ca06e26339e96ecca7b60146434e7aa79d",
           "previous_text": "        const line = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.08, len * 0.94), white);\n"
         },
         {
-          "start_line": 281,
-          "end_line": 282,
+          "start_line": 284,
+          "end_line": 285,
           "current_segment_sha256": "04c56e0d7823d51a811d0c33ade166a221f86fe57474c20c48f1f140147a967b",
           "previous_text": "          (y0 + y12) * 0.5 + 0.52,\n"
         },
         {
-          "start_line": 286,
-          "end_line": 286,
+          "start_line": 289,
+          "end_line": 289,
           "current_segment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "previous_text": "        line.rotation.x = -Math.atan2(y12 - y0, len);\n"
         }
@@ -1129,93 +1153,105 @@
     "scripts/ramp-surface-browser.mjs": {
       "previous_sha256": null,
       "reverse_edits": [],
-      "current_sha256": "1e495b420782dff63ab7c3b74f8a21f23378c382cf821c6ec7008df8d6bcd849"
+      "current_sha256": "665b1dd482d72ae8ba394e597c0d33e6ec9a5846fbd73699b7aa27cf8605930d"
     },
     "src/game/vehicle.ts": {
       "previous_sha256": "73bdc89785b583b8749ac83476efaf27d02b01aa2df0914a9677fca1d16c1fc6",
-      "current_sha256": "cfef4a7222d073d9b701067276c91efaee2805ed5999a4849fba46feab0935d9",
+      "current_sha256": "cdc47ec3045d9a1dd95ca5c4230843624455a8ebe7daf4caf061f5bd293dfd0d",
       "reverse_edits": [
         {
-          "start_line": 50,
-          "end_line": 51,
+          "start_line": 0,
+          "end_line": 1,
+          "current_segment_sha256": "21b5561652ae7f1047a309a2c7d6f4b91fef90d69b0d47a9b5118531fcb68971",
+          "previous_text": ""
+        },
+        {
+          "start_line": 51,
+          "end_line": 52,
           "current_segment_sha256": "2f9e1d8889a282a5842c59afd2afb9f0665b606c1407dbb7674ddb64abe9df76",
           "previous_text": "function probeRamp(x: number, z: number, ramps: Ramp[], yHint = 0) {\n"
         },
         {
-          "start_line": 60,
-          "end_line": 63,
+          "start_line": 61,
+          "end_line": 64,
           "current_segment_sha256": "948f7a8be83e89aeda0ab4210b5838084f21469316b1aeab31d809a2ca29572e",
           "previous_text": ""
         },
         {
-          "start_line": 65,
-          "end_line": 68,
+          "start_line": 66,
+          "end_line": 69,
           "current_segment_sha256": "a4b25661a64c0de0730bcb5110b38bd69e5da08f0558fe4478e950dc895859fc",
           "previous_text": ""
         },
         {
-          "start_line": 74,
-          "end_line": 80,
+          "start_line": 75,
+          "end_line": 81,
           "current_segment_sha256": "6b001458f1e289d26d92c50539fec3ec83c3c2af05028a6b61cc5feafecce1f8",
           "previous_text": ""
         },
         {
-          "start_line": 313,
-          "end_line": 314,
+          "start_line": 314,
+          "end_line": 315,
           "current_segment_sha256": "23bd385e58243d35384ef70f21b5afc8f1337bd05b5454c9aa9cf77b58533de2",
           "previous_text": "      const rp = probeRamp(this.x, this.z, ramps, this.y);\n"
         },
         {
-          "start_line": 315,
-          "end_line": 319,
+          "start_line": 316,
+          "end_line": 320,
           "current_segment_sha256": "aff368db38d0276deb29e9aed32389df2fd888240783c068cb7485366ca4e0cd",
           "previous_text": "        const alongV = this.vx * rp.r.sx + this.vz * rp.r.sz;\n        grade = rp.dyds * Math.sign(alongV || 1);\n"
         },
         {
-          "start_line": 332,
-          "end_line": 337,
+          "start_line": 333,
+          "end_line": 338,
           "current_segment_sha256": "9c61dff718a1f85e21940bf7f5a4d97628db12890567c29bd053f9cde4119b22",
           "previous_text": "    const terrainPitch = clamp(-(probeRamp(this.x, this.z, ramps, this.y)?.dyds ?? (nG.y - sG.y) / gds) * 3.4, -0.75, 0.75);\n"
         },
         {
-          "start_line": 467,
-          "end_line": 469,
+          "start_line": 468,
+          "end_line": 470,
           "current_segment_sha256": "034d8756a8da7de9585a04664315351ad0d85aef1c1bb535abadab2221cf8897",
           "previous_text": ""
         },
         {
-          "start_line": 480,
-          "end_line": 481,
+          "start_line": 481,
+          "end_line": 482,
           "current_segment_sha256": "38ec1d8297898a3375687101555b930f863c6640bd539d2b3ab5a6af6e3915ab",
           "previous_text": "    const rp = probeRamp(this.x, this.z, ramps, this.y);\n"
         },
         {
-          "start_line": 493,
-          "end_line": 499,
+          "start_line": 494,
+          "end_line": 500,
           "current_segment_sha256": "86ca9cb77b09c48c03dd263b84e314e60467c4e3028a37978b5bf1f08bd5ff74",
           "previous_text": "      const cRp = probeRamp(cx, cz, ramps, this.y);\n      const y = cRp ? cRp.y : track.samples[nearestIndex(track.samples, cx, cz, near.index, track.closed).index].y;\n"
         },
         {
-          "start_line": 510,
-          "end_line": 515,
+          "start_line": 511,
+          "end_line": 516,
           "current_segment_sha256": "7a6362c254dfcf5c5382f921e66e3ffa03784234b76b1bd933700e5bdf4007d7",
           "previous_text": "    if (rp) {\n"
         },
         {
-          "start_line": 525,
-          "end_line": 526,
+          "start_line": 526,
+          "end_line": 527,
           "current_segment_sha256": "9db241c1f9baa802b9ef2aca621504dc91c5737e7773f64f98a882a9ee8fe89e",
           "previous_text": "      if (this.y <= groundY + 0.04) {\n"
         },
         {
-          "start_line": 534,
-          "end_line": 536,
+          "start_line": 535,
+          "end_line": 537,
           "current_segment_sha256": "faf63f6ec2af0f459038693bc8de3b0ee01ad80943791bb9f6cce0a6b8be9e44",
           "previous_text": "        const ceil = this.vy > 2 || this.airborne ? groundY + 8 : groundY + 0.85;\n        if (this.y > ceil) {\n          this.y = ceil;\n          this.vy = Math.min(0, this.vy);\n        }\n"
         },
         {
-          "start_line": 644,
-          "end_line": 655,
+          "start_line": 611,
+          "end_line": 612,
+          "current_segment_sha256": "66cb8e669bc0cdf25a6eb0f46ccd8141de493a6574686e4f3ac220be39aeb5a7",
+          "previous_text": ""
+        },
+        {
+          "start_line": 646,
+          "end_line": 657,
           "current_segment_sha256": "9e4d35c824d4e875ff9ee7d11926074625ed97124a09aa63dae4631e9b7bb28f",
           "previous_text": "        if (d >= c.r || d < 0.0001) continue;\n        nx = dx / d;\n        nz = dz / d;\n"
         }
@@ -1242,7 +1278,7 @@
     },
     "scripts/ramp-contact-browser.mjs": {
       "previous_sha256": null,
-      "current_sha256": "b185299e282d4e26ed113abc119bf2677b8e04639920c7ef24e00f45368d69bf",
+      "current_sha256": "8929ff4e5772db2f8acabb67a3a3e28a0133602016a5cc49771c94a03abdb45e",
       "reverse_edits": [],
       "reason": "r6.13 AUD-21 main-road/low-deck selection, coherent wheel support and gravity-driven descent; exact historical checks only"
     },
@@ -1322,7 +1358,12 @@
     },
     "scripts/collider-centre-browser.mjs": {
       "previous_sha256": null,
-      "current_sha256": "bfbf545929292f23cd6d60bf8eaba8a00051d40ee39f123ba6f2cbda17402ccf",
+      "current_sha256": "7331bdddb064434cff6934ad42437bd1009d4699ff7b3d6057ecca3f496dc3b1",
+      "reverse_edits": []
+    },
+    "src/game/collider-height.ts": {
+      "previous_sha256": null,
+      "current_sha256": "ea9fbf003bf304f6690d3ed5423729fe577059afca1e978a4a40c19042d1c7d7",
       "reverse_edits": []
     }
   }

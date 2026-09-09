@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { supportPierCollider } from "../../collider-height";
 import { fitRampSlab } from "../../ramp-surface";
 import { nearestIndex } from "../../spline";
 import { tlv } from "../../tracks";
@@ -14,6 +15,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
     shadows,
     movers,
     ramps,
+    colliders,
     streets,
     built,
     add,
@@ -269,6 +271,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
         pier.position.set(px, h * 0.5, pz);
         pier.castShadow = true;
         add(pier);
+        colliders.push(supportPierCollider(px, pz, h));
       }
       const rx = sz;
       const rz = -sx;
