@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.16",
+  "revision": "r6.17",
   "date": "2026-09-09",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "458096c707135df05b603c77ff7729e6d8b7eff4",
+  "source_pr_head": "79a67c6f21c6e517c659350b1ce48ae1525a4e21",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 26,
+    "audit_items": 27,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -355,7 +355,9 @@
         "AUD-22",
         "AUD-23",
         "AUD-24",
-        "AUD-26"
+        "AUD-25",
+        "AUD-26",
+        "AUD-27"
       ]
     },
     {
@@ -1193,9 +1195,22 @@
       "legacy_findings": [],
       "title": "Upright body proxy missed pitched roofs, slabs and overlapping-obstacle clearance",
       "acceptance": "Envelope rest pose remains 1.6; pitched/rolled 8-corner box, slab ceiling/solid split and combined multi-circle exit must fail on old code and pass after repair. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, 1.05 radius, physicsVersion7 and original golden gates. Arcade box is not mesh or route qualification.",
-      "status": "repair_candidate_pending_exact_head_validation",
+      "status": "verified_exact_r6_16_head_retained_pending_regression",
       "bundle": "CR-04",
       "evidence": "RSH-036-ENVELOPE-REVIEW-r6.16.json"
+    },
+    {
+      "id": "AUD-27",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Isolated envelope cases missed on-road supports and did not qualify live catalogue or stored v7 records",
+      "acceptance": "Centreline, ±2.2 lane, four-car grid, 9.4 underpass and 1s drive probes must fail closed on lost inventory and pass on the live 722-collider catalogue after carriageway-pier offset. Frozen physicsVersion7 rows load without conversion; v6 rows drop. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius and original golden gates. Sampled arcade poses are not mesh or complete-race qualification.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-04",
+      "evidence": "RSH-036-ROUTE-REVIEW-r6.17.json"
     }
   ],
   "legacy_findings": [
@@ -1584,7 +1599,8 @@
         "AUD-23",
         "AUD-24",
         "AUD-25",
-        "AUD-26"
+        "AUD-26",
+        "AUD-27"
       ]
     },
     {
@@ -1624,31 +1640,32 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.16",
-    "base_head": "458096c707135df05b603c77ff7729e6d8b7eff4",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.16.md",
+    "revision": "r6.17",
+    "base_head": "79a67c6f21c6e517c659350b1ce48ae1525a4e21",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.17.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "revision": "r6.15",
-      "head": "ec79dbefaef2de415c252ef0ce1cd1b76c634df3",
-      "tree": "2dddd463ceca148ee7ac0f3817ba052bcacb0ea5",
-      "run_id": 34325442324,
-      "job_id": 102381514184,
-      "unit_passed": 1091,
+      "revision": "r6.16",
+      "head": "79a67c6f21c6e517c659350b1ce48ae1525a4e21",
+      "tree": "a02eaafced9edc0c1127214eaf39df99fc935dc3",
+      "run_id": 34356869016,
+      "job_id": 102483660303,
+      "unit_passed": 1110,
       "unit_failed": 0,
-      "lint_warnings": 123,
-      "lint_errors": 0,
       "golden_passed": 0,
       "golden_failed": 4,
-      "not_unit_acceptance": true,
-      "docs_follow_up_head": "458096c707135df05b603c77ff7729e6d8b7eff4",
-      "docs_follow_up_run_id": 34337649215
+      "golden_source": "preparation 34324754353",
+      "required_ci_artifact_id": 10106516896,
+      "required_ci_artifact_sha256": "dfe83b420ef3650acecc858b76c17928102b83ec45f105c07bdc88c704b4d369",
+      "audit_source_artifact_id": 10106101507,
+      "audit_source_artifact_sha256": "bcd4989dd38edc5e38043b45dcb1615c591f2fb8ebae3740caf56381e16a8d80",
+      "not_unit_acceptance": true
     },
     "normal_ci": "pending_exact_published_head_validation",
     "golden": "r6.15 original0/4; unchanged images/thresholds to be rerun",
     "dependency_closure": "3 mutable font references still unqualified",
-    "clearance": "r6.16 arcade envelope/slab/multi-obstacle candidate; not mesh or whole-route qualification",
-    "record_policy": "physicsVersion7 unchanged; compatibility remains blocked"
+    "clearance": "r6.17 sampled whole-route arcade envelope with carriageway-pier offset; not mesh or complete-race qualification",
+    "record_policy": "physicsVersion7 frozen fixture; v6 rows drop; conversion remains forbidden"
   },
   "r6_9_diagnostic_checkpoint": {
     "run_id": 34011119090,

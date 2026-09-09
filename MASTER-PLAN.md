@@ -604,3 +604,17 @@ immutable-font gates remain mandatory. Do not merge, replace PNGs, change
 thresholds or activate RSH-037.
 Details: RSH-036-ENVELOPE-REVIEW-r6.16.json and RSH-036-RUNTIME-REPAIR-r6.16.md.
 
+## r6.17 — 9 September 2026: whole-route envelope clearance and v7 record lock
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-27 samples the
+live Ayalon catalogue with the r6.16 arcade envelope: 781 centerline rest poses,
+±2.2 lane samples, four-car grid versus 722 colliders, 9.4 underpass probes and
+a 1-second centerline drive. Supports that sat on a climbing connector are
+offset to the carriageway edge plus contact radius; 176 piers, 546 legacy
+colliders, 50 ramps and 8 checkpoints stay counted. physicsVersion 7 records
+load without conversion; version 6 rows are dropped. This is still not a mesh
+or every-tick race qualification. Complete suite, original golden and
+immutable-font gates remain mandatory. Do not merge, replace PNGs, change
+thresholds or activate RSH-037.
+Details: RSH-036-ROUTE-REVIEW-r6.17.json and RSH-036-RUNTIME-REPAIR-r6.17.md.
+

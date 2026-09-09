@@ -1169,7 +1169,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "9b21de2aad939c3ab20ce3efc30cb73911071312d18a028c8dd7b1f76d53b902"
+      "sha256": "4dff759a88aee8fb1ad6350481f22a213a0b95338313e0ef3ae76da3f50c85c9"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -1912,6 +1912,11 @@
       "sha256": "060dd5b830b8b4ea435cb2a5c8a0e606bbd0aadfc781413d9c7a90178a0d6f9f"
     },
     {
+      "path": "scripts/records-compat.test.mjs",
+      "bytes": 3209,
+      "sha256": "de4d372654f334248370192f21b00746ce1d905d2146911da63a35ff3b776618"
+    },
+    {
       "path": "scripts/records-storage-recovery.test.mjs",
       "bytes": 5438,
       "sha256": "fd80f2714c8e15b2391a79077b6784694b1eb6f24ae4fc5df3ea5b0f75605305"
@@ -1962,6 +1967,16 @@
       "sha256": "845be5205471a547a7d10b1642b9f0ae4d235dd958392609801e174884a9f7fe"
     },
     {
+      "path": "scripts/route-clearance-browser.mjs",
+      "bytes": 8782,
+      "sha256": "6332555b2f12c66f94f3faa76a6398f1ada3ac198f295502ae03d1a1e73dbed8"
+    },
+    {
+      "path": "scripts/route-clearance.test.mjs",
+      "bytes": 6297,
+      "sha256": "db4f2a61ef40475e1901374318540b3d30b3b530ea5ddcf068bf8fee255857e0"
+    },
+    {
       "path": "scripts/rsh019-overlay.mjs",
       "bytes": 4932,
       "sha256": "d68681fde24cd31ec1c43686dd667d2e53172564cb022d9aaad3f73ebede61b9"
@@ -1974,7 +1989,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "a2aa3e9f40a4c5dfbfffcd566ed95afcaec5e60584c32a07bbf701335e89867c"
+      "sha256": "fb2b22e5f32c12e78a1657ab33dd9751bc4452ad20de13158860dee0b69f1f96"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -1993,8 +2008,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 8587,
-      "sha256": "ab99005fef3aaaf416666395ed09fd578214bcd1ad9656f955c6c6d635acd674"
+      "bytes": 8718,
+      "sha256": "71bbe9aa0629f9b3555eb511364ee167084330302839b340bc05e0f24d5aa536"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2068,8 +2083,8 @@
     },
     {
       "path": "scripts/vehicle-envelope.test.mjs",
-      "bytes": 8791,
-      "sha256": "bb6b8be0168400c2f620fc476556cbd6e42ea58b86d046ab552085ddd7cb6560"
+      "bytes": 9801,
+      "sha256": "0674480a11b79432d1cb321af1497c9c4c3942e92eb8afb1d98aca5ef1823111"
     },
     {
       "path": "scripts/verify-toolchain.mjs",
@@ -2209,7 +2224,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "79db975ee3a45b2ee7a75d69101897197880cf21eb320b04363ddbfd8a733e30"
+      "sha256": "1ee77c919027166deba0d2a4cf802e58d8721ae639eaa43363aa42b9cad49b56"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -2308,8 +2323,8 @@
     },
     {
       "path": "src/game/collider-height.ts",
-      "bytes": 4772,
-      "sha256": "a829c04948fac76cb9d318cc7baa669bfc7ebfef83e2254318aec3cc23183d53"
+      "bytes": 5860,
+      "sha256": "a29235954dc74a8408ceea54f7c7cbdc417ecde4b6c2e000d25a7ac267b96a07"
     },
     {
       "path": "src/game/curb-assets.ts",
@@ -2928,8 +2943,8 @@
     },
     {
       "path": "src/game/world-builders/tracks/ayalon.ts",
-      "bytes": 28701,
-      "sha256": "3e296a6d794d076181aedc7d31c081f2bd474c60c7d5ef55d019bd4df0214702"
+      "bytes": 28840,
+      "sha256": "adf0042b24cb02249e22c17df8104b262b79a2542996a3738e6e954fc0e487b2"
     },
     {
       "path": "src/game/world-builders/tracks/batyam.ts",
@@ -10414,5 +10429,5 @@
     "Package sources are identified by package-lock integrity, not vendored or executed by this scanner.",
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance."
   ],
-  "digest_sha256": "43829b147fc190e801304158c9c1db8cbc175a45a6082f81d1f13828115f1f3d"
+  "digest_sha256": "9c48a0c9856119a55b25f67527e97829e3e1a992719392feca93c946c93bb118"
 }

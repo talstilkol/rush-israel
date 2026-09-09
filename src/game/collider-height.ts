@@ -101,12 +101,41 @@ export function circleExitDistance(
 }
 
 /** Conservative cylinder footprint: widest pier radius + existing car padding. */
+export const PIER_MESH_RADIUS = 0.72;
 export function supportPierCollider(x: number, z: number, top: number): HeightCollider {
   if (![x, z, top].every(Number.isFinite) || top <= 0) {
     throw new Error("Invalid support-pier dimensions");
   }
-  return { x, z, r: 0.72 + CAR_CONTACT_RADIUS, kind: "barrier",
+  return { x, z, r: PIER_MESH_RADIUS + CAR_CONTACT_RADIUS, kind: "barrier",
     vertical: { min: 0, max: top }, role: "support-pier" };
+}
+
+/** Push a support off the driven carriageway. Count, radius and mesh pairing stay intact. */
+export function offsetSupportPierFromRoute(
+  x: number,
+  z: number,
+  samples: { x: number; z: number; rx: number; rz: number }[],
+  width: number,
+): { x: number; z: number } {
+  if (!samples.length || ![x, z, width].every(Number.isFinite) || width <= 0) return { x, z };
+  let best = 0;
+  let bestD = Infinity;
+  for (let i = 0; i < samples.length; i++) {
+    const sample = samples[i];
+    const d = Math.hypot(x - sample.x, z - sample.z);
+    if (d < bestD) {
+      bestD = d;
+      best = i;
+    }
+  }
+  const s = samples[best];
+  if (![s.x, s.z, s.rx, s.rz].every(Number.isFinite)) return { x, z };
+  const lateral = (x - s.x) * s.rx + (z - s.z) * s.rz;
+  const clearance = width / 2 + PIER_MESH_RADIUS + CAR_CONTACT_RADIUS;
+  if (Math.abs(lateral) >= clearance) return { x, z };
+  const sign = lateral < 0 ? -1 : 1;
+  const extra = clearance - Math.abs(lateral);
+  return { x: x + s.rx * sign * extra, z: z + s.rz * sign * extra };
 }
 
 export function overheadSlabCollider(

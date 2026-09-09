@@ -17,7 +17,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/pixel-golden.mjs": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
   "scripts/ayalon-hash.mjs": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
   "src/game/tracks/ayalon.ts": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
-  "src/game/world-builders/tracks/ayalon.ts": "3e296a6d794d076181aedc7d31c081f2bd474c60c7d5ef55d019bd4df0214702",
+  "src/game/world-builders/tracks/ayalon.ts": "adf0042b24cb02249e22c17df8104b262b79a2542996a3738e6e954fc0e487b2",
   "src/game/world.ts": "f0154d23276f52f68402d1b3758612f596946f4684974d9c4a4fd70276eac5ba",
   "src/game/ayalon-lock/geometry.ts": "b5be3e5838fb99449fb7d5a5684177e8626a7a283c54275461fd45faf42a94f7",
   "src/game/ayalon-lock/index.ts": "878d7834dfac9c7756b0929eea515f03ff23b2f8500a63fd49f1fb369c4e3ae6",
@@ -79,7 +79,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "server/middleware/grok-pwa.ts": "184313168a63c66b4b0d809fa55c656b8ca4436775f6c0502bc9e9cfdfaf0e9f",
   "scripts/product-head-boundary.mjs": "c88328d144b77d1ea54aaab62d0e54f616c404d72097f1e6f232057185c5f3fe",
   "scripts/rush-head-browser.mjs": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
-  "scripts/runtime-recovery-smoke.mjs": "ab99005fef3aaaf416666395ed09fd578214bcd1ad9656f955c6c6d635acd674",
+  "scripts/runtime-recovery-smoke.mjs": "71bbe9aa0629f9b3555eb511364ee167084330302839b340bc05e0f24d5aa536",
   "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d",
   "scripts/font-evidence.mjs": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35",
   "scripts/font-dependency-browser.mjs": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673",
@@ -95,7 +95,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/airborne-smoke.mjs": "fa321116c26412d51f89c8d3178d97182f7091a54a92f35375f0c320ae32c636",
   "scripts/airborne-clock.mjs": "fecc996075b4238a926387dc736bdcdd8208af3037623fa55e06aef219bb42fe",
   "scripts/collider-centre-browser.mjs": "7331bdddb064434cff6934ad42437bd1009d4699ff7b3d6057ecca3f496dc3b1",
-  "src/game/collider-height.ts": "a829c04948fac76cb9d318cc7baa669bfc7ebfef83e2254318aec3cc23183d53",
+  "src/game/collider-height.ts": "a29235954dc74a8408ceea54f7c7cbdc417ecde4b6c2e000d25a7ac267b96a07",
   "scripts/pier-collision-browser.mjs": "256d9ffb20d5e95b8511effce86c7e1ae1f4580fdccc2ada3883c1a03955c8b8"
 } as const;
 

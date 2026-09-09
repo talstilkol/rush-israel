@@ -23,7 +23,7 @@ const { CARS } = await import(compile(fromRoot('src/game/cars.ts')));
 const {
   vehicleEnvelope, overlapsColliderHeight, colliderContactKind, circleExitDistance,
   supportPierCollider, overheadSlabCollider, preserveColliderAtSpawn, CAR_CONTACT_HEIGHT,
-  UPRIGHT_ENVELOPE,
+  UPRIGHT_ENVELOPE, offsetSupportPierFromRoute, PIER_MESH_RADIUS, CAR_CONTACT_RADIUS,
 } = await import(compile(fromRoot('src/game/collider-height.ts')));
 
 const close = (a, b, eps = 1e-9) => assert.ok(Math.abs(a - b) <= eps, `${a} != ${b}`);
@@ -188,4 +188,23 @@ test('an airborne step cannot pass through the bridge deck', () => {
   car.step(1 / 120, input, track, true, [], [], [bridge]);
   assert.ok(car.y + vehicleEnvelope(car.pitch, car.roll).yMax <= 9.4 + 0.05, car.y);
   assert.ok(car.vy <= 0);
+});
+
+const straight = Array.from({ length: 21 }, (_, i) => ({ x: 0, z: (i - 10) * 10, rx: 1, rz: 0 }));
+test('a support on the driving line is pushed to the carriageway edge plus contact radius', () => {
+  const placed = offsetSupportPierFromRoute(1.1, 0, straight, 28);
+  close(placed.x, 14 + PIER_MESH_RADIUS + CAR_CONTACT_RADIUS);
+  close(placed.z, 0);
+  const pier = supportPierCollider(placed.x, placed.z, 8.45);
+  const car = carAt(0);
+  car.hitColliders([pier]);
+  close(car.x, 0); close(car.z, 0);
+});
+test('a support already outside the carriageway keeps its coordinates', () => {
+  const placed = offsetSupportPierFromRoute(20, 8.45, straight, 28);
+  close(placed.x, 20); close(placed.z, 8.45);
+});
+test('malformed route samples cannot invent a new pier location', () => {
+  assert.deepEqual(offsetSupportPierFromRoute(3, 4, [], 28), { x: 3, z: 4 });
+  assert.deepEqual(offsetSupportPierFromRoute(3, 4, straight, 0), { x: 3, z: 4 });
 });

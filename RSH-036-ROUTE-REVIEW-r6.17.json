@@ -1,0 +1,120 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.17",
+  "date": "2026-09-09",
+  "base": "79a67c6f21c6e517c659350b1ce48ae1525a4e21",
+  "finding": "AUD-27",
+  "status": "candidate_pending_remote_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.16",
+    "head": "79a67c6f21c6e517c659350b1ce48ae1525a4e21",
+    "tree": "a02eaafced9edc0c1127214eaf39df99fc935dc3",
+    "run_id": 34356869016,
+    "job_id": 102483660303,
+    "unit_passed": 1110,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "golden_source": "preparation 34324754353",
+    "required_ci_artifact": {
+      "id": 10106516896,
+      "name": "required-ci-34356869016-1",
+      "sha256": "dfe83b420ef3650acecc858b76c17928102b83ec45f105c07bdc88c704b4d369"
+    },
+    "audit_source_artifact": {
+      "id": 10106101507,
+      "name": "audit-source-34356869016-1",
+      "sha256": "bcd4989dd38edc5e38043b45dcb1615c591f2fb8ebae3740caf56381e16a8d80"
+    },
+    "not_unit_acceptance": true
+  },
+  "defect": "r6.16 envelope/slab/multi-obstacle cases were isolated. Grid evidence only compared four cars to 176 piers, not the live 722-collider catalogue or the 781-sample driving line. pushRamp planted four supports on the climbing-connector centerline, so one on-road pier displaced centerline sample 147.",
+  "repair": "offsetSupportPierFromRoute pushes overlapping supports to the carriageway edge plus 0.72 mesh and 1.05 contact radii; mesh and collider move together. Actual-engine rest-pose probes along the Ayalon centreline and ±2.2 lanes, grid vs the live catalogue, 9.4 underpass rest/pitched envelope, 1s centerline drive, plus a frozen physicsVersion7 record round-trip.",
+  "scope": "arcade box envelope on sampled poses and one short drive; not a render-mesh or whole-race clearance guarantee",
+  "vehicle_proxy": {
+    "height": 1.6,
+    "half_length": 1.25,
+    "half_width": 1.05,
+    "horizontal_padding": 1.05,
+    "pier_mesh_radius": 0.72,
+    "support_contact_radius": 1.77,
+    "rest_pose": { "yMin": 0, "yMax": 1.6 },
+    "scope": "arcade box envelope; not a render-mesh or whole-race clearance guarantee"
+  },
+  "new_route_cases": {
+    "total": 18,
+    "source": "scripts/route-clearance.test.mjs",
+    "fail_closed": [
+      "lost collider",
+      "lost pier",
+      "lost sample",
+      "lost lane",
+      "empty underpass",
+      "page error",
+      "gl error",
+      "missing grid car",
+      "nonfinite probe"
+    ],
+    "measured_failures_retained": [
+      "centerline displacement",
+      "grid penetration",
+      "buried 1s drive",
+      "pitched underpass displacement"
+    ]
+  },
+  "new_record_cases": {
+    "total": 5,
+    "source": "scripts/records-compat.test.mjs",
+    "physics_version": 7,
+    "v6_conversion": false
+  },
+  "new_offset_cases": {
+    "total": 3,
+    "source": "scripts/vehicle-envelope.test.mjs"
+  },
+  "actual_browser_validation": {
+    "status": "local_chromium_passed_remote_pending",
+    "cases_passed": 5,
+    "cases_failed": 0,
+    "center_probes": 781,
+    "lane_probes": 158,
+    "underpass_probes": 84,
+    "grid_probes": 4,
+    "center_displaced": 0,
+    "lane_displaced": 0,
+    "underpass_displaced": 0,
+    "grid_displaced": 0,
+    "drive_progressed_m": 1.6201741732802475,
+    "drive_buried": 0,
+    "drive_airborne": 0,
+    "piers": 176,
+    "colliders": 722
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "route_samples": 781,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "record_storage_writes": 0
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4",
+    "3 immutable font qualifications",
+    "rendering performance",
+    "mesh and complete-race clearance"
+  ],
+  "no_freeze_or_acceptance": true,
+  "complete_local_suite": {
+    "passed": 1136,
+    "failed": 0,
+    "skipped": 0,
+    "previous_r6_16": 1110,
+    "new_unique_cases": 26
+  }
+}

@@ -41,7 +41,7 @@
       "scripts/pixel-golden.mjs": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
       "scripts/ayalon-hash.mjs": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
       "src/game/tracks/ayalon.ts": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
-      "src/game/world-builders/tracks/ayalon.ts": "3e296a6d794d076181aedc7d31c081f2bd474c60c7d5ef55d019bd4df0214702",
+      "src/game/world-builders/tracks/ayalon.ts": "adf0042b24cb02249e22c17df8104b262b79a2542996a3738e6e954fc0e487b2",
       "src/game/world.ts": "f0154d23276f52f68402d1b3758612f596946f4684974d9c4a4fd70276eac5ba",
       "src/game/ayalon-lock/geometry.ts": "b5be3e5838fb99449fb7d5a5684177e8626a7a283c54275461fd45faf42a94f7",
       "src/game/ayalon-lock/index.ts": "878d7834dfac9c7756b0929eea515f03ff23b2f8500a63fd49f1fb369c4e3ae6",
@@ -103,7 +103,7 @@
       "server/middleware/grok-pwa.ts": "184313168a63c66b4b0d809fa55c656b8ca4436775f6c0502bc9e9cfdfaf0e9f",
       "scripts/product-head-boundary.mjs": "c88328d144b77d1ea54aaab62d0e54f616c404d72097f1e6f232057185c5f3fe",
       "scripts/rush-head-browser.mjs": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
-      "scripts/runtime-recovery-smoke.mjs": "ab99005fef3aaaf416666395ed09fd578214bcd1ad9656f955c6c6d635acd674",
+      "scripts/runtime-recovery-smoke.mjs": "71bbe9aa0629f9b3555eb511364ee167084330302839b340bc05e0f24d5aa536",
       "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d",
       "scripts/font-evidence.mjs": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35",
       "scripts/font-dependency-browser.mjs": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673",
@@ -119,9 +119,10 @@
       "scripts/airborne-smoke.mjs": "fa321116c26412d51f89c8d3178d97182f7091a54a92f35375f0c320ae32c636",
       "scripts/airborne-clock.mjs": "fecc996075b4238a926387dc736bdcdd8208af3037623fa55e06aef219bb42fe",
       "scripts/collider-centre-browser.mjs": "7331bdddb064434cff6934ad42437bd1009d4699ff7b3d6057ecca3f496dc3b1",
-      "src/game/collider-height.ts": "a829c04948fac76cb9d318cc7baa669bfc7ebfef83e2254318aec3cc23183d53",
+      "src/game/collider-height.ts": "a29235954dc74a8408ceea54f7c7cbdc417ecde4b6c2e000d25a7ac267b96a07",
       "scripts/pier-collision-browser.mjs": "256d9ffb20d5e95b8511effce86c7e1ae1f4580fdccc2ada3883c1a03955c8b8"
-    }
+    },
+    "freeze_digest_sha256": "bd9e2281e501346cb55cbc153f8504249c4b81192c5e2b931b77a51822472f1f"
   },
   "lock_module": {
     "directory": "src/game/ayalon-freeze",
@@ -152,7 +153,7 @@
     "vehicle_envelope_behavior_changed": true
   },
   "identities": {
-    "freeze_source_sha256": "79db975ee3a45b2ee7a75d69101897197880cf21eb320b04363ddbfd8a733e30",
+    "freeze_source_sha256": "1ee77c919027166deba0d2a4cf802e58d8721ae639eaa43363aa42b9cad49b56",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
     "contract_sha256": "03727dd56eb2c6808ace47c372ab901dc96a22445d8a71fa09bb87f92d27e9d5",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
@@ -161,7 +162,7 @@
     "pixel_golden_sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
     "checker_test_sha256": "28fc007c15b971cecb21dee3ff5cac13d87a7cd61d761a6f1c6a1d125418e5a6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "dfd5c5afe2a2a6eceb23d480794fe6f6c34578cdb18ea1a66f0388911d5c23e1",
+    "freeze_digest_sha256": "bd9e2281e501346cb55cbc153f8504249c4b81192c5e2b931b77a51822472f1f",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
@@ -183,7 +184,7 @@
     "status": "partial",
     "complete_dependency_closure": false,
     "runtime_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
-    "remaining_proof": "r6.16 envelope/slab/multi-obstacle candidate pending exact-head CI; 3 fonts, record policy and original golden remain; freeze_granted=false.",
+    "remaining_proof": "r6.17 sampled whole-route arcade envelope with carriageway-pier offset pending exact-head CI; 3 fonts and original golden remain; freeze_granted=false.",
     "generated_inventory": "AYALON-DEPENDENCY-CLOSURE.json"
   },
   "acceptance": {
