@@ -1,0 +1,93 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.16",
+  "date": "2026-09-09",
+  "base": "458096c707135df05b603c77ff7729e6d8b7eff4",
+  "product_parent": "ec79dbefaef2de415c252ef0ce1cd1b76c634df3",
+  "finding": "AUD-26",
+  "status": "candidate_pending_remote_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.15",
+    "head": "ec79dbefaef2de415c252ef0ce1cd1b76c634df3",
+    "tree": "2dddd463ceca148ee7ac0f3817ba052bcacb0ea5",
+    "run_id": 34325442324,
+    "job_id": 102381514184,
+    "unit_passed": 1091,
+    "unit_failed": 0,
+    "lint_warnings": 123,
+    "lint_errors": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "not_unit_acceptance": true,
+    "docs_follow_up": {
+      "head": "458096c707135df05b603c77ff7729e6d8b7eff4",
+      "tree": "74bee90c76329dc5154925c2a2d4bbc5c176c866",
+      "run_id": 34337649215,
+      "conclusion": "success",
+      "runtime_unchanged": true
+    }
+  },
+  "defect": "The upright 1.6-unit body proxy missed pitched/rolled roofs, treated every height-qualified overlap as a horizontal wall, and the single-pass circle solver could leave residual overlap between two obstacles.",
+  "repair": "8-corner pitch/roll envelope; ceiling vs solid contact; combined multi-circle exit; ramp-underside ceiling after y-integration. Rest-pose envelope, 1.05 radius and single-collider +X coincidence are unchanged.",
+  "vehicle_proxy": {
+    "height": 1.6,
+    "half_length": 1.25,
+    "half_width": 1.05,
+    "horizontal_padding": 1.05,
+    "rest_pose": { "yMin": 0, "yMax": 1.6 },
+    "fail_closed_tilt": { "pitch": 0.75, "roll": 0.34 },
+    "scope": "arcade box envelope; not a render-mesh or whole-route clearance guarantee"
+  },
+  "focused_same_cases": {
+    "total": 41,
+    "before_passed": 20,
+    "before_failed": 21,
+    "after_passed": 41,
+    "after_failed": 0,
+    "source": "scripts/pier-height.test.mjs and scripts/collider-centre.test.mjs on actual ArcadeCar"
+  },
+  "new_envelope_cases": {
+    "total": 19,
+    "source": "scripts/vehicle-envelope.test.mjs",
+    "reproduced_old_failures": [
+      "upright proxy misses pitched roof vs 1.7 slab",
+      "single-pass two-circle residual overlap",
+      "airborne public step through a 9.4 deck"
+    ],
+    "preserved": [
+      "9.4 underpass at y=0",
+      "supported 9.4 deck travel",
+      "structural pier spawn preservation",
+      "single coincident +X escape",
+      "1.6 rest-pose identity"
+    ]
+  },
+  "actual_browser_validation": "pending; unit public-step cases cover underpass, deck and jump-through; not whole-route qualification",
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "record_storage_writes": 0
+  },
+  "remaining": [
+    "exact published-head CI",
+    "physicsVersion7 record compatibility",
+    "original golden 0/4",
+    "3 immutable font qualifications",
+    "rendering performance",
+    "whole-route grid/race clearance"
+  ],
+  "no_freeze_or_acceptance": true,
+  "complete_local_suite": {
+    "passed": 1110,
+    "failed": 0,
+    "skipped": 0,
+    "previous_r6_15": 1091,
+    "new_unique_cases": 19
+  }
+}

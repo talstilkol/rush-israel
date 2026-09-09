@@ -592,3 +592,15 @@ are not a full pitched/rolled mesh envelope or multi-obstacle clearance guarante
 The complete suite, actual route probes, original golden and immutable-font gates
 remain mandatory. Do not merge, replace PNGs, change thresholds or activate RSH-037.
 Details: RSH-036-PIER-REVIEW-r6.15.json and RSH-036-RUNTIME-REPAIR-r6.15.md.
+
+## r6.16 — 9 September 2026: pitched/rolled envelope, slab and multi-obstacle exit
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-26 adds an
+8-corner pitch/roll envelope, ceiling-versus-solid slab contact and a combined
+exit for overlapping circles. Rest-pose height stays 1.6; the 1.05 radius and
+historical single-collider +X coincidence are unchanged. This is still an arcade
+box, not a mesh or route qualification. Complete suite, original golden and
+immutable-font gates remain mandatory. Do not merge, replace PNGs, change
+thresholds or activate RSH-037.
+Details: RSH-036-ENVELOPE-REVIEW-r6.16.json and RSH-036-RUNTIME-REPAIR-r6.16.md.
+

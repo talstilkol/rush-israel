@@ -1080,7 +1080,7 @@
     "pull_request": 39,
     "implementation_base_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
     "acceptance_blockers": [
-      "AUD-25 exact-head finite-height pier tests and full retained runtime/QA suite",
+      "AUD-26 exact-head envelope/slab/multi-obstacle tests and full retained runtime/QA suite",
       "Complete body/roof/support-column clearance and collision review",
       "Physics/record-version compatibility policy before freeze",
       "CR-03 three mutable font dependencies and generated inventory",
@@ -2001,14 +2001,20 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.15.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.16.md",
     "local_unit_tests": {
-      "status": "pending_complete_run",
-      "focused_passed": 56,
+      "status": "complete_local_passed_remote_pending",
+      "focused_passed": 19,
       "focused_failed": 0,
       "same41_old_passed": 20,
       "same41_old_failed": 21,
-      "typescript": "5.9.3"
+      "locked_dependencies": true,
+      "typescript": "5.9.3",
+      "total": 1110,
+      "passed": 1110,
+      "failed": 0,
+      "skipped": 0,
+      "new_unique_cases": 19
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
     "previous_exact_head_ci": {
@@ -2041,7 +2047,7 @@
       "diagnostic_run": 33992134755
     },
     "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json",
-    "new_candidate_validation": "pending_r6_15_preparation_and_exact_published_head_CI",
+    "new_candidate_validation": "pending_r6_16_preparation_and_exact_published_head_CI",
     "generated_dependency_inventory": "AYALON-DEPENDENCY-CLOSURE.json",
     "safe_capture_output": "both_commands_no_automatic_baseline_writes",
     "ci_action_pins": "three_previously_verified_pins_unchanged",
@@ -2163,7 +2169,8 @@
       },
       "new_candidate_validation": "pending_r6_14_preparation_and_exact_published_head_CI"
     },
-    "pier_collision_review": "RSH-036-PIER-REVIEW-r6.15.json"
+    "pier_collision_review": "RSH-036-PIER-REVIEW-r6.15.json",
+    "envelope_review": "RSH-036-ENVELOPE-REVIEW-r6.16.json"
   },
   "historical_rsh035_constraints": [
     "The plain next instruction authorized exactly RSH-035 and is consumed on its validated merge.",

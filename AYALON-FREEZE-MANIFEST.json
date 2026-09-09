@@ -111,7 +111,7 @@
       "scripts/road-uniform-browser.mjs": "aed1f57320633920ef28c803faef0c09802fbcd26fbf6c25d85ac7fbf9919c9d",
       "src/game/ramp-surface.ts": "4072158c03c6728f54f7efdd60fa5e43e831decda461975a528c1e01e1f512ed",
       "scripts/ramp-surface-browser.mjs": "665b1dd482d72ae8ba394e597c0d33e6ec9a5846fbd73699b7aa27cf8605930d",
-      "src/game/vehicle.ts": "cdc47ec3045d9a1dd95ca5c4230843624455a8ebe7daf4caf061f5bd293dfd0d",
+      "src/game/vehicle.ts": "544a137d5def39dd9c873a2b026892ed762038a2a553911d4548f8bfc905a2d2",
       "scripts/ramp-smoke.mjs": "8c35bfd9bde53b5b8487f877e8018bfcf3237efd37bd0e317fe457f610da8a2c",
       "scripts/ramp-contact-browser.mjs": "8929ff4e5772db2f8acabb67a3a3e28a0133602016a5cc49771c94a03abdb45e",
       "scripts/drive-smoke.mjs": "2e0f6c36b8f7bf905d30d15f020e1485dda21d5305bcc3d126de211053685b93",
@@ -119,7 +119,7 @@
       "scripts/airborne-smoke.mjs": "fa321116c26412d51f89c8d3178d97182f7091a54a92f35375f0c320ae32c636",
       "scripts/airborne-clock.mjs": "fecc996075b4238a926387dc736bdcdd8208af3037623fa55e06aef219bb42fe",
       "scripts/collider-centre-browser.mjs": "7331bdddb064434cff6934ad42437bd1009d4699ff7b3d6057ecca3f496dc3b1",
-      "src/game/collider-height.ts": "ea9fbf003bf304f6690d3ed5423729fe577059afca1e978a4a40c19042d1c7d7",
+      "src/game/collider-height.ts": "a829c04948fac76cb9d318cc7baa669bfc7ebfef83e2254318aec3cc23183d53",
       "scripts/pier-collision-browser.mjs": "256d9ffb20d5e95b8511effce86c7e1ae1f4580fdccc2ada3883c1a03955c8b8"
     }
   },
@@ -148,10 +148,11 @@
     "vehicle_support_behavior_changed": true,
     "physics_calibration_constants_changed": false,
     "circular_contact_behavior_changed": true,
-    "bounded_pier_colliders_added": 176
+    "bounded_pier_colliders_added": 176,
+    "vehicle_envelope_behavior_changed": true
   },
   "identities": {
-    "freeze_source_sha256": "fcff14ecd0cbef465f1c3acb551255fbf5f992927c81f07d380ffad26b312271",
+    "freeze_source_sha256": "79db975ee3a45b2ee7a75d69101897197880cf21eb320b04363ddbfd8a733e30",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
     "contract_sha256": "03727dd56eb2c6808ace47c372ab901dc96a22445d8a71fa09bb87f92d27e9d5",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
@@ -160,7 +161,7 @@
     "pixel_golden_sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
     "checker_test_sha256": "28fc007c15b971cecb21dee3ff5cac13d87a7cd61d761a6f1c6a1d125418e5a6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "82a432ddc0ab770253815c7ab98a6627cc7ef3692b729c773a6ca65a78695f3a",
+    "freeze_digest_sha256": "dfd5c5afe2a2a6eceb23d480794fe6f6c34578cdb18ea1a66f0388911d5c23e1",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
@@ -182,7 +183,7 @@
     "status": "partial",
     "complete_dependency_closure": false,
     "runtime_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
-    "remaining_proof": "r6.15 exact-head tests pending; finite-height pier proxy does not close roof/slab/multi-obstacle clearance,3 fonts,record policy or original golden.",
+    "remaining_proof": "r6.16 envelope/slab/multi-obstacle candidate pending exact-head CI; 3 fonts, record policy and original golden remain; freeze_granted=false.",
     "generated_inventory": "AYALON-DEPENDENCY-CLOSURE.json"
   },
   "acceptance": {

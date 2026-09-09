@@ -1,4 +1,10 @@
-import { overlapsColliderHeight } from "./collider-height";
+import {
+  circleExitDistance,
+  colliderContactKind,
+  vehicleEnvelope,
+  type HeightCollider,
+  type VehicleEnvelope,
+} from "./collider-height";
 import { clamp, expSmooth, wrapPi, forwardDelta } from "./math";
 import {
   absModulate,
@@ -79,6 +85,16 @@ function probeRampOnTrack(x: number, z: number, ramps: Ramp[], yHint: number, tr
   const near = nearestIndex(track.samples, x, z, hint, track.closed);
   const roadY = near.dist <= track.width / 2 ? track.samples[near.index].y : undefined;
   return probeRamp(x, z, ramps, yHint, roadY);
+}
+
+function rampDeckAt(x: number, z: number, ramp: Ramp) {
+  const dx = x - ramp.x;
+  const dz = z - ramp.z;
+  const along = dx * ramp.sx + dz * ramp.sz;
+  const across = dx * ramp.sz - dz * ramp.sx;
+  if (Math.abs(along) > ramp.len * 0.5 || Math.abs(across) > ramp.half) return null;
+  const t = clamp(along / ramp.len + 0.5, 0, 1);
+  return ramp.y0 + (ramp.y1 - ramp.y0) * t;
 }
 
 export class ArcadeCar {
@@ -537,6 +553,7 @@ export class ArcadeCar {
         // clamp here would teleport the car before airborne hysteresis settles.
       }
     }
+    this.hitOverheadSurfaces(colliders, ramps, groundY);
     const alley = nearestStreet(this.x, this.z, streets);
     const onAlley = !!(alley && alley.dist < alley.street.half * 1.05);
     const onRamp = !!rp;
@@ -608,90 +625,240 @@ export class ArcadeCar {
 
   /** 5.5: resolve once per CCD cut. Not PhysX. */
   private hitColliders(colliders: Collider[]) {
-    for (const c of colliders) {
-      if (!overlapsColliderHeight(c, this.y)) continue;
-      const carR = 1.05;
-      let nx = 0;
-      let nz = 0;
-      let hitD = 0;
-      if (c.hx != null && c.hz != null) {
-        const dx = this.x - c.x;
-        const dz = this.z - c.z;
-        const yaw = c.yaw ?? 0;
-        const cy = Math.cos(yaw);
-        const sy = Math.sin(yaw);
-        let lx = dx * cy - dz * sy;
-        let lz = dx * sy + dz * cy;
-        const px = c.hx + carR - Math.abs(lx);
-        const pz = c.hz + carR - Math.abs(lz);
-        if (px <= 0 || pz <= 0) continue;
-        let nxl = 0;
-        let nzl = 0;
-        if (px < pz) {
-          nxl = lx < 0 ? -1 : 1;
-          lx = nxl * (c.hx + carR);
-          hitD = px;
-        } else {
-          nzl = lz < 0 ? -1 : 1;
-          lz = nzl * (c.hz + carR);
-          hitD = pz;
-        }
-        this.x = c.x + lx * cy + lz * sy;
-        this.z = c.z - lx * sy + lz * cy;
-        nx = nxl * cy + nzl * sy;
-        nz = -nxl * sy + nzl * cy;
-      } else {
-        const dx = this.x - c.x;
-        const dz = this.z - c.z;
-        const d = Math.hypot(dx, dz);
-        if (d >= c.r) continue;
-        if (d > 0) {
-          nx = dx / d;
-          nz = dz / d;
-        } else {
-          // Coincident centres still penetrate. Oppose incoming motion; a
-          // stationary overlap uses a deterministic axis without dividing by zero.
-          const motion = Math.hypot(this.vx, this.vz);
-          nx = motion > 0 ? -this.vx / motion : 1;
-          nz = motion > 0 ? -this.vz / motion : 0;
-        }
-        this.x = c.x + nx * c.r;
-        this.z = c.z + nz * c.r;
-        hitD = c.r - d;
-      }
-      const into = this.vx * nx + this.vz * nz;
-      if (into < 0) {
-        const hit = Math.max(-into, hitD);
-        const kind = c.kind ?? "barrier";
-        this.lastHit = kind;
-        const fx = -Math.sin(this.yaw);
-        const fz = -Math.cos(this.yaw);
-        if (kind === "building") {
-          this.vx -= nx * into;
-          this.vz -= nz * into;
-          this.speed *= hit > 10 ? 0.02 : hit > 5 ? 0.07 : 0.14;
-          this.yaw = wrapPi(this.yaw + (nx * fz - nz * fx) * 0.12 * Math.min(1, hit / 9));
-          this.damage = clamp(this.damage + hit * 0.085, 0, 1);
-          if (hit > 2.5) this.impact = Math.max(this.impact, Math.min(1, hit / 7));
-        } else if (kind === "car") {
-          this.vx -= nx * into * 0.68;
-          this.vz -= nz * into * 0.68;
-          this.speed = this.vx * fx + this.vz * fz;
-          this.speed *= hit > 14 ? 0.58 : hit > 7 ? 0.76 : 0.88;
-          this.damage = clamp(this.damage + hit * 0.02, 0, 1);
-          if (hit > 4) this.impact = Math.max(this.impact, Math.min(0.55, hit / 20));
-        } else {
-          this.vx -= nx * into * 1.08;
-          this.vz -= nz * into * 1.08;
-          this.speed = this.vx * fx + this.vz * fz;
-          this.speed *= hit > 12 ? 0.78 : 0.92;
-          if (hit > 9) {
-            this.damage = clamp(this.damage + hit * 0.008, 0, 1);
-            this.impact = Math.max(this.impact, Math.min(0.38, hit / 30));
-          }
-        }
+    const env = vehicleEnvelope(this.pitch, this.roll);
+    const solids: Collider[] = [];
+    const ceilings: { deck: number; collider: HeightCollider }[] = [];
+    for (const raw of colliders) {
+      const c = raw as HeightCollider;
+      const kind = colliderContactKind(c, this.y, env);
+      if (kind === "solid") solids.push(c);
+      else if (kind === "ceiling") {
+        const deck = c.vertical!.min;
+        const newY = deck - env.yMax;
+        if (!this.airborne && this.vy <= 0 && newY < this.y - 1e-9) solids.push(c);
+        else ceilings.push({ deck, collider: c });
       }
     }
+    this.resolveSolids(solids);
+    for (const { deck } of ceilings) this.applyCeiling(deck, env);
+  }
+
+  private hitOverheadSurfaces(colliders: Collider[], ramps: Ramp[], groundY: number) {
+    const env = vehicleEnvelope(this.pitch, this.roll);
+    this.hitColliders(colliders);
+    for (const ramp of ramps) {
+      const deck = rampDeckAt(this.x, this.z, ramp);
+      if (deck == null) continue;
+      if (Math.abs(this.y - deck) <= 0.04) continue;
+      if (!(this.y < deck - 0.04 && this.y + env.yMax > deck)) continue;
+      const reachableSupport = !this.airborne && deck <= this.y + 1.2;
+      if (reachableSupport) continue;
+      const newY = deck - env.yMax;
+      if (!this.airborne && this.vy <= 0 && newY < Math.max(groundY, this.y) - 1e-9) continue;
+      this.applyCeiling(deck, env);
+    }
+  }
+
+  private applyCeiling(deck: number, env: VehicleEnvelope) {
+    if (![deck, env.yMax].every(Number.isFinite)) return;
+    const newY = deck - env.yMax;
+    if (!Number.isFinite(newY) || newY >= this.y) return;
+    this.y = newY;
+    if (this.vy > 0) this.vy = 0;
+    this.lastHit = this.lastHit || "barrier";
+  }
+
+  private overlapsSolidXZ(c: Collider): boolean {
+    const carR = 1.05;
+    if (c.hx != null && c.hz != null) {
+      const dx = this.x - c.x;
+      const dz = this.z - c.z;
+      const yaw = c.yaw ?? 0;
+      const cy = Math.cos(yaw);
+      const sy = Math.sin(yaw);
+      const lx = dx * cy - dz * sy;
+      const lz = dx * sy + dz * cy;
+      return c.hx + carR - Math.abs(lx) > 0 && c.hz + carR - Math.abs(lz) > 0;
+    }
+    return Math.hypot(this.x - c.x, this.z - c.z) < c.r;
+  }
+
+  private resolveSolids(colliders: Collider[]) {
+    const overlapping = colliders.filter((c) => this.overlapsSolidXZ(c));
+    if (overlapping.length <= 1) {
+      for (const c of overlapping) this.resolveOneSolid(c);
+      return;
+    }
+    for (let iter = 0; iter < 4; iter++) {
+      const hits = overlapping.filter((c) => this.overlapsSolidXZ(c));
+      if (hits.length === 0) return;
+      if (hits.length === 1) {
+        this.resolveOneSolid(hits[0]);
+        return;
+      }
+      this.resolveCombined(hits);
+    }
+  }
+
+  private solidPenetration(c: Collider): { nx: number; nz: number; depth: number; kind: "building" | "barrier" | "car" } | null {
+    const carR = 1.05;
+    const kind = c.kind ?? "barrier";
+    if (c.hx != null && c.hz != null) {
+      const dx = this.x - c.x;
+      const dz = this.z - c.z;
+      const yaw = c.yaw ?? 0;
+      const cy = Math.cos(yaw);
+      const sy = Math.sin(yaw);
+      const lx = dx * cy - dz * sy;
+      const lz = dx * sy + dz * cy;
+      const px = c.hx + carR - Math.abs(lx);
+      const pz = c.hz + carR - Math.abs(lz);
+      if (px <= 0 || pz <= 0) return null;
+      if (px < pz) {
+        const nxl = lx < 0 ? -1 : 1;
+        return { nx: nxl * cy, nz: -nxl * sy, depth: px, kind };
+      }
+      const nzl = lz < 0 ? -1 : 1;
+      return { nx: nzl * sy, nz: nzl * cy, depth: pz, kind };
+    }
+    const dx = this.x - c.x;
+    const dz = this.z - c.z;
+    const d = Math.hypot(dx, dz);
+    if (d >= c.r) return null;
+    let nx = 0;
+    let nz = 0;
+    if (d > 0) {
+      nx = dx / d;
+      nz = dz / d;
+    } else {
+      const motion = Math.hypot(this.vx, this.vz);
+      nx = motion > 0 ? -this.vx / motion : 1;
+      nz = motion > 0 ? -this.vz / motion : 0;
+    }
+    return { nx, nz, depth: c.r - d, kind };
+  }
+
+  private resolveCombined(colliders: Collider[]) {
+    const hits = [];
+    for (const c of colliders) {
+      const hit = this.solidPenetration(c);
+      if (hit) hits.push({ ...hit, collider: c });
+    }
+    if (hits.length === 0) return;
+    let nx = 0;
+    let nz = 0;
+    for (const hit of hits) {
+      nx += hit.nx * hit.depth;
+      nz += hit.nz * hit.depth;
+    }
+    const mag = Math.hypot(nx, nz);
+    if (mag < 1e-8) {
+      nx = 0;
+      nz = 1;
+    } else {
+      nx /= mag;
+      nz /= mag;
+    }
+    let t = 0;
+    for (const hit of hits) {
+      const c = hit.collider;
+      if (c.hx != null && c.hz != null) {
+        const along = hit.nx * nx + hit.nz * nz;
+        t = Math.max(t, hit.depth / Math.max(0.2, along));
+      } else {
+        t = Math.max(t, circleExitDistance(this.x, this.z, nx, nz, c.x, c.z, c.r));
+      }
+    }
+    if (!Number.isFinite(t) || t <= 0) return;
+    this.x += nx * t;
+    this.z += nz * t;
+    this.applyHitVelocity(nx, nz, t, hits.reduce((a, b) => (a.depth >= b.depth ? a : b)).kind);
+  }
+
+  private applyHitVelocity(nx: number, nz: number, hitD: number, kind: "building" | "barrier" | "car") {
+    const into = this.vx * nx + this.vz * nz;
+    if (into >= 0) return;
+    const hit = Math.max(-into, hitD);
+    this.lastHit = kind;
+    const fx = -Math.sin(this.yaw);
+    const fz = -Math.cos(this.yaw);
+    if (kind === "building") {
+      this.vx -= nx * into;
+      this.vz -= nz * into;
+      this.speed *= hit > 10 ? 0.02 : hit > 5 ? 0.07 : 0.14;
+      this.yaw = wrapPi(this.yaw + (nx * fz - nz * fx) * 0.12 * Math.min(1, hit / 9));
+      this.damage = clamp(this.damage + hit * 0.085, 0, 1);
+      if (hit > 2.5) this.impact = Math.max(this.impact, Math.min(1, hit / 7));
+    } else if (kind === "car") {
+      this.vx -= nx * into * 0.68;
+      this.vz -= nz * into * 0.68;
+      this.speed = this.vx * fx + this.vz * fz;
+      this.speed *= hit > 14 ? 0.58 : hit > 7 ? 0.76 : 0.88;
+      this.damage = clamp(this.damage + hit * 0.02, 0, 1);
+      if (hit > 4) this.impact = Math.max(this.impact, Math.min(0.55, hit / 20));
+    } else {
+      this.vx -= nx * into * 1.08;
+      this.vz -= nz * into * 1.08;
+      this.speed = this.vx * fx + this.vz * fz;
+      this.speed *= hit > 12 ? 0.78 : 0.92;
+      if (hit > 9) {
+        this.damage = clamp(this.damage + hit * 0.008, 0, 1);
+        this.impact = Math.max(this.impact, Math.min(0.38, hit / 30));
+      }
+    }
+  }
+
+  private resolveOneSolid(c: Collider) {
+    const carR = 1.05;
+    let nx = 0;
+    let nz = 0;
+    let hitD = 0;
+    if (c.hx != null && c.hz != null) {
+      const dx = this.x - c.x;
+      const dz = this.z - c.z;
+      const yaw = c.yaw ?? 0;
+      const cy = Math.cos(yaw);
+      const sy = Math.sin(yaw);
+      let lx = dx * cy - dz * sy;
+      let lz = dx * sy + dz * cy;
+      const px = c.hx + carR - Math.abs(lx);
+      const pz = c.hz + carR - Math.abs(lz);
+      if (px <= 0 || pz <= 0) return;
+      let nxl = 0;
+      let nzl = 0;
+      if (px < pz) {
+        nxl = lx < 0 ? -1 : 1;
+        lx = nxl * (c.hx + carR);
+        hitD = px;
+      } else {
+        nzl = lz < 0 ? -1 : 1;
+        lz = nzl * (c.hz + carR);
+        hitD = pz;
+      }
+      this.x = c.x + lx * cy + lz * sy;
+      this.z = c.z - lx * sy + lz * cy;
+      nx = nxl * cy + nzl * sy;
+      nz = -nxl * sy + nzl * cy;
+    } else {
+      const dx = this.x - c.x;
+      const dz = this.z - c.z;
+      const d = Math.hypot(dx, dz);
+      if (d >= c.r) return;
+      if (d > 0) {
+        nx = dx / d;
+        nz = dz / d;
+      } else {
+        // Coincident centres still penetrate. Oppose incoming motion; a
+        // stationary overlap uses a deterministic axis without dividing by zero.
+        const motion = Math.hypot(this.vx, this.vz);
+        nx = motion > 0 ? -this.vx / motion : 1;
+        nz = motion > 0 ? -this.vz / motion : 0;
+      }
+      this.x = c.x + nx * c.r;
+      this.z = c.z + nz * c.r;
+      hitD = c.r - d;
+    }
+    this.applyHitVelocity(nx, nz, hitD, c.kind ?? "barrier");
   }
 
   consumeCheckpoints(track: BuiltTrack, prevProgress: number) {

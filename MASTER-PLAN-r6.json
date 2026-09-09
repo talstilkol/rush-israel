@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.15",
+  "revision": "r6.16",
   "date": "2026-09-09",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "df42ed916a8a24acb7a580c0ab176305f874fef6",
+  "source_pr_head": "458096c707135df05b603c77ff7729e6d8b7eff4",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 25,
+    "audit_items": 26,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -354,7 +354,8 @@
         "AUD-21",
         "AUD-22",
         "AUD-23",
-        "AUD-24"
+        "AUD-24",
+        "AUD-26"
       ]
     },
     {
@@ -1182,6 +1183,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-04",
       "evidence": "RSH-036-PIER-REVIEW-r6.15.json"
+    },
+    {
+      "id": "AUD-26",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Upright body proxy missed pitched roofs, slabs and overlapping-obstacle clearance",
+      "acceptance": "Envelope rest pose remains 1.6; pitched/rolled 8-corner box, slab ceiling/solid split and combined multi-circle exit must fail on old code and pass after repair. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, 1.05 radius, physicsVersion7 and original golden gates. Arcade box is not mesh or route qualification.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-04",
+      "evidence": "RSH-036-ENVELOPE-REVIEW-r6.16.json"
     }
   ],
   "legacy_findings": [
@@ -1569,7 +1583,8 @@
         "AUD-22",
         "AUD-23",
         "AUD-24",
-        "AUD-25"
+        "AUD-25",
+        "AUD-26"
       ]
     },
     {
@@ -1609,32 +1624,30 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.15",
-    "base_head": "df42ed916a8a24acb7a580c0ab176305f874fef6",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.15.md",
+    "revision": "r6.16",
+    "base_head": "458096c707135df05b603c77ff7729e6d8b7eff4",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.16.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "revision": "r6.14",
-      "head": "df42ed916a8a24acb7a580c0ab176305f874fef6",
-      "tree": "829f48b9b8d9938c6a6e3d2f3e32b2f13a0ef1eb",
-      "run_id": 34235907029,
-      "job_id": 102093427099,
-      "unit_passed": 1026,
+      "revision": "r6.15",
+      "head": "ec79dbefaef2de415c252ef0ce1cd1b76c634df3",
+      "tree": "2dddd463ceca148ee7ac0f3817ba052bcacb0ea5",
+      "run_id": 34325442324,
+      "job_id": 102381514184,
+      "unit_passed": 1091,
       "unit_failed": 0,
-      "runtime_cases_passed": 36,
-      "readiness_cases_passed": 5,
-      "airborne_trials_passed": 3,
       "lint_warnings": 123,
       "lint_errors": 0,
       "golden_passed": 0,
       "golden_failed": 4,
       "not_unit_acceptance": true,
-      "checkpoint_comment": 5586629645
+      "docs_follow_up_head": "458096c707135df05b603c77ff7729e6d8b7eff4",
+      "docs_follow_up_run_id": 34337649215
     },
     "normal_ci": "pending_exact_published_head_validation",
-    "golden": "r6.14 original0/4; unchanged images/thresholds to be rerun",
+    "golden": "r6.15 original0/4; unchanged images/thresholds to be rerun",
     "dependency_closure": "3 mutable font references still unqualified",
-    "clearance": "176 finite-height pier colliders candidate; 1.6-unit body proxy only; complete roof/mesh and multi-obstacle clearance remains open",
+    "clearance": "r6.16 arcade envelope/slab/multi-obstacle candidate; not mesh or whole-route qualification",
     "record_policy": "physicsVersion7 unchanged; compatibility remains blocked"
   },
   "r6_9_diagnostic_checkpoint": {

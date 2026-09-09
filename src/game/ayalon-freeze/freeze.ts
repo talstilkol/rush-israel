@@ -87,7 +87,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/road-uniform-browser.mjs": "aed1f57320633920ef28c803faef0c09802fbcd26fbf6c25d85ac7fbf9919c9d",
   "src/game/ramp-surface.ts": "4072158c03c6728f54f7efdd60fa5e43e831decda461975a528c1e01e1f512ed",
   "scripts/ramp-surface-browser.mjs": "665b1dd482d72ae8ba394e597c0d33e6ec9a5846fbd73699b7aa27cf8605930d",
-  "src/game/vehicle.ts": "cdc47ec3045d9a1dd95ca5c4230843624455a8ebe7daf4caf061f5bd293dfd0d",
+  "src/game/vehicle.ts": "544a137d5def39dd9c873a2b026892ed762038a2a553911d4548f8bfc905a2d2",
   "scripts/ramp-smoke.mjs": "8c35bfd9bde53b5b8487f877e8018bfcf3237efd37bd0e317fe457f610da8a2c",
   "scripts/ramp-contact-browser.mjs": "8929ff4e5772db2f8acabb67a3a3e28a0133602016a5cc49771c94a03abdb45e",
   "scripts/drive-smoke.mjs": "2e0f6c36b8f7bf905d30d15f020e1485dda21d5305bcc3d126de211053685b93",
@@ -95,7 +95,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/airborne-smoke.mjs": "fa321116c26412d51f89c8d3178d97182f7091a54a92f35375f0c320ae32c636",
   "scripts/airborne-clock.mjs": "fecc996075b4238a926387dc736bdcdd8208af3037623fa55e06aef219bb42fe",
   "scripts/collider-centre-browser.mjs": "7331bdddb064434cff6934ad42437bd1009d4699ff7b3d6057ecca3f496dc3b1",
-  "src/game/collider-height.ts": "ea9fbf003bf304f6690d3ed5423729fe577059afca1e978a4a40c19042d1c7d7",
+  "src/game/collider-height.ts": "a829c04948fac76cb9d318cc7baa669bfc7ebfef83e2254318aec3cc23183d53",
   "scripts/pier-collision-browser.mjs": "256d9ffb20d5e95b8511effce86c7e1ae1f4580fdccc2ada3883c1a03955c8b8"
 } as const;
 
