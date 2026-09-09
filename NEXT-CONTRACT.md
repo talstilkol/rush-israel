@@ -1,9 +1,9 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 20.17.0
+**Version:** 20.18.0
 **Date:** 2026-09-09, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** ec9fba559370560fc1c3a957b6c2d6fecf79f99f
+**Repair base:** 5dc27ac2f75c985fb85a2d2b235c0e5aa24bc6c2
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -20,25 +20,29 @@ audit-source-34356869016-1 SHA-256
 Original golden remains 0/4 from preparation 34324754353. Preserve that
 historical evidence; do not treat old pending fields as unexecuted work.
 
-r6.17 product `ec9fba559370560fc1c3a957b6c2d6fecf79f99f` tree
-`d34ec85cf0516da335a89534fba2435ef238ac2c` exact-head requiredCI 34385617080
-job 102580995300 **FAILED** at Playwright `--with-deps` on a Google Chrome apt
-hash-sum mismatch before any product test. That failure is retained and is not
-a product defect, a pass, or unit acceptance.
+r6.17 requiredCI 34385617080 failed at Playwright `--with-deps` (Google Chrome
+apt hash-sum mismatch) before any product test. Retained; not a product defect.
 
-## r6.18 and subsequent acceptance
-1. Validate Chromium install retry: Google Chrome apt hash-sum mismatch falls
-   back to the Playwright CDN binary; ordinary install failures still fail.
-   required-ci must not keep a bare `--with-deps` one-liner or continue-on-error.
-   Action pins and the 85-path freeze list stay unchanged.
-2. Preserve r6.17 whole-route arcade-envelope clearance and frozen
-   physicsVersion 7 records. 546 legacy colliders, 176 piers, 50 ramps,
-   8 checkpoints, rest-pose 1.6 height, 1.05 radius and generation-11 lock stay.
+r6.18 product `5dc27ac2f75c985fb85a2d2b235c0e5aa24bc6c2` tree
+`3278c5ef62054025d5a29b49b24d2b3b494cd581` exact-head requiredCI 34387082287
+job 102585948504: Chromium install **succeeded**; 1,142/1,142 units passed;
+overall **FAILED** at runtime-recovery: 8 ramp supports protruded
+(maxProtrusion 1.9346875033714142). Artifact required-ci-34387082287-1 SHA-256
+`5c10b6eb4fbf12dcde41073852637d16b360f16700edac5249ba5882df62b31c`. That
+failure is retained and is not relabelled a pass.
+
+## r6.19 and subsequent acceptance
+1. Offset support piers must meet the slab underside at the placed XZ. A
+   downhill offset that would bury the cylinder is scaled back, not dropped.
+   176 piers, 546 legacy colliders, 50 ramps, 8 checkpoints, rest-pose 1.6,
+   1.05 radius and generation-11 lock stay.
+2. Preserve the r6.18 Chromium install retry. Action pins and the 85-path
+   freeze list stay unchanged.
 3. Run full exact-head CI and original-golden comparison. Preserve 1280x800
    images, threshold 0.12, failure 8%, generation 11 lock and owner approval.
    Qualify 3 mutable font references without distributing font files or silently
    changing typography. Rendering performance remains open.
 4. Only validated applicable approval may grant freeze or open RSH-037.
 
-Master plan r6.18 retains 67 units, 42 historical findings, 6 bundles and 28
+Master plan r6.19 retains 67 units, 42 historical findings, 6 bundles and 29
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

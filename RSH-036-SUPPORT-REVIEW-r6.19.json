@@ -1,0 +1,83 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.19",
+  "date": "2026-09-09",
+  "base": "5dc27ac2f75c985fb85a2d2b235c0e5aa24bc6c2",
+  "finding": "AUD-29",
+  "status": "candidate_pending_remote_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.16",
+    "head": "79a67c6f21c6e517c659350b1ce48ae1525a4e21",
+    "tree": "a02eaafced9edc0c1127214eaf39df99fc935dc3",
+    "run_id": 34356869016,
+    "job_id": 102483660303,
+    "unit_passed": 1110,
+    "unit_failed": 0,
+    "not_unit_acceptance": true
+  },
+  "retained_r6_17_failure": {
+    "revision": "r6.17",
+    "run_id": 34385617080,
+    "job_id": 102580995300,
+    "cause": "google_chrome_apt_packages_gz_hash_sum_mismatch",
+    "not_product_failure": true,
+    "not_relabelled_success": true
+  },
+  "retained_r6_18_failure": {
+    "revision": "r6.18",
+    "head": "5dc27ac2f75c985fb85a2d2b235c0e5aa24bc6c2",
+    "tree": "3278c5ef62054025d5a29b49b24d2b3b494cd581",
+    "run_id": 34387082287,
+    "job_id": 102585948504,
+    "conclusion": "failure",
+    "failed_step": "Verify browser runtime failure recovery and minimap",
+    "chromium_install": "success",
+    "unit_tests": { "tests": 1142, "pass": 1142, "fail": 0, "cancelled": 0, "skipped": 0 },
+    "cause": "real_ramp_supports_protruded_through_drivable_surface",
+    "failedRamps": 8,
+    "piers": 176,
+    "maxProtrusion": 1.9346875033714142,
+    "required_ci_artifact_id": 10118315128,
+    "required_ci_artifact_sha256": "5c10b6eb4fbf12dcde41073852637d16b360f16700edac5249ba5882df62b31c",
+    "audit_source_artifact_id": 10118104812,
+    "audit_source_artifact_sha256": "9da17d7129dd901ef249ecdf7046e5e01b3a1ffd03c08150394f8e45070ff2be",
+    "not_relabelled_success": true
+  },
+  "defect": "offsetSupportPierFromRoute moved support XZ onto the carriageway edge but kept h = origin py - 0.95. Slope-aligned climbing ramps then had cylinder tops above the parent slab at the new XZ.",
+  "repair": "placeSupportPierOnRamp sets h from the ramp plane at the placed XZ minus slab thickness 0.95. A downhill offset that would make h <= 0 is scaled back so the pier is not dropped. Mesh and collider share the new top.",
+  "new_cases": {
+    "total": 7,
+    "source": "scripts/vehicle-envelope.test.mjs"
+  },
+  "local_browser": {
+    "ramp_surface": "3/3 passed",
+    "piers": 176,
+    "colliders": 722,
+    "checkpoints": 8,
+    "recipeSha256": "f8daeebcaa7ace85ef47f139212f868160cc4376b190817daec4bf55547752e2",
+    "maxProtrusion": 0,
+    "route_clearance": "5/5 passed",
+    "centerline_displaced": 0,
+    "lane_displaced": 0,
+    "underpass_displaced": 0
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4",
+    "3 immutable font qualifications",
+    "rendering performance",
+    "mesh and complete-race clearance"
+  ],
+  "no_freeze_or_acceptance": true
+}

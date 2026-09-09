@@ -1169,7 +1169,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "af0bf8cc75c41c4d36bd1cc5a208ca2f5217b86dcc48608ec5017fd48b2d47b8"
+      "sha256": "82355e72f38aeb6268d7623d58207d678ee17c42efd879e22c51f3b1aad06a26"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -1999,7 +1999,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "58b86ab8f7a78e30a0694c76de9e7771b624dda1e76d71bf6d023821993d8a39"
+      "sha256": "0aea525cde0d777dd88b48682361eef69559ae086863709e4922e14ae4424528"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2093,8 +2093,8 @@
     },
     {
       "path": "scripts/vehicle-envelope.test.mjs",
-      "bytes": 9801,
-      "sha256": "0674480a11b79432d1cb321af1497c9c4c3942e92eb8afb1d98aca5ef1823111"
+      "bytes": 13017,
+      "sha256": "5d756cebdae3112525d4f55e2fd3e1630b4c1d431ba1bfd28bd7794717ba6ddb"
     },
     {
       "path": "scripts/verify-toolchain.mjs",
@@ -2234,7 +2234,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "f43c73d4ab712d9fc260ec5623c1d59b03b1abc49fde90c25adb6d73238806a4"
+      "sha256": "e181701531d9acacf0887a21897ad25c74fadfa980cd3f2ad5f9e3c35cc88275"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -2333,8 +2333,8 @@
     },
     {
       "path": "src/game/collider-height.ts",
-      "bytes": 5860,
-      "sha256": "a29235954dc74a8408ceea54f7c7cbdc417ecde4b6c2e000d25a7ac267b96a07"
+      "bytes": 7454,
+      "sha256": "934747ab5c69127e90af5a457fa349a1a681682ecb692beab075848204359508"
     },
     {
       "path": "src/game/curb-assets.ts",
@@ -2953,8 +2953,8 @@
     },
     {
       "path": "src/game/world-builders/tracks/ayalon.ts",
-      "bytes": 28840,
-      "sha256": "adf0042b24cb02249e22c17df8104b262b79a2542996a3738e6e954fc0e487b2"
+      "bytes": 28973,
+      "sha256": "f7dab8c8c9686e32f8ee26e8ca2910b266ab6f7f35a87494de5a604659c97c2c"
     },
     {
       "path": "src/game/world-builders/tracks/batyam.ts",
@@ -10439,5 +10439,5 @@
     "Package sources are identified by package-lock integrity, not vendored or executed by this scanner.",
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance."
   ],
-  "digest_sha256": "1cb1a31032fa37b52ae4ad81b48d16d4326f849935e05f4389073130662fcc14"
+  "digest_sha256": "67c6a07e34d59247d36bc3c639addafb04980f4dc6a2ea3cf5435e29071f6846"
 }

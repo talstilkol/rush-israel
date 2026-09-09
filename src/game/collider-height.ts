@@ -102,12 +102,32 @@ export function circleExitDistance(
 
 /** Conservative cylinder footprint: widest pier radius + existing car padding. */
 export const PIER_MESH_RADIUS = 0.72;
+export const RAMP_SLAB_THICKNESS = 0.95;
 export function supportPierCollider(x: number, z: number, top: number): HeightCollider {
   if (![x, z, top].every(Number.isFinite) || top <= 0) {
     throw new Error("Invalid support-pier dimensions");
   }
   return { x, z, r: PIER_MESH_RADIUS + CAR_CONTACT_RADIUS, kind: "barrier",
     vertical: { min: 0, max: top }, role: "support-pier" };
+}
+
+export type RampPlane = {
+  x: number;
+  z: number;
+  sx: number;
+  sz: number;
+  len: number;
+  y0: number;
+  y1: number;
+};
+
+/** Driving-surface height of an Ayalon ramp slab at a world XZ. */
+export function rampPlaneY(x: number, z: number, ramp: RampPlane): number {
+  const { x: cx, z: cz, sx, sz, len, y0, y1 } = ramp;
+  if (![x, z, cx, cz, sx, sz, len, y0, y1].every(Number.isFinite) || len === 0) {
+    throw new Error("Invalid ramp plane");
+  }
+  return (y0 + y1) * 0.5 + ((x - cx) * sx + (z - cz) * sz) * (y1 - y0) / len;
 }
 
 /** Push a support off the driven carriageway. Count, radius and mesh pairing stay intact. */
@@ -136,6 +156,29 @@ export function offsetSupportPierFromRoute(
   const sign = lateral < 0 ? -1 : 1;
   const extra = clearance - Math.abs(lateral);
   return { x: x + s.rx * sign * extra, z: z + s.rz * sign * extra };
+}
+
+/**
+ * Carriageway offset plus a top that meets the slab underside at the new XZ.
+ * A full offset that would bury the cylinder is scaled back so the pier remains.
+ */
+export function placeSupportPierOnRamp(
+  x: number,
+  z: number,
+  ramp: RampPlane,
+  samples: { x: number; z: number; rx: number; rz: number }[],
+  width: number,
+): { x: number; z: number; h: number } {
+  const originH = rampPlaneY(x, z, ramp) - RAMP_SLAB_THICKNESS;
+  const full = offsetSupportPierFromRoute(x, z, samples, width);
+  const fullH = rampPlaneY(full.x, full.z, ramp) - RAMP_SLAB_THICKNESS;
+  if (fullH > 0) return { x: full.x, z: full.z, h: fullH };
+  if (originH <= 0) return { x, z, h: originH };
+  const span = fullH - originH;
+  const t = span === 0 ? 0 : (1e-6 - originH) / span;
+  const clampedT = Number.isFinite(t) ? Math.min(1, Math.max(0, t)) : 0;
+  const placed = { x: x + clampedT * (full.x - x), z: z + clampedT * (full.z - z) };
+  return { ...placed, h: rampPlaneY(placed.x, placed.z, ramp) - RAMP_SLAB_THICKNESS };
 }
 
 export function overheadSlabCollider(

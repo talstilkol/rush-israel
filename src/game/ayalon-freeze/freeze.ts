@@ -17,7 +17,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/pixel-golden.mjs": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
   "scripts/ayalon-hash.mjs": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
   "src/game/tracks/ayalon.ts": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
-  "src/game/world-builders/tracks/ayalon.ts": "adf0042b24cb02249e22c17df8104b262b79a2542996a3738e6e954fc0e487b2",
+  "src/game/world-builders/tracks/ayalon.ts": "f7dab8c8c9686e32f8ee26e8ca2910b266ab6f7f35a87494de5a604659c97c2c",
   "src/game/world.ts": "f0154d23276f52f68402d1b3758612f596946f4684974d9c4a4fd70276eac5ba",
   "src/game/ayalon-lock/geometry.ts": "b5be3e5838fb99449fb7d5a5684177e8626a7a283c54275461fd45faf42a94f7",
   "src/game/ayalon-lock/index.ts": "878d7834dfac9c7756b0929eea515f03ff23b2f8500a63fd49f1fb369c4e3ae6",
@@ -95,7 +95,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/airborne-smoke.mjs": "fa321116c26412d51f89c8d3178d97182f7091a54a92f35375f0c320ae32c636",
   "scripts/airborne-clock.mjs": "fecc996075b4238a926387dc736bdcdd8208af3037623fa55e06aef219bb42fe",
   "scripts/collider-centre-browser.mjs": "7331bdddb064434cff6934ad42437bd1009d4699ff7b3d6057ecca3f496dc3b1",
-  "src/game/collider-height.ts": "a29235954dc74a8408ceea54f7c7cbdc417ecde4b6c2e000d25a7ac267b96a07",
+  "src/game/collider-height.ts": "934747ab5c69127e90af5a457fa349a1a681682ecb692beab075848204359508",
   "scripts/pier-collision-browser.mjs": "256d9ffb20d5e95b8511effce86c7e1ae1f4580fdccc2ada3883c1a03955c8b8"
 } as const;
 

@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { offsetSupportPierFromRoute, supportPierCollider } from "../../collider-height";
+import { placeSupportPierOnRamp, supportPierCollider } from "../../collider-height";
 import { fitRampSlab } from "../../ramp-surface";
 import { nearestIndex } from "../../spline";
 import { tlv } from "../../tracks";
@@ -264,15 +264,21 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
         const px = x + sx * t * len;
         const pz = z + sz * t * len;
         const py = (y0 + y12) * 0.5 + (y12 - y0) * t;
-        // A support must end at the slab underside, never protrude through a low ramp.
-        const h = py - 0.95;
-        if (h <= 0) continue;
-        const placed = offsetSupportPierFromRoute(px, pz, built.samples, built.width);
-        const pier = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.72, h, 8), conc);
-        pier.position.set(placed.x, h * 0.5, placed.z);
+        // A support must end at the slab underside at its placed XZ, never the origin height.
+        if (py - 0.95 <= 0) continue;
+        const placed = placeSupportPierOnRamp(
+          px,
+          pz,
+          { x, z, sx, sz, len, y0, y1: y12 },
+          built.samples,
+          built.width,
+        );
+        if (placed.h <= 0) continue;
+        const pier = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.72, placed.h, 8), conc);
+        pier.position.set(placed.x, placed.h * 0.5, placed.z);
         pier.castShadow = true;
         add(pier);
-        colliders.push(supportPierCollider(placed.x, placed.z, h));
+        colliders.push(supportPierCollider(placed.x, placed.z, placed.h));
       }
       const rx = sz;
       const rz = -sx;

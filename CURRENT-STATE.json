@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-09T18:00:00Z",
+  "generated_at": "2026-09-09T18:30:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,18 +2001,18 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.18.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.19.md",
     "local_unit_tests": {
       "status": "complete_local_passed_remote_pending",
-      "focused_passed": 6,
+      "focused_passed": 7,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "total": 1142,
-      "passed": 1142,
+      "total": 1149,
+      "passed": 1149,
       "failed": 0,
       "skipped": 0,
-      "new_unique_cases": 6
+      "new_unique_cases": 7
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
     "previous_exact_head_ci": {
@@ -2048,6 +2048,25 @@
       "not_product_failure": true,
       "not_relabelled_success": true
     },
+    "retained_r6_18_failure": {
+      "revision": "r6.18",
+      "head": "5dc27ac2f75c985fb85a2d2b235c0e5aa24bc6c2",
+      "tree": "3278c5ef62054025d5a29b49b24d2b3b494cd581",
+      "run_id": 34387082287,
+      "job_id": 102585948504,
+      "conclusion": "failure",
+      "failed_step": "Verify browser runtime failure recovery and minimap",
+      "chromium_install": "success",
+      "unit_passed": 1142,
+      "cause": "real_ramp_supports_protruded_through_drivable_surface",
+      "failedRamps": 8,
+      "maxProtrusion": 1.9346875033714142,
+      "required_ci_artifact_id": 10118315128,
+      "required_ci_artifact_sha256": "5c10b6eb4fbf12dcde41073852637d16b360f16700edac5249ba5882df62b31c",
+      "audit_source_artifact_id": 10118104812,
+      "audit_source_artifact_sha256": "9da17d7129dd901ef249ecdf7046e5e01b3a1ffd03c08150394f8e45070ff2be",
+      "not_relabelled_success": true
+    },
     "resource_repairs": "r6.5_eight_families_verified_in_exact_head_run33995840557_retained",
     "scene_visibility": "r6.4_actual_browser_scene_gate_passed_retained",
     "water_clock_repair": "129_transitions_verified_golden0of4_passed",
@@ -2060,7 +2079,7 @@
       "diagnostic_run": 33992134755
     },
     "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json",
-    "new_candidate_validation": "pending_r6_18_preparation_and_exact_published_head_CI",
+    "new_candidate_validation": "pending_r6_19_preparation_and_exact_published_head_CI",
     "generated_dependency_inventory": "AYALON-DEPENDENCY-CLOSURE.json",
     "safe_capture_output": "both_commands_no_automatic_baseline_writes",
     "ci_action_pins": "three_previously_verified_pins_unchanged",
@@ -2185,7 +2204,8 @@
     "pier_collision_review": "RSH-036-PIER-REVIEW-r6.15.json",
     "envelope_review": "RSH-036-ENVELOPE-REVIEW-r6.16.json",
     "route_review": "RSH-036-ROUTE-REVIEW-r6.17.json",
-    "ci_install_review": "RSH-036-CI-REVIEW-r6.18.json"
+    "ci_install_review": "RSH-036-CI-REVIEW-r6.18.json",
+    "support_review": "RSH-036-SUPPORT-REVIEW-r6.19.json"
   },
   "historical_rsh035_constraints": [
     "The plain next instruction authorized exactly RSH-035 and is consumed on its validated merge.",

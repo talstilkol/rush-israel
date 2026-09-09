@@ -629,3 +629,14 @@ immutable-font gates remain mandatory. Do not merge, replace PNGs, change
 thresholds or activate RSH-037.
 Details: RSH-036-CI-REVIEW-r6.18.json and RSH-036-RUNTIME-REPAIR-r6.18.md.
 
+## r6.19 — 9 September 2026: offset supports meet the slab underside
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-28 Chromium
+install succeeded on exact-head 34387082287 (1,142 units) and is retained as
+an overall FAILURE: 8 ramp supports protruded (max 1.9346875033714142). AUD-29
+sets pier height from the slab at the placed XZ. 176 piers, 546 legacy
+colliders, 50 ramps and 8 checkpoints stay counted. Complete suite, original
+golden and immutable-font gates remain mandatory. Do not merge, replace PNGs,
+change thresholds or activate RSH-037.
+Details: RSH-036-SUPPORT-REVIEW-r6.19.json and RSH-036-RUNTIME-REPAIR-r6.19.md.
+

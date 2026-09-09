@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.18",
+  "revision": "r6.19",
   "date": "2026-09-09",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "ec9fba559370560fc1c3a957b6c2d6fecf79f99f",
+  "source_pr_head": "5dc27ac2f75c985fb85a2d2b235c0e5aa24bc6c2",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 28,
+    "audit_items": 29,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -358,7 +358,8 @@
         "AUD-25",
         "AUD-26",
         "AUD-27",
-        "AUD-28"
+        "AUD-28",
+        "AUD-29"
       ]
     },
     {
@@ -1222,9 +1223,22 @@
       "legacy_findings": [],
       "title": "required-ci Chromium --with-deps aborted on Google Chrome apt hash-sum mismatch before product tests",
       "acceptance": "The retained 34385617080 Google Chrome apt hash-sum mismatch must fall back to a Playwright CDN Chromium install and still fail ordinary browser-download errors. Workflow must not keep a bare --with-deps one-liner or continue-on-error. Action pins, freeze path count 85, rest-pose 1.6, 1.05 radius, physicsVersion7 and original golden gates stay unchanged.",
-      "status": "repair_candidate_pending_exact_head_validation",
+      "status": "verified_install_on_r6_18_exact_head_overall_ci_failed_at_ramp_supports_retained",
       "bundle": "CR-04",
       "evidence": "RSH-036-CI-REVIEW-r6.18.json"
+    },
+    {
+      "id": "AUD-29",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Carriageway-offset supports kept origin slab height and protruded through climbing ramps",
+      "acceptance": "Keeping origin py-0.95 after a slope-aligned offset must fail; placeSupportPierOnRamp must meet the slab underside at the placed XZ and scale back a burying offset instead of dropping the pier. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7 and original golden gates. Arcade box is not mesh or complete-race qualification.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-04",
+      "evidence": "RSH-036-SUPPORT-REVIEW-r6.19.json"
     }
   ],
   "legacy_findings": [
@@ -1615,7 +1629,8 @@
         "AUD-25",
         "AUD-26",
         "AUD-27",
-        "AUD-28"
+        "AUD-28",
+        "AUD-29"
       ]
     },
     {
@@ -1655,9 +1670,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.18",
-    "base_head": "ec9fba559370560fc1c3a957b6c2d6fecf79f99f",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.18.md",
+    "revision": "r6.19",
+    "base_head": "5dc27ac2f75c985fb85a2d2b235c0e5aa24bc6c2",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.19.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.16",
@@ -1683,10 +1698,21 @@
       "cause": "google_chrome_apt_packages_gz_hash_sum_mismatch",
       "not_product_failure": true
     },
+    "retained_r6_18_failure": {
+      "run_id": 34387082287,
+      "job_id": 102585948504,
+      "head": "5dc27ac2f75c985fb85a2d2b235c0e5aa24bc6c2",
+      "cause": "real_ramp_supports_protruded_through_drivable_surface",
+      "failedRamps": 8,
+      "maxProtrusion": 1.9346875033714142,
+      "chromium_install": "success",
+      "unit_passed": 1142,
+      "not_relabelled_success": true
+    },
     "normal_ci": "pending_exact_published_head_validation",
     "golden": "r6.15 original0/4; unchanged images/thresholds to be rerun",
     "dependency_closure": "3 mutable font references still unqualified",
-    "clearance": "r6.17 sampled whole-route arcade envelope retained; r6.18 Chromium install retry",
+    "clearance": "r6.17 sampled whole-route arcade envelope retained; r6.19 slab-underside support height",
     "record_policy": "physicsVersion7 frozen fixture; v6 rows drop; conversion remains forbidden"
   },
   "r6_9_diagnostic_checkpoint": {

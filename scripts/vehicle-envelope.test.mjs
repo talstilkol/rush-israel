@@ -24,6 +24,7 @@ const {
   vehicleEnvelope, overlapsColliderHeight, colliderContactKind, circleExitDistance,
   supportPierCollider, overheadSlabCollider, preserveColliderAtSpawn, CAR_CONTACT_HEIGHT,
   UPRIGHT_ENVELOPE, offsetSupportPierFromRoute, PIER_MESH_RADIUS, CAR_CONTACT_RADIUS,
+  placeSupportPierOnRamp, rampPlaneY, RAMP_SLAB_THICKNESS,
 } = await import(compile(fromRoot('src/game/collider-height.ts')));
 
 const close = (a, b, eps = 1e-9) => assert.ok(Math.abs(a - b) <= eps, `${a} != ${b}`);
@@ -207,4 +208,60 @@ test('a support already outside the carriageway keeps its coordinates', () => {
 test('malformed route samples cannot invent a new pier location', () => {
   assert.deepEqual(offsetSupportPierFromRoute(3, 4, [], 28), { x: 3, z: 4 });
   assert.deepEqual(offsetSupportPierFromRoute(3, 4, straight, 0), { x: 3, z: 4 });
+});
+
+const climb = { x: 5.25, z: 0, sx: 1, sz: 0, len: 32, y0: 0.35, y1: 9.4 };
+const climbSamples = Array.from({ length: 21 }, (_, i) => ({ x: 0, z: (i - 10) * 10, rx: 1, rz: 0 }));
+function oldOffsetHeight(px, pz, ramp, samples, width) {
+  const py = rampPlaneY(px, pz, ramp);
+  const placed = offsetSupportPierFromRoute(px, pz, samples, width);
+  return { ...placed, h: py - RAMP_SLAB_THICKNESS, surface: rampPlaneY(placed.x, placed.z, ramp) };
+}
+test('keeping the origin slab height after a slope-aligned offset protrudes through the deck', () => {
+  const px = climb.x + climb.sx * -0.375 * climb.len;
+  const stale = oldOffsetHeight(px, 0, climb, climbSamples, 28);
+  const protrusion = stale.h - stale.surface;
+  assert.ok(protrusion > 1.5, protrusion);
+  assert.ok(stale.h > 0);
+});
+test('placeSupportPierOnRamp meets the slab underside after a slope-aligned offset', () => {
+  const px = climb.x + climb.sx * -0.375 * climb.len;
+  const placed = placeSupportPierOnRamp(px, 0, climb, climbSamples, 28);
+  close(placed.h + RAMP_SLAB_THICKNESS, rampPlaneY(placed.x, placed.z, climb));
+  assert.ok(placed.h > 0);
+  assert.ok(placed.h - rampPlaneY(placed.x, placed.z, climb) < 0);
+  const collider = supportPierCollider(placed.x, placed.z, placed.h);
+  close(collider.vertical.max, placed.h);
+});
+test('a downhill offset that would bury the cylinder is scaled back instead of dropped', () => {
+  const px = climb.x + climb.sx * -0.375 * climb.len;
+  const stale = oldOffsetHeight(px, 0, climb, climbSamples, 28);
+  const placed = placeSupportPierOnRamp(px, 0, climb, climbSamples, 28);
+  assert.ok(stale.h - stale.surface > 0);
+  assert.ok(placed.h > 0);
+  assert.ok(placed.h - rampPlaneY(placed.x, placed.z, climb) < 0);
+  assert.notEqual(placed.x, px);
+});
+test('a support already outside the carriageway keeps coordinates and the local underside height', () => {
+  const placed = placeSupportPierOnRamp(20, 0, { x: 20, z: 0, sx: 0, sz: 1, len: 40, y0: 9.4, y1: 9.4 }, climbSamples, 28);
+  close(placed.x, 20); close(placed.z, 0);
+  close(placed.h, 9.4 - RAMP_SLAB_THICKNESS);
+});
+test('a tangent-aligned climbing support still leaves the driving line', () => {
+  const ramp = { x: 0, z: 0, sx: 0, sz: 1, len: 84, y0: 0.6, y1: 7.2 };
+  const placed = placeSupportPierOnRamp(0, 0, ramp, climbSamples, 28);
+  close(placed.x, 14 + PIER_MESH_RADIUS + CAR_CONTACT_RADIUS);
+  close(placed.h + RAMP_SLAB_THICKNESS, rampPlaneY(placed.x, placed.z, ramp));
+  assert.ok(placed.h > 0);
+});
+test('malformed ramp planes cannot invent a support height', () => {
+  const ramp = { x: 0, z: 0, sx: 1, sz: 0, len: 32, y0: 0.35, y1: 9.4 };
+  assert.throws(() => rampPlaneY(NaN, 0, ramp), /ramp plane/);
+  assert.throws(() => placeSupportPierOnRamp(0, 0, { ...ramp, len: 0 }, climbSamples, 28), /ramp plane/);
+});
+test('Ayalon builder places support piers under the offset slab, not the origin height', () => {
+  const src = readFileSync(fromRoot('src', 'game', 'world-builders', 'tracks', 'ayalon.ts'), 'utf8');
+  assert.match(src, /placeSupportPierOnRamp/);
+  assert.doesNotMatch(src, /const h = py - 0\.95/);
+  assert.doesNotMatch(src, /offsetSupportPierFromRoute\(/);
 });

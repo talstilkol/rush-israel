@@ -41,7 +41,7 @@
       "scripts/pixel-golden.mjs": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
       "scripts/ayalon-hash.mjs": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
       "src/game/tracks/ayalon.ts": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
-      "src/game/world-builders/tracks/ayalon.ts": "adf0042b24cb02249e22c17df8104b262b79a2542996a3738e6e954fc0e487b2",
+      "src/game/world-builders/tracks/ayalon.ts": "f7dab8c8c9686e32f8ee26e8ca2910b266ab6f7f35a87494de5a604659c97c2c",
       "src/game/world.ts": "f0154d23276f52f68402d1b3758612f596946f4684974d9c4a4fd70276eac5ba",
       "src/game/ayalon-lock/geometry.ts": "b5be3e5838fb99449fb7d5a5684177e8626a7a283c54275461fd45faf42a94f7",
       "src/game/ayalon-lock/index.ts": "878d7834dfac9c7756b0929eea515f03ff23b2f8500a63fd49f1fb369c4e3ae6",
@@ -119,10 +119,10 @@
       "scripts/airborne-smoke.mjs": "fa321116c26412d51f89c8d3178d97182f7091a54a92f35375f0c320ae32c636",
       "scripts/airborne-clock.mjs": "fecc996075b4238a926387dc736bdcdd8208af3037623fa55e06aef219bb42fe",
       "scripts/collider-centre-browser.mjs": "7331bdddb064434cff6934ad42437bd1009d4699ff7b3d6057ecca3f496dc3b1",
-      "src/game/collider-height.ts": "a29235954dc74a8408ceea54f7c7cbdc417ecde4b6c2e000d25a7ac267b96a07",
+      "src/game/collider-height.ts": "934747ab5c69127e90af5a457fa349a1a681682ecb692beab075848204359508",
       "scripts/pier-collision-browser.mjs": "256d9ffb20d5e95b8511effce86c7e1ae1f4580fdccc2ada3883c1a03955c8b8"
     },
-    "freeze_digest_sha256": "2346779f107cd710f99e2c313fa90725acbd7c3f8ab453961b0ae408d824e3c9"
+    "freeze_digest_sha256": "512c5e89f0ac678c3375eb4303bde7edd6dbbd3e4f58c15f29228132abc2c6c1"
   },
   "lock_module": {
     "directory": "src/game/ayalon-freeze",
@@ -153,7 +153,7 @@
     "vehicle_envelope_behavior_changed": true
   },
   "identities": {
-    "freeze_source_sha256": "f43c73d4ab712d9fc260ec5623c1d59b03b1abc49fde90c25adb6d73238806a4",
+    "freeze_source_sha256": "e181701531d9acacf0887a21897ad25c74fadfa980cd3f2ad5f9e3c35cc88275",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
     "contract_sha256": "03727dd56eb2c6808ace47c372ab901dc96a22445d8a71fa09bb87f92d27e9d5",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
@@ -162,7 +162,7 @@
     "pixel_golden_sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
     "checker_test_sha256": "28fc007c15b971cecb21dee3ff5cac13d87a7cd61d761a6f1c6a1d125418e5a6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "2346779f107cd710f99e2c313fa90725acbd7c3f8ab453961b0ae408d824e3c9",
+    "freeze_digest_sha256": "512c5e89f0ac678c3375eb4303bde7edd6dbbd3e4f58c15f29228132abc2c6c1",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
