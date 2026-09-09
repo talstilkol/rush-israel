@@ -1,4 +1,4 @@
-name: rsh036-r615-prepare
+name: rsh036-r615-spawn-revalidated
 on:
   push:
     branches: [agent/rsh-036-r615-validation-20260909]
@@ -24,7 +24,9 @@ jobs:
           from pathlib import Path
           raw=lzma.decompress(b''.join(Path(f'.r615-transfer-{i}').read_bytes() for i in range(2)))
           assert hashlib.sha256(raw).hexdigest()=='801969e4bb362f90ede0bfdfa44cb408b7bd5d56b27ccf1160b3343cf840abb4'
-          d=json.loads(raw);Path(os.environ['RUNNER_TEMP'],'r615.json').write_bytes(raw)
+          delta=lzma.decompress(Path('.r615-spawn').read_bytes())
+          assert hashlib.sha256(delta).hexdigest()=='b9caa064bd1d7ef79ac5478436d105f8acd8799a66d5e28d917bfa4cf3b064e3'
+          d=json.loads(raw);Path(os.environ['RUNNER_TEMP'],'r615.json').write_bytes(raw);Path(os.environ['RUNNER_TEMP'],'spawn.json').write_bytes(delta)
           subprocess.run(['git','checkout','--detach',d['base']],check=True)
           assert subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip()==d['base_tree']
           Path('artifacts').mkdir(exist_ok=True)
@@ -39,7 +41,7 @@ jobs:
       - run: npm run toolchain:verify
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - name: Same41 actual-car tests must reproduce21 height failures on old source
+      - name: Same41 actual-car tests reproduce21 original height failures
         run: |
           python - <<'PY'
           import subprocess,re
@@ -50,36 +52,39 @@ jobs:
             assert re.search(r'^# '+field+r' '+str(count)+r'$',r.stdout.decode(),re.M)
           subprocess.run(['git','diff','--exit-code','--','src','public'],check=True)
           PY
-      - name: Actual old Ayalon must expose176 meshes without bounded pier colliders
+      - name: Capture unchanged old Ayalon catalogue and missing structural contacts
         env:
           PIER_OUTPUT: artifacts/pier-legacy
         run: |
           set -o pipefail
           node scripts/run-with-server.mjs -- node scripts/pier-collision-browser.mjs --expect-missing 2>&1 | tee artifacts/pier-legacy.log
-      - name: Apply byte-verified edits and regenerate deterministic authorities
+      - name: Apply both byte-verified changesets and assert exact final tree
         run: |
           python - <<'PY'
           import json,hashlib,os,subprocess
           from pathlib import Path
-          d=json.loads(Path(os.environ['RUNNER_TEMP'],'r615.json').read_text())
+          temp=Path(os.environ['RUNNER_TEMP']);d=json.loads((temp/'r615.json').read_text());delta=json.loads((temp/'spawn.json').read_text())
           for name in ['scripts/pier-height.test.mjs','scripts/pier-collision-browser.mjs','src/game/collider-height.ts']:Path(name).unlink()
-          for name,row in d['files'].items():
-            assert not name.startswith(('.github/','/','.r615')) and '..' not in Path(name).parts
-            p=Path(name)
-            if row['old'] is None:
-              assert not p.exists();text=row['content']
-            else:
-              raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==row['old']
-              lines=raw.decode().splitlines(keepends=True)
-              for a,b,replacement in reversed(row['edits']):lines[a:b]=[replacement]
-              text=''.join(lines)
-            assert hashlib.sha256(text.encode()).hexdigest()==row['new']
-            p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
-          generator=Path(os.environ['RUNNER_TEMP'],'generate-r615.py');generator.write_text(d['generator'])
-          subprocess.run(['python',str(generator)],check=True)
-          assert subprocess.check_output(['git','write-tree'],text=True).strip()==d['tree']
-          subprocess.run(['git','diff','--exit-code'],check=True)
-          Path('artifacts/candidate-identity.json').write_text(json.dumps({'base':d['base'],'tree':d['tree'],'changed':d['changed']}))
+          def apply(bundle):
+            for name,row in bundle['files'].items():
+              assert not name.startswith(('.github/','/','.r615')) and '..' not in Path(name).parts
+              p=Path(name)
+              if row['old'] is None:
+                assert not p.exists();text=row['content']
+              else:
+                raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==row['old']
+                lines=raw.decode().splitlines(keepends=True)
+                for a,b,replacement in reversed(row['edits']):lines[a:b]=[replacement]
+                text=''.join(lines)
+              assert hashlib.sha256(text.encode()).hexdigest()==row['new']
+              p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+            generator=temp/'generate-r615.py';generator.write_text(bundle['generator'])
+            subprocess.run(['python',str(generator)],check=True)
+            assert subprocess.check_output(['git','write-tree'],text=True).strip()==bundle['tree']
+            subprocess.run(['git','diff','--exit-code'],check=True)
+          apply(d);assert d['tree']==delta['from_tree'];apply(delta)
+          d['tree']=delta['tree'];d['changed']=delta['changed'];(temp/'r615.json').write_text(json.dumps(d))
+          Path('artifacts/candidate-identity.json').write_text(json.dumps({'base':d['base'],'tree':d['tree'],'changed':d['changed'],'prior_failed_run':34323947483}))
           PY
       - name: Verify locked inventory and governance without accepting drift
         run: |
@@ -96,7 +101,7 @@ jobs:
         run: |
           set -o pipefail
           npm run lint 2>&1 | tee artifacts/lint.log
-      - name: Actual bounded pier contacts and exact preservation of old catalogue
+      - name: Actual176 pier contacts and starting grid with retained old catalogue
         env:
           PIER_OUTPUT: artifacts/pier-repaired
         run: |
@@ -117,7 +122,7 @@ jobs:
         run: |
           set -o pipefail
           npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
-      - name: All actual runtime regressions including bounded pier contacts
+      - name: All actual runtime regressions including pier and grid contacts
         run: |
           set -o pipefail
           node scripts/run-with-server.mjs -- node scripts/runtime-recovery-smoke.mjs 2>&1 | tee artifacts/runtime-recovery.log
@@ -156,7 +161,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: rsh036-r615-preparation-${{ github.run_id }}-${{ github.run_attempt }}
+          name: rsh036-r615-revalidated-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             artifacts/**
             golden-tmp/**
