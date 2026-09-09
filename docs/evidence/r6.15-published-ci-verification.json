@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-published-candidate-audit",
+  "verifiedOn": "2026-09-09",
+  "repository": "talstilkol/rush-israel",
+  "productCommit": "ec79dbefaef2de415c252ef0ce1cd1b76c634df3",
+  "productTree": "2dddd463ceca148ee7ac0f3817ba052bcacb0ea5",
+  "canonicalMain": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+  "triggerSyntheticMerge": "a4181335e5aea91ee2dbf6978d5aef0718960927",
+  "run": {"id": "34325442324", "attempt": 1, "jobId": "102381514184", "status": "completed", "conclusion": "success", "completedAt": "2026-09-09T07:53:39Z"},
+  "archives": [
+    {"id": "10093552386", "name": "audit-source-34325442324-1", "bytes": 43430617, "sha256": "89a40093bd2c2fe03742bff98623bb8017fa2b9d4ff3546ee911839205ffaea9", "downloaded": true, "digestMatches": true, "zipCrcPassed": true},
+    {"id": "10093836389", "name": "required-ci-34325442324-1", "bytes": 2425636, "sha256": "1b91d082aca5e65111d70d15f1c9de4b85f8debbd808a5b419befa12caf7e8e5", "downloaded": true, "digestMatches": true, "zipCrcPassed": true}
+  ],
+  "sourceVerification": {"actualCheckoutMatchesProductCommit": true, "trackedBlobsAndSizesChecked": 786, "missingFiles": 0, "unexpectedFiles": 0, "blobOrSizeMismatches": 0, "treeReconstructedUsingManifestGitModes": true, "rootTreeMatches": true, "innerTarDigestMatchesManifest": true},
+  "finalCiEvidence": {
+    "summary": "artifacts/ci-summary.json",
+    "tap": "artifacts/unit-tests.tap",
+    "unitTests": {"tests": 1091, "passed": 1091, "failed": 0, "cancelled": 0, "skipped": 0},
+    "lint": {"path": "artifacts/lint.log", "warnings": 123, "errors": 0},
+    "capturedFilesPresentWithMatchingByteLengths": 25,
+    "capturedFileFailures": 0,
+    "fileIntegrityScope": "Individual captured-file lengths checked against ci-summary; the verified outer results archive digest covers the file contents. No claim that ci-summary contains individual file SHA-256 values.",
+    "countsReadFromFinalArtifacts": true,
+    "runtimeCasesAreNotAdditionalUnitTests": true,
+    "originalGoldenComparisonPerformedByThisNormalCi": false
+  },
+  "retainedPreparationGolden": {"runId": "34324754353", "jobId": "102379343662", "artifactId": "10093493549", "passed": 0, "failed": 4, "mismatchingPixels": {"g01": 631997, "g05": 530014, "g07": 345134, "g08": 661669}, "pixelsPerImage": 1024000, "width": 1280, "height": 800, "pixelThreshold": 0.12, "failureFraction": 0.08, "referencesChanged": false, "source": "Retained preparation evidence; not relabelled as a final-CI visual comparison."},
+  "helperCleanup": {
+    "branch": "agent/rsh-036-r615-validation-20260909",
+    "before": "3e68a18e993c9a23361740eea3e9c100aab2eeda",
+    "after": "c93438d21aca7ef5a8bc90467a2b6545849fde83",
+    "normalCommits": ["63a3d278b1d7b1a12906d4aec9e953f830310ee4b", "b682f21ea987b53ddb60d82cb129c30984597aea", "4d32c01e760f4103813379e10c705bebd184377d", "c93438d21aca7ef5a8bc90467a2b6545849fde83"],
+    "removedPaths": [".github/workflows/rsh036-r615-prepare.yml", ".r615-spawn", ".r615-transfer-0", ".r615-transfer-1"],
+    "comparison": {"added": 0, "modified": 0, "removed": 4, "renamed": 0},
+    "branchRetained": true,
+    "historyRewritten": false
+  },
+  "acceptance": {"activeUnit": "RSH-036", "activeUnitAccepted": false, "acceptedUnits": 35, "totalUnits": 67, "remainingUnits": 32, "nextUnitActivated": false, "freezeGranted": false, "mergeAuthorized": false, "releaseGatesOpen": 13, "unverifiedAssetLicences": 66},
+  "scope": "Closes downloaded-artifact verification and consumed helper-file cleanup only. Applies to the named r6.15 product commit, not automatically to this report's commit or later heads. No runtime repair, new local test run, record migration, font distribution, reference update, freeze or later-unit work is claimed."
+}
