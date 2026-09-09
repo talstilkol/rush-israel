@@ -331,67 +331,13 @@
     },
     ".github/workflows/required-ci.yml": {
       "previous_sha256": "78c15cab537515fa3225fc35c49ba058a3ddc5b4dd81c2b632f0af24ec67827f",
-      "current_sha256": "82041e12b38c12ea4ffcb6802db69f362079dcee31ab17bbd092e8fc40011e30",
+      "current_sha256": "a40aa920a89f5dbc9b258b1f1025f9a22f14cb5933c52c92129726342d11d6cf",
       "reverse_edits": [
         {
-          "start_line": 27,
-          "end_line": 28,
-          "current_segment_sha256": "d8123f1aa5d3b3bc442657d6283ba96aae12254b0e27e48b8c4cad346c8d7054",
-          "previous_text": "        uses: actions/checkout@v4\n"
-        },
-        {
-          "start_line": 40,
-          "end_line": 41,
-          "current_segment_sha256": "04a479e9cb6d2dcff7f7535fe9b72c7ab3de2db74b0d532c3df5160d88859f9b",
-          "previous_text": "        uses: actions/upload-artifact@v4\n"
-        },
-        {
-          "start_line": 53,
-          "end_line": 54,
-          "current_segment_sha256": "89114c7faefdd0977af3c866ebc1aca00003186ca9d162c85abc66ba0b9961c2",
-          "previous_text": "        uses: actions/setup-node@v4\n"
-        },
-        {
-          "start_line": 73,
-          "end_line": 79,
-          "current_segment_sha256": "e6c06e52801d389dc3e47890d9d67c42b3292588e300e3935598153ee50dc062",
-          "previous_text": ""
-        },
-        {
-          "start_line": 80,
-          "end_line": 84,
-          "current_segment_sha256": "b58de3ad5ce40e2df321cf28f92434da8345f375592a9cde08bd4a5f660e89ec",
-          "previous_text": "        run: npm run lint\n"
-        },
-        {
-          "start_line": 86,
-          "end_line": 90,
-          "current_segment_sha256": "c313cef266be53d73885083cf4508a95af452f5d39957010d8fb5b8a29879455",
-          "previous_text": "        run: npm test\n"
-        },
-        {
-          "start_line": 92,
-          "end_line": 108,
-          "current_segment_sha256": "5ec600424d144d2ff3f560187cc797ee1c0a2a55d3cf3eed84f0788c6b163b87",
-          "previous_text": "        run: npm run qa:ci\n"
-        },
-        {
-          "start_line": 110,
-          "end_line": 114,
-          "current_segment_sha256": "48905389f58b95d5ba0c63241a0c3e9aa3136e7568b1efbc67dc54b5d38fd565",
-          "previous_text": "        run: npm run build:dev\n"
-        },
-        {
-          "start_line": 119,
-          "end_line": 120,
-          "current_segment_sha256": "cb610ba82623a928f3404c59c420c3ac11fd37dd39e5a0d18fbc134bafe32135",
-          "previous_text": ""
-        },
-        {
-          "start_line": 124,
-          "end_line": 125,
-          "current_segment_sha256": "04a479e9cb6d2dcff7f7535fe9b72c7ab3de2db74b0d532c3df5160d88859f9b",
-          "previous_text": "        uses: actions/upload-artifact@v4\n"
+          "start_line": 0,
+          "end_line": 139,
+          "current_segment_sha256": "a40aa920a89f5dbc9b258b1f1025f9a22f14cb5933c52c92129726342d11d6cf",
+          "previous_text": "name: required-ci\n\non:\n  pull_request:\n    branches: [main]\n  push:\n    branches: [main]\n  workflow_dispatch:\n\npermissions:\n  contents: read\n\nconcurrency:\n  group: required-ci-${{ github.workflow }}-${{ github.ref }}\n  cancel-in-progress: true\n\njobs:\n  validate:\n    name: required-ci / validate\n    runs-on: ubuntu-24.04\n    timeout-minutes: 45\n    env:\n      CI: \"true\"\n      NODE_OPTIONS: \"--experimental-strip-types\"\n      PLAYWRIGHT_BROWSERS_PATH: \"0\"\n    steps:\n      - name: Check out exact revision\n        uses: actions/checkout@v4\n        with:\n          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}\n          persist-credentials: false\n\n      - name: Capture exact-head audit sources and complete tree inventory\n        run: |\n          git rev-parse HEAD > \"$RUNNER_TEMP/source-head.txt\"\n          git ls-tree -r -l HEAD > \"$RUNNER_TEMP/source-tree.txt\"\n          git archive --format=tar.gz --output=\"$RUNNER_TEMP/rush-audit-source.tar.gz\" HEAD -- . ':(exclude)**/*.woff' ':(exclude)**/*.woff2' ':(exclude)**/*.ttf' ':(exclude)**/*.otf' ':(exclude)**/*.eot'\n          sha256sum \"$RUNNER_TEMP/rush-audit-source.tar.gz\" > \"$RUNNER_TEMP/source-sha256.txt\"\n\n      - name: Upload audit sources before validation\n        uses: actions/upload-artifact@v4\n        with:\n          name: audit-source-${{ github.run_id }}-${{ github.run_attempt }}\n          path: |\n            ${{ runner.temp }}/rush-audit-source.tar.gz\n            ${{ runner.temp }}/source-head.txt\n            ${{ runner.temp }}/source-tree.txt\n            ${{ runner.temp }}/source-sha256.txt\n          if-no-files-found: error\n          retention-days: 14\n          compression-level: 0\n\n      - name: Set up pinned Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Install pinned npm\n        run: npm install --global npm@10.9.2\n\n      - name: Verify toolchain\n        run: npm run toolchain:verify\n\n      - name: Install dependencies from lockfile\n        run: npm ci\n\n      - name: Install Chromium for Playwright\n        run: npx playwright install --with-deps chromium\n\n      - name: Validate repository governance contract\n        run: node scripts/check-governance-contract.mjs\n\n      - name: Lint all tracked source\n        run: npm run lint\n\n      - name: Run complete unit-test suite\n        run: npm test\n\n      - name: Run self-starting QA gate\n        run: npm run qa:ci\n\n      - name: Build deterministic development bundle\n        run: npm run build:dev\n\n      - name: Write deterministic diagnostic summary\n        if: always()\n        env:\n          CI_JOB_STATUS: ${{ job.status }}\n        run: node scripts/write-ci-summary.mjs\n\n      - name: Upload required-CI diagnostics\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: required-ci-${{ github.run_id }}-${{ github.run_attempt }}\n          path: |\n            artifacts/**\n            screenshots/**\n            dist/**\n            .output/**\n            test-results/**\n            playwright-report/**\n            npm-debug.log*\n          if-no-files-found: warn\n          retention-days: 14\n          compression-level: 6\n          include-hidden-files: true\n"
         }
       ]
     },

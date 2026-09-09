@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.17",
+  "revision": "r6.18",
   "date": "2026-09-09",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "79a67c6f21c6e517c659350b1ce48ae1525a4e21",
+  "source_pr_head": "ec9fba559370560fc1c3a957b6c2d6fecf79f99f",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 27,
+    "audit_items": 28,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -357,7 +357,8 @@
         "AUD-24",
         "AUD-25",
         "AUD-26",
-        "AUD-27"
+        "AUD-27",
+        "AUD-28"
       ]
     },
     {
@@ -1208,9 +1209,22 @@
       "legacy_findings": [],
       "title": "Isolated envelope cases missed on-road supports and did not qualify live catalogue or stored v7 records",
       "acceptance": "Centreline, ±2.2 lane, four-car grid, 9.4 underpass and 1s drive probes must fail closed on lost inventory and pass on the live 722-collider catalogue after carriageway-pier offset. Frozen physicsVersion7 rows load without conversion; v6 rows drop. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius and original golden gates. Sampled arcade poses are not mesh or complete-race qualification.",
-      "status": "repair_candidate_pending_exact_head_validation",
+      "status": "published_r6_17_exact_head_ci_failed_at_chromium_install_retained",
       "bundle": "CR-04",
       "evidence": "RSH-036-ROUTE-REVIEW-r6.17.json"
+    },
+    {
+      "id": "AUD-28",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "required-ci Chromium --with-deps aborted on Google Chrome apt hash-sum mismatch before product tests",
+      "acceptance": "The retained 34385617080 Google Chrome apt hash-sum mismatch must fall back to a Playwright CDN Chromium install and still fail ordinary browser-download errors. Workflow must not keep a bare --with-deps one-liner or continue-on-error. Action pins, freeze path count 85, rest-pose 1.6, 1.05 radius, physicsVersion7 and original golden gates stay unchanged.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-04",
+      "evidence": "RSH-036-CI-REVIEW-r6.18.json"
     }
   ],
   "legacy_findings": [
@@ -1600,7 +1614,8 @@
         "AUD-24",
         "AUD-25",
         "AUD-26",
-        "AUD-27"
+        "AUD-27",
+        "AUD-28"
       ]
     },
     {
@@ -1640,9 +1655,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.17",
-    "base_head": "79a67c6f21c6e517c659350b1ce48ae1525a4e21",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.17.md",
+    "revision": "r6.18",
+    "base_head": "ec9fba559370560fc1c3a957b6c2d6fecf79f99f",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.18.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.16",
@@ -1661,10 +1676,17 @@
       "audit_source_artifact_sha256": "bcd4989dd38edc5e38043b45dcb1615c591f2fb8ebae3740caf56381e16a8d80",
       "not_unit_acceptance": true
     },
+    "retained_r6_17_failure": {
+      "run_id": 34385617080,
+      "job_id": 102580995300,
+      "head": "ec9fba559370560fc1c3a957b6c2d6fecf79f99f",
+      "cause": "google_chrome_apt_packages_gz_hash_sum_mismatch",
+      "not_product_failure": true
+    },
     "normal_ci": "pending_exact_published_head_validation",
     "golden": "r6.15 original0/4; unchanged images/thresholds to be rerun",
     "dependency_closure": "3 mutable font references still unqualified",
-    "clearance": "r6.17 sampled whole-route arcade envelope with carriageway-pier offset; not mesh or complete-race qualification",
+    "clearance": "r6.17 sampled whole-route arcade envelope retained; r6.18 Chromium install retry",
     "record_policy": "physicsVersion7 frozen fixture; v6 rows drop; conversion remains forbidden"
   },
   "r6_9_diagnostic_checkpoint": {

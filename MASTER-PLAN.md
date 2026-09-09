@@ -618,3 +618,14 @@ immutable-font gates remain mandatory. Do not merge, replace PNGs, change
 thresholds or activate RSH-037.
 Details: RSH-036-ROUTE-REVIEW-r6.17.json and RSH-036-RUNTIME-REPAIR-r6.17.md.
 
+## r6.18 — 9 September 2026: Chromium install without Google Chrome apt abort
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-28 records
+exact-head required CI 34385617080 failing at Playwright `--with-deps` on a
+Google Chrome apt hash-sum mismatch before any product test. The installer now
+falls back to the Playwright CDN binary. Ordinary install failures still fail.
+continue-on-error stays forbidden. Complete suite, original golden and
+immutable-font gates remain mandatory. Do not merge, replace PNGs, change
+thresholds or activate RSH-037.
+Details: RSH-036-CI-REVIEW-r6.18.json and RSH-036-RUNTIME-REPAIR-r6.18.md.
+

@@ -97,7 +97,7 @@
       "scripts/capture-golden.mjs": "cf8c9b1860b370982cf7695980e082545dce2bcd3c3e3d6d7133789d797c1983",
       "scripts/golden-output.mjs": "0c61721b4f52cebfc5f99039ea2c6194a0cded4c8075144f43425a4f4ae11fd6",
       "scripts/ci-action-pins.mjs": "bc5fbd670f451aef455c0f1b33e627b4e7079941c568d1e142b52d7af928dde7",
-      ".github/workflows/required-ci.yml": "82041e12b38c12ea4ffcb6802db69f362079dcee31ab17bbd092e8fc40011e30",
+      ".github/workflows/required-ci.yml": "a40aa920a89f5dbc9b258b1f1025f9a22f14cb5933c52c92129726342d11d6cf",
       "scripts/rush-head.mjs": "a1f031131c4fdb82a56ddd8a61d3538c5849ef1261ace35a502da0de6369f321",
       "scripts/grok-pwa-plugin.mjs": "86afd273fff692ea3ed059f4457f7e1945e198a03539ba828d0c9ece507fa491",
       "server/middleware/grok-pwa.ts": "184313168a63c66b4b0d809fa55c656b8ca4436775f6c0502bc9e9cfdfaf0e9f",
@@ -122,7 +122,7 @@
       "src/game/collider-height.ts": "a29235954dc74a8408ceea54f7c7cbdc417ecde4b6c2e000d25a7ac267b96a07",
       "scripts/pier-collision-browser.mjs": "256d9ffb20d5e95b8511effce86c7e1ae1f4580fdccc2ada3883c1a03955c8b8"
     },
-    "freeze_digest_sha256": "bd9e2281e501346cb55cbc153f8504249c4b81192c5e2b931b77a51822472f1f"
+    "freeze_digest_sha256": "2346779f107cd710f99e2c313fa90725acbd7c3f8ab453961b0ae408d824e3c9"
   },
   "lock_module": {
     "directory": "src/game/ayalon-freeze",
@@ -153,7 +153,7 @@
     "vehicle_envelope_behavior_changed": true
   },
   "identities": {
-    "freeze_source_sha256": "1ee77c919027166deba0d2a4cf802e58d8721ae639eaa43363aa42b9cad49b56",
+    "freeze_source_sha256": "f43c73d4ab712d9fc260ec5623c1d59b03b1abc49fde90c25adb6d73238806a4",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
     "contract_sha256": "03727dd56eb2c6808ace47c372ab901dc96a22445d8a71fa09bb87f92d27e9d5",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
@@ -162,7 +162,7 @@
     "pixel_golden_sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
     "checker_test_sha256": "28fc007c15b971cecb21dee3ff5cac13d87a7cd61d761a6f1c6a1d125418e5a6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "bd9e2281e501346cb55cbc153f8504249c4b81192c5e2b931b77a51822472f1f",
+    "freeze_digest_sha256": "2346779f107cd710f99e2c313fa90725acbd7c3f8ab453961b0ae408d824e3c9",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
@@ -184,7 +184,7 @@
     "status": "partial",
     "complete_dependency_closure": false,
     "runtime_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
-    "remaining_proof": "r6.17 sampled whole-route arcade envelope with carriageway-pier offset pending exact-head CI; 3 fonts and original golden remain; freeze_granted=false.",
+    "remaining_proof": "r6.18 Chromium install retry after Google Chrome apt hash-sum mismatch pending exact-head CI; 3 fonts and original golden remain; freeze_granted=false.",
     "generated_inventory": "AYALON-DEPENDENCY-CLOSURE.json"
   },
   "acceptance": {

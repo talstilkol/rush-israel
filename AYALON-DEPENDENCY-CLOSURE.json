@@ -28,8 +28,8 @@
     },
     {
       "path": ".github/workflows/required-ci.yml",
-      "bytes": 4789,
-      "sha256": "82041e12b38c12ea4ffcb6802db69f362079dcee31ab17bbd092e8fc40011e30"
+      "bytes": 4790,
+      "sha256": "a40aa920a89f5dbc9b258b1f1025f9a22f14cb5933c52c92129726342d11d6cf"
     },
     {
       "path": ".node-version",
@@ -1169,7 +1169,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "4dff759a88aee8fb1ad6350481f22a213a0b95338313e0ef3ae76da3f50c85c9"
+      "sha256": "af0bf8cc75c41c4d36bd1cc5a208ca2f5217b86dcc48608ec5017fd48b2d47b8"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -1717,6 +1717,16 @@
       "sha256": "5f8fe91f837db8d74d68db5e057948918bd9299e097700e0bd18f1cf5f94e586"
     },
     {
+      "path": "scripts/install-playwright-chromium.mjs",
+      "bytes": 2049,
+      "sha256": "58b2861471f9baa694af51ab39967af3fe3118143856ffe26a28d36753bc23cb"
+    },
+    {
+      "path": "scripts/install-playwright-chromium.test.mjs",
+      "bytes": 2844,
+      "sha256": "9e949836750c7f2637fbfd45d26c4e6c280a7eb4004397c235040c559ecf0b4b"
+    },
+    {
       "path": "scripts/ktx2-smoke.mjs",
       "bytes": 943,
       "sha256": "a8ba9f382f1295281d43b5742052319975d2d47f1b14425007755f17f81e9b42"
@@ -1989,7 +1999,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "fb2b22e5f32c12e78a1657ab33dd9751bc4452ad20de13158860dee0b69f1f96"
+      "sha256": "58b86ab8f7a78e30a0694c76de9e7771b624dda1e76d71bf6d023821993d8a39"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2224,7 +2234,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "1ee77c919027166deba0d2a4cf802e58d8721ae639eaa43363aa42b9cad49b56"
+      "sha256": "f43c73d4ab712d9fc260ec5623c1d59b03b1abc49fde90c25adb6d73238806a4"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10429,5 +10439,5 @@
     "Package sources are identified by package-lock integrity, not vendored or executed by this scanner.",
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance."
   ],
-  "digest_sha256": "9c48a0c9856119a55b25f67527e97829e3e1a992719392feca93c946c93bb118"
+  "digest_sha256": "1cb1a31032fa37b52ae4ad81b48d16d4326f849935e05f4389073130662fcc14"
 }

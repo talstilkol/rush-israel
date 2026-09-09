@@ -1,0 +1,71 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.18",
+  "date": "2026-09-09",
+  "base": "ec9fba559370560fc1c3a957b6c2d6fecf79f99f",
+  "finding": "AUD-28",
+  "status": "candidate_pending_remote_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.16",
+    "head": "79a67c6f21c6e517c659350b1ce48ae1525a4e21",
+    "tree": "a02eaafced9edc0c1127214eaf39df99fc935dc3",
+    "run_id": 34356869016,
+    "job_id": 102483660303,
+    "unit_passed": 1110,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "golden_source": "preparation 34324754353",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_17_failure": {
+    "revision": "r6.17",
+    "head": "ec9fba559370560fc1c3a957b6c2d6fecf79f99f",
+    "tree": "d34ec85cf0516da335a89534fba2435ef238ac2c",
+    "run_id": 34385617080,
+    "job_id": 102580995300,
+    "conclusion": "failure",
+    "failed_step": "Install Chromium for Playwright",
+    "cause": "google_chrome_apt_packages_gz_hash_sum_mismatch",
+    "command": "npx playwright install --with-deps chromium",
+    "unit_tests": null,
+    "required_ci_artifact_id": 10117587880,
+    "required_ci_artifact_sha256": "e5a425fe32a01a9712860ecdda0778c6b98a3f1a9698615ad4f42ceca5c66a67",
+    "not_product_failure": true,
+    "not_relabelled_success": true
+  },
+  "defect": "required-ci installed Chromium with a bare playwright --with-deps one-liner. GitHub ubuntu-24.04 apt-get update pulled dl.google.com/linux/chrome-stable Packages.gz; a hash-sum mismatch aborted the job before lint, units, QA or freeze checks.",
+  "repair": "scripts/install-playwright-chromium.mjs still tries --with-deps, classifies the retained Google Chrome apt hash-sum mismatch, then installs Chromium from the Playwright CDN. Ordinary non-zero installs remain failed. continue-on-error stays absent.",
+  "new_cases": {
+    "total": 6,
+    "source": "scripts/install-playwright-chromium.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "action_pin_changes": 0,
+    "continue_on_error": false,
+    "freeze_path_count": 85
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4",
+    "3 immutable font qualifications",
+    "rendering performance",
+    "mesh and complete-race clearance"
+  ],
+  "no_freeze_or_acceptance": true,
+  "complete_local_suite": {
+    "passed": 1142,
+    "failed": 0,
+    "skipped": 0,
+    "previous_r6_17": 1136,
+    "new_unique_cases": 6
+  }
+}

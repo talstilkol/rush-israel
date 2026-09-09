@@ -66,7 +66,7 @@ jobs:
         run: npm ci
 
       - name: Install Chromium for Playwright
-        run: npx playwright install --with-deps chromium
+        run: node scripts/install-playwright-chromium.mjs
 
       - name: Validate repository governance contract
         run: node scripts/check-governance-contract.mjs

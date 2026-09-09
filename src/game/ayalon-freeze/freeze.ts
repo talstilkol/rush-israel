@@ -73,7 +73,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/capture-golden.mjs": "cf8c9b1860b370982cf7695980e082545dce2bcd3c3e3d6d7133789d797c1983",
   "scripts/golden-output.mjs": "0c61721b4f52cebfc5f99039ea2c6194a0cded4c8075144f43425a4f4ae11fd6",
   "scripts/ci-action-pins.mjs": "bc5fbd670f451aef455c0f1b33e627b4e7079941c568d1e142b52d7af928dde7",
-  ".github/workflows/required-ci.yml": "82041e12b38c12ea4ffcb6802db69f362079dcee31ab17bbd092e8fc40011e30",
+  ".github/workflows/required-ci.yml": "a40aa920a89f5dbc9b258b1f1025f9a22f14cb5933c52c92129726342d11d6cf",
   "scripts/rush-head.mjs": "a1f031131c4fdb82a56ddd8a61d3538c5849ef1261ace35a502da0de6369f321",
   "scripts/grok-pwa-plugin.mjs": "86afd273fff692ea3ed059f4457f7e1945e198a03539ba828d0c9ece507fa491",
   "server/middleware/grok-pwa.ts": "184313168a63c66b4b0d809fa55c656b8ca4436775f6c0502bc9e9cfdfaf0e9f",
