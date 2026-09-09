@@ -1,0 +1,164 @@
+name: rsh036-r615-prepare
+on:
+  push:
+    branches: [agent/rsh-036-r615-validation-20260909]
+permissions:
+  contents: write
+jobs:
+  validate-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CI: "true"
+      NODE_OPTIONS: "--experimental-strip-types"
+      PLAYWRIGHT_BROWSERS_PATH: "0"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Recover reviewed inputs and isolate exact r6.14 source
+        run: |
+          python - <<'PY'
+          import json,lzma,hashlib,os,subprocess
+          from pathlib import Path
+          raw=lzma.decompress(b''.join(Path(f'.r615-transfer-{i}').read_bytes() for i in range(2)))
+          assert hashlib.sha256(raw).hexdigest()=='801969e4bb362f90ede0bfdfa44cb408b7bd5d56b27ccf1160b3343cf840abb4'
+          d=json.loads(raw);Path(os.environ['RUNNER_TEMP'],'r615.json').write_bytes(raw)
+          subprocess.run(['git','checkout','--detach',d['base']],check=True)
+          assert subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip()==d['base_tree']
+          Path('artifacts').mkdir(exist_ok=True)
+          for name,key in [('scripts/pier-height.test.mjs','old_test'),('scripts/pier-collision-browser.mjs','old_browser'),('src/game/collider-height.ts','old_helper')]:
+            assert not Path(name).exists();Path(name).write_text(d[key])
+          PY
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm install --global npm@10.9.2
+      - run: npm run toolchain:verify
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Same41 actual-car tests must reproduce21 height failures on old source
+        run: |
+          python - <<'PY'
+          import subprocess,re
+          from pathlib import Path
+          r=subprocess.run(['node','--test','scripts/pier-height.test.mjs'],stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+          Path('artifacts/pier-before.tap').write_bytes(r.stdout);assert r.returncode==1
+          for field,count in [('tests',41),('pass',20),('fail',21),('skipped',0),('cancelled',0)]:
+            assert re.search(r'^# '+field+r' '+str(count)+r'$',r.stdout.decode(),re.M)
+          subprocess.run(['git','diff','--exit-code','--','src','public'],check=True)
+          PY
+      - name: Actual old Ayalon must expose176 meshes without bounded pier colliders
+        env:
+          PIER_OUTPUT: artifacts/pier-legacy
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node scripts/pier-collision-browser.mjs --expect-missing 2>&1 | tee artifacts/pier-legacy.log
+      - name: Apply byte-verified edits and regenerate deterministic authorities
+        run: |
+          python - <<'PY'
+          import json,hashlib,os,subprocess
+          from pathlib import Path
+          d=json.loads(Path(os.environ['RUNNER_TEMP'],'r615.json').read_text())
+          for name in ['scripts/pier-height.test.mjs','scripts/pier-collision-browser.mjs','src/game/collider-height.ts']:Path(name).unlink()
+          for name,row in d['files'].items():
+            assert not name.startswith(('.github/','/','.r615')) and '..' not in Path(name).parts
+            p=Path(name)
+            if row['old'] is None:
+              assert not p.exists();text=row['content']
+            else:
+              raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==row['old']
+              lines=raw.decode().splitlines(keepends=True)
+              for a,b,replacement in reversed(row['edits']):lines[a:b]=[replacement]
+              text=''.join(lines)
+            assert hashlib.sha256(text.encode()).hexdigest()==row['new']
+            p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+          generator=Path(os.environ['RUNNER_TEMP'],'generate-r615.py');generator.write_text(d['generator'])
+          subprocess.run(['python',str(generator)],check=True)
+          assert subprocess.check_output(['git','write-tree'],text=True).strip()==d['tree']
+          subprocess.run(['git','diff','--exit-code'],check=True)
+          Path('artifacts/candidate-identity.json').write_text(json.dumps({'base':d['base'],'tree':d['tree'],'changed':d['changed']}))
+          PY
+      - name: Verify locked inventory and governance without accepting drift
+        run: |
+          cp AYALON-DEPENDENCY-CLOSURE.json "$RUNNER_TEMP/inventory.json"
+          node scripts/dependency-closure.mjs --write
+          cmp AYALON-DEPENDENCY-CLOSURE.json "$RUNNER_TEMP/inventory.json"
+          git diff --exit-code
+          node scripts/check-governance-contract.mjs
+      - name: Complete unit suite
+        run: |
+          set -o pipefail
+          npm test 2>&1 | tee artifacts/unit-tests.tap
+      - name: Lint without suppression
+        run: |
+          set -o pipefail
+          npm run lint 2>&1 | tee artifacts/lint.log
+      - name: Actual bounded pier contacts and exact preservation of old catalogue
+        env:
+          PIER_OUTPUT: artifacts/pier-repaired
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node scripts/pier-collision-browser.mjs 2>&1 | tee artifacts/pier-repaired.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          old=json.loads(Path('artifacts/pier-legacy/results.json').read_text());new=json.loads(Path('artifacts/pier-repaired/results.json').read_text())
+          assert old['legacy']==new['legacy'] and old['legacySha256']==new['legacySha256']
+          assert old['rampRecipe']==new['rampRecipe']
+          assert old['checkpointCount']==new['checkpointCount']==8
+          assert old['colliderCount']==546 and new['colliderCount']==722
+          PY
+      - name: Controlled capture readiness
+        run: node scripts/golden-capture-browser.mjs
+      - name: Full QA with retained driving acceleration and landing gates
+        run: |
+          set -o pipefail
+          npm run qa:ci 2>&1 | tee artifacts/qa-ci.log
+      - name: All actual runtime regressions including bounded pier contacts
+        run: |
+          set -o pipefail
+          node scripts/run-with-server.mjs -- node scripts/runtime-recovery-smoke.mjs 2>&1 | tee artifacts/runtime-recovery.log
+      - name: Safe Ayalon captures and steering without reference updates
+        run: |
+          set -o pipefail
+          npm run qa:ayalon 2>&1 | tee artifacts/ayalon-capture.log
+      - name: Development build
+        run: |
+          set -o pipefail
+          npm run build:dev 2>&1 | tee artifacts/build-dev.log
+      - name: Store validated unreferenced tree only, never commits or refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess,urllib.request
+          from pathlib import Path
+          d=json.loads(Path(os.environ['RUNNER_TEMP'],'r615.json').read_text())
+          subprocess.run(['git','diff','--exit-code'],check=True)
+          assert subprocess.check_output(['git','write-tree'],text=True).strip()==d['tree']
+          entries=[]
+          for name in d['changed']:
+            assert not name.startswith(('.github/','.r615','/')) and '..' not in Path(name).parts
+            entries.append({'path':name,'mode':'100644','type':'blob','content':Path(name).read_text()})
+          req=urllib.request.Request('https://api.github.com/repos/talstilkol/rush-israel/git/trees',data=json.dumps({'base_tree':d['base_tree'],'tree':entries}).encode(),method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'})
+          with urllib.request.urlopen(req) as response:result=json.load(response)
+          assert result['sha']==d['tree']
+          Path('artifacts/prepared-tree.json').write_text(json.dumps({'tree':result['sha'],'ref_writes':0,'commit_writes':0,'merges':0}))
+          PY
+      - name: Original golden comparison with unchanged references and thresholds
+        run: |
+          set -o pipefail
+          npm run qa:golden 2>&1 | tee artifacts/golden.log
+      - name: Preserve actual evidence including failed comparisons
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: rsh036-r615-preparation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/**
+            golden-tmp/**
+          if-no-files-found: error
+          retention-days: 14
