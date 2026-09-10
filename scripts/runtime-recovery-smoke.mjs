@@ -26,6 +26,7 @@ import { verifyWorldTone } from './world-tone-browser.mjs';
 import { verifyWorldTerm } from './world-term-browser.mjs';
 import { verifyWorldBeam } from './world-beam-browser.mjs';
 import { verifyWorldRay } from './world-ray-browser.mjs';
+import { verifyWorldIbl } from './world-ibl-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -105,6 +106,7 @@ try {
   results.push(...await verifyWorldTerm(browser, url));
   results.push(...await verifyWorldBeam(browser, url));
   results.push(...await verifyWorldRay(browser, url));
+  results.push(...await verifyWorldIbl(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));

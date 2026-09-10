@@ -1,0 +1,86 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.43",
+  "date": "2026-09-10",
+  "base": "e5dc3ba4b08e783e1530a6ddadd259fa951d4522",
+  "finding": "AUD-53",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "not_relabelled_success": true
+  },
+  "defect": "r6.42 remaining 0/4 is sun intensity luma plus scene.environment blue, but scene.environment is mixed with background, Sky mesh and material envMap so combined environment blue is not background vs sky vs material envMap attribution.",
+  "repair": "Keep verifyWorldLayers through verifyWorldRay and verifyWorldIbl. Direct-engine present capture forces upgradeGraphics, setPixelRatio(1)+setSize(1280,800)+post.setSize, locates the dominant 200px band, isolates scene.environment vs background vs sky vs material envMap independently of sun intensity vs fill AFTER setNight/snapCamera(true), and measures isolated band L2, luma and B-channel against the locked 26 August PNG. Ray-only reports, luma-terms-include-hemi, ibl-is-combined, envMap-clears-environment, background-clears-environment, intensity-clears-environment, environment-clears-intensity, original-golden claims, PNG refresh, threshold drift, camera miss, color retune, exposure retune and zero presentPct fail closed. Product exposure stays 0.56. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "g01_g05_g08_bottom_scene_environment_blue_background_sky_envMap_zero_intensity_luma_g07_upper_none",
+    "protocol": "world-ibl-buffer-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "pixelThreshold": 0.12,
+    "failureLimit": 0.08,
+    "viewport": { "width": 1280, "height": 800 },
+    "productGroundHex": 13685976,
+    "productGroundCount": 1,
+    "groundMeshCount": 1,
+    "productExposure": 0.56,
+    "lumaTermsIncludeHemi": false,
+    "iblIsCombined": false,
+    "envMapClearsEnvironment": false,
+    "backgroundClearsEnvironment": false,
+    "intensityClearsEnvironment": false,
+    "environmentClearsIntensity": false,
+    "counts": { "environment": 1, "background": 1, "sky": 1, "envMap": 316, "intensity": 1, "fill": 1 },
+    "frames": [
+      { "id": "g01", "follow": 7.4, "height": 1.92, "presentPct": 0.6718, "dominant": "bottom", "dominantIbl": "environment", "contributingIbl": ["environment", "intensity"], "lumaAxis": ["intensity"], "iblAxis": ["environment"], "probeAxis": ["environment"], "bandL2": 125.77, "bandLuma": 99.87, "bandBlue": 130.41, "bandLive": [77.18, 103.53, 130.41], "bandGold": [25.54, 35.89, 37.8], "environmentL2Delta": -50.23, "backgroundL2Delta": 0, "skyL2Delta": 0, "envMapL2Delta": 0, "intensityL2Delta": -37.02, "fillL2Delta": -5.72, "environmentLumaDelta": -23.52, "intensityLumaDelta": -28.0, "fillLumaDelta": -3.41, "environmentBlueDelta": -48.67, "backgroundBlueDelta": 0, "skyBlueDelta": 0, "envMapBlueDelta": 0 },
+      { "id": "g05", "follow": 7.4, "height": 1.92, "presentPct": 0.5828, "dominant": "bottom", "dominantIbl": "environment", "contributingIbl": ["environment", "intensity"], "lumaAxis": ["intensity"], "iblAxis": ["environment"], "probeAxis": ["environment"], "bandL2": 145.95, "bandLuma": 99.51, "bandBlue": 132.7, "bandLive": [74.63, 103.56, 132.7], "bandGold": [10.81, 22.24, 29.67], "environmentL2Delta": -54.23, "backgroundL2Delta": 0, "skyL2Delta": 0, "envMapL2Delta": 0, "intensityL2Delta": -42.99, "fillL2Delta": -6.3, "environmentLumaDelta": -26.19, "intensityLumaDelta": -31.12, "fillLumaDelta": -3.77, "environmentBlueDelta": -53.0, "backgroundBlueDelta": 0, "skyBlueDelta": 0, "envMapBlueDelta": 0 },
+      { "id": "g07", "follow": 7.4, "height": 1.92, "presentPct": 0.2813, "dominant": "upper", "dominantIbl": "background", "contributingIbl": [], "lumaAxis": [], "iblAxis": ["environment"], "probeAxis": ["environment"], "bandL2": 96.57, "bandLuma": 57.69, "bandBlue": 94.37, "bandLive": [23.09, 64.27, 94.37], "bandGold": [49.98, 121.76, 167.16], "environmentL2Delta": 45.91, "backgroundL2Delta": 0, "skyL2Delta": 0, "envMapL2Delta": 0, "intensityL2Delta": 3.72, "fillL2Delta": 0.68, "environmentLumaDelta": -20.04, "intensityLumaDelta": -2.75, "fillLumaDelta": -0.44, "environmentBlueDelta": -40.94, "backgroundBlueDelta": 0, "skyBlueDelta": 0, "envMapBlueDelta": 0 },
+      { "id": "g08", "follow": 7.4, "height": 1.92, "presentPct": 0.671, "dominant": "bottom", "dominantIbl": "environment", "contributingIbl": ["environment", "intensity", "fill"], "lumaAxis": ["intensity", "fill"], "iblAxis": ["environment"], "probeAxis": ["environment"], "bandL2": 87.72, "bandLuma": 51.83, "bandBlue": 70.17, "bandLive": [40.83, 53.25, 70.17], "bandGold": [7.01, 5.99, 4.46], "environmentL2Delta": -33.93, "backgroundL2Delta": 0, "skyL2Delta": 0, "envMapL2Delta": 0, "intensityL2Delta": -19.22, "fillL2Delta": -13.96, "environmentLumaDelta": -14.98, "intensityLumaDelta": -11.46, "fillLumaDelta": -12.39, "environmentBlueDelta": -33.86, "backgroundBlueDelta": 0, "skyBlueDelta": 0, "envMapBlueDelta": 0 }
+    ],
+    "finding": "g01/g05/g08 bottom blue is scene.environment (B −48.7/−53.0/−33.9), which is the entire r6.42 environment term. Background, Sky and material envMap are 0 on every pose. Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins intensity on g08 night (−12.4). Independence flags all false. g07 upper has no contributing L2 term; ramps remain. Product hex stays 0xd0d4d8. Product exposure stays 0.56."
+  },
+  "new_cases": {
+    "total": 28,
+    "source": "scripts/world-ibl.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after sun intensity luma plus scene.environment blue on g01/g05/g08 bottom; background/sky/material envMap are 0; fill joins intensity on g08 night; g07 upper ramps",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}

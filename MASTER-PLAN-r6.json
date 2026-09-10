@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.42",
+  "revision": "r6.43",
   "date": "2026-09-10",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 52,
+    "audit_items": 53,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -382,7 +382,8 @@
         "AUD-49",
         "AUD-50",
         "AUD-51",
-        "AUD-52"
+        "AUD-52",
+        "AUD-53"
       ]
     },
     {
@@ -1561,6 +1562,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-RAY-r6.42.json"
+    },
+    {
+      "id": "AUD-53",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Combined scene.environment blue is not background versus sky versus material envMap attribution",
+      "acceptance": "Ray-only reports without environment/background/sky/envMap/intensity/fill luma and B-channel deltas plus a dominantIbl must fail closed. Luma-terms-include-hemi, ibl-is-combined, envMap-clears-environment, background-clears-environment, intensity-clears-environment, environment-clears-intensity and product-exposure retune fail closed. Live snapCamera(true) at g01/g05/g07/g08 must force 1280x800 pixelRatio 1, capture post.render present, locate the dominant 200px band, isolate those six axes after setNight and measure isolated band L2, luma and B against the locked 26 August PNG. Product ground hex must stay 0xd0d4d8 and product exposure 0.56. Original-golden claims, PNG refresh, threshold drift, camera miss, color retune and zero presentPct fail closed. Retain freeze path count 85 and generation 11. IBL isolation is not freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-IBL-r6.43.json"
     }
   ],
   "legacy_findings": [
@@ -1984,7 +1998,7 @@
     "public_distribution_authorised": false
   },
   "limitations": [
-    "All67 original units,52 audit IDs and42 historical findings retained; no new accepted unit.",
+    "All67 original units,53 audit IDs and42 historical findings retained; no new accepted unit.",
     "Verified r6.5 head 8c6a3be7 passed 688 unit and 20 browser cases in run33995840557; prior chat-only 716-test claim is not the live baseline.",
     "Original PNGs, pixel threshold0.12, failure limit8%, camera recipe and post-pose waits are preserved. Reliable selection does not prove pixel determinism.",
     "Generated local closure seals the declared local runtime/build/test/public/golden surface. Three verified Actions are pinned; four dormant vendor-head expressions and three product font URLs are reviewed. Remote font bytes remain unpinned, so overall closure remains false.",
@@ -1992,9 +2006,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.42",
-    "base_head": "60c25ba1d3e9901c65c4d1f0de0b4d78320cb992",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.42.md",
+    "revision": "r6.43",
+    "base_head": "e5dc3ba4b08e783e1530a6ddadd259fa951d4522",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.43.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",
@@ -2043,9 +2057,9 @@
       "not_product_golden_failure": true
     },
     "normal_ci": "pending_exact_published_head_validation",
-    "golden": "r6.42 combined sun luma is not color vs intensity; g01/g05/g08 bottom intensity luma −28.0/−31.1/−11.5, color white-out not a driver (colorAxis empty; L2 +5.2/+5.5/+10.2), fill joins intensity on g08 night −12.4, scene.environment B −48.7/−53.0/−33.9; g07 upper ramps; product hex stays 0xd0d4d8; camera 7.4/1.92; unchanged images/thresholds",
+    "golden": "r6.43 combined scene.environment blue is not background vs sky vs envMap; g01/g05/g08 bottom environment B −48.7/−53.0/−33.9, background/sky/envMap 0, intensity luma −28.0/−31.1/−11.5, fill joins intensity on g08 night −12.4; g07 upper ramps; product hex stays 0xd0d4d8; camera 7.4/1.92; unchanged images/thresholds",
     "dependency_closure": "3 product font URLs pinned; remote CDN bytes still unpinned; complete_dependency_closure false",
-    "clearance": "r6.42 ray isolation; r6.41 beam isolation; r6.40 term isolation; r6.39 tone isolation; r6.38 shade isolation; r6.37 rgb sampling; r6.36 factor isolation; r6.35 material isolation; r6.34 extra isolation; r6.33 slice isolation; r6.32 column isolation; r6.31 region-band isolation; r6.30 scene-buffer isolation; r6.29 channel-bias isolation; r6.28 mismatch isolation; r6.27 residual split; r6.26 world-layer isolation; r6.25 rest-camera attribution; r6.24 original-golden protocol; r6.23 visual hull; r6.22 complete arcade lap; r6.21 rest chase 7.4/1.92 overlay",
+    "clearance": "r6.43 ibl isolation; r6.42 ray isolation; r6.41 beam isolation; r6.40 term isolation; r6.39 tone isolation; r6.38 shade isolation; r6.37 rgb sampling; r6.36 factor isolation; r6.35 material isolation; r6.34 extra isolation; r6.33 slice isolation; r6.32 column isolation; r6.31 region-band isolation; r6.30 scene-buffer isolation; r6.29 channel-bias isolation; r6.28 mismatch isolation; r6.27 residual split; r6.26 world-layer isolation; r6.25 rest-camera attribution; r6.24 original-golden protocol; r6.23 visual hull; r6.22 complete arcade lap; r6.21 rest chase 7.4/1.92 overlay",
     "record_policy": "physicsVersion7 frozen fixture; v6 rows drop; conversion remains forbidden"
   },
   "r6_9_diagnostic_checkpoint": {
