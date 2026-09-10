@@ -740,6 +740,19 @@ thresholds or activate RSH-037.
 Details: RSH-036-WORLD-RESIDUAL-r6.27.json, RSH-036-RUNTIME-REPAIR-r6.27.md and
 docs/evidence/r6.26-published-ci-verification.json.
 
+## r6.28 — 10 September 2026: live contribution is not golden mismatch
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-38 restores
+the r6.27 smoke import of verifyWorldLayers and isolates live PNG mismatch
+after snapCamera(true). Live changedFraction (ground 51%) is not original-golden
+mismatch. 7×7 vs locked PNG: g01 49/49, g05 49/49, g07 48/49, g08 48/49. No
+named layer reduces mismatch when hidden. Camera stays 7.4/1.92. Freeze path
+count stays 85. r6.27 lint no-undef is retained, not relabelled a pass.
+Immutable CDN bytes, rendering performance and freeze remain open. Do not
+merge, replace PNGs, change thresholds or activate RSH-037.
+Details: RSH-036-WORLD-MISMATCH-r6.28.json, RSH-036-RUNTIME-REPAIR-r6.28.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 

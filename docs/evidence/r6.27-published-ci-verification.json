@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-published-candidate-audit",
+  "verifiedOn": "2026-09-10",
+  "repository": "talstilkol/rush-israel",
+  "productCommit": "8f446969082e85a78487e02092ce8d6e803435e7",
+  "productTree": "29e5248cfef26f38a31935dee844e45a190ead1d",
+  "canonicalMain": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+  "run": {
+    "id": "34480369405",
+    "attempt": 1,
+    "jobId": "102881359050",
+    "name": "required-ci",
+    "status": "completed",
+    "conclusion": "failure",
+    "createdAt": "2026-09-10T13:04:15Z",
+    "completedAt": "2026-09-10T13:05:17Z"
+  },
+  "archives": [
+    {
+      "id": "10153296027",
+      "name": "audit-source-34480369405-1",
+      "sha256": "2760e30758f7b06f247b1c65b9326c87492491a2fa77f57971d49c3f3877cef9",
+      "githubDigestRecorded": true
+    },
+    {
+      "id": "10153331416",
+      "name": "required-ci-34480369405-1",
+      "sha256": "0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec",
+      "githubDigestRecorded": true
+    }
+  ],
+  "sourceVerification": {
+    "sourceHeadTxt": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "ciSummaryCheckedOutSha": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "sourceStatus": "recorded_from_published_run_and_local_tree"
+  },
+  "finalCiEvidence": {
+    "failedStep": "Lint all tracked source",
+    "lint": { "errors": 1, "warnings": 124, "error": "scripts/runtime-recovery-smoke.mjs:75:25 verifyWorldLayers is not defined" },
+    "unitTests": null,
+    "originalGoldenComparisonPerformedByThisNormalCi": false
+  },
+  "retainedFailures": {
+    "r6_17": { "runId": "34385617080", "cause": "google_chrome_apt_packages_gz_hash_sum_mismatch", "notRelabelledSuccess": true },
+    "r6_18": { "runId": "34387082287", "cause": "real_ramp_supports_protruded_through_drivable_surface", "notRelabelledSuccess": true },
+    "r6_27": { "runId": "34480369405", "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke", "notRelabelledSuccess": true },
+    "originalGolden": { "runId": "34324754353", "passed": 0, "failed": 4, "pixelThreshold": 0.12, "failureFraction": 0.08, "referencesChanged": false, "predatesR6_21ChaseRestore": true }
+  },
+  "acceptance": {
+    "activeUnit": "RSH-036",
+    "activeUnitAccepted": false,
+    "acceptedUnits": 35,
+    "totalUnits": 67,
+    "remainingUnits": 32,
+    "nextUnitActivated": false,
+    "freezeGranted": false,
+    "mergeAuthorized": false
+  },
+  "scope": "Records the published r6.27 required-ci lint failure on 8f44696. Not freeze, not original-golden, not a later-head pass."
+}

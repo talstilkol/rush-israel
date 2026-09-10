@@ -1,0 +1,92 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.28",
+  "date": "2026-09-10",
+  "base": "8f446969082e85a78487e02092ce8d6e803435e7",
+  "finding": "AUD-38",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "tree": "29e5248cfef26f38a31935dee844e45a190ead1d",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "failed_step": "Lint all tracked source",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "error": "scripts/runtime-recovery-smoke.mjs:75:25 verifyWorldLayers is not defined",
+    "unit_tests": null,
+    "required_ci_artifact_id": 10153331416,
+    "required_ci_artifact_sha256": "0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec",
+    "audit_source_artifact_id": 10153296027,
+    "audit_source_artifact_sha256": "2760e30758f7b06f247b1c65b9326c87492491a2fa77f57971d49c3f3877cef9",
+    "not_relabelled_success": true,
+    "not_product_golden_failure": true
+  },
+  "defect": "r6.27 replaced the verifyWorldLayers smoke import, so exact-head CI 34480369405 failed at lint no-undef. Independently, r6.27 live changedFraction (ground 51%) is not original-golden mismatch attribution: hiding a live-dominant layer does not prove that layer differs from the 26 August PNG lock.",
+  "repair": "Keep verifyWorldLayers, verifyWorldResidual and verifyWorldMismatch in runtime-recovery-smoke. Direct-engine 7x7 live samples are compared to the locked PNG grid after snapCamera(true). Each named residual layer is hidden and mismatchDelta is recorded. Live-contribution-only labels, PNG refresh and treating this probe as original-golden fail closed. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "png_mismatch_saturated_no_layer_reduces_it",
+    "protocol": "world-mismatch-attribution-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "classified": {
+      "ramps": 150,
+      "piers": 176,
+      "water": 1,
+      "carriageway": 2,
+      "sky": 2,
+      "ground": 1,
+      "glass": 80,
+      "instanced": 47,
+      "residual": 695
+    },
+    "frames": [
+      { "id": "g01", "follow": 7.4, "height": 1.92, "pngMismatch": 49, "pngMismatchFraction": 1, "contributingLive": ["ramps", "piers", "sky", "ground", "instanced", "residual"], "contributingMismatch": [], "groundLive": 0.3673, "groundDelta": 0 },
+      { "id": "g05", "follow": 7.4, "height": 1.92, "pngMismatch": 49, "pngMismatchFraction": 1, "contributingLive": ["sky", "ground", "glass", "instanced", "residual"], "contributingMismatch": [], "groundLive": 0.5102, "groundDelta": 0 },
+      { "id": "g07", "follow": 7.4, "height": 1.92, "pngMismatch": 48, "pngMismatchFraction": 0.9796, "contributingLive": ["ramps", "sky", "ground", "residual"], "contributingMismatch": [], "rampsLive": 0.6939, "rampsDelta": 1 },
+      { "id": "g08", "follow": 7.4, "height": 1.92, "pngMismatch": 48, "pngMismatchFraction": 0.9796, "contributingLive": ["sky", "ground", "glass", "instanced", "residual"], "contributingMismatch": [], "groundLive": 0.5102, "groundDelta": 0 }
+    ],
+    "finding": "7x7 live vs locked PNG mismatches 48-49/49. No named layer reduces mismatch when hidden. Ground live 51% at g05/g08 has mismatchDelta 0. g07 ramps live 69% increases mismatch by 1 when hidden. Live contribution is not golden mismatch."
+  },
+  "new_cases": {
+    "total": 27,
+    "source": "scripts/world-mismatch.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after mixed whole-frame divergence from 26 August PNG lock",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}
