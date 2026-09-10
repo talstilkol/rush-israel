@@ -1,7 +1,7 @@
-**Version:** 20.32.0
+**Version:** 20.33.0
 **Date:** 2026-09-10, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 50c30af3493d3eefd98ba062259b0fea76741d07
+**Repair base:** c8b17f9ef80d9169330d3c0a2b740679a3bca0aa
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -36,8 +36,10 @@ not spatially uniform: g01/g05/g08 concentrate in the bottom foreground
 (85–88%) while sky/top is 22–50%; g07 is the inverse (upper 60%, bottom 11%).
 Those dominant bands are not a centre-column (vehicle) artifact: g01/g05/g08
 bottom is full-width 83–92%; g07 upper mismatch is the sides (79%) while the
-centre is 42%. Preserve historical preparation 34324754353. PNG bytes last
-changed 26 August 12:00:42Z, before spaghetti ramps.
+centre is 42%. Named residual layers do not occupy g01/g05/g08 bottom: no hide
+reduces 85–88%, and hiding ground makes it worse (+10–13%). g07 upper is ramps
+(bandDelta −0.1885; 0.6045 → 0.4160). Preserve historical preparation
+34324754353. PNG bytes last changed 26 August 12:00:42Z, before spaghetti ramps.
 
 r6.17 requiredCI 34385617080 failed at Playwright `--with-deps` (Google Chrome
 apt hash-sum mismatch) before any product test. Retained; not a product defect.
@@ -58,30 +60,31 @@ required-ci-34480369405-1 SHA-256
 `0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec`. Retained;
 not relabelled a pass.
 
-## r6.32 and subsequent acceptance
-1. Dominant 200px bands are not lateral-column mismatch. Live isolation must
+## r6.33 and subsequent acceptance
+1. Named residual layers do not occupy g01/g05/g08 bottom. Live isolation must
    force 1280×800 pixelRatio 1 after snapCamera(true), capture product present
    (`post.setDrive(0, false); post.render()`), locate the dominant 200px band,
-   and pixelmatch four 320px columns (left/midLeft/midRight/right) against the
-   locked 26 August PNG at threshold 0.12 at g01/g05/g07/g08. Smoke must keep
-   verifyWorldLayers, verifyWorldResidual, verifyWorldMismatch, verifyWorldBias,
-   verifyWorldScene, verifyWorldRegion and verifyWorldColumn. Live rest chase
+   and pixelmatch that band after isolating the hero-car mesh and the road
+   shader / remaining unclassified materials against the locked 26 August PNG
+   at threshold 0.12 at g01/g05/g07/g08. Smoke must keep verifyWorldLayers,
+   verifyWorldResidual, verifyWorldMismatch, verifyWorldBias, verifyWorldScene,
+   verifyWorldRegion, verifyWorldColumn and verifyWorldSlice. Live rest chase
    7.4/1.92 must stay. Remaining pixel 0/4 is full-width bottom on g01/g05/g08
-   and upper-band sides on g07. PNG refresh, threshold drift, band-only reports
-   and skipped comparison fail closed. 176 piers, 546 legacy colliders, 50
-   ramps, rest-pose 1.6, 1.05 radius and generation-11 lock stay. Freeze path
-   count stays 85. Pixel 0/4 is not freeze.
+   (named layers do not reduce it) and g07 upper ramps. PNG refresh, threshold
+   drift, column-only reports and skipped comparison fail closed. 176 piers,
+   546 legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and generation-11
+   lock stay. Freeze path count stays 85. Pixel 0/4 is not freeze.
 2. Preserve the r6.18 Chromium install retry, the r6.19 slab-underside support
    placement, the r6.20 product font URL pins, the r6.21 rest chase 7.4/1.92,
    the r6.22 complete arcade lap, the r6.23 visual hull, the r6.24 original
    protocol, the r6.25 rest-camera attribution, the r6.26 world-layer isolation,
    the r6.27 residual split, the r6.28 mismatch isolation, the r6.29
-   channel-bias isolation, the r6.30 scene-buffer isolation and the r6.31
-   region-band isolation.
+   channel-bias isolation, the r6.30 scene-buffer isolation, the r6.31
+   region-band isolation and the r6.32 column isolation.
 3. Preserve 1280x800 images, threshold 0.12, failure 8%, generation 11 lock and
    owner approval. Do not refresh golden PNGs or silently change typography.
    Rendering performance remains open.
 4. Only validated applicable approval may grant freeze or open RSH-037.
 
-Master plan r6.32 retains 67 units, 42 historical findings, 6 bundles and 42
+Master plan r6.33 retains 67 units, 42 historical findings, 6 bundles and 43
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

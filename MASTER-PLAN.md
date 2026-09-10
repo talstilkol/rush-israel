@@ -809,6 +809,20 @@ change thresholds or activate RSH-037.
 Details: RSH-036-WORLD-COLUMN-r6.32.json, RSH-036-RUNTIME-REPAIR-r6.32.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.33 — 10 September 2026: dominant 200px band is not world-layer slice attribution
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-43 hides each
+residual layer and pixelmatches the dominant 200px present band after
+snapCamera(true). A full-width bottom or upper-sides column is not which named
+world layer occupies that band. g01/g05/g08 bottom is not a named layer: no
+hide reduces 85–88%, and hiding ground makes it worse (+10–13%). g07 upper is
+ramps (bandDelta −0.1885; 0.6045 → 0.4160). Camera stays 7.4/1.92. Freeze path
+count stays 85. r6.27 lint no-undef is retained, not relabelled a pass.
+Immutable CDN bytes, rendering performance and freeze remain open. Do not
+merge, replace PNGs, change thresholds or activate RSH-037.
+Details: RSH-036-WORLD-SLICE-r6.33.json, RSH-036-RUNTIME-REPAIR-r6.33.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 

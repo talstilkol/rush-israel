@@ -1,0 +1,75 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.33",
+  "date": "2026-09-10",
+  "base": "c8b17f9ef80d9169330d3c0a2b740679a3bca0aa",
+  "finding": "AUD-43",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "not_relabelled_success": true
+  },
+  "defect": "r6.32 dominant 200px band (g01/g05/g08 bottom full-width 0.83-0.92; g07 upper sides 0.7862/0.7878 vs centre 0.42) is not world-layer attribution inside that band. A 320px column does not say whether a named residual layer occupies the remaining 0/4 pixels.",
+  "repair": "Keep verifyWorldLayers, verifyWorldResidual, verifyWorldMismatch, verifyWorldBias, verifyWorldScene, verifyWorldRegion, verifyWorldColumn and verifyWorldSlice. Direct-engine present capture forces setPixelRatio(1)+setSize(1280,800)+post.setSize, locates the dominant 200px band, hides each residual layer and pixelmatches that band against the locked 26 August PNG at threshold 0.12. Column-only reports, missing dominantLayer, original-golden claims, PNG refresh, threshold drift, camera miss and zero presentPct fail closed. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "g01_g05_g08_bottom_not_named_layer_g07_upper_is_ramps",
+    "protocol": "world-slice-buffer-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "pixelThreshold": 0.12,
+    "failureLimit": 0.08,
+    "viewport": { "width": 1280, "height": 800 },
+    "frames": [
+      { "id": "g01", "follow": 7.4, "height": 1.92, "presentPct": 0.6926, "dominant": "bottom", "dominantLayer": "carriageway", "contributingSlice": [], "rampsDelta": 0, "groundDelta": 0.1047, "residualDelta": 0, "instancedDelta": 0.0132 },
+      { "id": "g05", "follow": 7.4, "height": 1.92, "presentPct": 0.594, "dominant": "bottom", "dominantLayer": "carriageway", "contributingSlice": [], "rampsDelta": 0, "groundDelta": 0.1313, "residualDelta": 0, "instancedDelta": 0 },
+      { "id": "g07", "follow": 7.4, "height": 1.92, "presentPct": 0.2933, "dominant": "upper", "dominantLayer": "ramps", "contributingSlice": ["ramps"], "rampsDelta": -0.1885, "groundDelta": -0.0038, "residualDelta": -0.0174, "instancedDelta": -0.0062 },
+      { "id": "g08", "follow": 7.4, "height": 1.92, "presentPct": 0.7016, "dominant": "bottom", "dominantLayer": "carriageway", "contributingSlice": [], "rampsDelta": 0, "groundDelta": 0.1158, "residualDelta": 0, "instancedDelta": 0 }
+    ],
+    "finding": "g01/g05/g08 bottom is not a named residual layer (no hide reduces 85-88%; hiding ground increases it +10-13%). g07 upper is ramps (bandDelta -0.1885, 0.6045 to 0.4160)."
+  },
+  "new_cases": {
+    "total": 28,
+    "source": "scripts/world-slice.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after g01/g05/g08 bottom not named-layer and g07 upper ramps",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}
