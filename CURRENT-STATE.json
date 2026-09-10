@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-10T14:20:00Z",
+  "generated_at": "2026-09-10T14:50:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,14 +2001,14 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.31.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.32.md",
     "local_unit_tests": {
-      "status": "focused_28_passed_live_region_bottom_heavy_except_g07_upper_full_suite_expected_1421",
+      "status": "focused_28_passed_live_column_full_width_bottom_except_g07_upper_sides_full_suite_expected_1449",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 1421,
+      "expected_total": 1449,
       "predecessor_exact_head_passed": 1283,
       "predecessor_r6_23_expected": 1206,
       "predecessor_r6_24_expected": 1229,
@@ -2017,6 +2017,7 @@
       "predecessor_r6_28_expected": 1337,
       "predecessor_r6_29_expected": 1365,
       "predecessor_r6_30_expected": 1393,
+      "predecessor_r6_31_expected": 1421,
       "new_unique_cases": 28,
       "live_complete_race": {
         "status": "passed",
@@ -2205,6 +2206,22 @@
         "bottomPct": [0.8646, 0.8531, 0.106, 0.8807],
         "dominant": ["bottom", "bottom", "upper", "bottom"],
         "originalGoldenComparisons": 0
+      },
+      "live_world_column": {
+        "status": "dominant_band_not_center_vehicle_g01_g05_g08_full_width_g07_upper_sides",
+        "protocol": "world-column-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
+        "dominant": ["bottom", "bottom", "upper", "bottom"],
+        "leftPct": [0.919, 0.843, 0.7862, 0.862],
+        "midLeftPct": [0.853, 0.8633, 0.4179, 0.8928],
+        "midRightPct": [0.8312, 0.8473, 0.4262, 0.8799],
+        "rightPct": [0.8554, 0.8592, 0.7878, 0.8881],
+        "dominantColumn": ["left", "midLeft", "right", "midLeft"],
+        "originalGoldenComparisons": 0
       }
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
@@ -2290,7 +2307,7 @@
       "diagnostic_run": 33992134755
     },
     "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json",
-    "new_candidate_validation": "pending_r6_31_preparation_and_exact_published_head_CI",
+    "new_candidate_validation": "pending_r6_32_preparation_and_exact_published_head_CI",
     "generated_dependency_inventory": "AYALON-DEPENDENCY-CLOSURE.json",
     "safe_capture_output": "both_commands_no_automatic_baseline_writes",
     "ci_action_pins": "three_previously_verified_pins_unchanged",
@@ -2427,7 +2444,8 @@
     "world_mismatch_review": "RSH-036-WORLD-MISMATCH-r6.28.json",
     "world_bias_review": "RSH-036-WORLD-BIAS-r6.29.json",
     "world_scene_review": "RSH-036-WORLD-SCENE-r6.30.json",
-    "world_region_review": "RSH-036-WORLD-REGION-r6.31.json"
+    "world_region_review": "RSH-036-WORLD-REGION-r6.31.json",
+    "world_column_review": "RSH-036-WORLD-COLUMN-r6.32.json"
   },
   "historical_rsh035_constraints": [
     "The plain next instruction authorized exactly RSH-035 and is consumed on its validated merge.",

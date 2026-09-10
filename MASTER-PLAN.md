@@ -795,6 +795,20 @@ merge, replace PNGs, change thresholds or activate RSH-037.
 Details: RSH-036-WORLD-REGION-r6.31.json, RSH-036-RUNTIME-REPAIR-r6.31.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.32 — 10 September 2026: dominant 200px band is not lateral-column mismatch
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-42 splits the
+dominant 200px present band into four 320px columns after snapCamera(true). A
+bottom-heavy or upper-band scalar is not where the locked PNG diverges
+laterally. g01/g05/g08 bottom is full-width (83–92%), so the chase car in the
+centre is not the remaining 0/4 driver. g07 upper mismatch is the sides (79%)
+while the centre is 42%. Camera stays 7.4/1.92. Freeze path count stays 85.
+r6.27 lint no-undef is retained, not relabelled a pass. Immutable CDN bytes,
+rendering performance and freeze remain open. Do not merge, replace PNGs,
+change thresholds or activate RSH-037.
+Details: RSH-036-WORLD-COLUMN-r6.32.json, RSH-036-RUNTIME-REPAIR-r6.32.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 
