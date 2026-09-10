@@ -4,7 +4,7 @@ import { fromRoot } from "./project-root.mjs";
 
 // Only these reviewed exact bytes may be projected for pre-RSH-036 history checks.
 // Production behavioral tests always import the real current modules, not this projection.
-export const EXPECTED_EVOLUTION_SHA256 = "436dbcb587e962a9e41b6ef5254b70adff93df78fd61756c7619b7bddc0edffd";
+export const EXPECTED_EVOLUTION_SHA256 = "4eac2bf5d6923a0defe9f4895cd93c6a1bab5848af7e305e3b1ac9d68cc82d05";
 const hash = value => createHash("sha256").update(value).digest("hex");
 export function readEvolution(text = readFileSync(fromRoot("RSH-036-RUNTIME-EVOLUTION.json"), "utf8")) {
   if (hash(text) !== EXPECTED_EVOLUTION_SHA256) throw new Error("RSH-036 runtime evolution authority drift");

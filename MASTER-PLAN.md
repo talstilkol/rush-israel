@@ -903,6 +903,22 @@ PNGs, change thresholds, retune color or activate RSH-037.
 Details: RSH-036-WORLD-SHADE-r6.38.json, RSH-036-RUNTIME-REPAIR-r6.38.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.39 — 10 September 2026: shade L2 is not independent brightness vs blue
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-49 isolates
+exposure vs unlit-excluding-hemi vs hemi vs envmap and combined brightness vs
+blue after setNight/snapCamera(true). r6.38 unlit included hemi, so that L2
+was not independent. g01/g05/g08 bottom brightness luma is unlit-excluding-hemi
+(−38.7/−43.2/−28.6) while blue B with exposure held at 0.56 is envmap+hemi
+(−70.6/−77.8/−45.5). Exposure=0 still blacks the buffer. g07 upper remains
+ramps. Camera stays 7.4/1.92. Freeze path count stays 85. r6.27 lint no-undef
+is retained, not relabelled a pass. Immutable CDN bytes, rendering performance
+and freeze remain open. Do not merge, replace PNGs, change thresholds, retune
+color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-TONE-r6.39.json, RSH-036-RUNTIME-REPAIR-r6.39.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

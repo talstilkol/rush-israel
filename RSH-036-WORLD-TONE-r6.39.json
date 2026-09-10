@@ -1,0 +1,81 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.39",
+  "date": "2026-09-10",
+  "base": "f30a7dd0ca0d611b7016e6b99058849eb9383915",
+  "finding": "AUD-49",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "not_relabelled_success": true
+  },
+  "defect": "r6.38 remaining 0/4 is brightness plus blue IBL, but unlit() zeroed HemisphereLight so shade L2 is not independent brightness-vs-blue attribution. Envmap vs hemi were never measured with unlit excluding hemi, and combined brightness/blue axes were absent.",
+  "repair": "Keep verifyWorldLayers through verifyWorldShade and verifyWorldTone. Direct-engine present capture forces upgradeGraphics, setPixelRatio(1)+setSize(1280,800)+post.setSize, locates the dominant 200px band, isolates exposure vs unlit-excluding-hemi vs hemi vs envmap and combined brightness vs blue AFTER setNight/snapCamera(true), and measures isolated band L2, luma and B-channel against the locked 26 August PNG. Shade-only reports, unlit-includes-hemi, missing combined axes, original-golden claims, PNG refresh, threshold drift, camera miss, color retune, exposure retune and zero presentPct fail closed. Product exposure stays 0.56. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "g01_g05_g08_bottom_brightness_axis_and_blue_axis_independent_unlit_excludes_hemi_exposure_held_0_56_g07_upper_none",
+    "protocol": "world-tone-buffer-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "pixelThreshold": 0.12,
+    "failureLimit": 0.08,
+    "viewport": { "width": 1280, "height": 800 },
+    "productGroundHex": 13685976,
+    "productGroundCount": 1,
+    "groundMeshCount": 1,
+    "productExposure": 0.56,
+    "unlitIncludesHemi": false,
+    "counts": { "exposure": 1, "unlit": 4, "hemi": 1, "envmap": 57, "brightness": 5, "blue": 58 },
+    "frames": [
+      { "id": "g01", "follow": 7.4, "height": 1.92, "presentPct": 0.6718, "dominant": "bottom", "dominantTone": "blue", "contributingTone": ["exposure", "unlit", "hemi", "envmap", "brightness", "blue"], "brightnessAxis": ["exposure", "unlit", "brightness"], "blueAxis": ["hemi", "envmap", "blue"], "bandL2": 125.77, "bandLuma": 99.87, "bandBlue": 130.41, "bandLive": [77.18, 103.53, 130.41], "bandGold": [25.54, 35.89, 37.8], "exposureL2Delta": -67.72, "unlitL2Delta": -48.36, "hemiL2Delta": -18.43, "envmapL2Delta": -50.23, "brightnessL2Delta": -67.72, "blueL2Delta": -74.74, "exposureLumaDelta": -99.87, "unlitLumaDelta": -38.74, "hemiLumaDelta": -10.69, "envmapLumaDelta": -23.52, "brightnessLumaDelta": -99.87, "blueLumaDelta": -37.27, "exposureBlueDelta": -130.41, "unlitBlueDelta": -23.39, "hemiBlueDelta": -12.48, "envmapBlueDelta": -48.67, "brightnessBlueDelta": -130.41, "blueBlueDelta": -70.55 },
+      { "id": "g05", "follow": 7.4, "height": 1.92, "presentPct": 0.5828, "dominant": "bottom", "dominantTone": "brightness", "contributingTone": ["exposure", "unlit", "hemi", "envmap", "brightness", "blue"], "brightnessAxis": ["exposure", "unlit", "brightness"], "blueAxis": ["hemi", "envmap", "blue"], "bandL2": 145.95, "bandLuma": 99.51, "bandBlue": 132.7, "bandLive": [74.63, 103.56, 132.7], "bandGold": [10.81, 22.24, 29.67], "exposureL2Delta": -107.33, "unlitL2Delta": -56.99, "hemiL2Delta": -20.69, "envmapL2Delta": -54.23, "brightnessL2Delta": -107.33, "blueL2Delta": -81.29, "exposureLumaDelta": -99.51, "unlitLumaDelta": -43.2, "hemiLumaDelta": -12.07, "envmapLumaDelta": -26.19, "brightnessLumaDelta": -99.51, "blueLumaDelta": -41.55, "exposureBlueDelta": -132.7, "unlitBlueDelta": -25.5, "hemiBlueDelta": -13.75, "envmapBlueDelta": -53.0, "brightnessBlueDelta": -132.7, "blueBlueDelta": -77.81 },
+      { "id": "g07", "follow": 7.4, "height": 1.92, "presentPct": 0.2813, "dominant": "upper", "dominantTone": "hemi", "contributingTone": [], "brightnessAxis": ["exposure", "brightness"], "blueAxis": ["envmap", "blue"], "bandL2": 96.57, "bandLuma": 57.69, "bandBlue": 94.37, "bandLive": [23.09, 64.27, 94.37], "bandGold": [49.98, 121.76, 167.16], "exposureL2Delta": 116.19, "unlitL2Delta": 7.8, "hemiL2Delta": 4.18, "envmapL2Delta": 45.91, "brightnessL2Delta": 116.19, "blueL2Delta": 51.93, "exposureLumaDelta": -57.69, "unlitLumaDelta": -5.38, "hemiLumaDelta": -2.65, "envmapLumaDelta": -20.04, "brightnessLumaDelta": -57.69, "blueLumaDelta": -23.53, "exposureBlueDelta": -94.37, "unlitBlueDelta": -3.34, "hemiBlueDelta": -2.43, "envmapBlueDelta": -40.94, "brightnessBlueDelta": -94.37, "blueBlueDelta": -45.19 },
+      { "id": "g08", "follow": 7.4, "height": 1.92, "presentPct": 0.671, "dominant": "bottom", "dominantTone": "brightness", "contributingTone": ["exposure", "unlit", "hemi", "envmap", "brightness", "blue"], "brightnessAxis": ["exposure", "unlit", "brightness"], "blueAxis": ["hemi", "envmap", "blue"], "bandL2": 87.72, "bandLuma": 51.83, "bandBlue": 70.17, "bandLive": [40.83, 53.25, 70.17], "bandGold": [7.01, 5.99, 4.46], "exposureL2Delta": -77.48, "unlitL2Delta": -35.69, "hemiL2Delta": -10.98, "envmapL2Delta": -33.93, "brightnessL2Delta": -77.48, "blueL2Delta": -46.65, "exposureLumaDelta": -51.83, "unlitLumaDelta": -28.62, "hemiLumaDelta": -5.26, "envmapLumaDelta": -14.98, "brightnessLumaDelta": -51.83, "blueLumaDelta": -21.56, "exposureBlueDelta": -70.17, "unlitBlueDelta": -18.75, "hemiBlueDelta": -9.11, "envmapBlueDelta": -33.86, "brightnessBlueDelta": -70.17, "blueBlueDelta": -45.47 }
+    ],
+    "finding": "g01/g05/g08 bottom brightness and blue occupy independent axes. unlit excludes hemi (count 4, not r6.38's 5). With product exposure held at 0.56, combined blue drops B 70.6/77.8/45.5 while luma only 37.3/41.6/21.6. Envmap is the larger blue term (B −48.7/−53.0/−33.9) vs hemi (−12.5/−13.8/−9.1). Unlit-excluding-hemi drops luma 38.7/43.2/28.6 and only B 23.4/25.5/18.8. Exposure=0 still blacks the buffer (not independent of blue). Combined brightness equals exposure because exposure zero already crushes IBL. g07 upper has no contributing L2 tone; ramps remain. Product hex stays 0xd0d4d8."
+  },
+  "new_cases": {
+    "total": 28,
+    "source": "scripts/world-tone.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after independent brightness (unlit-excluding-hemi luma) plus blue (envmap+hemi with exposure held 0.56); exposure=0 is destructive of blue; g07 upper ramps",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}

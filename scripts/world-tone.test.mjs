@@ -8,63 +8,67 @@ import { test } from 'node:test';
 import { PNG } from 'pngjs';
 import { fromRoot } from './project-root.mjs';
 import {
-  BAND_PIXELS, FAILURE_LIMIT, PIXEL_THRESHOLD, REGION_BANDS, REGION_FRAMES,
-  bandPixelmatch, cropPngBand, dominantBand, regionBufferIsNotOriginalGolden,
-  retainWorldRegion, sceneScalarIsNotRegionMismatch, worldRegionFixture, worldRegionResults,
-} from './world-region-browser.mjs';
-import { RSH035_BASELINE_SHA256, ORIGINAL_GOLDEN_FILES, VIEWPORT } from './original-golden-browser.mjs';
+  BAND_PIXELS, BLUE_IDS, BRIGHTNESS_IDS, FAILURE_LIMIT, PIXEL_THRESHOLD, PRODUCT_EXPOSURE,
+  TONE_BLUE_MIN, TONE_FRAMES, TONE_L2_MIN, TONE_LAYERS, TONE_LUMA_MIN, dominantTone, luma,
+  retainWorldTone, shadeIsNotToneMismatch, toneBufferIsNotOriginalGolden, worldToneFixture,
+  worldToneResults,
+} from './world-tone-browser.mjs';
+import { worldShadeFixture } from './world-shade-browser.mjs';
+import { GROUND_ALBEDO } from './world-rgb-browser.mjs';
+import { REGION_BANDS, bandPixelmatch } from './world-region-browser.mjs';
+import { RSH035_BASELINE_SHA256, ORIGINAL_GOLDEN_FILES } from './original-golden-browser.mjs';
 
 function sha256(buf) {
   return createHash('sha256').update(buf).digest('hex');
 }
 
-test('full-frame presentPct without bands is not region mismatch', () => {
-  assert.equal(sceneScalarIsNotRegionMismatch({ frames: [] }), true);
-  assert.equal(sceneScalarIsNotRegionMismatch({
-    frames: [{ id: 'g01', presentPct: 0.41, presentMismatched: 100 }],
-  }), true);
-  assert.equal(sceneScalarIsNotRegionMismatch(worldRegionFixture()), false);
-  const scalarOnly = worldRegionFixture();
-  scalarOnly.frames = scalarOnly.frames.map(frame => ({
-    id: frame.id, presentPct: frame.presentPct, presentMismatched: frame.presentMismatched,
-    pixelThreshold: PIXEL_THRESHOLD,
-  }));
-  assert.equal(sceneScalarIsNotRegionMismatch(scalarOnly), true);
-  assert.throws(() => worldRegionResults(scalarOnly), /full-frame scene scalar is not region mismatch/);
+test('dominant 200px shade report without brightness/blue axes is not tone mismatch', () => {
+  assert.equal(shadeIsNotToneMismatch({ frames: [] }), true);
+  assert.equal(shadeIsNotToneMismatch(worldShadeFixture()), true);
+  assert.equal(shadeIsNotToneMismatch(worldToneFixture()), false);
+  assert.throws(() => worldToneResults(worldShadeFixture()), /shade L2 is not independent brightness vs blue mismatch/);
 });
 
-test('region buffer without original-golden protocol identity is not original-golden', () => {
-  assert.equal(regionBufferIsNotOriginalGolden(worldRegionFixture()), false);
-  assert.equal(regionBufferIsNotOriginalGolden({
-    ...worldRegionFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
+test('tone buffer without original-golden protocol identity is not original-golden', () => {
+  assert.equal(toneBufferIsNotOriginalGolden(worldToneFixture()), false);
+  assert.equal(toneBufferIsNotOriginalGolden({
+    ...worldToneFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
   }), true);
   assert.equal(PIXEL_THRESHOLD, 0.12);
   assert.equal(FAILURE_LIMIT, 0.08);
-  assert.equal(BAND_PIXELS, VIEWPORT.width * 200);
-  assert.deepEqual(REGION_BANDS.map(row => row.id), ['top', 'upper', 'lower', 'bottom']);
+  assert.equal(TONE_L2_MIN, 8);
+  assert.equal(TONE_LUMA_MIN, 8);
+  assert.equal(TONE_BLUE_MIN, 8);
+  assert.equal(PRODUCT_EXPOSURE, 0.56);
+  assert.equal(BAND_PIXELS, 1280 * 200);
+  assert.deepEqual(TONE_LAYERS, ['exposure', 'unlit', 'hemi', 'envmap', 'brightness', 'blue']);
+  assert.deepEqual([...BRIGHTNESS_IDS], ['exposure', 'unlit', 'brightness']);
+  assert.deepEqual([...BLUE_IDS], ['hemi', 'envmap', 'blue']);
+  assert.equal(GROUND_ALBEDO.hex, 0xd0d4d8);
+  assert.equal(luma({ r: 0, g: 0, b: 0 }), 0);
+  assert.throws(() => worldToneResults({ ...worldToneFixture(), productGroundHex: 0 }), /product ground color retuned/);
+  assert.throws(() => worldToneResults({ ...worldToneFixture(), productExposure: 1 }), /product exposure retuned/);
+  assert.throws(() => worldToneResults({ ...worldToneFixture(), unlitIncludesHemi: true }), /unlit includes hemi/);
 });
 
 test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
   const buf = readFileSync(fromRoot('golden-baseline', 'ayalon-day-g01.png'));
   const png = PNG.sync.read(buf);
-  const cropped = cropPngBand(png, 0, 200);
-  assert.equal(cropped.width, 1280);
-  assert.equal(cropped.height, 200);
-  const match = bandPixelmatch(png, png, REGION_BANDS[0]);
+  const match = bandPixelmatch(png, png, REGION_BANDS[3]);
   assert.equal(match.mismatched, 0);
   assert.equal(match.pct, 0);
-  assert.equal(match.id, 'top');
+  assert.equal(match.id, 'bottom');
 });
 
-test('locked region poses match original-golden cameras and PNG hashes', () => {
-  assert.deepEqual(REGION_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
-  assert.deepEqual(REGION_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
-  assert.equal(REGION_FRAMES[3].night, true);
-  assert.equal(dominantBand(worldRegionFixture().frames[0].bands), 'bottom');
+test('locked tone poses match original-golden cameras and PNG hashes', () => {
+  assert.deepEqual(TONE_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
+  assert.deepEqual(TONE_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
+  assert.equal(TONE_FRAMES[3].night, true);
+  assert.equal(dominantTone(worldToneFixture().frames[0].layers), 'brightness');
 });
 
-test('region-attribution evidence yields five protocol passes', () => {
-  assert.deepEqual(worldRegionResults(worldRegionFixture()).map(row => row.status), Array(5).fill('passed'));
+test('tone-attribution evidence yields five protocol passes', () => {
+  assert.deepEqual(worldToneResults(worldToneFixture()).map(row => row.status), Array(5).fill('passed'));
 });
 
 for (const [name, mutate] of [
@@ -83,37 +87,37 @@ for (const [name, mutate] of [
   ['authority claim', r => { r.authority = true; }],
   ['original-golden comparisons', r => { r.originalGoldenComparisons = 4; }],
   ['threshold drift', r => { r.pixelThreshold = 0.2; }],
-]) test(`world-region evidence fails closed: ${name}`, () => {
-  const r = worldRegionFixture();
+]) test(`world-tone evidence fails closed: ${name}`, () => {
+  const r = worldToneFixture();
   mutate(r);
-  assert.throws(() => worldRegionResults(r));
+  assert.throws(() => worldToneResults(r));
 });
 
 test('baseline PNG hash drift fails closed', () => {
-  const r = worldRegionFixture();
+  const r = worldToneFixture();
   r.baselineHashes['ayalon-day-g01.png'] = '0'.repeat(64);
-  assert.throws(() => worldRegionResults(r), /baseline hash drift/);
+  assert.throws(() => worldToneResults(r), /baseline hash drift/);
 });
 
 test('zero full-frame present mismatch remains failed', () => {
-  const r = worldRegionFixture();
+  const r = worldToneFixture();
   r.frames[0] = { ...r.frames[0], presentPct: 0, presentMismatched: 0 };
-  const row = worldRegionResults(r).find(item => item.case.includes('still mismatches'));
+  const row = worldToneResults(r).find(item => item.case.includes('still mismatches'));
   assert.equal(row.status, 'failed');
   assert.equal(row.failures, 1);
 });
 
-test('a rest-camera miss remains failed during region matching', () => {
-  const r = worldRegionFixture();
+test('a rest-camera miss remains failed during tone sampling', () => {
+  const r = worldToneFixture();
   r.frames[1] = { ...r.frames[1], follow: 9.2, height: 2.28 };
-  assert.throws(() => worldRegionResults(r));
+  assert.throws(() => worldToneResults(r));
 });
 
-test('invalid world-region report is retained before validation throws', async () => {
-  const out = await mkdtemp(join(tmpdir(), 'world-region-invalid-'));
+test('invalid world-tone report is retained before validation throws', async () => {
+  const out = await mkdtemp(join(tmpdir(), 'world-tone-invalid-'));
   try {
-    const r = worldRegionFixture({ originalGoldenComparisons: 4 });
-    await assert.rejects(retainWorldRegion(r, out));
+    const r = worldToneFixture({ originalGoldenComparisons: 4 });
+    await assert.rejects(retainWorldTone(r, out));
     assert.equal(JSON.parse(await readFile(join(out, 'results.json'), 'utf8')).originalGoldenComparisons, 4);
   } finally {
     await rm(out, { recursive: true, force: true });
