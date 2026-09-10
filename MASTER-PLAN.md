@@ -823,6 +823,21 @@ merge, replace PNGs, change thresholds or activate RSH-037.
 Details: RSH-036-WORLD-SLICE-r6.33.json, RSH-036-RUNTIME-REPAIR-r6.33.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.34 — 10 September 2026: named residual slice is not hero-car or road-shader attribution
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-44 hides
+hero-car, road-shader, blob, fx and remaining scene extras and pixelmatches
+the dominant 200px present band after snapCamera(true). A named residual
+slice is not which scene extra occupies that band. Hero (106), road (2),
+blob (4), fx (5) and unclassified (813) all have bandDelta 0 at g01/g05/g07/g08.
+g01/g05/g08 bottom stays ground-plane appearance; g07 upper stays ramps.
+Camera stays 7.4/1.92. Freeze path count stays 85. r6.27 lint no-undef is
+retained, not relabelled a pass. Immutable CDN bytes, rendering performance
+and freeze remain open. Do not merge, replace PNGs, change thresholds or
+activate RSH-037.
+Details: RSH-036-WORLD-EXTRA-r6.34.json, RSH-036-RUNTIME-REPAIR-r6.34.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 

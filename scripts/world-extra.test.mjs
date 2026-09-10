@@ -8,10 +8,10 @@ import { test } from 'node:test';
 import { PNG } from 'pngjs';
 import { fromRoot } from './project-root.mjs';
 import {
-  BAND_PIXELS, FAILURE_LIMIT, PIXEL_THRESHOLD, SLICE_DELTA_MIN, SLICE_FRAMES, SLICE_LAYERS,
-  dominantLayer, regionColumnIsNotSliceMismatch, retainWorldSlice,
-  sliceBufferIsNotOriginalGolden, worldSliceFixture, worldSliceResults,
-} from './world-slice-browser.mjs';
+  BAND_PIXELS, EXTRA_DELTA_MIN, EXTRA_FRAMES, EXTRA_LAYERS, FAILURE_LIMIT, PIXEL_THRESHOLD,
+  dominantExtra, extraBufferIsNotOriginalGolden, regionSliceIsNotExtraMismatch,
+  retainWorldExtra, worldExtraFixture, worldExtraResults,
+} from './world-extra-browser.mjs';
 import { REGION_BANDS, bandPixelmatch } from './world-region-browser.mjs';
 import { RSH035_BASELINE_SHA256, ORIGINAL_GOLDEN_FILES } from './original-golden-browser.mjs';
 
@@ -19,32 +19,35 @@ function sha256(buf) {
   return createHash('sha256').update(buf).digest('hex');
 }
 
-test('dominant 200px column report without layers is not slice mismatch', () => {
-  assert.equal(regionColumnIsNotSliceMismatch({ frames: [] }), true);
-  assert.equal(regionColumnIsNotSliceMismatch({
-    frames: [{ id: 'g01', presentPct: 0.41, presentMismatched: 100, dominant: 'bottom', dominantColumn: 'left', bands: REGION_BANDS }],
+test('dominant 200px slice report without extras is not extra mismatch', () => {
+  assert.equal(regionSliceIsNotExtraMismatch({ frames: [] }), true);
+  assert.equal(regionSliceIsNotExtraMismatch({
+    frames: [{
+      id: 'g01', presentPct: 0.41, presentMismatched: 100, dominant: 'bottom',
+      dominantLayer: 'carriageway', bands: REGION_BANDS,
+    }],
   }), true);
-  assert.equal(regionColumnIsNotSliceMismatch(worldSliceFixture()), false);
-  const columnOnly = worldSliceFixture();
-  columnOnly.frames = columnOnly.frames.map(frame => ({
+  assert.equal(regionSliceIsNotExtraMismatch(worldExtraFixture()), false);
+  const sliceOnly = worldExtraFixture();
+  sliceOnly.frames = sliceOnly.frames.map(frame => ({
     id: frame.id, presentPct: frame.presentPct, presentMismatched: frame.presentMismatched,
     pixelThreshold: PIXEL_THRESHOLD, bands: frame.bands, dominant: frame.dominant,
-    dominantColumn: 'left',
+    dominantLayer: 'carriageway',
   }));
-  assert.equal(regionColumnIsNotSliceMismatch(columnOnly), true);
-  assert.throws(() => worldSliceResults(columnOnly), /dominant 200px band is not world-layer slice mismatch/);
+  assert.equal(regionSliceIsNotExtraMismatch(sliceOnly), true);
+  assert.throws(() => worldExtraResults(sliceOnly), /dominant 200px band is not hero\/road extra mismatch/);
 });
 
-test('slice buffer without original-golden protocol identity is not original-golden', () => {
-  assert.equal(sliceBufferIsNotOriginalGolden(worldSliceFixture()), false);
-  assert.equal(sliceBufferIsNotOriginalGolden({
-    ...worldSliceFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
+test('extra buffer without original-golden protocol identity is not original-golden', () => {
+  assert.equal(extraBufferIsNotOriginalGolden(worldExtraFixture()), false);
+  assert.equal(extraBufferIsNotOriginalGolden({
+    ...worldExtraFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
   }), true);
   assert.equal(PIXEL_THRESHOLD, 0.12);
   assert.equal(FAILURE_LIMIT, 0.08);
-  assert.equal(SLICE_DELTA_MIN, 0.02);
+  assert.equal(EXTRA_DELTA_MIN, 0.02);
   assert.equal(BAND_PIXELS, 1280 * 200);
-  assert.deepEqual(SLICE_LAYERS, ['ramps', 'piers', 'water', 'carriageway', 'sky', 'ground', 'glass', 'instanced', 'residual']);
+  assert.deepEqual(EXTRA_LAYERS, ['hero', 'road', 'blob', 'fx', 'unclassified']);
 });
 
 test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
@@ -56,15 +59,15 @@ test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
   assert.equal(match.id, 'bottom');
 });
 
-test('locked slice poses match original-golden cameras and PNG hashes', () => {
-  assert.deepEqual(SLICE_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
-  assert.deepEqual(SLICE_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
-  assert.equal(SLICE_FRAMES[3].night, true);
-  assert.equal(dominantLayer(worldSliceFixture().frames[0].layers), 'ground');
+test('locked extra poses match original-golden cameras and PNG hashes', () => {
+  assert.deepEqual(EXTRA_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
+  assert.deepEqual(EXTRA_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
+  assert.equal(EXTRA_FRAMES[3].night, true);
+  assert.equal(dominantExtra(worldExtraFixture().frames[0].layers), 'road');
 });
 
-test('slice-attribution evidence yields five protocol passes', () => {
-  assert.deepEqual(worldSliceResults(worldSliceFixture()).map(row => row.status), Array(5).fill('passed'));
+test('extra-attribution evidence yields five protocol passes', () => {
+  assert.deepEqual(worldExtraResults(worldExtraFixture()).map(row => row.status), Array(5).fill('passed'));
 });
 
 for (const [name, mutate] of [
@@ -83,37 +86,37 @@ for (const [name, mutate] of [
   ['authority claim', r => { r.authority = true; }],
   ['original-golden comparisons', r => { r.originalGoldenComparisons = 4; }],
   ['threshold drift', r => { r.pixelThreshold = 0.2; }],
-]) test(`world-slice evidence fails closed: ${name}`, () => {
-  const r = worldSliceFixture();
+]) test(`world-extra evidence fails closed: ${name}`, () => {
+  const r = worldExtraFixture();
   mutate(r);
-  assert.throws(() => worldSliceResults(r));
+  assert.throws(() => worldExtraResults(r));
 });
 
 test('baseline PNG hash drift fails closed', () => {
-  const r = worldSliceFixture();
+  const r = worldExtraFixture();
   r.baselineHashes['ayalon-day-g01.png'] = '0'.repeat(64);
-  assert.throws(() => worldSliceResults(r), /baseline hash drift/);
+  assert.throws(() => worldExtraResults(r), /baseline hash drift/);
 });
 
 test('zero full-frame present mismatch remains failed', () => {
-  const r = worldSliceFixture();
+  const r = worldExtraFixture();
   r.frames[0] = { ...r.frames[0], presentPct: 0, presentMismatched: 0 };
-  const row = worldSliceResults(r).find(item => item.case.includes('still mismatches'));
+  const row = worldExtraResults(r).find(item => item.case.includes('still mismatches'));
   assert.equal(row.status, 'failed');
   assert.equal(row.failures, 1);
 });
 
-test('a rest-camera miss remains failed during slice matching', () => {
-  const r = worldSliceFixture();
+test('a rest-camera miss remains failed during extra matching', () => {
+  const r = worldExtraFixture();
   r.frames[1] = { ...r.frames[1], follow: 9.2, height: 2.28 };
-  assert.throws(() => worldSliceResults(r));
+  assert.throws(() => worldExtraResults(r));
 });
 
-test('invalid world-slice report is retained before validation throws', async () => {
-  const out = await mkdtemp(join(tmpdir(), 'world-slice-invalid-'));
+test('invalid world-extra report is retained before validation throws', async () => {
+  const out = await mkdtemp(join(tmpdir(), 'world-extra-invalid-'));
   try {
-    const r = worldSliceFixture({ originalGoldenComparisons: 4 });
-    await assert.rejects(retainWorldSlice(r, out));
+    const r = worldExtraFixture({ originalGoldenComparisons: 4 });
+    await assert.rejects(retainWorldExtra(r, out));
     assert.equal(JSON.parse(await readFile(join(out, 'results.json'), 'utf8')).originalGoldenComparisons, 4);
   } finally {
     await rm(out, { recursive: true, force: true });

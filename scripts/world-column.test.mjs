@@ -135,7 +135,7 @@ test('rest chase overlay remains the 26 August 7.4/1.92 lock', () => {
   assert.match(src, /let height = 1\.92;/);
 });
 
-test('smoke keeps world-layer residual mismatch bias scene region column and slice probes', () => {
+test('smoke keeps world-layer residual mismatch bias scene region column slice and extra probes', () => {
   const src = readFileSync(fromRoot('scripts', 'runtime-recovery-smoke.mjs'), 'utf8');
   assert.match(src, /import \{ verifyWorldLayers \} from '\.\/world-layer-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldResidual \} from '\.\/world-residual-browser\.mjs';/);
@@ -145,6 +145,7 @@ test('smoke keeps world-layer residual mismatch bias scene region column and sli
   assert.match(src, /import \{ verifyWorldRegion \} from '\.\/world-region-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldColumn \} from '\.\/world-column-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldSlice \} from '\.\/world-slice-browser\.mjs';/);
+  assert.match(src, /import \{ verifyWorldExtra \} from '\.\/world-extra-browser\.mjs';/);
   assert.match(src, /verifyWorldLayers\(browser, url\)/);
   assert.match(src, /verifyWorldResidual\(browser, url\)/);
   assert.match(src, /verifyWorldMismatch\(browser, url\)/);
@@ -153,6 +154,7 @@ test('smoke keeps world-layer residual mismatch bias scene region column and sli
   assert.match(src, /verifyWorldRegion\(browser, url\)/);
   assert.match(src, /verifyWorldColumn\(browser, url\)/);
   assert.match(src, /verifyWorldSlice\(browser, url\)/);
+  assert.match(src, /verifyWorldExtra\(browser, url\)/);
 });
 
 test('freeze path count 85 and generation 11 stay', () => {

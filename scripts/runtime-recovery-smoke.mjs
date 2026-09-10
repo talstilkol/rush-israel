@@ -17,6 +17,7 @@ import { verifyWorldScene } from './world-scene-browser.mjs';
 import { verifyWorldRegion } from './world-region-browser.mjs';
 import { verifyWorldColumn } from './world-column-browser.mjs';
 import { verifyWorldSlice } from './world-slice-browser.mjs';
+import { verifyWorldExtra } from './world-extra-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -87,6 +88,7 @@ try {
   results.push(...await verifyWorldRegion(browser, url));
   results.push(...await verifyWorldColumn(browser, url));
   results.push(...await verifyWorldSlice(browser, url));
+  results.push(...await verifyWorldExtra(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));
