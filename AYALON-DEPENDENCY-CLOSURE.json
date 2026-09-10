@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "15fcbab54d4d18de4fcb6685ccc9a41f6025bd6b9787a3c05b5f422ae6b0934f"
+      "sha256": "954e7432fa8c925c050d617ca3e433c93109102cc40183d40f4da671146270ec"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 11166,
-      "sha256": "6604020346acf5f5226f82cf39f65e1f60efe9ec5440c85487e9bfd02401c57b"
+      "bytes": 11279,
+      "sha256": "c077bfb6e204661421e4900fa8d8412ff2e64235cfd8f6d6f66cd92116628358"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2265,6 +2265,16 @@
       "path": "scripts/world-mismatch.test.mjs",
       "bytes": 7008,
       "sha256": "e861714426a8c5881f52d9fa0daf4bb7ae9b4215fd2ac683a77728ed4c435627"
+    },
+    {
+      "path": "scripts/world-ray-browser.mjs",
+      "bytes": 27026,
+      "sha256": "9f1dcd1c61fbca6637ef546a38adf44059427d9f37d5ed5bf462f63422e84672"
+    },
+    {
+      "path": "scripts/world-ray.test.mjs",
+      "bytes": 10025,
+      "sha256": "d6ffa6ed1944e987fda3a42ee9e05e96d1077162ee439f6ea3c452d59fc377f1"
     },
     {
       "path": "scripts/world-region-browser.mjs",
@@ -2454,7 +2464,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "b8ef35eb27aa53513a2d695958196762df3109ecc307e572e262e10db71f2bdd"
+      "sha256": "0c812b3785949b5c95f9abb00f69907814ee11f0b13d4872d5cf614114ecfdaa"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10706,5 +10716,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "394a7d340be453a1925e5c24cb50bb40e5c270b0d37e2927b9c887aa57ef2c06"
+  "digest_sha256": "14e02bd33b55356b88fb106dd1a17aba1d03defa6dc51c0e3d73b9bdba4e682f"
 }
