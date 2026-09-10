@@ -1,7 +1,7 @@
-**Version:** 20.40.0
+**Version:** 20.41.0
 **Date:** 2026-09-10, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** b19739b8a995f80a2ae85c27fbc242181585c0b1
+**Repair base:** 5df0e7cf3917d5448e7a6ceee3a685a2f2a7e714
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -60,7 +60,9 @@ only 37.3/41.6/21.6. Unlit-excluding-hemi luma is −38.7/−43.2/−28.6. Expos
 still blacks the buffer. Term isolation splits those combined axes: dir
 (sun+near) occupies day-bottom luma (−28.0/−31.1/−11.5); fill joins dir on g08
 night (−12.4). scene.environment is the entire envmap blue term
-(B −48.7/−53.0/−33.9); envMapIntensity is 0. g07 upper remains ramps. Product hex
+(B −48.7/−53.0/−33.9); envMapIntensity is 0. Beam isolation splits dir: sun
+occupies the entire dir luma (−28.0/−31.1/−11.5); near is 0 on every pose.
+Fill joins sun on g08 night (−12.4). g07 upper remains ramps. Product hex
 stays `0xd0d4d8`. Preserve historical
 preparation 34324754353. PNG bytes last changed 26 August 12:00:42Z, before
 spaghetti ramps.
@@ -84,23 +86,22 @@ required-ci-34480369405-1 SHA-256
 `0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec`. Retained;
 not relabelled a pass.
 
-## r6.40 and subsequent acceptance
-1. Remaining 0/4 is dir luma plus scene.environment blue on g01/g05/g08 bottom:
-   sun+near occupies day luma (live too bright vs dark locked PNG) and
-   scene.environment occupies the B channel. Fill joins dir on g08 night.
-   Ambient is residual. envMapIntensity is 0, so r6.39 envmap count 57 was
-   environment 1 + intensity 56. g07 upper remains ramps. Live sampling must
-   force 1280×800 pixelRatio 1 after snapCamera(true), capture product present
+## r6.41 and subsequent acceptance
+1. Remaining 0/4 is sun luma plus scene.environment blue on g01/g05/g08 bottom:
+   sun occupies the entire r6.40 dir luma (live too bright vs dark locked PNG)
+   and scene.environment occupies the B channel. Near is 0 on every pose. Fill
+   joins sun on g08 night. g07 upper remains ramps. Live sampling must force
+   1280×800 pixelRatio 1 after snapCamera(true), capture product present
    (`post.setDrive(0, false); post.render()`), locate the dominant 200px band,
-   and isolate dir vs fill vs ambient independently of scene.environment vs
-   envMapIntensity without changing product color, exposure or refreshing PNGs.
+   and isolate sun color vs intensity independently of fill vs environment
+   without changing product color, exposure or refreshing PNGs.
    Smoke must keep verifyWorldLayers, verifyWorldResidual, verifyWorldMismatch,
    verifyWorldBias, verifyWorldScene, verifyWorldRegion, verifyWorldColumn,
    verifyWorldSlice, verifyWorldExtra, verifyWorldMaterial, verifyWorldFactor,
-   verifyWorldRgb, verifyWorldShade, verifyWorldTone and verifyWorldTerm. Live
-   rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is that dir+environment
-   gap plus g07 upper ramps. PNG refresh, threshold drift, color retune,
-   exposure retune and skipped comparison fail closed. 176 piers,
+   verifyWorldRgb, verifyWorldShade, verifyWorldTone, verifyWorldTerm and
+   verifyWorldBeam. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is
+   that sun+environment gap plus g07 upper ramps. PNG refresh, threshold drift,
+   color retune, exposure retune and skipped comparison fail closed. 176 piers,
    546 legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and generation-11
    lock stay. Freeze path count stays 85. Pixel 0/4 is not freeze.
 2. Preserve the r6.18 Chromium install retry, the r6.19 slab-underside support
@@ -112,11 +113,11 @@ not relabelled a pass.
    region-band isolation, the r6.32 column isolation, the r6.33 slice isolation,
    the r6.34 extra isolation, the r6.35 material isolation, the r6.36 factor
    isolation, the r6.37 rgb sampling, the r6.38 shade isolation, the r6.39
-   tone isolation and the r6.40 term isolation.
+   tone isolation, the r6.40 term isolation and the r6.41 beam isolation.
 3. Preserve 1280x800 images, threshold 0.12, failure 8%, generation 11 lock and
    owner approval. Do not refresh golden PNGs or silently change typography.
    Rendering performance remains open.
 4. Only validated applicable approval may grant freeze or open RSH-037.
 
-Master plan r6.40 retains 67 units, 42 historical findings, 6 bundles and 50
+Master plan r6.41 retains 67 units, 42 historical findings, 6 bundles and 51
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

@@ -933,6 +933,22 @@ thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-TERM-r6.40.json, RSH-036-RUNTIME-REPAIR-r6.40.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.41 — 10 September 2026: combined dir luma is not sun vs near
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-51 isolates
+sun vs near vs fill vs scene.environment after setNight/snapCamera(true).
+r6.40 dir was two lights. g01/g05/g08 bottom luma is sun
+(−28.0/−31.1/−11.5), which is the entire r6.40 dir luma. Near is 0 on every
+pose. Fill joins sun on g08 night (−12.4). scene.environment remains the blue
+term (B −48.7/−53.0/−33.9). g07 upper remains ramps. Camera stays 7.4/1.92.
+Freeze path count stays 85. r6.27 lint no-undef is retained, not relabelled a
+pass. Immutable CDN bytes, rendering performance and freeze remain open. Do
+not merge, replace PNGs, change thresholds, retune color or exposure or
+activate RSH-037.
+Details: RSH-036-WORLD-BEAM-r6.41.json, RSH-036-RUNTIME-REPAIR-r6.41.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 
