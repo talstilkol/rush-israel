@@ -23,6 +23,7 @@ import { verifyWorldFactor } from './world-factor-browser.mjs';
 import { verifyWorldRgb } from './world-rgb-browser.mjs';
 import { verifyWorldShade } from './world-shade-browser.mjs';
 import { verifyWorldTone } from './world-tone-browser.mjs';
+import { verifyWorldTerm } from './world-term-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -99,6 +100,7 @@ try {
   results.push(...await verifyWorldRgb(browser, url));
   results.push(...await verifyWorldShade(browser, url));
   results.push(...await verifyWorldTone(browser, url));
+  results.push(...await verifyWorldTerm(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));

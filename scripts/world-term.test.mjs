@@ -8,12 +8,12 @@ import { test } from 'node:test';
 import { PNG } from 'pngjs';
 import { fromRoot } from './project-root.mjs';
 import {
-  BAND_PIXELS, BLUE_IDS, BRIGHTNESS_IDS, FAILURE_LIMIT, PIXEL_THRESHOLD, PRODUCT_EXPOSURE,
-  TONE_BLUE_MIN, TONE_FRAMES, TONE_L2_MIN, TONE_LAYERS, TONE_LUMA_MIN, dominantTone, luma,
-  retainWorldTone, shadeIsNotToneMismatch, toneBufferIsNotOriginalGolden, worldToneFixture,
-  worldToneResults,
-} from './world-tone-browser.mjs';
-import { worldShadeFixture } from './world-shade-browser.mjs';
+  BAND_PIXELS, FAILURE_LIMIT, IBL_IDS, LUMA_IDS, PIXEL_THRESHOLD, PRODUCT_EXPOSURE,
+  TERM_BLUE_MIN, TERM_FRAMES, TERM_L2_MIN, TERM_LAYERS, TERM_LUMA_MIN, dominantTerm, luma,
+  retainWorldTerm, termBufferIsNotOriginalGolden, toneIsNotTermMismatch, worldTermFixture,
+  worldTermResults,
+} from './world-term-browser.mjs';
+import { worldToneFixture } from './world-tone-browser.mjs';
 import { GROUND_ALBEDO } from './world-rgb-browser.mjs';
 import { REGION_BANDS, bandPixelmatch } from './world-region-browser.mjs';
 import { RSH035_BASELINE_SHA256, ORIGINAL_GOLDEN_FILES } from './original-golden-browser.mjs';
@@ -22,33 +22,35 @@ function sha256(buf) {
   return createHash('sha256').update(buf).digest('hex');
 }
 
-test('dominant 200px shade report without brightness/blue axes is not tone mismatch', () => {
-  assert.equal(shadeIsNotToneMismatch({ frames: [] }), true);
-  assert.equal(shadeIsNotToneMismatch(worldShadeFixture()), true);
-  assert.equal(shadeIsNotToneMismatch(worldToneFixture()), false);
-  assert.throws(() => worldToneResults(worldShadeFixture()), /shade L2 is not independent brightness vs blue mismatch/);
+test('dominant 200px tone report without dir/fill/ambient vs environment/envIntensity is not term mismatch', () => {
+  assert.equal(toneIsNotTermMismatch({ frames: [] }), true);
+  assert.equal(toneIsNotTermMismatch(worldToneFixture()), true);
+  assert.equal(toneIsNotTermMismatch(worldTermFixture()), false);
+  assert.throws(() => worldTermResults(worldToneFixture()), /combined unlit luma \/ envmap B is not dir\/fill\/ambient vs environment\/envIntensity mismatch/);
 });
 
-test('tone buffer without original-golden protocol identity is not original-golden', () => {
-  assert.equal(toneBufferIsNotOriginalGolden(worldToneFixture()), false);
-  assert.equal(toneBufferIsNotOriginalGolden({
-    ...worldToneFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
+test('term buffer without original-golden protocol identity is not original-golden', () => {
+  assert.equal(termBufferIsNotOriginalGolden(worldTermFixture()), false);
+  assert.equal(termBufferIsNotOriginalGolden({
+    ...worldTermFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
   }), true);
   assert.equal(PIXEL_THRESHOLD, 0.12);
   assert.equal(FAILURE_LIMIT, 0.08);
-  assert.equal(TONE_L2_MIN, 8);
-  assert.equal(TONE_LUMA_MIN, 8);
-  assert.equal(TONE_BLUE_MIN, 8);
+  assert.equal(TERM_L2_MIN, 8);
+  assert.equal(TERM_LUMA_MIN, 8);
+  assert.equal(TERM_BLUE_MIN, 8);
   assert.equal(PRODUCT_EXPOSURE, 0.56);
   assert.equal(BAND_PIXELS, 1280 * 200);
-  assert.deepEqual(TONE_LAYERS, ['exposure', 'unlit', 'hemi', 'envmap', 'brightness', 'blue']);
-  assert.deepEqual([...BRIGHTNESS_IDS], ['exposure', 'unlit', 'brightness']);
-  assert.deepEqual([...BLUE_IDS], ['hemi', 'envmap', 'blue']);
+  assert.deepEqual(TERM_LAYERS, ['dir', 'fill', 'ambient', 'environment', 'envIntensity']);
+  assert.deepEqual([...LUMA_IDS], ['dir', 'fill', 'ambient']);
+  assert.deepEqual([...IBL_IDS], ['environment', 'envIntensity']);
   assert.equal(GROUND_ALBEDO.hex, 0xd0d4d8);
   assert.equal(luma({ r: 0, g: 0, b: 0 }), 0);
-  assert.throws(() => worldToneResults({ ...worldToneFixture(), productGroundHex: 0 }), /product ground color retuned/);
-  assert.throws(() => worldToneResults({ ...worldToneFixture(), productExposure: 1 }), /product exposure retuned/);
-  assert.throws(() => worldToneResults({ ...worldToneFixture(), unlitIncludesHemi: true }), /unlit includes hemi/);
+  assert.throws(() => worldTermResults({ ...worldTermFixture(), productGroundHex: 0 }), /product ground color retuned/);
+  assert.throws(() => worldTermResults({ ...worldTermFixture(), productExposure: 1 }), /product exposure retuned/);
+  assert.throws(() => worldTermResults({ ...worldTermFixture(), lumaTermsIncludeHemi: true }), /luma terms include hemi/);
+  assert.throws(() => worldTermResults({ ...worldTermFixture(), environmentClearsIntensity: true }), /environment isolation clears envMapIntensity/);
+  assert.throws(() => worldTermResults({ ...worldTermFixture(), envIntensityClearsEnvironment: true }), /envIntensity isolation clears scene.environment/);
 });
 
 test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
@@ -60,15 +62,15 @@ test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
   assert.equal(match.id, 'bottom');
 });
 
-test('locked tone poses match original-golden cameras and PNG hashes', () => {
-  assert.deepEqual(TONE_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
-  assert.deepEqual(TONE_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
-  assert.equal(TONE_FRAMES[3].night, true);
-  assert.equal(dominantTone(worldToneFixture().frames[0].layers), 'brightness');
+test('locked term poses match original-golden cameras and PNG hashes', () => {
+  assert.deepEqual(TERM_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
+  assert.deepEqual(TERM_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
+  assert.equal(TERM_FRAMES[3].night, true);
+  assert.equal(dominantTerm(worldTermFixture().frames[0].layers), 'dir');
 });
 
-test('tone-attribution evidence yields five protocol passes', () => {
-  assert.deepEqual(worldToneResults(worldToneFixture()).map(row => row.status), Array(5).fill('passed'));
+test('term-attribution evidence yields five protocol passes', () => {
+  assert.deepEqual(worldTermResults(worldTermFixture()).map(row => row.status), Array(5).fill('passed'));
 });
 
 for (const [name, mutate] of [
@@ -87,37 +89,37 @@ for (const [name, mutate] of [
   ['authority claim', r => { r.authority = true; }],
   ['original-golden comparisons', r => { r.originalGoldenComparisons = 4; }],
   ['threshold drift', r => { r.pixelThreshold = 0.2; }],
-]) test(`world-tone evidence fails closed: ${name}`, () => {
-  const r = worldToneFixture();
+]) test(`world-term evidence fails closed: ${name}`, () => {
+  const r = worldTermFixture();
   mutate(r);
-  assert.throws(() => worldToneResults(r));
+  assert.throws(() => worldTermResults(r));
 });
 
 test('baseline PNG hash drift fails closed', () => {
-  const r = worldToneFixture();
+  const r = worldTermFixture();
   r.baselineHashes['ayalon-day-g01.png'] = '0'.repeat(64);
-  assert.throws(() => worldToneResults(r), /baseline hash drift/);
+  assert.throws(() => worldTermResults(r), /baseline hash drift/);
 });
 
 test('zero full-frame present mismatch remains failed', () => {
-  const r = worldToneFixture();
+  const r = worldTermFixture();
   r.frames[0] = { ...r.frames[0], presentPct: 0, presentMismatched: 0 };
-  const row = worldToneResults(r).find(item => item.case.includes('still mismatches'));
+  const row = worldTermResults(r).find(item => item.case.includes('still mismatches'));
   assert.equal(row.status, 'failed');
   assert.equal(row.failures, 1);
 });
 
-test('a rest-camera miss remains failed during tone sampling', () => {
-  const r = worldToneFixture();
+test('a rest-camera miss remains failed during term sampling', () => {
+  const r = worldTermFixture();
   r.frames[1] = { ...r.frames[1], follow: 9.2, height: 2.28 };
-  assert.throws(() => worldToneResults(r));
+  assert.throws(() => worldTermResults(r));
 });
 
-test('invalid world-tone report is retained before validation throws', async () => {
-  const out = await mkdtemp(join(tmpdir(), 'world-tone-invalid-'));
+test('invalid world-term report is retained before validation throws', async () => {
+  const out = await mkdtemp(join(tmpdir(), 'world-term-invalid-'));
   try {
-    const r = worldToneFixture({ originalGoldenComparisons: 4 });
-    await assert.rejects(retainWorldTone(r, out));
+    const r = worldTermFixture({ originalGoldenComparisons: 4 });
+    await assert.rejects(retainWorldTerm(r, out));
     assert.equal(JSON.parse(await readFile(join(out, 'results.json'), 'utf8')).originalGoldenComparisons, 4);
   } finally {
     await rm(out, { recursive: true, force: true });

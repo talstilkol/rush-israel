@@ -918,6 +918,22 @@ color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-TONE-r6.39.json, RSH-036-RUNTIME-REPAIR-r6.39.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.40 — 10 September 2026: combined unlit luma / envmap B is not dir/fill/ambient vs environment/envIntensity
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-50 isolates
+dir vs fill vs ambient vs scene.environment vs envMapIntensity after
+setNight/snapCamera(true). r6.39 unlit was four lights and envmap mixed
+environment with intensity. g01/g05/g08 bottom luma is dir
+(−28.0/−31.1/−11.5); fill joins dir on g08 night (−12.4). scene.environment is
+the entire envmap blue term (B −48.7/−53.0/−33.9). envMapIntensity is 0. g07
+upper remains ramps. Camera stays 7.4/1.92. Freeze path count stays 85. r6.27
+lint no-undef is retained, not relabelled a pass. Immutable CDN bytes, rendering
+performance and freeze remain open. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-TERM-r6.40.json, RSH-036-RUNTIME-REPAIR-r6.40.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 
