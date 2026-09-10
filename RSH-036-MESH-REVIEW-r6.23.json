@@ -1,0 +1,97 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.23",
+  "date": "2026-09-10",
+  "base": "cfcb99008be1aa1e8c3296e97c40d15ec46c059b",
+  "finding": "AUD-33",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.21",
+    "head": "cc7c017548a3f29e6b3326cff7d0e50431f58c43",
+    "tree": "89958d495b24585b36a8320ad22898730bc2419c",
+    "run_id": 34445990921,
+    "job_id": 102770784283,
+    "unit_passed": 1167,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "golden_source": "preparation 34324754353",
+    "required_ci_artifact_id": 10139930417,
+    "required_ci_artifact_sha256": "082b53b7d04174db52cce0a05e4dc3f6a7c37dad66ad8982b74d8a7bbf1a9d19",
+    "audit_source_artifact_id": 10139658302,
+    "audit_source_artifact_sha256": "c1b494740b9667ff509780171681c2dbbba08eb174106dd650e3ae453fcd8808",
+    "lint_warnings": 124,
+    "lint_errors": 0,
+    "not_unit_acceptance": true
+  },
+  "r6_22_head": {
+    "head": "cfcb99008be1aa1e8c3296e97c40d15ec46c059b",
+    "tree": "545cc5c1b61a1e25a81e89273899bb4d96935d68",
+    "required_ci_run": 34449950487,
+    "status": "in_progress_at_r6_23_draft",
+    "not_relabelled_pass": true
+  },
+  "defect": "Physics uses a 1.05-radius circle and 1.25 half-length arcade box. Live car-mesh layout is 4.08-4.82 m long. A 1.6 m front pole is missed by the arcade circle and hit by every visual hull. Arcade rest-pose and complete-lap probes cannot speak for the render-mesh.",
+  "repair": "Visual hull from car-mesh layout/shape plus mirrors/exhaust. 1s arcade drive fails closed. Live 722-collider rest poses and yawed AI samples must report 0 visual hits. Arcade constants stay. Visual hull is not freeze or original-golden.",
+  "vehicle_proxy": {
+    "arcade_half_length": 1.25,
+    "arcade_radius": 1.05,
+    "arcade_height": 1.6,
+    "visual_half_length": {
+      "sabra": 2.38,
+      "carmel": 2.17,
+      "kfir": 2.54,
+      "negev": 2.29,
+      "yam": 2.39
+    },
+    "visual_half_width": {
+      "sabra": 1.0178,
+      "carmel": 0.9854,
+      "kfir": 1.061,
+      "negev": 1.0368,
+      "yam": 1.0934
+    },
+    "scope": "oriented visual hull vs unpadded obstacle footprints; not triangle-mesh clipping or freeze"
+  },
+  "new_cases": {
+    "total": 21,
+    "source": "scripts/mesh-clearance.test.mjs"
+  },
+  "live_browser": {
+    "status": "passed",
+    "gridHits": 0,
+    "centerHits": 0,
+    "laneHits": 0,
+    "drive": {
+      "steps": 2400,
+      "hullSamples": 160,
+      "hits": 0,
+      "buried": 0,
+      "respawns": 0
+    },
+    "colliderCount": 722,
+    "legacyCount": 546,
+    "pierCount": 176,
+    "rampCount": 50,
+    "routeSamples": 781
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}

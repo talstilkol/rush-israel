@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.22",
+  "revision": "r6.23",
   "date": "2026-09-10",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "cc7c017548a3f29e6b3326cff7d0e50431f58c43",
+  "source_pr_head": "cfcb99008be1aa1e8c3296e97c40d15ec46c059b",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 32,
+    "audit_items": 33,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -362,7 +362,8 @@
         "AUD-29",
         "AUD-30",
         "AUD-31",
-        "AUD-32"
+        "AUD-32",
+        "AUD-33"
       ]
     },
     {
@@ -1281,6 +1282,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-04",
       "evidence": "RSH-036-RACE-REVIEW-r6.22.json"
+    },
+    {
+      "id": "AUD-33",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "The 1.05-radius arcade circle and 1.25 half-length box are not the visual car mesh",
+      "acceptance": "Arcade-only 1s evidence must fail closed as mesh clearance. Visual hulls from live car-mesh layout must report 0 hits on the live 722-collider catalogue at rest (grid, 781 centerline, ±2.2 lanes) and during yawed AI samples. A 1.6 m front pole must fail the arcade circle and pass the hull. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7, freeze path count 85 and original golden gates. Visual hull is not triangle clipping, freeze or original-golden.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-04",
+      "evidence": "RSH-036-MESH-REVIEW-r6.23.json"
     }
   ],
   "legacy_findings": [

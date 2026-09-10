@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-10T07:20:00Z",
+  "generated_at": "2026-09-10T07:45:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,21 +2001,34 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.22.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.23.md",
     "local_unit_tests": {
-      "status": "focused_18_passed_live_lap_passed_full_suite_expected_1185",
-      "focused_passed": 18,
+      "status": "focused_21_passed_live_mesh_passed_full_suite_expected_1206",
+      "focused_passed": 21,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 1185,
+      "expected_total": 1206,
       "predecessor_exact_head_passed": 1167,
-      "new_unique_cases": 18,
+      "predecessor_r6_22_expected": 1185,
+      "new_unique_cases": 21,
       "live_complete_race": {
         "status": "passed",
         "steps": 10595,
         "progress": 0.9602564102564102,
         "lastCheckpoint": 7,
+        "buried": 0,
+        "respawns": 0,
+        "colliderCount": 722
+      },
+      "live_mesh_clearance": {
+        "status": "passed",
+        "gridHits": 0,
+        "centerHits": 0,
+        "laneHits": 0,
+        "driveSteps": 2400,
+        "hullSamples": 160,
+        "hits": 0,
         "buried": 0,
         "respawns": 0,
         "colliderCount": 722
@@ -2086,7 +2099,7 @@
       "diagnostic_run": 33992134755
     },
     "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json",
-    "new_candidate_validation": "pending_r6_22_preparation_and_exact_published_head_CI",
+    "new_candidate_validation": "pending_r6_23_preparation_and_exact_published_head_CI",
     "generated_dependency_inventory": "AYALON-DEPENDENCY-CLOSURE.json",
     "safe_capture_output": "both_commands_no_automatic_baseline_writes",
     "ci_action_pins": "three_previously_verified_pins_unchanged",
@@ -2215,7 +2228,8 @@
     "support_review": "RSH-036-SUPPORT-REVIEW-r6.19.json",
     "font_review": "RSH-036-FONT-REVIEW-r6.20.json",
     "chase_review": "RSH-036-CHASE-REVIEW-r6.21.json",
-    "race_review": "RSH-036-RACE-REVIEW-r6.22.json"
+    "race_review": "RSH-036-RACE-REVIEW-r6.22.json",
+    "mesh_review": "RSH-036-MESH-REVIEW-r6.23.json"
   },
   "historical_rsh035_constraints": [
     "The plain next instruction authorized exactly RSH-035 and is consumed on its validated merge.",

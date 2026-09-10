@@ -6,6 +6,7 @@ import { chromium } from 'playwright';
 import { fromRoot } from './project-root.mjs';
 import { verifyRouteClearance } from './route-clearance-browser.mjs';
 import { verifyCompleteRace } from './complete-race-browser.mjs';
+import { verifyMeshClearance } from './mesh-clearance-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -65,6 +66,7 @@ try {
   results.push(...await verifyPierCollisions(browser, url));
   results.push(...await verifyRouteClearance(browser, url));
   results.push(...await verifyCompleteRace(browser, url));
+  results.push(...await verifyMeshClearance(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));

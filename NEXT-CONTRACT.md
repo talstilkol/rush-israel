@@ -1,9 +1,9 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 20.21.0
+**Version:** 20.22.0
 **Date:** 2026-09-10, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** cc7c017548a3f29e6b3326cff7d0e50431f58c43
+**Repair base:** cfcb99008be1aa1e8c3296e97c40d15ec46c059b
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -21,6 +21,11 @@ audit-source-34445990921-1 SHA-256
 Original golden remains 0/4 from preparation 34324754353. Preserve that
 historical evidence; do not treat old pending fields as unexecuted work.
 
+r6.22 product `cfcb99008be1aa1e8c3296e97c40d15ec46c059b` tree
+`545cc5c1b61a1e25a81e89273899bb4d96935d68` exact-head requiredCI 34449950487
+was in progress at r6.23 draft. Do not relabel that run a pass until artifacts
+are independently hashed.
+
 r6.20 product `ece282e4acdf95d5dc256122e54925d24e5d38ed` tree
 `415da9919de2a71ea93938563aa38647a40a8b80` exact-head requiredCI 34442339244
 job 102759811481 passed 1,158 units. Retained; not overwritten by r6.21.
@@ -36,19 +41,20 @@ overall **FAILED** at runtime-recovery: 8 ramp supports protruded
 `5c10b6eb4fbf12dcde41073852637d16b360f16700edac5249ba5882df62b31c`. That
 failure is retained and is not relabelled a pass.
 
-## r6.22 and subsequent acceptance
-1. A 120-step / 1.62 m drive is not a complete lap. Production `aiInput` plus
-   120 Hz `ArcadeCar.step` must finish an open Ayalon lap through 8 checkpoints
-   without burial or respawn. 176 piers, 546 legacy colliders, 50 ramps,
-   rest-pose 1.6, 1.05 radius and generation-11 lock stay. Freeze path count
-   stays 85. Arcade lap is not mesh clearance.
+## r6.23 and subsequent acceptance
+1. The 1.05-radius arcade circle and 1.25 half-length box are not the
+   render-mesh. Visual hulls from live car-mesh layout must be tested against
+   the 722-collider catalogue. 1s arcade evidence fails closed. 176 piers,
+   546 legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and generation-11
+   lock stay. Freeze path count stays 85. Visual hull is not freeze.
 2. Preserve the r6.18 Chromium install retry, the r6.19 slab-underside support
-   placement, the r6.20 product font URL pins and the r6.21 rest chase 7.4/1.92.
+   placement, the r6.20 product font URL pins, the r6.21 rest chase 7.4/1.92
+   and the r6.22 complete arcade lap.
 3. Run full exact-head CI and original-golden comparison. Preserve 1280x800
    images, threshold 0.12, failure 8%, generation 11 lock and owner approval.
    Do not refresh golden PNGs or silently change typography. Rendering
-   performance and mesh clearance remain open.
+   performance remains open.
 4. Only validated applicable approval may grant freeze or open RSH-037.
 
-Master plan r6.22 retains 67 units, 42 historical findings, 6 bundles and 32
+Master plan r6.23 retains 67 units, 42 historical findings, 6 bundles and 33
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

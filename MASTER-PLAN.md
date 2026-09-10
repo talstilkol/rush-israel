@@ -679,4 +679,16 @@ activate RSH-037.
 Details: RSH-036-RACE-REVIEW-r6.22.json, RSH-036-RUNTIME-REPAIR-r6.22.md and
 docs/evidence/r6.21-published-ci-verification.json.
 
+## r6.23 — 10 September 2026: visual-mesh Ayalon clearance
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-33 tests
+the live car-mesh hull, not the 1.05 arcade circle. Visual half-length is
+2.17–2.54 versus arcade 1.25. A 1.6 m front pole is missed by the arcade
+circle and hit by every hull. Live 722-collider rest poses and 160 yawed
+AI samples reported 0 visual hits. Freeze path count stays 85. Original
+golden 0/4, immutable CDN bytes, rendering performance and freeze remain
+open. Do not merge, replace PNGs, change thresholds or activate RSH-037.
+Details: RSH-036-MESH-REVIEW-r6.23.json and RSH-036-RUNTIME-REPAIR-r6.23.md.
+
+
 

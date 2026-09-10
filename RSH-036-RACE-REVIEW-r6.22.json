@@ -62,8 +62,7 @@
     "exact published-head CI",
     "original golden 0/4",
     "immutable CDN font bytes",
-    "rendering performance",
-    "mesh clearance"
+    "rendering performance"
   ],
   "no_freeze_or_acceptance": true
 }
