@@ -854,6 +854,22 @@ thresholds or activate RSH-037.
 Details: RSH-036-WORLD-MATERIAL-r6.35.json, RSH-036-RUNTIME-REPAIR-r6.35.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.36 — 10 September 2026: ground+daylight co-occupancy is not map/color/roughness or hemi/dir/fill/ambient/background
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-46 isolates
+ground map vs color vs roughness and daylight hemi vs dir vs fill vs ambient vs
+background independently after setNight/snapCamera(true) and pixelmatches the
+dominant 200px present band. Combined ground+daylight is not which channel.
+g01/g05/g08 bottom is ground-plane color (`0xd0d4d8`): black albedo drops
+mismatch 77.6/85.0/87.8 points. Nulling the map increases mismatch, so the
+texture helps. Roughness and daytime lights are not independent drivers. g07
+upper remains ramps. Camera stays 7.4/1.92. Freeze path count stays 85. r6.27
+lint no-undef is retained, not relabelled a pass. Immutable CDN bytes,
+rendering performance and freeze remain open. Do not merge, replace PNGs,
+change thresholds or activate RSH-037.
+Details: RSH-036-WORLD-FACTOR-r6.36.json, RSH-036-RUNTIME-REPAIR-r6.36.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 

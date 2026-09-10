@@ -1,0 +1,76 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.36",
+  "date": "2026-09-10",
+  "base": "5304182ceae78b8d4ea0b4726c09e0dafc28a033",
+  "finding": "AUD-46",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "not_relabelled_success": true
+  },
+  "defect": "r6.35 ground and daylight co-occupy g01/g05/g08 bottom (ground −0.776/−0.850/−0.878; daylight −0.755/−0.430/−0.878). Combined isolation is not which ground channel or which light.",
+  "repair": "Keep verifyWorldLayers through verifyWorldMaterial and verifyWorldFactor. Direct-engine present capture forces setPixelRatio(1)+setSize(1280,800)+post.setSize, locates the dominant 200px band, isolates ground map vs color vs roughness and daylight hemi vs dir vs fill vs ambient vs background independently AFTER setNight/snapCamera(true) and pixelmatches that band against the locked 26 August PNG at threshold 0.12. Material-only reports, missing dominantFactor, original-golden claims, PNG refresh, threshold drift, camera miss and zero presentPct fail closed. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "g01_g05_g08_bottom_is_ground_color_map_helps_day_lights_not_independent_g07_upper_none",
+    "protocol": "world-factor-buffer-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "pixelThreshold": 0.12,
+    "failureLimit": 0.08,
+    "viewport": { "width": 1280, "height": 800 },
+    "counts": { "map": 1, "color": 1, "roughness": 1, "hemi": 1, "dir": 2, "fill": 1, "ambient": 1, "background": 2 },
+    "frames": [
+      { "id": "g01", "follow": 7.4, "height": 1.92, "presentPct": 0.6926, "dominant": "bottom", "dominantFactor": "color", "contributingFactor": ["color"], "mapDelta": 0.1043, "colorDelta": -0.776, "roughnessDelta": 0.0013, "hemiDelta": 0.0026, "dirDelta": 0.0039, "fillDelta": -0.0036, "ambientDelta": -0.0019, "backgroundDelta": 0 },
+      { "id": "g05", "follow": 7.4, "height": 1.92, "presentPct": 0.594, "dominant": "bottom", "dominantFactor": "color", "contributingFactor": ["color"], "mapDelta": 0.131, "colorDelta": -0.8503, "roughnessDelta": 0.0008, "hemiDelta": -0.0022, "dirDelta": 0.0012, "fillDelta": -0.004, "ambientDelta": -0.0022, "backgroundDelta": 0 },
+      { "id": "g07", "follow": 7.4, "height": 1.92, "presentPct": 0.2933, "dominant": "upper", "dominantFactor": "dir", "contributingFactor": [], "mapDelta": 0.0046, "colorDelta": 0.0014, "roughnessDelta": -0.0035, "hemiDelta": -0.007, "dirDelta": -0.0125, "fillDelta": -0.0021, "ambientDelta": -0.0014, "backgroundDelta": 0 },
+      { "id": "g08", "follow": 7.4, "height": 1.92, "presentPct": 0.7016, "dominant": "bottom", "dominantFactor": "color", "contributingFactor": ["color", "hemi", "dir", "fill"], "mapDelta": 0.1155, "colorDelta": -0.878, "roughnessDelta": 0.0012, "hemiDelta": -0.0395, "dirDelta": -0.0488, "fillDelta": -0.0423, "ambientDelta": -0.0057, "backgroundDelta": 0 }
+    ],
+    "finding": "g01/g05/g08 bottom is ground-plane color (0xd0d4d8): black albedo drops mismatch 77.6/85.0/87.8 points. Nulling the map increases mismatch (+10.4/+13.1/+11.6), so the texture helps. Roughness and daytime lights are not independent drivers. r6.35 daylight delta was the ground going dark when lights went off. g07 upper remains ramps. Night g08 also has modest hemi/dir/fill (−3.9/−4.9/−4.2)."
+  },
+  "new_cases": {
+    "total": 28,
+    "source": "scripts/world-factor.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after ground color occupies g01/g05/g08 bottom; map helps; g07 upper ramps",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}

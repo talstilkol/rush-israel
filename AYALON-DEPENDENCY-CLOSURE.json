@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "d06f0b8eb3ebef52825168ffe6c93de507e5e40d64bebfc38a576bb2722d3da6"
+      "sha256": "43639a3b19c2da61aca9d049aa0858c6fd25f3bfa0b9a3c3c49dbb66b7a05f92"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2059,7 +2059,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "77d0c95194a98b7cb603c35b580e01e8bdd7da4b4c60292eafc9f9ee1434184a"
+      "sha256": "6acca19216755c16606c8b54d61c3010af7af1c2db50213e3a2e0acd9b27a419"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 10464,
-      "sha256": "8c9429f0475fed385ab3116c3f251bf6d8c3134f57d74d5eabefba9e5f112dab"
+      "bytes": 10586,
+      "sha256": "dfc2075a02db528ac62dce4ea818298081d0eaaf6d33fcc935b6a88d7c3f4b11"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2203,8 +2203,8 @@
     },
     {
       "path": "scripts/world-column.test.mjs",
-      "bytes": 8441,
-      "sha256": "64aa55e637b6534d3630acf4ab90b7399bf854799ac8488d3a6e1f9d86bf7be7"
+      "bytes": 8599,
+      "sha256": "19b7a0b2feb2a5d16e8619f41c54ec58a59e147768d58718da8c2771c9c12129"
     },
     {
       "path": "scripts/world-extra-browser.mjs",
@@ -2213,8 +2213,18 @@
     },
     {
       "path": "scripts/world-extra.test.mjs",
-      "bytes": 8289,
-      "sha256": "22b1dc2afe33246433f8b7f40a2e0c2f890715e86cc948acdabdc6d75b60e502"
+      "bytes": 8447,
+      "sha256": "c3e9390e09de92a70df6c1144d4e5faa67cb6c81192102f1690a4ef4059f7233"
+    },
+    {
+      "path": "scripts/world-factor-browser.mjs",
+      "bytes": 24026,
+      "sha256": "bc6c8fc1d1d987536fed4e604c6d36281eed7483540305e85794514e155c8139"
+    },
+    {
+      "path": "scripts/world-factor.test.mjs",
+      "bytes": 8618,
+      "sha256": "9fc89857c830746d15340865e2337e0305df6df3a62805c7e961fcdacc75d0a1"
     },
     {
       "path": "scripts/world-layer-browser.mjs",
@@ -2233,8 +2243,8 @@
     },
     {
       "path": "scripts/world-material.test.mjs",
-      "bytes": 8422,
-      "sha256": "6568e0a85b2db16dc0710ac9a56529132972f27780a3cd0e9aa143bd4d91ce68"
+      "bytes": 8580,
+      "sha256": "d4bc32debb493891474e9aad2a438ff16e854d6a3d65a5ca374060399488d884"
     },
     {
       "path": "scripts/world-mismatch-browser.mjs",
@@ -2253,8 +2263,8 @@
     },
     {
       "path": "scripts/world-region.test.mjs",
-      "bytes": 8195,
-      "sha256": "7a25b60c74ef4cb29dc6f372d94d471fcaa197a2e4a1cc64c61ec39d189808e6"
+      "bytes": 8353,
+      "sha256": "f102d512bca37966b7f7832feeaf762f2da33d833e569e59829ff3cd3bfa063d"
     },
     {
       "path": "scripts/world-residual-browser.mjs",
@@ -2273,8 +2283,8 @@
     },
     {
       "path": "scripts/world-scene.test.mjs",
-      "bytes": 8386,
-      "sha256": "48741eea5aa3a2c222fd4f01a930d5c49c1f437b7a04c1eafdee6aa0859b89ef"
+      "bytes": 8544,
+      "sha256": "368aa23ab7cc339e55c7415fe23c82ffa4b953cdbec639fb303d66b012f31501"
     },
     {
       "path": "scripts/world-slice-browser.mjs",
@@ -2283,8 +2293,8 @@
     },
     {
       "path": "scripts/world-slice.test.mjs",
-      "bytes": 8321,
-      "sha256": "778d72320e74b17b414cde101396560d74c3d176a32f997f98250c8e71cbbd6b"
+      "bytes": 8479,
+      "sha256": "efb666ee5d51ff72b03a817af2d0de6c3f8fac1e86c0539ab5bf57a1d870025f"
     },
     {
       "path": "scripts/write-ci-summary.mjs",
@@ -2394,7 +2404,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "d617effc76861a4a5a58c43e11daff9efcc1db089eff5267689113b6f65b4407"
+      "sha256": "1b5507c6b372b517b71e5c0502609a276cd993fc9c0114071e70a4b43512f403"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10646,5 +10656,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "b4d801bf356d98662f539b25d6e0aada9330bc72e7d0a0162c57c4a29ad69fae"
+  "digest_sha256": "f11ba2e04e5474c1bde2db6612eea900ef953b34bc3e32a4a428a1dd46ce2e03"
 }

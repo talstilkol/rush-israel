@@ -8,66 +8,66 @@ import { test } from 'node:test';
 import { PNG } from 'pngjs';
 import { fromRoot } from './project-root.mjs';
 import {
-  COLUMN_FRAMES, COLUMN_PIXELS, COLUMN_WIDTH, FAILURE_LIMIT, PIXEL_THRESHOLD, REGION_COLUMNS,
-  columnBufferIsNotOriginalGolden, columnPixelmatch, cropPngRect, dominantColumn,
-  regionBandIsNotColumnMismatch, retainWorldColumn, worldColumnFixture, worldColumnResults,
-} from './world-column-browser.mjs';
-import { REGION_BANDS } from './world-region-browser.mjs';
+  BAND_PIXELS, FACTOR_DELTA_MIN, FACTOR_FRAMES, FACTOR_LAYERS, FAILURE_LIMIT, PIXEL_THRESHOLD,
+  dominantFactor, factorBufferIsNotOriginalGolden, materialLayerIsNotFactorMismatch,
+  retainWorldFactor, worldFactorFixture, worldFactorResults,
+} from './world-factor-browser.mjs';
+import { REGION_BANDS, bandPixelmatch } from './world-region-browser.mjs';
 import { RSH035_BASELINE_SHA256, ORIGINAL_GOLDEN_FILES } from './original-golden-browser.mjs';
 
 function sha256(buf) {
   return createHash('sha256').update(buf).digest('hex');
 }
 
-test('dominant 200px band without columns is not column mismatch', () => {
-  assert.equal(regionBandIsNotColumnMismatch({ frames: [] }), true);
-  assert.equal(regionBandIsNotColumnMismatch({
-    frames: [{ id: 'g01', presentPct: 0.41, presentMismatched: 100, dominant: 'bottom', bands: REGION_BANDS }],
+test('dominant 200px material report without factors is not factor mismatch', () => {
+  assert.equal(materialLayerIsNotFactorMismatch({ frames: [] }), true);
+  assert.equal(materialLayerIsNotFactorMismatch({
+    frames: [{
+      id: 'g01', presentPct: 0.41, presentMismatched: 100, dominant: 'bottom',
+      dominantMaterial: 'ground', bands: REGION_BANDS,
+    }],
   }), true);
-  assert.equal(regionBandIsNotColumnMismatch(worldColumnFixture()), false);
-  const bandOnly = worldColumnFixture();
-  bandOnly.frames = bandOnly.frames.map(frame => ({
+  assert.equal(materialLayerIsNotFactorMismatch(worldFactorFixture()), false);
+  const materialOnly = worldFactorFixture();
+  materialOnly.frames = materialOnly.frames.map(frame => ({
     id: frame.id, presentPct: frame.presentPct, presentMismatched: frame.presentMismatched,
     pixelThreshold: PIXEL_THRESHOLD, bands: frame.bands, dominant: frame.dominant,
+    dominantMaterial: 'ground',
   }));
-  assert.equal(regionBandIsNotColumnMismatch(bandOnly), true);
-  assert.throws(() => worldColumnResults(bandOnly), /dominant 200px band is not column mismatch/);
+  assert.equal(materialLayerIsNotFactorMismatch(materialOnly), true);
+  assert.throws(() => worldFactorResults(materialOnly), /dominant 200px band is not ground-map\/color\/roughness or daylight-hemi\/dir\/fill\/ambient\/background factor mismatch/);
 });
 
-test('column buffer without original-golden protocol identity is not original-golden', () => {
-  assert.equal(columnBufferIsNotOriginalGolden(worldColumnFixture()), false);
-  assert.equal(columnBufferIsNotOriginalGolden({
-    ...worldColumnFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
+test('factor buffer without original-golden protocol identity is not original-golden', () => {
+  assert.equal(factorBufferIsNotOriginalGolden(worldFactorFixture()), false);
+  assert.equal(factorBufferIsNotOriginalGolden({
+    ...worldFactorFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
   }), true);
   assert.equal(PIXEL_THRESHOLD, 0.12);
   assert.equal(FAILURE_LIMIT, 0.08);
-  assert.equal(COLUMN_WIDTH, 320);
-  assert.equal(COLUMN_PIXELS, 320 * 200);
-  assert.deepEqual(REGION_COLUMNS.map(row => row.id), ['left', 'midLeft', 'midRight', 'right']);
+  assert.equal(FACTOR_DELTA_MIN, 0.02);
+  assert.equal(BAND_PIXELS, 1280 * 200);
+  assert.deepEqual(FACTOR_LAYERS, ['map', 'color', 'roughness', 'hemi', 'dir', 'fill', 'ambient', 'background']);
 });
 
-test('identical PNG column pixelmatch is zero at threshold 0.12', () => {
+test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
   const buf = readFileSync(fromRoot('golden-baseline', 'ayalon-day-g01.png'));
   const png = PNG.sync.read(buf);
-  const cropped = cropPngRect(png, 0, 600, 320, 800);
-  assert.equal(cropped.width, 320);
-  assert.equal(cropped.height, 200);
-  const match = columnPixelmatch(png, png, REGION_BANDS[3], REGION_COLUMNS[0]);
+  const match = bandPixelmatch(png, png, REGION_BANDS[3]);
   assert.equal(match.mismatched, 0);
   assert.equal(match.pct, 0);
-  assert.equal(match.id, 'left');
-  assert.equal(match.band, 'bottom');
+  assert.equal(match.id, 'bottom');
 });
 
-test('locked column poses match original-golden cameras and PNG hashes', () => {
-  assert.deepEqual(COLUMN_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
-  assert.deepEqual(COLUMN_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
-  assert.equal(COLUMN_FRAMES[3].night, true);
-  assert.equal(dominantColumn(worldColumnFixture().frames[0].columns), 'right');
+test('locked factor poses match original-golden cameras and PNG hashes', () => {
+  assert.deepEqual(FACTOR_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
+  assert.deepEqual(FACTOR_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
+  assert.equal(FACTOR_FRAMES[3].night, true);
+  assert.equal(dominantFactor(worldFactorFixture().frames[0].layers), 'map');
 });
 
-test('column-attribution evidence yields five protocol passes', () => {
-  assert.deepEqual(worldColumnResults(worldColumnFixture()).map(row => row.status), Array(5).fill('passed'));
+test('factor-attribution evidence yields five protocol passes', () => {
+  assert.deepEqual(worldFactorResults(worldFactorFixture()).map(row => row.status), Array(5).fill('passed'));
 });
 
 for (const [name, mutate] of [
@@ -86,37 +86,37 @@ for (const [name, mutate] of [
   ['authority claim', r => { r.authority = true; }],
   ['original-golden comparisons', r => { r.originalGoldenComparisons = 4; }],
   ['threshold drift', r => { r.pixelThreshold = 0.2; }],
-]) test(`world-column evidence fails closed: ${name}`, () => {
-  const r = worldColumnFixture();
+]) test(`world-factor evidence fails closed: ${name}`, () => {
+  const r = worldFactorFixture();
   mutate(r);
-  assert.throws(() => worldColumnResults(r));
+  assert.throws(() => worldFactorResults(r));
 });
 
 test('baseline PNG hash drift fails closed', () => {
-  const r = worldColumnFixture();
+  const r = worldFactorFixture();
   r.baselineHashes['ayalon-day-g01.png'] = '0'.repeat(64);
-  assert.throws(() => worldColumnResults(r), /baseline hash drift/);
+  assert.throws(() => worldFactorResults(r), /baseline hash drift/);
 });
 
 test('zero full-frame present mismatch remains failed', () => {
-  const r = worldColumnFixture();
+  const r = worldFactorFixture();
   r.frames[0] = { ...r.frames[0], presentPct: 0, presentMismatched: 0 };
-  const row = worldColumnResults(r).find(item => item.case.includes('still mismatches'));
+  const row = worldFactorResults(r).find(item => item.case.includes('still mismatches'));
   assert.equal(row.status, 'failed');
   assert.equal(row.failures, 1);
 });
 
-test('a rest-camera miss remains failed during column matching', () => {
-  const r = worldColumnFixture();
+test('a rest-camera miss remains failed during factor matching', () => {
+  const r = worldFactorFixture();
   r.frames[1] = { ...r.frames[1], follow: 9.2, height: 2.28 };
-  assert.throws(() => worldColumnResults(r));
+  assert.throws(() => worldFactorResults(r));
 });
 
-test('invalid world-column report is retained before validation throws', async () => {
-  const out = await mkdtemp(join(tmpdir(), 'world-column-invalid-'));
+test('invalid world-factor report is retained before validation throws', async () => {
+  const out = await mkdtemp(join(tmpdir(), 'world-factor-invalid-'));
   try {
-    const r = worldColumnFixture({ originalGoldenComparisons: 4 });
-    await assert.rejects(retainWorldColumn(r, out));
+    const r = worldFactorFixture({ originalGoldenComparisons: 4 });
+    await assert.rejects(retainWorldFactor(r, out));
     assert.equal(JSON.parse(await readFile(join(out, 'results.json'), 'utf8')).originalGoldenComparisons, 4);
   } finally {
     await rm(out, { recursive: true, force: true });

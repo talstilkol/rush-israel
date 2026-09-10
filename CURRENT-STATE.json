@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-10T16:50:00Z",
+  "generated_at": "2026-09-10T17:20:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,14 +2001,14 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.35.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.36.md",
     "local_unit_tests": {
-      "status": "focused_28_passed_live_material_g01_g05_g08_ground_daylight_g07_envmap_full_suite_expected_1533",
+      "status": "focused_28_passed_live_factor_g01_g05_g08_ground_color_map_helps_full_suite_expected_1561",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 1533,
+      "expected_total": 1561,
       "predecessor_exact_head_passed": 1283,
       "predecessor_r6_23_expected": 1206,
       "predecessor_r6_24_expected": 1229,
@@ -2021,6 +2021,7 @@
       "predecessor_r6_32_expected": 1449,
       "predecessor_r6_33_expected": 1477,
       "predecessor_r6_34_expected": 1505,
+      "predecessor_r6_35_expected": 1533,
       "new_unique_cases": 28,
       "live_complete_race": {
         "status": "passed",
@@ -2276,6 +2277,28 @@
         "daylightDelta": [-0.7552, -0.43, 0.0023, -0.8781],
         "envmapDelta": [0.0036, 0.0017, -0.063, -0.1932],
         "counts": { "ground": 1, "daylight": 7, "envmap": 1747 },
+        "originalGoldenComparisons": 0
+      },
+      "live_world_factor": {
+        "status": "g01_g05_g08_bottom_is_ground_color_map_helps_day_lights_not_independent_g07_upper_none",
+        "protocol": "world-factor-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
+        "dominant": ["bottom", "bottom", "upper", "bottom"],
+        "dominantFactor": ["color", "color", "dir", "color"],
+        "contributingFactor": [["color"], ["color"], [], ["color", "hemi", "dir", "fill"]],
+        "mapDelta": [0.1043, 0.131, 0.0046, 0.1155],
+        "colorDelta": [-0.776, -0.8503, 0.0014, -0.878],
+        "roughnessDelta": [0.0013, 0.0008, -0.0035, 0.0012],
+        "hemiDelta": [0.0026, -0.0022, -0.007, -0.0395],
+        "dirDelta": [0.0039, 0.0012, -0.0125, -0.0488],
+        "fillDelta": [-0.0036, -0.004, -0.0021, -0.0423],
+        "ambientDelta": [-0.0019, -0.0022, -0.0014, -0.0057],
+        "backgroundDelta": [0, 0, 0, 0],
+        "counts": { "map": 1, "color": 1, "roughness": 1, "hemi": 1, "dir": 2, "fill": 1, "ambient": 1, "background": 2 },
         "originalGoldenComparisons": 0
       }
     },
