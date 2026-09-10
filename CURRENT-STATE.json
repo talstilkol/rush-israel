@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-10T17:20:00Z",
+  "generated_at": "2026-09-10T18:10:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,14 +2001,14 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.36.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.37.md",
     "local_unit_tests": {
-      "status": "focused_28_passed_live_factor_g01_g05_g08_ground_color_map_helps_full_suite_expected_1561",
+      "status": "focused_28_passed_live_rgb_live_brighter_than_dark_png_g05_g08_no_albedo_near_full_suite_expected_1589",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 1561,
+      "expected_total": 1589,
       "predecessor_exact_head_passed": 1283,
       "predecessor_r6_23_expected": 1206,
       "predecessor_r6_24_expected": 1229,
@@ -2022,6 +2022,7 @@
       "predecessor_r6_33_expected": 1477,
       "predecessor_r6_34_expected": 1505,
       "predecessor_r6_35_expected": 1533,
+      "predecessor_r6_36_expected": 1561,
       "new_unique_cases": 28,
       "live_complete_race": {
         "status": "passed",
@@ -2299,6 +2300,27 @@
         "ambientDelta": [-0.0019, -0.0022, -0.0014, -0.0057],
         "backgroundDelta": [0, 0, 0, 0],
         "counts": { "map": 1, "color": 1, "roughness": 1, "hemi": 1, "dir": 2, "fill": 1, "ambient": 1, "background": 2 },
+        "originalGoldenComparisons": 0
+      },
+      "live_world_rgb": {
+        "status": "g01_g05_g08_bottom_live_brighter_bluer_than_dark_locked_png_g05_g08_no_albedo_near_pixels_product_hex_unchanged",
+        "protocol": "world-rgb-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
+        "dominant": ["bottom", "bottom", "upper", "bottom"],
+        "dominantSample": ["ground", "band", "ground", "band"],
+        "contributingSample": [["band", "ground"], ["band"], ["band", "ground"], ["band"]],
+        "productGroundHex": 13673688,
+        "bandL2": [127.4, 147.83, 83.44, 96.24],
+        "bandLive": [[77.07, 104.52, 131.96], [74.74, 104.66, 134.42], [30.54, 70.81, 104.01], [40.76, 54.3, 80.55]],
+        "bandGold": [[25.54, 35.89, 37.8], [10.81, 22.24, 29.67], [49.98, 121.76, 167.16], [7.01, 5.99, 4.46]],
+        "groundN": [15144, 0, 436, 0],
+        "groundL2": [206.09, 0, 210, 0],
+        "groundLive": [[199, 200, 198], [0, 0, 0], [197.08, 197.71, 192.17], [0, 0, 0]],
+        "groundGold": [[84.43, 88.78, 67.7], [0, 0, 0], [53.35, 77.96, 96.77], [0, 0, 0]],
         "originalGoldenComparisons": 0
       }
     },

@@ -8,66 +8,75 @@ import { test } from 'node:test';
 import { PNG } from 'pngjs';
 import { fromRoot } from './project-root.mjs';
 import {
-  COLUMN_FRAMES, COLUMN_PIXELS, COLUMN_WIDTH, FAILURE_LIMIT, PIXEL_THRESHOLD, REGION_COLUMNS,
-  columnBufferIsNotOriginalGolden, columnPixelmatch, cropPngRect, dominantColumn,
-  regionBandIsNotColumnMismatch, retainWorldColumn, worldColumnFixture, worldColumnResults,
-} from './world-column-browser.mjs';
-import { REGION_BANDS } from './world-region-browser.mjs';
+  BAND_PIXELS, FAILURE_LIMIT, GROUND_ALBEDO, GROUND_COLOR_MAX, PIXEL_THRESHOLD,
+  RGB_FRAMES, RGB_L2_MIN, RGB_SAMPLES, dominantSample, factorLayerIsNotRgbMismatch,
+  isGroundColored, retainWorldRgb, rgbBufferIsNotOriginalGolden, sampleRgb,
+  worldRgbFixture, worldRgbResults,
+} from './world-rgb-browser.mjs';
+import { REGION_BANDS, bandPixelmatch } from './world-region-browser.mjs';
 import { RSH035_BASELINE_SHA256, ORIGINAL_GOLDEN_FILES } from './original-golden-browser.mjs';
 
 function sha256(buf) {
   return createHash('sha256').update(buf).digest('hex');
 }
 
-test('dominant 200px band without columns is not column mismatch', () => {
-  assert.equal(regionBandIsNotColumnMismatch({ frames: [] }), true);
-  assert.equal(regionBandIsNotColumnMismatch({
-    frames: [{ id: 'g01', presentPct: 0.41, presentMismatched: 100, dominant: 'bottom', bands: REGION_BANDS }],
+test('dominant 200px factor report without RGB samples is not rgb mismatch', () => {
+  assert.equal(factorLayerIsNotRgbMismatch({ frames: [] }), true);
+  assert.equal(factorLayerIsNotRgbMismatch({
+    frames: [{
+      id: 'g01', presentPct: 0.41, presentMismatched: 100, dominant: 'bottom',
+      dominantFactor: 'color', bands: REGION_BANDS,
+    }],
   }), true);
-  assert.equal(regionBandIsNotColumnMismatch(worldColumnFixture()), false);
-  const bandOnly = worldColumnFixture();
-  bandOnly.frames = bandOnly.frames.map(frame => ({
+  assert.equal(factorLayerIsNotRgbMismatch(worldRgbFixture()), false);
+  const factorOnly = worldRgbFixture();
+  factorOnly.frames = factorOnly.frames.map(frame => ({
     id: frame.id, presentPct: frame.presentPct, presentMismatched: frame.presentMismatched,
     pixelThreshold: PIXEL_THRESHOLD, bands: frame.bands, dominant: frame.dominant,
+    dominantFactor: 'color',
   }));
-  assert.equal(regionBandIsNotColumnMismatch(bandOnly), true);
-  assert.throws(() => worldColumnResults(bandOnly), /dominant 200px band is not column mismatch/);
+  assert.equal(factorLayerIsNotRgbMismatch(factorOnly), true);
+  assert.throws(() => worldRgbResults(factorOnly), /dominant 200px band is not live-vs-golden mean RGB of the band or of ground-colored pixels/);
 });
 
-test('column buffer without original-golden protocol identity is not original-golden', () => {
-  assert.equal(columnBufferIsNotOriginalGolden(worldColumnFixture()), false);
-  assert.equal(columnBufferIsNotOriginalGolden({
-    ...worldColumnFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
+test('rgb buffer without original-golden protocol identity is not original-golden', () => {
+  assert.equal(rgbBufferIsNotOriginalGolden(worldRgbFixture()), false);
+  assert.equal(rgbBufferIsNotOriginalGolden({
+    ...worldRgbFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
   }), true);
   assert.equal(PIXEL_THRESHOLD, 0.12);
   assert.equal(FAILURE_LIMIT, 0.08);
-  assert.equal(COLUMN_WIDTH, 320);
-  assert.equal(COLUMN_PIXELS, 320 * 200);
-  assert.deepEqual(REGION_COLUMNS.map(row => row.id), ['left', 'midLeft', 'midRight', 'right']);
+  assert.equal(RGB_L2_MIN, 20);
+  assert.equal(GROUND_COLOR_MAX, 80);
+  assert.equal(GROUND_ALBEDO.hex, 0xd0d4d8);
+  assert.equal(BAND_PIXELS, 1280 * 200);
+  assert.deepEqual(RGB_SAMPLES, ['band', 'ground']);
+  assert.equal(isGroundColored(0xd0, 0xd4, 0xd8), true);
+  assert.equal(isGroundColored(0, 0, 0), false);
+  assert.throws(() => worldRgbResults({ ...worldRgbFixture(), productGroundHex: 0 }), /product ground color retuned/);
 });
 
-test('identical PNG column pixelmatch is zero at threshold 0.12', () => {
+test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
   const buf = readFileSync(fromRoot('golden-baseline', 'ayalon-day-g01.png'));
   const png = PNG.sync.read(buf);
-  const cropped = cropPngRect(png, 0, 600, 320, 800);
-  assert.equal(cropped.width, 320);
-  assert.equal(cropped.height, 200);
-  const match = columnPixelmatch(png, png, REGION_BANDS[3], REGION_COLUMNS[0]);
+  const match = bandPixelmatch(png, png, REGION_BANDS[3]);
   assert.equal(match.mismatched, 0);
   assert.equal(match.pct, 0);
-  assert.equal(match.id, 'left');
-  assert.equal(match.band, 'bottom');
+  assert.equal(match.id, 'bottom');
+  const self = sampleRgb(png, png, REGION_BANDS[3]);
+  assert.equal(self.l2, 0);
+  assert.equal(self.n, BAND_PIXELS);
 });
 
-test('locked column poses match original-golden cameras and PNG hashes', () => {
-  assert.deepEqual(COLUMN_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
-  assert.deepEqual(COLUMN_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
-  assert.equal(COLUMN_FRAMES[3].night, true);
-  assert.equal(dominantColumn(worldColumnFixture().frames[0].columns), 'right');
+test('locked rgb poses match original-golden cameras and PNG hashes', () => {
+  assert.deepEqual(RGB_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
+  assert.deepEqual(RGB_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
+  assert.equal(RGB_FRAMES[3].night, true);
+  assert.equal(dominantSample(worldRgbFixture().frames[0].samples), 'ground');
 });
 
-test('column-attribution evidence yields five protocol passes', () => {
-  assert.deepEqual(worldColumnResults(worldColumnFixture()).map(row => row.status), Array(5).fill('passed'));
+test('rgb-attribution evidence yields five protocol passes', () => {
+  assert.deepEqual(worldRgbResults(worldRgbFixture()).map(row => row.status), Array(5).fill('passed'));
 });
 
 for (const [name, mutate] of [
@@ -86,37 +95,37 @@ for (const [name, mutate] of [
   ['authority claim', r => { r.authority = true; }],
   ['original-golden comparisons', r => { r.originalGoldenComparisons = 4; }],
   ['threshold drift', r => { r.pixelThreshold = 0.2; }],
-]) test(`world-column evidence fails closed: ${name}`, () => {
-  const r = worldColumnFixture();
+]) test(`world-rgb evidence fails closed: ${name}`, () => {
+  const r = worldRgbFixture();
   mutate(r);
-  assert.throws(() => worldColumnResults(r));
+  assert.throws(() => worldRgbResults(r));
 });
 
 test('baseline PNG hash drift fails closed', () => {
-  const r = worldColumnFixture();
+  const r = worldRgbFixture();
   r.baselineHashes['ayalon-day-g01.png'] = '0'.repeat(64);
-  assert.throws(() => worldColumnResults(r), /baseline hash drift/);
+  assert.throws(() => worldRgbResults(r), /baseline hash drift/);
 });
 
 test('zero full-frame present mismatch remains failed', () => {
-  const r = worldColumnFixture();
+  const r = worldRgbFixture();
   r.frames[0] = { ...r.frames[0], presentPct: 0, presentMismatched: 0 };
-  const row = worldColumnResults(r).find(item => item.case.includes('still mismatches'));
+  const row = worldRgbResults(r).find(item => item.case.includes('still mismatches'));
   assert.equal(row.status, 'failed');
   assert.equal(row.failures, 1);
 });
 
-test('a rest-camera miss remains failed during column matching', () => {
-  const r = worldColumnFixture();
+test('a rest-camera miss remains failed during rgb sampling', () => {
+  const r = worldRgbFixture();
   r.frames[1] = { ...r.frames[1], follow: 9.2, height: 2.28 };
-  assert.throws(() => worldColumnResults(r));
+  assert.throws(() => worldRgbResults(r));
 });
 
-test('invalid world-column report is retained before validation throws', async () => {
-  const out = await mkdtemp(join(tmpdir(), 'world-column-invalid-'));
+test('invalid world-rgb report is retained before validation throws', async () => {
+  const out = await mkdtemp(join(tmpdir(), 'world-rgb-invalid-'));
   try {
-    const r = worldColumnFixture({ originalGoldenComparisons: 4 });
-    await assert.rejects(retainWorldColumn(r, out));
+    const r = worldRgbFixture({ originalGoldenComparisons: 4 });
+    await assert.rejects(retainWorldRgb(r, out));
     assert.equal(JSON.parse(await readFile(join(out, 'results.json'), 'utf8')).originalGoldenComparisons, 4);
   } finally {
     await rm(out, { recursive: true, force: true });

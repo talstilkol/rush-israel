@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.36",
+  "revision": "r6.37",
   "date": "2026-09-10",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 46,
+    "audit_items": 47,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -376,7 +376,8 @@
         "AUD-43",
         "AUD-44",
         "AUD-45",
-        "AUD-46"
+        "AUD-46",
+        "AUD-47"
       ]
     },
     {
@@ -1477,6 +1478,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-FACTOR-r6.36.json"
+    },
+    {
+      "id": "AUD-47",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Ground-plane color occupation is not live-vs-golden mean RGB of the dominant band or of ground-colored pixels",
+      "acceptance": "Factor-only reports without band and ground-colored live/gold mean RGB samples and a dominantSample must fail closed. Live snapCamera(true) at g01/g05/g07/g08 must force 1280x800 pixelRatio 1, capture post.render present, locate the dominant 200px band, and sample live vs locked-PNG mean RGB of that band and of live pixels within Euclidean 80 of albedo 0xd0d4d8. Product ground hex must stay 0xd0d4d8. Original-golden claims, PNG refresh, threshold drift, camera miss, color retune and zero presentPct fail closed. Retain freeze path count 85 and generation 11. RGB sampling is not freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-RGB-r6.37.json"
     }
   ],
   "legacy_findings": [
@@ -1900,7 +1914,7 @@
     "public_distribution_authorised": false
   },
   "limitations": [
-    "All67 original units,46 audit IDs and42 historical findings retained; no new accepted unit.",
+    "All67 original units,47 audit IDs and42 historical findings retained; no new accepted unit.",
     "Verified r6.5 head 8c6a3be7 passed 688 unit and 20 browser cases in run33995840557; prior chat-only 716-test claim is not the live baseline.",
     "Original PNGs, pixel threshold0.12, failure limit8%, camera recipe and post-pose waits are preserved. Reliable selection does not prove pixel determinism.",
     "Generated local closure seals the declared local runtime/build/test/public/golden surface. Three verified Actions are pinned; four dormant vendor-head expressions and three product font URLs are reviewed. Remote font bytes remain unpinned, so overall closure remains false.",
@@ -1908,9 +1922,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.36",
-    "base_head": "5304182ceae78b8d4ea0b4726c09e0dafc28a033",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.36.md",
+    "revision": "r6.37",
+    "base_head": "b5df3885f315ca9ef96eec8c50ab4682df5c328c",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.37.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",
@@ -1959,9 +1973,9 @@
       "not_product_golden_failure": true
     },
     "normal_ci": "pending_exact_published_head_validation",
-    "golden": "r6.36 ground+daylight is not a single channel; g01/g05/g08 bottom is ground color 0xd0d4d8 (color −0.776/−0.850/−0.878); map helps (+0.104/+0.131/+0.116); roughness and daytime lights ~0; g07 upper none of these factors; camera 7.4/1.92; unchanged images/thresholds",
+    "golden": "r6.37 ground color occupation is not live-vs-golden mean RGB; g01/g05/g08 bottom live 77/75/41 vs gold 26/11/7 (band L2 127/148/96); g01 ground-colored 15144 px live 199 vs gold 84; g05/g08 albedo-near n=0; product hex stays 0xd0d4d8; camera 7.4/1.92; unchanged images/thresholds",
     "dependency_closure": "3 product font URLs pinned; remote CDN bytes still unpinned; complete_dependency_closure false",
-    "clearance": "r6.36 factor isolation; r6.35 material isolation; r6.34 extra isolation; r6.33 slice isolation; r6.32 column isolation; r6.31 region-band isolation; r6.30 scene-buffer isolation; r6.29 channel-bias isolation; r6.28 mismatch isolation; r6.27 residual split; r6.26 world-layer isolation; r6.25 rest-camera attribution; r6.24 original-golden protocol; r6.23 visual hull; r6.22 complete arcade lap; r6.21 rest chase 7.4/1.92 overlay",
+    "clearance": "r6.37 rgb sampling; r6.36 factor isolation; r6.35 material isolation; r6.34 extra isolation; r6.33 slice isolation; r6.32 column isolation; r6.31 region-band isolation; r6.30 scene-buffer isolation; r6.29 channel-bias isolation; r6.28 mismatch isolation; r6.27 residual split; r6.26 world-layer isolation; r6.25 rest-camera attribution; r6.24 original-golden protocol; r6.23 visual hull; r6.22 complete arcade lap; r6.21 rest chase 7.4/1.92 overlay",
     "record_policy": "physicsVersion7 frozen fixture; v6 rows drop; conversion remains forbidden"
   },
   "r6_9_diagnostic_checkpoint": {

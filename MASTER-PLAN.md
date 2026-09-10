@@ -870,6 +870,23 @@ change thresholds or activate RSH-037.
 Details: RSH-036-WORLD-FACTOR-r6.36.json, RSH-036-RUNTIME-REPAIR-r6.36.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.37 — 10 September 2026: ground-plane color occupation is not live-vs-golden mean RGB
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-47 samples
+live vs locked-PNG mean RGB of the dominant 200px present band and of live
+pixels within Euclidean 80 of albedo `0xd0d4d8` after setNight/snapCamera(true).
+Product hex stays `0xd0d4d8`. Locked PNG bottom is dark (g01 26/36/38, g05
+11/22/30, g08 7/6/4). Live present is brighter and bluer (band L2 127/148/96).
+g01 ground-colored 15144 px live 199/200/198 vs gold 84/89/68. g05/g08 bottom
+have 0 albedo-near pixels. g07 upper live is darker than the locked band.
+Camera stays 7.4/1.92. Freeze path count stays 85. r6.27 lint no-undef is
+retained, not relabelled a pass. Immutable CDN bytes, rendering performance
+and freeze remain open. Do not merge, replace PNGs, change thresholds, retune
+color or activate RSH-037.
+Details: RSH-036-WORLD-RGB-r6.37.json, RSH-036-RUNTIME-REPAIR-r6.37.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

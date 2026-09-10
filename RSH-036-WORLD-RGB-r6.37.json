@@ -1,0 +1,79 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.37",
+  "date": "2026-09-10",
+  "base": "b5df3885f315ca9ef96eec8c50ab4682df5c328c",
+  "finding": "AUD-47",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "not_relabelled_success": true
+  },
+  "defect": "r6.36 remaining 0/4 on g01/g05/g08 bottom is ground-plane color 0xd0d4d8. Black albedo drops mismatch; that is not live-vs-golden mean RGB of the dominant band or of ground-colored pixels.",
+  "repair": "Keep verifyWorldLayers through verifyWorldFactor and verifyWorldRgb. Direct-engine present capture forces setPixelRatio(1)+setSize(1280,800)+post.setSize after snapCamera(true), locates the dominant 200px band, and samples live vs locked-PNG mean RGB of that band and of live pixels within Euclidean 80 of albedo 0xd0d4d8. Product ground hex must stay 0xd0d4d8. Factor-only reports, missing samples, original-golden claims, PNG refresh, threshold drift, camera miss, color retune and zero presentPct fail closed. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "g01_g05_g08_bottom_live_brighter_bluer_than_dark_locked_png_g05_g08_no_albedo_near_pixels_product_hex_unchanged",
+    "protocol": "world-rgb-buffer-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "pixelThreshold": 0.12,
+    "failureLimit": 0.08,
+    "viewport": { "width": 1280, "height": 800 },
+    "productGroundHex": 13673688,
+    "productGroundCount": 1,
+    "groundMeshCount": 1,
+    "groundColorMax": 80,
+    "frames": [
+      { "id": "g01", "follow": 7.4, "height": 1.92, "presentPct": 0.6926, "dominant": "bottom", "dominantSample": "ground", "contributingSample": ["band", "ground"], "bandLive": [77.07, 104.52, 131.96], "bandGold": [25.54, 35.89, 37.8], "bandL2": 127.4, "groundN": 15144, "groundLive": [199, 200, 198], "groundGold": [84.43, 88.78, 67.7], "groundL2": 206.09 },
+      { "id": "g05", "follow": 7.4, "height": 1.92, "presentPct": 0.594, "dominant": "bottom", "dominantSample": "band", "contributingSample": ["band"], "bandLive": [74.74, 104.66, 134.42], "bandGold": [10.81, 22.24, 29.67], "bandL2": 147.83, "groundN": 0, "groundLive": [0, 0, 0], "groundGold": [0, 0, 0], "groundL2": 0 },
+      { "id": "g07", "follow": 7.4, "height": 1.92, "presentPct": 0.2933, "dominant": "upper", "dominantSample": "ground", "contributingSample": ["band", "ground"], "bandLive": [30.54, 70.81, 104.01], "bandGold": [49.98, 121.76, 167.16], "bandL2": 83.44, "groundN": 436, "groundLive": [197.08, 197.71, 192.17], "groundGold": [53.35, 77.96, 96.77], "groundL2": 210 },
+      { "id": "g08", "follow": 7.4, "height": 1.92, "presentPct": 0.7016, "dominant": "bottom", "dominantSample": "band", "contributingSample": ["band"], "bandLive": [40.76, 54.3, 80.55], "bandGold": [7.01, 5.99, 4.46], "bandL2": 96.24, "groundN": 0, "groundLive": [0, 0, 0], "groundGold": [0, 0, 0], "groundL2": 0 }
+    ],
+    "finding": "Product ground hex stays 0xd0d4d8. Locked PNG bottom is dark (g01 26/36/38, g05 11/22/30, g08 7/6/4). Live present is brighter and bluer (77/105/132, 75/105/134, 41/54/81; band L2 127/148/96). Where live shows albedo-near pixels (g01 15144 px at 199/200/198) gold is olive-dark 84/89/68. g05/g08 bottom have 0 live pixels within 80 of 0xd0d4d8. g07 upper live is darker than the locked sky/ramp band. Do not retune color or refresh PNGs."
+  },
+  "new_cases": {
+    "total": 28,
+    "source": "scripts/world-rgb.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after live-vs-locked mean RGB gap; live brighter/bluer than dark PNG; g05/g08 no albedo-near pixels; g07 upper ramps",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}
