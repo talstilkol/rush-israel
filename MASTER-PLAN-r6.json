@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.28",
+  "revision": "r6.29",
   "date": "2026-09-10",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 38,
+    "audit_items": 39,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -368,7 +368,8 @@
         "AUD-35",
         "AUD-36",
         "AUD-37",
-        "AUD-38"
+        "AUD-38",
+        "AUD-39"
       ]
     },
     {
@@ -1365,6 +1366,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-MISMATCH-r6.28.json"
+    },
+    {
+      "id": "AUD-39",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "7x7 saturation count is not channel-bias attribution of original-golden 0/4",
+      "acceptance": "Live-count-only whole-frame labels must fail closed. Live snapCamera(true) at g01/g05/g07/g08 must sample the locked 26 August PNG on both Y-orientations and record mean signed R/G/B/luma, mean-abs, lumaVariance and signAgreement. Y-flip-only labels without the unflipped grid fail closed. PNG refresh and treating this probe as original-golden fail closed. Retain freeze path count 85 and generation 11. Channel-bias isolation is not freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-BIAS-r6.29.json"
     }
   ],
   "legacy_findings": [
@@ -1788,7 +1802,7 @@
     "public_distribution_authorised": false
   },
   "limitations": [
-    "All67 original units,38 audit IDs and42 historical findings retained; no new accepted unit.",
+    "All67 original units,39 audit IDs and42 historical findings retained; no new accepted unit.",
     "Verified r6.5 head 8c6a3be7 passed 688 unit and 20 browser cases in run33995840557; prior chat-only 716-test claim is not the live baseline.",
     "Original PNGs, pixel threshold0.12, failure limit8%, camera recipe and post-pose waits are preserved. Reliable selection does not prove pixel determinism.",
     "Generated local closure seals the declared local runtime/build/test/public/golden surface. Three verified Actions are pinned; four dormant vendor-head expressions and three product font URLs are reviewed. Remote font bytes remain unpinned, so overall closure remains false.",
@@ -1796,9 +1810,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.28",
-    "base_head": "8f446969082e85a78487e02092ce8d6e803435e7",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.28.md",
+    "revision": "r6.29",
+    "base_head": "42972edd6ad5068c697e248265143b71d49990b4",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.29.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",
@@ -1847,9 +1861,9 @@
       "not_product_golden_failure": true
     },
     "normal_ci": "pending_exact_published_head_validation",
-    "golden": "r6.28 live contribution is not golden mismatch; 7x7 vs locked PNG 48-49/49; no named layer reduces mismatch; camera 7.4/1.92; unchanged images/thresholds",
+    "golden": "r6.29 7x7 saturation is structured content not Y-flip or uniform lift; g01/g05/g07/g08 kinds structured; camera 7.4/1.92; unchanged images/thresholds",
     "dependency_closure": "3 product font URLs pinned; remote CDN bytes still unpinned; complete_dependency_closure false",
-    "clearance": "r6.28 mismatch isolation; r6.27 residual split; r6.26 world-layer isolation; r6.25 rest-camera attribution; r6.24 original-golden protocol; r6.23 visual hull; r6.22 complete arcade lap; r6.21 rest chase 7.4/1.92 overlay",
+    "clearance": "r6.29 channel-bias isolation; r6.28 mismatch isolation; r6.27 residual split; r6.26 world-layer isolation; r6.25 rest-camera attribution; r6.24 original-golden protocol; r6.23 visual hull; r6.22 complete arcade lap; r6.21 rest chase 7.4/1.92 overlay",
     "record_policy": "physicsVersion7 frozen fixture; v6 rows drop; conversion remains forbidden"
   },
   "r6_9_diagnostic_checkpoint": {

@@ -1,0 +1,72 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.29",
+  "date": "2026-09-10",
+  "base": "42972edd6ad5068c697e248265143b71d49990b4",
+  "finding": "AUD-39",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "not_relabelled_success": true
+  },
+  "defect": "r6.28 7x7 saturation (48-49/49) is not whole-frame world divergence. A mismatched-sample count at CHANNEL_EPS=8 does not distinguish uniform color/luma lift, a PNG Y-flip sampling artifact, or spatially structured content difference.",
+  "repair": "Keep verifyWorldLayers, verifyWorldResidual, verifyWorldMismatch and verifyWorldBias. Direct-engine 7x7 live samples are compared to the locked PNG on both Y-orientations after snapCamera(true). Mean signed R/G/B/luma, mean-abs, lumaVariance and signAgreement are recorded. Count-only whole-frame labels, Y-flip-only labels without the unflipped grid, PNG refresh and treating this probe as original-golden fail closed. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "structured_content_not_yflip_not_uniform_lift",
+    "protocol": "world-bias-attribution-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "frames": [
+      { "id": "g01", "follow": 7.4, "height": 1.92, "flippedMismatch": 49, "unflippedMismatch": 49, "meanDr": 26.9388, "meanDg": 22.4082, "meanDb": 24.8571, "meanDluma": 23.5482, "meanAbsDluma": 72.3403, "lumaVariance": 6889.0263, "signAgreement": 0.6939, "kind": "structured" },
+      { "id": "g05", "follow": 7.4, "height": 1.92, "flippedMismatch": 49, "unflippedMismatch": 49, "meanDr": 28.0408, "meanDg": 24.8571, "meanDb": 32.7551, "meanDluma": 26.1042, "meanAbsDluma": 64.8577, "lumaVariance": 5009.1396, "signAgreement": 0.8163, "kind": "structured" },
+      { "id": "g07", "follow": 7.4, "height": 1.92, "flippedMismatch": 48, "unflippedMismatch": 49, "meanDr": -3.6122, "meanDg": -4.3673, "meanDb": 3.1633, "meanDluma": -3.6631, "meanAbsDluma": 27.596, "lumaVariance": 2219.003, "signAgreement": 0.3673, "kind": "structured" },
+      { "id": "g08", "follow": 7.4, "height": 1.92, "flippedMismatch": 48, "unflippedMismatch": 48, "meanDr": 16.102, "meanDg": 27.6735, "meanDb": 58.4694, "meanDluma": 27.4368, "meanAbsDluma": 47.8896, "lumaVariance": 2420.6697, "signAgreement": 0.8367, "kind": "structured" }
+    ],
+    "finding": "Unflipped mismatch is not lower (not a Y-flip artifact). meanAbsDluma is 2-7x |meanDluma| with lumaVariance 2219-6889, so the 7x7 saturation is spatially structured content, not a uniform lift. g07 mean is near zero while 48/49 still mismatch."
+  },
+  "new_cases": {
+    "total": 28,
+    "source": "scripts/world-bias.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after structured 7x7 content divergence from 26 August PNG lock",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}

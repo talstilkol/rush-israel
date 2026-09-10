@@ -753,6 +753,20 @@ merge, replace PNGs, change thresholds or activate RSH-037.
 Details: RSH-036-WORLD-MISMATCH-r6.28.json, RSH-036-RUNTIME-REPAIR-r6.28.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.29 — 10 September 2026: 7x7 saturation is structured content, not a lift
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-39 measures
+channel bias after snapCamera(true). A 48–49/49 count is not whole-frame
+divergence. Both PNG Y-orientations mismatch 48–49/49, so the grid is not a
+Y-flip artifact. meanAbs luma is 2–7× |mean| with variance 2219–6889; all four
+poses classify as structured. g07 mean is near zero while 48/49 still mismatch.
+Camera stays 7.4/1.92. Freeze path count stays 85. r6.27 lint no-undef is
+retained, not relabelled a pass. Immutable CDN bytes, rendering performance and
+freeze remain open. Do not merge, replace PNGs, change thresholds or activate
+RSH-037.
+Details: RSH-036-WORLD-BIAS-r6.29.json, RSH-036-RUNTIME-REPAIR-r6.29.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 

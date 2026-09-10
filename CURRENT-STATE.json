@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-10T13:25:00Z",
+  "generated_at": "2026-09-10T13:40:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,20 +2001,21 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.28.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.29.md",
     "local_unit_tests": {
-      "status": "focused_27_passed_live_mismatch_7x7_48_49_no_layer_reduces_it_full_suite_expected_1337",
-      "focused_passed": 27,
+      "status": "focused_28_passed_live_bias_structured_not_yflip_not_uniform_full_suite_expected_1365",
+      "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 1337,
+      "expected_total": 1365,
       "predecessor_exact_head_passed": 1283,
       "predecessor_r6_23_expected": 1206,
       "predecessor_r6_24_expected": 1229,
       "predecessor_r6_26_expected": 1283,
       "predecessor_r6_27_expected": 1310,
-      "new_unique_cases": 27,
+      "predecessor_r6_28_expected": 1337,
+      "new_unique_cases": 28,
       "live_complete_race": {
         "status": "passed",
         "steps": 10595,
@@ -2157,6 +2158,21 @@
         "groundLive": [0.3673, 0.5102, 0.0408, 0.5102],
         "groundDelta": [0, 0, 0, 0],
         "rampsDelta": [0, 0, 1, 0],
+        "originalGoldenComparisons": 0
+      },
+      "live_world_bias": {
+        "status": "structured_content_not_yflip_not_uniform_lift",
+        "protocol": "world-bias-attribution-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "flippedMismatch": [49, 49, 48, 48],
+        "unflippedMismatch": [49, 49, 49, 48],
+        "kind": ["structured", "structured", "structured", "structured"],
+        "meanDluma": [23.5482, 26.1042, -3.6631, 27.4368],
+        "meanAbsDluma": [72.3403, 64.8577, 27.596, 47.8896],
+        "lumaVariance": [6889.0263, 5009.1396, 2219.003, 2420.6697],
+        "signAgreement": [0.6939, 0.8163, 0.3673, 0.8367],
         "originalGoldenComparisons": 0
       }
     },
@@ -2377,7 +2393,8 @@
     "golden_review": "RSH-036-GOLDEN-REVIEW-r6.24.json",
     "world_layer_review": "RSH-036-WORLD-LAYER-r6.26.json",
     "world_residual_review": "RSH-036-WORLD-RESIDUAL-r6.27.json",
-    "world_mismatch_review": "RSH-036-WORLD-MISMATCH-r6.28.json"
+    "world_mismatch_review": "RSH-036-WORLD-MISMATCH-r6.28.json",
+    "world_bias_review": "RSH-036-WORLD-BIAS-r6.29.json"
   },
   "historical_rsh035_constraints": [
     "The plain next instruction authorized exactly RSH-035 and is consumed on its validated merge.",
