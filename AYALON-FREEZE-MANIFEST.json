@@ -3,7 +3,7 @@
   "document_type": "rush-ayalon-freeze-manifest",
   "unit": "RSH-036",
   "title": "Freeze Ayalon and hash all transitive dependencies",
-  "generated_at": "2026-09-10T15:10:00.000Z",
+  "generated_at": "2026-09-10T16:50:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "implementation_base": {
@@ -103,7 +103,7 @@
       "server/middleware/grok-pwa.ts": "184313168a63c66b4b0d809fa55c656b8ca4436775f6c0502bc9e9cfdfaf0e9f",
       "scripts/product-head-boundary.mjs": "c88328d144b77d1ea54aaab62d0e54f616c404d72097f1e6f232057185c5f3fe",
       "scripts/rush-head-browser.mjs": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
-      "scripts/runtime-recovery-smoke.mjs": "a9b2812cab477258822e531ed8dd933a180d57717a0331bc5a7b354995f29928",
+      "scripts/runtime-recovery-smoke.mjs": "8c9429f0475fed385ab3116c3f251bf6d8c3134f57d74d5eabefba9e5f112dab",
       "scripts/dependency-closure.mjs": "fcd1263a3616b9033842dcca0913c65edfb8f7434d3743aaf6690f52dfa9abc2",
       "scripts/font-evidence.mjs": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35",
       "scripts/font-dependency-browser.mjs": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673",
@@ -122,7 +122,7 @@
       "src/game/collider-height.ts": "934747ab5c69127e90af5a457fa349a1a681682ecb692beab075848204359508",
       "scripts/pier-collision-browser.mjs": "256d9ffb20d5e95b8511effce86c7e1ae1f4580fdccc2ada3883c1a03955c8b8"
     },
-    "freeze_digest_sha256": "3268a860edf87fcb070ececf69291415ee7b71ad37c2099dbd239934757bad9a"
+    "freeze_digest_sha256": "698fe0e2f54ef14d58164f648272f42b7992fc06b02d12f4290680d309bd399c"
   },
   "lock_module": {
     "directory": "src/game/ayalon-freeze",
@@ -153,7 +153,7 @@
     "vehicle_envelope_behavior_changed": true
   },
   "identities": {
-    "freeze_source_sha256": "e53a38ef170a523d7efab8ede4831a722d29625837940477e0fad2295c115bd3",
+    "freeze_source_sha256": "d617effc76861a4a5a58c43e11daff9efcc1db089eff5267689113b6f65b4407",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
     "contract_sha256": "03727dd56eb2c6808ace47c372ab901dc96a22445d8a71fa09bb87f92d27e9d5",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
@@ -162,7 +162,7 @@
     "pixel_golden_sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
     "checker_test_sha256": "28fc007c15b971cecb21dee3ff5cac13d87a7cd61d761a6f1c6a1d125418e5a6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "3268a860edf87fcb070ececf69291415ee7b71ad37c2099dbd239934757bad9a",
+    "freeze_digest_sha256": "698fe0e2f54ef14d58164f648272f42b7992fc06b02d12f4290680d309bd399c",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
@@ -184,7 +184,7 @@
     "status": "partial",
     "complete_dependency_closure": false,
     "runtime_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
-    "remaining_proof": "r6.26 exact-head required-ci 34460850784 PASS retained (1283/1283); r6.27 lint no-undef verifyWorldLayers retained; r6.28 live contribution is not golden mismatch; r6.29 7x7 saturation is structured content; r6.30 7x7 structured kind is not full-frame scene mismatch; r6.31 full-frame scene scalar is not spatial-region mismatch; r6.32 dominant 200px band is not lateral-column mismatch; r6.33 dominant 200px band is not world-layer slice (g01/g05/g08 bottom no named layer reduces 0.85-0.88, ground +0.10-0.13; g07 upper ramps bandDelta -0.1885); r6.34 named residual slice is not hero-car or road-shader (hero 106/road 2/blob 4/fx 5/unclassified 813 all bandDelta 0); freeze_granted=false.",
+    "remaining_proof": "r6.26 exact-head required-ci 34460850784 PASS retained (1283/1283); r6.27 lint no-undef verifyWorldLayers retained; r6.28 live contribution is not golden mismatch; r6.29 7x7 saturation is structured content; r6.30 7x7 structured kind is not full-frame scene mismatch; r6.31 full-frame scene scalar is not spatial-region mismatch; r6.32 dominant 200px band is not lateral-column mismatch; r6.33 dominant 200px band is not world-layer slice (g01/g05/g08 bottom no named layer reduces 0.85-0.88, ground +0.10-0.13; g07 upper ramps bandDelta -0.1885); r6.34 named residual slice is not hero-car or road-shader (hero 106/road 2/blob 4/fx 5/unclassified 813 all bandDelta 0); r6.35 extras are not ground/daylight/envmap (g01/g05/g08 bottom ground -0.776/-0.850/-0.878 and daylight -0.755/-0.430/-0.878; envmap not day-bottom; g07 upper envmap -0.063); freeze_granted=false.",
     "generated_inventory": "AYALON-DEPENDENCY-CLOSURE.json"
   },
   "acceptance": {

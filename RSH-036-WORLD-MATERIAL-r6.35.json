@@ -1,0 +1,76 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.35",
+  "date": "2026-09-10",
+  "base": "bf1263229bec63879e5b691ec19dc645114fe73b",
+  "finding": "AUD-45",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "not_relabelled_success": true
+  },
+  "defect": "r6.34 named residual slice is not hero-car or road-shader (all extras bandDelta 0). Remaining 0/4 on the dominant band is not a scene extra; isolate ground-plane, daylight and envmap materials after setNight.",
+  "repair": "Keep verifyWorldLayers, verifyWorldResidual, verifyWorldMismatch, verifyWorldBias, verifyWorldScene, verifyWorldRegion, verifyWorldColumn, verifyWorldSlice, verifyWorldExtra and verifyWorldMaterial. Direct-engine present capture forces setPixelRatio(1)+setSize(1280,800)+post.setSize, locates the dominant 200px band, isolates ground-plane map/color, daylight lights/fog/background and envmap after snapCamera(true)/setNight and pixelmatches that band against the locked 26 August PNG at threshold 0.12. Extra-only reports, missing dominantMaterial, original-golden claims, PNG refresh, threshold drift, camera miss and zero presentPct fail closed. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "g01_g05_g08_bottom_is_ground_and_daylight_g07_upper_envmap_on_ramps",
+    "protocol": "world-material-buffer-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "pixelThreshold": 0.12,
+    "failureLimit": 0.08,
+    "viewport": { "width": 1280, "height": 800 },
+    "counts": { "ground": 1, "daylight": 7, "envmap": 1747 },
+    "frames": [
+      { "id": "g01", "follow": 7.4, "height": 1.92, "presentPct": 0.6926, "dominant": "bottom", "dominantMaterial": "ground", "contributingMaterial": ["ground", "daylight"], "groundDelta": -0.776, "daylightDelta": -0.7552, "envmapDelta": 0.0036 },
+      { "id": "g05", "follow": 7.4, "height": 1.92, "presentPct": 0.594, "dominant": "bottom", "dominantMaterial": "ground", "contributingMaterial": ["ground", "daylight"], "groundDelta": -0.8503, "daylightDelta": -0.43, "envmapDelta": 0.0017 },
+      { "id": "g07", "follow": 7.4, "height": 1.92, "presentPct": 0.2933, "dominant": "upper", "dominantMaterial": "envmap", "contributingMaterial": ["envmap"], "groundDelta": 0.0016, "daylightDelta": 0.0023, "envmapDelta": -0.063 },
+      { "id": "g08", "follow": 7.4, "height": 1.92, "presentPct": 0.7016, "dominant": "bottom", "dominantMaterial": "daylight", "contributingMaterial": ["ground", "daylight", "envmap"], "groundDelta": -0.878, "daylightDelta": -0.8781, "envmapDelta": -0.1932 }
+    ],
+    "finding": "g01/g05/g08 bottom is ground-plane appearance and daylight co-occupying the same pixels (ground −77.6/−85.0/−87.8 points; daylight −75.5/−43.0/−87.8). Envmap is not the day-bottom driver (+0.00) but contributes on g07 upper ramps (−6.3) and g08 night (−19.3)."
+  },
+  "new_cases": {
+    "total": 28,
+    "source": "scripts/world-material.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after ground+daylight co-occupy g01/g05/g08 bottom; g07 upper ramps with envmap −0.063",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}

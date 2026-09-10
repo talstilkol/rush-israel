@@ -838,6 +838,22 @@ activate RSH-037.
 Details: RSH-036-WORLD-EXTRA-r6.34.json, RSH-036-RUNTIME-REPAIR-r6.34.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.35 — 10 September 2026: extras are not ground-plane / daylight / envmap material attribution
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-45 isolates
+ground-plane map/color, daylight lights/fog/background and envmap after
+setNight/snapCamera(true) and pixelmatches the dominant 200px present band.
+Hero/road extras are not which material occupies that band. g01/g05/g08
+bottom is ground appearance and daylight co-occupying the same pixels
+(ground −77.6/−85.0/−87.8 points; daylight −75.5/−43.0/−87.8). Envmap is not
+the day-bottom driver; it contributes on g07 upper ramps (−6.3) and g08 night
+(−19.3). Camera stays 7.4/1.92. Freeze path count stays 85. r6.27 lint
+no-undef is retained, not relabelled a pass. Immutable CDN bytes, rendering
+performance and freeze remain open. Do not merge, replace PNGs, change
+thresholds or activate RSH-037.
+Details: RSH-036-WORLD-MATERIAL-r6.35.json, RSH-036-RUNTIME-REPAIR-r6.35.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 

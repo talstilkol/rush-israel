@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.34",
+  "revision": "r6.35",
   "date": "2026-09-10",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 44,
+    "audit_items": 45,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -374,7 +374,8 @@
         "AUD-41",
         "AUD-42",
         "AUD-43",
-        "AUD-44"
+        "AUD-44",
+        "AUD-45"
       ]
     },
     {
@@ -1449,6 +1450,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-EXTRA-r6.34.json"
+    },
+    {
+      "id": "AUD-45",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Hero-car and road-shader extras are not ground-plane daylight or envmap material attribution",
+      "acceptance": "Extra-only reports without three material-layer bandDelta values and a dominantMaterial must fail closed. Live snapCamera(true) at g01/g05/g07/g08 must force 1280x800 pixelRatio 1, capture post.render present, locate the dominant 200px band, isolate ground-plane, daylight and envmap materials after setNight and pixelmatch that band against the locked 26 August PNG at threshold 0.12. Original-golden claims, PNG refresh, threshold drift, camera miss and zero presentPct fail closed. Retain freeze path count 85 and generation 11. Material isolation is not freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-MATERIAL-r6.35.json"
     }
   ],
   "legacy_findings": [
@@ -1872,7 +1886,7 @@
     "public_distribution_authorised": false
   },
   "limitations": [
-    "All67 original units,44 audit IDs and42 historical findings retained; no new accepted unit.",
+    "All67 original units,45 audit IDs and42 historical findings retained; no new accepted unit.",
     "Verified r6.5 head 8c6a3be7 passed 688 unit and 20 browser cases in run33995840557; prior chat-only 716-test claim is not the live baseline.",
     "Original PNGs, pixel threshold0.12, failure limit8%, camera recipe and post-pose waits are preserved. Reliable selection does not prove pixel determinism.",
     "Generated local closure seals the declared local runtime/build/test/public/golden surface. Three verified Actions are pinned; four dormant vendor-head expressions and three product font URLs are reviewed. Remote font bytes remain unpinned, so overall closure remains false.",
@@ -1880,9 +1894,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.34",
-    "base_head": "03173adbb23c6bfd08f261d4160b935ff1dea122",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.34.md",
+    "revision": "r6.35",
+    "base_head": "bf1263229bec63879e5b691ec19dc645114fe73b",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.35.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",
@@ -1931,9 +1945,9 @@
       "not_product_golden_failure": true
     },
     "normal_ci": "pending_exact_published_head_validation",
-    "golden": "r6.34 named residual slice is not hero/road extras; g01/g05/g07/g08 extras all bandDelta 0 (hero 106, road 2, blob 4, fx 5, unclassified 813); remaining g01/g05/g08 ground appearance and g07 ramps; camera 7.4/1.92; unchanged images/thresholds",
+    "golden": "r6.35 extras are not ground/daylight/envmap; g01/g05/g08 bottom is ground+daylight co-occupying (ground −0.776/−0.850/−0.878, daylight −0.755/−0.430/−0.878); envmap is not day-bottom (+0.00) but g07 upper −0.063 and g08 −0.193; camera 7.4/1.92; unchanged images/thresholds",
     "dependency_closure": "3 product font URLs pinned; remote CDN bytes still unpinned; complete_dependency_closure false",
-    "clearance": "r6.34 extra isolation; r6.33 slice isolation; r6.32 column isolation; r6.31 region-band isolation; r6.30 scene-buffer isolation; r6.29 channel-bias isolation; r6.28 mismatch isolation; r6.27 residual split; r6.26 world-layer isolation; r6.25 rest-camera attribution; r6.24 original-golden protocol; r6.23 visual hull; r6.22 complete arcade lap; r6.21 rest chase 7.4/1.92 overlay",
+    "clearance": "r6.35 material isolation; r6.34 extra isolation; r6.33 slice isolation; r6.32 column isolation; r6.31 region-band isolation; r6.30 scene-buffer isolation; r6.29 channel-bias isolation; r6.28 mismatch isolation; r6.27 residual split; r6.26 world-layer isolation; r6.25 rest-camera attribution; r6.24 original-golden protocol; r6.23 visual hull; r6.22 complete arcade lap; r6.21 rest chase 7.4/1.92 overlay",
     "record_policy": "physicsVersion7 frozen fixture; v6 rows drop; conversion remains forbidden"
   },
   "r6_9_diagnostic_checkpoint": {

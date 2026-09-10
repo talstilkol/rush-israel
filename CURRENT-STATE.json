@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-10T16:20:00Z",
+  "generated_at": "2026-09-10T16:50:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,14 +2001,14 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.34.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.35.md",
     "local_unit_tests": {
-      "status": "focused_28_passed_live_extra_hero_road_blob_fx_unclassified_delta_zero_full_suite_expected_1505",
+      "status": "focused_28_passed_live_material_g01_g05_g08_ground_daylight_g07_envmap_full_suite_expected_1533",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 1505,
+      "expected_total": 1533,
       "predecessor_exact_head_passed": 1283,
       "predecessor_r6_23_expected": 1206,
       "predecessor_r6_24_expected": 1229,
@@ -2020,6 +2020,7 @@
       "predecessor_r6_31_expected": 1421,
       "predecessor_r6_32_expected": 1449,
       "predecessor_r6_33_expected": 1477,
+      "predecessor_r6_34_expected": 1505,
       "new_unique_cases": 28,
       "live_complete_race": {
         "status": "passed",
@@ -2258,6 +2259,23 @@
         "fxDelta": [0, 0, 0, 0],
         "unclassifiedDelta": [0, 0, 0, 0],
         "counts": { "hero": 106, "road": 2, "blob": 4, "fx": 5, "unclassified": 813 },
+        "originalGoldenComparisons": 0
+      },
+      "live_world_material": {
+        "status": "g01_g05_g08_bottom_is_ground_and_daylight_g07_upper_envmap_on_ramps",
+        "protocol": "world-material-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
+        "dominant": ["bottom", "bottom", "upper", "bottom"],
+        "dominantMaterial": ["ground", "ground", "envmap", "daylight"],
+        "contributingMaterial": [["ground", "daylight"], ["ground", "daylight"], ["envmap"], ["ground", "daylight", "envmap"]],
+        "groundDelta": [-0.776, -0.8503, 0.0016, -0.878],
+        "daylightDelta": [-0.7552, -0.43, 0.0023, -0.8781],
+        "envmapDelta": [0.0036, 0.0017, -0.063, -0.1932],
+        "counts": { "ground": 1, "daylight": 7, "envmap": 1747 },
         "originalGoldenComparisons": 0
       }
     },

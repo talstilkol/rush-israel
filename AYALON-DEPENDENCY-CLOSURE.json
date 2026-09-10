@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "4cc4450d0f81c93fc8686161cdba0143711fecad909cb17467550a762ac180ba"
+      "sha256": "d06f0b8eb3ebef52825168ffe6c93de507e5e40d64bebfc38a576bb2722d3da6"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2059,7 +2059,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "69e7d20e7bbe8a2105c0b112f319bf078cfa3a4e6abb22b8d5a54fec1259966c"
+      "sha256": "77d0c95194a98b7cb603c35b580e01e8bdd7da4b4c60292eafc9f9ee1434184a"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 10336,
-      "sha256": "a9b2812cab477258822e531ed8dd933a180d57717a0331bc5a7b354995f29928"
+      "bytes": 10464,
+      "sha256": "8c9429f0475fed385ab3116c3f251bf6d8c3134f57d74d5eabefba9e5f112dab"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2203,8 +2203,8 @@
     },
     {
       "path": "scripts/world-column.test.mjs",
-      "bytes": 8275,
-      "sha256": "89529423bb844ab8061cdf91b31febabb6f92ac0adeb65e9e6c1df6c8df9d7a8"
+      "bytes": 8441,
+      "sha256": "64aa55e637b6534d3630acf4ab90b7399bf854799ac8488d3a6e1f9d86bf7be7"
     },
     {
       "path": "scripts/world-extra-browser.mjs",
@@ -2213,8 +2213,8 @@
     },
     {
       "path": "scripts/world-extra.test.mjs",
-      "bytes": 8123,
-      "sha256": "bc657077d1496553d8395494e605606a5e146cf3ce155f91c1834ca6c266c1c0"
+      "bytes": 8289,
+      "sha256": "22b1dc2afe33246433f8b7f40a2e0c2f890715e86cc948acdabdc6d75b60e502"
     },
     {
       "path": "scripts/world-layer-browser.mjs",
@@ -2225,6 +2225,16 @@
       "path": "scripts/world-layer.test.mjs",
       "bytes": 7589,
       "sha256": "4f1881027f1190ba945fb579851e12ccdc8be864f15bacc24cd4a4dce504735e"
+    },
+    {
+      "path": "scripts/world-material-browser.mjs",
+      "bytes": 23072,
+      "sha256": "95e56b431615adb9b87cd8de55df4c23c4210219ee9c1b548f993bd4af31f980"
+    },
+    {
+      "path": "scripts/world-material.test.mjs",
+      "bytes": 8422,
+      "sha256": "6568e0a85b2db16dc0710ac9a56529132972f27780a3cd0e9aa143bd4d91ce68"
     },
     {
       "path": "scripts/world-mismatch-browser.mjs",
@@ -2243,8 +2253,8 @@
     },
     {
       "path": "scripts/world-region.test.mjs",
-      "bytes": 8029,
-      "sha256": "69add29bdd50758c2b9dc756b0c9d2b2b90921af3deab131f9974191ffc7ac26"
+      "bytes": 8195,
+      "sha256": "7a25b60c74ef4cb29dc6f372d94d471fcaa197a2e4a1cc64c61ec39d189808e6"
     },
     {
       "path": "scripts/world-residual-browser.mjs",
@@ -2263,8 +2273,8 @@
     },
     {
       "path": "scripts/world-scene.test.mjs",
-      "bytes": 8220,
-      "sha256": "5f1fd20eab96d42705381fb0b0cea617ab0bfcf441c10e13181eb4354d7a7b2f"
+      "bytes": 8386,
+      "sha256": "48741eea5aa3a2c222fd4f01a930d5c49c1f437b7a04c1eafdee6aa0859b89ef"
     },
     {
       "path": "scripts/world-slice-browser.mjs",
@@ -2273,8 +2283,8 @@
     },
     {
       "path": "scripts/world-slice.test.mjs",
-      "bytes": 8155,
-      "sha256": "ba2e4094ed4ded91c8519f8f5cf411a2574394a63b06033e2b979fa01f8cf5a2"
+      "bytes": 8321,
+      "sha256": "778d72320e74b17b414cde101396560d74c3d176a32f997f98250c8e71cbbd6b"
     },
     {
       "path": "scripts/write-ci-summary.mjs",
@@ -2384,7 +2394,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "e53a38ef170a523d7efab8ede4831a722d29625837940477e0fad2295c115bd3"
+      "sha256": "d617effc76861a4a5a58c43e11daff9efcc1db089eff5267689113b6f65b4407"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10636,5 +10646,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "930acb71fa7ad2475af281d127dc44bfbf4b660e8ee3ab7d03c1f0374ac26d08"
+  "digest_sha256": "b4d801bf356d98662f539b25d6e0aada9330bc72e7d0a0162c57c4a29ad69fae"
 }
