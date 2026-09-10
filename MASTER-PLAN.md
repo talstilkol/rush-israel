@@ -767,6 +767,21 @@ RSH-037.
 Details: RSH-036-WORLD-BIAS-r6.29.json, RSH-036-RUNTIME-REPAIR-r6.29.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.30 — 10 September 2026: 7x7 structured kind is not full-frame scene mismatch
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-40 captures
+the product present path (`post.render`) at 1280×800 threshold 0.12 after
+snapCamera(true). A 7×7 structured kind is not a full-frame present-buffer
+comparison; `renderer.render` is not product present. Scene-only mismatch
+29.3–70.2% tracks original-golden page 31–65%, so HUD is not the 0/4 driver.
+presentVsRawPct is 0 at rest, so rest postfx is not the driver either. g07
+remains closest. Camera stays 7.4/1.92. Freeze path count stays 85. r6.27 lint
+no-undef is retained, not relabelled a pass. Immutable CDN bytes, rendering
+performance and freeze remain open. Do not merge, replace PNGs, change
+thresholds or activate RSH-037.
+Details: RSH-036-WORLD-SCENE-r6.30.json, RSH-036-RUNTIME-REPAIR-r6.30.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 

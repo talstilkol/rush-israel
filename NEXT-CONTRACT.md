@@ -1,9 +1,9 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 20.28.0
+**Version:** 20.29.0
 **Date:** 2026-09-10, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 42972edd6ad5068c697e248265143b71d49990b4
+**Repair base:** c27c245e27c6626d00ea45b2fd56d87a2db0b1a1
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -33,10 +33,12 @@ Artifact required-ci-34452081855-1 SHA-256
 Original golden remains 0/4. Live rest chase after snapCamera(true) matches the
 26 August 7.4/1.92 matrices at g01/g05/g07/g08. Live contribution is not golden
 mismatch. 7×7 saturation is structured content, not a Y-flip artifact and not a
-uniform lift: unflipped mismatch stays 48–49/49; meanAbs luma is 2–7× |mean|
-with variance 2219–6889. HUD-on-black page captures are not scene comparison.
-Preserve historical preparation 34324754353. PNG bytes last changed 26 August
-12:00:42Z, before spaghetti ramps.
+uniform lift. Full-frame scene present (no HUD) mismatches 29.3–70.2% and tracks
+original-golden page 31–65%, so HUD chrome is not the remaining 0/4 driver.
+presentVsRawPct is 0 at rest (`post.render` then `renderer.render`), so rest
+postfx is not the driver either. g07 remains closest. HUD-on-black page
+captures are not scene comparison. Preserve historical preparation 34324754353.
+PNG bytes last changed 26 August 12:00:42Z, before spaghetti ramps.
 
 r6.17 requiredCI 34385617080 failed at Playwright `--with-deps` (Google Chrome
 apt hash-sum mismatch) before any product test. Retained; not a product defect.
@@ -57,26 +59,29 @@ required-ci-34480369405-1 SHA-256
 `0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec`. Retained;
 not relabelled a pass.
 
-## r6.29 and subsequent acceptance
-1. 7×7 saturation counts are not whole-frame divergence. Live isolation must
-   sample the locked 26 August PNG on both Y-orientations after snapCamera(true)
-   and record mean signed R/G/B/luma, mean-abs, lumaVariance and signAgreement
-   at g01/g05/g07/g08. Smoke must keep verifyWorldLayers, verifyWorldResidual,
-   verifyWorldMismatch and verifyWorldBias. Live rest chase 7.4/1.92 must stay.
-   Remaining pixel 0/4 is structured content difference from the 26 August PNG
-   lock, not a uniform lift and not a Y-flip artifact. PNG refresh, threshold
-   drift and skipped comparison fail closed. 176 piers, 546 legacy colliders,
-   50 ramps, rest-pose 1.6, 1.05 radius and generation-11 lock stay. Freeze path
+## r6.30 and subsequent acceptance
+1. 7×7 structured kinds are not full-frame scene-buffer mismatch. Live isolation
+   must force 1280×800 pixelRatio 1 after snapCamera(true), capture product
+   present (`post.setDrive(0, false); post.render()`) first then
+   `renderer.render` raw, and pixelmatch both against the locked 26 August PNG
+   at threshold 0.12 at g01/g05/g07/g08. Smoke must keep verifyWorldLayers,
+   verifyWorldResidual, verifyWorldMismatch, verifyWorldBias and
+   verifyWorldScene. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is
+   full-frame scene content difference from the 26 August PNG lock, not HUD
+   chrome and not rest postfx. PNG refresh, threshold drift, raw-only reports
+   and skipped comparison fail closed. 176 piers, 546 legacy colliders, 50
+   ramps, rest-pose 1.6, 1.05 radius and generation-11 lock stay. Freeze path
    count stays 85. Pixel 0/4 is not freeze.
 2. Preserve the r6.18 Chromium install retry, the r6.19 slab-underside support
    placement, the r6.20 product font URL pins, the r6.21 rest chase 7.4/1.92,
    the r6.22 complete arcade lap, the r6.23 visual hull, the r6.24 original
    protocol, the r6.25 rest-camera attribution, the r6.26 world-layer isolation,
-   the r6.27 residual split and the r6.28 mismatch isolation.
+   the r6.27 residual split, the r6.28 mismatch isolation and the r6.29
+   channel-bias isolation.
 3. Preserve 1280x800 images, threshold 0.12, failure 8%, generation 11 lock and
    owner approval. Do not refresh golden PNGs or silently change typography.
    Rendering performance remains open.
 4. Only validated applicable approval may grant freeze or open RSH-037.
 
-Master plan r6.29 retains 67 units, 42 historical findings, 6 bundles and 39
+Master plan r6.30 retains 67 units, 42 historical findings, 6 bundles and 40
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-10T13:40:00Z",
+  "generated_at": "2026-09-10T13:55:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,20 +2001,21 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.29.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.30.md",
     "local_unit_tests": {
-      "status": "focused_28_passed_live_bias_structured_not_yflip_not_uniform_full_suite_expected_1365",
+      "status": "focused_28_passed_live_scene_present_tracks_page_not_hud_not_rest_postfx_full_suite_expected_1393",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 1365,
+      "expected_total": 1393,
       "predecessor_exact_head_passed": 1283,
       "predecessor_r6_23_expected": 1206,
       "predecessor_r6_24_expected": 1229,
       "predecessor_r6_26_expected": 1283,
       "predecessor_r6_27_expected": 1310,
       "predecessor_r6_28_expected": 1337,
+      "predecessor_r6_29_expected": 1365,
       "new_unique_cases": 28,
       "live_complete_race": {
         "status": "passed",
@@ -2174,6 +2175,20 @@
         "lumaVariance": [6889.0263, 5009.1396, 2219.003, 2420.6697],
         "signAgreement": [0.6939, 0.8163, 0.3673, 0.8367],
         "originalGoldenComparisons": 0
+      },
+      "live_world_scene": {
+        "status": "scene_mismatch_tracks_page_hud_and_rest_postfx_not_the_driver",
+        "protocol": "world-scene-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "pageGoldenPct": [0.6158, 0.5056, 0.3122, 0.6473],
+        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
+        "rawPct": [0.6926, 0.594, 0.2933, 0.7016],
+        "presentVsRawPct": [0, 0, 0, 0],
+        "kind": ["structured", "structured", "structured", "structured"],
+        "originalGoldenComparisons": 0
       }
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
@@ -2259,7 +2274,7 @@
       "diagnostic_run": 33992134755
     },
     "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json",
-    "new_candidate_validation": "pending_r6_28_preparation_and_exact_published_head_CI",
+    "new_candidate_validation": "pending_r6_30_preparation_and_exact_published_head_CI",
     "generated_dependency_inventory": "AYALON-DEPENDENCY-CLOSURE.json",
     "safe_capture_output": "both_commands_no_automatic_baseline_writes",
     "ci_action_pins": "three_previously_verified_pins_unchanged",
@@ -2394,7 +2409,8 @@
     "world_layer_review": "RSH-036-WORLD-LAYER-r6.26.json",
     "world_residual_review": "RSH-036-WORLD-RESIDUAL-r6.27.json",
     "world_mismatch_review": "RSH-036-WORLD-MISMATCH-r6.28.json",
-    "world_bias_review": "RSH-036-WORLD-BIAS-r6.29.json"
+    "world_bias_review": "RSH-036-WORLD-BIAS-r6.29.json",
+    "world_scene_review": "RSH-036-WORLD-SCENE-r6.30.json"
   },
   "historical_rsh035_constraints": [
     "The plain next instruction authorized exactly RSH-035 and is consumed on its validated merge.",
