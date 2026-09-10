@@ -1,0 +1,157 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.27",
+  "date": "2026-09-10",
+  "base": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+  "finding": "AUD-37",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "golden_source": "live original protocol r6.24; historical preparation 34324754353 predates r6.21",
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "defect": "r6.26 labelled MeshPhysicalMaterial as water. Carriageway, landmark glass, puddles and rails also use MeshPhysicalMaterial, so the 90-mesh water bucket was not water. Residual other (698) is not a named world class.",
+  "repair": "Direct-engine residual isolation after snapCamera(true). Physical-material-only water labels fail closed. Water is ior 1.33 transparent physical. Carriageway is non-instanced physical with userData.lanes. Remaining non-instanced physical is glass. Sky is SphereGeometry radius >= 8000. Ground is PlaneGeometry width >= 1000. Residual stays an unnamed leftover. PNG refresh and original-golden comparisons on this probe fail closed. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "residual_split_camera_locked_world_remaining",
+    "protocol": "world-residual-isolation-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "colliderCount": 722,
+    "legacyCount": 546,
+    "pierCount": 176,
+    "rampCount": 50,
+    "decks": 50,
+    "strips": 100,
+    "classifiedPiers": 176,
+    "waterIorCount": 1,
+    "classified": {
+      "ramps": 150,
+      "piers": 176,
+      "water": 1,
+      "carriageway": 2,
+      "sky": 2,
+      "ground": 1,
+      "glass": 80,
+      "instanced": 47,
+      "residual": 695
+    },
+    "historicalRamps": 32,
+    "historicalColliders": 541,
+    "frames": [
+      {
+        "id": "g01",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "nonBlackFraction": 0.9184,
+        "contributing": ["ramps", "piers", "sky", "ground", "instanced", "residual"],
+        "layers": {
+          "ramps": 0.2653,
+          "piers": 0.0612,
+          "water": 0,
+          "carriageway": 0,
+          "sky": 0.102,
+          "ground": 0.3673,
+          "glass": 0,
+          "instanced": 0.1224,
+          "residual": 0.0816
+        }
+      },
+      {
+        "id": "g05",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "nonBlackFraction": 1,
+        "contributing": ["sky", "ground", "glass", "instanced", "residual"],
+        "layers": {
+          "ramps": 0,
+          "piers": 0,
+          "water": 0,
+          "carriageway": 0,
+          "sky": 0.2449,
+          "ground": 0.5102,
+          "glass": 0.1633,
+          "instanced": 0.0408,
+          "residual": 0.0408
+        }
+      },
+      {
+        "id": "g07",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "nonBlackFraction": 0.9388,
+        "contributing": ["ramps", "sky", "ground", "residual"],
+        "layers": {
+          "ramps": 0.6939,
+          "piers": 0,
+          "water": 0,
+          "carriageway": 0,
+          "sky": 0.2449,
+          "ground": 0.0408,
+          "glass": 0,
+          "instanced": 0,
+          "residual": 0.0204
+        }
+      },
+      {
+        "id": "g08",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "nonBlackFraction": 0.9796,
+        "contributing": ["sky", "ground", "glass", "instanced", "residual"],
+        "layers": {
+          "ramps": 0,
+          "piers": 0,
+          "water": 0,
+          "carriageway": 0,
+          "sky": 0.3061,
+          "ground": 0.5102,
+          "glass": 0.0816,
+          "instanced": 0.0612,
+          "residual": 0.0408
+        }
+      }
+    ],
+    "finding": "r6.26 water 90 was physical-material dump; live ior-water is 1 and contributes 0%. Carriageway 2 contributes 0%. Ground dominates g05/g08 (51%). g07 remains ramp-dominated (69%). Residual 695 is honest leftover, not a named class."
+  },
+  "new_cases": {
+    "total": 27,
+    "source": "scripts/world-residual.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after mixed world-layer divergence from 26 August PNG lock",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}

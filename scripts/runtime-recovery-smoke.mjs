@@ -9,7 +9,7 @@ import { verifyCompleteRace } from './complete-race-browser.mjs';
 import { verifyMeshClearance } from './mesh-clearance-browser.mjs';
 import { verifyOriginalGolden } from './original-golden-browser.mjs';
 import { verifyGoldenAttribution } from './golden-attribution-browser.mjs';
-import { verifyWorldLayers } from './world-layer-browser.mjs';
+import { verifyWorldResidual } from './world-residual-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -73,6 +73,7 @@ try {
   results.push(...await verifyOriginalGolden(browser, url));
   results.push(...await verifyGoldenAttribution(browser, url));
   results.push(...await verifyWorldLayers(browser, url));
+  results.push(...await verifyWorldResidual(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));

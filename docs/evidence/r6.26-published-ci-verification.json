@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-published-candidate-audit",
+  "verifiedOn": "2026-09-10",
+  "repository": "talstilkol/rush-israel",
+  "productCommit": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+  "productTree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+  "canonicalMain": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+  "run": {
+    "id": "34460850784",
+    "attempt": 1,
+    "jobId": "102818068809",
+    "name": "required-ci",
+    "status": "completed",
+    "conclusion": "success",
+    "createdAt": "2026-09-10T09:28:44Z",
+    "completedAt": "2026-09-10T09:38:25Z"
+  },
+  "archives": [
+    {
+      "id": "10145455425",
+      "name": "audit-source-34460850784-1",
+      "sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+      "githubDigestRecorded": true
+    },
+    {
+      "id": "10145812969",
+      "name": "required-ci-34460850784-1",
+      "sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+      "githubDigestRecorded": true
+    }
+  ],
+  "sourceVerification": {
+    "sourceHeadTxt": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "ciSummaryCheckedOutSha": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "ciSummaryCheckedOutTree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "sourceStatus": "recorded_from_published_run_and_local_tree",
+    "unitTests": { "tests": 1283, "passed": 1283, "failed": 0 }
+  },
+  "finalCiEvidence": {
+    "unitTests": { "tests": 1283, "passed": 1283, "failed": 0 },
+    "originalGoldenComparisonPerformedByThisNormalCi": false
+  },
+  "retainedFailures": {
+    "r6_17": { "runId": "34385617080", "cause": "google_chrome_apt_packages_gz_hash_sum_mismatch", "notRelabelledSuccess": true },
+    "r6_18": { "runId": "34387082287", "cause": "real_ramp_supports_protruded_through_drivable_surface", "notRelabelledSuccess": true },
+    "originalGolden": { "runId": "34324754353", "passed": 0, "failed": 4, "pixelThreshold": 0.12, "failureFraction": 0.08, "referencesChanged": false, "predatesR6_21ChaseRestore": true }
+  },
+  "acceptance": {
+    "activeUnit": "RSH-036",
+    "activeUnitAccepted": false,
+    "acceptedUnits": 35,
+    "totalUnits": 67,
+    "remainingUnits": 32,
+    "nextUnitActivated": false,
+    "freezeGranted": false,
+    "mergeAuthorized": false
+  },
+  "scope": "Records the published r6.26 required-ci success on 6fb2739. Not freeze, not original-golden acceptance, not later-head validation."
+}

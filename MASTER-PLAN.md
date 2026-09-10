@@ -727,6 +727,19 @@ RSH-037.
 Details: RSH-036-WORLD-LAYER-r6.26.json, RSH-036-RUNTIME-REPAIR-r6.26.md and
 docs/evidence/r6.24-published-ci-verification.json.
 
+## r6.27 — 10 September 2026: physical-material water is not water
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-37 isolates
+named residual layers after snapCamera(true). Physical-material-only water
+labels fail closed. Live ior-water is 1 mesh and carriageway is 2; both
+contribute 0% of samples. Ground dominates g05 and g08 (51%). g07 remains
+ramp-dominated (69%). Residual 695 stays an unnamed leftover. Camera stays
+7.4/1.92. Freeze path count stays 85. Immutable CDN bytes, rendering
+performance and freeze remain open. Do not merge, replace PNGs, change
+thresholds or activate RSH-037.
+Details: RSH-036-WORLD-RESIDUAL-r6.27.json, RSH-036-RUNTIME-REPAIR-r6.27.md and
+docs/evidence/r6.26-published-ci-verification.json.
+
 
 
 

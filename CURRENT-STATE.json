@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-10T10:30:00Z",
+  "generated_at": "2026-09-10T12:50:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,17 +2001,18 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.26.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.27.md",
     "local_unit_tests": {
-      "status": "focused_27_passed_live_layers_isolated_g07_ramps_69_g05_g08_ramps_0_full_suite_expected_1283",
+      "status": "focused_27_passed_live_residual_split_ior_water_1_carriageway_2_ground_g05_g08_51_full_suite_expected_1310",
       "focused_passed": 27,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 1283,
-      "predecessor_exact_head_passed": 1206,
+      "expected_total": 1310,
+      "predecessor_exact_head_passed": 1283,
       "predecessor_r6_23_expected": 1206,
       "predecessor_r6_24_expected": 1229,
+      "predecessor_r6_26_expected": 1283,
       "new_unique_cases": 27,
       "live_complete_race": {
         "status": "passed",
@@ -2110,24 +2111,51 @@
           0.8571
         ],
         "originalGoldenComparisons": 0
+      },
+      "live_world_residual": {
+        "status": "residual_split_camera_locked_world_remaining",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "waterIorCount": 1,
+        "carriageway": 2,
+        "sky": 2,
+        "ground": 1,
+        "glass": 80,
+        "instanced": 47,
+        "residual": 695,
+        "ramps": 50,
+        "colliderCount": 722,
+        "contributing": {
+          "g01": ["ramps", "piers", "sky", "ground", "instanced", "residual"],
+          "g05": ["sky", "ground", "glass", "instanced", "residual"],
+          "g07": ["ramps", "sky", "ground", "residual"],
+          "g08": ["sky", "ground", "glass", "instanced", "residual"]
+        },
+        "groundChangedFraction": [0.3673, 0.5102, 0.0408, 0.5102],
+        "skyChangedFraction": [0.102, 0.2449, 0.2449, 0.3061],
+        "glassChangedFraction": [0, 0.1633, 0, 0.0816],
+        "waterChangedFraction": [0, 0, 0, 0],
+        "carriagewayChangedFraction": [0, 0, 0, 0],
+        "originalGoldenComparisons": 0
       }
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
     "previous_exact_head_ci": {
-      "revision": "r6.24",
-      "head": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
-      "tree": "5c0b7667e8775f04c67b62285a78d9805b473f23",
-      "run_id": 34454517944,
-      "job_id": 102797680687,
-      "unit_passed": 1229,
+      "revision": "r6.26",
+      "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+      "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+      "run_id": 34460850784,
+      "job_id": 102818068809,
+      "unit_passed": 1283,
       "unit_failed": 0,
       "golden_passed": 0,
       "golden_failed": 4,
       "golden_source": "live original protocol r6.24; historical preparation 34324754353 predates r6.21",
-      "required_ci_artifact_id": 10143266963,
-      "required_ci_artifact_sha256": "b7034f320d86317ef571953e2f9934e9d1ed8a9dffc9ec6c3d8ff4e7b8c20594",
-      "audit_source_artifact_id": 10142884342,
-      "audit_source_artifact_sha256": "02e9bf36f7a3c67dc8da35eaf3233fc2d440634a2510355c2fc1d7446ab8a218",
+      "required_ci_artifact_id": 10145812969,
+      "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+      "audit_source_artifact_id": 10145455425,
+      "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
       "not_unit_acceptance": true
     },
     "retained_r6_17_failure": {
@@ -2309,7 +2337,8 @@
     "race_review": "RSH-036-RACE-REVIEW-r6.22.json",
     "mesh_review": "RSH-036-MESH-REVIEW-r6.23.json",
     "golden_review": "RSH-036-GOLDEN-REVIEW-r6.24.json",
-    "world_layer_review": "RSH-036-WORLD-LAYER-r6.26.json"
+    "world_layer_review": "RSH-036-WORLD-LAYER-r6.26.json",
+    "world_residual_review": "RSH-036-WORLD-RESIDUAL-r6.27.json"
   },
   "historical_rsh035_constraints": [
     "The plain next instruction authorized exactly RSH-035 and is consumed on its validated merge.",

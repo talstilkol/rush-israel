@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.26",
+  "revision": "r6.27",
   "date": "2026-09-10",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
+  "source_pr_head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 36,
+    "audit_items": 37,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -366,7 +366,8 @@
         "AUD-33",
         "AUD-34",
         "AUD-35",
-        "AUD-36"
+        "AUD-36",
+        "AUD-37"
       ]
     },
     {
@@ -1337,6 +1338,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-LAYER-r6.26.json"
+    },
+    {
+      "id": "AUD-37",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "MeshPhysicalMaterial is not water; residual other is not a named world class",
+      "acceptance": "Physical-material-only water labels must fail closed. Live snapCamera(true) at g01/g05/g07/g08 must isolate ior-1.33 water, carriageway with userData.lanes, remaining non-instanced physical glass, sky SphereGeometry radius >= 8000, ground PlaneGeometry width >= 1000, and unnamed residual. PNG refresh and treating this probe as original-golden fail closed. Retain freeze path count 85 and generation 11. Residual isolation is not freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-RESIDUAL-r6.27.json"
     }
   ],
   "legacy_findings": [
@@ -1768,25 +1782,25 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.26",
-    "base_head": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.26.md",
+    "revision": "r6.27",
+    "base_head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.27.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "revision": "r6.24",
-      "head": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
-      "tree": "5c0b7667e8775f04c67b62285a78d9805b473f23",
-      "run_id": 34454517944,
-      "job_id": 102797680687,
-      "unit_passed": 1229,
+      "revision": "r6.26",
+      "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+      "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+      "run_id": 34460850784,
+      "job_id": 102818068809,
+      "unit_passed": 1283,
       "unit_failed": 0,
       "golden_passed": 0,
       "golden_failed": 4,
       "golden_source": "live original protocol r6.24; historical preparation 34324754353 predates r6.21",
-      "required_ci_artifact_id": 10143266963,
-      "required_ci_artifact_sha256": "b7034f320d86317ef571953e2f9934e9d1ed8a9dffc9ec6c3d8ff4e7b8c20594",
-      "audit_source_artifact_id": 10142884342,
-      "audit_source_artifact_sha256": "02e9bf36f7a3c67dc8da35eaf3233fc2d440634a2510355c2fc1d7446ab8a218",
+      "required_ci_artifact_id": 10145812969,
+      "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+      "audit_source_artifact_id": 10145455425,
+      "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
       "not_unit_acceptance": true
     },
     "retained_r6_17_failure": {
@@ -1808,9 +1822,9 @@
       "not_relabelled_success": true
     },
     "normal_ci": "pending_exact_published_head_validation",
-    "golden": "r6.26 catalogue 50/722 is not pixel-layer proof; g07 ramps 69%, g05/g08 ramps 0%; camera 7.4/1.92; unchanged images/thresholds",
+    "golden": "r6.27 physical-material-only water is not water; live ior-water 1 and carriageway 2 contribute 0%; ground dominates g05/g08 51%; g07 ramps 69%; camera 7.4/1.92; unchanged images/thresholds",
     "dependency_closure": "3 product font URLs pinned; remote CDN bytes still unpinned; complete_dependency_closure false",
-    "clearance": "r6.26 world-layer isolation; r6.25 rest-camera attribution; r6.24 original-golden protocol; r6.23 visual hull; r6.22 complete arcade lap; r6.21 rest chase 7.4/1.92 overlay",
+    "clearance": "r6.27 residual split; r6.26 world-layer isolation; r6.25 rest-camera attribution; r6.24 original-golden protocol; r6.23 visual hull; r6.22 complete arcade lap; r6.21 rest chase 7.4/1.92 overlay",
     "record_policy": "physicsVersion7 frozen fixture; v6 rows drop; conversion remains forbidden"
   },
   "r6_9_diagnostic_checkpoint": {
