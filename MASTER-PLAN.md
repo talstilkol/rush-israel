@@ -782,6 +782,19 @@ thresholds or activate RSH-037.
 Details: RSH-036-WORLD-SCENE-r6.30.json, RSH-036-RUNTIME-REPAIR-r6.30.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.31 — 10 September 2026: full-frame scene scalar is not spatial-region mismatch
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-41 splits the
+1280×800 present buffer into four 200px bands after snapCamera(true). A 29–70%
+scene scalar is not where the locked PNG diverges. g01/g05/g08 concentrate in
+the bottom foreground (85–88%) while sky/top is 22–50%. g07, closest overall,
+is the inverse: upper 60% while bottom is 11%. Camera stays 7.4/1.92. Freeze
+path count stays 85. r6.27 lint no-undef is retained, not relabelled a pass.
+Immutable CDN bytes, rendering performance and freeze remain open. Do not
+merge, replace PNGs, change thresholds or activate RSH-037.
+Details: RSH-036-WORLD-REGION-r6.31.json, RSH-036-RUNTIME-REPAIR-r6.31.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 

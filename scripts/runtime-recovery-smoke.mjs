@@ -14,6 +14,7 @@ import { verifyWorldResidual } from './world-residual-browser.mjs';
 import { verifyWorldMismatch } from './world-mismatch-browser.mjs';
 import { verifyWorldBias } from './world-bias-browser.mjs';
 import { verifyWorldScene } from './world-scene-browser.mjs';
+import { verifyWorldRegion } from './world-region-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -81,6 +82,7 @@ try {
   results.push(...await verifyWorldMismatch(browser, url));
   results.push(...await verifyWorldBias(browser, url));
   results.push(...await verifyWorldScene(browser, url));
+  results.push(...await verifyWorldRegion(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));

@@ -1,0 +1,75 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.31",
+  "date": "2026-09-10",
+  "base": "aef87b4687ab64bde6725e4de5224b603e90ac65",
+  "finding": "AUD-41",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "not_relabelled_success": true
+  },
+  "defect": "r6.30 full-frame presentPct 0.6926/0.594/0.2933/0.7016 is not spatial-region attribution. A single 1280x800 scalar does not say whether the locked PNG diverges in sky, horizon, carriageway or foreground.",
+  "repair": "Keep verifyWorldLayers, verifyWorldResidual, verifyWorldMismatch, verifyWorldBias, verifyWorldScene and verifyWorldRegion. Direct-engine present capture forces setPixelRatio(1)+setSize(1280,800)+post.setSize, then pixelmatches four 200px bands against the locked 26 August PNG at threshold 0.12. Scalar-only reports, missing dominant, original-golden claims, PNG refresh, threshold drift, camera miss and zero presentPct fail closed. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "mismatch_not_spatially_uniform_bottom_heavy_except_g07_upper",
+    "protocol": "world-region-buffer-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "pixelThreshold": 0.12,
+    "failureLimit": 0.08,
+    "viewport": { "width": 1280, "height": 800 },
+    "frames": [
+      { "id": "g01", "follow": 7.4, "height": 1.92, "presentPct": 0.6926, "bands": { "top": 0.4985, "upper": 0.6461, "lower": 0.758, "bottom": 0.8646 }, "dominant": "bottom" },
+      { "id": "g05", "follow": 7.4, "height": 1.92, "presentPct": 0.594, "bands": { "top": 0.2243, "upper": 0.4736, "lower": 0.8242, "bottom": 0.8531 }, "dominant": "bottom" },
+      { "id": "g07", "follow": 7.4, "height": 1.92, "presentPct": 0.2933, "bands": { "top": 0.1894, "upper": 0.6045, "lower": 0.2735, "bottom": 0.106 }, "dominant": "upper" },
+      { "id": "g08", "follow": 7.4, "height": 1.92, "presentPct": 0.7016, "bands": { "top": 0.4798, "upper": 0.6021, "lower": 0.8437, "bottom": 0.8807 }, "dominant": "bottom" }
+    ],
+    "finding": "Mismatch is not spatially uniform. g01/g05/g08 concentrate in the bottom foreground (85-88%) while top/sky is 22-50%. g07, closest overall, is the inverse: upper 60% while bottom is only 11%."
+  },
+  "new_cases": {
+    "total": 28,
+    "source": "scripts/world-region.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after spatially structured present mismatch (bottom-heavy except g07 upper)",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}

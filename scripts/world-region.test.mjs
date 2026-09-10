@@ -8,66 +8,63 @@ import { test } from 'node:test';
 import { PNG } from 'pngjs';
 import { fromRoot } from './project-root.mjs';
 import {
-  FAILURE_LIMIT, PIXEL_THRESHOLD, SCENE_FRAMES, SCENE_PIXELS, classifyResidual,
-  retainWorldScene, sceneBufferIsNotOriginalGolden, scenePixelmatch,
-  structuredKindIsNotSceneMismatch, worldSceneFixture, worldSceneResults,
-} from './world-scene-browser.mjs';
+  BAND_PIXELS, FAILURE_LIMIT, PIXEL_THRESHOLD, REGION_BANDS, REGION_FRAMES,
+  bandPixelmatch, cropPngBand, dominantBand, regionBufferIsNotOriginalGolden,
+  retainWorldRegion, sceneScalarIsNotRegionMismatch, worldRegionFixture, worldRegionResults,
+} from './world-region-browser.mjs';
 import { RSH035_BASELINE_SHA256, ORIGINAL_GOLDEN_FILES, VIEWPORT } from './original-golden-browser.mjs';
 
 function sha256(buf) {
   return createHash('sha256').update(buf).digest('hex');
 }
 
-test('raw renderer.render without presentPct is not product present mismatch', () => {
-  assert.equal(structuredKindIsNotSceneMismatch({ frames: [] }), true);
-  assert.equal(structuredKindIsNotSceneMismatch({
-    frames: [{ id: 'g01', kind: 'structured', rawPct: 0.52, flippedMismatch: 49 }],
+test('full-frame presentPct without bands is not region mismatch', () => {
+  assert.equal(sceneScalarIsNotRegionMismatch({ frames: [] }), true);
+  assert.equal(sceneScalarIsNotRegionMismatch({
+    frames: [{ id: 'g01', presentPct: 0.41, presentMismatched: 100 }],
   }), true);
-  assert.equal(structuredKindIsNotSceneMismatch(worldSceneFixture()), false);
-  const rawOnly = worldSceneFixture();
-  rawOnly.frames = rawOnly.frames.map(frame => ({
-    id: frame.id, kind: 'structured', rawPct: 0.52, rawMismatched: frame.rawMismatched,
-    flippedMismatch: 49, pixelThreshold: PIXEL_THRESHOLD,
+  assert.equal(sceneScalarIsNotRegionMismatch(worldRegionFixture()), false);
+  const scalarOnly = worldRegionFixture();
+  scalarOnly.frames = scalarOnly.frames.map(frame => ({
+    id: frame.id, presentPct: frame.presentPct, presentMismatched: frame.presentMismatched,
+    pixelThreshold: PIXEL_THRESHOLD,
   }));
-  assert.equal(structuredKindIsNotSceneMismatch(rawOnly), true);
-  assert.throws(() => worldSceneResults(rawOnly), /raw renderer.render is not present-path mismatch/);
+  assert.equal(sceneScalarIsNotRegionMismatch(scalarOnly), true);
+  assert.throws(() => worldRegionResults(scalarOnly), /full-frame scene scalar is not region mismatch/);
 });
 
-test('scene buffer without original-golden protocol identity is not original-golden', () => {
-  assert.equal(sceneBufferIsNotOriginalGolden(worldSceneFixture()), false);
-  assert.equal(sceneBufferIsNotOriginalGolden({
-    ...worldSceneFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
+test('region buffer without original-golden protocol identity is not original-golden', () => {
+  assert.equal(regionBufferIsNotOriginalGolden(worldRegionFixture()), false);
+  assert.equal(regionBufferIsNotOriginalGolden({
+    ...worldRegionFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
   }), true);
   assert.equal(PIXEL_THRESHOLD, 0.12);
   assert.equal(FAILURE_LIMIT, 0.08);
-  assert.equal(SCENE_PIXELS, VIEWPORT.width * VIEWPORT.height);
+  assert.equal(BAND_PIXELS, VIEWPORT.width * 200);
+  assert.deepEqual(REGION_BANDS.map(row => row.id), ['top', 'upper', 'lower', 'bottom']);
 });
 
-test('identical PNG pixelmatch is zero at threshold 0.12', () => {
+test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
   const buf = readFileSync(fromRoot('golden-baseline', 'ayalon-day-g01.png'));
   const png = PNG.sync.read(buf);
-  const match = scenePixelmatch(png, png);
+  const cropped = cropPngBand(png, 0, 200);
+  assert.equal(cropped.width, 1280);
+  assert.equal(cropped.height, 200);
+  const match = bandPixelmatch(png, png, REGION_BANDS[0]);
   assert.equal(match.mismatched, 0);
   assert.equal(match.pct, 0);
-  assert.equal(match.threshold, PIXEL_THRESHOLD);
-  const other = PNG.sync.read(readFileSync(fromRoot('golden-baseline', 'ayalon-day-g05.png')));
-  assert.equal(scenePixelmatch(png, other).mismatched > 0, true);
+  assert.equal(match.id, 'top');
 });
 
-test('locked scene poses match original-golden cameras and PNG hashes', () => {
-  assert.deepEqual(SCENE_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
-  assert.deepEqual(SCENE_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
-  assert.equal(SCENE_FRAMES[3].night, true);
-  const ramps = [{ x: 0, z: 0, half: 10.2, len: 46 }];
-  assert.equal(classifyResidual({
-    isMesh: true,
-    geometry: { type: 'BoxGeometry', parameters: { width: 8, height: 12, depth: 8 } },
-    material: { type: 'MeshPhysicalMaterial', ior: 1.5, transparent: false },
-  }, ramps), 'glass');
+test('locked region poses match original-golden cameras and PNG hashes', () => {
+  assert.deepEqual(REGION_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
+  assert.deepEqual(REGION_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
+  assert.equal(REGION_FRAMES[3].night, true);
+  assert.equal(dominantBand(worldRegionFixture().frames[0].bands), 'bottom');
 });
 
-test('scene-attribution evidence yields five protocol passes', () => {
-  assert.deepEqual(worldSceneResults(worldSceneFixture()).map(row => row.status), Array(5).fill('passed'));
+test('region-attribution evidence yields five protocol passes', () => {
+  assert.deepEqual(worldRegionResults(worldRegionFixture()).map(row => row.status), Array(5).fill('passed'));
 });
 
 for (const [name, mutate] of [
@@ -86,37 +83,37 @@ for (const [name, mutate] of [
   ['authority claim', r => { r.authority = true; }],
   ['original-golden comparisons', r => { r.originalGoldenComparisons = 4; }],
   ['threshold drift', r => { r.pixelThreshold = 0.2; }],
-]) test(`world-scene evidence fails closed: ${name}`, () => {
-  const r = worldSceneFixture();
+]) test(`world-region evidence fails closed: ${name}`, () => {
+  const r = worldRegionFixture();
   mutate(r);
-  assert.throws(() => worldSceneResults(r));
+  assert.throws(() => worldRegionResults(r));
 });
 
 test('baseline PNG hash drift fails closed', () => {
-  const r = worldSceneFixture();
+  const r = worldRegionFixture();
   r.baselineHashes['ayalon-day-g01.png'] = '0'.repeat(64);
-  assert.throws(() => worldSceneResults(r), /baseline hash drift/);
+  assert.throws(() => worldRegionResults(r), /baseline hash drift/);
 });
 
 test('zero full-frame present mismatch remains failed', () => {
-  const r = worldSceneFixture();
-  r.frames[0] = { ...r.frames[0], presentPct: 0, presentMismatched: 0, scenePct: 0, mismatched: 0 };
-  const row = worldSceneResults(r).find(item => item.case.includes('still mismatches'));
+  const r = worldRegionFixture();
+  r.frames[0] = { ...r.frames[0], presentPct: 0, presentMismatched: 0 };
+  const row = worldRegionResults(r).find(item => item.case.includes('still mismatches'));
   assert.equal(row.status, 'failed');
   assert.equal(row.failures, 1);
 });
 
-test('a rest-camera miss remains failed during scene matching', () => {
-  const r = worldSceneFixture();
+test('a rest-camera miss remains failed during region matching', () => {
+  const r = worldRegionFixture();
   r.frames[1] = { ...r.frames[1], follow: 9.2, height: 2.28 };
-  assert.throws(() => worldSceneResults(r));
+  assert.throws(() => worldRegionResults(r));
 });
 
-test('invalid world-scene report is retained before validation throws', async () => {
-  const out = await mkdtemp(join(tmpdir(), 'world-scene-invalid-'));
+test('invalid world-region report is retained before validation throws', async () => {
+  const out = await mkdtemp(join(tmpdir(), 'world-region-invalid-'));
   try {
-    const r = worldSceneFixture({ originalGoldenComparisons: 4 });
-    await assert.rejects(retainWorldScene(r, out));
+    const r = worldRegionFixture({ originalGoldenComparisons: 4 });
+    await assert.rejects(retainWorldRegion(r, out));
     assert.equal(JSON.parse(await readFile(join(out, 'results.json'), 'utf8')).originalGoldenComparisons, 4);
   } finally {
     await rm(out, { recursive: true, force: true });

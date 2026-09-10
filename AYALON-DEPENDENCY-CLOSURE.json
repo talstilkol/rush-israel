@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "235f97fa83137b3adc855e5b4bbafcd03e3089a1f3e7da7b5d17d8072d40ee07"
+      "sha256": "3aff99f3567240bb28a277fe9c866c2767a3a12231e73270ecae1489345a18eb"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2059,7 +2059,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "a40c87307922f58420614802638a4daebef8ff21d95c70b6f510843010538aad"
+      "sha256": "d814690c7f6a553684b50702fa1aa81217c3b2437cb85fa6ecfc8461f0879c74"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 9854,
-      "sha256": "4f13d21b30dbf31d1b445c27e0a481c50b0351574d40a6a898d79cc6b3ae0590"
+      "bytes": 9976,
+      "sha256": "fc8017945fcd2738d3f846472f0e74f7345b86de6a84e97a6421f90beb73ea0c"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2217,6 +2217,16 @@
       "sha256": "e861714426a8c5881f52d9fa0daf4bb7ae9b4215fd2ac683a77728ed4c435627"
     },
     {
+      "path": "scripts/world-region-browser.mjs",
+      "bytes": 16566,
+      "sha256": "c44478aee923b0edaa4cff81eaba0b606e378649688e8eb2b521c1893419b735"
+    },
+    {
+      "path": "scripts/world-region.test.mjs",
+      "bytes": 7563,
+      "sha256": "aa466a36517740862d35ce648c74cc156a9cce799725648e6f4e639d3b6dcfca"
+    },
+    {
       "path": "scripts/world-residual-browser.mjs",
       "bytes": 18001,
       "sha256": "54b12a87b84100476c50604608af73bd8a1243991dbce68479867ccc9b3ea2b4"
@@ -2233,8 +2243,8 @@
     },
     {
       "path": "scripts/world-scene.test.mjs",
-      "bytes": 7596,
-      "sha256": "23af653d41026ccc49066d29b8c77591a2cfe946ff0e81057b1cd77521f37f56"
+      "bytes": 7754,
+      "sha256": "fd3fca907a1c609b0f8a22f41040764ff942219fc8252c6a9fb78da786eccdea"
     },
     {
       "path": "scripts/write-ci-summary.mjs",
@@ -2344,7 +2354,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "e7ff6a9effec8e17bab50f1757dfe8cf093ac1d10ce1be58f7de9f51ae9ebc5a"
+      "sha256": "b83845852a200ab7bccc83612282164599721fd380b49c41e9abe553d960912a"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10596,5 +10606,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "1af117999e15fccb2bfbb10164c7191599aafa3fe0e4f5b6b3f2f183ccf50088"
+  "digest_sha256": "49c91457d7cfd13aa5bd1bf8015a83b6437875cb9cca8d0ca86a432277dd84ea"
 }
