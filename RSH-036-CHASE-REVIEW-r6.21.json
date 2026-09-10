@@ -1,0 +1,63 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.21",
+  "date": "2026-09-10",
+  "base": "ece282e4acdf95d5dc256122e54925d24e5d38ed",
+  "finding": "AUD-31",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.20",
+    "head": "ece282e4acdf95d5dc256122e54925d24e5d38ed",
+    "tree": "415da9919de2a71ea93938563aa38647a40a8b80",
+    "run_id": 34442339244,
+    "job_id": 102759811481,
+    "unit_passed": 1158,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "golden_source": "preparation 34324754353",
+    "required_ci_artifact_id": 10138599101,
+    "required_ci_artifact_sha256": "db188f5ee77699818fdda3ca02e7d5c6c9a60e27c5971ea90b4c1c03d8551e30",
+    "audit_source_artifact_id": 10138381335,
+    "audit_source_artifact_sha256": "75b5d9df6b8c37a0740bab09f65d1b020e08fbc6aba023b65b1d1f1e43218868",
+    "lint_warnings": 124,
+    "lint_errors": 0,
+    "not_unit_acceptance": true
+  },
+  "defect": "Original Ayalon golden protocol uses the gameplay chase camera (gotoGolden + photo=false). r6.8 attribution measured current rest chase 1.8 further and 0.36 higher than the 26 August lock (follow 7.4 height 1.92). The 28 August pull-back to 9.2/2.28 remains in the accepted adapter bytes.",
+  "repair": "RSH-036 overlay restores live rest chase to follow 7.4 + clamp(speed/22, 0, 2.2) and height 1.92. stripRsh036Overlay restores accepted RSH-017/RSH-019 adapter SHA-256 947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132. Original PNG bytes, 1280x800, threshold 0.12, failure 8% and generation 11 stay. Camera lock is not original-golden pass or freeze.",
+  "r6_8_attribution": {
+    "evidence": "RSH-036-GOLDEN-ATTRIBUTION-r6.8.json",
+    "delta_camera_y": 0.36,
+    "delta_camera_z": -1.8,
+    "locked_follow": 7.4,
+    "locked_height": 1.92,
+    "drifted_follow": 9.2,
+    "drifted_height": 2.28
+  },
+  "new_cases": {
+    "total": 9,
+    "source": "scripts/chase-camera.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58,
+    "accepted_adapter_bytes_restored_by_overlay": true
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4",
+    "immutable CDN font bytes",
+    "rendering performance",
+    "mesh and complete-race clearance"
+  ],
+  "no_freeze_or_acceptance": true
+}

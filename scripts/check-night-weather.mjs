@@ -6,6 +6,7 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 import { stripRsh033Overlay } from "./rsh033-overlay.mjs";
+import { stripRsh036Overlay } from "./rsh036-overlay.mjs";
 
 export const EXPECTED_MANIFEST_SHA256 = "d37aaa33fc9177e23c7a80e24156ca4635b173ac8f10fa6b17f3556d2f9939ba";
 export const EXPECTED_NIGHT_SHA256 = "9538e17393b21728628fb2d55b2ea697a02f425d17cec8804380d3d8cf335914";
@@ -163,7 +164,7 @@ export function validateNightWeather(overrides = {}) {
     color_source_sha256: [input.colorSource, EXPECTED_COLOR_SHA256],
     world_source_sha256: [input.worldSource, EXPECTED_WORLD_SHA256],
     engine_source_sha256: [input.engineSource, EXPECTED_ENGINE_SHA256],
-    adapter_source_sha256: [input.adapterSource, EXPECTED_ADAPTER_SHA256],
+    adapter_source_sha256: [stripRsh036Overlay("src/game/engine/rendering-adapter.ts", input.adapterSource), EXPECTED_ADAPTER_SHA256],
     mesh_source_sha256: [input.meshSource, EXPECTED_MESH_SHA256],
     physics_source_sha256: [stripRsh033Overlay("src/game/physics.ts", input.physicsSource), EXPECTED_PHYSICS_SHA256],
     daylight_source_sha256: [input.daylightSource, EXPECTED_DAYLIGHT_SHA256],

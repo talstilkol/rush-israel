@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
 import { gitBlobSha1, sha256 } from "./load-world-builders.mjs";
 import { stripRsh033Overlay } from "./rsh033-overlay.mjs";
+import { stripRsh036Overlay } from "./rsh036-overlay.mjs";
 import {
   RSH016_ENGINE_BYTES,
   RSH016_ENGINE_GIT_BLOB_SHA1,
@@ -98,9 +99,16 @@ export function validateEngineAdapters(overrides = {}) {
 
   const seenMethods = new Set();
   for (const adapter of manifest.extraction.adapters) {
-    const source = input.adapterSources[adapter.path];
-    if (typeof source !== "string") {
+    const raw = input.adapterSources[adapter.path];
+    if (typeof raw !== "string") {
       errors.push(`missing engine adapter ${adapter.path}`);
+      continue;
+    }
+    let source;
+    try {
+      source = stripRsh036Overlay(adapter.path, raw);
+    } catch {
+      errors.push(`engine adapter identity changed: ${adapter.id}`);
       continue;
     }
     if (sha256(source) !== adapter.sha256 || gitBlobSha1(source) !== adapter.git_blob_sha1 || (source.match(/\n/g) ?? []).length !== adapter.lines || Buffer.byteLength(source) !== adapter.bytes) errors.push(`engine adapter identity changed: ${adapter.id}`);

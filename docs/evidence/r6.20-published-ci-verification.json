@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-published-candidate-audit",
+  "verifiedOn": "2026-09-10",
+  "repository": "talstilkol/rush-israel",
+  "productCommit": "ece282e4acdf95d5dc256122e54925d24e5d38ed",
+  "productTree": "415da9919de2a71ea93938563aa38647a40a8b80",
+  "canonicalMain": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+  "run": {
+    "id": "34442339244",
+    "attempt": 1,
+    "jobId": "102759811481",
+    "name": "required-ci",
+    "status": "completed",
+    "conclusion": "success",
+    "createdAt": "2026-09-10T05:45:20Z",
+    "completedAt": "2026-09-10T05:55:01Z"
+  },
+  "archives": [
+    {
+      "id": "10138381335",
+      "name": "audit-source-34442339244-1",
+      "bytes": 43479078,
+      "sha256": "75b5d9df6b8c37a0740bab09f65d1b020e08fbc6aba023b65b1d1f1e43218868",
+      "downloaded": true,
+      "digestMatches": true,
+      "sourceHeadTxt": "ece282e4acdf95d5dc256122e54925d24e5d38ed"
+    },
+    {
+      "id": "10138599101",
+      "name": "required-ci-34442339244-1",
+      "bytes": 2467149,
+      "sha256": "db188f5ee77699818fdda3ca02e7d5c6c9a60e27c5971ea90b4c1c03d8551e30",
+      "downloaded": true,
+      "digestMatches": true
+    }
+  ],
+  "sourceVerification": {
+    "sourceHeadTxt": "ece282e4acdf95d5dc256122e54925d24e5d38ed",
+    "actualCheckoutMatchesProductCommit": true,
+    "ciSummaryCheckedOutSha": "ece282e4acdf95d5dc256122e54925d24e5d38ed",
+    "ciSummaryCheckedOutTree": "415da9919de2a71ea93938563aa38647a40a8b80",
+    "sourceStatus": "verified",
+    "dirtyTracked": false
+  },
+  "finalCiEvidence": {
+    "summary": "artifacts/ci-summary.json",
+    "tap": "artifacts/unit-tests.tap",
+    "unitTests": { "tests": 1158, "passed": 1158, "failed": 0, "cancelled": 0, "skipped": 0 },
+    "lint": { "warnings": 124, "errors": 0 },
+    "runtimeRecovery": {
+      "cases": 46,
+      "rampSupportsBeneathDrivableSurface": "passed",
+      "failedRamps": 0,
+      "maxProtrusion": 0,
+      "piers": 176
+    },
+    "countsReadFromFinalArtifacts": true,
+    "originalGoldenComparisonPerformedByThisNormalCi": false
+  },
+  "retainedFailures": {
+    "r6_17": { "runId": "34385617080", "cause": "google_chrome_apt_packages_gz_hash_sum_mismatch", "notRelabelledSuccess": true },
+    "r6_18": { "runId": "34387082287", "cause": "real_ramp_supports_protruded_through_drivable_surface", "notRelabelledSuccess": true },
+    "originalGolden": { "runId": "34324754353", "passed": 0, "failed": 4, "pixelThreshold": 0.12, "failureFraction": 0.08, "referencesChanged": false }
+  },
+  "acceptance": {
+    "activeUnit": "RSH-036",
+    "activeUnitAccepted": false,
+    "acceptedUnits": 35,
+    "totalUnits": 67,
+    "remainingUnits": 32,
+    "nextUnitActivated": false,
+    "freezeGranted": false,
+    "mergeAuthorized": false
+  },
+  "scope": "Closes downloaded-artifact verification of the named r6.20 product commit only. Not freeze, not original-golden acceptance, not later-head validation."
+}

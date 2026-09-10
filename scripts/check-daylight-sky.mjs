@@ -5,6 +5,7 @@ import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
+import { stripRsh036Overlay } from "./rsh036-overlay.mjs";
 
 export const EXPECTED_MANIFEST_SHA256 = "930bf534e93622b05cf7f52f2f14ada305dacfc76842da80999d4c93e4916290";
 export const EXPECTED_DAYLIGHT_SHA256 = "362f8c59468b353d7e20accc58d7527baea800bed48e3968061af07780ef0a27";
@@ -151,7 +152,7 @@ export function validateDaylightSky(overrides = {}) {
     color_source_sha256: [input.colorSource, EXPECTED_COLOR_SHA256],
     world_source_sha256: [input.worldSource, EXPECTED_WORLD_SHA256],
     engine_source_sha256: [input.engineSource, EXPECTED_ENGINE_SHA256],
-    adapter_source_sha256: [input.adapterSource, EXPECTED_ADAPTER_SHA256],
+    adapter_source_sha256: [stripRsh036Overlay("src/game/engine/rendering-adapter.ts", input.adapterSource), EXPECTED_ADAPTER_SHA256],
     ayalon_lock_sha256: [input.lockSource, EXPECTED_LOCK_SHA256],
     checker_test_sha256: [input.checkerTestSource, EXPECTED_CHECKER_TEST_SHA256],
     package_source_sha256: [input.packageSource, EXPECTED_PACKAGE_SHA256],

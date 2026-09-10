@@ -3,7 +3,7 @@
   "document_type": "rush-ayalon-freeze-manifest",
   "unit": "RSH-036",
   "title": "Freeze Ayalon and hash all transitive dependencies",
-  "generated_at": "2026-09-10T05:30:00Z",
+  "generated_at": "2026-09-10T06:10:00Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "implementation_base": {
@@ -184,7 +184,7 @@
     "status": "partial",
     "complete_dependency_closure": false,
     "runtime_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
-    "remaining_proof": "r6.19 exact-head required-ci 34389785192 PASS retained; 3 product font URLs pinned without font files or immutable CDN bytes; original golden 0/4; freeze_granted=false.",
+    "remaining_proof": "r6.20 exact-head required-ci 34442339244 PASS retained; rest chase restored to 7.4/1.92 behind overlay; original golden 0/4; freeze_granted=false.",
     "generated_inventory": "AYALON-DEPENDENCY-CLOSURE.json"
   },
   "acceptance": {

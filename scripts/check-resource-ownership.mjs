@@ -5,6 +5,7 @@ import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
 import { stripRsh019Overlay } from "./rsh019-overlay.mjs";
+import { stripRsh036Overlay } from "./rsh036-overlay.mjs";
 
 export const EXPECTED_MANIFEST_SHA256 = "e121116947d63d986d60e57c6d56462e2d9e166aa2c4c285a5b10af06aff7fdd";
 
@@ -51,7 +52,18 @@ export function validateResourceOwnership(overrides = {}) {
   if (manifest.unit !== "RSH-019" || manifest.ownership.length !== 9) errors.push("resource ownership identity/count changed");
   for (const [path, expected] of Object.entries(manifest.runtime_sources)) {
     const source = input.sources[path];
-    if (typeof source !== "string" || sha256(source) !== expected.sha256 || Buffer.byteLength(source) !== expected.bytes || (source.match(/\n/g) ?? []).length !== expected.lines) {
+    if (typeof source !== "string") {
+      errors.push(`resource-owned source identity changed: ${path}`);
+      continue;
+    }
+    let identity = source;
+    try {
+      identity = path === "src/game/engine/rendering-adapter.ts" ? stripRsh036Overlay(path, source) : source;
+    } catch {
+      errors.push(`resource-owned source identity changed: ${path}`);
+      continue;
+    }
+    if (sha256(identity) !== expected.sha256 || Buffer.byteLength(identity) !== expected.bytes || (identity.match(/\n/g) ?? []).length !== expected.lines) {
       errors.push(`resource-owned source identity changed: ${path}`);
     }
   }
@@ -94,7 +106,10 @@ export function validateResourceOwnership(overrides = {}) {
     if (sha256(historicalEngine) !== manifest.historical_preservation.base_identities["src/game/engine.ts"].sha256) errors.push("engine overlay does not normalize to the RSH-018 base");
     const historicalWorld = stripRsh019Overlay("src/game/world.ts", world);
     if (sha256(historicalWorld) !== manifest.historical_preservation.base_identities["src/game/world.ts"].sha256) errors.push("world overlay does not normalize to the RSH-018 base");
-    const historicalAdapter = stripRsh019Overlay("src/game/engine/rendering-adapter.ts", adapter);
+    const historicalAdapter = stripRsh019Overlay(
+      "src/game/engine/rendering-adapter.ts",
+      stripRsh036Overlay("src/game/engine/rendering-adapter.ts", adapter),
+    );
     if (sha256(historicalAdapter) !== manifest.historical_preservation.base_identities["src/game/engine/rendering-adapter.ts"].sha256) errors.push("adapter overlay does not normalize to the RSH-018 base");
   } catch (error) {
     errors.push(`RSH-019 overlay normalization failed: ${error.message}`);

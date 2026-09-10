@@ -1117,6 +1117,11 @@
       "sha256": "2d34564cb88b004dfa8ff0b6f05aa2539aeb781759bd6de56ddb053ddc29b9cf"
     },
     {
+      "path": "scripts/chase-camera.test.mjs",
+      "bytes": 4509,
+      "sha256": "bea651cfa1641a77bef2bd02712422260a3e70a12b7abee1b6468f7c2f0df2d6"
+    },
+    {
       "path": "scripts/check-asset-provenance.mjs",
       "bytes": 13883,
       "sha256": "b10b1e7fe771a6efb1351c16e3d1ec1ba53cac52536de8b98bd5f9ea2a68d9dd"
@@ -1169,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "c3cd529df2f41e45abd6852efedd587ce596d113073f3a26ef77cfc8cfcc557d"
+      "sha256": "3f8cf42f4d7170936aea5793282829021a9c5210ac3d84e7da5a78cb0443cd5e"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -1218,8 +1223,8 @@
     },
     {
       "path": "scripts/check-daylight-sky.mjs",
-      "bytes": 14312,
-      "sha256": "de8ddef550b340785525f2dce4e681ca71e86223abc027a2cc879f741cf891d3"
+      "bytes": 14431,
+      "sha256": "b70fa4058c2e581914d8259ad68c350bd6040fae8cf844d05f601f13318ec7a1"
     },
     {
       "path": "scripts/check-daylight-sky.test.mjs",
@@ -1238,8 +1243,8 @@
     },
     {
       "path": "scripts/check-engine-adapters.mjs",
-      "bytes": 12954,
-      "sha256": "ced7840fe1c82a4fc15a905a7fef9b46bb6560f8fda85b70ed48e6c98a7f3590"
+      "bytes": 13192,
+      "sha256": "a64eba473163ee2869275493f7aa3231bf2d4deb0624815b86a68d00373d209c"
     },
     {
       "path": "scripts/check-engine-adapters.test.mjs",
@@ -1278,8 +1283,8 @@
     },
     {
       "path": "scripts/check-night-weather.mjs",
-      "bytes": 16439,
-      "sha256": "d6355925860bf52f380687145e557c0594117934ec58329c9052618506cac1de"
+      "bytes": 16558,
+      "sha256": "1ab538c92db0a9882c859ea573d6d990088db100c70bfaeaf6fb009736905e4e"
     },
     {
       "path": "scripts/check-night-weather.test.mjs",
@@ -1338,8 +1343,8 @@
     },
     {
       "path": "scripts/check-resource-ownership.mjs",
-      "bytes": 7932,
-      "sha256": "029a1b1b6915b30847a3eabc5379fe27fa21e40378ee50e9f43f55f7a90f221b"
+      "bytes": 8429,
+      "sha256": "977d54ec3747d6500b23b7c043ecf22b70da42136a4982c65976fd3395beb61d"
     },
     {
       "path": "scripts/check-resource-ownership.test.mjs",
@@ -1743,8 +1748,8 @@
     },
     {
       "path": "scripts/load-engine-adapters.mjs",
-      "bytes": 2909,
-      "sha256": "690f2f39d0c520eebb36270865d27e90cd264e006a4a7f061e0ea0a1d359c8b4"
+      "bytes": 2994,
+      "sha256": "531fa9db13275a05b9df6b398a5c60ea0902794eeb3c6fe9f8b797a31c2e69cd"
     },
     {
       "path": "scripts/load-game-app-decomposition.mjs",
@@ -2005,6 +2010,11 @@
       "path": "scripts/rsh033-overlay.mjs",
       "bytes": 2001,
       "sha256": "21b1f5544947fc3e33a576b74bc6a0fc3a7c4fd0d395bbcfc313052919c70252"
+    },
+    {
+      "path": "scripts/rsh036-overlay.mjs",
+      "bytes": 2082,
+      "sha256": "345d922efdd7859beb5b70ee7f00de696ac17c1e61ca8d42fadb8aca30d73962"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
@@ -2388,8 +2398,8 @@
     },
     {
       "path": "src/game/engine/rendering-adapter.ts",
-      "bytes": 33219,
-      "sha256": "947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132"
+      "bytes": 33315,
+      "sha256": "41c6d238b64a27635554b5aa1ccabc593dff828f6bf8748fe53aaf0950dc516d"
     },
     {
       "path": "src/game/facade-assets.ts",
@@ -10475,5 +10485,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "227c16f1b3a1a646122b6ddcee58c0148b1da206ad5ff64e122fc2b6c0e91984"
+  "digest_sha256": "31568eb5ef54f143c770e5072813fb6ef1b15176b9c287ac152f4e46fc9893ea"
 }

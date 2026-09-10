@@ -597,8 +597,10 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
     const rz = -Math.sin(p.yaw);
     const dir = this.lookBack ? -1 : 1;
     const mode = this.lookBack ? 0 : this.camMode;
-    let follow = 9.2 + clamp(Math.abs(p.speed) / 22, 0, 2.6);
-    let height = 2.28;
+    // RSH-036-OVERLAY-BEGIN:chase-rest-geometry
+    let follow = 7.4 + clamp(Math.abs(p.speed) / 22, 0, 2.2);
+    let height = 1.92;
+    // RSH-036-OVERLAY-END:chase-rest-geometry
     let side = 0;
     if (mode === 1) {
       follow = 0.18;

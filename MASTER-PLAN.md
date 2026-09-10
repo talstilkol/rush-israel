@@ -653,4 +653,16 @@ false. Original CSS typography is unchanged. Exact-head CI, original golden
 change thresholds or activate RSH-037.
 Details: RSH-036-FONT-REVIEW-r6.20.json and RSH-036-RUNTIME-REPAIR-r6.20.md.
 
+## r6.21 — 10 September 2026: restore original rest chase without adapter drift
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-31 restores
+live rest chase to follow 7.4 + clamp(speed/22, 0, 2.2) and height 1.92. The
+accepted 9.2/2.28 adapter bytes stay behind the overlay. Exact-head required
+CI 34442339244 passed 1,158/1,158; that PASS is not freeze or original-golden
+acceptance. Original golden 0/4, immutable CDN bytes, rendering performance
+and freeze remain open. Do not merge, replace PNGs, change thresholds or
+activate RSH-037.
+Details: RSH-036-CHASE-REVIEW-r6.21.json, RSH-036-RUNTIME-REPAIR-r6.21.md and
+docs/evidence/r6.20-published-ci-verification.json.
+
 

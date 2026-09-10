@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.20",
+  "revision": "r6.21",
   "date": "2026-09-10",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "712af4195208228a09feec643441549952ecee55",
+  "source_pr_head": "ece282e4acdf95d5dc256122e54925d24e5d38ed",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 30,
+    "audit_items": 31,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -359,7 +359,9 @@
         "AUD-26",
         "AUD-27",
         "AUD-28",
-        "AUD-29"
+        "AUD-29",
+        "AUD-30",
+        "AUD-31"
       ]
     },
     {
@@ -1249,9 +1251,22 @@
       "legacy_findings": [],
       "title": "Three product Google Fonts references remained unqualified without immutable CDN bytes or a vendored-file ban",
       "acceptance": "The exact Heebo/Noto stylesheet URL and two preconnect hosts must be pinned. Family/weight/host drift and vendored font files fail closed. Remote stylesheet and glyph bytes stay unpinned. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7, freeze path count 85 and original golden gates. URL pins are not freeze or original-typography parity.",
-      "status": "repair_candidate_pending_exact_head_validation",
+      "status": "verified_exact_r6_20_head_run34442339244_retained",
       "bundle": "CR-03",
       "evidence": "RSH-036-FONT-REVIEW-r6.20.json"
+    },
+    {
+      "id": "AUD-31",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Gameplay rest chase drifted to 9.2/2.28 while original golden uses the 26 August 7.4/1.92 lock",
+      "acceptance": "Live rest chase must be follow 7.4 + clamp(speed/22, 0, 2.2) and height 1.92. stripRsh036Overlay must restore accepted adapter SHA-256 947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132. Do not add the overlay helper to the 85-path freeze list or the 58-file evolution set. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7, freeze path count 85 and original golden gates. Camera lock is not original-golden pass or freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-02",
+      "evidence": "RSH-036-CHASE-REVIEW-r6.21.json"
     }
   ],
   "legacy_findings": [
@@ -1683,25 +1698,25 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.20",
-    "base_head": "712af4195208228a09feec643441549952ecee55",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.20.md",
+    "revision": "r6.21",
+    "base_head": "ece282e4acdf95d5dc256122e54925d24e5d38ed",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.21.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "revision": "r6.19",
-      "head": "712af4195208228a09feec643441549952ecee55",
-      "tree": "272972601cb727e51a3f0b18c05a10d7eecf3d7a",
-      "run_id": 34389785192,
-      "job_id": 102594962162,
-      "unit_passed": 1149,
+      "revision": "r6.20",
+      "head": "ece282e4acdf95d5dc256122e54925d24e5d38ed",
+      "tree": "415da9919de2a71ea93938563aa38647a40a8b80",
+      "run_id": 34442339244,
+      "job_id": 102759811481,
+      "unit_passed": 1158,
       "unit_failed": 0,
       "golden_passed": 0,
       "golden_failed": 4,
       "golden_source": "preparation 34324754353",
-      "required_ci_artifact_id": 10119573083,
-      "required_ci_artifact_sha256": "d9d515b9dd30c82f3e44d1c6146bc022002e59e0698eb19cd7beb03f342edd2a",
-      "audit_source_artifact_id": 10119147651,
-      "audit_source_artifact_sha256": "df0d0762c48295d21b6a39f4a3da95129cdf3c200d87695e02eedbfc04af8451",
+      "required_ci_artifact_id": 10138599101,
+      "required_ci_artifact_sha256": "db188f5ee77699818fdda3ca02e7d5c6c9a60e27c5971ea90b4c1c03d8551e30",
+      "audit_source_artifact_id": 10138381335,
+      "audit_source_artifact_sha256": "75b5d9df6b8c37a0740bab09f65d1b020e08fbc6aba023b65b1d1f1e43218868",
       "not_unit_acceptance": true
     },
     "retained_r6_17_failure": {
@@ -1725,7 +1740,7 @@
     "normal_ci": "pending_exact_published_head_validation",
     "golden": "r6.15 original0/4; unchanged images/thresholds to be rerun",
     "dependency_closure": "3 product font URLs pinned; remote CDN bytes still unpinned; complete_dependency_closure false",
-    "clearance": "r6.17 sampled whole-route arcade envelope retained; r6.19 slab-underside support height",
+    "clearance": "r6.21 rest chase 7.4/1.92 overlay; r6.17 sampled whole-route arcade envelope retained; r6.19 slab-underside support height",
     "record_policy": "physicsVersion7 frozen fixture; v6 rows drop; conversion remains forbidden"
   },
   "r6_9_diagnostic_checkpoint": {
