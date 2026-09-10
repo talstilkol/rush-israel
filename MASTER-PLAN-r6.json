@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.21",
+  "revision": "r6.22",
   "date": "2026-09-10",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "ece282e4acdf95d5dc256122e54925d24e5d38ed",
+  "source_pr_head": "cc7c017548a3f29e6b3326cff7d0e50431f58c43",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 31,
+    "audit_items": 32,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -361,7 +361,8 @@
         "AUD-28",
         "AUD-29",
         "AUD-30",
-        "AUD-31"
+        "AUD-31",
+        "AUD-32"
       ]
     },
     {
@@ -1264,9 +1265,22 @@
       "legacy_findings": [],
       "title": "Gameplay rest chase drifted to 9.2/2.28 while original golden uses the 26 August 7.4/1.92 lock",
       "acceptance": "Live rest chase must be follow 7.4 + clamp(speed/22, 0, 2.2) and height 1.92. stripRsh036Overlay must restore accepted adapter SHA-256 947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132. Do not add the overlay helper to the 85-path freeze list or the 58-file evolution set. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7, freeze path count 85 and original golden gates. Camera lock is not original-golden pass or freeze.",
-      "status": "repair_candidate_pending_exact_head_validation",
+      "status": "verified_exact_r6_21_head_run34445990921_retained",
       "bundle": "CR-02",
       "evidence": "RSH-036-CHASE-REVIEW-r6.21.json"
+    },
+    {
+      "id": "AUD-32",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "The r6.17 120-step / 1.62 m drive was not a complete Ayalon lap through 8 checkpoints",
+      "acceptance": "A 120-step drive must fail closed as complete-race qualification. Production aiInput plus 120 Hz ArcadeCar.step and consumeCheckpoints must finish an open lap (progress ≥ 0.96, lastCheckpoint 7, 0 burials, 0 respawns) on the live 722-collider catalogue. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7, freeze path count 85 and original golden gates. Arcade lap is not mesh clearance or freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-04",
+      "evidence": "RSH-036-RACE-REVIEW-r6.22.json"
     }
   ],
   "legacy_findings": [
@@ -1698,25 +1712,25 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.21",
-    "base_head": "ece282e4acdf95d5dc256122e54925d24e5d38ed",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.21.md",
+    "revision": "r6.22",
+    "base_head": "cc7c017548a3f29e6b3326cff7d0e50431f58c43",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.22.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "revision": "r6.20",
-      "head": "ece282e4acdf95d5dc256122e54925d24e5d38ed",
-      "tree": "415da9919de2a71ea93938563aa38647a40a8b80",
-      "run_id": 34442339244,
-      "job_id": 102759811481,
-      "unit_passed": 1158,
+      "revision": "r6.21",
+      "head": "cc7c017548a3f29e6b3326cff7d0e50431f58c43",
+      "tree": "89958d495b24585b36a8320ad22898730bc2419c",
+      "run_id": 34445990921,
+      "job_id": 102770784283,
+      "unit_passed": 1167,
       "unit_failed": 0,
       "golden_passed": 0,
       "golden_failed": 4,
       "golden_source": "preparation 34324754353",
-      "required_ci_artifact_id": 10138599101,
-      "required_ci_artifact_sha256": "db188f5ee77699818fdda3ca02e7d5c6c9a60e27c5971ea90b4c1c03d8551e30",
-      "audit_source_artifact_id": 10138381335,
-      "audit_source_artifact_sha256": "75b5d9df6b8c37a0740bab09f65d1b020e08fbc6aba023b65b1d1f1e43218868",
+      "required_ci_artifact_id": 10139930417,
+      "required_ci_artifact_sha256": "082b53b7d04174db52cce0a05e4dc3f6a7c37dad66ad8982b74d8a7bbf1a9d19",
+      "audit_source_artifact_id": 10139658302,
+      "audit_source_artifact_sha256": "c1b494740b9667ff509780171681c2dbbba08eb174106dd650e3ae453fcd8808",
       "not_unit_acceptance": true
     },
     "retained_r6_17_failure": {
@@ -1740,7 +1754,7 @@
     "normal_ci": "pending_exact_published_head_validation",
     "golden": "r6.15 original0/4; unchanged images/thresholds to be rerun",
     "dependency_closure": "3 product font URLs pinned; remote CDN bytes still unpinned; complete_dependency_closure false",
-    "clearance": "r6.21 rest chase 7.4/1.92 overlay; r6.17 sampled whole-route arcade envelope retained; r6.19 slab-underside support height",
+    "clearance": "r6.22 complete arcade lap probe; r6.21 rest chase 7.4/1.92 overlay; r6.17 sampled whole-route arcade envelope retained; r6.19 slab-underside support height",
     "record_policy": "physicsVersion7 frozen fixture; v6 rows drop; conversion remains forbidden"
   },
   "r6_9_diagnostic_checkpoint": {

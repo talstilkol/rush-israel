@@ -1,0 +1,69 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.22",
+  "date": "2026-09-10",
+  "base": "cc7c017548a3f29e6b3326cff7d0e50431f58c43",
+  "finding": "AUD-32",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.21",
+    "head": "cc7c017548a3f29e6b3326cff7d0e50431f58c43",
+    "tree": "89958d495b24585b36a8320ad22898730bc2419c",
+    "run_id": 34445990921,
+    "job_id": 102770784283,
+    "unit_passed": 1167,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "golden_source": "preparation 34324754353",
+    "required_ci_artifact_id": 10139930417,
+    "required_ci_artifact_sha256": "082b53b7d04174db52cce0a05e4dc3f6a7c37dad66ad8982b74d8a7bbf1a9d19",
+    "audit_source_artifact_id": 10139658302,
+    "audit_source_artifact_sha256": "c1b494740b9667ff509780171681c2dbbba08eb174106dd650e3ae453fcd8808",
+    "lint_warnings": 124,
+    "lint_errors": 0,
+    "not_unit_acceptance": true
+  },
+  "defect": "r6.17 whole-route envelope only drove 120 physics steps / 1.62 m and sampled rest poses. That 1s drive is not a complete Ayalon lap through 8 checkpoints.",
+  "repair": "Live probe uses production aiInput, 120 Hz ArcadeCar.step and consumeCheckpoints against the 722-collider catalogue. 1s evidence fails closed. Burial, respawn, step-cap, missing inventory and non-finite states fail. Arcade box, not a render-mesh.",
+  "new_cases": {
+    "total": 18,
+    "source": "scripts/complete-race.test.mjs"
+  },
+  "live_browser": {
+    "status": "passed",
+    "steps": 10595,
+    "maxSteps": 18000,
+    "progress": 0.9602564102564102,
+    "lastCheckpoint": 7,
+    "checkpointsHit": [1, 2, 3, 4, 5, 6, 7],
+    "buried": 0,
+    "respawns": 0,
+    "stalled": 0,
+    "colliderCount": 722,
+    "legacyCount": 546,
+    "pierCount": 176,
+    "rampCount": 50,
+    "routeSamples": 781
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4",
+    "immutable CDN font bytes",
+    "rendering performance",
+    "mesh clearance"
+  ],
+  "no_freeze_or_acceptance": true
+}

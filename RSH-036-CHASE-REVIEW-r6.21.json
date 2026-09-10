@@ -53,7 +53,6 @@
     "accepted_adapter_bytes_restored_by_overlay": true
   },
   "remaining": [
-    "exact published-head CI",
     "original golden 0/4",
     "immutable CDN font bytes",
     "rendering performance",
