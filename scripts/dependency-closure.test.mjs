@@ -26,7 +26,8 @@ function fixture(t) {
 test('committed conservative inventory validates without claiming external qualification or freeze', () => {
   const result = validateDependencyClosure();
   assert.deepEqual(result.errors, []); assert.ok(result.fileCount > 600); assert.ok(result.importCount > 700);
-  assert.ok(result.externalCount > 0); assert.equal(result.complete, false); assert.equal(result.freezeGranted, false);
+  assert.ok(result.externalCount > 0); assert.equal(result.unqualifiedExternalCount, 0);
+  assert.equal(result.complete, false); assert.equal(result.freezeGranted, false);
 });
 test('static, dynamic and alias imports have deterministic exact-byte closure', t => {
   const { root } = fixture(t), a = buildDependencyClosure(root), b = buildDependencyClosure(root);

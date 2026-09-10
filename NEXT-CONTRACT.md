@@ -1,9 +1,9 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 20.18.0
-**Date:** 2026-09-09, Asia/Jerusalem
+**Version:** 20.19.0
+**Date:** 2026-09-10, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 5dc27ac2f75c985fb85a2d2b235c0e5aa24bc6c2
+**Repair base:** 712af4195208228a09feec643441549952ecee55
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -11,12 +11,13 @@ changes. Standing owner audit/repair/master-plan authority continues.35/67 accep
 32 remain. No merge,freeze,release,force-push,history rewrite or RSH-037 activation.
 
 ## Verified baseline
-r6.16 product `79a67c6f21c6e517c659350b1ce48ae1525a4e21` tree
-`a02eaafced9edc0c1127214eaf39df99fc935dc3` exact-head requiredCI 34356869016
-job 102483660303 passed 1,110 units, 0 errors. Artifact required-ci-34356869016-1
-SHA-256 `dfe83b420ef3650acecc858b76c17928102b83ec45f105c07bdc88c704b4d369`;
-audit-source-34356869016-1 SHA-256
-`bcd4989dd38edc5e38043b45dcb1615c591f2fb8ebae3740caf56381e16a8d80`.
+r6.19 product `712af4195208228a09feec643441549952ecee55` tree
+`272972601cb727e51a3f0b18c05a10d7eecf3d7a` exact-head requiredCI 34389785192
+job 102594962162 passed 1,149 units, 0 errors, ramp supports maxProtrusion 0.
+Artifact required-ci-34389785192-1 SHA-256
+`d9d515b9dd30c82f3e44d1c6146bc022002e59e0698eb19cd7beb03f342edd2a`;
+audit-source-34389785192-1 SHA-256
+`df0d0762c48295d21b6a39f4a3da95129cdf3c200d87695e02eedbfc04af8451`.
 Original golden remains 0/4 from preparation 34324754353. Preserve that
 historical evidence; do not treat old pending fields as unexecuted work.
 
@@ -31,18 +32,18 @@ overall **FAILED** at runtime-recovery: 8 ramp supports protruded
 `5c10b6eb4fbf12dcde41073852637d16b360f16700edac5249ba5882df62b31c`. That
 failure is retained and is not relabelled a pass.
 
-## r6.19 and subsequent acceptance
-1. Offset support piers must meet the slab underside at the placed XZ. A
-   downhill offset that would bury the cylinder is scaled back, not dropped.
+## r6.20 and subsequent acceptance
+1. The three product Google Fonts URLs are pinned. Family/weight/host drift and
+   vendored font files fail closed. Remote stylesheet/glyph bytes stay unpinned.
    176 piers, 546 legacy colliders, 50 ramps, 8 checkpoints, rest-pose 1.6,
-   1.05 radius and generation-11 lock stay.
-2. Preserve the r6.18 Chromium install retry. Action pins and the 85-path
-   freeze list stay unchanged.
+   1.05 radius and generation-11 lock stay. Freeze path count stays 85.
+2. Preserve the r6.18 Chromium install retry and the r6.19 slab-underside
+   support placement.
 3. Run full exact-head CI and original-golden comparison. Preserve 1280x800
    images, threshold 0.12, failure 8%, generation 11 lock and owner approval.
-   Qualify 3 mutable font references without distributing font files or silently
-   changing typography. Rendering performance remains open.
+   Do not distribute font files or silently change typography. Rendering
+   performance remains open.
 4. Only validated applicable approval may grant freeze or open RSH-037.
 
-Master plan r6.19 retains 67 units, 42 historical findings, 6 bundles and 29
+Master plan r6.20 retains 67 units, 42 historical findings, 6 bundles and 30
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

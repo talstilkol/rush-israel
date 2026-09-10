@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-09T18:30:00Z",
+  "generated_at": "2026-09-10T05:40:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,35 +2001,35 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.19.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.20.md",
     "local_unit_tests": {
       "status": "complete_local_passed_remote_pending",
-      "focused_passed": 7,
+      "focused_passed": 9,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "total": 1149,
-      "passed": 1149,
+      "total": 1158,
+      "passed": 1158,
       "failed": 0,
       "skipped": 0,
-      "new_unique_cases": 7
+      "new_unique_cases": 9
     },
     "historical_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
     "previous_exact_head_ci": {
-      "revision": "r6.16",
-      "head": "79a67c6f21c6e517c659350b1ce48ae1525a4e21",
-      "tree": "a02eaafced9edc0c1127214eaf39df99fc935dc3",
-      "run_id": 34356869016,
-      "job_id": 102483660303,
-      "unit_passed": 1110,
+      "revision": "r6.19",
+      "head": "712af4195208228a09feec643441549952ecee55",
+      "tree": "272972601cb727e51a3f0b18c05a10d7eecf3d7a",
+      "run_id": 34389785192,
+      "job_id": 102594962162,
+      "unit_passed": 1149,
       "unit_failed": 0,
       "golden_passed": 0,
       "golden_failed": 4,
       "golden_source": "preparation 34324754353",
-      "required_ci_artifact_id": 10106516896,
-      "required_ci_artifact_sha256": "dfe83b420ef3650acecc858b76c17928102b83ec45f105c07bdc88c704b4d369",
-      "audit_source_artifact_id": 10106101507,
-      "audit_source_artifact_sha256": "bcd4989dd38edc5e38043b45dcb1615c591f2fb8ebae3740caf56381e16a8d80",
+      "required_ci_artifact_id": 10119573083,
+      "required_ci_artifact_sha256": "d9d515b9dd30c82f3e44d1c6146bc022002e59e0698eb19cd7beb03f342edd2a",
+      "audit_source_artifact_id": 10119147651,
+      "audit_source_artifact_sha256": "df0d0762c48295d21b6a39f4a3da95129cdf3c200d87695e02eedbfc04af8451",
       "not_unit_acceptance": true
     },
     "retained_r6_17_failure": {
@@ -2079,11 +2079,11 @@
       "diagnostic_run": 33992134755
     },
     "asset_batch_repair": "RSH-036-ASSET-BATCH-REPAIR.json",
-    "new_candidate_validation": "pending_r6_19_preparation_and_exact_published_head_CI",
+    "new_candidate_validation": "pending_r6_20_preparation_and_exact_published_head_CI",
     "generated_dependency_inventory": "AYALON-DEPENDENCY-CLOSURE.json",
     "safe_capture_output": "both_commands_no_automatic_baseline_writes",
     "ci_action_pins": "three_previously_verified_pins_unchanged",
-    "product_head_boundary": "four_dormant_vendor_references_qualified_three_fonts_open",
+    "product_head_boundary": "four_dormant_vendor_references_and_three_font_urls_pinned_cdn_bytes_open",
     "golden_attribution": "RSH-036-GOLDEN-FACTORIAL-r6.9.json",
     "font_evidence": "RSH-036-FONT-EVIDENCE-r6.9.json",
     "road_uniform_repair": {
@@ -2205,7 +2205,8 @@
     "envelope_review": "RSH-036-ENVELOPE-REVIEW-r6.16.json",
     "route_review": "RSH-036-ROUTE-REVIEW-r6.17.json",
     "ci_install_review": "RSH-036-CI-REVIEW-r6.18.json",
-    "support_review": "RSH-036-SUPPORT-REVIEW-r6.19.json"
+    "support_review": "RSH-036-SUPPORT-REVIEW-r6.19.json",
+    "font_review": "RSH-036-FONT-REVIEW-r6.20.json"
   },
   "historical_rsh035_constraints": [
     "The plain next instruction authorized exactly RSH-035 and is consumed on its validated merge.",

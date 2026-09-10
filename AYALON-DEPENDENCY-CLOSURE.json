@@ -1169,7 +1169,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "82355e72f38aeb6268d7623d58207d678ee17c42efd879e22c51f3b1aad06a26"
+      "sha256": "c3cd529df2f41e45abd6852efedd587ce596d113073f3a26ef77cfc8cfcc557d"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -1593,13 +1593,13 @@
     },
     {
       "path": "scripts/dependency-closure.mjs",
-      "bytes": 14328,
-      "sha256": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d"
+      "bytes": 15257,
+      "sha256": "fcd1263a3616b9033842dcca0913c65edfb8f7434d3743aaf6690f52dfa9abc2"
     },
     {
       "path": "scripts/dependency-closure.test.mjs",
-      "bytes": 8380,
-      "sha256": "cc8621f9575f5142dff1601773020546e201509112ac0bf5194fbfd9bc6d7a58"
+      "bytes": 8432,
+      "sha256": "94af4b2cd374cb6add7939c2540e62e135b8332e81a0e06ef7d00f907cd60273"
     },
     {
       "path": "scripts/drive-smoke.mjs",
@@ -1615,6 +1615,16 @@
       "path": "scripts/drive-steering.test.mjs",
       "bytes": 3914,
       "sha256": "b9d307961eed352c6c4a9ec42b6df2a1e5f7ca3a9c13115a1f061a4b9bb49e29"
+    },
+    {
+      "path": "scripts/font-dependency-boundary.mjs",
+      "bytes": 4118,
+      "sha256": "545f15227c83a9c1f2c4b351437776a012209ad0132ee331b915fa3a07cee949"
+    },
+    {
+      "path": "scripts/font-dependency-boundary.test.mjs",
+      "bytes": 7193,
+      "sha256": "c62b94a86421cddd0936c220235b1feeb16abfbabe37bf32e26077f397426221"
     },
     {
       "path": "scripts/font-dependency-browser.mjs",
@@ -1999,7 +2009,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "0aea525cde0d777dd88b48682361eef69559ae086863709e4922e14ae4424528"
+      "sha256": "ebd3ba89050d2733598ef4ed7069bb56c3f7b326109e9f667afb986442a16066"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2234,7 +2244,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "e181701531d9acacf0887a21897ad25c74fadfa980cd3f2ad5f9e3c35cc88275"
+      "sha256": "2ca489e82505679f19c1750d65444f44085830c9ac87e937ad031a97d94a175b"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10384,6 +10394,32 @@
     "errors": [],
     "limitation": "Qualification covers literal imports in the analysed product/build graph and exact reviewed compatibility bytes, not arbitrary eval or hostile filesystem execution."
   },
+  "font_dependency_boundary": {
+    "applicable": true,
+    "reviewed_resources": [
+      {
+        "from": "src/routes/__root.tsx",
+        "resource": "https://fonts.googleapis.com",
+        "kind": "potential_remote_reference"
+      },
+      {
+        "from": "src/routes/__root.tsx",
+        "resource": "https://fonts.gstatic.com",
+        "kind": "potential_remote_reference"
+      },
+      {
+        "from": "src/styles.css",
+        "resource": "https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap",
+        "kind": "css_url"
+      }
+    ],
+    "qualification": "reviewed_product_font_urls_pinned_without_distributed_font_files",
+    "qualified": true,
+    "errors": [],
+    "font_files_written": 0,
+    "immutable_bytes_verified": false,
+    "limitation": "Pin covers product URLs, families/weights and the absence of vendored font files. Remote stylesheet and glyph bytes remain mutable CDN observations, not immutable pins."
+  },
   "qualified_external_resources": [
     {
       "from": "scripts/grok-pwa-shared.mjs",
@@ -10408,28 +10444,27 @@
       "resource": "https://og.grok.me",
       "kind": "potential_remote_reference",
       "qualification": "dormant_vendor_head_export_blocked_by_reviewed_product_import_boundary"
-    }
-  ],
-  "unqualified_external_resources": [
+    },
     {
       "from": "src/routes/__root.tsx",
       "resource": "https://fonts.googleapis.com",
       "kind": "potential_remote_reference",
-      "qualification": "usage_and_bytes_review_required"
+      "qualification": "reviewed_product_font_urls_pinned_without_distributed_font_files"
     },
     {
       "from": "src/routes/__root.tsx",
       "resource": "https://fonts.gstatic.com",
       "kind": "potential_remote_reference",
-      "qualification": "usage_and_bytes_review_required"
+      "qualification": "reviewed_product_font_urls_pinned_without_distributed_font_files"
     },
     {
       "from": "src/styles.css",
       "resource": "https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap",
       "kind": "css_url",
-      "qualification": "immutable_bytes_required"
+      "qualification": "reviewed_product_font_urls_pinned_without_distributed_font_files"
     }
   ],
+  "unqualified_external_resources": [],
   "errors": [],
   "local_inventory_complete": true,
   "complete_dependency_closure": false,
@@ -10437,7 +10472,8 @@
   "limits": [
     "All local files in the declared roots are sealed, including currently unused dynamic targets and all public asset bytes.",
     "Package sources are identified by package-lock integrity, not vendored or executed by this scanner.",
-    "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance."
+    "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
+    "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "67c6a07e34d59247d36bc3c639addafb04980f4dc6a2ea3cf5435e29071f6846"
+  "digest_sha256": "227c16f1b3a1a646122b6ddcee58c0148b1da206ad5ff64e122fc2b6c0e91984"
 }

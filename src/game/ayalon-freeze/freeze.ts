@@ -80,7 +80,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/product-head-boundary.mjs": "c88328d144b77d1ea54aaab62d0e54f616c404d72097f1e6f232057185c5f3fe",
   "scripts/rush-head-browser.mjs": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
   "scripts/runtime-recovery-smoke.mjs": "71bbe9aa0629f9b3555eb511364ee167084330302839b340bc05e0f24d5aa536",
-  "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d",
+  "scripts/dependency-closure.mjs": "fcd1263a3616b9033842dcca0913c65edfb8f7434d3743aaf6690f52dfa9abc2",
   "scripts/font-evidence.mjs": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35",
   "scripts/font-dependency-browser.mjs": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673",
   "src/game/roadShader.ts": "057bccd519614b3ee23a536c1c12f6524c1ffaf72b858642e94e42eda70441aa",

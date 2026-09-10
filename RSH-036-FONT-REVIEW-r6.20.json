@@ -1,0 +1,60 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.20",
+  "date": "2026-09-10",
+  "base": "712af4195208228a09feec643441549952ecee55",
+  "finding": "AUD-30",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.19",
+    "head": "712af4195208228a09feec643441549952ecee55",
+    "tree": "272972601cb727e51a3f0b18c05a10d7eecf3d7a",
+    "run_id": 34389785192,
+    "job_id": 102594962162,
+    "unit_passed": 1149,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "golden_source": "preparation 34324754353",
+    "required_ci_artifact_id": 10119573083,
+    "required_ci_artifact_sha256": "d9d515b9dd30c82f3e44d1c6146bc022002e59e0698eb19cd7beb03f342edd2a",
+    "audit_source_artifact_id": 10119147651,
+    "audit_source_artifact_sha256": "df0d0762c48295d21b6a39f4a3da95129cdf3c200d87695e02eedbfc04af8451",
+    "not_unit_acceptance": true
+  },
+  "defect": "Three product Google Fonts references remained unqualified. CDN body hashes from r6.9 were observations, not pins. Font files must not be distributed. Typography must not change silently.",
+  "repair": "scripts/font-dependency-boundary.mjs pins the exact Heebo/Noto stylesheet URL and two preconnect hosts, forbids vendored font files, and fails closed on family/weight/host drift. Remote stylesheet and glyph bytes stay mutable; complete_dependency_closure remains false; freeze_granted remains false.",
+  "qualification": "reviewed_product_font_urls_pinned_without_distributed_font_files",
+  "reviewed_resources": [
+    { "from": "src/routes/__root.tsx", "resource": "https://fonts.googleapis.com", "kind": "potential_remote_reference" },
+    { "from": "src/routes/__root.tsx", "resource": "https://fonts.gstatic.com", "kind": "potential_remote_reference" },
+    { "from": "src/styles.css", "resource": "https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap", "kind": "css_url" }
+  ],
+  "font_files_written": 0,
+  "immutable_bytes_verified": false,
+  "typography_source_changes": 0,
+  "new_cases": {
+    "total": 9,
+    "source": "scripts/font-dependency-boundary.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4",
+    "immutable CDN font bytes",
+    "rendering performance",
+    "mesh and complete-race clearance"
+  ],
+  "no_freeze_or_acceptance": true
+}

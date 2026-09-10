@@ -635,8 +635,22 @@ RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-28 Chromium
 install succeeded on exact-head 34387082287 (1,142 units) and is retained as
 an overall FAILURE: 8 ramp supports protruded (max 1.9346875033714142). AUD-29
 sets pier height from the slab at the placed XZ. 176 piers, 546 legacy
-colliders, 50 ramps and 8 checkpoints stay counted. Complete suite, original
-golden and immutable-font gates remain mandatory. Do not merge, replace PNGs,
+colliders, 50 ramps and 8 checkpoints stay counted. Exact-head required CI
+34389785192 later passed 1,149/1,149 with maxProtrusion 0; that PASS is not
+freeze or original-golden acceptance. Complete suite, original golden and
+immutable-font gates remain mandatory. Do not merge, replace PNGs, change
+thresholds or activate RSH-037.
+Details: RSH-036-SUPPORT-REVIEW-r6.19.json, RSH-036-RUNTIME-REPAIR-r6.19.md and
+docs/evidence/r6.19-published-ci-verification.json.
+
+## r6.20 — 10 September 2026: pin product font URLs without distributing files
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-30 pins the
+three Heebo/Noto product URLs and forbids vendored font files. Remote CDN
+bytes stay unpinned; complete_dependency_closure and freeze_granted stay
+false. Original CSS typography is unchanged. Exact-head CI, original golden
+0/4, rendering performance and freeze remain open. Do not merge, replace PNGs,
 change thresholds or activate RSH-037.
-Details: RSH-036-SUPPORT-REVIEW-r6.19.json and RSH-036-RUNTIME-REPAIR-r6.19.md.
+Details: RSH-036-FONT-REVIEW-r6.20.json and RSH-036-RUNTIME-REPAIR-r6.20.md.
+
 

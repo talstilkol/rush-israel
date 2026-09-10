@@ -858,7 +858,7 @@
     },
     "scripts/dependency-closure.mjs": {
       "previous_sha256": null,
-      "current_sha256": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d",
+      "current_sha256": "fcd1263a3616b9033842dcca0913c65edfb8f7434d3743aaf6690f52dfa9abc2",
       "reverse_edits": []
     },
     "scripts/capture-golden.mjs": {

@@ -3,7 +3,7 @@
   "document_type": "rush-ayalon-freeze-manifest",
   "unit": "RSH-036",
   "title": "Freeze Ayalon and hash all transitive dependencies",
-  "generated_at": "2026-09-09T07:00:00Z",
+  "generated_at": "2026-09-10T05:30:00Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "implementation_base": {
@@ -104,7 +104,7 @@
       "scripts/product-head-boundary.mjs": "c88328d144b77d1ea54aaab62d0e54f616c404d72097f1e6f232057185c5f3fe",
       "scripts/rush-head-browser.mjs": "78326319c8900b33eee1fc05dfce1e3230760507add0119fa631508464e66139",
       "scripts/runtime-recovery-smoke.mjs": "71bbe9aa0629f9b3555eb511364ee167084330302839b340bc05e0f24d5aa536",
-      "scripts/dependency-closure.mjs": "526d4a2a841ed71c77e64bfd07796ba43861eb53ff9f5dd1a2d931b4d1ba805d",
+      "scripts/dependency-closure.mjs": "fcd1263a3616b9033842dcca0913c65edfb8f7434d3743aaf6690f52dfa9abc2",
       "scripts/font-evidence.mjs": "f4042513c7c4906b10551070e4c952bf820da6d0c87852d60a3ed5b52b247c35",
       "scripts/font-dependency-browser.mjs": "338a0be488294d3c8811c19d88cb27aad6a7459c11754aae546f69cca23ea673",
       "src/game/roadShader.ts": "057bccd519614b3ee23a536c1c12f6524c1ffaf72b858642e94e42eda70441aa",
@@ -122,7 +122,7 @@
       "src/game/collider-height.ts": "934747ab5c69127e90af5a457fa349a1a681682ecb692beab075848204359508",
       "scripts/pier-collision-browser.mjs": "256d9ffb20d5e95b8511effce86c7e1ae1f4580fdccc2ada3883c1a03955c8b8"
     },
-    "freeze_digest_sha256": "512c5e89f0ac678c3375eb4303bde7edd6dbbd3e4f58c15f29228132abc2c6c1"
+    "freeze_digest_sha256": "36a49ecb0c26233c218eebdaac7a8bc4e502f7d8df7f20ca3a50ba7ac557257a"
   },
   "lock_module": {
     "directory": "src/game/ayalon-freeze",
@@ -153,7 +153,7 @@
     "vehicle_envelope_behavior_changed": true
   },
   "identities": {
-    "freeze_source_sha256": "e181701531d9acacf0887a21897ad25c74fadfa980cd3f2ad5f9e3c35cc88275",
+    "freeze_source_sha256": "2ca489e82505679f19c1750d65444f44085830c9ac87e937ad031a97d94a175b",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
     "contract_sha256": "03727dd56eb2c6808ace47c372ab901dc96a22445d8a71fa09bb87f92d27e9d5",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
@@ -162,7 +162,7 @@
     "pixel_golden_sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
     "checker_test_sha256": "28fc007c15b971cecb21dee3ff5cac13d87a7cd61d761a6f1c6a1d125418e5a6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "512c5e89f0ac678c3375eb4303bde7edd6dbbd3e4f58c15f29228132abc2c6c1",
+    "freeze_digest_sha256": "36a49ecb0c26233c218eebdaac7a8bc4e502f7d8df7f20ca3a50ba7ac557257a",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
@@ -184,7 +184,7 @@
     "status": "partial",
     "complete_dependency_closure": false,
     "runtime_evolution": "RSH-036-RUNTIME-EVOLUTION.json",
-    "remaining_proof": "r6.18 Chromium install retry after Google Chrome apt hash-sum mismatch pending exact-head CI; 3 fonts and original golden remain; freeze_granted=false.",
+    "remaining_proof": "r6.19 exact-head required-ci 34389785192 PASS retained; 3 product font URLs pinned without font files or immutable CDN bytes; original golden 0/4; freeze_granted=false.",
     "generated_inventory": "AYALON-DEPENDENCY-CLOSURE.json"
   },
   "acceptance": {

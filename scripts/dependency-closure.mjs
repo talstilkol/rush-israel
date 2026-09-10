@@ -7,6 +7,9 @@ import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import { inspectProductHeadBoundary, SHARED_TEMPLATE } from './product-head-boundary.mjs';
 import { inspectActionUses } from './ci-action-pins.mjs';
+import {
+  FONT_QUALIFICATION, inspectFontDependencyBoundary, isReviewedFontResource,
+} from './font-dependency-boundary.mjs';
 import { projectRoot } from './project-root.mjs';
 
 export const CLOSURE_ROOTS = ['src', 'server', 'scripts', 'public', 'golden-baseline', '.github/workflows'];
@@ -152,23 +155,32 @@ export function buildDependencyClosure(root = projectRoot) {
       } catch (error) { errors.push(`invalid model dependency data: ${name}: ${error.message}`); }
     }
   }
+  const unique = rows => ordered([...new Map(rows.map(row => [JSON.stringify(row), row])).values()]);
+  const uniqueExternal = unique(externalResources);
   const productHeadBoundary = analysed.has(SHARED_TEMPLATE)
     ? { applicable: true, ...inspectProductHeadBoundary(root, analysed) }
     : { applicable: false, qualified: false, errors: [], note: "No shared platform module in this analysed graph" };
   errors.push(...productHeadBoundary.errors);
-  const qualifiedExternal = externalResources.filter(row => row.from === SHARED_TEMPLATE && productHeadBoundary.qualified)
+  const fontDependencyBoundary = inspectFontDependencyBoundary(root, inventory.files, uniqueExternal);
+  errors.push(...fontDependencyBoundary.errors);
+  const vendorQualified = uniqueExternal.filter(row => row.from === SHARED_TEMPLATE && productHeadBoundary.qualified)
     .map(row => ({ ...row, qualification: 'dormant_vendor_head_export_blocked_by_reviewed_product_import_boundary' }));
-  const unqualifiedExternal = externalResources.filter(row => row.from !== SHARED_TEMPLATE || !productHeadBoundary.qualified);
-  const unique = rows => ordered([...new Map(rows.map(row => [JSON.stringify(row), row])).values()]);
+  const fontQualified = fontDependencyBoundary.qualified
+    ? uniqueExternal.filter(isReviewedFontResource).map(row => ({ ...row, qualification: FONT_QUALIFICATION }))
+    : [];
+  const qualifiedKeys = new Set([...vendorQualified, ...fontQualified].map(row => JSON.stringify({ from: row.from, resource: row.resource, kind: row.kind })));
+  const unqualifiedExternal = uniqueExternal.filter(row => !qualifiedKeys.has(JSON.stringify({ from: row.from, resource: row.resource, kind: row.kind })));
   const result = { schema_version: 1, unit: 'RSH-036', strategy: 'conservative_full_local_surface_not_minimal_reachability',
     roots: [...CLOSURE_ROOTS], root_files: [...ROOT_FILES], root_config_pattern: configPattern.source,
-    files, imports: unique(imports), actions: unique(actions), dynamic_asset_expressions: unique(dynamicAssetExpressions), external_resources: unique(externalResources),
-    product_head_boundary: productHeadBoundary, qualified_external_resources: unique(qualifiedExternal), unqualified_external_resources: unique(unqualifiedExternal),
+    files, imports: unique(imports), actions: unique(actions), dynamic_asset_expressions: unique(dynamicAssetExpressions), external_resources: uniqueExternal,
+    product_head_boundary: productHeadBoundary, font_dependency_boundary: fontDependencyBoundary,
+    qualified_external_resources: unique([...vendorQualified, ...fontQualified]), unqualified_external_resources: unique(unqualifiedExternal),
     errors: [...new Set(errors)].sort(), local_inventory_complete: errors.length === 0,
-    complete_dependency_closure: errors.length === 0 && unqualifiedExternal.length === 0, freeze_granted: false,
+    complete_dependency_closure: errors.length === 0 && unqualifiedExternal.length === 0 && fontDependencyBoundary.immutable_bytes_verified, freeze_granted: false,
     limits: ['All local files in the declared roots are sealed, including currently unused dynamic targets and all public asset bytes.',
       'Package sources are identified by package-lock integrity, not vendored or executed by this scanner.',
-      'Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.'] };
+      'Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.',
+      'Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze.'] };
   result.digest_sha256 = hash(JSON.stringify(result));
   return result;
 }
