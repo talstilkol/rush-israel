@@ -8,10 +8,11 @@ import { test } from 'node:test';
 import { PNG } from 'pngjs';
 import { fromRoot } from './project-root.mjs';
 import {
-  BAND_PIXELS, EXTRA_DELTA_MIN, EXTRA_FRAMES, EXTRA_LAYERS, FAILURE_LIMIT, PIXEL_THRESHOLD,
-  dominantExtra, extraBufferIsNotOriginalGolden, regionSliceIsNotExtraMismatch,
-  retainWorldExtra, worldExtraFixture, worldExtraResults,
-} from './world-extra-browser.mjs';
+  BAND_PIXELS, FAILURE_LIMIT, PIXEL_THRESHOLD, SHADE_FRAMES, SHADE_LAYERS, SHADE_L2_MIN,
+  dominantShade, rgbSampleIsNotShadeMismatch, retainWorldShade,
+  shadeBufferIsNotOriginalGolden, worldShadeFixture, worldShadeResults,
+} from './world-shade-browser.mjs';
+import { GROUND_ALBEDO } from './world-rgb-browser.mjs';
 import { REGION_BANDS, bandPixelmatch } from './world-region-browser.mjs';
 import { RSH035_BASELINE_SHA256, ORIGINAL_GOLDEN_FILES } from './original-golden-browser.mjs';
 
@@ -19,35 +20,37 @@ function sha256(buf) {
   return createHash('sha256').update(buf).digest('hex');
 }
 
-test('dominant 200px slice report without extras is not extra mismatch', () => {
-  assert.equal(regionSliceIsNotExtraMismatch({ frames: [] }), true);
-  assert.equal(regionSliceIsNotExtraMismatch({
+test('dominant 200px RGB report without shade layers is not shade mismatch', () => {
+  assert.equal(rgbSampleIsNotShadeMismatch({ frames: [] }), true);
+  assert.equal(rgbSampleIsNotShadeMismatch({
     frames: [{
       id: 'g01', presentPct: 0.41, presentMismatched: 100, dominant: 'bottom',
-      dominantLayer: 'carriageway', bands: REGION_BANDS,
+      dominantSample: 'ground', bandL2: 127.4, bands: REGION_BANDS,
     }],
   }), true);
-  assert.equal(regionSliceIsNotExtraMismatch(worldExtraFixture()), false);
-  const sliceOnly = worldExtraFixture();
-  sliceOnly.frames = sliceOnly.frames.map(frame => ({
+  assert.equal(rgbSampleIsNotShadeMismatch(worldShadeFixture()), false);
+  const rgbOnly = worldShadeFixture();
+  rgbOnly.frames = rgbOnly.frames.map(frame => ({
     id: frame.id, presentPct: frame.presentPct, presentMismatched: frame.presentMismatched,
     pixelThreshold: PIXEL_THRESHOLD, bands: frame.bands, dominant: frame.dominant,
-    dominantLayer: 'carriageway',
+    bandL2: frame.bandL2, dominantSample: 'ground',
   }));
-  assert.equal(regionSliceIsNotExtraMismatch(sliceOnly), true);
-  assert.throws(() => worldExtraResults(sliceOnly), /dominant 200px band is not hero\/road extra mismatch/);
+  assert.equal(rgbSampleIsNotShadeMismatch(rgbOnly), true);
+  assert.throws(() => worldShadeResults(rgbOnly), /dominant 200px band is not grade\/fog\/hemi\/exposure\/envmap\/unlit shade mismatch/);
 });
 
-test('extra buffer without original-golden protocol identity is not original-golden', () => {
-  assert.equal(extraBufferIsNotOriginalGolden(worldExtraFixture()), false);
-  assert.equal(extraBufferIsNotOriginalGolden({
-    ...worldExtraFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
+test('shade buffer without original-golden protocol identity is not original-golden', () => {
+  assert.equal(shadeBufferIsNotOriginalGolden(worldShadeFixture()), false);
+  assert.equal(shadeBufferIsNotOriginalGolden({
+    ...worldShadeFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
   }), true);
   assert.equal(PIXEL_THRESHOLD, 0.12);
   assert.equal(FAILURE_LIMIT, 0.08);
-  assert.equal(EXTRA_DELTA_MIN, 0.02);
+  assert.equal(SHADE_L2_MIN, 8);
   assert.equal(BAND_PIXELS, 1280 * 200);
-  assert.deepEqual(EXTRA_LAYERS, ['hero', 'road', 'blob', 'fx', 'unclassified']);
+  assert.deepEqual(SHADE_LAYERS, ['grade', 'fog', 'hemi', 'exposure', 'envmap', 'unlit']);
+  assert.equal(GROUND_ALBEDO.hex, 0xd0d4d8);
+  assert.throws(() => worldShadeResults({ ...worldShadeFixture(), productGroundHex: 0 }), /product ground color retuned/);
 });
 
 test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
@@ -59,15 +62,15 @@ test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
   assert.equal(match.id, 'bottom');
 });
 
-test('locked extra poses match original-golden cameras and PNG hashes', () => {
-  assert.deepEqual(EXTRA_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
-  assert.deepEqual(EXTRA_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
-  assert.equal(EXTRA_FRAMES[3].night, true);
-  assert.equal(dominantExtra(worldExtraFixture().frames[0].layers), 'road');
+test('locked shade poses match original-golden cameras and PNG hashes', () => {
+  assert.deepEqual(SHADE_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
+  assert.deepEqual(SHADE_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
+  assert.equal(SHADE_FRAMES[3].night, true);
+  assert.equal(dominantShade(worldShadeFixture().frames[0].layers), 'unlit');
 });
 
-test('extra-attribution evidence yields five protocol passes', () => {
-  assert.deepEqual(worldExtraResults(worldExtraFixture()).map(row => row.status), Array(5).fill('passed'));
+test('shade-attribution evidence yields five protocol passes', () => {
+  assert.deepEqual(worldShadeResults(worldShadeFixture()).map(row => row.status), Array(5).fill('passed'));
 });
 
 for (const [name, mutate] of [
@@ -86,37 +89,37 @@ for (const [name, mutate] of [
   ['authority claim', r => { r.authority = true; }],
   ['original-golden comparisons', r => { r.originalGoldenComparisons = 4; }],
   ['threshold drift', r => { r.pixelThreshold = 0.2; }],
-]) test(`world-extra evidence fails closed: ${name}`, () => {
-  const r = worldExtraFixture();
+]) test(`world-shade evidence fails closed: ${name}`, () => {
+  const r = worldShadeFixture();
   mutate(r);
-  assert.throws(() => worldExtraResults(r));
+  assert.throws(() => worldShadeResults(r));
 });
 
 test('baseline PNG hash drift fails closed', () => {
-  const r = worldExtraFixture();
+  const r = worldShadeFixture();
   r.baselineHashes['ayalon-day-g01.png'] = '0'.repeat(64);
-  assert.throws(() => worldExtraResults(r), /baseline hash drift/);
+  assert.throws(() => worldShadeResults(r), /baseline hash drift/);
 });
 
 test('zero full-frame present mismatch remains failed', () => {
-  const r = worldExtraFixture();
+  const r = worldShadeFixture();
   r.frames[0] = { ...r.frames[0], presentPct: 0, presentMismatched: 0 };
-  const row = worldExtraResults(r).find(item => item.case.includes('still mismatches'));
+  const row = worldShadeResults(r).find(item => item.case.includes('still mismatches'));
   assert.equal(row.status, 'failed');
   assert.equal(row.failures, 1);
 });
 
-test('a rest-camera miss remains failed during extra matching', () => {
-  const r = worldExtraFixture();
+test('a rest-camera miss remains failed during shade sampling', () => {
+  const r = worldShadeFixture();
   r.frames[1] = { ...r.frames[1], follow: 9.2, height: 2.28 };
-  assert.throws(() => worldExtraResults(r));
+  assert.throws(() => worldShadeResults(r));
 });
 
-test('invalid world-extra report is retained before validation throws', async () => {
-  const out = await mkdtemp(join(tmpdir(), 'world-extra-invalid-'));
+test('invalid world-shade report is retained before validation throws', async () => {
+  const out = await mkdtemp(join(tmpdir(), 'world-shade-invalid-'));
   try {
-    const r = worldExtraFixture({ originalGoldenComparisons: 4 });
-    await assert.rejects(retainWorldExtra(r, out));
+    const r = worldShadeFixture({ originalGoldenComparisons: 4 });
+    await assert.rejects(retainWorldShade(r, out));
     assert.equal(JSON.parse(await readFile(join(out, 'results.json'), 'utf8')).originalGoldenComparisons, 4);
   } finally {
     await rm(out, { recursive: true, force: true });

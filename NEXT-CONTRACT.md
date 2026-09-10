@@ -1,7 +1,7 @@
-**Version:** 20.37.0
+**Version:** 20.38.0
 **Date:** 2026-09-10, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** b5df3885f315ca9ef96eec8c50ab4682df5c328c
+**Repair base:** 91409ed7383121710943924ec13995bd6ce32138
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -48,10 +48,13 @@ the map increases mismatch, so the texture helps. Roughness and daytime lights
 are not independent drivers. Envmap is not the day-bottom driver (+0.00) but
 contributes on g07 upper ramps (−6.3) and g08 night (−19.3). Live-vs-golden
 mean RGB of the dominant band shows the locked PNG bottom is dark (g01 26/36/38,
-g05 11/22/30, g08 7/6/4) while live is brighter and bluer (77/105/132, 75/105/134,
-41/54/81; band L2 127/148/96). g01 ground-colored 15144 px live 199/200/198 vs
-gold 84/89/68. g05/g08 bottom have 0 live pixels within 80 of albedo `0xd0d4d8`.
-Product hex stays `0xd0d4d8`. Preserve historical
+g05 11/22/30, g08 7/6/4) while live is brighter and bluer (77/104/130, 75/104/133,
+41/53/70; band L2 126/146/88). Shade isolation in L2 space shows that brightness
+is exposure/unlit (−67.7/−107.3/−77.5 and −68.6/−80.5/−48.8) and the blue lift is
+envmap/hemi (−50.2/−54.2/−33.9 and −18.4/−20.7/−11.0). Fog L2 delta is 0. Grade
+is not a day-bottom driver. Envmap/hemi pixelmatch bandDelta stays ~0 on day —
+threshold 0.12 missed the uniform tint. g07 upper remains ramps. Product hex
+stays `0xd0d4d8`. Preserve historical
 preparation 34324754353. PNG bytes last changed 26 August 12:00:42Z, before
 spaghetti ramps.
 
@@ -74,22 +77,23 @@ required-ci-34480369405-1 SHA-256
 `0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec`. Retained;
 not relabelled a pass.
 
-## r6.37 and subsequent acceptance
-1. Remaining 0/4 is a live-vs-locked mean RGB gap: live g01/g05/g08 bottom is
-   brighter and bluer than the dark locked PNG, and g05/g08 have 0 live pixels
-   within 80 of albedo `0xd0d4d8`. Live sampling must force 1280×800 pixelRatio
-   1 after snapCamera(true), capture product present
-   (`post.setDrive(0, false); post.render()`), locate the dominant 200px band,
-   and measure lighting-induced live ground shade vs albedo `0xd0d4d8` (and vs
-   gold at those coordinates) at g01/g05/g07/g08 without changing product color
-   or refreshing PNGs. Smoke must keep verifyWorldLayers, verifyWorldResidual,
+## r6.38 and subsequent acceptance
+1. Remaining 0/4 is live brightness plus blue IBL on g01/g05/g08 bottom:
+   exposure/unlit occupy the L2 (live too bright vs dark locked PNG) and
+   envmap/hemi occupy the blue channel. Fog and grade do not. g07 upper remains
+   ramps. Live sampling must force 1280×800 pixelRatio 1 after snapCamera(true),
+   capture product present (`post.setDrive(0, false); post.render()`), locate
+   the dominant 200px band, and isolate envmap vs hemi (blue) independently of
+   exposure vs unlit (brightness) without changing product color, exposure or
+   refreshing PNGs. Smoke must keep verifyWorldLayers, verifyWorldResidual,
    verifyWorldMismatch, verifyWorldBias, verifyWorldScene, verifyWorldRegion,
    verifyWorldColumn, verifyWorldSlice, verifyWorldExtra, verifyWorldMaterial,
-   verifyWorldFactor and verifyWorldRgb. Live rest chase 7.4/1.92 must stay.
-   Remaining pixel 0/4 is that RGB gap plus g07 upper ramps. PNG refresh,
-   threshold drift, color retune and skipped comparison fail closed. 176 piers,
-   546 legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and generation-11
-   lock stay. Freeze path count stays 85. Pixel 0/4 is not freeze.
+   verifyWorldFactor, verifyWorldRgb and verifyWorldShade. Live rest chase
+   7.4/1.92 must stay. Remaining pixel 0/4 is that brightness+blue gap plus
+   g07 upper ramps. PNG refresh, threshold drift, color retune, exposure
+   retune and skipped comparison fail closed. 176 piers, 546 legacy colliders,
+   50 ramps, rest-pose 1.6, 1.05 radius and generation-11 lock stay. Freeze
+   path count stays 85. Pixel 0/4 is not freeze.
 2. Preserve the r6.18 Chromium install retry, the r6.19 slab-underside support
    placement, the r6.20 product font URL pins, the r6.21 rest chase 7.4/1.92,
    the r6.22 complete arcade lap, the r6.23 visual hull, the r6.24 original
@@ -98,11 +102,11 @@ not relabelled a pass.
    channel-bias isolation, the r6.30 scene-buffer isolation, the r6.31
    region-band isolation, the r6.32 column isolation, the r6.33 slice isolation,
    the r6.34 extra isolation, the r6.35 material isolation, the r6.36 factor
-   isolation and the r6.37 rgb sampling.
+   isolation, the r6.37 rgb sampling and the r6.38 shade isolation.
 3. Preserve 1280x800 images, threshold 0.12, failure 8%, generation 11 lock and
    owner approval. Do not refresh golden PNGs or silently change typography.
    Rendering performance remains open.
 4. Only validated applicable approval may grant freeze or open RSH-037.
 
-Master plan r6.37 retains 67 units, 42 historical findings, 6 bundles and 47
+Master plan r6.38 retains 67 units, 42 historical findings, 6 bundles and 48
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

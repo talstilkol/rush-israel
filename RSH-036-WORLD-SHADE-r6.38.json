@@ -1,0 +1,79 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.38",
+  "date": "2026-09-10",
+  "base": "91409ed7383121710943924ec13995bd6ce32138",
+  "finding": "AUD-48",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "not_relabelled_success": true
+  },
+  "defect": "r6.37 remaining 0/4 is a live-vs-locked mean RGB gap (g01/g05/g08 bottom live brighter/bluer than dark PNG; L2 127/148/96). That sample is not which shade — grade, fog, hemi, exposure, envmap or unlit — occupies the L2.",
+  "repair": "Keep verifyWorldLayers through verifyWorldRgb and verifyWorldShade. Direct-engine present capture forces upgradeGraphics, setPixelRatio(1)+setSize(1280,800)+post.setSize, locates the dominant 200px band, isolates grade vs fog vs hemi vs exposure vs envmap vs unlit AFTER setNight/snapCamera(true) and measures isolated band mean RGB L2 against the locked 26 August PNG. RGB-only reports, missing dominantShade, original-golden claims, PNG refresh, threshold drift, camera miss, color retune and zero presentPct fail closed. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "g01_g05_g08_bottom_rgb_is_exposure_unlit_brightness_and_envmap_hemi_blue_fog_grade_not_g07_upper_none",
+    "protocol": "world-shade-buffer-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "pixelThreshold": 0.12,
+    "failureLimit": 0.08,
+    "viewport": { "width": 1280, "height": 800 },
+    "productGroundHex": 13685976,
+    "productGroundCount": 1,
+    "groundMeshCount": 1,
+    "counts": { "grade": 1, "fog": 1, "hemi": 1, "exposure": 1, "envmap": 57, "unlit": 5 },
+    "frames": [
+      { "id": "g01", "follow": 7.4, "height": 1.92, "presentPct": 0.6718, "dominant": "bottom", "dominantShade": "unlit", "contributingShade": ["hemi", "exposure", "envmap", "unlit"], "bandL2": 125.77, "bandLive": [77.18, 103.53, 130.41], "bandGold": [25.54, 35.89, 37.8], "gradeL2Delta": 2.05, "fogL2Delta": 0, "hemiL2Delta": -18.43, "exposureL2Delta": -67.72, "envmapL2Delta": -50.23, "unlitL2Delta": -68.64, "gradeBandDelta": -0.0041, "fogBandDelta": 0, "hemiBandDelta": 0.0012, "exposureBandDelta": -0.7714, "envmapBandDelta": -0.0094, "unlitBandDelta": -0.7498 },
+      { "id": "g05", "follow": 7.4, "height": 1.92, "presentPct": 0.5828, "dominant": "bottom", "dominantShade": "exposure", "contributingShade": ["hemi", "exposure", "envmap", "unlit"], "bandL2": 145.95, "bandLive": [74.63, 103.56, 132.7], "bandGold": [10.81, 22.24, 29.67], "gradeL2Delta": 2.02, "fogL2Delta": 0, "hemiL2Delta": -20.69, "exposureL2Delta": -107.33, "envmapL2Delta": -54.23, "unlitL2Delta": -80.52, "gradeBandDelta": -0.0045, "fogBandDelta": 0, "hemiBandDelta": -0.007, "exposureBandDelta": -0.8367, "envmapBandDelta": -0.0157, "unlitBandDelta": -0.4605 },
+      { "id": "g07", "follow": 7.4, "height": 1.92, "presentPct": 0.2813, "dominant": "upper", "dominantShade": "grade", "contributingShade": [], "bandL2": 96.57, "bandLive": [23.09, 64.27, 94.37], "bandGold": [49.98, 121.76, 167.16], "gradeL2Delta": -0.88, "fogL2Delta": 0, "hemiL2Delta": 4.18, "exposureL2Delta": 116.19, "envmapL2Delta": 45.91, "unlitL2Delta": 13.12, "gradeBandDelta": 0.0013, "fogBandDelta": 0, "hemiBandDelta": -0.0046, "exposureBandDelta": 0.2424, "envmapBandDelta": -0.0457, "unlitBandDelta": 0.0014 },
+      { "id": "g08", "follow": 7.4, "height": 1.92, "presentPct": 0.671, "dominant": "bottom", "dominantShade": "exposure", "contributingShade": ["hemi", "exposure", "envmap", "unlit"], "bandL2": 87.72, "bandLive": [40.83, 53.25, 70.17], "bandGold": [7.01, 5.99, 4.46], "gradeL2Delta": 8.72, "fogL2Delta": 0, "hemiL2Delta": -10.98, "exposureL2Delta": -77.48, "envmapL2Delta": -33.93, "unlitL2Delta": -48.8, "gradeBandDelta": 0.0052, "fogBandDelta": 0, "hemiBandDelta": -0.0418, "exposureBandDelta": -0.8536, "envmapBandDelta": -0.4377, "unlitBandDelta": -0.8538 }
+    ],
+    "finding": "g01/g05/g08 bottom RGB L2 is brightness plus blue IBL, not fog or grade. Zeroing exposure drops L2 67.7/107.3/77.5 (live goes black, nearer the dark PNG). Combined unlit drops 68.6/80.5/48.8. Nulling envmap cuts the blue channel (g01 130→82, g05 133→80, g08 70→36; L2 −50.2/−54.2/−33.9) while pixelmatch bandDelta stays ~0 on day. Hemi is the remaining blue sky light (−18.4/−20.7/−11.0) with bandDelta ~0. Fog L2 delta is 0. Grade is not a day-bottom driver. g07 upper remains ramps (no shade contributing). Product hex stays 0xd0d4d8. r6.36 pixelmatch missed hemi/envmap because a uniform tint does not flip the 0.12 threshold."
+  },
+  "new_cases": {
+    "total": 28,
+    "source": "scripts/world-shade.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after live brightness (exposure/unlit) plus blue envmap/hemi; fog and grade are not the RGB driver; g07 upper ramps",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-10T18:10:00Z",
+  "generated_at": "2026-09-10T17:20:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,14 +2001,14 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.37.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.38.md",
     "local_unit_tests": {
-      "status": "focused_28_passed_live_rgb_live_brighter_than_dark_png_g05_g08_no_albedo_near_full_suite_expected_1589",
+      "status": "focused_28_passed_live_shade_exposure_unlit_brightness_envmap_hemi_blue_fog_grade_not_full_suite_expected_1617",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 1589,
+      "expected_total": 1617,
       "predecessor_exact_head_passed": 1283,
       "predecessor_r6_23_expected": 1206,
       "predecessor_r6_24_expected": 1229,
@@ -2023,6 +2023,7 @@
       "predecessor_r6_34_expected": 1505,
       "predecessor_r6_35_expected": 1533,
       "predecessor_r6_36_expected": 1561,
+      "predecessor_r6_37_expected": 1589,
       "new_unique_cases": 28,
       "live_complete_race": {
         "status": "passed",
@@ -2321,6 +2322,28 @@
         "groundL2": [206.09, 0, 210, 0],
         "groundLive": [[199, 200, 198], [0, 0, 0], [197.08, 197.71, 192.17], [0, 0, 0]],
         "groundGold": [[84.43, 88.78, 67.7], [0, 0, 0], [53.35, 77.96, 96.77], [0, 0, 0]],
+        "originalGoldenComparisons": 0
+      },
+      "live_world_shade": {
+        "status": "g01_g05_g08_bottom_rgb_is_exposure_unlit_brightness_and_envmap_hemi_blue_fog_grade_not_g07_upper_none",
+        "protocol": "world-shade-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
+        "dominant": ["bottom", "bottom", "upper", "bottom"],
+        "dominantShade": ["unlit", "exposure", "grade", "exposure"],
+        "contributingShade": [["hemi", "exposure", "envmap", "unlit"], ["hemi", "exposure", "envmap", "unlit"], [], ["hemi", "exposure", "envmap", "unlit"]],
+        "productGroundHex": 13685976,
+        "bandL2": [125.77, 145.95, 96.57, 87.72],
+        "hemiL2Delta": [-18.43, -20.69, 4.18, -10.98],
+        "exposureL2Delta": [-67.72, -107.33, 116.19, -77.48],
+        "envmapL2Delta": [-50.23, -54.23, 45.91, -33.93],
+        "unlitL2Delta": [-68.64, -80.52, 13.12, -48.8],
+        "fogL2Delta": [0, 0, 0, 0],
+        "gradeL2Delta": [2.05, 2.02, -0.88, 8.72],
+        "counts": { "grade": 1, "fog": 1, "hemi": 1, "exposure": 1, "envmap": 57, "unlit": 5 },
         "originalGoldenComparisons": 0
       }
     },

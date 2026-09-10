@@ -886,6 +886,24 @@ color or activate RSH-037.
 Details: RSH-036-WORLD-RGB-r6.37.json, RSH-036-RUNTIME-REPAIR-r6.37.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.38 — 10 September 2026: live-vs-golden mean RGB is not grade/fog/hemi/exposure/envmap/unlit shade attribution
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-48 isolates
+grade, fog, hemi, exposure, envmap and unlit after setNight/snapCamera(true)
+and measures dominant-band mean RGB L2 against the locked 26 August PNG.
+The r6.37 RGB mean is not which shade occupies that L2. g01/g05/g08 bottom
+is live brightness (exposure −67.7/−107.3/−77.5; unlit −68.6/−80.5/−48.8)
+plus blue IBL (envmap −50.2/−54.2/−33.9; hemi −18.4/−20.7/−11.0). Fog L2
+delta is 0. Grade is not a day-bottom driver. Envmap/hemi pixelmatch
+bandDelta stays ~0 on day — threshold 0.12 missed the uniform tint. g07
+upper remains ramps. Camera stays 7.4/1.92. Freeze path count stays 85.
+r6.27 lint no-undef is retained, not relabelled a pass. Immutable CDN
+bytes, rendering performance and freeze remain open. Do not merge, replace
+PNGs, change thresholds, retune color or activate RSH-037.
+Details: RSH-036-WORLD-SHADE-r6.38.json, RSH-036-RUNTIME-REPAIR-r6.38.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 
