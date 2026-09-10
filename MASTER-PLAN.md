@@ -702,6 +702,31 @@ PNGs, change thresholds or activate RSH-037.
 Details: RSH-036-GOLDEN-REVIEW-r6.24.json, RSH-036-RUNTIME-REPAIR-r6.24.md and
 docs/evidence/r6.23-published-ci-verification.json.
 
+## r6.25 — 10 September 2026: rest-camera attribution after chase restore
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-35 measures
+live rest chase after snapCamera(true). The r6.8 0.36/1.8 camera delta and
+HUD-on-black page captures fail closed as post-restore scene evidence. Live
+camera matches historical 7.4/1.92 at g01/g05/g07/g08; WebGL buffers are lit.
+Remaining original-golden 0/4 is world (50 ramps / 722 colliders vs historical
+32/541). Freeze path count stays 85. Immutable CDN bytes, rendering
+performance and freeze remain open. Do not merge, replace PNGs, change
+thresholds or activate RSH-037.
+Details: RSH-036-GOLDEN-ATTRIBUTION-r6.25.json and RSH-036-RUNTIME-REPAIR-r6.25.md.
+
+## r6.26 — 10 September 2026: world-layer isolation after catalogue attribution
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-36 isolates
+live world layers after snapCamera(true). Catalogue 50/722 without layer samples
+fails closed as pixel attribution. Classified membership is 50 decks / 100
+strips / 176 piers. g07 ramps contribute 69% of samples; g05 and g08 ramps
+contribute 0%; other meshes dominate three of four poses. Camera stays 7.4/1.92.
+Freeze path count stays 85. Immutable CDN bytes, rendering performance and
+freeze remain open. Do not merge, replace PNGs, change thresholds or activate
+RSH-037.
+Details: RSH-036-WORLD-LAYER-r6.26.json, RSH-036-RUNTIME-REPAIR-r6.26.md and
+docs/evidence/r6.24-published-ci-verification.json.
+
 
 
 

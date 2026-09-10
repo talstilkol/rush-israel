@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-published-candidate-audit",
+  "verifiedOn": "2026-09-10",
+  "repository": "talstilkol/rush-israel",
+  "productCommit": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
+  "productTree": "5c0b7667e8775f04c67b62285a78d9805b473f23",
+  "canonicalMain": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+  "run": {
+    "id": "34454517944",
+    "attempt": 1,
+    "jobId": "102797680687",
+    "name": "required-ci",
+    "status": "completed",
+    "conclusion": "success",
+    "createdAt": "2026-09-10T08:19:15Z",
+    "completedAt": "2026-09-10T08:29:56Z"
+  },
+  "archives": [
+    {
+      "id": "10142884342",
+      "name": "audit-source-34454517944-1",
+      "sha256": "02e9bf36f7a3c67dc8da35eaf3233fc2d440634a2510355c2fc1d7446ab8a218",
+      "githubDigestRecorded": true
+    },
+    {
+      "id": "10143266963",
+      "name": "required-ci-34454517944-1",
+      "sha256": "b7034f320d86317ef571953e2f9934e9d1ed8a9dffc9ec6c3d8ff4e7b8c20594",
+      "githubDigestRecorded": true
+    }
+  ],
+  "sourceVerification": {
+    "sourceHeadTxt": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
+    "ciSummaryCheckedOutSha": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
+    "ciSummaryCheckedOutTree": "5c0b7667e8775f04c67b62285a78d9805b473f23",
+    "sourceStatus": "recorded_from_published_run_and_local_tree"
+  },
+  "finalCiEvidence": {
+    "unitTests": { "tests": 1229, "passed": 1229, "failed": 0 },
+    "originalGoldenComparisonPerformedByThisNormalCi": false
+  },
+  "retainedFailures": {
+    "r6_17": { "runId": "34385617080", "cause": "google_chrome_apt_packages_gz_hash_sum_mismatch", "notRelabelledSuccess": true },
+    "r6_18": { "runId": "34387082287", "cause": "real_ramp_supports_protruded_through_drivable_surface", "notRelabelledSuccess": true },
+    "originalGolden": { "runId": "34324754353", "passed": 0, "failed": 4, "pixelThreshold": 0.12, "failureFraction": 0.08, "referencesChanged": false, "predatesR6_21ChaseRestore": true }
+  },
+  "acceptance": {
+    "activeUnit": "RSH-036",
+    "activeUnitAccepted": false,
+    "acceptedUnits": 35,
+    "totalUnits": 67,
+    "remainingUnits": 32,
+    "nextUnitActivated": false,
+    "freezeGranted": false,
+    "mergeAuthorized": false
+  },
+  "scope": "Records the published r6.24 required-ci success on d02e110. Not freeze, not original-golden acceptance, not later-head validation."
+}

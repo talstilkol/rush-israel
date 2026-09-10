@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.24",
+  "revision": "r6.26",
   "date": "2026-09-10",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "369dfe7a73bc225750d78c29497d90878960c930",
+  "source_pr_head": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 34,
+    "audit_items": 36,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -364,7 +364,9 @@
         "AUD-31",
         "AUD-32",
         "AUD-33",
-        "AUD-34"
+        "AUD-34",
+        "AUD-35",
+        "AUD-36"
       ]
     },
     {
@@ -1309,6 +1311,32 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-GOLDEN-REVIEW-r6.24.json"
+    },
+    {
+      "id": "AUD-35",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "r6.8 0.36/1.8 camera delta and HUD-on-black captures are not post-r6.21 original-golden scene evidence",
+      "acceptance": "r6.8 camera deltas and HUD-on-black world labels must fail closed as post-restore attribution. Live snapCamera(true) at g01/g05/g07/g08 must match historical rest chase 7.4/1.92 with a lit WebGL buffer. Remaining pixel 0/4 is world (50 ramps / 722 colliders vs historical 32/541). PNG refresh and treating this probe as original-golden fail closed. Retain freeze path count 85 and generation 11. Attribution is not freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-GOLDEN-ATTRIBUTION-r6.25.json"
+    },
+    {
+      "id": "AUD-36",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Catalogue counts (50 ramps / 722 colliders) are not pixel-layer attribution of original-golden 0/4",
+      "acceptance": "Catalogue-count-only world labels must fail closed. Live snapCamera(true) at g01/g05/g07/g08 must hide classified ramps/piers/water/instanced/other and record per-layer sample change. Classified membership is 50 decks / 100 strips / 176 piers. PNG refresh and treating this probe as original-golden fail closed. Retain freeze path count 85 and generation 11. Layer isolation is not freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-LAYER-r6.26.json"
     }
   ],
   "legacy_findings": [
@@ -1740,25 +1768,25 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.22",
-    "base_head": "cc7c017548a3f29e6b3326cff7d0e50431f58c43",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.22.md",
+    "revision": "r6.26",
+    "base_head": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.26.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
-      "revision": "r6.21",
-      "head": "cc7c017548a3f29e6b3326cff7d0e50431f58c43",
-      "tree": "89958d495b24585b36a8320ad22898730bc2419c",
-      "run_id": 34445990921,
-      "job_id": 102770784283,
-      "unit_passed": 1167,
+      "revision": "r6.24",
+      "head": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
+      "tree": "5c0b7667e8775f04c67b62285a78d9805b473f23",
+      "run_id": 34454517944,
+      "job_id": 102797680687,
+      "unit_passed": 1229,
       "unit_failed": 0,
       "golden_passed": 0,
       "golden_failed": 4,
-      "golden_source": "preparation 34324754353",
-      "required_ci_artifact_id": 10139930417,
-      "required_ci_artifact_sha256": "082b53b7d04174db52cce0a05e4dc3f6a7c37dad66ad8982b74d8a7bbf1a9d19",
-      "audit_source_artifact_id": 10139658302,
-      "audit_source_artifact_sha256": "c1b494740b9667ff509780171681c2dbbba08eb174106dd650e3ae453fcd8808",
+      "golden_source": "live original protocol r6.24; historical preparation 34324754353 predates r6.21",
+      "required_ci_artifact_id": 10143266963,
+      "required_ci_artifact_sha256": "b7034f320d86317ef571953e2f9934e9d1ed8a9dffc9ec6c3d8ff4e7b8c20594",
+      "audit_source_artifact_id": 10142884342,
+      "audit_source_artifact_sha256": "02e9bf36f7a3c67dc8da35eaf3233fc2d440634a2510355c2fc1d7446ab8a218",
       "not_unit_acceptance": true
     },
     "retained_r6_17_failure": {
@@ -1780,9 +1808,9 @@
       "not_relabelled_success": true
     },
     "normal_ci": "pending_exact_published_head_validation",
-    "golden": "r6.15 original0/4; unchanged images/thresholds to be rerun",
+    "golden": "r6.26 catalogue 50/722 is not pixel-layer proof; g07 ramps 69%, g05/g08 ramps 0%; camera 7.4/1.92; unchanged images/thresholds",
     "dependency_closure": "3 product font URLs pinned; remote CDN bytes still unpinned; complete_dependency_closure false",
-    "clearance": "r6.22 complete arcade lap probe; r6.21 rest chase 7.4/1.92 overlay; r6.17 sampled whole-route arcade envelope retained; r6.19 slab-underside support height",
+    "clearance": "r6.26 world-layer isolation; r6.25 rest-camera attribution; r6.24 original-golden protocol; r6.23 visual hull; r6.22 complete arcade lap; r6.21 rest chase 7.4/1.92 overlay",
     "record_policy": "physicsVersion7 frozen fixture; v6 rows drop; conversion remains forbidden"
   },
   "r6_9_diagnostic_checkpoint": {

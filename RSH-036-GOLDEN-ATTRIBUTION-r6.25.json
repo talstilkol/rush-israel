@@ -1,0 +1,71 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.25",
+  "date": "2026-09-10",
+  "base": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
+  "finding": "AUD-35",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.23",
+    "head": "369dfe7a73bc225750d78c29497d90878960c930",
+    "tree": "af3fb764560d8a21a7577ea8810c91ef740a3f0b",
+    "run_id": 34452081855,
+    "job_id": 102789874804,
+    "unit_passed": 1206,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "golden_source": "live original protocol on r6.24; historical preparation 34324754353 predates r6.21",
+    "required_ci_artifact_id": 10142278450,
+    "required_ci_artifact_sha256": "1ed0edf10d94cb6b466b7271e9d12828c8725008f83f464be781652abcb31522",
+    "audit_source_artifact_id": 10141940592,
+    "audit_source_artifact_sha256": "9b225f3ee233dd775eeb0cdcc5faef8d6b781ee05262f7a76cab36f2858537b3",
+    "not_unit_acceptance": true
+  },
+  "defect": "r6.8 camera attribution (delta_y 0.36 / delta_z -1.8) and HUD-on-black page screenshots were being treated as post-r6.21 original-golden scene evidence. Live original protocol 0/4 (61.58 / 50.56 / 31.22 / 64.73%) did not record rest-camera matrices or scene luminance.",
+  "repair": "Direct-engine rest-camera attribution after snapCamera(true). r6.8 0.36/1.8 deltas and HUD-on-black world labels fail closed. Live rest chase matches historical 7.4/1.92 at all four poses; scene buffers are lit; remaining original-golden mismatch is world (50 ramps / 722 colliders vs historical 32/541). PNG refresh, threshold drift and original-golden comparisons on this probe fail closed. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "camera_matches_historical_world_remaining",
+    "protocol": "rest-camera-attribution-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "colliderCount": 722,
+    "legacyCount": 546,
+    "pierCount": 176,
+    "rampCount": 50,
+    "historicalRamps": 32,
+    "historicalColliders": 541,
+    "frames": [
+      { "id": "g01", "follow": 7.4, "height": 1.92, "fov": 58, "nonBlackFraction": 0.9184, "litSamples": 45, "attribution": "world" },
+      { "id": "g05", "follow": 7.4, "height": 1.92, "fov": 58, "nonBlackFraction": 1, "litSamples": 49, "attribution": "world" },
+      { "id": "g07", "follow": 7.4, "height": 1.92, "fov": 58, "nonBlackFraction": 0.9388, "litSamples": 46, "attribution": "world" },
+      { "id": "g08", "follow": 7.4, "height": 1.92, "fov": 58, "nonBlackFraction": 0.9796, "litSamples": 48, "attribution": "world" }
+    ],
+    "camera_matches_historical": true,
+    "historical_camera_g01": [1061.4374999999397, 3.128551539288133, -1056.0344000000425]
+  },
+  "new_cases": {
+    "total": 27,
+    "source": "scripts/golden-attribution.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after world divergence from 26 August PNG lock (32 ramps / 541 colliders)",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}

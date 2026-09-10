@@ -1,0 +1,74 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.26",
+  "date": "2026-09-10",
+  "base": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
+  "finding": "AUD-36",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.24",
+    "head": "d02e110baa4e3b74976d0b7ad1e0576faa431953",
+    "tree": "5c0b7667e8775f04c67b62285a78d9805b473f23",
+    "run_id": 34454517944,
+    "job_id": 102797680687,
+    "unit_passed": 1229,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "golden_source": "live original protocol r6.24; historical preparation 34324754353 predates r6.21",
+    "required_ci_artifact_id": 10143266963,
+    "required_ci_artifact_sha256": "b7034f320d86317ef571953e2f9934e9d1ed8a9dffc9ec6c3d8ff4e7b8c20594",
+    "audit_source_artifact_id": 10142884342,
+    "audit_source_artifact_sha256": "02e9bf36f7a3c67dc8da35eaf3233fc2d440634a2510355c2fc1d7446ab8a218",
+    "not_unit_acceptance": true
+  },
+  "defect": "r6.25 labelled remaining original-golden 0/4 as world from catalogue counts (50 ramps / 722 colliders vs historical 32/541). Catalogue counts have no per-layer sample change and cannot attribute pixels.",
+  "repair": "Direct-engine world-layer isolation after snapCamera(true). Catalogue-count-only labels fail closed. Classified membership is 50 decks / 100 strips / 176 piers. Each of ramps/piers/water/instanced/other is hidden at g01/g05/g07/g08 and sample change is recorded. PNG refresh and original-golden comparisons on this probe fail closed. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "layers_isolated_camera_locked_world_remaining",
+    "protocol": "world-layer-isolation-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "colliderCount": 722,
+    "legacyCount": 546,
+    "pierCount": 176,
+    "rampCount": 50,
+    "decks": 50,
+    "strips": 100,
+    "classifiedPiers": 176,
+    "classified": { "ramps": 150, "piers": 176, "water": 90, "instanced": 40, "other": 698 },
+    "historicalRamps": 32,
+    "historicalColliders": 541,
+    "frames": [
+      { "id": "g01", "follow": 7.4, "height": 1.92, "fov": 58, "nonBlackFraction": 0.9184, "contributing": ["ramps", "piers", "instanced", "other"], "layers": { "ramps": 0.2653, "piers": 0.0612, "water": 0, "instanced": 0.1224, "other": 0.551 } },
+      { "id": "g05", "follow": 7.4, "height": 1.92, "fov": 58, "nonBlackFraction": 1, "contributing": ["water", "instanced", "other"], "layers": { "ramps": 0, "piers": 0, "water": 0.1633, "instanced": 0.0408, "other": 0.7959 } },
+      { "id": "g07", "follow": 7.4, "height": 1.92, "fov": 58, "nonBlackFraction": 0.9388, "contributing": ["ramps", "other"], "layers": { "ramps": 0.6939, "piers": 0, "water": 0, "instanced": 0, "other": 0.3061 } },
+      { "id": "g08", "follow": 7.4, "height": 1.92, "fov": 58, "nonBlackFraction": 0.9796, "contributing": ["water", "instanced", "other"], "layers": { "ramps": 0, "piers": 0, "water": 0.102, "instanced": 0.0408, "other": 0.8571 } }
+    ],
+    "finding": "g07 ramp-dominated; g05 and g08 have zero ramp contribution; other meshes dominate three of four poses"
+  },
+  "new_cases": {
+    "total": 27,
+    "source": "scripts/world-layer.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after mixed world-layer divergence from 26 August PNG lock",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}
