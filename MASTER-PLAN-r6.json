@@ -1,19 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.23",
+  "revision": "r6.24",
   "date": "2026-09-10",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "status": "owner_authorised_candidate_pending_validation_and_merge",
   "source_main": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-  "source_pr_head": "cfcb99008be1aa1e8c3296e97c40d15ec46c059b",
+  "source_pr_head": "369dfe7a73bc225750d78c29497d90878960c930",
   "owner_authorisation_id": "OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT",
   "counts": {
     "units": 67,
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 33,
+    "audit_items": 34,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -363,7 +363,8 @@
         "AUD-30",
         "AUD-31",
         "AUD-32",
-        "AUD-33"
+        "AUD-33",
+        "AUD-34"
       ]
     },
     {
@@ -1279,7 +1280,7 @@
       "legacy_findings": [],
       "title": "The r6.17 120-step / 1.62 m drive was not a complete Ayalon lap through 8 checkpoints",
       "acceptance": "A 120-step drive must fail closed as complete-race qualification. Production aiInput plus 120 Hz ArcadeCar.step and consumeCheckpoints must finish an open lap (progress ≥ 0.96, lastCheckpoint 7, 0 burials, 0 respawns) on the live 722-collider catalogue. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7, freeze path count 85 and original golden gates. Arcade lap is not mesh clearance or freeze.",
-      "status": "repair_candidate_pending_exact_head_validation",
+      "status": "verified_exact_r6_22_head_run34449950487_retained",
       "bundle": "CR-04",
       "evidence": "RSH-036-RACE-REVIEW-r6.22.json"
     },
@@ -1292,9 +1293,22 @@
       "legacy_findings": [],
       "title": "The 1.05-radius arcade circle and 1.25 half-length box are not the visual car mesh",
       "acceptance": "Arcade-only 1s evidence must fail closed as mesh clearance. Visual hulls from live car-mesh layout must report 0 hits on the live 722-collider catalogue at rest (grid, 781 centerline, ±2.2 lanes) and during yawed AI samples. A 1.6 m front pole must fail the arcade circle and pass the hull. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7, freeze path count 85 and original golden gates. Visual hull is not triangle clipping, freeze or original-golden.",
-      "status": "repair_candidate_pending_exact_head_validation",
+      "status": "verified_exact_r6_23_head_run34452081855_retained",
       "bundle": "CR-04",
       "evidence": "RSH-036-MESH-REVIEW-r6.23.json"
+    },
+    {
+      "id": "AUD-34",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Non-authority Ayalon capture is not original-golden comparison; historical 0/4 predates the r6.21 chase restore",
+      "acceptance": "Required-ci capture with comparisons 0 must fail closed as original-golden. The original protocol (gotoGolden, photo=false, 1280x800, threshold 0.12, fail 8%) must run and record per-frame mismatch. PNG refresh, threshold drift and skipped comparison fail closed. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7, freeze path count 85 and generation 11. Pixel 0/4 is not freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-GOLDEN-REVIEW-r6.24.json"
     }
   ],
   "legacy_findings": [

@@ -690,5 +690,18 @@ golden 0/4, immutable CDN bytes, rendering performance and freeze remain
 open. Do not merge, replace PNGs, change thresholds or activate RSH-037.
 Details: RSH-036-MESH-REVIEW-r6.23.json and RSH-036-RUNTIME-REPAIR-r6.23.md.
 
+## r6.24 — 10 September 2026: original golden protocol after chase restore
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-34 runs the
+original pixel-golden protocol. Required-ci capture is non-authority
+(comparisons 0). PNG bytes last changed 26 August 12:00:42Z, 85 minutes before
+spaghetti ramps. Live comparison after the 7.4/1.92 restore: 0/4
+(61.58 / 50.56 / 31.22 / 64.73%). Freeze path count stays 85. Immutable CDN
+bytes, rendering performance and freeze remain open. Do not merge, replace
+PNGs, change thresholds or activate RSH-037.
+Details: RSH-036-GOLDEN-REVIEW-r6.24.json, RSH-036-RUNTIME-REPAIR-r6.24.md and
+docs/evidence/r6.23-published-ci-verification.json.
+
+
 
 
