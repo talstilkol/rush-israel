@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "26977619a84f94b760311b4ed24bcdd37b5f2d0565f7af66d11253b4d8afaced"
+      "sha256": "25c95486f6d152f2a7c94c81360ff6a4b1a2a2b1056effff7f295f2fff5323f7"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 11392,
-      "sha256": "270e4b2a2574e79cac7a1b18775129bf206d657bbe1e6c0866adfc51a1467237"
+      "bytes": 11508,
+      "sha256": "a63d41688d853e151b6cc732e063da7348a5d123280e31f8ecb0f35436522aa8"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2235,6 +2235,16 @@
       "path": "scripts/world-factor.test.mjs",
       "bytes": 9218,
       "sha256": "b6ebae16cc18886c7722d71f46b90b8a4f0f83b1f04f5c8e1fb8bea5d79a01c1"
+    },
+    {
+      "path": "scripts/world-gain-browser.mjs",
+      "bytes": 27992,
+      "sha256": "125b5daa2e34a4400554729a91c172e4a32d13e2094a9755e2d98daf8e42166c"
+    },
+    {
+      "path": "scripts/world-gain.test.mjs",
+      "bytes": 10685,
+      "sha256": "e00e7fb5585946f3749443ea2d058ccd851b752779cfb097deff243bfabe5c09"
     },
     {
       "path": "scripts/world-ibl-browser.mjs",
@@ -2474,7 +2484,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "b2f15aaea2829a24e8c6c9f66249e9830977642f7d353ba60beb32c361cdf90b"
+      "sha256": "c580b1abfc416ad96efb11417734a047127f82ff6fa434166a6905fe4ec43bc3"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10726,5 +10736,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "4f363fb8e288d3e43805854e427012f97262e758b5f14b1566d8371fe2b4afe5"
+  "digest_sha256": "79d7a668470c3f41a20f6b02510ab302fefe9cc226bfdbe9257cf8ac50d0cb42"
 }

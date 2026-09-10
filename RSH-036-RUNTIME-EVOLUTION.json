@@ -353,7 +353,7 @@
     },
     "scripts/runtime-recovery-smoke.mjs": {
       "previous_sha256": null,
-      "current_sha256": "270e4b2a2574e79cac7a1b18775129bf206d657bbe1e6c0866adfc51a1467237",
+      "current_sha256": "a63d41688d853e151b6cc732e063da7348a5d123280e31f8ecb0f35436522aa8",
       "reverse_edits": []
     },
     "src/game/road-assets.ts": {
