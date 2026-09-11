@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-11T15:30:00Z",
+  "generated_at": "2026-09-11T15:45:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.59.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.60.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2018,7 +2018,7 @@
           "id": "GFX-02",
           "track": "ayalon",
           "defect": "leftover gray cubemap vs IBL-off B −18.5/−20.2; not material envMapIntensity",
-          "status": "r6_59_done_aud_70_next"
+          "status": "r6_60_done_aud_71_next"
         },
         {
           "id": "GFX-03",
@@ -2036,12 +2036,13 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_hint_equal_hcol_hgnd_equal_gray_not_full_suite_expected_2205",
+      "status": "focused_28_passed_live_hgray_hue_hblack_equal_hint_not_full_suite_expected_2233",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2205,
+      "expected_total": 2233,
+      "predecessor_r6_59_expected": 2205,
       "predecessor_r6_58_expected": 2177,
       "predecessor_r6_57_expected": 2149,
       "predecessor_r6_56_expected": 2121,
@@ -3111,6 +3112,32 @@
         "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
         "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
         "counts": { "hint": 1, "hcol": 1, "hgnd": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "originalGoldenComparisons": 0
+      },
+      "live_world_hex": {
+        "status": "g01_g05_day_bottom_hgray_hue_hblack_equal_hint_g08_unrebaked_g07_upper_none",
+        "protocol": "world-hex-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
+        "dominant": ["bottom", "bottom", "upper", "bottom"],
+        "dominantHex": ["intensity", "intensity", "hgray", "intensity"],
+        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
+        "hgrayAxis": [["hgray"], ["hgray"], [], []],
+        "hblackAxis": [["hblack"], ["hblack"], ["hblack"], ["hblack"]],
+        "hintAxis": [["hint"], ["hint"], [], ["hint"]],
+        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
+        "productGroundHex": 13685976,
+        "productExposure": 0.56,
+        "hgrayBlueDelta": [-12.42, -13.7, 5.98, -5.68],
+        "hblackBlueDelta": [-17.72, -19.57, 5.06, -11.43],
+        "hintBlueDelta": [-17.72, -19.57, 4.77, -11.43],
+        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
+        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
+        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
+        "counts": { "hgray": 1, "hblack": 1, "hint": 1, "hue": 1, "intensity": 1, "fill": 1 },
         "originalGoldenComparisons": 0
       }
     },

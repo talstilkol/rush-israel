@@ -1287,6 +1287,25 @@ thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-HEMI-r6.59.json, RSH-036-RUNTIME-REPAIR-r6.59.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.60 — 11 September 2026: leftover-occupying hemi.color splits as 0xa8c8e8 vs 0x808080 hue plus 0x000000 presence
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-70 isolates
+hemi.color 0x808080 vs 0x000000 vs intensity 0 on a 0x808080 fromScene
+independently of groundColor vs AmbientLight vs RectAreaLight vs 0x3a9ae0 hue
+vs sun intensity vs fill after setNight/snapCamera(true). r6.59 leftover-
+occupying hemi is hemi.color (hint ≡ hcol B −17.7/−19.6). g01/g05 day-bottom
+0xa8c8e8 vs 0x808080 occupies B −12.4/−13.7. 0x000000 ≡ intensity 0 occupies
+the full hemi leftover (B −17.7/−19.6). Remainder after neutralizing to gray
+is B −5.3/−5.9. Hue occupies B −30.2/−32.8. Intensity occupies luma
+(−28.0/−31.1/−11.5). Fill joins intensity on g08 night (−12.4). setNight does
+not rebake. g07 upper remains ramps. Camera stays 7.4/1.92. Freeze path count
+stays 85. GFX-01 and GFX-03 stay queued after RSH-036 and are not remaining
+0/4. Do not merge, replace PNGs, change thresholds, retune color or exposure
+or activate RSH-037.
+Details: RSH-036-WORLD-HEX-r6.60.json, RSH-036-RUNTIME-REPAIR-r6.60.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

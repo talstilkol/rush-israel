@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.59",
+  "revision": "r6.60",
   "date": "2026-09-11",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 69,
+    "audit_items": 70,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -399,7 +399,8 @@
         "AUD-66",
         "AUD-67",
         "AUD-68",
-        "AUD-69"
+        "AUD-69",
+        "AUD-70"
       ]
     },
     {
@@ -1799,6 +1800,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-HEMI-r6.59.json"
+    },
+    {
+      "id": "AUD-70",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Combined leftover-occupying hemi.color splits as 0xa8c8e8 versus 0x808080 hue plus 0x000000 presence",
+      "acceptance": "Hemi-only reports without hgray/hblack/hint/hue/intensity/fill luma and B-channel deltas plus a dominantHex must fail closed. Live snapCamera(true) at g01/g05/g07/g08 must isolate those six axes after setNight and measure isolated band L2, luma and B against the locked 26 August PNG. hgray/hblack/hint deltas use the 0x808080 hue buffer as baseline. Product ground hex must stay 0xd0d4d8 and product exposure 0.56. Retain freeze path count 85 and generation 11. Hex isolation is not freeze. GFX-01 and GFX-03 stay queued after RSH-036.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-HEX-r6.60.json"
     }
   ],
   "legacy_findings": [
@@ -2230,9 +2244,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.59",
-    "base_head": "2f13e05",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.59.md",
+    "revision": "r6.60",
+    "base_head": "16e42b1",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.60.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",
