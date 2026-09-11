@@ -1512,6 +1512,25 @@ thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-WGI-r6.70.json, RSH-036-RUNTIME-REPAIR-r6.70.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.71 — 11 September 2026: leftover g07 after ignd is remaining non-mesh, not unnamed meshes, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-81 isolates
+leftover g07 after ramps+buildings+instanced+ground as remaining unnamed
+occupancy versus env independently of sky vs piers vs extras after
+setNight/snapCamera(true). g07 leftover after ignd is remaining non-mesh
+occupancy (leftover 0.2087), not remaining unnamed world meshes (unnamed
+bandDelta −0.006 below 0.02, leftover → 0.2027) and not env (≈ 0). both ≡
+unnamed. sky ≡ 0. extras ≡ 0. piers occupy a tiny leftover axis (−0.0057)
+that accounts for unnamed. Remaining after all world meshes hidden is still
+~20% non-mesh occupancy. leftover-after-ignd-as-env ≈ 0. Camera stays
+7.4/1.92. Freeze path count stays 85. GFX-01, GFX-03, GFX-04, GFX-05 and
+GFX-06 stay queued after RSH-036 and are not remaining 0/4. Do not merge,
+replace PNGs, change thresholds, retune color or exposure or activate
+RSH-037.
+Details: RSH-036-WORLD-ULEFT-r6.71.json, RSH-036-RUNTIME-REPAIR-r6.71.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

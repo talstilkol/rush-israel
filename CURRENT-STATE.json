@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.70.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.71.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2017,8 +2017,8 @@
         {
           "id": "GFX-02",
           "track": "ayalon",
-          "defect": "leftover g07 after ramps+buildings is instanced+ground not water not glass (bandDelta −0.0345/−0.0453, leftover 0.3313 → 0.2968/0.2860); leftover-after-buildings-as-env ≈ 0",
-          "status": "r6_70_done_aud_81_next"
+          "defect": "leftover g07 after ramps+buildings+instanced+ground is remaining non-mesh not unnamed meshes not env (leftover 0.2087, unnamed −0.006 below 0.02, leftover-after-ignd-as-env ≈ 0)",
+          "status": "r6_71_done_aud_82_next"
         },
         {
           "id": "GFX-03",
@@ -2072,13 +2072,13 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_g07_after_ramps_buildings_is_instanced_and_ground_not_water_not_glass_not_full_suite_expected_2513",
+      "status": "focused_28_passed_live_g07_after_ignd_is_remaining_non_mesh_not_unnamed_not_env_not_full_suite_expected_2541",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2513,
-      "predecessor_r6_69_expected": 2485,
+      "expected_total": 2541,
+      "predecessor_r6_70_expected": 2513,
       "predecessor_r6_68_expected": 2457,
       "predecessor_r6_67_expected": 2429,
       "predecessor_r6_66_expected": 2401,
@@ -3354,6 +3354,25 @@
         "instancedHiddenPct": [0.8612, 0.8396, 0.2968, 0.8564],
         "groundHiddenPct": [0.9641, 0.9844, 0.286, 0.9904],
         "counts": { "ramps": 150, "leftover": 846, "water": 847, "glass": 926, "instanced": 893, "ground": 847, "road": 848, "env": 847, "buildings": 696 },
+        "originalGoldenComparisons": 0
+      },
+      "live_world_uleft": {
+        "status": "g07_after_ignd_is_remaining_non_mesh_not_unnamed_not_env_not_sky_not_extras_piers_below_threshold",
+        "protocol": "world-uleft-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "dominantUleft": ["both", "both", "both", "both"],
+        "unnamedBandDelta": [0, 0, -0.006, 0],
+        "envBandDelta": [0, 0, 0.0002, 0],
+        "bothBandDelta": [0, 0, -0.006, 0],
+        "skyBandDelta": [0, 0, 0, 0],
+        "piersBandDelta": [0, 0, -0.0057, 0],
+        "extrasBandDelta": [0, 0, 0, 0],
+        "leftoverBaselinePct": [0.9907, 0.9844, 0.2087, 0.9904],
+        "unnamedHiddenPct": [0.9907, 0.9844, 0.2027, 0.9904],
+        "counts": { "ramps": 150, "leftover": 894, "unnamed": 1154, "env": 895, "both": 1155, "sky": 895, "piers": 1070, "extras": 894, "buildings": 696, "instanced": 47, "ground": 1 },
         "originalGoldenComparisons": 0
       }
     },
