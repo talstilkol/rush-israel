@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.74",
+  "revision": "r6.75",
   "date": "2026-09-11",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 84,
+    "audit_items": 85,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -2004,6 +2004,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-TMAP-r6.74.json"
+    },
+    {
+      "id": "AUD-85",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Leftover g07 after world.group+outside is remaining empty-scene vs golden independently of camera fov vs near vs far",
+      "acceptance": "Tmap-only reports without fov/near/far/env/both/clip bandDelta plus a dominantCam and leftoverBaselinePct must fail closed. Live snapCamera(true) at g01/g05/g07/g08 must isolate those six leftover-after-world.group+outside axes after setNight and measure isolated band L2, luma, B and bandDelta against the locked 26 August PNG. Deltas use the empty-scene leftover buffer as baseline. Product ground hex must stay 0xd0d4d8, product exposure 0.56, product fov 58 / near 0.28 / far >= 10000 stay on leftover. Retain freeze path count 85 and generation 11. Cam isolation is not freeze. GFX-01, GFX-03, GFX-04, GFX-05, GFX-06 and GFX-07 stay queued after RSH-036.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-CAM-r6.75.json"
     }
   ],
   "legacy_findings": [
@@ -2435,9 +2448,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.74",
-    "base_head": "cb188ed",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.74.md",
+    "revision": "r6.75",
+    "base_head": "b9433eb",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.75.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",

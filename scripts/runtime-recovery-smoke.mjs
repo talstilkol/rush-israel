@@ -58,6 +58,7 @@ import { verifyWorldUleft } from './world-uleft-browser.mjs';
 import { verifyWorldNmesh } from './world-nmesh-browser.mjs';
 import { verifyWorldOgrp } from './world-ogrp-browser.mjs';
 import { verifyWorldTmap } from './world-tmap-browser.mjs';
+import { verifyWorldCam } from './world-cam-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -169,6 +170,7 @@ try {
   results.push(...await verifyWorldNmesh(browser, url));
   results.push(...await verifyWorldOgrp(browser, url));
   results.push(...await verifyWorldTmap(browser, url));
+  results.push(...await verifyWorldCam(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));

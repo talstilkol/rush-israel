@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.74.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.75.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2017,8 +2017,8 @@
         {
           "id": "GFX-02",
           "track": "ayalon",
-          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not toneMapping not ColorManagement not env (leftover 0.2027, LinearSRGB +0.7482 increases, leftover-after-empty-as-env \u2261 0)",
-          "status": "r6_74_done_aud_85_next"
+          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not fov not near not far not env (leftover 0.2027, fov/near/far/clip \u2261 0, leftover-after-empty-as-env \u2261 0)",
+          "status": "r6_75_done_aud_86_next"
         },
         {
           "id": "GFX-03",
@@ -2084,12 +2084,12 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_tone_not_mgmt_not_env_linear_srgb_increases_not_full_suite_expected_2625",
+      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_fov_not_near_not_far_not_env_not_full_suite_expected_2653",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2625,
+      "expected_total": 2653,
       "predecessor_r6_72_expected": 2569,
       "predecessor_r6_71_expected": 2541,
       "predecessor_r6_70_expected": 2513,
@@ -6847,6 +6847,78 @@
           "env": 2083,
           "both": 2086,
           "enc": 2085,
+          "buildings": 696,
+          "instanced": 47,
+          "ground": 1,
+          "remaining": 260
+        },
+        "originalGoldenComparisons": 0
+      },
+      "predecessor_r6_74_expected": 2625,
+      "live_world_cam": {
+        "status": "g07_after_empty_is_remaining_empty_scene_vs_golden_not_fov_not_near_not_far_not_env",
+        "protocol": "world-cam-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "dominantCam": [
+          "both",
+          "both",
+          "both",
+          "both"
+        ],
+        "fovBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "nearBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "farBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "envBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "bothBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "clipBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "leftoverBaselinePct": [
+          0.9907,
+          0.9844,
+          0.2027,
+          0.9904
+        ],
+        "counts": {
+          "ramps": 150,
+          "leftover": 2082,
+          "fov": 2083,
+          "near": 2083,
+          "far": 2083,
+          "env": 2083,
+          "both": 2086,
+          "clip": 2085,
           "buildings": 696,
           "instanced": 47,
           "ground": 1,

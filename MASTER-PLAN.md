@@ -1577,6 +1577,21 @@ queued after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs,
 change thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-TMAP-r6.74.json and RSH-036-RUNTIME-REPAIR-r6.74.md.
 
+## r6.75 — 11 September 2026: leftover g07 after world.group+outside is remaining empty-scene vs golden, not fov, not near, not far, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-85 isolates
+leftover g07 after world.group+outside as remaining empty-scene vs golden
+independently of camera fov vs near vs far after setNight/snapCamera(true).
+g07 leftover is remaining empty-scene vs golden (leftover 0.2027), not fov 90
+(≡ 0, L2 ≡ 0), not near 8 (≡ 0), not far 80 (≡ 0) and not env (≡ 0). Empty
+leftover has no world geometry for a frustum change to reproject. Product fov
+58 stays. Camera stays 7.4/1.92. Freeze path count stays 85. GFX-01, GFX-03,
+GFX-04, GFX-05, GFX-06 and GFX-07 stay queued after RSH-036 and are not
+remaining 0/4. Do not merge, replace PNGs, change thresholds, retune color or
+exposure or activate RSH-037.
+Details: RSH-036-WORLD-CAM-r6.75.json and RSH-036-RUNTIME-REPAIR-r6.75.md.
+
+
 
 
 

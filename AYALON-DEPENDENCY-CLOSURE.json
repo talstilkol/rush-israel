@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "6ff71588b400ec083b143d4ed26ce0b69ac7e96ac28dfd34cce277a591ac5a3e"
+      "sha256": "fd51c783db811f79e08831f9245a820c4b15f9ee55db716c001462e9b314867d"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 14991,
-      "sha256": "8c3825af6f24a82139d77816eb3a3c96f4d0959add878043ff596b9a1cb23d7d"
+      "bytes": 15104,
+      "sha256": "f0db3a0d9c8e057c800be22b6e7821ff0ad23250bbbdf97d95bb9147b4250229"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2247,6 +2247,16 @@
       "sha256": "d7b698744ba9895ab6aa45c2a21b2afee6e7ffd70b8d3f562af45303c83e62f6"
     },
     {
+      "path": "scripts/world-cam-browser.mjs",
+      "bytes": 54337,
+      "sha256": "4097b70d5c24a98c5745c1935236f3a2838a8c9584b2187857109fd2de12a942"
+    },
+    {
+      "path": "scripts/world-cam.test.mjs",
+      "bytes": 11604,
+      "sha256": "e4fd7f3b66e7717a1550b1fb1866b5b74f2044ed67141ca5c4e20755959f9021"
+    },
+    {
       "path": "scripts/world-column-browser.mjs",
       "bytes": 18078,
       "sha256": "743b5cb5015652dda483ad4c640fef18e53f5eeb0713bfa439cfb925cd4de307"
@@ -2343,8 +2353,8 @@
     },
     {
       "path": "scripts/world-gleft.test.mjs",
-      "bytes": 11303,
-      "sha256": "1bd79a640e97e5d13a5721e2df44568a19eae066567fd26c8627108567fda2de"
+      "bytes": 11362,
+      "sha256": "6af03fc0d54e51ddccaf6aaf0e6a9c5dacb999b349356703456270f09c977cab"
     },
     {
       "path": "scripts/world-gray-browser.mjs",
@@ -2463,8 +2473,8 @@
     },
     {
       "path": "scripts/world-nmesh.test.mjs",
-      "bytes": 11331,
-      "sha256": "0908e3798d3c1be9dbde5ffbf21cc6845269328b1d1ba87ae196514cc9776150"
+      "bytes": 11390,
+      "sha256": "ea14d7750664ab9d49367b8bb63bcb4c62917f478fccb37a5fee7daac5738ddb"
     },
     {
       "path": "scripts/world-off-browser.mjs",
@@ -2483,8 +2493,8 @@
     },
     {
       "path": "scripts/world-ogrp.test.mjs",
-      "bytes": 11170,
-      "sha256": "fa5cb3a8c06be3d7b01cbb2cf4171af4808d022bd6d0863b47ebec72b9da5dbb"
+      "bytes": 11229,
+      "sha256": "82ed5525093da1c56c8d58ded1229fb0c667cb158bfdfbf705953f515ec5fb28"
     },
     {
       "path": "scripts/world-probe-browser.mjs",
@@ -2633,8 +2643,8 @@
     },
     {
       "path": "scripts/world-tmap.test.mjs",
-      "bytes": 11217,
-      "sha256": "b1af7f9ee85ab3d8a0f43bb9156d1c48d27d6f0d9e681db60f41b0874ec1e2e1"
+      "bytes": 11276,
+      "sha256": "3b475a65c653a265747c4df24b86c1b7b1738936399112bfe2a7bbcf9cababfe"
     },
     {
       "path": "scripts/world-tone-browser.mjs",
@@ -2653,8 +2663,8 @@
     },
     {
       "path": "scripts/world-uleft.test.mjs",
-      "bytes": 11253,
-      "sha256": "48fc9daae2bc388f27c32d0d8943dbb586d64302de2ee8dd5b532c81edb12835"
+      "bytes": 11312,
+      "sha256": "6b2ff910bd5dad65c357b2ed69138335be334be345b7505ae9984dfafec4fe32"
     },
     {
       "path": "scripts/world-upper-browser.mjs",
@@ -2673,8 +2683,8 @@
     },
     {
       "path": "scripts/world-wgi.test.mjs",
-      "bytes": 11190,
-      "sha256": "77907c614c5d0513a962c4a358018e073e9be91523377cc1210186b4bb7c35df"
+      "bytes": 11249,
+      "sha256": "80a49aba0b73b63e01f84ad7d95dcf8dc4e88a195b707767347b85c5724f8377"
     },
     {
       "path": "scripts/write-ci-summary.mjs",
@@ -2784,7 +2794,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "a3b713cd9e3b2fd83809f3a1bdf6d2e636ad1124a35ffa6aeb2d43baf86e58dc"
+      "sha256": "1f7046b34d4aed3d68727a4aed6d34dd166efe9716dfed7076b3978f7e8a72e7"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -11036,5 +11046,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "d241df57a418c34de7e6c3fb926d352df2baea77fffc58b59f01abf58f74b783"
+  "digest_sha256": "5c497c442e71c12294c672c4c4f09e65eb03d2aa7b7f72d2b983ca34bbc3a7a5"
 }
