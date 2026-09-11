@@ -1782,6 +1782,21 @@ after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
 thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-TNC-r6.88.json and RSH-036-RUNTIME-REPAIR-r6.88.md.
 
+## r6.89 — 12 September 2026: leftover g07 after world.group+outside is remaining empty-scene vs golden, not useLegacyLights, not debug.checkShaderErrors, not xr.enabled, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-98 isolates
+leftover g07 after world.group+outside as remaining empty-scene vs golden
+independently of useLegacyLights vs debug.checkShaderErrors vs xr.enabled after
+setNight/snapCamera(true). g07 leftover is remaining empty-scene vs golden
+(leftover 0.2027), not useLegacyLights (≡ 0), not debug.checkShaderErrors off (≡ 0),
+not xr.enabled (≡ 0) and not env (≡ 0). both ≡ pack ≡ 0. Empty
+leftover has no world geometry for a useLegacyLights/checkShaderErrors/xr.enabled
+change to occupy remaining g07. Product renderer stays. Freeze path count stays 85.
+GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08 and GFX-09 stay queued
+after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-LDX-r6.89.json and RSH-036-RUNTIME-REPAIR-r6.89.md.
+
 
 
 

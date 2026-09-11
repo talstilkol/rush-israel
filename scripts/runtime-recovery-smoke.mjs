@@ -71,6 +71,7 @@ import { verifyWorldLcc } from './world-lcc-browser.mjs';
 import { verifyWorldAcd } from './world-acd-browser.mjs';
 import { verifyWorldDsa } from './world-dsa-browser.mjs';
 import { verifyWorldTnc } from './world-tnc-browser.mjs';
+import { verifyWorldLdx } from './world-ldx-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -195,6 +196,7 @@ try {
   results.push(...await verifyWorldAcd(browser, url));
   results.push(...await verifyWorldDsa(browser, url));
   results.push(...await verifyWorldTnc(browser, url));
+  results.push(...await verifyWorldLdx(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));
