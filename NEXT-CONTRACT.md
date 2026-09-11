@@ -1,7 +1,7 @@
-**Version:** 20.44.0
-**Date:** 2026-09-10, Asia/Jerusalem
+**Version:** 20.45.0
+**Date:** 2026-09-11, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 27b011439da4b03d0c188a3b2e89955cd624c073
+**Repair base:** 72eec87ba03d026a647ad42b369381aefee3e2ae
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -69,7 +69,10 @@ on g08 night (−12.4). IBL isolation splits that environment term:
 scene.environment occupies the entire blue band (B −48.7/−53.0/−33.9);
 background, Sky and material envMap are 0 on every pose. Gain isolation splits
 that remaining IBL: texture ≡ environmentIntensity (identical B
-−48.7/−53.0/−33.9); neither is an extra independent driver. g07 upper remains
+−48.7/−53.0/−33.9); neither is an extra independent driver. Cube isolation
+splits that remaining IBL: IBL-off occupies more (B −48.7/−53.0/−33.9) than
+product-vs-gray content (B −30.0/−32.5/−21.2). Product cubemap is too blue vs
+0x808080, but gray IBL still leaves a residual vs off. g07 upper remains
 ramps. Product hex
 stays `0xd0d4d8`. Preserve historical
 preparation 34324754353. PNG bytes last changed 26 August 12:00:42Z, before
@@ -94,27 +97,27 @@ required-ci-34480369405-1 SHA-256
 `0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec`. Retained;
 not relabelled a pass.
 
-## r6.44 and subsequent acceptance
-1. Remaining 0/4 is sun intensity luma plus IBL (texture ≡ environmentIntensity)
-   on g01/g05/g08 bottom: intensity occupies luma (live too bright vs dark
-   locked PNG) and IBL occupies the B channel. Nulling the cubemap and zeroing
-   environmentIntensity occupy the same remaining term. Fill joins intensity
-   on g08 night. g07 upper remains ramps. Live sampling must force 1280×800
-   pixelRatio 1 after snapCamera(true), capture product present
+## r6.45 and subsequent acceptance
+1. Remaining 0/4 is sun intensity luma plus IBL-off and product cubemap
+   blue-vs-gray on g01/g05/g08 bottom: intensity occupies luma (live too bright
+   vs dark locked PNG) and IBL-off occupies more of the B channel than swapping
+   the product cubemap for a 0x808080 PMREM. Fill joins intensity on g08 night.
+   g07 upper remains ramps. Live sampling must force 1280×800 pixelRatio 1
+   after snapCamera(true), capture product present
    (`post.setDrive(0, false); post.render()`), locate the dominant 200px band,
-   and isolate product cubemap content vs a neutral gray cubemap independently
-   of sun intensity vs fill without changing product color, exposure or
-   refreshing PNGs.
+   and isolate bakeEnv PMREM vs captureSceneEnv cube independently of sun
+   intensity vs fill without changing product color, exposure or refreshing
+   PNGs.
    Smoke must keep verifyWorldLayers, verifyWorldResidual, verifyWorldMismatch,
    verifyWorldBias, verifyWorldScene, verifyWorldRegion, verifyWorldColumn,
    verifyWorldSlice, verifyWorldExtra, verifyWorldMaterial, verifyWorldFactor,
    verifyWorldRgb, verifyWorldShade, verifyWorldTone, verifyWorldTerm,
-   verifyWorldBeam, verifyWorldRay, verifyWorldIbl and verifyWorldGain. Live
-   rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is that intensity+IBL
-   gap plus g07 upper ramps. PNG refresh, threshold drift, color retune,
-   exposure retune and skipped comparison fail closed. 176 piers, 546 legacy
-   colliders, 50 ramps, rest-pose 1.6, 1.05 radius and generation-11 lock stay.
-   Freeze path count stays 85. Pixel 0/4 is not freeze.
+   verifyWorldBeam, verifyWorldRay, verifyWorldIbl, verifyWorldGain and
+   verifyWorldCube. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is
+   that intensity+IBL gap plus g07 upper ramps. PNG refresh, threshold drift,
+   color retune, exposure retune and skipped comparison fail closed. 176 piers,
+   546 legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and generation-11
+   lock stay. Freeze path count stays 85. Pixel 0/4 is not freeze.
 2. Preserve the r6.18 Chromium install retry, the r6.19 slab-underside support
    placement, the r6.20 product font URL pins, the r6.21 rest chase 7.4/1.92,
    the r6.22 complete arcade lap, the r6.23 visual hull, the r6.24 original
@@ -125,11 +128,12 @@ not relabelled a pass.
    the r6.34 extra isolation, the r6.35 material isolation, the r6.36 factor
    isolation, the r6.37 rgb sampling, the r6.38 shade isolation, the r6.39
    tone isolation, the r6.40 term isolation, the r6.41 beam isolation, the
-   r6.42 ray isolation, the r6.43 ibl isolation and the r6.44 gain isolation.
+   r6.42 ray isolation, the r6.43 ibl isolation, the r6.44 gain isolation and
+   the r6.45 cube isolation.
 3. Preserve 1280x800 images, threshold 0.12, failure 8%, generation 11 lock and
    owner approval. Do not refresh golden PNGs or silently change typography.
    Rendering performance remains open.
 4. Only validated applicable approval may grant freeze or open RSH-037.
 
-Master plan r6.44 retains 67 units, 42 historical findings, 6 bundles and 54
+Master plan r6.45 retains 67 units, 42 historical findings, 6 bundles and 55
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "25c95486f6d152f2a7c94c81360ff6a4b1a2a2b1056effff7f295f2fff5323f7"
+      "sha256": "02fe727cef0e813ab080897349de738d63d6570cbf9b569d0c3b8bf620ffada5"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 11508,
-      "sha256": "a63d41688d853e151b6cc732e063da7348a5d123280e31f8ecb0f35436522aa8"
+      "bytes": 11624,
+      "sha256": "e42cdf99ffceb3f8f35c80ee9f8ee94b5850de12e490764180085f8d18400036"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2215,6 +2215,16 @@
       "path": "scripts/world-column.test.mjs",
       "bytes": 9199,
       "sha256": "44c33f3d2c2f396f736d8974d105445e9af8de4ce78fca2c0958590f58ad3d2e"
+    },
+    {
+      "path": "scripts/world-cube-browser.mjs",
+      "bytes": 28740,
+      "sha256": "bd49e330d8d9245b2a2b8b721d1b4f39100705e4a096c0b65db36e444f06ff38"
+    },
+    {
+      "path": "scripts/world-cube.test.mjs",
+      "bytes": 10835,
+      "sha256": "ce697273f7df599700c16b8974d3b30452d8c87eeab910745587d86ccc4152d0"
     },
     {
       "path": "scripts/world-extra-browser.mjs",
@@ -2484,7 +2494,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "c580b1abfc416ad96efb11417734a047127f82ff6fa434166a6905fe4ec43bc3"
+      "sha256": "c0c1d5de195f07dfc37508ff35d0a9f76ea8e8021bc215066da87ea074d8aba8"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10736,5 +10746,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "79d7a668470c3f41a20f6b02510ab302fefe9cc226bfdbe9257cf8ac50d0cb42"
+  "digest_sha256": "27a44224e398f00a4edbaa42ab3aea99aecb484417ec1e389ffa64e3fa96e877"
 }

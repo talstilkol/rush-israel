@@ -996,6 +996,23 @@ change thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-GAIN-r6.44.json, RSH-036-RUNTIME-REPAIR-r6.44.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.45 — 11 September 2026: combined IBL is not product cubemap content vs gray
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-55 isolates
+product cubemap content vs a 0x808080 PMREM independently of IBL-off and of
+sun intensity vs fill after setNight/snapCamera(true). r6.44 IBL was one
+combined cubemap. g01/g05/g08 bottom IBL-off occupies more (B −48.7/−53.0/−33.9)
+than product-vs-gray content (B −30.0/−32.5/−21.2). Product cubemap is too blue
+vs gray, but gray IBL still leaves a residual vs off. Intensity occupies luma
+(−28.0/−31.1/−11.5). Fill joins intensity on g08 night (−12.4). g07 upper
+remains ramps. Camera stays 7.4/1.92. Freeze path count stays 85. r6.27 lint
+no-undef is retained, not relabelled a pass. Immutable CDN bytes, rendering
+performance and freeze remain open. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-CUBE-r6.45.json, RSH-036-RUNTIME-REPAIR-r6.45.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

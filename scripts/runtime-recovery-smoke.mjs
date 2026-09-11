@@ -28,6 +28,7 @@ import { verifyWorldBeam } from './world-beam-browser.mjs';
 import { verifyWorldRay } from './world-ray-browser.mjs';
 import { verifyWorldIbl } from './world-ibl-browser.mjs';
 import { verifyWorldGain } from './world-gain-browser.mjs';
+import { verifyWorldCube } from './world-cube-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -109,6 +110,7 @@ try {
   results.push(...await verifyWorldRay(browser, url));
   results.push(...await verifyWorldIbl(browser, url));
   results.push(...await verifyWorldGain(browser, url));
+  results.push(...await verifyWorldCube(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));
