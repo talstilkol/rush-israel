@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-11T16:55:00Z",
+  "generated_at": "2026-09-11T17:20:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.66.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.67.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2018,7 +2018,7 @@
           "id": "GFX-02",
           "track": "ayalon",
           "defect": "leftover gray cubemap vs IBL-off B −18.5/−20.2; not material envMapIntensity",
-          "status": "r6_66_done_aud_77_next"
+          "status": "r6_67_done_aud_78_next"
         },
         {
           "id": "GFX-03",
@@ -2072,12 +2072,13 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_g08_fill_sun_independent_not_full_suite_expected_2401",
+      "status": "focused_28_passed_live_g07_ramps_not_sky_not_piers_not_full_suite_expected_2429",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2401,
+      "expected_total": 2429,
+      "predecessor_r6_66_expected": 2401,
       "predecessor_r6_65_expected": 2373,
       "predecessor_r6_59_expected": 2205,
       "predecessor_r6_58_expected": 2177,
@@ -3276,6 +3277,22 @@
         "envBlueDelta": [-29.97, -32.51, -16.35, -21.22],
         "hcolBlueDelta": [-8.86, -9.7, -1.5, -4.09],
         "counts": { "fill": 1, "sun": 1, "both": 1, "hcol": 1, "env": 1, "hint": 1 },
+        "originalGoldenComparisons": 0
+      },
+      "live_world_upper": {
+        "status": "g07_upper_ramps_not_sky_not_piers_g01_g05_g08_mesh_zero",
+        "protocol": "world-upper-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "dominantUpper": ["sun", "sun", "ramps", "sun"],
+        "rampsBandDelta": [0, 0, -0.1788, 0],
+        "skyBandDelta": [0, 0, 0, 0],
+        "piersBandDelta": [0, 0, 0.0011, 0],
+        "envBlueDelta": [-29.97, -32.51, -16.35, -21.22],
+        "envBandDelta": [0.0032, 0.0012, -0.0744, -0.0312],
+        "counts": { "ramps": 150, "sky": 1, "piers": 176, "fill": 1, "sun": 1, "env": 1 },
         "originalGoldenComparisons": 0
       }
     },

@@ -1446,6 +1446,22 @@ or activate RSH-037.
 Details: RSH-036-WORLD-NFILL-r6.66.json, RSH-036-RUNTIME-REPAIR-r6.66.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.67 — 11 September 2026: remaining g07 upper is ramps, not sky, not piers
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-77 isolates
+ramps versus sky dome versus piers independently of fill vs sun vs hemi.color
+vs scene.environment after setNight/snapCamera(true). g07 upper ramps
+bandDelta −0.1788 (L2 −67.1); sky ≡ 0; piers ≡ 0. Remaining g07 upper named
+occupancy is ramps, not sky, not piers. Env independently occupies g07 B
+−16.4 and bandDelta −0.0744. Day-bottom ramps/sky/piers stay 0. g08 night
+fill and sun stay independent additive luma. Camera stays 7.4/1.92. Freeze
+path count stays 85. GFX-01, GFX-03, GFX-04, GFX-05 and GFX-06 stay queued
+after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-UPPER-r6.67.json, RSH-036-RUNTIME-REPAIR-r6.67.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 
