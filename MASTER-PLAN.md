@@ -1152,6 +1152,27 @@ thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-SIGMA-r6.53.json, RSH-036-RUNTIME-REPAIR-r6.53.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.54 — 11 September 2026: leftover sRGB fromScene vs linear bake is not ColorManagement vs outputColorSpace vs toneMapping
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-64 isolates
+ColorManagement.enabled=false vs outputColorSpace=LinearSRGBColorSpace vs
+toneMapping=NoToneMapping during fromScene of Color 0x808080 independently of
+0x3a9ae0 hue vs sun intensity vs fill after setNight/snapCamera(true). r6.53
+leftover fromScene of Color 0x808080 occupies B −18.5/−20.2 vs off, of which
+convertSRGBToLinear occupies B −14.9/−16.3. g01/g05 day-bottom encode ≡ tone ≡
+gray cubemap (ΔB +0.2/+0.3). ColorManagement.enabled=false brightens vs gray
+(B +20.4/+22.2) rather than occupying leftover. Leftover is not ColorManagement
+versus outputColorSpace versus toneMapping during bake. Hue occupies B
+−30.2/−32.8. Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins intensity
+on g08 night (−12.4). setNight does not rebake, so g08 night encode ≡ gray. g07
+upper remains ramps. Camera stays 7.4/1.92. Freeze path count stays 85. r6.27
+lint no-undef is retained, not relabelled a pass. Immutable CDN bytes, rendering
+performance and freeze remain open. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-MGMT-r6.54.json, RSH-036-RUNTIME-REPAIR-r6.54.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "36842a4ea134d8a96ce3f7aa95880b034f76b0a9c85d90a3dab2ab9a7da8f20c"
+      "sha256": "e75a8aa74a9a755e52094281f2ec02690b879c49a10aab9e99c37442426d4439"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 12555,
-      "sha256": "6e5f653baa73da8c54aeff5417e00c8da09cf0a19be700bb82778cb44d1c820b"
+      "bytes": 12671,
+      "sha256": "23b3458c46762ce77bcd8485ff52b27275c35da4f0480e35edd46be894cfdf2f"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2337,6 +2337,16 @@
       "sha256": "68c4963499d60005a90a375f1a98cb9137519ba0cf3b351db494141730a9414e"
     },
     {
+      "path": "scripts/world-mgmt-browser.mjs",
+      "bytes": 34921,
+      "sha256": "6cbb4c67acc3da07e2d58799e536c3da3545eda2f0e49a983871ee5087a0dd02"
+    },
+    {
+      "path": "scripts/world-mgmt.test.mjs",
+      "bytes": 9614,
+      "sha256": "fca2d53b0ba7b9ba90e5add954013d2c411ac0f13539114e4eec7b54dfe93aab"
+    },
+    {
       "path": "scripts/world-mismatch-browser.mjs",
       "bytes": 17826,
       "sha256": "e355d82a32618f5cfeeb59d9d6e5de52bd1270114f0d28af30bc09db8f1f776b"
@@ -2574,7 +2584,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "7e3deab9386d93b3004c3694056786ad70631ea4347146b8ab65f777271fc08b"
+      "sha256": "5b651ded5e55bb8c5d0d345b3518f90deb10eb4ffd05483b88d81cd06ea8dbaa"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10826,5 +10836,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "8333af4d92cb19e680256bd8f751373c498d8da58c8c5d26348daad3c3f525b8"
+  "digest_sha256": "ed887bd595ff021dc553c36eff6f482ef151ce8ab4764dfac450e71311b8a591"
 }

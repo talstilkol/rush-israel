@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.53",
+  "revision": "r6.54",
   "date": "2026-09-11",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 63,
+    "audit_items": 64,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -393,7 +393,8 @@
         "AUD-60",
         "AUD-61",
         "AUD-62",
-        "AUD-63"
+        "AUD-63",
+        "AUD-64"
       ]
     },
     {
@@ -1715,6 +1716,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-SIGMA-r6.53.json"
+    },
+    {
+      "id": "AUD-64",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Combined leftover sRGB fromScene versus linear bake is not ColorManagement versus outputColorSpace versus toneMapping attribution",
+      "acceptance": "Sigma-only reports without mgmt/encode/tone/hue/intensity/fill luma and B-channel deltas plus a dominantMgmt must fail closed. Luma-terms-include-hemi, mgmt-is-combined, mgmt-clears-off, mgmt-clears-hue, encode-clears-mgmt, hue-clears-off, intensity-clears-ibl, mgmt-deltas-use-product-baseline, ColorManagement-stays-enabled, outputColorSpace-stays-sRGB, toneMapping-stays-ACES and product-exposure retune fail closed. Live snapCamera(true) at g01/g05/g07/g08 must force 1280x800 pixelRatio 1, capture post.render present, locate the dominant 200px band, isolate those six axes after setNight and measure isolated band L2, luma and B against the locked 26 August PNG. mgmt/encode/tone deltas use the 0x808080 hue buffer as baseline. Product ground hex must stay 0xd0d4d8 and product exposure 0.56. Original-golden claims, PNG refresh, threshold drift, camera miss, color retune and zero presentPct fail closed. Retain freeze path count 85 and generation 11. Mgmt isolation is not freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-MGMT-r6.54.json"
     }
   ],
   "legacy_findings": [
@@ -2146,9 +2160,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.53",
-    "base_head": "e30abdf",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.53.md",
+    "revision": "r6.54",
+    "base_head": "09a3a06",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.54.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",

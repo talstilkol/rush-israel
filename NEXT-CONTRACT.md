@@ -1,4 +1,4 @@
-**Version:** 20.53.0
+**Version:** 20.54.0
 **Date:** 2026-09-11, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
 **Repair base:** 9f20bc3d0f40bf1bc67837589f888ada363cd51c
@@ -106,34 +106,36 @@ required-ci-34480369405-1 SHA-256
 `0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec`. Retained;
 not relabelled a pass.
 
-## r6.53 and subsequent acceptance
+## r6.54 and subsequent acceptance
 1. Remaining 0/4 is sun intensity luma plus bakeEnv 0x3a9ae0 hue plus leftover
-   sRGB fromScene of Color 0x808080 vs a linear bake on g01/g05/g08 bottom:
-   intensity occupies luma, 0x3a9ae0 vs 0x808080 occupies B −30.2/−32.8,
-   leftover fromScene vs off occupies B −18.5/−20.2, of which
-   convertSRGBToLinear occupies B −14.9/−16.3. sigma 0 ≡ mesh sky ≡ gray
-   cubemap (ΔB +0.2/+0.3), so blur and Color-vs-mesh are not remaining
-   day-bottom drivers. setNight does not rebake, so g08 present keeps the day
-   cubemap. Fill joins intensity on g08 night. g07 upper remains ramps.
+   gray cubemap vs IBL-off on g01/g05/g08 bottom: intensity occupies luma,
+   0x3a9ae0 vs 0x808080 occupies B −30.2/−32.8, leftover gray vs off occupies
+   B −18.5/−20.2. ColorManagement vs outputColorSpace vs toneMapping during
+   bake are not remaining day-bottom drivers: encode ≡ tone ≡ gray
+   (ΔB +0.2/+0.3), ColorManagement.enabled=false brightens vs gray
+   (B +20.4/+22.2) rather than occupying leftover. setNight does not rebake,
+   so g08 present keeps the day cubemap. Fill joins intensity on g08 night.
+   g07 upper remains ramps.
    Live sampling must force 1280×800 pixelRatio 1 after snapCamera(true),
    capture product present (`post.setDrive(0, false); post.render()`), locate
-   the dominant 200px band, and isolate remaining sRGB fromScene vs linear bake
-   as ColorManagement versus outputColorSpace versus toneMapping during bake
-   independently of sigma vs mesh vs product hue vs sun intensity vs fill
-   without changing product color, exposure or refreshing PNGs.
-   Smoke must keep verifyWorldLayers through verifyWorldConv and
-   verifyWorldSigma. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is
-   that intensity+hue+sRGB-fromScene gap plus g07 upper ramps. PNG refresh,
+   the dominant 200px band, and isolate remaining leftover gray cubemap vs
+   IBL-off as PMREM size versus CubeUV lod versus ground envMapIntensity
+   independently of ColorManagement vs outputColorSpace vs toneMapping vs
+   product hue vs sun intensity vs fill without changing product color,
+   exposure or refreshing PNGs.
+   Smoke must keep verifyWorldLayers through verifyWorldSigma and
+   verifyWorldMgmt. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is
+   that intensity+hue+gray-IBL gap plus g07 upper ramps. PNG refresh,
    threshold drift, color retune, exposure retune and skipped comparison fail
    closed.
    176 piers, 546 legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and
    generation-11 lock stay. Freeze path count stays 85. Pixel 0/4 is not freeze.
-2. Preserve the r6.18 Chromium install retry through the r6.52 conv isolation
-   and the r6.53 sigma isolation.
+2. Preserve the r6.18 Chromium install retry through the r6.53 sigma isolation
+   and the r6.54 mgmt isolation.
 3. Preserve 1280x800 images, threshold 0.12, failure 8%, generation 11 lock and
    owner approval. Do not refresh golden PNGs or silently change typography.
    Rendering performance remains open.
 4. Only validated applicable approval may grant freeze or open RSH-037.
 
-Master plan r6.53 retains 67 units, 42 historical findings, 6 bundles and 63
+Master plan r6.54 retains 67 units, 42 historical findings, 6 bundles and 64
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.
