@@ -1364,11 +1364,27 @@ g01/g05 day-bottom env ≡ eint ≡ both (B −21.5/−23.8, L2 −34.9/−38.4)
 Zeroing environmentIntensity equals nulling scene.environment. Hue occupies
 B −30.2/−32.8. Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins
 intensity on g08 night (−12.4). setNight does not rebake. g07 upper remains
-ramps. Camera stays 7.4/1.92. Freeze path count stays 85. GFX-01, GFX-03 and
-GFX-04 stay queued after RSH-036 and are not remaining 0/4. Do not merge,
-replace PNGs, change thresholds, retune color or exposure or activate RSH-037.
+ramps. Camera stays 7.4/1.92. Freeze path count stays 85. GFX-01, GFX-03,
+GFX-04 and GFX-05 stay queued after RSH-036 and are not remaining 0/4. Do not
+merge, replace PNGs, change thresholds, retune color or exposure or activate
+RSH-037.
 Details: RSH-036-WORLD-EINT-r6.63.json, RSH-036-RUNTIME-REPAIR-r6.63.md and
 docs/evidence/r6.27-published-ci-verification.json.
+
+## Queued GFX-05 — 11 September 2026 17:53: Caesarea water plane at אמת המים
+
+Owner screenshot on track `caesarea`, mode הקפה 1/3, day, t=0:05.20,
+1 km/h, POI אמת המים. A large blue water/ocean plane is tilted steeply
+through the driving surface; a striped wedge is similarly skewed. The Sabra
+is boxy with a blue glass strip on the left side (GFX-01 family). Distinct
+from GFX-01 (namal rest origami) and GFX-03/GFX-04 (Ayalon night P2P camera
+clips). r6.34 hero-car bandDelta 0 at locked Ayalon rest poses, so this is
+not remaining 0/4 and is not freeze. Queue after RSH-036 with GFX-01,
+GFX-03 and GFX-04.
+Evidence: docs/evidence/GFX-05-caesarea-aqueduct-water-plane.md and
+docs/evidence/gfx-05-caesarea-aqueduct-water-plane-2026-09-11-1753.png.
+Do not start GFX-05 before RSH-036 / AUD-74 isolation closes.
+
 
 
 

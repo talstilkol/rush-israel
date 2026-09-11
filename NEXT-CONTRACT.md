@@ -167,16 +167,26 @@ Distinct from GFX-03 (camera-through-car at t=0:02.64 same POI) and GFX-01
 (namal rest origami). r6.34 hero-car bandDelta 0 at locked rest poses, so this
 is **not** remaining pixel 0/4.
 
+Owner screenshot 2026-09-11 17:53.01 on track `caesarea`, mode הקפה 1/3,
+day, t=0:05.20, 1 km/h, POI אמת המים. A large blue water/ocean plane is
+tilted steeply through the driving surface; a striped wedge is similarly
+skewed. The Sabra is boxy with a blue glass strip on the left side (GFX-01
+family). Distinct from GFX-01 (namal rest origami), GFX-03 and GFX-04
+(Ayalon night P2P camera clips). r6.34 hero-car bandDelta 0 at locked Ayalon
+rest poses, so this is **not** remaining pixel 0/4.
+
 | id | track | defect | status |
 |---|---|---|---|
 | GFX-01 | namal | hero-car GLB body vertical/origami vs procedural extras | queued after RSH-036 |
 | GFX-02 | ayalon | leftover cubemap is scene.environment ≡ environmentIntensity=0 (env ≡ eint ≡ both B −21.5/−23.8); material.envMap ≡ gray | r6.63 done; AUD-74 next |
 | GFX-03 | ayalon | night point-to-point chase camera clips through hero-car at Kibbutz Galuyot / HaHagana | queued after RSH-036 |
 | GFX-04 | ayalon | night P2P camera clips into retaining wall at Kibbutz Galuyot t=0:25.66; car exploded from above | queued after RSH-036 |
+| GFX-05 | caesarea | water/ground plane cuts through the road at אמת המים t=0:05.20; car boxy with side glass | queued after RSH-036 |
 
 AUD-74 is the next RSH-036 isolation: remaining bakeEnv 0x3a9ae0 hue as
-scene.background versus scene.environment versus both. GFX-01, GFX-03 and
-GFX-04 stay recorded only; do not start them before RSH-036 closes.
+scene.background versus scene.environment versus both. GFX-01, GFX-03,
+GFX-04 and GFX-05 stay recorded only; do not start them before RSH-036
+closes.
 
 Master plan r6.63 retains 67 units, 42 historical findings, 6 bundles and 73
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

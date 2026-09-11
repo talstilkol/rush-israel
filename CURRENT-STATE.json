@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-11T16:20:00Z",
+  "generated_at": "2026-09-11T16:25:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2041,6 +2041,18 @@
           "screenshot": "2026-09-11 17:51.46",
           "evidence": "docs/evidence/GFX-04-ayalon-night-p2p-wall-camera.md",
           "defect": "night P2P chase camera clips into retaining wall at Kibbutz Galuyot t=0:25.66 / 1 km/h; Sabra exploded from steep top-down",
+          "not_remaining_0_of_4": true,
+          "not_freeze": true,
+          "status": "queued_after_rsh_036"
+        },
+        {
+          "id": "GFX-05",
+          "track": "caesarea",
+          "mode": "lap",
+          "poi": "אמת המים",
+          "screenshot": "2026-09-11 17:53.01",
+          "evidence": "docs/evidence/GFX-05-caesarea-aqueduct-water-plane.md",
+          "defect": "water/ground plane cuts through the road at אמת המים t=0:05.20 / 1 km/h lap 1/3; Sabra boxy with side glass (GFX-01 family)",
           "not_remaining_0_of_4": true,
           "not_freeze": true,
           "status": "queued_after_rsh_036"

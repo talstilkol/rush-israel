@@ -353,6 +353,7 @@
     "GFX-01 namal hero-car GLB vertical/origami queued after RSH-036, not remaining 0/4",
     "GFX-03 ayalon night P2P camera-through-car queued after RSH-036, not remaining 0/4",
     "GFX-04 ayalon night P2P camera-into-wall at Kibbutz Galuyot t=0:25.66 queued after RSH-036, not remaining 0/4",
+    "GFX-05 caesarea water/ground plane at אמת המים t=0:05.20 queued after RSH-036, not remaining 0/4",
     "immutable CDN font bytes",
     "rendering performance"
   ],

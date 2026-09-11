@@ -3,7 +3,8 @@
 Candidate, 11 September 2026. Base 80ec00d
 (r6.62 env isolation). No merge or freeze; 35/67 accepted; 32 remain. r6.17,
 r6.18 and r6.27 exact-head failures are retained. Do not relabel them as
-passes. r6.62 exact-head CI is not claimed. GFX-01, GFX-03 and GFX-04 stay
+passes. r6.62 exact-head CI is not claimed. GFX-01, GFX-03, GFX-04 and GFX-05
+stay queued after RSH-036 and are not remaining 0/4.
 queued after RSH-036 and are not remaining 0/4.
 
 ## r6.26 exact-head CI independently retained as last success
