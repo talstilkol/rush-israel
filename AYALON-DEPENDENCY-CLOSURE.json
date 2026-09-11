@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "02fe727cef0e813ab080897349de738d63d6570cbf9b569d0c3b8bf620ffada5"
+      "sha256": "86f613e9d93ab9093dd004e207a41103c20ceeb56758e0bf5fa413c88ccfcb93"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 11624,
-      "sha256": "e42cdf99ffceb3f8f35c80ee9f8ee94b5850de12e490764180085f8d18400036"
+      "bytes": 11743,
+      "sha256": "28b5749009b62f172f4a7821f9e651b4cdfce2c5f19a97fd31bfe65e3c10d274"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2297,6 +2297,16 @@
       "sha256": "e861714426a8c5881f52d9fa0daf4bb7ae9b4215fd2ac683a77728ed4c435627"
     },
     {
+      "path": "scripts/world-probe-browser.mjs",
+      "bytes": 29269,
+      "sha256": "c611bb599a8802dcbc00f11e67d613ef2f9e261941b76eb3720600b27595ed59"
+    },
+    {
+      "path": "scripts/world-probe.test.mjs",
+      "bytes": 11027,
+      "sha256": "94a78718f5ec9cf1fe176764ee995e9fbe5b08d0a290d5697394728c702c3fc8"
+    },
+    {
       "path": "scripts/world-ray-browser.mjs",
       "bytes": 27026,
       "sha256": "9f1dcd1c61fbca6637ef546a38adf44059427d9f37d5ed5bf462f63422e84672"
@@ -2494,7 +2504,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "c0c1d5de195f07dfc37508ff35d0a9f76ea8e8021bc215066da87ea074d8aba8"
+      "sha256": "70ddfafc5e8f42bc9f8ab435afbd87edc781716676a9af569bdd907a3f55e55a"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10746,5 +10756,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "27a44224e398f00a4edbaa42ab3aea99aecb484417ec1e389ffa64e3fa96e877"
+  "digest_sha256": "41cb468f13873f031dc2e8b4cde7e55a6c666a239899b64d9df2e6ec7d5e84db"
 }

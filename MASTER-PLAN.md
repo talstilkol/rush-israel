@@ -1012,6 +1012,24 @@ thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-CUBE-r6.45.json, RSH-036-RUNTIME-REPAIR-r6.45.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.46 — 11 September 2026: combined IBL is not bakeEnv PMREM vs captureSceneEnv cube
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-56 isolates
+bakeEnv PMREM vs a non-destructive captureSceneEnv cube independently of sun
+intensity vs fill after setNight/snapCamera(true). r6.45 product cubemap was
+one combined IBL. g01/g05 day-bottom bakeEnv swap is 0: product is already
+bakeEnv. captureSceneEnv is not a remaining day-bottom driver. setNight does
+not rebake, so g08 present keeps the day cubemap; night bakeEnv (B −32.1) and
+night capture (B −26.2) both occupy that leftover. Intensity occupies luma
+(−28.0/−31.1/−11.5). Fill joins intensity on g08 night (−12.4). g07 upper
+remains ramps. Camera stays 7.4/1.92. Freeze path count stays 85. r6.27 lint
+no-undef is retained, not relabelled a pass. Immutable CDN bytes, rendering
+performance and freeze remain open. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-PROBE-r6.46.json, RSH-036-RUNTIME-REPAIR-r6.46.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 
