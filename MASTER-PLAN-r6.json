@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.50",
+  "revision": "r6.51",
   "date": "2026-09-11",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 60,
+    "audit_items": 61,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -390,7 +390,8 @@
         "AUD-57",
         "AUD-58",
         "AUD-59",
-        "AUD-60"
+        "AUD-60",
+        "AUD-61"
       ]
     },
     {
@@ -1673,6 +1674,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-BARE-r6.50.json"
+    },
+    {
+      "id": "AUD-61",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Combined leftover 0x808080 background IBL is not PMREM convolution versus a constant gray cubemap attribution",
+      "acceptance": "Bare-only reports without pmrem/flat/off/hue/intensity/fill luma and B-channel deltas plus a dominantFlat must fail closed. Luma-terms-include-hemi, pmrem-is-combined, pmrem-clears-off, pmrem-clears-hue, flat-clears-pmrem, hue-clears-off, intensity-clears-ibl, pmrem-deltas-use-product-baseline and product-exposure retune fail closed. Live snapCamera(true) at g01/g05/g07/g08 must force 1280x800 pixelRatio 1, capture post.render present, locate the dominant 200px band, isolate those six axes after setNight and measure isolated band L2, luma and B against the locked 26 August PNG. pmrem/flat/off deltas use the 0x808080 hue buffer as baseline. Product ground hex must stay 0xd0d4d8 and product exposure 0.56. Original-golden claims, PNG refresh, threshold drift, camera miss, color retune and zero presentPct fail closed. Retain freeze path count 85 and generation 11. Flat isolation is not freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-FLAT-r6.51.json"
     }
   ],
   "legacy_findings": [
@@ -2104,9 +2118,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.49",
-    "base_head": "8650f45c85ed81d499716f347341b8b6536f47ce",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.49.md",
+    "revision": "r6.51",
+    "base_head": "59984fc",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.51.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",

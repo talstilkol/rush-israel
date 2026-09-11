@@ -1098,6 +1098,25 @@ color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-BARE-r6.50.json, RSH-036-RUNTIME-REPAIR-r6.50.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.51 — 11 September 2026: combined leftover 0x808080 IBL is not PMREM vs constant cubemap
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-61 isolates
+0x808080 background-only PMREM vs a constant 0x808080 CubeTexture vs IBL-off
+independently of 0x3a9ae0 hue vs sun intensity vs fill after
+setNight/snapCamera(true). r6.50 leftover 0x808080 background occupies B
+−17.6/−19.3 of gray vs off −18.5/−20.2. g01/g05 day-bottom PMREM of 0x808080
+≡ gray cubemap (ΔB +0.2/+0.3). A constant CubeTexture ≡ IBL-off (B
+−18.5/−20.2). Leftover is specifically a PMREM-filtered gray environment versus
+none. Hue occupies B −30.2/−32.8. Intensity occupies luma (−28.0/−31.1/−11.5).
+Fill joins intensity on g08 night (−12.4). setNight does not rebake, so g08
+night pmrem ≡ gray. g07 upper remains ramps. Camera stays 7.4/1.92. Freeze path
+count stays 85. r6.27 lint no-undef is retained, not relabelled a pass.
+Immutable CDN bytes, rendering performance and freeze remain open. Do not merge,
+replace PNGs, change thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-FLAT-r6.51.json, RSH-036-RUNTIME-REPAIR-r6.51.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

@@ -155,7 +155,7 @@ test('rest chase overlay remains the 26 August 7.4/1.92 lock', () => {
   assert.match(src, /let height = 1\.92;/);
 });
 
-test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray and bare probes', () => {
+test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray bare and flat probes', () => {
   const src = readFileSync(fromRoot('scripts', 'runtime-recovery-smoke.mjs'), 'utf8');
   assert.match(src, /import \{ verifyWorldLayers \} from '\.\/world-layer-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldResidual \} from '\.\/world-residual-browser\.mjs';/);
@@ -182,6 +182,7 @@ test('smoke keeps world-layer residual mismatch bias scene region column slice e
   assert.match(src, /import \{ verifyWorldSky \} from '\.\/world-sky-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldGray \} from '\.\/world-gray-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldBare \} from '\.\/world-bare-browser\.mjs';/);
+  assert.match(src, /import \{ verifyWorldFlat \} from '\.\/world-flat-browser\.mjs';/);
   assert.match(src, /verifyWorldLayers\(browser, url\)/);
   assert.match(src, /verifyWorldResidual\(browser, url\)/);
   assert.match(src, /verifyWorldMismatch\(browser, url\)/);
@@ -207,6 +208,7 @@ test('smoke keeps world-layer residual mismatch bias scene region column slice e
   assert.match(src, /verifyWorldSky\(browser, url\)/);
   assert.match(src, /verifyWorldGray\(browser, url\)/);
   assert.match(src, /verifyWorldBare\(browser, url\)/);
+  assert.match(src, /verifyWorldFlat\(browser, url\)/);
 });
 
 test('freeze path count 85 and generation 11 stay', () => {

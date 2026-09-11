@@ -34,6 +34,7 @@ import { verifyWorldBake } from './world-bake-browser.mjs';
 import { verifyWorldSky } from './world-sky-browser.mjs';
 import { verifyWorldGray } from './world-gray-browser.mjs';
 import { verifyWorldBare } from './world-bare-browser.mjs';
+import { verifyWorldFlat } from './world-flat-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -121,6 +122,7 @@ try {
   results.push(...await verifyWorldSky(browser, url));
   results.push(...await verifyWorldGray(browser, url));
   results.push(...await verifyWorldBare(browser, url));
+  results.push(...await verifyWorldFlat(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));
