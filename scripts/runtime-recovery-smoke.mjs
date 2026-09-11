@@ -49,6 +49,7 @@ import { verifyWorldEnv } from './world-env-browser.mjs';
 import { verifyWorldEint } from './world-eint-browser.mjs';
 import { verifyWorldBack } from './world-back-browser.mjs';
 import { verifyWorldHterm } from './world-hterm-browser.mjs';
+import { verifyWorldNfill } from './world-nfill-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -151,6 +152,7 @@ try {
   results.push(...await verifyWorldEint(browser, url));
   results.push(...await verifyWorldBack(browser, url));
   results.push(...await verifyWorldHterm(browser, url));
+  results.push(...await verifyWorldNfill(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));

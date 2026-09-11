@@ -1430,6 +1430,23 @@ is not freeze. Queue after RSH-036 with GFX-01, GFX-03, GFX-04 and GFX-05.
 Evidence: docs/evidence/GFX-06-haifa-carmel-trees-through-road.md.
 Do not start GFX-06 before RSH-036 / AUD-76 isolation closes.
 
+## r6.66 — 11 September 2026: g08 night fill and sun intensity are independent additive luma
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-76 isolates
+fill versus sun versus both independently of hemi.color vs scene.environment
+vs hemi.intensity after setNight/snapCamera(true). g08 night fill luma −12.4
+and sun luma −11.5; both −25.2 ≈ sum, so they are independent additive
+luma, not overlapping. Day-bottom fill stays under the luma floor. Intensity
+occupies luma (−28.0/−31.1/−11.5). env cubemap hue stays B −30.0/−32.5.
+hemi.color occupies B −8.9/−9.7. setNight does not rebake. g07 upper remains
+ramps. Camera stays 7.4/1.92. Freeze path count stays 85. GFX-01, GFX-03,
+GFX-04, GFX-05 and GFX-06 stay queued after RSH-036 and are not remaining
+0/4. Do not merge, replace PNGs, change thresholds, retune color or exposure
+or activate RSH-037.
+Details: RSH-036-WORLD-NFILL-r6.66.json, RSH-036-RUNTIME-REPAIR-r6.66.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 
