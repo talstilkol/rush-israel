@@ -1698,6 +1698,22 @@ RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
 thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-PCL-r6.82.json and RSH-036-RUNTIME-REPAIR-r6.82.md.
 
+## r6.83 — 12 September 2026: leftover g07 after world.group+outside is remaining empty-scene vs golden, not preserveDrawingBuffer, not stencil, not reversedDepthBuffer, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-93 isolates
+leftover g07 after world.group+outside as remaining empty-scene vs golden
+independently of preserveDrawingBuffer vs stencil vs reversedDepthBuffer after
+setNight/snapCamera(true). g07 leftover is remaining empty-scene vs golden
+(leftover 0.2027), not preserveDrawingBuffer on (≡ 0), not stencil on (≡ 0),
+not reversedDepthBuffer on (≡ 0) and not env (≡ 0). both ≡ pack ≡ 0. Empty
+leftover has no world geometry for a preserve/stencil/reversed-depth change
+to occupy remaining g07. Product renderer stays. Freeze path count stays 85.
+GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08 and GFX-09 stay queued
+after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-PSR-r6.83.json and RSH-036-RUNTIME-REPAIR-r6.83.md.
+
+
 
 
 

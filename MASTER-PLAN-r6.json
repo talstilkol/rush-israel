@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.82",
+  "revision": "r6.83",
   "date": "2026-09-12",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 92,
+    "audit_items": 93,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -2108,6 +2108,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-PCL-r6.82.json"
+    },
+    {
+      "id": "AUD-93",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Leftover g07 after world.group+outside is remaining empty-scene vs golden independently of preserveDrawingBuffer vs stencil vs reversedDepthBuffer",
+      "acceptance": "Pcl-only reports without preserve/stencil/reversed/env/both/pack bandDelta plus a dominantPsr and leftoverBaselinePct must fail closed. Live snapCamera(true) at g01/g05/g07/g08 must isolate those six leftover-after-world.group+outside axes after setNight and measure isolated band L2, luma, B and bandDelta against the locked 26 August PNG. Deltas use the empty-scene leftover buffer as baseline. Product ground hex must stay 0xd0d4d8, product exposure 0.56, product renderer stay on leftover. Retain freeze path count 85 and generation 11. Psr isolation is not freeze. GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08 and GFX-09 stay queued after RSH-036.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-PSR-r6.83.json"
     }
   ],
   "legacy_findings": [
