@@ -67,6 +67,7 @@ import { verifyWorldSfs } from './world-sfs-browser.mjs';
 import { verifyWorldAcm } from './world-acm-browser.mjs';
 import { verifyWorldPcl } from './world-pcl-browser.mjs';
 import { verifyWorldPsr } from './world-psr-browser.mjs';
+import { verifyWorldLcc } from './world-lcc-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -187,6 +188,7 @@ try {
   results.push(...await verifyWorldAcm(browser, url));
   results.push(...await verifyWorldPcl(browser, url));
   results.push(...await verifyWorldPsr(browser, url));
+  results.push(...await verifyWorldLcc(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));
