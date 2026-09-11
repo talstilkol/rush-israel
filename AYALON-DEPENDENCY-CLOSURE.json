@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "438f4fbe79661e5008a2374181b464b10d41eb97ae80147f60041bf1af635e94"
+      "sha256": "9dc6552636043926b76e32bc561b8b8bf75d5f3e99e0a491354ecc720dd3f667"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 12320,
-      "sha256": "7ca14cda5c33664f19be7bdb83efa8e673745e19247e4a2c7130fa757c526de3"
+      "bytes": 12436,
+      "sha256": "6d08b8b9d0fcbc21b27759cc0179128c0b01588d98418976d54aa696228e6403"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2235,6 +2235,16 @@
       "path": "scripts/world-column.test.mjs",
       "bytes": 9199,
       "sha256": "44c33f3d2c2f396f736d8974d105445e9af8de4ce78fca2c0958590f58ad3d2e"
+    },
+    {
+      "path": "scripts/world-conv-browser.mjs",
+      "bytes": 33596,
+      "sha256": "7a4a970e883ca0a58b166a8a7b85514ec0e0b3eb53ea1567ad5ef7180891717a"
+    },
+    {
+      "path": "scripts/world-conv.test.mjs",
+      "bytes": 9076,
+      "sha256": "3a029eadab999fcbfe132809e4873d9df28c4cfa5b3a4983073a72168276deb0"
     },
     {
       "path": "scripts/world-cube-browser.mjs",
@@ -2554,7 +2564,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "cccb9162449d13603d3d51251a5e9daaf22c98a0ea66767f631f500908868d54"
+      "sha256": "958f8652a84ae760733608dfe87c0cf54acd1e3d096dc361fedf24e7944e4b33"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10806,5 +10816,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "d05569cbda8fc011d95d8d60747c7a5572fd571d60c5be1a7c3798593b23a567"
+  "digest_sha256": "15e67fb2231a72f520559cba743599b560388fcd5eda85f39335d2f0157afb86"
 }

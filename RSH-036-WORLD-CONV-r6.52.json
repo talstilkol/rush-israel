@@ -1,0 +1,311 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.52",
+  "date": "2026-09-11",
+  "base": "25f2843",
+  "finding": "AUD-62",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "not_relabelled_success": true
+  },
+  "defect": "r6.51 remaining 0/4 leftover PMREM-filtered 0x808080 vs off occupies B −18.5/−20.2, but combined leftover is not fromScene versus fromCubemap versus environmentIntensity attribution.",
+  "repair": "Keep verifyWorldLayers through verifyWorldFlat and verifyWorldConv. Direct-engine present capture forces upgradeGraphics, setPixelRatio(1)+setSize(1280,800)+post.setSize, locates the dominant 200px band, isolates fromScene of 0x808080 vs fromCubemap of the same gray vs environmentIntensity=0 independently of 0x3a9ae0 hue vs sun intensity vs fill AFTER setNight/snapCamera(true) by swapping those environments and measuring scene/cube/gain buffers against the 0x808080 hue buffer, and measures isolated band L2, luma and B-channel against the locked 26 August PNG. Flat-only reports, luma-terms-include-hemi, scene-is-combined, scene-clears-off, scene-clears-hue, cube-clears-scene, hue-clears-off, intensity-clears-ibl, scene-deltas-use-product-baseline, original-golden claims, PNG refresh, threshold drift, camera miss, color retune, exposure retune and zero presentPct fail closed. Product exposure stays 0.56. Pixel 0/4 stays an open gate, not freeze.",
+  "live_browser": {
+    "status": "g01_g05_day_bottom_fromscene_equals_gray_fromcubemap_equals_gain_equals_off_g08_unrebaked_g07_upper_none",
+    "protocol": "world-conv-buffer-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "pixelThreshold": 0.12,
+    "failureLimit": 0.08,
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "productGroundHex": 13685976,
+    "productGroundCount": 1,
+    "groundMeshCount": 1,
+    "productExposure": 0.56,
+    "lumaTermsIncludeHemi": false,
+    "sceneIsCombined": false,
+    "sceneClearsOff": false,
+    "sceneClearsHue": false,
+    "cubeClearsScene": false,
+    "hueClearsOff": false,
+    "intensityClearsIbl": false,
+    "sceneDeltasUseGrayBaseline": true,
+    "counts": {
+      "scene": 1,
+      "cube": 1,
+      "gain": 1,
+      "hue": 1,
+      "intensity": 1,
+      "fill": 1
+    },
+    "frames": [
+      {
+        "id": "g01",
+        "follow": 7.4,
+        "height": 1.92,
+        "presentPct": 0.6718,
+        "dominant": "bottom",
+        "dominantConv": "intensity",
+        "contributingConv": [
+          "cube",
+          "gain",
+          "hue",
+          "intensity"
+        ],
+        "lumaAxis": [
+          "intensity"
+        ],
+        "iblAxis": [],
+        "cubeAxis": [
+          "cube"
+        ],
+        "gainAxis": [
+          "gain"
+        ],
+        "hueAxis": [
+          "hue"
+        ],
+        "bandL2": 125.77,
+        "bandLuma": 99.87,
+        "bandBlue": 130.41,
+        "bandLive": [
+          77.18,
+          103.53,
+          130.41
+        ],
+        "bandGold": [
+          25.54,
+          35.89,
+          37.8
+        ],
+        "sceneL2Delta": 0.17,
+        "cubeL2Delta": -32.61,
+        "gainL2Delta": -32.61,
+        "hueL2Delta": -17.62,
+        "intensityL2Delta": -37.02,
+        "fillL2Delta": -5.72,
+        "sceneLumaDelta": 0.06,
+        "cubeLumaDelta": -18.74,
+        "gainLumaDelta": -18.74,
+        "intensityLumaDelta": -28,
+        "fillLumaDelta": -3.41,
+        "sceneBlueDelta": 0.21,
+        "cubeBlueDelta": -18.49,
+        "gainBlueDelta": -18.49,
+        "hueBlueDelta": -30.18
+      },
+      {
+        "id": "g05",
+        "follow": 7.4,
+        "height": 1.92,
+        "presentPct": 0.5828,
+        "dominant": "bottom",
+        "dominantConv": "intensity",
+        "contributingConv": [
+          "cube",
+          "gain",
+          "hue",
+          "intensity"
+        ],
+        "lumaAxis": [
+          "intensity"
+        ],
+        "iblAxis": [],
+        "cubeAxis": [
+          "cube"
+        ],
+        "gainAxis": [
+          "gain"
+        ],
+        "hueAxis": [
+          "hue"
+        ],
+        "bandL2": 145.95,
+        "bandLuma": 99.51,
+        "bandBlue": 132.7,
+        "bandLive": [
+          74.63,
+          103.56,
+          132.7
+        ],
+        "bandGold": [
+          10.81,
+          22.24,
+          29.67
+        ],
+        "sceneL2Delta": 0.19,
+        "cubeL2Delta": -36.03,
+        "gainL2Delta": -36.03,
+        "hueL2Delta": -18.2,
+        "intensityL2Delta": -42.99,
+        "fillL2Delta": -6.3,
+        "sceneLumaDelta": 0.08,
+        "cubeLumaDelta": -20.8,
+        "gainLumaDelta": -20.8,
+        "intensityLumaDelta": -31.12,
+        "fillLumaDelta": -3.77,
+        "sceneBlueDelta": 0.25,
+        "cubeBlueDelta": -20.24,
+        "gainBlueDelta": -20.24,
+        "hueBlueDelta": -32.76
+      },
+      {
+        "id": "g07",
+        "follow": 7.4,
+        "height": 1.92,
+        "presentPct": 0.2813,
+        "dominant": "upper",
+        "dominantConv": "scene",
+        "contributingConv": [
+          "scene"
+        ],
+        "lumaAxis": [],
+        "iblAxis": [],
+        "cubeAxis": [
+          "cube"
+        ],
+        "gainAxis": [
+          "gain"
+        ],
+        "hueAxis": [
+          "hue"
+        ],
+        "bandL2": 96.57,
+        "bandLuma": 57.69,
+        "bandBlue": 94.37,
+        "bandLive": [
+          23.09,
+          64.27,
+          94.37
+        ],
+        "bandGold": [
+          49.98,
+          121.76,
+          167.16
+        ],
+        "sceneL2Delta": -11.83,
+        "cubeL2Delta": 25.64,
+        "gainL2Delta": 25.64,
+        "hueL2Delta": 20.27,
+        "intensityL2Delta": 3.72,
+        "fillL2Delta": 0.68,
+        "sceneLumaDelta": 8.47,
+        "cubeLumaDelta": -16.98,
+        "gainLumaDelta": -16.98,
+        "intensityLumaDelta": -2.75,
+        "fillLumaDelta": -0.44,
+        "sceneBlueDelta": 8.03,
+        "cubeBlueDelta": -16.56,
+        "gainBlueDelta": -16.56,
+        "hueBlueDelta": -24.38
+      },
+      {
+        "id": "g08",
+        "follow": 7.4,
+        "height": 1.92,
+        "presentPct": 0.671,
+        "dominant": "bottom",
+        "dominantConv": "cube",
+        "contributingConv": [
+          "cube",
+          "gain",
+          "hue",
+          "intensity",
+          "fill"
+        ],
+        "lumaAxis": [
+          "intensity",
+          "fill"
+        ],
+        "iblAxis": [],
+        "cubeAxis": [
+          "cube"
+        ],
+        "gainAxis": [
+          "gain"
+        ],
+        "hueAxis": [
+          "hue"
+        ],
+        "bandL2": 87.72,
+        "bandLuma": 51.83,
+        "bandBlue": 70.17,
+        "bandLive": [
+          40.83,
+          53.25,
+          70.17
+        ],
+        "bandGold": [
+          7.01,
+          5.99,
+          4.46
+        ],
+        "sceneL2Delta": 0,
+        "cubeL2Delta": -21.05,
+        "gainL2Delta": -21.05,
+        "hueL2Delta": -12.88,
+        "intensityL2Delta": -19.22,
+        "fillL2Delta": -13.96,
+        "sceneLumaDelta": 0,
+        "cubeLumaDelta": -11.76,
+        "gainLumaDelta": -11.76,
+        "intensityLumaDelta": -11.46,
+        "fillLumaDelta": -12.39,
+        "sceneBlueDelta": 0,
+        "cubeBlueDelta": -12.64,
+        "gainBlueDelta": -12.64,
+        "hueBlueDelta": -21.22
+      }
+    ],
+    "finding": "g01/g05 day-bottom leftover PMREM-filtered 0x808080 vs off occupies B −18.5/−20.2. fromScene of Color 0x808080 ≡ gray cubemap (ΔB +0.2/+0.3). fromCubemap of a constant 0x808080 CubeTexture ≡ environmentIntensity=0 ≡ IBL-off. Leftover is specifically fromScene of a gray Color background. Hue occupies B −30.2/−32.8. Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins intensity on g08 night (−12.4). g08 night scene ≡ gray because setNight does not rebake. g07 upper remains ramps. Product hex stays 0xd0d4d8. Product exposure stays 0.56."
+  },
+  "new_cases": {
+    "total": 28,
+    "source": "scripts/world-conv.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after sun intensity luma plus bakeEnv 0x3a9ae0 hue (B −30.2/−32.8 vs gray) plus leftover fromScene of Color 0x808080 vs off (B −18.5/−20.2 occupying gray vs off; fromCubemap ≡ gain ≡ IBL-off) on g01/g05/g08 bottom; setNight does not rebake so g08 present is the day cubemap; fill joins intensity on g08 night; g07 upper ramps",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}
