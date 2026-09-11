@@ -1353,6 +1353,24 @@ thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-ENV-r6.62.json, RSH-036-RUNTIME-REPAIR-r6.62.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.63 — 11 September 2026: remaining scene.environment with gray hemi is environment=null ≡ environmentIntensity=0
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-73 isolates
+environment=null versus environmentIntensity=0 versus both with hemi.color
+held at 0x808080 independently of material.envMap vs 0x3a9ae0 hue vs sun
+intensity vs fill after setNight/snapCamera(true). r6.62 leftover cubemap is
+scene.environment (env ≡ both B −21.5/−23.8); material.envMap ≡ gray.
+g01/g05 day-bottom env ≡ eint ≡ both (B −21.5/−23.8, L2 −34.9/−38.4).
+Zeroing environmentIntensity equals nulling scene.environment. Hue occupies
+B −30.2/−32.8. Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins
+intensity on g08 night (−12.4). setNight does not rebake. g07 upper remains
+ramps. Camera stays 7.4/1.92. Freeze path count stays 85. GFX-01, GFX-03 and
+GFX-04 stay queued after RSH-036 and are not remaining 0/4. Do not merge,
+replace PNGs, change thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-EINT-r6.63.json, RSH-036-RUNTIME-REPAIR-r6.63.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

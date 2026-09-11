@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "37893f479d5f89818fcccb32d545a3fbb6d131bd7cf83d28697938aadf1bfcc4"
+      "sha256": "911e797027c0735bf2791c16e84ee8185832f15e4f959b4d022f8750fdc41165"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 13584,
-      "sha256": "cc33f95d587e22060642dc864e26677c0cec75b6a1071bba8e2a3d402f081106"
+      "bytes": 13700,
+      "sha256": "56ff44dd68421d5957b6bbd465820fab2c19b3f22a18db3509c73603bae1d619"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2265,6 +2265,16 @@
       "path": "scripts/world-cube.test.mjs",
       "bytes": 10835,
       "sha256": "ce697273f7df599700c16b8974d3b30452d8c87eeab910745587d86ccc4152d0"
+    },
+    {
+      "path": "scripts/world-eint-browser.mjs",
+      "bytes": 41568,
+      "sha256": "157c599f9576f6fafd7c0d57f0935fc78fb9118679b5d45be64152a2db252e2d"
+    },
+    {
+      "path": "scripts/world-eint.test.mjs",
+      "bytes": 11823,
+      "sha256": "a5f02b38a3e96063032c1f9f473537ddf054f420b5cd8d1a117100e03a42617d"
     },
     {
       "path": "scripts/world-env-browser.mjs",
@@ -2664,7 +2674,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "f334d02e3f506479fd1001b7c24702bf65b613bc44b99aded90142465953404a"
+      "sha256": "b735ff5b3caadd21c9767be47e970b0f573d818969da994af03fbbe35e971aa1"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10916,5 +10926,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "75eb549fd8ade819b1833632a93edfabe024143142bfa1c965418f773ad75c3e"
+  "digest_sha256": "e8afe7fb9ae86b772b0205db472173464f589a8574c23dbb0aca520df6294312"
 }

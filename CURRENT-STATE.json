@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-11T16:10:00Z",
+  "generated_at": "2026-09-11T16:20:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.62.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.63.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2018,7 +2018,7 @@
           "id": "GFX-02",
           "track": "ayalon",
           "defect": "leftover gray cubemap vs IBL-off B −18.5/−20.2; not material envMapIntensity",
-          "status": "r6_62_done_aud_73_next"
+          "status": "r6_63_done_aud_74_next"
         },
         {
           "id": "GFX-03",
@@ -2048,13 +2048,13 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_env_equals_both_mat_equals_gray_not_full_suite_expected_2289",
+      "status": "focused_28_passed_live_env_equals_eint_equals_both_not_full_suite_expected_2317",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2289,
-      "predecessor_r6_61_expected": 2261,
+      "expected_total": 2317,
+      "predecessor_r6_62_expected": 2289,
       "predecessor_r6_59_expected": 2205,
       "predecessor_r6_58_expected": 2177,
       "predecessor_r6_57_expected": 2149,
@@ -3185,6 +3185,23 @@
         "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
         "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
         "counts": { "env": 1, "mat": 1, "both": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "originalGoldenComparisons": 0
+      },
+      "live_world_eint": {
+        "status": "g01_g05_day_bottom_env_equals_eint_equals_both_g08_unrebaked_g07_upper_none",
+        "protocol": "world-eint-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "dominantEint": ["intensity", "intensity", "fill", "both"],
+        "envBlueDelta": [-21.49, -23.82, -25.23, -10.84],
+        "eintBlueDelta": [-21.49, -23.82, -25.23, -10.84],
+        "bothBlueDelta": [-21.49, -23.82, -25.23, -10.84],
+        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
+        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
+        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
+        "counts": { "env": 1, "eint": 1, "both": 1, "hue": 1, "intensity": 1, "fill": 1 },
         "originalGoldenComparisons": 0
       }
     },
