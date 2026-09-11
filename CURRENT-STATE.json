@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.67.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.68.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2017,8 +2017,8 @@
         {
           "id": "GFX-02",
           "track": "ayalon",
-          "defect": "leftover gray cubemap vs IBL-off B −18.5/−20.2; not material envMapIntensity",
-          "status": "r6_67_done_aud_78_next"
+          "defect": "leftover gray cubemap vs IBL-off B −18.5/−20.2; remaining g07 after ramps is leftover unnamed not env (both ≡ ramps)",
+          "status": "r6_68_done_aud_79_next"
         },
         {
           "id": "GFX-03",
@@ -2072,12 +2072,13 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_g07_ramps_not_sky_not_piers_not_full_suite_expected_2429",
+      "status": "focused_28_passed_live_g07_after_ramps_leftover_unnamed_not_env_not_full_suite_expected_2457",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2429,
+      "expected_total": 2457,
+      "predecessor_r6_67_expected": 2429,
       "predecessor_r6_66_expected": 2401,
       "predecessor_r6_65_expected": 2373,
       "predecessor_r6_59_expected": 2205,
@@ -3293,6 +3294,25 @@
         "envBlueDelta": [-29.97, -32.51, -16.35, -21.22],
         "envBandDelta": [0.0032, 0.0012, -0.0744, -0.0312],
         "counts": { "ramps": 150, "sky": 1, "piers": 176, "fill": 1, "sun": 1, "env": 1 },
+        "originalGoldenComparisons": 0
+      },
+      "live_world_renv": {
+        "status": "g07_after_ramps_leftover_unnamed_not_env_both_equals_ramps_left_equals_both_g01_g05_g08_ramps_zero_both_equals_env",
+        "protocol": "world-renv-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "dominantRenv": ["both", "both", "ramps", "both"],
+        "rampsBandDelta": [0, 0, -0.1788, 0],
+        "envBandDelta": [0.0032, 0.0012, -0.0744, -0.0312],
+        "bothBandDelta": [0.0032, 0.0012, -0.1712, -0.0312],
+        "leftBandDelta": [0.0032, 0.0012, -0.1762, -0.0312],
+        "skyBandDelta": [0, 0, 0, 0],
+        "piersBandDelta": [0, 0, 0.0011, 0],
+        "envBlueDelta": [-29.97, -32.51, -16.35, -21.22],
+        "leftoverAfterRampsAsEnvBandDelta": [0.0032, 0.0012, 0.0076, -0.0312],
+        "counts": { "ramps": 150, "env": 1, "both": 151, "left": 328, "sky": 1, "piers": 176 },
         "originalGoldenComparisons": 0
       }
     },

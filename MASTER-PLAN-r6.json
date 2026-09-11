@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.67",
+  "revision": "r6.68",
   "date": "2026-09-11",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 77,
+    "audit_items": 78,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -407,7 +407,8 @@
         "AUD-74",
         "AUD-75",
         "AUD-76",
-        "AUD-77"
+        "AUD-77",
+        "AUD-78"
       ]
     },
     {
@@ -1911,6 +1912,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-UPPER-r6.67.json"
+    },
+    {
+      "id": "AUD-78",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Combined remaining g07 after ramps is env versus leftover unnamed occupancy",
+      "acceptance": "Upper-only reports without ramps/env/both/left/sky/piers bandDelta plus a dominantRenv must fail closed. Live snapCamera(true) at g01/g05/g07/g08 must isolate those six axes after setNight and measure isolated band L2, luma, B and bandDelta against the locked 26 August PNG. Deltas use the product present buffer as baseline. Product ground hex must stay 0xd0d4d8 and product exposure 0.56. Retain freeze path count 85 and generation 11. Renv isolation is not freeze. GFX-01, GFX-03, GFX-04, GFX-05 and GFX-06 stay queued after RSH-036.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-RENV-r6.68.json"
     }
   ],
   "legacy_findings": [
@@ -2342,9 +2356,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.67",
-    "base_head": "0af3372",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.67.md",
+    "revision": "r6.68",
+    "base_head": "12b299c",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.68.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",

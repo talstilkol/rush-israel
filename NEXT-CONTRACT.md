@@ -1,7 +1,7 @@
-**Version:** 20.67.0
+**Version:** 20.68.0
 **Date:** 2026-09-11, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 0af3372b6493a0328a75f18faec5f64155328808
+**Repair base:** 12b299ce5c7e6b11d4a1b3373ab415c195cdc81f
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -106,7 +106,7 @@ required-ci-34480369405-1 SHA-256
 `0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec`. Retained;
 not relabelled a pass.
 
-## r6.67 and subsequent acceptance
+## r6.68 and subsequent acceptance
 1. Remaining 0/4 is sun intensity luma plus bakeEnv 0x3a9ae0 hue plus leftover
    gray cubemap vs IBL-off on g01/g05/g08 bottom: intensity occupies luma,
    0x3a9ae0 vs 0x808080 occupies B −30.0/−32.5 and that hue is
@@ -120,21 +120,24 @@ not relabelled a pass.
    ≡ environmentIntensity=0. material.envMap ≡ gray. setNight does not
    rebake. g07 upper remaining named occupancy is ramps (bandDelta −0.1788,
    L2 −67.1), not sky (≡ 0) and not piers (≡ 0). Env independently occupies
-   g07 B −16.4 and bandDelta −0.0744.
+   g07 B −16.4 and bandDelta −0.0744 versus product present, but remaining
+   g07 after ramps is leftover unnamed occupancy (~40%), not env (both ≡
+   ramps, leftover-after-ramps-as-env ≈ 0; left ≡ both).
    Live sampling must force 1280×800 pixelRatio 1 after snapCamera(true),
    capture product present (`post.setDrive(0, false); post.render()`), locate
-   the dominant 200px band, and isolate remaining g07 after ramps as env
-   bandDelta versus leftover independently of ramps vs sky vs piers without
+   the dominant 200px band, and isolate leftover g07 after ramps as road vs
+   buildings vs ground independently of env vs sky vs piers without
    changing product color, exposure or refreshing PNGs.
-   Smoke must keep verifyWorldLayers through verifyWorldNfill and
-   verifyWorldUpper. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4
+   Smoke must keep verifyWorldLayers through verifyWorldUpper and
+   verifyWorldRenv. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4
    is that intensity+environment-hue+hemi.color+leftover-environment gap plus
-   g07 upper ramps plus leftover g07 env. PNG refresh, threshold drift,
-   color retune, exposure retune and skipped comparison fail closed.
+   g07 upper ramps plus leftover g07 unnamed occupancy after ramps. PNG
+   refresh, threshold drift, color retune, exposure retune and skipped
+   comparison fail closed.
    176 piers, 546 legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and
    generation-11 lock stay. Freeze path count stays 85. Pixel 0/4 is not freeze.
-2. Preserve the r6.18 Chromium install retry through the r6.66 nfill isolation
-   and the r6.67 upper isolation.
+2. Preserve the r6.18 Chromium install retry through the r6.67 upper isolation
+   and the r6.68 renv isolation.
 3. Preserve 1280x800 images, threshold 0.12, failure 8%, generation 11 lock and
    owner approval. Do not refresh golden PNGs or silently change typography.
    Rendering performance remains open.
@@ -187,15 +190,15 @@ poses, so this is **not** remaining pixel 0/4.
 | id | track | defect | status |
 |---|---|---|---|
 | GFX-01 | namal | hero-car GLB body vertical/origami vs procedural extras | queued after RSH-036 |
-| GFX-02 | ayalon | leftover cubemap is scene.environment ≡ environmentIntensity=0; bakeEnv 0x3a9ae0 hue is cubemap not background; remaining hemi is hemi.color not groundColor; g08 fill and sun are independent additive luma; g07 upper is ramps not sky not piers | r6.67 done; AUD-78 next |
+| GFX-02 | ayalon | leftover cubemap is scene.environment ≡ environmentIntensity=0; bakeEnv 0x3a9ae0 hue is cubemap not background; remaining hemi is hemi.color not groundColor; g08 fill and sun are independent additive luma; g07 upper is ramps not sky not piers; remaining g07 after ramps is leftover unnamed not env (both ≡ ramps) | r6.68 done; AUD-79 next |
 | GFX-03 | ayalon | night point-to-point chase camera clips through hero-car at Kibbutz Galuyot / HaHagana | queued after RSH-036 |
 | GFX-04 | ayalon | night P2P camera clips into retaining wall at Kibbutz Galuyot t=0:25.66; car exploded from above | queued after RSH-036 |
 | GFX-05 | caesarea | water/ground plane cuts through the road at אמת המים t=0:05.20; car boxy with side glass | queued after RSH-036 |
 | GFX-06 | haifa | trees poke through the road at הגנים הבהאיים so the driving surface is hidden; car floats | queued after RSH-036 |
 
-AUD-78 is the next RSH-036 isolation: remaining g07 after ramps as env
-bandDelta versus leftover. GFX-01, GFX-03, GFX-04, GFX-05 and GFX-06 stay
+AUD-79 is the next RSH-036 isolation: leftover g07 after ramps as road vs
+buildings vs ground. GFX-01, GFX-03, GFX-04, GFX-05 and GFX-06 stay
 recorded only; do not start them before RSH-036 closes.
 
-Master plan r6.67 retains 67 units, 42 historical findings, 6 bundles and 77
+Master plan r6.68 retains 67 units, 42 historical findings, 6 bundles and 78
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

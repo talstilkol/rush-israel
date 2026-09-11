@@ -1461,6 +1461,24 @@ thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-UPPER-r6.67.json, RSH-036-RUNTIME-REPAIR-r6.67.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.68 — 11 September 2026: remaining g07 after ramps is leftover unnamed, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-78 isolates
+ramps versus gray scene.environment versus both versus leftover
+(ramps+env+sky+piers) independently of sky vs piers after
+setNight/snapCamera(true). g07 remaining after ramps is leftover unnamed
+occupancy (~40%), not env: both ≡ ramps (bandDelta −0.1712 vs −0.1788) so
+leftover-after-ramps-as-env ≈ 0; left ≡ both so leftover unnamed is not sky,
+not piers. Env independently occupies product-present g07 B −16.4 /
+bandDelta −0.0744 but that occupancy does not survive after ramps are
+hidden. Day-bottom ramps ≡ 0 and both ≡ env. Camera stays 7.4/1.92. Freeze
+path count stays 85. GFX-01, GFX-03, GFX-04, GFX-05 and GFX-06 stay queued
+after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-RENV-r6.68.json, RSH-036-RUNTIME-REPAIR-r6.68.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 
