@@ -2019,6 +2019,19 @@
           "track": "ayalon",
           "defect": "leftover gray cubemap vs IBL-off B −18.5/−20.2; not material envMapIntensity",
           "status": "r6_58_done_aud_69_next"
+        },
+        {
+          "id": "GFX-03",
+          "track": "ayalon",
+          "mode": "pointToPoint",
+          "poi": "קיבוץ גלויות",
+          "landmark": "ההגנה / HaHagana",
+          "screenshot": "2026-09-11 17:51",
+          "evidence": "docs/evidence/GFX-03-ayalon-night-p2p-camera.md",
+          "defect": "night point-to-point chase camera clips through hero-car; gray panel fills the frame at t=0:02.64 / 2 km/h",
+          "not_remaining_0_of_4": true,
+          "not_freeze": true,
+          "status": "queued_after_rsh_036"
         }
       ]
     },

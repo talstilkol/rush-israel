@@ -149,15 +149,23 @@ bandDelta 0 on Ayalon g01/g05/g08 bottom, so this is **not** remaining pixel
 
 Queue after RSH-036, as a separate graphical workstream. Do not retune Ayalon
 `0xd0d4d8` / exposure 0.56, do not refresh golden PNGs, do not merge, and do
-not treat a namal car-orientation fix as freeze.
+not treat a namal car-orientation or Ayalon P2P camera-clip fix as freeze.
+
+Owner screenshot 2026-09-11 17:51 on track `ayalon`, mode נקודה לנקודה,
+night, t=0:02.64, 2 km/h, POI קיבוץ גלויות, landmark ההגנה / HaHagana. Chase
+camera sits inside / through the Sabra body so a gray panel fills the frame.
+Distinct from GFX-01 (namal GLB up-axis at rest). r6.34 hero-car bandDelta 0
+at locked rest poses, so this is **not** remaining pixel 0/4.
 
 | id | track | defect | status |
 |---|---|---|---|
 | GFX-01 | namal | hero-car GLB body vertical/origami vs procedural extras | queued after RSH-036 |
 | GFX-02 | ayalon | leftover gray IBL vs IBL-off occupied by product HemisphereLight (B −17.7/−19.6 of −18.5/−20.2) | r6.58 done; AUD-69 next |
+| GFX-03 | ayalon | night point-to-point chase camera clips through hero-car at Kibbutz Galuyot / HaHagana | queued after RSH-036 |
 
 AUD-69 is the next RSH-036 isolation: leftover-occupying HemisphereLight as
-hemi.intensity versus hemi.color versus hemi.groundColor.
+hemi.intensity versus hemi.color versus hemi.groundColor. GFX-03 is recorded
+only; do not start it before RSH-036 closes.
 
 Master plan r6.58 retains 67 units, 42 historical findings, 6 bundles and 68
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

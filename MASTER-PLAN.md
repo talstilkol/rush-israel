@@ -1257,6 +1257,18 @@ or exposure or activate RSH-037.
 Details: RSH-036-WORLD-AMB-r6.58.json, RSH-036-RUNTIME-REPAIR-r6.58.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## Queued GFX-03 — 11 September 2026 17:51: Ayalon night P2P camera through car
+
+Owner screenshot on track `ayalon`, mode נקודה לנקודה, night, t=0:02.64,
+2 km/h, POI קיבוץ גלויות, landmark ההגנה / HaHagana. Chase camera sits inside
+/ through the Sabra body; a gray panel fills the frame. Distinct from GFX-01
+(namal GLB up-axis). r6.34 hero-car bandDelta 0 at locked rest poses, so this
+is not remaining 0/4 and is not freeze. Queue after RSH-036 with GFX-01.
+Evidence: docs/evidence/GFX-03-ayalon-night-p2p-camera.md and
+docs/evidence/gfx-03-ayalon-night-p2p-camera-2026-09-11-1751.png.
+Do not start GFX-03 before RSH-036 / AUD-69 isolation closes.
+
+
 
 
 
