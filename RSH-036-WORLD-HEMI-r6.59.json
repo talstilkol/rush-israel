@@ -1,0 +1,339 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.59",
+  "date": "2026-09-11",
+  "base": "2f13e05",
+  "finding": "AUD-69",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "not_relabelled_success": true
+  },
+  "defect": "r6.58 remaining leftover gray cubemap vs IBL-off occupies B −18.5/−20.2 and is occupied by product HemisphereLight (B −17.7/−19.6), but combined leftover-occupying hemi is hemi.color, not intensity versus groundColor.",
+  "repair": "Keep verifyWorldLayers through verifyWorldAmb and verifyWorldHemi. Direct-engine present capture isolates HemisphereLight.intensity 0 vs color 0x000000 vs groundColor 0x000000 on a 0x808080 fromScene independently of AmbientLight vs RectAreaLight vs 0x3a9ae0 hue vs sun intensity vs fill AFTER setNight/snapCamera(true). Product exposure stays 0.56. Pixel 0/4 stays an open gate, not freeze. GFX-01 and GFX-03 stay queued after RSH-036 and are not remaining 0/4.",
+  "live_browser": {
+    "status": "g01_g05_day_bottom_hint_equal_hcol_hgnd_equal_gray_g08_unrebaked_g07_upper_none",
+    "protocol": "world-hemi-buffer-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "pixelThreshold": 0.12,
+    "failureLimit": 0.08,
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "productGroundHex": 13685976,
+    "productGroundCount": 1,
+    "groundMeshCount": 1,
+    "productExposure": 0.56,
+    "lumaTermsIncludeHemi": false,
+    "hueClearsOff": false,
+    "intensityClearsIbl": false,
+    "colorManagementStaysEnabled": true,
+    "outputColorSpaceStaysSRGB": true,
+    "toneMappingStaysACES": true,
+    "counts": {
+      "hint": 1,
+      "hcol": 1,
+      "hgnd": 1,
+      "hue": 1,
+      "intensity": 1,
+      "fill": 1
+    },
+    "frames": [
+      {
+        "id": "g01",
+        "follow": 7.4,
+        "height": 1.92,
+        "presentPct": 0.6718,
+        "dominant": "bottom",
+        "dominantHem": "intensity",
+        "contributingHem": [
+          "hint",
+          "hcol",
+          "hue",
+          "intensity"
+        ],
+        "lumaAxis": [
+          "intensity"
+        ],
+        "hintAxis": [
+          "hint"
+        ],
+        "hcolAxis": [
+          "hcol"
+        ],
+        "hgndAxis": [],
+        "hueAxis": [
+          "hue"
+        ],
+        "bandL2": 125.77,
+        "bandLuma": 99.87,
+        "bandBlue": 130.41,
+        "bandLive": [
+          77.18,
+          103.53,
+          130.41
+        ],
+        "bandGold": [
+          25.54,
+          35.89,
+          37.8
+        ],
+        "hintL2Delta": -20.63,
+        "hcolL2Delta": -20.63,
+        "hgndL2Delta": 0.17,
+        "hueL2Delta": -17.62,
+        "intensityL2Delta": -37.02,
+        "fillL2Delta": -5.72,
+        "hintLumaDelta": -11.44,
+        "hcolLumaDelta": -11.44,
+        "hgndLumaDelta": 0.06,
+        "intensityLumaDelta": -28,
+        "fillLumaDelta": -3.41,
+        "hintBlueDelta": -17.72,
+        "hcolBlueDelta": -17.72,
+        "hgndBlueDelta": 0.21,
+        "hueBlueDelta": -30.18
+      },
+      {
+        "id": "g05",
+        "follow": 7.4,
+        "height": 1.92,
+        "presentPct": 0.5828,
+        "dominant": "bottom",
+        "dominantHem": "intensity",
+        "contributingHem": [
+          "hint",
+          "hcol",
+          "hue",
+          "intensity"
+        ],
+        "lumaAxis": [
+          "intensity"
+        ],
+        "hintAxis": [
+          "hint"
+        ],
+        "hcolAxis": [
+          "hcol"
+        ],
+        "hgndAxis": [],
+        "hueAxis": [
+          "hue"
+        ],
+        "bandL2": 145.95,
+        "bandLuma": 99.51,
+        "bandBlue": 132.7,
+        "bandLive": [
+          74.63,
+          103.56,
+          132.7
+        ],
+        "bandGold": [
+          10.81,
+          22.24,
+          29.67
+        ],
+        "hintL2Delta": -22.64,
+        "hcolL2Delta": -22.64,
+        "hgndL2Delta": 0.19,
+        "hueL2Delta": -18.2,
+        "intensityL2Delta": -42.99,
+        "fillL2Delta": -6.3,
+        "hintLumaDelta": -12.75,
+        "hcolLumaDelta": -12.75,
+        "hgndLumaDelta": 0.08,
+        "intensityLumaDelta": -31.12,
+        "fillLumaDelta": -3.77,
+        "hintBlueDelta": -19.57,
+        "hcolBlueDelta": -19.57,
+        "hgndBlueDelta": 0.25,
+        "hueBlueDelta": -32.76
+      },
+      {
+        "id": "g07",
+        "follow": 7.4,
+        "height": 1.92,
+        "presentPct": 0.2813,
+        "dominant": "upper",
+        "dominantHem": "hgnd",
+        "contributingHem": [
+          "hcol",
+          "hgnd"
+        ],
+        "lumaAxis": [],
+        "hintAxis": [],
+        "hcolAxis": [
+          "hcol"
+        ],
+        "hgndAxis": [],
+        "hueAxis": [
+          "hue"
+        ],
+        "bandL2": 96.57,
+        "bandLuma": 57.69,
+        "bandBlue": 94.37,
+        "bandLive": [
+          23.09,
+          64.27,
+          94.37
+        ],
+        "bandGold": [
+          49.98,
+          121.76,
+          167.16
+        ],
+        "hintL2Delta": -7.63,
+        "hcolL2Delta": -8.09,
+        "hgndL2Delta": -11.41,
+        "hueL2Delta": 20.27,
+        "intensityL2Delta": 3.72,
+        "fillL2Delta": 0.68,
+        "hintLumaDelta": 5.98,
+        "hcolLumaDelta": 6.37,
+        "hgndLumaDelta": 8.11,
+        "intensityLumaDelta": -2.75,
+        "fillLumaDelta": -0.44,
+        "hintBlueDelta": 4.77,
+        "hcolBlueDelta": 5.06,
+        "hgndBlueDelta": 7.76,
+        "hueBlueDelta": -24.38
+      },
+      {
+        "id": "g08",
+        "follow": 7.4,
+        "height": 1.92,
+        "presentPct": 0.671,
+        "dominant": "bottom",
+        "dominantHem": "intensity",
+        "contributingHem": [
+          "hint",
+          "hcol",
+          "hue",
+          "intensity",
+          "fill"
+        ],
+        "lumaAxis": [
+          "intensity",
+          "fill"
+        ],
+        "hintAxis": [
+          "hint"
+        ],
+        "hcolAxis": [
+          "hcol"
+        ],
+        "hgndAxis": [],
+        "hueAxis": [
+          "hue"
+        ],
+        "bandL2": 87.72,
+        "bandLuma": 51.83,
+        "bandBlue": 70.17,
+        "bandLive": [
+          40.83,
+          53.25,
+          70.17
+        ],
+        "bandGold": [
+          7.01,
+          5.99,
+          4.46
+        ],
+        "hintL2Delta": -11.69,
+        "hcolL2Delta": -11.69,
+        "hgndL2Delta": 0,
+        "hueL2Delta": -12.88,
+        "intensityL2Delta": -19.22,
+        "fillL2Delta": -13.96,
+        "hintLumaDelta": -5.49,
+        "hcolLumaDelta": -5.49,
+        "hgndLumaDelta": 0,
+        "intensityLumaDelta": -11.46,
+        "fillLumaDelta": -12.39,
+        "hintBlueDelta": -11.43,
+        "hcolBlueDelta": -11.43,
+        "hgndBlueDelta": 0,
+        "hueBlueDelta": -21.22
+      }
+    ],
+    "finding": "g01/g05 day-bottom leftover-occupying hemi is hemi.color (hint ≡ hcol B −17.7/−19.6). groundColor ≡ gray (ΔB +0.2/+0.3). Intensity=0 equals color=0 because groundColor contributes 0. Product day hemi.color 0xa8c8e8 / night 0x6a88b0. Hue occupies B −30.2/−32.8. Intensity occupies luma. Fill joins intensity on g08 night. g08 night hint ≡ hcol because setNight does not rebake. g07 upper remains ramps. Product hex stays 0xd0d4d8. Product exposure stays 0.56. GFX-01 and GFX-03 stay queued after RSH-036.",
+    "dominantRoad": [
+      "intensity",
+      "intensity",
+      "car",
+      "intensity"
+    ],
+    "dominantRecv": [
+      "intensity",
+      "intensity",
+      "basic",
+      "intensity"
+    ],
+    "dominantHem": [
+      "intensity",
+      "intensity",
+      "hgnd",
+      "intensity"
+    ],
+    "hintIsCombined": false,
+    "hintClearsOff": false,
+    "hintClearsHue": false,
+    "hcolClearsHint": false,
+    "hemDeltasUseGrayBaseline": true,
+    "hintZerosIntensity": true,
+    "hcolZerosColor": true,
+    "hgndZerosGround": true,
+    "ambKeepsAmbient": true,
+    "rectKeepsRectArea": true,
+    "probeKeepsLightProbe": true
+  },
+  "new_cases": {
+    "total": 28,
+    "source": "scripts/world-hemi.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after sun intensity luma plus bakeEnv 0x3a9ae0 hue (B −30.2/−32.8 vs gray) plus leftover gray cubemap vs IBL-off occupied by hemi.color (hint ≡ hcol B −17.7/−19.6 of leftover −18.5/−20.2) on g01/g05/g08 bottom; groundColor ≡ gray; AmbientLight remainder B −4.5/−5.0; RectAreaLight ≡ gray; setNight does not rebake so g08 present is the day cubemap; fill joins intensity on g08 night; g07 upper ramps",
+    "GFX-01 namal hero-car GLB vertical/origami queued after RSH-036, not remaining 0/4",
+    "GFX-03 ayalon night P2P camera-through-car queued after RSH-036, not remaining 0/4",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}

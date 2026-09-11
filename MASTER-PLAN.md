@@ -1268,6 +1268,26 @@ Evidence: docs/evidence/GFX-03-ayalon-night-p2p-camera.md and
 docs/evidence/gfx-03-ayalon-night-p2p-camera-2026-09-11-1751.png.
 Do not start GFX-03 before RSH-036 / AUD-69 isolation closes.
 
+## r6.59 — 11 September 2026: leftover-occupying HemisphereLight is hemi.color, not intensity vs groundColor
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-69 isolates
+HemisphereLight.intensity 0 vs color 0x000000 vs groundColor 0x000000 on a
+0x808080 fromScene independently of AmbientLight vs RectAreaLight vs 0x3a9ae0
+hue vs sun intensity vs fill after setNight/snapCamera(true). r6.58 leftover
+fromScene of Color 0x808080 occupies B −18.5/−20.2 vs off and product
+HemisphereLight occupies that leftover (B −17.7/−19.6). g01/g05 day-bottom
+hint ≡ hcol (B −17.7/−19.6); groundColor ≡ gray (ΔB +0.2/+0.3). Leftover-
+occupying hemi is the sky color term (day 0xa8c8e8 / night 0x6a88b0). Intensity
+equals color because groundColor contributes 0. Hue occupies B −30.2/−32.8.
+Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins intensity on g08 night
+(−12.4). setNight does not rebake. g07 upper remains ramps. Camera stays
+7.4/1.92. Freeze path count stays 85. GFX-01 and GFX-03 stay queued after
+RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-HEMI-r6.59.json, RSH-036-RUNTIME-REPAIR-r6.59.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 
