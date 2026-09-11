@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.71.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.72.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2017,8 +2017,8 @@
         {
           "id": "GFX-02",
           "track": "ayalon",
-          "defect": "leftover g07 after ramps+buildings+instanced+ground is remaining non-mesh not unnamed meshes not env (leftover 0.2087, unnamed −0.006 below 0.02, leftover-after-ignd-as-env ≈ 0)",
-          "status": "r6_71_done_aud_82_next"
+          "defect": "leftover g07 after all world meshes is remaining empty-scene vs golden not background not clear not fog not post not env (leftover 0.2027, background +0.7322 increases, leftover-after-empty-as-env ≡ 0)",
+          "status": "r6_72_done_aud_83_next"
         },
         {
           "id": "GFX-03",
@@ -2072,12 +2072,13 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_g07_after_ignd_is_remaining_non_mesh_not_unnamed_not_env_not_full_suite_expected_2541",
+      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_background_not_clear_not_fog_not_post_not_env_not_full_suite_expected_2569",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2541,
+      "expected_total": 2569,
+      "predecessor_r6_71_expected": 2541,
       "predecessor_r6_70_expected": 2513,
       "predecessor_r6_68_expected": 2457,
       "predecessor_r6_67_expected": 2429,
@@ -3373,6 +3374,25 @@
         "leftoverBaselinePct": [0.9907, 0.9844, 0.2087, 0.9904],
         "unnamedHiddenPct": [0.9907, 0.9844, 0.2027, 0.9904],
         "counts": { "ramps": 150, "leftover": 894, "unnamed": 1154, "env": 895, "both": 1155, "sky": 895, "piers": 1070, "extras": 894, "buildings": 696, "instanced": 47, "ground": 1 },
+        "originalGoldenComparisons": 0
+      },
+      "live_world_nmesh": {
+        "status": "g07_after_empty_is_remaining_empty_scene_vs_golden_not_background_not_clear_not_fog_not_post_not_env",
+        "protocol": "world-nmesh-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "dominantNmesh": ["background", "background", "clear", "clear"],
+        "backgroundBandDelta": [-0.0014, -0.0013, 0.7322, 0.0021],
+        "clearBandDelta": [0, 0, 0, 0],
+        "fogBandDelta": [0, 0, 0, 0],
+        "postBandDelta": [0, 0, 0.0003, 0.0061],
+        "envBandDelta": [0, 0, 0, 0],
+        "bothBandDelta": [-0.0014, -0.0013, 0.7322, 0.0021],
+        "leftoverBaselinePct": [0.9907, 0.9844, 0.2027, 0.9904],
+        "backgroundHiddenPct": [0.9893, 0.9831, 0.9349, 0.9925],
+        "counts": { "ramps": 150, "leftover": 1154, "background": 1155, "clear": 1155, "fog": 1155, "post": 1155, "env": 1155, "both": 1156, "buildings": 696, "instanced": 47, "ground": 1, "remaining": 260 },
         "originalGoldenComparisons": 0
       }
     },

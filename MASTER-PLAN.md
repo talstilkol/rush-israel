@@ -1530,6 +1530,23 @@ RSH-037.
 Details: RSH-036-WORLD-ULEFT-r6.71.json, RSH-036-RUNTIME-REPAIR-r6.71.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.72 — 11 September 2026: leftover g07 after all world meshes is remaining empty-scene vs golden, not background, not clear, not fog, not post, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-82 isolates
+leftover g07 after ramps+buildings+instanced+ground+remaining-meshes as
+remaining non-mesh occupancy versus env independently of background vs
+clear vs fog vs post after setNight/snapCamera(true). g07 leftover after
+all world meshes hidden is remaining empty-scene vs golden residual
+(leftover 0.2027), not background (graying increases +0.7322, leftover →
+0.9349), not clear (≡ 0), not fog (≡ 0), not post (≈ 0) and not env (≡ 0).
+both ≡ background. leftover-after-empty-as-env ≡ 0. Product background is
+closer to golden than gray. Camera stays 7.4/1.92. Freeze path count stays
+85. GFX-01, GFX-03, GFX-04, GFX-05 and GFX-06 stay queued after RSH-036 and
+are not remaining 0/4. Do not merge, replace PNGs, change thresholds, retune
+color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-NMESH-r6.72.json, RSH-036-RUNTIME-REPAIR-r6.72.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 

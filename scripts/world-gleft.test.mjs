@@ -172,14 +172,16 @@ test('rest chase overlay remains the 26 August 7.4/1.92 lock', () => {
   assert.match(src, /let height = 1\.92;/);
 });
 
-test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray bare flat conv sigma mgmt lod road recv amb hemi hex off env eint back hterm nfill upper renv gleft wgi and uleft probes', () => {
+test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray bare flat conv sigma mgmt lod road recv amb hemi hex off env eint back hterm nfill upper renv gleft wgi uleft and nmesh probes', () => {
   const src = readFileSync(fromRoot('scripts', 'runtime-recovery-smoke.mjs'), 'utf8');
   assert.match(src, /import \{ verifyWorldGleft \} from '\.\/world-gleft-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldWgi \} from '\.\/world-wgi-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldUleft \} from '\.\/world-uleft-browser\.mjs';/);
+  assert.match(src, /import \{ verifyWorldNmesh \} from '\.\/world-nmesh-browser\.mjs';/);
   assert.match(src, /verifyWorldGleft\(browser, url\)/);
   assert.match(src, /verifyWorldWgi\(browser, url\)/);
   assert.match(src, /verifyWorldUleft\(browser, url\)/);
+  assert.match(src, /verifyWorldNmesh\(browser, url\)/);
 });
 
 test('freeze path count 85 and generation 11 stay', () => {
