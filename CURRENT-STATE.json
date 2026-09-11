@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.87.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.88.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2017,8 +2017,8 @@
         {
           "id": "GFX-02",
           "track": "ayalon",
-          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not dithering not shadowMap.autoUpdate not info.autoReset not env (leftover 0.2027, dither/shadow/reset/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0)",
-          "status": "r6_87_done_aud_97_next"
+          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not shadowMap.type not shadowMap.needsUpdate not clippingPlanes not env (leftover 0.2027, type/needs/clip/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0)",
+          "status": "r6_88_done_aud_98_next"
         },
         {
           "id": "GFX-03",
@@ -2108,12 +2108,12 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_dither_not_shadowautoupdate_not_autoreset_not_env_not_full_suite_expected_2961",
+      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_shadowtype_not_needsupdate_not_clippingplanes_not_env_not_full_suite_expected_2989",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2961,
+      "expected_total": 2989,
       "predecessor_r6_82_expected": 2849,
       "predecessor_r6_81_expected": 2821,
       "predecessor_r6_80_expected": 2793,
@@ -7452,6 +7452,29 @@
         "leftoverBaselinePct": [0.9907, 0.9844, 0.2027, 0.9904],
         "counts": {
           "ramps": 150, "leftover": 2082, "dither": 2083, "shadow": 2083, "reset": 2083,
+          "env": 2083, "both": 2086, "pack": 2085, "buildings": 696, "instanced": 47, "ground": 1, "remaining": 260
+        },
+        "originalGoldenComparisons": 0
+      },
+      "predecessor_r6_87_expected": 2961,
+      "live_world_tnc": {
+        "status": "g07_after_empty_is_remaining_empty_scene_vs_golden_not_shadowtype_not_needsupdate_not_clippingplanes_not_env",
+        "protocol": "world-tnc-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelRatio": 1,
+        "pixelThreshold": 0.12,
+        "dominantTnc": ["both", "both", "both", "both"],
+        "typeBandDelta": [0, 0, 0, 0],
+        "needsBandDelta": [0, 0, 0, 0],
+        "clipBandDelta": [0, 0, 0, 0],
+        "envBandDelta": [0, 0, 0, 0],
+        "bothBandDelta": [0, 0, 0, 0],
+        "packBandDelta": [0, 0, 0, 0],
+        "leftoverBaselinePct": [0.9907, 0.9844, 0.2027, 0.9904],
+        "counts": {
+          "ramps": 150, "leftover": 2082, "type": 2083, "needs": 2083, "clip": 2083,
           "env": 2083, "both": 2086, "pack": 2085, "buildings": 696, "instanced": 47, "ground": 1, "remaining": 260
         },
         "originalGoldenComparisons": 0

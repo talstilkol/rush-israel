@@ -1767,6 +1767,22 @@ after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
 thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-DSA-r6.87.json and RSH-036-RUNTIME-REPAIR-r6.87.md.
 
+## r6.88 — 12 September 2026: leftover g07 after world.group+outside is remaining empty-scene vs golden, not shadowMap.type, not shadowMap.needsUpdate, not clippingPlanes, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-97 isolates
+leftover g07 after world.group+outside as remaining empty-scene vs golden
+independently of shadowMap.type vs shadowMap.needsUpdate vs clippingPlanes after
+setNight/snapCamera(true). g07 leftover is remaining empty-scene vs golden
+(leftover 0.2027), not BasicShadowMap (≡ 0), not shadowMap.needsUpdate on (≡ 0),
+not clippingPlanes (≡ 0) and not env (≡ 0). both ≡ pack ≡ 0. Empty
+leftover has no world geometry for a shadowMap.type/needsUpdate/clippingPlanes
+change to occupy remaining g07. Product renderer stays. Freeze path count stays 85.
+GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08 and GFX-09 stay queued
+after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-TNC-r6.88.json and RSH-036-RUNTIME-REPAIR-r6.88.md.
+
+
 
 
 
