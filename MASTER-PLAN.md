@@ -1401,6 +1401,24 @@ or activate RSH-037.
 Details: RSH-036-WORLD-BACK-r6.64.json, RSH-036-RUNTIME-REPAIR-r6.64.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.65 — 11 September 2026: remaining hemi occupancy is hemi.color, not groundColor
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-75 isolates
+hemi.color=0x808080 versus hemi.intensity=0 versus groundColor=0x808080
+independently of scene.environment vs sun intensity vs fill after
+setNight/snapCamera(true). g01/g05 day-bottom hcol occupies B −8.9/−9.7;
+hint is a superset (L2 −18.4/−20.7, B −12.5/−13.8); hgnd ≡ 0. Remaining
+hemi occupancy is hemi.color, not groundColor. env cubemap hue stays B
+−30.0/−32.5. Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins
+intensity on g08 night (−12.4). setNight does not rebake. g07 upper remains
+ramps. Camera stays 7.4/1.92. Freeze path count stays 85. GFX-01, GFX-03,
+GFX-04 and GFX-05 stay queued after RSH-036 and are not remaining 0/4. Do
+not merge, replace PNGs, change thresholds, retune color or exposure or
+activate RSH-037.
+Details: RSH-036-WORLD-HTERM-r6.65.json, RSH-036-RUNTIME-REPAIR-r6.65.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

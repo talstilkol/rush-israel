@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-11T16:35:00Z",
+  "generated_at": "2026-09-11T16:45:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.64.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.65.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2018,7 +2018,7 @@
           "id": "GFX-02",
           "track": "ayalon",
           "defect": "leftover gray cubemap vs IBL-off B −18.5/−20.2; not material envMapIntensity",
-          "status": "r6_64_done_aud_75_next"
+          "status": "r6_65_done_aud_76_next"
         },
         {
           "id": "GFX-03",
@@ -2060,13 +2060,13 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_bg_equals_zero_env_equals_both_not_full_suite_expected_2345",
+      "status": "focused_28_passed_live_hcol_occupies_hgnd_zero_not_full_suite_expected_2373",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2345,
-      "predecessor_r6_63_expected": 2317,
+      "expected_total": 2373,
+      "predecessor_r6_64_expected": 2345,
       "predecessor_r6_59_expected": 2205,
       "predecessor_r6_58_expected": 2177,
       "predecessor_r6_57_expected": 2149,
@@ -3231,6 +3231,23 @@
         "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
         "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
         "counts": { "bg": 1, "env": 1, "both": 1, "hemi": 1, "intensity": 1, "fill": 1 },
+        "originalGoldenComparisons": 0
+      },
+      "live_world_hterm": {
+        "status": "g01_g05_day_bottom_hcol_occupies_hgnd_equals_zero_hint_superset_g08_unrebaked_g07_upper_none",
+        "protocol": "world-hterm-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "dominantHterm": ["intensity", "intensity", "hgnd", "intensity"],
+        "hcolBlueDelta": [-8.86, -9.7, -1.5, -4.09],
+        "hintBlueDelta": [-12.48, -13.75, -2.43, -9.11],
+        "hgndBlueDelta": [0, 0, 0.56, 0],
+        "envBlueDelta": [-29.97, -32.51, -16.35, -21.22],
+        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
+        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
+        "counts": { "hcol": 1, "hint": 1, "hgnd": 1, "env": 1, "intensity": 1, "fill": 1 },
         "originalGoldenComparisons": 0
       }
     },
