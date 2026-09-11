@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.72",
+  "revision": "r6.73",
   "date": "2026-09-11",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 82,
+    "audit_items": 83,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -1978,6 +1978,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-NMESH-r6.72.json"
+    },
+    {
+      "id": "AUD-83",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Leftover g07 after all world.group meshes is remaining occupancy outside world.group versus env",
+      "acceptance": "Nmesh-only reports without outside/env/both/hero/fx/blob bandDelta plus a dominantOgrp and leftoverBaselinePct must fail closed. Live snapCamera(true) at g01/g05/g07/g08 must isolate those six leftover-after-all-world.group axes after setNight and measure isolated band L2, luma, B and bandDelta against the locked 26 August PNG. Deltas use the empty-scene leftover buffer as baseline. Product ground hex must stay 0xd0d4d8 and product exposure 0.56. Retain freeze path count 85 and generation 11. Ogrp isolation is not freeze. GFX-01, GFX-03, GFX-04, GFX-05, GFX-06 and GFX-07 stay queued after RSH-036.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-OGRP-r6.73.json"
     }
   ],
   "legacy_findings": [
@@ -2409,9 +2422,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.72",
-    "base_head": "103b33a",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.72.md",
+    "revision": "r6.73",
+    "base_head": "5077670",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.73.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",

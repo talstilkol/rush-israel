@@ -1547,6 +1547,23 @@ color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-NMESH-r6.72.json, RSH-036-RUNTIME-REPAIR-r6.72.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.73 — 11 September 2026: leftover g07 after all world.group meshes is remaining empty-scene vs golden, not occupancy outside world.group, not hero, not fx, not blob, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-83 isolates
+leftover g07 after all world.group meshes as remaining occupancy outside
+world.group versus env independently of hero vs fx vs blob after
+setNight/snapCamera(true). g07 leftover after all world.group meshes hidden
+is remaining empty-scene vs golden residual (leftover 0.2027), not occupancy
+outside world.group (outside ≡ 0), not hero (≡ 0), not fx (≡ 0), not blob
+(≡ 0) and not env (≡ 0). both ≡ 0. leftover-after-empty-as-outside ≡ 0.
+Camera stays 7.4/1.92. Freeze path count stays 85. GFX-01, GFX-03, GFX-04,
+GFX-05, GFX-06 and GFX-07 stay queued after RSH-036 and are not remaining
+0/4. Do not merge, replace PNGs, change thresholds, retune color or
+exposure or activate RSH-037.
+Details: RSH-036-WORLD-OGRP-r6.73.json, RSH-036-RUNTIME-REPAIR-r6.73.md and
+docs/evidence/GFX-07-jerusalem-mahane-yehuda-origami.md.
+
+
 
 
 
