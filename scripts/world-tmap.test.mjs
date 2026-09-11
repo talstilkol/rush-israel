@@ -175,7 +175,7 @@ test('rest chase overlay remains the 26 August 7.4/1.92 lock', () => {
   assert.match(src, /let height = 1\.92;/);
 });
 
-test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray bare flat conv sigma mgmt lod road recv amb hemi hex off env eint back hterm nfill upper renv gleft wgi uleft nmesh ogrp tmap cam and chas probes', () => {
+test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray bare flat conv sigma mgmt lod road recv amb hemi hex off env eint back hterm nfill upper renv gleft wgi uleft nmesh ogrp tmap cam chas and px probes', () => {
   const src = readFileSync(fromRoot('scripts', 'runtime-recovery-smoke.mjs'), 'utf8');
   assert.match(src, /import \{ verifyWorldOgrp \} from '\.\/world-ogrp-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldTmap \} from '\.\/world-tmap-browser\.mjs';/);
@@ -183,6 +183,7 @@ test('smoke keeps world-layer residual mismatch bias scene region column slice e
   assert.match(src, /verifyWorldTmap\(browser, url\)/);
   assert.match(src, /verifyWorldCam\(browser, url\)/);
   assert.match(src, /verifyWorldChas\(browser, url\)/);
+  assert.match(src, /verifyWorldPx\(browser, url\)/);
 });
 
 test('freeze path count 85 and generation 11 stay', () => {

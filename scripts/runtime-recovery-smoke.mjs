@@ -60,6 +60,7 @@ import { verifyWorldOgrp } from './world-ogrp-browser.mjs';
 import { verifyWorldTmap } from './world-tmap-browser.mjs';
 import { verifyWorldCam } from './world-cam-browser.mjs';
 import { verifyWorldChas } from './world-chas-browser.mjs';
+import { verifyWorldPx } from './world-px-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -173,6 +174,7 @@ try {
   results.push(...await verifyWorldTmap(browser, url));
   results.push(...await verifyWorldCam(browser, url));
   results.push(...await verifyWorldChas(browser, url));
+  results.push(...await verifyWorldPx(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));
