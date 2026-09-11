@@ -1495,6 +1495,24 @@ color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-GLEFT-r6.69.json, RSH-036-RUNTIME-REPAIR-r6.69.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.70 — 11 September 2026: leftover g07 after ramps+buildings is instanced+ground, not water, not glass
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-80 isolates
+leftover g07 after ramps+buildings as water versus glass versus instanced
+independently of ground vs road vs env after setNight/snapCamera(true). g07
+leftover after ramps+buildings is instanced (bandDelta −0.0345, L2 −8.3,
+leftover 0.3313 → 0.2968) plus ground (bandDelta −0.0453, leftover → 0.2860),
+not water (≡ 0) and not glass (≈ 0). leftover-after-buildings-as-env ≈ 0
+(bandDelta −0.0044). Road ≡ 0. Remaining after instanced is still ~30% unnamed
+occupancy. Day-bottom leftover after ramps+buildings is not water not glass
+not instanced; hiding ground increases mismatch. Camera stays 7.4/1.92. Freeze
+path count stays 85. GFX-01, GFX-03, GFX-04, GFX-05 and GFX-06 stay queued
+after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-WGI-r6.70.json, RSH-036-RUNTIME-REPAIR-r6.70.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

@@ -53,6 +53,7 @@ import { verifyWorldNfill } from './world-nfill-browser.mjs';
 import { verifyWorldUpper } from './world-upper-browser.mjs';
 import { verifyWorldRenv } from './world-renv-browser.mjs';
 import { verifyWorldGleft } from './world-gleft-browser.mjs';
+import { verifyWorldWgi } from './world-wgi-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -159,6 +160,7 @@ try {
   results.push(...await verifyWorldUpper(browser, url));
   results.push(...await verifyWorldRenv(browser, url));
   results.push(...await verifyWorldGleft(browser, url));
+  results.push(...await verifyWorldWgi(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));
