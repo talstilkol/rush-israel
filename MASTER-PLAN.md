@@ -1412,11 +1412,24 @@ hemi occupancy is hemi.color, not groundColor. env cubemap hue stays B
 −30.0/−32.5. Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins
 intensity on g08 night (−12.4). setNight does not rebake. g07 upper remains
 ramps. Camera stays 7.4/1.92. Freeze path count stays 85. GFX-01, GFX-03,
-GFX-04 and GFX-05 stay queued after RSH-036 and are not remaining 0/4. Do
-not merge, replace PNGs, change thresholds, retune color or exposure or
-activate RSH-037.
+GFX-04, GFX-05 and GFX-06 stay queued after RSH-036 and are not remaining
+0/4. Do not merge, replace PNGs, change thresholds, retune color or exposure
+or activate RSH-037.
 Details: RSH-036-WORLD-HTERM-r6.65.json, RSH-036-RUNTIME-REPAIR-r6.65.md and
 docs/evidence/r6.27-published-ci-verification.json.
+
+## Queued GFX-06 — 11 September 2026 17:53–17:54: Carmel trees through the road at הגנים הבהאיים
+
+Owner screenshots on track `haifa` (ירידת הכרמל), mode נקודה לנקודה, day,
+POI הגנים הבהאיים, t=0:04.25 / 11 km/h and t=0:39.59 / 1 km/h. Pine-tree
+meshes poke through the driving surface so the road is hidden; the Sabra
+floats on canopies and the HUD toasts `חזור לכביש`. Distinct from GFX-01
+(namal rest origami) and GFX-05 (Caesarea water plane). r6.34 hero-car
+bandDelta 0 at locked Ayalon rest poses, so this is not remaining 0/4 and
+is not freeze. Queue after RSH-036 with GFX-01, GFX-03, GFX-04 and GFX-05.
+Evidence: docs/evidence/GFX-06-haifa-carmel-trees-through-road.md.
+Do not start GFX-06 before RSH-036 / AUD-76 isolation closes.
+
 
 
 

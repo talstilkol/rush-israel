@@ -177,6 +177,14 @@ family). Distinct from GFX-01 (namal rest origami), GFX-03 and GFX-04
 (Ayalon night P2P camera clips). r6.34 hero-car bandDelta 0 at locked Ayalon
 rest poses, so this is **not** remaining pixel 0/4.
 
+Owner screenshots 2026-09-11 17:53.40 and 17:54.15 on track `haifa`
+(ירידת הכרמל), mode נקודה לנקודה, day, POI הגנים הבהאיים, t=0:04.25 /
+11 km/h and t=0:39.59 / 1 km/h. Pine-tree meshes poke through the driving
+surface so the road is hidden; the Sabra floats on canopies and the HUD
+toasts `חזור לכביש`. Distinct from GFX-01 (namal rest origami) and GFX-05
+(Caesarea water plane). r6.34 hero-car bandDelta 0 at locked Ayalon rest
+poses, so this is **not** remaining pixel 0/4.
+
 | id | track | defect | status |
 |---|---|---|---|
 | GFX-01 | namal | hero-car GLB body vertical/origami vs procedural extras | queued after RSH-036 |
@@ -184,10 +192,11 @@ rest poses, so this is **not** remaining pixel 0/4.
 | GFX-03 | ayalon | night point-to-point chase camera clips through hero-car at Kibbutz Galuyot / HaHagana | queued after RSH-036 |
 | GFX-04 | ayalon | night P2P camera clips into retaining wall at Kibbutz Galuyot t=0:25.66; car exploded from above | queued after RSH-036 |
 | GFX-05 | caesarea | water/ground plane cuts through the road at אמת המים t=0:05.20; car boxy with side glass | queued after RSH-036 |
+| GFX-06 | haifa | trees poke through the road at הגנים הבהאיים so the driving surface is hidden; car floats | queued after RSH-036 |
 
 AUD-76 is the next RSH-036 isolation: remaining g08 night fill versus sun
-intensity versus both. GFX-01, GFX-03, GFX-04 and GFX-05 stay recorded
-only; do not start them before RSH-036 closes.
+intensity versus both. GFX-01, GFX-03, GFX-04, GFX-05 and GFX-06 stay
+recorded only; do not start them before RSH-036 closes.
 
 Master plan r6.65 retains 67 units, 42 historical findings, 6 bundles and 75
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

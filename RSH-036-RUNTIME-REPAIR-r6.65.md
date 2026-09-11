@@ -3,8 +3,8 @@
 Candidate, 11 September 2026. Base 47f1d6b
 (r6.64 back isolation). No merge or freeze; 35/67 accepted; 32 remain. r6.17,
 r6.18 and r6.27 exact-head failures are retained. Do not relabel them as
-passes. r6.64 exact-head CI is not claimed. GFX-01, GFX-03, GFX-04 and
-GFX-05 stay queued after RSH-036 and are not remaining 0/4.
+passes. r6.64 exact-head CI is not claimed. GFX-01, GFX-03, GFX-04, GFX-05
+and GFX-06 stay queued after RSH-036 and are not remaining 0/4.
 
 ## r6.26 exact-head CI independently retained as last success
 
