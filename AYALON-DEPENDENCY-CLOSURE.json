@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "4dcaa89d34e3cb058b8ffd613ede5d453de721e0404bf1a6f8a4813f79adcabf"
+      "sha256": "d5a87663e3f284ab17a0f1bcc9dd36226e740bc018d3b4bdd01dcef545b6006c"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2059,7 +2059,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "768469564234900bb1813f451119311a661a0557fc95d2d165dba75e946752e0"
+      "sha256": "3d9fcd134187ab729e902dcbdd02a59ec7b59949f266913f6f3d727e10ea5142"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 16115,
-      "sha256": "ad0e51cb56eb088025ca83a796aa00513d9669900c273fc2b95be47dfeaf28e8"
+      "bytes": 16228,
+      "sha256": "3156edb6a7106ed65a583b459903d6006818fbee582131ee659e577c58a69c13"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2195,6 +2195,16 @@
       "path": "scripts/world-aa.test.mjs",
       "bytes": 11914,
       "sha256": "15d71f4c51cf62f24b36e8242a6632882adcce572617a0b8c160c7d22f1c9c00"
+    },
+    {
+      "path": "scripts/world-acd-browser.mjs",
+      "bytes": 55664,
+      "sha256": "86f6ff215858c3b7bfb7ba8a1121c6ce1920f8800689c436c4b40c575fed9f39"
+    },
+    {
+      "path": "scripts/world-acd.test.mjs",
+      "bytes": 12217,
+      "sha256": "a51238b724cb8fa6c236857d3da5963d18819c6de5a6193d938563036da2e4ac"
     },
     {
       "path": "scripts/world-acm-browser.mjs",
@@ -2463,8 +2473,8 @@
     },
     {
       "path": "scripts/world-lcc.test.mjs",
-      "bytes": 12272,
-      "sha256": "7022e971b89048f08cf575c5d8d0f3f0c5a601786b11045922170fa85e8de67d"
+      "bytes": 12276,
+      "sha256": "9b7c692d9f9d843277bd256688a3f7a5b2f9532b9b5de3104bab2c7f7b46adac"
     },
     {
       "path": "scripts/world-lod-browser.mjs",
@@ -2884,7 +2894,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "901543741678555a9588ff65e2610be233c21558ad4a0ac5a7adc43538312dc7"
+      "sha256": "9d78268d9d9a260ed4b9ec289c9511c6b92303f8a177667aa1e1287e0e292669"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -2958,8 +2968,8 @@
     },
     {
       "path": "src/game/car-assets.ts",
-      "bytes": 2022,
-      "sha256": "f1d2979738d429413f032bc277a208cb1ce4a6440b1307b54486acf15ac69ced"
+      "bytes": 2050,
+      "sha256": "28f503fb54db0f7550edb0b275e3071ea2954406774884aea13da92f2446b055"
     },
     {
       "path": "src/game/car-hull.ts",
@@ -3033,8 +3043,8 @@
     },
     {
       "path": "src/game/engine/rendering-adapter.ts",
-      "bytes": 33315,
-      "sha256": "41c6d238b64a27635554b5aa1ccabc593dff828f6bf8748fe53aaf0950dc516d"
+      "bytes": 33686,
+      "sha256": "d6755406b94fc9772cf87d8fe35f271328ccbd1e4237c45ab6cd1944c0b7d47a"
     },
     {
       "path": "src/game/facade-assets.ts",
@@ -3673,8 +3683,8 @@
     },
     {
       "path": "src/game/world-builders/tracks/haifa.ts",
-      "bytes": 11644,
-      "sha256": "cbf147aed82daf2506443baadaa39d34914626acd64eeb82c823af052c7f476e"
+      "bytes": 11747,
+      "sha256": "c4ca87771659cc12b479f61afa9bc3ad884c65e8f0b98ffbd8c1a9e4e60ac234"
     },
     {
       "path": "src/game/world-builders/tracks/haifaport.ts",
@@ -3788,8 +3798,8 @@
     },
     {
       "path": "src/game/world-builders/tracks/oldjaffa.ts",
-      "bytes": 15875,
-      "sha256": "a35be9cb20db916ff5851a5d0bae0c0bab7fdb73eae94f0f13539f040c76fb71"
+      "bytes": 15951,
+      "sha256": "68c596506f841118b03238bd8cb0e36666c94303bde9613dbc57c529546e5508"
     },
     {
       "path": "src/game/world-builders/tracks/petah.ts",
@@ -3873,8 +3883,8 @@
     },
     {
       "path": "src/game/world.ts",
-      "bytes": 111215,
-      "sha256": "f0154d23276f52f68402d1b3758612f596946f4684974d9c4a4fd70276eac5ba"
+      "bytes": 112035,
+      "sha256": "d864f1aa795a16fb5ca8da4bcc6afaab5dd079db39abc8eabee1f42e6c22cf8e"
     },
     {
       "path": "src/lib/error-component.tsx",
@@ -11136,5 +11146,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "074f3a5e29276fe7e0b84f082022068012b131f0ced0d504271a04b90102e99d"
+  "digest_sha256": "58da258d9965abb7c550aeebf5aecb3eb5db80ccc8ca068c3afca98b470b0b99"
 }

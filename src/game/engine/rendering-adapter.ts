@@ -622,8 +622,18 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
       this.cam.y = expSmooth(this.cam.y, this.desired.y, k, dt);
       this.cam.z = expSmooth(this.cam.z, this.desired.z, k, dt);
     }
+    if (mode === 0 && !this.lookBack) {
+      const cdx = this.cam.x - p.x;
+      const cdz = this.cam.z - p.z;
+      const cd = Math.hypot(cdx, cdz);
+      if (cd < 4.2 && cd > 0.0001) {
+        this.cam.x = p.x + (cdx / cd) * 4.2;
+        this.cam.z = p.z + (cdz / cd) * 4.2;
+      }
+      if (this.cam.y < p.y + 1.35) this.cam.y = p.y + 1.35;
+    }
     if (mode !== 3 && mode !== 1 && p.onTrack && !p.sideStreet && this.mode !== "roam") {
-      const near = nearestIndex(this.built.samples, this.cam.x, this.cam.z, p.sampleIndex);
+      const near = nearestIndex(this.built.samples, this.cam.x, this.cam.z, p.sampleIndex, this.built.closed);
       const maxCam = this.built.width / 2 + 7;
       if (near.dist > maxCam) {
         const s = this.built.samples[near.index];

@@ -1,7 +1,7 @@
-**Version:** 20.84.0
+**Version:** 20.86.0
 **Date:** 2026-09-12, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 98600f3
+**Repair base:** be89b82
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -106,7 +106,18 @@ required-ci-34480369405-1 SHA-256
 `0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec`. Retained;
 not relabelled a pass.
 
-## r6.84 and subsequent acceptance
+## r6.86 playability (not remaining 0/4)
+Owner GFX-01/03/05/06/09 screenshots. Meshopt+KHR_mesh_quantization GLB
+clone was a vertical origami; `cloneCarBody` now keeps the load tokens and
+falls through to the Y-up Z-forward procedural extrusion. Coastal water
+keeps a `waterBaseY` so the bob no longer lifts the plane through the
+ribbon (Ayalon canal/plane stay on the historical −0.1+sin path). Palms
+and Haifa pines skip the carriageway; Jaffa clock-tower plaza no longer
+covers the road. Chase clearance 4.2 m / y+1.35 stays. Pixel 0/4 leftover
+g07 empty-scene vs golden 0.2027 is unchanged. `freeze_granted=false`.
+No merge, no PNG refresh, no RSH-037.
+
+## r6.85 and subsequent acceptance
 1. Remaining 0/4 is sun intensity luma plus bakeEnv 0x3a9ae0 hue plus leftover
    gray cubemap vs IBL-off on g01/g05/g08 bottom: intensity occupies luma,
    0x3a9ae0 vs 0x808080 occupies B −30.0/−32.5 and that hue is
@@ -191,14 +202,21 @@ not relabelled a pass.
    world geometry for a localClipping/clipShadows/clipIntersection change to
    occupy remaining g07. Product renderer stays (localClippingEnabled false,
    clipShadows false, clipIntersection false).
+   Leftover g07 after world.group+outside is remaining empty-scene vs golden
+   residual (leftover 0.2027), not autoClearColor off (≡ 0, L2 ≡ 0), not
+   autoClearDepth off (≡ 0), not autoClearStencil off (≡ 0) and not env (≡ 0).
+   both ≡ pack ≡ 0. leftover-after-empty-as-env ≡ 0. Empty leftover has no
+   world geometry for an autoClearColor/autoClearDepth/autoClearStencil change
+   to occupy remaining g07. Product renderer stays (autoClearColor true,
+   autoClearDepth true, autoClearStencil true).
    Live sampling must force 1280×800 pixelRatio 1 after snapCamera(true),
    capture product present (`post.setDrive(0, false); post.render()`), locate
    the dominant 200px band, and isolate leftover g07 empty-scene vs golden
-   independently of localClippingEnabled vs clipShadows vs
-   clipIntersection
+   independently of autoClearColor vs autoClearDepth vs
+   autoClearStencil
    without changing product color, exposure or
    refreshing PNGs.
-   Smoke must keep verifyWorldLayers through verifyWorldLcc. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4
+   Smoke must keep verifyWorldLayers through verifyWorldAcd. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4
    is that intensity+environment-hue+hemi.color+leftover-environment gap plus
    g07 upper ramps plus leftover g07 buildings after ramps plus leftover g07
    instanced+ground after ramps+buildings plus leftover g07 non-mesh after
@@ -215,12 +233,13 @@ not relabelled a pass.
    g07 empty-scene vs golden after autoClear/sortObjects/overrideMaterial neutralization plus leftover
    g07 empty-scene vs golden after physicallyCorrectLights/premultipliedAlpha/logarithmicDepthBuffer neutralization plus leftover
    g07 empty-scene vs golden after preserveDrawingBuffer/stencil/reversedDepthBuffer neutralization plus leftover
-   g07 empty-scene vs golden after localClippingEnabled/clipShadows/clipIntersection neutralization. PNG refresh, threshold drift, color
+   g07 empty-scene vs golden after localClippingEnabled/clipShadows/clipIntersection neutralization plus leftover
+   g07 empty-scene vs golden after autoClearColor/autoClearDepth/autoClearStencil neutralization. PNG refresh, threshold drift, color
    retune, exposure retune and skipped comparison fail closed.
    176 piers, 546 legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and
    generation-11 lock stay. Freeze path count stays 85. Pixel 0/4 is not freeze.
-2. Preserve the r6.18 Chromium install retry through the r6.83 psr isolation
-   and the r6.84 lcc isolation.
+2. Preserve the r6.18 Chromium install retry through the r6.84 lcc isolation
+   and the r6.85 acd isolation.
 3. Preserve 1280x800 images, threshold 0.12, failure 8%, generation 11 lock and
    owner approval. Do not refresh golden PNGs or silently change typography.
    Rendering performance remains open.
@@ -295,7 +314,7 @@ at locked Ayalon rest poses, so this is **not** remaining pixel 0/4.
 | id | track | defect | status |
 |---|---|---|---|
 | GFX-01 | namal | hero-car GLB body vertical/origami vs procedural extras | queued after RSH-036 |
-| GFX-02 | ayalon | leftover cubemap is scene.environment ≡ environmentIntensity=0; bakeEnv 0x3a9ae0 hue is cubemap not background; remaining hemi is hemi.color not groundColor; g08 fill and sun are independent additive luma; g07 upper is ramps not sky not piers; remaining g07 after ramps is leftover unnamed not env (both ≡ ramps); leftover g07 after ramps is buildings not road (bandDelta −0.1037; leftover-after-ramps-as-env ≈ 0); leftover g07 after ramps+buildings is instanced+ground not water not glass (bandDelta −0.0345/−0.0453; leftover-after-buildings-as-env ≈ 0); leftover g07 after ramps+buildings+instanced+ground is remaining non-mesh not unnamed meshes not env (leftover 0.2087, unnamed −0.006 below 0.02, leftover-after-ignd-as-env ≈ 0); leftover g07 after all world meshes is remaining empty-scene vs golden not background not clear not fog not post not env (leftover 0.2027, background +0.7322 increases, leftover-after-empty-as-env ≡ 0); leftover g07 after all world.group meshes is remaining empty-scene vs golden not occupancy outside world.group not hero not fx not blob not env (leftover 0.2027, outside ≡ 0, leftover-after-empty-as-outside ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not toneMapping not ColorManagement not env (leftover 0.2027, LinearSRGB +0.7482 increases, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not fov not near not far not env (leftover 0.2027, fov/near/far/clip ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not follow not height not look-ahead not env (leftover 0.2027, follow/height/look/pose ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not pixelRatio not drawingBuffer not post.setSize not env (leftover 0.2027, ratio/buffer/size/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not bloom not SMAA not grade not env (leftover 0.2027, bloom/smaa/grade/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not antialias not samples not alpha not env (leftover 0.2027, aa bandDelta +0.0003 below 0.02 L2 +38.79 increases, samples/alpha ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not shadowMap not fog not scissor not env (leftover 0.2027, shadow/fog/scissor/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not autoClear not sortObjects not overrideMaterial not env (leftover 0.2027, auto/sort/override/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not physicallyCorrectLights not premultipliedAlpha not logarithmicDepthBuffer not env (leftover 0.2027, phys/premul/logdepth/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not preserveDrawingBuffer not stencil not reversedDepthBuffer not env (leftover 0.2027, preserve/stencil/reversed/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not localClippingEnabled not clipShadows not clipIntersection not env (leftover 0.2027, local/shadows/intersect/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0) | r6.84 done; AUD-95 next |
+| GFX-02 | ayalon | leftover cubemap is scene.environment ≡ environmentIntensity=0; bakeEnv 0x3a9ae0 hue is cubemap not background; remaining hemi is hemi.color not groundColor; g08 fill and sun are independent additive luma; g07 upper is ramps not sky not piers; remaining g07 after ramps is leftover unnamed not env (both ≡ ramps); leftover g07 after ramps is buildings not road (bandDelta −0.1037; leftover-after-ramps-as-env ≈ 0); leftover g07 after ramps+buildings is instanced+ground not water not glass (bandDelta −0.0345/−0.0453; leftover-after-buildings-as-env ≈ 0); leftover g07 after ramps+buildings+instanced+ground is remaining non-mesh not unnamed meshes not env (leftover 0.2087, unnamed −0.006 below 0.02, leftover-after-ignd-as-env ≈ 0); leftover g07 after all world meshes is remaining empty-scene vs golden not background not clear not fog not post not env (leftover 0.2027, background +0.7322 increases, leftover-after-empty-as-env ≡ 0); leftover g07 after all world.group meshes is remaining empty-scene vs golden not occupancy outside world.group not hero not fx not blob not env (leftover 0.2027, outside ≡ 0, leftover-after-empty-as-outside ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not toneMapping not ColorManagement not env (leftover 0.2027, LinearSRGB +0.7482 increases, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not fov not near not far not env (leftover 0.2027, fov/near/far/clip ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not follow not height not look-ahead not env (leftover 0.2027, follow/height/look/pose ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not pixelRatio not drawingBuffer not post.setSize not env (leftover 0.2027, ratio/buffer/size/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not bloom not SMAA not grade not env (leftover 0.2027, bloom/smaa/grade/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not antialias not samples not alpha not env (leftover 0.2027, aa bandDelta +0.0003 below 0.02 L2 +38.79 increases, samples/alpha ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not shadowMap not fog not scissor not env (leftover 0.2027, shadow/fog/scissor/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not autoClear not sortObjects not overrideMaterial not env (leftover 0.2027, auto/sort/override/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not physicallyCorrectLights not premultipliedAlpha not logarithmicDepthBuffer not env (leftover 0.2027, phys/premul/logdepth/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not preserveDrawingBuffer not stencil not reversedDepthBuffer not env (leftover 0.2027, preserve/stencil/reversed/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not localClippingEnabled not clipShadows not clipIntersection not env (leftover 0.2027, local/shadows/intersect/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not autoClearColor not autoClearDepth not autoClearStencil not env (leftover 0.2027, color/depth/stencil/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0) | r6.85 done; AUD-96 next |
 | GFX-03 | ayalon | night point-to-point chase camera clips through hero-car at Kibbutz Galuyot / HaHagana | queued after RSH-036 |
 | GFX-04 | ayalon | night P2P camera clips into retaining wall at Kibbutz Galuyot t=0:25.66; car exploded from above | queued after RSH-036 |
 | GFX-05 | caesarea | water/ground plane cuts through the road at אמת המים t=0:05.20; car boxy with side glass | queued after RSH-036 |
@@ -304,11 +323,11 @@ at locked Ayalon rest poses, so this is **not** remaining pixel 0/4.
 | GFX-08 | namal | dual cars + stacked multi-dimension roads / water plane / cyan spline arc at t=0:40.10 and 0:47.69 | queued after RSH-036 |
 | GFX-09 | oldjaffa | flickering track + missing road + cannot drive forward at מגדל השעון t=0:09.40 / 0 km/h lap 1/3 | queued after RSH-036 |
 
-AUD-95 is the next RSH-036 isolation: leftover g07 empty-scene vs golden
-independently of autoClearColor vs autoClearDepth vs autoClearStencil
+AUD-96 is the next RSH-036 isolation: leftover g07 empty-scene vs golden
+independently of dithering vs shadowMap.autoUpdate vs info.autoReset
 (product renderer stays).
 GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08 and GFX-09 stay
 recorded only; do not start them before RSH-036 closes.
 
-Master plan r6.84 retains 67 units, 42 historical findings, 6 bundles and 94
+Master plan r6.85 retains 67 units, 42 historical findings, 6 bundles and 95
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

@@ -193,12 +193,12 @@ test('rest chase overlay remains the 26 August 7.4/1.92 lock', () => {
   assert.match(src, /let height = 1\.92;/);
 });
 
-test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray bare flat conv sigma mgmt lod road recv amb hemi hex off env eint back hterm nfill upper renv gleft wgi uleft nmesh ogrp tmap cam chas px fx aa sfs acm pcl psr and lcc probes', () => {
+test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray bare flat conv sigma mgmt lod road recv amb hemi hex off env eint back hterm nfill upper renv gleft wgi uleft nmesh ogrp tmap cam chas px fx aa sfs acm pcl psr lcc and acd probes', () => {
   const src = readFileSync(fromRoot('scripts', 'runtime-recovery-smoke.mjs'), 'utf8');
-  assert.match(src, /import \{ verifyWorldPsr \} from '\.\/world-psr-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldLcc \} from '\.\/world-lcc-browser\.mjs';/);
-  assert.match(src, /verifyWorldPsr\(browser, url\)/);
+  assert.match(src, /import \{ verifyWorldAcd \} from '\.\/world-acd-browser\.mjs';/);
   assert.match(src, /verifyWorldLcc\(browser, url\)/);
+  assert.match(src, /verifyWorldAcd\(browser, url\)/);
 });
 
 test('freeze path count 85 and generation 11 stay', () => {

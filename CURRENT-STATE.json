@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.84.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.85.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2017,8 +2017,8 @@
         {
           "id": "GFX-02",
           "track": "ayalon",
-          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not localClippingEnabled not clipShadows not clipIntersection not env (leftover 0.2027, local/shadows/intersect/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0)",
-          "status": "r6_84_done_aud_95_next"
+          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not autoClearColor not autoClearDepth not autoClearStencil not env (leftover 0.2027, color/depth/stencil/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0)",
+          "status": "r6_85_done_aud_96_next"
         },
         {
           "id": "GFX-03",
@@ -7406,6 +7406,29 @@
         "leftoverBaselinePct": [0.9907, 0.9844, 0.2027, 0.9904],
         "counts": {
           "ramps": 150, "leftover": 2082, "local": 2083, "shadows": 2083, "intersect": 2083,
+          "env": 2083, "both": 2086, "pack": 2085, "buildings": 696, "instanced": 47, "ground": 1, "remaining": 260
+        },
+        "originalGoldenComparisons": 0
+      },
+      "predecessor_r6_84_expected": 2905,
+      "live_world_acd": {
+        "status": "g07_after_empty_is_remaining_empty_scene_vs_golden_not_autoclearcolor_not_autocleardepth_not_autoclearstencil_not_env",
+        "protocol": "world-acd-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelRatio": 1,
+        "pixelThreshold": 0.12,
+        "dominantAcd": ["both", "both", "both", "both"],
+        "colorBandDelta": [0, 0, 0, 0],
+        "depthBandDelta": [0, 0, 0, 0],
+        "stencilBandDelta": [0, 0, 0, 0],
+        "envBandDelta": [0, 0, 0, 0],
+        "bothBandDelta": [0, 0, 0, 0],
+        "packBandDelta": [0, 0, 0, 0],
+        "leftoverBaselinePct": [0.9907, 0.9844, 0.2027, 0.9904],
+        "counts": {
+          "ramps": 150, "leftover": 2082, "color": 2083, "depth": 2083, "stencil": 2083,
           "env": 2083, "both": 2086, "pack": 2085, "buildings": 696, "instanced": 47, "ground": 1, "remaining": 260
         },
         "originalGoldenComparisons": 0

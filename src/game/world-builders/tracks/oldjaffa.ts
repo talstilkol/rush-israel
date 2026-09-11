@@ -54,9 +54,9 @@ export default function buildOldjaffa(context: TrackWorldBuilderContext): void {
     const base = new THREE.Mesh(new THREE.BoxGeometry(8.4, 4.2, 8.4), ochreDark);
     base.position.set(ck.x, 2.1, ck.z);
     add(base);
-    const plaza = new THREE.Mesh(new THREE.CylinderGeometry(16, 16, 0.18, 20), ochreDark);
-    plaza.position.set(ck.x - 6, 0.1, ck.z);
-    add(plaza);
+    const plaza = new THREE.Mesh(new THREE.CylinderGeometry(7.2, 7.2, 0.28, 20), ochreDark);
+    plaza.position.set(ck.x, 0.16, ck.z);
+    if (nearestIndex(built.samples, ck.x, ck.z, 0).dist >= built.width / 2 + 10) add(plaza);
     const balcony = new THREE.Mesh(new THREE.BoxGeometry(5.8, 0.24, 5.8), lime);
     balcony.position.set(ck.x, 18.8, ck.z);
     add(balcony);

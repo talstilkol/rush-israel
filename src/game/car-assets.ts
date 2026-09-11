@@ -12,7 +12,9 @@ const cache = createAssetCache(() => {
   loader.setMeshoptDecoder(MeshoptDecoder);
   const dispose = createUnpublishedGltfDisposer();
   return loadOwnedResources(kinds.map((kind) => async () => {
+    await MeshoptDecoder.ready;
     const gltf = await loader.loadAsync(`/game/car-${kind}.glb`);
+    gltf.scene.updateMatrixWorld(true);
     return { gltf, dispose: () => dispose(gltf) };
   }), (models) => new Map<string, THREE.Object3D>(models.map(({ gltf }, i) => [kinds[i], gltf.scene])));
 });
@@ -27,16 +29,15 @@ export function cloneCarBody(kind: CarDef["body"], color: number, shadows: boole
     if ((o as THREE.Mesh).isMesh && o.name === "body") src = o as THREE.Mesh;
   });
   if (!src) return;
+  void color;
+  void shadows;
   const mesh = src.clone();
-  // RSH-019: each per-engine visual owns its geometry; the cached template remains process-owned.
   mesh.geometry = src.geometry.clone();
-  const mat = (src.material as THREE.MeshPhysicalMaterial).clone();
-  mat.color.setHex(color);
-  mesh.material = mat;
-  mesh.castShadow = shadows;
-  mesh.receiveShadow = true;
-  mesh.name = "body";
-  return mesh;
+  // Meshopt+KHR_mesh_quantization keeps decode on the template node. Cloning
+  // that mesh into the car group draws a vertical origami; procedural extrusion
+  // is the playable Y-up Z-forward body.
+  mesh.geometry.dispose();
+  return;
 }
 
 export function cloneCarGtBody(color: number, shadows: boolean) {

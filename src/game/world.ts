@@ -1407,22 +1407,23 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         normalScale: new THREE.Vector2(1.15, 1.15)
       }));
       if (isNight) mat.color.multiplyScalar(0.65);
-      const mesh = new THREE.Mesh(keep(new THREE.PlaneGeometry(Math.max(body.w * 1.4, 900), Math.max(body.d, 1600), 8, 8)), mat);
+      const mesh = new THREE.Mesh(keep(new THREE.PlaneGeometry(def.id === "ayalon" ? Math.max(body.w * 1.4, 900) : Math.min(Math.max(body.w * 1.15, 48), 520), def.id === "ayalon" ? Math.max(body.d, 1600) : Math.min(Math.max(body.d * 1.15, 48), 720), 8, 8)), mat);
       mesh.rotation.x = -Math.PI / 2;
-      mesh.position.set(body.x, -0.12, body.z);
+      mesh.position.set(body.x, def.id === "ayalon" ? -0.12 : -0.55, body.z);
+      if (def.id !== "ayalon") mesh.userData.waterBaseY = -0.55;
       group.add(mesh);
       waterMeshes.push(mesh);
       waterMats.push({ material: mat, baseColor: body.color });
       if (!waterMesh) waterMesh = mesh;
     }
     const sandBody = bodies[0];
-    const sand = new THREE.Mesh(keep(new THREE.PlaneGeometry(Math.max(sandBody.w * 0.55, 420), Math.max(sandBody.d, 2200))), keep(new THREE.MeshStandardMaterial({
+    const sand = new THREE.Mesh(keep(new THREE.PlaneGeometry(def.id === "ayalon" ? Math.max(sandBody.w * 0.55, 420) : Math.min(Math.max(sandBody.w * 0.55, 40), 360), def.id === "ayalon" ? Math.max(sandBody.d, 2200) : Math.min(Math.max(sandBody.d * 0.7, 40), 480))), keep(new THREE.MeshStandardMaterial({
       color: def.sand,
       roughness: 1,
       envMapIntensity: 0.2
     })));
     sand.rotation.x = -Math.PI / 2;
-    sand.position.set(sandBody.x + sandBody.w * 0.28, -0.18, sandBody.z);
+    sand.position.set(sandBody.x + sandBody.w * 0.28, def.id === "ayalon" ? -0.18 : -0.72, sandBody.z);
     if (def.theme !== "manhattan" && def.theme !== "park") group.add(sand);
     const foam = new THREE.Mesh(keep(new THREE.PlaneGeometry(sandBody.w * 0.14, sandBody.d * 0.92)), keep(new THREE.MeshBasicMaterial({
       map: keep(foamTex()),
@@ -1431,7 +1432,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       depthWrite: false
     })));
     foam.rotation.x = -Math.PI / 2;
-    foam.position.set(sandBody.x + sandBody.w * 0.14, -0.03, sandBody.z);
+    foam.position.set(sandBody.x + sandBody.w * 0.14, def.id === "ayalon" ? -0.03 : -0.4, sandBody.z);
     if (def.theme !== "manhattan" && def.theme !== "park") group.add(foam);
   }
   if (def.id === "ayalon") {
@@ -1551,11 +1552,12 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const step2 = Math.max(4, Math.floor(built.samples.length / palmN));
     for (let i = 0; i < built.samples.length && pc < palmN; i += step2) {
       const s = built.samples[i];
-      const d = built.width / 2 + 7.4;
+      const d = built.width / 2 + 16.5;
       const side = Math.hypot(s.x + s.rx * d - w0.x, s.z + s.rz * d - w0.z) < Math.hypot(s.x - s.rx * d - w0.x, s.z - s.rz * d - w0.z) ? 1 : -1;
       const px = s.x + s.rx * d * side;
       const pz = s.z + s.rz * d * side;
       if (inWater2(px, pz) || inClear2(px, pz)) continue;
+      if (nearestIndex(built.samples, px, pz, i, built.closed).dist < built.width / 2 + 8) continue;
       _dummy.position.set(px, s.y + 4.1, pz);
       _dummy.scale.set(1, 1, 1);
       _dummy.rotation.set(0, 0, 0);
@@ -1900,10 +1902,13 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const s = built.samples[i];
       if (!pine && !acacia && s.y > 14) continue;
       for (const side of pine || acacia ? [-1, 1] : [i % 12 === 0 ? 1 : -1]) {
-        const d = built.width / 2 + (pine ? 14 + i % 5 * 4.2 : acacia ? 12 + i % 4 * 4 : ficusStreet ? 12.5 : stoneHill ? 16 : 7.2);
+        const d = built.width / 2 + (pine ? 18 + i % 5 * 5.2 : acacia ? 12 + i % 4 * 4 : ficusStreet ? 12.5 : stoneHill ? 16 : 7.2);
+        const px = s.x + s.rx * d * side;
+        const pz = s.z + s.rz * d * side;
+        if (nearestIndex(built.samples, px, pz, i, built.closed).dist < built.width / 2 + 8) continue;
         treeSpots.push({
-          x: s.x + s.rx * d * side,
-          z: s.z + s.rz * d * side,
+          x: px,
+          z: pz,
           y: s.y
         });
       }
@@ -1923,8 +1928,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const forestStep = def.id === "hw1" ? 28 : 24;
     for (let x = -forestR; x <= forestR; x += forestStep) for (let z = -forestR; z <= forestR; z += forestStep) {
       if (inWater2(x, z)) continue;
-      const near = nearestIndex(built.samples, x, z, 0);
-      if (near.dist < built.width / 2 + 16) continue;
+      const near = nearestIndex(built.samples, x, z, 0, built.closed);
+      if (near.dist < built.width / 2 + 36) continue;
       const s = built.samples[near.index];
       treeSpots.push({
         x: x + (rng() - 0.5) * 8,
@@ -2549,7 +2554,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       mv.mesh.rotation.y = yaw;
     }
     if (waterMeshes.length) {
-      for (const mesh of waterMeshes) mesh.position.y = -0.1 + Math.sin(t * 0.7) * 0.06;
+      for (const mesh of waterMeshes) {
+        const base = mesh.userData.waterBaseY;
+        mesh.position.y = typeof base === "number" ? base + Math.sin(t * 0.7) * 0.04 : -0.1 + Math.sin(t * 0.7) * 0.06;
+      }
       if (waterMats.length) {
         for (const { material: mat } of waterMats) if (mat.normalMap) {
           mat.normalMap.offset.x = t * 0.04;

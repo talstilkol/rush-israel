@@ -118,11 +118,12 @@ export default function buildHaifa(context: TrackWorldBuilderContext): void {
       const s = built.samples[i];
       const vs = s.rx * (bg.x - s.x) + s.rz * (bg.z - s.z) >= 0 ? 1 : -1;
       const ms = vs;
-      for (const extra of [11, 20, 32]) {
+      for (const extra of [22, 34, 48]) {
         if (pi >= nPine) break;
         const d = built.width / 2 + extra;
         const px = s.x + s.rx * d * ms;
         const pz = s.z + s.rz * d * ms;
+        if (nearestIndex(built.samples, px, pz, i, built.closed).dist < built.width / 2 + 8) continue;
         _dummy.position.set(px, s.y, pz);
         _dummy.scale.set(1, 1 + (i % 4) * 0.12, 1);
         _dummy.rotation.set(0, i * 0.7, 0);
