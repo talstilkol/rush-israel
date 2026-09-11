@@ -1591,6 +1591,23 @@ remaining 0/4. Do not merge, replace PNGs, change thresholds, retune color or
 exposure or activate RSH-037.
 Details: RSH-036-WORLD-CAM-r6.75.json and RSH-036-RUNTIME-REPAIR-r6.75.md.
 
+## r6.76 — 11 September 2026: leftover g07 after world.group+outside is remaining empty-scene vs golden, not follow, not height, not look-ahead, not env; GFX-08 queued
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-86 isolates
+leftover g07 after world.group+outside as remaining empty-scene vs golden
+independently of rest-chase follow vs height vs look-ahead after
+setNight/snapCamera(true). g07 leftover is remaining empty-scene vs golden
+(leftover 0.2027), not follow 14 (≡ 0, L2 ≡ 0), not height 4 (≡ 0), not
+look-ahead (≡ 0) and not env (≡ 0). Empty leftover has no world geometry for
+a chase-pose change to reproject. Product follow 7.4 / height 1.92 stay.
+Freeze path count stays 85. GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07
+and GFX-08 stay queued after RSH-036 and are not remaining 0/4. Do not
+merge, replace PNGs, change thresholds, retune color or exposure or activate
+RSH-037.
+Details: RSH-036-WORLD-CHAS-r6.76.json, RSH-036-RUNTIME-REPAIR-r6.76.md and
+docs/evidence/GFX-08-namal-dual-car-stacked-roads.md.
+
+
 
 
 

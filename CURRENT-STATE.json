@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.75.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.76.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2017,8 +2017,8 @@
         {
           "id": "GFX-02",
           "track": "ayalon",
-          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not fov not near not far not env (leftover 0.2027, fov/near/far/clip \u2261 0, leftover-after-empty-as-env \u2261 0)",
-          "status": "r6_75_done_aud_86_next"
+          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not follow not height not look-ahead not env (leftover 0.2027, follow/height/look/pose \u2261 0, leftover-after-empty-as-env \u2261 0)",
+          "status": "r6_76_done_aud_87_next"
         },
         {
           "id": "GFX-03",
@@ -2080,16 +2080,28 @@
           "not_remaining_0_of_4": true,
           "not_freeze": true,
           "status": "queued_after_rsh_036"
+        },
+        {
+          "id": "GFX-08",
+          "track": "namal",
+          "mode": "lap",
+          "poi": "\u05e0\u05de\u05dc \u05ea\u05dc \u05d0\u05d1\u05d9\u05d1",
+          "screenshot": "2026-09-11 17:35.28 / 17:35.35",
+          "evidence": "docs/evidence/GFX-08-namal-dual-car-stacked-roads.md",
+          "defect": "dual cars + stacked multi-dimension roads / water plane / cyan spline arc at t=0:40.10 and 0:47.69",
+          "not_remaining_0_of_4": true,
+          "not_freeze": true,
+          "status": "queued_after_rsh_036"
         }
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_fov_not_near_not_far_not_env_not_full_suite_expected_2653",
+      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_follow_not_height_not_look_not_env_not_full_suite_expected_2681",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2653,
+      "expected_total": 2681,
       "predecessor_r6_72_expected": 2569,
       "predecessor_r6_71_expected": 2541,
       "predecessor_r6_70_expected": 2513,
@@ -6919,6 +6931,78 @@
           "env": 2083,
           "both": 2086,
           "clip": 2085,
+          "buildings": 696,
+          "instanced": 47,
+          "ground": 1,
+          "remaining": 260
+        },
+        "originalGoldenComparisons": 0
+      },
+      "predecessor_r6_75_expected": 2653,
+      "live_world_chas": {
+        "status": "g07_after_empty_is_remaining_empty_scene_vs_golden_not_follow_not_height_not_look_not_env",
+        "protocol": "world-chas-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "dominantChas": [
+          "both",
+          "both",
+          "both",
+          "both"
+        ],
+        "followBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "heightBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "lookBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "envBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "bothBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "poseBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "leftoverBaselinePct": [
+          0.9907,
+          0.9844,
+          0.2027,
+          0.9904
+        ],
+        "counts": {
+          "ramps": 150,
+          "leftover": 2082,
+          "follow": 2083,
+          "height": 2083,
+          "look": 2083,
+          "env": 2083,
+          "both": 2086,
+          "pose": 2085,
           "buildings": 696,
           "instanced": 47,
           "ground": 1,
