@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "8362e28d366721e86c8f6d192b29d148d463e73328fec3df8f93d69178b31ae1"
+      "sha256": "7ee8ce5310d232dfd91e4e36d8fa534e6c833664435644447acf869097411e56"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 12900,
-      "sha256": "e226029e108c878261d6252cbef8aba758a39417d0a3ecf2c99d3ead8805779d"
+      "bytes": 13016,
+      "sha256": "fb8b40c8b70de570d2f52195ea3422f7036563870f7994535d04f7247ef96b28"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2387,6 +2387,16 @@
       "sha256": "d6ffa6ed1944e987fda3a42ee9e05e96d1077162ee439f6ea3c452d59fc377f1"
     },
     {
+      "path": "scripts/world-recv-browser.mjs",
+      "bytes": 39135,
+      "sha256": "25c5346767e1e5a67b597301bd1c1214bcd3194436addff64835aca74fe8b036"
+    },
+    {
+      "path": "scripts/world-recv.test.mjs",
+      "bytes": 10636,
+      "sha256": "b8d37931719e99ca94e3cd3bacd63aa6634ab6a1708f5c521244bcd34f1d1287"
+    },
+    {
       "path": "scripts/world-region-browser.mjs",
       "bytes": 16566,
       "sha256": "c44478aee923b0edaa4cff81eaba0b606e378649688e8eb2b521c1893419b735"
@@ -2604,7 +2614,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "778bb74c7d9f3d1208510fe610440612e9e984c47d525438f49ff8e357fc8808"
+      "sha256": "9b32e9b35ffc1f3fa24b9fc32cb45b5d0b149549c444feff9c3b10a91789b8d3"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10856,5 +10866,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "87275ce45669de9743a1a1878c9471793bbdaa168bfaf727af29f9cefd7b439a"
+  "digest_sha256": "6463bd1bd17d2213565a4d7d660cda6eaffddb939a6b7a16696d818dedc5e300"
 }
