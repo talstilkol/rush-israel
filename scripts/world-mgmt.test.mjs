@@ -158,12 +158,14 @@ test('rest chase overlay remains the 26 August 7.4/1.92 lock', () => {
   assert.match(src, /let height = 1\.92;/);
 });
 
-test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray bare flat conv sigma and mgmt probes', () => {
+test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray bare flat conv sigma mgmt and lod probes', () => {
   const src = readFileSync(fromRoot('scripts', 'runtime-recovery-smoke.mjs'), 'utf8');
   assert.match(src, /import \{ verifyWorldSigma \} from '\.\/world-sigma-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldMgmt \} from '\.\/world-mgmt-browser\.mjs';/);
+  assert.match(src, /import \{ verifyWorldLod \} from '\.\/world-lod-browser\.mjs';/);
   assert.match(src, /verifyWorldSigma\(browser, url\)/);
   assert.match(src, /verifyWorldMgmt\(browser, url\)/);
+  assert.match(src, /verifyWorldLod\(browser, url\)/);
 });
 
 test('freeze path count 85 and generation 11 stay', () => {

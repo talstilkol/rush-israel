@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.54",
+  "revision": "r6.55",
   "date": "2026-09-11",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 64,
+    "audit_items": 65,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -394,7 +394,8 @@
         "AUD-61",
         "AUD-62",
         "AUD-63",
-        "AUD-64"
+        "AUD-64",
+        "AUD-65"
       ]
     },
     {
@@ -1729,6 +1730,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-MGMT-r6.54.json"
+    },
+    {
+      "id": "AUD-65",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Combined leftover gray cubemap versus IBL-off is not PMREM size versus CubeUV lod versus ground envMapIntensity attribution",
+      "acceptance": "Mgmt-only reports without size/lod/env/hue/intensity/fill luma and B-channel deltas plus a dominantLod must fail closed. Luma-terms-include-hemi, size-is-combined, size-clears-off, size-clears-hue, lod-clears-size, hue-clears-off, intensity-clears-ibl, size-deltas-use-product-baseline, PMREM-size-stays-256, ground-roughness-stays-product, ground-envMapIntensity-stays-product, ColorManagement-disabled, outputColorSpace-left-sRGB, toneMapping-left-ACES and product-exposure retune fail closed. Live snapCamera(true) at g01/g05/g07/g08 must force 1280x800 pixelRatio 1, capture post.render present, locate the dominant 200px band, isolate those six axes after setNight and measure isolated band L2, luma and B against the locked 26 August PNG. size/lod/env deltas use the 0x808080 hue buffer as baseline. Product ground hex must stay 0xd0d4d8 and product exposure 0.56. Original-golden claims, PNG refresh, threshold drift, camera miss, color retune and zero presentPct fail closed. Retain freeze path count 85 and generation 11. Lod isolation is not freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-LOD-r6.55.json"
     }
   ],
   "legacy_findings": [
@@ -2160,9 +2174,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.54",
-    "base_head": "09a3a06",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.54.md",
+    "revision": "r6.55",
+    "base_head": "418f384",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.55.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",

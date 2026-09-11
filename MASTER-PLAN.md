@@ -1172,6 +1172,27 @@ thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-MGMT-r6.54.json, RSH-036-RUNTIME-REPAIR-r6.54.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.55 — 11 September 2026: leftover gray cubemap vs IBL-off is not PMREM size vs CubeUV lod vs ground envMapIntensity
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-65 isolates
+PMREM fromScene size 16 vs CubeUV lod (ground roughness 0) vs ground
+envMapIntensity 0 on a 0x808080 fromScene independently of ColorManagement vs
+outputColorSpace vs toneMapping vs 0x3a9ae0 hue vs sun intensity vs fill after
+setNight/snapCamera(true). r6.54 leftover fromScene of Color 0x808080 occupies
+B −18.5/−20.2 vs off. g01/g05 day-bottom size ≡ env ≡ gray cubemap
+(ΔB +0.2/+0.3). CubeUV lod slightly brightens vs gray (B +1.6/+1.6) rather than
+occupying leftover. Leftover is not PMREM size versus CubeUV lod versus ground
+envMapIntensity. Ground envMapIntensity 0 on gray does not occupy leftover, so
+remaining gray IBL is not the terrain ground plane. Hue occupies B
+−30.2/−32.8. Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins intensity
+on g08 night (−12.4). setNight does not rebake, so g08 night size ≡ env ≡ gray.
+g07 upper remains ramps. Camera stays 7.4/1.92. Freeze path count stays 85.
+r6.27 lint no-undef is retained, not relabelled a pass. Immutable CDN bytes,
+rendering performance and freeze remain open. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-LOD-r6.55.json, RSH-036-RUNTIME-REPAIR-r6.55.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 

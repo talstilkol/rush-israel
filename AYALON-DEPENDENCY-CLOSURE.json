@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "e75a8aa74a9a755e52094281f2ec02690b879c49a10aab9e99c37442426d4439"
+      "sha256": "22f2eb347af3c5d06339e569cd98fec4782ed926401dc63322ce26478cca433f"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 12671,
-      "sha256": "23b3458c46762ce77bcd8485ff52b27275c35da4f0480e35edd46be894cfdf2f"
+      "bytes": 12784,
+      "sha256": "43454d4da509446a09bcfe08ba4925e605d48f58fbc6c3766abcf7e8c85a0d99"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2327,6 +2327,16 @@
       "sha256": "4f1881027f1190ba945fb579851e12ccdc8be864f15bacc24cd4a4dce504735e"
     },
     {
+      "path": "scripts/world-lod-browser.mjs",
+      "bytes": 36103,
+      "sha256": "800309275767049037bd5f84563bc355a6179d948d1181e41a218299ba509105"
+    },
+    {
+      "path": "scripts/world-lod.test.mjs",
+      "bytes": 10060,
+      "sha256": "2dfb14cd20e411b82db19a3d39cc90a1c51666b89f4c90e301b46ee21a317063"
+    },
+    {
       "path": "scripts/world-material-browser.mjs",
       "bytes": 23072,
       "sha256": "95e56b431615adb9b87cd8de55df4c23c4210219ee9c1b548f993bd4af31f980"
@@ -2343,8 +2353,8 @@
     },
     {
       "path": "scripts/world-mgmt.test.mjs",
-      "bytes": 9614,
-      "sha256": "fca2d53b0ba7b9ba90e5add954013d2c411ac0f13539114e4eec7b54dfe93aab"
+      "bytes": 9760,
+      "sha256": "c1aa83a51b258e4613b132869981d06b130c5dd5e09012985c0d5839442aa6fc"
     },
     {
       "path": "scripts/world-mismatch-browser.mjs",
@@ -2584,7 +2594,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "5b651ded5e55bb8c5d0d345b3518f90deb10eb4ffd05483b88d81cd06ea8dbaa"
+      "sha256": "abb67123ae08312dc4ec41aafc170af2fc622a62266f3a7c520371e8b81d1425"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10836,5 +10846,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "ed887bd595ff021dc553c36eff6f482ef151ce8ab4764dfac450e71311b8a591"
+  "digest_sha256": "1680dac99d8621957fa58573d08f7f338b698b74f580e124aa903c094d54cbb1"
 }
