@@ -1305,6 +1305,25 @@ or activate RSH-037.
 Details: RSH-036-WORLD-HEX-r6.60.json, RSH-036-RUNTIME-REPAIR-r6.60.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.61 — 11 September 2026: leftover after neutralizing hemi.color to 0x808080 is remaining cubemap vs IBL-off
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-71 isolates
+IBL-off with hemi.color held at 0x808080 versus gray cubemap with hemi.color
+0x808080 independently of 0x000000 presence vs 0x3a9ae0 hue vs sun intensity
+vs fill after setNight/snapCamera(true). r6.60 leftover-occupying hemi.color
+splits as 0xa8c8e8 vs 0x808080 (B −12.4/−13.7) plus 0x000000 presence.
+g01/g05 day-bottom off vs hgray occupies B −21.5/−23.8 (L2 −34.9/−38.4),
+larger than leftover with product hemi (−18.5/−20.2). Remaining leftover after
+gray hemi is remaining cubemap vs IBL-off. Hue occupies B −30.2/−32.8.
+Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins intensity on g08 night
+(−12.4). setNight does not rebake. g07 upper remains ramps. Camera stays
+7.4/1.92. Freeze path count stays 85. GFX-01 and GFX-03 stay queued after
+RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-OFF-r6.61.json, RSH-036-RUNTIME-REPAIR-r6.61.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

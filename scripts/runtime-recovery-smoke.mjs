@@ -44,6 +44,7 @@ import { verifyWorldRecv } from './world-recv-browser.mjs';
 import { verifyWorldAmb } from './world-amb-browser.mjs';
 import { verifyWorldHemi } from './world-hemi-browser.mjs';
 import { verifyWorldHex } from './world-hex-browser.mjs';
+import { verifyWorldOff } from './world-off-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -141,6 +142,7 @@ try {
   results.push(...await verifyWorldAmb(browser, url));
   results.push(...await verifyWorldHemi(browser, url));
   results.push(...await verifyWorldHex(browser, url));
+  results.push(...await verifyWorldOff(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));
