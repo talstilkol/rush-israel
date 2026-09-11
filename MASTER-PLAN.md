@@ -1134,6 +1134,25 @@ or exposure or activate RSH-037.
 Details: RSH-036-WORLD-CONV-r6.52.json, RSH-036-RUNTIME-REPAIR-r6.52.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.53 — 11 September 2026: leftover fromScene 0x808080 is not sigma vs mesh vs bake color space
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-63 isolates
+fromScene sigma 0 vs a BackSide mesh sky vs convertSRGBToLinear Color
+independently of 0x3a9ae0 hue vs sun intensity vs fill after
+setNight/snapCamera(true). r6.52 leftover fromScene of Color 0x808080 occupies
+B −18.5/−20.2 vs off. g01/g05 day-bottom sigma 0 ≡ mesh sky ≡ gray cubemap
+(ΔB +0.2/+0.3). convertSRGBToLinear occupies B −14.9/−16.3 of that leftover.
+Leftover is specifically sRGB Color fromScene versus a linear bake. Hue occupies
+B −30.2/−32.8. Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins intensity
+on g08 night (−12.4). setNight does not rebake, so g08 night sigma ≡ gray. g07
+upper remains ramps. Camera stays 7.4/1.92. Freeze path count stays 85. r6.27
+lint no-undef is retained, not relabelled a pass. Immutable CDN bytes, rendering
+performance and freeze remain open. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-SIGMA-r6.53.json, RSH-036-RUNTIME-REPAIR-r6.53.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 
