@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "3403f732d5aeb159051750b520a3ba92d46567c881e67a8f59909a360debb06a"
+      "sha256": "58daf9ed3768f898b8930b198749d6ad9ffad307376717983dfff5ef00a2a314"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -10906,5 +10906,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "d3714855104f0211b4b733415ffb855782d237da8b5855220e34fe8438c0fa1c"
+  "digest_sha256": "e976a6ab8bddb08165ec00a5837b0fa260362403ec4b50f9073b92ec8cc012a1"
 }

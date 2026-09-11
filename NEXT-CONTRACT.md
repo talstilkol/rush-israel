@@ -158,16 +158,25 @@ camera sits inside / through the Sabra body so a gray panel fills the frame.
 Distinct from GFX-01 (namal GLB up-axis at rest). r6.34 hero-car bandDelta 0
 at locked rest poses, so this is **not** remaining pixel 0/4.
 
+Owner screenshot 2026-09-11 17:51.46 on track `ayalon`, mode נקודה לנקודה,
+night, t=0:25.66, 1 km/h, POI קיבוץ גלויות. Chase camera sits inside a highway
+retaining wall so a gray slab fills the left frame; the Sabra is visible from
+a steep top-down angle with body split and windshield diamond detached.
+Distinct from GFX-03 (camera-through-car at t=0:02.64 same POI) and GFX-01
+(namal rest origami). r6.34 hero-car bandDelta 0 at locked rest poses, so this
+is **not** remaining pixel 0/4.
+
 | id | track | defect | status |
 |---|---|---|---|
 | GFX-01 | namal | hero-car GLB body vertical/origami vs procedural extras | queued after RSH-036 |
 | GFX-02 | ayalon | leftover after gray hemi is remaining cubemap vs IBL-off (off vs hgray B −21.5/−23.8) | r6.61 done; AUD-72 next |
 | GFX-03 | ayalon | night point-to-point chase camera clips through hero-car at Kibbutz Galuyot / HaHagana | queued after RSH-036 |
+| GFX-04 | ayalon | night P2P camera clips into retaining wall at Kibbutz Galuyot t=0:25.66; car exploded from above | queued after RSH-036 |
 
 AUD-72 is the next RSH-036 isolation: remaining cubemap vs IBL-off with
 hemi.color held at 0x808080 as scene.environment versus material.envMap versus
-both. GFX-01 and GFX-03 stay recorded only; do not start them before RSH-036
-closes.
+both. GFX-01, GFX-03 and GFX-04 stay recorded only; do not start them before
+RSH-036 closes.
 
 Master plan r6.61 retains 67 units, 42 historical findings, 6 bundles and 71
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

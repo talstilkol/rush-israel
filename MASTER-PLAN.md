@@ -1317,11 +1317,24 @@ larger than leftover with product hemi (−18.5/−20.2). Remaining leftover aft
 gray hemi is remaining cubemap vs IBL-off. Hue occupies B −30.2/−32.8.
 Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins intensity on g08 night
 (−12.4). setNight does not rebake. g07 upper remains ramps. Camera stays
-7.4/1.92. Freeze path count stays 85. GFX-01 and GFX-03 stay queued after
+7.4/1.92. Freeze path count stays 85. GFX-01, GFX-03 and GFX-04 stay queued after
 RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
 thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-OFF-r6.61.json, RSH-036-RUNTIME-REPAIR-r6.61.md and
 docs/evidence/r6.27-published-ci-verification.json.
+
+## Queued GFX-04 — 11 September 2026 17:51.46: Ayalon night P2P camera into wall
+
+Owner screenshot on track `ayalon`, mode נקודה לנקודה, night, t=0:25.66,
+1 km/h, POI קיבוץ גלויות. Chase camera sits inside a highway retaining wall;
+a gray slab fills the left frame. The Sabra is visible from a steep top-down
+angle with body split and windshield diamond detached. Distinct from GFX-03
+(camera-through-car at t=0:02.64 same POI) and GFX-01 (namal rest origami).
+r6.34 hero-car bandDelta 0 at locked rest poses, so this is not remaining 0/4
+and is not freeze. Queue after RSH-036 with GFX-01 and GFX-03.
+Evidence: docs/evidence/GFX-04-ayalon-night-p2p-wall-camera.md and
+docs/evidence/gfx-04-ayalon-night-p2p-wall-camera-2026-09-11-1751.png.
+Do not start GFX-04 before RSH-036 / AUD-72 isolation closes.
 
 
 

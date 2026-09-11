@@ -3,8 +3,8 @@
 Candidate, 11 September 2026. Base 65abfc1
 (r6.60 hex isolation + world-sky.test restore). No merge or freeze; 35/67
 accepted; 32 remain. r6.17, r6.18 and r6.27 exact-head failures are retained.
-Do not relabel them as passes. r6.60 exact-head CI is not claimed. GFX-01 and
-GFX-03 stay queued after RSH-036 and are not remaining 0/4.
+Do not relabel them as passes. r6.60 exact-head CI is not claimed. GFX-01,
+GFX-03 and GFX-04 stay queued after RSH-036 and are not remaining 0/4.
 
 ## r6.26 exact-head CI independently retained as last success
 

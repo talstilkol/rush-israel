@@ -343,6 +343,7 @@
     "original golden 0/4 after sun intensity luma plus bakeEnv 0x3a9ae0 hue (B −30.2/−32.8 vs gray) plus leftover gray cubemap vs IBL-off (off vs hgray B −21.5/−23.8 with hemi.color held at 0x808080; hemi.color 0xa8c8e8 vs 0x808080 B −12.4/−13.7) on g01/g05/g08 bottom; setNight does not rebake; fill joins intensity on g08 night; g07 upper ramps",
     "GFX-01 namal hero-car GLB vertical/origami queued after RSH-036, not remaining 0/4",
     "GFX-03 ayalon night P2P camera-through-car queued after RSH-036, not remaining 0/4",
+    "GFX-04 ayalon night P2P camera-into-wall at Kibbutz Galuyot t=0:25.66 queued after RSH-036, not remaining 0/4",
     "immutable CDN font bytes",
     "rendering performance"
   ],

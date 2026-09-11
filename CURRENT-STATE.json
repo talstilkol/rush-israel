@@ -1,7 +1,7 @@
 {
   "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-11T15:55:00Z",
+  "generated_at": "2026-09-11T16:00:00Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
@@ -2029,6 +2029,18 @@
           "screenshot": "2026-09-11 17:51",
           "evidence": "docs/evidence/GFX-03-ayalon-night-p2p-camera.md",
           "defect": "night point-to-point chase camera clips through hero-car; gray panel fills the frame at t=0:02.64 / 2 km/h",
+          "not_remaining_0_of_4": true,
+          "not_freeze": true,
+          "status": "queued_after_rsh_036"
+        },
+        {
+          "id": "GFX-04",
+          "track": "ayalon",
+          "mode": "pointToPoint",
+          "poi": "קיבוץ גלויות",
+          "screenshot": "2026-09-11 17:51.46",
+          "evidence": "docs/evidence/GFX-04-ayalon-night-p2p-wall-camera.md",
+          "defect": "night P2P chase camera clips into retaining wall at Kibbutz Galuyot t=0:25.66 / 1 km/h; Sabra exploded from steep top-down",
           "not_remaining_0_of_4": true,
           "not_freeze": true,
           "status": "queued_after_rsh_036"
