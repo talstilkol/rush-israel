@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "6fd8904752a6924053bfa43e3510fe33861e9637b45cdbfa91a70f0e7a15bb5d"
+      "sha256": "4566083738fbe3478721467fa10fb28ece3ce7d9966b5025ab41375647e4ae3c"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 13700,
-      "sha256": "56ff44dd68421d5957b6bbd465820fab2c19b3f22a18db3509c73603bae1d619"
+      "bytes": 13816,
+      "sha256": "2bc71e0bd1cf3241255a9902039f9db32fa5f67ba5944b16197fe556a3371a70"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2195,6 +2195,16 @@
       "path": "scripts/world-amb.test.mjs",
       "bytes": 10421,
       "sha256": "76a4c5f02391695d3cd2e2499c596dbde273155b8b0a26644e3b8c00c65367f8"
+    },
+    {
+      "path": "scripts/world-back-browser.mjs",
+      "bytes": 40489,
+      "sha256": "bee6e8b323a512d71c367ab78863730ed77d6b0f42cc9ac8f7d073e94960174b"
+    },
+    {
+      "path": "scripts/world-back.test.mjs",
+      "bytes": 12019,
+      "sha256": "3bf8645351bbca2fba4d3996ec3032f0d37e58faa41e4662988edbd64fb24923"
     },
     {
       "path": "scripts/world-bake-browser.mjs",
@@ -2674,7 +2684,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "b735ff5b3caadd21c9767be47e970b0f573d818969da994af03fbbe35e971aa1"
+      "sha256": "cfa4a174bf375ebd75488af8dbca295da5766e7572b6db34cf45eda78145f742"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10926,5 +10936,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "22cf858e32978edeb4e98d6f2102a8639da2fe3d133e60fd49fd916169a831c0"
+  "digest_sha256": "a90c5e5e323d47112173a3fa536705166026e9d19e139c3045c1d70627a04b41"
 }

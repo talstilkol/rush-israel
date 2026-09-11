@@ -1385,6 +1385,23 @@ Evidence: docs/evidence/GFX-05-caesarea-aqueduct-water-plane.md and
 docs/evidence/gfx-05-caesarea-aqueduct-water-plane-2026-09-11-1753.png.
 Do not start GFX-05 before RSH-036 / AUD-74 isolation closes.
 
+## r6.64 — 11 September 2026: remaining bakeEnv 0x3a9ae0 hue is scene.environment, not scene.background
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-74 isolates
+scene.background=0x808080 versus gray cubemap versus both independently of
+hemi.color vs sun intensity vs fill after setNight/snapCamera(true).
+g01/g05 day-bottom bg ≡ 0; env ≡ both (B −30.0/−32.5). bakeEnv 0x3a9ae0 hue
+is the environment cubemap, not the background color. hemi.color occupies B
+−8.9/−9.7 independently. Intensity occupies luma (−28.0/−31.1/−11.5). Fill
+joins intensity on g08 night (−12.4). setNight does not rebake. g07 upper
+remains ramps. Camera stays 7.4/1.92. Freeze path count stays 85. GFX-01,
+GFX-03, GFX-04 and GFX-05 stay queued after RSH-036 and are not remaining
+0/4. Do not merge, replace PNGs, change thresholds, retune color or exposure
+or activate RSH-037.
+Details: RSH-036-WORLD-BACK-r6.64.json, RSH-036-RUNTIME-REPAIR-r6.64.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 
