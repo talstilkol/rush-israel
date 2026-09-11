@@ -1,7 +1,7 @@
-**Version:** 20.57.0
+**Version:** 20.58.0
 **Date:** 2026-09-11, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 3102ea6473735cc0539535552184a0e5f7648d80
+**Repair base:** 111353ac85faeeb883a1bbb42619884c8296e0be
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -106,31 +106,32 @@ required-ci-34480369405-1 SHA-256
 `0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec`. Retained;
 not relabelled a pass.
 
-## r6.57 and subsequent acceptance
+## r6.58 and subsequent acceptance
 1. Remaining 0/4 is sun intensity luma plus bakeEnv 0x3a9ae0 hue plus leftover
    gray cubemap vs IBL-off on g01/g05/g08 bottom: intensity occupies luma,
    0x3a9ae0 vs 0x808080 occupies B −30.2/−32.8, leftover gray vs off occupies
-   B −18.5/−20.2. LightProbe vs MeshBasic envMap vs custom road-shader env are
-   not remaining day-bottom drivers: probe ≡ basic ≡ shader ≡ gray (ΔB
-   +0.2/+0.3). Road vs all-standard vs car envMapIntensity are not remaining
-   day-bottom drivers. setNight does not rebake, so g08 present keeps the day
-   cubemap. Fill joins intensity on g08 night. g07 upper remains ramps.
+   B −18.5/−20.2 and is occupied by the product HemisphereLight (B −17.7/−19.6).
+   AmbientLight is a smaller remainder (B −4.5/−5.0). RectAreaLight ≡ gray.
+   LightProbe vs MeshBasic envMap vs custom road-shader env and road vs
+   all-standard vs car envMapIntensity are not remaining day-bottom drivers.
+   setNight does not rebake, so g08 present keeps the day cubemap. Fill joins
+   intensity on g08 night. g07 upper remains ramps.
    Live sampling must force 1280×800 pixelRatio 1 after snapCamera(true),
    capture product present (`post.setDrive(0, false); post.render()`), locate
-   the dominant 200px band, and isolate remaining leftover gray cubemap vs
-   IBL-off as AmbientLight versus HemisphereLight versus RectAreaLight
-   independently of LightProbe vs MeshBasic envMap vs custom road-shader env
-   vs product hue vs sun intensity vs fill without changing product color,
-   exposure or refreshing PNGs.
-   Smoke must keep verifyWorldLayers through verifyWorldRoad and
-   verifyWorldRecv. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is
-   that intensity+hue+gray-IBL gap plus g07 upper ramps. PNG refresh,
+   the dominant 200px band, and isolate remaining leftover-occupying
+   HemisphereLight as hemi.intensity versus hemi.color versus hemi.groundColor
+   independently of AmbientLight vs RectAreaLight vs product hue vs sun
+   intensity vs fill without changing product color, exposure or refreshing
+   PNGs.
+   Smoke must keep verifyWorldLayers through verifyWorldRecv and
+   verifyWorldAmb. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is
+   that intensity+hue+gray-IBL/hemi gap plus g07 upper ramps. PNG refresh,
    threshold drift, color retune, exposure retune and skipped comparison fail
    closed.
    176 piers, 546 legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and
    generation-11 lock stay. Freeze path count stays 85. Pixel 0/4 is not freeze.
-2. Preserve the r6.18 Chromium install retry through the r6.56 road isolation
-   and the r6.57 recv isolation.
+2. Preserve the r6.18 Chromium install retry through the r6.57 recv isolation
+   and the r6.58 amb isolation.
 3. Preserve 1280x800 images, threshold 0.12, failure 8%, generation 11 lock and
    owner approval. Do not refresh golden PNGs or silently change typography.
    Rendering performance remains open.
@@ -153,10 +154,10 @@ not treat a namal car-orientation fix as freeze.
 | id | track | defect | status |
 |---|---|---|---|
 | GFX-01 | namal | hero-car GLB body vertical/origami vs procedural extras | queued after RSH-036 |
-| GFX-02 | ayalon | leftover gray IBL vs IBL-off (B −18.5/−20.2); not material envMapIntensity, LightProbe, MeshBasic envMap or road-shader | r6.57 done; AUD-68 next |
+| GFX-02 | ayalon | leftover gray IBL vs IBL-off occupied by product HemisphereLight (B −17.7/−19.6 of −18.5/−20.2) | r6.58 done; AUD-69 next |
 
-AUD-68 is the next RSH-036 isolation: leftover gray IBL as AmbientLight versus
-HemisphereLight versus RectAreaLight.
+AUD-69 is the next RSH-036 isolation: leftover-occupying HemisphereLight as
+hemi.intensity versus hemi.color versus hemi.groundColor.
 
-Master plan r6.57 retains 67 units, 42 historical findings, 6 bundles and 67
+Master plan r6.58 retains 67 units, 42 historical findings, 6 bundles and 68
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

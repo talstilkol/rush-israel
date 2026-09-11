@@ -1238,6 +1238,26 @@ RSH-037.
 Details: RSH-036-WORLD-RECV-r6.57.json, RSH-036-RUNTIME-REPAIR-r6.57.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.58 — 11 September 2026: leftover gray cubemap vs IBL-off is occupied by product HemisphereLight, not Ambient vs Rect
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-68 isolates
+AmbientLight intensity 0 vs HemisphereLight intensity 0 vs RectAreaLight
+intensity 0 on a 0x808080 fromScene independently of LightProbe vs MeshBasic
+envMap vs custom road-shader vs 0x3a9ae0 hue vs sun intensity vs fill after
+setNight/snapCamera(true). r6.57 leftover fromScene of Color 0x808080 occupies
+B −18.5/−20.2 vs off. g01/g05 day-bottom product HemisphereLight occupies that
+leftover (B −17.7/−19.6). AmbientLight is a smaller remainder (B −4.5/−5.0).
+RectAreaLight ≡ gray (ΔB +0.2/+0.3). This is the product-scene hemi, not the
+r6.50 bake-internal hemi (that one was 0). Hue occupies B −30.2/−32.8.
+Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins intensity on g08 night
+(−12.4). setNight does not rebake. g07 upper remains ramps. Camera stays
+7.4/1.92. Freeze path count stays 85. GFX-01 stays queued after RSH-036 and is
+not remaining 0/4. Do not merge, replace PNGs, change thresholds, retune color
+or exposure or activate RSH-037.
+Details: RSH-036-WORLD-AMB-r6.58.json, RSH-036-RUNTIME-REPAIR-r6.58.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

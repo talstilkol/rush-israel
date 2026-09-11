@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "7ee8ce5310d232dfd91e4e36d8fa534e6c833664435644447acf869097411e56"
+      "sha256": "1d74502b5473e93823d2ced5db0f54d041ccba819a10726cfd2ac0ed23853d80"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 13016,
-      "sha256": "fb8b40c8b70de570d2f52195ea3422f7036563870f7994535d04f7247ef96b28"
+      "bytes": 13129,
+      "sha256": "01aa7f44be1c2ed44afdb53c954ed4e0eea067a7f1c10153557f0440d6db3f46"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2185,6 +2185,16 @@
       "path": "scripts/webgpu-smoke.mjs",
       "bytes": 1824,
       "sha256": "a22a1173fa9369b8060085cac6f8271f93b0ac32adcddad4ba0c2fc6835985bd"
+    },
+    {
+      "path": "scripts/world-amb-browser.mjs",
+      "bytes": 38026,
+      "sha256": "18b41a327ed0ee828c96b4baab517f025968f1d050e52d167c9f3e104a268b81"
+    },
+    {
+      "path": "scripts/world-amb.test.mjs",
+      "bytes": 10421,
+      "sha256": "76a4c5f02391695d3cd2e2499c596dbde273155b8b0a26644e3b8c00c65367f8"
     },
     {
       "path": "scripts/world-bake-browser.mjs",
@@ -2614,7 +2624,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "9b32e9b35ffc1f3fa24b9fc32cb45b5d0b149549c444feff9c3b10a91789b8d3"
+      "sha256": "9ac6b3a8349bd87e7701b68381c3b79e0f71cd92a5aa52f34d51121b4d67d506"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10866,5 +10876,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "6463bd1bd17d2213565a4d7d660cda6eaffddb939a6b7a16696d818dedc5e300"
+  "digest_sha256": "9f4b0b943a74a828fa5f389fa8a521e8975baf5cc8ad27c352fe4eefb89971c8"
 }
