@@ -8,15 +8,15 @@ import { test } from 'node:test';
 import { PNG } from 'pngjs';
 import { fromRoot } from './project-root.mjs';
 import {
-  BAND_PIXELS, PACK_IDS, BOTH_IDS, CAPTURE_LAYERS, FAILURE_LIMIT, GRADE_IDS, SMAA_IDS, IBL_IDS, BLOOM_IDS,
-  FX_BAND_MIN, FX_BLUE_MIN, FX_FRAMES, FX_L2_MIN, FX_LAYERS, FX_LUMA_MIN,
+  BAND_PIXELS, PACK_IDS, BOTH_IDS, CAPTURE_LAYERS, FAILURE_LIMIT, ALPHA_IDS, SAMPLES_IDS, IBL_IDS, AA_IDS,
+  AA_BAND_MIN, AA_BLUE_MIN, AA_FRAMES, AA_L2_MIN, AA_LAYERS, AA_LUMA_MIN,
   NEUTRAL_SKY_HEX, PIXEL_THRESHOLD, PRODUCT_EXPOSURE, PRODUCT_FOV, PRODUCT_NEAR, PRODUCT_FAR_MIN,
   PRODUCT_FOLLOW, PRODUCT_HEIGHT, PRODUCT_PIXEL_RATIO, PRODUCT_HEMI_SKY_HEX, PRODUCT_PMREM_SIZE, PRODUCT_SKY_HEX,
-  WIDE_BLOOM,
-  dominantFx, leftoverIsNotFxMismatch, fxBufferIsNotOriginalGolden, retainWorldFx,
-  worldFxFixture, worldFxResults,
-} from './world-fx-browser.mjs';
-import { worldChasFixture } from './world-chas-browser.mjs';
+  WIDE_SAMPLES, PRODUCT_AA, PRODUCT_ALPHA,
+  dominantAa, leftoverIsNotAaMismatch, aaBufferIsNotOriginalGolden, retainWorldAa,
+  worldAaFixture, worldAaResults,
+} from './world-aa-browser.mjs';
+import { worldFxFixture } from './world-fx-browser.mjs';
 import { GROUND_ALBEDO } from './world-rgb-browser.mjs';
 import { REGION_BANDS, bandPixelmatch } from './world-region-browser.mjs';
 import { RSH035_BASELINE_SHA256, ORIGINAL_GOLDEN_FILES } from './original-golden-browser.mjs';
@@ -25,24 +25,24 @@ function sha256(buf) {
   return createHash('sha256').update(buf).digest('hex');
 }
 
-test('dominant 200px leftover report without remaining empty-scene vs golden independently of bloom vs SMAA vs grade is not fx mismatch', () => {
-  assert.equal(leftoverIsNotFxMismatch({ frames: [] }), true);
-  assert.equal(leftoverIsNotFxMismatch(worldChasFixture()), true);
-  assert.equal(leftoverIsNotFxMismatch(worldFxFixture()), false);
-  assert.throws(() => worldFxResults(worldChasFixture()), /leftover g07 after world.group\+outside is not remaining empty-scene vs golden independently of bloom vs SMAA vs grade mismatch/);
+test('dominant 200px leftover report without remaining empty-scene vs golden independently of antialias vs samples vs alpha is not fx mismatch', () => {
+  assert.equal(leftoverIsNotAaMismatch({ frames: [] }), true);
+  assert.equal(leftoverIsNotAaMismatch(worldFxFixture()), true);
+  assert.equal(leftoverIsNotAaMismatch(worldAaFixture()), false);
+  assert.throws(() => worldAaResults(worldFxFixture()), /leftover g07 after world.group\+outside is not remaining empty-scene vs golden independently of antialias vs samples vs alpha mismatch/);
 });
 
-test('fx buffer without original-golden protocol identity is not original-golden', () => {
-  assert.equal(fxBufferIsNotOriginalGolden(worldFxFixture()), false);
-  assert.equal(fxBufferIsNotOriginalGolden({
-    ...worldFxFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
+test('aa buffer without original-golden protocol identity is not original-golden', () => {
+  assert.equal(aaBufferIsNotOriginalGolden(worldAaFixture()), false);
+  assert.equal(aaBufferIsNotOriginalGolden({
+    ...worldAaFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
   }), true);
   assert.equal(PIXEL_THRESHOLD, 0.12);
   assert.equal(FAILURE_LIMIT, 0.08);
-  assert.equal(FX_L2_MIN, 8);
-  assert.equal(FX_LUMA_MIN, 8);
-  assert.equal(FX_BLUE_MIN, 8);
-  assert.equal(FX_BAND_MIN, 0.02);
+  assert.equal(AA_L2_MIN, 8);
+  assert.equal(AA_LUMA_MIN, 8);
+  assert.equal(AA_BLUE_MIN, 8);
+  assert.equal(AA_BAND_MIN, 0.02);
   assert.equal(PRODUCT_EXPOSURE, 0.56);
   assert.equal(PRODUCT_SKY_HEX, 0x3a9ae0);
   assert.equal(PRODUCT_HEMI_SKY_HEX, 0xa8c8e8);
@@ -54,18 +54,20 @@ test('fx buffer without original-golden protocol identity is not original-golden
   assert.equal(PRODUCT_FOLLOW, 7.4);
   assert.equal(PRODUCT_HEIGHT, 1.92);
   assert.equal(PRODUCT_PIXEL_RATIO, 1);
-  assert.equal(WIDE_BLOOM, 0.8);
+  assert.equal(WIDE_SAMPLES, 4);
+  assert.equal(PRODUCT_AA, false);
+  assert.equal(PRODUCT_ALPHA, false);
   assert.equal(BAND_PIXELS, 1280 * 200);
-  assert.deepEqual(FX_LAYERS, ['bloom', 'smaa', 'grade', 'env', 'both', 'pack']);
-  assert.deepEqual([...CAPTURE_LAYERS], ['bloom', 'smaa', 'grade', 'env', 'both', 'pack']);
-  assert.deepEqual([...BLOOM_IDS], ['bloom']);
-  assert.deepEqual([...SMAA_IDS], ['smaa']);
-  assert.deepEqual([...GRADE_IDS], ['grade']);
+  assert.deepEqual(AA_LAYERS, ['aa', 'samples', 'alpha', 'env', 'both', 'pack']);
+  assert.deepEqual([...CAPTURE_LAYERS], ['aa', 'samples', 'alpha', 'env', 'both', 'pack']);
+  assert.deepEqual([...AA_IDS], ['aa']);
+  assert.deepEqual([...SAMPLES_IDS], ['samples']);
+  assert.deepEqual([...ALPHA_IDS], ['alpha']);
   assert.deepEqual([...IBL_IDS], ['env']);
   assert.deepEqual([...BOTH_IDS], ['both']);
   assert.deepEqual([...PACK_IDS], ['pack']);
   assert.equal(GROUND_ALBEDO.hex, 0xd0d4d8);
-  const src = readFileSync(fromRoot('scripts', 'world-fx-browser.mjs'), 'utf8');
+  const src = readFileSync(fromRoot('scripts', 'world-aa-browser.mjs'), 'utf8');
   assert.match(src, /SphereGeometry/);
   assert.match(src, /radius, 8200/);
   assert.match(src, /hideMeshes\(leftoverOf\(\)\)/);
@@ -73,34 +75,36 @@ test('fx buffer without original-golden protocol identity is not original-golden
   assert.match(src, /membership\.ramps, \.\.\.membership\.buildings, \.\.\.membership\.instanced, \.\.\.membership\.ground, \.\.\.remainingOf\(\)/);
   assert.match(src, /membership\.water, \.\.\.membership\.glass, \.\.\.membership\.road, \.\.\.membership\.sky, \.\.\.membership\.piers, \.\.\.membership\.extras/);
   assert.match(src, /leftoverWorld\(\), \.\.\.outside/);
-  assert.match(src, /setBloom\(\)/);
-  assert.match(src, /setSmaa\(\)/);
-  assert.match(src, /setGrade\(\)/);
-  assert.match(src, /bloom\.strength = 0\.8/);
-  assert.match(src, /bloom\(\) \{/);
+  assert.match(src, /setAa\(\)/);
+  assert.match(src, /setSamples\(\)/);
+  assert.match(src, /setAlpha\(\)/);
+  assert.match(src, /setTier\('low'\)/);
+  assert.match(src, /samples = 4/);
+  assert.match(src, /setClearAlpha\(0\)/);
+  assert.match(src, /aa\(\) \{/);
   assert.match(src, /isInstancedMesh/);
   assert.match(src, /\.\.\.hideMeshes\(leftoverOf\(\)\), \.\.\.swapEnv\(gray\)/);
   assert.doesNotMatch(src, /engine\.scene\.environment = null/);
   assert.doesNotMatch(src, /lookAt\(p\.x, p\.y \+ 20, p\.z\)/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), productGroundHex: 0 }), /product ground color retuned/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), productExposure: 1 }), /product exposure retuned/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), lumaTermsIncludeHemi: true }), /luma terms include hemi/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), envIsCombined: true }), /env isolation still combined/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), bothIsCombined: true }), /fx isolation still combined with hemi/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), bloomSetsWide: false }), /bloom isolation did not set strength 0.8/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), bloomHidesLeftover: false }), /bloom isolation did not hide leftover empty-scene meshes/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), bothSetsGray: false }), /both isolation did not swap gray cubemap/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), bothSetsWide: false }), /both isolation did not set bloom strength 0.8/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), smaaClears: false }), /smaa isolation did not disable SMAA/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), gradeClears: false }), /grade isolation did not disable grade/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), packSetsWide: false }), /pack isolation did not set bloom strength 0.8/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), envSetsGray: false }), /scene.environment isolation did not swap gray cubemap/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), envHidesLeftover: false }), /env isolation did not hide leftover empty-scene meshes/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), fovStays58: false }), /product fov retuned during fx probe/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), nearStaysProduct: false }), /product near retuned during fx probe/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), farStaysProduct: false }), /product far retuned during fx probe/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), intensityClearsIbl: true }), /fx isolation clears scene.environment via sun/);
-  assert.throws(() => worldFxResults({ ...worldFxFixture(), fxDeltasUseEmptyBaseline: false }), /leftover g07 still uses world.group leftover as baseline/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), productGroundHex: 0 }), /product ground color retuned/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), productExposure: 1 }), /product exposure retuned/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), lumaTermsIncludeHemi: true }), /luma terms include hemi/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), envIsCombined: true }), /env isolation still combined/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), bothIsCombined: true }), /aa isolation still combined with hemi/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), aaClears: false }), /aa isolation did not force drawing-buffer path/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), aaHidesLeftover: false }), /aa isolation did not hide leftover empty-scene meshes/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), bothSetsGray: false }), /both isolation did not swap gray cubemap/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), bothClearsAa: false }), /both isolation did not force drawing-buffer path/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), samplesSetsWide: false }), /samples isolation did not set RT samples 4/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), alphaClears: false }), /alpha isolation did not set clear alpha 0/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), packClearsAa: false }), /pack isolation did not force drawing-buffer path/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), envSetsGray: false }), /scene.environment isolation did not swap gray cubemap/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), envHidesLeftover: false }), /env isolation did not hide leftover empty-scene meshes/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), fovStays58: false }), /product fov retuned during aa probe/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), nearStaysProduct: false }), /product near retuned during aa probe/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), farStaysProduct: false }), /product far retuned during aa probe/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), intensityClearsIbl: true }), /aa isolation clears scene.environment via sun/);
+  assert.throws(() => worldAaResults({ ...worldAaFixture(), aaDeltasUseEmptyBaseline: false }), /leftover g07 still uses world.group leftover as baseline/);
 });
 
 test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
@@ -112,15 +116,15 @@ test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
   assert.equal(match.id, 'bottom');
 });
 
-test('locked fx poses match original-golden cameras and PNG hashes', () => {
-  assert.deepEqual(FX_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
-  assert.deepEqual(FX_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
-  assert.equal(FX_FRAMES[3].night, true);
-  assert.equal(dominantFx(worldFxFixture().frames[0].layers), 'bloom');
+test('locked aa poses match original-golden cameras and PNG hashes', () => {
+  assert.deepEqual(AA_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
+  assert.deepEqual(AA_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
+  assert.equal(AA_FRAMES[3].night, true);
+  assert.equal(dominantAa(worldAaFixture().frames[0].layers), 'aa');
 });
 
-test('fx-attribution evidence yields five protocol passes', () => {
-  assert.deepEqual(worldFxResults(worldFxFixture()).map(row => row.status), Array(5).fill('passed'));
+test('aa-attribution evidence yields five protocol passes', () => {
+  assert.deepEqual(worldAaResults(worldAaFixture()).map(row => row.status), Array(5).fill('passed'));
 });
 
 for (const [name, mutate] of [
@@ -139,37 +143,37 @@ for (const [name, mutate] of [
   ['authority claim', r => { r.authority = true; }],
   ['original-golden comparisons', r => { r.originalGoldenComparisons = 4; }],
   ['threshold drift', r => { r.pixelThreshold = 0.2; }],
-]) test(`world-fx evidence fails closed: ${name}`, () => {
-  const r = worldFxFixture();
+]) test(`world-aa evidence fails closed: ${name}`, () => {
+  const r = worldAaFixture();
   mutate(r);
-  assert.throws(() => worldFxResults(r));
+  assert.throws(() => worldAaResults(r));
 });
 
 test('baseline PNG hash drift fails closed', () => {
-  const r = worldFxFixture();
+  const r = worldAaFixture();
   r.baselineHashes['ayalon-day-g01.png'] = '0'.repeat(64);
-  assert.throws(() => worldFxResults(r), /baseline hash drift/);
+  assert.throws(() => worldAaResults(r), /baseline hash drift/);
 });
 
 test('zero full-frame present mismatch remains failed', () => {
-  const r = worldFxFixture();
+  const r = worldAaFixture();
   r.frames[0] = { ...r.frames[0], presentPct: 0, presentMismatched: 0 };
-  const row = worldFxResults(r).find(item => item.case.includes('still mismatches'));
+  const row = worldAaResults(r).find(item => item.case.includes('still mismatches'));
   assert.equal(row.status, 'failed');
   assert.equal(row.failures, 1);
 });
 
-test('a rest-camera miss remains failed during fx sampling', () => {
-  const r = worldFxFixture();
+test('a rest-camera miss remains failed during aa sampling', () => {
+  const r = worldAaFixture();
   r.frames[1] = { ...r.frames[1], follow: 9.2, height: 2.28 };
-  assert.throws(() => worldFxResults(r));
+  assert.throws(() => worldAaResults(r));
 });
 
-test('invalid world-fx report is retained before validation throws', async () => {
-  const out = await mkdtemp(join(tmpdir(), 'world-fx-invalid-'));
+test('invalid world-aa report is retained before validation throws', async () => {
+  const out = await mkdtemp(join(tmpdir(), 'world-aa-invalid-'));
   try {
-    const r = worldFxFixture({ originalGoldenComparisons: 4 });
-    await assert.rejects(retainWorldFx(r, out));
+    const r = worldAaFixture({ originalGoldenComparisons: 4 });
+    await assert.rejects(retainWorldAa(r, out));
     assert.equal(JSON.parse(await readFile(join(out, 'results.json'), 'utf8')).originalGoldenComparisons, 4);
   } finally {
     await rm(out, { recursive: true, force: true });

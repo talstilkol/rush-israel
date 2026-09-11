@@ -1636,6 +1636,22 @@ remaining 0/4. Do not merge, replace PNGs, change thresholds, retune color
 or exposure or activate RSH-037.
 Details: RSH-036-WORLD-FX-r6.78.json and RSH-036-RUNTIME-REPAIR-r6.78.md.
 
+## r6.79 — 11 September 2026: leftover g07 after world.group+outside is remaining empty-scene vs golden, not antialias, not samples, not alpha, not env; GFX-09 queued
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-89 isolates
+leftover g07 after world.group+outside as remaining empty-scene vs golden
+independently of antialias vs samples vs alpha after setNight/snapCamera(true).
+g07 leftover is remaining empty-scene vs golden (leftover 0.2027), not
+drawing-buffer antialias (bandDelta +0.0003 below 0.02, L2 +38.79 increases),
+not samples 4 (≡ 0), not clear-alpha 0 (≡ 0) and not env (≡ 0). Skipping the
+composer Output/grade path brightens the empty fill rather than occupying
+remaining g07. Product renderer stays. Freeze path count stays 85. GFX-01,
+GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08 and GFX-09 stay queued after
+RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-AA-r6.79.json, RSH-036-RUNTIME-REPAIR-r6.79.md and
+docs/evidence/GFX-09-oldjaffa-clock-tower-flicker.md.
+
 
 
 

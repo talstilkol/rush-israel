@@ -62,6 +62,7 @@ import { verifyWorldCam } from './world-cam-browser.mjs';
 import { verifyWorldChas } from './world-chas-browser.mjs';
 import { verifyWorldPx } from './world-px-browser.mjs';
 import { verifyWorldFx } from './world-fx-browser.mjs';
+import { verifyWorldAa } from './world-aa-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -177,6 +178,7 @@ try {
   results.push(...await verifyWorldChas(browser, url));
   results.push(...await verifyWorldPx(browser, url));
   results.push(...await verifyWorldFx(browser, url));
+  results.push(...await verifyWorldAa(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));

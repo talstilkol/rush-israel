@@ -1,0 +1,1116 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.79",
+  "date": "2026-09-11",
+  "base": "c566663",
+  "finding": "AUD-89",
+  "status": "candidate_pending_exact_head_validation",
+  "colliderCount": 722,
+  "legacyCount": 546,
+  "pierCount": 176,
+  "rampCount": 50,
+  "routeSamples": 781,
+  "checkpointCount": 8,
+  "decks": 50,
+  "strips": 100,
+  "classifiedPiers": 176,
+  "groundMeshCount": 1,
+  "productGroundHex": 13685976,
+  "productGroundCount": 1,
+  "productExposure": 0.56,
+  "lumaTermsIncludeHemi": false,
+  "envIsCombined": false,
+  "bothIsCombined": false,
+  "aaClears": true,
+  "aaHidesLeftover": true,
+  "aaKeepsEnv": true,
+  "aaKeepsHemi": true,
+  "aaKeepsSamples": true,
+  "aaKeepsAlpha": true,
+  "samplesSetsWide": true,
+  "samplesHidesLeftover": true,
+  "samplesKeepsEnv": true,
+  "samplesKeepsHemi": true,
+  "samplesKeepsAa": true,
+  "samplesKeepsAlpha": true,
+  "alphaClears": true,
+  "alphaHidesLeftover": true,
+  "alphaKeepsEnv": true,
+  "alphaKeepsHemi": true,
+  "alphaKeepsAa": true,
+  "alphaKeepsSamples": true,
+  "envSetsGray": true,
+  "envHidesLeftover": true,
+  "envKeepsHemi": true,
+  "envKeepsAa": true,
+  "envKeepsSamples": true,
+  "envKeepsAlpha": true,
+  "envClearsHue": false,
+  "packClearsAa": true,
+  "packSetsSamples": true,
+  "packClearsAlpha": true,
+  "packHidesLeftover": true,
+  "packKeepsEnv": true,
+  "packKeepsHemi": true,
+  "bothSetsGray": true,
+  "bothClearsAa": true,
+  "bothSetsSamples": true,
+  "bothClearsAlpha": true,
+  "bothHidesLeftover": true,
+  "bothKeepsHemi": true,
+  "intensityClearsIbl": false,
+  "aaDeltasUseEmptyBaseline": true,
+  "ambKeepsAmbient": true,
+  "rectKeepsRectArea": true,
+  "hgndKeepsGround": true,
+  "colorManagementStaysEnabled": true,
+  "outputColorSpaceStaysSRGB": true,
+  "toneMappingStaysACES": true,
+  "fovStays58": true,
+  "nearStaysProduct": true,
+  "farStaysProduct": true,
+  "rampsCount": 150,
+  "leftoverCount": 2082,
+  "aaCount": 2083,
+  "samplesCount": 2083,
+  "alphaCount": 2083,
+  "packCount": 2085,
+  "envCount": 2083,
+  "bothCount": 2086,
+  "buildingsCount": 696,
+  "instancedCount": 47,
+  "groundCount": 1,
+  "remainingCount": 260,
+  "glError": 0,
+  "frames": [
+    {
+      "id": "g01",
+      "t": 0.04,
+      "night": false,
+      "file": "ayalon-day-g01.png",
+      "player": [
+        1061.4374999999397,
+        1.2085515392881334,
+        -1048.6344000000424
+      ],
+      "camera": [
+        1061.4374999999397,
+        3.128551539288133,
+        -1056.0344000000425
+      ],
+      "follow": 7.400000000000091,
+      "height": 1.9199999999999997,
+      "fov": 58,
+      "speed": 0,
+      "yaw": -3.141592653589793,
+      "dx": 0,
+      "dy": 1.9199999999999997,
+      "dz": -7.400000000000091,
+      "nonBlackFraction": 0.8956318359375,
+      "glError": 0,
+      "pixelThreshold": 0.12,
+      "presentMismatched": 687974,
+      "presentPct": 0.6718,
+      "leftoverBaselinePct": 0.9907,
+      "leftoverHidden": 2082,
+      "leftoverL2": 171.74,
+      "leftoverLuma": 111.42,
+      "leftoverBlue": 181.64,
+      "bands": [
+        {
+          "id": "top",
+          "y0": 0,
+          "y1": 200,
+          "mismatched": 121958,
+          "pct": 0.4764
+        },
+        {
+          "id": "upper",
+          "y0": 200,
+          "y1": 400,
+          "mismatched": 158058,
+          "pct": 0.6174
+        },
+        {
+          "id": "lower",
+          "y0": 400,
+          "y1": 600,
+          "mismatched": 191713,
+          "pct": 0.7489
+        },
+        {
+          "id": "bottom",
+          "y0": 600,
+          "y1": 800,
+          "mismatched": 216349,
+          "pct": 0.8451
+        }
+      ],
+      "dominant": "bottom",
+      "bandLive": {
+        "r": 25.98,
+        "g": 129.73,
+        "b": 181.64
+      },
+      "bandGold": {
+        "r": 25.54,
+        "g": 35.89,
+        "b": 37.8
+      },
+      "bandL2": 171.74,
+      "bandLuma": 111.42,
+      "bandBlue": 181.64,
+      "layers": [
+        {
+          "id": "aa",
+          "hidden": 2083,
+          "band": "bottom",
+          "live": {
+            "r": 60,
+            "g": 158,
+            "b": 224
+          },
+          "gold": {
+            "r": 25.54,
+            "g": 35.89,
+            "b": 37.8
+          },
+          "l2": 225.32,
+          "l2Delta": 53.58,
+          "luma": 141.93,
+          "lumaDelta": 30.51,
+          "blue": 224,
+          "blueDelta": 42.36,
+          "bandPct": 0.9907,
+          "hiddenPct": 0.9907,
+          "bandDelta": 0,
+          "mismatched": 253625,
+          "hiddenMismatched": 253625
+        },
+        {
+          "id": "samples",
+          "hidden": 2083,
+          "band": "bottom",
+          "live": {
+            "r": 25.98,
+            "g": 129.73,
+            "b": 181.64
+          },
+          "gold": {
+            "r": 25.54,
+            "g": 35.89,
+            "b": 37.8
+          },
+          "l2": 171.74,
+          "l2Delta": 0,
+          "luma": 111.42,
+          "lumaDelta": 0,
+          "blue": 181.64,
+          "blueDelta": 0,
+          "bandPct": 0.9907,
+          "hiddenPct": 0.9907,
+          "bandDelta": 0,
+          "mismatched": 253625,
+          "hiddenMismatched": 253625
+        },
+        {
+          "id": "alpha",
+          "hidden": 2083,
+          "band": "bottom",
+          "live": {
+            "r": 25.98,
+            "g": 129.73,
+            "b": 181.64
+          },
+          "gold": {
+            "r": 25.54,
+            "g": 35.89,
+            "b": 37.8
+          },
+          "l2": 171.74,
+          "l2Delta": 0,
+          "luma": 111.42,
+          "lumaDelta": 0,
+          "blue": 181.64,
+          "blueDelta": 0,
+          "bandPct": 0.9907,
+          "hiddenPct": 0.9907,
+          "bandDelta": 0,
+          "mismatched": 253625,
+          "hiddenMismatched": 253625
+        },
+        {
+          "id": "env",
+          "hidden": 2083,
+          "band": "bottom",
+          "live": {
+            "r": 25.98,
+            "g": 129.73,
+            "b": 181.64
+          },
+          "gold": {
+            "r": 25.54,
+            "g": 35.89,
+            "b": 37.8
+          },
+          "l2": 171.74,
+          "l2Delta": 0,
+          "luma": 111.42,
+          "lumaDelta": 0,
+          "blue": 181.64,
+          "blueDelta": 0,
+          "bandPct": 0.9907,
+          "hiddenPct": 0.9907,
+          "bandDelta": 0,
+          "mismatched": 253625,
+          "hiddenMismatched": 253625
+        },
+        {
+          "id": "both",
+          "hidden": 2086,
+          "band": "bottom",
+          "live": {
+            "r": 60,
+            "g": 158,
+            "b": 224
+          },
+          "gold": {
+            "r": 25.54,
+            "g": 35.89,
+            "b": 37.8
+          },
+          "l2": 225.32,
+          "l2Delta": 53.58,
+          "luma": 141.93,
+          "lumaDelta": 30.51,
+          "blue": 224,
+          "blueDelta": 42.36,
+          "bandPct": 0.9907,
+          "hiddenPct": 0.9907,
+          "bandDelta": 0,
+          "mismatched": 253625,
+          "hiddenMismatched": 253625
+        },
+        {
+          "id": "pack",
+          "hidden": 2085,
+          "band": "bottom",
+          "live": {
+            "r": 60,
+            "g": 158,
+            "b": 224
+          },
+          "gold": {
+            "r": 25.54,
+            "g": 35.89,
+            "b": 37.8
+          },
+          "l2": 225.32,
+          "l2Delta": 53.58,
+          "luma": 141.93,
+          "lumaDelta": 30.51,
+          "blue": 224,
+          "blueDelta": 42.36,
+          "bandPct": 0.9907,
+          "hiddenPct": 0.9907,
+          "bandDelta": 0,
+          "mismatched": 253625,
+          "hiddenMismatched": 253625
+        }
+      ],
+      "dominantAa": "alpha",
+      "contributingAa": [],
+      "aaAxis": [],
+      "envAxis": [],
+      "bothAxis": [],
+      "samplesAxis": [],
+      "alphaAxis": [],
+      "packAxis": []
+    },
+    {
+      "id": "g05",
+      "t": 0.46,
+      "night": false,
+      "file": "ayalon-day-g05.png",
+      "player": [
+        1061.4374999999397,
+        2.8764372406394427,
+        46.754399999878984
+      ],
+      "camera": [
+        1061.4374999999397,
+        4.796437240639443,
+        39.354399999878986
+      ],
+      "follow": 7.399999999999999,
+      "height": 1.92,
+      "fov": 58,
+      "speed": 0,
+      "yaw": -3.141592653589793,
+      "dx": 0,
+      "dy": 1.92,
+      "dz": -7.399999999999999,
+      "nonBlackFraction": 0.9982919921875,
+      "glError": 0,
+      "pixelThreshold": 0.12,
+      "presentMismatched": 596828,
+      "presentPct": 0.5828,
+      "leftoverBaselinePct": 0.9844,
+      "leftoverHidden": 2082,
+      "leftoverL2": 186.76,
+      "leftoverLuma": 111.42,
+      "leftoverBlue": 181.64,
+      "bands": [
+        {
+          "id": "top",
+          "y0": 0,
+          "y1": 200,
+          "mismatched": 55920,
+          "pct": 0.2184
+        },
+        {
+          "id": "upper",
+          "y0": 200,
+          "y1": 400,
+          "mismatched": 116072,
+          "pct": 0.4534
+        },
+        {
+          "id": "lower",
+          "y0": 400,
+          "y1": 600,
+          "mismatched": 209195,
+          "pct": 0.8172
+        },
+        {
+          "id": "bottom",
+          "y0": 600,
+          "y1": 800,
+          "mismatched": 214950,
+          "pct": 0.8396
+        }
+      ],
+      "dominant": "bottom",
+      "bandLive": {
+        "r": 25.98,
+        "g": 129.73,
+        "b": 181.64
+      },
+      "bandGold": {
+        "r": 10.81,
+        "g": 22.24,
+        "b": 29.67
+      },
+      "bandL2": 186.76,
+      "bandLuma": 111.42,
+      "bandBlue": 181.64,
+      "layers": [
+        {
+          "id": "aa",
+          "hidden": 2083,
+          "band": "bottom",
+          "live": {
+            "r": 60,
+            "g": 158,
+            "b": 224
+          },
+          "gold": {
+            "r": 10.81,
+            "g": 22.24,
+            "b": 29.67
+          },
+          "l2": 242.1,
+          "l2Delta": 55.34,
+          "luma": 141.93,
+          "lumaDelta": 30.51,
+          "blue": 224,
+          "blueDelta": 42.36,
+          "bandPct": 0.9844,
+          "hiddenPct": 0.9844,
+          "bandDelta": 0,
+          "mismatched": 252019,
+          "hiddenMismatched": 252019
+        },
+        {
+          "id": "samples",
+          "hidden": 2083,
+          "band": "bottom",
+          "live": {
+            "r": 25.98,
+            "g": 129.73,
+            "b": 181.64
+          },
+          "gold": {
+            "r": 10.81,
+            "g": 22.24,
+            "b": 29.67
+          },
+          "l2": 186.76,
+          "l2Delta": 0,
+          "luma": 111.42,
+          "lumaDelta": 0,
+          "blue": 181.64,
+          "blueDelta": 0,
+          "bandPct": 0.9844,
+          "hiddenPct": 0.9844,
+          "bandDelta": 0,
+          "mismatched": 252019,
+          "hiddenMismatched": 252019
+        },
+        {
+          "id": "alpha",
+          "hidden": 2083,
+          "band": "bottom",
+          "live": {
+            "r": 25.98,
+            "g": 129.73,
+            "b": 181.64
+          },
+          "gold": {
+            "r": 10.81,
+            "g": 22.24,
+            "b": 29.67
+          },
+          "l2": 186.76,
+          "l2Delta": 0,
+          "luma": 111.42,
+          "lumaDelta": 0,
+          "blue": 181.64,
+          "blueDelta": 0,
+          "bandPct": 0.9844,
+          "hiddenPct": 0.9844,
+          "bandDelta": 0,
+          "mismatched": 252019,
+          "hiddenMismatched": 252019
+        },
+        {
+          "id": "env",
+          "hidden": 2083,
+          "band": "bottom",
+          "live": {
+            "r": 25.98,
+            "g": 129.73,
+            "b": 181.64
+          },
+          "gold": {
+            "r": 10.81,
+            "g": 22.24,
+            "b": 29.67
+          },
+          "l2": 186.76,
+          "l2Delta": 0,
+          "luma": 111.42,
+          "lumaDelta": 0,
+          "blue": 181.64,
+          "blueDelta": 0,
+          "bandPct": 0.9844,
+          "hiddenPct": 0.9844,
+          "bandDelta": 0,
+          "mismatched": 252019,
+          "hiddenMismatched": 252019
+        },
+        {
+          "id": "both",
+          "hidden": 2086,
+          "band": "bottom",
+          "live": {
+            "r": 60,
+            "g": 158,
+            "b": 224
+          },
+          "gold": {
+            "r": 10.81,
+            "g": 22.24,
+            "b": 29.67
+          },
+          "l2": 242.1,
+          "l2Delta": 55.34,
+          "luma": 141.93,
+          "lumaDelta": 30.51,
+          "blue": 224,
+          "blueDelta": 42.36,
+          "bandPct": 0.9844,
+          "hiddenPct": 0.9844,
+          "bandDelta": 0,
+          "mismatched": 252019,
+          "hiddenMismatched": 252019
+        },
+        {
+          "id": "pack",
+          "hidden": 2085,
+          "band": "bottom",
+          "live": {
+            "r": 60,
+            "g": 158,
+            "b": 224
+          },
+          "gold": {
+            "r": 10.81,
+            "g": 22.24,
+            "b": 29.67
+          },
+          "l2": 242.1,
+          "l2Delta": 55.34,
+          "luma": 141.93,
+          "lumaDelta": 30.51,
+          "blue": 224,
+          "blueDelta": 42.36,
+          "bandPct": 0.9844,
+          "hiddenPct": 0.9844,
+          "bandDelta": 0,
+          "mismatched": 252019,
+          "hiddenMismatched": 252019
+        }
+      ],
+      "dominantAa": "alpha",
+      "contributingAa": [],
+      "aaAxis": [],
+      "envAxis": [],
+      "bothAxis": [],
+      "samplesAxis": [],
+      "alphaAxis": [],
+      "packAxis": []
+    },
+    {
+      "id": "g07",
+      "t": 0.62,
+      "night": false,
+      "file": "ayalon-day-g07.png",
+      "player": [
+        1061.4374999999397,
+        1.8104419519267865,
+        464.2044000000011
+      ],
+      "camera": [
+        1061.4374999999397,
+        3.730441951926786,
+        456.8044000000011
+      ],
+      "follow": 7.399999999999977,
+      "height": 1.9199999999999997,
+      "fov": 58,
+      "speed": 0,
+      "yaw": -3.141592653589793,
+      "dx": 0,
+      "dy": 1.9199999999999997,
+      "dz": -7.399999999999977,
+      "nonBlackFraction": 0.913796875,
+      "glError": 0,
+      "pixelThreshold": 0.12,
+      "presentMismatched": 288011,
+      "presentPct": 0.2813,
+      "leftoverBaselinePct": 0.2027,
+      "leftoverHidden": 2082,
+      "leftoverL2": 29.36,
+      "leftoverLuma": 111.63,
+      "leftoverBlue": 181.97,
+      "bands": [
+        {
+          "id": "top",
+          "y0": 0,
+          "y1": 200,
+          "mismatched": 45735,
+          "pct": 0.1787
+        },
+        {
+          "id": "upper",
+          "y0": 200,
+          "y1": 400,
+          "mismatched": 148245,
+          "pct": 0.5791
+        },
+        {
+          "id": "lower",
+          "y0": 400,
+          "y1": 600,
+          "mismatched": 66881,
+          "pct": 0.2613
+        },
+        {
+          "id": "bottom",
+          "y0": 600,
+          "y1": 800,
+          "mismatched": 27125,
+          "pct": 0.106
+        }
+      ],
+      "dominant": "upper",
+      "bandLive": {
+        "r": 26,
+        "g": 129.99,
+        "b": 181.97
+      },
+      "bandGold": {
+        "r": 49.98,
+        "g": 121.76,
+        "b": 167.16
+      },
+      "bandL2": 29.36,
+      "bandLuma": 111.63,
+      "bandBlue": 181.97,
+      "layers": [
+        {
+          "id": "aa",
+          "hidden": 2083,
+          "band": "upper",
+          "live": {
+            "r": 60,
+            "g": 158,
+            "b": 224
+          },
+          "gold": {
+            "r": 49.98,
+            "g": 121.76,
+            "b": 167.16
+          },
+          "l2": 68.15,
+          "l2Delta": 38.79,
+          "luma": 141.93,
+          "lumaDelta": 30.3,
+          "blue": 224,
+          "blueDelta": 42.03,
+          "bandPct": 0.2027,
+          "hiddenPct": 0.203,
+          "bandDelta": 0.0003,
+          "mismatched": 51896,
+          "hiddenMismatched": 51961
+        },
+        {
+          "id": "samples",
+          "hidden": 2083,
+          "band": "upper",
+          "live": {
+            "r": 26,
+            "g": 129.99,
+            "b": 181.97
+          },
+          "gold": {
+            "r": 49.98,
+            "g": 121.76,
+            "b": 167.16
+          },
+          "l2": 29.36,
+          "l2Delta": 0,
+          "luma": 111.63,
+          "lumaDelta": 0,
+          "blue": 181.97,
+          "blueDelta": 0,
+          "bandPct": 0.2027,
+          "hiddenPct": 0.2027,
+          "bandDelta": 0,
+          "mismatched": 51896,
+          "hiddenMismatched": 51896
+        },
+        {
+          "id": "alpha",
+          "hidden": 2083,
+          "band": "upper",
+          "live": {
+            "r": 26,
+            "g": 129.99,
+            "b": 181.97
+          },
+          "gold": {
+            "r": 49.98,
+            "g": 121.76,
+            "b": 167.16
+          },
+          "l2": 29.36,
+          "l2Delta": 0,
+          "luma": 111.63,
+          "lumaDelta": 0,
+          "blue": 181.97,
+          "blueDelta": 0,
+          "bandPct": 0.2027,
+          "hiddenPct": 0.2027,
+          "bandDelta": 0,
+          "mismatched": 51896,
+          "hiddenMismatched": 51896
+        },
+        {
+          "id": "env",
+          "hidden": 2083,
+          "band": "upper",
+          "live": {
+            "r": 26,
+            "g": 129.99,
+            "b": 181.97
+          },
+          "gold": {
+            "r": 49.98,
+            "g": 121.76,
+            "b": 167.16
+          },
+          "l2": 29.36,
+          "l2Delta": 0,
+          "luma": 111.63,
+          "lumaDelta": 0,
+          "blue": 181.97,
+          "blueDelta": 0,
+          "bandPct": 0.2027,
+          "hiddenPct": 0.2027,
+          "bandDelta": 0,
+          "mismatched": 51896,
+          "hiddenMismatched": 51896
+        },
+        {
+          "id": "both",
+          "hidden": 2086,
+          "band": "upper",
+          "live": {
+            "r": 60,
+            "g": 158,
+            "b": 224
+          },
+          "gold": {
+            "r": 49.98,
+            "g": 121.76,
+            "b": 167.16
+          },
+          "l2": 68.15,
+          "l2Delta": 38.79,
+          "luma": 141.93,
+          "lumaDelta": 30.3,
+          "blue": 224,
+          "blueDelta": 42.03,
+          "bandPct": 0.2027,
+          "hiddenPct": 0.203,
+          "bandDelta": 0.0003,
+          "mismatched": 51896,
+          "hiddenMismatched": 51961
+        },
+        {
+          "id": "pack",
+          "hidden": 2085,
+          "band": "upper",
+          "live": {
+            "r": 60,
+            "g": 158,
+            "b": 224
+          },
+          "gold": {
+            "r": 49.98,
+            "g": 121.76,
+            "b": 167.16
+          },
+          "l2": 68.15,
+          "l2Delta": 38.79,
+          "luma": 141.93,
+          "lumaDelta": 30.3,
+          "blue": 224,
+          "blueDelta": 42.03,
+          "bandPct": 0.2027,
+          "hiddenPct": 0.203,
+          "bandDelta": 0.0003,
+          "mismatched": 51896,
+          "hiddenMismatched": 51961
+        }
+      ],
+      "dominantAa": "alpha",
+      "contributingAa": [],
+      "aaAxis": [],
+      "envAxis": [],
+      "bothAxis": [],
+      "samplesAxis": [],
+      "alphaAxis": [],
+      "packAxis": []
+    },
+    {
+      "id": "g08",
+      "t": 0.48,
+      "night": true,
+      "file": "ayalon-night-g08.png",
+      "player": [
+        1061.4374999999397,
+        3.00272723998352,
+        96.84839999996106
+      ],
+      "camera": [
+        1061.4374999999397,
+        4.922727239983519,
+        89.44839999996105
+      ],
+      "follow": 7.400000000000006,
+      "height": 1.9199999999999995,
+      "fov": 58,
+      "speed": 0,
+      "yaw": -3.141592653589793,
+      "dx": 0,
+      "dy": 1.9199999999999995,
+      "dz": -7.400000000000006,
+      "nonBlackFraction": 0.9978017578125,
+      "glError": 0,
+      "pixelThreshold": 0.12,
+      "presentMismatched": 687129,
+      "presentPct": 0.671,
+      "leftoverBaselinePct": 0.9904,
+      "leftoverHidden": 2082,
+      "leftoverL2": 125.21,
+      "leftoverLuma": 64.45,
+      "leftoverBlue": 109.58,
+      "bands": [
+        {
+          "id": "top",
+          "y0": 0,
+          "y1": 200,
+          "mismatched": 111633,
+          "pct": 0.4361
+        },
+        {
+          "id": "upper",
+          "y0": 200,
+          "y1": 400,
+          "mismatched": 146909,
+          "pct": 0.5739
+        },
+        {
+          "id": "lower",
+          "y0": 400,
+          "y1": 600,
+          "mismatched": 209579,
+          "pct": 0.8187
+        },
+        {
+          "id": "bottom",
+          "y0": 600,
+          "y1": 800,
+          "mismatched": 219229,
+          "pct": 0.8564
+        }
+      ],
+      "dominant": "bottom",
+      "bandLive": {
+        "r": 27,
+        "g": 71.02,
+        "b": 109.58
+      },
+      "bandGold": {
+        "r": 7.01,
+        "g": 5.99,
+        "b": 4.46
+      },
+      "bandL2": 125.21,
+      "bandLuma": 64.45,
+      "bandBlue": 109.58,
+      "layers": [
+        {
+          "id": "aa",
+          "hidden": 2083,
+          "band": "bottom",
+          "live": {
+            "r": 42,
+            "g": 74,
+            "b": 108
+          },
+          "gold": {
+            "r": 7.01,
+            "g": 5.99,
+            "b": 4.46
+          },
+          "l2": 128.73,
+          "l2Delta": 3.52,
+          "luma": 69.65,
+          "lumaDelta": 5.2,
+          "blue": 108,
+          "blueDelta": -1.58,
+          "bandPct": 0.9904,
+          "hiddenPct": 0.9965,
+          "bandDelta": 0.0061,
+          "mismatched": 253536,
+          "hiddenMismatched": 255116
+        },
+        {
+          "id": "samples",
+          "hidden": 2083,
+          "band": "bottom",
+          "live": {
+            "r": 27,
+            "g": 71.02,
+            "b": 109.58
+          },
+          "gold": {
+            "r": 7.01,
+            "g": 5.99,
+            "b": 4.46
+          },
+          "l2": 125.21,
+          "l2Delta": 0,
+          "luma": 64.45,
+          "lumaDelta": 0,
+          "blue": 109.58,
+          "blueDelta": 0,
+          "bandPct": 0.9904,
+          "hiddenPct": 0.9904,
+          "bandDelta": 0,
+          "mismatched": 253536,
+          "hiddenMismatched": 253536
+        },
+        {
+          "id": "alpha",
+          "hidden": 2083,
+          "band": "bottom",
+          "live": {
+            "r": 27,
+            "g": 71.02,
+            "b": 109.58
+          },
+          "gold": {
+            "r": 7.01,
+            "g": 5.99,
+            "b": 4.46
+          },
+          "l2": 125.21,
+          "l2Delta": 0,
+          "luma": 64.45,
+          "lumaDelta": 0,
+          "blue": 109.58,
+          "blueDelta": 0,
+          "bandPct": 0.9904,
+          "hiddenPct": 0.9904,
+          "bandDelta": 0,
+          "mismatched": 253536,
+          "hiddenMismatched": 253536
+        },
+        {
+          "id": "env",
+          "hidden": 2083,
+          "band": "bottom",
+          "live": {
+            "r": 27,
+            "g": 71.02,
+            "b": 109.58
+          },
+          "gold": {
+            "r": 7.01,
+            "g": 5.99,
+            "b": 4.46
+          },
+          "l2": 125.21,
+          "l2Delta": 0,
+          "luma": 64.45,
+          "lumaDelta": 0,
+          "blue": 109.58,
+          "blueDelta": 0,
+          "bandPct": 0.9904,
+          "hiddenPct": 0.9904,
+          "bandDelta": 0,
+          "mismatched": 253536,
+          "hiddenMismatched": 253536
+        },
+        {
+          "id": "both",
+          "hidden": 2086,
+          "band": "bottom",
+          "live": {
+            "r": 42,
+            "g": 74,
+            "b": 108
+          },
+          "gold": {
+            "r": 7.01,
+            "g": 5.99,
+            "b": 4.46
+          },
+          "l2": 128.73,
+          "l2Delta": 3.52,
+          "luma": 69.65,
+          "lumaDelta": 5.2,
+          "blue": 108,
+          "blueDelta": -1.58,
+          "bandPct": 0.9904,
+          "hiddenPct": 0.9965,
+          "bandDelta": 0.0061,
+          "mismatched": 253536,
+          "hiddenMismatched": 255116
+        },
+        {
+          "id": "pack",
+          "hidden": 2085,
+          "band": "bottom",
+          "live": {
+            "r": 42,
+            "g": 74,
+            "b": 108
+          },
+          "gold": {
+            "r": 7.01,
+            "g": 5.99,
+            "b": 4.46
+          },
+          "l2": 128.73,
+          "l2Delta": 3.52,
+          "luma": 69.65,
+          "lumaDelta": 5.2,
+          "blue": 108,
+          "blueDelta": -1.58,
+          "bandPct": 0.9904,
+          "hiddenPct": 0.9965,
+          "bandDelta": 0.0061,
+          "mismatched": 253536,
+          "hiddenMismatched": 255116
+        }
+      ],
+      "dominantAa": "alpha",
+      "contributingAa": [],
+      "aaAxis": [],
+      "envAxis": [],
+      "bothAxis": [],
+      "samplesAxis": [],
+      "alphaAxis": [],
+      "packAxis": []
+    }
+  ],
+  "historicalRamps": 32,
+  "historicalColliders": 541,
+  "originalGoldenComparisons": 0,
+  "authority": false,
+  "baselineUpdates": 0,
+  "updateGolden": false,
+  "pixelThreshold": 0.12,
+  "failureLimit": 0.08,
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "protocol": "world-aa-buffer-not-original-golden",
+  "baselineHashes": {
+    "ayalon-day-g01.png": "6621099ae48187cc400ddeb7cc203d0e27e94312e8a4a1dff324bfc99516e455",
+    "ayalon-day-g05.png": "7aa736559f1d4300a33db7807237ef7b790c81a46a7a52c0f259894fa2094b79",
+    "ayalon-day-g07.png": "7008f9d9e29b333b1a3e36bf3e1f73a2f6ae8b3b86924a30f41173b632e12c97",
+    "ayalon-night-g08.png": "72545851e488664b6d06319115414ee25b166f4608ab4d5c5df3b8bfa8fb3966"
+  },
+  "pageErrors": [],
+  "results": [
+    {
+      "case": "leftover g07 after world.group+outside is not remaining empty-scene vs golden independently of antialias vs samples vs alpha attribution",
+      "status": "passed",
+      "probes": 4,
+      "failures": 0
+    },
+    {
+      "case": "live rest chase stays 7.4/1.92 while present aa axes are sampled",
+      "status": "passed",
+      "probes": 4,
+      "failures": 0
+    },
+    {
+      "case": "antialias vs samples vs alpha independently of env of leftover g07 after world.group+outside ran at 1280x800 threshold 0.12 without retuning 0xd0d4d8 or 0.56 exposure",
+      "status": "passed",
+      "probes": 4,
+      "failures": 0
+    },
+    {
+      "case": "locked PNG still mismatches the live present buffer at every golden pose",
+      "status": "passed",
+      "probes": 4,
+      "failures": 0
+    },
+    {
+      "case": "aa-buffer pixelmatch is not original-golden page capture",
+      "status": "passed",
+      "probes": 1,
+      "failures": 0
+    }
+  ],
+  "repair": "Keep verifyWorldLayers through verifyWorldAa. Direct-engine present capture isolates leftover after world.group+outside as remaining empty-scene vs golden independently of antialias vs samples vs alpha AFTER setNight/snapCamera(true). Deltas use the empty-scene leftover buffer as baseline. Product exposure stays 0.56. Product follow 7.4 / height 1.92 / fov 58 / 1280x800 p=1 stay. Product renderer stays (high quality composer, constructor antialias false, alpha false). Pixel 0/4 stays an open gate, not freeze. GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08 and GFX-09 stay queued after RSH-036 and are not remaining 0/4."
+}
