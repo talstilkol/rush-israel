@@ -1,7 +1,7 @@
-**Version:** 20.48.0
+**Version:** 20.49.0
 **Date:** 2026-09-11, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 8d72cadf12105e9a56e0f76612b3b4b8c0cbdeaf
+**Repair base:** 8650f45c85ed81d499716f347341b8b6536f47ce
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -78,11 +78,12 @@ bakeEnv); captureSceneEnv is not a remaining day-bottom driver. setNight does
 not rebake, so g08 present keeps the day cubemap. Bake isolation splits that
 remaining IBL: day-bottom is bakeEnv background 0x3a9ae0 (B −47.8/−52.0);
 hemi and disc are 0. Sky isolation splits that remaining background: 0x3a9ae0
-vs 0x808080 occupies B −30.2/−32.8, matching r6.45 product-vs-gray cubemap;
-gray IBL still leaves a residual vs omit-background (B −47.8/−52.0). g07 upper
-remains ramps. Product hex stays `0xd0d4d8`. Preserve historical
-preparation 34324754353. PNG bytes last changed 26 August 12:00:42Z, before
-spaghetti ramps.
+vs 0x808080 occupies B −30.2/−32.8, matching r6.45 product-vs-gray cubemap.
+Gray isolation splits that leftover: gray cubemap vs IBL-off occupies B
+−18.5/−20.2, independently of hue; additive gray+hue equals r6.45 IBL-off
+(−48.7/−53.0). g07 upper remains ramps. Product hex stays `0xd0d4d8`. Preserve
+historical preparation 34324754353. PNG bytes last changed 26 August 12:00:42Z,
+before spaghetti ramps.
 
 r6.17 requiredCI 34385617080 failed at Playwright `--with-deps` (Google Chrome
 apt hash-sum mismatch) before any product test. Retained; not a product defect.
@@ -103,30 +104,31 @@ required-ci-34480369405-1 SHA-256
 `0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec`. Retained;
 not relabelled a pass.
 
-## r6.48 and subsequent acceptance
+## r6.49 and subsequent acceptance
 1. Remaining 0/4 is sun intensity luma plus bakeEnv 0x3a9ae0 hue plus leftover
    gray IBL vs off on g01/g05/g08 bottom: intensity occupies luma (live too
-   bright vs dark locked PNG), 0x3a9ae0 vs 0x808080 occupies B −30.2/−32.8
-   (matching r6.45 gray cubemap), and gray IBL still leaves residual vs omit
-   (B −47.8/−52.0). Hemi and disc are not remaining day-bottom drivers.
-   setNight does not rebake, so g08 present keeps the day cubemap. Fill joins
-   intensity on g08 night. g07 upper remains ramps.
+   bright vs dark locked PNG), 0x3a9ae0 vs 0x808080 occupies B −30.2/−32.8,
+   and leftover gray cubemap vs IBL-off occupies B −18.5/−20.2. Additive
+   gray+hue equals r6.45 IBL-off (−48.7/−53.0). Hemi and disc are not remaining
+   day-bottom drivers. setNight does not rebake, so g08 present keeps the day
+   cubemap. Fill joins intensity on g08 night. g07 upper remains ramps.
    Live sampling must force 1280×800 pixelRatio 1 after snapCamera(true),
    capture product present (`post.setDrive(0, false); post.render()`), locate
-   the dominant 200px band, and isolate remaining gray IBL vs IBL-off
-   independently of 0x3a9ae0 hue vs hemi vs disc vs sun intensity vs fill
+   the dominant 200px band, and isolate remaining gray IBL internals
+   (0x808080 background vs baked hemi vs baked disc inside the gray PMREM)
+   independently of IBL-off vs product hue vs sun intensity vs fill
    without changing product color, exposure or refreshing PNGs.
    Smoke must keep verifyWorldLayers, verifyWorldResidual, verifyWorldMismatch,
    verifyWorldBias, verifyWorldScene, verifyWorldRegion, verifyWorldColumn,
    verifyWorldSlice, verifyWorldExtra, verifyWorldMaterial, verifyWorldFactor,
    verifyWorldRgb, verifyWorldShade, verifyWorldTone, verifyWorldTerm,
    verifyWorldBeam, verifyWorldRay, verifyWorldIbl, verifyWorldGain,
-   verifyWorldCube, verifyWorldProbe, verifyWorldBake and verifyWorldSky. Live
-   rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is that intensity+hue+
-   gray-IBL gap plus g07 upper ramps. PNG refresh, threshold drift, color
-   retune, exposure retune and skipped comparison fail closed. 176 piers, 546
-   legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and generation-11
-   lock stay. Freeze path count stays 85. Pixel 0/4 is not freeze.
+   verifyWorldCube, verifyWorldProbe, verifyWorldBake, verifyWorldSky and
+   verifyWorldGray. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is
+   that intensity+hue+gray-IBL gap plus g07 upper ramps. PNG refresh, threshold
+   drift, color retune, exposure retune and skipped comparison fail closed.
+   176 piers, 546 legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and
+   generation-11 lock stay. Freeze path count stays 85. Pixel 0/4 is not freeze.
 2. Preserve the r6.18 Chromium install retry, the r6.19 slab-underside support
    placement, the r6.20 product font URL pins, the r6.21 rest chase 7.4/1.92,
    the r6.22 complete arcade lap, the r6.23 visual hull, the r6.24 original
@@ -138,12 +140,12 @@ not relabelled a pass.
    isolation, the r6.37 rgb sampling, the r6.38 shade isolation, the r6.39
    tone isolation, the r6.40 term isolation, the r6.41 beam isolation, the
    r6.42 ray isolation, the r6.43 ibl isolation, the r6.44 gain isolation, the
-   r6.45 cube isolation, the r6.46 probe isolation, the r6.47 bake isolation
-   and the r6.48 sky isolation.
+   r6.45 cube isolation, the r6.46 probe isolation, the r6.47 bake isolation,
+   the r6.48 sky isolation and the r6.49 gray isolation.
 3. Preserve 1280x800 images, threshold 0.12, failure 8%, generation 11 lock and
    owner approval. Do not refresh golden PNGs or silently change typography.
    Rendering performance remains open.
 4. Only validated applicable approval may grant freeze or open RSH-037.
 
-Master plan r6.48 retains 67 units, 42 historical findings, 6 bundles and 58
+Master plan r6.49 retains 67 units, 42 historical findings, 6 bundles and 59
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

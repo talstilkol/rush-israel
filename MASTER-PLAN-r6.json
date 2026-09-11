@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.48",
+  "revision": "r6.49",
   "date": "2026-09-11",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 58,
+    "audit_items": 59,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -388,7 +388,8 @@
         "AUD-55",
         "AUD-56",
         "AUD-57",
-        "AUD-58"
+        "AUD-58",
+        "AUD-59"
       ]
     },
     {
@@ -1645,6 +1646,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-SKY-r6.48.json"
+    },
+    {
+      "id": "AUD-59",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Combined leftover IBL is not gray cubemap versus IBL-off attribution",
+      "acceptance": "Sky-only reports without gray/hue/hemi/disc/intensity/fill luma and B-channel deltas plus a dominantGray must fail closed. Luma-terms-include-hemi, gray-is-combined, gray-clears-hue, gray-clears-intensity, hue-clears-gray, intensity-clears-ibl, gray-deltas-use-product-baseline and product-exposure retune fail closed. Live snapCamera(true) at g01/g05/g07/g08 must force 1280x800 pixelRatio 1, capture post.render present, locate the dominant 200px band, isolate those six axes after setNight and measure isolated band L2, luma and B against the locked 26 August PNG. Gray vs off deltas use the 0x808080 hue buffer as baseline. Product ground hex must stay 0xd0d4d8 and product exposure 0.56. Original-golden claims, PNG refresh, threshold drift, camera miss, color retune and zero presentPct fail closed. Retain freeze path count 85 and generation 11. Gray isolation is not freeze.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-GRAY-r6.49.json"
     }
   ],
   "legacy_findings": [
@@ -2068,7 +2082,7 @@
     "public_distribution_authorised": false
   },
   "limitations": [
-    "All67 original units,58 audit IDs and42 historical findings retained; no new accepted unit.",
+    "All67 original units,59 audit IDs and42 historical findings retained; no new accepted unit.",
     "Verified r6.5 head 8c6a3be7 passed 688 unit and 20 browser cases in run33995840557; prior chat-only 716-test claim is not the live baseline.",
     "Original PNGs, pixel threshold0.12, failure limit8%, camera recipe and post-pose waits are preserved. Reliable selection does not prove pixel determinism.",
     "Generated local closure seals the declared local runtime/build/test/public/golden surface. Three verified Actions are pinned; four dormant vendor-head expressions and three product font URLs are reviewed. Remote font bytes remain unpinned, so overall closure remains false.",
@@ -2076,9 +2090,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.48",
-    "base_head": "8d72cadf12105e9a56e0f76612b3b4b8c0cbdeaf",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.48.md",
+    "revision": "r6.49",
+    "base_head": "8650f45c85ed81d499716f347341b8b6536f47ce",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.49.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",

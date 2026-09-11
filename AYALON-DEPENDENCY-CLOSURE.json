@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "f5f0d27c4faf46c5dfe9933d4b4b073c01073c833ea932ce539015f8c2833780"
+      "sha256": "ece6a127684428652b809845c5e62d31c2073bfb354d04bd011824e56197b126"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 11972,
-      "sha256": "ab1c97039807af921e849ffae7f78613c2e40fba497e6c47ae665b091c1015ff"
+      "bytes": 12088,
+      "sha256": "f9e088177eb3edc753bcc51ad9ed0647d95fd868c31132a30d56d560b8f2202b"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2265,6 +2265,16 @@
       "path": "scripts/world-gain.test.mjs",
       "bytes": 10685,
       "sha256": "e00e7fb5585946f3749443ea2d058ccd851b752779cfb097deff243bfabe5c09"
+    },
+    {
+      "path": "scripts/world-gray-browser.mjs",
+      "bytes": 31994,
+      "sha256": "5fdf68d13f62cd1931a973957ea7f07d6124c34264c6263fe9fd5c09805da721"
+    },
+    {
+      "path": "scripts/world-gray.test.mjs",
+      "bytes": 11741,
+      "sha256": "49202d516bdc20a4e4a2658f7cc8193976c55a0499c737e7589d45bdaaf5405a"
     },
     {
       "path": "scripts/world-ibl-browser.mjs",
@@ -2524,7 +2534,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "f24a53be34c2d7f3ef6ecd7dd456a8a7c68f6c30ebd66f3f76492f73fd81eae8"
+      "sha256": "b1d6a5df38e2898f31b41fabfd4098ed864b30eaa04e9a006a1c82dea7214b87"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10776,5 +10786,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "af26491d149d75a0819595c33c7449398725d03c56b64a2c7b0ccfb36f276e70"
+  "digest_sha256": "158ae90e187e401349d71e5c68e344e78ae5ee857384c567418c6161b632b79a"
 }
