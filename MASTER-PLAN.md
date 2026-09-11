@@ -1622,6 +1622,21 @@ and are not remaining 0/4. Do not merge, replace PNGs, change thresholds,
 retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-PX-r6.77.json and RSH-036-RUNTIME-REPAIR-r6.77.md.
 
+## r6.78 — 11 September 2026: leftover g07 after world.group+outside is remaining empty-scene vs golden, not bloom, not SMAA, not grade, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-88 isolates
+leftover g07 after world.group+outside as remaining empty-scene vs golden
+independently of bloom vs SMAA vs grade after setNight/snapCamera(true). g07
+leftover is remaining empty-scene vs golden (leftover 0.2027), not bloom 0.8
+(≡ 0, L2 ≡ 0), not SMAA off (≡ 0), not grade off (bandDelta ≡ 0) and not env
+(≡ 0). g08 night grade L2 +12.77 is a night-empty tint, not remaining g07.
+Product post stays. Freeze path count stays 85. GFX-01, GFX-03, GFX-04,
+GFX-05, GFX-06, GFX-07 and GFX-08 stay queued after RSH-036 and are not
+remaining 0/4. Do not merge, replace PNGs, change thresholds, retune color
+or exposure or activate RSH-037.
+Details: RSH-036-WORLD-FX-r6.78.json and RSH-036-RUNTIME-REPAIR-r6.78.md.
+
+
 
 
 

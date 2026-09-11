@@ -172,7 +172,7 @@ test('rest chase overlay remains the 26 August 7.4/1.92 lock', () => {
   assert.match(src, /let height = 1\.92;/);
 });
 
-test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray bare flat conv sigma mgmt lod road recv amb hemi hex off env eint back hterm nfill upper renv gleft wgi uleft nmesh ogrp tmap cam chas and px probes', () => {
+test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray bare flat conv sigma mgmt lod road recv amb hemi hex off env eint back hterm nfill upper renv gleft wgi uleft nmesh ogrp tmap cam chas px and fx probes', () => {
   const src = readFileSync(fromRoot('scripts', 'runtime-recovery-smoke.mjs'), 'utf8');
   assert.match(src, /import \{ verifyWorldGleft \} from '\.\/world-gleft-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldWgi \} from '\.\/world-wgi-browser\.mjs';/);
