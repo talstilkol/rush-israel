@@ -1812,6 +1812,22 @@ after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
 thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-SXO-r6.90.json and RSH-036-RUNTIME-REPAIR-r6.90.md.
 
+## r6.91 — 12 September 2026: leftover g07 after world.group+outside is remaining empty-scene vs golden, not xr.framebufferScaleFactor, not transmissionResolutionScale, not VSMShadowMap, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-100 isolates
+leftover g07 after world.group+outside as remaining empty-scene vs golden
+independently of xr.framebufferScaleFactor vs transmissionResolutionScale vs VSMShadowMap after
+setNight/snapCamera(true). g07 leftover is remaining empty-scene vs golden
+(leftover 0.2027), not framebufferScaleFactor 0.5 (≡ 0), not transmissionResolutionScale 0.5 (≡ 0),
+not VSMShadowMap (≡ 0) and not env (≡ 0). both ≡ pack ≡ 0. Empty
+leftover has no world geometry for a framebufferScaleFactor/transmissionResolutionScale/VSM
+change to occupy remaining g07. Product renderer stays. Freeze path count stays 85.
+GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08, GFX-09 and GFX-10 stay queued
+after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-FTV-r6.91.json and RSH-036-RUNTIME-REPAIR-r6.91.md.
+
+
 ## Queued GFX-10 — 11 September 2026 22:56.51: Namal / South Tel Aviv flicker
 
 Owner screenshot on track `namal`, lap 1/3, t=0:06.31, 10 km/h, POI נמל תל אביב.

@@ -9,14 +9,14 @@ import { PNG } from 'pngjs';
 import { fromRoot } from './project-root.mjs';
 import {
   BAND_PIXELS, PACK_IDS, BOTH_IDS, CAPTURE_LAYERS, FAILURE_LIMIT, XR_IDS, DEBUG_IDS, IBL_IDS, LIGHTS_IDS,
-  SXO_BAND_MIN, SXO_BLUE_MIN, SXO_FRAMES, SXO_L2_MIN, SXO_LAYERS, SXO_LUMA_MIN,
+  FTV_BAND_MIN, FTV_BLUE_MIN, FTV_FRAMES, FTV_L2_MIN, FTV_LAYERS, FTV_LUMA_MIN,
   NEUTRAL_SKY_HEX, PIXEL_THRESHOLD, PRODUCT_EXPOSURE, PRODUCT_FOV, PRODUCT_NEAR, PRODUCT_FAR_MIN,
   PRODUCT_FOLLOW, PRODUCT_HEIGHT, PRODUCT_PIXEL_RATIO, PRODUCT_HEMI_SKY_HEX, PRODUCT_PMREM_SIZE, PRODUCT_SKY_HEX,
   PRODUCT_LIGHTS, PRODUCT_DEBUG, PRODUCT_XR,
-  dominantSxo, leftoverIsNotSxoMismatch, sxoBufferIsNotOriginalGolden, retainWorldSxo,
-  worldSxoFixture, worldSxoResults,
-} from './world-sxo-browser.mjs';
-import { worldLdxFixture } from './world-ldx-browser.mjs';
+  dominantFtv, leftoverIsNotFtvMismatch, ftvBufferIsNotOriginalGolden, retainWorldFtv,
+  worldFtvFixture, worldFtvResults,
+} from './world-ftv-browser.mjs';
+import { worldSxoFixture } from './world-sxo-browser.mjs';
 import { GROUND_ALBEDO } from './world-rgb-browser.mjs';
 import { REGION_BANDS, bandPixelmatch } from './world-region-browser.mjs';
 import { RSH035_BASELINE_SHA256, ORIGINAL_GOLDEN_FILES } from './original-golden-browser.mjs';
@@ -25,24 +25,24 @@ function sha256(buf) {
   return createHash('sha256').update(buf).digest('hex');
 }
 
-test('dominant 200px leftover report without remaining empty-scene vs golden independently of shadowMap.enabled vs xr.cameraAutoUpdate vs debug.onShaderError is not ldx mismatch', () => {
-  assert.equal(leftoverIsNotSxoMismatch({ frames: [] }), true);
-  assert.equal(leftoverIsNotSxoMismatch(worldLdxFixture()), true);
-  assert.equal(leftoverIsNotSxoMismatch(worldSxoFixture()), false);
-  assert.throws(() => worldSxoResults(worldLdxFixture()), /leftover g07 after world.group\+outside is not remaining empty-scene vs golden independently of shadowMap.enabled vs xr.cameraAutoUpdate vs debug.onShaderError mismatch/);
+test('dominant 200px leftover report without remaining empty-scene vs golden independently of xr.framebufferScaleFactor vs transmissionResolutionScale vs VSMShadowMap is not sxo mismatch', () => {
+  assert.equal(leftoverIsNotFtvMismatch({ frames: [] }), true);
+  assert.equal(leftoverIsNotFtvMismatch(worldSxoFixture()), true);
+  assert.equal(leftoverIsNotFtvMismatch(worldFtvFixture()), false);
+  assert.throws(() => worldFtvResults(worldSxoFixture()), /leftover g07 after world.group\+outside is not remaining empty-scene vs golden independently of xr.framebufferScaleFactor vs transmissionResolutionScale vs VSMShadowMap mismatch/);
 });
 
-test('ldx buffer without original-golden protocol identity is not original-golden', () => {
-  assert.equal(sxoBufferIsNotOriginalGolden(worldSxoFixture()), false);
-  assert.equal(sxoBufferIsNotOriginalGolden({
-    ...worldSxoFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
+test('sxo buffer without original-golden protocol identity is not original-golden', () => {
+  assert.equal(ftvBufferIsNotOriginalGolden(worldFtvFixture()), false);
+  assert.equal(ftvBufferIsNotOriginalGolden({
+    ...worldFtvFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
   }), true);
   assert.equal(PIXEL_THRESHOLD, 0.12);
   assert.equal(FAILURE_LIMIT, 0.08);
-  assert.equal(SXO_L2_MIN, 8);
-  assert.equal(SXO_LUMA_MIN, 8);
-  assert.equal(SXO_BLUE_MIN, 8);
-  assert.equal(SXO_BAND_MIN, 0.02);
+  assert.equal(FTV_L2_MIN, 8);
+  assert.equal(FTV_LUMA_MIN, 8);
+  assert.equal(FTV_BLUE_MIN, 8);
+  assert.equal(FTV_BAND_MIN, 0.02);
   assert.equal(PRODUCT_EXPOSURE, 0.56);
   assert.equal(PRODUCT_SKY_HEX, 0x3a9ae0);
   assert.equal(PRODUCT_HEMI_SKY_HEX, 0xa8c8e8);
@@ -58,7 +58,7 @@ test('ldx buffer without original-golden protocol identity is not original-golde
   assert.equal(PRODUCT_DEBUG, true);
   assert.equal(PRODUCT_XR, false);
   assert.equal(BAND_PIXELS, 1280 * 200);
-  assert.deepEqual(SXO_LAYERS, ['lights', 'debug', 'xr', 'env', 'both', 'pack']);
+  assert.deepEqual(FTV_LAYERS, ['lights', 'debug', 'xr', 'env', 'both', 'pack']);
   assert.deepEqual([...CAPTURE_LAYERS], ['lights', 'debug', 'xr', 'env', 'both', 'pack']);
   assert.deepEqual([...LIGHTS_IDS], ['lights']);
   assert.deepEqual([...DEBUG_IDS], ['debug']);
@@ -67,7 +67,7 @@ test('ldx buffer without original-golden protocol identity is not original-golde
   assert.deepEqual([...BOTH_IDS], ['both']);
   assert.deepEqual([...PACK_IDS], ['pack']);
   assert.equal(GROUND_ALBEDO.hex, 0xd0d4d8);
-  const src = readFileSync(fromRoot('scripts', 'world-sxo-browser.mjs'), 'utf8');
+  const src = readFileSync(fromRoot('scripts', 'world-ftv-browser.mjs'), 'utf8');
   assert.match(src, /SphereGeometry/);
   assert.match(src, /radius, 8200/);
   assert.match(src, /hideMeshes\(leftoverOf\(\)\)/);
@@ -78,33 +78,33 @@ test('ldx buffer without original-golden protocol identity is not original-golde
   assert.match(src, /setLights\(\)/);
   assert.match(src, /setDebug\(\)/);
   assert.match(src, /setXr\(\)/);
-  assert.match(src, /shadowMap.enabled = false/);
-  assert.match(src, /cameraAutoUpdate = false/);
-  assert.match(src, /onShaderError = /);
+  assert.match(src, /setFramebufferScaleFactor\(0\.5\)/);
+  assert.match(src, /transmissionResolutionScale = 0\.5/);
+  assert.match(src, /VSMShadowMap/);
   assert.match(src, /lights\(\) \{/);
   assert.match(src, /isInstancedMesh/);
   assert.match(src, /\.\.\.hideMeshes\(leftoverOf\(\)\), \.\.\.swapEnv\(gray\)/);
   assert.doesNotMatch(src, /engine\.scene\.environment = null/);
   assert.doesNotMatch(src, /lookAt\(p\.x, p\.y \+ 20, p\.z\)/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), productGroundHex: 0 }), /product ground color retuned/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), productExposure: 1 }), /product exposure retuned/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), lumaTermsIncludeHemi: true }), /luma terms include hemi/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), envIsCombined: true }), /env isolation still combined/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), bothIsCombined: true }), /sxo isolation still combined with hemi/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), lightsClears: false }), /type isolation did not force shadowMap.enabled off/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), lightsHidesLeftover: false }), /type isolation did not hide leftover empty-scene meshes/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), bothSetsGray: false }), /both isolation did not swap gray cubemap/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), bothClearsLights: false }), /both isolation did not force shadowMap.enabled off/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), debugClears: false }), /needs isolation did not force xr.cameraAutoUpdate off/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), xrClears: false }), /clip isolation did not force debug.onShaderError/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), packClearsLights: false }), /pack isolation did not force shadowMap.enabled off/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), envSetsGray: false }), /scene.environment isolation did not swap gray cubemap/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), envHidesLeftover: false }), /env isolation did not hide leftover empty-scene meshes/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), fovStays58: false }), /product fov retuned during sxo probe/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), nearStaysProduct: false }), /product near retuned during sxo probe/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), farStaysProduct: false }), /product far retuned during sxo probe/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), intensityClearsIbl: true }), /sxo isolation clears scene.environment via shadowMap.enabled/);
-  assert.throws(() => worldSxoResults({ ...worldSxoFixture(), sxoDeltasUseEmptyBaseline: false }), /leftover g07 still uses world.group leftover as baseline/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), productGroundHex: 0 }), /product ground color retuned/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), productExposure: 1 }), /product exposure retuned/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), lumaTermsIncludeHemi: true }), /luma terms include hemi/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), envIsCombined: true }), /env isolation still combined/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), bothIsCombined: true }), /ftv isolation still combined with hemi/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), lightsClears: false }), /type isolation did not force framebufferScaleFactor 0.5/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), lightsHidesLeftover: false }), /type isolation did not hide leftover empty-scene meshes/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), bothSetsGray: false }), /both isolation did not swap gray cubemap/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), bothClearsLights: false }), /both isolation did not force framebufferScaleFactor 0.5/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), debugClears: false }), /needs isolation did not force transmissionResolutionScale 0.5/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), xrClears: false }), /clip isolation did not force VSMShadowMap/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), packClearsLights: false }), /pack isolation did not force framebufferScaleFactor 0.5/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), envSetsGray: false }), /scene.environment isolation did not swap gray cubemap/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), envHidesLeftover: false }), /env isolation did not hide leftover empty-scene meshes/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), fovStays58: false }), /product fov retuned during ftv probe/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), nearStaysProduct: false }), /product near retuned during ftv probe/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), farStaysProduct: false }), /product far retuned during ftv probe/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), intensityClearsIbl: true }), /ftv isolation clears scene.environment via framebufferScaleFactor/);
+  assert.throws(() => worldFtvResults({ ...worldFtvFixture(), ftvDeltasUseEmptyBaseline: false }), /leftover g07 still uses world.group leftover as baseline/);
 });
 
 test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
@@ -116,15 +116,15 @@ test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
   assert.equal(match.id, 'bottom');
 });
 
-test('locked ldx poses match original-golden cameras and PNG hashes', () => {
-  assert.deepEqual(SXO_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
-  assert.deepEqual(SXO_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
-  assert.equal(SXO_FRAMES[3].night, true);
-  assert.equal(dominantSxo(worldSxoFixture().frames[0].layers), 'lights');
+test('locked sxo poses match original-golden cameras and PNG hashes', () => {
+  assert.deepEqual(FTV_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
+  assert.deepEqual(FTV_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
+  assert.equal(FTV_FRAMES[3].night, true);
+  assert.equal(dominantFtv(worldFtvFixture().frames[0].layers), 'lights');
 });
 
-test('sxo-attribution evidence yields five protocol passes', () => {
-  assert.deepEqual(worldSxoResults(worldSxoFixture()).map(row => row.status), Array(5).fill('passed'));
+test('ftv-attribution evidence yields five protocol passes', () => {
+  assert.deepEqual(worldFtvResults(worldFtvFixture()).map(row => row.status), Array(5).fill('passed'));
 });
 
 for (const [name, mutate] of [
@@ -143,37 +143,37 @@ for (const [name, mutate] of [
   ['authority claim', r => { r.authority = true; }],
   ['original-golden comparisons', r => { r.originalGoldenComparisons = 4; }],
   ['threshold drift', r => { r.pixelThreshold = 0.2; }],
-]) test(`world-sxo evidence fails closed: ${name}`, () => {
-  const r = worldSxoFixture();
+]) test(`world-ftv evidence fails closed: ${name}`, () => {
+  const r = worldFtvFixture();
   mutate(r);
-  assert.throws(() => worldSxoResults(r));
+  assert.throws(() => worldFtvResults(r));
 });
 
 test('baseline PNG hash drift fails closed', () => {
-  const r = worldSxoFixture();
+  const r = worldFtvFixture();
   r.baselineHashes['ayalon-day-g01.png'] = '0'.repeat(64);
-  assert.throws(() => worldSxoResults(r), /baseline hash drift/);
+  assert.throws(() => worldFtvResults(r), /baseline hash drift/);
 });
 
 test('zero full-frame present mismatch remains failed', () => {
-  const r = worldSxoFixture();
+  const r = worldFtvFixture();
   r.frames[0] = { ...r.frames[0], presentPct: 0, presentMismatched: 0 };
-  const row = worldSxoResults(r).find(item => item.case.includes('still mismatches'));
+  const row = worldFtvResults(r).find(item => item.case.includes('still mismatches'));
   assert.equal(row.status, 'failed');
   assert.equal(row.failures, 1);
 });
 
-test('a rest-camera miss remains failed during sxo sampling', () => {
-  const r = worldSxoFixture();
+test('a rest-camera miss remains failed during ftv sampling', () => {
+  const r = worldFtvFixture();
   r.frames[1] = { ...r.frames[1], follow: 9.2, height: 2.28 };
-  assert.throws(() => worldSxoResults(r));
+  assert.throws(() => worldFtvResults(r));
 });
 
-test('invalid world-sxo report is retained before validation throws', async () => {
-  const out = await mkdtemp(join(tmpdir(), 'world-sxo-invalid-'));
+test('invalid world-ftv report is retained before validation throws', async () => {
+  const out = await mkdtemp(join(tmpdir(), 'world-ftv-invalid-'));
   try {
-    const r = worldSxoFixture({ originalGoldenComparisons: 4 });
-    await assert.rejects(retainWorldSxo(r, out));
+    const r = worldFtvFixture({ originalGoldenComparisons: 4 });
+    await assert.rejects(retainWorldFtv(r, out));
     assert.equal(JSON.parse(await readFile(join(out, 'results.json'), 'utf8')).originalGoldenComparisons, 4);
   } finally {
     await rm(out, { recursive: true, force: true });
