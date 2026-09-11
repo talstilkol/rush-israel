@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "86f613e9d93ab9093dd004e207a41103c20ceeb56758e0bf5fa413c88ccfcb93"
+      "sha256": "ddc61ad658192d40a6165567fe75c41cdbbae88f90b2938a90f3d3edcb29661e"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 11743,
-      "sha256": "28b5749009b62f172f4a7821f9e651b4cdfce2c5f19a97fd31bfe65e3c10d274"
+      "bytes": 11859,
+      "sha256": "ed44369dc34f10e6f9c1ae9e63150ce02e38d037df6add01cdd02fb9846b5dbe"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2185,6 +2185,16 @@
       "path": "scripts/webgpu-smoke.mjs",
       "bytes": 1824,
       "sha256": "a22a1173fa9369b8060085cac6f8271f93b0ac32adcddad4ba0c2fc6835985bd"
+    },
+    {
+      "path": "scripts/world-bake-browser.mjs",
+      "bytes": 30695,
+      "sha256": "a163c4b8b1ffc09bea04a737631ae266343bafd1a63a347e4f1fea35af816f21"
+    },
+    {
+      "path": "scripts/world-bake.test.mjs",
+      "bytes": 11220,
+      "sha256": "dd445cd868af85bf449fef03eeeb2001ba6894a13f13b2464a231ed9b3383421"
     },
     {
       "path": "scripts/world-beam-browser.mjs",
@@ -2504,7 +2514,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "70ddfafc5e8f42bc9f8ab435afbd87edc781716676a9af569bdd907a3f55e55a"
+      "sha256": "869fc79e4e1f3e3b5cfb21a87746973882ccf256ffdbeac54478de8599b9fb50"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10756,5 +10766,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "41cb468f13873f031dc2e8b4cde7e55a6c666a239899b64d9df2e6ec7d5e84db"
+  "digest_sha256": "2449551256a715dba0309d37acfb1321fd95fa5af236f7c27483860b819f0064"
 }

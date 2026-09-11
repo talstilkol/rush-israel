@@ -1029,6 +1029,23 @@ thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-PROBE-r6.46.json, RSH-036-RUNTIME-REPAIR-r6.46.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.47 — 11 September 2026: combined bakeEnv IBL is not background vs hemi vs sun disc
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-57 isolates
+bakeEnv background vs hemi vs sun disc independently of sun intensity vs fill
+after setNight/snapCamera(true). r6.46 bakeEnv was one combined IBL. g01/g05
+day-bottom IBL is background 0x3a9ae0 (B −47.8/−52.0), the entire remaining
+environment blue. Hemi and disc are 0. Intensity occupies luma
+(−28.0/−31.1/−11.5). Fill joins intensity on g08 night (−12.4). setNight does
+not rebake, so g08 night variants all occupy leftover. g07 upper remains ramps.
+Camera stays 7.4/1.92. Freeze path count stays 85. r6.27 lint no-undef is
+retained, not relabelled a pass. Immutable CDN bytes, rendering performance
+and freeze remain open. Do not merge, replace PNGs, change thresholds, retune
+color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-BAKE-r6.47.json, RSH-036-RUNTIME-REPAIR-r6.47.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 
