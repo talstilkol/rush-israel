@@ -1743,6 +1743,31 @@ after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
 thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-ACD-r6.85.json and RSH-036-RUNTIME-REPAIR-r6.85.md.
 
+## r6.86 — 12 September 2026: playability sit hero-car Y-up; coastal water below ribbon; trees/plaza off carriageway
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). Playability
+repairs for owner GFX-01/05/06/09 screenshots. Pixel 0/4 leftover g07
+empty-scene vs golden 0.2027 is unchanged. Freeze path count stays 85.
+GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08 and GFX-09 stay queued
+after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+
+## r6.87 — 12 September 2026: leftover g07 after world.group+outside is remaining empty-scene vs golden, not dithering, not shadowMap.autoUpdate, not info.autoReset, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-96 isolates
+leftover g07 after world.group+outside as remaining empty-scene vs golden
+independently of dithering vs shadowMap.autoUpdate vs info.autoReset after
+setNight/snapCamera(true). g07 leftover is remaining empty-scene vs golden
+(leftover 0.2027), not dithering on (≡ 0), not shadowMap.autoUpdate off (≡ 0),
+not info.autoReset off (≡ 0) and not env (≡ 0). both ≡ pack ≡ 0. Empty
+leftover has no world geometry for a dithering/shadowMap.autoUpdate/info.autoReset
+change to occupy remaining g07. Product renderer stays. Freeze path count stays 85.
+GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08 and GFX-09 stay queued
+after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-DSA-r6.87.json and RSH-036-RUNTIME-REPAIR-r6.87.md.
+
+
 
 
 
