@@ -1563,6 +1563,21 @@ exposure or activate RSH-037.
 Details: RSH-036-WORLD-OGRP-r6.73.json, RSH-036-RUNTIME-REPAIR-r6.73.md and
 docs/evidence/GFX-07-jerusalem-mahane-yehuda-origami.md.
 
+## r6.74 — 11 September 2026: leftover g07 after world.group+outside is remaining empty-scene vs golden, not toneMapping, not ColorManagement, not env; LinearSRGB increases
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-84 isolates
+leftover g07 after world.group+outside as remaining empty-scene vs golden
+independently of toneMapping vs outputColorSpace vs ColorManagement after
+setNight/snapCamera(true). g07 leftover is remaining empty-scene vs golden
+(leftover 0.2027), not toneMapping (NoToneMapping ≈ 0), not ColorManagement
+(≡ 0) and not env (≡ 0). LinearSRGB increases +0.7482. Product ACES / sRGB /
+ColorManagement.enabled is closer to golden. Camera stays 7.4/1.92. Freeze
+path count stays 85. GFX-01, GFX-03, GFX-04, GFX-05, GFX-06 and GFX-07 stay
+queued after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs,
+change thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-TMAP-r6.74.json and RSH-036-RUNTIME-REPAIR-r6.74.md.
+
+
 
 
 

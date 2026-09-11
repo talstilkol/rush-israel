@@ -1606,9 +1606,9 @@
       3
     ],
     "migration_edges": [
-      "0→1",
-      "1→2",
-      "2→3"
+      "0\u21921",
+      "1\u21922",
+      "2\u21923"
     ],
     "schema_source_sha256": "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358",
     "save_facade_source_sha256": "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24",
@@ -2001,14 +2001,14 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.73.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.74.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
         {
           "id": "GFX-01",
           "track": "namal",
-          "poi": "נמל תל אביב",
+          "poi": "\u05e0\u05de\u05dc \u05ea\u05dc \u05d0\u05d1\u05d9\u05d1",
           "screenshot": "2026-09-11 17:34",
           "defect": "hero-car GLB body vertical/origami vs procedural extras; likely /game/car-*.glb up-axis vs cloneCarBody",
           "not_remaining_0_of_4": true,
@@ -2017,15 +2017,15 @@
         {
           "id": "GFX-02",
           "track": "ayalon",
-          "defect": "leftover g07 after all world.group meshes is remaining empty-scene vs golden not occupancy outside world.group not hero not fx not blob not env (leftover 0.2027, outside ≡ 0, leftover-after-empty-as-outside ≡ 0)",
-          "status": "r6_73_done_aud_84_next"
+          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not toneMapping not ColorManagement not env (leftover 0.2027, LinearSRGB +0.7482 increases, leftover-after-empty-as-env \u2261 0)",
+          "status": "r6_74_done_aud_85_next"
         },
         {
           "id": "GFX-03",
           "track": "ayalon",
           "mode": "pointToPoint",
-          "poi": "קיבוץ גלויות",
-          "landmark": "ההגנה / HaHagana",
+          "poi": "\u05e7\u05d9\u05d1\u05d5\u05e5 \u05d2\u05dc\u05d5\u05d9\u05d5\u05ea",
+          "landmark": "\u05d4\u05d4\u05d2\u05e0\u05d4 / HaHagana",
           "screenshot": "2026-09-11 17:51",
           "evidence": "docs/evidence/GFX-03-ayalon-night-p2p-camera.md",
           "defect": "night point-to-point chase camera clips through hero-car; gray panel fills the frame at t=0:02.64 / 2 km/h",
@@ -2037,7 +2037,7 @@
           "id": "GFX-04",
           "track": "ayalon",
           "mode": "pointToPoint",
-          "poi": "קיבוץ גלויות",
+          "poi": "\u05e7\u05d9\u05d1\u05d5\u05e5 \u05d2\u05dc\u05d5\u05d9\u05d5\u05ea",
           "screenshot": "2026-09-11 17:51.46",
           "evidence": "docs/evidence/GFX-04-ayalon-night-p2p-wall-camera.md",
           "defect": "night P2P chase camera clips into retaining wall at Kibbutz Galuyot t=0:25.66 / 1 km/h; Sabra exploded from steep top-down",
@@ -2049,10 +2049,10 @@
           "id": "GFX-05",
           "track": "caesarea",
           "mode": "lap",
-          "poi": "אמת המים",
+          "poi": "\u05d0\u05de\u05ea \u05d4\u05de\u05d9\u05dd",
           "screenshot": "2026-09-11 17:53.01",
           "evidence": "docs/evidence/GFX-05-caesarea-aqueduct-water-plane.md",
-          "defect": "water/ground plane cuts through the road at אמת המים t=0:05.20 / 1 km/h lap 1/3; Sabra boxy with side glass (GFX-01 family)",
+          "defect": "water/ground plane cuts through the road at \u05d0\u05de\u05ea \u05d4\u05de\u05d9\u05dd t=0:05.20 / 1 km/h lap 1/3; Sabra boxy with side glass (GFX-01 family)",
           "not_remaining_0_of_4": true,
           "not_freeze": true,
           "status": "queued_after_rsh_036"
@@ -2061,10 +2061,10 @@
           "id": "GFX-06",
           "track": "haifa",
           "mode": "pointToPoint",
-          "poi": "הגנים הבהאיים",
+          "poi": "\u05d4\u05d2\u05e0\u05d9\u05dd \u05d4\u05d1\u05d4\u05d0\u05d9\u05d9\u05dd",
           "screenshot": "2026-09-11 17:53.40 / 17:54.15",
           "evidence": "docs/evidence/GFX-06-haifa-carmel-trees-through-road.md",
-          "defect": "pine trees poke through the road at Baháʼí Gardens so the driving surface is hidden; Sabra floats on canopies; HUD toasts חזור לכביש",
+          "defect": "pine trees poke through the road at Bah\u00e1\u02bc\u00ed Gardens so the driving surface is hidden; Sabra floats on canopies; HUD toasts \u05d7\u05d6\u05d5\u05e8 \u05dc\u05db\u05d1\u05d9\u05e9",
           "not_remaining_0_of_4": true,
           "not_freeze": true,
           "status": "queued_after_rsh_036"
@@ -2073,7 +2073,7 @@
           "id": "GFX-07",
           "track": "jerusalem",
           "mode": "pointToPoint",
-          "poi": "מחנה יהודה",
+          "poi": "\u05de\u05d7\u05e0\u05d4 \u05d9\u05d4\u05d5\u05d3\u05d4",
           "screenshot": "2026-09-11 17:55.22",
           "evidence": "docs/evidence/GFX-07-jerusalem-mahane-yehuda-origami.md",
           "defect": "P2P origami car + steep camera at Mahane Yehuda t=0:04.59 / 1 km/h; owner reports cannot drive forward",
@@ -2084,12 +2084,12 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_outside_not_hero_not_fx_not_blob_not_env_not_full_suite_expected_2597",
+      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_tone_not_mgmt_not_env_linear_srgb_increases_not_full_suite_expected_2625",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2597,
+      "expected_total": 2625,
       "predecessor_r6_72_expected": 2569,
       "predecessor_r6_71_expected": 2541,
       "predecessor_r6_70_expected": 2513,
@@ -2248,16 +2248,65 @@
         "ramps": 50,
         "colliderCount": 722,
         "contributing": {
-          "g01": ["ramps", "piers", "sky", "ground", "instanced", "residual"],
-          "g05": ["sky", "ground", "glass", "instanced", "residual"],
-          "g07": ["ramps", "sky", "ground", "residual"],
-          "g08": ["sky", "ground", "glass", "instanced", "residual"]
+          "g01": [
+            "ramps",
+            "piers",
+            "sky",
+            "ground",
+            "instanced",
+            "residual"
+          ],
+          "g05": [
+            "sky",
+            "ground",
+            "glass",
+            "instanced",
+            "residual"
+          ],
+          "g07": [
+            "ramps",
+            "sky",
+            "ground",
+            "residual"
+          ],
+          "g08": [
+            "sky",
+            "ground",
+            "glass",
+            "instanced",
+            "residual"
+          ]
         },
-        "groundChangedFraction": [0.3673, 0.5102, 0.0408, 0.5102],
-        "skyChangedFraction": [0.102, 0.2449, 0.2449, 0.3061],
-        "glassChangedFraction": [0, 0.1633, 0, 0.0816],
-        "waterChangedFraction": [0, 0, 0, 0],
-        "carriagewayChangedFraction": [0, 0, 0, 0],
+        "groundChangedFraction": [
+          0.3673,
+          0.5102,
+          0.0408,
+          0.5102
+        ],
+        "skyChangedFraction": [
+          0.102,
+          0.2449,
+          0.2449,
+          0.3061
+        ],
+        "glassChangedFraction": [
+          0,
+          0.1633,
+          0,
+          0.0816
+        ],
+        "waterChangedFraction": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "carriagewayChangedFraction": [
+          0,
+          0,
+          0,
+          0
+        ],
         "originalGoldenComparisons": 0
       },
       "live_world_mismatch": {
@@ -2266,17 +2315,42 @@
         "follow": 7.4,
         "height": 1.92,
         "fov": 58,
-        "pngMismatch": [49, 49, 48, 48],
-        "pngMismatchFraction": [1, 1, 0.9796, 0.9796],
+        "pngMismatch": [
+          49,
+          49,
+          48,
+          48
+        ],
+        "pngMismatchFraction": [
+          1,
+          1,
+          0.9796,
+          0.9796
+        ],
         "contributingMismatch": {
           "g01": [],
           "g05": [],
           "g07": [],
           "g08": []
         },
-        "groundLive": [0.3673, 0.5102, 0.0408, 0.5102],
-        "groundDelta": [0, 0, 0, 0],
-        "rampsDelta": [0, 0, 1, 0],
+        "groundLive": [
+          0.3673,
+          0.5102,
+          0.0408,
+          0.5102
+        ],
+        "groundDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "rampsDelta": [
+          0,
+          0,
+          1,
+          0
+        ],
         "originalGoldenComparisons": 0
       },
       "live_world_bias": {
@@ -2285,13 +2359,48 @@
         "follow": 7.4,
         "height": 1.92,
         "fov": 58,
-        "flippedMismatch": [49, 49, 48, 48],
-        "unflippedMismatch": [49, 49, 49, 48],
-        "kind": ["structured", "structured", "structured", "structured"],
-        "meanDluma": [23.5482, 26.1042, -3.6631, 27.4368],
-        "meanAbsDluma": [72.3403, 64.8577, 27.596, 47.8896],
-        "lumaVariance": [6889.0263, 5009.1396, 2219.003, 2420.6697],
-        "signAgreement": [0.6939, 0.8163, 0.3673, 0.8367],
+        "flippedMismatch": [
+          49,
+          49,
+          48,
+          48
+        ],
+        "unflippedMismatch": [
+          49,
+          49,
+          49,
+          48
+        ],
+        "kind": [
+          "structured",
+          "structured",
+          "structured",
+          "structured"
+        ],
+        "meanDluma": [
+          23.5482,
+          26.1042,
+          -3.6631,
+          27.4368
+        ],
+        "meanAbsDluma": [
+          72.3403,
+          64.8577,
+          27.596,
+          47.8896
+        ],
+        "lumaVariance": [
+          6889.0263,
+          5009.1396,
+          2219.003,
+          2420.6697
+        ],
+        "signAgreement": [
+          0.6939,
+          0.8163,
+          0.3673,
+          0.8367
+        ],
         "originalGoldenComparisons": 0
       },
       "live_world_scene": {
@@ -2301,11 +2410,36 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "pageGoldenPct": [0.6158, 0.5056, 0.3122, 0.6473],
-        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
-        "rawPct": [0.6926, 0.594, 0.2933, 0.7016],
-        "presentVsRawPct": [0, 0, 0, 0],
-        "kind": ["structured", "structured", "structured", "structured"],
+        "pageGoldenPct": [
+          0.6158,
+          0.5056,
+          0.3122,
+          0.6473
+        ],
+        "presentPct": [
+          0.6926,
+          0.594,
+          0.2933,
+          0.7016
+        ],
+        "rawPct": [
+          0.6926,
+          0.594,
+          0.2933,
+          0.7016
+        ],
+        "presentVsRawPct": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "kind": [
+          "structured",
+          "structured",
+          "structured",
+          "structured"
+        ],
         "originalGoldenComparisons": 0
       },
       "live_world_region": {
@@ -2315,12 +2449,42 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
-        "topPct": [0.4985, 0.2243, 0.1894, 0.4798],
-        "upperPct": [0.6461, 0.4736, 0.6045, 0.6021],
-        "lowerPct": [0.758, 0.8242, 0.2735, 0.8437],
-        "bottomPct": [0.8646, 0.8531, 0.106, 0.8807],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
+        "presentPct": [
+          0.6926,
+          0.594,
+          0.2933,
+          0.7016
+        ],
+        "topPct": [
+          0.4985,
+          0.2243,
+          0.1894,
+          0.4798
+        ],
+        "upperPct": [
+          0.6461,
+          0.4736,
+          0.6045,
+          0.6021
+        ],
+        "lowerPct": [
+          0.758,
+          0.8242,
+          0.2735,
+          0.8437
+        ],
+        "bottomPct": [
+          0.8646,
+          0.8531,
+          0.106,
+          0.8807
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
         "originalGoldenComparisons": 0
       },
       "live_world_column": {
@@ -2330,13 +2494,48 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "leftPct": [0.919, 0.843, 0.7862, 0.862],
-        "midLeftPct": [0.853, 0.8633, 0.4179, 0.8928],
-        "midRightPct": [0.8312, 0.8473, 0.4262, 0.8799],
-        "rightPct": [0.8554, 0.8592, 0.7878, 0.8881],
-        "dominantColumn": ["left", "midLeft", "right", "midLeft"],
+        "presentPct": [
+          0.6926,
+          0.594,
+          0.2933,
+          0.7016
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "leftPct": [
+          0.919,
+          0.843,
+          0.7862,
+          0.862
+        ],
+        "midLeftPct": [
+          0.853,
+          0.8633,
+          0.4179,
+          0.8928
+        ],
+        "midRightPct": [
+          0.8312,
+          0.8473,
+          0.4262,
+          0.8799
+        ],
+        "rightPct": [
+          0.8554,
+          0.8592,
+          0.7878,
+          0.8881
+        ],
+        "dominantColumn": [
+          "left",
+          "midLeft",
+          "right",
+          "midLeft"
+        ],
         "originalGoldenComparisons": 0
       },
       "live_world_slice": {
@@ -2346,13 +2545,50 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantLayer": ["carriageway", "carriageway", "ramps", "carriageway"],
-        "contributingSlice": [[], [], ["ramps"], []],
-        "rampsDelta": [0, 0, -0.1885, 0],
-        "groundDelta": [0.1047, 0.1313, -0.0038, 0.1158],
-        "residualDelta": [0, 0, -0.0174, 0],
+        "presentPct": [
+          0.6926,
+          0.594,
+          0.2933,
+          0.7016
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantLayer": [
+          "carriageway",
+          "carriageway",
+          "ramps",
+          "carriageway"
+        ],
+        "contributingSlice": [
+          [],
+          [],
+          [
+            "ramps"
+          ],
+          []
+        ],
+        "rampsDelta": [
+          0,
+          0,
+          -0.1885,
+          0
+        ],
+        "groundDelta": [
+          0.1047,
+          0.1313,
+          -0.0038,
+          0.1158
+        ],
+        "residualDelta": [
+          0,
+          0,
+          -0.0174,
+          0
+        ],
         "originalGoldenComparisons": 0
       },
       "live_world_extra": {
@@ -2362,16 +2598,67 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantExtra": ["blob", "blob", "blob", "blob"],
-        "contributingExtra": [[], [], [], []],
-        "heroDelta": [0, 0, 0, 0],
-        "roadDelta": [0, 0, 0, 0],
-        "blobDelta": [0, 0, 0, 0],
-        "fxDelta": [0, 0, 0, 0],
-        "unclassifiedDelta": [0, 0, 0, 0],
-        "counts": { "hero": 106, "road": 2, "blob": 4, "fx": 5, "unclassified": 813 },
+        "presentPct": [
+          0.6926,
+          0.594,
+          0.2933,
+          0.7016
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantExtra": [
+          "blob",
+          "blob",
+          "blob",
+          "blob"
+        ],
+        "contributingExtra": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "heroDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "roadDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "blobDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fxDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "unclassifiedDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "counts": {
+          "hero": 106,
+          "road": 2,
+          "blob": 4,
+          "fx": 5,
+          "unclassified": 813
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_material": {
@@ -2381,14 +2668,65 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantMaterial": ["ground", "ground", "envmap", "daylight"],
-        "contributingMaterial": [["ground", "daylight"], ["ground", "daylight"], ["envmap"], ["ground", "daylight", "envmap"]],
-        "groundDelta": [-0.776, -0.8503, 0.0016, -0.878],
-        "daylightDelta": [-0.7552, -0.43, 0.0023, -0.8781],
-        "envmapDelta": [0.0036, 0.0017, -0.063, -0.1932],
-        "counts": { "ground": 1, "daylight": 7, "envmap": 1747 },
+        "presentPct": [
+          0.6926,
+          0.594,
+          0.2933,
+          0.7016
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantMaterial": [
+          "ground",
+          "ground",
+          "envmap",
+          "daylight"
+        ],
+        "contributingMaterial": [
+          [
+            "ground",
+            "daylight"
+          ],
+          [
+            "ground",
+            "daylight"
+          ],
+          [
+            "envmap"
+          ],
+          [
+            "ground",
+            "daylight",
+            "envmap"
+          ]
+        ],
+        "groundDelta": [
+          -0.776,
+          -0.8503,
+          0.0016,
+          -0.878
+        ],
+        "daylightDelta": [
+          -0.7552,
+          -0.43,
+          0.0023,
+          -0.8781
+        ],
+        "envmapDelta": [
+          0.0036,
+          0.0017,
+          -0.063,
+          -0.1932
+        ],
+        "counts": {
+          "ground": 1,
+          "daylight": 7,
+          "envmap": 1747
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_factor": {
@@ -2398,19 +2736,97 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantFactor": ["color", "color", "dir", "color"],
-        "contributingFactor": [["color"], ["color"], [], ["color", "hemi", "dir", "fill"]],
-        "mapDelta": [0.1043, 0.131, 0.0046, 0.1155],
-        "colorDelta": [-0.776, -0.8503, 0.0014, -0.878],
-        "roughnessDelta": [0.0013, 0.0008, -0.0035, 0.0012],
-        "hemiDelta": [0.0026, -0.0022, -0.007, -0.0395],
-        "dirDelta": [0.0039, 0.0012, -0.0125, -0.0488],
-        "fillDelta": [-0.0036, -0.004, -0.0021, -0.0423],
-        "ambientDelta": [-0.0019, -0.0022, -0.0014, -0.0057],
-        "backgroundDelta": [0, 0, 0, 0],
-        "counts": { "map": 1, "color": 1, "roughness": 1, "hemi": 1, "dir": 2, "fill": 1, "ambient": 1, "background": 2 },
+        "presentPct": [
+          0.6926,
+          0.594,
+          0.2933,
+          0.7016
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantFactor": [
+          "color",
+          "color",
+          "dir",
+          "color"
+        ],
+        "contributingFactor": [
+          [
+            "color"
+          ],
+          [
+            "color"
+          ],
+          [],
+          [
+            "color",
+            "hemi",
+            "dir",
+            "fill"
+          ]
+        ],
+        "mapDelta": [
+          0.1043,
+          0.131,
+          0.0046,
+          0.1155
+        ],
+        "colorDelta": [
+          -0.776,
+          -0.8503,
+          0.0014,
+          -0.878
+        ],
+        "roughnessDelta": [
+          0.0013,
+          0.0008,
+          -0.0035,
+          0.0012
+        ],
+        "hemiDelta": [
+          0.0026,
+          -0.0022,
+          -0.007,
+          -0.0395
+        ],
+        "dirDelta": [
+          0.0039,
+          0.0012,
+          -0.0125,
+          -0.0488
+        ],
+        "fillDelta": [
+          -0.0036,
+          -0.004,
+          -0.0021,
+          -0.0423
+        ],
+        "ambientDelta": [
+          -0.0019,
+          -0.0022,
+          -0.0014,
+          -0.0057
+        ],
+        "backgroundDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "counts": {
+          "map": 1,
+          "color": 1,
+          "roughness": 1,
+          "hemi": 1,
+          "dir": 2,
+          "fill": 1,
+          "ambient": 1,
+          "background": 2
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_rgb": {
@@ -2420,18 +2836,147 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6926, 0.594, 0.2933, 0.7016],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantSample": ["ground", "band", "ground", "band"],
-        "contributingSample": [["band", "ground"], ["band"], ["band", "ground"], ["band"]],
+        "presentPct": [
+          0.6926,
+          0.594,
+          0.2933,
+          0.7016
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantSample": [
+          "ground",
+          "band",
+          "ground",
+          "band"
+        ],
+        "contributingSample": [
+          [
+            "band",
+            "ground"
+          ],
+          [
+            "band"
+          ],
+          [
+            "band",
+            "ground"
+          ],
+          [
+            "band"
+          ]
+        ],
         "productGroundHex": 13673688,
-        "bandL2": [127.4, 147.83, 83.44, 96.24],
-        "bandLive": [[77.07, 104.52, 131.96], [74.74, 104.66, 134.42], [30.54, 70.81, 104.01], [40.76, 54.3, 80.55]],
-        "bandGold": [[25.54, 35.89, 37.8], [10.81, 22.24, 29.67], [49.98, 121.76, 167.16], [7.01, 5.99, 4.46]],
-        "groundN": [15144, 0, 436, 0],
-        "groundL2": [206.09, 0, 210, 0],
-        "groundLive": [[199, 200, 198], [0, 0, 0], [197.08, 197.71, 192.17], [0, 0, 0]],
-        "groundGold": [[84.43, 88.78, 67.7], [0, 0, 0], [53.35, 77.96, 96.77], [0, 0, 0]],
+        "bandL2": [
+          127.4,
+          147.83,
+          83.44,
+          96.24
+        ],
+        "bandLive": [
+          [
+            77.07,
+            104.52,
+            131.96
+          ],
+          [
+            74.74,
+            104.66,
+            134.42
+          ],
+          [
+            30.54,
+            70.81,
+            104.01
+          ],
+          [
+            40.76,
+            54.3,
+            80.55
+          ]
+        ],
+        "bandGold": [
+          [
+            25.54,
+            35.89,
+            37.8
+          ],
+          [
+            10.81,
+            22.24,
+            29.67
+          ],
+          [
+            49.98,
+            121.76,
+            167.16
+          ],
+          [
+            7.01,
+            5.99,
+            4.46
+          ]
+        ],
+        "groundN": [
+          15144,
+          0,
+          436,
+          0
+        ],
+        "groundL2": [
+          206.09,
+          0,
+          210,
+          0
+        ],
+        "groundLive": [
+          [
+            199,
+            200,
+            198
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            197.08,
+            197.71,
+            192.17
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "groundGold": [
+          [
+            84.43,
+            88.78,
+            67.7
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            53.35,
+            77.96,
+            96.77
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
         "originalGoldenComparisons": 0
       },
       "live_world_shade": {
@@ -2441,19 +2986,96 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantShade": ["unlit", "exposure", "grade", "exposure"],
-        "contributingShade": [["hemi", "exposure", "envmap", "unlit"], ["hemi", "exposure", "envmap", "unlit"], [], ["hemi", "exposure", "envmap", "unlit"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantShade": [
+          "unlit",
+          "exposure",
+          "grade",
+          "exposure"
+        ],
+        "contributingShade": [
+          [
+            "hemi",
+            "exposure",
+            "envmap",
+            "unlit"
+          ],
+          [
+            "hemi",
+            "exposure",
+            "envmap",
+            "unlit"
+          ],
+          [],
+          [
+            "hemi",
+            "exposure",
+            "envmap",
+            "unlit"
+          ]
+        ],
         "productGroundHex": 13685976,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "hemiL2Delta": [-18.43, -20.69, 4.18, -10.98],
-        "exposureL2Delta": [-67.72, -107.33, 116.19, -77.48],
-        "envmapL2Delta": [-50.23, -54.23, 45.91, -33.93],
-        "unlitL2Delta": [-68.64, -80.52, 13.12, -48.8],
-        "fogL2Delta": [0, 0, 0, 0],
-        "gradeL2Delta": [2.05, 2.02, -0.88, 8.72],
-        "counts": { "grade": 1, "fog": 1, "hemi": 1, "exposure": 1, "envmap": 57, "unlit": 5 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "hemiL2Delta": [
+          -18.43,
+          -20.69,
+          4.18,
+          -10.98
+        ],
+        "exposureL2Delta": [
+          -67.72,
+          -107.33,
+          116.19,
+          -77.48
+        ],
+        "envmapL2Delta": [
+          -50.23,
+          -54.23,
+          45.91,
+          -33.93
+        ],
+        "unlitL2Delta": [
+          -68.64,
+          -80.52,
+          13.12,
+          -48.8
+        ],
+        "fogL2Delta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "gradeL2Delta": [
+          2.05,
+          2.02,
+          -0.88,
+          8.72
+        ],
+        "counts": {
+          "grade": 1,
+          "fog": 1,
+          "hemi": 1,
+          "exposure": 1,
+          "envmap": 57,
+          "unlit": 5
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_tone": {
@@ -2463,20 +3085,107 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantTone": ["blue", "brightness", "hemi", "brightness"],
-        "brightnessAxis": [["exposure", "unlit", "brightness"], ["exposure", "unlit", "brightness"], ["exposure", "brightness"], ["exposure", "unlit", "brightness"]],
-        "blueAxis": [["hemi", "envmap", "blue"], ["hemi", "envmap", "blue"], ["envmap", "blue"], ["hemi", "envmap", "blue"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantTone": [
+          "blue",
+          "brightness",
+          "hemi",
+          "brightness"
+        ],
+        "brightnessAxis": [
+          [
+            "exposure",
+            "unlit",
+            "brightness"
+          ],
+          [
+            "exposure",
+            "unlit",
+            "brightness"
+          ],
+          [
+            "exposure",
+            "brightness"
+          ],
+          [
+            "exposure",
+            "unlit",
+            "brightness"
+          ]
+        ],
+        "blueAxis": [
+          [
+            "hemi",
+            "envmap",
+            "blue"
+          ],
+          [
+            "hemi",
+            "envmap",
+            "blue"
+          ],
+          [
+            "envmap",
+            "blue"
+          ],
+          [
+            "hemi",
+            "envmap",
+            "blue"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "unlitIncludesHemi": false,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "unlitLumaDelta": [-38.74, -43.2, -5.38, -28.62],
-        "blueBlueDelta": [-70.55, -77.81, -45.19, -45.47],
-        "envmapBlueDelta": [-48.67, -53.0, -40.94, -33.86],
-        "hemiBlueDelta": [-12.48, -13.75, -2.43, -9.11],
-        "counts": { "exposure": 1, "unlit": 4, "hemi": 1, "envmap": 57, "brightness": 5, "blue": 58 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "unlitLumaDelta": [
+          -38.74,
+          -43.2,
+          -5.38,
+          -28.62
+        ],
+        "blueBlueDelta": [
+          -70.55,
+          -77.81,
+          -45.19,
+          -45.47
+        ],
+        "envmapBlueDelta": [
+          -48.67,
+          -53.0,
+          -40.94,
+          -33.86
+        ],
+        "hemiBlueDelta": [
+          -12.48,
+          -13.75,
+          -2.43,
+          -9.11
+        ],
+        "counts": {
+          "exposure": 1,
+          "unlit": 4,
+          "hemi": 1,
+          "envmap": 57,
+          "brightness": 5,
+          "blue": 58
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_term": {
@@ -2486,22 +3195,93 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantTerm": ["environment", "environment", "envIntensity", "environment"],
-        "lumaAxis": [["dir"], ["dir"], [], ["dir", "fill"]],
-        "iblAxis": [["environment"], ["environment"], ["environment"], ["environment"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantTerm": [
+          "environment",
+          "environment",
+          "envIntensity",
+          "environment"
+        ],
+        "lumaAxis": [
+          [
+            "dir"
+          ],
+          [
+            "dir"
+          ],
+          [],
+          [
+            "dir",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
         "environmentClearsIntensity": false,
         "envIntensityClearsEnvironment": false,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "dirLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "environmentBlueDelta": [-48.67, -53.0, -40.94, -33.86],
-        "envIntensityBlueDelta": [0, 0, 0, 0],
-        "counts": { "dir": 2, "fill": 1, "ambient": 1, "environment": 1, "envIntensity": 56 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "dirLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "environmentBlueDelta": [
+          -48.67,
+          -53.0,
+          -40.94,
+          -33.86
+        ],
+        "envIntensityBlueDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "counts": {
+          "dir": 2,
+          "fill": 1,
+          "ambient": 1,
+          "environment": 1,
+          "envIntensity": 56
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_beam": {
@@ -2511,23 +3291,93 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantBeam": ["environment", "environment", "near", "environment"],
-        "lumaAxis": [["sun"], ["sun"], [], ["sun", "fill"]],
-        "iblAxis": [["environment"], ["environment"], ["environment"], ["environment"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantBeam": [
+          "environment",
+          "environment",
+          "near",
+          "environment"
+        ],
+        "lumaAxis": [
+          [
+            "sun"
+          ],
+          [
+            "sun"
+          ],
+          [],
+          [
+            "sun",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
         "dirIsCombined": false,
         "sunClearsNear": false,
         "nearClearsSun": false,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "sunLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "nearLumaDelta": [0, 0, 0, 0],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "environmentBlueDelta": [-48.67, -53.0, -40.94, -33.86],
-        "counts": { "sun": 1, "near": 1, "fill": 1, "environment": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "sunLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "nearLumaDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "environmentBlueDelta": [
+          -48.67,
+          -53.0,
+          -40.94,
+          -33.86
+        ],
+        "counts": {
+          "sun": 1,
+          "near": 1,
+          "fill": 1,
+          "environment": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_ray": {
@@ -2537,25 +3387,105 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantRay": ["environment", "environment", "color", "environment"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [["environment"], ["environment"], ["environment"], ["environment"]],
-        "colorAxis": [[], [], [], []],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantRay": [
+          "environment",
+          "environment",
+          "color",
+          "environment"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ]
+        ],
+        "colorAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
         "sunIsCombined": false,
         "colorClearsIntensity": false,
         "intensityClearsColor": false,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "colorLumaDelta": [2.37, 2.57, 0.23, 6.64],
-        "colorL2Delta": [5.17, 5.45, -0.48, 10.21],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "environmentBlueDelta": [-48.67, -53.0, -40.94, -33.86],
-        "counts": { "intensity": 1, "color": 1, "fill": 1, "environment": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "colorLumaDelta": [
+          2.37,
+          2.57,
+          0.23,
+          6.64
+        ],
+        "colorL2Delta": [
+          5.17,
+          5.45,
+          -0.48,
+          10.21
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "environmentBlueDelta": [
+          -48.67,
+          -53.0,
+          -40.94,
+          -33.86
+        ],
+        "counts": {
+          "intensity": 1,
+          "color": 1,
+          "fill": 1,
+          "environment": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_ibl": {
@@ -2565,12 +3495,65 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantIbl": ["environment", "environment", "background", "environment"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [["environment"], ["environment"], ["environment"], ["environment"]],
-        "probeAxis": [["environment"], ["environment"], ["environment"], ["environment"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantIbl": [
+          "environment",
+          "environment",
+          "background",
+          "environment"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ]
+        ],
+        "probeAxis": [
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ],
+          [
+            "environment"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2579,14 +3562,56 @@
         "backgroundClearsEnvironment": false,
         "intensityClearsEnvironment": false,
         "environmentClearsIntensity": false,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "environmentBlueDelta": [-48.67, -53.0, -40.94, -33.86],
-        "backgroundBlueDelta": [0, 0, 0, 0],
-        "skyBlueDelta": [0, 0, 0, 0],
-        "envMapBlueDelta": [0, 0, 0, 0],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "environment": 1, "background": 1, "sky": 1, "envMap": 316, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "environmentBlueDelta": [
+          -48.67,
+          -53.0,
+          -40.94,
+          -33.86
+        ],
+        "backgroundBlueDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "skyBlueDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "envMapBlueDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "environment": 1,
+          "background": 1,
+          "sky": 1,
+          "envMap": 316,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_gain": {
@@ -2596,12 +3621,65 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantGain": ["gain", "gain", "fill", "gain"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [["texture"], ["texture"], ["texture"], ["texture"]],
-        "gainAxis": [["gain"], ["gain"], ["gain"], ["gain"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantGain": [
+          "gain",
+          "gain",
+          "fill",
+          "gain"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [
+            "texture"
+          ],
+          [
+            "texture"
+          ],
+          [
+            "texture"
+          ],
+          [
+            "texture"
+          ]
+        ],
+        "gainAxis": [
+          [
+            "gain"
+          ],
+          [
+            "gain"
+          ],
+          [
+            "gain"
+          ],
+          [
+            "gain"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2610,12 +3688,42 @@
         "textureClearsGain": false,
         "intensityClearsTexture": false,
         "textureClearsIntensity": false,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "textureBlueDelta": [-48.67, -53.0, -40.94, -33.86],
-        "gainBlueDelta": [-48.67, -53.0, -40.94, -33.86],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "texture": 1, "gain": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "textureBlueDelta": [
+          -48.67,
+          -53.0,
+          -40.94,
+          -33.86
+        ],
+        "gainBlueDelta": [
+          -48.67,
+          -53.0,
+          -40.94,
+          -33.86
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "texture": 1,
+          "gain": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_cube": {
@@ -2625,12 +3733,65 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantCube": ["ibl", "ibl", "fill", "ibl"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [["ibl"], ["ibl"], ["ibl"], ["ibl"]],
-        "contentAxis": [["content"], ["content"], ["content"], ["content"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantCube": [
+          "ibl",
+          "ibl",
+          "fill",
+          "ibl"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [
+            "ibl"
+          ],
+          [
+            "ibl"
+          ],
+          [
+            "ibl"
+          ],
+          [
+            "ibl"
+          ]
+        ],
+        "contentAxis": [
+          [
+            "content"
+          ],
+          [
+            "content"
+          ],
+          [
+            "content"
+          ],
+          [
+            "content"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2639,12 +3800,43 @@
         "contentClearsIntensity": false,
         "iblClearsIntensity": false,
         "intensityClearsIbl": false,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "contentBlueDelta": [-29.97, -32.51, -16.35, -21.22],
-        "iblBlueDelta": [-48.67, -53.0, -40.94, -33.86],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "content": 1, "ibl": 1, "gray": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "contentBlueDelta": [
+          -29.97,
+          -32.51,
+          -16.35,
+          -21.22
+        ],
+        "iblBlueDelta": [
+          -48.67,
+          -53.0,
+          -40.94,
+          -33.86
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "content": 1,
+          "ibl": 1,
+          "gray": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_probe": {
@@ -2654,12 +3846,55 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantProbe": ["intensity", "intensity", "capture", "bake"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [[], [], [], ["bake"]],
-        "captureAxis": [[], [], ["capture"], ["capture"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantProbe": [
+          "intensity",
+          "intensity",
+          "capture",
+          "bake"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [],
+          [],
+          [],
+          [
+            "bake"
+          ]
+        ],
+        "captureAxis": [
+          [],
+          [],
+          [
+            "capture"
+          ],
+          [
+            "capture"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2668,12 +3903,42 @@
         "bakeClearsIntensity": false,
         "captureClearsIntensity": false,
         "intensityClearsIbl": false,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "bakeBlueDelta": [0, 0, 0, -32.07],
-        "captureBlueDelta": [0.56, -2.2, 10.56, -26.18],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "bake": 1, "capture": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "bakeBlueDelta": [
+          0,
+          0,
+          0,
+          -32.07
+        ],
+        "captureBlueDelta": [
+          0.56,
+          -2.2,
+          10.56,
+          -26.18
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "bake": 1,
+          "capture": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_bake": {
@@ -2683,13 +3948,69 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantBake": ["background", "background", "disc", "background"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [["background"], ["background"], ["background"], ["background"]],
-        "hemiAxis": [[], [], [], ["hemi"]],
-        "discAxis": [[], [], ["disc"], ["disc"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantBake": [
+          "background",
+          "background",
+          "disc",
+          "background"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [
+            "background"
+          ],
+          [
+            "background"
+          ],
+          [
+            "background"
+          ],
+          [
+            "background"
+          ]
+        ],
+        "hemiAxis": [
+          [],
+          [],
+          [],
+          [
+            "hemi"
+          ]
+        ],
+        "discAxis": [
+          [],
+          [],
+          [
+            "disc"
+          ],
+          [
+            "disc"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2698,13 +4019,49 @@
         "backgroundClearsIntensity": false,
         "hemiClearsIntensity": false,
         "intensityClearsIbl": false,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "backgroundBlueDelta": [-47.8, -52.03, -39.7, -33.86],
-        "hemiBlueDelta": [-0.07, -0.08, -1.01, -32.07],
-        "discBlueDelta": [1.7, 1.78, 21.19, -32.07],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "background": 1, "hemi": 1, "disc": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "backgroundBlueDelta": [
+          -47.8,
+          -52.03,
+          -39.7,
+          -33.86
+        ],
+        "hemiBlueDelta": [
+          -0.07,
+          -0.08,
+          -1.01,
+          -32.07
+        ],
+        "discBlueDelta": [
+          1.7,
+          1.78,
+          21.19,
+          -32.07
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "background": 1,
+          "hemi": 1,
+          "disc": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_sky": {
@@ -2714,13 +4071,69 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantSky": ["intensity", "intensity", "disc", "disc"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [["sky"], ["sky"], ["sky"], ["sky"]],
-        "hemiAxis": [[], [], [], ["hemi"]],
-        "discAxis": [[], [], ["disc"], ["disc"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantSky": [
+          "intensity",
+          "intensity",
+          "disc",
+          "disc"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [
+            "sky"
+          ],
+          [
+            "sky"
+          ],
+          [
+            "sky"
+          ],
+          [
+            "sky"
+          ]
+        ],
+        "hemiAxis": [
+          [],
+          [],
+          [],
+          [
+            "hemi"
+          ]
+        ],
+        "discAxis": [
+          [],
+          [],
+          [
+            "disc"
+          ],
+          [
+            "disc"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2729,13 +4142,49 @@
         "skyClearsIntensity": false,
         "hemiClearsIntensity": false,
         "intensityClearsIbl": false,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "skyBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "hemiBlueDelta": [-0.07, -0.08, -1.01, -32.07],
-        "discBlueDelta": [1.7, 1.78, 21.19, -32.07],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "sky": 1, "hemi": 1, "disc": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "skyBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "hemiBlueDelta": [
+          -0.07,
+          -0.08,
+          -1.01,
+          -32.07
+        ],
+        "discBlueDelta": [
+          1.7,
+          1.78,
+          21.19,
+          -32.07
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "sky": 1,
+          "hemi": 1,
+          "disc": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_gray": {
@@ -2745,14 +4194,83 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantGray": ["intensity", "intensity", "disc", "disc"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [["gray"], ["gray"], ["gray"], ["gray"]],
-        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
-        "hemiAxis": [[], [], [], ["hemi"]],
-        "discAxis": [[], [], ["disc"], ["disc"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantGray": [
+          "intensity",
+          "intensity",
+          "disc",
+          "disc"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [
+            "gray"
+          ],
+          [
+            "gray"
+          ],
+          [
+            "gray"
+          ],
+          [
+            "gray"
+          ]
+        ],
+        "hueAxis": [
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ]
+        ],
+        "hemiAxis": [
+          [],
+          [],
+          [],
+          [
+            "hemi"
+          ]
+        ],
+        "discAxis": [
+          [],
+          [],
+          [
+            "disc"
+          ],
+          [
+            "disc"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2762,14 +4280,56 @@
         "hueClearsGray": false,
         "intensityClearsIbl": false,
         "grayDeltasUseHueBaseline": true,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "grayBlueDelta": [-18.49, -20.24, -16.56, -12.64],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "hemiBlueDelta": [-0.07, -0.08, -1.01, -32.07],
-        "discBlueDelta": [1.7, 1.78, 21.19, -32.07],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "gray": 1, "hue": 1, "hemi": 1, "disc": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "grayBlueDelta": [
+          -18.49,
+          -20.24,
+          -16.56,
+          -12.64
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "hemiBlueDelta": [
+          -0.07,
+          -0.08,
+          -1.01,
+          -32.07
+        ],
+        "discBlueDelta": [
+          1.7,
+          1.78,
+          21.19,
+          -32.07
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "gray": 1,
+          "hue": 1,
+          "hemi": 1,
+          "disc": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_bare": {
@@ -2779,15 +4339,93 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantBare": ["intensity", "intensity", "disc", "background"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [["background"], ["background"], ["background"], ["background"]],
-        "grayAxis": [["gray"], ["gray"], ["gray"], ["gray"]],
-        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
-        "hemiAxis": [[], [], [], []],
-        "discAxis": [[], [], ["disc"], []],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantBare": [
+          "intensity",
+          "intensity",
+          "disc",
+          "background"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [
+            "background"
+          ],
+          [
+            "background"
+          ],
+          [
+            "background"
+          ],
+          [
+            "background"
+          ]
+        ],
+        "grayAxis": [
+          [
+            "gray"
+          ],
+          [
+            "gray"
+          ],
+          [
+            "gray"
+          ],
+          [
+            "gray"
+          ]
+        ],
+        "hueAxis": [
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ]
+        ],
+        "hemiAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "discAxis": [
+          [],
+          [],
+          [
+            "disc"
+          ],
+          []
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2798,15 +4436,63 @@
         "hueClearsGray": false,
         "intensityClearsIbl": false,
         "backgroundDeltasUseGrayBaseline": true,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "backgroundBlueDelta": [-17.62, -19.27, -15.32, -12.64],
-        "hemiBlueDelta": [-0.09, -0.09, -1.04, 0],
-        "discBlueDelta": [0.21, 0.25, 8.03, 0],
-        "grayBlueDelta": [-18.49, -20.24, -16.56, -12.64],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "background": 1, "hemi": 1, "disc": 1, "gray": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "backgroundBlueDelta": [
+          -17.62,
+          -19.27,
+          -15.32,
+          -12.64
+        ],
+        "hemiBlueDelta": [
+          -0.09,
+          -0.09,
+          -1.04,
+          0
+        ],
+        "discBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "grayBlueDelta": [
+          -18.49,
+          -20.24,
+          -16.56,
+          -12.64
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "background": 1,
+          "hemi": 1,
+          "disc": 1,
+          "gray": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_flat": {
@@ -2816,14 +4502,85 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantFlat": ["intensity", "intensity", "pmrem", "flat"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [[], [], [], []],
-        "flatAxis": [["flat"], ["flat"], ["flat"], ["flat"]],
-        "offAxis": [["off"], ["off"], ["off"], ["off"]],
-        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantFlat": [
+          "intensity",
+          "intensity",
+          "pmrem",
+          "flat"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "flatAxis": [
+          [
+            "flat"
+          ],
+          [
+            "flat"
+          ],
+          [
+            "flat"
+          ],
+          [
+            "flat"
+          ]
+        ],
+        "offAxis": [
+          [
+            "off"
+          ],
+          [
+            "off"
+          ],
+          [
+            "off"
+          ],
+          [
+            "off"
+          ]
+        ],
+        "hueAxis": [
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2834,14 +4591,56 @@
         "hueClearsOff": false,
         "intensityClearsIbl": false,
         "pmremDeltasUseGrayBaseline": true,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "pmremBlueDelta": [0.21, 0.25, 8.03, 0],
-        "flatBlueDelta": [-18.49, -20.24, -16.56, -12.64],
-        "offBlueDelta": [-18.49, -20.24, -16.56, -12.64],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "pmrem": 1, "flat": 1, "off": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "pmremBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "flatBlueDelta": [
+          -18.49,
+          -20.24,
+          -16.56,
+          -12.64
+        ],
+        "offBlueDelta": [
+          -18.49,
+          -20.24,
+          -16.56,
+          -12.64
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "pmrem": 1,
+          "flat": 1,
+          "off": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_conv": {
@@ -2851,14 +4650,85 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantConv": ["intensity", "intensity", "scene", "cube"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [[], [], [], []],
-        "cubeAxis": [["cube"], ["cube"], ["cube"], ["cube"]],
-        "gainAxis": [["gain"], ["gain"], ["gain"], ["gain"]],
-        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantConv": [
+          "intensity",
+          "intensity",
+          "scene",
+          "cube"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "cubeAxis": [
+          [
+            "cube"
+          ],
+          [
+            "cube"
+          ],
+          [
+            "cube"
+          ],
+          [
+            "cube"
+          ]
+        ],
+        "gainAxis": [
+          [
+            "gain"
+          ],
+          [
+            "gain"
+          ],
+          [
+            "gain"
+          ],
+          [
+            "gain"
+          ]
+        ],
+        "hueAxis": [
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2869,14 +4739,56 @@
         "hueClearsOff": false,
         "intensityClearsIbl": false,
         "sceneDeltasUseGrayBaseline": true,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "sceneBlueDelta": [0.21, 0.25, 8.03, 0],
-        "cubeBlueDelta": [-18.49, -20.24, -16.56, -12.64],
-        "gainBlueDelta": [-18.49, -20.24, -16.56, -12.64],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "scene": 1, "cube": 1, "gain": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "sceneBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "cubeBlueDelta": [
+          -18.49,
+          -20.24,
+          -16.56,
+          -12.64
+        ],
+        "gainBlueDelta": [
+          -18.49,
+          -20.24,
+          -16.56,
+          -12.64
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "scene": 1,
+          "cube": 1,
+          "gain": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_sigma": {
@@ -2886,14 +4798,79 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantSigma": ["intensity", "intensity", "sigma", "space"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [[], [], [], []],
-        "meshAxis": [[], [], ["mesh"], []],
-        "spaceAxis": [["space"], ["space"], ["space"], ["space"]],
-        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantSigma": [
+          "intensity",
+          "intensity",
+          "sigma",
+          "space"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "meshAxis": [
+          [],
+          [],
+          [
+            "mesh"
+          ],
+          []
+        ],
+        "spaceAxis": [
+          [
+            "space"
+          ],
+          [
+            "space"
+          ],
+          [
+            "space"
+          ],
+          [
+            "space"
+          ]
+        ],
+        "hueAxis": [
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2904,14 +4881,56 @@
         "hueClearsOff": false,
         "intensityClearsIbl": false,
         "sigmaDeltasUseGrayBaseline": true,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "sigmaBlueDelta": [0.21, 0.25, 8.03, 0],
-        "meshBlueDelta": [0.21, 0.25, 8.03, 0],
-        "spaceBlueDelta": [-14.93, -16.29, -12.76, -10.74],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "sigma": 1, "mesh": 1, "space": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "sigmaBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "meshBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "spaceBlueDelta": [
+          -14.93,
+          -16.29,
+          -12.76,
+          -10.74
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "sigma": 1,
+          "mesh": 1,
+          "space": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_mgmt": {
@@ -2921,14 +4940,71 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantMgmt": ["intensity", "intensity", "mgmt", "intensity"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [[], [], [], []],
-        "encodeAxis": [[], [], ["encode"], []],
-        "toneAxis": [[], [], [], []],
-        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantMgmt": [
+          "intensity",
+          "intensity",
+          "mgmt",
+          "intensity"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "encodeAxis": [
+          [],
+          [],
+          [
+            "encode"
+          ],
+          []
+        ],
+        "toneAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "hueAxis": [
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2942,14 +5018,56 @@
         "mgmtDisablesColorManagement": true,
         "encodeSetsLinearOutput": true,
         "toneSetsNoToneMapping": true,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "mgmtBlueDelta": [20.35, 22.16, 32.49, 13.57],
-        "encodeBlueDelta": [0.21, 0.25, 8.03, 0],
-        "toneBlueDelta": [0.21, 0.25, 8.03, 0],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "mgmt": 1, "encode": 1, "tone": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "mgmtBlueDelta": [
+          20.35,
+          22.16,
+          32.49,
+          13.57
+        ],
+        "encodeBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "toneBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "mgmt": 1,
+          "encode": 1,
+          "tone": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_lod": {
@@ -2959,14 +5077,71 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantLod": ["intensity", "intensity", "lod", "intensity"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "iblAxis": [[], [], [], []],
-        "lodAxis": [[], [], ["lod"], []],
-        "envAxis": [[], [], [], []],
-        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantLod": [
+          "intensity",
+          "intensity",
+          "lod",
+          "intensity"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "iblAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "lodAxis": [
+          [],
+          [],
+          [
+            "lod"
+          ],
+          []
+        ],
+        "envAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "hueAxis": [
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -2983,14 +5158,56 @@
         "colorManagementStaysEnabled": true,
         "outputColorSpaceStaysSRGB": true,
         "toneMappingStaysACES": true,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "sizeBlueDelta": [0.21, 0.25, 8.03, 0],
-        "lodBlueDelta": [1.55, 1.56, 8.53, 4.87],
-        "envBlueDelta": [0.21, 0.25, 8.03, 0],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "size": 1, "lod": 1, "env": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "sizeBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "lodBlueDelta": [
+          1.55,
+          1.56,
+          8.53,
+          4.87
+        ],
+        "envBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "size": 1,
+          "lod": 1,
+          "env": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_road": {
@@ -3000,14 +5217,71 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantRoad": ["intensity", "intensity", "car", "intensity"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "roadAxis": [[], [], [], []],
-        "stdAxis": [[], [], ["std"], []],
-        "carAxis": [[], [], [], []],
-        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantRoad": [
+          "intensity",
+          "intensity",
+          "car",
+          "intensity"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "roadAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "stdAxis": [
+          [],
+          [],
+          [
+            "std"
+          ],
+          []
+        ],
+        "carAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "hueAxis": [
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -3027,14 +5301,56 @@
         "colorManagementStaysEnabled": true,
         "outputColorSpaceStaysSRGB": true,
         "toneMappingStaysACES": true,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "roadBlueDelta": [0.21, 0.25, 8.03, 0],
-        "stdBlueDelta": [0.21, 0.25, 8.03, 0],
-        "carBlueDelta": [0.21, 0.25, 8.03, 0],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "road": 1, "std": 1, "car": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "roadBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "stdBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "carBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "road": 1,
+          "std": 1,
+          "car": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_recv": {
@@ -3044,14 +5360,71 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantRecv": ["intensity", "intensity", "basic", "intensity"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "probeAxis": [[], [], [], []],
-        "basicAxis": [[], [], ["basic"], []],
-        "shaderAxis": [[], [], [], []],
-        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantRecv": [
+          "intensity",
+          "intensity",
+          "basic",
+          "intensity"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "probeAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "basicAxis": [
+          [],
+          [],
+          [
+            "basic"
+          ],
+          []
+        ],
+        "shaderAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "hueAxis": [
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -3071,14 +5444,56 @@
         "colorManagementStaysEnabled": true,
         "outputColorSpaceStaysSRGB": true,
         "toneMappingStaysACES": true,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "probeBlueDelta": [0.21, 0.25, 8.03, 0],
-        "basicBlueDelta": [0.21, 0.25, 8.03, 0],
-        "shaderBlueDelta": [0.21, 0.25, 8.03, 0],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "probe": 1, "basic": 1, "shader": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "probeBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "basicBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "shaderBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "probe": 1,
+          "basic": 1,
+          "shader": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_amb": {
@@ -3088,14 +5503,75 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantAmb": ["intensity", "intensity", "rect", "intensity"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "ambAxis": [[], [], [], []],
-        "hemiAxis": [["hemi"], ["hemi"], [], ["hemi"]],
-        "rectAxis": [[], [], [], []],
-        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantAmb": [
+          "intensity",
+          "intensity",
+          "rect",
+          "intensity"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "ambAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "hemiAxis": [
+          [
+            "hemi"
+          ],
+          [
+            "hemi"
+          ],
+          [],
+          [
+            "hemi"
+          ]
+        ],
+        "rectAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "hueAxis": [
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -3115,14 +5591,56 @@
         "colorManagementStaysEnabled": true,
         "outputColorSpaceStaysSRGB": true,
         "toneMappingStaysACES": true,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "ambBlueDelta": [-4.5, -4.97, 6.3, -4.83],
-        "hemiBlueDelta": [-17.72, -19.57, 4.77, -11.43],
-        "rectBlueDelta": [0.21, 0.25, 8.03, 0],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "amb": 1, "hemi": 1, "rect": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "ambBlueDelta": [
+          -4.5,
+          -4.97,
+          6.3,
+          -4.83
+        ],
+        "hemiBlueDelta": [
+          -17.72,
+          -19.57,
+          4.77,
+          -11.43
+        ],
+        "rectBlueDelta": [
+          0.21,
+          0.25,
+          8.03,
+          0
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "amb": 1,
+          "hemi": 1,
+          "rect": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_hemi": {
@@ -3132,14 +5650,83 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantHem": ["intensity", "intensity", "hgnd", "intensity"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "hintAxis": [["hint"], ["hint"], [], ["hint"]],
-        "hcolAxis": [["hcol"], ["hcol"], ["hcol"], ["hcol"]],
-        "hgndAxis": [[], [], [], []],
-        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantHem": [
+          "intensity",
+          "intensity",
+          "hgnd",
+          "intensity"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "hintAxis": [
+          [
+            "hint"
+          ],
+          [
+            "hint"
+          ],
+          [],
+          [
+            "hint"
+          ]
+        ],
+        "hcolAxis": [
+          [
+            "hcol"
+          ],
+          [
+            "hcol"
+          ],
+          [
+            "hcol"
+          ],
+          [
+            "hcol"
+          ]
+        ],
+        "hgndAxis": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "hueAxis": [
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
         "lumaTermsIncludeHemi": false,
@@ -3159,14 +5746,56 @@
         "colorManagementStaysEnabled": true,
         "outputColorSpaceStaysSRGB": true,
         "toneMappingStaysACES": true,
-        "bandL2": [125.77, 145.95, 96.57, 87.72],
-        "hintBlueDelta": [-17.72, -19.57, 4.77, -11.43],
-        "hcolBlueDelta": [-17.72, -19.57, 5.06, -11.43],
-        "hgndBlueDelta": [0.21, 0.25, 7.76, 0],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "hint": 1, "hcol": 1, "hgnd": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "bandL2": [
+          125.77,
+          145.95,
+          96.57,
+          87.72
+        ],
+        "hintBlueDelta": [
+          -17.72,
+          -19.57,
+          4.77,
+          -11.43
+        ],
+        "hcolBlueDelta": [
+          -17.72,
+          -19.57,
+          5.06,
+          -11.43
+        ],
+        "hgndBlueDelta": [
+          0.21,
+          0.25,
+          7.76,
+          0
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "hint": 1,
+          "hcol": 1,
+          "hgnd": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_hex": {
@@ -3176,23 +5805,133 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "presentPct": [0.6718, 0.5828, 0.2813, 0.671],
-        "dominant": ["bottom", "bottom", "upper", "bottom"],
-        "dominantHex": ["intensity", "intensity", "hgray", "intensity"],
-        "lumaAxis": [["intensity"], ["intensity"], [], ["intensity", "fill"]],
-        "hgrayAxis": [["hgray"], ["hgray"], [], []],
-        "hblackAxis": [["hblack"], ["hblack"], ["hblack"], ["hblack"]],
-        "hintAxis": [["hint"], ["hint"], [], ["hint"]],
-        "hueAxis": [["hue"], ["hue"], ["hue"], ["hue"]],
+        "presentPct": [
+          0.6718,
+          0.5828,
+          0.2813,
+          0.671
+        ],
+        "dominant": [
+          "bottom",
+          "bottom",
+          "upper",
+          "bottom"
+        ],
+        "dominantHex": [
+          "intensity",
+          "intensity",
+          "hgray",
+          "intensity"
+        ],
+        "lumaAxis": [
+          [
+            "intensity"
+          ],
+          [
+            "intensity"
+          ],
+          [],
+          [
+            "intensity",
+            "fill"
+          ]
+        ],
+        "hgrayAxis": [
+          [
+            "hgray"
+          ],
+          [
+            "hgray"
+          ],
+          [],
+          []
+        ],
+        "hblackAxis": [
+          [
+            "hblack"
+          ],
+          [
+            "hblack"
+          ],
+          [
+            "hblack"
+          ],
+          [
+            "hblack"
+          ]
+        ],
+        "hintAxis": [
+          [
+            "hint"
+          ],
+          [
+            "hint"
+          ],
+          [],
+          [
+            "hint"
+          ]
+        ],
+        "hueAxis": [
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ],
+          [
+            "hue"
+          ]
+        ],
         "productGroundHex": 13685976,
         "productExposure": 0.56,
-        "hgrayBlueDelta": [-12.42, -13.7, 5.98, -5.68],
-        "hblackBlueDelta": [-17.72, -19.57, 5.06, -11.43],
-        "hintBlueDelta": [-17.72, -19.57, 4.77, -11.43],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "hgray": 1, "hblack": 1, "hint": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "hgrayBlueDelta": [
+          -12.42,
+          -13.7,
+          5.98,
+          -5.68
+        ],
+        "hblackBlueDelta": [
+          -17.72,
+          -19.57,
+          5.06,
+          -11.43
+        ],
+        "hintBlueDelta": [
+          -17.72,
+          -19.57,
+          4.77,
+          -11.43
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "hgray": 1,
+          "hblack": 1,
+          "hint": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_off": {
@@ -3202,14 +5941,56 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantOff": ["intensity", "intensity", "hgray", "off"],
-        "offBlueDelta": [-21.49, -23.82, -25.23, -10.84],
-        "hgrayBlueDelta": [-12.42, -13.7, 5.98, -5.68],
-        "hblackBlueDelta": [-17.72, -19.57, 5.06, -11.43],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "off": 1, "hgray": 1, "hblack": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "dominantOff": [
+          "intensity",
+          "intensity",
+          "hgray",
+          "off"
+        ],
+        "offBlueDelta": [
+          -21.49,
+          -23.82,
+          -25.23,
+          -10.84
+        ],
+        "hgrayBlueDelta": [
+          -12.42,
+          -13.7,
+          5.98,
+          -5.68
+        ],
+        "hblackBlueDelta": [
+          -17.72,
+          -19.57,
+          5.06,
+          -11.43
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "off": 1,
+          "hgray": 1,
+          "hblack": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_env": {
@@ -3219,14 +6000,56 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantEnv": ["intensity", "intensity", "mat", "both"],
-        "envBlueDelta": [-21.49, -23.82, -25.23, -10.84],
-        "matBlueDelta": [0, 0, 0, 0],
-        "bothBlueDelta": [-21.49, -23.82, -25.23, -10.84],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "env": 1, "mat": 1, "both": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "dominantEnv": [
+          "intensity",
+          "intensity",
+          "mat",
+          "both"
+        ],
+        "envBlueDelta": [
+          -21.49,
+          -23.82,
+          -25.23,
+          -10.84
+        ],
+        "matBlueDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "bothBlueDelta": [
+          -21.49,
+          -23.82,
+          -25.23,
+          -10.84
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "env": 1,
+          "mat": 1,
+          "both": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_eint": {
@@ -3236,14 +6059,56 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantEint": ["intensity", "intensity", "fill", "both"],
-        "envBlueDelta": [-21.49, -23.82, -25.23, -10.84],
-        "eintBlueDelta": [-21.49, -23.82, -25.23, -10.84],
-        "bothBlueDelta": [-21.49, -23.82, -25.23, -10.84],
-        "hueBlueDelta": [-30.18, -32.76, -24.38, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "env": 1, "eint": 1, "both": 1, "hue": 1, "intensity": 1, "fill": 1 },
+        "dominantEint": [
+          "intensity",
+          "intensity",
+          "fill",
+          "both"
+        ],
+        "envBlueDelta": [
+          -21.49,
+          -23.82,
+          -25.23,
+          -10.84
+        ],
+        "eintBlueDelta": [
+          -21.49,
+          -23.82,
+          -25.23,
+          -10.84
+        ],
+        "bothBlueDelta": [
+          -21.49,
+          -23.82,
+          -25.23,
+          -10.84
+        ],
+        "hueBlueDelta": [
+          -30.18,
+          -32.76,
+          -24.38,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "env": 1,
+          "eint": 1,
+          "both": 1,
+          "hue": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_back": {
@@ -3253,14 +6118,56 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantBack": ["intensity", "intensity", "bg", "intensity"],
-        "bgBlueDelta": [0, 0, 0, 0],
-        "envBlueDelta": [-29.97, -32.51, -16.35, -21.22],
-        "bothBlueDelta": [-29.97, -32.51, -16.35, -21.22],
-        "hemiBlueDelta": [-8.86, -9.7, -1.5, -4.09],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "bg": 1, "env": 1, "both": 1, "hemi": 1, "intensity": 1, "fill": 1 },
+        "dominantBack": [
+          "intensity",
+          "intensity",
+          "bg",
+          "intensity"
+        ],
+        "bgBlueDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "envBlueDelta": [
+          -29.97,
+          -32.51,
+          -16.35,
+          -21.22
+        ],
+        "bothBlueDelta": [
+          -29.97,
+          -32.51,
+          -16.35,
+          -21.22
+        ],
+        "hemiBlueDelta": [
+          -8.86,
+          -9.7,
+          -1.5,
+          -4.09
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "bg": 1,
+          "env": 1,
+          "both": 1,
+          "hemi": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_hterm": {
@@ -3270,14 +6177,56 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantHterm": ["intensity", "intensity", "hgnd", "intensity"],
-        "hcolBlueDelta": [-8.86, -9.7, -1.5, -4.09],
-        "hintBlueDelta": [-12.48, -13.75, -2.43, -9.11],
-        "hgndBlueDelta": [0, 0, 0.56, 0],
-        "envBlueDelta": [-29.97, -32.51, -16.35, -21.22],
-        "intensityLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "counts": { "hcol": 1, "hint": 1, "hgnd": 1, "env": 1, "intensity": 1, "fill": 1 },
+        "dominantHterm": [
+          "intensity",
+          "intensity",
+          "hgnd",
+          "intensity"
+        ],
+        "hcolBlueDelta": [
+          -8.86,
+          -9.7,
+          -1.5,
+          -4.09
+        ],
+        "hintBlueDelta": [
+          -12.48,
+          -13.75,
+          -2.43,
+          -9.11
+        ],
+        "hgndBlueDelta": [
+          0,
+          0,
+          0.56,
+          0
+        ],
+        "envBlueDelta": [
+          -29.97,
+          -32.51,
+          -16.35,
+          -21.22
+        ],
+        "intensityLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "counts": {
+          "hcol": 1,
+          "hint": 1,
+          "hgnd": 1,
+          "env": 1,
+          "intensity": 1,
+          "fill": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_nfill": {
@@ -3287,13 +6236,50 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantNfill": ["both", "both", "fill", "both"],
-        "fillLumaDelta": [-3.41, -3.77, -0.44, -12.39],
-        "sunLumaDelta": [-28.0, -31.12, -2.75, -11.46],
-        "bothLumaDelta": [-32.66, -36.34, -3.28, -25.19],
-        "envBlueDelta": [-29.97, -32.51, -16.35, -21.22],
-        "hcolBlueDelta": [-8.86, -9.7, -1.5, -4.09],
-        "counts": { "fill": 1, "sun": 1, "both": 1, "hcol": 1, "env": 1, "hint": 1 },
+        "dominantNfill": [
+          "both",
+          "both",
+          "fill",
+          "both"
+        ],
+        "fillLumaDelta": [
+          -3.41,
+          -3.77,
+          -0.44,
+          -12.39
+        ],
+        "sunLumaDelta": [
+          -28.0,
+          -31.12,
+          -2.75,
+          -11.46
+        ],
+        "bothLumaDelta": [
+          -32.66,
+          -36.34,
+          -3.28,
+          -25.19
+        ],
+        "envBlueDelta": [
+          -29.97,
+          -32.51,
+          -16.35,
+          -21.22
+        ],
+        "hcolBlueDelta": [
+          -8.86,
+          -9.7,
+          -1.5,
+          -4.09
+        ],
+        "counts": {
+          "fill": 1,
+          "sun": 1,
+          "both": 1,
+          "hcol": 1,
+          "env": 1,
+          "hint": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_upper": {
@@ -3303,13 +6289,50 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantUpper": ["sun", "sun", "ramps", "sun"],
-        "rampsBandDelta": [0, 0, -0.1788, 0],
-        "skyBandDelta": [0, 0, 0, 0],
-        "piersBandDelta": [0, 0, 0.0011, 0],
-        "envBlueDelta": [-29.97, -32.51, -16.35, -21.22],
-        "envBandDelta": [0.0032, 0.0012, -0.0744, -0.0312],
-        "counts": { "ramps": 150, "sky": 1, "piers": 176, "fill": 1, "sun": 1, "env": 1 },
+        "dominantUpper": [
+          "sun",
+          "sun",
+          "ramps",
+          "sun"
+        ],
+        "rampsBandDelta": [
+          0,
+          0,
+          -0.1788,
+          0
+        ],
+        "skyBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "piersBandDelta": [
+          0,
+          0,
+          0.0011,
+          0
+        ],
+        "envBlueDelta": [
+          -29.97,
+          -32.51,
+          -16.35,
+          -21.22
+        ],
+        "envBandDelta": [
+          0.0032,
+          0.0012,
+          -0.0744,
+          -0.0312
+        ],
+        "counts": {
+          "ramps": 150,
+          "sky": 1,
+          "piers": 176,
+          "fill": 1,
+          "sun": 1,
+          "env": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_renv": {
@@ -3319,16 +6342,68 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantRenv": ["both", "both", "ramps", "both"],
-        "rampsBandDelta": [0, 0, -0.1788, 0],
-        "envBandDelta": [0.0032, 0.0012, -0.0744, -0.0312],
-        "bothBandDelta": [0.0032, 0.0012, -0.1712, -0.0312],
-        "leftBandDelta": [0.0032, 0.0012, -0.1762, -0.0312],
-        "skyBandDelta": [0, 0, 0, 0],
-        "piersBandDelta": [0, 0, 0.0011, 0],
-        "envBlueDelta": [-29.97, -32.51, -16.35, -21.22],
-        "leftoverAfterRampsAsEnvBandDelta": [0.0032, 0.0012, 0.0076, -0.0312],
-        "counts": { "ramps": 150, "env": 1, "both": 151, "left": 328, "sky": 1, "piers": 176 },
+        "dominantRenv": [
+          "both",
+          "both",
+          "ramps",
+          "both"
+        ],
+        "rampsBandDelta": [
+          0,
+          0,
+          -0.1788,
+          0
+        ],
+        "envBandDelta": [
+          0.0032,
+          0.0012,
+          -0.0744,
+          -0.0312
+        ],
+        "bothBandDelta": [
+          0.0032,
+          0.0012,
+          -0.1712,
+          -0.0312
+        ],
+        "leftBandDelta": [
+          0.0032,
+          0.0012,
+          -0.1762,
+          -0.0312
+        ],
+        "skyBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "piersBandDelta": [
+          0,
+          0,
+          0.0011,
+          0
+        ],
+        "envBlueDelta": [
+          -29.97,
+          -32.51,
+          -16.35,
+          -21.22
+        ],
+        "leftoverAfterRampsAsEnvBandDelta": [
+          0.0032,
+          0.0012,
+          0.0076,
+          -0.0312
+        ],
+        "counts": {
+          "ramps": 150,
+          "env": 1,
+          "both": 151,
+          "left": 328,
+          "sky": 1,
+          "piers": 176
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_gleft": {
@@ -3338,16 +6413,69 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantGleft": ["piers", "buildings", "buildings", "env"],
-        "roadBandDelta": [0, 0, 0, 0],
-        "buildingsBandDelta": [0.0161, 0, -0.1037, 0],
-        "groundBandDelta": [0.119, 0.1448, -0.0282, 0.134],
-        "envBandDelta": [0.0032, 0.0012, 0.0076, -0.0312],
-        "skyBandDelta": [0, 0, 0, 0],
-        "piersBandDelta": [0, 0, -0.0044, 0],
-        "leftoverBaselinePct": [0.8451, 0.8396, 0.4003, 0.8564],
-        "buildingsHiddenPct": [0.8612, 0.8396, 0.2966, 0.8564],
-        "counts": { "ramps": 150, "road": 152, "buildings": 974, "ground": 151, "env": 151, "sky": 151, "piers": 326 },
+        "dominantGleft": [
+          "piers",
+          "buildings",
+          "buildings",
+          "env"
+        ],
+        "roadBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "buildingsBandDelta": [
+          0.0161,
+          0,
+          -0.1037,
+          0
+        ],
+        "groundBandDelta": [
+          0.119,
+          0.1448,
+          -0.0282,
+          0.134
+        ],
+        "envBandDelta": [
+          0.0032,
+          0.0012,
+          0.0076,
+          -0.0312
+        ],
+        "skyBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "piersBandDelta": [
+          0,
+          0,
+          -0.0044,
+          0
+        ],
+        "leftoverBaselinePct": [
+          0.8451,
+          0.8396,
+          0.4003,
+          0.8564
+        ],
+        "buildingsHiddenPct": [
+          0.8612,
+          0.8396,
+          0.2966,
+          0.8564
+        ],
+        "counts": {
+          "ramps": 150,
+          "road": 152,
+          "buildings": 974,
+          "ground": 151,
+          "env": 151,
+          "sky": 151,
+          "piers": 326
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_wgi": {
@@ -3357,17 +6485,77 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantWgi": ["glass", "glass", "ground", "env"],
-        "waterBandDelta": [0, 0, 0, 0],
-        "glassBandDelta": [0, 0, -0.0002, 0],
-        "instancedBandDelta": [0.0161, 0, -0.0345, 0],
-        "groundBandDelta": [0.119, 0.1448, -0.0453, 0.134],
-        "roadBandDelta": [0, 0, 0, 0],
-        "envBandDelta": [0.0032, 0.0012, -0.0044, -0.0312],
-        "leftoverBaselinePct": [0.8451, 0.8396, 0.3313, 0.8564],
-        "instancedHiddenPct": [0.8612, 0.8396, 0.2968, 0.8564],
-        "groundHiddenPct": [0.9641, 0.9844, 0.286, 0.9904],
-        "counts": { "ramps": 150, "leftover": 846, "water": 847, "glass": 926, "instanced": 893, "ground": 847, "road": 848, "env": 847, "buildings": 696 },
+        "dominantWgi": [
+          "glass",
+          "glass",
+          "ground",
+          "env"
+        ],
+        "waterBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "glassBandDelta": [
+          0,
+          0,
+          -0.0002,
+          0
+        ],
+        "instancedBandDelta": [
+          0.0161,
+          0,
+          -0.0345,
+          0
+        ],
+        "groundBandDelta": [
+          0.119,
+          0.1448,
+          -0.0453,
+          0.134
+        ],
+        "roadBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "envBandDelta": [
+          0.0032,
+          0.0012,
+          -0.0044,
+          -0.0312
+        ],
+        "leftoverBaselinePct": [
+          0.8451,
+          0.8396,
+          0.3313,
+          0.8564
+        ],
+        "instancedHiddenPct": [
+          0.8612,
+          0.8396,
+          0.2968,
+          0.8564
+        ],
+        "groundHiddenPct": [
+          0.9641,
+          0.9844,
+          0.286,
+          0.9904
+        ],
+        "counts": {
+          "ramps": 150,
+          "leftover": 846,
+          "water": 847,
+          "glass": 926,
+          "instanced": 893,
+          "ground": 847,
+          "road": 848,
+          "env": 847,
+          "buildings": 696
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_uleft": {
@@ -3377,16 +6565,73 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantUleft": ["both", "both", "both", "both"],
-        "unnamedBandDelta": [0, 0, -0.006, 0],
-        "envBandDelta": [0, 0, 0.0002, 0],
-        "bothBandDelta": [0, 0, -0.006, 0],
-        "skyBandDelta": [0, 0, 0, 0],
-        "piersBandDelta": [0, 0, -0.0057, 0],
-        "extrasBandDelta": [0, 0, 0, 0],
-        "leftoverBaselinePct": [0.9907, 0.9844, 0.2087, 0.9904],
-        "unnamedHiddenPct": [0.9907, 0.9844, 0.2027, 0.9904],
-        "counts": { "ramps": 150, "leftover": 894, "unnamed": 1154, "env": 895, "both": 1155, "sky": 895, "piers": 1070, "extras": 894, "buildings": 696, "instanced": 47, "ground": 1 },
+        "dominantUleft": [
+          "both",
+          "both",
+          "both",
+          "both"
+        ],
+        "unnamedBandDelta": [
+          0,
+          0,
+          -0.006,
+          0
+        ],
+        "envBandDelta": [
+          0,
+          0,
+          0.0002,
+          0
+        ],
+        "bothBandDelta": [
+          0,
+          0,
+          -0.006,
+          0
+        ],
+        "skyBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "piersBandDelta": [
+          0,
+          0,
+          -0.0057,
+          0
+        ],
+        "extrasBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "leftoverBaselinePct": [
+          0.9907,
+          0.9844,
+          0.2087,
+          0.9904
+        ],
+        "unnamedHiddenPct": [
+          0.9907,
+          0.9844,
+          0.2027,
+          0.9904
+        ],
+        "counts": {
+          "ramps": 150,
+          "leftover": 894,
+          "unnamed": 1154,
+          "env": 895,
+          "both": 1155,
+          "sky": 895,
+          "piers": 1070,
+          "extras": 894,
+          "buildings": 696,
+          "instanced": 47,
+          "ground": 1
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_nmesh": {
@@ -3396,16 +6641,74 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantNmesh": ["background", "background", "clear", "clear"],
-        "backgroundBandDelta": [-0.0014, -0.0013, 0.7322, 0.0021],
-        "clearBandDelta": [0, 0, 0, 0],
-        "fogBandDelta": [0, 0, 0, 0],
-        "postBandDelta": [0, 0, 0.0003, 0.0061],
-        "envBandDelta": [0, 0, 0, 0],
-        "bothBandDelta": [-0.0014, -0.0013, 0.7322, 0.0021],
-        "leftoverBaselinePct": [0.9907, 0.9844, 0.2027, 0.9904],
-        "backgroundHiddenPct": [0.9893, 0.9831, 0.9349, 0.9925],
-        "counts": { "ramps": 150, "leftover": 1154, "background": 1155, "clear": 1155, "fog": 1155, "post": 1155, "env": 1155, "both": 1156, "buildings": 696, "instanced": 47, "ground": 1, "remaining": 260 },
+        "dominantNmesh": [
+          "background",
+          "background",
+          "clear",
+          "clear"
+        ],
+        "backgroundBandDelta": [
+          -0.0014,
+          -0.0013,
+          0.7322,
+          0.0021
+        ],
+        "clearBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fogBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "postBandDelta": [
+          0,
+          0,
+          0.0003,
+          0.0061
+        ],
+        "envBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "bothBandDelta": [
+          -0.0014,
+          -0.0013,
+          0.7322,
+          0.0021
+        ],
+        "leftoverBaselinePct": [
+          0.9907,
+          0.9844,
+          0.2027,
+          0.9904
+        ],
+        "backgroundHiddenPct": [
+          0.9893,
+          0.9831,
+          0.9349,
+          0.9925
+        ],
+        "counts": {
+          "ramps": 150,
+          "leftover": 1154,
+          "background": 1155,
+          "clear": 1155,
+          "fog": 1155,
+          "post": 1155,
+          "env": 1155,
+          "both": 1156,
+          "buildings": 696,
+          "instanced": 47,
+          "ground": 1,
+          "remaining": 260
+        },
         "originalGoldenComparisons": 0
       },
       "live_world_ogrp": {
@@ -3415,15 +6718,140 @@
         "height": 1.92,
         "fov": 58,
         "pixelThreshold": 0.12,
-        "dominantOgrp": ["blob", "blob", "blob", "blob"],
-        "outsideBandDelta": [0, 0, 0, 0],
-        "envBandDelta": [0, 0, 0, 0],
-        "bothBandDelta": [0, 0, 0, 0],
-        "heroBandDelta": [0, 0, 0, 0],
-        "fxBandDelta": [0, 0, 0, 0],
-        "blobBandDelta": [0, 0, 0, 0],
-        "leftoverBaselinePct": [0.9907, 0.9844, 0.2027, 0.9904],
-        "counts": { "ramps": 150, "leftover": 1154, "outside": 2082, "env": 1155, "both": 2083, "hero": 1260, "fx": 1159, "blob": 1158, "buildings": 696, "instanced": 47, "ground": 1, "remaining": 260 },
+        "dominantOgrp": [
+          "blob",
+          "blob",
+          "blob",
+          "blob"
+        ],
+        "outsideBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "envBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "bothBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "heroBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fxBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "blobBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "leftoverBaselinePct": [
+          0.9907,
+          0.9844,
+          0.2027,
+          0.9904
+        ],
+        "counts": {
+          "ramps": 150,
+          "leftover": 1154,
+          "outside": 2082,
+          "env": 1155,
+          "both": 2083,
+          "hero": 1260,
+          "fx": 1159,
+          "blob": 1158,
+          "buildings": 696,
+          "instanced": 47,
+          "ground": 1,
+          "remaining": 260
+        },
+        "originalGoldenComparisons": 0
+      },
+      "predecessor_r6_73_expected": 2597,
+      "live_world_tmap": {
+        "status": "g07_after_empty_is_remaining_empty_scene_vs_golden_not_tone_not_mgmt_not_env_linear_srgb_increases",
+        "protocol": "world-tmap-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "dominantTmap": [
+          "space",
+          "space",
+          "env",
+          "both"
+        ],
+        "toneBandDelta": [
+          0,
+          0,
+          0.0003,
+          0.0012
+        ],
+        "spaceBandDelta": [
+          0,
+          0,
+          0.7482,
+          -0.9878
+        ],
+        "mgmtBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "envBandDelta": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "bothBandDelta": [
+          0,
+          0,
+          0.7597,
+          -0.9878
+        ],
+        "encBandDelta": [
+          0,
+          0,
+          0.7597,
+          -0.9878
+        ],
+        "leftoverBaselinePct": [
+          0.9907,
+          0.9844,
+          0.2027,
+          0.9904
+        ],
+        "counts": {
+          "ramps": 150,
+          "leftover": 2082,
+          "tone": 2083,
+          "space": 2083,
+          "mgmt": 2083,
+          "env": 2083,
+          "both": 2086,
+          "enc": 2085,
+          "buildings": 696,
+          "instanced": 47,
+          "ground": 1,
+          "remaining": 260
+        },
         "originalGoldenComparisons": 0
       }
     },
