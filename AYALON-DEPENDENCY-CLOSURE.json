@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "ece6a127684428652b809845c5e62d31c2073bfb354d04bd011824e56197b126"
+      "sha256": "98fcdfa881eac2e98543b8551a4ea93214a1c3a154c48dbbefb8e3642ca04d84"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2078,8 +2078,8 @@
     },
     {
       "path": "scripts/runtime-recovery-smoke.mjs",
-      "bytes": 12088,
-      "sha256": "f9e088177eb3edc753bcc51ad9ed0647d95fd868c31132a30d56d560b8f2202b"
+      "bytes": 12204,
+      "sha256": "9f397e2c746301827bb293b9bd9334acf361124862e500a2cb47b34f42f4257d"
     },
     {
       "path": "scripts/rush-head-browser.mjs",
@@ -2195,6 +2195,16 @@
       "path": "scripts/world-bake.test.mjs",
       "bytes": 11220,
       "sha256": "dd445cd868af85bf449fef03eeeb2001ba6894a13f13b2464a231ed9b3383421"
+    },
+    {
+      "path": "scripts/world-bare-browser.mjs",
+      "bytes": 33606,
+      "sha256": "c07e06232ab826a9014d2a1fc35332cf1ae43d6cca5910ea4cc99c8db34ed559"
+    },
+    {
+      "path": "scripts/world-bare.test.mjs",
+      "bytes": 12641,
+      "sha256": "531625f556f265441674a1f872d1e2833522e8d2e830b47479331fc331bc0fc9"
     },
     {
       "path": "scripts/world-beam-browser.mjs",
@@ -2534,7 +2544,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "b1d6a5df38e2898f31b41fabfd4098ed864b30eaa04e9a006a1c82dea7214b87"
+      "sha256": "08000f5c39594f8a1b023ec429d915b03f61670d871c8eb71ec277d7c63c49dc"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -10786,5 +10796,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "158ae90e187e401349d71e5c68e344e78ae5ee857384c567418c6161b632b79a"
+  "digest_sha256": "6416c732a3675fd16f709905cbca0b8e5f76fe2e96fe5229f99db72d202b13da"
 }
