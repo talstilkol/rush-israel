@@ -1336,6 +1336,23 @@ Evidence: docs/evidence/GFX-04-ayalon-night-p2p-wall-camera.md and
 docs/evidence/gfx-04-ayalon-night-p2p-wall-camera-2026-09-11-1751.png.
 Do not start GFX-04 before RSH-036 / AUD-72 isolation closes.
 
+## r6.62 — 11 September 2026: remaining cubemap vs IBL-off with gray hemi is scene.environment, not material.envMap
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-72 isolates
+scene.environment=null versus material.envMap=null versus both with hemi.color
+held at 0x808080 independently of 0x3a9ae0 hue vs sun intensity vs fill after
+setNight/snapCamera(true). r6.61 leftover after gray hemi occupies B −21.5/−23.8
+as cubemap vs IBL-off. g01/g05 day-bottom env ≡ both (B −21.5/−23.8, L2
+−34.9/−38.4). material.envMap ≡ gray (Δ 0). Remaining cubemap is
+scene.environment, not per-material envMap. Hue occupies B −30.2/−32.8.
+Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins intensity on g08 night
+(−12.4). setNight does not rebake. g07 upper remains ramps. Camera stays
+7.4/1.92. Freeze path count stays 85. GFX-01, GFX-03 and GFX-04 stay queued
+after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-ENV-r6.62.json, RSH-036-RUNTIME-REPAIR-r6.62.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 

@@ -1,7 +1,7 @@
-**Version:** 20.61.0
+**Version:** 20.62.0
 **Date:** 2026-09-11, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 65abfc10e93a09dfd5774fb966caa189727cd61c
+**Repair base:** 45ab88c191861de5ab4f962aa2ae1b97d36aabcc
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -106,33 +106,34 @@ required-ci-34480369405-1 SHA-256
 `0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec`. Retained;
 not relabelled a pass.
 
-## r6.61 and subsequent acceptance
+## r6.62 and subsequent acceptance
 1. Remaining 0/4 is sun intensity luma plus bakeEnv 0x3a9ae0 hue plus leftover
    gray cubemap vs IBL-off on g01/g05/g08 bottom: intensity occupies luma,
    0x3a9ae0 vs 0x808080 occupies B −30.2/−32.8, leftover gray vs off occupies
    B −18.5/−20.2. hemi.color splits as 0xa8c8e8 vs 0x808080 hue (B −12.4/−13.7)
    plus 0x000000 presence. Leftover after neutralizing hemi.color to 0x808080
-   is remaining cubemap vs IBL-off (off vs hgray B −21.5/−23.8, L2 −34.9/−38.4).
-   groundColor ≡ gray. RectAreaLight ≡ gray. LightProbe vs MeshBasic envMap vs
-   custom road-shader env and road vs all-standard vs car envMapIntensity are
-   not remaining day-bottom drivers. setNight does not rebake. Fill joins
-   intensity on g08 night. g07 upper remains ramps.
+   is remaining cubemap vs IBL-off (off vs hgray B −21.5/−23.8). That cubemap
+   occupancy is scene.environment (env ≡ both B −21.5/−23.8); material.envMap
+   ≡ gray. groundColor ≡ gray. RectAreaLight ≡ gray. LightProbe vs MeshBasic
+   envMap vs custom road-shader env and road vs all-standard vs car
+   envMapIntensity are not remaining day-bottom drivers. setNight does not
+   rebake. Fill joins intensity on g08 night. g07 upper remains ramps.
    Live sampling must force 1280×800 pixelRatio 1 after snapCamera(true),
    capture product present (`post.setDrive(0, false); post.render()`), locate
-   the dominant 200px band, and isolate remaining cubemap vs IBL-off with
-   hemi.color held at 0x808080 as scene.environment versus material.envMap
-   versus both independently of hemi.color hue vs hemi presence vs product hue
+   the dominant 200px band, and isolate remaining scene.environment with
+   hemi.color held at 0x808080 as environment=null versus environmentIntensity=0
+   versus both independently of material.envMap vs hemi.color hue vs product hue
    vs sun intensity vs fill without changing product color, exposure or
    refreshing PNGs.
-   Smoke must keep verifyWorldLayers through verifyWorldHex and
-   verifyWorldOff. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is
-   that intensity+hue+hemi.color-hue+cubemap-vs-off gap plus g07 upper ramps.
-   PNG refresh, threshold drift, color retune, exposure retune and skipped
-   comparison fail closed.
+   Smoke must keep verifyWorldLayers through verifyWorldOff and
+   verifyWorldEnv. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is
+   that intensity+hue+hemi.color-hue+scene.environment gap plus g07 upper
+   ramps. PNG refresh, threshold drift, color retune, exposure retune and
+   skipped comparison fail closed.
    176 piers, 546 legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and
    generation-11 lock stay. Freeze path count stays 85. Pixel 0/4 is not freeze.
-2. Preserve the r6.18 Chromium install retry through the r6.60 hex isolation
-   and the r6.61 off isolation.
+2. Preserve the r6.18 Chromium install retry through the r6.61 off isolation
+   and the r6.62 env isolation.
 3. Preserve 1280x800 images, threshold 0.12, failure 8%, generation 11 lock and
    owner approval. Do not refresh golden PNGs or silently change typography.
    Rendering performance remains open.
@@ -169,14 +170,14 @@ is **not** remaining pixel 0/4.
 | id | track | defect | status |
 |---|---|---|---|
 | GFX-01 | namal | hero-car GLB body vertical/origami vs procedural extras | queued after RSH-036 |
-| GFX-02 | ayalon | leftover after gray hemi is remaining cubemap vs IBL-off (off vs hgray B −21.5/−23.8) | r6.61 done; AUD-72 next |
+| GFX-02 | ayalon | leftover cubemap vs IBL-off with gray hemi is scene.environment (env ≡ both B −21.5/−23.8); material.envMap ≡ gray | r6.62 done; AUD-73 next |
 | GFX-03 | ayalon | night point-to-point chase camera clips through hero-car at Kibbutz Galuyot / HaHagana | queued after RSH-036 |
 | GFX-04 | ayalon | night P2P camera clips into retaining wall at Kibbutz Galuyot t=0:25.66; car exploded from above | queued after RSH-036 |
 
-AUD-72 is the next RSH-036 isolation: remaining cubemap vs IBL-off with
-hemi.color held at 0x808080 as scene.environment versus material.envMap versus
-both. GFX-01, GFX-03 and GFX-04 stay recorded only; do not start them before
-RSH-036 closes.
+AUD-73 is the next RSH-036 isolation: remaining scene.environment with
+hemi.color held at 0x808080 as environment=null versus environmentIntensity=0
+versus both. GFX-01, GFX-03 and GFX-04 stay recorded only; do not start them
+before RSH-036 closes.
 
-Master plan r6.61 retains 67 units, 42 historical findings, 6 bundles and 71
+Master plan r6.62 retains 67 units, 42 historical findings, 6 bundles and 72
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.
