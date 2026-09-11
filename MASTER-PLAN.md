@@ -1045,6 +1045,24 @@ color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-BAKE-r6.47.json, RSH-036-RUNTIME-REPAIR-r6.47.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.48 — 11 September 2026: combined bakeEnv background is not 0x3a9ae0 vs 0x808080
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-58 isolates
+bakeEnv background 0x3a9ae0 vs a 0x808080 background independently of hemi vs
+disc vs sun intensity vs fill after setNight/snapCamera(true). r6.47 omit
+background mixed the hue with IBL-off. g01/g05 day-bottom 0x3a9ae0 vs 0x808080
+occupies B −30.2/−32.8, matching r6.45 product-vs-gray cubemap. r6.47 omit
+occupies more (B −47.8/−52.0), so gray IBL still leaves a residual vs off.
+Hemi and disc are 0. Intensity occupies luma (−28.0/−31.1/−11.5). Fill joins
+intensity on g08 night (−12.4). setNight does not rebake, so g08 night variants
+all occupy leftover. g07 upper remains ramps. Camera stays 7.4/1.92. Freeze
+path count stays 85. r6.27 lint no-undef is retained, not relabelled a pass.
+Immutable CDN bytes, rendering performance and freeze remain open. Do not
+merge, replace PNGs, change thresholds, retune color or exposure or activate
+RSH-037.
+Details: RSH-036-WORLD-SKY-r6.48.json, RSH-036-RUNTIME-REPAIR-r6.48.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
 
 
 
