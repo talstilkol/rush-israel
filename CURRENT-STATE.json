@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.89.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.90.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2017,8 +2017,8 @@
         {
           "id": "GFX-02",
           "track": "ayalon",
-          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not useLegacyLights not debug.checkShaderErrors not xr.enabled not env (leftover 0.2027, lights/debug/xr/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0)",
-          "status": "r6_89_done_aud_99_next"
+          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not shadowMap.enabled not xr.cameraAutoUpdate not debug.onShaderError not env (leftover 0.2027, map/cauto/onerr/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0)",
+          "status": "r6_90_done_aud_100_next"
         },
         {
           "id": "GFX-03",
@@ -2104,16 +2104,29 @@
           "not_remaining_0_of_4": true,
           "not_freeze": true,
           "status": "queued_after_rsh_036"
+        },
+        {
+          "id": "GFX-10",
+          "track": "namal",
+          "mode": "lap",
+          "poi": "נמל תל אביב",
+          "screenshot": "2026-09-11 22:56.51",
+          "evidence": "docs/evidence/GFX-10-namal-south-ta-flicker.md",
+          "defect": "flickering South Tel Aviv track + flooded water plane + origami car at Port t=0:06.31 / 10 km/h lap 1/3",
+          "not_remaining_0_of_4": true,
+          "not_freeze": true,
+          "status": "queued_after_rsh_036"
         }
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_uselegacylights_not_checkshadererrors_not_xrenabled_not_env_not_full_suite_expected_3017",
+      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_shadowmapenabled_not_cameraautoupdate_not_onshadererror_not_env_not_full_suite_expected_3045",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 3017,
+      "expected_total": 3045,
+      "predecessor_r6_89_expected": 3017,
       "predecessor_r6_82_expected": 2849,
       "predecessor_r6_81_expected": 2821,
       "predecessor_r6_80_expected": 2793,
@@ -7492,6 +7505,29 @@
         "lightsBandDelta": [0, 0, 0, 0],
         "debugBandDelta": [0, 0, 0, 0],
         "xrBandDelta": [0, 0, 0, 0],
+        "envBandDelta": [0, 0, 0, 0],
+        "bothBandDelta": [0, 0, 0, 0],
+        "packBandDelta": [0, 0, 0, 0],
+        "leftoverBaselinePct": [0.9907, 0.9844, 0.2027, 0.9904],
+        "counts": {
+          "ramps": 150, "leftover": 2082, "lights": 2083, "debug": 2083, "xr": 2083,
+          "env": 2083, "both": 2086, "pack": 2085, "buildings": 696, "instanced": 47, "ground": 1, "remaining": 260
+        },
+        "originalGoldenComparisons": 0
+      },
+      "predecessor_r6_89_expected": 3017,
+      "live_world_sxo": {
+        "status": "g07_after_empty_is_remaining_empty_scene_vs_golden_not_shadowmapenabled_not_cameraautoupdate_not_onshadererror_not_env",
+        "protocol": "world-sxo-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelRatio": 1,
+        "pixelThreshold": 0.12,
+        "dominantSxo": ["both", "both", "both", "both"],
+        "mapBandDelta": [0, 0, 0, 0],
+        "cautoBandDelta": [0, 0, 0, 0],
+        "onerrBandDelta": [0, 0, 0, 0],
         "envBandDelta": [0, 0, 0, 0],
         "bothBandDelta": [0, 0, 0, 0],
         "packBandDelta": [0, 0, 0, 0],

@@ -1797,6 +1797,31 @@ after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
 thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-LDX-r6.89.json and RSH-036-RUNTIME-REPAIR-r6.89.md.
 
+## r6.90 — 12 September 2026: leftover g07 after world.group+outside is remaining empty-scene vs golden, not shadowMap.enabled, not xr.cameraAutoUpdate, not debug.onShaderError, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-99 isolates
+leftover g07 after world.group+outside as remaining empty-scene vs golden
+independently of shadowMap.enabled vs xr.cameraAutoUpdate vs debug.onShaderError after
+setNight/snapCamera(true). g07 leftover is remaining empty-scene vs golden
+(leftover 0.2027), not shadowMap.enabled off (≡ 0), not xr.cameraAutoUpdate off (≡ 0),
+not debug.onShaderError (≡ 0) and not env (≡ 0). both ≡ pack ≡ 0. Empty
+leftover has no world geometry for a shadowMap.enabled/cameraAutoUpdate/onShaderError
+change to occupy remaining g07. Product renderer stays. Freeze path count stays 85.
+GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08, GFX-09 and GFX-10 stay queued
+after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-SXO-r6.90.json and RSH-036-RUNTIME-REPAIR-r6.90.md.
+
+## Queued GFX-10 — 11 September 2026 22:56.51: Namal / South Tel Aviv flicker
+
+Owner screenshot on track `namal`, lap 1/3, t=0:06.31, 10 km/h, POI נמל תל אביב.
+Owner reports the South Tel Aviv route flickers constantly. Flooded water plane
+hides the road; origami Sabra is GFX-01 family. Distinct from GFX-08 (namal dual
+cars) and GFX-09 (Old Jaffa flicker). Not remaining 0/4. Queue after RSH-036.
+Evidence: docs/evidence/GFX-10-namal-south-ta-flicker.md.
+Do not start GFX-10 before RSH-036 / AUD-99 isolation closes.
+
+
 
 
 
