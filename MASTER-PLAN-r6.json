@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.68",
+  "revision": "r6.69",
   "date": "2026-09-11",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 78,
+    "audit_items": 79,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -408,7 +408,8 @@
         "AUD-75",
         "AUD-76",
         "AUD-77",
-        "AUD-78"
+        "AUD-78",
+        "AUD-79"
       ]
     },
     {
@@ -1925,6 +1926,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-RENV-r6.68.json"
+    },
+    {
+      "id": "AUD-79",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Leftover g07 after ramps is road versus buildings versus ground",
+      "acceptance": "Renv-only reports without road/buildings/ground/env/sky/piers bandDelta plus a dominantGleft and leftoverBaselinePct must fail closed. Live snapCamera(true) at g01/g05/g07/g08 must isolate those six leftover-after-ramps axes after setNight and measure isolated band L2, luma, B and bandDelta against the locked 26 August PNG. Deltas use the ramps-hidden leftover buffer as baseline. Product ground hex must stay 0xd0d4d8 and product exposure 0.56. Retain freeze path count 85 and generation 11. Gleft isolation is not freeze. GFX-01, GFX-03, GFX-04, GFX-05 and GFX-06 stay queued after RSH-036.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-GLEFT-r6.69.json"
     }
   ],
   "legacy_findings": [
@@ -2356,9 +2370,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.68",
-    "base_head": "12b299c",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.68.md",
+    "revision": "r6.69",
+    "base_head": "043596f",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.69.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",

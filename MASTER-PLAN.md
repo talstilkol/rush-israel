@@ -1478,6 +1478,24 @@ thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-RENV-r6.68.json, RSH-036-RUNTIME-REPAIR-r6.68.md and
 docs/evidence/r6.27-published-ci-verification.json.
 
+## r6.69 — 11 September 2026: leftover g07 after ramps is buildings, not road
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-79 isolates
+leftover g07 after ramps as road versus buildings versus ground independently
+of env vs sky vs piers after setNight/snapCamera(true). g07 leftover after
+ramps is buildings (bandDelta −0.1037, L2 −20.4, leftover 0.4003 → 0.2966),
+not road (≡ 0). leftover-after-ramps-as-env ≈ 0 (bandDelta +0.0076) matching
+r6.68. Sky ≡ 0, piers ≈ 0. Ground is a small independent leftover axis
+(bandDelta −0.0282). Remaining after ramps+buildings is still ~30% unnamed
+occupancy. Day-bottom leftover after ramps is not road not buildings; hiding
+ground increases mismatch. Camera stays 7.4/1.92. Freeze path count stays 85.
+GFX-01, GFX-03, GFX-04, GFX-05 and GFX-06 stay queued after RSH-036 and are
+not remaining 0/4. Do not merge, replace PNGs, change thresholds, retune
+color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-GLEFT-r6.69.json, RSH-036-RUNTIME-REPAIR-r6.69.md and
+docs/evidence/r6.27-published-ci-verification.json.
+
+
 
 
 

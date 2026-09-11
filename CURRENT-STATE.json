@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.68.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.69.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2017,8 +2017,8 @@
         {
           "id": "GFX-02",
           "track": "ayalon",
-          "defect": "leftover gray cubemap vs IBL-off B −18.5/−20.2; remaining g07 after ramps is leftover unnamed not env (both ≡ ramps)",
-          "status": "r6_68_done_aud_79_next"
+          "defect": "leftover g07 after ramps is buildings not road (bandDelta −0.1037, leftover 0.4003 → 0.2966); leftover-after-ramps-as-env ≈ 0",
+          "status": "r6_69_done_aud_80_next"
         },
         {
           "id": "GFX-03",
@@ -2072,12 +2072,13 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_g07_after_ramps_leftover_unnamed_not_env_not_full_suite_expected_2457",
+      "status": "focused_28_passed_live_g07_after_ramps_is_buildings_not_road_not_full_suite_expected_2485",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2457,
+      "expected_total": 2485,
+      "predecessor_r6_68_expected": 2457,
       "predecessor_r6_67_expected": 2429,
       "predecessor_r6_66_expected": 2401,
       "predecessor_r6_65_expected": 2373,
@@ -3313,6 +3314,25 @@
         "envBlueDelta": [-29.97, -32.51, -16.35, -21.22],
         "leftoverAfterRampsAsEnvBandDelta": [0.0032, 0.0012, 0.0076, -0.0312],
         "counts": { "ramps": 150, "env": 1, "both": 151, "left": 328, "sky": 1, "piers": 176 },
+        "originalGoldenComparisons": 0
+      },
+      "live_world_gleft": {
+        "status": "g07_after_ramps_is_buildings_not_road_ground_small_env_zero_sky_zero_piers_zero_remaining_after_buildings_unnamed",
+        "protocol": "world-gleft-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelThreshold": 0.12,
+        "dominantGleft": ["piers", "buildings", "buildings", "env"],
+        "roadBandDelta": [0, 0, 0, 0],
+        "buildingsBandDelta": [0.0161, 0, -0.1037, 0],
+        "groundBandDelta": [0.119, 0.1448, -0.0282, 0.134],
+        "envBandDelta": [0.0032, 0.0012, 0.0076, -0.0312],
+        "skyBandDelta": [0, 0, 0, 0],
+        "piersBandDelta": [0, 0, -0.0044, 0],
+        "leftoverBaselinePct": [0.8451, 0.8396, 0.4003, 0.8564],
+        "buildingsHiddenPct": [0.8612, 0.8396, 0.2966, 0.8564],
+        "counts": { "ramps": 150, "road": 152, "buildings": 974, "ground": 151, "env": 151, "sky": 151, "piers": 326 },
         "originalGoldenComparisons": 0
       }
     },
