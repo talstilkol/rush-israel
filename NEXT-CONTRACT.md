@@ -1,7 +1,7 @@
-**Version:** 20.55.0
+**Version:** 20.56.0
 **Date:** 2026-09-11, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 418f3845bbb201e751c9aea0216020a310f91aa8
+**Repair base:** 0f37639f104321c46b015943976ec491106f433d
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -106,38 +106,59 @@ required-ci-34480369405-1 SHA-256
 `0bffbb9366dc3a9172e8ef3e9371f799e1f15d55d06a6f5beb6e347ccd5c32ec`. Retained;
 not relabelled a pass.
 
-## r6.55 and subsequent acceptance
+## r6.56 and subsequent acceptance
 1. Remaining 0/4 is sun intensity luma plus bakeEnv 0x3a9ae0 hue plus leftover
    gray cubemap vs IBL-off on g01/g05/g08 bottom: intensity occupies luma,
    0x3a9ae0 vs 0x808080 occupies B −30.2/−32.8, leftover gray vs off occupies
-   B −18.5/−20.2. PMREM size vs CubeUV lod vs ground envMapIntensity are not
-   remaining day-bottom drivers: size ≡ env ≡ gray (ΔB +0.2/+0.3), CubeUV lod
-   slightly brightens vs gray (B +1.6/+1.6) rather than occupying leftover.
-   Ground envMapIntensity 0 on gray does not occupy leftover, so remaining gray
-   IBL is not the terrain ground plane. ColorManagement vs outputColorSpace vs
-   toneMapping during bake are not remaining day-bottom drivers. setNight does
-   not rebake, so g08 present keeps the day cubemap. Fill joins intensity on
-   g08 night. g07 upper remains ramps.
+   B −18.5/−20.2. Road vs all-standard vs car envMapIntensity are not remaining
+   day-bottom drivers: road ≡ std ≡ car ≡ gray (ΔB +0.2/+0.3). Leftover is not
+   MeshStandardMaterial.envMapIntensity. PMREM size vs CubeUV lod vs ground
+   envMapIntensity and ColorManagement vs outputColorSpace vs toneMapping during
+   bake are not remaining day-bottom drivers. setNight does not rebake, so g08
+   present keeps the day cubemap. Fill joins intensity on g08 night. g07 upper
+   remains ramps.
    Live sampling must force 1280×800 pixelRatio 1 after snapCamera(true),
    capture product present (`post.setDrive(0, false); post.render()`), locate
    the dominant 200px band, and isolate remaining leftover gray cubemap vs
-   IBL-off as road envMapIntensity versus all MeshStandardMaterial
-   envMapIntensity versus car envMap independently of PMREM size vs CubeUV lod
-   vs ground envMapIntensity vs product hue vs sun intensity vs fill without
-   changing product color, exposure or refreshing PNGs.
-   Smoke must keep verifyWorldLayers through verifyWorldMgmt and
-   verifyWorldLod. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is
+   IBL-off as LightProbe versus MeshBasicMaterial envMap versus custom
+   road-shader env independently of road vs all-standard vs car envMapIntensity
+   vs product hue vs sun intensity vs fill without changing product color,
+   exposure or refreshing PNGs.
+   Smoke must keep verifyWorldLayers through verifyWorldLod and
+   verifyWorldRoad. Live rest chase 7.4/1.92 must stay. Remaining pixel 0/4 is
    that intensity+hue+gray-IBL gap plus g07 upper ramps. PNG refresh,
    threshold drift, color retune, exposure retune and skipped comparison fail
    closed.
    176 piers, 546 legacy colliders, 50 ramps, rest-pose 1.6, 1.05 radius and
    generation-11 lock stay. Freeze path count stays 85. Pixel 0/4 is not freeze.
-2. Preserve the r6.18 Chromium install retry through the r6.54 mgmt isolation
-   and the r6.55 lod isolation.
+2. Preserve the r6.18 Chromium install retry through the r6.55 lod isolation
+   and the r6.56 road isolation.
 3. Preserve 1280x800 images, threshold 0.12, failure 8%, generation 11 lock and
    owner approval. Do not refresh golden PNGs or silently change typography.
    Rendering performance remains open.
 4. Only validated applicable approval may grant freeze or open RSH-037.
 
-Master plan r6.55 retains 67 units, 42 historical findings, 6 bundles and 65
+## Queued graphical defects (not Ayalon freeze / not remaining 0/4)
+
+Owner screenshot 2026-09-11 17:34 on track `namal` (צפון תל אביב / Tel Aviv
+Port, HUD POI נמל תל אביב, lap 1, 0 km/h). The Version 1 Sabra body renders as
+a vertical origami wedge (length along world-up) with procedural glass/bumper
+extras still in Y-up. Likely `/game/car-*.glb` up-axis vs `cloneCarBody` which
+clones the `body` mesh with no Y-up correction. r6.34 already proved hero-car
+bandDelta 0 on Ayalon g01/g05/g08 bottom, so this is **not** remaining pixel
+0/4 and is **not** an Ayalon freeze item.
+
+Queue after RSH-036, as a separate graphical workstream. Do not retune Ayalon
+`0xd0d4d8` / exposure 0.56, do not refresh golden PNGs, do not merge, and do
+not treat a namal car-orientation fix as freeze.
+
+| id | track | defect | status |
+|---|---|---|---|
+| GFX-01 | namal | hero-car GLB body vertical/origami vs procedural extras | queued after RSH-036 |
+| GFX-02 | ayalon | leftover gray IBL vs IBL-off (B −18.5/−20.2); not material envMapIntensity | r6.56 done; AUD-67 next |
+
+AUD-67 is the next RSH-036 isolation: leftover gray IBL as LightProbe versus
+MeshBasicMaterial envMap versus custom road-shader env.
+
+Master plan r6.56 retains 67 units, 42 historical findings, 6 bundles and 66
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

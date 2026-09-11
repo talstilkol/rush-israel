@@ -39,6 +39,7 @@ import { verifyWorldConv } from './world-conv-browser.mjs';
 import { verifyWorldSigma } from './world-sigma-browser.mjs';
 import { verifyWorldMgmt } from './world-mgmt-browser.mjs';
 import { verifyWorldLod } from './world-lod-browser.mjs';
+import { verifyWorldRoad } from './world-road-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -131,6 +132,7 @@ try {
   results.push(...await verifyWorldSigma(browser, url));
   results.push(...await verifyWorldMgmt(browser, url));
   results.push(...await verifyWorldLod(browser, url));
+  results.push(...await verifyWorldRoad(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));

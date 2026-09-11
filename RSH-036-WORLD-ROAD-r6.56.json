@@ -1,0 +1,309 @@
+{
+  "unit": "RSH-036",
+  "revision": "r6.56",
+  "date": "2026-09-11",
+  "base": "0f37639",
+  "finding": "AUD-66",
+  "status": "candidate_pending_exact_head_validation",
+  "previous_exact_head_ci": {
+    "revision": "r6.26",
+    "head": "6fb27397b9edec289a48e8acf598cb049ba6b002",
+    "tree": "932d739305bcc5f24a943dbf4a1712dcfb5a3ae0",
+    "run_id": 34460850784,
+    "job_id": 102818068809,
+    "unit_passed": 1283,
+    "unit_failed": 0,
+    "golden_passed": 0,
+    "golden_failed": 4,
+    "required_ci_artifact_id": 10145812969,
+    "required_ci_artifact_sha256": "6519782e5484f6efe1810071b71e4e93afeb842f096b132f8c58a0eabf0ffd40",
+    "audit_source_artifact_id": 10145455425,
+    "audit_source_artifact_sha256": "22bb39cd0599969ff8463823e0c395a2a7b77fe176be5c8be0d392be0770c00a",
+    "not_unit_acceptance": true
+  },
+  "retained_r6_27_failure": {
+    "revision": "r6.27",
+    "head": "8f446969082e85a78487e02092ce8d6e803435e7",
+    "run_id": 34480369405,
+    "job_id": 102881359050,
+    "conclusion": "failure",
+    "cause": "eslint_no_undef_verifyWorldLayers_in_runtime_recovery_smoke",
+    "not_relabelled_success": true
+  },
+  "defect": "r6.55 remaining 0/4 leftover gray cubemap vs IBL-off occupies B −18.5/−20.2 independently of PMREM size vs CubeUV lod vs ground envMapIntensity, but combined leftover is not road versus all-standard versus car envMapIntensity attribution.",
+  "repair": "Keep verifyWorldLayers through verifyWorldLod and verifyWorldRoad. Direct-engine present capture isolates road-shader envMapIntensity 0 vs all MeshStandardMaterial envMapIntensity 0 vs hero-car envMapIntensity 0 on a 0x808080 fromScene independently of PMREM size vs CubeUV lod vs ground envMapIntensity vs 0x3a9ae0 hue vs sun intensity vs fill AFTER setNight/snapCamera(true). Product exposure stays 0.56. Pixel 0/4 stays an open gate, not freeze. GFX-01 namal car orientation is queued after RSH-036 and is not remaining 0/4.",
+  "live_browser": {
+    "status": "g01_g05_day_bottom_road_std_car_equal_gray_g08_unrebaked_g07_upper_none",
+    "protocol": "world-road-buffer-not-original-golden",
+    "originalGoldenComparisons": 0,
+    "authority": false,
+    "baselineUpdates": 0,
+    "pixelThreshold": 0.12,
+    "failureLimit": 0.08,
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "productGroundHex": 13685976,
+    "productGroundCount": 1,
+    "groundMeshCount": 1,
+    "productExposure": 0.56,
+    "lumaTermsIncludeHemi": false,
+    "hueClearsOff": false,
+    "intensityClearsIbl": false,
+    "colorManagementStaysEnabled": true,
+    "outputColorSpaceStaysSRGB": true,
+    "toneMappingStaysACES": true,
+    "counts": {
+      "road": 1,
+      "std": 1,
+      "car": 1,
+      "hue": 1,
+      "intensity": 1,
+      "fill": 1
+    },
+    "frames": [
+      {
+        "id": "g01",
+        "follow": 7.4,
+        "height": 1.92,
+        "presentPct": 0.6718,
+        "dominant": "bottom",
+        "dominantRoad": "intensity",
+        "contributingRoad": [
+          "hue",
+          "intensity"
+        ],
+        "lumaAxis": [
+          "intensity"
+        ],
+        "roadAxis": [],
+        "stdAxis": [],
+        "carAxis": [],
+        "hueAxis": [
+          "hue"
+        ],
+        "bandL2": 125.77,
+        "bandLuma": 99.87,
+        "bandBlue": 130.41,
+        "bandLive": [
+          77.18,
+          103.53,
+          130.41
+        ],
+        "bandGold": [
+          25.54,
+          35.89,
+          37.8
+        ],
+        "roadL2Delta": 0.17,
+        "stdL2Delta": 0.17,
+        "carL2Delta": 0.17,
+        "hueL2Delta": -17.62,
+        "intensityL2Delta": -37.02,
+        "fillL2Delta": -5.72,
+        "roadLumaDelta": 0.06,
+        "stdLumaDelta": 0.06,
+        "carLumaDelta": 0.06,
+        "intensityLumaDelta": -28,
+        "fillLumaDelta": -3.41,
+        "roadBlueDelta": 0.21,
+        "stdBlueDelta": 0.21,
+        "carBlueDelta": 0.21,
+        "hueBlueDelta": -30.18
+      },
+      {
+        "id": "g05",
+        "follow": 7.4,
+        "height": 1.92,
+        "presentPct": 0.5828,
+        "dominant": "bottom",
+        "dominantRoad": "intensity",
+        "contributingRoad": [
+          "hue",
+          "intensity"
+        ],
+        "lumaAxis": [
+          "intensity"
+        ],
+        "roadAxis": [],
+        "stdAxis": [],
+        "carAxis": [],
+        "hueAxis": [
+          "hue"
+        ],
+        "bandL2": 145.95,
+        "bandLuma": 99.51,
+        "bandBlue": 132.7,
+        "bandLive": [
+          74.63,
+          103.56,
+          132.7
+        ],
+        "bandGold": [
+          10.81,
+          22.24,
+          29.67
+        ],
+        "roadL2Delta": 0.19,
+        "stdL2Delta": 0.19,
+        "carL2Delta": 0.19,
+        "hueL2Delta": -18.2,
+        "intensityL2Delta": -42.99,
+        "fillL2Delta": -6.3,
+        "roadLumaDelta": 0.08,
+        "stdLumaDelta": 0.08,
+        "carLumaDelta": 0.08,
+        "intensityLumaDelta": -31.12,
+        "fillLumaDelta": -3.77,
+        "roadBlueDelta": 0.25,
+        "stdBlueDelta": 0.25,
+        "carBlueDelta": 0.25,
+        "hueBlueDelta": -32.76
+      },
+      {
+        "id": "g07",
+        "follow": 7.4,
+        "height": 1.92,
+        "presentPct": 0.2813,
+        "dominant": "upper",
+        "dominantRoad": "car",
+        "contributingRoad": [
+          "road",
+          "std",
+          "car"
+        ],
+        "lumaAxis": [],
+        "roadAxis": [],
+        "stdAxis": [
+          "std"
+        ],
+        "carAxis": [],
+        "hueAxis": [
+          "hue"
+        ],
+        "bandL2": 96.57,
+        "bandLuma": 57.69,
+        "bandBlue": 94.37,
+        "bandLive": [
+          23.09,
+          64.27,
+          94.37
+        ],
+        "bandGold": [
+          49.98,
+          121.76,
+          167.16
+        ],
+        "roadL2Delta": -11.83,
+        "stdL2Delta": -11.83,
+        "carL2Delta": -11.83,
+        "hueL2Delta": 20.27,
+        "intensityL2Delta": 3.72,
+        "fillL2Delta": 0.68,
+        "roadLumaDelta": 8.47,
+        "stdLumaDelta": 8.47,
+        "carLumaDelta": 8.47,
+        "intensityLumaDelta": -2.75,
+        "fillLumaDelta": -0.44,
+        "roadBlueDelta": 8.03,
+        "stdBlueDelta": 8.03,
+        "carBlueDelta": 8.03,
+        "hueBlueDelta": -24.38
+      },
+      {
+        "id": "g08",
+        "follow": 7.4,
+        "height": 1.92,
+        "presentPct": 0.671,
+        "dominant": "bottom",
+        "dominantRoad": "intensity",
+        "contributingRoad": [
+          "hue",
+          "intensity",
+          "fill"
+        ],
+        "lumaAxis": [
+          "intensity",
+          "fill"
+        ],
+        "roadAxis": [],
+        "stdAxis": [],
+        "carAxis": [],
+        "hueAxis": [
+          "hue"
+        ],
+        "bandL2": 87.72,
+        "bandLuma": 51.83,
+        "bandBlue": 70.17,
+        "bandLive": [
+          40.83,
+          53.25,
+          70.17
+        ],
+        "bandGold": [
+          7.01,
+          5.99,
+          4.46
+        ],
+        "roadL2Delta": 0,
+        "stdL2Delta": 0,
+        "carL2Delta": 0,
+        "hueL2Delta": -12.88,
+        "intensityL2Delta": -19.22,
+        "fillL2Delta": -13.96,
+        "roadLumaDelta": 0,
+        "stdLumaDelta": 0,
+        "carLumaDelta": 0,
+        "intensityLumaDelta": -11.46,
+        "fillLumaDelta": -12.39,
+        "roadBlueDelta": 0,
+        "stdBlueDelta": 0,
+        "carBlueDelta": 0,
+        "hueBlueDelta": -21.22
+      }
+    ],
+    "finding": "g01/g05 day-bottom leftover fromScene 0x808080 vs off occupies B −18.5/−20.2. road ≡ std ≡ car ≡ gray cubemap (ΔB +0.2/+0.3). Leftover is not road versus all-standard versus car envMapIntensity. Hue occupies B −30.2/−32.8. Intensity occupies luma. Fill joins intensity on g08 night. g08 night road ≡ std ≡ car ≡ gray because setNight does not rebake. g07 upper remains ramps. Product hex stays 0xd0d4d8. Product exposure stays 0.56. GFX-01 namal car orientation is queued after RSH-036.",
+    "dominantRoad": [
+      "intensity",
+      "intensity",
+      "car",
+      "intensity"
+    ],
+    "roadIsCombined": false,
+    "roadClearsOff": false,
+    "roadClearsHue": false,
+    "stdClearsRoad": false,
+    "roadDeltasUseGrayBaseline": true,
+    "roadZerosRoadEnvMapIntensity": true,
+    "stdZerosAllEnvMapIntensity": true,
+    "carZerosHeroEnvMapIntensity": true,
+    "sizeStaysProductPmrem": true,
+    "lodKeepsGroundRoughness": true,
+    "envKeepsGroundEnvMapIntensity": true
+  },
+  "new_cases": {
+    "total": 28,
+    "source": "scripts/world-road.test.mjs"
+  },
+  "preservation": {
+    "legacy_collider_records": 546,
+    "support_pier_colliders": 176,
+    "ramp_recipes": 50,
+    "checkpoints": 8,
+    "physics_version": 7,
+    "ayalon_lock_generation": 11,
+    "golden_png_changes": 0,
+    "threshold_changes": 0,
+    "freeze_path_count": 85,
+    "evolution_source_count": 58
+  },
+  "remaining": [
+    "exact published-head CI",
+    "original golden 0/4 after sun intensity luma plus bakeEnv 0x3a9ae0 hue (B −30.2/−32.8 vs gray) plus leftover gray cubemap vs IBL-off (B −18.5/−20.2) on g01/g05/g08 bottom; road vs all-standard vs car envMapIntensity are not remaining day drivers (road ≡ std ≡ car ≡ gray); setNight does not rebake so g08 present is the day cubemap; fill joins intensity on g08 night; g07 upper ramps",
+    "GFX-01 namal hero-car GLB vertical/origami queued after RSH-036, not remaining 0/4",
+    "immutable CDN font bytes",
+    "rendering performance"
+  ],
+  "no_freeze_or_acceptance": true
+}
