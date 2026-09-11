@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.81.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.82.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2017,8 +2017,8 @@
         {
           "id": "GFX-02",
           "track": "ayalon",
-          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not autoClear not sortObjects not overrideMaterial not env (leftover 0.2027, auto/sort/override/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0)",
-          "status": "r6_81_done_aud_92_next"
+          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not physicallyCorrectLights not premultipliedAlpha not logarithmicDepthBuffer not env (leftover 0.2027, phys/premul/logdepth/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0)",
+          "status": "r6_82_done_aud_93_next"
         },
         {
           "id": "GFX-03",
@@ -2108,12 +2108,13 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_auto_not_sort_not_override_not_env_not_full_suite_expected_2821",
+      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_phys_not_premul_not_logdepth_not_env_not_full_suite_expected_2849",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 2821,
+      "expected_total": 2849,
+      "predecessor_r6_81_expected": 2821,
       "predecessor_r6_80_expected": 2793,
       "predecessor_r6_79_expected": 2765,
       "predecessor_r6_77_expected": 2709,
@@ -7335,6 +7336,29 @@
         "leftoverBaselinePct": [0.9907, 0.9844, 0.2027, 0.9904],
         "counts": {
           "ramps": 150, "leftover": 2082, "auto": 2083, "sort": 2083, "override": 2083,
+          "env": 2083, "both": 2086, "pack": 2085, "buildings": 696, "instanced": 47, "ground": 1, "remaining": 260
+        },
+        "originalGoldenComparisons": 0
+      },
+      "predecessor_r6_81_expected": 2821,
+      "live_world_pcl": {
+        "status": "g07_after_empty_is_remaining_empty_scene_vs_golden_not_phys_not_premul_not_logdepth_not_env",
+        "protocol": "world-pcl-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelRatio": 1,
+        "pixelThreshold": 0.12,
+        "dominantPcl": ["both", "both", "both", "both"],
+        "physBandDelta": [0, 0, 0, 0],
+        "premulBandDelta": [0, 0, 0, 0],
+        "logdepthBandDelta": [0, 0, 0, 0],
+        "envBandDelta": [0, 0, 0, 0],
+        "bothBandDelta": [0, 0, 0, 0],
+        "packBandDelta": [0, 0, 0, 0],
+        "leftoverBaselinePct": [0.9907, 0.9844, 0.2027, 0.9904],
+        "counts": {
+          "ramps": 150, "leftover": 2082, "phys": 2083, "premul": 2083, "logdepth": 2083,
           "env": 2083, "both": 2086, "pack": 2085, "buildings": 696, "instanced": 47, "ground": 1, "remaining": 260
         },
         "originalGoldenComparisons": 0
