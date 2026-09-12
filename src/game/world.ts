@@ -2218,7 +2218,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       color: 329224,
       transparent: true,
       opacity: 0.28,
-      depthWrite: false
+      depthWrite: false,
+      fog: true
     }));
     const shads = new THREE.InstancedMesh(shadGeo, shadMat, treeSpots.length);
     for (let i = 0; i < treeSpots.length; i++) {
