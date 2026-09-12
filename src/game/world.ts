@@ -1669,7 +1669,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const maxX = def.id === "manhattan" ? 90 : 200;
   const minZ = def.id === "manhattan" ? -200 : -200;
   const maxZ = def.id === "manhattan" ? 200 : 200;
-  const gap = def.theme === "desert" || def.theme === "highway" || def.theme === "snow" ? 18 : def.theme === "port" ? 16 : def.theme === "jaffa" ? 11 : def.theme === "manhattan" ? canyon ? 9 : 14 : def.theme === "park" ? 16 : 13;
+  const gap = def.theme === "desert" || def.theme === "highway" || def.theme === "snow" ? 22 : def.theme === "port" ? 20 : def.theme === "jaffa" ? 14 : def.theme === "manhattan" ? canyon ? 12 : 16 : def.theme === "park" ? 20 : 16;
   const inWater2 = (jx: number, jz: number) => {
     for (const w of bodies) if (Math.abs(jx - w.x) < w.w * 0.42 && Math.abs(jz - w.z) < w.d * 0.42) return true;
     return false;
