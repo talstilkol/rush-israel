@@ -1099,7 +1099,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       group.add(stop);
     }
   };
-  if (def.theme !== "desert" && def.theme !== "snow" && def.theme !== "carmel") {
+  if (def.theme !== "desert" && def.theme !== "snow" && def.theme !== "carmel" && def.theme !== "stone") {
     paintAt(0.012, false);
     paintAt(0.022, true);
   }
