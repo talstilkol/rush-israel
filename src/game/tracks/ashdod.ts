@@ -18,7 +18,7 @@ export default defineTrack({
     ground: 0x7a746c,
     sand: 0xc8b898,
     sky: { ...TLV_BLUE, fogDensity: 0.0014 },
-    water: { x: asd(31.81, 34.62).x, z: asd(31.81, 34.62).z, w: 180, d: 160, color: 0x1a5a70 },
+    water: { x: asd(31.81, 34.62).x, z: asd(31.81, 34.62).z, w: 90, d: 70, color: 0x1a5a70 },
     checkpointCount: 10,
     points: [
       asd(31.821, 34.646),

@@ -28,7 +28,7 @@ export default defineTrack({
       fog: 0x5a6270,
       fogDensity: 0.00145,
     },
-    water: { x: hai(32.822, 35.012).x, z: hai(32.822, 35.012).z, w: 180, d: 160, color: 0x1a5870 },
+    water: { x: hai(32.822, 35.012).x, z: hai(32.822, 35.012).z, w: 90, d: 70, color: 0x1a5870 },
     checkpointCount: 10,
     points: [
       hai(32.8195, 34.989),

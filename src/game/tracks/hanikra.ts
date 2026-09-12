@@ -28,7 +28,7 @@ export default defineTrack({
       fog: 0xc8d4d8,
       fogDensity: 0.0014,
     },
-    water: { x: nik(33.09, 35.098).x, z: nik(33.09, 35.098).z, w: 180, d: 160, color: 0x156878 },
+    water: { x: nik(33.09, 35.098).x, z: nik(33.09, 35.098).z, w: 90, d: 70, color: 0x156878 },
     checkpointCount: 10,
     points: [
       nik(33.093, 35.104),

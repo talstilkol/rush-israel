@@ -29,7 +29,7 @@ export default defineTrack({
       fog: 0xd4c4a0,
       fogDensity: 0.0014,
     },
-    water: { x: mas(31.315, 35.382).x, z: mas(31.315, 35.382).z, w: 180, d: 420, color: 0x2a8898 },
+    water: { x: mas(31.315, 35.382).x, z: mas(31.315, 35.382).z, w: 90, d: 70, color: 0x2a8898 },
     checkpointCount: 7,
     points: [
       mas(31.311, 35.363),
