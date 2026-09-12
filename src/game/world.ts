@@ -1355,7 +1355,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     roughness: 0.42
   }));
   const postSpots = [];
-  if (def.theme !== "desert" && def.theme !== "snow" && def.theme !== "carmel" && def.theme !== "bauhaus" && def.id !== "ayalon") for (let i = 0; i < built.samples.length; i += 5) {
+  if (def.theme !== "desert" && def.theme !== "snow" && def.theme !== "carmel" && def.theme !== "bauhaus" && def.theme !== "jaffa" && def.theme !== "port" && def.id !== "ayalon") for (let i = 0; i < built.samples.length; i += 5) {
     const s = built.samples[i];
     const alley = nearestStreet(s.x, s.z, streets);
     if (alley && alley.dist < alley.street.half + 5) continue;
