@@ -510,6 +510,7 @@ export class RaceEngine {
       polygonOffset: true,
       polygonOffsetFactor: -1,
       polygonOffsetUnits: -1,
+      fog: true,
     });
     this.blobs = this.racers.map(() => {
       const m = new THREE.Mesh(blobGeo, blobMat);
@@ -556,6 +557,7 @@ export class RaceEngine {
       polygonOffset: true,
       polygonOffsetFactor: -2,
       polygonOffsetUnits: -2,
+      fog: true,
     });
     this.skidMesh = new THREE.InstancedMesh(skidGeo, skidMat, 180);
     this.skidMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
@@ -570,6 +572,7 @@ export class RaceEngine {
       transparent: true,
       opacity: 0.26,
       depthWrite: false,
+      fog: true,
     });
     this.smokeMesh = new THREE.InstancedMesh(smokeGeo, smokeMat, 64);
     this.smokeMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
