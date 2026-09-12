@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 20.0.0
+**Version:** 21.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-037 implementation base:** `4904161cc786061acc11942f76ed5666eb5ed61f`
-**State effective on:** merge of the RSH-037 pull request
+**RSH-038 implementation base:** `91754100fc6a5d7bfc852e6aafa28cd17c1762ba`
+**State effective on:** merge of the RSH-038 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-038 — deferred and not authorised
+**Next scheduled unit:** RSH-039 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 37 |
+| Accepted units | 38 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-038 — deferred/not authorised |
+| Queue head | RSH-039 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 30 |
-| RSH-037 one-unit authority | consumed 1/1 |
+| Remaining units | 29 |
+| RSH-038 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -62,5 +62,6 @@
 | RSH-035 | Unique Ayalon golden pack and owner approval recorded on validated merge |
 | RSH-036 | Ayalon freeze and 36 transitive dependency hashes recorded on validated merge |
 | RSH-037 | Instrument p50, p95, p99, draw calls, triangles and memory locked on validated merge |
+| RSH-038 | Quality profiles and dynamic-quality hysteresis locked on validated merge |
 
-No RSH-038 branch, PR or implementation structure is authorised by this state.
+No RSH-039 branch, PR or implementation structure is authorised by this state.

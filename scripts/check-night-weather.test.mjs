@@ -17,7 +17,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-032 night/headlight/weather lock passes and RSH-038 remains absent", () => {
+test("committed RSH-032 night/headlight/weather lock passes and RSH-039 remains absent", () => {
   const result = validateNightWeather();
   assert.deepEqual(result.errors, []);
   assert.equal(result.look, "night");
@@ -26,11 +26,11 @@ test("committed RSH-032 night/headlight/weather lock passes and RSH-038 remains 
   assert.equal(result.skyWidth, 1024);
 });
 
-test("RSH-038 precreation fails closed", () => {
+test("RSH-039 precreation fails closed", () => {
   const result = validateNightWeather({
-    repositoryFiles: ["RSH-038-PREFLIGHT.json", "src/game/ayalon-night/night.ts"],
+    repositoryFiles: ["RSH-039-PREFLIGHT.json", "src/game/ayalon-night/night.ts"],
   });
-  assert.match(messages(result), /RSH-038 was precreated/);
+  assert.match(messages(result), /RSH-039 was precreated/);
 });
 
 test("live night stays non-HDRI with headlights and four weather specs", () => {
