@@ -60,7 +60,7 @@ function inClear(def: TrackDef, x: number, z: number) {
 }
 
 export function generateStreets(def: TrackDef, built: BuiltTrack, bodies: WaterBody[]): StreetRibbon[] {
-  if (def.id === "ayalon") return [];
+  if (def.id === "ayalon" || def.city !== "nyc") return [];
   const names = def.city === "nyc" ? NYC_NAMES : IL_NAMES;
   const out: StreetRibbon[] = [];
   const park = def.theme === "park";
