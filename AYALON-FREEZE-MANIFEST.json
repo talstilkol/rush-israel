@@ -3,7 +3,7 @@
   "document_type": "rush-ayalon-freeze-manifest",
   "unit": "RSH-036",
   "title": "Freeze Ayalon and hash all transitive dependencies",
-  "generated_at": "2026-09-12T04:18:15.733Z",
+  "generated_at": "2026-09-12T04:21:12.818Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "implementation_base": {
@@ -42,7 +42,7 @@
       "scripts/ayalon-hash.mjs": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
       "src/game/tracks/ayalon.ts": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
       "src/game/world-builders/tracks/ayalon.ts": "f7dab8c8c9686e32f8ee26e8ca2910b266ab6f7f35a87494de5a604659c97c2c",
-      "src/game/world.ts": "c7c36636375a35de22dc9e9af6d8d80391cef65323b3312ef400c5b682519fbf",
+      "src/game/world.ts": "af992ec64f9bead7453c0a83fdcdcd0bad1bf98cb4bf4d68388c4fdf59353ff6",
       "src/game/ayalon-lock/geometry.ts": "b5be3e5838fb99449fb7d5a5684177e8626a7a283c54275461fd45faf42a94f7",
       "src/game/ayalon-lock/index.ts": "878d7834dfac9c7756b0929eea515f03ff23b2f8500a63fd49f1fb369c4e3ae6",
       "src/game/ayalon-colliders/colliders.ts": "da611c2867879fa55f6b3db84c76f93725a8b786e0b7dea94079fe6f5ae6708f",
@@ -153,7 +153,7 @@
     "vehicle_envelope_behavior_changed": true
   },
   "identities": {
-    "freeze_source_sha256": "e50d09cee0b1ee6b6d14eb94e3fbbf0c6045ffc474cb8cc8345b52c1b1b0b12d",
+    "freeze_source_sha256": "50f4d8c111078cf47d2fa69c18ef645585c0ed39a2187d7fe377df7a35508823",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
     "contract_sha256": "03727dd56eb2c6808ace47c372ab901dc96a22445d8a71fa09bb87f92d27e9d5",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
@@ -162,7 +162,7 @@
     "pixel_golden_sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
     "checker_test_sha256": "28fc007c15b971cecb21dee3ff5cac13d87a7cd61d761a6f1c6a1d125418e5a6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "a48cf607de8b65d7e4453ae0a31bbbe4d5dc4b60ca35db4d00d37631c597fc03",
+    "freeze_digest_sha256": "f6580aa16a1c97c13ea4c6342f739a902bd42a00c82bddfec3fa89ec87a7752f",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
