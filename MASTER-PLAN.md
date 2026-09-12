@@ -97,7 +97,7 @@ root-branding assets remain unverified.
 | Active PR | none |
 | RSH-039 one-unit authority | 1/1 — consumed |
 | Release gates green | 0/13 |
-| Findings OPEN / MITIGATED / CLOSED | 11 / 8 / 23 |
+| Findings OPEN / MITIGATED / CLOSED | 12 / 8 / 22 |
 
 ## 6. Stage map
 

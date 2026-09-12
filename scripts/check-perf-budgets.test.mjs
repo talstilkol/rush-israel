@@ -5,10 +5,12 @@ import { test } from "node:test";
 import { fromRoot } from "./project-root.mjs";
 import {
   EXPECTED_BUDGET_DIGEST_SHA256,
+  EXPECTED_STREAM_FLAG_SHA256,
   canonicalBudgetDigest,
   validatePerfBudgets,
 } from "./check-perf-budgets.mjs";
 import { CACHE_MAX_AGE_S, DRAW_CALL_TARGET, STREAMING_MUSIC } from "../src/game/perf-budgets/budgets.ts";
+import { MESH_STREAMING as LIVE_MESH_STREAMING } from "../src/game/stream-flag.ts";
 
 function messages(result) {
   return result.errors.join("\n");
@@ -26,6 +28,24 @@ test("RSH-040 precreation fails closed", () => {
     repositoryFiles: ["RSH-040-PREFLIGHT.json", "src/game/leak-cycles/cycles.ts", "scripts/check-leak.mjs"],
   });
   assert.match(messages(result), /RSH-040 was precreated/);
+});
+
+test("live stream-flag MESH_STREAMING stays false and hashed", () => {
+  const source = readFileSync(fromRoot("src", "game", "stream-flag.ts"), "utf8");
+  assert.match(source, /export const MESH_STREAMING = false/);
+  assert.equal(createHash("sha256").update(source).digest("hex"), EXPECTED_STREAM_FLAG_SHA256);
+  assert.equal(LIVE_MESH_STREAMING, false);
+  const flipped = validatePerfBudgets({
+    streamFlagSource: "export const MESH_STREAMING = true;\n",
+  });
+  assert.match(messages(flipped), /stream-flag/);
+});
+
+test("P2-09 stays OPEN without a JS/asset byte-size check", () => {
+  const result = validatePerfBudgets({
+    findingsSource: "| P1-13 | P1 | **OPEN** |\n| P2-09 | P2 | **CLOSED** | No bundle or asset budget is enforced | overclaim | RSH-039 |\n",
+  });
+  assert.match(messages(result), /P2-09 must stay OPEN/);
 });
 
 test("budgets are locked without leak cycles or a real-device baseline", () => {

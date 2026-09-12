@@ -16,13 +16,14 @@ The current standing owner instruction to finish the master plan authorised RSH-
 - bundle, streaming and cache budgets are locked at `src/game/perf-budgets/`;
 - live cache remains `server/middleware/game-cache.ts` (`/game/` + `/basis/` immutable max-age=31536000) and HTML `no-cache`;
 - glTF / mesh / music streaming stay off;
+- live `src/game/stream-flag.ts` stays `export const MESH_STREAMING = false`;
 - Ayalon draw-call target is 80;
 - production `finishNow` remains forbidden;
 - leak cycles are not enforced (RSH-040);
 - P1-13 stays OPEN — no accepted real-device baseline;
-- P2-09 is CLOSED;
+- P2-09 stays OPEN — no production JS/asset byte-size CI check;
 - Ayalon freeze stays granted with 36 hashes unchanged;
-- golden PNG bytes, `ayalon.lock`, track / world / physics / cars / audio / HUD / input sources, engine adapters, live cache/quality sources and `package.json` are not rewritten;
+- golden PNG bytes, `ayalon.lock`, track / world / physics / cars / audio / HUD / input sources, engine adapters, live cache/quality/`stream-flag.ts` sources and `package.json` are not rewritten;
 - GIS/navigation claims and public distribution remain forbidden;
 - no RSH-040 leak-cycle structure exists.
 

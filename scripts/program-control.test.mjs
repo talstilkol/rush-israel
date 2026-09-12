@@ -580,9 +580,9 @@ test("findings close RSH-024 secret scanning without overstating GitHub enforcem
     p0: 12,
     p1: 18,
     p2: 12,
-    open: 11,
+    open: 12,
     mitigated: 8,
-    closed: 23,
+    closed: 22,
     register: "FINDINGS-REGISTER.md",
   });
   const findings = readFileSync(fromRoot("FINDINGS-REGISTER.md"), "utf8");
@@ -595,6 +595,7 @@ test("findings close RSH-024 secret scanning without overstating GitHub enforcem
   for (const id of ["P1-05", "P1-06", "P1-07", "P1-14", "P1-15", "P2-06", "P2-07"]) assert.match(findings, new RegExp("\\| " + id + " \\| [^\n]+\\| \\*\\*CLOSED\\*\\*"));
   assert.match(findings, /\| P0-12 \| P0 \| \*\*MITIGATED\*\*/);
   assert.match(findings, /\| P1-17 \| P1 \| \*\*MITIGATED\*\*/);
+  assert.match(findings, /\| P2-09 \| P2 \| \*\*OPEN\*\*/);
 });
 
 test("asset provenance remains accepted without claiming legal clearance", () => {

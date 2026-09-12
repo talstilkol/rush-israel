@@ -13,12 +13,15 @@ units consume. It records the existing cache-header contract, forbids
 production `finishNow` / mesh-or-glTF streaming, and pins the Ayalon
 draw-call target. It does **not** claim desktop/mobile performance gates
 are green, run leak cycles (RSH-040), accept a real-device baseline
-(P1-13 / RSH-043), rewrite frozen Ayalon / engine-adapter / HUD / package
-sources, or flip release gates 8–9.
+(P1-13 / RSH-043), add a production JS/asset byte-size CI check
+(P2-09 stays OPEN), rewrite frozen Ayalon / engine-adapter / HUD /
+`stream-flag.ts` / package sources, or flip release gates 8–9.
 
 Live cache already exists in `server/middleware/game-cache.ts` and
-`scripts/cache-headers-smoke.mjs`. This unit canonicalises that surface at
-`src/game/perf-budgets/` and fail-closes if it disappears or drifts.
+`scripts/cache-headers-smoke.mjs`. Live mesh streaming is the existing
+`src/game/stream-flag.ts` flag imported by `engine.ts`. This unit
+canonicalises those surfaces at `src/game/perf-budgets/` and fail-closes
+if they disappear or drift.
 
 ## Locked identity (must remain exact)
 
@@ -28,11 +31,13 @@ Live cache already exists in `server/middleware/game-cache.ts` and
 | Asset cache | `public, max-age=31536000, immutable` |
 | HTML cache | `no-cache` |
 | glTF / mesh streaming | false |
+| Live mesh-streaming flag | `src/game/stream-flag.ts` (`export const MESH_STREAMING = false`) |
 | Streaming music | false |
 | Draw-call target | 80 |
 | Production `finishNow` | forbidden |
 | Leak cycles enforced | false |
 | Real-device baseline accepted | false |
+| P2-09 | remains OPEN (no JS/asset byte-size CI check) |
 | GIS / navigation claim | forbidden |
 | Public distribution | forbidden |
 | Ayalon freeze | remains granted, 36 hashes unchanged |
@@ -42,7 +47,8 @@ Live cache already exists in `server/middleware/game-cache.ts` and
 
 Golden PNG bytes, `ayalon.lock`, track / world / physics / cars / audio /
 HUD / input sources, engine adapters, quality-profile live sources,
-`game-cache.ts`, `cache-headers-smoke.mjs` and `package.json` change by `0`.
+`game-cache.ts`, `cache-headers-smoke.mjs`, `stream-flag.ts` and
+`package.json` change by `0`.
 
 ## Deferred boundary
 

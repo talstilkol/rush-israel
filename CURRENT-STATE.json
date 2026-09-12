@@ -1366,9 +1366,9 @@
     "p0": 12,
     "p1": 18,
     "p2": 12,
-    "open": 11,
+    "open": 12,
     "mitigated": 8,
-    "closed": 23,
+    "closed": 22,
     "register": "FINDINGS-REGISTER.md"
   },
   "constraints": [
