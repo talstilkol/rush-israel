@@ -12,7 +12,7 @@ export default defineTrack({
     description: "מעבר הרים, שונית אלמוג מבט, נחל שלמה והאדום. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "The mountain pass, Coral Beach view, Nahal Shlomo and the red rock. Inspired by the place — not a map, not GIS.",
     image: "/tracks/eilatmtn.jpg",
-    width: 20,
+    width: 26,
     seed: 1951,
     theme: "desert",
     ground: 0xa45a3a,

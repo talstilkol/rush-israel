@@ -698,7 +698,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.theme === "carmel" ? 160 : 78;
+    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.id === "eilatmtn" || def.id === "masada" ? 220 : def.theme === "carmel" ? 160 : 78;
     const hw = built.width / 2 + 4.6;
     let valleyX = 0;
     let valleyZ = 0;
@@ -730,11 +730,23 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       floor.receiveShadow = true;
       group.add(floor);
     }
+    if (def.id === "hermon") {
+      const peakY = built.samples[built.samples.length - 1]?.y ?? 80;
+      const cap = new THREE.Mesh(keep(new THREE.CircleGeometry(420, 24)), keep(new THREE.MeshStandardMaterial({
+        color: 0xe8eef4,
+        roughness: 0.92,
+        envMapIntensity: 0.2,
+      })));
+      cap.rotation.x = -Math.PI / 2;
+      cap.position.set(valleyX, peakY - 6, valleyZ);
+      cap.receiveShadow = true;
+      group.add(cap);
+    }
     for (let i = 0; i <= n; i++) {
       const s = samp(built, i);
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 148 + s.y * 0.6 : def.theme === "carmel" ? s.y + 78 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 148 + s.y * 0.6 : def.id === "eilatmtn" ? s.y + 72 + s.y * 0.45 : def.theme === "carmel" ? s.y + 78 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
