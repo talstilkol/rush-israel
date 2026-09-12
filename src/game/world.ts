@@ -1988,7 +1988,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     roughness: nyc ? 0.72 : 0.28,
     envMapIntensity: 1.1
   }));
-  const tanks = new THREE.InstancedMesh(tankGeo, tankMat, def.theme === "jaffa" || def.theme === "carmel" || def.theme === "stone" ? 0 : Math.min(placements.length, nyc ? 70 : 90));
+  const tanks = new THREE.InstancedMesh(tankGeo, tankMat, def.theme === "jaffa" || def.theme === "carmel" || def.theme === "stone" ? 0 : Math.min(placements.length, nyc ? 70 : 40));
   for (let i = 0; i < tanks.count; i++) {
     const p = placements[i];
     _dummy.position.set(p.x + 1.1, p.y + p.sy + (nyc ? 0.6 : 0.4), p.z);
