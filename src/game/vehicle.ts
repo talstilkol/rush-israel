@@ -597,7 +597,7 @@ export class ArcadeCar {
         }
       }
     } else if (!onRamp) {
-      const wall = half + 0.35;
+      const wall = half + 3.8;
       if (dist > wall) {
         const nx = (this.x - s.x) / (dist || 1);
         const nz = (this.z - s.z) / (dist || 1);
