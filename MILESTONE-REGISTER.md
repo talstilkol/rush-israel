@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 22.0.0
+**Version:** 23.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-039 implementation base:** `817ab7ed71d396b200188b16c27d627a1f2d7814`
-**State effective on:** merge of the RSH-039 pull request
+**RSH-040 implementation base:** `da690504d360a5b06f53783e9f86e0d7bf73cc01`
+**State effective on:** merge of the RSH-040 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-040 — deferred and not authorised
+**Next scheduled unit:** RSH-041 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 39 |
+| Accepted units | 40 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-040 — deferred/not authorised |
+| Queue head | RSH-041 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 28 |
-| RSH-039 one-unit authority | consumed 1/1 |
+| Remaining units | 27 |
+| RSH-040 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -64,5 +64,6 @@
 | RSH-037 | Instrument p50, p95, p99, draw calls, triangles and memory locked on validated merge |
 | RSH-038 | Quality profiles and dynamic-quality hysteresis locked on validated merge |
 | RSH-039 | Bundle, streaming and cache budgets locked on validated merge |
+| RSH-040 | 20 enter-exit leak cycles locked on validated merge |
 
-No RSH-040 branch, PR or implementation structure is authorised by this state.
+No RSH-041 branch, PR or implementation structure is authorised by this state.

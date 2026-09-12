@@ -14,18 +14,18 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-037 performance instrument passes and RSH-040 remains absent", () => {
+test("committed RSH-037 performance instrument passes and RSH-041 remains absent", () => {
   const result = validatePerfInstrument();
   assert.deepEqual(result.errors, []);
   assert.equal(result.instrumented, true);
   assert.equal(result.metrics, 6);
 });
 
-test("RSH-040 precreation fails closed", () => {
+test("RSH-041 precreation fails closed", () => {
   const result = validatePerfInstrument({
-    repositoryFiles: ["RSH-040-PREFLIGHT.json", "src/game/leak-cycles/cycles.ts"],
+    repositoryFiles: ["RSH-041-PREFLIGHT.json", "src/game/context-loss/restore.ts"],
   });
-  assert.match(messages(result), /RSH-040 was precreated/);
+  assert.match(messages(result), /RSH-041 was precreated/);
 });
 
 test("instrumentation is locked without budgets, quality profiles or a real-device baseline", () => {
@@ -41,7 +41,7 @@ test("instrumentation is locked without budgets, quality profiles or a real-devi
   assert.equal(manifest.lock.real_device_baseline_accepted, false);
   assert.equal(manifest.lock.gis_claim, false);
   assert.equal(manifest.lock.public_distribution, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-040");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-041");
   assert.deepEqual(percentile([1, 2, 3, 4], 50), 3);
   assert.deepEqual(sampleGpuMemory({ memory: { textures: 4, geometries: 7 } }), { textures: 4, geometries: 7 });
   assert.equal(sampleJsHeap(undefined), null);

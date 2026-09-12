@@ -17,7 +17,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-034 audio/HUD/input lock passes and RSH-040 remains absent", () => {
+test("committed RSH-034 audio/HUD/input lock passes and RSH-041 remains absent", () => {
   const result = validateAudioHudInput();
   assert.deepEqual(result.errors, []);
   assert.equal(result.backend, "oscillator");
@@ -25,11 +25,11 @@ test("committed RSH-034 audio/HUD/input lock passes and RSH-040 remains absent",
   assert.equal(result.speedScale, 3.6);
 });
 
-test("RSH-040 precreation fails closed", () => {
+test("RSH-041 precreation fails closed", () => {
   const result = validateAudioHudInput({
-    repositoryFiles: ["RSH-040-PREFLIGHT.json", "src/game/leak-cycles/cycles.ts"],
+    repositoryFiles: ["RSH-041-PREFLIGHT.json", "src/game/context-loss/restore.ts"],
   });
-  assert.match(messages(result), /RSH-040 was precreated/);
+  assert.match(messages(result), /RSH-041 was precreated/);
 });
 
 test("live audio stays oscillators with locked HUD speed and input maps", () => {

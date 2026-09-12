@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-leak-cycles-manifest",
+  "unit": "RSH-040",
+  "title": "Pass 20 race enter-exit cycles without a resource leak",
+  "generated_at": "2026-09-12T17:20:15.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "da690504d360a5b06f53783e9f86e0d7bf73cc01",
+    "tree_sha": "5555ead41e9eb263accaac1bb51bdcb02d71900b",
+    "branch": "agent/rsh-040-leak-cycles"
+  },
+  "lock": {
+    "enter_exit_cycles": 20,
+    "required_ci_cycles": 2,
+    "texture_delta_max": 2,
+    "geometry_delta_max": 2,
+    "dispose_all_idempotent": true,
+    "live_registry": "src/rendering/ResourceRegistry.ts",
+    "live_dispose_object3d": "src/rendering/disposeObject3D.ts",
+    "live_soak": "scripts/soak-menu-race.mjs",
+    "live_soak_smoke": "scripts/soak-smoke.mjs",
+    "context_loss_enforced": false,
+    "soak_enforced": false,
+    "real_device_baseline_accepted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "owner_settings_freeze": false,
+    "public_distribution": false
+  },
+  "lock_module": {
+    "directory": "src/game/leak-cycles",
+    "cycles": "src/game/leak-cycles/cycles.ts",
+    "index": "src/game/leak-cycles/index.ts"
+  },
+  "preservation": {
+    "golden_png_changes": 0,
+    "ayalon_lock_changes": 0,
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "cars_changes": 0,
+    "audio_hud_changes": 0,
+    "engine_adapter_changes": 0,
+    "live_cache_changes": 0,
+    "quality_profile_changes": 0,
+    "registry_changes": 0,
+    "package_json_changes": 0,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
+    "index_source_sha256": "976cbbc6513426f5272652d7f579bd2309a181478f0c089db23213006a4f5c11",
+    "contract_sha256": "130ef04232021e0cc47ed8380d9dc758a192e07674769bc304bb2c51fb031bf9",
+    "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
+    "dispose_object3d_source_sha256": "606e9905b68a2949d2d49407d5815672763b0252c41ffb36aa1484c8e3315264",
+    "soak_source_sha256": "a684508627830a4fff5030232ba36dd1b81df82b4924aa307f94116a5dc7df60",
+    "soak_smoke_source_sha256": "46f3c813263d2046771a918bdaa624c13ff42fdef580448764bfe6b45a6f33c2",
+    "checker_test_sha256": "bf34e0e0018a50948e0cf2dff3dac55b6cd928937c9f0a604bdd2af3e8c5f9b7",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "leak_digest_sha256": "d4a6b8abcdf23a734f40b96001a3146ae20056e4ef30536aada7052c943c69a2",
+    "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
+    "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1",
+    "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+    "quality_profiles_source_sha256": "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a",
+    "budgets_source_sha256": "c51a8040c9179ff6a5290ed39249eb7c38d1cd14dc0143982cc594801c421990",
+    "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-041",
+    "rsh_040_authorized": true,
+    "rsh_040_started": true,
+    "rsh_041_authorized": false,
+    "rsh_041_started": false,
+    "forbidden_prefixes": [
+      ".rsh041",
+      ".github/workflows/rsh-041-",
+      "RSH-041-",
+      "scripts/rsh041-",
+      "scripts/check-context-loss",
+      "scripts/check-webgl-context",
+      "scripts/check-context-restore",
+      "src/game/context-loss/"
+    ]
+  }
+}

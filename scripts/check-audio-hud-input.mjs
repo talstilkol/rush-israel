@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "5c3c2e049fca0b5e035bb39c32037192472177f2a3d3a6b6388048816cdbc1e0";
+export const EXPECTED_MANIFEST_SHA256 = "9e5a78b20fbc86e8748eb852e3e1f8019a7a9c6e6ddb2217c9d92128df8cd46f";
 export const EXPECTED_FEEL_SHA256 = "fea9f1a017261cb0c0649ed8c472825954bb236224e741a00ac51b71255abc1e";
 export const EXPECTED_INDEX_SHA256 = "06a2113bb5a45027ab22f9a5563a217d477f0b3f0176a458786d7373cd536ba6";
 export const EXPECTED_AUDIO_SHA256 = "bf83db8b5e0929dcd7d057172db6dedbaff1cad84405f152a3ef6ca884a3b650";
@@ -15,7 +15,7 @@ export const EXPECTED_HUD_SHA256 = "97eae819cf490729bf36de0dbaf9f79a6154e52b844f
 export const EXPECTED_TOUCH_SHA256 = "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8";
 export const EXPECTED_CARS_SHA256 = "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
-export const EXPECTED_CHECKER_TEST_SHA256 = "5de03a9a03fe6c296cf1373aede6d9bf827d530491687695834f2c9aa402ecb5";
+export const EXPECTED_CHECKER_TEST_SHA256 = "e4c59c032fe5af27aa154b8a4a561f50d70da2c92b1b4c62e1b516a4739759e5";
 export const EXPECTED_AUDIO_DIGEST_SHA256 = "b5a3a609d13ad78708f362bbff4caaf071454c884aa34bf874fbeff18f56ca3f";
 export const EXPECTED_INPUT_DIGEST_SHA256 = "ee389f24969bad529a9e10df5b881f7efc773ecd845056b8aefcc8c52f149809";
 export const EXPECTED_HUD_DIGEST_SHA256 = "a4516f8b7784d8270fbb8a766515e40ca9ffa70103fe81b63af3733ce05faecb";
@@ -214,13 +214,13 @@ export function validateAudioHudInput(overrides = {}) {
   }
 
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-040 was precreated: ${later.join(", ")}`);
+  if (later.length) errors.push(`RSH-041 was precreated: ${later.join(", ")}`);
   if (
-    manifest.deferred_boundary?.queue_head !== "RSH-040"
-    || manifest.deferred_boundary?.rsh_035_authorized !== true || manifest.deferred_boundary?.rsh_036_authorized !== true || manifest.deferred_boundary?.rsh_037_authorized !== true || manifest.deferred_boundary?.rsh_038_authorized !== true || manifest.deferred_boundary?.rsh_039_authorized !== true || manifest.deferred_boundary?.rsh_040_authorized !== false
-    || manifest.deferred_boundary?.rsh_035_started !== true || manifest.deferred_boundary?.rsh_036_started !== true || manifest.deferred_boundary?.rsh_037_started !== true || manifest.deferred_boundary?.rsh_038_started !== true || manifest.deferred_boundary?.rsh_039_started !== true || manifest.deferred_boundary?.rsh_040_started !== false
+    manifest.deferred_boundary?.queue_head !== "RSH-041"
+    || manifest.deferred_boundary?.rsh_035_authorized !== true || manifest.deferred_boundary?.rsh_036_authorized !== true || manifest.deferred_boundary?.rsh_037_authorized !== true || manifest.deferred_boundary?.rsh_038_authorized !== true || manifest.deferred_boundary?.rsh_039_authorized !== true || manifest.deferred_boundary?.rsh_040_authorized !== true || manifest.deferred_boundary?.rsh_041_authorized !== false
+    || manifest.deferred_boundary?.rsh_035_started !== true || manifest.deferred_boundary?.rsh_036_started !== true || manifest.deferred_boundary?.rsh_037_started !== true || manifest.deferred_boundary?.rsh_038_started !== true || manifest.deferred_boundary?.rsh_039_started !== true || manifest.deferred_boundary?.rsh_040_started !== true || manifest.deferred_boundary?.rsh_041_started !== false
   ) {
-    errors.push("RSH-040 deferred boundary changed");
+    errors.push("RSH-041 deferred boundary changed");
   }
 
   return {
@@ -243,5 +243,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`audio-hud-input fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`audio-hud-input ok: backend ${result.backend}; radio ${result.radioCount}; speed ${result.speedScale}; RSH-040 deferred`);
+  console.log(`audio-hud-input ok: backend ${result.backend}; radio ${result.radioCount}; speed ${result.speedScale}; RSH-041 deferred`);
 }
