@@ -2348,7 +2348,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     pools.setMatrixAt(i, _dummy.matrix);
   }
   pools.visible = isNight && lampCount > 0 && roadDecals;
-  if (lampCount) group.add(pools);
+  if (isNight && roadDecals && lampCount) group.add(pools);
   if (def.id === "ayalon" && lampCount) {
     const oppOff = built.width + 18;
     const poles2 = new THREE.InstancedMesh(poleGeo, poleMat, lampCount);
