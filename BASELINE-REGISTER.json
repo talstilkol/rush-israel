@@ -1,7 +1,7 @@
 {
-  "schema_version": "19.0.0",
+  "schema_version": "20.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-03T08:03:00.000Z",
+  "generated_at": "2026-09-12T16:20:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -673,23 +673,36 @@
       "unresolved_review_threads": 0,
       "recorded_at": "2026-09-03T07:42:36.000Z",
       "description": "Audio, HUD, keyboard, touch and gamepad behaviour locked on validated merge."
+    },
+    {
+      "id": "B036-rsh-036-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-036",
+      "pull_request": 40,
+      "commit_sha": "4904161cc786061acc11942f76ed5666eb5ed61f",
+      "tree_sha": "2aa37f2b3508e9df3fd52a3bcf2af5533b90dab8",
+      "validated_head_sha": "8ea8b31364096488860c1fe62779a38bd5d66c82",
+      "workflow_run": 34704099167,
+      "post_merge_workflow_run": 34704422852,
+      "recorded_at": "2026-09-12T16:10:27Z",
+      "description": "Ayalon freeze granted with 36 transitive SHA-256 hashes."
     }
   ],
   "working_state": {
-    "unit": "RSH-036",
+    "unit": "RSH-037",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-    "branch": "agent/rsh-036-ayalon-freeze-lock",
-    "manifest": "AYALON-FREEZE-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-036 pull request"
+    "implementation_base_sha": "4904161cc786061acc11942f76ed5666eb5ed61f",
+    "branch": "agent/rsh-037-perf-instrument",
+    "manifest": "PERF-INSTRUMENT-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-037 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-037",
+    "queue_head": "RSH-038",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_037_authorized": false
+    "RSH_038_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

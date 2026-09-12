@@ -183,7 +183,7 @@ test("the RSH-021 schema remains exact beneath the accepted RSH-022 recovery ove
   assert.equal(manifest.deferred_boundary.rsh_025_started, true);
   assert.equal(manifest.deferred_boundary.rsh_025_authorized, true);
   assert.equal(manifest.deferred_boundary.rsh_025_state, "accepted_on_merge");
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-037");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-038");
   assert.equal(manifest.deferred_boundary.rsh_026_started, true);
   assert.equal(manifest.deferred_boundary.rsh_026_authorized, true);
   assert.equal(manifest.deferred_boundary.rsh_027_started, true);
@@ -206,8 +206,10 @@ test("the RSH-021 schema remains exact beneath the accepted RSH-022 recovery ove
   assert.equal(manifest.deferred_boundary.rsh_035_authorized, true);
   assert.equal(manifest.deferred_boundary.rsh_036_started, true);
   assert.equal(manifest.deferred_boundary.rsh_036_authorized, true);
-  assert.equal(manifest.deferred_boundary.rsh_037_started, false);
-  assert.equal(manifest.deferred_boundary.rsh_037_authorized, false);
+  assert.equal(manifest.deferred_boundary.rsh_037_started, true);
+  assert.equal(manifest.deferred_boundary.rsh_038_started, false);
+  assert.equal(manifest.deferred_boundary.rsh_037_authorized, true);
+  assert.equal(manifest.deferred_boundary.rsh_038_authorized, false);
 });
 
 test("the save facade preserves rejected bytes and delegates explicit recovery", () => {

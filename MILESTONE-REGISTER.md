@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 19.0.0
+**Version:** 20.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-036 implementation base:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`
-**State effective on:** merge of the RSH-036 pull request
+**RSH-037 implementation base:** `4904161cc786061acc11942f76ed5666eb5ed61f`
+**State effective on:** merge of the RSH-037 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-037 — deferred and not authorised
+**Next scheduled unit:** RSH-038 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -18,7 +18,7 @@
 | M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | ACCEPTED | Core, UI, resources and dependencies have explicit owners and boundaries. |
 | M4 | Data integrity and production security | RSH-021–RSH-024 | 4 | ACCEPTED | Save data is recoverable and production has no debug or secret exposure. |
 | M5 | Ayalon vertical slice | RSH-025–RSH-036 | 12 | ACCEPTED | Ayalon is owner-approved, golden-locked and dependency-frozen. |
-| M6 | Performance and reliability | RSH-037–RSH-043 | 7 | DEFERRED | Performance, leak, recovery, soak and compatibility targets pass. |
+| M6 | Performance and reliability | RSH-037–RSH-043 | 7 | IN PROGRESS | Performance, leak, recovery, soak and compatibility targets pass. |
 | M7 | UX, accessibility and mobile | RSH-044–RSH-048 | 5 | DEFERRED | Keyboard, touch and gamepad flows pass UX, accessibility and privacy gates. |
 | M8 | Eight-track Version 1 content | RSH-049–RSH-062 | 14 | DEFERRED | Eight of eight MVP tracks are driveable, golden-approved and frozen. |
 | M9 | Release | RSH-063–RSH-067 | 5 | DEFERRED | All 13 release gates pass and `v1.0.0` has rollback proof. |
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 36 |
+| Accepted units | 37 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-037 — deferred/not authorised |
+| Queue head | RSH-038 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 31 |
-| RSH-036 one-unit authority | consumed 1/1 |
+| Remaining units | 30 |
+| RSH-037 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -61,5 +61,6 @@
 | RSH-034 | Audio, HUD, keyboard, touch and gamepad behaviour locked on validated merge |
 | RSH-035 | Unique Ayalon golden pack and owner approval recorded on validated merge |
 | RSH-036 | Ayalon freeze and 36 transitive dependency hashes recorded on validated merge |
+| RSH-037 | Instrument p50, p95, p99, draw calls, triangles and memory locked on validated merge |
 
-No RSH-037 branch, PR or implementation structure is authorised by this state.
+No RSH-038 branch, PR or implementation structure is authorised by this state.
