@@ -12,7 +12,7 @@ export default defineTrack({
     description: "כביש 4 על הגבול, המנהרות, הגרוטות הלבנות ושלומי. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Route 4 on the border, the tunnels, the white grottos and Shlomi. Inspired by the place — not a map, not GIS.",
     image: "/tracks/hanikra.jpg",
-    width: 20,
+    width: 26,
     seed: 1949,
     theme: "carmel",
     ground: 0xc8c0b0,
@@ -28,7 +28,7 @@ export default defineTrack({
       fog: 0xc8d4d8,
       fogDensity: 0.0014,
     },
-    water: { x: nik(33.09, 35.098).x, z: nik(33.09, 35.098).z, w: 240, d: 320, color: 0x156878 },
+    water: { x: nik(33.09, 35.098).x, z: nik(33.09, 35.098).z, w: 180, d: 160, color: 0x156878 },
     checkpointCount: 10,
     points: [
       nik(33.093, 35.104),
