@@ -890,7 +890,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       jerG.translate(0, 0, -1.3);
       jerG.computeVertexNormals();
       const jerM = keep(new THREE.MeshStandardMaterial({ color: 0xb4aaa0, roughness: 0.86, metalness: 0 }));
-      const nJer = 160;
+      const nJer = 80;
       const jerRows = [
         -built.width / 2 - 0.5,
         built.width / 2 + 0.5,
