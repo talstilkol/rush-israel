@@ -1742,7 +1742,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     group.add(trunks2, fronds, caps);
   }
   const heightAt = () => def.theme === "desert" ? 4 + rng() * 10 : def.theme === "jaffa" ? 3.4 + rng() * 4.2 : def.theme === "stone" ? 4.2 + rng() * 7.5 : def.theme === "carmel" ? 3.6 + rng() * 5.5 : def.theme === "port" ? 5 + rng() * 14 : def.theme === "highway" ? 16 + rng() * 38 : def.theme === "manhattan" ? 18 + rng() * 48 + (def.id === "timessquare" ? 8 : 0) : def.theme === "park" ? 14 + rng() * 26 : def.theme === "snow" ? 4 + rng() * 8 : 11 + rng() * 26;
-  const step = def.theme === "highway" || def.theme === "desert" || def.theme === "snow" ? 14 : 7;
+  const step = def.theme === "highway" || def.theme === "desert" || def.theme === "snow" ? 18 : 10;
   let loopCx = 0;
   let loopCz = 0;
   for (const s of built.samples) {
