@@ -1,7 +1,7 @@
-**Version:** 21.28.0
+**Version:** 21.29.0
 **Date:** 2026-09-12, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** c525d64
+**Repair base:** 6fa7eda
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -177,6 +177,10 @@ plus this steer floor: namal/oldjaffa/caesarea/scopus/ayalon spawn
 driveable in-browser; Haifa Baháʼí pines off ribbon; ghost 0 at spawn;
 procedural Y-up car. Pixel leftover g07 0.2027 unchanged.
 `freeze_granted=false`. No merge, no PNG refresh, no RSH-037.
+
+## r7.29 Hadera + Petah Tikva (not remaining 0/4, not freeze grant)
+Coastal water shrink; city no jersey. Live both 19–21 km/h.
+`freeze_granted=false`.
 
 ## r7.28 Azrieli city paint (not remaining 0/4, not freeze grant)
 Bauhaus, no jersey, fogged paint. Live 19–21 km/h. `freeze_granted=false`.
@@ -619,5 +623,5 @@ under OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT until the remaining 32
 units are implemented. RSH-037 stays unactivated as a queue unit;
 instrumentation already lives on the HUD.
 
-Master plan r7.28 retains 67 units, 42 historical findings, 6 bundles and 104
+Master plan r7.29 retains 67 units, 42 historical findings, 6 bundles and 104
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

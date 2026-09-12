@@ -1207,7 +1207,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     metalness: 0.06,
     envMapIntensity: 0.4
   }));
-  if (def.theme !== "desert" && def.theme !== "snow" && def.id !== "rothschild" && def.id !== "telaviv" && def.theme !== "stone" && def.theme !== "jaffa" && def.theme !== "carmel") {
+  if (def.theme !== "desert" && def.theme !== "snow" && def.id !== "rothschild" && def.id !== "telaviv" && def.id !== "petah" && def.theme !== "stone" && def.theme !== "jaffa" && def.theme !== "carmel") {
     group.add(new THREE.Mesh(keep(buildJersey(built, 1)), jerseyMat));
     group.add(new THREE.Mesh(keep(buildJersey(built, -1)), jerseyMat));
     const capMat = keep(new THREE.MeshStandardMaterial({ color: 0xf4f0ea, roughness: 0.55, metalness: 0.04 }));

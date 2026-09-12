@@ -12,7 +12,7 @@ export default defineTrack({
     description: "ז׳בוטינסקי, הקניון הגדול, בילינסון ואחוזת בית. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Jabotinsky, HaGadol mall, Beilinson and Ahuzat Bayit. Inspired by the place — not a map, not GIS.",
     image: "/tracks/petah.jpg",
-    width: 20,
+    width: 26,
     seed: 1878,
     theme: "bauhaus",
     ground: 0x7a7a70,
