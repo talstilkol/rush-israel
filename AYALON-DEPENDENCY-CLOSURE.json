@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "984d058bf1e4d8af0735e0e31fe76ba7204efd8a1a6f4b1bde395bdcfe2aad8d"
+      "sha256": "d48a40247fbac60bf3b41e70de34afa4c793ae9374c7f4254d5b227cdb1af18d"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2064,7 +2064,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "1dadb48ed1cf7fc8bc0b0398afbd0d65e0d6e8ee1a085d6347a5ad19561e32e0"
+      "sha256": "f37ad68017c24d20e798ff707800b0d2ff85213a6fc57abe4b6b58d58ddc73a9"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2989,7 +2989,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "205033b0afcbad4671acb3c441c3546d15f21bf1bfae9dda85dd6a4648d336d3"
+      "sha256": "b00f0869e07ad044e99d893a7b92138b80d7e0ddd846330755fc4c13b3e3f744"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -3138,8 +3138,8 @@
     },
     {
       "path": "src/game/engine/rendering-adapter.ts",
-      "bytes": 34986,
-      "sha256": "78d55254cd4bade71e20338a1068eec5cb6834fb4008fbd28145b5062d10767e"
+      "bytes": 35239,
+      "sha256": "a49013b7f2ce01eab084a7da1ff91bd99888fe549ebd36d97344f57cd102e980"
     },
     {
       "path": "src/game/facade-assets.ts",
@@ -3978,8 +3978,8 @@
     },
     {
       "path": "src/game/world.ts",
-      "bytes": 117433,
-      "sha256": "c65c5c7d7a95eb59f0ce3faa7370178234938dd40914ebfe296c62f611459bea"
+      "bytes": 117971,
+      "sha256": "2fe2e5ece5e99c3d65bcfbf1567c3273d64ed4e0fd5f4fac5726c1202fb8b4f6"
     },
     {
       "path": "src/lib/error-component.tsx",
@@ -11251,5 +11251,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "bd98b1abf413ea4dfc57f7fcedd49f3c97b72ef24394d750a224e389b3a4f71b"
+  "digest_sha256": "7f7f7c61f39b1bbe04211af8ce35e9c380875888087eb5a7fe8fe3b59caa6079"
 }

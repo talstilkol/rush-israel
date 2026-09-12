@@ -670,28 +670,35 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   ground.position.y = -0.4;
   ground.receiveShadow = true;
   group.add(ground);
-  const domeMat = keep(new THREE.MeshBasicMaterial({
-    color: isNight ? 0x0e1a2c : def.theme === "desert" || def.id === "ramon" ? 0x87b4d8 : def.theme === "snow" || def.id === "hermon" ? 0xb8d4f0 : 0x4a9ad8,
-    side: 1,
-    fog: false,
-    depthWrite: false,
-    toneMapped: false
-  }));
-  const dome = new THREE.Mesh(keep(new THREE.SphereGeometry(8600, 24, 10, 0, Math.PI * 2, 0, Math.PI * 0.54)), domeMat);
-  dome.position.y = -80;
-  dome.frustumCulled = false;
-  group.add(dome);
+  let dome: THREE.Mesh | null = null;
+  let domeMat: THREE.MeshBasicMaterial | null = null;
+  if (def.id === "ayalon") {
+    domeMat = keep(new THREE.MeshBasicMaterial({
+      color: isNight ? 0x0e1a2c : 0x4a9ad8,
+      side: 1,
+      fog: false,
+      depthWrite: false,
+      toneMapped: false
+    }));
+    dome = new THREE.Mesh(keep(new THREE.SphereGeometry(8600, 24, 10, 0, Math.PI * 2, 0, Math.PI * 0.54)), domeMat);
+    dome.position.y = -80;
+    dome.frustumCulled = false;
+    group.add(dome);
+  }
   if (def.theme === "carmel" || def.theme === "snow" || def.id === "ramon" || def.id === "jerusalem" || def.id === "scopus" || def.id === "hw1" || def.id === "masada" || def.id === "eilatmtn" || def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" || def.id === "stellamaris") {
     const slopeMat = keep(new THREE.MeshStandardMaterial({
       color: def.id === "ramon" ? 11565642 : def.id === "hermon" ? 13950438 : def.id === "jerusalem" || def.id === "scopus" ? 12890250 : 4874808,
       roughness: 0.96,
       envMapIntensity: 0.18,
-      flatShading: true
+      flatShading: true,
+      polygonOffset: true,
+      polygonOffsetFactor: 2,
+      polygonOffsetUnits: 2,
     }));
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 280 : def.id === "hermon" ? 250 : def.theme === "carmel" ? 160 : 78;
+    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.theme === "carmel" ? 160 : 78;
     const hw = built.width / 2 + 4.6;
     let valleyX = 0;
     let valleyZ = 0;
@@ -711,6 +718,17 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     } else {
       valleyX = built.samples[built.samples.length - 1].x;
       valleyZ = built.samples[built.samples.length - 1].z;
+    }
+    if (def.id === "ramon") {
+      const floor = new THREE.Mesh(keep(new THREE.CircleGeometry(980, 32)), keep(new THREE.MeshStandardMaterial({
+        color: def.ground,
+        roughness: 0.97,
+        envMapIntensity: 0.14,
+      })));
+      floor.rotation.x = -Math.PI / 2;
+      floor.position.set(valleyX, 0.25, valleyZ);
+      floor.receiveShadow = true;
+      group.add(floor);
     }
     for (let i = 0; i <= n; i++) {
       const s = samp(built, i);
@@ -2659,8 +2677,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   };
   const tick = (now: number, x: number, z: number) => {
     const t = now * 1e-3;
-    dome.position.x = x;
-    dome.position.z = z;
+    if (dome) {
+      dome.position.x = x;
+      dome.position.z = z;
+    }
     for (const mv of movers) {
       if (mv.pts.length < 2) continue;
       const f = ((t * mv.speed + mv.phase) % 1 + 1) % 1 * (mv.pts.length - 1);
@@ -2855,7 +2875,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         : groundCol,
     );
     groundMat.envMapIntensity = lerp(0.14, 0.08, n);
-    domeMat.color.setHex(n > 0.5 ? 0x1e3854 : clock < 0.38 ? 0x6aaee0 : 0x4a9ad8);
+    if (domeMat) domeMat.color.setHex(n > 0.5 ? 0x1e3854 : clock < 0.38 ? 0x6aaee0 : 0x4a9ad8);
     walkStd.color.setHex(n > 0.5 ? 9078400 : 12892324);
     walkStd.envMapIntensity = lerp(0.22, 0.16, n);
     shoulderMat.color.setHex(n > 0.5 ? 4867128 : def.sand);

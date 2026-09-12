@@ -667,14 +667,19 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
     }
     const shake = this.replaying ? 0 : this.trauma * this.trauma;
     const lookAhead = mode === 3 ? 0.2 : mode === 1 ? 9 : 6.4 + clamp(Math.abs(p.speed) / 18, 0, 6);
-    const lookX = p.x + fx * lookAhead * dir;
-    const lookZ = p.z + fz * lookAhead * dir;
+    const samples = this.built.samples;
+    const step = Math.max(6, Math.round(lookAhead / 3.2));
+    const lookIdx = this.built.closed
+      ? (p.sampleIndex + step) % samples.length
+      : Math.min(samples.length - 1, p.sampleIndex + step);
+    const lookS = samples[lookIdx] ?? samples[p.sampleIndex];
+    const lookX = mode === 3 || mode === 1 ? p.x + fx * lookAhead * dir : lookS.x;
+    const lookZ = mode === 3 || mode === 1 ? p.z + fz * lookAhead * dir : lookS.z;
     let lookY = p.y + (mode === 3 ? 0.4 : mode === 1 ? 0.98 : 0.28);
     if (mode !== 3 && mode !== 1) {
-      const lookNear = nearestIndex(this.built.samples, lookX, lookZ, p.sampleIndex, this.built.closed);
-      const roadLook = this.built.samples[lookNear.index].y + 0.22;
-      lookY = roadLook;
-      if (roadLook > p.y + 1.4 && this.cam.y < roadLook + 1.15) this.cam.y = roadLook + 1.15;
+      const dy = clamp(lookS.y - p.y, -3.2, 4.2);
+      lookY = p.y + dy + 0.22;
+      if (dy > 1.4 && this.cam.y < p.y + dy + 1.15) this.cam.y = p.y + dy + 1.15;
       lookY = Math.min(lookY, this.cam.y - 0.45);
     }
     if (mode === 0 && !this.lookBack) {
