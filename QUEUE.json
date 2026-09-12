@@ -1,11 +1,11 @@
 {
-  "schema_version": "18.0.0",
+  "schema_version": "19.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-09-03T08:03:00.000Z",
+  "generated_at": "2026-09-03T09:10:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "0f53ae1e1451c3eff30a15829c0c0f43762feeb4",
-  "state_effective_on": "merge_of_RSH_035_pull_request",
+  "verified_base_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+  "state_effective_on": "merge_of_RSH_036_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "next",
       "authorized_units": [
+        "RSH-036"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-036_merge",
+      "RSH_037_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": [
         "RSH-035"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-035_merge",
       "RSH_036_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "next",
-      "authorized_units": [
-        "RSH-034"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-034_merge",
-      "RSH_035_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 35,
+    "accepted": 36,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 32,
-    "remaining": 32
+    "deferred": 31,
+    "remaining": 31
   },
   "queue_head": {
-    "id": "RSH-036",
-    "title": "Freeze Ayalon and hash all transitive dependencies",
+    "id": "RSH-037",
+    "title": "Instrument p50, p95, p99, draw calls, triangles and memory",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-036 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-037 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-036",
-    "title": "Freeze Ayalon and hash all transitive dependencies",
+    "id": "RSH-037",
+    "title": "Instrument p50, p95, p99, draw calls, triangles and memory",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -867,7 +867,7 @@
       "rsh_035_created": true
     },
     "RSH-035": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-035-ayalon-golden",
       "pull_request_resolution": "the pull request created from the exact RSH-035 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -885,7 +885,37 @@
       "freeze_granted": false,
       "owner_freeze": false,
       "gis_claim": false,
-      "rsh_036_created": false
+      "rsh_036_created": true,
+      "pull_request": 38,
+      "validated_head_sha": "847d88bc094d243a48a07a99da94b488f50e000e",
+      "merge_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
+      "tree_sha": "566e932c949ccc246883c28e6e1778fdc9f734a3",
+      "workflow_run": 33733095462,
+      "workflow_job": 100577321548,
+      "artifact_id": 9884752017,
+      "artifact_digest": "sha256:0e5644d4eef713cd3ef65c99cd41be7c915fdbf38dd46df2883abcd05dca9b23",
+      "unresolved_review_threads": 0
+    },
+    "RSH-036": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-036-ayalon-freeze-lock",
+      "pull_request_resolution": "the pull request created from the exact RSH-036 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-036 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-036 merge SHA",
+      "manifest": "AYALON-FREEZE-MANIFEST.json",
+      "contract": "RSH-036-AYALON-FREEZE-CONTRACT.md",
+      "lock_module": "src/game/ayalon-freeze",
+      "source_count": 36,
+      "freeze_granted": true,
+      "unique_pack_approved": true,
+      "placeholders_are_unique_evidence": false,
+      "ayalon_lock_generation": 11,
+      "gis_claim": false,
+      "owner_settings_freeze": false,
+      "owner_freeze": false,
+      "public_distribution": false,
+      "rsh_037_created": false
     }
   },
   "unit_order": [
@@ -960,25 +990,25 @@
   "state_rules": {
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-035"
+      "through": "RSH-036"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-036",
+      "from": "RSH-037",
       "through": "RSH-067"
     },
-    "RSH-001–RSH-035": "accepted",
-    "RSH-036–RSH-067": "deferred_not_authorized"
+    "RSH-001\u2013RSH-036": "accepted",
+    "RSH-037\u2013RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-036 remains deferred until a new explicit owner instruction.",
-    "RSH_035_completed": true,
-    "RSH_035_authorization_consumed": true,
-    "RSH_036_authorized": false
+    "current_action": "No unit is authorized; RSH-037 remains deferred until a new explicit owner instruction.",
+    "RSH_036_completed": true,
+    "RSH_036_authorization_consumed": true,
+    "RSH_037_authorized": false
   },
-  "self_reference_boundary": "The RSH-035 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-036 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }
