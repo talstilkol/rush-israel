@@ -852,8 +852,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       polygonOffsetFactor: -2,
       polygonOffsetUnits: -2
     }));
-    group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.85, 0.1)), yMat));
-    group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.85, 0.1)), yMat));
+    if (def.theme !== "desert" && def.theme !== "snow") {
+      group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.85, 0.1)), yMat));
+      group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.85, 0.1)), yMat));
+    }
     if (def.id === "ayalon") {
       const gap = 18;
       const oppOff = built.width + gap;
