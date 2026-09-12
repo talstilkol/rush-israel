@@ -240,6 +240,7 @@ export type HudState = {
   msP95: number;
   msP50: number;
   msP99: number;
+  gfxStep: number;
   backend: string;
   kinMix: number;
   drawCalls: number;

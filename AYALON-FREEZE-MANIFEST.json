@@ -3,7 +3,7 @@
   "document_type": "rush-ayalon-freeze-manifest",
   "unit": "RSH-036",
   "title": "Freeze Ayalon and hash all transitive dependencies",
-  "generated_at": "2026-09-12T01:41:35.548Z",
+  "generated_at": "2026-09-12T01:49:13.809Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "implementation_base": {
@@ -42,7 +42,7 @@
       "scripts/ayalon-hash.mjs": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
       "src/game/tracks/ayalon.ts": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
       "src/game/world-builders/tracks/ayalon.ts": "f7dab8c8c9686e32f8ee26e8ca2910b266ab6f7f35a87494de5a604659c97c2c",
-      "src/game/world.ts": "4dd9b53a5bb03bd26372cd77e0bc2454e5a04680a09737a30e84cb7faf412cec",
+      "src/game/world.ts": "cae5f9606d0032a1ac63356e7837e932fa25265ffe5a66fb0bf2113f6d349ac8",
       "src/game/ayalon-lock/geometry.ts": "b5be3e5838fb99449fb7d5a5684177e8626a7a283c54275461fd45faf42a94f7",
       "src/game/ayalon-lock/index.ts": "878d7834dfac9c7756b0929eea515f03ff23b2f8500a63fd49f1fb369c4e3ae6",
       "src/game/ayalon-colliders/colliders.ts": "da611c2867879fa55f6b3db84c76f93725a8b786e0b7dea94079fe6f5ae6708f",
@@ -66,13 +66,13 @@
       "src/game/physics.ts": "7b331f697e3e0df41546563f683d18c27c2edf9cebfb1422fb6f3bf9f94c0aff",
       "src/game/cars.ts": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
       "src/game/audio.ts": "bf83db8b5e0929dcd7d057172db6dedbaff1cad84405f152a3ef6ca884a3b650",
-      "src/game/input.ts": "51d638c0a004d080d2b558d34a58e4631e74606129d557eb1ffc835218c124aa",
+      "src/game/input.ts": "af2cbc260bbf9dd92cdbcbdc9f1f7667560197ec092a6516185dde1c3f5ceb2d",
       "src/game/input-curve.ts": "01abad60b246cc76a389291685f65d1bb0039767af328434169743947aa2f04c",
-      "src/components/game-app/hud.tsx": "e499b525717a6456c48d2eddd6c66d686037ef2c94474b76853869d9d5713fe1",
-      "src/components/touch-controls.tsx": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
+      "src/components/game-app/hud.tsx": "75aeced3628efcdfe2fc3e5536bd7cf00f24002b609ccd90b00aefa6ca3ebab2",
+      "src/components/touch-controls.tsx": "11c2a7ed3c598c01f06c4450126a424a9ea00ff44c05d2cf1421092649b68a92",
       "package.json": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
       "AYALON-OWNER-APPROVAL.json": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
-      "src/game/engine.ts": "6361695926fc65657c2d8a5da5e71df44451937a54ad841509e61d90e11a61a7",
+      "src/game/engine.ts": "9e5b747c9d26dacc84d863d84a74c5cefb59553d8f285c2ab65820917fc17b99",
       "src/game/records.ts": "10bff6426c0ce8d9b406bac66662363ec997883fbff28941dab3f95e1f818aa0",
       "src/components/game-app/race-controller.tsx": "02bf8279185a618488fe730567dd2b742d35c53abffd23864efb6fbb40c54819",
       "src/game/race-startup.ts": "cda8d6d3e3af7d385196e1e0d6702a70b6749be76aae8f4fffc1399ef7075dba",
@@ -153,7 +153,7 @@
     "vehicle_envelope_behavior_changed": true
   },
   "identities": {
-    "freeze_source_sha256": "685de0145e0e941cec7cd5c37a122f1c61173a6bf5eedf1bc67e6071a885e545",
+    "freeze_source_sha256": "64e55975c64c272c914c5d56b325e509e8c0cadcc9838734cd44a50bfd33d5c1",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
     "contract_sha256": "03727dd56eb2c6808ace47c372ab901dc96a22445d8a71fa09bb87f92d27e9d5",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
@@ -162,7 +162,7 @@
     "pixel_golden_sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
     "checker_test_sha256": "28fc007c15b971cecb21dee3ff5cac13d87a7cd61d761a6f1c6a1d125418e5a6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "45c8098cf6ace2572159fb8c539af88bf0b0e995a8f6e39a971d6eeb83f21df1",
+    "freeze_digest_sha256": "b85e371ba9470869436b02e5e3d93935f55a1a3fb3b56f619e1a678a3c7e0f9b",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {

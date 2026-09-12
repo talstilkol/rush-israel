@@ -15,6 +15,19 @@ export function onContextLost(this: EngineAdapterHost, e: Parameters<RaceEngine[
 {
     e.preventDefault();
     this.glLost = true;
+    const gl = this.renderer.getContext() as WebGLRenderingContext | null;
+    const ext = gl?.getExtension?.("WEBGL_lose_context") as { restoreContext?: () => void } | null;
+    if (ext?.restoreContext) {
+      const restore = ext.restoreContext.bind(ext);
+      setTimeout(() => {
+        if (this.disposed || !this.glLost) return;
+        try {
+          restore();
+        } catch {
+          this.opts.onRestore?.();
+        }
+      }, 80);
+    }
   }
 // RSH-017-BODY-END:onContextLost
 // RSH-017-END:onContextLost

@@ -1462,6 +1462,48 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       placedWater.push({ x: wx, z: wz, w: planeW, d: planeD });
       if (!waterMesh) waterMesh = mesh;
     }
+    if (def.id !== "ayalon" && !placedWater.length) {
+      const w0 = bodies[0];
+      const tileW = 78;
+      const tileD = 78;
+      const seaPad = built.width / 2 + 18;
+      const step = Math.max(1, Math.floor(built.samples.length / 14));
+      const seaMat = keep(new THREE.MeshPhysicalMaterial({
+        color: w0.color,
+        roughness: isNight ? 0.03 : 0.18,
+        metalness: 0.08,
+        transparent: false,
+        opacity: 1,
+        envMapIntensity: isNight ? 2.6 : 1.7,
+        clearcoat: 1,
+        clearcoatRoughness: 0.06,
+        ior: 1.33,
+        normalMap: nrm,
+        normalScale: new THREE.Vector2(1.15, 1.15),
+        polygonOffset: true,
+        polygonOffsetFactor: 4,
+        polygonOffsetUnits: 4,
+        depthWrite: true,
+      }));
+      if (isNight) seaMat.color.multiplyScalar(0.65);
+      for (let i = 0; i < built.samples.length; i += step) {
+        const s = built.samples[i];
+        const toward = (w0.x - s.x) * s.rx + (w0.z - s.z) * s.rz >= 0 ? 1 : -1;
+        const wx = s.x + s.rx * (built.width / 2 + 78) * toward;
+        const wz = s.z + s.rz * (built.width / 2 + 78) * toward;
+        if (rectHitsRibbon(wx, wz, tileW * 0.5, tileD * 0.5, seaPad)) continue;
+        const mesh = new THREE.Mesh(keep(new THREE.PlaneGeometry(tileW, tileD, 4, 4)), seaMat);
+        mesh.rotation.x = -Math.PI / 2;
+        mesh.position.set(wx, -1.35, wz);
+        mesh.userData.waterBaseY = -1.35;
+        mesh.renderOrder = -8;
+        group.add(mesh);
+        waterMeshes.push(mesh);
+        waterMats.push({ material: seaMat, baseColor: w0.color });
+        placedWater.push({ x: wx, z: wz, w: tileW, d: tileD });
+        if (!waterMesh) waterMesh = mesh;
+      }
+    }
     const sandBody = placedWater[0] ?? bodies[0];
     const sandW = def.id === "ayalon" ? Math.max(sandBody.w * 0.55, 420) : Math.min(Math.max(sandBody.w * 0.55, 40), 140);
     const sandD = def.id === "ayalon" ? Math.max(sandBody.d, 2200) : Math.min(Math.max(sandBody.d * 0.7, 40), 180);

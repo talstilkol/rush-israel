@@ -800,6 +800,7 @@ export function pushHud(this: EngineAdapterHost)
       msP95: snap.p95,
       msP50: snap.p50,
       msP99: snap.p99,
+      gfxStep: this.dyn.step,
       backend: this.telem.backend,
       kinMix: this.player.kinMix,
       drawCalls: this.renderer.info.render.calls,

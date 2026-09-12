@@ -823,6 +823,7 @@ export class RaceEngine {
     this.lite = this.quality === "low" || this.soft;
     this.droppedTier = false;
     this.dyn.reset();
+    this.dyn.step = this.quality === "low" ? 3 : this.quality === "mid" ? 1 : 0;
     this.csmMuted = this.quality === "low" || this.soft;
     const mobile = typeof navigator !== "undefined" && /mobi|android|iphone|ipad/i.test(navigator.userAgent);
     const scale = this.lite ? 1 : this.quality === "mid" ? 0.75 : 0.85;

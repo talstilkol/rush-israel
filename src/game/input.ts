@@ -123,7 +123,8 @@ export class GameInput {
   }
 
   wantsPause() {
-    return this.keys.has("Escape") || this.keys.has("KeyP");
+    const gp = typeof navigator !== "undefined" ? navigator.getGamepads?.()?.[0] : null;
+    return this.keys.has("Escape") || this.keys.has("KeyP") || !!gp?.buttons[9]?.pressed;
   }
 
   wantsRewind() {
