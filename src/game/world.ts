@@ -1242,7 +1242,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     metalness: 0.04,
     envMapIntensity: 0.3
   }));
-  if (def.theme !== "highway" && def.id !== "ayalon" && def.theme !== "desert" && def.theme !== "snow" && def.theme !== "carmel" && def.theme !== "port" && def.theme !== "jaffa" && def.theme !== "stone" && def.theme !== "bauhaus") {
+  if (def.id === "manhattan" || def.id === "timessquare" || def.id === "centralpark" || def.id === "brooklynbridge") {
     const walkL = new THREE.Mesh(keep(buildSidewalk(built, 1)), walkMat);
     const walkR = new THREE.Mesh(keep(buildSidewalk(built, -1)), walkMat);
     walkL.receiveShadow = true;
