@@ -1909,7 +1909,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     envMapIntensity: 1.45,
     side: 2
   }));
-  const maxWin = Math.min(placements.length * 28, 900);
+  const maxWin = Math.min(placements.length * 28, 480);
   const wins = new THREE.InstancedMesh(winGeo, facadeWinMat, maxWin);
   const _off = new THREE.Vector3();
   let wi = 0;
