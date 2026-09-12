@@ -12,7 +12,7 @@ export default defineTrack({
     description: "מהמבקרים בשביל הנחש עד המצודה — עלייה אחת, צוק ומדבר. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "From the visitor center up the snake path to the fortress — one climb. Inspired by the place — not a map, not GIS.",
     image: "/tracks/masada.jpg",
-    width: 20,
+    width: 26,
     seed: 73,
     theme: "desert",
     open: true,

@@ -30,9 +30,9 @@ export type FogKey = "city" | "desert" | "snow" | "carmel" | "stone";
 export const FOG: Record<FogKey, { day: number; night: number; far: number; dayCol: number; nightCol: number }> = {
   city: { day: 0.00001, night: 0.000045, far: 10000, dayCol: 0x6eb4dc, nightCol: 0x2a4058 },
   desert: { day: 0.00006, night: 0.00008, far: 12000, dayCol: 0xb8a888, nightCol: 0x2c3c4c },
-  snow: { day: 0.00004, night: 0.0001, far: 12000, dayCol: 0xc8dcec, nightCol: 0x1a2838 },
-  carmel: { day: 0.00002, night: 0.0001, far: 12000, dayCol: 0x6eb4dc, nightCol: 0x1a2838 },
-  stone: { day: 0.000018, night: 0.00008, far: 14000, dayCol: 0xc4b49a, nightCol: 0x1a2838 },
+  snow: { day: 0.00004, night: 0.00008, far: 12000, dayCol: 0xc8dcec, nightCol: 0x2a3848 },
+  carmel: { day: 0.00002, night: 0.00008, far: 12000, dayCol: 0x6eb4dc, nightCol: 0x243848 },
+  stone: { day: 0.000018, night: 0.00006, far: 14000, dayCol: 0xc4b49a, nightCol: 0x2c3c4c },
 };
 
 export function fogKey(theme: string, id: string): FogKey {

@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "edb8a5d51b31b7a097a19ef7fd49a5f41447d2ca677497d1da6d5576f8b43ffa"
+      "sha256": "ee5e939bb8d80891038d969ca10f598fc7b20aa7be1756aa9a14b56e4020f17c"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -3138,8 +3138,8 @@
     },
     {
       "path": "src/game/engine/rendering-adapter.ts",
-      "bytes": 34521,
-      "sha256": "c6185a005f7f3c0e57ec085d645062a688831f24bf4200735fd5d34231a680c9"
+      "bytes": 34986,
+      "sha256": "78d55254cd4bade71e20338a1068eec5cb6834fb4008fbd28145b5062d10767e"
     },
     {
       "path": "src/game/facade-assets.ts",
@@ -3534,7 +3534,7 @@
     {
       "path": "src/game/tracks/masada.ts",
       "bytes": 2015,
-      "sha256": "e9918d92c0cdc972197fa55e134d021f09aa5ee1cf6ced3f88162e7fb295f2fb"
+      "sha256": "155bb6723e0fef06e36ddf55e9d6f2063292305ea70706dbc20f584539e2bba8"
     },
     {
       "path": "src/game/tracks/modiin.ts",
@@ -4013,8 +4013,8 @@
     },
     {
       "path": "src/rendering/EnvironmentState.ts",
-      "bytes": 2047,
-      "sha256": "36b45c9eb8b062efe3a67c68db8877772a6d421301992659b5a3725cdaa2c8c0"
+      "bytes": 2049,
+      "sha256": "af28602ef6bdd019e4aa290998c022151987e15d73a0fc1c6f0804c26b663e17"
     },
     {
       "path": "src/rendering/QualityProfile.ts",
@@ -11241,5 +11241,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "fa6a87e8b7717d83577b73cd897c044a69e34960b061e810ff4eda7c938a85c5"
+  "digest_sha256": "e4a39ad53d8820159bedaa4cc30a4dd32fde51f068daed9ffa9e295f60623279"
 }
