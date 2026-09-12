@@ -1461,7 +1461,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         polygonOffsetUnits: 4,
         depthWrite: true,
       }));
-      if (isNight) mat.color.multiplyScalar(0.65);
+      if (isNight) mat.color.multiplyScalar(0.82);
       const planeW = def.id === "ayalon" ? Math.max(body.w * 1.4, 900) : Math.min(Math.max(body.w * 1.05, 40), 160);
       const planeD = def.id === "ayalon" ? Math.max(body.d, 1600) : Math.min(Math.max(body.d * 1.05, 40), 220);
       let wx = body.x;
@@ -1524,7 +1524,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         polygonOffsetUnits: 4,
         depthWrite: true,
       }));
-      if (isNight) seaMat.color.multiplyScalar(0.65);
+      if (isNight) seaMat.color.multiplyScalar(0.82);
       for (let i = 0; i < built.samples.length; i += step) {
         const s = built.samples[i];
         const toward = (w0.x - s.x) * s.rx + (w0.z - s.z) * s.rz >= 0 ? 1 : -1;
@@ -1559,16 +1559,20 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       sand.position.set(sandX, def.id === "ayalon" ? -0.18 : -1.15, sandZ);
       sand.renderOrder = -9;
       group.add(sand);
-      const foam = new THREE.Mesh(keep(new THREE.PlaneGeometry(Math.min(sandBody.w * 0.14, 36), Math.min(sandBody.d * 0.92, 160))), keep(new THREE.MeshBasicMaterial({
+      if (def.id === "ayalon" || (def.theme !== "desert" && def.id !== "deadsea" && !isNight)) {
+      const foam = new THREE.Mesh(keep(new THREE.PlaneGeometry(Math.min(sandBody.w * 0.14, 36), Math.min(sandBody.d * 0.92, 160))), keep(new THREE.MeshStandardMaterial({
         map: keep(foamTex()),
         transparent: true,
-        opacity: 0.82,
-        depthWrite: false
+        opacity: 0.55,
+        depthWrite: false,
+        roughness: 1,
+        metalness: 0,
       })));
       foam.rotation.x = -Math.PI / 2;
       foam.position.set(sandX, def.id === "ayalon" ? -0.03 : -0.95, sandZ);
       foam.renderOrder = -7;
       group.add(foam);
+      }
     }
   }
   if (def.id === "ayalon") {

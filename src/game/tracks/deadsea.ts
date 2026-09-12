@@ -12,7 +12,7 @@ export default defineTrack({
     description: "עין בוקק, בתי המלון, המלח והרי מואב מעבר למים. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Ein Bokek, the hotel strip, salt flats and the Moab mountains across the water. Inspired by the place — not a map, not GIS.",
     image: "/tracks/deadsea.jpg",
-    width: 20,
+    width: 26,
     seed: 430,
     theme: "desert",
     ground: 0xc8b090,
@@ -28,7 +28,7 @@ export default defineTrack({
       fog: 0xe8d8b8,
       fogDensity: 0.0014,
     },
-    water: { x: dsea(31.19, 35.385).x, z: dsea(31.19, 35.385).z, w: 320, d: 700, color: 0x2aa0b0 },
+    water: { x: dsea(31.19, 35.385).x, z: dsea(31.19, 35.385).z, w: 200, d: 240, color: 0x2aa0b0 },
     checkpointCount: 12,
     points: [
       dsea(31.201, 35.3625),
