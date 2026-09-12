@@ -13,18 +13,18 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-036 Ayalon freeze passes and RSH-039 remains absent", () => {
+test("committed RSH-036 Ayalon freeze passes and RSH-040 remains absent", () => {
   const result = validateAyalonFreeze();
   assert.deepEqual(result.errors, []);
   assert.equal(result.frozen, true);
   assert.equal(result.sourceCount, 36);
 });
 
-test("RSH-039 precreation fails closed", () => {
+test("RSH-040 precreation fails closed", () => {
   const result = validateAyalonFreeze({
-    repositoryFiles: ["RSH-039-PREFLIGHT.json", "src/game/perf-budgets/budgets.ts"],
+    repositoryFiles: ["RSH-040-PREFLIGHT.json", "src/game/leak-cycles/cycles.ts"],
   });
-  assert.match(messages(result), /RSH-039 was precreated/);
+  assert.match(messages(result), /RSH-040 was precreated/);
 });
 
 test("freeze is granted without GIS, owner-settings freeze or public distribution", () => {
@@ -47,5 +47,5 @@ test("freeze is granted without GIS, owner-settings freeze or public distributio
   assert.equal(manifest.lock.gis_claim, false);
   assert.equal(manifest.lock.owner_settings_freeze, false);
   assert.equal(manifest.lock.public_distribution, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-039");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-040");
 });

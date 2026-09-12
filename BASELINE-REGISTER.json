@@ -1,7 +1,7 @@
 {
-  "schema_version": "21.0.0",
+  "schema_version": "22.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-12T16:50:00.000Z",
+  "generated_at": "2026-09-12T17:05:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -699,23 +699,36 @@
       "post_merge_workflow_run": 34706006889,
       "recorded_at": "2026-09-12T16:41:28Z",
       "description": "Performance instrumentation locked with p50/p95/p99, draw calls, triangles and memory."
+    },
+    {
+      "id": "B038-rsh-038-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-038",
+      "pull_request": 42,
+      "commit_sha": "817ab7ed71d396b200188b16c27d627a1f2d7814",
+      "tree_sha": "dae1cddef51270ccdcf085df12db52164fff383b",
+      "validated_head_sha": "6e3fc4e73346e27b5e11057ae9001076021280a4",
+      "workflow_run": 34706548905,
+      "post_merge_workflow_run": 34706788427,
+      "recorded_at": "2026-09-12T16:57:38Z",
+      "description": "Quality profiles and dynamic-quality hysteresis locked."
     }
   ],
   "working_state": {
-    "unit": "RSH-038",
+    "unit": "RSH-039",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "91754100fc6a5d7bfc852e6aafa28cd17c1762ba",
-    "branch": "agent/rsh-038-quality-profiles",
-    "manifest": "QUALITY-PROFILES-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-038 pull request"
+    "implementation_base_sha": "817ab7ed71d396b200188b16c27d627a1f2d7814",
+    "branch": "agent/rsh-039-perf-budgets",
+    "manifest": "PERF-BUDGETS-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-039 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-039",
+    "queue_head": "RSH-040",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_039_authorized": false
+    "RSH_040_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

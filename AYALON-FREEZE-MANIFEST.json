@@ -104,29 +104,32 @@
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
     "pixel_golden_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
-    "checker_test_sha256": "732e99143a272234610a3d2bac8dd390957766c615ca5e903270dd7c6c93f467",
+    "checker_test_sha256": "5d2e1eddc00ddd4e618e0609066ef4ea24dd99683172eba2b0a46ac806109ddc",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-039",
+    "queue_head": "RSH-040",
     "rsh_036_authorized": true,
     "rsh_036_started": true,
     "rsh_037_authorized": true,
     "rsh_037_started": true,
     "forbidden_prefixes": [
-      ".rsh039",
-      ".github/workflows/rsh-039-",
-      "RSH-039-",
-      "scripts/rsh039-",
-      "scripts/check-perf-budgets",
-      "scripts/check-budgets",
-      "src/game/perf-budgets/"
+      ".rsh040",
+      ".github/workflows/rsh-040-",
+      "RSH-040-",
+      "scripts/rsh040-",
+      "scripts/check-leak",
+      "scripts/check-resource-leak",
+      "scripts/check-enter-exit",
+      "src/game/leak-cycles/"
     ],
     "rsh_038_authorized": true,
     "rsh_038_started": true,
-    "rsh_039_authorized": false,
-    "rsh_039_started": false
+    "rsh_039_authorized": true,
+    "rsh_039_started": true,
+    "rsh_040_authorized": false,
+    "rsh_040_started": false
   }
 }

@@ -1,42 +1,45 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 21.0.0
+**Version:** 22.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-038 implementation base:** `91754100fc6a5d7bfc852e6aafa28cd17c1762ba`
-**State effective on:** merge of the RSH-038 pull request
-**Next unit:** `RSH-039` — deferred and not authorised
+**RSH-039 implementation base:** `817ab7ed71d396b200188b16c27d627a1f2d7814`
+**State effective on:** merge of the RSH-039 pull request
+**Next unit:** `RSH-040` — deferred and not authorised
 
 ## Authority
 
-The current standing owner instruction to finish the master plan authorised RSH-038 after RSH-037 merged. That authority is consumed on validated merge and does not extend to RSH-039.
+The current standing owner instruction to finish the master plan authorised RSH-039 after RSH-038 merged. That authority is consumed on validated merge and does not extend to RSH-040.
 
-## RSH-038 acceptance boundary
+## RSH-039 acceptance boundary
 
-- quality profiles and dynamic-quality hysteresis are locked at `src/game/quality-profiles/`;
-- live profiles remain `src/rendering/QualityProfile.ts` (compat / balanced / high / ultra / photo);
-- live hysteresis remains `src/rendering/DynamicQualityController.ts` (drop p95>20 / 90 frames, raise p95<16 / 5 s);
-- budgets are not enforced (RSH-039);
+- bundle, streaming and cache budgets are locked at `src/game/perf-budgets/`;
+- live cache remains `server/middleware/game-cache.ts` (`/game/` + `/basis/` immutable max-age=31536000) and HTML `no-cache`;
+- glTF / mesh / music streaming stay off;
+- live `src/game/stream-flag.ts` stays `export const MESH_STREAMING = false`;
+- Ayalon draw-call target is 80;
+- production `finishNow` remains forbidden;
+- leak cycles are not enforced (RSH-040);
 - P1-13 stays OPEN — no accepted real-device baseline;
+- P2-09 stays OPEN — no production JS/asset byte-size CI check;
 - Ayalon freeze stays granted with 36 hashes unchanged;
-- RSH-037 instrument lock stays historical (`QUALITY_PROFILES_DEFINED = false` there);
-- golden PNG bytes, `ayalon.lock`, track / world / physics / cars / audio / HUD / input sources, engine adapters, live quality sources and `package.json` are not rewritten;
+- golden PNG bytes, `ayalon.lock`, track / world / physics / cars / audio / HUD / input sources, engine adapters, live cache/quality/`stream-flag.ts` sources and `package.json` are not rewritten;
 - GIS/navigation claims and public distribution remain forbidden;
-- no RSH-039 perf-budgets structure exists.
+- no RSH-040 leak-cycle structure exists.
 
 ## Post-merge state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 38 |
-| Deferred | 29 |
-| Remaining | 29 |
-| Queue head | RSH-039 |
-| RSH-039 authorised | No |
+| Accepted | 39 |
+| Deferred | 28 |
+| Remaining | 28 |
+| Queue head | RSH-040 |
+| RSH-040 authorised | No |
 | Current authority remaining | 0 |
 | Save schema version | 3 |
 | Unverified asset files | 66 |
 | Release gates | 0/13 |
 
-A new explicit owner instruction is required before RSH-039 may be created or executed.
+A new explicit owner instruction is required before RSH-040 may be created or executed.
