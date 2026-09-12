@@ -1707,7 +1707,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const step2 = Math.max(4, Math.floor(built.samples.length / palmN));
     for (let i = 0; i < built.samples.length && pc < palmN; i += step2) {
       const s = built.samples[i];
-      const d = built.width / 2 + 16.5;
+      const d = built.width / 2 + 22;
       const side = Math.hypot(s.x + s.rx * d - w0.x, s.z + s.rz * d - w0.z) < Math.hypot(s.x - s.rx * d - w0.x, s.z - s.rz * d - w0.z) ? 1 : -1;
       const px = s.x + s.rx * d * side;
       const pz = s.z + s.rz * d * side;
