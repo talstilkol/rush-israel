@@ -2365,7 +2365,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     group.add(poles2, bulbs2, pools2);
   }
   const natureTrack = def.id === "ramon" || def.id === "hermon" || def.theme === "carmel" || def.theme === "desert" || def.theme === "snow" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6";
-  const crowdN = natureTrack || def.id === "ayalon" || def.id === "rothschild" || def.id === "hayarkon" || def.id === "oldjaffa" || def.id === "jerusalem" ? 0 : shadows ? 72 : 28;
+  const crowdN = natureTrack || def.id === "ayalon" || def.id === "rothschild" || def.id === "hayarkon" || def.id === "oldjaffa" || def.id === "jerusalem" || def.id === "rishon" ? 0 : shadows ? 72 : 28;
   if (crowdN) {
     const bodyGeo = keep(new THREE.BoxGeometry(0.42, 0.95, 0.32));
     const headGeo = keep(new THREE.SphereGeometry(0.16, 6, 5));
