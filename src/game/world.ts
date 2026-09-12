@@ -817,7 +817,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       polygonOffsetUnits: -2,
     }));
     const offs = def.id === "ayalon" ? [0, built.width + 18] : [0];
-    const nDash = Math.min(2800, Math.floor(built.samples.length / 2) * (lanes - 1) * offs.length);
+    const nDash = Math.min(1400, Math.floor(built.samples.length / 2) * (lanes - 1) * offs.length);
     const dashes = new THREE.InstancedMesh(dashG, dashM, Math.max(1, nDash));
     let di = 0;
     const hw = built.width / 2;
