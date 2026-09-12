@@ -461,7 +461,7 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
     const flagTex = getIsraelFlag();
     const flagW = new THREE.Mesh(
       new THREE.PlaneGeometry(3.4, 2.1),
-      new THREE.MeshBasicMaterial({ map: flagTex ?? undefined, color: flagTex ? 0xffffff : 0xf4f6f8, side: THREE.DoubleSide }),
+      new THREE.MeshStandardMaterial({ map: flagTex ?? undefined, color: flagTex ? 0xffffff : 0xf4f6f8, side: THREE.DoubleSide, roughness: 0.55, fog: true }),
     );
     flagW.position.set(ind.x + 1.7, 17.4, ind.z);
     add(flagW);
