@@ -225,7 +225,7 @@ export function applyClockSky(this: EngineAdapterHost, rebake: Parameters<RaceEn
     this.world.setClock(this.clock);
     const n = nightAmt(this.clock);
     this.applyLook();
-    this.scene.background = new THREE.Color(n > 0.5 ? 0x2a4a6c : 0x3c9ee0);
+    this.scene.background = null;
     this.scene.environmentIntensity = n > 0.5 ? 0.52 : 0.7;
     this.post.setNight(n > 0.5);
     const lamps = n > 0.42;

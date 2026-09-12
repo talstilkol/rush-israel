@@ -648,7 +648,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     side: THREE.BackSide,
     toneMapped: false
   }));
-  const skyDome = new THREE.Mesh(keep(new THREE.SphereGeometry(8200, 40, 20)), skyDomeMat);
+  const skyDome = new THREE.Mesh(keep(new THREE.SphereGeometry(1400, 32, 16)), skyDomeMat);
   skyDome.frustumCulled = false;
   skyDome.renderOrder = -2000;
   group.add(skyDome);
