@@ -1166,7 +1166,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     emissive: 0x3a120c,
     emissiveIntensity: 0.14
   }));
-  if (def.id === "ayalon" || (def.theme !== "port" && def.theme !== "jaffa" && def.theme !== "stone" && def.theme !== "bauhaus" && def.theme !== "highway" && def.theme !== "carmel")) {
+  if (def.id === "ayalon" || (def.theme !== "port" && def.theme !== "jaffa" && def.theme !== "stone" && def.theme !== "bauhaus" && def.theme !== "highway" && def.theme !== "carmel" && def.theme !== "desert" && def.theme !== "snow")) {
   group.add(new THREE.Mesh(keep(buildCurb(built, 1)), curbMat));
   group.add(new THREE.Mesh(keep(buildCurb(built, -1)), curbMat));
   if (def.id === "ayalon") {
