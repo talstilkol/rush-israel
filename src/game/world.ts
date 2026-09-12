@@ -2303,7 +2303,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   for (let i = 0; i < lampCount; i++) {
     const s = built.samples[(i * lampStride) % built.samples.length];
     const side = i % 2 === 0 ? 1 : -1;
-    const d = built.width / 2 + 2.7;
+    const d = built.width / 2 + 4.8;
     const lx = s.x + s.rx * d * side;
     const lz = s.z + s.rz * d * side;
     lampPos.push(new THREE.Vector3(lx, s.y + 5.15, lz));
