@@ -18,7 +18,7 @@ export default defineTrack({
     ground: 0x8a8478,
     sand: 0xd4c8b0,
     sky: { ...TLV_GOLDEN, fogDensity: 0.0013 },
-    water: { x: hwy2(32.42, 34.86).x, z: hwy2(32.42, 34.86).z, w: 280, d: 620, color: 0x1a6880 },
+    water: { x: hwy2(32.42, 34.86).x, z: hwy2(32.42, 34.86).z, w: 180, d: 200, color: 0x1a6880 },
     checkpointCount: 12,
     points: [
       hwy2(32.35, 34.858),
