@@ -1466,8 +1466,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         depthWrite: true,
       }));
       if (isNight) mat.color.multiplyScalar(0.82);
-      const planeW = def.id === "ayalon" ? Math.max(body.w * 1.4, 900) : Math.min(Math.max(body.w * 0.7, 36), 88);
-      const planeD = def.id === "ayalon" ? Math.max(body.d, 1600) : Math.min(Math.max(body.d * 0.7, 36), 96);
+      const planeW = def.id === "ayalon" ? Math.max(body.w * 1.4, 900) : Math.min(Math.max(body.w * 0.7, 28), def.theme === "jaffa" || def.theme === "stone" ? 52 : 88);
+      const planeD = def.id === "ayalon" ? Math.max(body.d, 1600) : Math.min(Math.max(body.d * 0.7, 28), def.theme === "jaffa" || def.theme === "stone" ? 48 : 96);
       let wx = body.x;
       let wz = body.z;
       if (coastal) {
@@ -1537,8 +1537,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         if (rectHitsRibbon(wx, wz, tileW * 0.5, tileD * 0.5, seaPad)) continue;
         const mesh = new THREE.Mesh(keep(new THREE.PlaneGeometry(tileW, tileD, 4, 4)), seaMat);
         mesh.rotation.x = -Math.PI / 2;
-        mesh.position.set(wx, -1.35, wz);
-        mesh.userData.waterBaseY = -1.35;
+        mesh.position.set(wx, -2.6, wz);
+        mesh.userData.waterBaseY = -2.6;
         mesh.renderOrder = -8;
         group.add(mesh);
         waterMeshes.push(mesh);
@@ -2703,13 +2703,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     if (waterMeshes.length) {
       for (const mesh of waterMeshes) {
         const base = mesh.userData.waterBaseY;
-        mesh.position.y = typeof base === "number" ? base + Math.sin(t * 0.7) * 0.02 : -0.1 + Math.sin(t * 0.7) * 0.06;
-      }
-      if (waterMats.length) {
-        for (const { material: mat } of waterMats) if (mat.normalMap) {
-          mat.normalMap.offset.x = t * 0.04;
-          mat.normalMap.offset.y = t * 0.026;
-        }
+        mesh.position.y = typeof base === "number" ? base : -0.12;
       }
     }
     if (wx === "storm") {
