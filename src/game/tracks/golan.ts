@@ -12,7 +12,7 @@ export default defineTrack({
     description: "קצרין, כביש 98, התלוליות והחרמון באופק. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Katzrin, Route 98, the volcanic hills and Hermon on the horizon. Inspired by the place — not a map, not GIS.",
     image: "/tracks/golan.jpg",
-    width: 20,
+    width: 26,
     seed: 1967,
     theme: "highway",
     ground: 0x6a5a48,

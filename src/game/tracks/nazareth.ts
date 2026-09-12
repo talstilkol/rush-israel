@@ -12,7 +12,7 @@ export default defineTrack({
     description: "כנסית הבשורה, השוק, הר הקפיצה וסמטאות האבן. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Basilica of the Annunciation, the souq, Mount Precipice and stone alleys. Inspired by the place — not a map, not GIS.",
     image: "/tracks/nazareth.jpg",
-    width: 20,
+    width: 24,
     seed: 1966,
     theme: "stone",
     ground: 0x8a7a68,
