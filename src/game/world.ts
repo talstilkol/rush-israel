@@ -569,7 +569,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     dir.add(lensflare);
   }
   applyLights(isNight, hemi, dir, fill, ambient, lightAim, flareCol, lensflare);
-  const desertNight = def.theme === "desert" || def.theme === "snow" || def.theme === "stone" || def.theme === "jaffa" || def.theme === "carmel" || def.theme === "port" || def.id === "ramon" || def.id === "hermon" || def.id === "scopus" || def.id === "golan" || def.id === "hw1" || def.id === "hw2";
+  const desertNight = def.theme === "desert" || def.theme === "snow" || def.theme === "stone" || def.theme === "jaffa" || def.theme === "carmel" || def.theme === "port" || def.id === "ramon" || def.id === "hermon" || def.id === "scopus" || def.id === "golan" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6";
   if (isNight && desertNight) {
     hemi.color.setHex(0x9ab4d0);
     hemi.groundColor.setHex(0x4a3828);
@@ -684,7 +684,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     dome.frustumCulled = false;
     group.add(dome);
   }
-  if (def.theme === "carmel" || def.theme === "snow" || def.theme === "stone" || def.theme === "jaffa" || def.id === "ramon" || def.id === "jerusalem" || def.id === "scopus" || def.id === "hw1" || def.id === "masada" || def.id === "eilatmtn" || def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" || def.id === "stellamaris") {
+  if (def.theme === "carmel" || def.theme === "snow" || def.theme === "stone" || def.theme === "jaffa" || def.id === "ramon" || def.id === "jerusalem" || def.id === "scopus" || def.id === "hw1" || def.id === "hw6" || def.id === "masada" || def.id === "eilatmtn" || def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" || def.id === "stellamaris") {
     const slopeMat = keep(new THREE.MeshStandardMaterial({
       color: def.id === "ramon" ? 11565642 : def.id === "hermon" ? 13950438 : def.theme === "stone" || def.id === "jerusalem" || def.id === "scopus" ? 12890250 : 4874808,
       roughness: 0.96,
@@ -697,7 +697,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.id === "eilatmtn" || def.id === "masada" || def.theme === "carmel" ? 240 : def.theme === "stone" || def.theme === "jaffa" || def.id === "golan" || def.id === "hw1" || def.id === "nazareth" || def.id === "tzfat" || def.id === "jerusalem" || def.id === "scopus" ? 200 : 78;
+    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.id === "eilatmtn" || def.id === "masada" || def.theme === "carmel" ? 240 : def.theme === "stone" || def.theme === "jaffa" || def.id === "golan" || def.id === "hw1" || def.id === "hw6" || def.id === "nazareth" || def.id === "tzfat" || def.id === "jerusalem" || def.id === "scopus" ? 200 : 78;
     const hw = built.width / 2 + 4.6;
     let valleyX = 0;
     let valleyZ = 0;
@@ -745,7 +745,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const s = samp(built, i);
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 148 + s.y * 0.6 : def.id === "eilatmtn" ? s.y + 72 + s.y * 0.45 : def.theme === "carmel" ? s.y + 96 : def.id === "golan" || def.id === "hw1" ? s.y + 64 : def.theme === "stone" || def.id === "jerusalem" || def.id === "scopus" || def.id === "nazareth" || def.id === "tzfat" ? s.y + 52 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 148 + s.y * 0.6 : def.id === "eilatmtn" ? s.y + 72 + s.y * 0.45 : def.theme === "carmel" ? s.y + 96 : def.id === "golan" || def.id === "hw1" || def.id === "hw6" ? s.y + 64 : def.theme === "stone" || def.id === "jerusalem" || def.id === "scopus" || def.id === "nazareth" || def.id === "tzfat" ? s.y + 52 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
