@@ -12,7 +12,7 @@ export default defineTrack({
     description: "מגדל הפיקוח, הטרמינל, כביש 1 והעיר העתיקה. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "The control tower, the terminal, Highway 1 and the old city. Inspired by the place — not a map, not GIS.",
     image: "/tracks/lod.jpg",
-    width: 22,
+    width: 26,
     seed: 1950,
     theme: "highway",
     ground: 0x7a7a70,

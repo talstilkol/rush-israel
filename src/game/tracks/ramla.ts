@@ -12,7 +12,7 @@ export default defineTrack({
     description: "המגדל הלבן, השוק, המסגד הגדול ובריכת הקשתות. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "The White Tower, the market, the Great Mosque and the Pool of Arches. Inspired by the place — not a map, not GIS.",
     image: "/tracks/ramla.jpg",
-    width: 20,
+    width: 26,
     seed: 716,
     theme: "stone",
     ground: 0x8a7a64,
