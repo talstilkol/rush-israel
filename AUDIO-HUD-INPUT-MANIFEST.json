@@ -114,29 +114,30 @@
     "touch_source_sha256": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "checker_test_sha256": "0d512fa37ff7c06f911d6f568beb705d200b034638ae67b4e68452ef122b3222",
+    "checker_test_sha256": "a2ca313953ca14efb31f7c76f46487f1f13d65749faf59db8272d9f713d3c3ba",
     "audio_digest_sha256": "b5a3a609d13ad78708f362bbff4caaf071454c884aa34bf874fbeff18f56ca3f",
     "input_digest_sha256": "ee389f24969bad529a9e10df5b881f7efc773ecd845056b8aefcc8c52f149809",
     "hud_digest_sha256": "a4516f8b7784d8270fbb8a766515e40ca9ffa70103fe81b63af3733ce05faecb"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-037",
+    "queue_head": "RSH-038",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "forbidden_prefixes": [
-      ".rsh037",
-      ".github/workflows/rsh-037-",
-      "RSH-037-",
-      "scripts/rsh037-",
-      "src/game/perf-instrument/",
+      ".rsh038",
+      ".github/workflows/rsh-038-",
+      "RSH-038-",
+      "scripts/rsh038-",
       "src/game/quality-profiles/"
     ],
     "rsh_035_state": "accepted_on_merge",
     "rsh_036_authorized": true,
     "rsh_036_started": true,
-    "rsh_037_authorized": false,
-    "rsh_037_started": false
+    "rsh_037_authorized": true,
+    "rsh_037_started": true,
+    "rsh_038_authorized": false,
+    "rsh_038_started": false
   }
 }

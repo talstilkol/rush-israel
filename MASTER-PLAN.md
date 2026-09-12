@@ -1,11 +1,11 @@
 # RUSH Israel — Canonical Master Plan
 
-**Schema:** 19.0.0
+**Schema:** 20.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-036 implementation base:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`
-**State effective on:** merge of the RSH-036 pull request
-**Next unit:** RSH-037 — deferred and not authorised
+**RSH-037 implementation base:** `4904161cc786061acc11942f76ed5666eb5ed61f`
+**State effective on:** merge of the RSH-037 pull request
+**Next unit:** RSH-038 — deferred and not authorised
 **Product-definition authority:** `PRODUCT-DEFINITION.json`
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`
@@ -20,7 +20,7 @@ GitHub is the sole source of truth. `CURRENT-STATE.json`, `QUEUE.json`, this doc
 `TRACK-CATALOGUE-CLASSIFICATION.json`, `ASSET-PROVENANCE.json`,
 `PRODUCT-METADATA.json`, `TRACK-SCHEMA.json`, `TRACK-MODULE-MANIFEST.json`,
 `WORLD-CORE-MANIFEST.json`, `WORLD-BUILDER-MANIFEST.json`,
-`ENGINE-ADAPTER-MANIFEST.json`, `GAME-APP-DECOMPOSITION-MANIFEST.json`, `RESOURCE-OWNERSHIP-MANIFEST.json`, `DEPENDENCY-BOUNDARY-MANIFEST.json`, `DEPENDENCY-POLICY.md`, `SAVE-SCHEMA-MANIFEST.json`, `SAVE-RECOVERY-MANIFEST.json`, `RSH-022-SAVE-RECOVERY-CONTRACT.md`, `TIMED-RECORDS-MANIFEST.json`, `RSH-023-TIMED-RECORDS-CONTRACT.md`, `PRODUCTION-SECURITY-MANIFEST.json`, `RSH-024-PRODUCTION-SECURITY-CONTRACT.md`, `AYALON-ACCEPTANCE-MANIFEST.json`, `RSH-025-AYALON-ACCEPTANCE-CONTRACT.md`, `AYALON-GEOMETRY-MANIFEST.json`, `RSH-026-AYALON-GEOMETRY-CONTRACT.md`, `AYALON-COLLIDER-MANIFEST.json`, `RSH-027-AYALON-COLLIDER-CONTRACT.md`, `AYALON-LANDMARK-MANIFEST.json`, `RSH-028-AYALON-LANDMARK-CONTRACT.md`, `AYALON-ASPHALT-MANIFEST.json`, `RSH-029-AYALON-ASPHALT-CONTRACT.md`, `HERO-CAR-MANIFEST.json`, `RSH-030-HERO-CAR-CONTRACT.md`, `DAYLIGHT-SKY-MANIFEST.json`, `RSH-031-DAYLIGHT-CONTRACT.md`, `NIGHT-WEATHER-MANIFEST.json`, `RSH-032-NIGHT-CONTRACT.md`, `PHYSICS-CALIBRATION-MANIFEST.json`, `RSH-033-PHYSICS-CONTRACT.md`, `AUDIO-HUD-INPUT-MANIFEST.json`, `RSH-034-AUDIO-HUD-CONTRACT.md`, `AYALON-GOLDEN-MANIFEST.json`, `RSH-035-AYALON-GOLDEN-CONTRACT.md`, `AYALON-FREEZE-MANIFEST.json`, `RSH-036-AYALON-FREEZE-CONTRACT.md` and `REPOSITORY-GOVERNANCE.md` control program state.
+`ENGINE-ADAPTER-MANIFEST.json`, `GAME-APP-DECOMPOSITION-MANIFEST.json`, `RESOURCE-OWNERSHIP-MANIFEST.json`, `DEPENDENCY-BOUNDARY-MANIFEST.json`, `DEPENDENCY-POLICY.md`, `SAVE-SCHEMA-MANIFEST.json`, `SAVE-RECOVERY-MANIFEST.json`, `RSH-022-SAVE-RECOVERY-CONTRACT.md`, `TIMED-RECORDS-MANIFEST.json`, `RSH-023-TIMED-RECORDS-CONTRACT.md`, `PRODUCTION-SECURITY-MANIFEST.json`, `RSH-024-PRODUCTION-SECURITY-CONTRACT.md`, `AYALON-ACCEPTANCE-MANIFEST.json`, `RSH-025-AYALON-ACCEPTANCE-CONTRACT.md`, `AYALON-GEOMETRY-MANIFEST.json`, `RSH-026-AYALON-GEOMETRY-CONTRACT.md`, `AYALON-COLLIDER-MANIFEST.json`, `RSH-027-AYALON-COLLIDER-CONTRACT.md`, `AYALON-LANDMARK-MANIFEST.json`, `RSH-028-AYALON-LANDMARK-CONTRACT.md`, `AYALON-ASPHALT-MANIFEST.json`, `RSH-029-AYALON-ASPHALT-CONTRACT.md`, `HERO-CAR-MANIFEST.json`, `RSH-030-HERO-CAR-CONTRACT.md`, `DAYLIGHT-SKY-MANIFEST.json`, `RSH-031-DAYLIGHT-CONTRACT.md`, `NIGHT-WEATHER-MANIFEST.json`, `RSH-032-NIGHT-CONTRACT.md`, `PHYSICS-CALIBRATION-MANIFEST.json`, `RSH-033-PHYSICS-CONTRACT.md`, `AUDIO-HUD-INPUT-MANIFEST.json`, `RSH-034-AUDIO-HUD-CONTRACT.md`, `AYALON-GOLDEN-MANIFEST.json`, `RSH-035-AYALON-GOLDEN-CONTRACT.md`, `AYALON-FREEZE-MANIFEST.json`, `RSH-036-AYALON-FREEZE-CONTRACT.md`, `PERF-INSTRUMENT-MANIFEST.json`, `RSH-037-PERF-INSTRUMENT-CONTRACT.md` and `REPOSITORY-GOVERNANCE.md` control program state.
 
 Historical planning files are evidence only. They do not control queue order,
 accepted progress, asset clearance or release-gate counts.
@@ -81,21 +81,21 @@ root-branding assets remain unverified.
 6. A unit becomes accepted when its PR merges; exact self-referential merge evidence is reconciled in the following preflight.
 7. Accepted-unit progress is not release readiness; all 13 release gates remain authoritative.
 8. The RSH-010–RSH-014 owner batch is closed at 5/5.
-9. The standing owner instruction to finish the master plan authorised remaining deferred units serially. RSH-036 is consumed on validated merge; RSH-037 is not authorised until that merge.
+9. The standing owner instruction to finish the master plan authorised remaining deferred units serially. RSH-037 is consumed on validated merge; RSH-038 is not authorised until that merge.
 
-## 5. Post-RSH-036 program state
+## 5. Post-RSH-037 program state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 36 |
+| Accepted | 37 |
 | In review | 0 |
 | Eligible | 0 |
-| Deferred | 31 |
-| Remaining | 31 |
-| Queue head | RSH-037 — deferred/not authorised |
+| Deferred | 30 |
+| Remaining | 30 |
+| Queue head | RSH-038 — deferred/not authorised |
 | Active PR | none |
-| RSH-036 one-unit authority | 1/1 — consumed |
+| RSH-037 one-unit authority | 1/1 — consumed |
 | Release gates green | 0/13 |
 | Findings OPEN / MITIGATED / CLOSED | 12 / 8 / 22 |
 
@@ -109,7 +109,7 @@ root-branding assets remain unverified.
 | G3 | RSH-013–020 | 8 | Architecture decomposition | ACCEPTED |
 | G4 | RSH-021–024 | 4 | Data integrity and production security | ACCEPTED |
 | G5 | RSH-025–036 | 12 | Ayalon vertical slice | ACCEPTED |
-| G6 | RSH-037–043 | 7 | Performance and reliability | DEFERRED |
+| G6 | RSH-037–043 | 7 | Performance and reliability | IN PROGRESS |
 | G7 | RSH-044–048 | 5 | UX, accessibility and mobile | DEFERRED |
 | G8 | RSH-049–062 | 14 | Seven additional MVP tracks | DEFERRED |
 | G9 | RSH-063–067 | 5 | Release | DEFERRED |
@@ -210,4 +210,4 @@ Current verified result: **0/13**.
 
 RSH-021 through RSH-036 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28, 8 lanes of 3.5, 27 hashed spline samples, 50 interchange ramps, 8 open checkpoints, 9 inspired POIs, baked 8-lane asphalt, no sidewalks, 6 gantries). Daylight stays the live `summer14` look with baked `sky-day.png` and tiny non-HDRI PMREM. Night stays look `night` with baked `sky-night.png`, two headlight spots, ten street lamps and four weather specs. Default boot stays day / clear. Driving physics version 7 matches the five fictional 0–100 claims inside a ±15% band without rewriting `cars.ts`. Audio stays Web Audio oscillators with four radio stations; HUD speed is integer km/h from `speed * 3.6`; keyboard/touch/gamepad maps stay the live Version 1 lock. The unique Ayalon golden pack is the 20 non-placeholder frames with owner approval recorded; the four byte-identical HaShalom placeholders stay non-authority. Ayalon freeze is granted with 36 transitive SHA-256 hashes at `src/game/ayalon-freeze/`. Historical unique-pack `freeze_granted` stays false. GIS claims and public distribution remain forbidden. GitHub still does not require production checks through branch settings.
 
-Ghosts remain byte-preserved and remain assigned outside this unit. The RSH-036 one-unit authority is consumed on merge. RSH-037 remains deferred and cannot start without a new explicit owner instruction after this merge.
+Ghosts remain byte-preserved and remain assigned outside this unit. The RSH-037 one-unit authority is consumed on merge. RSH-038 remains deferred and cannot start without a new explicit owner instruction after this merge.

@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-perf-instrument-manifest",
+  "unit": "RSH-037",
+  "title": "Instrument p50, p95, p99, draw calls, triangles and memory",
+  "generated_at": "2026-09-12T16:20:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "4904161cc786061acc11942f76ed5666eb5ed61f",
+    "tree_sha": "2aa37f2b3508e9df3fd52a3bcf2af5533b90dab8",
+    "branch": "agent/rsh-037-perf-instrument"
+  },
+  "lock": {
+    "sample_cap": 120,
+    "percentiles": [
+      50,
+      95,
+      99
+    ],
+    "metrics": [
+      "p50",
+      "p95",
+      "p99",
+      "drawCalls",
+      "triangles",
+      "memory"
+    ],
+    "draw_calls": "renderer.info.render.calls",
+    "triangles": "renderer.info.render.triangles",
+    "memory_textures": "renderer.info.memory.textures",
+    "memory_geometries": "renderer.info.memory.geometries",
+    "js_heap": "optional_performance_memory",
+    "telemetry_module": "src/rendering/RenderTelemetry.ts",
+    "budgets_enforced": false,
+    "quality_profiles": false,
+    "real_device_baseline_accepted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "owner_settings_freeze": false,
+    "public_distribution": false
+  },
+  "lock_module": {
+    "directory": "src/game/perf-instrument",
+    "metrics": "src/game/perf-instrument/metrics.ts",
+    "index": "src/game/perf-instrument/index.ts"
+  },
+  "preservation": {
+    "golden_png_changes": 0,
+    "ayalon_lock_changes": 0,
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "cars_changes": 0,
+    "audio_hud_changes": 0,
+    "engine_adapter_changes": 0,
+    "package_json_changes": 0,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "metrics_source_sha256": "d76bc0131c31dfbf3d86de081d45a70fba49d0130755ad04368aceaf4592492a",
+    "index_source_sha256": "adb2baa7d31786c21d36a65088606633dd5687a7388943fede5c3b1d1d1e546a",
+    "contract_sha256": "2e5ec28867b83bf444043be2b60a9aaa30e2296704e3f9a914e29f296f7066ec",
+    "telemetry_source_sha256": "cfcfedd7462acdc6afce995edb5a8b081f601e026d005f4ba1b99273cd03af8d",
+    "loop_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
+    "rendering_source_sha256": "947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132",
+    "qa_source_sha256": "973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c",
+    "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+    "checker_test_sha256": "264154533036312fdbb392ee3b6cf38a2a8a08c55a7c88ce55f691753e4ddb0a",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "perf_digest_sha256": "7475ef5f789a4950cf82743aa5a7d499075e8d37813a65ef4c0dc6b658b222fd",
+    "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
+    "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-038",
+    "rsh_037_authorized": true,
+    "rsh_037_started": true,
+    "rsh_038_authorized": false,
+    "rsh_038_started": false,
+    "forbidden_prefixes": [
+      ".rsh038",
+      ".github/workflows/rsh-038-",
+      "RSH-038-",
+      "scripts/rsh038-",
+      "src/game/quality-profiles/"
+    ]
+  }
+}

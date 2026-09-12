@@ -410,11 +410,10 @@
     "rsh_021_started": true,
     "rsh_021_authorized": true,
     "forbidden_prefixes": [
-      ".rsh037",
-      ".github/workflows/rsh-037-",
-      "RSH-037-",
-      "scripts/rsh037-",
-      "src/game/perf-instrument/",
+      ".rsh038",
+      ".github/workflows/rsh-038-",
+      "RSH-038-",
+      "scripts/rsh038-",
       "src/game/quality-profiles/",
       "src/auth-v3/",
       "src/multiplayer-v3/"
@@ -449,7 +448,7 @@
     "rsh_030_state": "accepted_on_merge",
     "rsh_031_authorized": true,
     "rsh_031_started": true,
-    "queue_head": "RSH-037",
+    "queue_head": "RSH-038",
     "rsh_031_state": "accepted_on_merge",
     "rsh_032_authorized": true,
     "rsh_032_started": true,
@@ -465,8 +464,10 @@
     "rsh_035_state": "accepted_on_merge",
     "rsh_036_authorized": true,
     "rsh_036_started": true,
-    "rsh_037_authorized": false,
-    "rsh_037_started": false
+    "rsh_037_authorized": true,
+    "rsh_037_started": true,
+    "rsh_038_authorized": false,
+    "rsh_038_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

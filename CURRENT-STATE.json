@@ -1,24 +1,24 @@
 {
-  "schema_version": "19.0.0",
+  "schema_version": "20.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-03T12:00:00.000Z",
+  "generated_at": "2026-09-12T16:20:00.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_036_pull_request",
-    "implementation_base_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-    "self_reference_boundary": "The RSH-036 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_037_pull_request",
+    "implementation_base_sha": "4904161cc786061acc11942f76ed5666eb5ed61f",
+    "self_reference_boundary": "The RSH-037 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "e01d91de5dfa11685a51dcea90c1dbc8e2d2148a",
-    "tree_sha": "566e932c949ccc246883c28e6e1778fdc9f734a3",
-    "commit_authored_at": "2026-09-03T08:28:58Z",
-    "commit_message": "Merge PR #38: RSH-035 \u2014 Produce the unique Ayalon golden pack and owner approval record",
+    "head_sha": "4904161cc786061acc11942f76ed5666eb5ed61f",
+    "tree_sha": "2aa37f2b3508e9df3fd52a3bcf2af5533b90dab8",
+    "commit_authored_at": "2026-09-12T16:10:27Z",
+    "commit_message": "Merge PR #40: RSH-036 \u2014 Freeze Ayalon and hash all transitive dependencies",
     "commit_signature_verified": true,
-    "role": "RSH-036 exact implementation base"
+    "role": "RSH-037 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 36,
+    "accepted_units": 37,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 31,
-    "remaining_units": 31,
-    "queue_head": "RSH-037",
+    "deferred_units": 30,
+    "remaining_units": 30,
+    "queue_head": "RSH-038",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -1068,7 +1068,7 @@
       "rsh_036_created": true
     },
     "RSH-036": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-036-ayalon-freeze-lock",
       "pull_request_resolution": "the pull request created from the exact RSH-036 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -1086,16 +1086,53 @@
       "owner_settings_freeze": false,
       "owner_freeze": false,
       "public_distribution": false,
-      "rsh_037_created": false
+      "rsh_037_created": true,
+      "pull_request": 40,
+      "validated_head_sha": "8ea8b31364096488860c1fe62779a38bd5d66c82",
+      "merge_sha": "4904161cc786061acc11942f76ed5666eb5ed61f",
+      "tree_sha": "2aa37f2b3508e9df3fd52a3bcf2af5533b90dab8",
+      "workflow_run": 34704099167,
+      "workflow_job": 103580895302,
+      "artifact_id": 10300782429,
+      "artifact_digest": "sha256:346f3cd55455c3782aa5d7459830011b22462b1bcc798adb6838ea762c27444f",
+      "post_merge_workflow_run": 34704422852,
+      "post_merge_workflow_job": 103581786896,
+      "post_merge_artifact_id": 10300504423,
+      "post_merge_artifact_digest": "sha256:deed46a480a3e6a23b2870f61f25cc07f86e1ff8022d092022f5c67cb1357cd6",
+      "unresolved_review_threads": 0
+    },
+    "RSH-037": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-037-perf-instrument",
+      "pull_request_resolution": "the pull request created from the exact RSH-037 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-037 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-037 merge SHA",
+      "manifest": "PERF-INSTRUMENT-MANIFEST.json",
+      "contract": "RSH-037-PERF-INSTRUMENT-CONTRACT.md",
+      "lock_module": "src/game/perf-instrument",
+      "sample_cap": 120,
+      "percentiles": [
+        50,
+        95,
+        99
+      ],
+      "budgets_enforced": false,
+      "quality_profiles": false,
+      "real_device_baseline_accepted": false,
+      "gis_claim": false,
+      "owner_freeze": false,
+      "public_distribution": false,
+      "rsh_038_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-036",
+    "unit": "RSH-037",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-036-ayalon-freeze-lock",
+    "branch": "agent/rsh-037-perf-instrument",
     "authority_consumed": true,
-    "next_unit": "RSH-037",
+    "next_unit": "RSH-038",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -1179,7 +1216,10 @@
     "RSH-036_authorized": false,
     "RSH-036_was_separately_authorized": true,
     "RSH-036_authorization_consumed": true,
-    "RSH-037_authorized": false
+    "RSH-037_authorized": false,
+    "RSH-037_was_separately_authorized": true,
+    "RSH-037_authorization_consumed": true,
+    "RSH-038_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -1254,12 +1294,12 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The plain next instruction authorized exactly RSH-036 and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-037.",
+    "The standing owner instruction authorised exactly RSH-037 after RSH-036 merged and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-038.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13.",
     "The standing owner instruction to finish the master plan authorised RSH-036 through RSH-067, but only the queue head may start.",
-    "RSH-037 remains deferred until this unit is accepted on merge."
+    "RSH-038 remains deferred until this unit is accepted on merge."
   ],
   "validation": {
     "queue_units": 67,
@@ -1385,12 +1425,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-036"
+      "RSH-037"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-036_merge",
-    "RSH_037_authorized": false
+    "state": "consumed_on_RSH-037_merge",
+    "RSH_038_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -1429,12 +1469,12 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-035"
+      "RSH-036"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-035_merge",
-    "RSH_036_authorized": false
+    "state": "consumed_on_RSH-036_merge",
+    "RSH_037_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -1943,7 +1983,7 @@
     "RSH_036_authorized": true
   },
   "rsh_036_ayalon_freeze": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "AYALON-FREEZE-MANIFEST.json",
     "human_contract": "RSH-036-AYALON-FREEZE-CONTRACT.md",
     "validator": "scripts/check-ayalon-freeze.mjs",
@@ -1957,7 +1997,34 @@
     "owner_settings_freeze": false,
     "owner_freeze": false,
     "public_distribution": false,
-    "RSH_037_created": false,
-    "RSH_037_authorized": false
+    "RSH_037_created": true,
+    "RSH_037_authorized": true,
+    "pull_request": 40,
+    "validated_head_sha": "8ea8b31364096488860c1fe62779a38bd5d66c82",
+    "merge_sha": "4904161cc786061acc11942f76ed5666eb5ed61f",
+    "tree_sha": "2aa37f2b3508e9df3fd52a3bcf2af5533b90dab8",
+    "workflow_run": 34704099167,
+    "post_merge_workflow_run": 34704422852
+  },
+  "rsh_037_perf_instrument": {
+    "state": "accepted_on_merge",
+    "machine_authority": "PERF-INSTRUMENT-MANIFEST.json",
+    "human_contract": "RSH-037-PERF-INSTRUMENT-CONTRACT.md",
+    "validator": "scripts/check-perf-instrument.mjs",
+    "test": "scripts/check-perf-instrument.test.mjs",
+    "sample_cap": 120,
+    "percentiles": [
+      50,
+      95,
+      99
+    ],
+    "budgets_enforced": false,
+    "quality_profiles": false,
+    "real_device_baseline_accepted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "public_distribution": false,
+    "RSH_038_created": false,
+    "RSH_038_authorized": false
   }
 }

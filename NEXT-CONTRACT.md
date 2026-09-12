@@ -1,40 +1,42 @@
 # RUSH Israel — NEXT Contract
 
-**Version:** 19.0.0
+**Version:** 20.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
-**RSH-036 implementation base:** `e01d91de5dfa11685a51dcea90c1dbc8e2d2148a`
-**State effective on:** merge of the RSH-036 pull request
-**Next unit:** `RSH-037` — deferred and not authorised
+**RSH-037 implementation base:** `4904161cc786061acc11942f76ed5666eb5ed61f`
+**State effective on:** merge of the RSH-037 pull request
+**Next unit:** `RSH-038` — deferred and not authorised
 
 ## Authority
 
-The current plain `next` / `המשך` instruction authorised exactly RSH-036. That authority is consumed on validated merge and does not extend to RSH-037.
+The current standing owner instruction to finish the master plan authorised RSH-037 after RSH-036 merged. That authority is consumed on validated merge and does not extend to RSH-038.
 
-## RSH-036 acceptance boundary
+## RSH-037 acceptance boundary
 
-- Ayalon freeze is granted at `src/game/ayalon-freeze/` with 36 transitive SHA-256 hashes;
-- historical unique-pack record stays `freeze_granted=false` on `AYALON-OWNER-APPROVAL.json` and `src/game/ayalon-golden/pack.ts`;
-- unique authority frames stay 20; four HaShalom placeholders stay non-authority at `38a303adb7188d398628e58223973cb31d37ccf37d597da33c8ac442b4052094`;
-- pixel-golden stays `ayalon-day-g01.png`, `ayalon-day-g05.png`, `ayalon-day-g07.png`, `ayalon-night-g08.png` at threshold `0.12` / fail `8%`;
-- `ayalon.lock` stays generation `11`;
-- GIS/navigation claims, owner-settings freeze and public distribution remain forbidden;
-- golden PNG bytes, `ayalon.lock`, track / world / physics / cars / audio / HUD / input sources and `package.json` are not rewritten;
-- no RSH-037 perf-instrument or quality-profiles structure exists.
+- performance instrumentation is locked at `src/game/perf-instrument/` with p50/p95/p99, draw calls, triangles and memory sampling;
+- live sampling remains `RenderTelemetry` (cap 120) plus `renderer.info` GPU counters;
+- JS heap stays optional `performance.memory`;
+- budgets are not enforced (RSH-039);
+- quality profiles are not defined (RSH-038);
+- P1-13 stays OPEN — no accepted real-device baseline;
+- Ayalon freeze stays granted with 36 hashes unchanged;
+- golden PNG bytes, `ayalon.lock`, track / world / physics / cars / audio / HUD / input sources, engine adapters and `package.json` are not rewritten;
+- GIS/navigation claims and public distribution remain forbidden;
+- no RSH-038 quality-profiles structure exists.
 
 ## Post-merge state
 
 | Metric | Value |
 |---|---:|
 | Total units | 67 |
-| Accepted | 36 |
-| Deferred | 31 |
-| Remaining | 31 |
-| Queue head | RSH-037 |
-| RSH-037 authorised | No |
+| Accepted | 37 |
+| Deferred | 30 |
+| Remaining | 30 |
+| Queue head | RSH-038 |
+| RSH-038 authorised | No |
 | Current authority remaining | 0 |
 | Save schema version | 3 |
 | Unverified asset files | 66 |
 | Release gates | 0/13 |
 
-A new explicit owner instruction is required before RSH-037 may be created or executed.
+A new explicit owner instruction is required before RSH-038 may be created or executed.
