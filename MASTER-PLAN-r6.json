@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r6.93",
+  "revision": "r6.96",
   "date": "2026-09-12",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -13,7 +13,7 @@
     "accepted": 35,
     "in_review": 1,
     "remaining": 32,
-    "audit_items": 102,
+    "audit_items": 103,
     "legacy_findings": 42,
     "repair_bundles": 6
   },
@@ -588,7 +588,7 @@
     },
     {
       "id": "RSH-051",
-      "title": "Yarkon–Reading geometry and driving",
+      "title": "Yarkon\u2013Reading geometry and driving",
       "status": "authorised_not_activated",
       "predecessor": "RSH-050",
       "additional_acceptance": [
@@ -601,7 +601,7 @@
     },
     {
       "id": "RSH-052",
-      "title": "Yarkon–Reading art, golden and freeze",
+      "title": "Yarkon\u2013Reading art, golden and freeze",
       "status": "authorised_not_activated",
       "predecessor": "RSH-051",
       "additional_acceptance": [
@@ -638,7 +638,7 @@
     },
     {
       "id": "RSH-055",
-      "title": "Jerusalem–Scopus geometry and driving",
+      "title": "Jerusalem\u2013Scopus geometry and driving",
       "status": "authorised_not_activated",
       "predecessor": "RSH-054",
       "additional_acceptance": [
@@ -651,7 +651,7 @@
     },
     {
       "id": "RSH-056",
-      "title": "Jerusalem–Scopus art, golden and freeze",
+      "title": "Jerusalem\u2013Scopus art, golden and freeze",
       "status": "authorised_not_activated",
       "predecessor": "RSH-055",
       "additional_acceptance": [
@@ -663,7 +663,7 @@
     },
     {
       "id": "RSH-057",
-      "title": "Haifa–Carmel geometry and driving",
+      "title": "Haifa\u2013Carmel geometry and driving",
       "status": "authorised_not_activated",
       "predecessor": "RSH-056",
       "additional_acceptance": [
@@ -676,7 +676,7 @@
     },
     {
       "id": "RSH-058",
-      "title": "Haifa–Carmel art, golden and freeze",
+      "title": "Haifa\u2013Carmel art, golden and freeze",
       "status": "authorised_not_activated",
       "predecessor": "RSH-057",
       "additional_acceptance": [
@@ -1259,7 +1259,7 @@
       ],
       "legacy_findings": [],
       "title": "Isolated envelope cases missed on-road supports and did not qualify live catalogue or stored v7 records",
-      "acceptance": "Centreline, ±2.2 lane, four-car grid, 9.4 underpass and 1s drive probes must fail closed on lost inventory and pass on the live 722-collider catalogue after carriageway-pier offset. Frozen physicsVersion7 rows load without conversion; v6 rows drop. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius and original golden gates. Sampled arcade poses are not mesh or complete-race qualification.",
+      "acceptance": "Centreline, \u00b12.2 lane, four-car grid, 9.4 underpass and 1s drive probes must fail closed on lost inventory and pass on the live 722-collider catalogue after carriageway-pier offset. Frozen physicsVersion7 rows load without conversion; v6 rows drop. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius and original golden gates. Sampled arcade poses are not mesh or complete-race qualification.",
       "status": "published_r6_17_exact_head_ci_failed_at_chromium_install_retained",
       "bundle": "CR-04",
       "evidence": "RSH-036-ROUTE-REVIEW-r6.17.json"
@@ -1324,7 +1324,7 @@
       ],
       "legacy_findings": [],
       "title": "The r6.17 120-step / 1.62 m drive was not a complete Ayalon lap through 8 checkpoints",
-      "acceptance": "A 120-step drive must fail closed as complete-race qualification. Production aiInput plus 120 Hz ArcadeCar.step and consumeCheckpoints must finish an open lap (progress ≥ 0.96, lastCheckpoint 7, 0 burials, 0 respawns) on the live 722-collider catalogue. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7, freeze path count 85 and original golden gates. Arcade lap is not mesh clearance or freeze.",
+      "acceptance": "A 120-step drive must fail closed as complete-race qualification. Production aiInput plus 120 Hz ArcadeCar.step and consumeCheckpoints must finish an open lap (progress \u2265 0.96, lastCheckpoint 7, 0 burials, 0 respawns) on the live 722-collider catalogue. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7, freeze path count 85 and original golden gates. Arcade lap is not mesh clearance or freeze.",
       "status": "verified_exact_r6_22_head_run34449950487_retained",
       "bundle": "CR-04",
       "evidence": "RSH-036-RACE-REVIEW-r6.22.json"
@@ -1337,7 +1337,7 @@
       ],
       "legacy_findings": [],
       "title": "The 1.05-radius arcade circle and 1.25 half-length box are not the visual car mesh",
-      "acceptance": "Arcade-only 1s evidence must fail closed as mesh clearance. Visual hulls from live car-mesh layout must report 0 hits on the live 722-collider catalogue at rest (grid, 781 centerline, ±2.2 lanes) and during yawed AI samples. A 1.6 m front pole must fail the arcade circle and pass the hull. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7, freeze path count 85 and original golden gates. Visual hull is not triangle clipping, freeze or original-golden.",
+      "acceptance": "Arcade-only 1s evidence must fail closed as mesh clearance. Visual hulls from live car-mesh layout must report 0 hits on the live 722-collider catalogue at rest (grid, 781 centerline, \u00b12.2 lanes) and during yawed AI samples. A 1.6 m front pole must fail the arcade circle and pass the hull. Retain 546 legacy colliders, 176 piers, 50 ramps, 8 checkpoints, rest-pose 1.6, 1.05 radius, physicsVersion7, freeze path count 85 and original golden gates. Visual hull is not triangle clipping, freeze or original-golden.",
       "status": "verified_exact_r6_23_head_run34452081855_retained",
       "bundle": "CR-04",
       "evidence": "RSH-036-MESH-REVIEW-r6.23.json"
@@ -2238,6 +2238,19 @@
       "status": "repair_candidate_pending_exact_head_validation",
       "bundle": "CR-03",
       "evidence": "RSH-036-WORLD-OCS-r6.93.json"
+    },
+    {
+      "id": "AUD-103",
+      "severity": "P1",
+      "units": [
+        "RSH-036"
+      ],
+      "legacy_findings": [],
+      "title": "Leftover g07 after world.group+outside is remaining empty-scene vs golden independently of setViewport vs setClearColor vs renderer.compile",
+      "acceptance": "Ocs-only reports without lights/debug/xr/env/both/pack bandDelta plus a dominantVcc and leftoverBaselinePct must fail closed. Live snapCamera(true) at g01/g05/g07/g08 must isolate those six leftover-after-world.group+outside axes after setNight and measure isolated band L2, luma, B and bandDelta against the locked 26 August PNG. Deltas use the empty-scene leftover buffer as baseline. Product ground hex must stay 0xd0d4d8, product exposure 0.56, product renderer stay on leftover. Retain freeze path count 85 and generation 11. Vcc isolation is not freeze. GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08, GFX-09 and GFX-10 stay queued after RSH-036.",
+      "status": "repair_candidate_pending_exact_head_validation",
+      "bundle": "CR-03",
+      "evidence": "RSH-036-WORLD-VCC-r6.96.json"
     }
   ],
   "legacy_findings": [
@@ -2262,7 +2275,7 @@
       "severity": "P0",
       "status": "MITIGATED",
       "finding": "No branch-and-PR delivery workflow exists",
-      "evidence": "RSH-001–RSH-013 use isolated branches and PRs; governance, CODEOWNERS and templates are versioned. Live settings enforcement remains absent.",
+      "evidence": "RSH-001\u2013RSH-013 use isolated branches and PRs; governance, CODEOWNERS and templates are versioned. Live settings enforcement remains absent.",
       "remediation": "Apply the RSH-008 desired ruleset"
     },
     {
@@ -2319,7 +2332,7 @@
       "status": "MITIGATED",
       "finding": "The last audit is stale and sequencing rules were violated",
       "evidence": "The queue was reset, product scope was frozen, all 56 tracks were classified and asset/metadata authorities were established; vertical-slice enforcement remains pending.",
-      "remediation": "RSH-009–RSH-012, RSH-025"
+      "remediation": "RSH-009\u2013RSH-012, RSH-025"
     },
     {
       "id": "P0-11",
@@ -2446,16 +2459,16 @@
       "severity": "P1",
       "status": "CLOSED",
       "finding": "Core source files are excessively large",
-      "evidence": "RSH-014–RSH-017 establish track, world and engine boundaries. RSH-018 reduces `game-app.tsx` from 1540 to 179 lines and moves screens, HUD and race control into three manifest-bound modules with byte-exact reconstruction.",
-      "remediation": "RSH-014–RSH-018"
+      "evidence": "RSH-014\u2013RSH-017 establish track, world and engine boundaries. RSH-018 reduces `game-app.tsx` from 1540 to 179 lines and moves screens, HUD and race control into three manifest-bound modules with byte-exact reconstruction.",
+      "remediation": "RSH-014\u2013RSH-018"
     },
     {
       "id": "P1-15",
       "severity": "P1",
       "status": "CLOSED",
       "finding": "Content, rendering, physics, UI and QA are tightly coupled",
-      "evidence": "RSH-013–RSH-019 establish track, world, engine, UI and resource boundaries. RSH-020 removes unused template subsystems and pins the final direct dependency surface.",
-      "remediation": "RSH-013–RSH-020"
+      "evidence": "RSH-013\u2013RSH-019 establish track, world, engine, UI and resource boundaries. RSH-020 removes unused template subsystems and pins the final direct dependency surface.",
+      "remediation": "RSH-013\u2013RSH-020"
     },
     {
       "id": "P1-16",
@@ -2669,9 +2682,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r6.93",
-    "base_head": "c63dec1",
-    "document": "RSH-036-RUNTIME-REPAIR-r6.93.md",
+    "revision": "r6.96",
+    "base_head": "3387de2",
+    "document": "RSH-036-RUNTIME-REPAIR-r6.96.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",
@@ -2720,7 +2733,7 @@
       "not_product_golden_failure": true
     },
     "normal_ci": "pending_exact_published_head_validation",
-    "golden": "r6.47 combined bakeEnv IBL is not background vs hemi vs disc; g01/g05 day-bottom background 0x3a9ae0 B −47.8/−52.0, hemi/disc 0, intensity luma −28.0/−31.1/−11.5, fill joins intensity on g08 night −12.4; g07 upper ramps; product hex stays 0xd0d4d8; camera 7.4/1.92; unchanged images/thresholds",
+    "golden": "r6.47 combined bakeEnv IBL is not background vs hemi vs disc; g01/g05 day-bottom background 0x3a9ae0 B \u221247.8/\u221252.0, hemi/disc 0, intensity luma \u221228.0/\u221231.1/\u221211.5, fill joins intensity on g08 night \u221212.4; g07 upper ramps; product hex stays 0xd0d4d8; camera 7.4/1.92; unchanged images/thresholds",
     "dependency_closure": "3 product font URLs pinned; remote CDN bytes still unpinned; complete_dependency_closure false",
     "clearance": "r6.47 bake isolation; r6.46 probe isolation; r6.45 cube isolation; r6.44 gain isolation; r6.43 ibl isolation; r6.42 ray isolation; r6.41 beam isolation; r6.40 term isolation; r6.39 tone isolation; r6.38 shade isolation; r6.37 rgb sampling; r6.36 factor isolation; r6.35 material isolation; r6.34 extra isolation; r6.33 slice isolation; r6.32 column isolation; r6.31 region-band isolation; r6.30 scene-buffer isolation; r6.29 channel-bias isolation; r6.28 mismatch isolation; r6.27 residual split; r6.26 world-layer isolation; r6.25 rest-camera attribution; r6.24 original-golden protocol; r6.23 visual hull; r6.22 complete arcade lap; r6.21 rest chase 7.4/1.92 overlay",
     "record_policy": "physicsVersion7 frozen fixture; v6 rows drop; conversion remains forbidden"

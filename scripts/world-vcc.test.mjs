@@ -9,14 +9,14 @@ import { PNG } from 'pngjs';
 import { fromRoot } from './project-root.mjs';
 import {
   BAND_PIXELS, PACK_IDS, BOTH_IDS, CAPTURE_LAYERS, FAILURE_LIMIT, XR_IDS, DEBUG_IDS, IBL_IDS, LIGHTS_IDS,
-  OCS_BAND_MIN, OCS_BLUE_MIN, OCS_FRAMES, OCS_L2_MIN, OCS_LAYERS, OCS_LUMA_MIN,
+  VCC_BAND_MIN, VCC_BLUE_MIN, VCC_FRAMES, VCC_L2_MIN, VCC_LAYERS, VCC_LUMA_MIN,
   NEUTRAL_SKY_HEX, PIXEL_THRESHOLD, PRODUCT_EXPOSURE, PRODUCT_FOV, PRODUCT_NEAR, PRODUCT_FAR_MIN,
   PRODUCT_FOLLOW, PRODUCT_HEIGHT, PRODUCT_PIXEL_RATIO, PRODUCT_HEMI_SKY_HEX, PRODUCT_PMREM_SIZE, PRODUCT_SKY_HEX,
   PRODUCT_LIGHTS, PRODUCT_DEBUG, PRODUCT_XR,
-  dominantOcs, leftoverIsNotOcsMismatch, ocsBufferIsNotOriginalGolden, retainWorldOcs,
-  worldOcsFixture, worldOcsResults,
-} from './world-ocs-browser.mjs';
-import { worldFrsFixture } from './world-frs-browser.mjs';
+  dominantVcc, leftoverIsNotVccMismatch, vccBufferIsNotOriginalGolden, retainWorldVcc,
+  worldVccFixture, worldVccResults,
+} from './world-vcc-browser.mjs';
+import { worldOcsFixture } from './world-ocs-browser.mjs';
 import { GROUND_ALBEDO } from './world-rgb-browser.mjs';
 import { REGION_BANDS, bandPixelmatch } from './world-region-browser.mjs';
 import { RSH035_BASELINE_SHA256, ORIGINAL_GOLDEN_FILES } from './original-golden-browser.mjs';
@@ -25,24 +25,24 @@ function sha256(buf) {
   return createHash('sha256').update(buf).digest('hex');
 }
 
-test('dominant 200px leftover report without remaining empty-scene vs golden independently of setOpaqueSort vs setTransparentSort vs setClearAlpha is not frs mismatch', () => {
-  assert.equal(leftoverIsNotOcsMismatch({ frames: [] }), true);
-  assert.equal(leftoverIsNotOcsMismatch(worldFrsFixture()), true);
-  assert.equal(leftoverIsNotOcsMismatch(worldOcsFixture()), false);
-  assert.throws(() => worldOcsResults(worldFrsFixture()), /leftover g07 after world.group\+outside is not remaining empty-scene vs golden independently of setOpaqueSort vs setTransparentSort vs setClearAlpha mismatch/);
+test('dominant 200px leftover report without remaining empty-scene vs golden independently of setViewport vs setClearColor vs renderer.compile is not ocs mismatch', () => {
+  assert.equal(leftoverIsNotVccMismatch({ frames: [] }), true);
+  assert.equal(leftoverIsNotVccMismatch(worldOcsFixture()), true);
+  assert.equal(leftoverIsNotVccMismatch(worldVccFixture()), false);
+  assert.throws(() => worldVccResults(worldOcsFixture()), /leftover g07 after world.group\+outside is not remaining empty-scene vs golden independently of setViewport vs setClearColor vs renderer.compile mismatch/);
 });
 
-test('ocs buffer without original-golden protocol identity is not original-golden', () => {
-  assert.equal(ocsBufferIsNotOriginalGolden(worldOcsFixture()), false);
-  assert.equal(ocsBufferIsNotOriginalGolden({
-    ...worldOcsFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
+test('vcc buffer without original-golden protocol identity is not original-golden', () => {
+  assert.equal(vccBufferIsNotOriginalGolden(worldVccFixture()), false);
+  assert.equal(vccBufferIsNotOriginalGolden({
+    ...worldVccFixture(), originalGoldenComparisons: 4, protocol: 'original-golden',
   }), true);
   assert.equal(PIXEL_THRESHOLD, 0.12);
   assert.equal(FAILURE_LIMIT, 0.08);
-  assert.equal(OCS_L2_MIN, 8);
-  assert.equal(OCS_LUMA_MIN, 8);
-  assert.equal(OCS_BLUE_MIN, 8);
-  assert.equal(OCS_BAND_MIN, 0.02);
+  assert.equal(VCC_L2_MIN, 8);
+  assert.equal(VCC_LUMA_MIN, 8);
+  assert.equal(VCC_BLUE_MIN, 8);
+  assert.equal(VCC_BAND_MIN, 0.02);
   assert.equal(PRODUCT_EXPOSURE, 0.56);
   assert.equal(PRODUCT_SKY_HEX, 0x3a9ae0);
   assert.equal(PRODUCT_HEMI_SKY_HEX, 0xa8c8e8);
@@ -58,7 +58,7 @@ test('ocs buffer without original-golden protocol identity is not original-golde
   assert.equal(PRODUCT_DEBUG, true);
   assert.equal(PRODUCT_XR, false);
   assert.equal(BAND_PIXELS, 1280 * 200);
-  assert.deepEqual(OCS_LAYERS, ['lights', 'debug', 'xr', 'env', 'both', 'pack']);
+  assert.deepEqual(VCC_LAYERS, ['lights', 'debug', 'xr', 'env', 'both', 'pack']);
   assert.deepEqual([...CAPTURE_LAYERS], ['lights', 'debug', 'xr', 'env', 'both', 'pack']);
   assert.deepEqual([...LIGHTS_IDS], ['lights']);
   assert.deepEqual([...DEBUG_IDS], ['debug']);
@@ -67,7 +67,7 @@ test('ocs buffer without original-golden protocol identity is not original-golde
   assert.deepEqual([...BOTH_IDS], ['both']);
   assert.deepEqual([...PACK_IDS], ['pack']);
   assert.equal(GROUND_ALBEDO.hex, 0xd0d4d8);
-  const src = readFileSync(fromRoot('scripts', 'world-ocs-browser.mjs'), 'utf8');
+  const src = readFileSync(fromRoot('scripts', 'world-vcc-browser.mjs'), 'utf8');
   assert.match(src, /SphereGeometry/);
   assert.match(src, /radius, 8200/);
   assert.match(src, /hideMeshes\(leftoverOf\(\)\)/);
@@ -78,33 +78,33 @@ test('ocs buffer without original-golden protocol identity is not original-golde
   assert.match(src, /setLights\(\)/);
   assert.match(src, /setDebug\(\)/);
   assert.match(src, /setXr\(\)/);
-  assert.match(src, /setOpaqueSort\(/);
-  assert.match(src, /setTransparentSort\(/);
-  assert.match(src, /setClearAlpha\(1\)/);
+  assert.match(src, /setViewport\(0, 0, 640, 400\)/);
+  assert.match(src, /setClearColor\(0x808080, prevA\)/);
+  assert.match(src, /engine\.renderer\.compile\(engine\.scene, engine\.camera\)/);
   assert.match(src, /lights\(\) \{/);
   assert.match(src, /isInstancedMesh/);
   assert.match(src, /\.\.\.hideMeshes\(leftoverOf\(\)\), \.\.\.swapEnv\(gray\)/);
   assert.doesNotMatch(src, /engine\.scene\.environment = null/);
   assert.doesNotMatch(src, /lookAt\(p\.x, p\.y \+ 20, p\.z\)/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), productGroundHex: 0 }), /product ground color retuned/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), productExposure: 1 }), /product exposure retuned/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), lumaTermsIncludeHemi: true }), /luma terms include hemi/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), envIsCombined: true }), /env isolation still combined/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), bothIsCombined: true }), /ocs isolation still combined with hemi/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), lightsClears: false }), /type isolation did not force setOpaqueSort reverse/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), lightsHidesLeftover: false }), /type isolation did not hide leftover empty-scene meshes/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), bothSetsGray: false }), /both isolation did not swap gray cubemap/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), bothClearsLights: false }), /both isolation did not force setOpaqueSort reverse/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), debugClears: false }), /needs isolation did not force setTransparentSort reverse/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), xrClears: false }), /clip isolation did not force setClearAlpha 1/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), packClearsLights: false }), /pack isolation did not force setOpaqueSort reverse/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), envSetsGray: false }), /scene.environment isolation did not swap gray cubemap/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), envHidesLeftover: false }), /env isolation did not hide leftover empty-scene meshes/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), fovStays58: false }), /product fov retuned during ocs probe/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), nearStaysProduct: false }), /product near retuned during ocs probe/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), farStaysProduct: false }), /product far retuned during ocs probe/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), intensityClearsIbl: true }), /ocs isolation clears scene.environment via setOpaqueSort/);
-  assert.throws(() => worldOcsResults({ ...worldOcsFixture(), ocsDeltasUseEmptyBaseline: false }), /leftover g07 still uses world.group leftover as baseline/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), productGroundHex: 0 }), /product ground color retuned/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), productExposure: 1 }), /product exposure retuned/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), lumaTermsIncludeHemi: true }), /luma terms include hemi/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), envIsCombined: true }), /env isolation still combined/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), bothIsCombined: true }), /vcc isolation still combined with hemi/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), lightsClears: false }), /viewport isolation did not force setViewport 640x400/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), lightsHidesLeftover: false }), /viewport isolation did not hide leftover empty-scene meshes/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), bothSetsGray: false }), /both isolation did not swap gray cubemap/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), bothClearsLights: false }), /both isolation did not force setViewport 640x400/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), debugClears: false }), /clearColor isolation did not force setClearColor 0x808080/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), xrClears: false }), /compile isolation did not force renderer.compile/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), packClearsLights: false }), /pack isolation did not force setViewport 640x400/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), envSetsGray: false }), /scene.environment isolation did not swap gray cubemap/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), envHidesLeftover: false }), /env isolation did not hide leftover empty-scene meshes/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), fovStays58: false }), /product fov retuned during vcc probe/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), nearStaysProduct: false }), /product near retuned during vcc probe/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), farStaysProduct: false }), /product far retuned during vcc probe/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), intensityClearsIbl: true }), /vcc isolation clears scene.environment via setViewport/);
+  assert.throws(() => worldVccResults({ ...worldVccFixture(), vccDeltasUseEmptyBaseline: false }), /leftover g07 still uses world.group leftover as baseline/);
 });
 
 test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
@@ -116,15 +116,15 @@ test('identical PNG band pixelmatch is zero at threshold 0.12', () => {
   assert.equal(match.id, 'bottom');
 });
 
-test('locked ocs poses match original-golden cameras and PNG hashes', () => {
-  assert.deepEqual(OCS_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
-  assert.deepEqual(OCS_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
-  assert.equal(OCS_FRAMES[3].night, true);
-  assert.equal(dominantOcs(worldOcsFixture().frames[0].layers), 'lights');
+test('locked vcc poses match original-golden cameras and PNG hashes', () => {
+  assert.deepEqual(VCC_FRAMES.map(row => row.id), ['g01', 'g05', 'g07', 'g08']);
+  assert.deepEqual(VCC_FRAMES.map(row => row.file), ORIGINAL_GOLDEN_FILES);
+  assert.equal(VCC_FRAMES[3].night, true);
+  assert.equal(dominantVcc(worldVccFixture().frames[0].layers), 'lights');
 });
 
-test('ocs-attribution evidence yields five protocol passes', () => {
-  assert.deepEqual(worldOcsResults(worldOcsFixture()).map(row => row.status), Array(5).fill('passed'));
+test('vcc-attribution evidence yields five protocol passes', () => {
+  assert.deepEqual(worldVccResults(worldVccFixture()).map(row => row.status), Array(5).fill('passed'));
 });
 
 for (const [name, mutate] of [
@@ -143,37 +143,37 @@ for (const [name, mutate] of [
   ['authority claim', r => { r.authority = true; }],
   ['original-golden comparisons', r => { r.originalGoldenComparisons = 4; }],
   ['threshold drift', r => { r.pixelThreshold = 0.2; }],
-]) test(`world-ocs evidence fails closed: ${name}`, () => {
-  const r = worldOcsFixture();
+]) test(`world-vcc evidence fails closed: ${name}`, () => {
+  const r = worldVccFixture();
   mutate(r);
-  assert.throws(() => worldOcsResults(r));
+  assert.throws(() => worldVccResults(r));
 });
 
 test('baseline PNG hash drift fails closed', () => {
-  const r = worldOcsFixture();
+  const r = worldVccFixture();
   r.baselineHashes['ayalon-day-g01.png'] = '0'.repeat(64);
-  assert.throws(() => worldOcsResults(r), /baseline hash drift/);
+  assert.throws(() => worldVccResults(r), /baseline hash drift/);
 });
 
 test('zero full-frame present mismatch remains failed', () => {
-  const r = worldOcsFixture();
+  const r = worldVccFixture();
   r.frames[0] = { ...r.frames[0], presentPct: 0, presentMismatched: 0 };
-  const row = worldOcsResults(r).find(item => item.case.includes('still mismatches'));
+  const row = worldVccResults(r).find(item => item.case.includes('still mismatches'));
   assert.equal(row.status, 'failed');
   assert.equal(row.failures, 1);
 });
 
-test('a rest-camera miss remains failed during ocs sampling', () => {
-  const r = worldOcsFixture();
+test('a rest-camera miss remains failed during vcc sampling', () => {
+  const r = worldVccFixture();
   r.frames[1] = { ...r.frames[1], follow: 9.2, height: 2.28 };
-  assert.throws(() => worldOcsResults(r));
+  assert.throws(() => worldVccResults(r));
 });
 
-test('invalid world-ocs report is retained before validation throws', async () => {
-  const out = await mkdtemp(join(tmpdir(), 'world-ocs-invalid-'));
+test('invalid world-vcc report is retained before validation throws', async () => {
+  const out = await mkdtemp(join(tmpdir(), 'world-vcc-invalid-'));
   try {
-    const r = worldOcsFixture({ originalGoldenComparisons: 4 });
-    await assert.rejects(retainWorldOcs(r, out));
+    const r = worldVccFixture({ originalGoldenComparisons: 4 });
+    await assert.rejects(retainWorldVcc(r, out));
     assert.equal(JSON.parse(await readFile(join(out, 'results.json'), 'utf8')).originalGoldenComparisons, 4);
   } finally {
     await rm(out, { recursive: true, force: true });
@@ -194,10 +194,8 @@ test('rest chase overlay remains the 26 August 7.4/1.92 lock', () => {
 
 test('smoke keeps world-layer residual mismatch bias scene region column slice extra material factor rgb shade tone term beam ray ibl gain cube probe bake sky gray bare flat conv sigma mgmt lod road recv amb hemi hex off env eint back hterm nfill upper renv gleft wgi uleft nmesh ogrp tmap cam chas px fx aa sfs acm pcl psr lcc acd dsa tnc ldx sxo ftv frs ocs and vcc probes', () => {
   const src = readFileSync(fromRoot('scripts', 'runtime-recovery-smoke.mjs'), 'utf8');
-  assert.match(src, /import \{ verifyWorldFrs \} from '\.\/world-frs-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldOcs \} from '\.\/world-ocs-browser\.mjs';/);
   assert.match(src, /import \{ verifyWorldVcc \} from '\.\/world-vcc-browser\.mjs';/);
-  assert.match(src, /verifyWorldFrs\(browser, url\)/);
   assert.match(src, /verifyWorldOcs\(browser, url\)/);
   assert.match(src, /verifyWorldVcc\(browser, url\)/);
 });
