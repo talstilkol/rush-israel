@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "b66692d359f369f8acbac0c3a204920cd7bb0bdbd97843b73736bf31acf4e096"
+      "sha256": "8f9ec0245ce5f738a6b4772c114da7bfa518bf780037f350ce6b8634395450c3"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2064,7 +2064,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "f2f21e92471e58babf8d38fa4469a6385aef92add68d8c48b593bcc000e85b00"
+      "sha256": "bb1f43ef08e0356d45025b97bd4d7d2b77b625c05d402e4b69410e1dcda2a1c5"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2989,7 +2989,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "7ad5bec6f60bfd3cd470318c3878fe0f9e09071f7012c3e518be06b3eef0d11f"
+      "sha256": "14766849d08a5eec53241ad75a9a23aa2f78b816b17fbe7cc9b6219b746a0f6d"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -3138,8 +3138,8 @@
     },
     {
       "path": "src/game/engine/rendering-adapter.ts",
-      "bytes": 35239,
-      "sha256": "a49013b7f2ce01eab084a7da1ff91bd99888fe549ebd36d97344f57cd102e980"
+      "bytes": 35279,
+      "sha256": "72308f05930495523f0175a99d530152004d833eba936c0af931dfa0140c6cff"
     },
     {
       "path": "src/game/facade-assets.ts",
@@ -3508,8 +3508,8 @@
     },
     {
       "path": "src/game/tracks/jerusalem.ts",
-      "bytes": 3119,
-      "sha256": "352a9f8bc5704544c5149860ea0b364d214e5e182b047caae15444631a9c545c"
+      "bytes": 3143,
+      "sha256": "e3b8a310b09b462bd268fbe47d7583f78e0d7060776565973bf1863b882d4224"
     },
     {
       "path": "src/game/tracks/ksaba.ts",
@@ -3658,8 +3658,8 @@
     },
     {
       "path": "src/game/vehicle.ts",
-      "bytes": 40595,
-      "sha256": "96aac0b8f1fc2632f06fc8c22077fade49ee7e2448696a1d37e7f22551f7788a"
+      "bytes": 40827,
+      "sha256": "0e2df68aa62962019f13357ca933d701beeb405d0e6b9537d3465bcde2968dec"
     },
     {
       "path": "src/game/walk-assets.ts",
@@ -3978,8 +3978,8 @@
     },
     {
       "path": "src/game/world.ts",
-      "bytes": 118759,
-      "sha256": "d62e6d521d691a7c37b238f716365ac04bbfe6bffe10538243ad420c3c6392e0"
+      "bytes": 118882,
+      "sha256": "f89046ca528ae67e35c8add0558eb79715d5574de6bae8a98012f10a687f023a"
     },
     {
       "path": "src/lib/error-component.tsx",
@@ -11251,5 +11251,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "0f14dd612d58cd06bce06432289ae73f2c93a83bee6bbb56ade92a97be36920a"
+  "digest_sha256": "0f41a5859e5ea2b3c0c0793e6902163cd654309cf15e1c6f3aa41b48b7034a6d"
 }

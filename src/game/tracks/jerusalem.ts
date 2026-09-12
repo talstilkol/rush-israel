@@ -48,8 +48,8 @@ export default defineTrack({
       jer(31.7834, 35.2446),
     ],
     elevation: (t) => {
-      if (t < 0.42) return 36 - t * 82;
-      return 1.4 + Math.pow((t - 0.42) / 0.58, 1.1) * 88;
+      if (t < 0.42) return 2 + 34 * Math.pow(1 - t / 0.42, 1.12);
+      return 2 + Math.pow((t - 0.42) / 0.58, 1.1) * 88;
     },
     streets: [
       { from: 0.0, to: 0.18, he: "מחנה יהודה", en: "Mahane Yehuda" },

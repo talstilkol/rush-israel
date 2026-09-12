@@ -698,7 +698,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.id === "eilatmtn" || def.id === "masada" || def.theme === "carmel" ? 240 : def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" ? 200 : 78;
+    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.id === "eilatmtn" || def.id === "masada" || def.theme === "carmel" ? 240 : def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" || def.id === "jerusalem" || def.id === "scopus" ? 200 : 78;
     const hw = built.width / 2 + 4.6;
     let valleyX = 0;
     let valleyZ = 0;
@@ -746,7 +746,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const s = samp(built, i);
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 148 + s.y * 0.6 : def.id === "eilatmtn" ? s.y + 72 + s.y * 0.45 : def.theme === "carmel" ? s.y + 96 : def.id === "golan" ? s.y + 64 : def.id === "nazareth" || def.id === "tzfat" ? s.y + 42 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 148 + s.y * 0.6 : def.id === "eilatmtn" ? s.y + 72 + s.y * 0.45 : def.theme === "carmel" ? s.y + 96 : def.id === "golan" ? s.y + 64 : def.theme === "stone" || def.id === "jerusalem" || def.id === "scopus" || def.id === "nazareth" || def.id === "tzfat" ? s.y + 52 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;

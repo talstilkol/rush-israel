@@ -574,6 +574,13 @@ export class ArcadeCar {
     }
 
     if (!this.onTrack) this.speed *= Math.exp(-(this.roam ? 0.9 : this.stats.body === "rally" ? 1.15 : 1.15) * dt);
+    if (!this.onTrack && dist > 0.001) {
+      const s = track.samples[near.index];
+      const nx = (this.x - s.x) / dist;
+      const nz = (this.z - s.z) / dist;
+      this.vx -= nx * 14 * dt;
+      this.vz -= nz * 14 * dt;
+    }
 
     if (onAlley && !onMain && alley) {
       const keep = alley.street.half + 1.35;
