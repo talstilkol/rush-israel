@@ -995,7 +995,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const markG = keep(new THREE.BoxGeometry(0.1, 0.62, 0.9));
       const markRed = keep(new THREE.MeshStandardMaterial({ color: 0xc41818, fog: true, roughness: 0.7 }));
       const markWht = keep(new THREE.MeshStandardMaterial({ color: 0xf3f1ea, fog: true, roughness: 0.7 }));
-      const nMark = 48;
+      const nMark = 24;
       const markRows = [-built.width / 2 - 0.62, oppOff + built.width / 2 + 0.62];
       const reds = new THREE.InstancedMesh(markG, markRed, nMark * markRows.length);
       const whts = new THREE.InstancedMesh(markG, markWht, nMark * markRows.length);
