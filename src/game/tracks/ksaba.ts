@@ -12,7 +12,7 @@ export default defineTrack({
     description: "ויצמן, ארלוזורוב, גן הזיכרון והשרון. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Weizmann, Arlozorov, the memorial garden and the Sharon. Inspired by the place — not a map, not GIS.",
     image: "/tracks/ksaba.jpg",
-    width: 20,
+    width: 26,
     seed: 1903,
     theme: "bauhaus",
     ground: 0x6a7a58,

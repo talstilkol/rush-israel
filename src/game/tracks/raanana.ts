@@ -12,7 +12,7 @@ export default defineTrack({
     description: "פארק רעננה, אחוזה, קניון רננים והשרון. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Raanana Park, Ahuza, Renanim Mall and the Sharon. Inspired by the place — not a map, not GIS.",
     image: "/tracks/raanana.jpg",
-    width: 20,
+    width: 26,
     seed: 1922,
     theme: "park",
     ground: 0x5a7a4a,
