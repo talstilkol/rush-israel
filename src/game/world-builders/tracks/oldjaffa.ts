@@ -224,7 +224,7 @@ export default function buildOldjaffa(context: TrackWorldBuilderContext): void {
       const lantern = new THREE.Mesh(new THREE.CylinderGeometry(1.7, 1.5, 2.4, 10), cream);
       lantern.position.set(lh.x, 15.4, lh.z);
       add(lantern);
-      const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.7, 10, 8), new THREE.MeshBasicMaterial({ color: 0xfff2c8 }));
+      const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.7, 10, 8), new THREE.MeshBasicMaterial({ color: 0xfff2c8, fog: true }));
       lamp.position.set(lh.x, 16.8, lh.z);
       add(lamp);
       glowAt(lh.x, 16.8, lh.z, 16777136, 22, 16);
@@ -383,7 +383,7 @@ export default function buildOldjaffa(context: TrackWorldBuilderContext): void {
     const lightTop = new THREE.Mesh(new THREE.CylinderGeometry(1.15, 1.35, 2.8, 10), white);
     lightTop.position.set(lightH.x, 12.8, lightH.z);
     add(lightTop);
-    const lantern = new THREE.Mesh(new THREE.SphereGeometry(1.05, 10, 8), new THREE.MeshBasicMaterial({ color: 16773828 }));
+    const lantern = new THREE.Mesh(new THREE.SphereGeometry(1.05, 10, 8), new THREE.MeshBasicMaterial({ color: 16773828, fog: true }));
     lantern.position.set(lightH.x, 14.2, lightH.z);
     add(lantern);
     const lightCap = new THREE.Mesh(new THREE.ConeGeometry(1.4, 1.6, 8), ochreDark);
