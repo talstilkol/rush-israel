@@ -1103,7 +1103,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     paintAt(0.012, false);
     paintAt(0.022, true);
   }
-  if (urban && def.theme !== "stone") {
+  if (urban && def.theme !== "stone" && def.theme !== "bauhaus") {
     paintAt(0.48, false);
     paintAt(0.5, true);
   }
