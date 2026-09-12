@@ -410,13 +410,14 @@
     "rsh_021_started": true,
     "rsh_021_authorized": true,
     "forbidden_prefixes": [
-      ".rsh039",
-      ".github/workflows/rsh-039-",
-      "RSH-039-",
-      "scripts/rsh039-",
-      "scripts/check-perf-budgets",
-      "scripts/check-budgets",
-      "src/game/perf-budgets/",
+      ".rsh040",
+      ".github/workflows/rsh-040-",
+      "RSH-040-",
+      "scripts/rsh040-",
+      "scripts/check-leak",
+      "scripts/check-resource-leak",
+      "scripts/check-enter-exit",
+      "src/game/leak-cycles/",
       "src/auth-v3/",
       "src/multiplayer-v3/"
     ],
@@ -450,7 +451,7 @@
     "rsh_030_state": "accepted_on_merge",
     "rsh_031_authorized": true,
     "rsh_031_started": true,
-    "queue_head": "RSH-039",
+    "queue_head": "RSH-040",
     "rsh_031_state": "accepted_on_merge",
     "rsh_032_authorized": true,
     "rsh_032_started": true,
@@ -470,8 +471,10 @@
     "rsh_037_started": true,
     "rsh_038_authorized": true,
     "rsh_038_started": true,
-    "rsh_039_authorized": false,
-    "rsh_039_started": false
+    "rsh_039_authorized": true,
+    "rsh_039_started": true,
+    "rsh_040_authorized": false,
+    "rsh_040_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

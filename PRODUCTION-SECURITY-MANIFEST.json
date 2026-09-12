@@ -85,7 +85,7 @@
     "policy_source_sha256": "90516317124c1ad86e1a059959a498e2e2d32b9b23834feb8cfc2026a1b0bb88",
     "secrets_check_sha256": "9a2b1ffceaae9602c4134b47cbca9209f7d6a684d335b0ac4b9cc2914b8fc322",
     "secrets_test_sha256": "eb436ab5108a6679d52f22684c3cc0a330729a3106d0ed1d6c044fea8fd5db73",
-    "checker_test_sha256": "78b92b9d73fd31beb0e3954dcf6b3cb2c9897cfec27a40e81590a9320f16135e",
+    "checker_test_sha256": "fa4ba47de221333588f4288682010e5e087e756aa93ab87c7b1352be2d2a097f",
     "qa_hook_sha256": "14db672bdc1311b3fcd14a2230a8f4240ff88cf9a279659d9559e2959b694460",
     "qa_adapter_sha256": "973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
@@ -95,20 +95,21 @@
     "recovery_source_sha256": "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-039",
+    "queue_head": "RSH-040",
     "rsh_025_authorized": true,
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "rsh_026_authorized": true,
     "rsh_026_started": true,
     "forbidden_prefixes": [
-      ".rsh039",
-      ".github/workflows/rsh-039-",
-      "RSH-039-",
-      "scripts/rsh039-",
-      "scripts/check-perf-budgets",
-      "scripts/check-budgets",
-      "src/game/perf-budgets/"
+      ".rsh040",
+      ".github/workflows/rsh-040-",
+      "RSH-040-",
+      "scripts/rsh040-",
+      "scripts/check-leak",
+      "scripts/check-resource-leak",
+      "scripts/check-enter-exit",
+      "src/game/leak-cycles/"
     ],
     "rsh_026_state": "accepted_on_merge",
     "rsh_027_authorized": true,
@@ -144,8 +145,10 @@
     "rsh_037_started": true,
     "rsh_038_authorized": true,
     "rsh_038_started": true,
-    "rsh_039_authorized": false,
-    "rsh_039_started": false
+    "rsh_039_authorized": true,
+    "rsh_039_started": true,
+    "rsh_040_authorized": false,
+    "rsh_040_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

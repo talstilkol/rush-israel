@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-perf-budgets-manifest",
+  "unit": "RSH-039",
+  "title": "Set bundle, asset-streaming and cache budgets",
+  "generated_at": "2026-09-12T17:05:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "817ab7ed71d396b200188b16c27d627a1f2d7814",
+    "tree_sha": "dae1cddef51270ccdcf085df12db52164fff383b",
+    "branch": "agent/rsh-039-perf-budgets"
+  },
+  "lock": {
+    "cache_paths": [
+      "/game/",
+      "/basis/"
+    ],
+    "cache_control": "public, max-age=31536000, immutable",
+    "cache_max_age_s": 31536000,
+    "html_cache_control": "no-cache",
+    "asset_streaming_gltf": false,
+    "mesh_streaming": false,
+    "streaming_music": false,
+    "draw_call_target": 80,
+    "production_finishnow_forbidden": true,
+    "live_cache_module": "server/middleware/game-cache.ts",
+    "live_cache_smoke": "scripts/cache-headers-smoke.mjs",
+    "leak_cycles_enforced": false,
+    "real_device_baseline_accepted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "owner_settings_freeze": false,
+    "public_distribution": false
+  },
+  "lock_module": {
+    "directory": "src/game/perf-budgets",
+    "budgets": "src/game/perf-budgets/budgets.ts",
+    "index": "src/game/perf-budgets/index.ts"
+  },
+  "preservation": {
+    "golden_png_changes": 0,
+    "ayalon_lock_changes": 0,
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "cars_changes": 0,
+    "audio_hud_changes": 0,
+    "engine_adapter_changes": 0,
+    "live_cache_changes": 0,
+    "quality_profile_changes": 0,
+    "package_json_changes": 0,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "budgets_source_sha256": "c51a8040c9179ff6a5290ed39249eb7c38d1cd14dc0143982cc594801c421990",
+    "index_source_sha256": "e42d3d332658d406a3f24c929bbdfd02fd0ab04223b3b755bb04073a832e9609",
+    "contract_sha256": "b775188c9b43f716a178a35e63136b6f8434f8d2eb0e66b17891bab0e0d2837b",
+    "live_cache_source_sha256": "6aa9afd836425125fe724db169c5d584647cd4c8ec75c7ed89f8f7c95ca39b6f",
+    "cache_smoke_source_sha256": "ae0d6489306108d47a3c26d08c4e62257b34751f09212c3e0ff6e5442a0dbd89",
+    "checker_test_sha256": "15058da669817bd237e35564eca4b6d0bb69acffd182bcd109e24032662a1f27",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "budget_digest_sha256": "1044f257c7a8154be8cccf55929ab4367b85d733ee74e98c875751f9718d3cd7",
+    "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
+    "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1",
+    "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+    "quality_profiles_source_sha256": "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-040",
+    "rsh_039_authorized": true,
+    "rsh_039_started": true,
+    "rsh_040_authorized": false,
+    "rsh_040_started": false,
+    "forbidden_prefixes": [
+      ".rsh040",
+      ".github/workflows/rsh-040-",
+      "RSH-040-",
+      "scripts/rsh040-",
+      "scripts/check-leak",
+      "scripts/check-resource-leak",
+      "scripts/check-enter-exit",
+      "src/game/leak-cycles/"
+    ]
+  }
+}

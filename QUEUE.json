@@ -1,11 +1,11 @@
 {
-  "schema_version": "21.0.0",
+  "schema_version": "22.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-09-12T16:50:00.000Z",
+  "generated_at": "2026-09-12T17:05:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "91754100fc6a5d7bfc852e6aafa28cd17c1762ba",
-  "state_effective_on": "merge_of_RSH_038_pull_request",
+  "verified_base_sha": "817ab7ed71d396b200188b16c27d627a1f2d7814",
+  "state_effective_on": "merge_of_RSH_039_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "next",
       "authorized_units": [
+        "RSH-039"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-039_merge",
+      "RSH_040_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": [
         "RSH-038"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-038_merge",
       "RSH_039_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "next",
-      "authorized_units": [
-        "RSH-037"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-037_merge",
-      "RSH_038_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 38,
+    "accepted": 39,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 29,
-    "remaining": 29
+    "deferred": 28,
+    "remaining": 28
   },
   "queue_head": {
-    "id": "RSH-039",
-    "title": "Set bundle, asset-streaming and cache budgets",
+    "id": "RSH-040",
+    "title": "Pass 20 race enter-exit cycles without a resource leak",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-039 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-040 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-039",
-    "title": "Set bundle, asset-streaming and cache budgets",
+    "id": "RSH-040",
+    "title": "Pass 20 race enter-exit cycles without a resource leak",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -953,7 +953,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-038": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-038-quality-profiles",
       "manifest": "QUALITY-PROFILES-MANIFEST.json",
       "contract": "RSH-038-QUALITY-PROFILES-CONTRACT.md",
@@ -965,7 +965,29 @@
         "ultra",
         "photo"
       ],
-      "rsh_039_created": false
+      "rsh_039_created": true,
+      "pull_request": 42,
+      "validated_head_sha": "6e3fc4e73346e27b5e11057ae9001076021280a4",
+      "merge_sha": "817ab7ed71d396b200188b16c27d627a1f2d7814",
+      "tree_sha": "dae1cddef51270ccdcf085df12db52164fff383b",
+      "workflow_run": 34706548905,
+      "workflow_job": 103587515717,
+      "artifact_id": 10301901414,
+      "artifact_digest": "sha256:d05193521860df26c1a684f678c1f3e64644934fa3bea9b13e34ec2720118c2c",
+      "post_merge_workflow_run": 34706788427,
+      "post_merge_workflow_job": 103588181866,
+      "post_merge_artifact_id": 10302470312,
+      "post_merge_artifact_digest": "sha256:c7b910391551471af40f36344cd45fe245071a1e8380ca47318a6daba8715241",
+      "unresolved_review_threads": 0
+    },
+    "RSH-039": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-039-perf-budgets",
+      "manifest": "PERF-BUDGETS-MANIFEST.json",
+      "contract": "RSH-039-PERF-BUDGETS-CONTRACT.md",
+      "lock_module": "src/game/perf-budgets",
+      "cache_max_age_s": 31536000,
+      "rsh_040_created": false
     }
   },
   "unit_order": [
@@ -1040,25 +1062,25 @@
   "state_rules": {
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-038"
+      "through": "RSH-039"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-039",
+      "from": "RSH-040",
       "through": "RSH-067"
     },
-    "RSH-001\u2013RSH-038": "accepted",
-    "RSH-039\u2013RSH-067": "deferred_not_authorized"
+    "RSH-001\u2013RSH-039": "accepted",
+    "RSH-040\u2013RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-039 remains deferred until a new explicit owner instruction.",
-    "RSH_038_completed": true,
-    "RSH_038_authorization_consumed": true,
-    "RSH_039_authorized": false
+    "current_action": "No unit is authorized; RSH-040 remains deferred until a new explicit owner instruction.",
+    "RSH_039_completed": true,
+    "RSH_039_authorization_consumed": true,
+    "RSH_040_authorized": false
   },
-  "self_reference_boundary": "The RSH-038 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-039 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }

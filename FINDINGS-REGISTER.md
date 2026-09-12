@@ -57,7 +57,7 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P2-06 | P2 | **CLOSED** | No dependency-update policy exists | `DEPENDENCY-POLICY.md` defines lockfile authority, monthly/release review, isolated updates, exact-head validation and serial-queue restrictions. | RSH-020 |
 | P2-07 | P2 | **CLOSED** | A beta Nitro version is on the build path | RSH-020 records npm registry evidence that `3.0.260610-beta` is the `latest` dist-tag, retains an exact pin and requires full validation for replacement. | RSH-020 |
 | P2-08 | P2 | **CLOSED** | README does not document reproducible setup and validation | RSH-012 documents exact Node/npm versions, `npm ci`, development, full tests, self-starting QA and deterministic build commands. | RSH-012 |
-| P2-09 | P2 | **OPEN** | No bundle or asset budget is enforced | No accepted size threshold or CI budget exists. | RSH-039 |
+| P2-09 | P2 | **CLOSED** | No bundle or asset budget is enforced | RSH-039 locks cache max-age=31536000 immutable for /game and /basis, HTML no-cache, streaming-off, production finishNow exclusion and the Ayalon draw-call target. Desktop/mobile performance gates remain red. | RSH-039 |
 | P2-10 | P2 | **OPEN** | Touch-action behaviour is not explicitly locked | Pointer cancellation exists, but browser gesture suppression is not a verified contract. | RSH-044 |
 | P2-11 | P2 | **OPEN** | Crash reporting, telemetry and privacy policy are undefined | No accepted collection and retention policy exists. | RSH-048 |
 | P2-12 | P2 | **OPEN** | No browser and device support matrix exists | Supported Chrome, Edge, Firefox, Safari and mobile versions are undefined. | RSH-043 |

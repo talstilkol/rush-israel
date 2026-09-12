@@ -5,14 +5,14 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "8bf1f9f8f78e6105a733f000dc35c3291785b0705786e427357f72065377fbdb";
+export const EXPECTED_MANIFEST_SHA256 = "83ceef6b1c071db0e9e8c9def0ac61fe9e5b4f20c1e92244185af8929d3cef7e";
 export const EXPECTED_PROFILES_SHA256 = "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a";
 export const EXPECTED_HYSTERESIS_SHA256 = "0398a113fe0643804ad0349201eb1f3a4dd88d54811b5497dbc8128ff9f2da7e";
 export const EXPECTED_INDEX_SHA256 = "f000f8f0b6b1d39a132190ec6d1225386e0950d1c2b84f09bd529d53222a0786";
 export const EXPECTED_CONTRACT_SHA256 = "5cdeaac7c9d6da3205f55990579a71f6cfe828700f85311eec125f62fb0cc5a7";
 export const EXPECTED_LIVE_PROFILE_SHA256 = "9da86b5461433767b9851625b5c7346c981f4901d6b67e3db9884c625c0af10e";
 export const EXPECTED_LIVE_HYSTERESIS_SHA256 = "fd0e6b4a7c5578186de11eae4f465bbfe863b3f6f493f2f17e84005abf4b8271";
-export const EXPECTED_CHECKER_TEST_SHA256 = "83cc6d836fd7511c82068120ea8c3342847e60bd3556de6ed30b3ce0898835f9";
+export const EXPECTED_CHECKER_TEST_SHA256 = "a67f9388c7703e0f452e21e9cd85e69846e980166a60abc28ed981045f6e849b";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_QUALITY_DIGEST_SHA256 = "df5b4b3c1fd9ac7ab5fbaa2a8441da83c6b6ab5a83c97ec3914c3d63313fac6a";
 export const EXPECTED_FREEZE_DIGEST_SHA256 = "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098";
@@ -128,8 +128,8 @@ export function validateQualityProfiles(overrides = {}) {
   if (!/\| P1-13 \| P1 \| \*\*OPEN\*\*/.test(input.findingsSource)) errors.push("P1-13 must remain OPEN until a real-device baseline exists");
   if (manifest.preservation?.golden_png_changes !== 0 || manifest.preservation?.package_json_changes !== 0 || manifest.preservation?.release_gates_green !== 0) errors.push("RSH-038 preservation counts changed");
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-039 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-039" || manifest.deferred_boundary?.rsh_039_authorized !== false || manifest.deferred_boundary?.rsh_039_started !== false) errors.push("RSH-039 deferred boundary changed");
+  if (later.length) errors.push(`RSH-040 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-040" || manifest.deferred_boundary?.rsh_039_authorized !== true || manifest.deferred_boundary?.rsh_040_authorized !== false || manifest.deferred_boundary?.rsh_039_started !== true || manifest.deferred_boundary?.rsh_040_started !== false) errors.push("RSH-040 deferred boundary changed");
   return { errors, locked: errors.length === 0, profileCount: 5 };
 }
 
@@ -144,5 +144,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`quality-profiles fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`quality-profiles ok: 5 profiles + hysteresis; RSH-039 deferred`);
+  console.log(`quality-profiles ok: 5 profiles + hysteresis; RSH-040 deferred`);
 }
