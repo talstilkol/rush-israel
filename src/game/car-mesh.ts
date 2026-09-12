@@ -205,11 +205,11 @@ function bodyGeo(kind: CarDef["body"], width: number) {
   const g = new THREE.ExtrudeGeometry(carShape(kind), {
     depth: width,
     bevelEnabled: true,
-    bevelThickness: 0.13,
-    bevelSize: 0.11,
-    bevelSegments: 6,
-    steps: 2,
-    curveSegments: 16,
+    bevelThickness: 0.2,
+    bevelSize: 0.16,
+    bevelSegments: 8,
+    steps: 4,
+    curveSegments: 24,
   });
   g.translate(0, 0, -width / 2);
   g.rotateY(-Math.PI / 2);
@@ -219,7 +219,7 @@ function bodyGeo(kind: CarDef["body"], width: number) {
     const z = pos.getZ(i);
     const x = pos.getX(i);
     const az = Math.min(1, Math.abs(z) / halfL);
-    const taper = az < 0.48 ? 1 : 1 - (az - 0.48) * 0.38;
+    const taper = az < 0.38 ? 1 : 1 - (az - 0.38) * 0.5;
     pos.setX(i, x * taper);
   }
   pos.needsUpdate = true;
@@ -305,8 +305,9 @@ export function createCarVisual(
 
   const cabinY = L.wheelY + L.bodyH * 0.55 + L.cabinH * 0.42;
 
-  put(new THREE.BoxGeometry(L.W * 0.98, 0.16, 0.2), dark, 0, L.wheelY * 0.5, half - 0.01);
-  const bumper = put(new THREE.BoxGeometry(L.W * 0.94, 0.18, 0.22), dark, 0, L.wheelY * 0.55, -half + 0.03);
+  put(new THREE.CylinderGeometry(0.1, 0.1, L.W * 0.96, 12), dark, 0, L.wheelY * 0.5, half - 0.02).rotation.z = Math.PI / 2;
+  const bumper = put(new THREE.CylinderGeometry(0.11, 0.11, L.W * 0.92, 12), dark, 0, L.wheelY * 0.55, -half + 0.04);
+  bumper.rotation.z = Math.PI / 2;
   put(new THREE.BoxGeometry(L.W * 0.38, 0.12, 0.03), plate, 0, L.wheelY * 0.5, -half - 0.05);
   put(new THREE.BoxGeometry(L.W * 0.72, 0.14, 0.04), black, 0, bodyY + 0.04, half - 0.01);
 
@@ -333,7 +334,7 @@ export function createCarVisual(
   const brakeC = put(new THREE.BoxGeometry(0.7, 0.035, 0.03), emitBrake, 0, cabinY + L.cabinH * 0.08, L.cabinZ - L.cabinL * 0.42);
 
   const cabinFill = new THREE.MeshStandardMaterial({ color: 0x0a0c10, roughness: 0.92, metalness: 0.04 });
-  put(new THREE.BoxGeometry(L.W * 0.62, L.cabinH * 0.48, L.cabinL * 0.52), cabinFill, 0, cabinY - 0.06, L.cabinZ);
+  put(new THREE.BoxGeometry(L.W * 0.5, L.cabinH * 0.28, L.cabinL * 0.38), cabinFill, 0, cabinY - 0.1, L.cabinZ);
   put(new THREE.BoxGeometry(L.W * 0.56, 0.07, 0.2), black, 0, cabinY - 0.1, L.cabinZ + L.cabinL * 0.26);
   put(new THREE.BoxGeometry(0.26, 0.2, 0.3), black, -0.17, cabinY - 0.2, L.cabinZ - 0.02);
   put(new THREE.BoxGeometry(0.26, 0.2, 0.3), black, 0.17, cabinY - 0.2, L.cabinZ - 0.02);
