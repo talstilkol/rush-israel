@@ -1466,8 +1466,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         depthWrite: true,
       }));
       if (isNight) mat.color.multiplyScalar(0.82);
-      const planeW = def.id === "ayalon" ? Math.max(body.w * 1.4, 900) : Math.min(Math.max(body.w * 1.05, 40), 160);
-      const planeD = def.id === "ayalon" ? Math.max(body.d, 1600) : Math.min(Math.max(body.d * 1.05, 40), 220);
+      const planeW = def.id === "ayalon" ? Math.max(body.w * 1.4, 900) : Math.min(Math.max(body.w * 0.7, 36), 88);
+      const planeD = def.id === "ayalon" ? Math.max(body.d, 1600) : Math.min(Math.max(body.d * 0.7, 36), 96);
       let wx = body.x;
       let wz = body.z;
       if (coastal) {
@@ -1484,19 +1484,19 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         const len = Math.hypot(dx, dz) || 1;
         dx /= len;
         dz /= len;
-        const pad = built.width / 2 + 22;
-        for (let k = 0; k < 28; k++) {
+        const pad = built.width / 2 + 36;
+        for (let k = 0; k < 36; k++) {
           if (!rectHitsRibbon(wx, wz, planeW * 0.5, planeD * 0.5, pad)) break;
-          wx += dx * 32;
-          wz += dz * 32;
+          wx += dx * 28;
+          wz += dz * 28;
         }
         if (rectHitsRibbon(wx, wz, planeW * 0.5, planeD * 0.5, pad)) continue;
       }
       const mesh = new THREE.Mesh(keep(new THREE.PlaneGeometry(planeW, planeD, 8, 8)), mat);
       mesh.rotation.x = -Math.PI / 2;
-      mesh.position.set(wx, def.id === "ayalon" ? -0.12 : -1.35, wz);
+      mesh.position.set(wx, def.id === "ayalon" ? -0.12 : -2.6, wz);
       if (coastal) {
-        mesh.userData.waterBaseY = -1.35;
+        mesh.userData.waterBaseY = -2.6;
         mesh.renderOrder = -8;
       }
       group.add(mesh);
