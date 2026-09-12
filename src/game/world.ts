@@ -1100,6 +1100,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     paintAt(0.48, false);
     paintAt(0.5, true);
   }
+  if (def.id === "ayalon") {
   const wearMat = keep(new THREE.MeshStandardMaterial({
     map: getBlob() ?? undefined,
     color: getBlob() ? 0x2a2c30 : 1842720,
@@ -1129,7 +1130,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   wear.instanceMatrix.needsUpdate = true;
   group.add(wear);
   lodWear.push(wear);
-  if (def.id === "ayalon") {
+  {
     const oppOff = built.width + 18;
     const wear2 = new THREE.InstancedMesh(wearGeo, wearMat, wearN);
     let w2 = 0;
@@ -1146,6 +1147,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     wear2.instanceMatrix.needsUpdate = true;
     group.add(wear2);
     lodWear.push(wear2);
+  }
   }
   const curbTex = keep(curbTexture(def.theme === "stone" ? "stone" : def.theme === "desert" ? "sand" : def.theme === "carmel" || def.theme === "snow" ? "dirt" : "city"));
   const curbMat = keep(new THREE.MeshStandardMaterial({
@@ -1164,7 +1166,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     group.add(new THREE.Mesh(keep(buildCurb(built, 1, oppOff)), curbMat));
     group.add(new THREE.Mesh(keep(buildCurb(built, -1, oppOff)), curbMat));
   }
-  if (def.id === "ayalon" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6") {
+  if (def.id === "ayalon") {
     const eyeGeo = keep(new THREE.BoxGeometry(0.2, 0.09, 0.32));
     const eyeMat = keep(new THREE.MeshStandardMaterial({
       color: 0xfff2b0,
