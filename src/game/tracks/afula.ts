@@ -12,7 +12,7 @@ export default defineTrack({
     description: "הכיכר הגדולה, עמק יזרעאל, הגלבוע וכביש 65. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "The big circle, Jezreel Valley, Mount Gilboa and Highway 65. Inspired by the place — not a map, not GIS.",
     image: "/tracks/afula.jpg",
-    width: 20,
+    width: 26,
     seed: 1925,
     theme: "highway",
     ground: 0x7a8a58,

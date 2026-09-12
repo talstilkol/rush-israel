@@ -12,7 +12,7 @@ export default defineTrack({
     description: "התיאטרון הרומי, הקארדו, העמודים והגלבוע. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "The Roman theatre, the cardo, columns and Mount Gilboa. Inspired by the place — not a map, not GIS.",
     image: "/tracks/beitshan.jpg",
-    width: 20,
+    width: 26,
     seed: 63,
     theme: "stone",
     ground: 0x9a8a6a,
