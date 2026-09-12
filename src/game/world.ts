@@ -2586,7 +2586,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     nycLand.addNycLandmarks(group, def, bag, shadows, isNight, landmarkGlows, emitList, colliders);
   }
   const edgeStep = Math.max(3, Math.floor(built.samples.length / 360));
-  const wallD = built.width / 2 + 1.55;
+  const wallD = built.width / 2 + 3.2;
   for (let i = 0; i < built.samples.length; i += edgeStep) {
     const s = built.samples[i];
     colliders.push({
