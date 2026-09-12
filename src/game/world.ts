@@ -685,9 +685,9 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     dome.frustumCulled = false;
     group.add(dome);
   }
-  if (def.theme === "carmel" || def.theme === "snow" || def.id === "ramon" || def.id === "jerusalem" || def.id === "scopus" || def.id === "hw1" || def.id === "masada" || def.id === "eilatmtn" || def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" || def.id === "stellamaris") {
+  if (def.theme === "carmel" || def.theme === "snow" || def.theme === "stone" || def.theme === "jaffa" || def.id === "ramon" || def.id === "jerusalem" || def.id === "scopus" || def.id === "hw1" || def.id === "masada" || def.id === "eilatmtn" || def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" || def.id === "stellamaris") {
     const slopeMat = keep(new THREE.MeshStandardMaterial({
-      color: def.id === "ramon" ? 11565642 : def.id === "hermon" ? 13950438 : def.id === "jerusalem" || def.id === "scopus" ? 12890250 : 4874808,
+      color: def.id === "ramon" ? 11565642 : def.id === "hermon" ? 13950438 : def.theme === "stone" || def.id === "jerusalem" || def.id === "scopus" ? 12890250 : 4874808,
       roughness: 0.96,
       envMapIntensity: 0.18,
       flatShading: true,
@@ -698,7 +698,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.id === "eilatmtn" || def.id === "masada" || def.theme === "carmel" ? 240 : def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" || def.id === "jerusalem" || def.id === "scopus" ? 200 : 78;
+    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.id === "eilatmtn" || def.id === "masada" || def.theme === "carmel" ? 240 : def.theme === "stone" || def.theme === "jaffa" || def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" || def.id === "jerusalem" || def.id === "scopus" ? 200 : 78;
     const hw = built.width / 2 + 4.6;
     let valleyX = 0;
     let valleyZ = 0;

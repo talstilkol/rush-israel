@@ -12,7 +12,7 @@ export default defineTrack({
     description: "שער האריות, השער החדש, ציון, האשפות ומגדל דוד מבחוץ. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Lions' Gate, New Gate, Zion, Dung Gate and the Tower of David from outside. Inspired by the place — not a map, not GIS.",
     image: "/tracks/walls.jpg",
-    width: 22,
+    width: 26,
     seed: 1538,
     theme: "stone",
     ground: 0xb9a889,
