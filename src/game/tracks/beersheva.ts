@@ -12,7 +12,7 @@ export default defineTrack({
     description: "שדרות רגר, באר אברהם, מגדל העירייה וקמפוס בן־גוריון. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Rager Boulevard, Abraham's Well, City Hall tower and the BGU campus. Inspired by the place — not a map, not GIS.",
     image: "/tracks/beersheva.jpg",
-    width: 20,
+    width: 26,
     seed: 1906,
     theme: "desert",
     ground: 0xc4a878,

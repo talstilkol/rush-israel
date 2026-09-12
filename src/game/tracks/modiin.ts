@@ -12,7 +12,7 @@ export default defineTrack({
     description: "כביש 431, ענבה, ליגד סנטר והעיר המתוכננת. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Highway 431, Anabe, Ligad Center and the planned city. Inspired by the place — not a map, not GIS.",
     image: "/tracks/modiin.jpg",
-    width: 22,
+    width: 26,
     seed: 1996,
     theme: "highway",
     ground: 0x6a7a58,
