@@ -570,7 +570,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     dir.add(lensflare);
   }
   applyLights(isNight, hemi, dir, fill, ambient, lightAim, flareCol, lensflare);
-  const desertNight = def.theme === "desert" || def.theme === "snow" || def.theme === "stone" || def.theme === "jaffa" || def.id === "ramon" || def.id === "hermon" || def.id === "scopus";
+  const desertNight = def.theme === "desert" || def.theme === "snow" || def.theme === "stone" || def.theme === "jaffa" || def.theme === "carmel" || def.id === "ramon" || def.id === "hermon" || def.id === "scopus";
   if (isNight && desertNight) {
     hemi.color.setHex(0x9ab4d0);
     hemi.groundColor.setHex(0x4a3828);
@@ -698,7 +698,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.id === "eilatmtn" || def.id === "masada" ? 220 : def.theme === "carmel" ? 160 : 78;
+    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.id === "eilatmtn" || def.id === "masada" || def.theme === "carmel" ? 240 : 78;
     const hw = built.width / 2 + 4.6;
     let valleyX = 0;
     let valleyZ = 0;
@@ -746,7 +746,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const s = samp(built, i);
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 148 + s.y * 0.6 : def.id === "eilatmtn" ? s.y + 72 + s.y * 0.45 : def.theme === "carmel" ? s.y + 78 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 148 + s.y * 0.6 : def.id === "eilatmtn" ? s.y + 72 + s.y * 0.45 : def.theme === "carmel" ? s.y + 96 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
@@ -1999,7 +1999,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const far = new THREE.InstancedMesh(farGeo, farMat, farN);
     for (let i = 0; i < farN; i++) {
       const a = i / farN * Math.PI * 2 + 0.07;
-      const r = tid === "ramon" || tid === "hermon" ? span * 1.45 + i % 6 * 70 : def.theme === "stone" || tid === "hw1" ? span * 1.55 + i % 6 * 55 : span * 1.15 + i % 6 * 28;
+      const r = tid === "ramon" || tid === "hermon" || def.theme === "carmel" ? span * 1.45 + i % 6 * 70 : def.theme === "stone" || tid === "hw1" ? span * 1.55 + i % 6 * 55 : span * 1.15 + i % 6 * 28;
       const h = tid === "ramon" ? 52 + i % 6 * 22 : tid === "hermon" ? 64 + i % 5 * 26 : def.theme === "carmel" || tid === "hw1" ? 38 + i % 6 * 16 : def.theme === "stone" ? 36 + i % 5 * 18 : 22 + i % 8 * 16 + (def.theme === "manhattan" ? 28 : 0);
       _dummy.position.set(Math.cos(a) * r, natureHill ? h * 0.18 : 0, Math.sin(a) * r);
       _dummy.scale.set(tid === "ramon" ? 42 + i % 4 * 14 : tid === "hermon" ? 38 + i % 4 * 12 : def.theme === "carmel" || tid === "hw1" ? 32 + i % 4 * 12 : def.theme === "stone" ? 38 + i % 4 * 14 : 16 + i % 4 * 7, h, tid === "ramon" ? 36 : tid === "hermon" ? 32 : def.theme === "carmel" || tid === "hw1" ? 28 : def.theme === "stone" ? 32 : 12 + i % 3 * 5);
@@ -2041,7 +2041,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const s = built.samples[i];
       if (!pine && !acacia && s.y > 14) continue;
       for (const side of pine || acacia ? [-1, 1] : [i % 12 === 0 ? 1 : -1]) {
-        const d = built.width / 2 + (pine ? 22 + i % 5 * 5.2 : acacia ? 12 + i % 4 * 4 : ficusStreet ? 12.5 : stoneHill ? 16 : 7.2);
+        const d = built.width / 2 + (pine ? 32 + i % 5 * 6.2 : acacia ? 12 + i % 4 * 4 : ficusStreet ? 12.5 : stoneHill ? 16 : 7.2);
         const px = s.x + s.rx * d * side;
         const pz = s.z + s.rz * d * side;
         if (nearestIndexXY(built.samples, px, pz).dist < built.width / 2 + 10) continue;

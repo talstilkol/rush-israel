@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "revision": "r7.09",
+  "revision": "r7.10",
   "date": "2026-09-12",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
@@ -2695,9 +2695,9 @@
     "r6.9 factorial pairwise differences overlap and are not additive percentages of original-golden failures; font-body hashes are observations, not immutable pins."
   ],
   "checkpoint": {
-    "revision": "r7.09",
-    "base_head": "92b075e",
-    "document": "RSH-036-RUNTIME-REPAIR-r7.09.md",
+    "revision": "r7.10",
+    "base_head": "a76ae04",
+    "document": "RSH-036-RUNTIME-REPAIR-r7.10.md",
     "unit_accepted": false,
     "previous_exact_head_ci": {
       "revision": "r6.26",
