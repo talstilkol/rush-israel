@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "075f4fa0b994cb56c0a192ea5abbfa2a4f5ae008aaf944130535d95035b5b9b4"
+      "sha256": "e1b99e19e4fcd9793153ccbf7d44159dea61f34bedf80573bf4636e8672cb85a"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -3404,7 +3404,7 @@
     {
       "path": "src/game/tracks/caesarea.ts",
       "bytes": 2385,
-      "sha256": "581de03ac192e00fe3612a28bfcc1a8aff6679fccbaa097f65d758ed5fca1a69"
+      "sha256": "4b4b7bb654ed7461a8bd1c41c8ee296ac5e6f744c96ddaff7e552659547f20ee"
     },
     {
       "path": "src/game/tracks/centralpark.ts",
@@ -11231,5 +11231,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "70e786a767322910224313c611e1aee20d976f1f0fe8d7018a92d7caed51f59e"
+  "digest_sha256": "96dafefaa140a59bb865cc549fd4bacf520cd1e52e0cf07d3293f227a88e2cf2"
 }
