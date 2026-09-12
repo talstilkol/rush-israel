@@ -790,9 +790,12 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   road.receiveShadow = true;
   if (def.id !== "ayalon") road.renderOrder = 2;
   group.add(road);
-  const edgeMat = keep(new THREE.MeshBasicMaterial({
+  const edgeMat = keep(new THREE.MeshStandardMaterial({
     color: 0xffffff,
-    fog: false,
+    roughness: 0.45,
+    metalness: 0.04,
+    emissive: 0x222222,
+    emissiveIntensity: isNight ? 0.22 : 0.04,
     polygonOffset: true,
     polygonOffsetFactor: -2,
     polygonOffsetUnits: -2
@@ -800,8 +803,14 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.16, 0.46)), edgeMat));
   group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.16, 0.46)), edgeMat));
   {
-    const dashG = keep(new THREE.BoxGeometry(0.2, 0.045, 4.4));
-    const dashM = keep(new THREE.MeshBasicMaterial({ color: 0xf7f8f4, fog: false }));
+    const dashG = keep(new THREE.BoxGeometry(0.2, 0.03, 3.2));
+    const dashM = keep(new THREE.MeshStandardMaterial({
+      color: 0xf7f8f4,
+      roughness: 0.42,
+      metalness: 0.04,
+      emissive: 0x222218,
+      emissiveIntensity: isNight ? 0.18 : 0.03,
+    }));
     const offs = def.id === "ayalon" ? [0, built.width + 18] : [0];
     const nDash = Math.min(2800, Math.floor(built.samples.length / 2) * (lanes - 1) * offs.length);
     const dashes = new THREE.InstancedMesh(dashG, dashM, Math.max(1, nDash));
@@ -815,7 +824,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         if (Math.floor(s.s / 9) % 2 === 0) continue;
         for (let k = 1; k < lanes && di < nDash; k++) {
           const lat = -hw + k * lw;
-          _dummy.position.set(s.x + s.rx * (off + lat), s.y + 0.09, s.z + s.rz * (off + lat));
+          _dummy.position.set(s.x + s.rx * (off + lat), s.y + 0.04, s.z + s.rz * (off + lat));
           _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
           _dummy.scale.set(1, 1, 1);
           _dummy.updateMatrix();
@@ -828,9 +837,12 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     group.add(dashes);
   }
   {
-    const yMat = keep(new THREE.MeshBasicMaterial({
+    const yMat = keep(new THREE.MeshStandardMaterial({
       color: 0xffc400,
-      fog: false,
+      roughness: 0.45,
+      metalness: 0.04,
+      emissive: 0x332200,
+      emissiveIntensity: isNight ? 0.2 : 0.04,
       polygonOffset: true,
       polygonOffsetFactor: -2,
       polygonOffsetUnits: -2
@@ -1144,21 +1156,27 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     group.add(new THREE.Mesh(keep(buildCurb(built, 1, oppOff)), curbMat));
     group.add(new THREE.Mesh(keep(buildCurb(built, -1, oppOff)), curbMat));
   }
-  {
+  if (def.theme === "highway" || def.id === "ayalon") {
     const eyeGeo = keep(new THREE.BoxGeometry(0.2, 0.09, 0.32));
-    const eyeMat = keep(new THREE.MeshBasicMaterial({ color: 0xfff2b0, fog: false }));
+    const eyeMat = keep(new THREE.MeshStandardMaterial({
+      color: 0xfff2b0,
+      emissive: 0x665520,
+      emissiveIntensity: isNight ? 0.45 : 0.12,
+      roughness: 0.4,
+      metalness: 0.1,
+    }));
     const eyeOffs = def.id === "ayalon" ? [0, built.width + 18] : [0];
-    const eyeN = Math.min(def.id === "ayalon" ? 560 : 320, Math.max(24, Math.floor(built.samples.length / 1.5) * eyeOffs.length));
+    const eyeN = Math.min(def.id === "ayalon" ? 280 : 120, Math.max(16, Math.floor(built.samples.length / 3) * eyeOffs.length));
     const eyes = new THREE.InstancedMesh(eyeGeo, eyeMat, eyeN);
     let ei = 0;
-    const stepE = Math.max(2, Math.floor(built.samples.length / (eyeN / (2 * eyeOffs.length))));
+    const stepE = Math.max(3, Math.floor(built.samples.length / (eyeN / (2 * eyeOffs.length))));
     for (const off of eyeOffs) {
       for (let i = 0; i < built.samples.length && ei < eyeN; i += stepE) {
         const s = built.samples[i];
         const d = built.width / 2 - 0.4;
         for (const side of [1, -1]) {
           if (ei >= eyeN) break;
-          _dummy.position.set(s.x + s.rx * (off + d * side), s.y + 0.14, s.z + s.rz * (off + d * side));
+          _dummy.position.set(s.x + s.rx * (off + d * side), s.y + 0.08, s.z + s.rz * (off + d * side));
           _dummy.scale.set(1, 1, 1);
           _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
           _dummy.updateMatrix();
@@ -1186,7 +1204,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   if (def.theme !== "desert" && def.theme !== "snow" && def.id !== "rothschild" && def.theme !== "stone" && def.theme !== "jaffa" && def.theme !== "carmel") {
     group.add(new THREE.Mesh(keep(buildJersey(built, 1)), jerseyMat));
     group.add(new THREE.Mesh(keep(buildJersey(built, -1)), jerseyMat));
-    const capMat = keep(new THREE.MeshBasicMaterial({ color: 0xf4f0ea, fog: false }));
+    const capMat = keep(new THREE.MeshStandardMaterial({ color: 0xf4f0ea, roughness: 0.55, metalness: 0.04 }));
     group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, -0.78, 0.14, 1.38)), capMat));
     group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, -0.78, 0.14, 1.38)), capMat));
     if (def.id === "ayalon") {
