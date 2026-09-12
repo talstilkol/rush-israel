@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "621fe741cdac38c044c86aae052109de9a0c3e493e8fb825de76eb6a0455a0cc"
+      "sha256": "f5ce3b9e8856c12c681065da61860f08381baf0cd0f54d8d47717f19ec0b091b"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -3413,8 +3413,8 @@
     },
     {
       "path": "src/game/tracks/deadsea.ts",
-      "bytes": 2204,
-      "sha256": "ce114645222faccd5f959214da1248ab271e4026525e1c7a553a9457f3aa9243"
+      "bytes": 2202,
+      "sha256": "f7a14a60b04276be109a51a0db9dbbe397db5bbf11f5ed0ca171c40109c0e47e"
     },
     {
       "path": "src/game/tracks/eilat.ts",
@@ -3443,8 +3443,8 @@
     },
     {
       "path": "src/game/tracks/haifa.ts",
-      "bytes": 2135,
-      "sha256": "a02c92f586e08afaefdc1e80daf35ebd34cd78b48d0dc7d40947feb38eab3e2d"
+      "bytes": 2133,
+      "sha256": "f009946fcdc4111fdf19b8a46381d3a12b8883517475c49e9f21fe087b9bf4a2"
     },
     {
       "path": "src/game/tracks/haifaport.ts",
@@ -3458,8 +3458,8 @@
     },
     {
       "path": "src/game/tracks/hayarkon.ts",
-      "bytes": 3526,
-      "sha256": "dba3f73dbdf166290fa102ed751ab9586526cca84fe2fd846876019127a19369"
+      "bytes": 3524,
+      "sha256": "5f86c704310806e2f7de7f28e1872b369520bef193712bddc9750ebcdc6df6f0"
     },
     {
       "path": "src/game/tracks/hermon.ts",
@@ -3468,8 +3468,8 @@
     },
     {
       "path": "src/game/tracks/herzliya.ts",
-      "bytes": 2065,
-      "sha256": "9ef1277906df4caba4eb8bcc113dd8b5a2fc0418618bc28c83b586af1e828eda"
+      "bytes": 2063,
+      "sha256": "7d8f60dced763424028be06e313758d25fe96776497d9476735044e156f9955d"
     },
     {
       "path": "src/game/tracks/holon.ts",
@@ -3558,8 +3558,8 @@
     },
     {
       "path": "src/game/tracks/netanya.ts",
-      "bytes": 2078,
-      "sha256": "e54f7eef5c8907011fe309fa69c0a95d2fee9017df68fc456f63b648aa3eeb5e"
+      "bytes": 2076,
+      "sha256": "667409473c4f25b5cac64ad8f0b0902c9f95735bd35d4bd47fa9fbf94013d178"
     },
     {
       "path": "src/game/tracks/oldjaffa.ts",
@@ -11231,5 +11231,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "c39a7787e537cbdac367845cccc378ab426909b070d9e1ba3b3b4ccc2cc66ba0"
+  "digest_sha256": "4eee9a6580d755098434db34b5b3b81316207a4cb7b81af5c9f1aa16321f1972"
 }
