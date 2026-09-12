@@ -641,7 +641,7 @@ export class RaceEngine {
   private placeGrid() {
     const n = this.racers.length;
     for (let i = 0; i < n; i++) {
-      const t = i === 0 ? 0.02 : Math.min(0.92, 0.12 + i * 0.07);
+      const t = i === 0 ? 0.02 : Math.min(0.92, 0.22 + (i - 1) * 0.09);
       const lat = i === 0 ? 0 : this.racers[i].aiOffset;
       if (i === 0) this.racers[i].aiOffset = lat;
       this.racers[i].spawn(this.built, t, lat);

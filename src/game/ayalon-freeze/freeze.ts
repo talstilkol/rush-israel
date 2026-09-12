@@ -48,7 +48,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "src/components/touch-controls.tsx": "11c2a7ed3c598c01f06c4450126a424a9ea00ff44c05d2cf1421092649b68a92",
   "package.json": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
   "AYALON-OWNER-APPROVAL.json": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
-  "src/game/engine.ts": "9d39356b2b0ea3efe467d4311b042b48ece8694f80806a2838cc9aab4df4e3a0",
+  "src/game/engine.ts": "3ba5629407c29f03df6fc7d5be718d594e61037004f92300daa501b2585565d8",
   "src/game/records.ts": "10bff6426c0ce8d9b406bac66662363ec997883fbff28941dab3f95e1f818aa0",
   "src/components/game-app/race-controller.tsx": "02bf8279185a618488fe730567dd2b742d35c53abffd23864efb6fbb40c54819",
   "src/game/race-startup.ts": "cda8d6d3e3af7d385196e1e0d6702a70b6749be76aae8f4fffc1399ef7075dba",
