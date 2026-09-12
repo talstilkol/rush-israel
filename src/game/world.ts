@@ -988,8 +988,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       walls.receiveShadow = true;
       group.add(walls);
       const markG = keep(new THREE.BoxGeometry(0.1, 0.62, 0.9));
-      const markRed = keep(new THREE.MeshBasicMaterial({ color: 0xc41818, fog: false }));
-      const markWht = keep(new THREE.MeshBasicMaterial({ color: 0xf3f1ea, fog: false }));
+      const markRed = keep(new THREE.MeshStandardMaterial({ color: 0xc41818, fog: true, roughness: 0.7 }));
+      const markWht = keep(new THREE.MeshStandardMaterial({ color: 0xf3f1ea, fog: true, roughness: 0.7 }));
       const nMark = 100;
       const markRows = [-built.width / 2 - 0.62, oppOff + built.width / 2 + 0.62];
       const reds = new THREE.InstancedMesh(markG, markRed, nMark * markRows.length);
@@ -1272,7 +1272,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       group.add(pole);
       const face = new THREE.Mesh(
         new THREE.PlaneGeometry(kind === "stop" || kind === "yield" ? 1.15 : 0.95, kind === "stop" || kind === "yield" ? 1.15 : 0.95),
-        new THREE.MeshBasicMaterial({ map: maps[kind], transparent: true, depthWrite: false, fog: false }),
+        new THREE.MeshStandardMaterial({ map: maps[kind], transparent: true, depthWrite: false, fog: true, roughness: 0.72, metalness: 0.05 }),
       );
       face.position.set(px, s.y + 3.05, pz);
       face.rotation.y = yaw;
@@ -1295,7 +1295,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         group.add(pole);
         const face = new THREE.Mesh(
           new THREE.PlaneGeometry(0.95, 0.95),
-          new THREE.MeshBasicMaterial({ map: maps[kind], transparent: true, depthWrite: false, fog: false }),
+          new THREE.MeshStandardMaterial({ map: maps[kind], transparent: true, depthWrite: false, fog: true, roughness: 0.72, metalness: 0.05 }),
         );
         face.position.set(px, s.y + 3.05, pz);
         face.rotation.y = yaw;

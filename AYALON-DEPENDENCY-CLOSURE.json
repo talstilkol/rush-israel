@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "da166c47cce2f0cc05de905b41eeacf978c44595e1e0dc6888216263b25e2e28"
+      "sha256": "5389d00f67bb95079e3ff9371ec3448d493601bf299d950abf97f6a57a241eaa"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2064,7 +2064,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "5e10ccc09e73fa7423100dc5606dcc123adb90851cddc396bb2e33576596d78a"
+      "sha256": "2e892bba2f83a933d5cebc8f20be5136becae131a86c3c45a2b5a98a559fc543"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2989,7 +2989,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "5e1dbb16374870b9455a4a47f5f1863c586d2cefc8fd273f401295c63d5a8c43"
+      "sha256": "ee912c166b6e6f8a017a74005d4ffcb789949484cafefc814026153e88e2d12b"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -3354,7 +3354,7 @@
     {
       "path": "src/game/tracks/acre.ts",
       "bytes": 1982,
-      "sha256": "62791a5defcdd908c476e5cf3cf572dec408970f8849e60adbd8a97ed761614f"
+      "sha256": "211e4218ecaa55329221b22c244857546983957d5580610b18be1a4ef4fad3eb"
     },
     {
       "path": "src/game/tracks/afula.ts",
@@ -3404,7 +3404,7 @@
     {
       "path": "src/game/tracks/caesarea.ts",
       "bytes": 2385,
-      "sha256": "7a8d02505d4fb71075bb8b8b3c88aeb74dcea0edd18e29ffacb7ccc0c8e2c1e3"
+      "sha256": "581de03ac192e00fe3612a28bfcc1a8aff6679fccbaa097f65d758ed5fca1a69"
     },
     {
       "path": "src/game/tracks/centralpark.ts",
@@ -3419,7 +3419,7 @@
     {
       "path": "src/game/tracks/eilat.ts",
       "bytes": 2090,
-      "sha256": "b1e61b91814e651fe383849f5d4308761c58ae5db04e4ef28f4f49ce50b40122"
+      "sha256": "80435b5afa8a4ae203ab09063207a63959d104ba73a00f5a0b442e148d290d44"
     },
     {
       "path": "src/game/tracks/eilatmtn.ts",
@@ -3554,7 +3554,7 @@
     {
       "path": "src/game/tracks/nazareth.ts",
       "bytes": 1914,
-      "sha256": "b7ffa538b989f04ee1fae9c3d638f4597b8c5c08f6d36e9884140a3ac817c290"
+      "sha256": "3ceb0a4d791c6b684b8194a84d93574150425b9a39914209cfe3dc9c414a67d5"
     },
     {
       "path": "src/game/tracks/netanya.ts",
@@ -3604,7 +3604,7 @@
     {
       "path": "src/game/tracks/scopus.ts",
       "bytes": 2261,
-      "sha256": "d5565572b22e5d85da8ee023c819bd7f2b070aa6d8c308873d890d5a6b6e3a25"
+      "sha256": "3a3e1c978fdad532f95b6387d5544dee77b2afb30de2ea152c7e5c41c05705d3"
     },
     {
       "path": "src/game/tracks/shared.ts",
@@ -3634,7 +3634,7 @@
     {
       "path": "src/game/tracks/tzfat.ts",
       "bytes": 1974,
-      "sha256": "0e5b85857f3fc20410949404a5b726954cc881debb67458826daf1a14085d8a4"
+      "sha256": "faa009238622f63d892c3bbde0fc097e0ae322f192ab5d64ee6124376632c209"
     },
     {
       "path": "src/game/tracks/walls.ts",
@@ -3978,8 +3978,8 @@
     },
     {
       "path": "src/game/world.ts",
-      "bytes": 119323,
-      "sha256": "3d70bae459157e44a552e5f308c8642260159c4086e5e3703d69ff4a58d1bf39"
+      "bytes": 119431,
+      "sha256": "b44968e2f7040d6bc6074006bc98874734315477b004f44a4d4336ad82b2dc89"
     },
     {
       "path": "src/lib/error-component.tsx",
@@ -11231,5 +11231,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "17fce9a66c6434073c3e5e2c159137ba42bba6ca53db7d83d006cfdea12763ab"
+  "digest_sha256": "ed23e8d9ccfe60751367fa6c6e762d07985a5d7a0c521f8997c14b09b5e07bb0"
 }

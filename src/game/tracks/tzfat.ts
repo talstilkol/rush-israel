@@ -12,7 +12,7 @@ export default defineTrack({
     description: "המצודה, בתי כנסת כחולים, רובע האמנים והנוף לגליל. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "The citadel, blue synagogues, the artists' quarter and the Galilee view. Inspired by the place — not a map, not GIS.",
     image: "/tracks/tzfat.jpg",
-    width: 24,
+    width: 26,
     seed: 1480,
     theme: "stone",
     ground: 0x7a7064,

@@ -12,7 +12,7 @@ export default defineTrack({
     description: "מהגבעה הצרפתית עולים לאוניברסיטה ולתצפית — העיר העתיקה למטה, הרי ירושלים מסביב. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "From French Hill up to the university and lookout — Old City below, Jerusalem hills around. Inspired by the place — not a map, not GIS.",
     image: "/tracks/scopus.jpg",
-    width: 24,
+    width: 26,
     seed: 1968,
     theme: "stone",
     open: true,
