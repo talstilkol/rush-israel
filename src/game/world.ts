@@ -643,7 +643,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   group.add(sunHalo);
   const skyDomeMat = keep(new THREE.MeshBasicMaterial({
     color: isNight ? 0x4a6a90 : 0x3c9ee0,
-    fog: false,
+    fog: true,
     depthWrite: false,
     side: THREE.BackSide,
     toneMapped: false
