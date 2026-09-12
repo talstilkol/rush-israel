@@ -1099,8 +1099,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       group.add(stop);
     }
   };
-  paintAt(0.012, false);
-  paintAt(0.022, true);
+  if (def.theme !== "desert" && def.theme !== "snow" && def.theme !== "carmel") {
+    paintAt(0.012, false);
+    paintAt(0.022, true);
+  }
   if (urban) {
     paintAt(0.48, false);
     paintAt(0.5, true);
