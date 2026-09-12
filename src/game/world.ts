@@ -1613,7 +1613,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     waterMats.push({ material: canalMat, baseColor: 0x2a6a78 });
     const bankG = keep(new THREE.BoxGeometry(0.32, 1.35, 4.6));
     const bankM = keep(new THREE.MeshStandardMaterial({ color: 0xb4b0a6, roughness: 0.9, metalness: 0 }));
-    const nBank = 110;
+    const nBank = 48;
     const bankLats = [canalOff - 2.35, canalOff + 2.35];
     const banks = new THREE.InstancedMesh(bankG, bankM, nBank * 2);
     let bi = 0;
