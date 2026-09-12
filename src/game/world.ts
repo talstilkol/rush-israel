@@ -2052,7 +2052,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   }));
   const treeSpots = [];
   if ((pine || stoneHill || acacia || ficusStreet || nyc) && def.id !== "timessquare" && def.id !== "ramon") {
-    const stepT = pine ? 5 : acacia ? 7 : ficusStreet ? 8 : stoneHill ? 6 : deciduous ? 8 : 6;
+    const stepT = pine ? 8 : acacia ? 10 : ficusStreet ? 12 : stoneHill ? 9 : deciduous ? 12 : 9;
     for (let i = 0; i < built.samples.length; i += stepT) {
       const s = built.samples[i];
       if (!pine && !acacia && s.y > 14) continue;
