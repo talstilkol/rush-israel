@@ -2321,6 +2321,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     polygonOffset: true,
     polygonOffsetFactor: -2,
     polygonOffsetUnits: -2,
+    fog: true,
   }));
   const pools = new THREE.InstancedMesh(poolGeo, poolMat, Math.max(1, lampCount));
   pools.renderOrder = 2;
