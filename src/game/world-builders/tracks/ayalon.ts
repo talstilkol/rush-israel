@@ -380,7 +380,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
         const post = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.16, 3.4, 6), conc);
         post.position.set(c.x + sm0.rx * lx, deckY + 2.2, c.z + sm0.rz * lx);
         add(post);
-        const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.28, 8, 6), new THREE.MeshBasicMaterial({ color: 0xffc070 }));
+        const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.28, 8, 6), new THREE.MeshBasicMaterial({ color: 0xffc070, fog: true }));
         lamp.position.set(c.x + sm0.rx * lx, deckY + 3.9, c.z + sm0.rz * lx);
         add(lamp);
       }
@@ -530,7 +530,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
       plat2.position.set(p.x, py + 0.55, p.z);
       plat2.rotation.y = yaw;
       add(plat2);
-      const yellow = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.08, platLen), new THREE.MeshBasicMaterial({ color: 15778816 }));
+      const yellow = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.08, platLen), new THREE.MeshBasicMaterial({ color: 15778816, fog: true }));
       yellow.position.set(p.x + s.rx * 5.2, py + 0.96, p.z + s.rz * 5.2);
       yellow.rotation.y = yaw;
       add(yellow);
@@ -655,7 +655,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
       const panBar = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.08, 0.08), bandMat);
       panBar.position.set(0, 6.2, -2);
       g.add(panBar);
-      const lightL = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.42, 0.2), new THREE.MeshBasicMaterial({ color: 16774344 }));
+      const lightL = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.42, 0.2), new THREE.MeshBasicMaterial({ color: 16774344, fog: true }));
       lightL.position.set(-0.85, 1.5, 12.7);
       g.add(lightL);
       const lightR = lightL.clone();
@@ -681,7 +681,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
     makeTrain(0.48, 1.15);
     const arrowTex = getLaneArrow();
     if (!arrowTex) throw new Error("lane arrow missing");
-    const arrowMat = new THREE.MeshBasicMaterial({ map: arrowTex, side: 2 });
+    const arrowMat = new THREE.MeshBasicMaterial({ map: arrowTex, side: 2, fog: true });
     for (const lat of [32.055, 32.061, 32.067, 32.0735, 32.083, 32.092, 32.101]) {
       for (const lon of [34.795, 34.7971]) {
       const p = tlv(lat, lon);

@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "15a87c87b62c41cbc01a0a2624c33f559a1e3946390e0354629d939118a68d34"
+      "sha256": "b661d5c478bf304120b7a0537247a5d9e9d5ce3db13c6f694dbbb79f5b2c96ab"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2064,7 +2064,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "33d5992abbbbba2d033c915dc581b800e8c03764af37f7d7d442b22c6a7cd40f"
+      "sha256": "a28865bcd323a57e4c3ea771aafe20d63e8f8558a9615d0b79ab3811cb69d61f"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2989,7 +2989,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "114f29d822c9b39443013112015e13b235d18b9b121bc933b9a3c60596f97409"
+      "sha256": "a7fdff22aac8498e65712a5642ecbbedd074d467ebfec4dd5b2da30eddde53a9"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -3713,8 +3713,8 @@
     },
     {
       "path": "src/game/world-builders/tracks/ayalon.ts",
-      "bytes": 28973,
-      "sha256": "f7dab8c8c9686e32f8ee26e8ca2910b266ab6f7f35a87494de5a604659c97c2c"
+      "bytes": 29017,
+      "sha256": "ed66d337d6ac1184e8780353917c2f7b78b77e04cf4f876b8b02bfd9e042cf5d"
     },
     {
       "path": "src/game/world-builders/tracks/batyam.ts",
@@ -11231,5 +11231,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "34b1e993d175cd6f5ebf3d8b80a7658523b3f4ca47988e21202823560ec3fbf7"
+  "digest_sha256": "76694307ebc6625457ce3d349e24b018e0420a3c878bb1fc0dc7a60d732265c7"
 }
