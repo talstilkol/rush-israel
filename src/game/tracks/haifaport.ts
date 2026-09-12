@@ -12,7 +12,7 @@ export default defineTrack({
     description: "הרציפים, העגורנים, המושבה הגרמנית ובת גלים. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "The docks, the cranes, the German Colony and Bat Galim. Inspired by the place — not a map, not GIS.",
     image: "/tracks/haifaport.jpg",
-    width: 20,
+    width: 26,
     seed: 1905,
     theme: "port",
     ground: 0x7a746c,
@@ -28,7 +28,7 @@ export default defineTrack({
       fog: 0x5a6270,
       fogDensity: 0.00145,
     },
-    water: { x: hai(32.822, 35.012).x, z: hai(32.822, 35.012).z, w: 420, d: 280, color: 0x1a5870 },
+    water: { x: hai(32.822, 35.012).x, z: hai(32.822, 35.012).z, w: 220, d: 160, color: 0x1a5870 },
     checkpointCount: 10,
     points: [
       hai(32.8195, 34.989),

@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "2190ee73ba301dbda84ec70bdbeab15af7de4c55ea0243f304650b1bfbd89c24"
+      "sha256": "2b50aa45d06aa8fca50d8e546df689ec9237d4d498724961be23ef511195d420"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2064,7 +2064,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "720ab036ada3d9b2fd5a87bb0a8e4985c3de22db4bf88ada25fb29d6338dd519"
+      "sha256": "cd225e930f38a4e65a16f59f09d47476e9c8054c1567a37a406003ec80937e09"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2918,8 +2918,8 @@
     },
     {
       "path": "src/components/game-app/hud.tsx",
-      "bytes": 10921,
-      "sha256": "07e86efeb4be7bc20447191a5d566d2291abd13dbbd85f4992f81e78220cea78"
+      "bytes": 10100,
+      "sha256": "0ec00e1fc9b143493d6784b13118f28fb877efe2d49edc089e2b6bbed16d2454"
     },
     {
       "path": "src/components/game-app/race-controller.tsx",
@@ -2989,7 +2989,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "573d1e3df2158a3de35c50a6280ec0f9e6fc3a82f59c01729d6cfc93cf4a9a55"
+      "sha256": "d58c34297b3a5aef272737cdc5f76f5c30523179d3252030caab4591b99b8eb6"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -3449,7 +3449,7 @@
     {
       "path": "src/game/tracks/haifaport.ts",
       "bytes": 2289,
-      "sha256": "f06aee9f16cecc49e44d549c3565cdadb2e959cbaef09a5fff7b9fab1a064f04"
+      "sha256": "305e2ff10981f3a739757feed27cb83639523fbb4b15e7b7c666c8b34beace45"
     },
     {
       "path": "src/game/tracks/hanikra.ts",
@@ -3978,8 +3978,8 @@
     },
     {
       "path": "src/game/world.ts",
-      "bytes": 117387,
-      "sha256": "92bc543362934714386cbeabd268a50725c1954a7d6c3fff6211852e9f43e5d6"
+      "bytes": 117411,
+      "sha256": "2816a1864cfdc3c60e66316fd0814720876bd9cb480a521ec1049dae80498686"
     },
     {
       "path": "src/lib/error-component.tsx",
@@ -4700,16 +4700,6 @@
       "resolution": "locked_package",
       "version": "0.510.0",
       "integrity": "sha512-p8SQRAMVh7NhsAIETokSqDrc5CHnDLbV29mMnzaXx+Vc/hnqQzwI2r0FMWCcoTXnbw2KEjy48xwpGdEL+ck06Q=="
-    },
-    {
-      "from": "src/components/game-app/hud.tsx",
-      "specifier": "react",
-      "kind": "static_import",
-      "typeOnly": false,
-      "package": "react",
-      "resolution": "locked_package",
-      "version": "19.2.8",
-      "integrity": "sha512-PWaYA1L/q9u2u7xYQi+Y3L3Yfnie7XyLeaJICV1MGD6LprsBxcAqGjYyr0eY3p+QdsA+x/Irkt4Qif8D63+Sbw=="
     },
     {
       "from": "src/components/game-app/hud.tsx",
@@ -11241,5 +11231,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "1d2330fc0ca7022919cc6d52a1e93882bc54b9dcadd80abdeb073f22d8757a8e"
+  "digest_sha256": "2bad61aa65bf1f4fd5f88b1f9833228e42b5a2803e5787cf1c896be6bd76e9fc"
 }
