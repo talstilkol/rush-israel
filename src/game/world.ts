@@ -852,7 +852,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       polygonOffsetFactor: -2,
       polygonOffsetUnits: -2
     }));
-    if (def.id === "ayalon" || (def.theme !== "desert" && def.theme !== "snow" && def.theme !== "carmel" && def.theme !== "port" && def.theme !== "jaffa" && def.theme !== "stone" && def.theme !== "bauhaus" && def.theme !== "highway")) {
+    if (def.id === "ayalon") {
       group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.85, 0.1)), yMat));
       group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.85, 0.1)), yMat));
     }
