@@ -684,7 +684,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     dome.frustumCulled = false;
     group.add(dome);
   }
-  if (def.theme === "carmel" || def.theme === "snow" || def.theme === "stone" || (def.theme === "jaffa" && def.id !== "oldjaffa") || def.id === "ramon" || def.id === "jerusalem" || def.id === "scopus" || def.id === "hw1" || def.id === "hw6" || def.id === "modiin" || def.id === "afula" || def.id === "arad" || def.id === "kshmona" || def.id === "hw40" || def.id === "hw90" || def.id === "masada" || def.id === "eilatmtn" || def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" || def.id === "stellamaris") {
+  if (def.theme === "carmel" || def.theme === "snow" || def.theme === "stone" || (def.theme === "jaffa" && def.id !== "oldjaffa") || def.id === "ramon" || def.id === "jerusalem" || def.id === "scopus" || def.id === "hw1" || def.id === "hw6" || def.id === "modiin" || def.id === "afula" || def.id === "arad" || def.id === "kshmona" || def.id === "hw40" || def.id === "hw90" || def.id === "netanya" || def.id === "masada" || def.id === "eilatmtn" || def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" || def.id === "stellamaris") {
     const slopeMat = keep(new THREE.MeshStandardMaterial({
       color: def.id === "ramon" ? 11565642 : def.id === "hermon" ? 13950438 : def.theme === "stone" || def.theme === "jaffa" || def.id === "jerusalem" || def.id === "scopus" ? 12890250 : 4874808,
       roughness: 0.96,
@@ -699,7 +699,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const pos = [];
     const idx = [];
     const n = segsOf(built);
-    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.id === "eilatmtn" || def.id === "masada" || def.theme === "carmel" ? 240 : def.theme === "stone" || def.theme === "jaffa" || def.id === "golan" || def.id === "hw1" || def.id === "hw6" || def.id === "modiin" || def.id === "afula" || def.id === "arad" || def.id === "kshmona" || def.id === "hw40" || def.id === "hw90" || def.id === "nazareth" || def.id === "tzfat" || def.id === "jerusalem" || def.id === "scopus" ? 200 : 78;
+    const outer = def.id === "ramon" ? 420 : def.id === "hermon" ? 250 : def.id === "eilatmtn" || def.id === "masada" || def.theme === "carmel" || def.id === "netanya" ? 240 : def.theme === "stone" || def.theme === "jaffa" || def.id === "golan" || def.id === "hw1" || def.id === "hw6" || def.id === "modiin" || def.id === "afula" || def.id === "arad" || def.id === "kshmona" || def.id === "hw40" || def.id === "hw90" || def.id === "nazareth" || def.id === "tzfat" || def.id === "jerusalem" || def.id === "scopus" ? 200 : 78;
     const hw = built.width / 2 + 4.6;
     let valleyX = 0;
     let valleyZ = 0;
@@ -747,7 +747,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const s = samp(built, i);
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 148 + s.y * 0.6 : def.id === "eilatmtn" ? s.y + 72 + s.y * 0.45 : def.theme === "carmel" ? s.y + 96 : def.id === "golan" || def.id === "hw1" || def.id === "hw6" || def.id === "modiin" || def.id === "afula" || def.id === "arad" || def.id === "kshmona" || def.id === "hw40" || def.id === "hw90" ? s.y + 64 : def.theme === "stone" || def.id === "jerusalem" || def.id === "scopus" || def.id === "nazareth" || def.id === "tzfat" ? s.y + 52 : s.y + 8;
+      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 148 + s.y * 0.6 : def.id === "eilatmtn" ? s.y + 72 + s.y * 0.45 : def.theme === "carmel" || def.id === "netanya" ? s.y + 96 : def.id === "golan" || def.id === "hw1" || def.id === "hw6" || def.id === "modiin" || def.id === "afula" || def.id === "arad" || def.id === "kshmona" || def.id === "hw40" || def.id === "hw90" ? s.y + 64 : def.theme === "stone" || def.id === "jerusalem" || def.id === "scopus" || def.id === "nazareth" || def.id === "tzfat" ? s.y + 52 : s.y + 8;
       const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
       const leftY = vs === -1 ? valleyY : mountainY;
       const rightY = vs === 1 ? valleyY : mountainY;
@@ -1209,7 +1209,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     metalness: 0.06,
     envMapIntensity: 0.4
   }));
-  if (def.theme !== "desert" && def.theme !== "snow" && def.id !== "rothschild" && def.id !== "telaviv" && def.id !== "petah" && def.id !== "raanana" && def.id !== "ksaba" && def.id !== "rehovot" && def.id !== "hayarkon" && def.id !== "namal" && def.id !== "batyam" && def.id !== "tiberias" && def.id !== "kshmona" && def.theme !== "stone" && def.theme !== "jaffa" && def.theme !== "carmel") {
+  if (def.theme !== "desert" && def.theme !== "snow" && def.id !== "rothschild" && def.id !== "telaviv" && def.id !== "petah" && def.id !== "raanana" && def.id !== "ksaba" && def.id !== "rehovot" && def.id !== "hayarkon" && def.id !== "namal" && def.id !== "batyam" && def.id !== "tiberias" && def.id !== "kshmona" && def.id !== "ashdod" && def.id !== "nahariya" && def.id !== "netanya" && def.theme !== "stone" && def.theme !== "jaffa" && def.theme !== "carmel") {
     group.add(new THREE.Mesh(keep(buildJersey(built, 1)), jerseyMat));
     group.add(new THREE.Mesh(keep(buildJersey(built, -1)), jerseyMat));
     const capMat = keep(new THREE.MeshStandardMaterial({ color: 0xf4f0ea, roughness: 0.55, metalness: 0.04 }));
