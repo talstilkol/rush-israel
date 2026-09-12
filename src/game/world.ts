@@ -2531,7 +2531,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     keep(new THREE.MeshBasicMaterial({ color: 16761165, fog: true }))
   ];
   const neonStep = Math.max(def.id === "timessquare" ? 7 : 18, Math.floor(built.samples.length / 22));
-  for (let i = 0; i < built.samples.length; i += neonStep) {
+  if (def.city === "nyc") for (let i = 0; i < built.samples.length; i += neonStep) {
     const s = built.samples[i];
     const side = i % (neonStep * 2) === 0 ? 1 : -1;
     const mesh = new THREE.Mesh(neonGeo, neonMats[i % 3]);
