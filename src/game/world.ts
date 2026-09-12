@@ -822,7 +822,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     let di = 0;
     const hw = built.width / 2;
     const lw = built.width / lanes;
-    const stepD = Math.max(2, Math.floor(built.samples.length / 140));
+    const stepD = Math.max(2, Math.floor(built.samples.length / 80));
     for (const off of offs) {
       for (let i = 0; i < built.samples.length && di < nDash; i += stepD) {
         const s = built.samples[i];
