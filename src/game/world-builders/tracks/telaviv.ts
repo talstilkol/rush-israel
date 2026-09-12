@@ -158,7 +158,7 @@ export default function buildTelaviv(context: TrackWorldBuilderContext): void {
     const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.08, 6.2, 6), bandMat);
     pole.position.set(ih.x + 5.4, 8.8, ih.z + 4.2);
     add(pole);
-    const flag = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 1.5), new THREE.MeshBasicMaterial({ map: getIsraelFlag() ?? undefined, color: getIsraelFlag() ? 0xffffff : 0x0038b8, side: 2 }));
+    const flag = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 1.5), new THREE.MeshStandardMaterial({ map: getIsraelFlag() ?? undefined, color: getIsraelFlag() ? 0xffffff : 0x0038b8, side: 2, roughness: 0.55, fog: true }));
     flag.position.set(ih.x + 6.7, 11.2, ih.z + 4.2);
     add(flag);
     hit(ih.x, ih.z, 7);

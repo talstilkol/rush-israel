@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "58c90dcfdafce7bec1b61543cc435f7d0a5063b651e0aa49107cfb2d222b6651"
+      "sha256": "e397d9320388924a7b53d60cc28fafab775f7ffe4ed5ab9c2515bb7bbc895e07"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -3943,8 +3943,8 @@
     },
     {
       "path": "src/game/world-builders/tracks/telaviv.ts",
-      "bytes": 9534,
-      "sha256": "b12cbdb63366843ae3a25336a0f86db93f322337aaaf181a4176c6c5e06f181d"
+      "bytes": 9565,
+      "sha256": "96276b10c5b2f5f2bf46a0649ccfde38eebd104eaae156513666aadb0a632f64"
     },
     {
       "path": "src/game/world-builders/tracks/tiberias.ts",
@@ -11231,5 +11231,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "9ed0f608cf6e00427c0b2bce516250054615519a32968a96953d14a0425ce791"
+  "digest_sha256": "dae18f8d28f6fce9483cf0038423fbfffea559ca8633ca3dfc5469ab627746eb"
 }
