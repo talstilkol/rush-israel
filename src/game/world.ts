@@ -917,7 +917,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       group.add(jers);
       const railG = keep(new THREE.BoxGeometry(0.14, 0.1, 3.4));
       const railM = keep(new THREE.MeshStandardMaterial({ color: 0x9aa0a6, metalness: 0.72, roughness: 0.28 }));
-      const nRail = 220;
+      const nRail = 80;
       const rails = new THREE.InstancedMesh(railG, railM, nRail * 2);
       let ri = 0;
       const stepR = Math.max(1, Math.floor(built.samples.length / nRail));
