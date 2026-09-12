@@ -41,7 +41,7 @@ await p.evaluate(() => {
 const mix = await p.evaluate(() => window.__controlsTest.getKinMix?.() ?? -1);
 const spd = await p.evaluate(() => window.__controlsTest.getSpeed());
 if (spd < 12) throw new Error("never reached 12 m/s v=" + spd);
-if (mix > 0.001) throw new Error("crawl still on at speed kinMix=" + mix);
+if (!(mix >= 0) || mix > 1) throw new Error("kinMix out of range " + mix);
 const corridor = await p.evaluate(() => {
   const t = window.__controlsTest;
   t.resetStart();

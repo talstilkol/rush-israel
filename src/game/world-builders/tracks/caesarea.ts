@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { nearestIndexXY } from "../../spline";
 import { cae } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -18,7 +18,7 @@ export default function buildCaesarea(context: TrackWorldBuilderContext): void {
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const aq = cae(32.5078, 34.8976);
     {
-      const n = nearestIndex(built.samples, aq.x, aq.z, 0);
+      const n = nearestIndexXY(built.samples, aq.x, aq.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         aq.x = s.x + s.rx * (built.width / 2 + 28);
@@ -27,9 +27,15 @@ export default function buildCaesarea(context: TrackWorldBuilderContext): void {
     }
     const sandA = new THREE.MeshStandardMaterial({ color: 0xe2d2b0, roughness: 0.96 });
     bag.push(sandA);
-    const beach = new THREE.Mesh(new THREE.PlaneGeometry(80, 160), sandA);
+    const beach = new THREE.Mesh(new THREE.PlaneGeometry(56, 110), sandA);
     beach.rotation.x = -Math.PI / 2;
-    beach.position.set(aq.x - 8, 0.04, aq.z);
+    {
+      const n = nearestIndexXY(built.samples, aq.x - 28, aq.z);
+      const s = built.samples[n.index];
+      const side = s.rx * ((aq.x - 28) - s.x) + s.rz * (aq.z - s.z) >= 0 ? 1 : -1;
+      const d = built.width / 2 + 36;
+      beach.position.set(s.x + s.rx * d * side, Math.min(s.y, 0.5) - 0.42, s.z + s.rz * d * side);
+    }
     add(beach);
     const archGeo = new THREE.BoxGeometry(3.2, 10.4, 2.2);
     const capGeo = new THREE.BoxGeometry(4.2, 1.2, 3.2);

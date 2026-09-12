@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { nearestIndex, nearestIndexXY } from "../../spline";
 import { hai } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -30,7 +30,7 @@ export default function buildHaifa(context: TrackWorldBuilderContext): void {
     let bx = bg.x + 26;
     let bz = bg.z + 18;
     {
-      const n = nearestIndex(built.samples, bx, bz, 0);
+      const n = nearestIndexXY(built.samples, bx, bz);
       if (n.dist < built.width / 2 + 36) {
         const s = built.samples[n.index];
         const off = built.width / 2 + 58;
@@ -46,6 +46,7 @@ export default function buildHaifa(context: TrackWorldBuilderContext): void {
         envMapIntensity: 0.35
       }));
       terrace.position.set(bx, shrineY - 4 - i * 2.4, bz + i * 7.2);
+      if (nearestIndexXY(built.samples, terrace.position.x, terrace.position.z).dist < built.width / 2 + 8) continue;
       add(terrace);
       const stair = new THREE.Mesh(new THREE.BoxGeometry(5.2, 0.4, 7.4), cream);
       stair.position.set(bx, shrineY - 3.6 - i * 2.4, bz + i * 7.2);
@@ -123,7 +124,7 @@ export default function buildHaifa(context: TrackWorldBuilderContext): void {
         const d = built.width / 2 + extra;
         const px = s.x + s.rx * d * ms;
         const pz = s.z + s.rz * d * ms;
-        if (nearestIndex(built.samples, px, pz, i, built.closed).dist < built.width / 2 + 8) continue;
+        if (nearestIndexXY(built.samples, px, pz).dist < built.width / 2 + 12) continue;
         _dummy.position.set(px, s.y, pz);
         _dummy.scale.set(1, 1 + (i % 4) * 0.12, 1);
         _dummy.rotation.set(0, i * 0.7, 0);

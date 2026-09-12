@@ -28,7 +28,7 @@ export default defineTrack({
       fog: 0xd4c8b0,
       fogDensity: 0.0014,
     },
-    water: { x: cae(32.501, 34.885).x, z: cae(32.501, 34.885).z, w: 280, d: 420, color: 0x1a7088 },
+    water: { x: cae(32.501, 34.882).x, z: cae(32.501, 34.882).z, w: 140, d: 220, color: 0x1a7088 },
     checkpointCount: 10,
     points: [
       cae(32.5075, 34.8995),

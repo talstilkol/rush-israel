@@ -3,7 +3,7 @@ import { Lensflare, LensflareElement } from "three/examples/jsm/objects/Lensflar
 import { Reflector } from "three/examples/jsm/objects/Reflector.js";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 import { mulberry32, lerp, clamp, hash01 } from "./math";
-import { nearestIndex } from "./spline";
+import { nearestIndex, nearestIndexXY } from "./spline";
 import type { BuiltTrack } from "./spline";
 import type { Collider, Ramp, SkyPreset, TrackDef, Weather } from "./types";
 import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, her, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, ram, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
@@ -1404,13 +1404,48 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         clearcoatRoughness: 0.06,
         ior: 1.33,
         normalMap: nrm,
-        normalScale: new THREE.Vector2(1.15, 1.15)
+        normalScale: new THREE.Vector2(1.15, 1.15),
+        polygonOffset: def.id !== "ayalon",
+        polygonOffsetFactor: 2,
+        polygonOffsetUnits: 2,
       }));
       if (isNight) mat.color.multiplyScalar(0.65);
-      const mesh = new THREE.Mesh(keep(new THREE.PlaneGeometry(def.id === "ayalon" ? Math.max(body.w * 1.4, 900) : Math.min(Math.max(body.w * 1.15, 48), 520), def.id === "ayalon" ? Math.max(body.d, 1600) : Math.min(Math.max(body.d * 1.15, 48), 720), 8, 8)), mat);
+      const planeW = def.id === "ayalon" ? Math.max(body.w * 1.4, 900) : Math.min(Math.max(body.w * 1.15, 48), 280);
+      const planeD = def.id === "ayalon" ? Math.max(body.d, 1600) : Math.min(Math.max(body.d * 1.15, 48), 360);
+      const mesh = new THREE.Mesh(keep(new THREE.PlaneGeometry(planeW, planeD, 8, 8)), mat);
       mesh.rotation.x = -Math.PI / 2;
-      mesh.position.set(body.x, def.id === "ayalon" ? -0.12 : -0.55, body.z);
-      if (def.id !== "ayalon") mesh.userData.waterBaseY = -0.55;
+      let wx = body.x;
+      let wz = body.z;
+      if (def.id !== "ayalon") {
+        let cx = 0;
+        let cz = 0;
+        for (const s of built.samples) {
+          cx += s.x;
+          cz += s.z;
+        }
+        cx /= built.samples.length;
+        cz /= built.samples.length;
+        let dx = wx - cx;
+        let dz = wz - cz;
+        const len = Math.hypot(dx, dz) || 1;
+        dx /= len;
+        dz /= len;
+        const pad = built.width / 2 + 18;
+        for (let k = 0; k < 16; k++) {
+          let overlap = false;
+          for (const s of built.samples) {
+            if (Math.abs(s.x - wx) < planeW * 0.5 + pad && Math.abs(s.z - wz) < planeD * 0.5 + pad) {
+              overlap = true;
+              break;
+            }
+          }
+          if (!overlap) break;
+          wx += dx * 28;
+          wz += dz * 28;
+        }
+      }
+      mesh.position.set(wx, def.id === "ayalon" ? -0.12 : -0.85, wz);
+      if (def.id !== "ayalon") mesh.userData.waterBaseY = -0.85;
       group.add(mesh);
       waterMeshes.push(mesh);
       waterMats.push({ material: mat, baseColor: body.color });
@@ -1557,7 +1592,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const px = s.x + s.rx * d * side;
       const pz = s.z + s.rz * d * side;
       if (inWater2(px, pz) || inClear2(px, pz)) continue;
-      if (nearestIndex(built.samples, px, pz, i, built.closed).dist < built.width / 2 + 8) continue;
+      if (nearestIndexXY(built.samples, px, pz).dist < built.width / 2 + 10) continue;
       _dummy.position.set(px, s.y + 4.1, pz);
       _dummy.scale.set(1, 1, 1);
       _dummy.rotation.set(0, 0, 0);
@@ -1905,7 +1940,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         const d = built.width / 2 + (pine ? 18 + i % 5 * 5.2 : acacia ? 12 + i % 4 * 4 : ficusStreet ? 12.5 : stoneHill ? 16 : 7.2);
         const px = s.x + s.rx * d * side;
         const pz = s.z + s.rz * d * side;
-        if (nearestIndex(built.samples, px, pz, i, built.closed).dist < built.width / 2 + 8) continue;
+        if (nearestIndexXY(built.samples, px, pz).dist < built.width / 2 + 10) continue;
         treeSpots.push({
           x: px,
           z: pz,
@@ -1928,8 +1963,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const forestStep = def.id === "hw1" ? 28 : 24;
     for (let x = -forestR; x <= forestR; x += forestStep) for (let z = -forestR; z <= forestR; z += forestStep) {
       if (inWater2(x, z)) continue;
-      const near = nearestIndex(built.samples, x, z, 0, built.closed);
-      if (near.dist < built.width / 2 + 36) continue;
+      const near = nearestIndexXY(built.samples, x, z);
+      if (near.dist < built.width / 2 + 40) continue;
       const s = built.samples[near.index];
       treeSpots.push({
         x: x + (rng() - 0.5) * 8,

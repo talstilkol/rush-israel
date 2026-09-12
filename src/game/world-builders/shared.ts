@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../spline";
+import { nearestIndex, nearestIndexXY } from "../spline";
 import { tlv } from "../tracks";
 import type { TrackWorldBuilderInput } from "./types";
 
@@ -28,6 +28,17 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     },
   } = input;
   /* RSH-016:BEGIN-LEGACY-SHARED */
+  const keepOffRoad = (p: { x: number; z: number }, extra = 18) => {
+    const n = nearestIndexXY(built.samples, p.x, p.z);
+    const need = built.width / 2 + extra;
+    if (n.dist < need) {
+      const s = built.samples[n.index];
+      const side = s.rx * (p.x - s.x) + s.rz * (p.z - s.z) >= 0 ? 1 : -1;
+      p.x = s.x + s.rx * need * side;
+      p.z = s.z + s.rz * need * side;
+    }
+    return p;
+  };
   const add = (mesh: THREE.Mesh | THREE.Object3D) => {
     (mesh as THREE.Mesh).castShadow = shadows;
     (mesh as THREE.Mesh).receiveShadow = true;
@@ -48,6 +59,11 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     });
   };
   const hit = (x: number, z: number, r: number, hx?: number, hz?: number, yaw?: number) => {
+    if (def.id !== "ayalon") {
+      const n = nearestIndexXY(built.samples, x, z);
+      const span = Math.max(r, hx ?? r, hz ?? r);
+      if (n.dist < built.width / 2 + span * 0.35) return;
+    }
     colliders.push({
       x,
       z,
@@ -59,7 +75,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     });
   };
   const roadYaw = (x: number, z: number) => {
-    const s = built.samples[nearestIndex(built.samples, x, z, 0).index];
+    const s = built.samples[nearestIndexXY(built.samples, x, z).index];
     return Math.atan2(s.tx, s.tz);
   };
   const hitRoad = (x: number, z: number, r: number, hx?: number, hz?: number) => hit(x, z, r, hx, hz, roadYaw(x, z));
@@ -202,6 +218,9 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
   });
   bag.push(darkArch);
   const merlonWall = (x: number, z: number, len: number, yaw: number, h = 12) => {
+    const p = keepOffRoad({ x, z }, 22);
+    x = p.x;
+    z = p.z;
     const wall = new THREE.Mesh(new THREE.BoxGeometry(len, h, 4.4), stone);
     wall.position.set(x, h * 0.5, z);
     wall.rotation.y = yaw;
@@ -942,6 +961,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     glowAt,
     hit,
     hitRoad,
+    keepOffRoad,
     placeTunnel,
     stone,
     white,

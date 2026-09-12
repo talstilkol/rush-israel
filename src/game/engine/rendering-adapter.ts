@@ -563,22 +563,29 @@ export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine["pres
       (this.rainMesh.geometry.getAttribute("position") as THREE.BufferAttribute).needsUpdate = true;
     }
 
+    if (this.ghostVis) this.ghostVis.group.visible = false;
     if (this.ghostVis && this.ghostFrames.length && !this.replaying) {
       const g = sampleGhost(this.ghostFrames, this.racing ? this.totalTime : 0);
       if (g) {
-        this.ghostVis.group.visible = true;
-        updateCarVisual(this.ghostVis, g.yaw, 18, 0, 0, dt, g.x, g.y, g.z, 0, 0);
-        this.ghostDelta = this.totalTime - this.ghostFrames.length * 0.16 * this.player.progress;
+        const far = Math.hypot(g.x - this.player.x, g.z - this.player.z) > 9;
+        this.ghostVis.group.visible = this.racing && far;
+        if (this.ghostVis.group.visible) {
+          updateCarVisual(this.ghostVis, g.yaw, 18, 0, 0, dt, g.x, g.y, g.z, 0, 0);
+          this.ghostDelta = this.totalTime - this.ghostFrames.length * 0.16 * this.player.progress;
+        }
       }
     }
     if (this.rivalGhostVis && this.rivalGhostFrames.length && !this.replaying) {
       const g = sampleGhostLoop(this.rivalGhostFrames, this.racing ? this.totalTime : 0);
       if (g) {
-        this.rivalGhostVis.group.visible = true;
-        updateCarVisual(this.rivalGhostVis, g.yaw, 22, 0, 0, dt, g.x, g.y, g.z, 0, 0);
-        const lapT = this.rivalGhostFrames.length * 0.16;
-        const mine = (this.player.progress + this.player.lap) * lapT;
-        this.rivalGhostDelta = this.totalTime - mine;
+        const far = Math.hypot(g.x - this.player.x, g.z - this.player.z) > 9;
+        this.rivalGhostVis.group.visible = this.racing && far;
+        if (this.rivalGhostVis.group.visible) {
+          updateCarVisual(this.rivalGhostVis, g.yaw, 22, 0, 0, dt, g.x, g.y, g.z, 0, 0);
+          const lapT = this.rivalGhostFrames.length * 0.16;
+          const mine = (this.player.progress + this.player.lap) * lapT;
+          this.rivalGhostDelta = this.totalTime - mine;
+        }
       }
     }
   }
@@ -642,6 +649,10 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
         this.cam.x = s.x + nx * maxCam;
         this.cam.z = s.z + nz * maxCam;
       }
+      const road = this.built.samples[p.sampleIndex];
+      if (this.cam.y < road.y + 1.55) this.cam.y = road.y + 1.55;
+    }
+    if (!instant && mode === 0 && !this.lookBack) {
       for (const c of this.world.colliders) {
         const dx = this.cam.x - c.x;
         const dz = this.cam.z - c.z;
@@ -652,8 +663,6 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
           this.cam.z = c.z + (dz / d) * keep;
         }
       }
-      const road = this.built.samples[p.sampleIndex];
-      if (this.cam.y < road.y + 1.55) this.cam.y = road.y + 1.55;
     }
     const shake = this.replaying ? 0 : this.trauma * this.trauma;
     this.camera.position.set(

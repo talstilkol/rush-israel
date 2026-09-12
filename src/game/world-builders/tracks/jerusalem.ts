@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { nearestIndexXY } from "../../spline";
 import { jer } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -23,7 +23,7 @@ export default function buildJerusalem(context: TrackWorldBuilderContext): void 
   } = context;
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const offJer = (p: { x: number; z: number }, extra = 24) => {
-      const n = nearestIndex(built.samples, p.x, p.z, 0);
+      const n = nearestIndexXY(built.samples, p.x, p.z);
       if (n.dist < built.width / 2 + extra) {
         const s = built.samples[n.index];
         p.x = s.x + s.rx * (built.width / 2 + extra);
@@ -156,7 +156,7 @@ export default function buildJerusalem(context: TrackWorldBuilderContext): void 
     let kx = kt.x;
     let kz = kt.z + 18;
     {
-      const n = nearestIndex(built.samples, kx, kz, 0);
+      const n = nearestIndexXY(built.samples, kx, kz);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         kx = s.x + s.rx * (built.width / 2 + 24);

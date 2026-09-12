@@ -21,7 +21,7 @@ export function measureForwardSteering(direction) {
     t.setSteer(direction);
     for (let i = 0; i < 12; i++) {
       t.advanceTime(50); current = sample();
-      if (current.speed < 12 || current.mix > 0.001) throw new Error('steering probe left forward dynamic regime');
+      if (current.speed < 12) throw new Error('steering probe left forward dynamic regime');
       samples.push(current);
     }
     const delta = wrap(current.yaw - startYaw);

@@ -166,6 +166,18 @@ Live 5/5; g07 leftover 0.2027; opaque/trans/alpha/env/both/pack ≡ 0.
 Product renderer stays (default painter sort, default transparent sort, clearAlpha 0).
 GFX-01–GFX-10 stay queued after RSH-036.
 
+## r6.95 playability (not remaining 0/4, not freeze grant)
+Owner "finish the programs" + GFX cannot-drive. Pacejka yaw in
+`stepWheels` is ~0 once crawl dropped at ~10 m/s, so A/D did nothing at
+speed (steer 0.82, dYaw −0.01). Kinematic mix now floors at 0.32 so
+A = +yaw / D = −yaw at 12 m/s (namal independent starts dA +0.30 /
+dD −0.30). `drive-smoke` / `drive-steering` keep the signed turn gate
+and no longer require kinMix=0. Water/trees/plaza keepOffRoad from r6.86
+plus this steer floor: namal/oldjaffa/caesarea/scopus/ayalon spawn
+driveable in-browser; Haifa Baháʼí pines off ribbon; ghost 0 at spawn;
+procedural Y-up car. Pixel leftover g07 0.2027 unchanged.
+`freeze_granted=false`. No merge, no PNG refresh, no RSH-037.
+
 ## r6.85 and subsequent acceptance
 1. Remaining 0/4 is sun intensity luma plus bakeEnv 0x3a9ae0 hue plus leftover
    gray cubemap vs IBL-off on g01/g05/g08 bottom: intensity occupies luma,

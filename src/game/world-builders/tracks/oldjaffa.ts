@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { nearestIndex, nearestIndexXY } from "../../spline";
 import { tlv } from "../../tracks";
 import { getJaffaClock } from "../../clock-assets";
 import type { TrackWorldBuilderContext } from "../shared";
@@ -36,7 +36,7 @@ export default function buildOldjaffa(context: TrackWorldBuilderContext): void {
     bag.push(ochre, ochreDark, lime);
     const ck = tlv(32.0556, 34.7558);
     {
-      const n = nearestIndex(built.samples, ck.x, ck.z, 0);
+      const n = nearestIndexXY(built.samples, ck.x, ck.z);
       if (n.dist < built.width / 2 + 10) {
         const s = built.samples[n.index];
         ck.x = s.x + s.rx * (built.width / 2 + 22);
@@ -56,7 +56,7 @@ export default function buildOldjaffa(context: TrackWorldBuilderContext): void {
     add(base);
     const plaza = new THREE.Mesh(new THREE.CylinderGeometry(7.2, 7.2, 0.28, 20), ochreDark);
     plaza.position.set(ck.x, 0.16, ck.z);
-    if (nearestIndex(built.samples, ck.x, ck.z, 0).dist >= built.width / 2 + 10) add(plaza);
+    if (nearestIndexXY(built.samples, ck.x, ck.z).dist >= built.width / 2 + 10) add(plaza);
     const balcony = new THREE.Mesh(new THREE.BoxGeometry(5.8, 0.24, 5.8), lime);
     balcony.position.set(ck.x, 18.8, ck.z);
     add(balcony);
@@ -102,7 +102,7 @@ export default function buildOldjaffa(context: TrackWorldBuilderContext): void {
       const a = i / 22 * Math.PI * 1.7 + 0.35;
       const hx = ck.x + Math.cos(a) * (22 + i % 4 * 5);
       const hz = ck.z + Math.sin(a) * (20 + i % 3 * 6);
-      if (nearestIndex(built.samples, hx, hz, 0).dist < built.width / 2 + 10) continue;
+      if (nearestIndexXY(built.samples, hx, hz).dist < built.width / 2 + 10) continue;
       const h = 5.2 + i % 4 * 1.6;
       const house = new THREE.Mesh(new THREE.BoxGeometry(6.2 + i % 3, h, 5.4 + i % 2), i % 2 ? ochre : ochreDark);
       house.position.set(hx, h * 0.5, hz);
@@ -123,7 +123,7 @@ export default function buildOldjaffa(context: TrackWorldBuilderContext): void {
     }
     const mq = tlv(32.0564, 34.7568);
     {
-      const n = nearestIndex(built.samples, mq.x, mq.z, 0);
+      const n = nearestIndexXY(built.samples, mq.x, mq.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         mq.x = s.x + s.rx * (built.width / 2 + 26);

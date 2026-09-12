@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { nearestIndexXY } from "../../spline";
 import { tlv } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -57,7 +57,7 @@ export default function buildNamal(context: TrackWorldBuilderContext): void {
     ]) {
       const p = tlv(hg.lat, hg.lon);
       {
-        const n = nearestIndex(built.samples, p.x, p.z, 0);
+        const n = nearestIndexXY(built.samples, p.x, p.z);
         if (n.dist < built.width / 2 + 16) {
           const s = built.samples[n.index];
           p.x = s.x + s.rx * (built.width / 2 + 36);
@@ -82,7 +82,7 @@ export default function buildNamal(context: TrackWorldBuilderContext): void {
     hook.position.set(hp.x + 2, 18, hp.z + 30);
     add(hook);
     const rd = tlv(32.1035, 34.7788);
-    const rdNear = nearestIndex(built.samples, rd.x, rd.z, 0);
+    const rdNear = nearestIndexXY(built.samples, rd.x, rd.z);
     const rs = built.samples[rdNear.index];
     const rdYaw = Math.atan2(rs.tx, rs.tz);
     const ochre = new THREE.MeshStandardMaterial({

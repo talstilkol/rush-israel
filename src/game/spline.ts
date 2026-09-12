@@ -124,6 +124,22 @@ export function nearestIndex(samples: Sample[], x: number, z: number, hint: numb
   return { index: bestI, dist: Math.hypot(s.x - x, s.z - z) };
 }
 
+/** True XY nearest sample. Use for decoration so switchbacks are not missed. */
+export function nearestIndexXY(samples: Sample[], x: number, z: number) {
+  let bestI = 0;
+  let bestD = Infinity;
+  for (let i = 0; i < samples.length; i++) {
+    const s = samples[i];
+    const d = (s.x - x) * (s.x - x) + (s.z - z) * (s.z - z);
+    if (d < bestD) {
+      bestD = d;
+      bestI = i;
+    }
+  }
+  const s = samples[bestI];
+  return { index: bestI, dist: Math.sqrt(bestD) };
+}
+
 export function sampleAtT(samples: Sample[], t: number): Sample {
   const n = samples.length;
   const u = ((t % 1) + 1) % 1;
