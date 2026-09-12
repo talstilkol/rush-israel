@@ -1484,7 +1484,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         const len = Math.hypot(dx, dz) || 1;
         dx /= len;
         dz /= len;
-        const pad = built.width / 2 + 36;
+        const pad = built.width / 2 + 42;
         for (let k = 0; k < 36; k++) {
           if (!rectHitsRibbon(wx, wz, planeW * 0.5, planeD * 0.5, pad)) break;
           wx += dx * 28;
@@ -1494,9 +1494,9 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       }
       const mesh = new THREE.Mesh(keep(new THREE.PlaneGeometry(planeW, planeD, 8, 8)), mat);
       mesh.rotation.x = -Math.PI / 2;
-      mesh.position.set(wx, def.id === "ayalon" ? -0.12 : -2.6, wz);
+      mesh.position.set(wx, def.id === "ayalon" ? -0.12 : -3.2, wz);
       if (coastal) {
-        mesh.userData.waterBaseY = -2.6;
+        mesh.userData.waterBaseY = -3.2;
         mesh.renderOrder = -8;
       }
       group.add(mesh);
@@ -1537,8 +1537,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         if (rectHitsRibbon(wx, wz, tileW * 0.5, tileD * 0.5, seaPad)) continue;
         const mesh = new THREE.Mesh(keep(new THREE.PlaneGeometry(tileW, tileD, 4, 4)), seaMat);
         mesh.rotation.x = -Math.PI / 2;
-        mesh.position.set(wx, -2.6, wz);
-        mesh.userData.waterBaseY = -2.6;
+        mesh.position.set(wx, -3.2, wz);
+        mesh.userData.waterBaseY = -3.2;
         mesh.renderOrder = -8;
         group.add(mesh);
         waterMeshes.push(mesh);
