@@ -1209,7 +1209,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     metalness: 0.06,
     envMapIntensity: 0.4
   }));
-  if (def.theme !== "desert" && def.theme !== "snow" && def.id !== "rothschild" && def.id !== "telaviv" && def.id !== "petah" && def.id !== "raanana" && def.id !== "ksaba" && def.id !== "rehovot" && def.id !== "hayarkon" && def.id !== "namal" && def.id !== "batyam" && def.id !== "tiberias" && def.id !== "kshmona" && def.id !== "ashdod" && def.id !== "nahariya" && def.id !== "netanya" && def.id !== "herzliya" && def.id !== "haifaport" && def.theme !== "stone" && def.theme !== "jaffa" && def.theme !== "carmel") {
+  if (def.theme !== "desert" && def.theme !== "snow" && def.id !== "rothschild" && def.id !== "telaviv" && def.id !== "petah" && def.id !== "raanana" && def.id !== "ksaba" && def.id !== "rehovot" && def.id !== "hayarkon" && def.id !== "namal" && def.id !== "batyam" && def.id !== "tiberias" && def.id !== "kshmona" && def.id !== "ashdod" && def.id !== "nahariya" && def.id !== "netanya" && def.id !== "herzliya" && def.id !== "haifaport" && def.id !== "golan" && def.theme !== "stone" && def.theme !== "jaffa" && def.theme !== "carmel") {
     group.add(new THREE.Mesh(keep(buildJersey(built, 1)), jerseyMat));
     group.add(new THREE.Mesh(keep(buildJersey(built, -1)), jerseyMat));
     const capMat = keep(new THREE.MeshStandardMaterial({ color: 0xf4f0ea, roughness: 0.55, metalness: 0.04 }));
