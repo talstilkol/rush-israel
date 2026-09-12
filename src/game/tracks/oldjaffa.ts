@@ -12,7 +12,7 @@ export default defineTrack({
     description: "נמל יפו, מגדל השעון, נווה צדק ופלורנטין — סמטאות אבן מול הים. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Jaffa Port, the Clock Tower, Neve Tzedek and Florentin — stone alleys by the sea. Inspired by the place — not a map, not GIS.",
     image: "/tracks/oldjaffa.jpg",
-    width: 24,
+    width: 26,
     seed: 1917,
     theme: "jaffa",
     ground: 0xc4a882,
