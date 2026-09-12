@@ -1185,7 +1185,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       metalness: 0.1,
     }));
     const eyeOffs = def.id === "ayalon" ? [0, built.width + 18] : [0];
-    const eyeN = Math.min(def.id === "ayalon" ? 280 : 120, Math.max(16, Math.floor(built.samples.length / 3) * eyeOffs.length));
+    const eyeN = Math.min(def.id === "ayalon" ? 280 : 48, Math.max(16, Math.floor(built.samples.length / 3) * eyeOffs.length));
     const eyes = new THREE.InstancedMesh(eyeGeo, eyeMat, eyeN);
     let ei = 0;
     const stepE = Math.max(3, Math.floor(built.samples.length / (eyeN / (2 * eyeOffs.length))));
