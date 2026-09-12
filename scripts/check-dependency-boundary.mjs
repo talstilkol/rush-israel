@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "05c00d7200bf6932029c9d794f32aac7e01028e56d7a9e67d8c50f6f38eecbc9";
+export const EXPECTED_MANIFEST_SHA256 = "ba4dac2d0e09894868d13a69b5b03a8e27102017897a9a0ee2787fe225b3a944";
 export const EXPECTED_PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_DEPENDENCY_MAP_SHA256 = "a3e951f6e3e7d32ee06008b2b3f294b619c7b3753419001624399e477c8038ea";
 export const EXPECTED_PACKAGE_LOCK_SHA256 = "55afd975f03b12867aada083c375e2fadc402b654ddaf0f0934807966fa9f1ed";
@@ -137,7 +137,7 @@ export function validateDependencyBoundary(overrides = {}) {
   if (metadata.pwa?.manifest_delivery !== "dynamic_via_vite_and_server_middleware" || metadata.product?.name !== "RUSH Israel") errors.push("product metadata or PWA boundary changed");
   if (product.product?.public_distribution_authorized !== false || product.version_1_scope?.tracks?.target_count !== 8) errors.push("frozen product boundary changed");
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary.forbidden_prefixes.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push("RSH-038 was precreated: " + later.join(", "));
+  if (later.length) errors.push("RSH-039 was precreated: " + later.join(", "));
   const generated = input.repositoryFiles.filter((path) => [".vercel/", "dist/", ".output/", ".nitro/"].some((prefix) => path.startsWith(prefix)));
   if (generated.length) errors.push("generated build output is tracked: " + generated.join(", "));
   const temp = input.repositoryFiles.filter((path) => path.startsWith(".rsh020") || path.startsWith(".github/workflows/rsh-020-") || path.startsWith("scripts/rsh020-"));

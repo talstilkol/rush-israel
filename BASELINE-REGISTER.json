@@ -1,7 +1,7 @@
 {
-  "schema_version": "20.0.0",
+  "schema_version": "21.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-12T16:20:00.000Z",
+  "generated_at": "2026-09-12T16:50:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -686,23 +686,36 @@
       "post_merge_workflow_run": 34704422852,
       "recorded_at": "2026-09-12T16:10:27Z",
       "description": "Ayalon freeze granted with 36 transitive SHA-256 hashes."
+    },
+    {
+      "id": "B037-rsh-037-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-037",
+      "pull_request": 41,
+      "commit_sha": "91754100fc6a5d7bfc852e6aafa28cd17c1762ba",
+      "tree_sha": "2e09ed141e6658168889e8030ea19f97f526b746",
+      "validated_head_sha": "8ca8e017a000a01251cb6c8481cd1b53a1d7bb7f",
+      "workflow_run": 34705668679,
+      "post_merge_workflow_run": 34706006889,
+      "recorded_at": "2026-09-12T16:41:28Z",
+      "description": "Performance instrumentation locked with p50/p95/p99, draw calls, triangles and memory."
     }
   ],
   "working_state": {
-    "unit": "RSH-037",
+    "unit": "RSH-038",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "4904161cc786061acc11942f76ed5666eb5ed61f",
-    "branch": "agent/rsh-037-perf-instrument",
-    "manifest": "PERF-INSTRUMENT-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-037 pull request"
+    "implementation_base_sha": "91754100fc6a5d7bfc852e6aafa28cd17c1762ba",
+    "branch": "agent/rsh-038-quality-profiles",
+    "manifest": "QUALITY-PROFILES-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-038 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-038",
+    "queue_head": "RSH-039",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_038_authorized": false
+    "RSH_039_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

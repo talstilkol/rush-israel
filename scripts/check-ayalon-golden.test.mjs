@@ -14,7 +14,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-035 unique golden pack passes and RSH-038 remains absent", () => {
+test("committed RSH-035 unique golden pack passes and RSH-039 remains absent", () => {
   const result = validateAyalonGolden();
   assert.deepEqual(result.errors, []);
   assert.equal(result.uniqueCount, 20);
@@ -22,11 +22,11 @@ test("committed RSH-035 unique golden pack passes and RSH-038 remains absent", (
   assert.equal(result.approved, true);
 });
 
-test("RSH-038 precreation fails closed", () => {
+test("RSH-039 precreation fails closed", () => {
   const result = validateAyalonGolden({
-    repositoryFiles: ["RSH-038-PREFLIGHT.json", "src/game/quality-profiles/profiles.ts"],
+    repositoryFiles: ["RSH-039-PREFLIGHT.json", "src/game/perf-budgets/budgets.ts"],
   });
-  assert.match(messages(result), /RSH-038 was precreated/);
+  assert.match(messages(result), /RSH-039 was precreated/);
 });
 
 test("unique pack stays owner-approved and placeholders stay non-authority", () => {
@@ -46,5 +46,5 @@ test("unique pack stays owner-approved and placeholders stay non-authority", () 
   assert.equal(manifest.lock.placeholder_count, 4);
   assert.equal(manifest.lock.placeholder_hash, DUPLICATE_PLACEHOLDER_HASH);
   assert.equal(manifest.lock.owner_freeze, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-038");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-039");
 });

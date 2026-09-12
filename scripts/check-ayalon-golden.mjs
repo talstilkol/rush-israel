@@ -5,12 +5,12 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "e2262868d327b72318ba34417c997bfbb318378f94e3378a0afd1cdeb215077d";
+export const EXPECTED_MANIFEST_SHA256 = "7a9ab4f0592edc0f5d218476e307b40373f02bc109b6b46f70939ff54e5759f0";
 export const EXPECTED_PACK_SHA256 = "ce1b6f6c3cb5db8e3695864e5a54df2be480caa8ff852aadc8fb4fd693f920ed";
 export const EXPECTED_INDEX_SHA256 = "8326432974994dddd7c3b4015693f1833bd02c7a0a6ebf5c947fd92d8b5efb3e";
 export const EXPECTED_OWNER_SHA256 = "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84";
 export const EXPECTED_CONTRACT_SHA256 = "0328becc41d5ed9568778a8630ffd06dbea46ee11ce0d7301906616336c64c3d";
-export const EXPECTED_CHECKER_TEST_SHA256 = "7d20f37eb60ee6370aef97c0fc347e72f6433b6d71999b74a3639fecdbfb480e";
+export const EXPECTED_CHECKER_TEST_SHA256 = "552c03a89b39eeb912e202bbde418b4fcec3f17d7facd7e386fc98587739a0f5";
 export const EXPECTED_LOCK_SHA256 = "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b";
 export const EXPECTED_HASHALOM_INDEX_SHA256 = "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10";
 export const EXPECTED_PIXEL_GOLDEN_SHA256 = "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621";
@@ -183,13 +183,13 @@ export function validateAyalonGolden(overrides = {}) {
   }
 
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-038 was precreated: ${later.join(", ")}`);
+  if (later.length) errors.push(`RSH-039 was precreated: ${later.join(", ")}`);
   if (
-    manifest.deferred_boundary?.queue_head !== "RSH-038"
-    || manifest.deferred_boundary?.rsh_036_authorized !== true || manifest.deferred_boundary?.rsh_037_authorized !== true || manifest.deferred_boundary?.rsh_038_authorized !== false
-    || manifest.deferred_boundary?.rsh_036_started !== true || manifest.deferred_boundary?.rsh_037_started !== true || manifest.deferred_boundary?.rsh_038_started !== false
+    manifest.deferred_boundary?.queue_head !== "RSH-039"
+    || manifest.deferred_boundary?.rsh_036_authorized !== true || manifest.deferred_boundary?.rsh_037_authorized !== true || manifest.deferred_boundary?.rsh_038_authorized !== true || manifest.deferred_boundary?.rsh_039_authorized !== false
+    || manifest.deferred_boundary?.rsh_036_started !== true || manifest.deferred_boundary?.rsh_037_started !== true || manifest.deferred_boundary?.rsh_038_started !== true || manifest.deferred_boundary?.rsh_039_started !== false
   ) {
-    errors.push("RSH-038 deferred boundary changed");
+    errors.push("RSH-039 deferred boundary changed");
   }
 
   return {
@@ -212,5 +212,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`ayalon-golden fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`ayalon-golden ok: ${result.uniqueCount} unique frames; ${result.placeholderCount} placeholders; approved ${result.approved}; RSH-038 deferred`);
+  console.log(`ayalon-golden ok: ${result.uniqueCount} unique frames; ${result.placeholderCount} placeholders; approved ${result.approved}; RSH-039 deferred`);
 }

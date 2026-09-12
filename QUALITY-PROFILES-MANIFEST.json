@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-quality-profiles-manifest",
+  "unit": "RSH-038",
+  "title": "Define quality profiles and dynamic-quality hysteresis",
+  "generated_at": "2026-09-12T16:50:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "91754100fc6a5d7bfc852e6aafa28cd17c1762ba",
+    "tree_sha": "2e09ed141e6658168889e8030ea19f97f526b746",
+    "branch": "agent/rsh-038-quality-profiles"
+  },
+  "lock": {
+    "profiles": [
+      "compat",
+      "balanced",
+      "high",
+      "ultra",
+      "photo"
+    ],
+    "legacy_map": {
+      "low": "compat",
+      "mid": "balanced",
+      "high": "high"
+    },
+    "drop_p95_ms": 20,
+    "drop_frames": 90,
+    "raise_p95_ms": 16,
+    "raise_hold_s": 5,
+    "max_step": 8,
+    "drop_order": [
+      "planar",
+      "bloom",
+      "csm",
+      "pixelExtra"
+    ],
+    "live_profile_module": "src/rendering/QualityProfile.ts",
+    "live_hysteresis_module": "src/rendering/DynamicQualityController.ts",
+    "budgets_enforced": false,
+    "real_device_baseline_accepted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "owner_settings_freeze": false,
+    "public_distribution": false
+  },
+  "lock_module": {
+    "directory": "src/game/quality-profiles",
+    "profiles": "src/game/quality-profiles/profiles.ts",
+    "hysteresis": "src/game/quality-profiles/hysteresis.ts",
+    "index": "src/game/quality-profiles/index.ts"
+  },
+  "preservation": {
+    "golden_png_changes": 0,
+    "ayalon_lock_changes": 0,
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "cars_changes": 0,
+    "audio_hud_changes": 0,
+    "engine_adapter_changes": 0,
+    "live_profile_changes": 0,
+    "live_hysteresis_changes": 0,
+    "perf_instrument_changes": 0,
+    "package_json_changes": 0,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "profiles_source_sha256": "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a",
+    "hysteresis_source_sha256": "0398a113fe0643804ad0349201eb1f3a4dd88d54811b5497dbc8128ff9f2da7e",
+    "index_source_sha256": "f000f8f0b6b1d39a132190ec6d1225386e0950d1c2b84f09bd529d53222a0786",
+    "contract_sha256": "5cdeaac7c9d6da3205f55990579a71f6cfe828700f85311eec125f62fb0cc5a7",
+    "live_profile_source_sha256": "9da86b5461433767b9851625b5c7346c981f4901d6b67e3db9884c625c0af10e",
+    "live_hysteresis_source_sha256": "fd0e6b4a7c5578186de11eae4f465bbfe863b3f6f493f2f17e84005abf4b8271",
+    "checker_test_sha256": "83cc6d836fd7511c82068120ea8c3342847e60bd3556de6ed30b3ce0898835f9",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "quality_digest_sha256": "df5b4b3c1fd9ac7ab5fbaa2a8441da83c6b6ab5a83c97ec3914c3d63313fac6a",
+    "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
+    "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1",
+    "perf_metrics_source_sha256": "d76bc0131c31dfbf3d86de081d45a70fba49d0130755ad04368aceaf4592492a",
+    "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+    "telemetry_source_sha256": "cfcfedd7462acdc6afce995edb5a8b081f601e026d005f4ba1b99273cd03af8d",
+    "loop_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
+    "rendering_source_sha256": "947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132",
+    "qa_source_sha256": "973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-039",
+    "rsh_038_authorized": true,
+    "rsh_038_started": true,
+    "rsh_039_authorized": false,
+    "rsh_039_started": false,
+    "forbidden_prefixes": [
+      ".rsh039",
+      ".github/workflows/rsh-039-",
+      "RSH-039-",
+      "scripts/rsh039-",
+      "scripts/check-perf-budgets",
+      "scripts/check-budgets",
+      "src/game/perf-budgets/"
+    ]
+  }
+}
