@@ -2175,12 +2175,15 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   if (treeSpots.length && def.theme !== "desert" && def.id !== "timessquare") {
     const nBill = Math.min(36, treeSpots.length);
     const billG = keep(new THREE.PlaneGeometry(6.4, 7.6));
-    const billM = keep(new THREE.MeshBasicMaterial({
+    const billM = keep(new THREE.MeshStandardMaterial({
       map: keep(foliageTexture()),
       transparent: true,
       alphaTest: 0.32,
       side: THREE.DoubleSide,
-      depthWrite: false
+      depthWrite: false,
+      fog: true,
+      roughness: 0.95,
+      metalness: 0,
     }));
     const bills = new THREE.InstancedMesh(billG, billM, nBill * 2);
     let bi = 0;

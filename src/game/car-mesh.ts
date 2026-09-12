@@ -205,11 +205,11 @@ function bodyGeo(kind: CarDef["body"], width: number) {
   const g = new THREE.ExtrudeGeometry(carShape(kind), {
     depth: width,
     bevelEnabled: true,
-    bevelThickness: 0.2,
-    bevelSize: 0.16,
-    bevelSegments: 8,
-    steps: 4,
-    curveSegments: 24,
+    bevelThickness: 0.28,
+    bevelSize: 0.22,
+    bevelSegments: 12,
+    steps: 6,
+    curveSegments: 32,
   });
   g.translate(0, 0, -width / 2);
   g.rotateY(-Math.PI / 2);
@@ -218,9 +218,11 @@ function bodyGeo(kind: CarDef["body"], width: number) {
   for (let i = 0; i < pos.count; i++) {
     const z = pos.getZ(i);
     const x = pos.getX(i);
+    const y = pos.getY(i);
     const az = Math.min(1, Math.abs(z) / halfL);
-    const taper = az < 0.38 ? 1 : 1 - (az - 0.38) * 0.5;
+    const taper = az < 0.28 ? 1 : 1 - (az - 0.28) * 0.72;
     pos.setX(i, x * taper);
+    if (az > 0.62) pos.setY(i, y * (1 - (az - 0.62) * 0.35));
   }
   pos.needsUpdate = true;
   g.computeVertexNormals();
@@ -334,7 +336,9 @@ export function createCarVisual(
   const brakeC = put(new THREE.BoxGeometry(0.7, 0.035, 0.03), emitBrake, 0, cabinY + L.cabinH * 0.08, L.cabinZ - L.cabinL * 0.42);
 
   const cabinFill = new THREE.MeshStandardMaterial({ color: 0x0a0c10, roughness: 0.92, metalness: 0.04 });
-  put(new THREE.BoxGeometry(L.W * 0.5, L.cabinH * 0.28, L.cabinL * 0.38), cabinFill, 0, cabinY - 0.1, L.cabinZ);
+  const cabinBlob = new THREE.SphereGeometry(0.5, 14, 10);
+  cabinBlob.scale(L.W * 0.58, L.cabinH * 0.42, L.cabinL * 0.46);
+  put(cabinBlob, cabinFill, 0, cabinY - 0.08, L.cabinZ);
   put(new THREE.BoxGeometry(L.W * 0.56, 0.07, 0.2), black, 0, cabinY - 0.1, L.cabinZ + L.cabinL * 0.26);
   put(new THREE.BoxGeometry(0.26, 0.2, 0.3), black, -0.17, cabinY - 0.2, L.cabinZ - 0.02);
   put(new THREE.BoxGeometry(0.26, 0.2, 0.3), black, 0.17, cabinY - 0.2, L.cabinZ - 0.02);
