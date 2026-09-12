@@ -12,7 +12,7 @@ export default defineTrack({
     description: "רוטשילד, בית הכנסת הגדול, היקב ונחלת יהודה. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Rothschild, the Great Synagogue, the winery and Nahalat Yehuda. Inspired by the place — not a map, not GIS.",
     image: "/tracks/rishon.jpg",
-    width: 20,
+    width: 26,
     seed: 1882,
     theme: "jaffa",
     ground: 0x8a7a64,

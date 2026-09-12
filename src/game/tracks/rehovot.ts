@@ -12,7 +12,7 @@ export default defineTrack({
     description: "מכון ויצמן, בית ויצמן, רחוב הרצל ופארק המדע. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Weizmann Institute, Weizmann House, Herzl Street and the science park. Inspired by the place — not a map, not GIS.",
     image: "/tracks/rehovot.jpg",
-    width: 20,
+    width: 26,
     seed: 1934,
     theme: "bauhaus",
     ground: 0x6a7a58,
