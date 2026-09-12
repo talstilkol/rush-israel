@@ -2002,7 +2002,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   if ((def.city === "nyc" || def.theme === "carmel" || def.theme === "stone" || def.id === "hermon" || def.id === "hw1") && def.id !== "deadsea" && def.id !== "hayarkon" && def.id !== "ayalon" && def.id !== "ramon") {
     const tid = def.id as string;
     const natureHill = def.theme === "jaffa" || def.theme === "carmel" || tid === "hermon" || def.theme === "stone" || tid === "hw1";
-    const farN = def.theme === "manhattan" ? 48 : natureHill ? 44 : 36;
+    const farN = def.theme === "manhattan" ? 24 : natureHill ? 22 : 18;
     const farGeo = keep(natureHill ? new THREE.ConeGeometry(1, 1, 6) : new THREE.BoxGeometry(1, 1, 1));
     if (!natureHill) farGeo.translate(0, 0.5, 0);
     const farMat = keep(new THREE.MeshStandardMaterial({
