@@ -938,7 +938,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const wireM = keep(new THREE.MeshStandardMaterial({ color: 0x2c2e32, roughness: 0.55, metalness: 0.35, fog: true }));
       const poleG2 = keep(new THREE.BoxGeometry(0.18, 6.2, 0.18));
       const poleM2 = keep(new THREE.MeshStandardMaterial({ color: 0x6a7076, metalness: 0.55, roughness: 0.4 }));
-      const nWire = 200;
+      const nWire = 80;
       const wires = new THREE.InstancedMesh(wireG, wireM, nWire);
       const nPole = 48;
       const poles = new THREE.InstancedMesh(poleG2, poleM2, nPole);
