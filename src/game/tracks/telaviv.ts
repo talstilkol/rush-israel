@@ -14,7 +14,7 @@ export default defineTrack({
     image: "/tracks/telaviv.jpg",
     width: 26,
     seed: 1701,
-    theme: "highway",
+    theme: "bauhaus",
     ground: 0x7a746c,
     sand: 0xb0a898,
     sky: { ...TLV_BLUE, fogDensity: 0.0008 },

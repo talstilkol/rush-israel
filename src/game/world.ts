@@ -1070,7 +1070,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   }
   const urban = def.theme === "bauhaus" || def.theme === "stone" || def.theme === "jaffa" || def.id === "telaviv" || def.id === "rothschild" || def.id === "hayarkon";
   const zebraGeo = keep(new THREE.BoxGeometry(0.42, 0.035, 2.4));
-  const zebraMat = keep(new THREE.MeshBasicMaterial({ color: 16250094 }));
+  const zebraMat = keep(new THREE.MeshStandardMaterial({ color: 16250094, roughness: 0.55, metalness: 0.04 }));
   const stopGeo = keep(new THREE.BoxGeometry(built.width * 0.92, 0.04, 0.38));
   const paintAt = (t: number, cross: boolean) => {
     const idx = Math.min(built.samples.length - 1, Math.floor(t * built.samples.length));
@@ -1098,12 +1098,14 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     paintAt(0.48, false);
     paintAt(0.5, true);
   }
-  const wearMat = keep(new THREE.MeshBasicMaterial({
+  const wearMat = keep(new THREE.MeshStandardMaterial({
     map: getBlob() ?? undefined,
     color: getBlob() ? 0x2a2c30 : 1842720,
     transparent: true,
     opacity: 0.34,
     depthWrite: false,
+    roughness: 1,
+    metalness: 0,
     polygonOffset: true,
     polygonOffsetFactor: -1,
     polygonOffsetUnits: -1,
@@ -1205,7 +1207,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     metalness: 0.06,
     envMapIntensity: 0.4
   }));
-  if (def.theme !== "desert" && def.theme !== "snow" && def.id !== "rothschild" && def.theme !== "stone" && def.theme !== "jaffa" && def.theme !== "carmel") {
+  if (def.theme !== "desert" && def.theme !== "snow" && def.id !== "rothschild" && def.id !== "telaviv" && def.theme !== "stone" && def.theme !== "jaffa" && def.theme !== "carmel") {
     group.add(new THREE.Mesh(keep(buildJersey(built, 1)), jerseyMat));
     group.add(new THREE.Mesh(keep(buildJersey(built, -1)), jerseyMat));
     const capMat = keep(new THREE.MeshStandardMaterial({ color: 0xf4f0ea, roughness: 0.55, metalness: 0.04 }));
@@ -2627,8 +2629,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     roughness: 0.42,
     metalness: 0
   }));
-  const startMat = keep(new THREE.MeshBasicMaterial({ color: 16250094 }));
-  const cpMat = keep(new THREE.MeshBasicMaterial({ color: 6283476 }));
+  const startMat = keep(new THREE.MeshStandardMaterial({ color: 16250094, roughness: 0.45, metalness: 0.08 }));
+  const cpMat = keep(new THREE.MeshStandardMaterial({ color: 6283476, roughness: 0.4, metalness: 0.12, emissive: 0x1a4a44, emissiveIntensity: 0.35 }));
   for (let i = 0; i < built.checkpoints.length; i++) {
     const t = built.checkpoints[i];
     const s = built.samples[Math.floor(t * built.samples.length) % built.samples.length];
