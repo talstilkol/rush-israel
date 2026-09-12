@@ -1305,9 +1305,9 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     }
     if (!highway) {
       const boxM = keep(new THREE.MeshStandardMaterial({ color: 0x1a1c18, roughness: 0.5 }));
-      const redM = keep(new THREE.MeshBasicMaterial({ color: 0xff2a2a }));
-      const yelM = keep(new THREE.MeshBasicMaterial({ color: 0xffc428 }));
-      const grnM = keep(new THREE.MeshBasicMaterial({ color: isNight ? 0x3dff6a : 0x1a8a38 }));
+      const redM = keep(new THREE.MeshBasicMaterial({ color: 0xff2a2a, fog: true }));
+      const yelM = keep(new THREE.MeshBasicMaterial({ color: 0xffc428, fog: true }));
+      const grnM = keep(new THREE.MeshBasicMaterial({ color: isNight ? 0x3dff6a : 0x1a8a38, fog: true }));
       for (const t of [0.22, 0.71]) {
         const s = samp(built, Math.floor(t * segsOf(built)));
         const off = built.width / 2 + 1.7;
