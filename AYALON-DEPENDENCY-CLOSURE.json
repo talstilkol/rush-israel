@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "b5a7f9b8606d6accad0835cd335d7bfb2677f5b75e00ffbcb98fb310615279ec"
+      "sha256": "15a87c87b62c41cbc01a0a2624c33f559a1e3946390e0354629d939118a68d34"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -3793,8 +3793,8 @@
     },
     {
       "path": "src/game/world-builders/tracks/hayarkon.ts",
-      "bytes": 16831,
-      "sha256": "1095959817b028ce2fc0afa250242c0969a280799b9a1ec5dc5964bb7f403216"
+      "bytes": 16842,
+      "sha256": "8e9a1284d9cb1a53d1594c8c77716198570f51b46c5aea0658e69952c353d6d8"
     },
     {
       "path": "src/game/world-builders/tracks/hermon.ts",
@@ -3803,8 +3803,8 @@
     },
     {
       "path": "src/game/world-builders/tracks/herzliya.ts",
-      "bytes": 5749,
-      "sha256": "25e764b512bb0b8d7ebf56ee774ad0208f3767137616696eb69a4b8bc93f2c0c"
+      "bytes": 5760,
+      "sha256": "3a911b6c0ba3ffbf85007e995d8391794144645b69f396671a781df53a249370"
     },
     {
       "path": "src/game/world-builders/tracks/holon.ts",
@@ -3938,8 +3938,8 @@
     },
     {
       "path": "src/game/world-builders/tracks/stellamaris.ts",
-      "bytes": 3783,
-      "sha256": "85b5a04599df3e11de606bb1ffd7ee5997b429f83c031f64dcae7ecd5e6c15d7"
+      "bytes": 3794,
+      "sha256": "c1fd3fca024b71068237e0861fb589415554287d7fd854f5ccc705ca125cdcda"
     },
     {
       "path": "src/game/world-builders/tracks/telaviv.ts",
@@ -11231,5 +11231,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "69bdd5704b72887fd32a725d60118c02cdb931fab1c94308803cdceed59d5fb6"
+  "digest_sha256": "34b1e993d175cd6f5ebf3d8b80a7658523b3f4ca47988e21202823560ec3fbf7"
 }

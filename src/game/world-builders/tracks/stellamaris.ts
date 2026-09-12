@@ -55,7 +55,7 @@ export default function buildStellamaris(context: TrackWorldBuilderContext): voi
     const lhCap = new THREE.Mesh(new THREE.ConeGeometry(2, 2.2, 8), cream);
     lhCap.position.set(lightH.x, 15.2, lightH.z);
     add(lhCap);
-    const lantern = new THREE.Mesh(new THREE.SphereGeometry(1.1, 10, 8), new THREE.MeshBasicMaterial({ color: 16773828 }));
+    const lantern = new THREE.Mesh(new THREE.SphereGeometry(1.1, 10, 8), new THREE.MeshBasicMaterial({ color: 16773828, fog: true }));
     lantern.position.set(lightH.x, 14.4, lightH.z);
     add(lantern);
     glowAt(lightH.x, 14, lightH.z, 16771248, 16, 14);

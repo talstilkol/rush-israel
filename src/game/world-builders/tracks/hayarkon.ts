@@ -178,7 +178,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     const lightCap = new THREE.Mesh(new THREE.CylinderGeometry(1.4, 1.2, 1.6, 8), cream);
     lightCap.position.set(mar.x - 34, 14.6, mar.z - 22);
     add(lightCap);
-    const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.7, 8, 6), new THREE.MeshBasicMaterial({ color: 16777136 }));
+    const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.7, 8, 6), new THREE.MeshBasicMaterial({ color: 16777136, fog: true }));
     lamp.position.set(mar.x - 34, 15.8, mar.z - 22);
     add(lamp);
     for (let i = 0; i < 8; i++) {

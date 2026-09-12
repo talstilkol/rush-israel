@@ -43,7 +43,7 @@ export default function buildHerzliya(context: TrackWorldBuilderContext): void {
     const lightCap = new THREE.Mesh(new THREE.CylinderGeometry(1.6, 1.3, 1.8, 8), cream);
     lightCap.position.set(mar.x - 44, 16.8, mar.z - 30);
     add(lightCap);
-    const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.8, 8, 6), new THREE.MeshBasicMaterial({ color: 16777136 }));
+    const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.8, 8, 6), new THREE.MeshBasicMaterial({ color: 16777136, fog: true }));
     lamp.position.set(mar.x - 44, 18.2, mar.z - 30);
     add(lamp);
     for (let i = 0; i < 10; i++) {
