@@ -1156,7 +1156,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     group.add(new THREE.Mesh(keep(buildCurb(built, 1, oppOff)), curbMat));
     group.add(new THREE.Mesh(keep(buildCurb(built, -1, oppOff)), curbMat));
   }
-  if (def.theme === "highway" || def.id === "ayalon") {
+  if (def.id === "ayalon" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6") {
     const eyeGeo = keep(new THREE.BoxGeometry(0.2, 0.09, 0.32));
     const eyeMat = keep(new THREE.MeshStandardMaterial({
       color: 0xfff2b0,
