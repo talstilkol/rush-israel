@@ -253,7 +253,7 @@ export class ArcadeCar {
     const vAbs = Math.abs(v);
     const aero = stats.drag * 0.00155 * vAbs * vAbs;
     const surf = SURFACE_SPEC[this.surfaceKind] ?? SURFACE_SPEC.asphalt;
-    const rolling = vAbs > 0.2 ? (1.15 + (this.onTrack ? 0 : stats.body === "rally" ? 1.15 : 3.4)) * surf.roll * wx.roll : 0;
+    const rolling = vAbs > 0.2 ? (1.15 + (this.onTrack ? 0 : stats.body === "rally" ? 1.15 : 1.4)) * surf.roll * wx.roll : 0;
     const driveCurve = Math.max(0.02, 1 - clamp(vAbs / Math.max(8, maxSpeed), 0, 1) ** 2.1);
     const fx = -Math.sin(this.yaw);
     const fz = -Math.cos(this.yaw);
@@ -558,7 +558,7 @@ export class ArcadeCar {
     const alley = nearestStreet(this.x, this.z, streets);
     const onAlley = !!(alley && alley.dist < alley.street.half * 1.05);
     const onRamp = !!rp;
-    const onMain = dist < half * (this.roam ? 1.35 : 1.02);
+    const onMain = dist < half * (this.roam ? 1.35 : 1.2);
     this.onTrack = onMain || onAlley || onRamp || (this.roam && dist < half * 2.6);
     this.sideStreet = onRamp ? rp.r.he : onAlley && !onMain ? alley!.street.he : "";
     this.sideStreetEn = onRamp ? rp.r.en : onAlley && !onMain ? alley!.street.en : "";
@@ -573,7 +573,7 @@ export class ArcadeCar {
       this.surfaceGrip = this.baseGrip * (lat01 > 0.72 && this.weatherGrip < 0.95 ? 0.86 : 1);
     }
 
-    if (!this.onTrack) this.speed *= Math.exp(-(this.roam ? 0.9 : this.stats.body === "rally" ? 1.15 : 2.6) * dt);
+    if (!this.onTrack) this.speed *= Math.exp(-(this.roam ? 0.9 : this.stats.body === "rally" ? 1.15 : 1.15) * dt);
 
     if (onAlley && !onMain && alley) {
       const keep = alley.street.half + 1.35;

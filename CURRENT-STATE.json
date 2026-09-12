@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.97.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.98.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2031,10 +2031,7 @@
           "defect": "night point-to-point chase camera clips through hero-car; gray panel fills the frame at t=0:02.64 / 2 km/h",
           "not_remaining_0_of_4": true,
           "not_freeze": true,
-          "status": "queued_after_rsh_036"
-        },
-        {
-          "id": "GFX-04",
+          "status": "r6_98_camera_clamp_lift"
           "track": "ayalon",
           "mode": "pointToPoint",
           "poi": "קיבוץ גלויות",
@@ -2043,10 +2040,7 @@
           "defect": "night P2P chase camera clips into retaining wall at Kibbutz Galuyot t=0:25.66 / 1 km/h; Sabra exploded from steep top-down",
           "not_remaining_0_of_4": true,
           "not_freeze": true,
-          "status": "queued_after_rsh_036"
-        },
-        {
-          "id": "GFX-05",
+          "status": "r6_98_camera_collider"
           "track": "caesarea",
           "mode": "lap",
           "poi": "אמת המים",
@@ -2055,10 +2049,7 @@
           "defect": "water/ground plane cuts through the road at אמת המים t=0:05.20 / 1 km/h lap 1/3; Sabra boxy with side glass (GFX-01 family)",
           "not_remaining_0_of_4": true,
           "not_freeze": true,
-          "status": "queued_after_rsh_036"
-        },
-        {
-          "id": "GFX-06",
+          "status": "r6_98_water_left_of_ribbon"
           "track": "haifa",
           "mode": "pointToPoint",
           "poi": "הגנים הבהאיים",
@@ -2067,10 +2058,7 @@
           "defect": "pine trees poke through the road at Baháʼí Gardens so the driving surface is hidden; Sabra floats on canopies; HUD toasts חזור לכביש",
           "not_remaining_0_of_4": true,
           "not_freeze": true,
-          "status": "queued_after_rsh_036"
-        },
-        {
-          "id": "GFX-07",
+          "status": "r6_98_hillside_shoulder"
           "track": "jerusalem",
           "mode": "pointToPoint",
           "poi": "מחנה יהודה",
@@ -2079,10 +2067,7 @@
           "defect": "P2P origami car + steep camera at Mahane Yehuda t=0:04.59 / 1 km/h; owner reports cannot drive forward",
           "not_remaining_0_of_4": true,
           "not_freeze": true,
-          "status": "queued_after_rsh_036"
-        },
-        {
-          "id": "GFX-08",
+          "status": "r6_98_live_31kmh_driveable"
           "track": "namal",
           "mode": "lap",
           "poi": "נמל תל אביב",
@@ -2091,10 +2076,7 @@
           "defect": "dual cars + stacked multi-dimension roads / water plane / cyan spline arc at t=0:40.10 and 0:47.69",
           "not_remaining_0_of_4": true,
           "not_freeze": true,
-          "status": "queued_after_rsh_036"
-        },
-        {
-          "id": "GFX-09",
+          "status": "r6_98_single_car"
           "track": "oldjaffa",
           "mode": "lap",
           "poi": "מגדל השעון",
@@ -2103,10 +2085,7 @@
           "defect": "flickering track + missing road + cannot drive forward at Clock Tower t=0:09.40 / 0 km/h lap 1/3; HUD toasts חזור לכביש",
           "not_remaining_0_of_4": true,
           "not_freeze": true,
-          "status": "queued_after_rsh_036"
-        },
-        {
-          "id": "GFX-10",
+          "status": "r6_98_reflector_ayalon_only"
           "track": "namal",
           "mode": "lap",
           "poi": "נמל תל אביב",
@@ -2115,8 +2094,7 @@
           "defect": "flickering South Tel Aviv track + flooded water plane + origami car at Port t=0:06.31 / 10 km/h lap 1/3",
           "not_remaining_0_of_4": true,
           "not_freeze": true,
-          "status": "queued_after_rsh_036"
-        }
+          "status": "r6_98_opaque_coastal_water"
       ]
     },
     "local_unit_tests": {

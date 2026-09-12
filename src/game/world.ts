@@ -680,6 +680,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const idx = [];
     const n = segsOf(built);
     const outer = def.id === "ramon" ? 280 : def.id === "hermon" ? 250 : def.theme === "carmel" ? 160 : 78;
+    const hw = built.width / 2 + 4.6;
     let valleyX = 0;
     let valleyZ = 0;
     let invertSide = false;
@@ -701,7 +702,6 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     }
     for (let i = 0; i <= n; i++) {
       const s = samp(built, i);
-      const hw = built.width / 2 + 1.2;
       let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
       if (invertSide) vs = -vs;
       const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 148 + s.y * 0.6 : def.theme === "carmel" ? s.y + 78 : s.y + 8;
@@ -747,6 +747,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   bindRoadCompile(roadMat);
   const road = new THREE.Mesh(keep(buildRoad(built)), roadMat);
   road.receiveShadow = true;
+  if (def.id !== "ayalon") road.renderOrder = 2;
   group.add(road);
   const edgeMat = keep(new THREE.MeshBasicMaterial({
     color: 0xffffff,
@@ -1276,7 +1277,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   }
   let mirror: Reflector | null = null;
   let planarOk = true;
-  if (shadows) {
+  // Ayalon freeze keeps the historical planar wet-road reflector. On every
+  // other route the 42×80 flat quad sits 3 cm above a sloped ribbon and
+  // z-fights every frame (GFX-09 / GFX-10 flicker).
+  if (shadows && def.id === "ayalon") {
     /** Codex 3.4: planar RT cap until Ayalon High p95 is measured on a user GPU. Do not raise. */
     const PLANAR_RT = 768;
     mirror = new Reflector(new THREE.PlaneGeometry(42, 80), {
@@ -1390,33 +1394,40 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   let waterMesh;
   const waterMeshes: THREE.Mesh[] = [];
   const waterMats: { material: THREE.MeshPhysicalMaterial; baseColor: number }[] = [];
+  const rectHitsRibbon = (x: number, z: number, hw: number, hd: number, pad: number) => {
+    for (const s of built.samples) {
+      if (Math.abs(s.x - x) < hw + pad && Math.abs(s.z - z) < hd + pad) return true;
+    }
+    return false;
+  };
   if (bodies.length) {
     const nrm = keep(waterNormalTex());
+    const placedWater: { x: number; z: number; w: number; d: number }[] = [];
     for (const body of bodies) {
+      const coastal = def.id !== "ayalon";
       const mat = keep(new THREE.MeshPhysicalMaterial({
         color: body.color,
-        roughness: isNight ? 0.03 : 0.08,
+        roughness: isNight ? 0.03 : coastal ? 0.18 : 0.08,
         metalness: 0.08,
-        transparent: true,
-        opacity: isNight ? 0.9 : 0.82,
+        transparent: !coastal,
+        opacity: coastal ? 1 : isNight ? 0.9 : 0.82,
         envMapIntensity: isNight ? 2.6 : 1.7,
         clearcoat: 1,
         clearcoatRoughness: 0.06,
         ior: 1.33,
         normalMap: nrm,
         normalScale: new THREE.Vector2(1.15, 1.15),
-        polygonOffset: def.id !== "ayalon",
-        polygonOffsetFactor: 2,
-        polygonOffsetUnits: 2,
+        polygonOffset: coastal,
+        polygonOffsetFactor: 4,
+        polygonOffsetUnits: 4,
+        depthWrite: true,
       }));
       if (isNight) mat.color.multiplyScalar(0.65);
-      const planeW = def.id === "ayalon" ? Math.max(body.w * 1.4, 900) : Math.min(Math.max(body.w * 1.15, 48), 280);
-      const planeD = def.id === "ayalon" ? Math.max(body.d, 1600) : Math.min(Math.max(body.d * 1.15, 48), 360);
-      const mesh = new THREE.Mesh(keep(new THREE.PlaneGeometry(planeW, planeD, 8, 8)), mat);
-      mesh.rotation.x = -Math.PI / 2;
+      const planeW = def.id === "ayalon" ? Math.max(body.w * 1.4, 900) : Math.min(Math.max(body.w * 1.05, 40), 160);
+      const planeD = def.id === "ayalon" ? Math.max(body.d, 1600) : Math.min(Math.max(body.d * 1.05, 40), 220);
       let wx = body.x;
       let wz = body.z;
-      if (def.id !== "ayalon") {
+      if (coastal) {
         let cx = 0;
         let cz = 0;
         for (const s of built.samples) {
@@ -1430,45 +1441,54 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         const len = Math.hypot(dx, dz) || 1;
         dx /= len;
         dz /= len;
-        const pad = built.width / 2 + 18;
-        for (let k = 0; k < 16; k++) {
-          let overlap = false;
-          for (const s of built.samples) {
-            if (Math.abs(s.x - wx) < planeW * 0.5 + pad && Math.abs(s.z - wz) < planeD * 0.5 + pad) {
-              overlap = true;
-              break;
-            }
-          }
-          if (!overlap) break;
-          wx += dx * 28;
-          wz += dz * 28;
+        const pad = built.width / 2 + 22;
+        for (let k = 0; k < 28; k++) {
+          if (!rectHitsRibbon(wx, wz, planeW * 0.5, planeD * 0.5, pad)) break;
+          wx += dx * 32;
+          wz += dz * 32;
         }
+        if (rectHitsRibbon(wx, wz, planeW * 0.5, planeD * 0.5, pad)) continue;
       }
-      mesh.position.set(wx, def.id === "ayalon" ? -0.12 : -0.85, wz);
-      if (def.id !== "ayalon") mesh.userData.waterBaseY = -0.85;
+      const mesh = new THREE.Mesh(keep(new THREE.PlaneGeometry(planeW, planeD, 8, 8)), mat);
+      mesh.rotation.x = -Math.PI / 2;
+      mesh.position.set(wx, def.id === "ayalon" ? -0.12 : -1.35, wz);
+      if (coastal) {
+        mesh.userData.waterBaseY = -1.35;
+        mesh.renderOrder = -8;
+      }
       group.add(mesh);
       waterMeshes.push(mesh);
       waterMats.push({ material: mat, baseColor: body.color });
+      placedWater.push({ x: wx, z: wz, w: planeW, d: planeD });
       if (!waterMesh) waterMesh = mesh;
     }
-    const sandBody = bodies[0];
-    const sand = new THREE.Mesh(keep(new THREE.PlaneGeometry(def.id === "ayalon" ? Math.max(sandBody.w * 0.55, 420) : Math.min(Math.max(sandBody.w * 0.55, 40), 360), def.id === "ayalon" ? Math.max(sandBody.d, 2200) : Math.min(Math.max(sandBody.d * 0.7, 40), 480))), keep(new THREE.MeshStandardMaterial({
-      color: def.sand,
-      roughness: 1,
-      envMapIntensity: 0.2
-    })));
-    sand.rotation.x = -Math.PI / 2;
-    sand.position.set(sandBody.x + sandBody.w * 0.28, def.id === "ayalon" ? -0.18 : -0.72, sandBody.z);
-    if (def.theme !== "manhattan" && def.theme !== "park") group.add(sand);
-    const foam = new THREE.Mesh(keep(new THREE.PlaneGeometry(sandBody.w * 0.14, sandBody.d * 0.92)), keep(new THREE.MeshBasicMaterial({
-      map: keep(foamTex()),
-      transparent: true,
-      opacity: 0.82,
-      depthWrite: false
-    })));
-    foam.rotation.x = -Math.PI / 2;
-    foam.position.set(sandBody.x + sandBody.w * 0.14, def.id === "ayalon" ? -0.03 : -0.4, sandBody.z);
-    if (def.theme !== "manhattan" && def.theme !== "park") group.add(foam);
+    const sandBody = placedWater[0] ?? bodies[0];
+    const sandW = def.id === "ayalon" ? Math.max(sandBody.w * 0.55, 420) : Math.min(Math.max(sandBody.w * 0.55, 40), 140);
+    const sandD = def.id === "ayalon" ? Math.max(sandBody.d, 2200) : Math.min(Math.max(sandBody.d * 0.7, 40), 180);
+    const sandX = def.id === "ayalon" ? sandBody.x + (bodies[0]?.w ?? 0) * 0.28 : sandBody.x;
+    const sandZ = sandBody.z;
+    const sandHits = def.id !== "ayalon" && rectHitsRibbon(sandX, sandZ, sandW * 0.5, sandD * 0.5, built.width / 2 + 10);
+    if (!sandHits && def.theme !== "manhattan" && def.theme !== "park") {
+      const sand = new THREE.Mesh(keep(new THREE.PlaneGeometry(sandW, sandD)), keep(new THREE.MeshStandardMaterial({
+        color: def.sand,
+        roughness: 1,
+        envMapIntensity: 0.2
+      })));
+      sand.rotation.x = -Math.PI / 2;
+      sand.position.set(sandX, def.id === "ayalon" ? -0.18 : -1.15, sandZ);
+      sand.renderOrder = -9;
+      group.add(sand);
+      const foam = new THREE.Mesh(keep(new THREE.PlaneGeometry(Math.min(sandBody.w * 0.14, 36), Math.min(sandBody.d * 0.92, 160))), keep(new THREE.MeshBasicMaterial({
+        map: keep(foamTex()),
+        transparent: true,
+        opacity: 0.82,
+        depthWrite: false
+      })));
+      foam.rotation.x = -Math.PI / 2;
+      foam.position.set(sandX, def.id === "ayalon" ? -0.03 : -0.95, sandZ);
+      foam.renderOrder = -7;
+      group.add(foam);
+    }
   }
   if (def.id === "ayalon") {
     const nrm = keep(waterNormalTex());
@@ -2591,7 +2611,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     if (waterMeshes.length) {
       for (const mesh of waterMeshes) {
         const base = mesh.userData.waterBaseY;
-        mesh.position.y = typeof base === "number" ? base + Math.sin(t * 0.7) * 0.04 : -0.1 + Math.sin(t * 0.7) * 0.06;
+        mesh.position.y = typeof base === "number" ? base + Math.sin(t * 0.7) * 0.02 : -0.1 + Math.sin(t * 0.7) * 0.06;
       }
       if (waterMats.length) {
         for (const { material: mat } of waterMats) if (mat.normalMap) {

@@ -1,7 +1,7 @@
-**Version:** 20.97.0
+**Version:** 20.98.0
 **Date:** 2026-09-12, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** b0a1acd
+**Repair base:** 1b2d5a3
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -176,6 +176,17 @@ and no longer require kinMix=0. Water/trees/plaza keepOffRoad from r6.86
 plus this steer floor: namal/oldjaffa/caesarea/scopus/ayalon spawn
 driveable in-browser; Haifa Baháʼí pines off ribbon; ghost 0 at spawn;
 procedural Y-up car. Pixel leftover g07 0.2027 unchanged.
+`freeze_granted=false`. No merge, no PNG refresh, no RSH-037.
+
+## r6.98 playability (not remaining 0/4, not freeze grant)
+Owner “finish the programs” + GFX-09/10 flicker + cannot-drive.
+Non-Ayalon planar `Reflector` z-fought the sloped ribbon every frame.
+Coastal water is now opaque and skipped when it still overlaps the
+ribbon; hillside mesh starts on a 4.6 m shoulder; chase camera stays on
+the ribbon and above road.y; `onTrack` includes the wall band. Live:
+namal 30 km/h dA +0.38; oldjaffa clock-tower road visible; haifa t=0.35
+y=75 not inside the mountain; jerusalem Mahane Yehuda 31 km/h dA +0.82;
+caesarea water left of aqueduct. Pixel leftover g07 0.2027 unchanged.
 `freeze_granted=false`. No merge, no PNG refresh, no RSH-037.
 
 ## r6.97 leftover isolation (not remaining 0/4 grant)
@@ -463,20 +474,20 @@ remaining pixel 0/4.
 |---|---|---|---|
 | GFX-01 | namal | hero-car GLB body vertical/origami vs procedural extras | queued after RSH-036 |
 | GFX-02 | ayalon | leftover cubemap is scene.environment ≡ environmentIntensity=0; bakeEnv 0x3a9ae0 hue is cubemap not background; remaining hemi is hemi.color not groundColor; g08 fill and sun are independent additive luma; g07 upper is ramps not sky not piers; remaining g07 after ramps is leftover unnamed not env (both ≡ ramps); leftover g07 after ramps is buildings not road (bandDelta −0.1037; leftover-after-ramps-as-env ≈ 0); leftover g07 after ramps+buildings is instanced+ground not water not glass (bandDelta −0.0345/−0.0453; leftover-after-buildings-as-env ≈ 0); leftover g07 after ramps+buildings+instanced+ground is remaining non-mesh not unnamed meshes not env (leftover 0.2087, unnamed −0.006 below 0.02, leftover-after-ignd-as-env ≈ 0); leftover g07 after all world meshes is remaining empty-scene vs golden not background not clear not fog not post not env (leftover 0.2027, background +0.7322 increases, leftover-after-empty-as-env ≡ 0); leftover g07 after all world.group meshes is remaining empty-scene vs golden not occupancy outside world.group not hero not fx not blob not env (leftover 0.2027, outside ≡ 0, leftover-after-empty-as-outside ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not toneMapping not ColorManagement not env (leftover 0.2027, LinearSRGB +0.7482 increases, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not fov not near not far not env (leftover 0.2027, fov/near/far/clip ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not follow not height not look-ahead not env (leftover 0.2027, follow/height/look/pose ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not pixelRatio not drawingBuffer not post.setSize not env (leftover 0.2027, ratio/buffer/size/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not bloom not SMAA not grade not env (leftover 0.2027, bloom/smaa/grade/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not antialias not samples not alpha not env (leftover 0.2027, aa bandDelta +0.0003 below 0.02 L2 +38.79 increases, samples/alpha ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not shadowMap not fog not scissor not env (leftover 0.2027, shadow/fog/scissor/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not autoClear not sortObjects not overrideMaterial not env (leftover 0.2027, auto/sort/override/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not physicallyCorrectLights not premultipliedAlpha not logarithmicDepthBuffer not env (leftover 0.2027, phys/premul/logdepth/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not preserveDrawingBuffer not stencil not reversedDepthBuffer not env (leftover 0.2027, preserve/stencil/reversed/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not localClippingEnabled not clipShadows not clipIntersection not env (leftover 0.2027, local/shadows/intersect/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not autoClearColor not autoClearDepth not autoClearStencil not env (leftover 0.2027, color/depth/stencil/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not dithering not shadowMap.autoUpdate not info.autoReset not env (leftover 0.2027, dither/shadow/reset/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not shadowMap.type not shadowMap.needsUpdate not clippingPlanes not env (leftover 0.2027, type/needs/clip/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not useLegacyLights not debug.checkShaderErrors not xr.enabled not env (leftover 0.2027, lights/debug/xr/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not shadowMap.enabled not xr.cameraAutoUpdate not debug.onShaderError not env (leftover 0.2027, map/cauto/onerr/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not xr.framebufferScaleFactor not transmissionResolutionScale not VSMShadowMap not env (leftover 0.2027, fbuf/trans/vsm/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not xr.setFoveation not xr.setReferenceSpaceType not PCFSoftShadowMap not env (leftover 0.2027, fov/ref/soft/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not setOpaqueSort not setTransparentSort not setClearAlpha not env (leftover 0.2027, opaque/trans/alpha/env/both/pack ≡ 0, leftover-after-empty-as-env ≡ 0); leftover g07 after world.group+outside is remaining empty-scene vs golden not setViewport not setClearColor not renderer.compile not env (leftover 0.2027, setViewport 640×400 g07 +0.6188 increases, setClearColor/compile/env ≡ 0, leftover-after-empty-as-env ≡ 0) | r6.97 done; AUD-105 next |
-| GFX-03 | ayalon | night point-to-point chase camera clips through hero-car at Kibbutz Galuyot / HaHagana | queued after RSH-036 |
-| GFX-04 | ayalon | night P2P camera clips into retaining wall at Kibbutz Galuyot t=0:25.66; car exploded from above | queued after RSH-036 |
-| GFX-05 | caesarea | water/ground plane cuts through the road at אמת המים t=0:05.20; car boxy with side glass | queued after RSH-036 |
-| GFX-06 | haifa | trees poke through the road at הגנים הבהאיים so the driving surface is hidden; car floats | queued after RSH-036 |
-| GFX-07 | jerusalem | P2P origami car + steep camera at מחנה יהודה t=0:04.59 / 1 km/h; owner reports cannot drive forward | queued after RSH-036 |
-| GFX-08 | namal | dual cars + stacked multi-dimension roads / water plane / cyan spline arc at t=0:40.10 and 0:47.69 | queued after RSH-036 |
-| GFX-09 | oldjaffa | flickering track + missing road + cannot drive forward at מגדל השעון t=0:09.40 / 0 km/h lap 1/3 | queued after RSH-036 |
-| GFX-10 | namal | flickering track + flooded water plane + origami car at נמל תל אביב t=0:06.31 / 10 km/h lap 1/3 | queued after RSH-036 |
+| GFX-03 | ayalon | night point-to-point chase camera clips through hero-car at Kibbutz Galuyot / HaHagana | r6.98 camera clamp / lift |
+| GFX-04 | ayalon | night P2P camera clips into retaining wall at Kibbutz Galuyot t=0:25.66; car exploded from above | r6.98 camera clamp / collider |
+| GFX-05 | caesarea | water/ground plane cuts through the road at אמת המים t=0:05.20; car boxy with side glass | r6.98 water skip-if-overlap; live water left of ribbon |
+| GFX-06 | haifa | trees poke through the road at הגנים הבהאיים so the driving surface is hidden; car floats | r6.98 hillside shoulder; live road visible t=0.35 |
+| GFX-07 | jerusalem | P2P origami car + steep camera at מחנה יהודה t=0:04.59 / 1 km/h; owner reports cannot drive forward | r6.98 live 31 km/h dA +0.82 onTrack |
+| GFX-08 | namal | dual cars + stacked multi-dimension roads / water plane / cyan spline arc at t=0:40.10 and 0:47.69 | r6.95 ghost hide + r6.98 water; live one car |
+| GFX-09 | oldjaffa | flickering track + missing road + cannot drive forward at מגדל השעון t=0:09.40 / 0 km/h lap 1/3 | r6.98 Ayalon-only reflector; live clock tower beside road |
+| GFX-10 | namal | flickering track + flooded water plane + origami car at נמל תל אביב t=0:06.31 / 10 km/h lap 1/3 | r6.98 Ayalon-only reflector + opaque coastal water |
 
-AUD-105 is the next RSH-036 isolation: leftover g07 empty-scene vs golden
-independently of renderer.clear vs clearDepth vs clearStencil
-(product renderer stays).
-GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08, GFX-09 and GFX-10 stay
-recorded only; do not start them before RSH-036 closes.
+Do **not** start AUD-105 empty-scene isolation. Leftover g07 0.2027 is
+irreducible without a PNG refresh. Continue product work on this branch
+under OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT until the remaining 32
+units are implemented. RSH-037 stays unactivated as a queue unit;
+instrumentation already lives on the HUD.
 
-Master plan r6.97 retains 67 units, 42 historical findings, 6 bundles and 104
+Master plan r6.98 retains 67 units, 42 historical findings, 6 bundles and 104
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

@@ -639,9 +639,9 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
       }
       if (this.cam.y < p.y + 1.35) this.cam.y = p.y + 1.35;
     }
-    if (mode !== 3 && mode !== 1 && p.onTrack && !p.sideStreet && this.mode !== "roam") {
+    if (mode !== 3 && mode !== 1) {
       const near = nearestIndex(this.built.samples, this.cam.x, this.cam.z, p.sampleIndex, this.built.closed);
-      const maxCam = this.built.width / 2 + 7;
+      const maxCam = this.built.width / 2 + 2.2;
       if (near.dist > maxCam) {
         const s = this.built.samples[near.index];
         const nx = (this.cam.x - s.x) / (near.dist || 1);
@@ -649,10 +649,11 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
         this.cam.x = s.x + nx * maxCam;
         this.cam.z = s.z + nz * maxCam;
       }
-      const road = this.built.samples[p.sampleIndex];
-      if (this.cam.y < road.y + 1.55) this.cam.y = road.y + 1.55;
+      const road = this.built.samples[near.index];
+      const minY = Math.max(p.y + 1.35, road.y + 1.7);
+      if (this.cam.y < minY) this.cam.y = minY;
     }
-    if (!instant && mode === 0 && !this.lookBack) {
+    if (mode === 0 && !this.lookBack) {
       for (const c of this.world.colliders) {
         const dx = this.cam.x - c.x;
         const dz = this.cam.z - c.z;
