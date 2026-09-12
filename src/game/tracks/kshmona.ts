@@ -12,7 +12,7 @@ export default defineTrack({
     description: "עמק החולה, כביש 90, הרי נפתלי ותל חי. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Hula Valley, Highway 90, Naftali mountains and Tel Hai. Inspired by the place — not a map, not GIS.",
     image: "/tracks/kshmona.jpg",
-    width: 20,
+    width: 26,
     seed: 1949,
     theme: "park",
     ground: 0x5a7a48,

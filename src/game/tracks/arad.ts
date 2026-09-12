@@ -12,7 +12,7 @@ export default defineTrack({
     description: "העיר על הרכס, מדבר יהודה, הדרך לים המלח. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "The ridge town, the Judean desert and the road to the Dead Sea. Inspired by the place — not a map, not GIS.",
     image: "/tracks/arad.jpg",
-    width: 20,
+    width: 26,
     seed: 1962,
     theme: "desert",
     ground: 0xc4a070,
