@@ -1038,7 +1038,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       polygonOffsetFactor: -2,
       polygonOffsetUnits: -2,
     }));
-    const chevN = def.id === "ayalon" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6"
+    const chevN = def.id === "ayalon"
       ? Math.min(def.id === "ayalon" ? 36 : 16, Math.max(6, Math.floor(built.samples.length / 16)))
       : 0;
     if (chevN > 0) {
