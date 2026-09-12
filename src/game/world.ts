@@ -1695,7 +1695,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       depthWrite: true
     }));
     const capGeo = keep(new THREE.SphereGeometry(0.55, 8, 6));
-    const palmN = 28;
+    const palmN = 16;
     const trunks2 = new THREE.InstancedMesh(trunkGeo2, trunkMat2, palmN);
     const fronds = new THREE.InstancedMesh(frondGeo, crownMat, palmN * 12);
     const caps = new THREE.InstancedMesh(capGeo, crownMat, palmN);
