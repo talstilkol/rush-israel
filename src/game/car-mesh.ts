@@ -322,7 +322,7 @@ export function createCarVisual(
   const headL = put(lampGeo, emitHead, -hx, headY, headZ + 0.03, Math.PI / 2, 0, 0);
   const headR = put(lampGeo.clone(), emitHead, hx, headY, headZ + 0.03, Math.PI / 2, 0, 0);
 
-  const glowMat = new THREE.MeshBasicMaterial({ color: 0xfff4d0, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false });
+  const glowMat = new THREE.MeshBasicMaterial({ color: 0xfff4d0, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false, fog: true });
   const gL = new THREE.Mesh(new THREE.SphereGeometry(0.14, 10, 8), glowMat);
   gL.position.set(-hx, headY, headZ + 0.02);
   const gR = gL.clone();
@@ -479,6 +479,7 @@ export function createCarVisual(
       opacity: 0,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
+      fog: true,
     });
     headPool = new THREE.Mesh(new THREE.CircleGeometry(5.4, 22), poolMat);
     headPool.rotation.x = -Math.PI / 2;
