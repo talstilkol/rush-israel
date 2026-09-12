@@ -18,9 +18,9 @@ export default defineTrack({
     ground: 0x8a8478,
     sand: 0xe2d2b0,
     sky: { ...TLV_BLUE, fogDensity: 0.0007 },
-    water: { x: tlv(32.101, 34.762).x, z: tlv(32.101, 34.762).z, w: 180, d: 420, color: 0x1a7a92 },
+    water: { x: tlv(32.101, 34.762).x, z: tlv(32.101, 34.762).z, w: 160, d: 180, color: 0x1a7a92 },
     waters: [
-      { x: tlv(32.101, 34.762).x, z: tlv(32.101, 34.762).z, w: 180, d: 420, color: 0x1a7a92 },
+      { x: tlv(32.101, 34.762).x, z: tlv(32.101, 34.762).z, w: 160, d: 180, color: 0x1a7a92 },
       { x: tlv(32.1068, 34.7908).x, z: tlv(32.1068, 34.7908).z, w: 48, d: 90, color: 0x2a6e62 },
     ],
     clearZones: [

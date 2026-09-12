@@ -12,7 +12,7 @@ export default defineTrack({
     description: "מוזיאון העיצוב, פארק פרס, סוקולוב והדרך לבת ים. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Design Museum, Peres Park, Sokolov and the road to Bat Yam. Inspired by the place — not a map, not GIS.",
     image: "/tracks/holon.jpg",
-    width: 20,
+    width: 26,
     seed: 1940,
     theme: "bauhaus",
     ground: 0x7a7a6e,
