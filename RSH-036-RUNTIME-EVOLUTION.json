@@ -385,9 +385,16 @@
       ]
     },
     "src/game/water-clock.ts": {
-      "current_sha256": "fd08dc8beb44d54b2839ad82cb8d6386e7ad76ef4b06e382bd80be005c101472",
+      "current_sha256": "14c6b0791458fe4a3e6629a1a4f5f7d4bf7bdc1a5fc0ac9d24518046ac812aa7",
       "previous_sha256": null,
-      "reverse_edits": []
+      "reverse_edits": [
+        {
+          "start_line": 0,
+          "end_line": 22,
+          "current_segment_sha256": "14c6b0791458fe4a3e6629a1a4f5f7d4bf7bdc1a5fc0ac9d24518046ac812aa7",
+          "previous_text": "/** A material owns its daytime colour; procedural water has no catalogue-body index. */\nexport type WaterClockMaterial = {\n  color: { setHex(value: number): unknown; multiplyScalar(value: number): unknown };\n  envMapIntensity: number;\n  roughness: number;\n  opacity: number;\n};\nexport type WaterClockEntry = {\n  readonly material: WaterClockMaterial;\n  readonly baseColor: number;\n};\n\n/** Reapply the existing water clock recipe from the base colour on every update. */\nexport function applyWaterClock(entries: readonly WaterClockEntry[], nightAmount: number): void {\n  if (!Number.isFinite(nightAmount)) throw new RangeError('Water night amount must be finite');\n  const n = Math.max(0, Math.min(1, nightAmount));\n  for (const { material, baseColor } of entries) {\n    material.color.setHex(baseColor);\n    if (n > 0.35) material.color.multiplyScalar(1 + (0.5 - 1) * n);\n    material.envMapIntensity = 1.7 + (2.6 - 1.7) * n;\n    material.roughness = 0.08 + (0.03 - 0.08) * n;\n    material.opacity = 0.82 + (0.9 - 0.82) * n;\n  }\n}\n"
+        }
+      ]
     },
     "scripts/water-clock-browser.mjs": {
       "current_sha256": "8a5b0aea13b2762246d1fab32b71510b2059cfabdb2cf861664e48aa12b4fd3c",

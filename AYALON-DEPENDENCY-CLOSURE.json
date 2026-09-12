@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "fdf5043cdc7b4059cf6f0c6bac78901e3490fec2988417c31884e6d56a0e651c"
+      "sha256": "3492b444c19e9decf18f64ecc4a670c69ca63c05f9b4d69830dadf466ddff507"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2064,7 +2064,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "3a9530b8e26c683e7cfd3ccb406c227551153682eec32a3d25e7c1c6d1f86514"
+      "sha256": "1a5de3c6e16715782c6b732bc5543120a1b8f22e0cb156792e26ff07debb9a03"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2989,7 +2989,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "488666377f25f1a6d05ec64c7158034e8add00068c2890fbbf91bbe8879732a2"
+      "sha256": "d333ceb16ac49063c630a41833405c095b7e2d75485b2ae0a652aa37f25a94ab"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -3673,8 +3673,8 @@
     },
     {
       "path": "src/game/water-clock.ts",
-      "bytes": 1032,
-      "sha256": "fd08dc8beb44d54b2839ad82cb8d6386e7ad76ef4b06e382bd80be005c101472"
+      "bytes": 933,
+      "sha256": "14c6b0791458fe4a3e6629a1a4f5f7d4bf7bdc1a5fc0ac9d24518046ac812aa7"
     },
     {
       "path": "src/game/world-builders/index.ts",
@@ -11231,5 +11231,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "c93f93393eb5bac9df685fe1d7a659a9f26eaf12d15c30862ff045a74a113426"
+  "digest_sha256": "0afb7f9de435f09cab6b1ea4fa46587d40c18fa6523635072b498efd189dbd10"
 }

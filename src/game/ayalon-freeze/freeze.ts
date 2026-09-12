@@ -56,7 +56,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "src/game/road-assets.ts": "a2a613b6b4ebf7796aa402709a852cf47181d660e5af8dbd18f863537db2b8a2",
   "src/rendering/RendererFacade.ts": "512425eda35e2514bfe15a9980ca938a0e31b2843631f7410049c69069870159",
   "src/game/owned-load.ts": "3c8cee655cc312b0ae3f79c2699effe650dc252a184cf7990222d052543a74d9",
-  "src/game/water-clock.ts": "fd08dc8beb44d54b2839ad82cb8d6386e7ad76ef4b06e382bd80be005c101472",
+  "src/game/water-clock.ts": "14c6b0791458fe4a3e6629a1a4f5f7d4bf7bdc1a5fc0ac9d24518046ac812aa7",
   "src/game/world-builders/tracks/rothschild.ts": "d9ca4ea5a7c053676e67a559fbf68e51c64679752c7a7c13409d15b58adb977e",
   "src/game/sky-assets.ts": "621ff97db2cd2127ff53b679833b961d3a6d4dd5265974b011a7c160c71ffae9",
   "src/game/tree-assets.ts": "fa2349e25fd3f3e46d13c8fa61ba5220e3a905e78c24daa821ec2f0f0fc091e0",

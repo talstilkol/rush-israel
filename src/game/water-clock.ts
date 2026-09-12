@@ -18,7 +18,5 @@ export function applyWaterClock(entries: readonly WaterClockEntry[], nightAmount
     material.color.setHex(baseColor);
     if (n > 0.35) material.color.multiplyScalar(1 + (0.5 - 1) * n);
     material.envMapIntensity = 1.7 + (2.6 - 1.7) * n;
-    material.roughness = 0.08 + (0.03 - 0.08) * n;
-    material.opacity = 0.82 + (0.9 - 0.82) * n;
   }
 }
