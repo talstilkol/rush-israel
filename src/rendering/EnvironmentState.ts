@@ -39,6 +39,6 @@ export function fogKey(theme: string, id: string): FogKey {
   if (id === "ramon" || theme === "desert") return "desert";
   if (id === "hermon" || theme === "snow") return "snow";
   if (theme === "carmel") return "carmel";
-  if (theme === "stone" || id === "jerusalem" || id === "scopus") return "stone";
+  if (theme === "stone" || theme === "jaffa" || id === "jerusalem" || id === "scopus") return "stone";
   return "city";
 }

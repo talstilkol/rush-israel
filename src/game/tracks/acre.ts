@@ -12,7 +12,7 @@ export default defineTrack({
     description: "החומות הצלבניות, חאן אל-עומדאן, המסגד והנמל. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Crusader walls, Khan al-Umdan, the mosque and the fishing harbor. Inspired by the place — not a map, not GIS.",
     image: "/tracks/acre.jpg",
-    width: 20,
+    width: 24,
     seed: 1104,
     theme: "jaffa",
     ground: 0xb8a888,

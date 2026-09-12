@@ -39,7 +39,7 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 	});
 	useEffect(() => {
 		if (!hint || hud.countdown > 0) return;
-		if (hud.speedKmh > 14 || hud.totalTime > 9) {
+		if (hud.speedKmh > 8 || hud.totalTime > 6) {
 			setHint(false);
 			try {
 				localStorage.setItem("rush-drive-hint", "1");
@@ -127,7 +127,7 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 				className: "pointer-events-none absolute inset-x-0 top-[38%] text-center text-7xl font-semibold tabular-nums text-fg",
 				children: Math.max(1, Math.ceil(hud.countdown))
 			}) : null,
-			hint && hud.countdown <= 0 && hud.speedKmh < 16 && !hud.finished && !hud.replay ? /* @__PURE__ */ jsx("p", {
+			hint && hud.countdown <= 0 && hud.speedKmh < 8 && hud.totalTime < 6 && !hud.finished && !hud.replay ? /* @__PURE__ */ jsx("p", {
 				className: "pointer-events-none absolute inset-x-0 top-[42%] text-center text-sm font-medium text-fg",
 				children: langHe ? "W גז · A שמאלה · D ימינה" : "W gas · A left · D right"
 			}) : null,

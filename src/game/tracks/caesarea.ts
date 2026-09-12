@@ -12,7 +12,7 @@ export default defineTrack({
     description: "אמת המים הרומית, ההיפודרום, הנמל הצלבני וחוף הארכיאולוגיה. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "The Roman aqueduct, hippodrome, Crusader harbor and the archaeology beach. Inspired by the place — not a map, not GIS.",
     image: "/tracks/caesarea.jpg",
-    width: 20,
+    width: 24,
     seed: 22,
     theme: "stone",
     ground: 0xc4b090,
