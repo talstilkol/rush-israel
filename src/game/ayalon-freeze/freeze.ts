@@ -18,7 +18,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/ayalon-hash.mjs": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
   "src/game/tracks/ayalon.ts": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
   "src/game/world-builders/tracks/ayalon.ts": "ed66d337d6ac1184e8780353917c2f7b78b77e04cf4f876b8b02bfd9e042cf5d",
-  "src/game/world.ts": "2412bf0f2360647ef720d4a9b99ee4b710893004a74a8c9060671d5b629100e8",
+  "src/game/world.ts": "dbb7657ca93a49d564b4d495e4d01a9e337aa462814ac72f7cead7cb11e306bb",
   "src/game/ayalon-lock/geometry.ts": "b5be3e5838fb99449fb7d5a5684177e8626a7a283c54275461fd45faf42a94f7",
   "src/game/ayalon-lock/index.ts": "878d7834dfac9c7756b0929eea515f03ff23b2f8500a63fd49f1fb369c4e3ae6",
   "src/game/ayalon-colliders/colliders.ts": "da611c2867879fa55f6b3db84c76f93725a8b786e0b7dea94079fe6f5ae6708f",

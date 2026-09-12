@@ -812,6 +812,9 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       metalness: 0.04,
       emissive: 0x222218,
       emissiveIntensity: isNight ? 0.18 : 0.03,
+      polygonOffset: true,
+      polygonOffsetFactor: -2,
+      polygonOffsetUnits: -2,
     }));
     const offs = def.id === "ayalon" ? [0, built.width + 18] : [0];
     const nDash = Math.min(2800, Math.floor(built.samples.length / 2) * (lanes - 1) * offs.length);
@@ -826,7 +829,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
         if (Math.floor(s.s / 9) % 2 === 0) continue;
         for (let k = 1; k < lanes && di < nDash; k++) {
           const lat = -hw + k * lw;
-          _dummy.position.set(s.x + s.rx * (off + lat), s.y + 0.04, s.z + s.rz * (off + lat));
+          _dummy.position.set(s.x + s.rx * (off + lat), s.y + 0.07, s.z + s.rz * (off + lat));
           _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
           _dummy.scale.set(1, 1, 1);
           _dummy.updateMatrix();
