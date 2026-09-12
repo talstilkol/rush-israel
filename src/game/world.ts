@@ -573,13 +573,13 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   if (isNight && desertNight) {
     hemi.color.setHex(0x9ab4d0);
     hemi.groundColor.setHex(0x4a3828);
-    hemi.intensity = 1.18;
+    hemi.intensity = 1.28;
     dir.color.setHex(0xd8e4f4);
-    dir.intensity = 1.05;
+    dir.intensity = 1.12;
     fill.color.setHex(0xffd8a8);
-    fill.intensity = 0.92;
+    fill.intensity = 1.02;
     ambient.color.setHex(0x6a88a8);
-    ambient.intensity = 0.78;
+    ambient.intensity = 0.88;
   }
   if (isNight && (def.theme === "manhattan" || def.theme === "park")) {
     hemi.color.setHex(6981832);
