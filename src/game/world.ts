@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { Lensflare, LensflareElement } from "three/examples/jsm/objects/Lensflare.js";
-import { Reflector } from "three/examples/jsm/objects/Reflector.js";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 import { mulberry32, lerp, clamp, hash01 } from "./math";
 import { nearestIndex, nearestIndexXY } from "./spline";
@@ -1317,32 +1316,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     group.add(new THREE.Mesh(keep(buildRail(built, 1)), railMat));
     group.add(new THREE.Mesh(keep(buildRail(built, -1)), railMat));
   }
-  let mirror: Reflector | null = null;
-  let planarOk = true;
-  // Ayalon freeze keeps the historical planar wet-road reflector. On every
-  // other route the 42×80 flat quad sits 3 cm above a sloped ribbon and
-  // z-fights every frame (GFX-09 / GFX-10 flicker).
-  if (shadows && def.id === "ayalon") {
-    /** Codex 3.4: planar RT cap until Ayalon High p95 is measured on a user GPU. Do not raise. */
-    const PLANAR_RT = 768;
-    mirror = new Reflector(new THREE.PlaneGeometry(42, 80), {
-      clipBias: 3e-3,
-      textureWidth: PLANAR_RT,
-      textureHeight: PLANAR_RT,
-      color: isNight ? 0x4a5568 : 0x8aa0b4
-    });
-    mirror.rotation.x = -Math.PI / 2;
-    mirror.position.y = 0.026;
-    const mmat = mirror.material as THREE.ShaderMaterial;
-    mmat.transparent = true;
-    mmat.opacity = isNight ? 0.36 : 0.22;
-    group.add(mirror);
-    // RSH-019-OVERLAY-BEGIN:world-reflector-disposal
-    bag.push({ dispose() {
-      mirror?.dispose();
-    } });
-    // RSH-019-OVERLAY-END:world-reflector-disposal
-  }
+  // Planar wet-road reflector removed: 42×80 quad z-fought the ribbon on
+  // Ayalon (owner flicker + "where do I drive?"). followMirror / setPlanar no-op.
   const bodies = def.waters?.length ? def.waters : def.water ? [def.water] : [];
   const streets = generateStreets(def, built, bodies);
   const ramps: Ramp[] = [];
@@ -2674,19 +2649,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     dirNear.color.copy(dir.color);
     dirNear.visible = dir.castShadow;
   };
-  const followMirror = (x: number, y: number, z: number, yaw: number) => {
-    if (!mirror || !planarOk) return;
-    mirror.visible = true;
-    mirror.position.set(x, y + 0.03, z);
-    mirror.rotation.set(-Math.PI / 2, yaw, 0);
-    const col = mirror.material as THREE.ShaderMaterial;
-    const wet = wx === "rain" || wx === "storm";
-    col.opacity = wet ? (isNight ? 0.58 : 0.38) : isNight ? 0.34 : 0.22;
-    if (col.uniforms?.color) {
-      const c = wet ? (isNight ? 0x6a7388 : 0x9aabbc) : isNight ? 0x3a4558 : 0x88a0b4;
-      col.uniforms.color.value.setHex(c);
-    }
-  };
+  const followMirror = (_x: number, _y: number, _z: number, _yaw: number) => {};
   const tick = (now: number, x: number, z: number) => {
     const t = now * 1e-3;
     if (dome) {
@@ -2735,10 +2698,6 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       puddles.setMatrixAt(i, _dummy.matrix);
     }
     puddles.instanceMatrix.needsUpdate = true;
-    if (mirror) {
-      const mmat = mirror.material as THREE.ShaderMaterial;
-      mmat.opacity = wx !== "clear" ? 0.28 + wetAmt * 0.35 : lerp(0.1, 0.4, nightAmt(clock));
-    }
     if (nightAmt(clock) < 0.4 || nightLights.length === 0 || lampPos.length === 0) return;
     const ranked = lampPos.map((p, i) => ({
       i,
@@ -2950,10 +2909,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     getWeather: () => wx,
     followShadows,
     followMirror,
-    setPlanar(on: boolean) {
-      planarOk = !!on;
-      if (mirror) mirror.visible = planarOk;
-    },
+    setPlanar(_on: boolean) {},
     sunDir: lightAim,
     tick,
     setTime,

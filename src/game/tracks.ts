@@ -96,17 +96,17 @@ export function skyAt(def: TrackDef, clock: number, weather: Weather = "clear"):
   const night = t < 0.22 || t > 0.86;
   if (weather === "rain") {
     preset.turbidity += 5;
-    preset.exposure *= 0.86;
-    preset.fogDensity += 0.0032;
-    preset.rayleigh *= 0.55;
-    preset.fog = night ? 0x12161c : 0x7a848c;
+    preset.exposure *= 0.92;
+    preset.fogDensity += 0.0011;
+    preset.rayleigh *= 0.7;
+    preset.fog = night ? 0x1a222c : 0x8a949c;
   } else if (weather === "storm") {
     preset.turbidity += 9;
-    preset.exposure *= 0.7;
-    preset.fogDensity += 0.0058;
-    preset.rayleigh *= 0.35;
+    preset.exposure *= 0.78;
+    preset.fogDensity += 0.002;
+    preset.rayleigh *= 0.5;
     preset.elevation = night ? -8 : Math.min(preset.elevation, 28);
-    preset.fog = night ? 0x0c1014 : 0x4a545c;
+    preset.fog = night ? 0x14181e : 0x5a646c;
   } else if (weather === "hamsin") {
     preset.turbidity += 7;
     preset.exposure *= 1.08;

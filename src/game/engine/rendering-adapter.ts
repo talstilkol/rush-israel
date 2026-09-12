@@ -677,8 +677,8 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
     const lookZ = mode === 3 || mode === 1 ? p.z + fz * lookAhead * dir : lookS.z;
     let lookY = p.y + (mode === 3 ? 0.4 : mode === 1 ? 0.98 : 0.28);
     if (mode !== 3 && mode !== 1) {
-      const dy = clamp(lookS.y - p.y, -3.2, 4.2);
-      lookY = p.y + dy + 0.22;
+      const dy = clamp(lookS.y - p.y, -2.2, 2.8);
+      lookY = p.y + dy * 0.45 + 0.12;
       if (dy > 1.4 && this.cam.y < p.y + dy + 1.15) this.cam.y = p.y + dy + 1.15;
       lookY = Math.min(lookY, this.cam.y - 0.45);
     }

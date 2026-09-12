@@ -351,7 +351,7 @@ export class ArcadeCar {
     const forwardGrade = pitchRamp
       ? pitchRamp.dyds * (fx * pitchRamp.r.sx + fz * pitchRamp.r.sz)
       : (nG.y - sG.y) / gds;
-    const terrainPitch = clamp(-forwardGrade * 3.4, -0.75, 0.75);
+    const terrainPitch = clamp(-forwardGrade * 1.6, -0.22, 0.22);
     this.pitch = expSmooth(this.pitch, loadTgt + terrainPitch, 9, dt);
     const rollTgt = racing ? -input.steer * clamp(speedAbs / 24, 0, 1) * 0.34 : 0;
     this.roll = expSmooth(this.roll, rollTgt, 7, dt);
