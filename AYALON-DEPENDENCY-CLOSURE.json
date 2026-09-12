@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "f80bd74282b6940ffc3643589bd936aeaf65dbae31971668f2129b760047c6b4"
+      "sha256": "01dd82a860e3abfc9dc06228891f538a0ec3b92f17d686998d2923536f1bd048"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -3374,7 +3374,7 @@
     {
       "path": "src/game/tracks/ashkelon.ts",
       "bytes": 1729,
-      "sha256": "f70a0c9ecc545e9149c23d5686029578e0de31acdaa78f9dac91dab04b3519c3"
+      "sha256": "109a7ddbd503023c9761bdb9ae4245738b65e7ef7311fb7602e33b4b08ebc8ac"
     },
     {
       "path": "src/game/tracks/ayalon.ts",
@@ -3559,7 +3559,7 @@
     {
       "path": "src/game/tracks/netanya.ts",
       "bytes": 2078,
-      "sha256": "2b83d961850c51938b007618867f8d1a0d7f52344f2e923cb7c50ca248ea7d38"
+      "sha256": "e54f7eef5c8907011fe309fa69c0a95d2fee9017df68fc456f63b648aa3eeb5e"
     },
     {
       "path": "src/game/tracks/oldjaffa.ts",
@@ -11231,5 +11231,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "25cfe85185d5d49054db6fb243c3dd65669351b4f8bbd85a69f9dda53550b06a"
+  "digest_sha256": "567ca5ae436c0d479fc5e55d2a8de7af872eade54e655d5f8b8c946f5951098d"
 }
