@@ -2252,7 +2252,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       roughness: 0.96,
       flatShading: true
     }));
-    const rockN = 80;
+    const rockN = 40;
     const rocks = new THREE.InstancedMesh(rockGeo, rockMat, rockN);
     rocks.castShadow = shadows;
     let ri = 0;
