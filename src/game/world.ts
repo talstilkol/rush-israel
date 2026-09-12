@@ -2259,7 +2259,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     for (let i = 0; i < built.samples.length && ri < rockN; i += Math.max(2, Math.floor(built.samples.length / 40))) {
       const s = built.samples[i];
       const side = ri % 2 ? 1 : -1;
-      const d = built.width / 2 + 14 + ri % 5 * 5;
+      const d = built.width / 2 + 18 + ri % 5 * 5;
       _dummy.position.set(s.x + s.rx * d * side, s.y + 0.4, s.z + s.rz * d * side);
       const sc = 0.8 + ri % 4 * 0.55;
       _dummy.scale.set(sc, sc * (0.5 + ri % 3 * 0.25), sc);
