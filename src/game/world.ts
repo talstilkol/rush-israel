@@ -1572,7 +1572,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       sand.position.set(sandX, def.id === "ayalon" ? -0.18 : -1.15, sandZ);
       sand.renderOrder = -9;
       group.add(sand);
-      if (def.id === "ayalon" || (def.theme !== "desert" && def.id !== "deadsea" && !isNight)) {
+      if (def.id === "ayalon") {
       const foam = new THREE.Mesh(keep(new THREE.PlaneGeometry(Math.min(sandBody.w * 0.14, 36), Math.min(sandBody.d * 0.92, 160))), keep(new THREE.MeshStandardMaterial({
         map: keep(foamTex()),
         transparent: true,

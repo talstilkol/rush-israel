@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "98fefdfe039d799792403fd3aac365487330e6330c9cc573aa06dcf385e89224"
+      "sha256": "ed823a6fd3cfe0083dcf4c347575166bcfeea80f6c583994ca2a13a3316435b8"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2064,7 +2064,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "90bfbf334bbc4efb14b420a4c443322940680bcc6ce3c98b4ab8b1eee8c49982"
+      "sha256": "d2071f6501629bd72b94b586d60e89cf337c925b6310dce0aaa729770510a3e3"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2989,7 +2989,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "6054829ada4a2e027761aa6cba573d5abc87221dfa942299975399d01a28b3af"
+      "sha256": "12b768e9ce36c43a584ac37146d1c2c563c78665d2b25a23ef710fbf49757690"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -3978,8 +3978,8 @@
     },
     {
       "path": "src/game/world.ts",
-      "bytes": 119497,
-      "sha256": "90f63601b94182b6b30be392ff8c2957cfb6e519dca17aaf2e779f1e6b1e0578"
+      "bytes": 119433,
+      "sha256": "6a882ab1f742ccee8726b656f642da9a82b763ba56ca3aa5dd0f3ed8b41fc9a9"
     },
     {
       "path": "src/lib/error-component.tsx",
@@ -11231,5 +11231,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "4c3c3db1fdb0e9311bb764960a575753d6c7fdd3b9d506d06037e6fb577e5eb3"
+  "digest_sha256": "b7bf41b75d9f43b4ff5823e770472f592377552dffea060f6b3434b139e2b725"
 }
