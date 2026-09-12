@@ -1166,12 +1166,14 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     emissive: 0x3a120c,
     emissiveIntensity: 0.14
   }));
+  if (def.theme !== "port" && def.theme !== "jaffa") {
   group.add(new THREE.Mesh(keep(buildCurb(built, 1)), curbMat));
   group.add(new THREE.Mesh(keep(buildCurb(built, -1)), curbMat));
   if (def.id === "ayalon") {
     const oppOff = built.width + 18;
     group.add(new THREE.Mesh(keep(buildCurb(built, 1, oppOff)), curbMat));
     group.add(new THREE.Mesh(keep(buildCurb(built, -1, oppOff)), curbMat));
+  }
   }
   if (def.id === "ayalon") {
     const eyeGeo = keep(new THREE.BoxGeometry(0.2, 0.09, 0.32));
