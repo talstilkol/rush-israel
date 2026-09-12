@@ -1562,7 +1562,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const sandX = def.id === "ayalon" ? sandBody.x + (bodies[0]?.w ?? 0) * 0.28 : sandBody.x;
     const sandZ = sandBody.z;
     const sandHits = def.id !== "ayalon" && rectHitsRibbon(sandX, sandZ, sandW * 0.5, sandD * 0.5, built.width / 2 + 10);
-    if (!sandHits && def.theme !== "manhattan" && def.theme !== "park") {
+    if (!sandHits && def.theme !== "manhattan" && def.theme !== "park" && def.theme !== "jaffa" && def.theme !== "port") {
       const sand = new THREE.Mesh(keep(new THREE.PlaneGeometry(sandW, sandD)), keep(new THREE.MeshStandardMaterial({
         color: def.sand,
         roughness: 1,
