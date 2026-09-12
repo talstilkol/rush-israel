@@ -1420,7 +1420,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       emissive: 2236440,
       emissiveIntensity: isNight ? 0.35 : 0
     }));
-    const stripeN = Math.min(streets.length * 5, 140);
+    const stripeN = Math.min(streets.length * 5, 48);
     const stripes = new THREE.InstancedMesh(stripeGeo, stripeMat, stripeN);
     let si2 = 0;
     for (const r of streets) {
