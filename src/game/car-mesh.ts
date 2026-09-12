@@ -540,7 +540,7 @@ export function createCarVisual(
   }
   const scratch = new THREE.Mesh(
     new THREE.PlaneGeometry(1.3, 0.5),
-    new THREE.MeshBasicMaterial({ color: 0x2a241c, transparent: true, opacity: 0, depthWrite: false }),
+    new THREE.MeshBasicMaterial({ color: 0x2a241c, transparent: true, opacity: 0, depthWrite: false, fog: true }),
   );
   scratch.rotation.y = Math.PI / 2;
   scratch.position.set(L.W * 0.48, bodyY, 0.15);
@@ -548,7 +548,7 @@ export function createCarVisual(
 
   const blob = new THREE.Mesh(
     new THREE.CircleGeometry(L.W * 0.72, 16),
-    new THREE.MeshBasicMaterial({ color: 0x0a0c10, transparent: true, opacity: 0, depthWrite: false }),
+    new THREE.MeshBasicMaterial({ color: 0x0a0c10, transparent: true, opacity: 0, depthWrite: false, fog: true }),
   );
   blob.rotation.x = -Math.PI / 2;
   blob.position.y = 0.04;
