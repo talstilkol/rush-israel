@@ -2020,7 +2020,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const stoneHill = def.theme === "stone";
   const pine = def.theme === "carmel" || def.id === "hermon" || def.id === "hw1";
   const acacia = def.theme === "desert" && def.id !== "ramon";
-  const ficusStreet = (def.theme === "bauhaus" || def.id === "telaviv" || def.id === "namal" || def.id === "hayarkon") && def.id !== "ayalon" && def.id !== "rothschild" && def.id !== "holon";
+  const ficusStreet = (def.theme === "bauhaus" || def.id === "telaviv" || def.id === "namal" || def.id === "hayarkon") && def.id !== "ayalon" && def.id !== "rothschild" && def.id !== "holon" && def.id !== "ksaba";
   const trunkGeo = keep(new THREE.CylinderGeometry(pine ? 0.22 : acacia ? 0.16 : stoneHill ? 0.14 : ficusStreet ? 0.42 : deciduous ? 0.22 : 0.16, pine ? 0.38 : acacia ? 0.28 : stoneHill ? 0.22 : ficusStreet ? 0.62 : deciduous ? 0.34 : 0.26, pine ? 7.4 : acacia ? 3.6 : stoneHill ? 3.2 : ficusStreet ? 7.2 : deciduous ? 5.2 : 4.6, 8));
   trunkGeo.translate(0, pine ? 3.7 : acacia ? 1.8 : stoneHill ? 1.6 : ficusStreet ? 3.6 : deciduous ? 2.6 : 2.3, 0);
   const trunkMat = keep(new THREE.MeshStandardMaterial({
