@@ -2318,7 +2318,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     _dummy.scale.set(1.15, 1.15, 1.15);
     halos.setMatrixAt(i, _dummy.matrix);
   }
-  if (lampCount) group.add(poles, bulbs, halos);
+  if (lampCount) {
+    group.add(poles, bulbs);
+    if (isNight) group.add(halos);
+  }
   const poolGeo = keep(new THREE.CircleGeometry(def.id === "ayalon" ? 7.2 : 2.4, 20));
   poolGeo.rotateX(-Math.PI / 2);
   const poolMat = keep(new THREE.MeshBasicMaterial({
