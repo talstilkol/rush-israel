@@ -971,7 +971,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       group.add(poles);
       const wallG = keep(new THREE.BoxGeometry(0.22, 3.4, 4.4));
       const wallM = keep(new THREE.MeshStandardMaterial({ color: 0xc8c4ba, roughness: 0.9, metalness: 0 }));
-      const nWall = 48;
+      const nWall = 24;
       const wallRows = [-built.width / 2 - 1.4, oppOff + built.width / 2 + 1.4];
       const walls = new THREE.InstancedMesh(wallG, wallM, nWall * wallRows.length);
       let wi = 0;
