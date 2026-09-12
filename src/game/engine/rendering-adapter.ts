@@ -607,6 +607,7 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
     // RSH-036-OVERLAY-BEGIN:chase-rest-geometry
     let follow = 8.2 + clamp(Math.abs(p.speed) / 22, 0, 2.2);
     let height = this.trackDef.id === "ayalon" || this.trackDef.theme === "highway" ? 2.55 : 1.92;
+    if (this.trackDef.open) height += 0.45;
     // RSH-036-OVERLAY-END:chase-rest-geometry
     let side = 0;
     if (mode === 1) {
