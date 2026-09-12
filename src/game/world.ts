@@ -2523,9 +2523,9 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   neonGroup.visible = isNight;
   const neonGeo = keep(new THREE.BoxGeometry(3.4, 0.55, 0.1));
   const neonMats = [
-    keep(new THREE.MeshBasicMaterial({ color: 7260356 })),
-    keep(new THREE.MeshBasicMaterial({ color: 16731533 })),
-    keep(new THREE.MeshBasicMaterial({ color: 16761165 }))
+    keep(new THREE.MeshBasicMaterial({ color: 7260356, fog: true })),
+    keep(new THREE.MeshBasicMaterial({ color: 16731533, fog: true })),
+    keep(new THREE.MeshBasicMaterial({ color: 16761165, fog: true }))
   ];
   const neonStep = Math.max(def.id === "timessquare" ? 7 : 18, Math.floor(built.samples.length / 22));
   for (let i = 0; i < built.samples.length; i += neonStep) {
