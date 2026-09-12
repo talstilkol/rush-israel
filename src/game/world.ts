@@ -1258,7 +1258,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   group.add(new THREE.Mesh(keep(buildShoulder(built, 1)), shoulderMat));
   group.add(new THREE.Mesh(keep(buildShoulder(built, -1)), shoulderMat));
   {
-    const skipSigns = def.theme === "desert" || def.theme === "snow" || def.theme === "stone" || def.id === "ramon" || def.id === "hermon" || def.id === "masada" || def.id === "deadsea";
+    const skipSigns = def.theme === "desert" || def.theme === "snow" || def.theme === "stone" || def.theme === "carmel" || def.id === "ramon" || def.id === "hermon" || def.id === "masada" || def.id === "deadsea";
     if (!skipSigns) {
     const highway = def.theme === "highway" || def.id === "ayalon" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6";
     const kinds = highway ? ["speed90", "speed80", "none"] : ["stop", "speed50", "yield"];
