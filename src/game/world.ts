@@ -570,6 +570,18 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     dir.add(lensflare);
   }
   applyLights(isNight, hemi, dir, fill, ambient, lightAim, flareCol, lensflare);
+  const desertNight = def.theme === "desert" || def.theme === "snow" || def.id === "ramon" || def.id === "hermon";
+  if (isNight && desertNight) {
+    hemi.color.setHex(0x9ab4d0);
+    hemi.groundColor.setHex(0x4a3828);
+    hemi.intensity = 1.18;
+    dir.color.setHex(0xd8e4f4);
+    dir.intensity = 1.05;
+    fill.color.setHex(0xffd8a8);
+    fill.intensity = 0.92;
+    ambient.color.setHex(0x6a88a8);
+    ambient.intensity = 0.78;
+  }
   if (isNight && (def.theme === "manhattan" || def.theme === "park")) {
     hemi.color.setHex(6981832);
     hemi.intensity = 0.58;
@@ -2233,7 +2245,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     blending: 2,
     depthWrite: false
   }));
-  const lampCount = def.id === "ramon" || def.id === "hermon" ? 0 : def.id === "ayalon" ? Math.floor(built.samples.length / 8) : def.id === "hw1" || def.id === "hw2" || def.id === "hw6" ? Math.floor(built.samples.length / 16) : def.theme === "carmel" ? Math.floor(built.samples.length / 18) : Math.floor(built.samples.length / 10);
+  const lampCount = def.id === "ramon" || def.id === "hermon" ? Math.floor(built.samples.length / 12) : def.id === "ayalon" ? Math.floor(built.samples.length / 8) : def.id === "hw1" || def.id === "hw2" || def.id === "hw6" ? Math.floor(built.samples.length / 16) : def.theme === "carmel" ? Math.floor(built.samples.length / 18) : Math.floor(built.samples.length / 10);
   const lampStride = Math.max(1, Math.floor(built.samples.length / Math.max(1, lampCount)));
   const poles = new THREE.InstancedMesh(poleGeo, poleMat, Math.max(1, lampCount));
   const bulbs = new THREE.InstancedMesh(bulbGeo, bulbMat, Math.max(1, lampCount));
@@ -2765,7 +2777,17 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       _moon.setFromSphericalCoords(1, phi, theta);
       lightAim.copy(sun).lerp(_moon, (n - 0.58) / 0.42);
     }
-    if (n > 0.5) {
+    if (n > 0.5 && desertNight) {
+      hemi.color.setHex(0x9ab4d0);
+      hemi.groundColor.setHex(0x4a3828);
+      hemi.intensity = 1.18;
+      dir.color.setHex(0xd8e4f4);
+      dir.intensity = 1.05;
+      fill.color.setHex(0xffd8a8);
+      fill.intensity = 0.92;
+      ambient.color.setHex(0x6a88a8);
+      ambient.intensity = 0.78;
+    } else if (n > 0.5) {
       hemi.color.copy(_nightHemi);
       dir.color.copy(_nightDir);
       hemi.intensity = 0.98;
@@ -2821,7 +2843,17 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     haloMat.opacity = n > 0.45 ? 0.58 : 0;
     haloMat.needsUpdate = true;
     applyWet();
-    groundMat.color.setHex(n > 0.5 ? 0x5a626c : groundCol);
+    groundMat.color.setHex(
+      n > 0.5
+        ? desertNight
+          ? def.theme === "snow" || def.id === "hermon"
+            ? 0x6a7888
+            : 0x4a3224
+          : def.theme === "stone"
+            ? 0x4a4034
+            : 0x5a626c
+        : groundCol,
+    );
     groundMat.envMapIntensity = lerp(0.14, 0.08, n);
     domeMat.color.setHex(n > 0.5 ? 0x1e3854 : clock < 0.38 ? 0x6aaee0 : 0x4a9ad8);
     walkStd.color.setHex(n > 0.5 ? 9078400 : 12892324);

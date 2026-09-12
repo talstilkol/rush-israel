@@ -451,7 +451,7 @@ export function createCarVisual(
   if (lit) {
     const cookie = beamCookie();
     for (const sx of [-hx, hx]) {
-      const spot = new THREE.SpotLight(0xfff1c8, 0, 48, 0.5, 0.68, 1.05);
+      const spot = new THREE.SpotLight(0xfff1c8, 0, 88, 0.62, 0.55, 1.05);
       spot.position.set(sx, headY, headZ);
       spot.target.position.set(sx * 0.12, -0.42, 14);
       if (cookie) spot.map = cookie;
@@ -460,7 +460,7 @@ export function createCarVisual(
         spot.shadow.mapSize.set(256, 256);
         spot.shadow.bias = -0.00025;
         spot.shadow.camera.near = 0.6;
-        spot.shadow.camera.far = 42;
+        spot.shadow.camera.far = 72;
         spot.shadow.focus = 1;
       }
       spot.intensity = 0;
@@ -593,7 +593,7 @@ export function applyDamage(vis: CarVisual, dmg: number, dirt = 0) {
 export function setCarLights(vis: CarVisual, night: boolean) {
   const on = night;
   for (const s of vis.spots) {
-    s.intensity = on ? 28 : 0;
+    s.intensity = on ? 92 : 0;
     s.visible = on;
     if (!s.map) {
       const c = beamCookie();
