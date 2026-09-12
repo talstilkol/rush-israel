@@ -1020,25 +1020,28 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const arrowTex = getLaneArrow();
     const chevGeo = keep(new THREE.PlaneGeometry(2.8, 3.6));
     chevGeo.rotateX(-Math.PI / 2);
-    const chevMat = keep(new THREE.MeshBasicMaterial({
+    const chevMat = keep(new THREE.MeshStandardMaterial({
       map: arrowTex ?? undefined,
       color: arrowTex ? 0xffffff : 16773248,
+      roughness: 0.55,
+      metalness: 0.04,
       transparent: !!arrowTex,
       depthWrite: false,
       polygonOffset: true,
       polygonOffsetFactor: -2,
       polygonOffsetUnits: -2,
-      fog: false,
-      side: THREE.DoubleSide,
     }));
-    const chevN = Math.min(def.id === "ayalon" ? 48 : 28, Math.max(8, Math.floor(built.samples.length / (def.id === "ayalon" ? 9 : 14))));
+    const chevN = def.id === "ayalon" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6"
+      ? Math.min(def.id === "ayalon" ? 36 : 16, Math.max(6, Math.floor(built.samples.length / 16)))
+      : 0;
+    if (chevN > 0) {
     const chevs = new THREE.InstancedMesh(chevGeo, chevMat, chevN);
     const stepC = Math.max(1, Math.floor(built.samples.length / chevN));
     let ci2 = 0;
     const chevS = def.id === "ayalon" ? 1.55 : Math.min(1.2, Math.max(0.72, built.width / 18));
     for (let i = 2; i < built.samples.length - 2 && ci2 < chevN; i += stepC) {
       const s = built.samples[i];
-      _dummy.position.set(s.x, s.y + 0.06, s.z);
+      _dummy.position.set(s.x, s.y + 0.04, s.z);
       _dummy.scale.set(chevS, 1, chevS);
       _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
       _dummy.updateMatrix();
@@ -1053,7 +1056,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       let cj = 0;
       for (let i = 2; i < built.samples.length - 2 && cj < chevN; i += stepC) {
         const s = built.samples[i];
-        _dummy.position.set(s.x + s.rx * oppOff, s.y + 0.06, s.z + s.rz * oppOff);
+        _dummy.position.set(s.x + s.rx * oppOff, s.y + 0.04, s.z + s.rz * oppOff);
         _dummy.scale.set(chevS, 1, chevS);
         _dummy.rotation.set(0, Math.atan2(s.tx, s.tz) + Math.PI, 0);
         _dummy.updateMatrix();
@@ -1062,6 +1065,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       chevs2.count = cj;
       chevs2.instanceMatrix.needsUpdate = true;
       group.add(chevs2);
+    }
     }
   }
   const urban = def.theme === "bauhaus" || def.theme === "stone" || def.theme === "jaffa" || def.id === "telaviv" || def.id === "rothschild" || def.id === "hayarkon";
