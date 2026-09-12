@@ -190,22 +190,39 @@ function carShape(kind: CarDef["body"]): THREE.Shape {
                 [-1.82, 0.14],
               ];
   s.moveTo(p[0][0], p[0][1]);
-  for (let i = 1; i < p.length; i++) s.lineTo(p[i][0], p[i][1]);
+  for (let i = 1; i < p.length - 1; i++) {
+    const xc = (p[i][0] + p[i + 1][0]) * 0.5;
+    const yc = (p[i][1] + p[i + 1][1]) * 0.5;
+    s.quadraticCurveTo(p[i][0], p[i][1], xc, yc);
+  }
+  s.lineTo(p[p.length - 1][0], p[p.length - 1][1]);
   s.closePath();
   return s;
 }
 
 function bodyGeo(kind: CarDef["body"], width: number) {
+  const L = layout(kind);
   const g = new THREE.ExtrudeGeometry(carShape(kind), {
     depth: width,
     bevelEnabled: true,
-    bevelThickness: 0.09,
-    bevelSize: 0.07,
-    bevelSegments: 4,
-    steps: 1,
+    bevelThickness: 0.13,
+    bevelSize: 0.11,
+    bevelSegments: 6,
+    steps: 2,
+    curveSegments: 16,
   });
   g.translate(0, 0, -width / 2);
   g.rotateY(-Math.PI / 2);
+  const pos = g.attributes.position;
+  const halfL = L.L * 0.5;
+  for (let i = 0; i < pos.count; i++) {
+    const z = pos.getZ(i);
+    const x = pos.getX(i);
+    const az = Math.min(1, Math.abs(z) / halfL);
+    const taper = az < 0.48 ? 1 : 1 - (az - 0.48) * 0.38;
+    pos.setX(i, x * taper);
+  }
+  pos.needsUpdate = true;
   g.computeVertexNormals();
   return g;
 }

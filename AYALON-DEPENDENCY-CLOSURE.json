@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "0e15be6e97a5069c754e5d2bc21d4dfc8b94a78799a23750ce361df31cb3593e"
+      "sha256": "0af0dbc9ea558428f60335def0dc17fd3be76bba31e226bffc1514a2ca11b2d0"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -3073,8 +3073,8 @@
     },
     {
       "path": "src/game/car-mesh.ts",
-      "bytes": 26090,
-      "sha256": "b89ec24ddb76a8ab362b036aa6d97a02484d5f305fbdc8f7b1452eea0e92aca3"
+      "bytes": 26638,
+      "sha256": "b6509f57a62956e7c6a54293b8da676494dfbc54245e83865da4386433d2b9d0"
     },
     {
       "path": "src/game/career.ts",
@@ -11241,5 +11241,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "5c0c44b043900afe3f81a34685e77b99ac45a159cf26aa733bdd8ff2dfba9f6d"
+  "digest_sha256": "a23c1df5f2e3ee3ef35f34b3c179e48e7271b0bc8abe4b5d21c5ca0297e7130c"
 }
