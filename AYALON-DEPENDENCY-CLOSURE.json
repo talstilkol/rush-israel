@@ -1174,7 +1174,7 @@
     {
       "path": "scripts/check-ayalon-freeze.mjs",
       "bytes": 9598,
-      "sha256": "b52b32f170368093a71333e922347ea392b9fbfd2db7a71fad87df8676f0c2bf"
+      "sha256": "edb8a5d51b31b7a097a19ef7fd49a5f41447d2ca677497d1da6d5576f8b43ffa"
     },
     {
       "path": "scripts/check-ayalon-freeze.test.mjs",
@@ -2064,7 +2064,7 @@
     {
       "path": "scripts/rsh036-runtime-evolution.mjs",
       "bytes": 2695,
-      "sha256": "367af9ed6a901b7fbac727923ed758bd26f50cd8c5c52b815decb91f9fdca97d"
+      "sha256": "75b333241ec00396764a7e38d52571b6b6dc939aa2b614cf84a8ee01226b12bc"
     },
     {
       "path": "scripts/rsh036-runtime-evolution.test.mjs",
@@ -2928,8 +2928,8 @@
     },
     {
       "path": "src/components/game-app/screens.tsx",
-      "bytes": 32524,
-      "sha256": "37e532f6920a249564eeacfc3473d14b6731da97cff1763eec5e78a1c6cce91d"
+      "bytes": 34114,
+      "sha256": "09f2fdcc89c937db9ae6c538615ae6de61d4c3f2636b208b86347912f72f7f28"
     },
     {
       "path": "src/components/touch-controls.tsx",
@@ -2989,7 +2989,7 @@
     {
       "path": "src/game/ayalon-freeze/freeze.ts",
       "bytes": 10468,
-      "sha256": "218d54fa5983e0a03ce6c38c3f4d5da22d90b72c8e34790a359f77ba8696fa0d"
+      "sha256": "75db57ffea4e2568d0883f0fdd2f9a7e295fabd28e7ed469a1b9b6c6127a3d81"
     },
     {
       "path": "src/game/ayalon-freeze/index.ts",
@@ -3464,7 +3464,7 @@
     {
       "path": "src/game/tracks/hermon.ts",
       "bytes": 2432,
-      "sha256": "5d1e267fc7527143f0b5f88823410d6d3927a098e64ae7330cc55140c29054a2"
+      "sha256": "505b00181846ed543b696a39d7ff88889c7d7a8c5baa569e0093e49fbeb9b0a8"
     },
     {
       "path": "src/game/tracks/herzliya.ts",
@@ -3658,8 +3658,8 @@
     },
     {
       "path": "src/game/vehicle.ts",
-      "bytes": 40613,
-      "sha256": "1d4d3e305eea4d69d94d1a4dd16db15f58255c8a4541d50afcee9e5dd04ea099"
+      "bytes": 40595,
+      "sha256": "96aac0b8f1fc2632f06fc8c22077fade49ee7e2448696a1d37e7f22551f7788a"
     },
     {
       "path": "src/game/walk-assets.ts",
@@ -3799,7 +3799,7 @@
     {
       "path": "src/game/world-builders/tracks/hermon.ts",
       "bytes": 8043,
-      "sha256": "3558d0a5a7e929064db7deffe656e97575b4dca42c03944fbb6bbc418bd99544"
+      "sha256": "e2e168a464d5f153b8b96785b766851d6585dc3aeabe8b07653213397109b227"
     },
     {
       "path": "src/game/world-builders/tracks/herzliya.ts",
@@ -11241,5 +11241,5 @@
     "Virtual providers, remote assets and mutable action tags require separate qualification; inventory is not release acceptance.",
     "Reviewed Google Fonts URL pins do not make remote stylesheet or glyph bytes immutable and do not grant freeze."
   ],
-  "digest_sha256": "80a8be1e0ccacb2b8262a4ac11e39eeca55263238443e52713a2c03200ecb9ec"
+  "digest_sha256": "fa6a87e8b7717d83577b73cd897c044a69e34960b061e810ff4eda7c938a85c5"
 }

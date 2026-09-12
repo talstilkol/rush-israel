@@ -196,6 +196,39 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 						className: "mt-3 flex min-h-10 w-full items-center justify-center gap-2 rounded-md border border-border text-sm",
 						onClick: () => setMuted(!muted),
 						children: [muted ? /* @__PURE__ */ jsx(VolumeX, { className: "size-4" }) : /* @__PURE__ */ jsx(Volume2, { className: "size-4" }), muted ? t("מושתק", "Muted") : t("צליל", "Sound")]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "mt-3 flex gap-2",
+						children: [/* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", handling === "arcade" ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setHandlingMode("arcade"),
+							children: t("ארקייד", "Arcade")
+						}), /* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", handling === "simcade" ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setHandlingMode("simcade"),
+							children: t("סימקייד", "Simcade")
+						})]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "mt-3 flex gap-2",
+						children: [/* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", fov <= 0 ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setFovMode(0),
+							children: t("עדשה", "Lens")
+						}), /* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", fov === 6 ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setFovMode(6),
+							children: t("רחב", "Wide")
+						}), /* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", fov >= 12 ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setFovMode(12),
+							children: t("רחב מאוד", "Wider")
+						})]
 					})
 				]
 			}) : null,

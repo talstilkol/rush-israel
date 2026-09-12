@@ -88,7 +88,7 @@ export default function buildHermon(context: TrackWorldBuilderContext): void {
       const s = built.samples[i];
       const towardPeak = s.rx * (peak.x - s.x) + s.rz * (peak.z - s.z) >= 0 ? 1 : -1;
       const berm = new THREE.Mesh(new THREE.BoxGeometry(7.4, 1.6, 4.2), snowM);
-      berm.position.set(s.x + s.rx * (built.width / 2 + 6.4) * towardPeak, s.y + 0.7, s.z + s.rz * (built.width / 2 + 6.4) * towardPeak);
+      berm.position.set(s.x + s.rx * (built.width / 2 + 9.2) * towardPeak, s.y + 0.7, s.z + s.rz * (built.width / 2 + 9.2) * towardPeak);
       berm.rotation.y = Math.atan2(s.tx, s.tz);
       add(berm);
     }

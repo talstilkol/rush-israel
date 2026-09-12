@@ -336,8 +336,8 @@ export class ArcadeCar {
         grade = rp.dyds * (fx * rp.r.sx + fz * rp.r.sz);
       }
       if (racing) {
-        this.speed += -grade * 16.2 * dt;
-        if (grade > 0.04) this.speed -= grade * 7.4 * dt;
+        const g = clamp(grade, -0.12, 0.12);
+        this.speed += -g * 8.4 * dt;
       }
     }
 

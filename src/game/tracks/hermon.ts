@@ -12,7 +12,7 @@ export default defineTrack({
     description: "ממג׳דל שמס, סרפנטינות בחרמון, יער, שלג ואתר הסקי עד הפסגה. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "From Majdal Shams, switchbacks up Hermon, forest, snow and the ski site to the peak. Inspired by the place — not a map, not GIS.",
     image: "/tracks/hermon.jpg",
-    width: 26,
+    width: 30,
     seed: 2814,
     theme: "snow",
     open: true,
