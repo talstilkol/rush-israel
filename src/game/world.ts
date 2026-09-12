@@ -1121,7 +1121,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     polygonOffsetUnits: -1,
   }));
   const wearGeo = keep(new THREE.BoxGeometry(Math.max(1.6, built.width / Math.max(2, lanes) * 0.55), 0.02, 4.2));
-  const wearN = Math.min(180, Math.floor(built.length / 8));
+  const wearN = Math.min(80, Math.floor(built.length / 8));
   const wear = new THREE.InstancedMesh(wearGeo, wearMat, wearN);
   const rightLane = built.width / 2 - built.width / lanes / 2;
   let wearI = 0;
