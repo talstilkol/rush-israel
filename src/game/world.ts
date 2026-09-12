@@ -1048,7 +1048,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const chevS = def.id === "ayalon" ? 1.55 : Math.min(1.2, Math.max(0.72, built.width / 18));
     for (let i = 2; i < built.samples.length - 2 && ci2 < chevN; i += stepC) {
       const s = built.samples[i];
-      _dummy.position.set(s.x, s.y + 0.04, s.z);
+      _dummy.position.set(s.x, s.y + 0.07, s.z);
       _dummy.scale.set(chevS, 1, chevS);
       _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
       _dummy.updateMatrix();
@@ -1063,7 +1063,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       let cj = 0;
       for (let i = 2; i < built.samples.length - 2 && cj < chevN; i += stepC) {
         const s = built.samples[i];
-        _dummy.position.set(s.x + s.rx * oppOff, s.y + 0.04, s.z + s.rz * oppOff);
+        _dummy.position.set(s.x + s.rx * oppOff, s.y + 0.07, s.z + s.rz * oppOff);
         _dummy.scale.set(chevS, 1, chevS);
         _dummy.rotation.set(0, Math.atan2(s.tx, s.tz) + Math.PI, 0);
         _dummy.updateMatrix();
