@@ -1663,7 +1663,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     envMapIntensity: isNight ? 0.95 : 0.5
   }));
   const canyon = def.id === "timessquare";
-  const maxB = shadows ? def.theme === "manhattan" ? canyon ? 240 : 200 : 160 : def.theme === "manhattan" ? 280 : 220;
+  const maxB = shadows ? def.theme === "manhattan" ? canyon ? 160 : 140 : 100 : def.theme === "manhattan" ? 180 : 140;
   const placements = [];
   const minX = def.id === "manhattan" ? -90 : -200;
   const maxX = def.id === "manhattan" ? 90 : 200;
