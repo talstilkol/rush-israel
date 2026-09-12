@@ -2184,7 +2184,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   crowns.instanceMatrix.needsUpdate = true;
   if (treeSpots.length) group.add(trunks, crowns);
   if (treeSpots.length && def.theme !== "desert" && def.id !== "timessquare") {
-    const nBill = Math.min(36, treeSpots.length);
+    const nBill = Math.min(16, treeSpots.length);
     const billG = keep(new THREE.PlaneGeometry(6.4, 7.6));
     const billM = keep(new THREE.MeshStandardMaterial({
       map: keep(foliageTexture()),
