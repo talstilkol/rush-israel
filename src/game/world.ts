@@ -569,7 +569,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     dir.add(lensflare);
   }
   applyLights(isNight, hemi, dir, fill, ambient, lightAim, flareCol, lensflare);
-  const desertNight = def.theme === "desert" || def.theme === "snow" || def.theme === "stone" || def.theme === "jaffa" || def.theme === "carmel" || def.theme === "port" || def.theme === "bauhaus" || def.theme === "highway" || def.id === "ramon" || def.id === "hermon" || def.id === "scopus" || def.id === "golan" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6" || def.id === "modiin";
+  const desertNight = def.theme === "desert" || def.theme === "snow" || def.theme === "stone" || def.theme === "jaffa" || def.theme === "carmel" || def.theme === "port" || def.theme === "bauhaus" || def.theme === "highway" || def.theme === "park" || def.id === "ramon" || def.id === "hermon" || def.id === "scopus" || def.id === "golan" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6" || def.id === "modiin";
   if (isNight && desertNight) {
     hemi.color.setHex(0x9ab4d0);
     hemi.groundColor.setHex(0x4a3828);
