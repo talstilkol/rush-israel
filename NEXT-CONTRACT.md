@@ -1,7 +1,7 @@
-**Version:** 21.14.0
+**Version:** 21.15.0
 **Date:** 2026-09-12, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 3d3c378
+**Repair base:** be19757
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -177,6 +177,10 @@ plus this steer floor: namal/oldjaffa/caesarea/scopus/ayalon spawn
 driveable in-browser; Haifa Baháʼí pines off ribbon; ghost 0 at spawn;
 procedural Y-up car. Pixel leftover g07 0.2027 unchanged.
 `freeze_granted=false`. No merge, no PNG refresh, no RSH-037.
+
+## r7.15 Highway 1 + Full Carmel (not remaining 0/4, not freeze grant)
+Hills fill the climb. Live both 18–20 km/h. Pixel leftover g07 0.2027
+unchanged. `freeze_granted=false`.
 
 ## r7.14 Walls + Old Jaffa (not remaining 0/4, not freeze grant)
 Stone/jaffa slope fill. Live both 19–21 km/h. Pixel leftover g07 0.2027
@@ -569,5 +573,5 @@ under OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT until the remaining 32
 units are implemented. RSH-037 stays unactivated as a queue unit;
 instrumentation already lives on the HUD.
 
-Master plan r7.14 retains 67 units, 42 historical findings, 6 bundles and 104
+Master plan r7.15 retains 67 units, 42 historical findings, 6 bundles and 104
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.

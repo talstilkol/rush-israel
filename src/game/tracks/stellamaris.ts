@@ -12,7 +12,7 @@ export default defineTrack({
     description: "מהגנים הבהאיים לאורך יפה נוף עד סטלה מאריס — כיוון אחד עם נוף המפרץ. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "From the Baháʼí Gardens along Yefe Nof to Stella Maris — one way with the bay. Inspired by the place — not a map, not GIS.",
     image: "/tracks/stellamaris.jpg",
-    width: 20,
+    width: 26,
     seed: 1868,
     theme: "carmel",
     open: true,
