@@ -16,7 +16,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-027 Ayalon collider lock passes under the RSH-029 overlay and RSH-040 remains absent", () => {
+test("committed RSH-027 Ayalon collider lock passes under the RSH-029 overlay and RSH-041 remains absent", () => {
   const result = validateAyalonColliders();
   assert.deepEqual(result.errors, []);
   assert.equal(result.trackId, "ayalon");
@@ -25,11 +25,11 @@ test("committed RSH-027 Ayalon collider lock passes under the RSH-029 overlay an
   assert.equal(result.interchangeCount, 6);
 });
 
-test("RSH-040 precreation fails closed", () => {
+test("RSH-041 precreation fails closed", () => {
   const result = validateAyalonColliders({
-    repositoryFiles: ["RSH-040-PREFLIGHT.json", "src/game/ayalon-colliders/colliders.ts"],
+    repositoryFiles: ["RSH-041-PREFLIGHT.json", "src/game/ayalon-colliders/colliders.ts"],
   });
-  assert.match(messages(result), /RSH-040 was precreated/);
+  assert.match(messages(result), /RSH-041 was precreated/);
 });
 
 test("live checkpoints stay 8 open fractions and ramp recipe stays 50", () => {
