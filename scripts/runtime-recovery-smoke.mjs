@@ -77,6 +77,7 @@ import { verifyWorldFtv } from './world-ftv-browser.mjs';
 import { verifyWorldFrs } from './world-frs-browser.mjs';
 import { verifyWorldOcs } from './world-ocs-browser.mjs';
 import { verifyWorldVcc } from './world-vcc-browser.mjs';
+import { verifyWorldRsi } from './world-rsi-browser.mjs';
 import { verifyPierCollisions } from './pier-collision-browser.mjs';
 import { verifyColliderCentres } from './collider-centre-browser.mjs';
 import { verifyRampContact } from './ramp-contact-browser.mjs';
@@ -207,6 +208,7 @@ try {
   results.push(...await verifyWorldFrs(browser, url));
   results.push(...await verifyWorldOcs(browser, url));
   results.push(...await verifyWorldVcc(browser, url));
+  results.push(...await verifyWorldRsi(browser, url));
   results.push(...await verifyRampSurfaces(browser, url));
   results.push(...await verifyRampContact(browser, url));
   results.push(...await verifyRoadUniforms(browser, url));

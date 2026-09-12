@@ -1873,6 +1873,22 @@ after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
 thresholds, retune color or exposure or activate RSH-037.
 Details: RSH-036-WORLD-VCC-r6.96.json and RSH-036-RUNTIME-REPAIR-r6.96.md.
 
+## r6.97 — 12 September 2026: leftover g07 after world.group+outside is remaining empty-scene vs golden, not setRenderTarget, not setScissorTest, not info.reset, not env
+
+RSH-036 / PR39 remains unaccepted (35/67 accepted;32 remain). AUD-104 isolates
+leftover g07 after world.group+outside as remaining empty-scene vs golden
+independently of setRenderTarget vs setScissorTest vs info.reset after
+setNight/snapCamera(true). g07 leftover is remaining empty-scene vs golden
+(leftover 0.2027), not setRenderTarget dummy (g07 +0.7602 increases), not
+setScissorTest (≡ 0), not info.reset (≡ 0) and not env (≡ 0). both/pack follow
+the dummy target on g07 (+0.7602). Empty leftover has no world geometry for a
+setRenderTarget/setScissorTest/info.reset change to occupy remaining g07.
+Product renderer stays. Freeze path count stays 85.
+GFX-01, GFX-03, GFX-04, GFX-05, GFX-06, GFX-07, GFX-08, GFX-09 and GFX-10 stay queued
+after RSH-036 and are not remaining 0/4. Do not merge, replace PNGs, change
+thresholds, retune color or exposure or activate RSH-037.
+Details: RSH-036-WORLD-RSI-r6.97.json and RSH-036-RUNTIME-REPAIR-r6.97.md.
+
 
 
 

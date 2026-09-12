@@ -2001,7 +2001,7 @@
     "runtime_remediation_complete": false,
     "freeze_granted": false,
     "partial_inventory_count": 85,
-    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.96.md",
+    "runtime_repair_checkpoint": "RSH-036-RUNTIME-REPAIR-r6.97.md",
     "queued_graphical_defects": {
       "status": "queued_after_rsh_036_not_ayalon_freeze",
       "items": [
@@ -2017,8 +2017,8 @@
         {
           "id": "GFX-02",
           "track": "ayalon",
-          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not setViewport not setClearColor not renderer.compile not env (leftover 0.2027, setViewport 640x400 g07 +0.6188 increases, setClearColor/compile/env ≡ 0, leftover-after-empty-as-env ≡ 0)",
-          "status": "r6_96_done_aud_104_next"
+          "defect": "leftover g07 after world.group+outside is remaining empty-scene vs golden not setRenderTarget not setScissorTest not info.reset not env (leftover 0.2027, setRenderTarget dummy g07 +0.7602 increases, setScissorTest/info.reset/env ≡ 0, leftover-after-empty-as-env ≡ 0)",
+          "status": "r6_97_done_aud_105_next"
         },
         {
           "id": "GFX-03",
@@ -2120,12 +2120,13 @@
       ]
     },
     "local_unit_tests": {
-      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_setviewport_not_setclearcolor_not_compile_not_env_not_full_suite_expected_3157",
+      "status": "focused_28_passed_live_g07_after_empty_is_remaining_empty_scene_vs_golden_not_setrendertarget_not_setscissortest_not_inforeset_not_env_not_full_suite_expected_3185",
       "focused_passed": 28,
       "focused_failed": 0,
       "locked_dependencies": true,
       "typescript": "5.9.3",
-      "expected_total": 3157,
+      "expected_total": 3185,
+      "predecessor_r6_96_expected": 3157,
       "predecessor_r6_93_expected": 3129,
       "predecessor_r6_92_expected": 3101,
       "predecessor_r6_91_expected": 3073,
@@ -7626,6 +7627,28 @@
         "envBandDelta": [0, 0, 0, 0],
         "bothBandDelta": [0, 0, 0.7584, 0.0038],
         "packBandDelta": [0, 0, 0.7584, 0.0038],
+        "leftoverBaselinePct": [0.9907, 0.9844, 0.2027, 0.9904],
+        "counts": {
+          "ramps": 150, "leftover": 2082, "lights": 2083, "debug": 2083, "xr": 2083,
+          "env": 2083, "both": 2086, "pack": 2085, "buildings": 696, "instanced": 47, "ground": 1, "remaining": 260
+        },
+        "originalGoldenComparisons": 0
+      },
+      "live_world_rsi": {
+        "status": "g07_after_empty_is_remaining_empty_scene_vs_golden_not_setrendertarget_not_setscissortest_not_inforeset_not_env",
+        "protocol": "world-rsi-buffer-not-original-golden",
+        "follow": 7.4,
+        "height": 1.92,
+        "fov": 58,
+        "pixelRatio": 1,
+        "pixelThreshold": 0.12,
+        "dominantRsi": ["both", "both", "debug", "debug"],
+        "targetBandDelta": [0, 0, 0.7602, 0.008],
+        "scissorBandDelta": [0, 0, 0, 0],
+        "resetBandDelta": [0, 0, 0, 0],
+        "envBandDelta": [0, 0, 0, 0],
+        "bothBandDelta": [0, 0, 0.7602, 0.008],
+        "packBandDelta": [0, 0, 0.7602, 0.008],
         "leftoverBaselinePct": [0.9907, 0.9844, 0.2027, 0.9904],
         "counts": {
           "ramps": 150, "leftover": 2082, "lights": 2083, "debug": 2083, "xr": 2083,
