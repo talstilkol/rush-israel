@@ -666,13 +666,21 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
       }
     }
     const shake = this.replaying ? 0 : this.trauma * this.trauma;
+    const lookAhead = mode === 3 ? 0.2 : mode === 1 ? 9 : 8 + clamp(Math.abs(p.speed) / 14, 0, 8);
+    const lookX = p.x + fx * lookAhead * dir;
+    const lookZ = p.z + fz * lookAhead * dir;
+    let lookY = p.y + (mode === 3 ? 0.4 : mode === 1 ? 0.98 : 0.62);
+    if (mode !== 3 && mode !== 1) {
+      const lookNear = nearestIndex(this.built.samples, lookX, lookZ, p.sampleIndex, this.built.closed);
+      lookY = this.built.samples[lookNear.index].y + 0.62;
+      if (this.cam.y < lookY + 1.2) this.cam.y = lookY + 1.2;
+    }
     this.camera.position.set(
       this.cam.x + Math.sin(this.tickId * 0.73) * shake * 0.14,
       this.cam.y + Math.cos(this.tickId * 1.17) * shake * 0.08,
       this.cam.z + Math.sin(this.tickId * 0.91) * shake * 0.14,
     );
-    const lookAhead = mode === 3 ? 0.2 : mode === 1 ? 9 : 8 + clamp(Math.abs(p.speed) / 14, 0, 8);
-    this.look.set(p.x + fx * lookAhead * dir, p.y + (mode === 3 ? 0.4 : mode === 1 ? 0.98 : 0.62), p.z + fz * lookAhead * dir);
+    this.look.set(lookX, lookY, lookZ);
     this.camera.lookAt(this.look);
     const fov =
       (mode === 1 ? 64 : mode === 2 ? 78 : mode === 3 ? 52 : 58 + clamp(Math.abs(p.speed) / 14, 0, 8) + (p.boostT > 0 || p.drafting ? 3 : 0)) +

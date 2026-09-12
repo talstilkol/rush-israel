@@ -2258,27 +2258,31 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     halos.setMatrixAt(i, _dummy.matrix);
   }
   if (lampCount) group.add(poles, bulbs, halos);
-  const poolGeo = keep(new THREE.CircleGeometry(7.2, 20));
+  const poolGeo = keep(new THREE.CircleGeometry(def.id === "ayalon" ? 7.2 : 2.4, 20));
   poolGeo.rotateX(-Math.PI / 2);
   const poolMat = keep(new THREE.MeshBasicMaterial({
     color: 0xffc070,
     transparent: true,
-    opacity: isNight ? 0.58 : 0,
+    opacity: isNight && def.id === "ayalon" ? 0.58 : 0,
     blending: 2,
-    depthWrite: false
+    depthWrite: false,
+    polygonOffset: true,
+    polygonOffsetFactor: -2,
+    polygonOffsetUnits: -2,
   }));
   const pools = new THREE.InstancedMesh(poolGeo, poolMat, Math.max(1, lampCount));
   pools.renderOrder = 2;
+  const roadDecals = def.id === "ayalon";
   for (let i = 0; i < lampCount; i++) {
     const s = built.samples[(i * lampStride) % built.samples.length];
     const p = lampPos[i];
-    _dummy.position.set(p.x, s.y + 0.055, p.z);
-    _dummy.scale.set(1.35, 1, 1.15);
+    _dummy.position.set(p.x, s.y + (roadDecals ? 0.055 : 0.16), p.z);
+    _dummy.scale.set(roadDecals ? 1.35 : 0.55, 1, roadDecals ? 1.15 : 0.55);
     _dummy.rotation.set(0, 0, 0);
     _dummy.updateMatrix();
     pools.setMatrixAt(i, _dummy.matrix);
   }
-  pools.visible = isNight && lampCount > 0;
+  pools.visible = isNight && lampCount > 0 && roadDecals;
   if (lampCount) group.add(pools);
   if (def.id === "ayalon" && lampCount) {
     const oppOff = built.width + 18;
@@ -2411,9 +2415,11 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     group.add(post);
   }
   const nightLights: THREE.SpotLight[] = [];
-  if (shadows) for (let i = 0; i < 10; i++) {
+  const nightSpotN = shadows ? (def.id === "ayalon" ? 10 : 3) : 0;
+  const nightSpotI = def.id === "ayalon" ? 200 : 48;
+  for (let i = 0; i < nightSpotN; i++) {
     const src = lampPos[i] ?? new THREE.Vector3();
-    const spot = new THREE.SpotLight(0xffc070, isNight ? 200 : 0, 44, 0.9, 0.65, 1.2);
+    const spot = new THREE.SpotLight(0xffc070, isNight ? nightSpotI : 0, def.id === "ayalon" ? 44 : 28, 0.9, 0.65, 1.2);
     spot.position.copy(src);
     spot.target.position.set(src.x, src.y - 5.2, src.z);
     spot.castShadow = false;
@@ -2430,9 +2436,13 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     clearcoatRoughness: 0.05,
     envMapIntensity: 2.6,
     transparent: true,
-    opacity: 0.78
+    opacity: 0.78,
+    depthWrite: false,
+    polygonOffset: true,
+    polygonOffsetFactor: -1,
+    polygonOffsetUnits: -1,
   }));
-  const puddleN = 26;
+  const puddleN = roadDecals ? 26 : 0;
   const puddlePos: { x: number; y: number; z: number; sx: number; sz: number; rot: number }[] = [];
   const puddles = new THREE.InstancedMesh(puddleGeo, puddleMat, puddleN);
   for (let i = 0; i < puddleN; i++) {
@@ -2454,8 +2464,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     _dummy.updateMatrix();
     puddles.setMatrixAt(i, _dummy.matrix);
   }
-  puddles.visible = isNight || wx !== "clear";
-  group.add(puddles);
+  puddles.visible = roadDecals && (isNight || wx !== "clear");
+  if (puddleN) group.add(puddles);
   lodPuddles = puddles;
   const neonGroup = new THREE.Group();
   neonGroup.visible = isNight;
@@ -2669,7 +2679,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       hemi.intensity = bolt ? 1.4 : lerp(0.55, 0.52, n);
     }
     const wetAmt = wx === "storm" ? 1 : wx === "rain" ? 0.82 : lerp(0.08, 0.42, nightAmt(clock));
-    puddles.visible = wetAmt > 0.1;
+    puddles.visible = roadDecals && wetAmt > 0.1;
     puddleMat.opacity = 0.32 + wetAmt * 0.58;
     const ripple = 1 + Math.sin(t * 2.2) * 0.035 * (wx === "clear" ? 0.4 : 1);
     for (let i = 0; i < puddlePos.length; i++) {
@@ -2700,7 +2710,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const walkStd = walkMat;
   const applyWet = () => {
     const n = nightAmt(clock);
-    puddles.visible = wx === "rain" || wx === "storm" || wx === "clear" && n > 0.35;
+    puddles.visible = roadDecals && (wx === "rain" || wx === "storm" || wx === "clear" && n > 0.35);
     if (wx === "rain" || wx === "storm") {
       roadMat.color.setHex(n > 0.5 ? 0xd0d4d8 : 0xe8ecee);
       roadMat.roughness = wx === "storm" ? 0.12 : 0.18;
@@ -2830,10 +2840,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     bulbMat.emissive.setHex(n > 0.4 ? 16760944 : 2236962);
     bulbMat.emissiveIntensity = lerp(0.08, 7.2, n);
     haloMat.opacity = n > 0.4 ? 0.22 + n * 0.42 : 0;
-    pools.visible = n > 0.4 && lampCount > 0;
-    poolMat.opacity = n > 0.4 ? 0.32 + n * 0.4 : 0;
+    pools.visible = n > 0.4 && lampCount > 0 && roadDecals;
+    poolMat.opacity = n > 0.4 && roadDecals ? 0.32 + n * 0.4 : 0;
     neonGroup.visible = n > 0.32;
-    for (const pl of nightLights) pl.intensity = n * 210;
+    for (const pl of nightLights) pl.intensity = n * nightSpotI;
     for (const pl of neonLights) pl.intensity = n * 42;
     for (const g of landmarkGlows) g.light.intensity = n * g.on;
     for (const e of emitList) e.mat.emissiveIntensity = lerp(e.day, e.night, n);

@@ -1,7 +1,7 @@
-**Version:** 21.0.0
+**Version:** 21.1.0
 **Date:** 2026-09-12, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 312e5dc
+**Repair base:** 97e2fca
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -177,6 +177,12 @@ plus this steer floor: namal/oldjaffa/caesarea/scopus/ayalon spawn
 driveable in-browser; Haifa Baháʼí pines off ribbon; ghost 0 at spawn;
 procedural Y-up car. Pixel leftover g07 0.2027 unchanged.
 `freeze_granted=false`. No merge, no PNG refresh, no RSH-037.
+
+## r7.01 Jerusalem night flicker (not remaining 0/4, not freeze grant)
+Puddles and lamp pools stay Ayalon-only so sloped night roads stop
+z-fighting. Chase look-at follows ribbon height (no sky-cam).
+Live Jaffa Gate night: spawn 22 km/h; mid 32 km/h A +0.23.
+Pixel leftover g07 0.2027 unchanged. `freeze_granted=false`.
 
 ## r7.00 Hayarkon sea + quality/touch (not remaining 0/4, not freeze grant)
 Hayarkon Mediterranean restored as off-ribbon tiles (35 km/h, A +0.28).
@@ -505,5 +511,5 @@ under OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT until the remaining 32
 units are implemented. RSH-037 stays unactivated as a queue unit;
 instrumentation already lives on the HUD.
 
-Master plan r7.00 retains 67 units, 42 historical findings, 6 bundles and 104
+Master plan r7.01 retains 67 units, 42 historical findings, 6 bundles and 104
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.
