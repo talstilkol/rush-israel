@@ -87,7 +87,7 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "scripts/road-uniform-browser.mjs": "aed1f57320633920ef28c803faef0c09802fbcd26fbf6c25d85ac7fbf9919c9d",
   "src/game/ramp-surface.ts": "4072158c03c6728f54f7efdd60fa5e43e831decda461975a528c1e01e1f512ed",
   "scripts/ramp-surface-browser.mjs": "665b1dd482d72ae8ba394e597c0d33e6ec9a5846fbd73699b7aa27cf8605930d",
-  "src/game/vehicle.ts": "2b7e92295a2b5ed3ce0e8c735ddaee3dedcf6fb4b619040c9d1768bfe12fdd3a",
+  "src/game/vehicle.ts": "5bf1cc3da0a71290e1062d335fe45710b9ffbffbb45367b8fda3444f928eb5fd",
   "scripts/ramp-smoke.mjs": "8c35bfd9bde53b5b8487f877e8018bfcf3237efd37bd0e317fe457f610da8a2c",
   "scripts/ramp-contact-browser.mjs": "8929ff4e5772db2f8acabb67a3a3e28a0133602016a5cc49771c94a03abdb45e",
   "scripts/drive-smoke.mjs": "15b54f54badfae3f33117df2c5075faea571d68e1e78cb934f46af33f931e761",
