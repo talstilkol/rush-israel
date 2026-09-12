@@ -605,8 +605,8 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
     const dir = this.lookBack ? -1 : 1;
     const mode = this.lookBack ? 0 : this.camMode;
     // RSH-036-OVERLAY-BEGIN:chase-rest-geometry
-    let follow = 7.4 + clamp(Math.abs(p.speed) / 22, 0, 2.2);
-    let height = 1.92;
+    let follow = 8.2 + clamp(Math.abs(p.speed) / 22, 0, 2.2);
+    let height = this.trackDef.id === "ayalon" || this.trackDef.theme === "highway" ? 2.55 : 1.92;
     // RSH-036-OVERLAY-END:chase-rest-geometry
     let side = 0;
     if (mode === 1) {
@@ -633,11 +633,11 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
       const cdx = this.cam.x - p.x;
       const cdz = this.cam.z - p.z;
       const cd = Math.hypot(cdx, cdz);
-      if (cd < 4.2 && cd > 0.0001) {
-        this.cam.x = p.x + (cdx / cd) * 4.2;
-        this.cam.z = p.z + (cdz / cd) * 4.2;
+      if (cd < 5.8 && cd > 0.0001) {
+        this.cam.x = p.x + (cdx / cd) * 5.8;
+        this.cam.z = p.z + (cdz / cd) * 5.8;
       }
-      if (this.cam.y < p.y + 1.35) this.cam.y = p.y + 1.35;
+      if (this.cam.y < p.y + 1.85) this.cam.y = p.y + 1.85;
     }
     if (mode !== 3 && mode !== 1) {
       const near = nearestIndex(this.built.samples, this.cam.x, this.cam.z, p.sampleIndex, this.built.closed);
@@ -650,7 +650,7 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
         this.cam.z = s.z + nz * maxCam;
       }
       const road = this.built.samples[near.index];
-      const minY = Math.max(p.y + 1.35, road.y + 1.7);
+      const minY = Math.max(p.y + 1.85, road.y + 2.15);
       if (this.cam.y < minY) this.cam.y = minY;
     }
     if (mode === 0 && !this.lookBack) {
@@ -664,6 +664,19 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
           this.cam.z = c.z + (dz / d) * keep;
         }
       }
+      const bodies = this.racers ?? [];
+      const traffic = this.traffic ?? [];
+      for (const v of [...bodies, ...traffic]) {
+        if (v === p) continue;
+        const dx = this.cam.x - v.x;
+        const dz = this.cam.z - v.z;
+        const d = Math.hypot(dx, dz);
+        if (d < 5.2 && d > 0.0001) {
+          this.cam.x = v.x + (dx / d) * 5.2;
+          this.cam.z = v.z + (dz / d) * 5.2;
+        }
+      }
+      if (this.cam.y < p.y + 1.85) this.cam.y = p.y + 1.85;
     }
     const shake = this.replaying ? 0 : this.trauma * this.trauma;
     const lookAhead = mode === 3 ? 0.2 : mode === 1 ? 9 : 6.4 + clamp(Math.abs(p.speed) / 18, 0, 6);

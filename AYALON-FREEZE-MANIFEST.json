@@ -3,7 +3,7 @@
   "document_type": "rush-ayalon-freeze-manifest",
   "unit": "RSH-036",
   "title": "Freeze Ayalon and hash all transitive dependencies",
-  "generated_at": "2026-09-12T04:14:27.223Z",
+  "generated_at": "2026-09-12T04:18:15.733Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "implementation_base": {
@@ -72,7 +72,7 @@
       "src/components/touch-controls.tsx": "11c2a7ed3c598c01f06c4450126a424a9ea00ff44c05d2cf1421092649b68a92",
       "package.json": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
       "AYALON-OWNER-APPROVAL.json": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
-      "src/game/engine.ts": "730467eb6988f5f10e08678f5d1d47f56dd74b182b10539b41d379829f4f8c93",
+      "src/game/engine.ts": "2b931a9cd77cb6132bf8081d49ad6d5ffc70bf7125a90f39b630a98b5505ca0c",
       "src/game/records.ts": "10bff6426c0ce8d9b406bac66662363ec997883fbff28941dab3f95e1f818aa0",
       "src/components/game-app/race-controller.tsx": "02bf8279185a618488fe730567dd2b742d35c53abffd23864efb6fbb40c54819",
       "src/game/race-startup.ts": "cda8d6d3e3af7d385196e1e0d6702a70b6749be76aae8f4fffc1399ef7075dba",
@@ -153,7 +153,7 @@
     "vehicle_envelope_behavior_changed": true
   },
   "identities": {
-    "freeze_source_sha256": "1eda08c84b1a4650b376e5617d22eb7f45f0f1f948537fadea8efea762922393",
+    "freeze_source_sha256": "e50d09cee0b1ee6b6d14eb94e3fbbf0c6045ffc474cb8cc8345b52c1b1b0b12d",
     "index_source_sha256": "54cf9ad3c6188cc776c7aa232fd7bd526452c9cbef3a68b918253489b7647c10",
     "contract_sha256": "03727dd56eb2c6808ace47c372ab901dc96a22445d8a71fa09bb87f92d27e9d5",
     "owner_approval_sha256": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84",
@@ -162,7 +162,7 @@
     "pixel_golden_sha256": "9513d88627615a49764f46d10e913e8787bb925008da4d47e50b13e6efa623f9",
     "checker_test_sha256": "28fc007c15b971cecb21dee3ff5cac13d87a7cd61d761a6f1c6a1d125418e5a6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "freeze_digest_sha256": "988d43a002cab14442c00f37a9e0172174f8872c043ccfaa0b019a73ab3af7ec",
+    "freeze_digest_sha256": "a48cf607de8b65d7e4453ae0a31bbbe4d5dc4b60ca35db4d00d37631c597fc03",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {

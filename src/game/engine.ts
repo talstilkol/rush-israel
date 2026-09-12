@@ -697,7 +697,7 @@ export class RaceEngine {
       cab.weather = this.weather;
       cab.handling = "simcade";
       cab.assists = { abs: true, tcs: true, esc: false };
-      cab.spawn(this.built, (0.12 + i / n) % 1, cab.aiOffset);
+      cab.spawn(this.built, (0.22 + i / n) % 1, cab.aiOffset);
       this.traffic.push(cab);
       const vis = createCarVisual(color, accent, false, false, body);
       if (kind === "bus") vis.group.scale.set(1.12, 1.22, 1.38);
