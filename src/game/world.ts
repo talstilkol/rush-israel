@@ -570,7 +570,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     dir.add(lensflare);
   }
   applyLights(isNight, hemi, dir, fill, ambient, lightAim, flareCol, lensflare);
-  const desertNight = def.theme === "desert" || def.theme === "snow" || def.id === "ramon" || def.id === "hermon";
+  const desertNight = def.theme === "desert" || def.theme === "snow" || def.theme === "stone" || def.id === "ramon" || def.id === "hermon" || def.id === "scopus";
   if (isNight && desertNight) {
     hemi.color.setHex(0x9ab4d0);
     hemi.groundColor.setHex(0x4a3828);

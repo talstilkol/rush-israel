@@ -12,7 +12,7 @@ export default defineTrack({
     description: "כביש חוף מהיר, שיער סיכה במרינה, והרי אדום ברקע. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Fast coastal road, a marina hairpin, and the Red Mountains behind you. Inspired by the place — not a map, not GIS.",
     image: "/tracks/eilat.jpg",
-    width: 20,
+    width: 24,
     seed: 9091,
     theme: "desert",
     ground: 0xc4a074,

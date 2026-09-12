@@ -1,4 +1,5 @@
 import type { RefObject } from "react";
+import { useEffect, useState } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { Gauge, Pause } from "lucide-react";
 import { formatTime } from "@/game/math";
@@ -29,6 +30,24 @@ type HudProps = {
 // RSH-018-BLOCK-END:HudProps
 // RSH-018-BLOCK-BEGIN:Hud
 function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSkipReplay, onPhotoFilter, onPhotoHide, onPhotoExit, onPhotoSave }: HudProps) {
+	const [hint, setHint] = useState(() => {
+		try {
+			return localStorage.getItem("rush-drive-hint") !== "1";
+		} catch {
+			return true;
+		}
+	});
+	useEffect(() => {
+		if (!hint || hud.countdown > 0) return;
+		if (hud.speedKmh > 14 || hud.totalTime > 9) {
+			setHint(false);
+			try {
+				localStorage.setItem("rush-drive-hint", "1");
+			} catch {
+				/* ignore */
+			}
+		}
+	}, [hint, hud.countdown, hud.speedKmh, hud.totalTime]);
 	if (hud.photo) {
 		if (hud.photoHide) return null;
 		return /* @__PURE__ */ jsxs("div", {
@@ -103,6 +122,14 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 			hud.mode === "heat" && hud.heat > .12 ? /* @__PURE__ */ jsx("div", {
 				className: cn("pointer-events-none absolute inset-0", hud.heat > .7 ? "shadow-[inset_0_0_90px_var(--color-danger)]" : "shadow-[inset_0_0_70px_var(--color-accent)]"),
 				style: { opacity: .25 + hud.heat * .45 }
+			}) : null,
+			hud.countdown > 0 ? /* @__PURE__ */ jsx("p", {
+				className: "pointer-events-none absolute inset-x-0 top-[38%] text-center text-7xl font-semibold tabular-nums text-fg",
+				children: Math.max(1, Math.ceil(hud.countdown))
+			}) : null,
+			hint && hud.countdown <= 0 && hud.speedKmh < 16 && !hud.finished && !hud.replay ? /* @__PURE__ */ jsx("p", {
+				className: "pointer-events-none absolute inset-x-0 top-[42%] text-center text-sm font-medium text-fg",
+				children: langHe ? "W גז · A שמאלה · D ימינה" : "W gas · A left · D right"
 			}) : null,
 			/* @__PURE__ */ jsxs("div", {
 				className: "flex items-start justify-between gap-3",
