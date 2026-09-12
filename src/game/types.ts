@@ -238,6 +238,8 @@ export type HudState = {
   slipRatio: number;
   physicsHz: number;
   msP95: number;
+  msP50: number;
+  msP99: number;
   backend: string;
   kinMix: number;
   drawCalls: number;

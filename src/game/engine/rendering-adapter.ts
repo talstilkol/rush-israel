@@ -711,6 +711,7 @@ export function pushHud(this: EngineAdapterHost)
         rivalGap = place > 1 ? ds * lapEst : -ds * lapEst;
       }
     }
+    const snap = this.telem.snapshot();
     this.opts.onHud({
       speedKmh: Math.abs(this.player.speed) * 3.6,
       lap: Math.min(this.totalLaps, this.player.lap + 1),
@@ -796,7 +797,9 @@ export function pushHud(this: EngineAdapterHost)
       escActive: this.player.escActive,
       slipRatio: this.player.slipRatio,
       physicsHz: PHYSICS_HZ,
-      msP95: this.telem.snapshot().p95,
+      msP95: snap.p95,
+      msP50: snap.p50,
+      msP99: snap.p99,
       backend: this.telem.backend,
       kinMix: this.player.kinMix,
       drawCalls: this.renderer.info.render.calls,

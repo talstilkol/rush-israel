@@ -1957,7 +1957,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       const s = built.samples[i];
       if (!pine && !acacia && s.y > 14) continue;
       for (const side of pine || acacia ? [-1, 1] : [i % 12 === 0 ? 1 : -1]) {
-        const d = built.width / 2 + (pine ? 18 + i % 5 * 5.2 : acacia ? 12 + i % 4 * 4 : ficusStreet ? 12.5 : stoneHill ? 16 : 7.2);
+        const d = built.width / 2 + (pine ? 22 + i % 5 * 5.2 : acacia ? 12 + i % 4 * 4 : ficusStreet ? 12.5 : stoneHill ? 16 : 7.2);
         const px = s.x + s.rx * d * side;
         const pz = s.z + s.rz * d * side;
         if (nearestIndexXY(built.samples, px, pz).dist < built.width / 2 + 10) continue;

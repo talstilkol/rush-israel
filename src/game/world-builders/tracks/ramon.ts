@@ -56,11 +56,21 @@ export default function buildRamon(context: TrackWorldBuilderContext): void {
     });
     bag.push(dust, sand, tan, creamRock, band, darkRock, rust);
     const floor = ram(30.585, 34.802);
-    const floorPlane = new THREE.Mesh(new THREE.CircleGeometry(420, 28), sand);
-    floorPlane.rotation.x = -Math.PI / 2;
-    floorPlane.position.set(floor.x, 0.4, floor.z);
-    add(floorPlane);
-    const wadi = new THREE.Mesh(new THREE.BoxGeometry(28, 0.3, 380), dust);
+    const floorR = 140;
+    let floorHitsClimb = false;
+    for (const s of built.samples) {
+      if (s.y > 8 && Math.hypot(s.x - floor.x, s.z - floor.z) < floorR + built.width) {
+        floorHitsClimb = true;
+        break;
+      }
+    }
+    if (!floorHitsClimb) {
+      const floorPlane = new THREE.Mesh(new THREE.CircleGeometry(floorR, 28), sand);
+      floorPlane.rotation.x = -Math.PI / 2;
+      floorPlane.position.set(floor.x, 0.4, floor.z);
+      add(floorPlane);
+    }
+    const wadi = new THREE.Mesh(new THREE.BoxGeometry(28, 0.3, 180), dust);
     wadi.position.set(floor.x + 8, 0.55, floor.z);
     add(wadi);
     const rockGeo = new THREE.DodecahedronGeometry(1, 0);

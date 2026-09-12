@@ -147,6 +147,23 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
         ti++;
       }
     }
+    const medEdge = 6.45;
+    const stepMed = Math.max(1, Math.floor(n / 90));
+    for (let i = 0; i < n; i += stepMed) {
+      const s = built.samples[i];
+      const yaw = Math.atan2(s.tx, s.tz);
+      for (const lat of [-medEdge, medEdge]) {
+        colliders.push({
+          x: s.x + s.rx * lat,
+          z: s.z + s.rz * lat,
+          r: 1.15,
+          hx: 0.65,
+          hz: 2.6,
+          yaw,
+          kind: "barrier"
+        });
+      }
+    }
     trunks.count = ti;
     leaves.count = li;
     trunks.instanceMatrix.needsUpdate = true;

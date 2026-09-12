@@ -146,10 +146,20 @@ export default function buildHermon(context: TrackWorldBuilderContext): void {
       roof.position.set(lx, lodgeY + 8.4, lz);
       add(roof);
     }
-    const snowField = new THREE.Mesh(new THREE.CircleGeometry(168, 24), snowM);
+    const snowField = new THREE.Mesh(new THREE.CircleGeometry(96, 24), snowM);
     snowField.rotation.x = -Math.PI / 2;
-    snowField.position.set(peak.x + 18, def.elevation(1) + 0.35, peak.z + 28);
-    add(snowField);
+    {
+      let sx = peak.x + 18;
+      let sz = peak.z + 28;
+      const nSnow = nearestIndex(built.samples, sx, sz, 0);
+      if (nSnow.dist < built.width / 2 + 100) {
+        const sS = built.samples[nSnow.index];
+        sx = sS.x + sS.rx * (built.width / 2 + 110);
+        sz = sS.z + sS.rz * (built.width / 2 + 110);
+      }
+      snowField.position.set(sx, def.elevation(1) + 0.35, sz);
+      add(snowField);
+    }
     const mid = her(33.294, 35.778);
     const midY = def.elevation(0.55);
     for (let i = 0; i < 12; i++) {

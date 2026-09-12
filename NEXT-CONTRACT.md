@@ -1,7 +1,7 @@
-**Version:** 20.98.0
+**Version:** 20.99.0
 **Date:** 2026-09-12, Asia/Jerusalem
 **Main:** e01d91de5dfa11685a51dcea90c1dbc8e2d2148a
-**Repair base:** 1b2d5a3
+**Repair base:** 4b4c8ed
 **Active:** RSH-036 / PR #39 / agent/rsh-036-ayalon-freeze, unaccepted.
 
 GitHub is the current source of truth. Re-read live refs,CI and sources before
@@ -177,6 +177,14 @@ plus this steer floor: namal/oldjaffa/caesarea/scopus/ayalon spawn
 driveable in-browser; Haifa Baháʼí pines off ribbon; ghost 0 at spawn;
 procedural Y-up car. Pixel leftover g07 0.2027 unchanged.
 `freeze_granted=false`. No merge, no PNG refresh, no RSH-037.
+
+## r6.99 remaining V1 tracks (not remaining 0/4, not freeze grant)
+Rothschild median-edge colliders keep the car in the outer lanes
+(real spawn dA +1.18). Ramon crater disc no longer cuts the climb.
+Hermon snow field off-ribbon. HUD `?qa=1` shows p50/p95/p99.
+Live: rothschild 26 km/h; ramon y=168→94; hermon 25; scopus 25.
+Pixel leftover g07 0.2027 unchanged. `freeze_granted=false`.
+No merge, no PNG refresh, no RSH-037 queue activation.
 
 ## r6.98 playability (not remaining 0/4, not freeze grant)
 Owner “finish the programs” + GFX-09/10 flicker + cannot-drive.
@@ -489,5 +497,5 @@ under OWNER-2026-09-05-CONTINUOUS-IMPROVEMENT until the remaining 32
 units are implemented. RSH-037 stays unactivated as a queue unit;
 instrumentation already lives on the HUD.
 
-Master plan r6.98 retains 67 units, 42 historical findings, 6 bundles and 104
+Master plan r6.99 retains 67 units, 42 historical findings, 6 bundles and 104
 audit IDs. All 13 release gates remain open; 66 asset licences remain unverified.
