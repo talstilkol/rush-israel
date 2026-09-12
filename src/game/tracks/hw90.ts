@@ -12,7 +12,7 @@ export default defineTrack({
     description: "סדום עד אילת: הערבה, חצבה, גרופית והחום. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Sodom to Eilat: the Arava, Hatzeva, Grofit and the heat. Inspired by the place — not a map, not GIS.",
     image: "/tracks/hw90.jpg",
-    width: 22,
+    width: 26,
     seed: 90,
     theme: "desert",
     ground: 0xc4a070,

@@ -12,7 +12,7 @@ export default defineTrack({
     description: "שדה בוקר, קבר בן גוריון, עבדת וחולות. בהשראת המקום, לא מפה ולא GIS.",
     descriptionEn: "Sde Boker, Ben-Gurion's tomb, Avdat and the dunes. Inspired by the place — not a map, not GIS.",
     image: "/tracks/hw40.jpg",
-    width: 22,
+    width: 26,
     seed: 40,
     theme: "desert",
     ground: 0xc4a070,
