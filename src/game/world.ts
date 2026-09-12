@@ -2296,7 +2296,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     depthWrite: false,
     fog: true
   }));
-  const lampCount = def.id === "ramon" || def.id === "hermon" ? Math.floor(built.samples.length / 12) : def.id === "ayalon" ? Math.floor(built.samples.length / 8) : def.id === "hw1" || def.id === "hw2" || def.id === "hw6" ? Math.floor(built.samples.length / 16) : def.theme === "carmel" ? Math.floor(built.samples.length / 18) : Math.floor(built.samples.length / 16);
+  const lampCount = def.id === "ramon" || def.id === "hermon" ? Math.floor(built.samples.length / 12) : def.id === "ayalon" ? Math.floor(built.samples.length / 8) : def.id === "hw1" || def.id === "hw2" || def.id === "hw6" ? Math.floor(built.samples.length / 16) : def.theme === "carmel" ? Math.floor(built.samples.length / 18) : Math.floor(built.samples.length / 22);
   const lampStride = Math.max(1, Math.floor(built.samples.length / Math.max(1, lampCount)));
   const poles = new THREE.InstancedMesh(poleGeo, poleMat, Math.max(1, lampCount));
   const bulbs = new THREE.InstancedMesh(bulbGeo, bulbMat, Math.max(1, lampCount));
