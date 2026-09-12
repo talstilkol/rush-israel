@@ -642,7 +642,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   sunHalo.frustumCulled = false;
   group.add(sunHalo);
   const skyDomeMat = keep(new THREE.MeshBasicMaterial({
-    color: isNight ? 0x4a6a90 : 0x3c9ee0,
+    color: isNight ? 0x5a7aa0 : 0x3c9ee0,
     fog: true,
     depthWrite: false,
     side: THREE.BackSide,
@@ -2803,7 +2803,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const next = skyAt(def, clock, wx);
     applySky(sky, sun, next);
     skyDomeMat.map = null;
-    skyDomeMat.color.setHex(n > 0.5 ? 0x4a6a90 : 0x3c9ee0);
+    skyDomeMat.color.setHex(n > 0.5 ? 0x5a7aa0 : 0x3c9ee0);
     skyDomeMat.needsUpdate = true;
     if (n < 0.58) lightAim.copy(sun);
     else {
