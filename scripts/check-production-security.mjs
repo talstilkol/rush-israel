@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 import { SCAN_ROOTS, SECRET_PATTERN_SPECS } from "./secrets-check.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "74c572708cae558a3f906f20d5023651c5cf94e54954e5ef49e3c51b6193896b";
+export const EXPECTED_MANIFEST_SHA256 = "76036421618a79df66997a4530f1cc22eea5e1fd53ac0bb3efb3ae205eeae07e";
 export const EXPECTED_POLICY_SHA256 = "90516317124c1ad86e1a059959a498e2e2d32b9b23834feb8cfc2026a1b0bb88";
 export const EXPECTED_SECRETS_CHECK_SHA256 = "9a2b1ffceaae9602c4134b47cbca9209f7d6a684d335b0ac4b9cc2914b8fc322";
 export const EXPECTED_SECRETS_TEST_SHA256 = "eb436ab5108a6679d52f22684c3cc0a330729a3106d0ed1d6c044fea8fd5db73";

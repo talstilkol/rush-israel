@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 import { stripRsh033Overlay } from "./rsh033-overlay.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "3e98d555c0cd0af3dea686baa0f85d03e33e8ced7769459177931363d0eec54f";
+export const EXPECTED_MANIFEST_SHA256 = "bb0e5aeba22a1e4aef65a143340c759ba842f9df7f43d1ddf5d21702164dde7a";
 export const EXPECTED_LOCK_SHA256 = "477c9c75d707945f4c9c7463675db9099a419b7ca21911fff065d8cf287a98d0";
 export const EXPECTED_INDEX_SHA256 = "e9489dbe34cee8d9768fa75fbe5ea0ce5276f686fdfcdad1c2a95e908988504e";
 export const EXPECTED_CARS_SHA256 = "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542";

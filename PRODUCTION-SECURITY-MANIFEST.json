@@ -106,6 +106,7 @@
       ".github/workflows/rsh-038-",
       "RSH-038-",
       "scripts/rsh038-",
+      "scripts/check-quality-profiles",
       "src/game/quality-profiles/"
     ],
     "rsh_026_state": "accepted_on_merge",

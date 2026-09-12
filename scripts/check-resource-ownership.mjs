@@ -107,7 +107,8 @@ export function validateResourceOwnership(overrides = {}) {
   const later = input.repositoryFiles.filter((path) =>
     path.startsWith(".rsh038") ||
     path.startsWith(".github/workflows/rsh-038-") ||
-    path.startsWith("RSH-038-"),
+    path.startsWith("RSH-038-") ||
+    path.startsWith("scripts/check-quality-profiles"),
   );
   if (later.length) errors.push(`RSH-038 was precreated: ${later.join(", ")}`);
   const temp = input.repositoryFiles.filter((path) =>
