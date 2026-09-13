@@ -28,6 +28,8 @@ export const EXPECTED_INPUT_MAPS_LOCK_SHA256 = "11ca4e04c9bb1040955d54cb9b52df33
 export const EXPECTED_RTL_SCOPE_LOCK_SHA256 = "3763e29aaeef4d8c0342ea118b81ea3b5f643f79f6fe9b02dd750e2225c9fa8a";
 export const EXPECTED_I18N_SHA256 = "55878103cfc92169bfd6f54f3c2ff11ac129a203d46382059cebddddeb11b318";
 export const EXPECTED_GAME_APP_SHA256 = "4569f67f6a8659252e3c3cf332fa377f263d3f41fcd03ced60a007aa0148cc4b";
+export const EXPECTED_ROOT_SHA256 = "a242e4f8c4463313309001eec031897c8b9555ea2505e065b777489027374709";
+export const EXPECTED_STYLES_SHA256 = "b7238994617b20c40ff3443ea430a0a0b94bcc908d70fc78df6b22de3eb104b3";
 export const EXPECTED_SCREENS_SHA256 = "37e532f6920a249564eeacfc3473d14b6731da97cff1763eec5e78a1c6cce91d";
 export const EXPECTED_SAVE_RECOVERY_UI_SHA256 = "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26";
 export const EXPECTED_SAVE_RECOVERY_SHA256 = "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f";
@@ -79,7 +81,10 @@ export function readLockInputs() {
     deviceMatrixLockSource: readFileSync(fromRoot("src", "game", "device-matrix", "matrix.ts"), "utf8"),
     inputMapsLockSource: readFileSync(fromRoot("src", "game", "input-maps", "maps.ts"), "utf8"),
     rtlScopeLockSource: readFileSync(fromRoot("src", "game", "rtl-scope", "scope.ts"), "utf8"),
+    i18nSource: readFileSync(fromRoot("src", "game", "i18n.ts"), "utf8"),
     gameAppSource: readFileSync(fromRoot("src", "components", "game-app.tsx"), "utf8"),
+    rootSource: readFileSync(fromRoot("src", "routes", "__root.tsx"), "utf8"),
+    stylesSource: readFileSync(fromRoot("src", "styles.css"), "utf8"),
     screensSource: readFileSync(fromRoot("src", "components", "game-app", "screens.tsx"), "utf8"),
     recoveryUiSource: readFileSync(fromRoot("src", "game", "save-recovery-ui.ts"), "utf8"),
     recoverySource: readFileSync(fromRoot("src", "game", "save-recovery.ts"), "utf8"),
@@ -111,7 +116,10 @@ export function validateLock(overrides = {}) {
     touch_source_sha256: [input.touchSource, EXPECTED_TOUCH_SHA256],
     feel_source_sha256: [input.feelSource, EXPECTED_FEEL_SHA256],
     race_source_sha256: [input.raceSource, EXPECTED_RACE_SHA256],
+    i18n_source_sha256: [input.i18nSource, EXPECTED_I18N_SHA256],
     game_app_source_sha256: [input.gameAppSource, EXPECTED_GAME_APP_SHA256],
+    root_source_sha256: [input.rootSource, EXPECTED_ROOT_SHA256],
+    styles_source_sha256: [input.stylesSource, EXPECTED_STYLES_SHA256],
     screens_source_sha256: [input.screensSource, EXPECTED_SCREENS_SHA256],
     save_recovery_ui_sha256: [input.recoveryUiSource, EXPECTED_SAVE_RECOVERY_UI_SHA256],
     save_recovery_sha256: [input.recoverySource, EXPECTED_SAVE_RECOVERY_SHA256],
