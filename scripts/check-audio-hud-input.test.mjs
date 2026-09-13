@@ -17,7 +17,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-034 audio/HUD/input lock passes and RSH-048 remains absent", () => {
+test("committed RSH-034 audio/HUD/input lock passes and RSH-049 remains absent", () => {
   const result = validateAudioHudInput();
   assert.deepEqual(result.errors, []);
   assert.equal(result.backend, "oscillator");
@@ -25,11 +25,11 @@ test("committed RSH-034 audio/HUD/input lock passes and RSH-048 remains absent",
   assert.equal(result.speedScale, 3.6);
 });
 
-test("RSH-048 precreation fails closed", () => {
+test("RSH-049 precreation fails closed", () => {
   const result = validateAudioHudInput({
-    repositoryFiles: ["RSH-048-PREFLIGHT.json", "src/game/input-maps/lock.ts"],
+    repositoryFiles: ["RSH-049-PREFLIGHT.json", "src/game/input-maps/lock.ts"],
   });
-  assert.match(messages(result), /RSH-048 was precreated/);
+  assert.match(messages(result), /RSH-049 was precreated/);
 });
 
 test("live audio stays oscillators with locked HUD speed and input maps", () => {

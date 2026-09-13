@@ -1,5 +1,5 @@
 {
-  "schema_version": "30.0.0",
+  "schema_version": "31.0.0",
   "document_type": "rush-baseline-register",
   "generated_at": "2026-09-13T12:15:00.000Z",
   "repository": "talstilkol/rush-israel",
@@ -814,23 +814,36 @@
       "post_merge_workflow_run": 34748790582,
       "recorded_at": "2026-09-13T09:00:20Z",
       "description": "RSH-046 accepted."
+    },
+    {
+      "id": "B047-rsh-047-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-047",
+      "pull_request": 52,
+      "commit_sha": "fa95fcde9183461c43edbdfae11153457566ae58",
+      "tree_sha": "bce69dc433ab6f74f3150954429f01ac22751e76",
+      "validated_head_sha": "811e413e15d14dcdb906f29b6f3471997a6d030a",
+      "workflow_run": 34749623339,
+      "post_merge_workflow_run": 34749754739,
+      "recorded_at": "2026-09-13T09:34:27Z",
+      "description": "RSH-047 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-047",
+    "unit": "RSH-048",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "660c1e024ae6cccaad2f492d0aa1cda7c0cd19b6",
-    "branch": "agent/rsh-047-pwa",
-    "manifest": "PWA-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-047 pull request"
+    "implementation_base_sha": "fa95fcde9183461c43edbdfae11153457566ae58",
+    "branch": "agent/rsh-048-a11y",
+    "manifest": "A11Y-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-048 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-048",
+    "queue_head": "RSH-049",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_048_authorized": false
+    "RSH_049_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

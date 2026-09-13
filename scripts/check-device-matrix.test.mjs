@@ -18,17 +18,17 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-043 lock passes and RSH-048 remains absent", () => {
+test("committed RSH-043 lock passes and RSH-049 remains absent", () => {
   const result = validateLock();
   assert.deepEqual(result.errors, []);
   assert.equal(result.locked, true);
 });
 
-test("RSH-048 precreation fails closed", () => {
+test("RSH-049 precreation fails closed", () => {
   const result = validateLock({
-    repositoryFiles: ["RSH-048-PREFLIGHT.json", "src/game/a11y/gates.ts", "scripts/check-a11y.mjs"],
+    repositoryFiles: ["RSH-049-PREFLIGHT.json", "src/game/rothschild/geometry.ts", "scripts/check-rothschild.mjs"],
   });
-  assert.match(messages(result), /RSH-048 was precreated/);
+  assert.match(messages(result), /RSH-049 was precreated/);
 });
 
 test("RSH-043 does not accept a verified-device or public-distribution claim", () => {
@@ -43,5 +43,5 @@ test("RSH-043 does not accept a verified-device or public-distribution claim", (
   assert.equal(manifest.lock.gis_claim, false);
   assert.equal(manifest.lock.public_distribution, false);
   assert.equal(manifest.lock.real_device_baseline_accepted, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-048");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-049");
 });

@@ -5,7 +5,7 @@
 **State effective on:** merge of the RSH-024 pull request
 **Date:** 2 September 2026
 **Total:** 42 findings — 12 P0, 18 P1, 12 P2
-**Status:** 10 OPEN, 8 MITIGATED, 24 CLOSED
+**Status:** 9 OPEN, 8 MITIGATED, 25 CLOSED
 
 ## Status rules
 
@@ -59,5 +59,5 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P2-08 | P2 | **CLOSED** | README does not document reproducible setup and validation | RSH-012 documents exact Node/npm versions, `npm ci`, development, full tests, self-starting QA and deterministic build commands. | RSH-012 |
 | P2-09 | P2 | **OPEN** | No bundle or asset budget is enforced | RSH-039 locks cache/streaming/draw-call budgets but does not check production JS/asset byte size. A numeric bundle threshold remains RSH-039 follow-on / release-gate work. | RSH-039 |
 | P2-10 | P2 | **CLOSED** | Unified input maps lock canvas `touch-none` and pointer-cancel | RSH-044 locks one canonical keyboard/touch/gamepad action table and verifies canvas `touch-none` plus pointer-cancel on the on-screen pad. Live `input.ts` / `touch-controls.tsx` bytes stay the RSH-034 maps. | RSH-044 |
-| P2-11 | P2 | **OPEN** | Crash reporting, telemetry and privacy policy are undefined | No accepted collection and retention policy exists. | RSH-048 |
+| P2-11 | P2 | **CLOSED** | Crash reporting, telemetry and privacy policy are undefined | RSH-048 locks telemetry=false, crash_reporting=false, privacy_policy=false; collection/retention is none for the private owner-controlled product. | RSH-048 |
 | P2-12 | P2 | **CLOSED** | Browser and device support matrix now exists | RSH-043 locks six target browsers (Chrome/Edge/Firefox/Safari desktop + Chrome Android + Safari iOS) with WebGL2 required. Status is target, not a verified real-device baseline (P1-13 stays OPEN). | RSH-043 |
