@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 44.0.0
+**Version:** 45.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-061 implementation base:** `cf6042c7e3dde7200afdc9eed56d191a0f8814b9`
-**State effective on:** merge of the RSH-061 pull request
+**RSH-062 implementation base:** `8f35457fb29285f4af487457342d6b4bdd1ea574`
+**State effective on:** merge of the RSH-062 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-062 — deferred and not authorised
+**Next scheduled unit:** RSH-063 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -20,20 +20,20 @@
 | M5 | Ayalon vertical slice | RSH-025–RSH-036 | 12 | ACCEPTED | Ayalon is owner-approved, golden-locked and dependency-frozen. |
 | M6 | Performance and reliability | RSH-037–RSH-043 | 7 | ACCEPTED | Performance, leak, recovery, soak and compatibility targets pass. |
 | M7 | UX, accessibility and mobile | RSH-044–RSH-048 | 5 | ACCEPTED | Keyboard, touch and gamepad flows pass UX, accessibility and privacy gates. |
-| M8 | Eight-track Version 1 content | RSH-049–RSH-062 | 14 | DEFERRED | Eight of eight MVP tracks are driveable, golden-approved and frozen. |
+| M8 | Eight-track Version 1 content | RSH-049–RSH-062 | 14 | ACCEPTED | Eight of eight MVP tracks are driveable, golden-approved and frozen. |
 | M9 | Release | RSH-063–RSH-067 | 5 | DEFERRED | All 13 release gates pass and `v1.0.0` has rollback proof. |
 
 ## Post-merge program evidence
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 61 |
+| Accepted units | 62 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-062 — deferred/not authorised |
+| Queue head | RSH-063 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 6 |
-| RSH-061 one-unit authority | consumed 1/1 |
+| Remaining units | 5 |
+| RSH-062 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -86,5 +86,6 @@
 | RSH-059 | Ramon geometry and driving locked on validated merge |
 | RSH-060 | Ramon art, golden and source freeze locked on validated merge |
 | RSH-061 | Hermon geometry and driving locked on validated merge |
+| RSH-062 | Hermon art, golden and source freeze locked on validated merge |
 
-No RSH-062 branch, PR or implementation structure is authorised by this state.
+No RSH-063 branch, PR or implementation structure is authorised by this state.

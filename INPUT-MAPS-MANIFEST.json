@@ -54,7 +54,7 @@
     "lock_source_sha256": "11ca4e04c9bb1040955d54cb9b52df337217c71fcaf78a0a0b5918aa66c4ff2c",
     "index_source_sha256": "f2772b386dd7ac870047ff55d2249424af6a89e68e6c2782c3adea7e5be68c0c",
     "contract_sha256": "817969cbf74e6d145a9ff616c7ba6c7e75bd29184de73a37fab88babaedf4815",
-    "checker_test_sha256": "8f8146c03cec0826dd8e00a6981731c54d05c5772af65651e8e4c81187cd0415",
+    "checker_test_sha256": "35366d9a5dbae03a9a792223d4660fb51b4a41dacaf8e6ed44128e345647a20a",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
@@ -72,20 +72,20 @@
     "device_matrix_lock_sha256": "52f16f14894ae8d9fefe2d97c060733648642b6571e1b75d94d28df6b908547b"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-062",
+    "queue_head": "RSH-063",
     "rsh_044_authorized": true,
     "rsh_044_started": true,
     "rsh_045_authorized": true,
     "rsh_045_started": true,
     "forbidden_prefixes": [
-      ".rsh062",
-      ".github/workflows/rsh-062-",
-      "RSH-062-",
-      "scripts/rsh062-",
-      "scripts/check-hermon-golden",
-      "scripts/check-hermon-art",
-      "scripts/check-hermon-freeze",
-      "src/game/hermon-golden/"
+      ".rsh063",
+      ".github/workflows/rsh-063-",
+      "RSH-063-",
+      "scripts/rsh063-",
+      "scripts/check-semver-release",
+      "scripts/check-changelog-release",
+      "scripts/check-release-automation",
+      "src/game/semver-release/"
     ],
     "rsh_046_authorized": true,
     "rsh_046_started": true,
@@ -119,7 +119,9 @@
     "rsh_060_started": true,
     "rsh_061_authorized": true,
     "rsh_061_started": true,
-    "rsh_062_authorized": false,
-    "rsh_062_started": false
+    "rsh_062_authorized": true,
+    "rsh_062_started": true,
+    "rsh_063_authorized": false,
+    "rsh_063_started": false
   }
 }
