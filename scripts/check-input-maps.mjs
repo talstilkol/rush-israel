@@ -5,12 +5,12 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "a9300cf35c36977915a9bdee9eff40c6467cfe8505e49d7576c0d82530637f9b";
-export const EXPECTED_LOCK_SHA256 = "8381cea4daa2fed5034ac53f7de29d0b9e1afc65b4aca6b01e831861456ae003";
-export const EXPECTED_INDEX_SHA256 = "a55d5f13d31ecb92492a156fed4e64841272d031195f7d624f05d2fb422ed88c";
-export const EXPECTED_CONTRACT_SHA256 = "33c2ba66cfe688865a1a43438041e0b12c239f4e100a9948e42dd23ecedd0892";
-export const EXPECTED_CHECKER_TEST_SHA256 = "e76422d96a1bde0f38d23e1eb99a3696fdaa18780087e63ae3c73fb402067377";
-export const EXPECTED_DIGEST_SHA256 = "fbafb52fe362fbf0fbaee36b86fb305eee4a255ee14b8d282cb5ff8de815fdc2";
+export const EXPECTED_MANIFEST_SHA256 = "96c430974e02599f498dc8918871c9c1a14a12a6599a79371bec50424ed41ddf";
+export const EXPECTED_LOCK_SHA256 = "11ca4e04c9bb1040955d54cb9b52df337217c71fcaf78a0a0b5918aa66c4ff2c";
+export const EXPECTED_INDEX_SHA256 = "f2772b386dd7ac870047ff55d2249424af6a89e68e6c2782c3adea7e5be68c0c";
+export const EXPECTED_CONTRACT_SHA256 = "817969cbf74e6d145a9ff616c7ba6c7e75bd29184de73a37fab88babaedf4815";
+export const EXPECTED_CHECKER_TEST_SHA256 = "09b2c03578559607d8aaa66a683ce5e83d0138260ce5d292a109df9c2695fa6f";
+export const EXPECTED_DIGEST_SHA256 = "0066481e30475b6620111c42ff2c541badc3d11032946aac476f4c1ed4c33909";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_HUD_SHA256 = "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35";
 export const EXPECTED_QUALITY_PROFILES_SHA256 = "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a";
@@ -45,7 +45,7 @@ function trackedFiles() {
 }
 
 export function canonicalDigest() {
-  return "input_maps_unified=true\ntouch_action=none\ncanvas_touch_none=true\npointer_cancel_locked=true\nunified_action_count=7\nrtl_scope_complete=false\ngis=false\nowner_freeze=false\npublic_distribution=false\n";
+  return "input_maps_unified=true\ntouch_action=none\ncanvas_touch_none=true\npointer_cancel_locked=true\nunified_action_count=7\npause_keyboard_only=true\nrtl_scope_complete=false\ngis=false\nowner_freeze=false\npublic_distribution=false\n";
 }
 
 export function readLockInputs() {
@@ -107,6 +107,7 @@ export function validateLock(overrides = {}) {
   if (manifest.lock?.gis_claim !== false || manifest.lock?.owner_freeze !== false || manifest.lock?.public_distribution !== false) errors.push("RSH-044 must not claim GIS accuracy, owner freeze or public distribution");
   if (manifest.lock?.rtl_scope_complete !== false) errors.push("RSH-044 must not claim RTL-scope complete");
   if (manifest.lock?.input_maps_unified !== true) errors.push("RSH-044 must lock input_maps_unified");
+  if (manifest.lock?.pause_keyboard_only !== true) errors.push("RSH-044 must lock pause as keyboard-only");
   if (!/export const LOCK_DEFINED = true/.test(input.lockSource)) errors.push("lock defined token missing");
   if (!/from "\.\/maps"/.test(input.indexSource)) errors.push("input-maps index no longer re-exports lock");
   if (!/export const INPUT_MAPS_UNIFIED = true/.test(input.lockSource)) errors.push("input_maps_unified token missing");
@@ -115,11 +116,14 @@ export function validateLock(overrides = {}) {
   if (!/export const POINTER_CANCEL_LOCKED = true/.test(input.lockSource)) errors.push("pointer_cancel_locked token missing");
   if (!/export const RTL_SCOPE_COMPLETE = false/.test(input.lockSource)) errors.push("rtl_scope_complete token missing");
   if (!/export const UNIFIED_ACTION_COUNT = 7/.test(input.lockSource)) errors.push("unified_action_count token missing");
+  if (!/export const PAUSE_KEYBOARD_ONLY = true/.test(input.lockSource)) errors.push("pause_keyboard_only token missing");
   if (!/UNIFIED_ACTIONS/.test(input.lockSource)) errors.push("UNIFIED_ACTIONS missing");
+  if (!/pause: false/.test(input.lockSource)) errors.push("gamepad/touch pause must remain unmapped");
 
   for (const token of ["KeyA", "ArrowLeft", "KeyD", "ArrowRight", "KeyW", "ArrowUp", "KeyS", "ArrowDown", "Space", "KeyE", "KeyQ", "Escape", "KeyP", "KeyR", "buttons[7]", "buttons[6]", "buttons[4]", "buttons[0]", "buttons[2]"]) {
     if (!input.inputSource.includes(token)) errors.push(`live input.ts missing unified token ${token}`);
   }
+  if (!/wantsPause\(\) \{\s*return this\.keys\.has\("Escape"\) \|\| this\.keys\.has\("KeyP"\);/.test(input.inputSource)) errors.push("live input.ts pause is not keyboard-only");
   if (!/md:hidden/.test(input.touchSource)) errors.push("live touch-controls missing md:hidden");
   if ((input.touchSource.match(/onPointerCancel/g) || []).length < 6) errors.push("live touch-controls missing pointer-cancel on pad and buttons");
   if (!/touch-none/.test(input.raceSource)) errors.push("live race-controller missing canvas touch-none");

@@ -12,6 +12,7 @@ export const CANVAS_TOUCH_NONE = true;
 export const POINTER_CANCEL_LOCKED = true;
 export const RTL_SCOPE_COMPLETE = false;
 export const UNIFIED_ACTION_COUNT = 7;
+export const PAUSE_KEYBOARD_ONLY = true;
 export const UNIFIED_ACTIONS = [
   "steer",
   "throttle",
@@ -44,6 +45,7 @@ export const GAMEPAD_MAP = {
   drift_buttons: [4, 5] as const,
   nitro_buttons: [0, 1] as const,
   rewind_button: 2,
+  pause: false,
   ffb: false,
   pad_curve_deadzone: 0.12,
   pad_curve_exponent: 1.6,
@@ -53,12 +55,13 @@ export const TOUCH_MAP = {
   visible: "md:hidden",
   pad: "steer_throttle_brake",
   buttons: ["rewind", "brake", "drift", "nitro", "gas"] as const,
+  pause: false,
   pointer_cancel: true,
   canvas_touch_none: true,
   touch_action: "none",
 } as const;
 
-export type LockReport = { claimedRtlComplete?: boolean };
+export type LockReport = { claimedRtlComplete?: boolean; claimedUniversalPause?: boolean };
 
 export function evaluateLock(report: LockReport = {}) {
   return {
@@ -67,6 +70,9 @@ export function evaluateLock(report: LockReport = {}) {
     touchAction: TOUCH_ACTION,
     claimedRtlComplete: Boolean(report.claimedRtlComplete),
     acceptedAsRtlComplete: false,
+    claimedUniversalPause: Boolean(report.claimedUniversalPause),
+    acceptedAsUniversalPause: false,
+    pauseKeyboardOnly: PAUSE_KEYBOARD_ONLY,
     publicDistribution: PUBLIC_DISTRIBUTION,
     gisClaim: GIS_CLAIM,
   };
@@ -79,6 +85,7 @@ export function canonicalDigest(): string {
     "canvas_touch_none=true",
     "pointer_cancel_locked=true",
     "unified_action_count=7",
+    "pause_keyboard_only=true",
     "rtl_scope_complete=false",
     "gis=false",
     "owner_freeze=false",

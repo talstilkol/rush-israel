@@ -19,6 +19,7 @@ The current standing owner instruction to finish the master plan authorised RSH-
 - `canvas_touch_none` = `True`;
 - `pointer_cancel_locked` = `True`;
 - `unified_action_count` = `7`;
+- `pause_keyboard_only` = `True`;
 - `rtl_scope_complete` = `False`;
 - P2-10 closes — unified maps plus canvas `touch-none` and pointer-cancel are the verified contract;
 - P1-12 stays OPEN — long-soak is not in required CI;

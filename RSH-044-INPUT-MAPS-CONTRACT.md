@@ -30,6 +30,7 @@ action table and verifies canvas `touch-none` plus pointer-cancel.
 | `canvas_touch_none` | `true` |
 | `pointer_cancel_locked` | `true` |
 | `unified_action_count` | `7` |
+| `pause_keyboard_only` | `true` |
 | `rtl_scope_complete` | `false` |
 | GIS / navigation claim | forbidden |
 | Public distribution | forbidden |
@@ -40,8 +41,13 @@ action table and verifies canvas `touch-none` plus pointer-cancel.
 
 `steer`, `throttle`, `brake`, `drift`, `nitro`, `pause`, `rewind`.
 
-Keyboard, gamepad index `0` and the `md:hidden` touch pad resolve to the
-same seven actions. Keyboard steer remains `A`/`←` = `+1`, `D`/`→` = `-1`.
+Keyboard, gamepad index `0` and the `md:hidden` touch pad share that
+seven-action vocabulary. Drive actions (`steer`, `throttle`, `brake`,
+`drift`, `nitro`, `rewind`) are bound on all three devices. **Pause is
+keyboard-only** in live runtime (`Escape` / `KeyP` via
+`GameInput.wantsPause()`); gamepad and the on-screen pad have no pause
+control. `evaluateLock({ claimedUniversalPause: true }).acceptedAsUniversalPause`
+is always `false`. Keyboard steer remains `A`/`←` = `+1`, `D`/`→` = `-1`.
 
 ## Runtime preservation
 
