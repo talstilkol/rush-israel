@@ -90,25 +90,25 @@
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
     "pixel_golden_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
-    "checker_test_sha256": "ad163d2f7a94693ad6788150d1d51972905418bf73fe07ef494b4e8362915b85",
+    "checker_test_sha256": "151ff73be63f7450b503519d7fef4c7114e464b0b1e54ac66da07e8b214aad22",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-059",
+    "queue_head": "RSH-060",
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "rsh_036_authorized": true,
     "rsh_036_started": true,
     "forbidden_prefixes": [
-      ".rsh059",
-      ".github/workflows/rsh-059-",
-      "RSH-059-",
-      "scripts/rsh059-",
-      "scripts/check-ramon",
-      "scripts/check-ramon-drive",
-      "scripts/check-ramon-track",
-      "src/game/ramon/"
+      ".rsh060",
+      ".github/workflows/rsh-060-",
+      "RSH-060-",
+      "scripts/rsh060-",
+      "scripts/check-ramon-golden",
+      "scripts/check-ramon-art",
+      "scripts/check-ramon-freeze",
+      "src/game/ramon-golden/"
     ],
     "rsh_037_authorized": true,
     "rsh_037_started": true,
@@ -154,7 +154,9 @@
     "rsh_057_started": true,
     "rsh_058_authorized": true,
     "rsh_058_started": true,
-    "rsh_059_authorized": false,
-    "rsh_059_started": false
+    "rsh_059_authorized": true,
+    "rsh_059_started": true,
+    "rsh_060_authorized": false,
+    "rsh_060_started": false
   }
 }

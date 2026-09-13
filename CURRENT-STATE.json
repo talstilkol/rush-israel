@@ -1,24 +1,24 @@
 {
-  "schema_version": "41.0.0",
+  "schema_version": "42.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-13T12:24:41.000Z",
+  "generated_at": "2026-09-13T12:33:09.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_058_pull_request",
-    "implementation_base_sha": "c0a9c81d3e16f0281094e2888deae5edd2c41fd9",
-    "self_reference_boundary": "The RSH-058 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_059_pull_request",
+    "implementation_base_sha": "5fc4e578287e3120cbad9525b6180bbe7399acdc",
+    "self_reference_boundary": "The RSH-059 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "c0a9c81d3e16f0281094e2888deae5edd2c41fd9",
-    "tree_sha": "88bf7df749ee67d2e4ea5777b483c171dc059628",
-    "commit_authored_at": "2026-09-13T12:20:36Z",
-    "commit_message": "Merge PR #62: RSH-057 — Haifa–Carmel geometry and driving",
+    "head_sha": "5fc4e578287e3120cbad9525b6180bbe7399acdc",
+    "tree_sha": "b3cfa08d2bbd953d38737a80a408900250097b7d",
+    "commit_authored_at": "2026-09-13T12:30:06Z",
+    "commit_message": "Merge PR #63: RSH-058 — Haifa–Carmel art, golden and freeze",
     "commit_signature_verified": true,
-    "role": "RSH-058 exact implementation base"
+    "role": "RSH-059 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 58,
+    "accepted_units": 59,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 9,
-    "remaining_units": 9,
-    "queue_head": "RSH-059",
+    "deferred_units": 8,
+    "remaining_units": 8,
+    "queue_head": "RSH-060",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -1837,7 +1837,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-058": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-058-haifa-golden",
       "pull_request_resolution": "the pull request created from the exact RSH-058 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -1855,16 +1855,50 @@
       "owner_freeze": false,
       "public_distribution": false,
       "real_device_baseline_accepted": false,
-      "rsh_059_created": false
+      "rsh_059_created": true,
+      "pull_request": 63,
+      "validated_head_sha": "01f200e896c8a8f0d191fdfd506eeed6eb47cd6a",
+      "merge_sha": "5fc4e578287e3120cbad9525b6180bbe7399acdc",
+      "tree_sha": "b3cfa08d2bbd953d38737a80a408900250097b7d",
+      "workflow_run": 34757015534,
+      "workflow_job": 103723022059,
+      "artifact_id": 10317941849,
+      "artifact_digest": "sha256:742b5fb8464f7cce0ee7eb2fe5a7fa9bbe4698e5996dad5ba3ef1e68773fd5d8",
+      "post_merge_workflow_run": 34757259552,
+      "post_merge_workflow_job": 103723671071,
+      "post_merge_artifact_id": 10317423962,
+      "post_merge_artifact_digest": "sha256:4b6c406c1b96011ceef56715f35b764557f01fface4bec035a9d67125c16d3e8",
+      "unresolved_review_threads": 0
+    },
+    "RSH-059": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-059-ramon",
+      "pull_request_resolution": "the pull request created from the exact RSH-059 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-059 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-059 merge SHA",
+      "manifest": "RAMON-GEOMETRY-MANIFEST.json",
+      "contract": "RSH-059-RAMON-CONTRACT.md",
+      "lock_module": "src/game/ramon",
+      "track_id": "ramon",
+      "geometry_locked": true,
+      "driving_locked": true,
+      "art_golden_locked": false,
+      "track_freeze_granted": false,
+      "gis_claim": false,
+      "owner_freeze": false,
+      "public_distribution": false,
+      "real_device_baseline_accepted": false,
+      "rsh_060_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-058",
+    "unit": "RSH-059",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-058-haifa-golden",
+    "branch": "agent/rsh-059-ramon",
     "authority_consumed": true,
-    "next_unit": "RSH-059",
+    "next_unit": "RSH-060",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -2014,7 +2048,10 @@
     "RSH-058_authorized": false,
     "RSH-058_was_separately_authorized": true,
     "RSH-058_authorization_consumed": true,
-    "RSH-059_authorized": false
+    "RSH-059_authorized": false,
+    "RSH-059_was_separately_authorized": true,
+    "RSH-059_authorization_consumed": true,
+    "RSH-060_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -2089,12 +2126,12 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The standing owner instruction authorised exactly RSH-058 after RSH-057 merged and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-059.",
+    "The standing owner instruction authorised exactly RSH-059 after RSH-058 merged and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-060.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13.",
     "The standing owner instruction to finish the master plan authorised RSH-036 through RSH-067, but only the queue head may start.",
-    "RSH-059 remains deferred until this unit is accepted on merge."
+    "RSH-060 remains deferred until this unit is accepted on merge."
   ],
   "validation": {
     "queue_units": 67,
@@ -2220,12 +2257,12 @@
   "single_unit_authorization": {
     "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
     "authorized_units": [
-      "RSH-058"
+      "RSH-059"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-058_merge",
-    "RSH_059_authorized": false
+    "state": "consumed_on_RSH-059_merge",
+    "RSH_060_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -2264,12 +2301,12 @@
   "prior_single_unit_authorization": {
     "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
     "authorized_units": [
-      "RSH-057"
+      "RSH-058"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-057_merge",
-    "RSH_058_authorized": false
+    "state": "consumed_on_RSH-058_merge",
+    "RSH_059_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -3210,7 +3247,7 @@
     "post_merge_workflow_run": 34756829637
   },
   "rsh_058_haifa_golden": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "HAIFA-GOLDEN-MANIFEST.json",
     "human_contract": "RSH-058-HAIFA-GOLDEN-CONTRACT.md",
     "validator": "scripts/check-haifa-golden.mjs",
@@ -3223,7 +3260,30 @@
     "gis_claim": false,
     "owner_freeze": false,
     "public_distribution": false,
-    "RSH_059_created": false,
-    "RSH_059_authorized": false
+    "RSH_059_created": true,
+    "RSH_059_authorized": true,
+    "pull_request": 63,
+    "validated_head_sha": "01f200e896c8a8f0d191fdfd506eeed6eb47cd6a",
+    "merge_sha": "5fc4e578287e3120cbad9525b6180bbe7399acdc",
+    "tree_sha": "b3cfa08d2bbd953d38737a80a408900250097b7d",
+    "workflow_run": 34757015534,
+    "post_merge_workflow_run": 34757259552
+  },
+  "rsh_059_ramon_geometry": {
+    "state": "accepted_on_merge",
+    "machine_authority": "RAMON-GEOMETRY-MANIFEST.json",
+    "human_contract": "RSH-059-RAMON-CONTRACT.md",
+    "validator": "scripts/check-ramon.mjs",
+    "test": "scripts/check-ramon.test.mjs",
+    "track_id": "ramon",
+    "geometry_locked": true,
+    "driving_locked": true,
+    "art_golden_locked": false,
+    "track_freeze_granted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "public_distribution": false,
+    "RSH_060_created": false,
+    "RSH_060_authorized": false
   }
 }
