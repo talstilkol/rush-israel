@@ -114,26 +114,26 @@
     "touch_source_sha256": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "checker_test_sha256": "ab660349f9773e235abdc72396a29908c1f97bdd88336005a12599abb7417adc",
+    "checker_test_sha256": "895206c3b67bf4b8e7cfa84cf367f6ee7a559703e0255268731afe66bcbb4a99",
     "audio_digest_sha256": "b5a3a609d13ad78708f362bbff4caaf071454c884aa34bf874fbeff18f56ca3f",
     "input_digest_sha256": "ee389f24969bad529a9e10df5b881f7efc773ecd845056b8aefcc8c52f149809",
     "hud_digest_sha256": "a4516f8b7784d8270fbb8a766515e40ca9ffa70103fe81b63af3733ce05faecb"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-054",
+    "queue_head": "RSH-055",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "forbidden_prefixes": [
-      ".rsh054",
-      ".github/workflows/rsh-054-",
-      "RSH-054-",
-      "scripts/rsh054-",
-      "scripts/check-oldjaffa-golden",
-      "scripts/check-jaffa-golden",
-      "scripts/check-jaffa-art",
-      "src/game/oldjaffa-golden/"
+      ".rsh055",
+      ".github/workflows/rsh-055-",
+      "RSH-055-",
+      "scripts/rsh055-",
+      "scripts/check-scopus",
+      "scripts/check-jerusalem-geometry",
+      "scripts/check-scopus-track",
+      "src/game/scopus/"
     ],
     "rsh_035_state": "accepted_on_merge",
     "rsh_036_authorized": true,
@@ -172,7 +172,9 @@
     "rsh_052_started": true,
     "rsh_053_authorized": true,
     "rsh_053_started": true,
-    "rsh_054_authorized": false,
-    "rsh_054_started": false
+    "rsh_054_authorized": true,
+    "rsh_054_started": true,
+    "rsh_055_authorized": false,
+    "rsh_055_started": false
   }
 }

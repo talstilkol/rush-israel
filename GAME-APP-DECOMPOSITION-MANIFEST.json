@@ -410,14 +410,14 @@
     "rsh_021_started": true,
     "rsh_021_authorized": true,
     "forbidden_prefixes": [
-      ".rsh054",
-      ".github/workflows/rsh-054-",
-      "RSH-054-",
-      "scripts/rsh054-",
-      "scripts/check-oldjaffa-golden",
-      "scripts/check-jaffa-golden",
-      "scripts/check-jaffa-art",
-      "src/game/oldjaffa-golden/"
+      ".rsh055",
+      ".github/workflows/rsh-055-",
+      "RSH-055-",
+      "scripts/rsh055-",
+      "scripts/check-scopus",
+      "scripts/check-jerusalem-geometry",
+      "scripts/check-scopus-track",
+      "src/game/scopus/"
     ],
     "rsh_021_state": "accepted",
     "rsh_022_started": true,
@@ -449,7 +449,7 @@
     "rsh_030_state": "accepted_on_merge",
     "rsh_031_authorized": true,
     "rsh_031_started": true,
-    "queue_head": "RSH-054",
+    "queue_head": "RSH-055",
     "rsh_031_state": "accepted_on_merge",
     "rsh_032_authorized": true,
     "rsh_032_started": true,
@@ -499,8 +499,10 @@
     "rsh_052_started": true,
     "rsh_053_authorized": true,
     "rsh_053_started": true,
-    "rsh_054_authorized": false,
-    "rsh_054_started": false
+    "rsh_054_authorized": true,
+    "rsh_054_started": true,
+    "rsh_055_authorized": false,
+    "rsh_055_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",
