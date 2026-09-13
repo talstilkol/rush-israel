@@ -90,25 +90,25 @@
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
     "pixel_golden_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
-    "checker_test_sha256": "feaf361ccacc5967e46659e55f1618eefa2e0bcc2b454da20e872310b2b47927",
+    "checker_test_sha256": "cb9a69e9f4959a3baa334bed08ce5f7b79faeeb539e54138a9778898e2ddbf76",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-051",
+    "queue_head": "RSH-052",
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "rsh_036_authorized": true,
     "rsh_036_started": true,
     "forbidden_prefixes": [
-      ".rsh051",
-      ".github/workflows/rsh-051-",
-      "RSH-051-",
-      "scripts/rsh051-",
-      "scripts/check-namal",
-      "scripts/check-yarkon-geometry",
-      "scripts/check-reading-geometry",
-      "src/game/namal/"
+      ".rsh052",
+      ".github/workflows/rsh-052-",
+      "RSH-052-",
+      "scripts/rsh052-",
+      "scripts/check-namal-golden",
+      "scripts/check-yarkon-golden",
+      "scripts/check-reading-golden",
+      "src/game/namal-golden/"
     ],
     "rsh_037_authorized": true,
     "rsh_037_started": true,
@@ -138,7 +138,9 @@
     "rsh_049_started": true,
     "rsh_050_authorized": true,
     "rsh_050_started": true,
-    "rsh_051_authorized": false,
-    "rsh_051_started": false
+    "rsh_051_authorized": true,
+    "rsh_051_started": true,
+    "rsh_052_authorized": false,
+    "rsh_052_started": false
   }
 }

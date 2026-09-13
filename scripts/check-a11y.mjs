@@ -5,11 +5,11 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "d7f3ec824c8fb06bd7a3b3db920a0d47e4df5f0085da5da07686ebe2f6f2ffd1";
+export const EXPECTED_MANIFEST_SHA256 = "5d14a658fae49cc8ecfb1770937ac653869c19d15e1f3d354c249face1bfe600";
 export const EXPECTED_LOCK_SHA256 = "868613c1644a98981fbbdad2672e0deeb8a2473f1f5cb3d11f576333c69bf0f1";
 export const EXPECTED_INDEX_SHA256 = "b92ceb29b6fa48b7fe3ef749bbac7d8545a57059c62f6c2d0a294cf3ffc224de";
 export const EXPECTED_CONTRACT_SHA256 = "92486b14da074f861baafd3207db9a5050a93815629f7626e740ff8e0d2eebb7";
-export const EXPECTED_CHECKER_TEST_SHA256 = "885ca24fa6633de2fef5023ff169f6e14c371896c2f5492d02554cfc5be70be3";
+export const EXPECTED_CHECKER_TEST_SHA256 = "8eed72273be4e7ff9d3138e5a980a07d9298a1363c5d4e6605acd77243145226";
 export const EXPECTED_DIGEST_SHA256 = "25f54b22d6dbdeb0ce4605bdaca5e82b1ba6b6fa699945c824a7466da875031f";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_HUD_SHA256 = "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35";
@@ -195,8 +195,8 @@ export function validateLock(overrides = {}) {
   if (!/\| P2-11 \| P2 \| \*\*CLOSED\*\*/.test(input.findingsSource)) errors.push("P2-11 must remain CLOSED");
   if (manifest.preservation?.golden_png_changes !== 0 || manifest.preservation?.package_json_changes !== 0 || manifest.preservation?.release_gates_green !== 0) errors.push("RSH-048 preservation counts changed");
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-051 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-051" || manifest.deferred_boundary?.rsh_048_authorized !== true || manifest.deferred_boundary?.rsh_049_authorized !== true || manifest.deferred_boundary?.rsh_050_authorized !== true || manifest.deferred_boundary?.rsh_051_authorized !== false) errors.push("RSH-051 deferred boundary changed");
+  if (later.length) errors.push(`RSH-052 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-052" || manifest.deferred_boundary?.rsh_048_authorized !== true || manifest.deferred_boundary?.rsh_049_authorized !== true || manifest.deferred_boundary?.rsh_050_authorized !== true || manifest.deferred_boundary?.rsh_051_authorized !== true || manifest.deferred_boundary?.rsh_052_authorized !== false) errors.push("RSH-052 deferred boundary changed");
   return { errors, locked: errors.length === 0 };
 }
 
@@ -211,5 +211,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`a11y fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`a11y ok: RSH-048 locked; RSH-051 deferred`);
+  console.log(`a11y ok: RSH-048 locked; RSH-052 deferred`);
 }
