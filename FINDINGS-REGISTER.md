@@ -1,11 +1,12 @@
 # RUSH Israel — Findings Register
 
-**Version:** 2.4.0
+**Version:** 2.5.0
 **RSH-024 implementation base:** `10d0624fce7813b7ad7082adc3c4e92e56c1b851`
-**State effective on:** merge of the RSH-024 pull request
-**Date:** 2 September 2026
+**Live GitHub re-verification:** 13 September 2026 after owner settings applied on `main` `ce1f8bc`
+**State effective on:** live GitHub supersedes recorded SHAs
+**Date:** 13 September 2026
 **Total:** 42 findings — 12 P0, 18 P1, 12 P2
-**Status:** 9 OPEN, 8 MITIGATED, 25 CLOSED
+**Status:** 6 OPEN, 8 MITIGATED, 28 CLOSED
 
 ## Status rules
 
@@ -19,9 +20,9 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 
 | ID | Severity | Status | Finding | Current evidence | Planned remediation |
 |---|---|---|---|---|---|
-| P0-01 | P0 | **OPEN** | Repository visibility conflicts with the private-code statement | GitHub still reports public visibility. RSH-012 establishes an explicit proprietary licence but does not change repository visibility. | Owner changes visibility to private; live re-verification |
-| P0-02 | P0 | **OPEN** | `main` is not protected | GitHub reports `protected=false`, required checks 0 and rulesets 0. RSH-008 records the desired ruleset, but no administrative mutation has been applied. | Owner applies `REPOSITORY-RULESET-DESIRED.json`; live re-verification |
-| P0-03 | P0 | **MITIGATED** | No branch-and-PR delivery workflow exists | RSH-001–RSH-013 use isolated branches and PRs; governance, CODEOWNERS and templates are versioned. Live settings enforcement remains absent. | Apply the RSH-008 desired ruleset |
+| P0-01 | P0 | **CLOSED** | Repository visibility conflicts with the private-code statement | Live GitHub reports `private=true`, `visibility=private` on 2026-09-13. RSH-012 proprietary licence now agrees with owner visibility policy. 66 unverified assets remain uncleared under P0-12. | Live owner setting applied |
+| P0-02 | P0 | **CLOSED** | `main` is not protected | Live GitHub reports `protected=true`. Ruleset `rush-main-protection` id `23177340` is `active` on `refs/heads/main`: deletion blocked, non-fast-forward blocked, pull request required, required check `required-ci / validate` (GitHub Actions integration 15368), strict policy. | Live owner ruleset applied |
+| P0-03 | P0 | **MITIGATED** | No branch-and-PR delivery workflow exists | RSH-001–RSH-067 used isolated branches and PRs. Live ruleset `rush-main-protection` now requires pull requests and `required-ci / validate` on `main`. Historical direct-main commits remain. | Keep ruleset active; do not rewrite history |
 | P0-04 | P0 | **CLOSED** | No GitHub Actions CI is present | RSH-007 merged `required-ci / validate`; exact-head CI remains the acceptance authority. | RSH-007 |
 | P0-05 | P0 | **CLOSED** | The QA command is not self-contained | The RSH-006 harness starts, validates and stops its own server in CI. | RSH-006, RSH-007 |
 | P0-06 | P0 | **CLOSED** | Automation contains absolute `/workspace` paths | RSH-005 migrated executable automation to module-relative roots; `check:paths` prevents recurrence. | RSH-005 |
@@ -31,7 +32,7 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P0-10 | P0 | **MITIGATED** | The last audit is stale and sequencing rules were violated | The queue was reset, product scope was frozen, all 56 tracks were classified and asset/metadata authorities were established; vertical-slice enforcement remains pending. | RSH-009–RSH-012, RSH-025 |
 | P0-11 | P0 | **MITIGATED** | No version, tag, release or rollback baseline exists | Immutable baseline, milestone, label and release registers exist; tags, releases and rollback proof remain absent. | RSH-063, RSH-064, RSH-067 |
 | P0-12 | P0 | **MITIGATED** | Root licensing and asset provenance are incomplete | RSH-011 inventories 134/134 public files; RSH-012 establishes the proprietary root licence. Exactly 66 asset files remain unverified and uncleared. | Replace or document every unverified asset; keep public distribution blocked |
-| P1-01 | P1 | **MITIGATED** | Production QA-hook removal is not enforced by GitHub | `check:qa` passes inside the required workflow, but GitHub does not yet require that check through branch settings. | Apply the RSH-008 desired ruleset; RSH-024 hardening |
+| P1-01 | P1 | **MITIGATED** | Production QA-hook removal is not enforced by GitHub | `check:qa` runs inside `required-ci / validate`. Live ruleset `23177340` now requires that check on `main`. CURRENT-STATE still records the RSH-067-era unapplied claim, so this finding stays mitigated rather than overstating a control-plane freeze. | Keep ruleset active |
 | P1-02 | P1 | **CLOSED** | Timed-record hashes are generated but not verified on read | RSH-023 verifies SHA-256 record hashes on every load, drops stale physics versions and structurally invalid rows, and bounds storage to 24 per track/car plus 200 overall. | RSH-023 |
 | P1-03 | P1 | **CLOSED** | Timed-record writes are fire-and-forget | RSH-023 serialises persist through one in-module chain, replaces `rush.records.v3` with canonical JSON, verifies the write, and returns structured duplicate/rejected/write-failed status without deleting source bytes. | RSH-023 |
 | P1-04 | P1 | **CLOSED** | Save failures and corruption are silently swallowed | RSH-021 establishes deterministic schema/version handling. RSH-022 adds verified backup rotation, bounded exact-byte quarantine, explicit restore/fresh-start decisions, structured failures and accessible bilingual failure UI without deleting source or legacy bytes. | RSH-021, RSH-022 |
@@ -53,7 +54,7 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P2-02 | P2 | **CLOSED** | CODEOWNERS and contribution templates are absent | RSH-002 merged CODEOWNERS, a PR template, contribution policy and governance contract. | RSH-002 |
 | P2-03 | P2 | **OPEN** | Commit-signing policy is not enforced | Recent GitHub merge commits are verified, but historical commits and future enforcement are not governed by a required rule. | RSH-063 |
 | P2-04 | P2 | **OPEN** | Commit cadence and direct-main history reduce reviewability | New work uses PRs, but historical rapid direct-main changes remain and technical settings enforcement is pending. | Apply desired ruleset |
-| P2-05 | P2 | **OPEN** | No changelog or architecture-decision register exists | Baseline and release registers exist, but no changelog or ADR register exists. | RSH-063 and architecture units |
+| P2-05 | P2 | **CLOSED** | No changelog or architecture-decision register exists | Private `CHANGELOG.md` records RSH-001–RSH-067. Not a public GitHub Release. Baseline/release registers remain authority for SHAs. | CHANGELOG.md |
 | P2-06 | P2 | **CLOSED** | No dependency-update policy exists | `DEPENDENCY-POLICY.md` defines lockfile authority, monthly/release review, isolated updates, exact-head validation and serial-queue restrictions. | RSH-020 |
 | P2-07 | P2 | **CLOSED** | A beta Nitro version is on the build path | RSH-020 records npm registry evidence that `3.0.260610-beta` is the `latest` dist-tag, retains an exact pin and requires full validation for replacement. | RSH-020 |
 | P2-08 | P2 | **CLOSED** | README does not document reproducible setup and validation | RSH-012 documents exact Node/npm versions, `npm ci`, development, full tests, self-starting QA and deterministic build commands. | RSH-012 |
