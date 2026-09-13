@@ -114,26 +114,26 @@
     "touch_source_sha256": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "checker_test_sha256": "f2df932c00ba3d8e6f95b7bb3554ba3754250499dbba3916989a9af913f13f58",
+    "checker_test_sha256": "ca951255d7dda729bb11141e8d57f2721d768a2303038e31661e14e948f10e51",
     "audio_digest_sha256": "b5a3a609d13ad78708f362bbff4caaf071454c884aa34bf874fbeff18f56ca3f",
     "input_digest_sha256": "ee389f24969bad529a9e10df5b881f7efc773ecd845056b8aefcc8c52f149809",
     "hud_digest_sha256": "a4516f8b7784d8270fbb8a766515e40ca9ffa70103fe81b63af3733ce05faecb"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-066",
+    "queue_head": "RSH-067",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "forbidden_prefixes": [
-      ".rsh066",
-      ".github/workflows/rsh-066-",
-      "RSH-066-",
-      "scripts/rsh066-",
-      "scripts/check-rc1-close",
-      "scripts/check-rc1-defects",
-      "scripts/check-release-candidate",
-      "src/game/rc1-close/"
+      ".rsh067",
+      ".github/workflows/rsh-067-",
+      "RSH-067-",
+      "scripts/rsh067-",
+      "scripts/check-v1-publish",
+      "scripts/check-v100-tag",
+      "scripts/check-v1-dossier",
+      "src/game/v1-publish/"
     ],
     "rsh_035_state": "accepted_on_merge",
     "rsh_036_authorized": true,
@@ -196,7 +196,9 @@
     "rsh_064_started": true,
     "rsh_065_authorized": true,
     "rsh_065_started": true,
-    "rsh_066_authorized": false,
-    "rsh_066_started": false
+    "rsh_066_authorized": true,
+    "rsh_066_started": true,
+    "rsh_067_authorized": false,
+    "rsh_067_started": false
   }
 }

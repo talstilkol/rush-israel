@@ -105,15 +105,15 @@ export function validateResourceOwnership(overrides = {}) {
   if (tracks.modules.length !== 56 || tracks.counts.mvp !== 8 || tracks.counts.deferred !== 48) errors.push("track catalogue boundary changed");
 
   const later = input.repositoryFiles.filter((path) =>
-    path.startsWith(".rsh066") ||
-    path.startsWith(".github/workflows/rsh-066-") ||
-    path.startsWith("RSH-066-") ||
-    path.startsWith("scripts/rsh066-") ||
-    path.startsWith("scripts/check-rc1-close") ||
-    path.startsWith("scripts/check-rc1-defects") ||
-    path.startsWith("src/game/rc1-close/"),
+    path.startsWith(".rsh067") ||
+    path.startsWith(".github/workflows/rsh-067-") ||
+    path.startsWith("RSH-067-") ||
+    path.startsWith("scripts/rsh067-") ||
+    path.startsWith("scripts/check-v1-publish") ||
+    path.startsWith("scripts/check-v100-tag") ||
+    path.startsWith("src/game/v1-publish/"),
   );
-  if (later.length) errors.push(`RSH-066 was precreated: ${later.join(", ")}`);
+  if (later.length) errors.push(`RSH-067 was precreated: ${later.join(", ")}`);
   const temp = input.repositoryFiles.filter((path) =>
     path === ".rsh019-payload.gz.b64" ||
     path === ".github/workflows/rsh-019-apply.yml",

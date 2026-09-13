@@ -15,18 +15,18 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-038 quality-profile lock passes and RSH-066 remains absent", () => {
+test("committed RSH-038 quality-profile lock passes and RSH-067 remains absent", () => {
   const result = validateQualityProfiles();
   assert.deepEqual(result.errors, []);
   assert.equal(result.locked, true);
   assert.equal(result.profileCount, 5);
 });
 
-test("RSH-066 precreation fails closed", () => {
+test("RSH-067 precreation fails closed", () => {
   const result = validateQualityProfiles({
-    repositoryFiles: ["RSH-066-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
+    repositoryFiles: ["RSH-067-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
   });
-  assert.match(messages(result), /RSH-066 was precreated/);
+  assert.match(messages(result), /RSH-067 was precreated/);
 });
 
 test("profiles and hysteresis are locked without budgets or a real-device baseline", () => {
@@ -41,7 +41,7 @@ test("profiles and hysteresis are locked without budgets or a real-device baseli
   assert.equal(manifest.lock.real_device_baseline_accepted, false);
   assert.equal(manifest.lock.gis_claim, false);
   assert.equal(manifest.lock.public_distribution, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-066");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-067");
   assert.equal(LOCKED_PROFILES.compat.targetFps, 30);
   assert.equal(LOCKED_PROFILES.balanced.pixelScale, 0.75);
   assert.equal(LOCKED_PROFILES.high.bloom, true);
