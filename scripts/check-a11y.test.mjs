@@ -21,17 +21,17 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-048 lock passes and RSH-062 remains absent", () => {
+test("committed RSH-048 lock passes and RSH-063 remains absent", () => {
   const result = validateLock();
   assert.deepEqual(result.errors, []);
   assert.equal(result.locked, true);
 });
 
-test("RSH-062 precreation fails closed", () => {
+test("RSH-063 precreation fails closed", () => {
   const result = validateLock({
-    repositoryFiles: ["RSH-062-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
+    repositoryFiles: ["RSH-063-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
   });
-  assert.match(messages(result), /RSH-062 was precreated/);
+  assert.match(messages(result), /RSH-063 was precreated/);
 });
 
 test("RSH-048 does not accept WCAG AA, telemetry or Rothschild claims", () => {
@@ -59,5 +59,5 @@ test("RSH-048 does not accept WCAG AA, telemetry or Rothschild claims", () => {
   assert.equal(manifest.lock.crash_reporting, false);
   assert.equal(manifest.lock.alpha_ux_private, true);
   assert.equal(manifest.lock.rothschild_geometry, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-062");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-063");
 });

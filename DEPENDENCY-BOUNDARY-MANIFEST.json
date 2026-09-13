@@ -144,7 +144,7 @@
     "asset_changes": 0
   },
   "deferred_boundary": {
-    "queue_head": "RSH-062",
+    "queue_head": "RSH-063",
     "rsh_021_authorized": true,
     "rsh_021_started": true,
     "rsh_021_state": "accepted",
@@ -152,14 +152,14 @@
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh062",
-      ".github/workflows/rsh-062-",
-      "RSH-062-",
-      "scripts/rsh062-",
-      "scripts/check-hermon-golden",
-      "scripts/check-hermon-art",
-      "scripts/check-hermon-freeze",
-      "src/game/hermon-golden/"
+      ".rsh063",
+      ".github/workflows/rsh-063-",
+      "RSH-063-",
+      "scripts/rsh063-",
+      "scripts/check-semver-release",
+      "scripts/check-changelog-release",
+      "scripts/check-release-automation",
+      "src/game/semver-release/"
     ],
     "rsh_023_authorized": true,
     "rsh_023_started": true,
@@ -252,8 +252,10 @@
     "rsh_060_started": true,
     "rsh_061_authorized": true,
     "rsh_061_started": true,
-    "rsh_062_authorized": false,
-    "rsh_062_started": false
+    "rsh_062_authorized": true,
+    "rsh_062_started": true,
+    "rsh_063_authorized": false,
+    "rsh_063_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

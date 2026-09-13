@@ -5,11 +5,11 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "5394eb6f3eb0cb39f97baaec1a80425d67ff7e1259bc3816088214f04f0e4620";
+export const EXPECTED_MANIFEST_SHA256 = "4b31744ec1af6ede6ac0188bfda34b1c92a9a4e749f10268e708375c6522ce86";
 export const EXPECTED_LOCK_SHA256 = "75c4c23d0062470e877a473d7bd42e74692f04a162414fbc3f4e60cb53121318";
 export const EXPECTED_INDEX_SHA256 = "cb320da93c068037636ec0272ec1f10be4b86be3d30aa94e0c39ef5fb898da65";
 export const EXPECTED_CONTRACT_SHA256 = "f6455a7b48776eaada76945fc98082f0f8dc1c31cdce4786ee20f0d68f06da77";
-export const EXPECTED_CHECKER_TEST_SHA256 = "6ae25dff618a315efdc7f47fe8452a9e9eb4fcf4867c1ebf28babb833ebc9c03";
+export const EXPECTED_CHECKER_TEST_SHA256 = "eb7984f56b4a989918fc82142eac2731c7866b144afd4ff1104365041442d45e";
 export const EXPECTED_DIGEST_SHA256 = "48298fac85dec584e5d1db4daf8620af34bd1598bc0bf7e386cb0e0337ee59f1";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_HUD_SHA256 = "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35";
@@ -111,8 +111,8 @@ export function validateLock(overrides = {}) {
 
   if (manifest.preservation?.golden_png_changes !== 0 || manifest.preservation?.package_json_changes !== 0 || manifest.preservation?.release_gates_green !== 0) errors.push("RSH-061 preservation counts changed");
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-062 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-062" || manifest.deferred_boundary?.rsh_061_authorized !== true || manifest.deferred_boundary?.rsh_062_authorized !== false) errors.push("RSH-062 deferred boundary changed");
+  if (later.length) errors.push(`RSH-063 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-063" || manifest.deferred_boundary?.rsh_061_authorized !== true || manifest.deferred_boundary?.rsh_062_authorized !== true || manifest.deferred_boundary?.rsh_063_authorized !== false) errors.push("RSH-063 deferred boundary changed");
   return { errors, locked: errors.length === 0 };
 }
 
@@ -127,5 +127,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`hermon fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`hermon ok: RSH-061 locked; RSH-062 deferred`);
+  console.log(`hermon ok: RSH-061 locked; RSH-063 deferred`);
 }
