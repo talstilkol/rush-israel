@@ -85,7 +85,7 @@
     "policy_source_sha256": "90516317124c1ad86e1a059959a498e2e2d32b9b23834feb8cfc2026a1b0bb88",
     "secrets_check_sha256": "9a2b1ffceaae9602c4134b47cbca9209f7d6a684d335b0ac4b9cc2914b8fc322",
     "secrets_test_sha256": "eb436ab5108a6679d52f22684c3cc0a330729a3106d0ed1d6c044fea8fd5db73",
-    "checker_test_sha256": "2fe1412cb3faafc1656d458006fda03b7e94801439df1c9af23b3ebfe2aaaec9",
+    "checker_test_sha256": "a354075bc8ccdae412252378c3201af01a323e83a4b248c1122ec21233f62258",
     "qa_hook_sha256": "14db672bdc1311b3fcd14a2230a8f4240ff88cf9a279659d9559e2959b694460",
     "qa_adapter_sha256": "973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
@@ -95,21 +95,21 @@
     "recovery_source_sha256": "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-055",
+    "queue_head": "RSH-056",
     "rsh_025_authorized": true,
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "rsh_026_authorized": true,
     "rsh_026_started": true,
     "forbidden_prefixes": [
-      ".rsh055",
-      ".github/workflows/rsh-055-",
-      "RSH-055-",
-      "scripts/rsh055-",
-      "scripts/check-scopus",
-      "scripts/check-jerusalem-geometry",
-      "scripts/check-scopus-track",
-      "src/game/scopus/"
+      ".rsh056",
+      ".github/workflows/rsh-056-",
+      "RSH-056-",
+      "scripts/rsh056-",
+      "scripts/check-scopus-golden",
+      "scripts/check-jerusalem-golden",
+      "scripts/check-scopus-art",
+      "src/game/scopus-golden/"
     ],
     "rsh_026_state": "accepted_on_merge",
     "rsh_027_authorized": true,
@@ -177,8 +177,10 @@
     "rsh_053_started": true,
     "rsh_054_authorized": true,
     "rsh_054_started": true,
-    "rsh_055_authorized": false,
-    "rsh_055_started": false
+    "rsh_055_authorized": true,
+    "rsh_055_started": true,
+    "rsh_056_authorized": false,
+    "rsh_056_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

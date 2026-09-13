@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 37.0.0
+**Version:** 38.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-054 implementation base:** `973c737ce1070380f50b0bf5f7ec32993a94977f`
-**State effective on:** merge of the RSH-054 pull request
+**RSH-055 implementation base:** `1f95b0ad187f57ad6b1ca99838de8c9891ab3236`
+**State effective on:** merge of the RSH-055 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-055 — deferred and not authorised
+**Next scheduled unit:** RSH-056 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 54 |
+| Accepted units | 55 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-055 — deferred/not authorised |
+| Queue head | RSH-056 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 13 |
-| RSH-054 one-unit authority | consumed 1/1 |
+| Remaining units | 12 |
+| RSH-055 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -79,5 +79,6 @@
 | RSH-052 | Yarkon–Reading art, golden and source freeze locked on validated merge |
 | RSH-053 | Jaffa geometry and driving locked on validated merge |
 | RSH-054 | Jaffa art, golden and source freeze locked on validated merge |
+| RSH-055 | Jerusalem–Scopus geometry and driving locked on validated merge |
 
-No RSH-055 branch, PR or implementation structure is authorised by this state.
+No RSH-056 branch, PR or implementation structure is authorised by this state.

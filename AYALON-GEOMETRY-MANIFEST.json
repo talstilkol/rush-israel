@@ -67,23 +67,23 @@
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
-    "checker_test_sha256": "ac463f696db822f5940476b4185288c5eeb98894a4a7118605d38e0611863344",
+    "checker_test_sha256": "e88ffca1ef3bba5a7f11e9e6ba919b6d30b8147cda77aebd0048e16866e268d8",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-055",
+    "queue_head": "RSH-056",
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh055",
-      ".github/workflows/rsh-055-",
-      "RSH-055-",
-      "scripts/rsh055-",
-      "scripts/check-scopus",
-      "scripts/check-jerusalem-geometry",
-      "scripts/check-scopus-track",
-      "src/game/scopus/"
+      ".rsh056",
+      ".github/workflows/rsh-056-",
+      "RSH-056-",
+      "scripts/rsh056-",
+      "scripts/check-scopus-golden",
+      "scripts/check-jerusalem-golden",
+      "scripts/check-scopus-art",
+      "src/game/scopus-golden/"
     ],
     "rsh_028_authorized": true,
     "rsh_028_started": true,
@@ -147,8 +147,10 @@
     "rsh_053_started": true,
     "rsh_054_authorized": true,
     "rsh_054_started": true,
-    "rsh_055_authorized": false,
-    "rsh_055_started": false
+    "rsh_055_authorized": true,
+    "rsh_055_started": true,
+    "rsh_056_authorized": false,
+    "rsh_056_started": false
   },
   "rsh_027_overlay": {
     "state": "accepted_on_merge",
