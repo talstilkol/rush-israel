@@ -60,7 +60,7 @@
     "contract_sha256": "e348077a921754f5c49b55c8a7937db6f0824bb6d6ecd85d64227fe28adc5548",
     "live_cache_source_sha256": "6aa9afd836425125fe724db169c5d584647cd4c8ec75c7ed89f8f7c95ca39b6f",
     "cache_smoke_source_sha256": "ae0d6489306108d47a3c26d08c4e62257b34751f09212c3e0ff6e5442a0dbd89",
-    "checker_test_sha256": "3eb20dfda99ea2ffd946be6fdfb41c4288ee36e9eaf9e4a8e62ccde3ca19ba09",
+    "checker_test_sha256": "f5d4770a54899ef433f4eef7969e7216be8a676a3e9ffbc1624ec41d294eccaf",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "budget_digest_sha256": "1044f257c7a8154be8cccf55929ab4367b85d733ee74e98c875751f9718d3cd7",
     "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
@@ -70,20 +70,20 @@
     "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-044",
+    "queue_head": "RSH-045",
     "rsh_039_authorized": true,
     "rsh_039_started": true,
     "rsh_040_authorized": true,
     "rsh_040_started": true,
     "forbidden_prefixes": [
-      ".rsh044",
-      ".github/workflows/rsh-044-",
-      "RSH-044-",
-      "scripts/rsh044-",
-      "scripts/check-input-maps",
-      "scripts/check-unified-input",
-      "scripts/check-control-maps",
-      "src/game/input-maps/"
+      ".rsh045",
+      ".github/workflows/rsh-045-",
+      "RSH-045-",
+      "scripts/rsh045-",
+      "scripts/check-rtl-scope",
+      "scripts/check-i18n-rtl",
+      "scripts/check-arabic-scope",
+      "src/game/rtl-scope/"
     ],
     "rsh_041_authorized": true,
     "rsh_041_started": true,
@@ -91,7 +91,9 @@
     "rsh_042_started": true,
     "rsh_043_authorized": true,
     "rsh_043_started": true,
-    "rsh_044_authorized": false,
-    "rsh_044_started": false
+    "rsh_044_authorized": true,
+    "rsh_044_started": true,
+    "rsh_045_authorized": false,
+    "rsh_045_started": false
   }
 }

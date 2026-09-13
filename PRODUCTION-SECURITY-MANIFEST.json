@@ -15,9 +15,9 @@
     "manifest": "SAVE-SCHEMA-MANIFEST.json",
     "version": 3,
     "migration_edges": [
-      "0\u21921",
-      "1\u21922",
-      "2\u21923"
+      "0→1",
+      "1→2",
+      "2→3"
     ],
     "changed": false
   },
@@ -85,7 +85,7 @@
     "policy_source_sha256": "90516317124c1ad86e1a059959a498e2e2d32b9b23834feb8cfc2026a1b0bb88",
     "secrets_check_sha256": "9a2b1ffceaae9602c4134b47cbca9209f7d6a684d335b0ac4b9cc2914b8fc322",
     "secrets_test_sha256": "eb436ab5108a6679d52f22684c3cc0a330729a3106d0ed1d6c044fea8fd5db73",
-    "checker_test_sha256": "fe0c5c0b88b9c129de34907bab435ec43688d56b82e779116ef9a23c12641edd",
+    "checker_test_sha256": "83bf5450c113a3c34ef2aaf23127290bd1d949a7c48ac0000a48ecc3fef5c7b8",
     "qa_hook_sha256": "14db672bdc1311b3fcd14a2230a8f4240ff88cf9a279659d9559e2959b694460",
     "qa_adapter_sha256": "973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
@@ -95,21 +95,21 @@
     "recovery_source_sha256": "0833fee5f8c0e324290ac8daffc6becee692ee435e9a92df7915701408dfc18f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-044",
+    "queue_head": "RSH-045",
     "rsh_025_authorized": true,
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "rsh_026_authorized": true,
     "rsh_026_started": true,
     "forbidden_prefixes": [
-      ".rsh044",
-      ".github/workflows/rsh-044-",
-      "RSH-044-",
-      "scripts/rsh044-",
-      "scripts/check-input-maps",
-      "scripts/check-unified-input",
-      "scripts/check-control-maps",
-      "src/game/input-maps/"
+      ".rsh045",
+      ".github/workflows/rsh-045-",
+      "RSH-045-",
+      "scripts/rsh045-",
+      "scripts/check-rtl-scope",
+      "scripts/check-i18n-rtl",
+      "scripts/check-arabic-scope",
+      "src/game/rtl-scope/"
     ],
     "rsh_026_state": "accepted_on_merge",
     "rsh_027_authorized": true,
@@ -155,8 +155,10 @@
     "rsh_042_started": true,
     "rsh_043_authorized": true,
     "rsh_043_started": true,
-    "rsh_044_authorized": false,
-    "rsh_044_started": false
+    "rsh_044_authorized": true,
+    "rsh_044_started": true,
+    "rsh_045_authorized": false,
+    "rsh_045_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

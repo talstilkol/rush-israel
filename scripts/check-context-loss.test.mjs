@@ -19,18 +19,18 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-041 context-loss lock passes and RSH-044 remains absent", () => {
+test("committed RSH-041 context-loss lock passes and RSH-045 remains absent", () => {
   const result = validateContextLoss();
   assert.deepEqual(result.errors, []);
   assert.equal(result.locked, true);
   assert.equal(result.cycles, 8);
 });
 
-test("RSH-044 precreation fails closed", () => {
+test("RSH-045 precreation fails closed", () => {
   const result = validateContextLoss({
-    repositoryFiles: ["RSH-044-PREFLIGHT.json", "src/game/input-maps/lock.ts", "scripts/check-input-maps.mjs"],
+    repositoryFiles: ["RSH-045-PREFLIGHT.json", "src/game/rtl-scope/scope.ts", "scripts/check-rtl-scope.mjs"],
   });
-  assert.match(messages(result), /RSH-044 was precreated/);
+  assert.match(messages(result), /RSH-045 was precreated/);
 });
 
 test("eight context-loss cycles remount the race without save-data loss", () => {
@@ -72,7 +72,7 @@ test("context-loss is locked without soak or a real-device baseline", () => {
   assert.equal(manifest.lock.real_device_baseline_accepted, false);
   assert.equal(manifest.lock.gis_claim, false);
   assert.equal(manifest.lock.public_distribution, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-044");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-045");
   assert.equal(CONTEXT_LOSS_CYCLES, 8);
   assert.equal(CONTEXT_LOSS_ENFORCED, true);
   assert.equal(SOAK_ENFORCED, false);

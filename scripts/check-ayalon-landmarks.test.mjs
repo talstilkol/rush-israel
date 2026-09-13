@@ -16,7 +16,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-028 Ayalon landmark lock passes under the RSH-029 overlay and RSH-044 remains absent", () => {
+test("committed RSH-028 Ayalon landmark lock passes under the RSH-029 overlay and RSH-045 remains absent", () => {
   const result = validateAyalonLandmarks();
   assert.deepEqual(result.errors, []);
   assert.equal(result.trackId, "ayalon");
@@ -25,11 +25,11 @@ test("committed RSH-028 Ayalon landmark lock passes under the RSH-029 overlay an
   assert.equal(result.extraLandmarks, 6);
 });
 
-test("RSH-044 precreation fails closed", () => {
+test("RSH-045 precreation fails closed", () => {
   const result = validateAyalonLandmarks({
-    repositoryFiles: ["RSH-044-PREFLIGHT.json", "src/game/ayalon-landmarks/landmarks.ts"],
+    repositoryFiles: ["RSH-045-PREFLIGHT.json", "src/game/ayalon-landmarks/landmarks.ts"],
   });
-  assert.match(messages(result), /RSH-044 was precreated/);
+  assert.match(messages(result), /RSH-045 was precreated/);
 });
 
 test("live POIs stay 9 inspired placements and builder recipes stay locked", () => {

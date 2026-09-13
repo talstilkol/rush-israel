@@ -1,11 +1,11 @@
 {
-  "schema_version": "26.0.0",
+  "schema_version": "27.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-09-13T07:08:04.000Z",
+  "generated_at": "2026-09-13T07:40:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "b7fb239daed34b5e14bf4760bde25ec86c0b656b",
-  "state_effective_on": "merge_of_RSH_043_pull_request",
+  "verified_base_sha": "7d147df5db571c915a8c104f553ba4a635f75f6f",
+  "state_effective_on": "merge_of_RSH_044_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -32,6 +32,16 @@
     "history_rewrite": false,
     "later_unit_precreation": false,
     "latest_single_unit_authorization": {
+      "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
+      "authorized_units": [
+        "RSH-044"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-044_merge",
+      "RSH_045_authorized": false
+    },
+    "previous_single_unit_authorization": {
       "instruction": "next",
       "authorized_units": [
         "RSH-043"
@@ -40,37 +50,27 @@
       "total": 1,
       "state": "consumed_on_RSH-043_merge",
       "RSH_044_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "next",
-      "authorized_units": [
-        "RSH-042"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-042_merge",
-      "RSH_043_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 43,
+    "accepted": 44,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 24,
-    "remaining": 24
+    "deferred": 23,
+    "remaining": 23
   },
   "queue_head": {
-    "id": "RSH-044",
-    "title": "Unify keyboard, touch and gamepad input maps",
+    "id": "RSH-045",
+    "title": "Complete Hebrew RTL, English LTR and the Arabic-scope decision",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-044 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-045 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-044",
-    "title": "Unify keyboard, touch and gamepad input maps",
+    "id": "RSH-045",
+    "title": "Complete Hebrew RTL, English LTR and the Arabic-scope decision",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -1071,7 +1071,21 @@
       "device_matrix_enforced": true,
       "real_device_baseline_accepted": false,
       "webgl2_required": true,
-      "rsh_044_created": false
+      "rsh_044_created": true
+    },
+    "RSH-044": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-044-input-maps",
+      "manifest": "INPUT-MAPS-MANIFEST.json",
+      "contract": "RSH-044-INPUT-MAPS-CONTRACT.md",
+      "lock_module": "src/game/input-maps",
+      "input_maps_unified": true,
+      "touch_action": "none",
+      "canvas_touch_none": true,
+      "pointer_cancel_locked": true,
+      "unified_action_count": 7,
+      "rtl_scope_complete": false,
+      "rsh_045_created": false
     }
   },
   "unit_order": [
@@ -1146,25 +1160,25 @@
   "state_rules": {
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-043"
+      "through": "RSH-044"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-044",
+      "from": "RSH-045",
       "through": "RSH-067"
     },
-    "RSH-001\u2013RSH-043": "accepted",
-    "RSH-044\u2013RSH-067": "deferred_not_authorized"
+    "RSH-001–RSH-044": "accepted",
+    "RSH-045–RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-044 remains deferred until a new explicit owner instruction.",
-    "RSH_043_completed": true,
-    "RSH_043_authorization_consumed": true,
-    "RSH_044_authorized": false
+    "current_action": "No unit is authorized; RSH-045 remains deferred until a new explicit owner instruction.",
+    "RSH_044_completed": true,
+    "RSH_044_authorization_consumed": true,
+    "RSH_045_authorized": false
   },
-  "self_reference_boundary": "The RSH-043 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-044 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }

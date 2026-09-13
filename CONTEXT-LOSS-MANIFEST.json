@@ -59,7 +59,7 @@
     "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
     "engine_source_sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
     "race_controller_source_sha256": "e01c955f700b0f7c1fa20f876a8f3ad8b294f3edbdf3bcdf4ed16e6821188670",
-    "checker_test_sha256": "7a293ad93d791dbef2b471736cca25de1a4e23d6b2a4a8bd44c15153b7f346c8",
+    "checker_test_sha256": "9333ef34a8f05f8d7ed0e6a223c7aa2c66080ceaa8d2ca19214428c38d20d95a",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
@@ -71,24 +71,26 @@
     "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-044",
+    "queue_head": "RSH-045",
     "rsh_041_authorized": true,
     "rsh_041_started": true,
     "rsh_042_authorized": true,
     "rsh_042_started": true,
     "forbidden_prefixes": [
-      ".rsh044",
-      ".github/workflows/rsh-044-",
-      "RSH-044-",
-      "scripts/rsh044-",
-      "scripts/check-input-maps",
-      "scripts/check-unified-input",
-      "scripts/check-control-maps",
-      "src/game/input-maps/"
+      ".rsh045",
+      ".github/workflows/rsh-045-",
+      "RSH-045-",
+      "scripts/rsh045-",
+      "scripts/check-rtl-scope",
+      "scripts/check-i18n-rtl",
+      "scripts/check-arabic-scope",
+      "src/game/rtl-scope/"
     ],
     "rsh_043_authorized": true,
     "rsh_043_started": true,
-    "rsh_044_authorized": false,
-    "rsh_044_started": false
+    "rsh_044_authorized": true,
+    "rsh_044_started": true,
+    "rsh_045_authorized": false,
+    "rsh_045_started": false
   }
 }

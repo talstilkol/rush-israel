@@ -5,13 +5,13 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "03d6505123d5c2e6614ded7233fcc03c315da6f96a34a191b27a1f83e1af7ee8";
+export const EXPECTED_MANIFEST_SHA256 = "4a25370e86ccd82ed76dda26f09677a11e53c50ee76689b2040d0ee67dcd69fe";
 export const EXPECTED_BUDGETS_SHA256 = "c51a8040c9179ff6a5290ed39249eb7c38d1cd14dc0143982cc594801c421990";
 export const EXPECTED_INDEX_SHA256 = "e42d3d332658d406a3f24c929bbdfd02fd0ab04223b3b755bb04073a832e9609";
 export const EXPECTED_CONTRACT_SHA256 = "e348077a921754f5c49b55c8a7937db6f0824bb6d6ecd85d64227fe28adc5548";
 export const EXPECTED_LIVE_CACHE_SHA256 = "6aa9afd836425125fe724db169c5d584647cd4c8ec75c7ed89f8f7c95ca39b6f";
 export const EXPECTED_CACHE_SMOKE_SHA256 = "ae0d6489306108d47a3c26d08c4e62257b34751f09212c3e0ff6e5442a0dbd89";
-export const EXPECTED_CHECKER_TEST_SHA256 = "3eb20dfda99ea2ffd946be6fdfb41c4288ee36e9eaf9e4a8e62ccde3ca19ba09";
+export const EXPECTED_CHECKER_TEST_SHA256 = "f5d4770a54899ef433f4eef7969e7216be8a676a3e9ffbc1624ec41d294eccaf";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_BUDGET_DIGEST_SHA256 = "1044f257c7a8154be8cccf55929ab4367b85d733ee74e98c875751f9718d3cd7";
 export const EXPECTED_FREEZE_DIGEST_SHA256 = "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098";
@@ -128,8 +128,8 @@ export function validatePerfBudgets(overrides = {}) {
   if (!/\| P2-09 \| P2 \| \*\*OPEN\*\*/.test(input.findingsSource)) errors.push("P2-09 must stay OPEN until a production JS/asset byte-size check exists");
   if (manifest.preservation?.golden_png_changes !== 0 || manifest.preservation?.package_json_changes !== 0 || manifest.preservation?.release_gates_green !== 0) errors.push("RSH-039 preservation counts changed");
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-044 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-044" || manifest.deferred_boundary?.rsh_040_authorized !== true || manifest.deferred_boundary?.rsh_041_authorized !== true || manifest.deferred_boundary?.rsh_042_authorized !== true || manifest.deferred_boundary?.rsh_043_authorized !== true || manifest.deferred_boundary?.rsh_044_authorized !== false || manifest.deferred_boundary?.rsh_040_started !== true || manifest.deferred_boundary?.rsh_041_started !== true || manifest.deferred_boundary?.rsh_042_started !== true || manifest.deferred_boundary?.rsh_043_started !== true || manifest.deferred_boundary?.rsh_044_started !== false) errors.push("RSH-044 deferred boundary changed");
+  if (later.length) errors.push(`RSH-045 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-045" || manifest.deferred_boundary?.rsh_040_authorized !== true || manifest.deferred_boundary?.rsh_041_authorized !== true || manifest.deferred_boundary?.rsh_042_authorized !== true || manifest.deferred_boundary?.rsh_043_authorized !== true || manifest.deferred_boundary?.rsh_045_authorized !== false || manifest.deferred_boundary?.rsh_040_started !== true || manifest.deferred_boundary?.rsh_041_started !== true || manifest.deferred_boundary?.rsh_042_started !== true || manifest.deferred_boundary?.rsh_043_started !== true || manifest.deferred_boundary?.rsh_045_started !== false) errors.push("RSH-045 deferred boundary changed");
   return { errors, locked: errors.length === 0, cacheMaxAge: 31536000 };
 }
 
@@ -144,5 +144,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`perf-budgets fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`perf-budgets ok: cache/streaming/draw-call budgets locked; RSH-044 deferred`);
+  console.log(`perf-budgets ok: cache/streaming/draw-call budgets locked; RSH-045 deferred`);
 }
