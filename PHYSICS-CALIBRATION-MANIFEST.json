@@ -55,22 +55,22 @@
     "index_source_sha256": "e9489dbe34cee8d9768fa75fbe5ea0ce5276f686fdfcdad1c2a95e908988504e",
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "checker_test_sha256": "2caf85e71d14080c2fd6aed934377f98bbe2512ede0d5bbe3bf8dbd3ca7d6df6",
+    "checker_test_sha256": "262b96210ca04e8730a9deb8ea541afe4a8831ef3d67175af4b8935bd1d3d8a7",
     "golden_accel_sha256": "3bd812e9f60184a846fbd1ffe6392b3a9d42a6a1f25c6df83bfb9a3e966fa224"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-060",
+    "queue_head": "RSH-061",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "forbidden_prefixes": [
-      ".rsh060",
-      ".github/workflows/rsh-060-",
-      "RSH-060-",
-      "scripts/rsh060-",
-      "scripts/check-ramon-golden",
-      "scripts/check-ramon-art",
-      "scripts/check-ramon-freeze",
-      "src/game/ramon-golden/"
+      ".rsh061",
+      ".github/workflows/rsh-061-",
+      "RSH-061-",
+      "scripts/rsh061-",
+      "scripts/check-hermon",
+      "scripts/check-hermon-drive",
+      "scripts/check-hermon-track",
+      "src/game/hermon/"
     ],
     "rsh_034_state": "accepted_on_merge",
     "rsh_035_authorized": true,
@@ -124,7 +124,9 @@
     "rsh_058_started": true,
     "rsh_059_authorized": true,
     "rsh_059_started": true,
-    "rsh_060_authorized": false,
-    "rsh_060_started": false
+    "rsh_060_authorized": true,
+    "rsh_060_started": true,
+    "rsh_061_authorized": false,
+    "rsh_061_started": false
   }
 }
