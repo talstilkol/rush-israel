@@ -1,24 +1,24 @@
 {
-  "schema_version": "23.0.0",
+  "schema_version": "24.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-12T17:20:15.000Z",
+  "generated_at": "2026-09-13T05:45:00.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_040_pull_request",
-    "implementation_base_sha": "da690504d360a5b06f53783e9f86e0d7bf73cc01",
-    "self_reference_boundary": "The RSH-040 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_041_pull_request",
+    "implementation_base_sha": "b24dea10f4a6ff186ee0c73e44a4fc693ad384f9",
+    "self_reference_boundary": "The RSH-041 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "da690504d360a5b06f53783e9f86e0d7bf73cc01",
-    "tree_sha": "5555ead41e9eb263accaac1bb51bdcb02d71900b",
-    "commit_authored_at": "2026-09-12T17:20:15Z",
-    "commit_message": "Merge PR #43: RSH-039 \u2014 Set bundle, asset-streaming and cache budgets",
+    "head_sha": "b24dea10f4a6ff186ee0c73e44a4fc693ad384f9",
+    "tree_sha": "f404cbf8e584346d707c6f25b68aa187bf738245",
+    "commit_authored_at": "2026-09-12T17:43:41Z",
+    "commit_message": "Merge PR #44: RSH-040 \u2014 Pass 20 race enter-exit cycles without a resource leak",
     "commit_signature_verified": true,
-    "role": "RSH-040 exact implementation base"
+    "role": "RSH-041 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 40,
+    "accepted_units": 41,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 27,
-    "remaining_units": 27,
-    "queue_head": "RSH-041",
+    "deferred_units": 26,
+    "remaining_units": 26,
+    "queue_head": "RSH-042",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -1214,7 +1214,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-040": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-040-leak-cycles",
       "pull_request_resolution": "the pull request created from the exact RSH-040 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -1233,16 +1233,51 @@
       "gis_claim": false,
       "owner_freeze": false,
       "public_distribution": false,
-      "rsh_041_created": false
+      "rsh_041_created": true,
+      "pull_request": 44,
+      "validated_head_sha": "c48cd3c4aef0551b20167a67be85da548cb04c31",
+      "merge_sha": "b24dea10f4a6ff186ee0c73e44a4fc693ad384f9",
+      "tree_sha": "f404cbf8e584346d707c6f25b68aa187bf738245",
+      "workflow_run": 34708531367,
+      "workflow_job": 103592916249,
+      "artifact_id": 10302428313,
+      "artifact_digest": "sha256:3dbf07a88fe0ba37ed98272024fe182ebbe1c36a4c7ad5b3990d7efe93057054",
+      "post_merge_workflow_run": 34709086445,
+      "post_merge_workflow_job": 103594415064,
+      "post_merge_artifact_id": 10302034696,
+      "post_merge_artifact_digest": "sha256:943414839c6bc933f64fa7c36e3ad0673771dbbaea1b2c45fbe54611b65734d5",
+      "unresolved_review_threads": 0
+    },
+    "RSH-041": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-041-context-loss",
+      "pull_request_resolution": "the pull request created from the exact RSH-041 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-041 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-041 merge SHA",
+      "manifest": "CONTEXT-LOSS-MANIFEST.json",
+      "contract": "RSH-041-CONTEXT-LOSS-CONTRACT.md",
+      "lock_module": "src/game/context-loss",
+      "context_loss_cycles": 8,
+      "prevent_default": true,
+      "restore_remounts_race": true,
+      "save_data_survives": true,
+      "context_loss_enforced": true,
+      "soak_enforced": false,
+      "real_device_baseline_accepted": false,
+      "gis_claim": false,
+      "owner_freeze": false,
+      "public_distribution": false,
+      "rsh_042_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-040",
+    "unit": "RSH-041",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-040-leak-cycles",
+    "branch": "agent/rsh-041-context-loss",
     "authority_consumed": true,
-    "next_unit": "RSH-041",
+    "next_unit": "RSH-042",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -1338,7 +1373,10 @@
     "RSH-040_authorized": false,
     "RSH-040_was_separately_authorized": true,
     "RSH-040_authorization_consumed": true,
-    "RSH-041_authorized": false
+    "RSH-041_authorized": false,
+    "RSH-041_was_separately_authorized": true,
+    "RSH-041_authorization_consumed": true,
+    "RSH-042_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -1413,12 +1451,12 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The standing owner instruction authorised exactly RSH-040 after RSH-039 merged and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-041.",
+    "The standing owner instruction authorised exactly RSH-041 after RSH-040 merged and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-042.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13.",
     "The standing owner instruction to finish the master plan authorised RSH-036 through RSH-067, but only the queue head may start.",
-    "RSH-041 remains deferred until this unit is accepted on merge."
+    "RSH-042 remains deferred until this unit is accepted on merge."
   ],
   "validation": {
     "queue_units": 67,
@@ -1544,12 +1582,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-040"
+      "RSH-041"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-040_merge",
-    "RSH_041_authorized": false
+    "state": "consumed_on_RSH-041_merge",
+    "RSH_042_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -1588,12 +1626,12 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-039"
+      "RSH-040"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-039_merge",
-    "RSH_040_authorized": false
+    "state": "consumed_on_RSH-040_merge",
+    "RSH_041_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -2216,7 +2254,7 @@
     "post_merge_workflow_run": 34707925345
   },
   "rsh_040_leak_cycles": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "LEAK-CYCLES-MANIFEST.json",
     "human_contract": "RSH-040-LEAK-CYCLES-CONTRACT.md",
     "validator": "scripts/check-leak-cycles.mjs",
@@ -2231,7 +2269,32 @@
     "gis_claim": false,
     "owner_freeze": false,
     "public_distribution": false,
-    "RSH_041_created": false,
-    "RSH_041_authorized": false
+    "RSH_041_created": true,
+    "RSH_041_authorized": true,
+    "pull_request": 44,
+    "validated_head_sha": "c48cd3c4aef0551b20167a67be85da548cb04c31",
+    "merge_sha": "b24dea10f4a6ff186ee0c73e44a4fc693ad384f9",
+    "tree_sha": "f404cbf8e584346d707c6f25b68aa187bf738245",
+    "workflow_run": 34708531367,
+    "post_merge_workflow_run": 34709086445
+  },
+  "rsh_041_context_loss": {
+    "state": "accepted_on_merge",
+    "machine_authority": "CONTEXT-LOSS-MANIFEST.json",
+    "human_contract": "RSH-041-CONTEXT-LOSS-CONTRACT.md",
+    "validator": "scripts/check-context-loss.mjs",
+    "test": "scripts/check-context-loss.test.mjs",
+    "context_loss_cycles": 8,
+    "prevent_default": true,
+    "restore_remounts_race": true,
+    "save_data_survives": true,
+    "context_loss_enforced": true,
+    "soak_enforced": false,
+    "real_device_baseline_accepted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "public_distribution": false,
+    "RSH_042_created": false,
+    "RSH_042_authorized": false
   }
 }

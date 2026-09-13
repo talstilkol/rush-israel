@@ -60,7 +60,7 @@
     "contract_sha256": "e348077a921754f5c49b55c8a7937db6f0824bb6d6ecd85d64227fe28adc5548",
     "live_cache_source_sha256": "6aa9afd836425125fe724db169c5d584647cd4c8ec75c7ed89f8f7c95ca39b6f",
     "cache_smoke_source_sha256": "ae0d6489306108d47a3c26d08c4e62257b34751f09212c3e0ff6e5442a0dbd89",
-    "checker_test_sha256": "e236564e0d0d17785c282af2cc5eeb259f164a924c1536f20de76c5d0d1ea258",
+    "checker_test_sha256": "3e1c18d0deaa4fc8bee269a33d26cacb57290abba8270823ad5a139730bc0e55",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "budget_digest_sha256": "1044f257c7a8154be8cccf55929ab4367b85d733ee74e98c875751f9718d3cd7",
     "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
@@ -70,22 +70,24 @@
     "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-041",
+    "queue_head": "RSH-042",
     "rsh_039_authorized": true,
     "rsh_039_started": true,
     "rsh_040_authorized": true,
     "rsh_040_started": true,
     "forbidden_prefixes": [
-      ".rsh041",
-      ".github/workflows/rsh-041-",
-      "RSH-041-",
-      "scripts/rsh041-",
-      "scripts/check-context-loss",
-      "scripts/check-webgl-context",
-      "scripts/check-context-restore",
-      "src/game/context-loss/"
+      ".rsh042",
+      ".github/workflows/rsh-042-",
+      "RSH-042-",
+      "scripts/rsh042-",
+      "scripts/check-thirty-soak",
+      "scripts/check-30min-soak",
+      "scripts/check-uninterrupted-soak",
+      "src/game/thirty-soak/"
     ],
-    "rsh_041_authorized": false,
-    "rsh_041_started": false
+    "rsh_041_authorized": true,
+    "rsh_041_started": true,
+    "rsh_042_authorized": false,
+    "rsh_042_started": false
   }
 }

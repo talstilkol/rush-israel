@@ -90,25 +90,25 @@
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
     "pixel_golden_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
-    "checker_test_sha256": "52df637c0c78c498eeaa3cc75e24041454b15b0f8409267bdd0ed8103072dfec",
+    "checker_test_sha256": "0e3ff46776129ba93d791a658255917f07cd6f184a1675ea96897372716ad5c3",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-041",
+    "queue_head": "RSH-042",
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "rsh_036_authorized": true,
     "rsh_036_started": true,
     "forbidden_prefixes": [
-      ".rsh041",
-      ".github/workflows/rsh-041-",
-      "RSH-041-",
-      "scripts/rsh041-",
-      "scripts/check-context-loss",
-      "scripts/check-webgl-context",
-      "scripts/check-context-restore",
-      "src/game/context-loss/"
+      ".rsh042",
+      ".github/workflows/rsh-042-",
+      "RSH-042-",
+      "scripts/rsh042-",
+      "scripts/check-thirty-soak",
+      "scripts/check-30min-soak",
+      "scripts/check-uninterrupted-soak",
+      "src/game/thirty-soak/"
     ],
     "rsh_037_authorized": true,
     "rsh_037_started": true,
@@ -118,7 +118,9 @@
     "rsh_039_started": true,
     "rsh_040_authorized": true,
     "rsh_040_started": true,
-    "rsh_041_authorized": false,
-    "rsh_041_started": false
+    "rsh_041_authorized": true,
+    "rsh_041_started": true,
+    "rsh_042_authorized": false,
+    "rsh_042_started": false
   }
 }

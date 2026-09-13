@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 import { stripRsh033Overlay } from "./rsh033-overlay.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "e834ee55d22282aad93362aaa33381fc267e6633992a2ecd8523a7a0f9e34fb0";
+export const EXPECTED_MANIFEST_SHA256 = "74144f2e2dc3b2ff1184503c136caccf9b6a54ce968bea2134038000cab64429";
 export const EXPECTED_NIGHT_SHA256 = "9538e17393b21728628fb2d55b2ea697a02f425d17cec8804380d3d8cf335914";
 export const EXPECTED_INDEX_SHA256 = "27a9aec7e8fa3259fcbc44ae876712206510e651830ba35bb9738665d78728c8";
 export const EXPECTED_SKY_ASSETS_SHA256 = "7b3eaf34c76bb6ea0e7305e5a6ac8f151c4ed5497e2640e5ab95a103b6c288c4";
@@ -20,7 +20,7 @@ export const EXPECTED_MESH_SHA256 = "b89ec24ddb76a8ab362b036aa6d97a02484d5f305fb
 export const EXPECTED_PHYSICS_SHA256 = "cbff35aa2e2e4b509decf38e9f1ca3d262667675af81e0352ba02f460f5723c1";
 export const EXPECTED_DAYLIGHT_SHA256 = "362f8c59468b353d7e20accc58d7527baea800bed48e3968061af07780ef0a27";
 export const EXPECTED_LOCK_SHA256 = "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b";
-export const EXPECTED_CHECKER_TEST_SHA256 = "de05326f1cac3f82de623f5c8fc0d3e43f4e9ea2c24e116d65eb80f8491f419b";
+export const EXPECTED_CHECKER_TEST_SHA256 = "fad3f02bd26a19b1aeea0a07aaae2b3eab689c74b609a96bf28815879f089b8c";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_NIGHT_DIGEST_SHA256 = "31238c98dbb76f00c1419264e66a6eefbd91d5b732765fe92311d4345b794808";
 export const EXPECTED_HEADLIGHT_DIGEST_SHA256 = "a843a8133ce4585a054203d132a257356ba30492604240c53281349265c4e790";
@@ -273,8 +273,8 @@ export function validateNightWeather(overrides = {}) {
   if (manifest.preservation?.sky_assets_changes !== 0 || manifest.preservation?.postfx_changes !== 0 || manifest.preservation?.world_changes !== 0 || manifest.preservation?.physics_changes !== 0 || manifest.preservation?.mesh_changes !== 0 || manifest.preservation?.ayalon_lock_changes !== 0) errors.push("RSH-032 preservation counts changed");
 
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-041 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-041" || manifest.deferred_boundary?.rsh_033_authorized !== true || manifest.deferred_boundary?.rsh_033_started !== true || manifest.deferred_boundary?.rsh_034_authorized !== true || manifest.deferred_boundary?.rsh_035_authorized !== true || manifest.deferred_boundary?.rsh_036_authorized !== true || manifest.deferred_boundary?.rsh_037_authorized !== true || manifest.deferred_boundary?.rsh_038_authorized !== true || manifest.deferred_boundary?.rsh_039_authorized !== true || manifest.deferred_boundary?.rsh_040_authorized !== true || manifest.deferred_boundary?.rsh_041_authorized !== false || manifest.deferred_boundary?.rsh_034_started !== true || manifest.deferred_boundary?.rsh_035_started !== true || manifest.deferred_boundary?.rsh_036_started !== true || manifest.deferred_boundary?.rsh_037_started !== true || manifest.deferred_boundary?.rsh_038_started !== true || manifest.deferred_boundary?.rsh_039_started !== true || manifest.deferred_boundary?.rsh_040_started !== true || manifest.deferred_boundary?.rsh_041_started !== false) errors.push("RSH-041 deferred boundary changed");
+  if (later.length) errors.push(`RSH-042 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-042" || manifest.deferred_boundary?.rsh_033_authorized !== true || manifest.deferred_boundary?.rsh_033_started !== true || manifest.deferred_boundary?.rsh_034_authorized !== true || manifest.deferred_boundary?.rsh_035_authorized !== true || manifest.deferred_boundary?.rsh_036_authorized !== true || manifest.deferred_boundary?.rsh_037_authorized !== true || manifest.deferred_boundary?.rsh_038_authorized !== true || manifest.deferred_boundary?.rsh_039_authorized !== true || manifest.deferred_boundary?.rsh_040_authorized !== true || manifest.deferred_boundary?.rsh_041_authorized !== true || manifest.deferred_boundary?.rsh_042_authorized !== false || manifest.deferred_boundary?.rsh_034_started !== true || manifest.deferred_boundary?.rsh_035_started !== true || manifest.deferred_boundary?.rsh_036_started !== true || manifest.deferred_boundary?.rsh_037_started !== true || manifest.deferred_boundary?.rsh_038_started !== true || manifest.deferred_boundary?.rsh_039_started !== true || manifest.deferred_boundary?.rsh_040_started !== true || manifest.deferred_boundary?.rsh_041_started !== true || manifest.deferred_boundary?.rsh_042_started !== false) errors.push("RSH-042 deferred boundary changed");
 
   return {
     errors,
@@ -297,5 +297,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`night-weather fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`night-weather ok: look ${result.look}; HDRI ${result.hdri}; weather ${result.weatherDefault}; RSH-041 deferred`);
+  console.log(`night-weather ok: look ${result.look}; HDRI ${result.hdri}; weather ${result.weatherDefault}; RSH-042 deferred`);
 }
