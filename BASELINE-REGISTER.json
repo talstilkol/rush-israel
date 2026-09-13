@@ -1,7 +1,7 @@
 {
-  "schema_version": "43.0.0",
+  "schema_version": "44.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T12:42:57.000Z",
+  "generated_at": "2026-09-13T12:51:55.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -983,23 +983,36 @@
       "post_merge_workflow_run": 34757696485,
       "recorded_at": "2026-09-13T12:42:57.000Z",
       "description": "RSH-059 accepted."
+    },
+    {
+      "id": "B060-rsh-060-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-060",
+      "pull_request": 65,
+      "commit_sha": "cf6042c7e3dde7200afdc9eed56d191a0f8814b9",
+      "tree_sha": "50d9badebc99665e6dd747749a4727edcd768d35",
+      "validated_head_sha": "a2936d210549bf180e29a62c2cf3855ce95616f2",
+      "workflow_run": 34757851111,
+      "post_merge_workflow_run": 34758083268,
+      "recorded_at": "2026-09-13T12:51:55.000Z",
+      "description": "RSH-060 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-060",
+    "unit": "RSH-061",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "41a16fc589c847f0dd9740e2f1af62eb4c18c6f8",
-    "branch": "agent/rsh-060-ramon-golden",
-    "manifest": "RAMON-GOLDEN-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-060 pull request"
+    "implementation_base_sha": "cf6042c7e3dde7200afdc9eed56d191a0f8814b9",
+    "branch": "agent/rsh-061-hermon",
+    "manifest": "HERMON-GEOMETRY-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-061 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-061",
+    "queue_head": "RSH-062",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_061_authorized": false
+    "RSH_062_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

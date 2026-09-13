@@ -106,7 +106,7 @@
     "ghost_block_sha256": "59948dace66f2683d4f7cfc480f270579727dd94be257f5ea6637bd18e217674"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-061",
+    "queue_head": "RSH-062",
     "rsh_023_authorized": true,
     "rsh_023_started": true,
     "rsh_023_state": "accepted_on_merge",
@@ -117,14 +117,14 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh061",
-      ".github/workflows/rsh-061-",
-      "RSH-061-",
-      "scripts/rsh061-",
-      "scripts/check-hermon",
-      "scripts/check-hermon-drive",
-      "scripts/check-hermon-track",
-      "src/game/hermon/"
+      ".rsh062",
+      ".github/workflows/rsh-062-",
+      "RSH-062-",
+      "scripts/rsh062-",
+      "scripts/check-hermon-golden",
+      "scripts/check-hermon-art",
+      "scripts/check-hermon-freeze",
+      "src/game/hermon-golden/"
     ],
     "rsh_026_authorized": true,
     "rsh_026_started": true,
@@ -206,8 +206,10 @@
     "rsh_059_started": true,
     "rsh_060_authorized": true,
     "rsh_060_started": true,
-    "rsh_061_authorized": false,
-    "rsh_061_started": false
+    "rsh_061_authorized": true,
+    "rsh_061_started": true,
+    "rsh_062_authorized": false,
+    "rsh_062_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",
