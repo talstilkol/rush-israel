@@ -21,17 +21,17 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-046 lock passes and RSH-063 remains absent", () => {
+test("committed RSH-046 lock passes and RSH-064 remains absent", () => {
   const result = validateLock();
   assert.deepEqual(result.errors, []);
   assert.equal(result.locked, true);
 });
 
-test("RSH-063 precreation fails closed", () => {
+test("RSH-064 precreation fails closed", () => {
   const result = validateLock({
-    repositoryFiles: ["RSH-063-PREFLIGHT.json", "src/game/pwa/manifest.ts", "scripts/check-oldjaffa.mjs"],
+    repositoryFiles: ["RSH-064-PREFLIGHT.json", "src/game/pwa/manifest.ts", "scripts/check-oldjaffa.mjs"],
   });
-  assert.match(messages(result), /RSH-063 was precreated/);
+  assert.match(messages(result), /RSH-064 was precreated/);
 });
 
 test("RSH-046 does not accept wizard, PWA or a11y-complete claims", () => {
@@ -57,5 +57,5 @@ test("RSH-046 does not accept wizard, PWA or a11y-complete claims", () => {
   assert.equal(manifest.lock.first_run_wizard, false);
   assert.equal(manifest.lock.pwa_complete, false);
   assert.equal(manifest.lock.a11y_complete, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-063");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-064");
 });

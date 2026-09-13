@@ -67,23 +67,23 @@
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
-    "checker_test_sha256": "fc8f3f995e6e09b9d87d1f267d00385895a3d42b8f92f09b3b36a4de5db50de4",
+    "checker_test_sha256": "aab9ebbabfb393176a5006611aebeda90fbd9a67c84113a2b357f264968e8be6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-063",
+    "queue_head": "RSH-064",
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh063",
-      ".github/workflows/rsh-063-",
-      "RSH-063-",
-      "scripts/rsh063-",
-      "scripts/check-semver-release",
-      "scripts/check-changelog-release",
-      "scripts/check-release-automation",
-      "src/game/semver-release/"
+      ".rsh064",
+      ".github/workflows/rsh-064-",
+      "RSH-064-",
+      "scripts/rsh064-",
+      "scripts/check-preview-staging",
+      "scripts/check-staging-rollback",
+      "scripts/check-production-rollback",
+      "src/game/preview-staging/"
     ],
     "rsh_028_authorized": true,
     "rsh_028_started": true,
@@ -163,8 +163,10 @@
     "rsh_061_started": true,
     "rsh_062_authorized": true,
     "rsh_062_started": true,
-    "rsh_063_authorized": false,
-    "rsh_063_started": false
+    "rsh_063_authorized": true,
+    "rsh_063_started": true,
+    "rsh_064_authorized": false,
+    "rsh_064_started": false
   },
   "rsh_027_overlay": {
     "state": "accepted_on_merge",

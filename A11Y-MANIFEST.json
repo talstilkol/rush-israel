@@ -64,7 +64,7 @@
     "lock_source_sha256": "868613c1644a98981fbbdad2672e0deeb8a2473f1f5cb3d11f576333c69bf0f1",
     "index_source_sha256": "b92ceb29b6fa48b7fe3ef749bbac7d8545a57059c62f6c2d0a294cf3ffc224de",
     "contract_sha256": "92486b14da074f861baafd3207db9a5050a93815629f7626e740ff8e0d2eebb7",
-    "checker_test_sha256": "e2c37aeed23454dd79e584611daf311a0e2f0c1af6065f535c342cf8f1450967",
+    "checker_test_sha256": "9da779649f25e9fb3557ed29e396f72b8ebd9ce670d915a1c0388fd1c2cc5480",
     "lock_digest_sha256": "25f54b22d6dbdeb0ce4605bdaca5e82b1ba6b6fa699945c824a7466da875031f",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
@@ -99,20 +99,20 @@
     "product_metadata_sha256": "415b32bc00e9614249c332dfcc2530cad18a792deaa8373d6ffc81e4bebcd979"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-063",
+    "queue_head": "RSH-064",
     "rsh_048_authorized": true,
     "rsh_048_started": true,
     "rsh_049_authorized": true,
     "rsh_049_started": true,
     "forbidden_prefixes": [
-      ".rsh063",
-      ".github/workflows/rsh-063-",
-      "RSH-063-",
-      "scripts/rsh063-",
-      "scripts/check-semver-release",
-      "scripts/check-changelog-release",
-      "scripts/check-release-automation",
-      "src/game/semver-release/"
+      ".rsh064",
+      ".github/workflows/rsh-064-",
+      "RSH-064-",
+      "scripts/rsh064-",
+      "scripts/check-preview-staging",
+      "scripts/check-staging-rollback",
+      "scripts/check-production-rollback",
+      "src/game/preview-staging/"
     ],
     "rsh_050_authorized": true,
     "rsh_050_started": true,
@@ -140,7 +140,9 @@
     "rsh_061_started": true,
     "rsh_062_authorized": true,
     "rsh_062_started": true,
-    "rsh_063_authorized": false,
-    "rsh_063_started": false
+    "rsh_063_authorized": true,
+    "rsh_063_started": true,
+    "rsh_064_authorized": false,
+    "rsh_064_started": false
   }
 }

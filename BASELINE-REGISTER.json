@@ -1,7 +1,7 @@
 {
-  "schema_version": "45.0.0",
+  "schema_version": "46.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T13:01:39.000Z",
+  "generated_at": "2026-09-13T13:15:02.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -1009,23 +1009,36 @@
       "post_merge_workflow_run": 34758497119,
       "recorded_at": "2026-09-13T13:01:39.000Z",
       "description": "RSH-061 accepted."
+    },
+    {
+      "id": "B062-rsh-062-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-062",
+      "pull_request": 67,
+      "commit_sha": "58e58a912c24d84cc07eb501a30262e8590e4e0d",
+      "tree_sha": "0c175c99f72966a654be880232b72141d8e1263f",
+      "validated_head_sha": "ece507f570a1dd8da6fae7bb1d5d2ff78af3ca20",
+      "workflow_run": 34758685852,
+      "post_merge_workflow_run": 34758949619,
+      "recorded_at": "2026-09-13T13:15:02.000Z",
+      "description": "RSH-062 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-062",
+    "unit": "RSH-063",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "8f35457fb29285f4af487457342d6b4bdd1ea574",
-    "branch": "agent/rsh-062-hermon-golden",
-    "manifest": "HERMON-GOLDEN-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-062 pull request"
+    "implementation_base_sha": "58e58a912c24d84cc07eb501a30262e8590e4e0d",
+    "branch": "agent/rsh-063-semver-release",
+    "manifest": "SEMVER-RELEASE-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-063 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-063",
+    "queue_head": "RSH-064",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_063_authorized": false
+    "RSH_064_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
