@@ -55,22 +55,22 @@
     "index_source_sha256": "e9489dbe34cee8d9768fa75fbe5ea0ce5276f686fdfcdad1c2a95e908988504e",
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "checker_test_sha256": "91c78485252bef251bf267612747aef73a5d550a2b63d7e22e62285d4fffb143",
+    "checker_test_sha256": "58cab65d1b702dd3c626a05364fb4fbc66ed8a9900117c4b03615aaf62962012",
     "golden_accel_sha256": "3bd812e9f60184a846fbd1ffe6392b3a9d42a6a1f25c6df83bfb9a3e966fa224"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-055",
+    "queue_head": "RSH-056",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "forbidden_prefixes": [
-      ".rsh055",
-      ".github/workflows/rsh-055-",
-      "RSH-055-",
-      "scripts/rsh055-",
-      "scripts/check-scopus",
-      "scripts/check-jerusalem-geometry",
-      "scripts/check-scopus-track",
-      "src/game/scopus/"
+      ".rsh056",
+      ".github/workflows/rsh-056-",
+      "RSH-056-",
+      "scripts/rsh056-",
+      "scripts/check-scopus-golden",
+      "scripts/check-jerusalem-golden",
+      "scripts/check-scopus-art",
+      "src/game/scopus-golden/"
     ],
     "rsh_034_state": "accepted_on_merge",
     "rsh_035_authorized": true,
@@ -114,7 +114,9 @@
     "rsh_053_started": true,
     "rsh_054_authorized": true,
     "rsh_054_started": true,
-    "rsh_055_authorized": false,
-    "rsh_055_started": false
+    "rsh_055_authorized": true,
+    "rsh_055_started": true,
+    "rsh_056_authorized": false,
+    "rsh_056_started": false
   }
 }

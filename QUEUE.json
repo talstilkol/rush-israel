@@ -1,11 +1,11 @@
 {
-  "schema_version": "37.0.0",
+  "schema_version": "38.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-09-13T11:43:19.000Z",
+  "generated_at": "2026-09-13T11:53:01.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "973c737ce1070380f50b0bf5f7ec32993a94977f",
-  "state_effective_on": "merge_of_RSH_054_pull_request",
+  "verified_base_sha": "1f95b0ad187f57ad6b1ca99838de8c9891ab3236",
+  "state_effective_on": "merge_of_RSH_055_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
       "authorized_units": [
+        "RSH-055"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-055_merge",
+      "RSH_056_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
+      "authorized_units": [
         "RSH-054"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-054_merge",
       "RSH_055_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
-      "authorized_units": [
-        "RSH-053"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-053_merge",
-      "RSH_054_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 54,
+    "accepted": 55,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 13,
-    "remaining": 13
+    "deferred": 12,
+    "remaining": 12
   },
   "queue_head": {
-    "id": "RSH-055",
-    "title": "Jerusalem–Scopus geometry and driving",
+    "id": "RSH-056",
+    "title": "Jerusalem–Scopus art, golden and freeze",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-055 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-056 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-055",
-    "title": "Jerusalem–Scopus geometry and driving",
+    "id": "RSH-056",
+    "title": "Jerusalem–Scopus art, golden and freeze",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -1313,7 +1313,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-054": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-054-oldjaffa-golden",
       "manifest": "JAFFA-GOLDEN-MANIFEST.json",
       "contract": "RSH-054-JAFFA-GOLDEN-CONTRACT.md",
@@ -1321,7 +1321,25 @@
       "track_id": "oldjaffa",
       "art_golden_locked": true,
       "track_source_freeze": true,
-      "rsh_055_created": false
+      "rsh_055_created": true,
+      "pull_request": 59,
+      "validated_head_sha": "d15804ee9c61aea11b0bc7bb9b917ed38db6524f",
+      "merge_sha": "1f95b0ad187f57ad6b1ca99838de8c9891ab3236",
+      "tree_sha": "7881214423d04567ff215cbc73452ab2566bfa9f",
+      "workflow_run": 34755175513,
+      "post_merge_workflow_run": 34755419438,
+      "unresolved_review_threads": 0
+    },
+    "RSH-055": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-055-scopus",
+      "manifest": "SCOPUS-GEOMETRY-MANIFEST.json",
+      "contract": "RSH-055-SCOPUS-CONTRACT.md",
+      "lock_module": "src/game/scopus",
+      "track_id": "scopus",
+      "geometry_locked": true,
+      "driving_locked": true,
+      "rsh_056_created": false
     }
   },
   "unit_order": [
@@ -1396,25 +1414,25 @@
   "state_rules": {
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-054"
+      "through": "RSH-055"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-055",
+      "from": "RSH-056",
       "through": "RSH-067"
     },
-    "RSH-001–RSH-054": "accepted",
-    "RSH-055–RSH-067": "deferred_not_authorized"
+    "RSH-001–RSH-055": "accepted",
+    "RSH-056–RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-055 remains deferred until a new explicit owner instruction.",
-    "RSH_054_completed": true,
-    "RSH_054_authorization_consumed": true,
-    "RSH_055_authorized": false
+    "current_action": "No unit is authorized; RSH-056 remains deferred until a new explicit owner instruction.",
+    "RSH_055_completed": true,
+    "RSH_055_authorization_consumed": true,
+    "RSH_056_authorized": false
   },
-  "self_reference_boundary": "The RSH-054 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-055 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }

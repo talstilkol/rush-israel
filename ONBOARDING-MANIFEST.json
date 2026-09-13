@@ -60,7 +60,7 @@
     "lock_source_sha256": "445d75d62abeb283541be32cdc42efb65cc508f0069c13725de058855ad3a921",
     "index_source_sha256": "58b564d8c79216a0593c45c2d60928e737441a7118de050af0ed3dc065e710d0",
     "contract_sha256": "adbf5952b5dda29cae566b61c20ac4b857d178f7e2de1d8a1e2312d7667d15fd",
-    "checker_test_sha256": "489021aec416eb7bcc912fafcef71ee3fa9556e659e4f161c2bf6f34fcc0681e",
+    "checker_test_sha256": "860928ec0d53f24769afabcff0c33559651e3560508eea51de3a6149d45c9c20",
     "lock_digest_sha256": "f132225ed918c6cd27efe7b4c9a96832f0607ea8a89eacf5c9435bb184ee68d6",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
@@ -87,20 +87,20 @@
     "styles_source_sha256": "b7238994617b20c40ff3443ea430a0a0b94bcc908d70fc78df6b22de3eb104b3"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-055",
+    "queue_head": "RSH-056",
     "rsh_046_authorized": true,
     "rsh_046_started": true,
     "rsh_047_authorized": true,
     "rsh_047_started": true,
     "forbidden_prefixes": [
-      ".rsh055",
-      ".github/workflows/rsh-055-",
-      "RSH-055-",
-      "scripts/rsh055-",
-      "scripts/check-scopus",
-      "scripts/check-jerusalem-geometry",
-      "scripts/check-scopus-track",
-      "src/game/scopus/"
+      ".rsh056",
+      ".github/workflows/rsh-056-",
+      "RSH-056-",
+      "scripts/rsh056-",
+      "scripts/check-scopus-golden",
+      "scripts/check-jerusalem-golden",
+      "scripts/check-scopus-art",
+      "src/game/scopus-golden/"
     ],
     "rsh_048_authorized": true,
     "rsh_048_started": true,
@@ -116,7 +116,9 @@
     "rsh_053_started": true,
     "rsh_054_authorized": true,
     "rsh_054_started": true,
-    "rsh_055_authorized": false,
-    "rsh_055_started": false
+    "rsh_055_authorized": true,
+    "rsh_055_started": true,
+    "rsh_056_authorized": false,
+    "rsh_056_started": false
   }
 }
