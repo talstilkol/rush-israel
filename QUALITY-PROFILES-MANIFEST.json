@@ -74,7 +74,7 @@
     "contract_sha256": "5cdeaac7c9d6da3205f55990579a71f6cfe828700f85311eec125f62fb0cc5a7",
     "live_profile_source_sha256": "9da86b5461433767b9851625b5c7346c981f4901d6b67e3db9884c625c0af10e",
     "live_hysteresis_source_sha256": "fd0e6b4a7c5578186de11eae4f465bbfe863b3f6f493f2f17e84005abf4b8271",
-    "checker_test_sha256": "8ea900a8eb88a184f629b8cfb1868d2d296f62105146a77997957bb9082773c4",
+    "checker_test_sha256": "880a67d91f64b47d175ecb601a08f0b98fbd5ed93acde6fbc4cfa442039a6315",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "quality_digest_sha256": "df5b4b3c1fd9ac7ab5fbaa2a8441da83c6b6ab5a83c97ec3914c3d63313fac6a",
     "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
@@ -87,20 +87,20 @@
     "qa_source_sha256": "973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-052",
+    "queue_head": "RSH-053",
     "rsh_038_authorized": true,
     "rsh_038_started": true,
     "rsh_039_authorized": true,
     "rsh_039_started": true,
     "forbidden_prefixes": [
-      ".rsh052",
-      ".github/workflows/rsh-052-",
-      "RSH-052-",
-      "scripts/rsh052-",
-      "scripts/check-namal-golden",
-      "scripts/check-yarkon-golden",
-      "scripts/check-reading-golden",
-      "src/game/namal-golden/"
+      ".rsh053",
+      ".github/workflows/rsh-053-",
+      "RSH-053-",
+      "scripts/rsh053-",
+      "scripts/check-oldjaffa",
+      "scripts/check-jaffa-geometry",
+      "scripts/check-jaffa-track",
+      "src/game/oldjaffa/"
     ],
     "rsh_040_authorized": true,
     "rsh_040_started": true,
@@ -126,7 +126,9 @@
     "rsh_050_started": true,
     "rsh_051_authorized": true,
     "rsh_051_started": true,
-    "rsh_052_authorized": false,
-    "rsh_052_started": false
+    "rsh_052_authorized": true,
+    "rsh_052_started": true,
+    "rsh_053_authorized": false,
+    "rsh_053_started": false
   }
 }

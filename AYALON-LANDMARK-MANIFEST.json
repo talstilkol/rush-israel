@@ -50,24 +50,24 @@
     "index_source_sha256": "d51244ebc8e3b0793a9b17796ea7db044eab4432d6d9e0a54d7c19b21515e86b",
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
-    "checker_test_sha256": "b5a8db33b0f53c711abd723aa4217618308fac05266d8d714de86a87b4f1bb6a",
+    "checker_test_sha256": "8c177c4dac106d4ac6121f267ba187d3780fb42879e021694ffd07194dc98821",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "poi_sha256": "653400d559e6e34f7fb009d8620f7bc94fbb0bfca48537d3c7e2be98a0028063",
     "placement_sha256": "ca016b04811f2d6184ee36311d805bbd6f77083a1395d7d6a753b7f1963d77a8"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-052",
+    "queue_head": "RSH-053",
     "rsh_029_authorized": true,
     "rsh_029_started": true,
     "forbidden_prefixes": [
-      ".rsh052",
-      ".github/workflows/rsh-052-",
-      "RSH-052-",
-      "scripts/rsh052-",
-      "scripts/check-namal-golden",
-      "scripts/check-yarkon-golden",
-      "scripts/check-reading-golden",
-      "src/game/namal-golden/"
+      ".rsh053",
+      ".github/workflows/rsh-053-",
+      "RSH-053-",
+      "scripts/rsh053-",
+      "scripts/check-oldjaffa",
+      "scripts/check-jaffa-geometry",
+      "scripts/check-jaffa-track",
+      "src/game/oldjaffa/"
     ],
     "rsh_029_state": "accepted_on_merge",
     "rsh_030_authorized": true,
@@ -120,8 +120,10 @@
     "rsh_050_started": true,
     "rsh_051_authorized": true,
     "rsh_051_started": true,
-    "rsh_052_authorized": false,
-    "rsh_052_started": false
+    "rsh_052_authorized": true,
+    "rsh_052_started": true,
+    "rsh_053_authorized": false,
+    "rsh_053_started": false
   },
   "rsh_029_overlay": {
     "state": "accepted_on_merge",

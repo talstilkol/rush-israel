@@ -1,7 +1,7 @@
 {
-  "schema_version": "34.0.0",
+  "schema_version": "35.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T11:12:34.000Z",
+  "generated_at": "2026-09-13T11:24:50.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -866,23 +866,36 @@
       "post_merge_workflow_run": 34753706925,
       "recorded_at": "2026-09-13T11:12:34.000Z",
       "description": "RSH-050 accepted."
+    },
+    {
+      "id": "B051-rsh-051-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-051",
+      "pull_request": 56,
+      "commit_sha": "d29ff43ca8bd8a0a53a8e6d7149208b06d77012b",
+      "tree_sha": "a5a0a049d05d49f1b748e2538937a93bf1d88251",
+      "validated_head_sha": "a4869b8bee40ce6ea7f5ebdc768f11a4ff1abf5d",
+      "workflow_run": 34753999969,
+      "post_merge_workflow_run": 34754209763,
+      "recorded_at": "2026-09-13T11:24:50.000Z",
+      "description": "RSH-051 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-051",
+    "unit": "RSH-052",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "b74fcd39cea0661f3a21beb06fb78d79ff0d8dd9",
-    "branch": "agent/rsh-051-namal",
-    "manifest": "NAMAL-GEOMETRY-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-051 pull request"
+    "implementation_base_sha": "d29ff43ca8bd8a0a53a8e6d7149208b06d77012b",
+    "branch": "agent/rsh-052-namal-golden",
+    "manifest": "NAMAL-GOLDEN-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-052 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-052",
+    "queue_head": "RSH-053",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_052_authorized": false
+    "RSH_053_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
