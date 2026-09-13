@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 46.0.0
+**Version:** 47.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-063 implementation base:** `58e58a912c24d84cc07eb501a30262e8590e4e0d`
-**State effective on:** merge of the RSH-063 pull request
+**RSH-064 implementation base:** `5f098303fa80289fcb6e694779edb22c073709a0`
+**State effective on:** merge of the RSH-064 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-064 — deferred and not authorised
+**Next scheduled unit:** RSH-065 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 63 |
+| Accepted units | 64 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-064 — deferred/not authorised |
+| Queue head | RSH-065 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 4 |
-| RSH-063 one-unit authority | consumed 1/1 |
+| Remaining units | 3 |
+| RSH-064 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -88,5 +88,6 @@
 | RSH-061 | Hermon geometry and driving locked on validated merge |
 | RSH-062 | Hermon art, golden and source freeze locked on validated merge |
 | RSH-063 | SemVer, changelog and private release automation locked on validated merge |
+| RSH-064 | preview, staging, production and rollback channels locked on validated merge |
 
-No RSH-064 branch, PR or implementation structure is authorised by this state.
+No RSH-065 branch, PR or implementation structure is authorised by this state.

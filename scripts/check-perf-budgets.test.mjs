@@ -16,18 +16,18 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-039 budget lock passes and RSH-064 remains absent", () => {
+test("committed RSH-039 budget lock passes and RSH-065 remains absent", () => {
   const result = validatePerfBudgets();
   assert.deepEqual(result.errors, []);
   assert.equal(result.locked, true);
   assert.equal(result.cacheMaxAge, 31536000);
 });
 
-test("RSH-064 precreation fails closed", () => {
+test("RSH-065 precreation fails closed", () => {
   const result = validatePerfBudgets({
-    repositoryFiles: ["RSH-064-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
+    repositoryFiles: ["RSH-065-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
   });
-  assert.match(messages(result), /RSH-064 was precreated/);
+  assert.match(messages(result), /RSH-065 was precreated/);
 });
 
 test("live stream-flag MESH_STREAMING stays false and hashed", () => {
@@ -60,7 +60,7 @@ test("budgets are locked without leak cycles or a real-device baseline", () => {
   assert.equal(manifest.lock.real_device_baseline_accepted, false);
   assert.equal(manifest.lock.gis_claim, false);
   assert.equal(manifest.lock.public_distribution, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-064");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-065");
   assert.equal(CACHE_MAX_AGE_S, 31536000);
   assert.equal(DRAW_CALL_TARGET, 80);
   assert.equal(STREAMING_MUSIC, false);

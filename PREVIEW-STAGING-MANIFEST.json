@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-preview-staging-manifest",
+  "unit": "RSH-064",
+  "title": "Establish preview, staging, production and rollback",
+  "generated_at": "2026-09-13T13:23:45.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "5f098303fa80289fcb6e694779edb22c073709a0",
+    "tree_sha": "bb011f10836d10723e791a7af8c106e5cb98035e",
+    "branch": "agent/rsh-064-preview-staging"
+  },
+  "lock": {
+    "preview_channel_defined": true,
+    "staging_channel_defined": true,
+    "production_channel_defined": true,
+    "rollback_procedure_locked": true,
+    "public_distribution": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "owner_settings_freeze": false,
+    "real_device_baseline_accepted": false
+  },
+  "lock_module": {
+    "directory": "src/game/preview-staging",
+    "lock": "src/game/preview-staging/channels.ts",
+    "index": "src/game/preview-staging/index.ts"
+  },
+  "preservation": {
+    "golden_png_changes": 0,
+    "ayalon_lock_changes": 0,
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "cars_changes": 0,
+    "audio_hud_changes": 0,
+    "engine_adapter_changes": 0,
+    "live_cache_changes": 0,
+    "quality_profile_changes": 0,
+    "registry_changes": 0,
+    "leak_cycle_changes": 0,
+    "context_loss_changes": 0,
+    "package_json_changes": 0,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "lock_source_sha256": "a41f7166d3c92ca9f46af3727f80e6638e127fee622d2de17658276134e8c6ef",
+    "index_source_sha256": "6077908f442c840ce977459a5a466577467c6a9393550347d7e409607e82cb18",
+    "contract_sha256": "edd8eb2212cb7e3c680e8430bf1505068f8367654fb0a4624701c789aaa68ebd",
+    "checker_test_sha256": "ab473a9a732dc5801a712173abac194fd1669efd2a51e4a1781ec63594d9affa",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
+    "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
+    "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
+    "lock_digest_sha256": "c8d487119a92ba09d173eadebc32c09063747c2df7f4a4bff164570647016e3a",
+    "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1",
+    "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+    "quality_profiles_source_sha256": "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a",
+    "budgets_source_sha256": "c51a8040c9179ff6a5290ed39249eb7c38d1cd14dc0143982cc594801c421990",
+    "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-065",
+    "rsh_064_authorized": true,
+    "rsh_064_started": true,
+    "rsh_065_authorized": false,
+    "rsh_065_started": false,
+    "forbidden_prefixes": [
+      ".rsh065",
+      ".github/workflows/rsh-065-",
+      "RSH-065-",
+      "scripts/rsh065-",
+      "scripts/check-alpha-publish",
+      "scripts/check-alpha-evaluate",
+      "scripts/check-v010-alpha",
+      "src/game/alpha-publish/"
+    ]
+  }
+}

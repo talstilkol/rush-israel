@@ -76,24 +76,24 @@
     "index_source_sha256": "0da73a7edfc99d806ae884f482175b88644f66cd58709362b9235c7e9de80daa",
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
-    "checker_test_sha256": "3d8378a23dc4fae4006d2bc1e3d6859d695eae865cb735922240dd6b50830843",
+    "checker_test_sha256": "25caecd0a01338a0a65f36ecd135dd9aea67c359dbeacb458f6f78c8a2da2378",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "checkpoint_sha256": "f53946f17dd4a7a77198057729813d5e5760a325b1f76d7a15a818d4d0c9d22d",
     "ramp_recipe_sha256": "f0b14d4ca14f17cfd9ec258538ef6f68c079de9fb4fb5c9f390354e404369be5"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-064",
+    "queue_head": "RSH-065",
     "rsh_028_authorized": true,
     "rsh_028_started": true,
     "forbidden_prefixes": [
-      ".rsh064",
-      ".github/workflows/rsh-064-",
-      "RSH-064-",
-      "scripts/rsh064-",
-      "scripts/check-preview-staging",
-      "scripts/check-staging-rollback",
-      "scripts/check-production-rollback",
-      "src/game/preview-staging/"
+      ".rsh065",
+      ".github/workflows/rsh-065-",
+      "RSH-065-",
+      "scripts/rsh065-",
+      "scripts/check-alpha-publish",
+      "scripts/check-alpha-evaluate",
+      "scripts/check-v010-alpha",
+      "src/game/alpha-publish/"
     ],
     "rsh_028_state": "accepted_on_merge",
     "rsh_029_authorized": true,
@@ -173,8 +173,10 @@
     "rsh_062_started": true,
     "rsh_063_authorized": true,
     "rsh_063_started": true,
-    "rsh_064_authorized": false,
-    "rsh_064_started": false
+    "rsh_064_authorized": true,
+    "rsh_064_started": true,
+    "rsh_065_authorized": false,
+    "rsh_065_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

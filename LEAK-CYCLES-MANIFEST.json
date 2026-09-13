@@ -59,7 +59,7 @@
     "dispose_object3d_source_sha256": "606e9905b68a2949d2d49407d5815672763b0252c41ffb36aa1484c8e3315264",
     "soak_source_sha256": "a684508627830a4fff5030232ba36dd1b81df82b4924aa307f94116a5dc7df60",
     "soak_smoke_source_sha256": "46f3c813263d2046771a918bdaa624c13ff42fdef580448764bfe6b45a6f33c2",
-    "checker_test_sha256": "0672b3db81b501a246b55e09059e7eb375c9e775be01d7907367700a9026a17f",
+    "checker_test_sha256": "f1edbe19c9ebe4c64c19ab5a870f6c3d47e73f287d939c03f2710fc8c8a5e17c",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "leak_digest_sha256": "d4a6b8abcdf23a734f40b96001a3146ae20056e4ef30536aada7052c943c69a2",
     "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
@@ -70,20 +70,20 @@
     "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-064",
+    "queue_head": "RSH-065",
     "rsh_040_authorized": true,
     "rsh_040_started": true,
     "rsh_041_authorized": true,
     "rsh_041_started": true,
     "forbidden_prefixes": [
-      ".rsh064",
-      ".github/workflows/rsh-064-",
-      "RSH-064-",
-      "scripts/rsh064-",
-      "scripts/check-preview-staging",
-      "scripts/check-staging-rollback",
-      "scripts/check-production-rollback",
-      "src/game/preview-staging/"
+      ".rsh065",
+      ".github/workflows/rsh-065-",
+      "RSH-065-",
+      "scripts/rsh065-",
+      "scripts/check-alpha-publish",
+      "scripts/check-alpha-evaluate",
+      "scripts/check-v010-alpha",
+      "src/game/alpha-publish/"
     ],
     "rsh_042_authorized": true,
     "rsh_042_started": true,
@@ -129,7 +129,9 @@
     "rsh_062_started": true,
     "rsh_063_authorized": true,
     "rsh_063_started": true,
-    "rsh_064_authorized": false,
-    "rsh_064_started": false
+    "rsh_064_authorized": true,
+    "rsh_064_started": true,
+    "rsh_065_authorized": false,
+    "rsh_065_started": false
   }
 }
