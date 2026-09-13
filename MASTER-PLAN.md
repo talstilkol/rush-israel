@@ -96,15 +96,15 @@ root-branding assets remain unverified.
 | Queue head | none — deferred/not authorised |
 | Active PR | none |
 | RSH-067 one-unit authority | 1/1 — consumed |
-| Release gates green | 0/13 |
-| Findings OPEN / MITIGATED / CLOSED | 10 / 8 / 24 |
+| Release gates green | 2/13 live in `LIVE-GITHUB-STATUS.json` (RSH-067 `CURRENT-STATE.json` snapshot stays 0/13) |
+| Findings OPEN / MITIGATED / CLOSED | 6 / 8 / 28 |
 
 ## 6. Stage map
 
 | Stage | Units | Count | Purpose | Post-merge state |
 |---|---:|---:|---|---|
 | G0 | RSH-001–003 | 3 | Control and governance | ACCEPTED |
-| G1 | RSH-004–008 | 5 | Reproducible toolchain and CI | UNITS ACCEPTED; EXIT GATE BLOCKED BY OWNER SETTING |
+| G1 | RSH-004–008 | 5 | Reproducible toolchain and CI | ACCEPTED; live `main` protected |
 | G2 | RSH-009–012 | 4 | Scope, licensing and assets | ACCEPTED |
 | G3 | RSH-013–020 | 8 | Architecture decomposition | ACCEPTED |
 | G4 | RSH-021–024 | 4 | Data integrity and production security | ACCEPTED |
@@ -190,11 +190,11 @@ root-branding assets remain unverified.
 
 | # | Gate | Current state |
 |---:|---|---|
-| 1 | Visibility and licensing agree with owner policy | RED — repository remains public and 66 assets remain unverified |
-| 2 | `main` is protected and PR delivery is enforced | RED |
+| 1 | Visibility and licensing agree with owner policy | RED — repository is now **private**; 66 assets remain unverified |
+| 2 | `main` is protected and PR delivery is enforced | GREEN — ruleset `rush-main-protection` (`23177340`) active |
 | 3 | A clean clone installs and builds reproducibly | RED — evidence exists, release authority not closed |
-| 4 | Required CI is complete and green | RED — workflow exists, repository setting absent |
-| 5 | Production contains no QA hook or secrets | RED |
+| 4 | Required CI is complete and green | GREEN — `required-ci / validate` is a required status check |
+| 5 | Production contains no QA hook or secrets | RED — check exists; unit manifests still freeze this gate |
 | 6 | Ayalon is owner-approved and frozen | RED |
 | 7 | Driving, physics, ramps and damage pass | RED |
 | 8 | Desktop performance meets its budget | RED |
@@ -204,10 +204,10 @@ root-branding assets remain unverified.
 | 12 | UX, input, languages, accessibility and legal checks pass | RED |
 | 13 | Signed release, artifacts and rollback proof exist | RED |
 
-Current verified result: **0/13**.
+Current verified live result: **2/13** (gates 2 and 4). Frozen unit manifests still record `release_gates_green: 0`.
 
 ## 9. Current execution boundary
 
-RSH-021 through RSH-036 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28, 8 lanes of 3.5, 27 hashed spline samples, 50 interchange ramps, 8 open checkpoints, 9 inspired POIs, baked 8-lane asphalt, no sidewalks, 6 gantries). Daylight stays the live `summer14` look with baked `sky-day.png` and tiny non-HDRI PMREM. Night stays look `night` with baked `sky-night.png`, two headlight spots, ten street lamps and four weather specs. Default boot stays day / clear. Driving physics version 7 matches the five fictional 0–100 claims inside a ±15% band without rewriting `cars.ts`. Audio stays Web Audio oscillators with four radio stations; HUD speed is integer km/h from `speed * 3.6`; keyboard/touch/gamepad maps stay the live Version 1 lock. The unique Ayalon golden pack is the 20 non-placeholder frames with owner approval recorded; the four byte-identical HaShalom placeholders stay non-authority. Ayalon freeze is granted with 36 transitive SHA-256 hashes at `src/game/ayalon-freeze/`. Historical unique-pack `freeze_granted` stays false. GIS claims and public distribution remain forbidden. GitHub still does not require production checks through branch settings.
+RSH-021 through RSH-036 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28, 8 lanes of 3.5, 27 hashed spline samples, 50 interchange ramps, 8 open checkpoints, 9 inspired POIs, baked 8-lane asphalt, no sidewalks, 6 gantries). Daylight stays the live `summer14` look with baked `sky-day.png` and tiny non-HDRI PMREM. Night stays look `night` with baked `sky-night.png`, two headlight spots, ten street lamps and four weather specs. Default boot stays day / clear. Driving physics version 7 matches the five fictional 0–100 claims inside a ±15% band without rewriting `cars.ts`. Audio stays Web Audio oscillators with four radio stations; HUD speed is integer km/h from `speed * 3.6`; keyboard/touch/gamepad maps stay the live Version 1 lock. The unique Ayalon golden pack is the 20 non-placeholder frames with owner approval recorded; the four byte-identical HaShalom placeholders stay non-authority. Ayalon freeze is granted with 36 transitive SHA-256 hashes at `src/game/ayalon-freeze/`. Historical unique-pack `freeze_granted` stays false. GIS claims and public distribution remain forbidden. Live GitHub now requires `required-ci / validate` on `main` via ruleset `23177340`; the repository is private.
 
 Ghosts remain byte-preserved and remain assigned outside this unit. The 30-minute soak contract is locked at `src/game/thirty-soak/` with duration 1800 s; required-CI soak-smoke stays 2 cycles and does not substitute. P1-12 stays OPEN. The RSH-067 one-unit authority is consumed on merge. none remains deferred and cannot start without a new explicit owner instruction after this merge. Keyboard/touch/gamepad maps stay unified at `src/game/input-maps/`; Hebrew RTL / English LTR / Arabic-scope stay locked at `src/game/rtl-scope/`. Onboarding is title-boot plus settings and save-recovery UX at `src/game/onboarding/`; there is no first-run wizard. PWA is the live `__grok` standalone manifest at `src/game/pwa/` with no service worker, offline cache, update prompt or public install. Accessibility is live aria controls, live regions and reduced-motion at `src/game/a11y/` with no WCAG AA, canvas a11y, privacy policy, telemetry or crash reporting. Rothschild geometry remains RSH-049.

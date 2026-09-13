@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.1.0",
+  "document_type": "rush-live-github-status",
+  "observed_at": "2026-09-13T14:31:00Z",
+  "repository": "talstilkol/rush-israel",
+  "authority": "Live GitHub supersedes CURRENT-STATE.json repository_snapshot. That snapshot remains the RSH-067 merge record required by scripts/program-control.test.mjs and must not be rewritten here.",
+  "live": {
+    "visibility": "private",
+    "private": true,
+    "default_branch": "main",
+    "main_protected": true,
+    "ruleset_id": 23177340,
+    "ruleset_name": "rush-main-protection",
+    "ruleset_enforcement": "active",
+    "pull_request_required": true,
+    "bypass_actors": [],
+    "required_status_checks": ["required-ci / validate"],
+    "force_push_blocked": true,
+    "deletion_blocked": true,
+    "github_releases": 0,
+    "git_tags": 0,
+    "release_gates_green_live": 2,
+    "release_gates_total": 13
+  },
+  "gate_2_evidence": {
+    "gate": "main is protected and PR delivery is enforced",
+    "state": "GREEN",
+    "ruleset_id": 23177340,
+    "ruleset_name": "rush-main-protection",
+    "enforcement": "active",
+    "target": "refs/heads/main",
+    "pull_request_required": true,
+    "required_review_thread_resolution": true,
+    "allowed_merge_methods": ["merge"],
+    "bypass_actors": [],
+    "non_fast_forward": true,
+    "deletion_blocked": true,
+    "verified_via": "GET /repos/talstilkol/rush-israel/branches/main protected=true and GET /repos/talstilkol/rush-israel/rulesets/23177340"
+  },
+  "gate_4_evidence": {
+    "gate": "Required CI is complete and green",
+    "state": "GREEN",
+    "required_check": "required-ci / validate",
+    "integration_id": 15368,
+    "strict_required_status_checks_policy": true,
+    "latest_success_run_id": 34762705923,
+    "latest_success_head_sha": "7d058122063aa76e4359c2fb49b3dd82bee663a2",
+    "latest_success_conclusion": "success",
+    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/34762705923"
+  },
+  "frozen_rsh_067_snapshot": {
+    "file": "CURRENT-STATE.json",
+    "visibility_current": "public",
+    "main_protected": false,
+    "release_gates_green": 0,
+    "must_remain_unchanged": true
+  }
+}
