@@ -51,7 +51,7 @@
     "lock_source_sha256": "52f16f14894ae8d9fefe2d97c060733648642b6571e1b75d94d28df6b908547b",
     "index_source_sha256": "2d224d6bf4d12dde39827e733cc725eab8245c4218ce7ae0ef5b626675afe873",
     "contract_sha256": "433245e925715ab5add9bef52c9a5628e99a1c1f76aede69da2bfa63081362aa",
-    "checker_test_sha256": "c9ea11301eaa8041c8fe78e99a568ccff5dd48f9c4dd552f1889d488e23ac473",
+    "checker_test_sha256": "4b9c6999030cd354d33c7af65b210d259d979d6278d90ff1ce8da61400275514",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
@@ -64,20 +64,20 @@
     "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-063",
+    "queue_head": "RSH-064",
     "rsh_043_authorized": true,
     "rsh_043_started": true,
     "rsh_044_authorized": true,
     "rsh_044_started": true,
     "forbidden_prefixes": [
-      ".rsh063",
-      ".github/workflows/rsh-063-",
-      "RSH-063-",
-      "scripts/rsh063-",
-      "scripts/check-semver-release",
-      "scripts/check-changelog-release",
-      "scripts/check-release-automation",
-      "src/game/semver-release/"
+      ".rsh064",
+      ".github/workflows/rsh-064-",
+      "RSH-064-",
+      "scripts/rsh064-",
+      "scripts/check-preview-staging",
+      "scripts/check-staging-rollback",
+      "scripts/check-production-rollback",
+      "src/game/preview-staging/"
     ],
     "rsh_045_authorized": true,
     "rsh_045_started": true,
@@ -115,7 +115,9 @@
     "rsh_061_started": true,
     "rsh_062_authorized": true,
     "rsh_062_started": true,
-    "rsh_063_authorized": false,
-    "rsh_063_started": false
+    "rsh_063_authorized": true,
+    "rsh_063_started": true,
+    "rsh_064_authorized": false,
+    "rsh_064_started": false
   }
 }

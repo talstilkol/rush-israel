@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 45.0.0
+**Version:** 46.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-062 implementation base:** `8f35457fb29285f4af487457342d6b4bdd1ea574`
-**State effective on:** merge of the RSH-062 pull request
+**RSH-063 implementation base:** `58e58a912c24d84cc07eb501a30262e8590e4e0d`
+**State effective on:** merge of the RSH-063 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-063 — deferred and not authorised
+**Next scheduled unit:** RSH-064 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 62 |
+| Accepted units | 63 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-063 — deferred/not authorised |
+| Queue head | RSH-064 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 5 |
-| RSH-062 one-unit authority | consumed 1/1 |
+| Remaining units | 4 |
+| RSH-063 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -87,5 +87,6 @@
 | RSH-060 | Ramon art, golden and source freeze locked on validated merge |
 | RSH-061 | Hermon geometry and driving locked on validated merge |
 | RSH-062 | Hermon art, golden and source freeze locked on validated merge |
+| RSH-063 | SemVer, changelog and private release automation locked on validated merge |
 
-No RSH-063 branch, PR or implementation structure is authorised by this state.
+No RSH-064 branch, PR or implementation structure is authorised by this state.

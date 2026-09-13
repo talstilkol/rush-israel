@@ -59,7 +59,7 @@
     "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
     "engine_source_sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
     "race_controller_source_sha256": "e01c955f700b0f7c1fa20f876a8f3ad8b294f3edbdf3bcdf4ed16e6821188670",
-    "checker_test_sha256": "3fd148b3e9ea0c08179980d2b909d5c4023a0de4fd1b40b427063e2e4588ac33",
+    "checker_test_sha256": "e41934e9b3d556a658cd3c17d63bd90b5d55e47b6e187b64711ad4e60cb68b42",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
@@ -71,20 +71,20 @@
     "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-063",
+    "queue_head": "RSH-064",
     "rsh_041_authorized": true,
     "rsh_041_started": true,
     "rsh_042_authorized": true,
     "rsh_042_started": true,
     "forbidden_prefixes": [
-      ".rsh063",
-      ".github/workflows/rsh-063-",
-      "RSH-063-",
-      "scripts/rsh063-",
-      "scripts/check-semver-release",
-      "scripts/check-changelog-release",
-      "scripts/check-release-automation",
-      "src/game/semver-release/"
+      ".rsh064",
+      ".github/workflows/rsh-064-",
+      "RSH-064-",
+      "scripts/rsh064-",
+      "scripts/check-preview-staging",
+      "scripts/check-staging-rollback",
+      "scripts/check-production-rollback",
+      "src/game/preview-staging/"
     ],
     "rsh_043_authorized": true,
     "rsh_043_started": true,
@@ -126,7 +126,9 @@
     "rsh_061_started": true,
     "rsh_062_authorized": true,
     "rsh_062_started": true,
-    "rsh_063_authorized": false,
-    "rsh_063_started": false
+    "rsh_063_authorized": true,
+    "rsh_063_started": true,
+    "rsh_064_authorized": false,
+    "rsh_064_started": false
   }
 }
