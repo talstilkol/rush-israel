@@ -1,7 +1,7 @@
 {
-  "schema_version": "38.0.0",
+  "schema_version": "39.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T11:53:01.000Z",
+  "generated_at": "2026-09-13T12:00:56.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -918,23 +918,36 @@
       "post_merge_workflow_run": 34755419438,
       "recorded_at": "2026-09-13T11:53:01.000Z",
       "description": "RSH-054 accepted."
+    },
+    {
+      "id": "B055-rsh-055-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-055",
+      "pull_request": 60,
+      "commit_sha": "4a365e38207d1995557ca68d7aff9ede5e8442e3",
+      "tree_sha": "9ee2fe041ecc8b11b0b1717267e840467da79e77",
+      "validated_head_sha": "7c510db7cab36c35308f9be234c49fb53d713a48",
+      "workflow_run": 34755596858,
+      "post_merge_workflow_run": 34755785497,
+      "recorded_at": "2026-09-13T12:00:56.000Z",
+      "description": "RSH-055 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-055",
+    "unit": "RSH-056",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "1f95b0ad187f57ad6b1ca99838de8c9891ab3236",
-    "branch": "agent/rsh-055-scopus",
-    "manifest": "SCOPUS-GEOMETRY-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-055 pull request"
+    "implementation_base_sha": "4a365e38207d1995557ca68d7aff9ede5e8442e3",
+    "branch": "agent/rsh-056-scopus-golden",
+    "manifest": "SCOPUS-GOLDEN-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-056 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-056",
+    "queue_head": "RSH-057",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_056_authorized": false
+    "RSH_057_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
