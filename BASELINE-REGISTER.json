@@ -1,7 +1,7 @@
 {
-  "schema_version": "31.0.0",
+  "schema_version": "32.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T12:15:00.000Z",
+  "generated_at": "2026-09-13T10:50:43.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -827,23 +827,36 @@
       "post_merge_workflow_run": 34749754739,
       "recorded_at": "2026-09-13T09:34:27Z",
       "description": "RSH-047 accepted."
+    },
+    {
+      "id": "B048-rsh-048-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-048",
+      "pull_request": 53,
+      "commit_sha": "7feb022935c28ebf6b69f822ddcefac603013f9e",
+      "tree_sha": "a26625b57e0675bae34e32096d41b7a3736a8a65",
+      "validated_head_sha": "bcf2a16312734b50eb8226bf0c5d1be4fe5d2d06",
+      "workflow_run": 34752111897,
+      "post_merge_workflow_run": 34752293550,
+      "recorded_at": "2026-09-13T10:50:43.000Z",
+      "description": "RSH-048 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-048",
+    "unit": "RSH-049",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "fa95fcde9183461c43edbdfae11153457566ae58",
-    "branch": "agent/rsh-048-a11y",
-    "manifest": "A11Y-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-048 pull request"
+    "implementation_base_sha": "7feb022935c28ebf6b69f822ddcefac603013f9e",
+    "branch": "agent/rsh-049-rothschild",
+    "manifest": "ROTHSCHILD-GEOMETRY-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-049 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-049",
+    "queue_head": "RSH-050",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_049_authorized": false
+    "RSH_050_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

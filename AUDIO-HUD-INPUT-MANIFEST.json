@@ -114,25 +114,26 @@
     "touch_source_sha256": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "checker_test_sha256": "fcc7a5d53a61fa44928dbb8098a7fa9ad4b8cadcb7ae34d64003e817cfe815b6",
+    "checker_test_sha256": "d515c3d1fb410ed6566d452a833b50a08d65491df14c391a73de8fe2857f2bdd",
     "audio_digest_sha256": "b5a3a609d13ad78708f362bbff4caaf071454c884aa34bf874fbeff18f56ca3f",
     "input_digest_sha256": "ee389f24969bad529a9e10df5b881f7efc773ecd845056b8aefcc8c52f149809",
     "hud_digest_sha256": "a4516f8b7784d8270fbb8a766515e40ca9ffa70103fe81b63af3733ce05faecb"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-049",
+    "queue_head": "RSH-050",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "forbidden_prefixes": [
-      ".rsh049",
-      ".github/workflows/rsh-049-",
-      "RSH-049-",
-      "scripts/rsh049-",
-      "scripts/check-rothschild",
-      "scripts/check-rothschild-geometry",
-      "src/game/rothschild/"
+      ".rsh050",
+      ".github/workflows/rsh-050-",
+      "RSH-050-",
+      "scripts/rsh050-",
+      "scripts/check-rothschild-golden",
+      "scripts/check-rothschild-art",
+      "scripts/check-rothschild-freeze",
+      "src/game/rothschild-golden/"
     ],
     "rsh_035_state": "accepted_on_merge",
     "rsh_036_authorized": true,
@@ -161,7 +162,9 @@
     "rsh_047_started": true,
     "rsh_048_authorized": true,
     "rsh_048_started": true,
-    "rsh_049_authorized": false,
-    "rsh_049_started": false
+    "rsh_049_authorized": true,
+    "rsh_049_started": true,
+    "rsh_050_authorized": false,
+    "rsh_050_started": false
   }
 }

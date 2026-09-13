@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-rothschild-manifest",
+  "unit": "RSH-049",
+  "title": "Rothschild geometry and driving",
+  "generated_at": "2026-09-13T10:50:43.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "7feb022935c28ebf6b69f822ddcefac603013f9e",
+    "tree_sha": "a26625b57e0675bae34e32096d41b7a3736a8a65",
+    "branch": "agent/rsh-049-rothschild"
+  },
+  "lock": {
+    "track_id": "rothschild",
+    "geometry_locked": true,
+    "driving_locked": true,
+    "art_golden_locked": false,
+    "track_freeze_granted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "owner_settings_freeze": false,
+    "public_distribution": false,
+    "real_device_baseline_accepted": false
+  },
+  "lock_module": {
+    "directory": "src/game/rothschild",
+    "lock": "src/game/rothschild/geometry.ts",
+    "index": "src/game/rothschild/index.ts"
+  },
+  "preservation": {
+    "golden_png_changes": 0,
+    "ayalon_lock_changes": 0,
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "cars_changes": 0,
+    "audio_hud_changes": 0,
+    "engine_adapter_changes": 0,
+    "live_cache_changes": 0,
+    "quality_profile_changes": 0,
+    "registry_changes": 0,
+    "leak_cycle_changes": 0,
+    "context_loss_changes": 0,
+    "package_json_changes": 0,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "lock_source_sha256": "ed6b10f04d1c282e5bde7af952a7ba85e58e111695998bdc5af869ff9d4f0c56",
+    "index_source_sha256": "c2a0691237001a2db48065df8bc7fa54dd38466d4544c87777745240332b53b6",
+    "contract_sha256": "6901974adf03ea2cd4c9dbde601e78763776682d9fa5904f29bb983a62a40cde",
+    "checker_test_sha256": "d705942a2f38097db15f4fbe9d0b3c3ee08c337085c47ea6623abcab8b348069",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
+    "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
+    "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
+    "lock_digest_sha256": "6283cc8da01bcc9dbdc957131fb6be4e86515782de1dced9dca29cf6f7f7f433",
+    "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1",
+    "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+    "quality_profiles_source_sha256": "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a",
+    "budgets_source_sha256": "c51a8040c9179ff6a5290ed39249eb7c38d1cd14dc0143982cc594801c421990",
+    "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-050",
+    "rsh_049_authorized": true,
+    "rsh_049_started": true,
+    "rsh_050_authorized": false,
+    "rsh_050_started": false,
+    "forbidden_prefixes": [
+      ".rsh050",
+      ".github/workflows/rsh-050-",
+      "RSH-050-",
+      "scripts/rsh050-",
+      "scripts/check-rothschild-golden",
+      "scripts/check-rothschild-art",
+      "scripts/check-rothschild-freeze",
+      "src/game/rothschild-golden/"
+    ]
+  }
+}

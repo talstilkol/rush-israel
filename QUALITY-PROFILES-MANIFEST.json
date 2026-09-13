@@ -74,7 +74,7 @@
     "contract_sha256": "5cdeaac7c9d6da3205f55990579a71f6cfe828700f85311eec125f62fb0cc5a7",
     "live_profile_source_sha256": "9da86b5461433767b9851625b5c7346c981f4901d6b67e3db9884c625c0af10e",
     "live_hysteresis_source_sha256": "fd0e6b4a7c5578186de11eae4f465bbfe863b3f6f493f2f17e84005abf4b8271",
-    "checker_test_sha256": "7abb6d510b2c0acb593e3a2b2f485120b825e456c0aaa1b7cd05fc5c50a1acda",
+    "checker_test_sha256": "f3e53ec5e5fc07c39956728487dd9d9619a79abe7a9c2950280ce7da30d316f4",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "quality_digest_sha256": "df5b4b3c1fd9ac7ab5fbaa2a8441da83c6b6ab5a83c97ec3914c3d63313fac6a",
     "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
@@ -87,19 +87,20 @@
     "qa_source_sha256": "973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-049",
+    "queue_head": "RSH-050",
     "rsh_038_authorized": true,
     "rsh_038_started": true,
     "rsh_039_authorized": true,
     "rsh_039_started": true,
     "forbidden_prefixes": [
-      ".rsh049",
-      ".github/workflows/rsh-049-",
-      "RSH-049-",
-      "scripts/rsh049-",
-      "scripts/check-rothschild",
-      "scripts/check-rothschild-geometry",
-      "src/game/rothschild/"
+      ".rsh050",
+      ".github/workflows/rsh-050-",
+      "RSH-050-",
+      "scripts/rsh050-",
+      "scripts/check-rothschild-golden",
+      "scripts/check-rothschild-art",
+      "scripts/check-rothschild-freeze",
+      "src/game/rothschild-golden/"
     ],
     "rsh_040_authorized": true,
     "rsh_040_started": true,
@@ -119,7 +120,9 @@
     "rsh_047_started": true,
     "rsh_048_authorized": true,
     "rsh_048_started": true,
-    "rsh_049_authorized": false,
-    "rsh_049_started": false
+    "rsh_049_authorized": true,
+    "rsh_049_started": true,
+    "rsh_050_authorized": false,
+    "rsh_050_started": false
   }
 }

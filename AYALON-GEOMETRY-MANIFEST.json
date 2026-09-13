@@ -67,22 +67,23 @@
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
-    "checker_test_sha256": "5dbb302c9894af1a7ae4ed15a326d649c194d5e22f8dcdbcc8bda4601c260009",
+    "checker_test_sha256": "af6bc2c5bf5950f2f74bc951379fc5d5b4814d5dd84bc21c1a30971d8b549916",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-049",
+    "queue_head": "RSH-050",
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh049",
-      ".github/workflows/rsh-049-",
-      "RSH-049-",
-      "scripts/rsh049-",
-      "scripts/check-rothschild",
-      "scripts/check-rothschild-geometry",
-      "src/game/rothschild/"
+      ".rsh050",
+      ".github/workflows/rsh-050-",
+      "RSH-050-",
+      "scripts/rsh050-",
+      "scripts/check-rothschild-golden",
+      "scripts/check-rothschild-art",
+      "scripts/check-rothschild-freeze",
+      "src/game/rothschild-golden/"
     ],
     "rsh_028_authorized": true,
     "rsh_028_started": true,
@@ -134,8 +135,10 @@
     "rsh_047_started": true,
     "rsh_048_authorized": true,
     "rsh_048_started": true,
-    "rsh_049_authorized": false,
-    "rsh_049_started": false
+    "rsh_049_authorized": true,
+    "rsh_049_started": true,
+    "rsh_050_authorized": false,
+    "rsh_050_started": false
   },
   "rsh_027_overlay": {
     "state": "accepted_on_merge",

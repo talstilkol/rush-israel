@@ -21,17 +21,17 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-047 lock passes and RSH-049 remains absent", () => {
+test("committed RSH-047 lock passes and RSH-050 remains absent", () => {
   const result = validateLock();
   assert.deepEqual(result.errors, []);
   assert.equal(result.locked, true);
 });
 
-test("RSH-049 precreation fails closed", () => {
+test("RSH-050 precreation fails closed", () => {
   const result = validateLock({
-    repositoryFiles: ["RSH-049-PREFLIGHT.json", "src/game/rothschild/geometry.ts", "scripts/check-rothschild.mjs"],
+    repositoryFiles: ["RSH-050-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-rothschild-golden.mjs"],
   });
-  assert.match(messages(result), /RSH-049 was precreated/);
+  assert.match(messages(result), /RSH-050 was precreated/);
 });
 
 test("RSH-047 does not accept service-worker, offline-cache or a11y-complete claims", () => {
@@ -56,5 +56,5 @@ test("RSH-047 does not accept service-worker, offline-cache or a11y-complete cla
   assert.equal(manifest.lock.service_worker, false);
   assert.equal(manifest.lock.offline_cache, false);
   assert.equal(manifest.lock.a11y_complete, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-049");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-050");
 });
