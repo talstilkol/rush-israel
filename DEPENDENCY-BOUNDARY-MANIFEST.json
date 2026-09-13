@@ -144,7 +144,7 @@
     "asset_changes": 0
   },
   "deferred_boundary": {
-    "queue_head": "RSH-065",
+    "queue_head": "RSH-066",
     "rsh_021_authorized": true,
     "rsh_021_started": true,
     "rsh_021_state": "accepted",
@@ -152,14 +152,14 @@
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh065",
-      ".github/workflows/rsh-065-",
-      "RSH-065-",
-      "scripts/rsh065-",
-      "scripts/check-alpha-publish",
-      "scripts/check-alpha-evaluate",
-      "scripts/check-v010-alpha",
-      "src/game/alpha-publish/"
+      ".rsh066",
+      ".github/workflows/rsh-066-",
+      "RSH-066-",
+      "scripts/rsh066-",
+      "scripts/check-rc1-close",
+      "scripts/check-rc1-defects",
+      "scripts/check-release-candidate",
+      "src/game/rc1-close/"
     ],
     "rsh_023_authorized": true,
     "rsh_023_started": true,
@@ -258,8 +258,10 @@
     "rsh_063_started": true,
     "rsh_064_authorized": true,
     "rsh_064_started": true,
-    "rsh_065_authorized": false,
-    "rsh_065_started": false
+    "rsh_065_authorized": true,
+    "rsh_065_started": true,
+    "rsh_066_authorized": false,
+    "rsh_066_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",
