@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 43.0.0
+**Version:** 44.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-060 implementation base:** `41a16fc589c847f0dd9740e2f1af62eb4c18c6f8`
-**State effective on:** merge of the RSH-060 pull request
+**RSH-061 implementation base:** `cf6042c7e3dde7200afdc9eed56d191a0f8814b9`
+**State effective on:** merge of the RSH-061 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-061 — deferred and not authorised
+**Next scheduled unit:** RSH-062 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 60 |
+| Accepted units | 61 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-061 — deferred/not authorised |
+| Queue head | RSH-062 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 7 |
-| RSH-060 one-unit authority | consumed 1/1 |
+| Remaining units | 6 |
+| RSH-061 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -85,5 +85,6 @@
 | RSH-058 | Haifa–Carmel art, golden and source freeze locked on validated merge |
 | RSH-059 | Ramon geometry and driving locked on validated merge |
 | RSH-060 | Ramon art, golden and source freeze locked on validated merge |
+| RSH-061 | Hermon geometry and driving locked on validated merge |
 
-No RSH-061 branch, PR or implementation structure is authorised by this state.
+No RSH-062 branch, PR or implementation structure is authorised by this state.

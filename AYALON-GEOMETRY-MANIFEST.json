@@ -67,23 +67,23 @@
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
-    "checker_test_sha256": "0e2be49c67cdff6586457bfba9200b0a7547b135fa44498fab5ab1a2d212f67a",
+    "checker_test_sha256": "966cf51cef936fb9b228fe294b53b53ad52f279f9d151b6d6ce965b8bde4ad25",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-061",
+    "queue_head": "RSH-062",
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh061",
-      ".github/workflows/rsh-061-",
-      "RSH-061-",
-      "scripts/rsh061-",
-      "scripts/check-hermon",
-      "scripts/check-hermon-drive",
-      "scripts/check-hermon-track",
-      "src/game/hermon/"
+      ".rsh062",
+      ".github/workflows/rsh-062-",
+      "RSH-062-",
+      "scripts/rsh062-",
+      "scripts/check-hermon-golden",
+      "scripts/check-hermon-art",
+      "scripts/check-hermon-freeze",
+      "src/game/hermon-golden/"
     ],
     "rsh_028_authorized": true,
     "rsh_028_started": true,
@@ -159,8 +159,10 @@
     "rsh_059_started": true,
     "rsh_060_authorized": true,
     "rsh_060_started": true,
-    "rsh_061_authorized": false,
-    "rsh_061_started": false
+    "rsh_061_authorized": true,
+    "rsh_061_started": true,
+    "rsh_062_authorized": false,
+    "rsh_062_started": false
   },
   "rsh_027_overlay": {
     "state": "accepted_on_merge",

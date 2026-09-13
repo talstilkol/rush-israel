@@ -1,11 +1,11 @@
 {
-  "schema_version": "43.0.0",
+  "schema_version": "44.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-09-13T12:42:57.000Z",
+  "generated_at": "2026-09-13T12:51:55.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "41a16fc589c847f0dd9740e2f1af62eb4c18c6f8",
-  "state_effective_on": "merge_of_RSH_060_pull_request",
+  "verified_base_sha": "cf6042c7e3dde7200afdc9eed56d191a0f8814b9",
+  "state_effective_on": "merge_of_RSH_061_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
       "authorized_units": [
+        "RSH-061"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-061_merge",
+      "RSH_062_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
+      "authorized_units": [
         "RSH-060"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-060_merge",
       "RSH_061_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
-      "authorized_units": [
-        "RSH-059"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-059_merge",
-      "RSH_060_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 60,
+    "accepted": 61,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 7,
-    "remaining": 7
+    "deferred": 6,
+    "remaining": 6
   },
   "queue_head": {
-    "id": "RSH-061",
-    "title": "Hermon geometry and driving",
+    "id": "RSH-062",
+    "title": "Hermon art, golden and freeze",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-061 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-062 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-061",
-    "title": "Hermon geometry and driving",
+    "id": "RSH-062",
+    "title": "Hermon art, golden and freeze",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -1421,7 +1421,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-060": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-060-ramon-golden",
       "manifest": "RAMON-GOLDEN-MANIFEST.json",
       "contract": "RSH-060-RAMON-GOLDEN-CONTRACT.md",
@@ -1429,7 +1429,25 @@
       "track_id": "ramon",
       "art_golden_locked": true,
       "track_source_freeze": true,
-      "rsh_061_created": false
+      "rsh_061_created": true,
+      "pull_request": 65,
+      "validated_head_sha": "a2936d210549bf180e29a62c2cf3855ce95616f2",
+      "merge_sha": "cf6042c7e3dde7200afdc9eed56d191a0f8814b9",
+      "tree_sha": "50d9badebc99665e6dd747749a4727edcd768d35",
+      "workflow_run": 34757851111,
+      "post_merge_workflow_run": 34758083268,
+      "unresolved_review_threads": 0
+    },
+    "RSH-061": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-061-hermon",
+      "manifest": "HERMON-GEOMETRY-MANIFEST.json",
+      "contract": "RSH-061-HERMON-CONTRACT.md",
+      "lock_module": "src/game/hermon",
+      "track_id": "hermon",
+      "geometry_locked": true,
+      "driving_locked": true,
+      "rsh_062_created": false
     }
   },
   "unit_order": [
@@ -1504,25 +1522,25 @@
   "state_rules": {
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-060"
+      "through": "RSH-061"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-061",
+      "from": "RSH-062",
       "through": "RSH-067"
     },
-    "RSH-001–RSH-060": "accepted",
-    "RSH-061–RSH-067": "deferred_not_authorized"
+    "RSH-001–RSH-061": "accepted",
+    "RSH-062–RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-061 remains deferred until a new explicit owner instruction.",
-    "RSH_060_completed": true,
-    "RSH_060_authorization_consumed": true,
-    "RSH_061_authorized": false
+    "current_action": "No unit is authorized; RSH-062 remains deferred until a new explicit owner instruction.",
+    "RSH_061_completed": true,
+    "RSH_061_authorization_consumed": true,
+    "RSH_062_authorized": false
   },
-  "self_reference_boundary": "The RSH-060 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-061 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }
