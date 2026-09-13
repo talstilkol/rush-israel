@@ -144,7 +144,7 @@
     "asset_changes": 0
   },
   "deferred_boundary": {
-    "queue_head": "RSH-056",
+    "queue_head": "RSH-057",
     "rsh_021_authorized": true,
     "rsh_021_started": true,
     "rsh_021_state": "accepted",
@@ -152,14 +152,14 @@
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh056",
-      ".github/workflows/rsh-056-",
-      "RSH-056-",
-      "scripts/rsh056-",
-      "scripts/check-scopus-golden",
-      "scripts/check-jerusalem-golden",
-      "scripts/check-scopus-art",
-      "src/game/scopus-golden/"
+      ".rsh057",
+      ".github/workflows/rsh-057-",
+      "RSH-057-",
+      "scripts/rsh057-",
+      "scripts/check-haifa",
+      "scripts/check-carmel-geometry",
+      "scripts/check-haifa-track",
+      "src/game/haifa/"
     ],
     "rsh_023_authorized": true,
     "rsh_023_started": true,
@@ -240,8 +240,10 @@
     "rsh_054_started": true,
     "rsh_055_authorized": true,
     "rsh_055_started": true,
-    "rsh_056_authorized": false,
-    "rsh_056_started": false
+    "rsh_056_authorized": true,
+    "rsh_056_started": true,
+    "rsh_057_authorized": false,
+    "rsh_057_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

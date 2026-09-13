@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-056",
+    "queue_head": "RSH-057",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -122,14 +122,14 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh056",
-      ".github/workflows/rsh-056-",
-      "RSH-056-",
-      "scripts/rsh056-",
-      "scripts/check-scopus-golden",
-      "scripts/check-jerusalem-golden",
-      "scripts/check-scopus-art",
-      "src/game/scopus-golden/"
+      ".rsh057",
+      ".github/workflows/rsh-057-",
+      "RSH-057-",
+      "scripts/rsh057-",
+      "scripts/check-haifa",
+      "scripts/check-carmel-geometry",
+      "scripts/check-haifa-track",
+      "src/game/haifa/"
     ],
     "rsh_026_authorized": true,
     "rsh_026_started": true,
@@ -201,8 +201,10 @@
     "rsh_054_started": true,
     "rsh_055_authorized": true,
     "rsh_055_started": true,
-    "rsh_056_authorized": false,
-    "rsh_056_started": false
+    "rsh_056_authorized": true,
+    "rsh_056_started": true,
+    "rsh_057_authorized": false,
+    "rsh_057_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -379,6 +381,6 @@
     "freeze_granted": false,
     "owner_freeze": false,
     "gis_claim": false,
-    "schema_guard_test_sha256": "79a0ab6de89c78ace4e908d716295bae3f8c5bf3ac7368fcd3bde7607ee09ba3"
+    "schema_guard_test_sha256": "f6d902f4e5b014cc8993e7b3d278693541ad5ac5fc4ed7eef8273fec5c98ba42"
   }
 }

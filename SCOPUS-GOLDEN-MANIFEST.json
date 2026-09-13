@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-scopus-golden-manifest",
+  "unit": "RSH-056",
+  "title": "Jerusalem–Scopus art, golden and freeze",
+  "generated_at": "2026-09-13T12:00:56.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "4a365e38207d1995557ca68d7aff9ede5e8442e3",
+    "tree_sha": "9ee2fe041ecc8b11b0b1717267e840467da79e77",
+    "branch": "agent/rsh-056-scopus-golden"
+  },
+  "lock": {
+    "track_id": "scopus",
+    "art_golden_locked": true,
+    "track_source_freeze": true,
+    "ayalon_freeze_granted": true,
+    "owner_settings_freeze": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "public_distribution": false,
+    "real_device_baseline_accepted": false
+  },
+  "lock_module": {
+    "directory": "src/game/scopus-golden",
+    "lock": "src/game/scopus-golden/golden.ts",
+    "index": "src/game/scopus-golden/index.ts"
+  },
+  "preservation": {
+    "golden_png_changes": 0,
+    "ayalon_lock_changes": 0,
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "cars_changes": 0,
+    "audio_hud_changes": 0,
+    "engine_adapter_changes": 0,
+    "live_cache_changes": 0,
+    "quality_profile_changes": 0,
+    "registry_changes": 0,
+    "leak_cycle_changes": 0,
+    "context_loss_changes": 0,
+    "package_json_changes": 0,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "lock_source_sha256": "9118115bac9a4e436b731566773f37738512f842eb0b705f5ec9f7356ff18ef3",
+    "index_source_sha256": "b76c1ab7dfc915791e6ffccfacafc95453d740149e3dee79f13d34e0b4bb575d",
+    "contract_sha256": "dc67f0e28dcf3bf02ed231ea4a7aa3773712b4ceedec580d7fe347eca2176b2c",
+    "checker_test_sha256": "5846bf10467cfe1e53f0e8b1328ffb7d50e7c44342ab8adf0283024826b2f9de",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
+    "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
+    "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
+    "lock_digest_sha256": "233215e477d4f49ff594c51c0b7b4c25fa174328ff9c22d068fc04860bb8f57e",
+    "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1",
+    "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+    "quality_profiles_source_sha256": "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a",
+    "budgets_source_sha256": "c51a8040c9179ff6a5290ed39249eb7c38d1cd14dc0143982cc594801c421990",
+    "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-057",
+    "rsh_056_authorized": true,
+    "rsh_056_started": true,
+    "rsh_057_authorized": false,
+    "rsh_057_started": false,
+    "forbidden_prefixes": [
+      ".rsh057",
+      ".github/workflows/rsh-057-",
+      "RSH-057-",
+      "scripts/rsh057-",
+      "scripts/check-haifa",
+      "scripts/check-carmel-geometry",
+      "scripts/check-haifa-track",
+      "src/game/haifa/"
+    ]
+  }
+}
