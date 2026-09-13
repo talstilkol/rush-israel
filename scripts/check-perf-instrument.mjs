@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "cd50a4d38f0897bac311ad5b4b84248ab9815ec760adeab3ed69501353fb1bfe";
+export const EXPECTED_MANIFEST_SHA256 = "b1feee601f57dcd423db7661b333c13eacaa0b32a8a6c58818bebfa59245c129";
 export const EXPECTED_METRICS_SHA256 = "d76bc0131c31dfbf3d86de081d45a70fba49d0130755ad04368aceaf4592492a";
 export const EXPECTED_INDEX_SHA256 = "adb2baa7d31786c21d36a65088606633dd5687a7388943fede5c3b1d1d1e546a";
 export const EXPECTED_CONTRACT_SHA256 = "2e5ec28867b83bf444043be2b60a9aaa30e2296704e3f9a914e29f296f7066ec";
@@ -14,7 +14,7 @@ export const EXPECTED_LOOP_SHA256 = "88d8f39ff363664cc0a0ab965f7d9a174377961b868
 export const EXPECTED_RENDERING_SHA256 = "947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132";
 export const EXPECTED_QA_SHA256 = "973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c";
 export const EXPECTED_HUD_SHA256 = "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35";
-export const EXPECTED_CHECKER_TEST_SHA256 = "a2ab63cd7e4ff441f5f06764f4c8bc750bc00e445f7268a700972ab657656961";
+export const EXPECTED_CHECKER_TEST_SHA256 = "9a1e392a72d0a13e8f59d9027402b9fec62c1b0a196b2021c6d8ab985370bb42";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_PERF_DIGEST_SHA256 = "7475ef5f789a4950cf82743aa5a7d499075e8d37813a65ef4c0dc6b658b222fd";
 export const EXPECTED_FREEZE_DIGEST_SHA256 = "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098";
@@ -124,8 +124,8 @@ export function validatePerfInstrument(overrides = {}) {
   if (!/\| P1-13 \| P1 \| \*\*OPEN\*\*/.test(input.findingsSource)) errors.push("P1-13 must remain OPEN until a real-device baseline exists");
   if (manifest.preservation?.golden_png_changes !== 0 || manifest.preservation?.package_json_changes !== 0 || manifest.preservation?.release_gates_green !== 0) errors.push("RSH-037 preservation counts changed");
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-045 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-045" || manifest.deferred_boundary?.rsh_038_authorized !== true || manifest.deferred_boundary?.rsh_039_authorized !== true || manifest.deferred_boundary?.rsh_040_authorized !== true || manifest.deferred_boundary?.rsh_041_authorized !== true || manifest.deferred_boundary?.rsh_042_authorized !== true || manifest.deferred_boundary?.rsh_043_authorized !== true || manifest.deferred_boundary?.rsh_045_authorized !== false || manifest.deferred_boundary?.rsh_038_started !== true || manifest.deferred_boundary?.rsh_039_started !== true || manifest.deferred_boundary?.rsh_040_started !== true || manifest.deferred_boundary?.rsh_041_started !== true || manifest.deferred_boundary?.rsh_042_started !== true || manifest.deferred_boundary?.rsh_043_started !== true || manifest.deferred_boundary?.rsh_045_started !== false) errors.push("RSH-045 deferred boundary changed");
+  if (later.length) errors.push(`RSH-046 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-046" || manifest.deferred_boundary?.rsh_038_authorized !== true || manifest.deferred_boundary?.rsh_039_authorized !== true || manifest.deferred_boundary?.rsh_040_authorized !== true || manifest.deferred_boundary?.rsh_041_authorized !== true || manifest.deferred_boundary?.rsh_042_authorized !== true || manifest.deferred_boundary?.rsh_043_authorized !== true || manifest.deferred_boundary?.rsh_045_authorized !== true || manifest.deferred_boundary?.rsh_046_authorized !== false || manifest.deferred_boundary?.rsh_038_started !== true || manifest.deferred_boundary?.rsh_039_started !== true || manifest.deferred_boundary?.rsh_040_started !== true || manifest.deferred_boundary?.rsh_041_started !== true || manifest.deferred_boundary?.rsh_042_started !== true || manifest.deferred_boundary?.rsh_043_started !== true || manifest.deferred_boundary?.rsh_045_started !== true || manifest.deferred_boundary?.rsh_046_started !== false) errors.push("RSH-046 deferred boundary changed");
   return { errors, instrumented: errors.length === 0, metrics: PERF_METRICS_COUNT() };
 }
 
@@ -142,5 +142,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`perf-instrument fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`perf-instrument ok: p50/p95/p99 + draw/tri/memory; RSH-045 deferred`);
+  console.log(`perf-instrument ok: p50/p95/p99 + draw/tri/memory; RSH-046 deferred`);
 }

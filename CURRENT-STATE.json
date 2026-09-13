@@ -1,24 +1,24 @@
 {
-  "schema_version": "27.0.0",
+  "schema_version": "28.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-13T07:40:00.000Z",
+  "generated_at": "2026-09-13T09:55:00.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_044_pull_request",
-    "implementation_base_sha": "7d147df5db571c915a8c104f553ba4a635f75f6f",
-    "self_reference_boundary": "The RSH-044 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_045_pull_request",
+    "implementation_base_sha": "7ebe241496e9206efe1ad7a5068924cbc299ced2",
+    "self_reference_boundary": "The RSH-045 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "7d147df5db571c915a8c104f553ba4a635f75f6f",
-    "tree_sha": "20b09eece568e0eeebf55a426d26c9f403a4a73c",
-    "commit_authored_at": "2026-09-13T07:15:43Z",
-    "commit_message": "Merge PR #48: RSH-043 — Validate the browser and device support matrix",
+    "head_sha": "7ebe241496e9206efe1ad7a5068924cbc299ced2",
+    "tree_sha": "55be9d8c8c88e74e35a4d73ecabd725e293f0dce",
+    "commit_authored_at": "2026-09-13T07:56:37Z",
+    "commit_message": "Merge PR #49: RSH-044 — Unify keyboard, touch and gamepad input maps",
     "commit_signature_verified": true,
-    "role": "RSH-044 exact implementation base"
+    "role": "RSH-045 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 44,
+    "accepted_units": 45,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 23,
-    "remaining_units": 23,
-    "queue_head": "RSH-045",
+    "deferred_units": 22,
+    "remaining_units": 22,
+    "queue_head": "RSH-046",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -1337,10 +1337,14 @@
       "gis_claim": false,
       "owner_freeze": false,
       "public_distribution": false,
-      "rsh_044_created": true
+      "rsh_044_created": true,
+      "pull_request": 48,
+      "validated_head_sha": "457628e2264fe4852b76222c2a249dfa61eede3d",
+      "merge_sha": "7d147df5db571c915a8c104f553ba4a635f75f6f",
+      "tree_sha": "20b09eece568e0eeebf55a426d26c9f403a4a73c"
     },
     "RSH-044": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-044-input-maps",
       "pull_request_resolution": "the pull request created from the exact RSH-044 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -1358,16 +1362,56 @@
       "gis_claim": false,
       "owner_freeze": false,
       "public_distribution": false,
-      "rsh_045_created": false
+      "rsh_045_created": true,
+      "pull_request": 49,
+      "validated_head_sha": "fb75c1983e61aa0cdb10ee7d6dd3d02939826b62",
+      "merge_sha": "7ebe241496e9206efe1ad7a5068924cbc299ced2",
+      "tree_sha": "55be9d8c8c88e74e35a4d73ecabd725e293f0dce",
+      "workflow_run": 34746307729,
+      "workflow_job": 103694770624,
+      "artifact_id": 10314362085,
+      "artifact_digest": "sha256:5c53d0309dd3b948eb2c50ef744e498ded62d202676bbc894d8c23a9f9840c84",
+      "post_merge_workflow_run": 34746455661,
+      "post_merge_workflow_job": 103695161622,
+      "post_merge_artifact_id": 10314730646,
+      "post_merge_artifact_digest": "sha256:7087165ed18b4bde1b6384d332851579d21f280417be65d998c2e4e74a87e143",
+      "unresolved_review_threads": 0,
+      "pause_keyboard_only": true
+    },
+    "RSH-045": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-045-rtl-scope",
+      "pull_request_resolution": "the pull request created from the exact RSH-045 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-045 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-045 merge SHA",
+      "manifest": "RTL-SCOPE-MANIFEST.json",
+      "contract": "RSH-045-RTL-SCOPE-CONTRACT.md",
+      "lock_module": "src/game/rtl-scope",
+      "rtl_scope_complete": true,
+      "hebrew_rtl": true,
+      "english_ltr": true,
+      "arabic_in_scope": true,
+      "arabic_copy_complete": false,
+      "arabic_fallback_english": true,
+      "default_lang": "he",
+      "lang_count": 3,
+      "onboarding_complete": false,
+      "gis_claim": false,
+      "owner_freeze": false,
+      "public_distribution": false,
+      "rsh_046_created": false,
+      "html_lang_static_he": true,
+      "document_lang_synced": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-044",
+    "unit": "RSH-045",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-044-input-maps",
+    "branch": "agent/rsh-045-rtl-scope",
     "authority_consumed": true,
-    "next_unit": "RSH-045",
+    "next_unit": "RSH-046",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -1475,7 +1519,10 @@
     "RSH-044_authorized": false,
     "RSH-044_was_separately_authorized": true,
     "RSH-044_authorization_consumed": true,
-    "RSH-045_authorized": false
+    "RSH-045_authorized": false,
+    "RSH-045_was_separately_authorized": true,
+    "RSH-045_authorization_consumed": true,
+    "RSH-046_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -1550,12 +1597,13 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The standing owner instruction authorised exactly RSH-044 after RSH-043 merged and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-045.",
+    "The standing owner instruction authorised exactly RSH-045 after RSH-044 merged and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-046.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13.",
     "The standing owner instruction to finish the master plan authorised RSH-036 through RSH-067, but only the queue head may start.",
-    "RSH-045 remains deferred until this unit is accepted on merge."
+    "RSH-046 remains deferred until this unit is accepted on merge.",
+    "Arabic is in scope with English fallback; Arabic copy is not complete."
   ],
   "validation": {
     "queue_units": 67,
@@ -1681,12 +1729,12 @@
   "single_unit_authorization": {
     "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
     "authorized_units": [
-      "RSH-044"
+      "RSH-045"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-044_merge",
-    "RSH_045_authorized": false
+    "state": "consumed_on_RSH-045_merge",
+    "RSH_046_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -1723,14 +1771,14 @@
     "post_merge_workflow_job": 99173247441
   },
   "prior_single_unit_authorization": {
-    "instruction": "next",
+    "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
     "authorized_units": [
-      "RSH-043"
+      "RSH-044"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-043_merge",
-    "RSH_044_authorized": false
+    "state": "consumed_on_RSH-044_merge",
+    "RSH_045_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",

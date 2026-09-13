@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-045",
+    "queue_head": "RSH-046",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -122,14 +122,14 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh045",
-      ".github/workflows/rsh-045-",
-      "RSH-045-",
-      "scripts/rsh045-",
-      "scripts/check-rtl-scope",
-      "scripts/check-i18n-rtl",
-      "scripts/check-arabic-scope",
-      "src/game/rtl-scope/"
+      ".rsh046",
+      ".github/workflows/rsh-046-",
+      "RSH-046-",
+      "scripts/rsh046-",
+      "scripts/check-onboarding",
+      "scripts/check-settings-flow",
+      "scripts/check-error-recovery-ux",
+      "src/game/onboarding/"
     ],
     "rsh_026_authorized": true,
     "rsh_026_started": true,
@@ -179,8 +179,10 @@
     "rsh_043_started": true,
     "rsh_044_authorized": true,
     "rsh_044_started": true,
-    "rsh_045_authorized": false,
-    "rsh_045_started": false
+    "rsh_045_authorized": true,
+    "rsh_045_started": true,
+    "rsh_046_authorized": false,
+    "rsh_046_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -357,6 +359,6 @@
     "freeze_granted": false,
     "owner_freeze": false,
     "gis_claim": false,
-    "schema_guard_test_sha256": "b3c30325ae20bdfb32cc92afe6ac70482ba615d6dd95e8682ddbd39c6c5acf2a"
+    "schema_guard_test_sha256": "2630fad68dcc727f9b35f43414699b9d78e9043771905d8c6899df868c6d9e89"
   }
 }

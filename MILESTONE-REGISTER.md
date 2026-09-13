@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 27.0.0
+**Version:** 28.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-044 implementation base:** `7d147df5db571c915a8c104f553ba4a635f75f6f`
-**State effective on:** merge of the RSH-044 pull request
+**RSH-045 implementation base:** `7ebe241496e9206efe1ad7a5068924cbc299ced2`
+**State effective on:** merge of the RSH-045 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-045 — deferred and not authorised
+**Next scheduled unit:** RSH-046 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -19,7 +19,7 @@
 | M4 | Data integrity and production security | RSH-021–RSH-024 | 4 | ACCEPTED | Save data is recoverable and production has no debug or secret exposure. |
 | M5 | Ayalon vertical slice | RSH-025–RSH-036 | 12 | ACCEPTED | Ayalon is owner-approved, golden-locked and dependency-frozen. |
 | M6 | Performance and reliability | RSH-037–RSH-043 | 7 | ACCEPTED | Performance, leak, recovery, soak and compatibility targets pass. |
-| M7 | UX, accessibility and mobile | RSH-044–RSH-048 | 5 | DEFERRED | Keyboard, touch and gamepad flows pass UX, accessibility and privacy gates. |
+| M7 | UX, accessibility and mobile | RSH-044–RSH-048 | 5 | RSH-044–045 ACCEPTED; REMAINDER DEFERRED | Keyboard, touch and gamepad flows pass UX, accessibility and privacy gates. |
 | M8 | Eight-track Version 1 content | RSH-049–RSH-062 | 14 | DEFERRED | Eight of eight MVP tracks are driveable, golden-approved and frozen. |
 | M9 | Release | RSH-063–RSH-067 | 5 | DEFERRED | All 13 release gates pass and `v1.0.0` has rollback proof. |
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 44 |
+| Accepted units | 45 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-045 — deferred/not authorised |
+| Queue head | RSH-046 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 23 |
-| RSH-044 one-unit authority | consumed 1/1 |
+| Remaining units | 22 |
+| RSH-045 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -69,5 +69,6 @@
 | RSH-042 | 30-minute soak contract locked on validated merge |
 | RSH-043 | browser and device support matrix locked on validated merge |
 | RSH-044 | keyboard, touch and gamepad input maps unified on validated merge |
+| RSH-045 | Hebrew RTL, English LTR and Arabic-scope decision locked on validated merge |
 
-No RSH-045 branch, PR or implementation structure is authorised by this state.
+No RSH-046 branch, PR or implementation structure is authorised by this state.

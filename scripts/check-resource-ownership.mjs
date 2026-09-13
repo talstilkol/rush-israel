@@ -105,15 +105,15 @@ export function validateResourceOwnership(overrides = {}) {
   if (tracks.modules.length !== 56 || tracks.counts.mvp !== 8 || tracks.counts.deferred !== 48) errors.push("track catalogue boundary changed");
 
   const later = input.repositoryFiles.filter((path) =>
-    path.startsWith(".rsh045") ||
-    path.startsWith(".github/workflows/rsh-045-") ||
-    path.startsWith("RSH-045-") ||
-    path.startsWith("scripts/check-rtl-scope") ||
-    path.startsWith("scripts/check-i18n-rtl") ||
-    path.startsWith("scripts/check-arabic-scope") ||
-    path.startsWith("src/game/rtl-scope/"),
+    path.startsWith(".rsh046") ||
+    path.startsWith(".github/workflows/rsh-046-") ||
+    path.startsWith("RSH-046-") ||
+    path.startsWith("scripts/check-onboarding") ||
+    path.startsWith("scripts/check-settings-flow") ||
+    path.startsWith("scripts/check-error-recovery-ux") ||
+    path.startsWith("src/game/onboarding/"),
   );
-  if (later.length) errors.push(`RSH-045 was precreated: ${later.join(", ")}`);
+  if (later.length) errors.push(`RSH-046 was precreated: ${later.join(", ")}`);
   const temp = input.repositoryFiles.filter((path) =>
     path === ".rsh019-payload.gz.b64" ||
     path === ".github/workflows/rsh-019-apply.yml",
