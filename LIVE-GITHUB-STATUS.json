@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-live-github-status",
+  "observed_at": "2026-09-13T14:15:06Z",
+  "repository": "talstilkol/rush-israel",
+  "authority": "Live GitHub supersedes CURRENT-STATE.json repository_snapshot. That snapshot remains the RSH-067 merge record required by scripts/program-control.test.mjs and must not be rewritten here.",
+  "live": {
+    "visibility": "private",
+    "private": true,
+    "default_branch": "main",
+    "main_protected": true,
+    "ruleset_id": 23177340,
+    "ruleset_name": "rush-main-protection",
+    "ruleset_enforcement": "active",
+    "required_status_checks": ["required-ci / validate"],
+    "force_push_blocked": true,
+    "deletion_blocked": true,
+    "github_releases": 0,
+    "git_tags": 0,
+    "release_gates_green_live": 2,
+    "release_gates_total": 13
+  },
+  "frozen_rsh_067_snapshot": {
+    "file": "CURRENT-STATE.json",
+    "visibility_current": "public",
+    "main_protected": false,
+    "release_gates_green": 0,
+    "must_remain_unchanged": true
+  }
+}
