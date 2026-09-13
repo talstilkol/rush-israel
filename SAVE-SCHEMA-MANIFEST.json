@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-057",
+    "queue_head": "RSH-058",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -122,14 +122,14 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh057",
-      ".github/workflows/rsh-057-",
-      "RSH-057-",
-      "scripts/rsh057-",
-      "scripts/check-haifa",
-      "scripts/check-carmel-geometry",
-      "scripts/check-haifa-track",
-      "src/game/haifa/"
+      ".rsh058",
+      ".github/workflows/rsh-058-",
+      "RSH-058-",
+      "scripts/rsh058-",
+      "scripts/check-haifa-golden",
+      "scripts/check-carmel-golden",
+      "scripts/check-haifa-art",
+      "src/game/haifa-golden/"
     ],
     "rsh_026_authorized": true,
     "rsh_026_started": true,
@@ -203,8 +203,10 @@
     "rsh_055_started": true,
     "rsh_056_authorized": true,
     "rsh_056_started": true,
-    "rsh_057_authorized": false,
-    "rsh_057_started": false
+    "rsh_057_authorized": true,
+    "rsh_057_started": true,
+    "rsh_058_authorized": false,
+    "rsh_058_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -381,6 +383,6 @@
     "freeze_granted": false,
     "owner_freeze": false,
     "gis_claim": false,
-    "schema_guard_test_sha256": "f6d902f4e5b014cc8993e7b3d278693541ad5ac5fc4ed7eef8273fec5c98ba42"
+    "schema_guard_test_sha256": "b0c3d826a7fe3a85f5f66e68364e03621557c76f7bb4f877d932689cd36980d2"
   }
 }
