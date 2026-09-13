@@ -106,7 +106,7 @@
     "ghost_block_sha256": "59948dace66f2683d4f7cfc480f270579727dd94be257f5ea6637bd18e217674"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-042",
+    "queue_head": "RSH-043",
     "rsh_023_authorized": true,
     "rsh_023_started": true,
     "rsh_023_state": "accepted_on_merge",
@@ -117,14 +117,14 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh042",
-      ".github/workflows/rsh-042-",
-      "RSH-042-",
-      "scripts/rsh042-",
-      "scripts/check-thirty-soak",
-      "scripts/check-30min-soak",
-      "scripts/check-uninterrupted-soak",
-      "src/game/thirty-soak/"
+      ".rsh043",
+      ".github/workflows/rsh-043-",
+      "RSH-043-",
+      "scripts/rsh043-",
+      "scripts/check-device-matrix",
+      "scripts/check-browser-matrix",
+      "scripts/check-support-matrix",
+      "src/game/device-matrix/"
     ],
     "rsh_026_authorized": true,
     "rsh_026_started": true,
@@ -168,8 +168,10 @@
     "rsh_040_started": true,
     "rsh_041_authorized": true,
     "rsh_041_started": true,
-    "rsh_042_authorized": false,
-    "rsh_042_started": false
+    "rsh_042_authorized": true,
+    "rsh_042_started": true,
+    "rsh_043_authorized": false,
+    "rsh_043_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

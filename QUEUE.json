@@ -1,11 +1,11 @@
 {
-  "schema_version": "24.0.0",
+  "schema_version": "25.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-09-13T05:45:00.000Z",
+  "generated_at": "2026-09-13T06:05:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "b24dea10f4a6ff186ee0c73e44a4fc693ad384f9",
-  "state_effective_on": "merge_of_RSH_041_pull_request",
+  "verified_base_sha": "e8129df3e1fa5b62720d11b794395fdc531eaddf",
+  "state_effective_on": "merge_of_RSH_042_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "next",
       "authorized_units": [
+        "RSH-042"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-042_merge",
+      "RSH_043_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "next",
+      "authorized_units": [
         "RSH-041"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-041_merge",
       "RSH_042_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "next",
-      "authorized_units": [
-        "RSH-040"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-040_merge",
-      "RSH_041_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 41,
+    "accepted": 42,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 26,
-    "remaining": 26
+    "deferred": 25,
+    "remaining": 25
   },
   "queue_head": {
-    "id": "RSH-042",
-    "title": "Pass the 30-minute soak test",
+    "id": "RSH-043",
+    "title": "Validate the browser and device support matrix",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-042 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-043 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-042",
-    "title": "Pass the 30-minute soak test",
+    "id": "RSH-043",
+    "title": "Validate the browser and device support matrix",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -1025,13 +1025,35 @@
       "unresolved_review_threads": 0
     },
     "RSH-041": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-041-context-loss",
       "manifest": "CONTEXT-LOSS-MANIFEST.json",
       "contract": "RSH-041-CONTEXT-LOSS-CONTRACT.md",
       "lock_module": "src/game/context-loss",
       "context_loss_cycles": 8,
-      "rsh_042_created": false
+      "rsh_042_created": true,
+      "pull_request": 45,
+      "validated_head_sha": "33737ed5a6339f48ca4dcc2e0259302f5d4e3441",
+      "merge_sha": "e8129df3e1fa5b62720d11b794395fdc531eaddf",
+      "tree_sha": "fef0d3f728fae5c7e18b4c5ba8363eaec53ea463",
+      "workflow_run": 34741228839,
+      "workflow_job": 103681158725,
+      "artifact_id": 10312915636,
+      "artifact_digest": "sha256:11deb037c5293a77ef54247a94a344f0636f3c53864979057cba9ab8e76aa7fa",
+      "post_merge_workflow_run": 34741441092,
+      "post_merge_workflow_job": 103681697980,
+      "post_merge_artifact_id": 10312630754,
+      "post_merge_artifact_digest": "sha256:c31f7c5cd3bfd50ffef74f5e230247d5d9fe149f9d57e8c8cdf24e74c134c62e",
+      "unresolved_review_threads": 0
+    },
+    "RSH-042": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-042-thirty-soak",
+      "manifest": "THIRTY-SOAK-MANIFEST.json",
+      "contract": "RSH-042-THIRTY-SOAK-CONTRACT.md",
+      "lock_module": "src/game/thirty-soak",
+      "soak_duration_s": 1800,
+      "rsh_043_created": false
     }
   },
   "unit_order": [
@@ -1106,25 +1128,25 @@
   "state_rules": {
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-041"
+      "through": "RSH-042"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-042",
+      "from": "RSH-043",
       "through": "RSH-067"
     },
-    "RSH-001\u2013RSH-041": "accepted",
-    "RSH-042\u2013RSH-067": "deferred_not_authorized"
+    "RSH-001\u2013RSH-042": "accepted",
+    "RSH-043\u2013RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-042 remains deferred until a new explicit owner instruction.",
-    "RSH_041_completed": true,
-    "RSH_041_authorization_consumed": true,
-    "RSH_042_authorized": false
+    "current_action": "No unit is authorized; RSH-043 remains deferred until a new explicit owner instruction.",
+    "RSH_042_completed": true,
+    "RSH_042_authorization_consumed": true,
+    "RSH_043_authorized": false
   },
-  "self_reference_boundary": "The RSH-041 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-042 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }

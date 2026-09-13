@@ -1,7 +1,7 @@
 {
-  "schema_version": "24.0.0",
+  "schema_version": "25.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T05:45:00.000Z",
+  "generated_at": "2026-09-13T06:05:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -738,23 +738,36 @@
       "post_merge_workflow_run": 34709086445,
       "recorded_at": "2026-09-12T17:43:41Z",
       "description": "20 enter-exit leak cycles locked."
+    },
+    {
+      "id": "B041-rsh-041-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-041",
+      "pull_request": 45,
+      "commit_sha": "e8129df3e1fa5b62720d11b794395fdc531eaddf",
+      "tree_sha": "fef0d3f728fae5c7e18b4c5ba8363eaec53ea463",
+      "validated_head_sha": "33737ed5a6339f48ca4dcc2e0259302f5d4e3441",
+      "workflow_run": 34741228839,
+      "post_merge_workflow_run": 34741441092,
+      "recorded_at": "2026-09-13T05:54:16Z",
+      "description": "WebGL context-loss recovery locked."
     }
   ],
   "working_state": {
-    "unit": "RSH-041",
+    "unit": "RSH-042",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "b24dea10f4a6ff186ee0c73e44a4fc693ad384f9",
-    "branch": "agent/rsh-041-context-loss",
-    "manifest": "CONTEXT-LOSS-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-041 pull request"
+    "implementation_base_sha": "e8129df3e1fa5b62720d11b794395fdc531eaddf",
+    "branch": "agent/rsh-042-thirty-soak",
+    "manifest": "THIRTY-SOAK-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-042 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-042",
+    "queue_head": "RSH-043",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_042_authorized": false
+    "RSH_043_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
