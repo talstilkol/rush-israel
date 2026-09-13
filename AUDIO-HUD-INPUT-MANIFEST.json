@@ -114,26 +114,26 @@
     "touch_source_sha256": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "checker_test_sha256": "3794d5f7f146250606a7047be8ebaf6c8583b5cfe99259b7bb219c486234ccc0",
+    "checker_test_sha256": "9d811b6b94db4fbfd9f5c7784411f81214a1331c31036805f2c1bfd0ee037e8b",
     "audio_digest_sha256": "b5a3a609d13ad78708f362bbff4caaf071454c884aa34bf874fbeff18f56ca3f",
     "input_digest_sha256": "ee389f24969bad529a9e10df5b881f7efc773ecd845056b8aefcc8c52f149809",
     "hud_digest_sha256": "a4516f8b7784d8270fbb8a766515e40ca9ffa70103fe81b63af3733ce05faecb"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-060",
+    "queue_head": "RSH-061",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "forbidden_prefixes": [
-      ".rsh060",
-      ".github/workflows/rsh-060-",
-      "RSH-060-",
-      "scripts/rsh060-",
-      "scripts/check-ramon-golden",
-      "scripts/check-ramon-art",
-      "scripts/check-ramon-freeze",
-      "src/game/ramon-golden/"
+      ".rsh061",
+      ".github/workflows/rsh-061-",
+      "RSH-061-",
+      "scripts/rsh061-",
+      "scripts/check-hermon",
+      "scripts/check-hermon-drive",
+      "scripts/check-hermon-track",
+      "src/game/hermon/"
     ],
     "rsh_035_state": "accepted_on_merge",
     "rsh_036_authorized": true,
@@ -184,7 +184,9 @@
     "rsh_058_started": true,
     "rsh_059_authorized": true,
     "rsh_059_started": true,
-    "rsh_060_authorized": false,
-    "rsh_060_started": false
+    "rsh_060_authorized": true,
+    "rsh_060_started": true,
+    "rsh_061_authorized": false,
+    "rsh_061_started": false
   }
 }

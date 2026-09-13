@@ -59,7 +59,7 @@
     "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
     "engine_source_sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
     "race_controller_source_sha256": "e01c955f700b0f7c1fa20f876a8f3ad8b294f3edbdf3bcdf4ed16e6821188670",
-    "checker_test_sha256": "f458e4f45c949d4e7f1b45cc4c99b4caf799258aa915ab56be0450d8bbd08054",
+    "checker_test_sha256": "2c9b205cef8167a67c7222f9fd2429b72a64440b1fe03f58fbd431e1a3670994",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
@@ -71,20 +71,20 @@
     "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-060",
+    "queue_head": "RSH-061",
     "rsh_041_authorized": true,
     "rsh_041_started": true,
     "rsh_042_authorized": true,
     "rsh_042_started": true,
     "forbidden_prefixes": [
-      ".rsh060",
-      ".github/workflows/rsh-060-",
-      "RSH-060-",
-      "scripts/rsh060-",
-      "scripts/check-ramon-golden",
-      "scripts/check-ramon-art",
-      "scripts/check-ramon-freeze",
-      "src/game/ramon-golden/"
+      ".rsh061",
+      ".github/workflows/rsh-061-",
+      "RSH-061-",
+      "scripts/rsh061-",
+      "scripts/check-hermon",
+      "scripts/check-hermon-drive",
+      "scripts/check-hermon-track",
+      "src/game/hermon/"
     ],
     "rsh_043_authorized": true,
     "rsh_043_started": true,
@@ -120,7 +120,9 @@
     "rsh_058_started": true,
     "rsh_059_authorized": true,
     "rsh_059_started": true,
-    "rsh_060_authorized": false,
-    "rsh_060_started": false
+    "rsh_060_authorized": true,
+    "rsh_060_started": true,
+    "rsh_061_authorized": false,
+    "rsh_061_started": false
   }
 }

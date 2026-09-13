@@ -144,7 +144,7 @@
     "asset_changes": 0
   },
   "deferred_boundary": {
-    "queue_head": "RSH-060",
+    "queue_head": "RSH-061",
     "rsh_021_authorized": true,
     "rsh_021_started": true,
     "rsh_021_state": "accepted",
@@ -152,14 +152,14 @@
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh060",
-      ".github/workflows/rsh-060-",
-      "RSH-060-",
-      "scripts/rsh060-",
-      "scripts/check-ramon-golden",
-      "scripts/check-ramon-art",
-      "scripts/check-ramon-freeze",
-      "src/game/ramon-golden/"
+      ".rsh061",
+      ".github/workflows/rsh-061-",
+      "RSH-061-",
+      "scripts/rsh061-",
+      "scripts/check-hermon",
+      "scripts/check-hermon-drive",
+      "scripts/check-hermon-track",
+      "src/game/hermon/"
     ],
     "rsh_023_authorized": true,
     "rsh_023_started": true,
@@ -248,8 +248,10 @@
     "rsh_058_started": true,
     "rsh_059_authorized": true,
     "rsh_059_started": true,
-    "rsh_060_authorized": false,
-    "rsh_060_started": false
+    "rsh_060_authorized": true,
+    "rsh_060_started": true,
+    "rsh_061_authorized": false,
+    "rsh_061_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",
