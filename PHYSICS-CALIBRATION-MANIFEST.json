@@ -55,22 +55,22 @@
     "index_source_sha256": "e9489dbe34cee8d9768fa75fbe5ea0ce5276f686fdfcdad1c2a95e908988504e",
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "checker_test_sha256": "a428cff4dc66315bf89c4d33b0aeeafeca2c3f93837294aa89f3b67c007426d7",
+    "checker_test_sha256": "7ad7acebdebc9d7b130123e9285c7bbaf63c52087bb6eec25f686713c81eb2fa",
     "golden_accel_sha256": "3bd812e9f60184a846fbd1ffe6392b3a9d42a6a1f25c6df83bfb9a3e966fa224"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-050",
+    "queue_head": "RSH-051",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "forbidden_prefixes": [
-      ".rsh050",
-      ".github/workflows/rsh-050-",
-      "RSH-050-",
-      "scripts/rsh050-",
-      "scripts/check-rothschild-golden",
-      "scripts/check-rothschild-art",
-      "scripts/check-rothschild-freeze",
-      "src/game/rothschild-golden/"
+      ".rsh051",
+      ".github/workflows/rsh-051-",
+      "RSH-051-",
+      "scripts/rsh051-",
+      "scripts/check-namal",
+      "scripts/check-yarkon-geometry",
+      "scripts/check-reading-geometry",
+      "src/game/namal/"
     ],
     "rsh_034_state": "accepted_on_merge",
     "rsh_035_authorized": true,
@@ -104,7 +104,9 @@
     "rsh_048_started": true,
     "rsh_049_authorized": true,
     "rsh_049_started": true,
-    "rsh_050_authorized": false,
-    "rsh_050_started": false
+    "rsh_050_authorized": true,
+    "rsh_050_started": true,
+    "rsh_051_authorized": false,
+    "rsh_051_started": false
   }
 }
