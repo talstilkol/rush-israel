@@ -67,7 +67,9 @@
       "scripts/check-a11y",
       "scripts/check-privacy",
       "scripts/check-alpha-ux",
-      "src/game/a11y/"
+      "src/game/a11y/",
+      "src/game/privacy/",
+      "src/game/alpha-ux/"
     ],
     "rsh_029_state": "accepted_on_merge",
     "rsh_030_authorized": true,

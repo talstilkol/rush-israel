@@ -85,7 +85,9 @@
       "scripts/check-a11y",
       "scripts/check-privacy",
       "scripts/check-alpha-ux",
-      "src/game/a11y/"
+      "src/game/a11y/",
+      "src/game/privacy/",
+      "src/game/alpha-ux/"
     ],
     "rsh_046_authorized": true,
     "rsh_046_started": true,

@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "8d31ec239e20f0665f98e3fe90899dc2271cd09d3dd24882a152e656eec74d2f";
+export const EXPECTED_MANIFEST_SHA256 = "20796561d74792293efc38ee6869ef7b44faef0634c7639a59beeac0f20f0eee";
 export const EXPECTED_PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_DEPENDENCY_MAP_SHA256 = "a3e951f6e3e7d32ee06008b2b3f294b619c7b3753419001624399e477c8038ea";
 export const EXPECTED_PACKAGE_LOCK_SHA256 = "55afd975f03b12867aada083c375e2fadc402b654ddaf0f0934807966fa9f1ed";

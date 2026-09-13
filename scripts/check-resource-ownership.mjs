@@ -111,7 +111,9 @@ export function validateResourceOwnership(overrides = {}) {
     path.startsWith("scripts/check-a11y") ||
     path.startsWith("scripts/check-privacy") ||
     path.startsWith("scripts/check-alpha-ux") ||
-    path.startsWith("src/game/a11y/"),
+    path.startsWith("src/game/a11y/") ||
+    path.startsWith("src/game/privacy/") ||
+    path.startsWith("src/game/alpha-ux/"),
   );
   if (later.length) errors.push(`RSH-048 was precreated: ${later.join(", ")}`);
   const temp = input.repositoryFiles.filter((path) =>

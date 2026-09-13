@@ -62,7 +62,7 @@
     "lock_source_sha256": "88bca96d7d44c337e7aa2ab97bb0e31e2c9b22029868cd400bc05e20ef42ab8f",
     "index_source_sha256": "91d8e47a549b7942afd9bea331b69084b55af9b37d60b9de9b8ac8b055666fc0",
     "contract_sha256": "036968ff9485d0f7cdb1e3f760efd7e2f4fc1d2eab7a28b8617d37c5cd75fdbb",
-    "checker_test_sha256": "df7cddf647fcf879f81729097874d84d52fa0602187f3d37d04897d239b1a5b4",
+    "checker_test_sha256": "3f95501deab0af614708fb16b8a0e26d20f0f99fa125d10a6b1247ce217622fc",
     "lock_digest_sha256": "ede491dd14218e76cfc7f35533cd8f0181033cf03784b618c7d181d27d766c98",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
@@ -108,7 +108,9 @@
       "scripts/check-a11y",
       "scripts/check-privacy",
       "scripts/check-alpha-ux",
-      "src/game/a11y/"
+      "src/game/a11y/",
+      "src/game/privacy/",
+      "src/game/alpha-ux/"
     ]
   }
 }

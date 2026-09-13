@@ -29,7 +29,7 @@ test("committed RSH-047 lock passes and RSH-048 remains absent", () => {
 
 test("RSH-048 precreation fails closed", () => {
   const result = validateLock({
-    repositoryFiles: ["RSH-048-PREFLIGHT.json", "src/game/a11y/gates.ts", "scripts/check-a11y.mjs"],
+    repositoryFiles: ["RSH-048-PREFLIGHT.json", "src/game/a11y/gates.ts", "src/game/privacy/gates.ts", "src/game/alpha-ux/gates.ts", "scripts/check-a11y.mjs"],
   });
   assert.match(messages(result), /RSH-048 was precreated/);
 });
