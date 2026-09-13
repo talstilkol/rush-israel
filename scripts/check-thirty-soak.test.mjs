@@ -9,6 +9,7 @@ import {
   validateThirtySoak,
 } from "./check-thirty-soak.mjs";
 import {
+  LIVE_SOAK,
   REQUIRED_CI_CYCLES,
   SMOKE_SUBSTITUTES,
   SOAK_DURATION_S,
@@ -45,7 +46,7 @@ test("2-cycle smoke does not satisfy the 30-minute soak", () => {
   assert.equal(full.acceptedAsThirtyMinute, true);
 });
 
-test("thirty-minute soak is locked without a device matrix or real-device baseline", () => {
+test("thirty-minute soak is locked to soak-30min without a device matrix or real-device baseline", () => {
   assert.equal(createHash("sha256").update(canonicalSoakDigest()).digest("hex"), EXPECTED_SOAK_DIGEST_SHA256);
   const soak = readFileSync(fromRoot("src", "game", "thirty-soak", "soak.ts"), "utf8");
   assert.match(soak, /export const THIRTY_SOAK_DEFINED = true/);
@@ -53,8 +54,15 @@ test("thirty-minute soak is locked without a device matrix or real-device baseli
   assert.match(soak, /export const SMOKE_SUBSTITUTES = false/);
   assert.match(soak, /export const DEVICE_MATRIX_ENFORCED = false/);
   assert.match(soak, /export const REAL_DEVICE_BASELINE_ACCEPTED = false/);
+  assert.equal(LIVE_SOAK, "scripts/soak-30min.mjs");
+  const wall = readFileSync(fromRoot("scripts", "soak-30min.mjs"), "utf8");
+  assert.match(wall, /const MS = Number\(process\.env\.SOAK_MS \|\| 30 \* 60 \* 1000\)/);
+  assert.match(wall, /Not advanceTime/);
+  assert.match(wall, /while \(Date\.now\(\) - t0 < MS\)/);
   const manifest = JSON.parse(readFileSync(fromRoot("THIRTY-SOAK-MANIFEST.json"), "utf8"));
   assert.equal(manifest.lock.soak_duration_s, 1800);
+  assert.equal(manifest.lock.live_soak, "scripts/soak-30min.mjs");
+  assert.equal(manifest.lock.live_enter_exit, "scripts/soak-menu-race.mjs");
   assert.equal(manifest.lock.smoke_substitutes, false);
   assert.equal(manifest.lock.device_matrix_enforced, false);
   assert.equal(manifest.lock.real_device_baseline_accepted, false);

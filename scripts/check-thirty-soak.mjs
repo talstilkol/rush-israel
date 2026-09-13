@@ -5,14 +5,15 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "5560c0dd1e4b68644cdd8c69a1be203015ef284e9f5dc88cacb3ee4c7226b4cb";
-export const EXPECTED_SOAK_LOCK_SHA256 = "242c76268bed6f562fd58e191416f176b409fb44491ab4adc428ca43ff61031d";
-export const EXPECTED_INDEX_SHA256 = "82c873fc3b39163ab45457afd0d2108375afe1dade24ae52699ddf4d6beab967";
-export const EXPECTED_CONTRACT_SHA256 = "f51e2e48af14171f95bc3f7ebf7252ba9087f099975da4c52a8e367e98024bdd";
-export const EXPECTED_LIVE_SOAK_SHA256 = "a684508627830a4fff5030232ba36dd1b81df82b4924aa307f94116a5dc7df60";
+export const EXPECTED_MANIFEST_SHA256 = "4b9e08cd811522e8df11b51a97e595778950a51dde3c363de415bcb08b6071fb";
+export const EXPECTED_SOAK_LOCK_SHA256 = "e29f5ce16b58eb8292de484823ea74b941a43324ccc1566422d262910d30b66c";
+export const EXPECTED_INDEX_SHA256 = "b4bbe142cf9947a64fc80dbc9790e3e9307455e4650d22a0f5a41f26a1cb83aa";
+export const EXPECTED_CONTRACT_SHA256 = "351c8d90971313c43398878970fabafd066ed9851fed54c07e768c1e81f840ff";
+export const EXPECTED_LIVE_SOAK_SHA256 = "a634dd9871fec41bb05a558cd5d8181388b6b2a538bda0d0822cc360008e2d8a";
+export const EXPECTED_ENTER_EXIT_SHA256 = "a684508627830a4fff5030232ba36dd1b81df82b4924aa307f94116a5dc7df60";
 export const EXPECTED_SOAK_SMOKE_SHA256 = "46f3c813263d2046771a918bdaa624c13ff42fdef580448764bfe6b45a6f33c2";
 export const EXPECTED_CONTEXT_RESTORE_SHA256 = "1f0095b6ec5c0aa704c04d42ca11b8798c1911b84fdcf1f739dad1764e41e54d";
-export const EXPECTED_CHECKER_TEST_SHA256 = "3c0c5aa0aac428eb02567a6228f578eac7adb7b2a30101e1924fce9b3fa19f14";
+export const EXPECTED_CHECKER_TEST_SHA256 = "7cbc7a72955ad1ea930f33f63373a970e6ea0f796a566a59df3b9f0326716a7d";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_SOAK_DIGEST_SHA256 = "0676c73f186564cbf6b87c7a838707b1110581d60f5a251870fcf4226a5905b0";
 export const EXPECTED_HUD_SHA256 = "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35";
@@ -63,7 +64,8 @@ export function readThirtySoakInputs() {
     soakSource: readFileSync(fromRoot("src", "game", "thirty-soak", "soak.ts"), "utf8"),
     indexSource: readFileSync(fromRoot("src", "game", "thirty-soak", "index.ts"), "utf8"),
     contractSource: readFileSync(fromRoot("RSH-042-THIRTY-SOAK-CONTRACT.md"), "utf8"),
-    liveSoakSource: readFileSync(fromRoot("scripts", "soak-menu-race.mjs"), "utf8"),
+    liveSoakSource: readFileSync(fromRoot("scripts", "soak-30min.mjs"), "utf8"),
+    enterExitSource: readFileSync(fromRoot("scripts", "soak-menu-race.mjs"), "utf8"),
     soakSmokeSource: readFileSync(fromRoot("scripts", "soak-smoke.mjs"), "utf8"),
     contextSource: readFileSync(fromRoot("src", "game", "context-loss", "restore.ts"), "utf8"),
     checkerTestSource: readFileSync(fromRoot("scripts", "check-thirty-soak.test.mjs"), "utf8"),
@@ -97,6 +99,7 @@ export function validateThirtySoak(overrides = {}) {
     index_source_sha256: [input.indexSource, EXPECTED_INDEX_SHA256],
     contract_sha256: [input.contractSource, EXPECTED_CONTRACT_SHA256],
     live_soak_source_sha256: [input.liveSoakSource, EXPECTED_LIVE_SOAK_SHA256],
+    live_enter_exit_source_sha256: [input.enterExitSource, EXPECTED_ENTER_EXIT_SHA256],
     soak_smoke_source_sha256: [input.soakSmokeSource, EXPECTED_SOAK_SMOKE_SHA256],
     context_restore_source_sha256: [input.contextSource, EXPECTED_CONTEXT_RESTORE_SHA256],
     checker_test_sha256: [input.checkerTestSource, EXPECTED_CHECKER_TEST_SHA256],
@@ -111,6 +114,8 @@ export function validateThirtySoak(overrides = {}) {
   if (sha256(canonicalSoakDigest()) !== EXPECTED_SOAK_DIGEST_SHA256 || manifest.identities?.soak_digest_sha256 !== EXPECTED_SOAK_DIGEST_SHA256) errors.push("thirty-soak digest identity changed");
   if (manifest.unit !== "RSH-042") errors.push("RSH-042 unit identity changed");
   if (manifest.lock?.soak_duration_s !== 1800) errors.push("30-minute soak duration changed");
+  if (manifest.lock?.live_soak !== "scripts/soak-30min.mjs") errors.push("wall-clock soak harness identity changed");
+  if (manifest.lock?.live_enter_exit !== "scripts/soak-menu-race.mjs") errors.push("enter-exit harness identity changed");
   if (manifest.lock?.required_ci_cycles !== 2) errors.push("required-CI soak-smoke cycle count changed");
   if (manifest.lock?.enter_exit_cycles !== 20) errors.push("live enter-exit cycle count changed");
   if (manifest.lock?.smoke_substitutes !== false) errors.push("RSH-042 must not treat smoke as the 30-minute soak");
@@ -121,9 +126,13 @@ export function validateThirtySoak(overrides = {}) {
   if (!/export const THIRTY_SOAK_DEFINED = true/.test(input.soakSource)) errors.push("thirty-soak defined token missing");
   if (!/export const SOAK_ENFORCED = true/.test(input.soakSource)) errors.push("soak enforced token missing");
   if (!/export const SMOKE_SUBSTITUTES = false/.test(input.soakSource)) errors.push("smoke-substitute token missing");
+  if (!/export const LIVE_SOAK = "scripts\/soak-30min\.mjs"/.test(input.soakSource)) errors.push("wall-clock soak path missing");
   if (!/from "\.\/soak"/.test(input.indexSource)) errors.push("thirty-soak index no longer re-exports soak");
-  if (!/const CYCLES = Number\(process\.env\.SOAK_CYCLES \|\| 20\)/.test(input.liveSoakSource)) errors.push("20-cycle soak harness changed");
-  if (!/dTex > 2/.test(input.liveSoakSource) || !/dGeo > 2/.test(input.liveSoakSource)) errors.push("soak leak deltas changed");
+  if (!/const MS = Number\(process\.env\.SOAK_MS \|\| 30 \* 60 \* 1000\)/.test(input.liveSoakSource)) errors.push("wall-clock soak duration pin changed");
+  if (!/Not advanceTime/.test(input.liveSoakSource)) errors.push("wall-clock soak no longer forbids advanceTime");
+  if (!/while \(Date\.now\(\) - t0 < MS\)/.test(input.liveSoakSource)) errors.push("wall-clock soak no longer uses Date.now duration");
+  if (!/const CYCLES = Number\(process\.env\.SOAK_CYCLES \|\| 20\)/.test(input.enterExitSource)) errors.push("20-cycle soak harness changed");
+  if (!/dTex > 2/.test(input.enterExitSource) || !/dGeo > 2/.test(input.enterExitSource)) errors.push("soak leak deltas changed");
   if (!/SOAK_CYCLES \?\?= "2"/.test(input.soakSmokeSource)) errors.push("required-CI soak-smoke cycle pin changed");
   if (!/export const SOAK_ENFORCED = false/.test(input.contextSource)) errors.push("RSH-041 context-loss lock must keep soak unenforced");
   if (sha256(input.hudSource) !== EXPECTED_HUD_SHA256) errors.push("HUD source drifted");
@@ -154,5 +163,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`thirty-soak fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`thirty-soak ok: 1800s contract locked; smoke does not substitute; RSH-043 deferred`);
+  console.log(`thirty-soak ok: 1800s wall-clock soak-30min locked; smoke does not substitute; RSH-043 deferred`);
 }

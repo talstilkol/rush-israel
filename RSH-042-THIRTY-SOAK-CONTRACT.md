@@ -18,17 +18,22 @@ real-device baseline (P1-13), close P2-09, rewrite frozen Ayalon / engine /
 HUD / stream-flag / leak-cycle / context-loss / package sources, or flip
 release gates.
 
-Live surfaces already exist in `scripts/soak-menu-race.mjs` and
-`scripts/soak-smoke.mjs`. This unit canonicalises the duration contract at
-`src/game/thirty-soak/` and fail-closes if smoke is treated as the 30-minute
-soak or those harnesses drift.
+The wall-clock soak is `scripts/soak-30min.mjs` (`SOAK_MS` default
+`30 * 60 * 1000`, `Date.now()` loop, not `advanceTime`). The 20-cycle
+enter-exit leak harness remains `scripts/soak-menu-race.mjs`. Required-CI
+smoke remains `scripts/soak-smoke.mjs`. This unit canonicalises those
+identities at `src/game/thirty-soak/` and fail-closes if smoke is treated as
+the 30-minute soak, the wall-clock harness drifts off 1800 s, or those
+harnesses drift.
 
 ## Locked identity (must remain exact)
 
 | Field | Required value |
 |---|---|
 | Soak duration | 1800 s |
+| Live wall-clock soak | `scripts/soak-30min.mjs` |
 | Required-CI soak-smoke cycles | 2 |
+| Live enter-exit harness | `scripts/soak-menu-race.mjs` |
 | Live enter-exit harness cycles | 20 |
 | Smoke substitutes for 30-minute soak | false |
 | Soak contract enforced | true |

@@ -11,7 +11,8 @@ export const REAL_DEVICE_BASELINE_ACCEPTED = false;
 export const SOAK_DURATION_S = 1800;
 export const REQUIRED_CI_CYCLES = 2;
 export const ENTER_EXIT_CYCLES = 20;
-export const LIVE_SOAK = "scripts/soak-menu-race.mjs" as const;
+export const LIVE_SOAK = "scripts/soak-30min.mjs" as const;
+export const LIVE_ENTER_EXIT = "scripts/soak-menu-race.mjs" as const;
 export const LIVE_SOAK_SMOKE = "scripts/soak-smoke.mjs" as const;
 export const PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 
