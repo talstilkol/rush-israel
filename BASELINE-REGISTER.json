@@ -1,7 +1,7 @@
 {
-  "schema_version": "35.0.0",
+  "schema_version": "36.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T11:24:50.000Z",
+  "generated_at": "2026-09-13T11:34:22.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -879,23 +879,36 @@
       "post_merge_workflow_run": 34754209763,
       "recorded_at": "2026-09-13T11:24:50.000Z",
       "description": "RSH-051 accepted."
+    },
+    {
+      "id": "B052-rsh-052-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-052",
+      "pull_request": 57,
+      "commit_sha": "372433fcdd6066c7946faec79b54d18388479651",
+      "tree_sha": "daf7a125b98a93250356369ac1d926927b40e52c",
+      "validated_head_sha": "1a4b9917eb25e408f9d8ef14d177a68515e2b896",
+      "workflow_run": 34754377482,
+      "post_merge_workflow_run": 34754643787,
+      "recorded_at": "2026-09-13T11:34:22.000Z",
+      "description": "RSH-052 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-052",
+    "unit": "RSH-053",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "d29ff43ca8bd8a0a53a8e6d7149208b06d77012b",
-    "branch": "agent/rsh-052-namal-golden",
-    "manifest": "NAMAL-GOLDEN-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-052 pull request"
+    "implementation_base_sha": "372433fcdd6066c7946faec79b54d18388479651",
+    "branch": "agent/rsh-053-oldjaffa",
+    "manifest": "JAFFA-GEOMETRY-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-053 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-053",
+    "queue_head": "RSH-054",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_053_authorized": false
+    "RSH_054_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

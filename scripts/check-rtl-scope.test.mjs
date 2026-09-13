@@ -22,17 +22,17 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-045 lock passes and RSH-053 remains absent", () => {
+test("committed RSH-045 lock passes and RSH-054 remains absent", () => {
   const result = validateLock();
   assert.deepEqual(result.errors, []);
   assert.equal(result.locked, true);
 });
 
-test("RSH-053 precreation fails closed", () => {
+test("RSH-054 precreation fails closed", () => {
   const result = validateLock({
-    repositoryFiles: ["RSH-053-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
+    repositoryFiles: ["RSH-054-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
   });
-  assert.match(messages(result), /RSH-053 was precreated/);
+  assert.match(messages(result), /RSH-054 was precreated/);
 });
 
 test("RSH-045 does not accept complete Arabic copy, onboarding, document-lang-sync or public-distribution claims", () => {
@@ -63,5 +63,5 @@ test("RSH-045 does not accept complete Arabic copy, onboarding, document-lang-sy
   assert.equal(manifest.lock.onboarding_complete, false);
   assert.equal(manifest.lock.html_lang_static_he, true);
   assert.equal(manifest.lock.document_lang_synced, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-053");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-054");
 });
