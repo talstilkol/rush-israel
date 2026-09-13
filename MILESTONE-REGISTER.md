@@ -13,7 +13,7 @@
 | ID | Name | Units | Count | Post-merge state | Exit gate |
 |---|---|---:|---:|---|---|
 | M0 | Control and governance | RSH-001–RSH-003 | 3 | ACCEPTED | Canonical state, queue, governance, baselines and registers agree. |
-| M1 | Reproducible toolchain and CI | RSH-004–RSH-008 | 5 | BLOCKED — owner setting | A clean clone passes required CI and `main` is technically protected. |
+| M1 | Reproducible toolchain and CI | RSH-004–RSH-008 | 5 | ACCEPTED — live `main` protected | A clean clone passes required CI and `main` is technically protected. |
 | M2 | Product scope, licensing and assets | RSH-009–RSH-012 | 4 | ACCEPTED | Scope, package identity, root licence and every shipped asset’s legal status are explicit. |
 | M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | ACCEPTED | Core, UI, resources and dependencies have explicit owners and boundaries. |
 | M4 | Data integrity and production security | RSH-021–RSH-024 | 4 | ACCEPTED | Save data is recoverable and production has no debug or secret exposure. |
@@ -34,7 +34,7 @@
 | Active PR | none |
 | Remaining units | 0 |
 | RSH-067 one-unit authority | consumed 1/1 |
-| Verified release gates | 0/13 |
+| Verified release gates | 2/13 live (`LIVE-GITHUB-STATUS.json`); RSH-067 snapshot stays 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
 
