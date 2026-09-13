@@ -58,7 +58,7 @@
     "live_soak_source_sha256": "a634dd9871fec41bb05a558cd5d8181388b6b2a538bda0d0822cc360008e2d8a",
     "soak_smoke_source_sha256": "46f3c813263d2046771a918bdaa624c13ff42fdef580448764bfe6b45a6f33c2",
     "context_restore_source_sha256": "1f0095b6ec5c0aa704c04d42ca11b8798c1911b84fdcf1f739dad1764e41e54d",
-    "checker_test_sha256": "7cbc7a72955ad1ea930f33f63373a970e6ea0f796a566a59df3b9f0326716a7d",
+    "checker_test_sha256": "3f654564dbe2bb1dc626cb86c32469e5ce6422b484a4350d01910e6b19a2a38f",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
@@ -72,20 +72,22 @@
     "live_enter_exit_source_sha256": "a684508627830a4fff5030232ba36dd1b81df82b4924aa307f94116a5dc7df60"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-043",
+    "queue_head": "RSH-044",
     "rsh_042_authorized": true,
     "rsh_042_started": true,
-    "rsh_043_authorized": false,
-    "rsh_043_started": false,
+    "rsh_043_authorized": true,
+    "rsh_043_started": true,
     "forbidden_prefixes": [
-      ".rsh043",
-      ".github/workflows/rsh-043-",
-      "RSH-043-",
-      "scripts/rsh043-",
-      "scripts/check-device-matrix",
-      "scripts/check-browser-matrix",
-      "scripts/check-support-matrix",
-      "src/game/device-matrix/"
-    ]
+      ".rsh044",
+      ".github/workflows/rsh-044-",
+      "RSH-044-",
+      "scripts/rsh044-",
+      "scripts/check-input-maps",
+      "scripts/check-unified-input",
+      "scripts/check-control-maps",
+      "src/game/input-maps/"
+    ],
+    "rsh_044_authorized": false,
+    "rsh_044_started": false
   }
 }
