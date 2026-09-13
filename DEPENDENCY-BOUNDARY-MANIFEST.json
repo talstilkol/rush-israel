@@ -144,7 +144,7 @@
     "asset_changes": 0
   },
   "deferred_boundary": {
-    "queue_head": "RSH-048",
+    "queue_head": "RSH-049",
     "rsh_021_authorized": true,
     "rsh_021_started": true,
     "rsh_021_state": "accepted",
@@ -152,16 +152,13 @@
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh048",
-      ".github/workflows/rsh-048-",
-      "RSH-048-",
-      "scripts/rsh048-",
-      "scripts/check-a11y",
-      "scripts/check-privacy",
-      "scripts/check-alpha-ux",
-      "src/game/a11y/",
-      "src/game/privacy/",
-      "src/game/alpha-ux/"
+      ".rsh049",
+      ".github/workflows/rsh-049-",
+      "RSH-049-",
+      "scripts/rsh049-",
+      "scripts/check-rothschild",
+      "scripts/check-rothschild-geometry",
+      "src/game/rothschild/"
     ],
     "rsh_023_authorized": true,
     "rsh_023_started": true,
@@ -226,8 +223,10 @@
     "rsh_046_started": true,
     "rsh_047_authorized": true,
     "rsh_047_started": true,
-    "rsh_048_authorized": false,
-    "rsh_048_started": false
+    "rsh_048_authorized": true,
+    "rsh_048_started": true,
+    "rsh_049_authorized": false,
+    "rsh_049_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",

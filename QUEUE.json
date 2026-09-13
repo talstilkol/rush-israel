@@ -1,11 +1,11 @@
 {
-  "schema_version": "30.0.0",
+  "schema_version": "31.0.0",
   "document_type": "rush-program-queue",
   "generated_at": "2026-09-13T12:15:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "660c1e024ae6cccaad2f492d0aa1cda7c0cd19b6",
-  "state_effective_on": "merge_of_RSH_047_pull_request",
+  "verified_base_sha": "fa95fcde9183461c43edbdfae11153457566ae58",
+  "state_effective_on": "merge_of_RSH_048_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
       "authorized_units": [
+        "RSH-048"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-048_merge",
+      "RSH_049_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
+      "authorized_units": [
         "RSH-047"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-047_merge",
       "RSH_048_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
-      "authorized_units": [
-        "RSH-046"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-046_merge",
-      "RSH_047_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 47,
+    "accepted": 48,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 20,
-    "remaining": 20
+    "deferred": 19,
+    "remaining": 19
   },
   "queue_head": {
-    "id": "RSH-048",
-    "title": "Pass accessibility, privacy and Alpha UX gates",
+    "id": "RSH-049",
+    "title": "Rothschild geometry and driving",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-048 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-049 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-048",
-    "title": "Pass accessibility, privacy and Alpha UX gates",
+    "id": "RSH-049",
+    "title": "Rothschild geometry and driving",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -1166,7 +1166,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-047": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-047-pwa",
       "manifest": "PWA-MANIFEST.json",
       "contract": "RSH-047-PWA-CONTRACT.md",
@@ -1181,7 +1181,39 @@
       "update_prompt": false,
       "public_install": false,
       "a11y_complete": false,
-      "rsh_048_created": false
+      "rsh_048_created": true,
+      "pull_request": 52,
+      "validated_head_sha": "811e413e15d14dcdb906f29b6f3471997a6d030a",
+      "merge_sha": "fa95fcde9183461c43edbdfae11153457566ae58",
+      "tree_sha": "bce69dc433ab6f74f3150954429f01ac22751e76",
+      "workflow_run": 34749623339,
+      "workflow_job": 103703615083,
+      "artifact_id": 10314329987,
+      "artifact_digest": "sha256:797d5df1c8746a2cbca9a04f5e1359843b2f3a989636e8f785b8d7af208dc61c",
+      "post_merge_workflow_run": 34749754739,
+      "post_merge_workflow_job": 103704008260,
+      "post_merge_artifact_id": 10315092265,
+      "post_merge_artifact_digest": "sha256:b6ef31aeaa608f86d03a42668927a059995fd40b309a744fa312a28623ce87cc",
+      "unresolved_review_threads": 0
+    },
+    "RSH-048": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-048-a11y",
+      "manifest": "A11Y-MANIFEST.json",
+      "contract": "RSH-048-A11Y-CONTRACT.md",
+      "lock_module": "src/game/a11y",
+      "a11y_complete": true,
+      "aria_controls": true,
+      "live_regions": true,
+      "reduced_motion": true,
+      "wcag_aa": false,
+      "canvas_a11y": false,
+      "privacy_policy": false,
+      "telemetry": false,
+      "crash_reporting": false,
+      "alpha_ux_private": true,
+      "rothschild_geometry": false,
+      "rsh_049_created": false
     }
   },
   "unit_order": [
@@ -1256,25 +1288,25 @@
   "state_rules": {
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-047"
+      "through": "RSH-048"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-048",
+      "from": "RSH-049",
       "through": "RSH-067"
     },
-    "RSH-001–RSH-047": "accepted",
-    "RSH-048–RSH-067": "deferred_not_authorized"
+    "RSH-001–RSH-048": "accepted",
+    "RSH-049–RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-048 remains deferred until a new explicit owner instruction.",
-    "RSH_047_completed": true,
-    "RSH_047_authorization_consumed": true,
-    "RSH_048_authorized": false
+    "current_action": "No unit is authorized; RSH-049 remains deferred until a new explicit owner instruction.",
+    "RSH_048_completed": true,
+    "RSH_048_authorization_consumed": true,
+    "RSH_049_authorized": false
   },
-  "self_reference_boundary": "The RSH-047 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-048 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }

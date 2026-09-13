@@ -67,25 +67,22 @@
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
-    "checker_test_sha256": "b0f5def2bf0134daa6b5e38b7204699c649bcb036b5445ee90055962b7b97d38",
+    "checker_test_sha256": "5dbb302c9894af1a7ae4ed15a326d649c194d5e22f8dcdbcc8bda4601c260009",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-048",
+    "queue_head": "RSH-049",
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh048",
-      ".github/workflows/rsh-048-",
-      "RSH-048-",
-      "scripts/rsh048-",
-      "scripts/check-a11y",
-      "scripts/check-privacy",
-      "scripts/check-alpha-ux",
-      "src/game/a11y/",
-      "src/game/privacy/",
-      "src/game/alpha-ux/"
+      ".rsh049",
+      ".github/workflows/rsh-049-",
+      "RSH-049-",
+      "scripts/rsh049-",
+      "scripts/check-rothschild",
+      "scripts/check-rothschild-geometry",
+      "src/game/rothschild/"
     ],
     "rsh_028_authorized": true,
     "rsh_028_started": true,
@@ -135,8 +132,10 @@
     "rsh_046_started": true,
     "rsh_047_authorized": true,
     "rsh_047_started": true,
-    "rsh_048_authorized": false,
-    "rsh_048_started": false
+    "rsh_048_authorized": true,
+    "rsh_048_started": true,
+    "rsh_049_authorized": false,
+    "rsh_049_started": false
   },
   "rsh_027_overlay": {
     "state": "accepted_on_merge",

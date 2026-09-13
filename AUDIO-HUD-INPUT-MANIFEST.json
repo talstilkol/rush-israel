@@ -114,28 +114,25 @@
     "touch_source_sha256": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "checker_test_sha256": "c993adf7f6a3a9248614205af487ba43288adda6eb993fabbd5153c3a42d7a46",
+    "checker_test_sha256": "fcc7a5d53a61fa44928dbb8098a7fa9ad4b8cadcb7ae34d64003e817cfe815b6",
     "audio_digest_sha256": "b5a3a609d13ad78708f362bbff4caaf071454c884aa34bf874fbeff18f56ca3f",
     "input_digest_sha256": "ee389f24969bad529a9e10df5b881f7efc773ecd845056b8aefcc8c52f149809",
     "hud_digest_sha256": "a4516f8b7784d8270fbb8a766515e40ca9ffa70103fe81b63af3733ce05faecb"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-048",
+    "queue_head": "RSH-049",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "forbidden_prefixes": [
-      ".rsh048",
-      ".github/workflows/rsh-048-",
-      "RSH-048-",
-      "scripts/rsh048-",
-      "scripts/check-a11y",
-      "scripts/check-privacy",
-      "scripts/check-alpha-ux",
-      "src/game/a11y/",
-      "src/game/privacy/",
-      "src/game/alpha-ux/"
+      ".rsh049",
+      ".github/workflows/rsh-049-",
+      "RSH-049-",
+      "scripts/rsh049-",
+      "scripts/check-rothschild",
+      "scripts/check-rothschild-geometry",
+      "src/game/rothschild/"
     ],
     "rsh_035_state": "accepted_on_merge",
     "rsh_036_authorized": true,
@@ -162,7 +159,9 @@
     "rsh_046_started": true,
     "rsh_047_authorized": true,
     "rsh_047_started": true,
-    "rsh_048_authorized": false,
-    "rsh_048_started": false
+    "rsh_048_authorized": true,
+    "rsh_048_started": true,
+    "rsh_049_authorized": false,
+    "rsh_049_started": false
   }
 }

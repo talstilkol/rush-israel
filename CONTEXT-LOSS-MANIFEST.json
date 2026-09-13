@@ -59,7 +59,7 @@
     "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
     "engine_source_sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
     "race_controller_source_sha256": "e01c955f700b0f7c1fa20f876a8f3ad8b294f3edbdf3bcdf4ed16e6821188670",
-    "checker_test_sha256": "2cacb7980af3d290bfdb09ebfa8c76763df0c70404c4e218a495d36cc4185775",
+    "checker_test_sha256": "97b475c4eabbbec04de80ae841659fe6149b3450dd1a8a2535f867721a1f6553",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
@@ -71,22 +71,19 @@
     "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-048",
+    "queue_head": "RSH-049",
     "rsh_041_authorized": true,
     "rsh_041_started": true,
     "rsh_042_authorized": true,
     "rsh_042_started": true,
     "forbidden_prefixes": [
-      ".rsh048",
-      ".github/workflows/rsh-048-",
-      "RSH-048-",
-      "scripts/rsh048-",
-      "scripts/check-a11y",
-      "scripts/check-privacy",
-      "scripts/check-alpha-ux",
-      "src/game/a11y/",
-      "src/game/privacy/",
-      "src/game/alpha-ux/"
+      ".rsh049",
+      ".github/workflows/rsh-049-",
+      "RSH-049-",
+      "scripts/rsh049-",
+      "scripts/check-rothschild",
+      "scripts/check-rothschild-geometry",
+      "src/game/rothschild/"
     ],
     "rsh_043_authorized": true,
     "rsh_043_started": true,
@@ -98,7 +95,9 @@
     "rsh_046_started": true,
     "rsh_047_authorized": true,
     "rsh_047_started": true,
-    "rsh_048_authorized": false,
-    "rsh_048_started": false
+    "rsh_048_authorized": true,
+    "rsh_048_started": true,
+    "rsh_049_authorized": false,
+    "rsh_049_started": false
   }
 }

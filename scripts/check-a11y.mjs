@@ -1,0 +1,215 @@
+#!/usr/bin/env node
+import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { fromRoot, projectRoot } from "./project-root.mjs";
+
+export const EXPECTED_MANIFEST_SHA256 = "3ee5370965e0766f570497eefb7e5ad90616829d805c9fda96635174182955a7";
+export const EXPECTED_LOCK_SHA256 = "868613c1644a98981fbbdad2672e0deeb8a2473f1f5cb3d11f576333c69bf0f1";
+export const EXPECTED_INDEX_SHA256 = "b92ceb29b6fa48b7fe3ef749bbac7d8545a57059c62f6c2d0a294cf3ffc224de";
+export const EXPECTED_CONTRACT_SHA256 = "92486b14da074f861baafd3207db9a5050a93815629f7626e740ff8e0d2eebb7";
+export const EXPECTED_CHECKER_TEST_SHA256 = "8ad74df2051e1651ed26557115a81ab3dfa13d61697b8f4473ea8dfdf4cd09d6";
+export const EXPECTED_DIGEST_SHA256 = "25f54b22d6dbdeb0ce4605bdaca5e82b1ba6b6fa699945c824a7466da875031f";
+export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
+export const EXPECTED_HUD_SHA256 = "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35";
+export const EXPECTED_QUALITY_PROFILES_SHA256 = "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a";
+export const EXPECTED_BUDGETS_SHA256 = "c51a8040c9179ff6a5290ed39249eb7c38d1cd14dc0143982cc594801c421990";
+export const EXPECTED_STREAM_FLAG_SHA256 = "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f";
+export const EXPECTED_REGISTRY_SHA256 = "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35";
+export const EXPECTED_CYCLES_SHA256 = "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd";
+export const EXPECTED_LOOP_ADAPTER_SHA256 = "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8";
+export const EXPECTED_INPUT_SHA256 = "51d638c0a004d080d2b558d34a58e4631e74606129d557eb1ffc835218c124aa";
+export const EXPECTED_TOUCH_SHA256 = "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8";
+export const EXPECTED_FEEL_SHA256 = "fea9f1a017261cb0c0649ed8c472825954bb236224e741a00ac51b71255abc1e";
+export const EXPECTED_RACE_SHA256 = "e01c955f700b0f7c1fa20f876a8f3ad8b294f3edbdf3bcdf4ed16e6821188670";
+export const EXPECTED_DEVICE_MATRIX_LOCK_SHA256 = "52f16f14894ae8d9fefe2d97c060733648642b6571e1b75d94d28df6b908547b";
+export const EXPECTED_INPUT_MAPS_LOCK_SHA256 = "11ca4e04c9bb1040955d54cb9b52df337217c71fcaf78a0a0b5918aa66c4ff2c";
+export const EXPECTED_RTL_SCOPE_LOCK_SHA256 = "3763e29aaeef4d8c0342ea118b81ea3b5f643f79f6fe9b02dd750e2225c9fa8a";
+export const EXPECTED_ONBOARDING_LOCK_SHA256 = "445d75d62abeb283541be32cdc42efb65cc508f0069c13725de058855ad3a921";
+export const EXPECTED_I18N_SHA256 = "55878103cfc92169bfd6f54f3c2ff11ac129a203d46382059cebddddeb11b318";
+export const EXPECTED_GAME_APP_SHA256 = "4569f67f6a8659252e3c3cf332fa377f263d3f41fcd03ced60a007aa0148cc4b";
+export const EXPECTED_ROOT_SHA256 = "a242e4f8c4463313309001eec031897c8b9555ea2505e065b777489027374709";
+export const EXPECTED_STYLES_SHA256 = "b7238994617b20c40ff3443ea430a0a0b94bcc908d70fc78df6b22de3eb104b3";
+export const EXPECTED_SCREENS_SHA256 = "37e532f6920a249564eeacfc3473d14b6731da97cff1763eec5e78a1c6cce91d";
+export const EXPECTED_SAVE_RECOVERY_UI_SHA256 = "21ff2aab6db8581da4a6b53f6b5938b0006a7cd00da5b14816cf5309a4529a26";
+export const EXPECTED_BOOT_OVERLAY_SHA256 = "e8b253942d934473bad3e04649bff151b3123325a479256fa105c787c87d7ece";
+export const EXPECTED_PWA_LOCK_SHA256 = "88bca96d7d44c337e7aa2ab97bb0e31e2c9b22029868cd400bc05e20ef42ab8f";
+
+function sha256(value) { return createHash("sha256").update(value).digest("hex"); }
+function sha256File(path) { return sha256(readFileSync(path)); }
+function walk(directory, prefix = "") {
+  const out = [];
+  for (const name of readdirSync(directory).sort()) {
+    if ([".git", "node_modules", "coverage", ".vercel", ".output", ".nitro", "dist"].includes(name)) continue;
+    const absolute = `${directory}/${name}`;
+    const path = prefix ? `${prefix}/${name}` : name;
+    if (statSync(absolute).isDirectory()) out.push(...walk(absolute, path));
+    else out.push(path);
+  }
+  return out;
+}
+function trackedFiles() {
+  try {
+    return execFileSync("git", ["ls-files", "-z"], { cwd: projectRoot, encoding: "utf8" }).split("\0").filter(Boolean).sort();
+  } catch { return walk(fromRoot()); }
+}
+
+export function canonicalDigest() {
+  return "a11y_complete=true\naria_controls=true\nlive_regions=true\nreduced_motion=true\nwcag_aa=false\ncanvas_a11y=false\nprivacy_policy=false\ntelemetry=false\ncrash_reporting=false\nalpha_ux_private=true\nrothschild_geometry=false\ngis=false\nowner_freeze=false\npublic_distribution=false\n";
+}
+
+export function readLockInputs() {
+  return {
+    manifestSource: readFileSync(fromRoot("A11Y-MANIFEST.json"), "utf8"),
+    lockSource: readFileSync(fromRoot("src/game/a11y/gates.ts"), "utf8"),
+    indexSource: readFileSync(fromRoot("src/game/a11y/index.ts"), "utf8"),
+    contractSource: readFileSync(fromRoot("RSH-048-A11Y-CONTRACT.md"), "utf8"),
+    checkerTestSource: readFileSync(fromRoot("scripts/check-a11y.test.mjs"), "utf8"),
+    packageSource: readFileSync(fromRoot("package.json"), "utf8"),
+    freezeSource: readFileSync(fromRoot("AYALON-FREEZE-MANIFEST.json"), "utf8"),
+    findingsSource: readFileSync(fromRoot("FINDINGS-REGISTER.md"), "utf8"),
+    hudSource: readFileSync(fromRoot("src", "components", "game-app", "hud.tsx"), "utf8"),
+    qualitySource: readFileSync(fromRoot("src", "game", "quality-profiles", "profiles.ts"), "utf8"),
+    budgetsSource: readFileSync(fromRoot("src", "game", "perf-budgets", "budgets.ts"), "utf8"),
+    streamFlagSource: readFileSync(fromRoot("src", "game", "stream-flag.ts"), "utf8"),
+    registrySource: readFileSync(fromRoot("src", "rendering", "ResourceRegistry.ts"), "utf8"),
+    cyclesSource: readFileSync(fromRoot("src", "game", "leak-cycles", "cycles.ts"), "utf8"),
+    loopSource: readFileSync(fromRoot("src", "game", "engine", "loop-adapter.ts"), "utf8"),
+    inputSource: readFileSync(fromRoot("src", "game", "input.ts"), "utf8"),
+    touchSource: readFileSync(fromRoot("src", "components", "touch-controls.tsx"), "utf8"),
+    feelSource: readFileSync(fromRoot("src", "game", "ayalon-feel", "feel.ts"), "utf8"),
+    raceSource: readFileSync(fromRoot("src", "components", "game-app", "race-controller.tsx"), "utf8"),
+    deviceMatrixLockSource: readFileSync(fromRoot("src", "game", "device-matrix", "matrix.ts"), "utf8"),
+    inputMapsLockSource: readFileSync(fromRoot("src", "game", "input-maps", "maps.ts"), "utf8"),
+    rtlScopeLockSource: readFileSync(fromRoot("src", "game", "rtl-scope", "scope.ts"), "utf8"),
+    onboardingLockSource: readFileSync(fromRoot("src", "game", "onboarding", "flow.ts"), "utf8"),
+    i18nSource: readFileSync(fromRoot("src", "game", "i18n.ts"), "utf8"),
+    gameAppSource: readFileSync(fromRoot("src", "components", "game-app.tsx"), "utf8"),
+    rootSource: readFileSync(fromRoot("src", "routes", "__root.tsx"), "utf8"),
+    stylesSource: readFileSync(fromRoot("src", "styles.css"), "utf8"),
+    screensSource: readFileSync(fromRoot("src", "components", "game-app", "screens.tsx"), "utf8"),
+    recoveryUiSource: readFileSync(fromRoot("src", "game", "save-recovery-ui.ts"), "utf8"),
+    bootOverlaySource: readFileSync(fromRoot("src", "components", "boot-overlay.tsx"), "utf8"),
+    pwaLockSource: readFileSync(fromRoot("src", "game", "pwa", "offline.ts"), "utf8"),
+    repositoryFiles: trackedFiles(),
+  };
+}
+
+export function validateLock(overrides = {}) {
+  const input = { ...readLockInputs(), ...overrides };
+  const errors = [];
+  let manifest, freeze;
+  try {
+    manifest = JSON.parse(input.manifestSource);
+    freeze = JSON.parse(input.freezeSource);
+  } catch (error) {
+    return { errors: [`RSH-048 authority JSON invalid: ${error.message}`] };
+  }
+  if (sha256(input.manifestSource) !== EXPECTED_MANIFEST_SHA256) errors.push("a11y manifest differs from the reviewed RSH-048 authority");
+  const identities = {
+    lock_source_sha256: [input.lockSource, EXPECTED_LOCK_SHA256],
+    index_source_sha256: [input.indexSource, EXPECTED_INDEX_SHA256],
+    contract_sha256: [input.contractSource, EXPECTED_CONTRACT_SHA256],
+    checker_test_sha256: [input.checkerTestSource, EXPECTED_CHECKER_TEST_SHA256],
+    package_source_sha256: [input.packageSource, EXPECTED_PACKAGE_SHA256],
+    registry_source_sha256: [input.registrySource, EXPECTED_REGISTRY_SHA256],
+    leak_cycles_source_sha256: [input.cyclesSource, EXPECTED_CYCLES_SHA256],
+    loop_adapter_source_sha256: [input.loopSource, EXPECTED_LOOP_ADAPTER_SHA256],
+    input_source_sha256: [input.inputSource, EXPECTED_INPUT_SHA256],
+    touch_source_sha256: [input.touchSource, EXPECTED_TOUCH_SHA256],
+    feel_source_sha256: [input.feelSource, EXPECTED_FEEL_SHA256],
+    race_source_sha256: [input.raceSource, EXPECTED_RACE_SHA256],
+    i18n_source_sha256: [input.i18nSource, EXPECTED_I18N_SHA256],
+    game_app_source_sha256: [input.gameAppSource, EXPECTED_GAME_APP_SHA256],
+    root_source_sha256: [input.rootSource, EXPECTED_ROOT_SHA256],
+    styles_source_sha256: [input.stylesSource, EXPECTED_STYLES_SHA256],
+    screens_source_sha256: [input.screensSource, EXPECTED_SCREENS_SHA256],
+    save_recovery_ui_sha256: [input.recoveryUiSource, EXPECTED_SAVE_RECOVERY_UI_SHA256],
+    boot_overlay_source_sha256: [input.bootOverlaySource, EXPECTED_BOOT_OVERLAY_SHA256],
+    pwa_lock_sha256: [input.pwaLockSource, EXPECTED_PWA_LOCK_SHA256],
+    input_maps_lock_sha256: [input.inputMapsLockSource, EXPECTED_INPUT_MAPS_LOCK_SHA256],
+    rtl_scope_lock_sha256: [input.rtlScopeLockSource, EXPECTED_RTL_SCOPE_LOCK_SHA256],
+    onboarding_lock_sha256: [input.onboardingLockSource, EXPECTED_ONBOARDING_LOCK_SHA256],
+  };
+  for (const [name, [source, expected]] of Object.entries(identities)) {
+    if (sha256(source) !== expected || manifest.identities?.[name] !== expected) errors.push(`${name} changed`);
+  }
+  if (sha256(canonicalDigest()) !== EXPECTED_DIGEST_SHA256 || manifest.identities?.lock_digest_sha256 !== EXPECTED_DIGEST_SHA256) errors.push("a11y digest identity changed");
+  if (manifest.unit !== "RSH-048") errors.push("RSH-048 unit identity changed");
+  if (manifest.lock?.gis_claim !== false || manifest.lock?.owner_freeze !== false || manifest.lock?.public_distribution !== false) errors.push("RSH-048 must not claim GIS accuracy, owner freeze or public distribution");
+  if (manifest.lock?.a11y_complete !== true) errors.push("RSH-048 must lock a11y_complete");
+  if (manifest.lock?.aria_controls !== true) errors.push("RSH-048 must lock aria_controls");
+  if (manifest.lock?.live_regions !== true) errors.push("RSH-048 must lock live_regions");
+  if (manifest.lock?.reduced_motion !== true) errors.push("RSH-048 must lock reduced_motion");
+  if (manifest.lock?.wcag_aa !== false) errors.push("RSH-048 must not claim WCAG AA");
+  if (manifest.lock?.canvas_a11y !== false) errors.push("RSH-048 must not claim canvas a11y");
+  if (manifest.lock?.privacy_policy !== false) errors.push("RSH-048 must not claim a public privacy policy");
+  if (manifest.lock?.telemetry !== false) errors.push("RSH-048 must not claim telemetry");
+  if (manifest.lock?.crash_reporting !== false) errors.push("RSH-048 must not claim crash reporting");
+  if (manifest.lock?.alpha_ux_private !== true) errors.push("RSH-048 must lock alpha_ux_private");
+  if (manifest.lock?.rothschild_geometry !== false) errors.push("RSH-048 must not claim Rothschild geometry");
+  if (!/export const LOCK_DEFINED = true/.test(input.lockSource)) errors.push("lock defined token missing");
+  if (!/from "\.\/gates"/.test(input.indexSource)) errors.push("a11y index no longer re-exports lock");
+  if (!/export const A11Y_COMPLETE = true/.test(input.lockSource)) errors.push("a11y_complete token missing");
+  if (!/export const ARIA_CONTROLS = true/.test(input.lockSource)) errors.push("aria_controls token missing");
+  if (!/export const LIVE_REGIONS = true/.test(input.lockSource)) errors.push("live_regions token missing");
+  if (!/export const REDUCED_MOTION = true/.test(input.lockSource)) errors.push("reduced_motion token missing");
+  if (!/export const WCAG_AA = false/.test(input.lockSource)) errors.push("wcag_aa token missing");
+  if (!/export const TELEMETRY = false/.test(input.lockSource)) errors.push("telemetry token missing");
+  if (!/export const CRASH_REPORTING = false/.test(input.lockSource)) errors.push("crash_reporting token missing");
+  if (!/export const ALPHA_UX_PRIVATE = true/.test(input.lockSource)) errors.push("alpha_ux_private token missing");
+  if (!/acceptedAsWcagAa: false/.test(input.lockSource)) errors.push("WCAG AA acceptance must stay false");
+  if (!/acceptedAsTelemetry: false/.test(input.lockSource)) errors.push("telemetry acceptance must stay false");
+  if (!/acceptedAsRothschildGeometry: false/.test(input.lockSource)) errors.push("Rothschild acceptance must stay false");
+
+  if (!/"aria-label": "settings"/.test(input.screensSource)) errors.push("live screens.tsx missing settings aria control");
+  if (sha256(input.screensSource) !== EXPECTED_SCREENS_SHA256) errors.push("live screens.tsx drifted");
+  if (!/"aria-label": "pause"/.test(input.hudSource)) errors.push("live hud.tsx missing pause aria control");
+  if (sha256(input.hudSource) !== EXPECTED_HUD_SHA256) errors.push("HUD source drifted");
+  if (!/aria-live="polite"/.test(input.bootOverlaySource)) errors.push("live boot-overlay missing polite live region");
+  if (sha256(input.bootOverlaySource) !== EXPECTED_BOOT_OVERLAY_SHA256) errors.push("boot-overlay drifted");
+  if (!/aria-live/.test(input.recoveryUiSource)) errors.push("save-recovery-ui missing live region");
+  if (sha256(input.recoveryUiSource) !== EXPECTED_SAVE_RECOVERY_UI_SHA256) errors.push("save-recovery-ui drifted");
+  if (!/prefers-reduced-motion: reduce/.test(input.stylesSource)) errors.push("live styles.css missing reduced-motion");
+  if (sha256(input.stylesSource) !== EXPECTED_STYLES_SHA256) errors.push("styles.css drifted");
+  if (!/export const A11Y_COMPLETE = false/.test(input.pwaLockSource)) errors.push("PWA lock must keep A11Y_COMPLETE false");
+  if (sha256(input.pwaLockSource) !== EXPECTED_PWA_LOCK_SHA256) errors.push("PWA lock source drifted");
+  if (!/export const A11Y_COMPLETE = false/.test(input.onboardingLockSource)) errors.push("onboarding lock must keep A11Y_COMPLETE false");
+  if (sha256(input.onboardingLockSource) !== EXPECTED_ONBOARDING_LOCK_SHA256) errors.push("onboarding lock source drifted");
+
+  const productSurface = [input.gameAppSource, input.screensSource, input.hudSource, input.raceSource, input.inputSource, input.lockSource].join("\n");
+  if (/(gtag\(|googletagmanager|sentry\.io|crashlytics|mixpanel|amplitude|posthog|google-analytics)/i.test(productSurface)) errors.push("product surface introduced telemetry");
+
+  if (sha256(input.qualitySource) !== EXPECTED_QUALITY_PROFILES_SHA256) errors.push("quality-profile lock drifted");
+  if (sha256(input.budgetsSource) !== EXPECTED_BUDGETS_SHA256) errors.push("perf-budget lock drifted");
+  if (sha256(input.streamFlagSource) !== EXPECTED_STREAM_FLAG_SHA256) errors.push("live stream-flag drifted");
+  if (!/export const MESH_STREAMING = false/.test(input.streamFlagSource)) errors.push("live stream-flag MESH_STREAMING is not false");
+  if (sha256(input.deviceMatrixLockSource) !== EXPECTED_DEVICE_MATRIX_LOCK_SHA256) errors.push("device-matrix lock source drifted");
+  if (freeze.lock?.freeze_granted !== true || freeze.lock?.source_count !== 36) errors.push("Ayalon freeze was rewritten");
+  if (sha256File(fromRoot("src", "game", "ayalon-freeze", "freeze.ts")) !== "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1") errors.push("Ayalon freeze source hash drifted");
+  if (!/\| P1-12 \| P1 \| \*\*OPEN\*\*/.test(input.findingsSource)) errors.push("P1-12 must remain OPEN");
+  if (!/\| P1-13 \| P1 \| \*\*OPEN\*\*/.test(input.findingsSource)) errors.push("P1-13 must remain OPEN");
+  if (!/\| P2-09 \| P2 \| \*\*OPEN\*\*/.test(input.findingsSource)) errors.push("P2-09 must remain OPEN");
+  if (!/\| P2-10 \| P2 \| \*\*CLOSED\*\*/.test(input.findingsSource)) errors.push("P2-10 must remain CLOSED");
+  if (!/\| P2-11 \| P2 \| \*\*CLOSED\*\*/.test(input.findingsSource)) errors.push("P2-11 must remain CLOSED");
+  if (manifest.preservation?.golden_png_changes !== 0 || manifest.preservation?.package_json_changes !== 0 || manifest.preservation?.release_gates_green !== 0) errors.push("RSH-048 preservation counts changed");
+  const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
+  if (later.length) errors.push(`RSH-049 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-049" || manifest.deferred_boundary?.rsh_048_authorized !== true || manifest.deferred_boundary?.rsh_049_authorized !== false) errors.push("RSH-049 deferred boundary changed");
+  return { errors, locked: errors.length === 0 };
+}
+
+function isMainModule(url) {
+  const entry = process.argv[1];
+  if (!entry) return false;
+  try { return realpathSync(entry) === fileURLToPath(url); } catch { return false; }
+}
+if (isMainModule(import.meta.url)) {
+  const result = validateLock();
+  if (result.errors.length) {
+    console.error(`a11y fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
+    process.exit(1);
+  }
+  console.log(`a11y ok: RSH-048 locked; RSH-049 deferred`);
+}
