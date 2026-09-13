@@ -17,7 +17,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-029 Ayalon asphalt lock passes and RSH-047 remains absent", () => {
+test("committed RSH-029 Ayalon asphalt lock passes and RSH-048 remains absent", () => {
   const result = validateAyalonAsphalt();
   assert.deepEqual(result.errors, []);
   assert.equal(result.trackId, "ayalon");
@@ -27,11 +27,11 @@ test("committed RSH-029 Ayalon asphalt lock passes and RSH-047 remains absent", 
   assert.equal(result.stationGantryCount, 5);
 });
 
-test("RSH-047 precreation fails closed", () => {
+test("RSH-048 precreation fails closed", () => {
   const result = validateAyalonAsphalt({
-    repositoryFiles: ["RSH-047-PREFLIGHT.json", "src/game/ayalon-asphalt/asphalt.ts"],
+    repositoryFiles: ["RSH-048-PREFLIGHT.json", "src/game/ayalon-asphalt/asphalt.ts"],
   });
-  assert.match(messages(result), /RSH-047 was precreated/);
+  assert.match(messages(result), /RSH-048 was precreated/);
 });
 
 test("live Ayalon asphalt stays 8-lane baked kit, sidewalks stay absent, signs stay locked", () => {
