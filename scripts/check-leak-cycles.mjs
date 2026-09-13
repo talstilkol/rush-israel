@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "5e7a0fe6a071cbfd9d651a42ab25e2de7c598ab36b3072689813b1e82207e971";
+export const EXPECTED_MANIFEST_SHA256 = "a27a002c527f57238ef4ed212295c712099c1798439914612ad4c24439fdc531";
 export const EXPECTED_CYCLES_SHA256 = "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd";
 export const EXPECTED_INDEX_SHA256 = "976cbbc6513426f5272652d7f579bd2309a181478f0c089db23213006a4f5c11";
 export const EXPECTED_CONTRACT_SHA256 = "130ef04232021e0cc47ed8380d9dc758a192e07674769bc304bb2c51fb031bf9";
@@ -13,7 +13,7 @@ export const EXPECTED_REGISTRY_SHA256 = "97a4d36cb120714df59c7f14c4218169b7ac05a
 export const EXPECTED_DISPOSE_OBJECT3D_SHA256 = "606e9905b68a2949d2d49407d5815672763b0252c41ffb36aa1484c8e3315264";
 export const EXPECTED_SOAK_SHA256 = "a684508627830a4fff5030232ba36dd1b81df82b4924aa307f94116a5dc7df60";
 export const EXPECTED_SOAK_SMOKE_SHA256 = "46f3c813263d2046771a918bdaa624c13ff42fdef580448764bfe6b45a6f33c2";
-export const EXPECTED_CHECKER_TEST_SHA256 = "51e53022af5a1880033f7c04fc262634231285a48e69fdb6337ec9b123f759c0";
+export const EXPECTED_CHECKER_TEST_SHA256 = "10a010d0b592c4937529ebfeea9eb71bea4ea8d509556fba356471acaf209ef5";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_LEAK_DIGEST_SHA256 = "d4a6b8abcdf23a734f40b96001a3146ae20056e4ef30536aada7052c943c69a2";
 export const EXPECTED_FREEZE_DIGEST_SHA256 = "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098";
@@ -139,8 +139,8 @@ export function validateLeakCycles(overrides = {}) {
   if (!/\| P2-09 \| P2 \| \*\*OPEN\*\*/.test(input.findingsSource)) errors.push("P2-09 must stay OPEN until a production JS/asset byte-size check exists");
   if (manifest.preservation?.golden_png_changes !== 0 || manifest.preservation?.package_json_changes !== 0 || manifest.preservation?.release_gates_green !== 0) errors.push("RSH-040 preservation counts changed");
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-054 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-054" || manifest.deferred_boundary?.rsh_041_authorized !== true || manifest.deferred_boundary?.rsh_042_authorized !== true || manifest.deferred_boundary?.rsh_043_authorized !== true || manifest.deferred_boundary?.rsh_045_authorized !== true || manifest.deferred_boundary?.rsh_046_authorized !== true || manifest.deferred_boundary?.rsh_047_authorized !== true || manifest.deferred_boundary?.rsh_048_authorized !== true || manifest.deferred_boundary?.rsh_049_authorized !== true || manifest.deferred_boundary?.rsh_050_authorized !== true || manifest.deferred_boundary?.rsh_051_authorized !== true || manifest.deferred_boundary?.rsh_052_authorized !== true || manifest.deferred_boundary?.rsh_053_authorized !== true || manifest.deferred_boundary?.rsh_054_authorized !== false || manifest.deferred_boundary?.rsh_041_started !== true || manifest.deferred_boundary?.rsh_042_started !== true || manifest.deferred_boundary?.rsh_043_started !== true || manifest.deferred_boundary?.rsh_045_started !== true || manifest.deferred_boundary?.rsh_046_started !== true || manifest.deferred_boundary?.rsh_047_started !== true || manifest.deferred_boundary?.rsh_048_started !== true || manifest.deferred_boundary?.rsh_049_started !== true || manifest.deferred_boundary?.rsh_050_started !== true || manifest.deferred_boundary?.rsh_051_started !== true || manifest.deferred_boundary?.rsh_052_started !== true || manifest.deferred_boundary?.rsh_053_started !== true || manifest.deferred_boundary?.rsh_054_started !== false) errors.push("RSH-054 deferred boundary changed");
+  if (later.length) errors.push(`RSH-055 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-055" || manifest.deferred_boundary?.rsh_041_authorized !== true || manifest.deferred_boundary?.rsh_042_authorized !== true || manifest.deferred_boundary?.rsh_043_authorized !== true || manifest.deferred_boundary?.rsh_045_authorized !== true || manifest.deferred_boundary?.rsh_046_authorized !== true || manifest.deferred_boundary?.rsh_047_authorized !== true || manifest.deferred_boundary?.rsh_048_authorized !== true || manifest.deferred_boundary?.rsh_049_authorized !== true || manifest.deferred_boundary?.rsh_050_authorized !== true || manifest.deferred_boundary?.rsh_051_authorized !== true || manifest.deferred_boundary?.rsh_052_authorized !== true || manifest.deferred_boundary?.rsh_053_authorized !== true || manifest.deferred_boundary?.rsh_054_authorized !== true || manifest.deferred_boundary?.rsh_055_authorized !== false || manifest.deferred_boundary?.rsh_041_started !== true || manifest.deferred_boundary?.rsh_042_started !== true || manifest.deferred_boundary?.rsh_043_started !== true || manifest.deferred_boundary?.rsh_045_started !== true || manifest.deferred_boundary?.rsh_046_started !== true || manifest.deferred_boundary?.rsh_047_started !== true || manifest.deferred_boundary?.rsh_048_started !== true || manifest.deferred_boundary?.rsh_049_started !== true || manifest.deferred_boundary?.rsh_050_started !== true || manifest.deferred_boundary?.rsh_051_started !== true || manifest.deferred_boundary?.rsh_052_started !== true || manifest.deferred_boundary?.rsh_053_started !== true || manifest.deferred_boundary?.rsh_054_started !== true || manifest.deferred_boundary?.rsh_055_started !== false) errors.push("RSH-055 deferred boundary changed");
   return { errors, locked: errors.length === 0, cycles: 20 };
 }
 
@@ -155,5 +155,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`leak-cycles fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`leak-cycles ok: 20 enter-exit cycles locked; RSH-054 deferred`);
+  console.log(`leak-cycles ok: 20 enter-exit cycles locked; RSH-055 deferred`);
 }

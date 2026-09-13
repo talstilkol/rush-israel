@@ -1,7 +1,7 @@
 {
-  "schema_version": "36.0.0",
+  "schema_version": "37.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T11:34:22.000Z",
+  "generated_at": "2026-09-13T11:43:19.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -892,23 +892,36 @@
       "post_merge_workflow_run": 34754643787,
       "recorded_at": "2026-09-13T11:34:22.000Z",
       "description": "RSH-052 accepted."
+    },
+    {
+      "id": "B053-rsh-053-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-053",
+      "pull_request": 58,
+      "commit_sha": "973c737ce1070380f50b0bf5f7ec32993a94977f",
+      "tree_sha": "05ac98f6b6a4fc69d11394e3e376d649ed362d45",
+      "validated_head_sha": "1db8424a4b8498a8ffe880e98471b358dc18c7f2",
+      "workflow_run": 34754788291,
+      "post_merge_workflow_run": 34755000634,
+      "recorded_at": "2026-09-13T11:43:19.000Z",
+      "description": "RSH-053 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-053",
+    "unit": "RSH-054",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "372433fcdd6066c7946faec79b54d18388479651",
-    "branch": "agent/rsh-053-oldjaffa",
-    "manifest": "JAFFA-GEOMETRY-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-053 pull request"
+    "implementation_base_sha": "973c737ce1070380f50b0bf5f7ec32993a94977f",
+    "branch": "agent/rsh-054-oldjaffa-golden",
+    "manifest": "JAFFA-GOLDEN-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-054 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-054",
+    "queue_head": "RSH-055",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_054_authorized": false
+    "RSH_055_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
