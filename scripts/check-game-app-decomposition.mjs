@@ -11,7 +11,7 @@ import {
 } from "./load-game-app-decomposition.mjs";
 import { stripRsh033Overlay } from "./rsh033-overlay.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "b5ef4872c931c79f57437a7987db110062a45bcbec338b2bc1dc78298db26849";
+export const EXPECTED_MANIFEST_SHA256 = "152e1170d6df09ad8df8b259220c43bb9a3b4265cd74b9b4d5ea94d2446d792e";
 export const EXPECTED_RSH022_SAVE_SHA256 = "3b454e60fe1cc635a0b3051dc9a75191f7098df0b6989b1bea9ca845784b7df2";
 export const EXPECTED_RSH023_RECORDS_SHA256 = "1394102cc0c744a3000a0ad191bca61efc79880b874a7ded3794b51bf0d3a502";
 export const EXPECTED_MODULE_PATHS = [
