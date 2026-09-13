@@ -1119,7 +1119,9 @@
       "default_lang": "he",
       "lang_count": 3,
       "onboarding_complete": false,
-      "rsh_046_created": false
+      "rsh_046_created": false,
+      "html_lang_static_he": true,
+      "document_lang_synced": false
     }
   },
   "unit_order": [

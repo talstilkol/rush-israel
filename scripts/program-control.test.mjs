@@ -1075,10 +1075,14 @@ test("RSH-045 becomes accepted on merge and consumes exactly one authorization",
   assert.equal(current.accepted_units["RSH-045"].rtl_scope_complete, true);
   assert.equal(current.accepted_units["RSH-045"].arabic_copy_complete, false);
   assert.equal(current.accepted_units["RSH-045"].onboarding_complete, false);
+  assert.equal(current.accepted_units["RSH-045"].html_lang_static_he, true);
+  assert.equal(current.accepted_units["RSH-045"].document_lang_synced, false);
   assert.equal(scope.lock.rtl_scope_complete, true);
   assert.equal(scope.lock.arabic_in_scope, true);
   assert.equal(scope.lock.arabic_copy_complete, false);
   assert.equal(scope.lock.default_lang, "he");
+  assert.equal(scope.lock.html_lang_static_he, true);
+  assert.equal(scope.lock.document_lang_synced, false);
   assert.equal(scope.deferred_boundary.queue_head, "RSH-046");
   assert.equal(maps.lock.rtl_scope_complete, false);
   assert.equal(baseline.working_state.unit, "RSH-045");

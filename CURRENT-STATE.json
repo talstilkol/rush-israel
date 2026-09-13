@@ -1400,7 +1400,9 @@
       "gis_claim": false,
       "owner_freeze": false,
       "public_distribution": false,
-      "rsh_046_created": false
+      "rsh_046_created": false,
+      "html_lang_static_he": true,
+      "document_lang_synced": false
     }
   },
   "active_change": null,

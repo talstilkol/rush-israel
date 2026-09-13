@@ -16,4 +16,6 @@ export {
   LANG_COUNT,
   LANGS,
   ONBOARDING_COMPLETE,
+  HTML_LANG_STATIC_HE,
+  DOCUMENT_LANG_SYNCED,
 } from "./scope";

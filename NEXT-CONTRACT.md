@@ -23,6 +23,8 @@ The current standing owner instruction to finish the master plan authorised RSH-
 - `default_lang` = `he`;
 - `lang_count` = `3`;
 - `onboarding_complete` = `False`;
+- `html_lang_static_he` = `True`;
+- `document_lang_synced` = `False`;
 - P1-12 stays OPEN — long-soak is not in required CI;
 - P1-13 stays OPEN — no accepted real-device baseline;
 - P2-09 stays OPEN — no production JS/asset byte-size CI check;

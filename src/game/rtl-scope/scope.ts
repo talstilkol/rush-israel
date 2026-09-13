@@ -1,4 +1,4 @@
-/** Canonical RSH-045 Hebrew RTL, English LTR and Arabic-scope lock. Honest: no GIS, no public distribution, no onboarding (RSH-046). */
+/** Canonical RSH-045 Hebrew RTL, English LTR and Arabic-scope lock. Honest: no GIS, no public distribution, no onboarding (RSH-046), document html lang stays Hebrew. */
 export const UNIT_ID = "RSH-045" as const;
 export const LOCK_DEFINED = true;
 export const GIS_CLAIM = false;
@@ -15,8 +15,10 @@ export const DEFAULT_LANG = "he" as const;
 export const LANG_COUNT = 3;
 export const LANGS = ["he", "ar", "en"] as const;
 export const ONBOARDING_COMPLETE = false;
+export const HTML_LANG_STATIC_HE = true;
+export const DOCUMENT_LANG_SYNCED = false;
 
-export type LockReport = { claimedArabicCopyComplete?: boolean; claimedOnboardingComplete?: boolean };
+export type LockReport = { claimedArabicCopyComplete?: boolean; claimedOnboardingComplete?: boolean; claimedDocumentLangSynced?: boolean };
 
 export function evaluateLock(report: LockReport = {}) {
   return {
@@ -29,6 +31,9 @@ export function evaluateLock(report: LockReport = {}) {
     acceptedAsArabicCopyComplete: false,
     claimedOnboardingComplete: Boolean(report.claimedOnboardingComplete),
     acceptedAsOnboardingComplete: false,
+    claimedDocumentLangSynced: Boolean(report.claimedDocumentLangSynced),
+    acceptedAsDocumentLangSynced: false,
+    htmlLangStaticHe: HTML_LANG_STATIC_HE,
     publicDistribution: PUBLIC_DISTRIBUTION,
     gisClaim: GIS_CLAIM,
   };
@@ -45,6 +50,8 @@ export function canonicalDigest(): string {
     "default_lang=he",
     "lang_count=3",
     "onboarding_complete=false",
+    "html_lang_static_he=true",
+    "document_lang_synced=false",
     "gis=false",
     "owner_freeze=false",
     "public_distribution=false",

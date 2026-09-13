@@ -24,7 +24,9 @@
     "gis_claim": false,
     "owner_freeze": false,
     "owner_settings_freeze": false,
-    "public_distribution": false
+    "public_distribution": false,
+    "html_lang_static_he": true,
+    "document_lang_synced": false
   },
   "lock_module": {
     "directory": "src/game/rtl-scope",
@@ -55,10 +57,10 @@
     "release_gates_total": 13
   },
   "identities": {
-    "lock_source_sha256": "41946eea04a2f4ff8dcbf90d3d0100d5c78da82309e44f105f94f269372debd8",
-    "index_source_sha256": "7523513909e99cd43e835e319a4c6ca4bbd20b9ae29ddcd0d73c5089efa40577",
-    "contract_sha256": "f0586e527c58e637fd710333cbb9c743cdc4ba45375e40913c68f6f4fa5f9bf7",
-    "checker_test_sha256": "1b450e34f82777fd2b7d751efd0d71cde1b5e1da230880797b2205487495f3bd",
+    "lock_source_sha256": "3763e29aaeef4d8c0342ea118b81ea3b5f643f79f6fe9b02dd750e2225c9fa8a",
+    "index_source_sha256": "f511f3d22f9e37da0146c432709cf71bf73a8b0a72f1d16b1049a74f584efa2b",
+    "contract_sha256": "4391536ec9c6a179f183822d5d925318689aab2e3876b27403f1848e37977e2f",
+    "checker_test_sha256": "a260b08740527923cdd4ae1c7ea2dcfad1f25542b38b290cd8fc2753bd0cc3d4",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
@@ -67,7 +69,7 @@
     "touch_source_sha256": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
     "feel_source_sha256": "fea9f1a017261cb0c0649ed8c472825954bb236224e741a00ac51b71255abc1e",
     "race_source_sha256": "e01c955f700b0f7c1fa20f876a8f3ad8b294f3edbdf3bcdf4ed16e6821188670",
-    "lock_digest_sha256": "8623a2e637ffe19cad23650dd3e3f89be506a7890e5df640e8f99e62a72ce6ad",
+    "lock_digest_sha256": "4a6f985c2baa5de81c496bc488cc3371fc1fc143d11217782c7631ea871532f1",
     "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1",
     "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
     "quality_profiles_source_sha256": "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a",

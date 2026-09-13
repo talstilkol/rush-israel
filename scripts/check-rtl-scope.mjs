@@ -5,12 +5,12 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "bb856e472bd73e1819640de3f8fe8823b96a0512edea97c900bbe63a73c69bc8";
-export const EXPECTED_LOCK_SHA256 = "41946eea04a2f4ff8dcbf90d3d0100d5c78da82309e44f105f94f269372debd8";
-export const EXPECTED_INDEX_SHA256 = "7523513909e99cd43e835e319a4c6ca4bbd20b9ae29ddcd0d73c5089efa40577";
-export const EXPECTED_CONTRACT_SHA256 = "f0586e527c58e637fd710333cbb9c743cdc4ba45375e40913c68f6f4fa5f9bf7";
-export const EXPECTED_CHECKER_TEST_SHA256 = "1b450e34f82777fd2b7d751efd0d71cde1b5e1da230880797b2205487495f3bd";
-export const EXPECTED_DIGEST_SHA256 = "8623a2e637ffe19cad23650dd3e3f89be506a7890e5df640e8f99e62a72ce6ad";
+export const EXPECTED_MANIFEST_SHA256 = "76e2e63c2fa05f19dd8a99894420d3beec4800a40b12dc60bcbb806ce865a531";
+export const EXPECTED_LOCK_SHA256 = "3763e29aaeef4d8c0342ea118b81ea3b5f643f79f6fe9b02dd750e2225c9fa8a";
+export const EXPECTED_INDEX_SHA256 = "f511f3d22f9e37da0146c432709cf71bf73a8b0a72f1d16b1049a74f584efa2b";
+export const EXPECTED_CONTRACT_SHA256 = "4391536ec9c6a179f183822d5d925318689aab2e3876b27403f1848e37977e2f";
+export const EXPECTED_CHECKER_TEST_SHA256 = "a260b08740527923cdd4ae1c7ea2dcfad1f25542b38b290cd8fc2753bd0cc3d4";
+export const EXPECTED_DIGEST_SHA256 = "4a6f985c2baa5de81c496bc488cc3371fc1fc143d11217782c7631ea871532f1";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_HUD_SHA256 = "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35";
 export const EXPECTED_QUALITY_PROFILES_SHA256 = "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a";
@@ -50,7 +50,7 @@ function trackedFiles() {
 }
 
 export function canonicalDigest() {
-  return "rtl_scope_complete=true\nhebrew_rtl=true\nenglish_ltr=true\narabic_in_scope=true\narabic_copy_complete=false\narabic_fallback_english=true\ndefault_lang=he\nlang_count=3\nonboarding_complete=false\ngis=false\nowner_freeze=false\npublic_distribution=false\n";
+  return "rtl_scope_complete=true\nhebrew_rtl=true\nenglish_ltr=true\narabic_in_scope=true\narabic_copy_complete=false\narabic_fallback_english=true\ndefault_lang=he\nlang_count=3\nonboarding_complete=false\nhtml_lang_static_he=true\ndocument_lang_synced=false\ngis=false\nowner_freeze=false\npublic_distribution=false\n";
 }
 
 export function readLockInputs() {
@@ -129,6 +129,8 @@ export function validateLock(overrides = {}) {
   if (manifest.lock?.default_lang !== "he") errors.push("RSH-045 must lock default_lang he");
   if (manifest.lock?.lang_count !== 3) errors.push("RSH-045 must lock lang_count 3");
   if (manifest.lock?.onboarding_complete !== false) errors.push("RSH-045 must not claim onboarding complete");
+  if (manifest.lock?.html_lang_static_he !== true) errors.push("RSH-045 must lock html lang as static Hebrew");
+  if (manifest.lock?.document_lang_synced !== false) errors.push("RSH-045 must not claim document lang is synced");
   if (!/export const LOCK_DEFINED = true/.test(input.lockSource)) errors.push("lock defined token missing");
   if (!/from "\.\/scope"/.test(input.indexSource)) errors.push("rtl-scope index no longer re-exports lock");
   if (!/export const RTL_SCOPE_COMPLETE = true/.test(input.lockSource)) errors.push("rtl_scope_complete token missing");
@@ -140,8 +142,11 @@ export function validateLock(overrides = {}) {
   if (!/export const DEFAULT_LANG = "he"/.test(input.lockSource)) errors.push("default_lang token missing");
   if (!/export const LANG_COUNT = 3/.test(input.lockSource)) errors.push("lang_count token missing");
   if (!/export const ONBOARDING_COMPLETE = false/.test(input.lockSource)) errors.push("onboarding_complete token missing");
+  if (!/export const HTML_LANG_STATIC_HE = true/.test(input.lockSource)) errors.push("html_lang_static_he token missing");
+  if (!/export const DOCUMENT_LANG_SYNCED = false/.test(input.lockSource)) errors.push("document_lang_synced token missing");
   if (!/acceptedAsArabicCopyComplete: false/.test(input.lockSource)) errors.push("Arabic-copy acceptance must stay false");
   if (!/acceptedAsOnboardingComplete: false/.test(input.lockSource)) errors.push("onboarding acceptance must stay false");
+  if (!/acceptedAsDocumentLangSynced: false/.test(input.lockSource)) errors.push("document-lang-sync acceptance must stay false");
 
   if (!/export type Lang = "he" \| "ar" \| "en"/.test(input.i18nSource)) errors.push("live i18n.ts Lang union drifted");
   if (!/ar \?\? en/.test(input.i18nSource)) errors.push("live i18n.ts Arabic fallback drifted");
@@ -153,6 +158,7 @@ export function validateLock(overrides = {}) {
   if (sha256(input.gameAppSource) !== EXPECTED_GAME_APP_SHA256) errors.push("live game-app.tsx drifted");
   if (!/lang="he"/.test(input.rootSource)) errors.push("live __root.tsx lang is not Hebrew");
   if (/<html[^>]*\sdir=/.test(input.rootSource)) errors.push("live __root.tsx must not hardcode html dir");
+  if (/document\.documentElement\.lang/.test(input.gameAppSource)) errors.push("live game-app.tsx must not sync document lang in this unit");
   if (sha256(input.rootSource) !== EXPECTED_ROOT_SHA256) errors.push("live __root.tsx drifted");
   if (!/Heebo/.test(input.stylesSource) || !/Noto Sans Arabic/.test(input.stylesSource)) errors.push("live styles.css font lock drifted");
   if (!/\[dir="rtl"\] \.boot-bar-fill/.test(input.stylesSource)) errors.push("live styles.css RTL boot-bar rule missing");

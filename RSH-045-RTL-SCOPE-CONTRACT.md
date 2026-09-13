@@ -29,6 +29,8 @@ settings, error and recovery UX remain deferred.
 | `default_lang` | `he` |
 | `lang_count` | `3` |
 | `onboarding_complete` | `false` |
+| `html_lang_static_he` | `true` |
+| `document_lang_synced` | `false` |
 | GIS / navigation claim | forbidden |
 | Public distribution | forbidden |
 | Ayalon freeze | remains granted, 36 hashes unchanged |
@@ -38,6 +40,11 @@ settings, error and recovery UX remain deferred.
 
 Live `src/game/i18n.ts` already cycles `he → ar → en`. Hebrew and Arabic
 are RTL; English is LTR. Arabic copy falls back to English when omitted.
+The inner app container uses `dirFor(lang)`. The document `html lang`
+attribute stays `"he"` and is **not** synced to the selected locale —
+`evaluateLock({ claimedDocumentLangSynced: true }).acceptedAsDocumentLangSynced`
+is always `false`. Assistive-technology document-language updates remain
+outside this lock (RSH-048).
 `evaluateLock({ claimedArabicCopyComplete: true }).acceptedAsArabicCopyComplete`
 is always `false`. Default language remains Hebrew.
 
