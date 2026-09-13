@@ -14,7 +14,7 @@ test("milestone register records the consumed RSH-043 authority exactly", () => 
   assert.match(register, /\| Accepted units \| 43 \|/);
   assert.match(register, /\| Remaining units \| 24 \|/);
   assert.match(register, /\| RSH-043 one-unit authority \| consumed 1\/1 \|/);
-  assert.match(register, /\| RSH-043 \| browser\ and\ device\ support\ matrix\ locked\ on\ validated\ merge \|/);
+  assert.match(register, /\| RSH-043 \| browser and device support matrix locked on validated merge \|/);
   assert.match(register, /No RSH-044 branch, PR or implementation structure is authorised/);
 });
 
