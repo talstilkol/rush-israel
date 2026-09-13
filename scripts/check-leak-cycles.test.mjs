@@ -23,18 +23,18 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-040 leak-cycle lock passes and RSH-067 remains absent", () => {
+test("committed RSH-040 leak-cycle lock passes and none remains absent", () => {
   const result = validateLeakCycles();
   assert.deepEqual(result.errors, []);
   assert.equal(result.locked, true);
   assert.equal(result.cycles, 20);
 });
 
-test("RSH-067 precreation fails closed", () => {
+test("none precreation fails closed", () => {
   const result = validateLeakCycles({
-    repositoryFiles: ["RSH-067-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
+    repositoryFiles: ["none-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
   });
-  assert.match(messages(result), /RSH-067 was precreated/);
+  assert.match(messages(result), /none was precreated/);
 });
 
 test("20 ResourceRegistry enter-exit cycles leave no outstanding leases", () => {
@@ -64,7 +64,7 @@ test("leak cycles are locked without context-loss, soak or a real-device baselin
   assert.equal(manifest.lock.real_device_baseline_accepted, false);
   assert.equal(manifest.lock.gis_claim, false);
   assert.equal(manifest.lock.public_distribution, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-067");
+  assert.equal(manifest.deferred_boundary.queue_head, "none");
   assert.equal(ENTER_EXIT_CYCLES, 20);
   assert.equal(REQUIRED_CI_CYCLES, 2);
   assert.equal(TEXTURE_DELTA_MAX, 2);

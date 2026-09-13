@@ -1,7 +1,7 @@
 {
-  "schema_version": "49.0.0",
+  "schema_version": "50.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T13:41:11.000Z",
+  "generated_at": "2026-09-13T13:52:12.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -1061,23 +1061,36 @@
       "post_merge_workflow_run": 34760358131,
       "recorded_at": "2026-09-13T13:41:11.000Z",
       "description": "RSH-065 accepted."
+    },
+    {
+      "id": "B066-rsh-066-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-066",
+      "pull_request": 71,
+      "commit_sha": "66afc517c52faff8aa93bb9ee8b1f0c21a92dd2d",
+      "tree_sha": "e80404dcc97a6b17b4d3bae5397dbdd7cb260614",
+      "validated_head_sha": "eb72f316d317919e4a28ae4a5559ade1832edef8",
+      "workflow_run": 34760535636,
+      "post_merge_workflow_run": 34760795211,
+      "recorded_at": "2026-09-13T13:52:12.000Z",
+      "description": "RSH-066 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-066",
+    "unit": "RSH-067",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "1cb4f2281a6062494839dd6f60fdba4e5e9c6ec0",
-    "branch": "agent/rsh-066-rc1-close",
-    "manifest": "RC1-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-066 pull request"
+    "implementation_base_sha": "66afc517c52faff8aa93bb9ee8b1f0c21a92dd2d",
+    "branch": "agent/rsh-067-v1-publish",
+    "manifest": "V1-PUBLISH-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-067 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-067",
-    "state": "deferred_not_authorized",
+    "queue_head": "none",
+    "state": "program_complete",
     "branch": null,
     "pull_request": null,
-    "requires_new_next": true,
-    "RSH_067_authorized": false
+    "requires_new_next": false,
+    "none_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

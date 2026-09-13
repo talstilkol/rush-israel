@@ -21,17 +21,17 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-047 lock passes and RSH-067 remains absent", () => {
+test("committed RSH-047 lock passes and none remains absent", () => {
   const result = validateLock();
   assert.deepEqual(result.errors, []);
   assert.equal(result.locked, true);
 });
 
-test("RSH-067 precreation fails closed", () => {
+test("none precreation fails closed", () => {
   const result = validateLock({
-    repositoryFiles: ["RSH-067-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
+    repositoryFiles: ["none-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
   });
-  assert.match(messages(result), /RSH-067 was precreated/);
+  assert.match(messages(result), /none was precreated/);
 });
 
 test("RSH-047 does not accept service-worker, offline-cache or a11y-complete claims", () => {
@@ -56,5 +56,5 @@ test("RSH-047 does not accept service-worker, offline-cache or a11y-complete cla
   assert.equal(manifest.lock.service_worker, false);
   assert.equal(manifest.lock.offline_cache, false);
   assert.equal(manifest.lock.a11y_complete, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-067");
+  assert.equal(manifest.deferred_boundary.queue_head, "none");
 });

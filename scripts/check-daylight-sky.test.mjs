@@ -17,7 +17,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-031 daylight/sky/IBL lock passes and RSH-067 remains absent", () => {
+test("committed RSH-031 daylight/sky/IBL lock passes and none remains absent", () => {
   const result = validateDaylightSky();
   assert.deepEqual(result.errors, []);
   assert.equal(result.look, "summer14");
@@ -26,11 +26,11 @@ test("committed RSH-031 daylight/sky/IBL lock passes and RSH-067 remains absent"
   assert.equal(result.skyWidth, 1024);
 });
 
-test("RSH-067 precreation fails closed", () => {
+test("none precreation fails closed", () => {
   const result = validateDaylightSky({
-    repositoryFiles: ["RSH-067-PREFLIGHT.json", "src/game/ayalon-light/daylight.ts"],
+    repositoryFiles: ["none-PREFLIGHT.json", "src/game/ayalon-light/daylight.ts"],
   });
-  assert.match(messages(result), /RSH-067 was precreated/);
+  assert.match(messages(result), /none was precreated/);
 });
 
 test("live daylight stays non-HDRI summer14 with baked sky and tiny PMREM", () => {
