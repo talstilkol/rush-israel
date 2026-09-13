@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 41.0.0
+**Version:** 42.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-058 implementation base:** `c0a9c81d3e16f0281094e2888deae5edd2c41fd9`
-**State effective on:** merge of the RSH-058 pull request
+**RSH-059 implementation base:** `5fc4e578287e3120cbad9525b6180bbe7399acdc`
+**State effective on:** merge of the RSH-059 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-059 — deferred and not authorised
+**Next scheduled unit:** RSH-060 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 58 |
+| Accepted units | 59 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-059 — deferred/not authorised |
+| Queue head | RSH-060 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 9 |
-| RSH-058 one-unit authority | consumed 1/1 |
+| Remaining units | 8 |
+| RSH-059 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -83,5 +83,6 @@
 | RSH-056 | Jerusalem–Scopus art, golden and source freeze locked on validated merge |
 | RSH-057 | Haifa–Carmel geometry and driving locked on validated merge |
 | RSH-058 | Haifa–Carmel art, golden and source freeze locked on validated merge |
+| RSH-059 | Ramon geometry and driving locked on validated merge |
 
-No RSH-059 branch, PR or implementation structure is authorised by this state.
+No RSH-060 branch, PR or implementation structure is authorised by this state.

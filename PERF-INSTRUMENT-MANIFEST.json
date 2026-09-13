@@ -68,27 +68,27 @@
     "rendering_source_sha256": "947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132",
     "qa_source_sha256": "973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c",
     "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
-    "checker_test_sha256": "f898ebc4112d4cc84abe91fc699fbc8e8236e394870f2c22919918dd54f883f8",
+    "checker_test_sha256": "0db1bef837b2e15dd4bb7ae2695f576cf63f0ea6076f0633eed03bb796140f77",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "perf_digest_sha256": "7475ef5f789a4950cf82743aa5a7d499075e8d37813a65ef4c0dc6b658b222fd",
     "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
     "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-059",
+    "queue_head": "RSH-060",
     "rsh_037_authorized": true,
     "rsh_037_started": true,
     "rsh_038_authorized": true,
     "rsh_038_started": true,
     "forbidden_prefixes": [
-      ".rsh059",
-      ".github/workflows/rsh-059-",
-      "RSH-059-",
-      "scripts/rsh059-",
-      "scripts/check-ramon",
-      "scripts/check-ramon-drive",
-      "scripts/check-ramon-track",
-      "src/game/ramon/"
+      ".rsh060",
+      ".github/workflows/rsh-060-",
+      "RSH-060-",
+      "scripts/rsh060-",
+      "scripts/check-ramon-golden",
+      "scripts/check-ramon-art",
+      "scripts/check-ramon-freeze",
+      "src/game/ramon-golden/"
     ],
     "rsh_039_authorized": true,
     "rsh_039_started": true,
@@ -130,7 +130,9 @@
     "rsh_057_started": true,
     "rsh_058_authorized": true,
     "rsh_058_started": true,
-    "rsh_059_authorized": false,
-    "rsh_059_started": false
+    "rsh_059_authorized": true,
+    "rsh_059_started": true,
+    "rsh_060_authorized": false,
+    "rsh_060_started": false
   }
 }
