@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-oldjaffa-manifest",
+  "unit": "RSH-053",
+  "title": "Jaffa geometry and driving",
+  "generated_at": "2026-09-13T11:34:22.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "372433fcdd6066c7946faec79b54d18388479651",
+    "tree_sha": "daf7a125b98a93250356369ac1d926927b40e52c",
+    "branch": "agent/rsh-053-oldjaffa"
+  },
+  "lock": {
+    "track_id": "oldjaffa",
+    "geometry_locked": true,
+    "driving_locked": true,
+    "art_golden_locked": false,
+    "track_freeze_granted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "owner_settings_freeze": false,
+    "public_distribution": false,
+    "real_device_baseline_accepted": false
+  },
+  "lock_module": {
+    "directory": "src/game/oldjaffa",
+    "lock": "src/game/oldjaffa/track.ts",
+    "index": "src/game/oldjaffa/index.ts"
+  },
+  "preservation": {
+    "golden_png_changes": 0,
+    "ayalon_lock_changes": 0,
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "cars_changes": 0,
+    "audio_hud_changes": 0,
+    "engine_adapter_changes": 0,
+    "live_cache_changes": 0,
+    "quality_profile_changes": 0,
+    "registry_changes": 0,
+    "leak_cycle_changes": 0,
+    "context_loss_changes": 0,
+    "package_json_changes": 0,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "lock_source_sha256": "39433803284f444515c9a2044b6b1600083300a133c0178a240b35a90f1d623b",
+    "index_source_sha256": "cb320da93c068037636ec0272ec1f10be4b86be3d30aa94e0c39ef5fb898da65",
+    "contract_sha256": "674058f601cfd5f3394f6702032e795423de1995555dc133fee35ec860f4a232",
+    "checker_test_sha256": "4c71fede2aabe96ffc282287ac55a4de660b07747ffe3995cddb032f6f4feb71",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
+    "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
+    "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
+    "lock_digest_sha256": "c87433723e593e26aa93da47283e869def7bbd31d204af82ac56eb469c9fe52a",
+    "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1",
+    "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+    "quality_profiles_source_sha256": "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a",
+    "budgets_source_sha256": "c51a8040c9179ff6a5290ed39249eb7c38d1cd14dc0143982cc594801c421990",
+    "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-054",
+    "rsh_053_authorized": true,
+    "rsh_053_started": true,
+    "rsh_054_authorized": false,
+    "rsh_054_started": false,
+    "forbidden_prefixes": [
+      ".rsh054",
+      ".github/workflows/rsh-054-",
+      "RSH-054-",
+      "scripts/rsh054-",
+      "scripts/check-oldjaffa-golden",
+      "scripts/check-jaffa-golden",
+      "scripts/check-jaffa-art",
+      "src/game/oldjaffa-golden/"
+    ]
+  }
+}

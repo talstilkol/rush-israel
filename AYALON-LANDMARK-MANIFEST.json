@@ -50,24 +50,24 @@
     "index_source_sha256": "d51244ebc8e3b0793a9b17796ea7db044eab4432d6d9e0a54d7c19b21515e86b",
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
-    "checker_test_sha256": "8c177c4dac106d4ac6121f267ba187d3780fb42879e021694ffd07194dc98821",
+    "checker_test_sha256": "97f57002dd5235b993d9fb5611c163213ce5ad40434aeacb16dc34274118940d",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "poi_sha256": "653400d559e6e34f7fb009d8620f7bc94fbb0bfca48537d3c7e2be98a0028063",
     "placement_sha256": "ca016b04811f2d6184ee36311d805bbd6f77083a1395d7d6a753b7f1963d77a8"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-053",
+    "queue_head": "RSH-054",
     "rsh_029_authorized": true,
     "rsh_029_started": true,
     "forbidden_prefixes": [
-      ".rsh053",
-      ".github/workflows/rsh-053-",
-      "RSH-053-",
-      "scripts/rsh053-",
-      "scripts/check-oldjaffa",
-      "scripts/check-jaffa-geometry",
-      "scripts/check-jaffa-track",
-      "src/game/oldjaffa/"
+      ".rsh054",
+      ".github/workflows/rsh-054-",
+      "RSH-054-",
+      "scripts/rsh054-",
+      "scripts/check-oldjaffa-golden",
+      "scripts/check-jaffa-golden",
+      "scripts/check-jaffa-art",
+      "src/game/oldjaffa-golden/"
     ],
     "rsh_029_state": "accepted_on_merge",
     "rsh_030_authorized": true,
@@ -122,8 +122,10 @@
     "rsh_051_started": true,
     "rsh_052_authorized": true,
     "rsh_052_started": true,
-    "rsh_053_authorized": false,
-    "rsh_053_started": false
+    "rsh_053_authorized": true,
+    "rsh_053_started": true,
+    "rsh_054_authorized": false,
+    "rsh_054_started": false
   },
   "rsh_029_overlay": {
     "state": "accepted_on_merge",

@@ -104,26 +104,26 @@
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
     "pixel_golden_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
-    "checker_test_sha256": "42bf0ebb72bd078f86bceb06d6ed502e103d20864d200afe8b4930f039e5e772",
+    "checker_test_sha256": "dcff898d2afc1121b958416e882a269e0262a1a2da9f17aca826d65619e33845",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
     "golden_digest_sha256": "d1a09a9b9d4542b4ffd7d6feefcfd21e71a0a9903d12a1002dd728d3432f7a74"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-053",
+    "queue_head": "RSH-054",
     "rsh_036_authorized": true,
     "rsh_036_started": true,
     "rsh_037_authorized": true,
     "rsh_037_started": true,
     "forbidden_prefixes": [
-      ".rsh053",
-      ".github/workflows/rsh-053-",
-      "RSH-053-",
-      "scripts/rsh053-",
-      "scripts/check-oldjaffa",
-      "scripts/check-jaffa-geometry",
-      "scripts/check-jaffa-track",
-      "src/game/oldjaffa/"
+      ".rsh054",
+      ".github/workflows/rsh-054-",
+      "RSH-054-",
+      "scripts/rsh054-",
+      "scripts/check-oldjaffa-golden",
+      "scripts/check-jaffa-golden",
+      "scripts/check-jaffa-art",
+      "src/game/oldjaffa-golden/"
     ],
     "rsh_038_authorized": true,
     "rsh_038_started": true,
@@ -155,7 +155,9 @@
     "rsh_051_started": true,
     "rsh_052_authorized": true,
     "rsh_052_started": true,
-    "rsh_053_authorized": false,
-    "rsh_053_started": false
+    "rsh_053_authorized": true,
+    "rsh_053_started": true,
+    "rsh_054_authorized": false,
+    "rsh_054_started": false
   }
 }
