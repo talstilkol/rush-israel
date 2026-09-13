@@ -1,11 +1,11 @@
 {
-  "schema_version": "40.0.0",
+  "schema_version": "41.0.0",
   "document_type": "rush-program-queue",
-  "generated_at": "2026-09-13T12:14:56.000Z",
+  "generated_at": "2026-09-13T12:24:41.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
-  "verified_base_sha": "90ab07dd246e594019149a8f3354d4e5f03b040b",
-  "state_effective_on": "merge_of_RSH_057_pull_request",
+  "verified_base_sha": "c0a9c81d3e16f0281094e2888deae5edd2c41fd9",
+  "state_effective_on": "merge_of_RSH_058_pull_request",
   "policy": {
     "mode": "strict_serial_with_owner_bounded_batch",
     "units_per_plain_next": 1,
@@ -34,43 +34,43 @@
     "latest_single_unit_authorization": {
       "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
       "authorized_units": [
+        "RSH-058"
+      ],
+      "completed": 1,
+      "total": 1,
+      "state": "consumed_on_RSH-058_merge",
+      "RSH_059_authorized": false
+    },
+    "previous_single_unit_authorization": {
+      "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
+      "authorized_units": [
         "RSH-057"
       ],
       "completed": 1,
       "total": 1,
       "state": "consumed_on_RSH-057_merge",
       "RSH_058_authorized": false
-    },
-    "previous_single_unit_authorization": {
-      "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
-      "authorized_units": [
-        "RSH-056"
-      ],
-      "completed": 1,
-      "total": 1,
-      "state": "consumed_on_RSH-056_merge",
-      "RSH_057_authorized": false
     }
   },
   "counts": {
     "total": 67,
-    "accepted": 57,
+    "accepted": 58,
     "in_review": 0,
     "eligible": 0,
-    "deferred": 10,
-    "remaining": 10
+    "deferred": 9,
+    "remaining": 9
   },
   "queue_head": {
-    "id": "RSH-058",
-    "title": "Haifa–Carmel art, golden and freeze",
+    "id": "RSH-059",
+    "title": "Ramon geometry and driving",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
-    "acceptance_condition": "A new explicit owner instruction is required before RSH-058 may start."
+    "acceptance_condition": "A new explicit owner instruction is required before RSH-059 may start."
   },
   "next_after_acceptance": {
-    "id": "RSH-058",
-    "title": "Haifa–Carmel art, golden and freeze",
+    "id": "RSH-059",
+    "title": "Ramon geometry and driving",
     "state": "deferred_not_authorized"
   },
   "accepted": {
@@ -1367,7 +1367,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-057": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-057-haifa",
       "manifest": "HAIFA-GEOMETRY-MANIFEST.json",
       "contract": "RSH-057-HAIFA-CONTRACT.md",
@@ -1375,7 +1375,25 @@
       "track_id": "haifa",
       "geometry_locked": true,
       "driving_locked": true,
-      "rsh_058_created": false
+      "rsh_058_created": true,
+      "pull_request": 62,
+      "validated_head_sha": "f91ad7b19f8944222ced6677b270ef9d5c87ad07",
+      "merge_sha": "c0a9c81d3e16f0281094e2888deae5edd2c41fd9",
+      "tree_sha": "88bf7df749ee67d2e4ea5777b483c171dc059628",
+      "workflow_run": 34756572467,
+      "post_merge_workflow_run": 34756829637,
+      "unresolved_review_threads": 0
+    },
+    "RSH-058": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-058-haifa-golden",
+      "manifest": "HAIFA-GOLDEN-MANIFEST.json",
+      "contract": "RSH-058-HAIFA-GOLDEN-CONTRACT.md",
+      "lock_module": "src/game/haifa-golden",
+      "track_id": "haifa",
+      "art_golden_locked": true,
+      "track_source_freeze": true,
+      "rsh_059_created": false
     }
   },
   "unit_order": [
@@ -1450,25 +1468,25 @@
   "state_rules": {
     "accepted": {
       "from": "RSH-001",
-      "through": "RSH-057"
+      "through": "RSH-058"
     },
     "eligible": [],
     "deferred": {
-      "from": "RSH-058",
+      "from": "RSH-059",
       "through": "RSH-067"
     },
-    "RSH-001–RSH-057": "accepted",
-    "RSH-058–RSH-067": "deferred_not_authorized"
+    "RSH-001–RSH-058": "accepted",
+    "RSH-059–RSH-067": "deferred_not_authorized"
   },
   "next_instruction_contract": {
     "instruction": "next",
     "units_per_instruction": 1,
     "authorization_remaining": 0,
     "authorization_closed": true,
-    "current_action": "No unit is authorized; RSH-058 remains deferred until a new explicit owner instruction.",
-    "RSH_057_completed": true,
-    "RSH_057_authorization_consumed": true,
-    "RSH_058_authorized": false
+    "current_action": "No unit is authorized; RSH-059 remains deferred until a new explicit owner instruction.",
+    "RSH_058_completed": true,
+    "RSH_058_authorization_consumed": true,
+    "RSH_059_authorized": false
   },
-  "self_reference_boundary": "The RSH-057 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
+  "self_reference_boundary": "The RSH-058 candidate records accepted-on-merge state without inventing its future merge SHA, review ID, workflow run, job or artifact. Exact evidence is resolved from live GitHub and recorded on the pull request after acceptance."
 }
