@@ -8,7 +8,7 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-025 Ayalon acceptance authority passes under the RSH-029 overlay and RSH-046 remains absent", () => {
+test("committed RSH-025 Ayalon acceptance authority passes under the RSH-029 overlay and RSH-047 remains absent", () => {
   const result = validateAyalonAcceptance();
   assert.deepEqual(result.errors, []);
   assert.equal(result.trackId, "ayalon");
@@ -16,11 +16,11 @@ test("committed RSH-025 Ayalon acceptance authority passes under the RSH-029 ove
   assert.equal(result.duplicatePlaceholders, 4);
 });
 
-test("RSH-046 precreation fails closed", () => {
+test("RSH-047 precreation fails closed", () => {
   const result = validateAyalonAcceptance({
-    repositoryFiles: ["RSH-046-PREFLIGHT.json", "src/game/tracks/ayalon.ts"],
+    repositoryFiles: ["RSH-047-PREFLIGHT.json", "src/game/tracks/ayalon.ts"],
   });
-  assert.match(messages(result), /RSH-046 was precreated/);
+  assert.match(messages(result), /RSH-047 was precreated/);
 });
 
 test("Ayalon V1 identity stays a fictional one-carriageway highway", () => {
