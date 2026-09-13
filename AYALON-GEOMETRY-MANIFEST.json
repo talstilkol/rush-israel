@@ -67,23 +67,23 @@
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
-    "checker_test_sha256": "5d931d543bca69a2bcdb16765887fdf930e857916bbbcc8c88f62b3812f455b8",
+    "checker_test_sha256": "eb684bb62ce6896ee450025c9d9265fe232d1440bca6626aa1f4821a862e7e32",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-058",
+    "queue_head": "RSH-059",
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh058",
-      ".github/workflows/rsh-058-",
-      "RSH-058-",
-      "scripts/rsh058-",
-      "scripts/check-haifa-golden",
-      "scripts/check-carmel-golden",
-      "scripts/check-haifa-art",
-      "src/game/haifa-golden/"
+      ".rsh059",
+      ".github/workflows/rsh-059-",
+      "RSH-059-",
+      "scripts/rsh059-",
+      "scripts/check-ramon",
+      "scripts/check-ramon-drive",
+      "scripts/check-ramon-track",
+      "src/game/ramon/"
     ],
     "rsh_028_authorized": true,
     "rsh_028_started": true,
@@ -153,8 +153,10 @@
     "rsh_056_started": true,
     "rsh_057_authorized": true,
     "rsh_057_started": true,
-    "rsh_058_authorized": false,
-    "rsh_058_started": false
+    "rsh_058_authorized": true,
+    "rsh_058_started": true,
+    "rsh_059_authorized": false,
+    "rsh_059_started": false
   },
   "rsh_027_overlay": {
     "state": "accepted_on_merge",

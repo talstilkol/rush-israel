@@ -59,7 +59,7 @@
     "dispose_object3d_source_sha256": "606e9905b68a2949d2d49407d5815672763b0252c41ffb36aa1484c8e3315264",
     "soak_source_sha256": "a684508627830a4fff5030232ba36dd1b81df82b4924aa307f94116a5dc7df60",
     "soak_smoke_source_sha256": "46f3c813263d2046771a918bdaa624c13ff42fdef580448764bfe6b45a6f33c2",
-    "checker_test_sha256": "dd9c1b8e7f237325527c6dc4d95c4099574ccd2629b36f29bae17bf9124880f3",
+    "checker_test_sha256": "3fca743cf8ce77c1a2b1ae544f4fcd01ea80cedb5c6cb97521b07c326b76aba8",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "leak_digest_sha256": "d4a6b8abcdf23a734f40b96001a3146ae20056e4ef30536aada7052c943c69a2",
     "freeze_digest_sha256": "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098",
@@ -70,20 +70,20 @@
     "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-058",
+    "queue_head": "RSH-059",
     "rsh_040_authorized": true,
     "rsh_040_started": true,
     "rsh_041_authorized": true,
     "rsh_041_started": true,
     "forbidden_prefixes": [
-      ".rsh058",
-      ".github/workflows/rsh-058-",
-      "RSH-058-",
-      "scripts/rsh058-",
-      "scripts/check-haifa-golden",
-      "scripts/check-carmel-golden",
-      "scripts/check-haifa-art",
-      "src/game/haifa-golden/"
+      ".rsh059",
+      ".github/workflows/rsh-059-",
+      "RSH-059-",
+      "scripts/rsh059-",
+      "scripts/check-ramon",
+      "scripts/check-ramon-drive",
+      "scripts/check-ramon-track",
+      "src/game/ramon/"
     ],
     "rsh_042_authorized": true,
     "rsh_042_started": true,
@@ -117,7 +117,9 @@
     "rsh_056_started": true,
     "rsh_057_authorized": true,
     "rsh_057_started": true,
-    "rsh_058_authorized": false,
-    "rsh_058_started": false
+    "rsh_058_authorized": true,
+    "rsh_058_started": true,
+    "rsh_059_authorized": false,
+    "rsh_059_started": false
   }
 }
