@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 23.0.0
+**Version:** 24.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-040 implementation base:** `da690504d360a5b06f53783e9f86e0d7bf73cc01`
-**State effective on:** merge of the RSH-040 pull request
+**RSH-041 implementation base:** `b24dea10f4a6ff186ee0c73e44a4fc693ad384f9`
+**State effective on:** merge of the RSH-041 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-041 — deferred and not authorised
+**Next scheduled unit:** RSH-042 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 40 |
+| Accepted units | 41 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-041 — deferred/not authorised |
+| Queue head | RSH-042 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 27 |
-| RSH-040 one-unit authority | consumed 1/1 |
+| Remaining units | 26 |
+| RSH-041 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -65,5 +65,6 @@
 | RSH-038 | Quality profiles and dynamic-quality hysteresis locked on validated merge |
 | RSH-039 | Bundle, streaming and cache budgets locked on validated merge |
 | RSH-040 | 20 enter-exit leak cycles locked on validated merge |
+| RSH-041 | WebGL context-loss recovery locked on validated merge |
 
-No RSH-041 branch, PR or implementation structure is authorised by this state.
+No RSH-042 branch, PR or implementation structure is authorised by this state.

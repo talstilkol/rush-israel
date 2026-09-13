@@ -105,14 +105,14 @@ export function validateResourceOwnership(overrides = {}) {
   if (tracks.modules.length !== 56 || tracks.counts.mvp !== 8 || tracks.counts.deferred !== 48) errors.push("track catalogue boundary changed");
 
   const later = input.repositoryFiles.filter((path) =>
-    path.startsWith(".rsh041") ||
-    path.startsWith(".github/workflows/rsh-041-") ||
-    path.startsWith("RSH-041-") ||
-    path.startsWith("scripts/check-context-loss") ||
-    path.startsWith("scripts/check-webgl-context") ||
-    path.startsWith("scripts/check-context-restore"),
+    path.startsWith(".rsh042") ||
+    path.startsWith(".github/workflows/rsh-042-") ||
+    path.startsWith("RSH-042-") ||
+    path.startsWith("scripts/check-thirty-soak") ||
+    path.startsWith("scripts/check-30min-soak") ||
+    path.startsWith("scripts/check-uninterrupted-soak"),
   );
-  if (later.length) errors.push(`RSH-041 was precreated: ${later.join(", ")}`);
+  if (later.length) errors.push(`RSH-042 was precreated: ${later.join(", ")}`);
   const temp = input.repositoryFiles.filter((path) =>
     path === ".rsh019-payload.gz.b64" ||
     path === ".github/workflows/rsh-019-apply.yml",

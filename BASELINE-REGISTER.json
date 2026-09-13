@@ -1,7 +1,7 @@
 {
-  "schema_version": "23.0.0",
+  "schema_version": "24.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-12T17:20:15.000Z",
+  "generated_at": "2026-09-13T05:45:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -725,23 +725,36 @@
       "post_merge_workflow_run": 34707925345,
       "recorded_at": "2026-09-12T17:20:15Z",
       "description": "Bundle, streaming and cache budgets locked."
+    },
+    {
+      "id": "B040-rsh-040-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-040",
+      "pull_request": 44,
+      "commit_sha": "b24dea10f4a6ff186ee0c73e44a4fc693ad384f9",
+      "tree_sha": "f404cbf8e584346d707c6f25b68aa187bf738245",
+      "validated_head_sha": "c48cd3c4aef0551b20167a67be85da548cb04c31",
+      "workflow_run": 34708531367,
+      "post_merge_workflow_run": 34709086445,
+      "recorded_at": "2026-09-12T17:43:41Z",
+      "description": "20 enter-exit leak cycles locked."
     }
   ],
   "working_state": {
-    "unit": "RSH-040",
+    "unit": "RSH-041",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "da690504d360a5b06f53783e9f86e0d7bf73cc01",
-    "branch": "agent/rsh-040-leak-cycles",
-    "manifest": "LEAK-CYCLES-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-040 pull request"
+    "implementation_base_sha": "b24dea10f4a6ff186ee0c73e44a4fc693ad384f9",
+    "branch": "agent/rsh-041-context-loss",
+    "manifest": "CONTEXT-LOSS-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-041 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-041",
+    "queue_head": "RSH-042",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_041_authorized": false
+    "RSH_042_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
