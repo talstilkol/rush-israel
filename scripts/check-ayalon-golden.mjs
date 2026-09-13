@@ -5,12 +5,12 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "a676cbc4a9f723c2cf96c01aaafd5cd40b31d64ab61d14f6ab0a8a11b431e83d";
+export const EXPECTED_MANIFEST_SHA256 = "0e75250898abe9a76aad9ee7fd2c1d0424030457cf8e42fcff08daa42b22f589";
 export const EXPECTED_PACK_SHA256 = "ce1b6f6c3cb5db8e3695864e5a54df2be480caa8ff852aadc8fb4fd693f920ed";
 export const EXPECTED_INDEX_SHA256 = "8326432974994dddd7c3b4015693f1833bd02c7a0a6ebf5c947fd92d8b5efb3e";
 export const EXPECTED_OWNER_SHA256 = "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84";
 export const EXPECTED_CONTRACT_SHA256 = "0328becc41d5ed9568778a8630ffd06dbea46ee11ce0d7301906616336c64c3d";
-export const EXPECTED_CHECKER_TEST_SHA256 = "c730147b76828fb61daae49242838d6d09ba0b0c67cd358977665be9eb68dea1";
+export const EXPECTED_CHECKER_TEST_SHA256 = "f65bc5d7da109823810ae67715c96ac9457fa428727bdb8b1457123ad579469e";
 export const EXPECTED_LOCK_SHA256 = "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b";
 export const EXPECTED_HASHALOM_INDEX_SHA256 = "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10";
 export const EXPECTED_PIXEL_GOLDEN_SHA256 = "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621";
@@ -183,13 +183,13 @@ export function validateAyalonGolden(overrides = {}) {
   }
 
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-046 was precreated: ${later.join(", ")}`);
+  if (later.length) errors.push(`RSH-047 was precreated: ${later.join(", ")}`);
   if (
-    manifest.deferred_boundary?.queue_head !== "RSH-046"
-    || manifest.deferred_boundary?.rsh_036_authorized !== true || manifest.deferred_boundary?.rsh_037_authorized !== true || manifest.deferred_boundary?.rsh_038_authorized !== true || manifest.deferred_boundary?.rsh_039_authorized !== true || manifest.deferred_boundary?.rsh_040_authorized !== true || manifest.deferred_boundary?.rsh_041_authorized !== true || manifest.deferred_boundary?.rsh_042_authorized !== true || manifest.deferred_boundary?.rsh_043_authorized !== true || manifest.deferred_boundary?.rsh_045_authorized !== true || manifest.deferred_boundary?.rsh_046_authorized !== false
-    || manifest.deferred_boundary?.rsh_036_started !== true || manifest.deferred_boundary?.rsh_037_started !== true || manifest.deferred_boundary?.rsh_038_started !== true || manifest.deferred_boundary?.rsh_039_started !== true || manifest.deferred_boundary?.rsh_040_started !== true || manifest.deferred_boundary?.rsh_041_started !== true || manifest.deferred_boundary?.rsh_042_started !== true || manifest.deferred_boundary?.rsh_043_started !== true || manifest.deferred_boundary?.rsh_045_started !== true || manifest.deferred_boundary?.rsh_046_started !== false
+    manifest.deferred_boundary?.queue_head !== "RSH-047"
+    || manifest.deferred_boundary?.rsh_036_authorized !== true || manifest.deferred_boundary?.rsh_037_authorized !== true || manifest.deferred_boundary?.rsh_038_authorized !== true || manifest.deferred_boundary?.rsh_039_authorized !== true || manifest.deferred_boundary?.rsh_040_authorized !== true || manifest.deferred_boundary?.rsh_041_authorized !== true || manifest.deferred_boundary?.rsh_042_authorized !== true || manifest.deferred_boundary?.rsh_043_authorized !== true || manifest.deferred_boundary?.rsh_045_authorized !== true || manifest.deferred_boundary?.rsh_046_authorized !== true || manifest.deferred_boundary?.rsh_047_authorized !== false
+    || manifest.deferred_boundary?.rsh_036_started !== true || manifest.deferred_boundary?.rsh_037_started !== true || manifest.deferred_boundary?.rsh_038_started !== true || manifest.deferred_boundary?.rsh_039_started !== true || manifest.deferred_boundary?.rsh_040_started !== true || manifest.deferred_boundary?.rsh_041_started !== true || manifest.deferred_boundary?.rsh_042_started !== true || manifest.deferred_boundary?.rsh_043_started !== true || manifest.deferred_boundary?.rsh_045_started !== true || manifest.deferred_boundary?.rsh_046_started !== true || manifest.deferred_boundary?.rsh_047_started !== false
   ) {
-    errors.push("RSH-046 deferred boundary changed");
+    errors.push("RSH-047 deferred boundary changed");
   }
 
   return {
@@ -212,5 +212,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`ayalon-golden fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`ayalon-golden ok: ${result.uniqueCount} unique frames; ${result.placeholderCount} placeholders; approved ${result.approved}; RSH-046 deferred`);
+  console.log(`ayalon-golden ok: ${result.uniqueCount} unique frames; ${result.placeholderCount} placeholders; approved ${result.approved}; RSH-047 deferred`);
 }

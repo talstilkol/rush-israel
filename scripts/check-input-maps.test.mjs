@@ -20,17 +20,17 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-044 lock passes and RSH-046 remains absent", () => {
+test("committed RSH-044 lock passes and RSH-047 remains absent", () => {
   const result = validateLock();
   assert.deepEqual(result.errors, []);
   assert.equal(result.locked, true);
 });
 
-test("RSH-046 precreation fails closed", () => {
+test("RSH-047 precreation fails closed", () => {
   const result = validateLock({
-    repositoryFiles: ["RSH-046-PREFLIGHT.json", "src/game/onboarding/flow.ts", "scripts/check-onboarding.mjs"],
+    repositoryFiles: ["RSH-047-PREFLIGHT.json", "src/game/pwa/offline.ts", "scripts/check-pwa.mjs"],
   });
-  assert.match(messages(result), /RSH-046 was precreated/);
+  assert.match(messages(result), /RSH-047 was precreated/);
 });
 
 test("RSH-044 does not accept an RTL-complete, universal-pause or public-distribution claim", () => {
@@ -52,5 +52,5 @@ test("RSH-044 does not accept an RTL-complete, universal-pause or public-distrib
   assert.equal(manifest.lock.input_maps_unified, true);
   assert.equal(manifest.lock.pause_keyboard_only, true);
   assert.equal(manifest.lock.rtl_scope_complete, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-046");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-047");
 });

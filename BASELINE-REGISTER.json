@@ -1,7 +1,7 @@
 {
-  "schema_version": "28.0.0",
+  "schema_version": "29.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T09:55:00.000Z",
+  "generated_at": "2026-09-13T11:40:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -788,23 +788,36 @@
       "post_merge_workflow_run": 34746455661,
       "recorded_at": "2026-09-13T07:56:37Z",
       "description": "RSH-044 accepted."
+    },
+    {
+      "id": "B045-rsh-045-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-045",
+      "pull_request": 50,
+      "commit_sha": "97a3190306c59cc14aaffc659c7c499a8a95b7c9",
+      "tree_sha": "6f7d5c9d3e9fa89776d4e208f19002a18f4dd44c",
+      "validated_head_sha": "12056161771c7820213d0a5657d20ebce746e257",
+      "workflow_run": 34747615853,
+      "post_merge_workflow_run": 34747812420,
+      "recorded_at": "2026-09-13T08:29:28Z",
+      "description": "RSH-045 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-045",
+    "unit": "RSH-046",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "7ebe241496e9206efe1ad7a5068924cbc299ced2",
-    "branch": "agent/rsh-045-rtl-scope",
-    "manifest": "RTL-SCOPE-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-045 pull request"
+    "implementation_base_sha": "97a3190306c59cc14aaffc659c7c499a8a95b7c9",
+    "branch": "agent/rsh-046-onboarding",
+    "manifest": "ONBOARDING-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-046 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-046",
+    "queue_head": "RSH-047",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_046_authorized": false
+    "RSH_047_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
