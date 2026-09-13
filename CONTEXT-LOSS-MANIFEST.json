@@ -59,7 +59,7 @@
     "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
     "engine_source_sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
     "race_controller_source_sha256": "e01c955f700b0f7c1fa20f876a8f3ad8b294f3edbdf3bcdf4ed16e6821188670",
-    "checker_test_sha256": "85421b3a011fab0bd9a3da6cf6a13a0ca96729acd77b690c65704e8976e7fd5a",
+    "checker_test_sha256": "519241f2634e4689a986c8ae46b03b72925f35374a3cdaaf42cf5f2176bf954f",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
@@ -71,20 +71,20 @@
     "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-050",
+    "queue_head": "RSH-051",
     "rsh_041_authorized": true,
     "rsh_041_started": true,
     "rsh_042_authorized": true,
     "rsh_042_started": true,
     "forbidden_prefixes": [
-      ".rsh050",
-      ".github/workflows/rsh-050-",
-      "RSH-050-",
-      "scripts/rsh050-",
-      "scripts/check-rothschild-golden",
-      "scripts/check-rothschild-art",
-      "scripts/check-rothschild-freeze",
-      "src/game/rothschild-golden/"
+      ".rsh051",
+      ".github/workflows/rsh-051-",
+      "RSH-051-",
+      "scripts/rsh051-",
+      "scripts/check-namal",
+      "scripts/check-yarkon-geometry",
+      "scripts/check-reading-geometry",
+      "src/game/namal/"
     ],
     "rsh_043_authorized": true,
     "rsh_043_started": true,
@@ -100,7 +100,9 @@
     "rsh_048_started": true,
     "rsh_049_authorized": true,
     "rsh_049_started": true,
-    "rsh_050_authorized": false,
-    "rsh_050_started": false
+    "rsh_050_authorized": true,
+    "rsh_050_started": true,
+    "rsh_051_authorized": false,
+    "rsh_051_started": false
   }
 }

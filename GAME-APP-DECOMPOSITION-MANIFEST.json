@@ -410,14 +410,14 @@
     "rsh_021_started": true,
     "rsh_021_authorized": true,
     "forbidden_prefixes": [
-      ".rsh050",
-      ".github/workflows/rsh-050-",
-      "RSH-050-",
-      "scripts/rsh050-",
-      "scripts/check-rothschild-golden",
-      "scripts/check-rothschild-art",
-      "scripts/check-rothschild-freeze",
-      "src/game/rothschild-golden/"
+      ".rsh051",
+      ".github/workflows/rsh-051-",
+      "RSH-051-",
+      "scripts/rsh051-",
+      "scripts/check-namal",
+      "scripts/check-yarkon-geometry",
+      "scripts/check-reading-geometry",
+      "src/game/namal/"
     ],
     "rsh_021_state": "accepted",
     "rsh_022_started": true,
@@ -449,7 +449,7 @@
     "rsh_030_state": "accepted_on_merge",
     "rsh_031_authorized": true,
     "rsh_031_started": true,
-    "queue_head": "RSH-050",
+    "queue_head": "RSH-051",
     "rsh_031_state": "accepted_on_merge",
     "rsh_032_authorized": true,
     "rsh_032_started": true,
@@ -491,8 +491,10 @@
     "rsh_048_started": true,
     "rsh_049_authorized": true,
     "rsh_049_started": true,
-    "rsh_050_authorized": false,
-    "rsh_050_started": false
+    "rsh_050_authorized": true,
+    "rsh_050_started": true,
+    "rsh_051_authorized": false,
+    "rsh_051_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",
