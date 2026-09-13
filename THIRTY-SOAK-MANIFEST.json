@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-thirty-soak-manifest",
+  "unit": "RSH-042",
+  "title": "Pass the 30-minute soak test",
+  "generated_at": "2026-09-13T06:05:00.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "e8129df3e1fa5b62720d11b794395fdc531eaddf",
+    "tree_sha": "fef0d3f728fae5c7e18b4c5ba8363eaec53ea463",
+    "branch": "agent/rsh-042-thirty-soak"
+  },
+  "lock": {
+    "soak_duration_s": 1800,
+    "required_ci_cycles": 2,
+    "enter_exit_cycles": 20,
+    "smoke_substitutes": false,
+    "live_soak": "scripts/soak-30min.mjs",
+    "live_soak_smoke": "scripts/soak-smoke.mjs",
+    "soak_enforced": true,
+    "device_matrix_enforced": false,
+    "real_device_baseline_accepted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "owner_settings_freeze": false,
+    "public_distribution": false,
+    "live_enter_exit": "scripts/soak-menu-race.mjs"
+  },
+  "lock_module": {
+    "directory": "src/game/thirty-soak",
+    "soak": "src/game/thirty-soak/soak.ts",
+    "index": "src/game/thirty-soak/index.ts"
+  },
+  "preservation": {
+    "golden_png_changes": 0,
+    "ayalon_lock_changes": 0,
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "cars_changes": 0,
+    "audio_hud_changes": 0,
+    "engine_adapter_changes": 0,
+    "live_cache_changes": 0,
+    "quality_profile_changes": 0,
+    "registry_changes": 0,
+    "leak_cycle_changes": 0,
+    "context_loss_changes": 0,
+    "package_json_changes": 0,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "soak_source_sha256": "e29f5ce16b58eb8292de484823ea74b941a43324ccc1566422d262910d30b66c",
+    "index_source_sha256": "b4bbe142cf9947a64fc80dbc9790e3e9307455e4650d22a0f5a41f26a1cb83aa",
+    "contract_sha256": "351c8d90971313c43398878970fabafd066ed9851fed54c07e768c1e81f840ff",
+    "live_soak_source_sha256": "a634dd9871fec41bb05a558cd5d8181388b6b2a538bda0d0822cc360008e2d8a",
+    "soak_smoke_source_sha256": "46f3c813263d2046771a918bdaa624c13ff42fdef580448764bfe6b45a6f33c2",
+    "context_restore_source_sha256": "1f0095b6ec5c0aa704c04d42ca11b8798c1911b84fdcf1f739dad1764e41e54d",
+    "checker_test_sha256": "7cbc7a72955ad1ea930f33f63373a970e6ea0f796a566a59df3b9f0326716a7d",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
+    "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
+    "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
+    "soak_digest_sha256": "0676c73f186564cbf6b87c7a838707b1110581d60f5a251870fcf4226a5905b0",
+    "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1",
+    "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+    "quality_profiles_source_sha256": "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a",
+    "budgets_source_sha256": "c51a8040c9179ff6a5290ed39249eb7c38d1cd14dc0143982cc594801c421990",
+    "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f",
+    "live_enter_exit_source_sha256": "a684508627830a4fff5030232ba36dd1b81df82b4924aa307f94116a5dc7df60"
+  },
+  "deferred_boundary": {
+    "queue_head": "RSH-043",
+    "rsh_042_authorized": true,
+    "rsh_042_started": true,
+    "rsh_043_authorized": false,
+    "rsh_043_started": false,
+    "forbidden_prefixes": [
+      ".rsh043",
+      ".github/workflows/rsh-043-",
+      "RSH-043-",
+      "scripts/rsh043-",
+      "scripts/check-device-matrix",
+      "scripts/check-browser-matrix",
+      "scripts/check-support-matrix",
+      "src/game/device-matrix/"
+    ]
+  }
+}

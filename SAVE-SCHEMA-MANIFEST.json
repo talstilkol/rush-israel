@@ -108,7 +108,7 @@
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-042",
+    "queue_head": "RSH-043",
     "rsh_022_authorized": true,
     "rsh_022_started": true,
     "rsh_022_state": "accepted_on_merge",
@@ -122,14 +122,14 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh042",
-      ".github/workflows/rsh-042-",
-      "RSH-042-",
-      "scripts/rsh042-",
-      "scripts/check-thirty-soak",
-      "scripts/check-30min-soak",
-      "scripts/check-uninterrupted-soak",
-      "src/game/thirty-soak/",
+      ".rsh043",
+      ".github/workflows/rsh-043-",
+      "RSH-043-",
+      "scripts/rsh043-",
+      "scripts/check-device-matrix",
+      "scripts/check-browser-matrix",
+      "scripts/check-support-matrix",
+      "src/game/device-matrix/",
       "src/game/records-v2/"
     ],
     "rsh_026_authorized": true,
@@ -174,8 +174,10 @@
     "rsh_040_started": true,
     "rsh_041_authorized": true,
     "rsh_041_started": true,
-    "rsh_042_authorized": false,
-    "rsh_042_started": false
+    "rsh_042_authorized": true,
+    "rsh_042_started": true,
+    "rsh_043_authorized": false,
+    "rsh_043_started": false
   },
   "rsh_022_overlay": {
     "state": "accepted_on_merge",
@@ -352,6 +354,6 @@
     "freeze_granted": false,
     "owner_freeze": false,
     "gis_claim": false,
-    "schema_guard_test_sha256": "f1a39d5dd2668474edefc273278953eefe642e48efaa977a5c6ac129c9261083"
+    "schema_guard_test_sha256": "fd08724ccf56cbb861c1404d9525f0545e7c54153cb6fed9b6ddf504cb1cb5a9"
   }
 }

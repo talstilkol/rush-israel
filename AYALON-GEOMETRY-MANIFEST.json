@@ -67,23 +67,23 @@
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
     "control_point_sha256": "c89477d17556a212d5e793cce74ebc483c36333348e31d5b66a16f7851b7bf6d",
-    "checker_test_sha256": "50ed0c5266b0707a069e030e03ce66dd15da4d751c85b7a163c43caea1dce382",
+    "checker_test_sha256": "5dc44dcdb3ee17adbfc7ad918b9f349409d253953079df37b08b62a7e2f886db",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-042",
+    "queue_head": "RSH-043",
     "rsh_027_authorized": true,
     "rsh_027_started": true,
     "rsh_027_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh042",
-      ".github/workflows/rsh-042-",
-      "RSH-042-",
-      "scripts/rsh042-",
-      "scripts/check-thirty-soak",
-      "scripts/check-30min-soak",
-      "scripts/check-uninterrupted-soak",
-      "src/game/thirty-soak/"
+      ".rsh043",
+      ".github/workflows/rsh-043-",
+      "RSH-043-",
+      "scripts/rsh043-",
+      "scripts/check-device-matrix",
+      "scripts/check-browser-matrix",
+      "scripts/check-support-matrix",
+      "src/game/device-matrix/"
     ],
     "rsh_028_authorized": true,
     "rsh_028_started": true,
@@ -121,8 +121,10 @@
     "rsh_040_started": true,
     "rsh_041_authorized": true,
     "rsh_041_started": true,
-    "rsh_042_authorized": false,
-    "rsh_042_started": false
+    "rsh_042_authorized": true,
+    "rsh_042_started": true,
+    "rsh_043_authorized": false,
+    "rsh_043_started": false
   },
   "rsh_027_overlay": {
     "state": "accepted_on_merge",

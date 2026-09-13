@@ -5,14 +5,14 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "d59ea77575c4bd9319470add49a346aee267a9b90827608e9fa26498f67aeb4d";
+export const EXPECTED_MANIFEST_SHA256 = "b2ca02990fec8eadaf9e3002bd68933e5c26e50797d0f560bedb05caa08572a9";
 export const EXPECTED_RESTORE_SHA256 = "1f0095b6ec5c0aa704c04d42ca11b8798c1911b84fdcf1f739dad1764e41e54d";
 export const EXPECTED_INDEX_SHA256 = "8c51c52b7ca8c2f694eb4156236446e48eb3fbf73cc71447d6336dfe0281ab55";
 export const EXPECTED_CONTRACT_SHA256 = "6851e040a9a722876f03d29cb03bcf380027c9c288df2577fc8739ef1e452578";
 export const EXPECTED_LOOP_ADAPTER_SHA256 = "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8";
 export const EXPECTED_ENGINE_SHA256 = "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b";
 export const EXPECTED_RACE_CONTROLLER_SHA256 = "e01c955f700b0f7c1fa20f876a8f3ad8b294f3edbdf3bcdf4ed16e6821188670";
-export const EXPECTED_CHECKER_TEST_SHA256 = "af611b123aa0e211ae58f4c02fd107e5f195286001f540ce4b9f61c2c6fe909d";
+export const EXPECTED_CHECKER_TEST_SHA256 = "6aa1ce2d5488e7531f65820098547a979f92a7835a21192f748b604e72522260";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_CONTEXT_DIGEST_SHA256 = "883de6a9ca78f3567eff1c8c1c3f4e9cc5922d64edeb57a48d806a7dd6474c49";
 export const EXPECTED_FREEZE_DIGEST_SHA256 = "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098";
@@ -140,8 +140,8 @@ export function validateContextLoss(overrides = {}) {
   if (!/\| P2-09 \| P2 \| \*\*OPEN\*\*/.test(input.findingsSource)) errors.push("P2-09 must stay OPEN until a production JS/asset byte-size check exists");
   if (manifest.preservation?.golden_png_changes !== 0 || manifest.preservation?.package_json_changes !== 0 || manifest.preservation?.engine_adapter_changes !== 0 || manifest.preservation?.release_gates_green !== 0) errors.push("RSH-041 preservation counts changed");
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-042 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-042" || manifest.deferred_boundary?.rsh_042_authorized !== false || manifest.deferred_boundary?.rsh_042_started !== false) errors.push("RSH-042 deferred boundary changed");
+  if (later.length) errors.push(`RSH-043 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-043" || manifest.deferred_boundary?.rsh_042_authorized !== true || manifest.deferred_boundary?.rsh_043_authorized !== false || manifest.deferred_boundary?.rsh_042_started !== true || manifest.deferred_boundary?.rsh_043_started !== false) errors.push("RSH-043 deferred boundary changed");
   return { errors, locked: errors.length === 0, cycles: 8 };
 }
 
@@ -156,5 +156,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`context-loss fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`context-loss ok: 8 recovery cycles locked; RSH-042 deferred`);
+  console.log(`context-loss ok: 8 recovery cycles locked; RSH-043 deferred`);
 }

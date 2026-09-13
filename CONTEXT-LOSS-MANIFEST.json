@@ -59,7 +59,7 @@
     "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
     "engine_source_sha256": "6a592288cd778922b32bc918f63fd865a4b41312ce07130a61214014fa533c8b",
     "race_controller_source_sha256": "e01c955f700b0f7c1fa20f876a8f3ad8b294f3edbdf3bcdf4ed16e6821188670",
-    "checker_test_sha256": "af611b123aa0e211ae58f4c02fd107e5f195286001f540ce4b9f61c2c6fe909d",
+    "checker_test_sha256": "6aa1ce2d5488e7531f65820098547a979f92a7835a21192f748b604e72522260",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
@@ -71,20 +71,22 @@
     "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-042",
+    "queue_head": "RSH-043",
     "rsh_041_authorized": true,
     "rsh_041_started": true,
-    "rsh_042_authorized": false,
-    "rsh_042_started": false,
+    "rsh_042_authorized": true,
+    "rsh_042_started": true,
     "forbidden_prefixes": [
-      ".rsh042",
-      ".github/workflows/rsh-042-",
-      "RSH-042-",
-      "scripts/rsh042-",
-      "scripts/check-thirty-soak",
-      "scripts/check-30min-soak",
-      "scripts/check-uninterrupted-soak",
-      "src/game/thirty-soak/"
-    ]
+      ".rsh043",
+      ".github/workflows/rsh-043-",
+      "RSH-043-",
+      "scripts/rsh043-",
+      "scripts/check-device-matrix",
+      "scripts/check-browser-matrix",
+      "scripts/check-support-matrix",
+      "src/game/device-matrix/"
+    ],
+    "rsh_043_authorized": false,
+    "rsh_043_started": false
   }
 }
