@@ -1,24 +1,24 @@
 {
-  "schema_version": "31.0.0",
+  "schema_version": "32.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-13T12:15:00.000Z",
+  "generated_at": "2026-09-13T10:50:43.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_048_pull_request",
-    "implementation_base_sha": "fa95fcde9183461c43edbdfae11153457566ae58",
-    "self_reference_boundary": "The RSH-048 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_049_pull_request",
+    "implementation_base_sha": "7feb022935c28ebf6b69f822ddcefac603013f9e",
+    "self_reference_boundary": "The RSH-049 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "fa95fcde9183461c43edbdfae11153457566ae58",
-    "tree_sha": "bce69dc433ab6f74f3150954429f01ac22751e76",
-    "commit_authored_at": "2026-09-13T09:34:27Z",
-    "commit_message": "Merge PR #52: RSH-047 — Complete PWA, offline, update and manifest behaviour",
+    "head_sha": "7feb022935c28ebf6b69f822ddcefac603013f9e",
+    "tree_sha": "a26625b57e0675bae34e32096d41b7a3736a8a65",
+    "commit_authored_at": "2026-09-13T10:36:21Z",
+    "commit_message": "Merge PR #53: RSH-048 — Pass accessibility, privacy and Alpha UX gates",
     "commit_signature_verified": true,
-    "role": "RSH-048 exact implementation base"
+    "role": "RSH-049 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 48,
+    "accepted_units": 49,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 19,
-    "remaining_units": 19,
-    "queue_head": "RSH-049",
+    "deferred_units": 18,
+    "remaining_units": 18,
+    "queue_head": "RSH-050",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -1492,7 +1492,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-048": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-048-a11y",
       "pull_request_resolution": "the pull request created from the exact RSH-048 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -1515,16 +1515,50 @@
       "gis_claim": false,
       "owner_freeze": false,
       "public_distribution": false,
-      "rsh_049_created": false
+      "rsh_049_created": true,
+      "pull_request": 53,
+      "validated_head_sha": "bcf2a16312734b50eb8226bf0c5d1be4fe5d2d06",
+      "merge_sha": "7feb022935c28ebf6b69f822ddcefac603013f9e",
+      "tree_sha": "a26625b57e0675bae34e32096d41b7a3736a8a65",
+      "workflow_run": 34752111897,
+      "workflow_job": 103710282698,
+      "artifact_id": 10315777465,
+      "artifact_digest": "sha256:ca196fd24bd420e7541855d3fda8863aa544e1915759cbf349a216647fa41618",
+      "post_merge_workflow_run": 34752293550,
+      "post_merge_workflow_job": 103710743098,
+      "post_merge_artifact_id": 10316062008,
+      "post_merge_artifact_digest": "sha256:451e2e4f495695273d903b0106a5ffee90148bf5bc6170d8b991bd083e8d18f0",
+      "unresolved_review_threads": 0
+    },
+    "RSH-049": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-049-rothschild",
+      "pull_request_resolution": "the pull request created from the exact RSH-049 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-049 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-049 merge SHA",
+      "manifest": "ROTHSCHILD-GEOMETRY-MANIFEST.json",
+      "contract": "RSH-049-ROTHSCHILD-CONTRACT.md",
+      "lock_module": "src/game/rothschild",
+      "track_id": "rothschild",
+      "geometry_locked": true,
+      "driving_locked": true,
+      "art_golden_locked": false,
+      "track_freeze_granted": false,
+      "gis_claim": false,
+      "owner_freeze": false,
+      "public_distribution": false,
+      "real_device_baseline_accepted": false,
+      "rsh_050_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-048",
+    "unit": "RSH-049",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-048-a11y",
+    "branch": "agent/rsh-049-rothschild",
     "authority_consumed": true,
-    "next_unit": "RSH-049",
+    "next_unit": "RSH-050",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -1644,7 +1678,10 @@
     "RSH-048_authorized": false,
     "RSH-048_was_separately_authorized": true,
     "RSH-048_authorization_consumed": true,
-    "RSH-049_authorized": false
+    "RSH-049_authorized": false,
+    "RSH-049_was_separately_authorized": true,
+    "RSH-049_authorization_consumed": true,
+    "RSH-050_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -1719,13 +1756,12 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The standing owner instruction authorised exactly RSH-048 after RSH-047 merged and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-049.",
+    "The standing owner instruction authorised exactly RSH-049 after RSH-048 merged and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-050.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13.",
     "The standing owner instruction to finish the master plan authorised RSH-036 through RSH-067, but only the queue head may start.",
-    "RSH-049 remains deferred until this unit is accepted on merge.",
-    "Accessibility is live aria controls, live regions and reduced-motion; there is no WCAG AA, privacy policy, telemetry or crash reporting."
+    "RSH-050 remains deferred until this unit is accepted on merge."
   ],
   "validation": {
     "queue_units": 67,
@@ -1851,12 +1887,12 @@
   "single_unit_authorization": {
     "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
     "authorized_units": [
-      "RSH-048"
+      "RSH-049"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-048_merge",
-    "RSH_049_authorized": false
+    "state": "consumed_on_RSH-049_merge",
+    "RSH_050_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -1895,12 +1931,12 @@
   "prior_single_unit_authorization": {
     "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
     "authorized_units": [
-      "RSH-047"
+      "RSH-048"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-047_merge",
-    "RSH_048_authorized": false
+    "state": "consumed_on_RSH-048_merge",
+    "RSH_049_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -2632,5 +2668,22 @@
     "public_distribution": false,
     "RSH_045_created": false,
     "RSH_045_authorized": false
+  },
+  "rsh_049_rothschild_geometry": {
+    "state": "accepted_on_merge",
+    "machine_authority": "ROTHSCHILD-GEOMETRY-MANIFEST.json",
+    "human_contract": "RSH-049-ROTHSCHILD-CONTRACT.md",
+    "validator": "scripts/check-rothschild.mjs",
+    "test": "scripts/check-rothschild.test.mjs",
+    "track_id": "rothschild",
+    "geometry_locked": true,
+    "driving_locked": true,
+    "art_golden_locked": false,
+    "track_freeze_granted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "public_distribution": false,
+    "RSH_050_created": false,
+    "RSH_050_authorized": false
   }
 }
