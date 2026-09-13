@@ -51,7 +51,7 @@
     "lock_source_sha256": "0523eaf1996218d5b2b0527f7d2ebc91cdeeeddcbc86a64e4d35ad97d6452a2f",
     "index_source_sha256": "cb320da93c068037636ec0272ec1f10be4b86be3d30aa94e0c39ef5fb898da65",
     "contract_sha256": "983fe29cfdb3679cac7b416f8bde11578a43ff70fa8bfc440c74a9ff199d4ec8",
-    "checker_test_sha256": "95543f2abb33f9a3944b76b8d01c0e551e160da51d9a221f2c7e97aeb67c8009",
+    "checker_test_sha256": "f91bd72f22801a5f29253673bffc4511a558427f1096cd3d48f951e875f15f31",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
@@ -64,20 +64,20 @@
     "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-057",
+    "queue_head": "RSH-058",
     "rsh_051_authorized": true,
     "rsh_051_started": true,
     "rsh_052_authorized": true,
     "rsh_052_started": true,
     "forbidden_prefixes": [
-      ".rsh057",
-      ".github/workflows/rsh-057-",
-      "RSH-057-",
-      "scripts/rsh057-",
-      "scripts/check-haifa",
-      "scripts/check-carmel-geometry",
-      "scripts/check-haifa-track",
-      "src/game/haifa/"
+      ".rsh058",
+      ".github/workflows/rsh-058-",
+      "RSH-058-",
+      "scripts/rsh058-",
+      "scripts/check-haifa-golden",
+      "scripts/check-carmel-golden",
+      "scripts/check-haifa-art",
+      "src/game/haifa-golden/"
     ],
     "rsh_053_authorized": true,
     "rsh_053_started": true,
@@ -87,7 +87,9 @@
     "rsh_055_started": true,
     "rsh_056_authorized": true,
     "rsh_056_started": true,
-    "rsh_057_authorized": false,
-    "rsh_057_started": false
+    "rsh_057_authorized": true,
+    "rsh_057_started": true,
+    "rsh_058_authorized": false,
+    "rsh_058_started": false
   }
 }

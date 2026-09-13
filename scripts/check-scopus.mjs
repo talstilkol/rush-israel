@@ -5,11 +5,11 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "c2a2d4ee16eaaa3aa88d2eacdfbf1646c479bcba83b3cc60379ff565d8a242f6";
+export const EXPECTED_MANIFEST_SHA256 = "787b1a72e8f1c7b0e53fa39f38830d7362a89e3cad7f03b864235a005592ac46";
 export const EXPECTED_LOCK_SHA256 = "c5e7ce24725bda367d9cd7cdd9e8c7924d19a001bfb8e333bc1bd8cf9d1b0efc";
 export const EXPECTED_INDEX_SHA256 = "cb320da93c068037636ec0272ec1f10be4b86be3d30aa94e0c39ef5fb898da65";
 export const EXPECTED_CONTRACT_SHA256 = "68f594956c137042636adbfff366d8d06d849084686b235b7d7f5202b0589d8f";
-export const EXPECTED_CHECKER_TEST_SHA256 = "b4b31249fa6f51ba454f249c07e6449a4a7f099580572e79a17cbc20a176f3b3";
+export const EXPECTED_CHECKER_TEST_SHA256 = "696e56425eafab26c04ee84240a9e6cb83f428486f713c24d43cb0f7c3aba787";
 export const EXPECTED_DIGEST_SHA256 = "91b2ef58cd569b404bcc1452b535f930e2fb856c8ef670570d921263248cc692";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_HUD_SHA256 = "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35";
@@ -111,8 +111,8 @@ export function validateLock(overrides = {}) {
 
   if (manifest.preservation?.golden_png_changes !== 0 || manifest.preservation?.package_json_changes !== 0 || manifest.preservation?.release_gates_green !== 0) errors.push("RSH-055 preservation counts changed");
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-057 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-057" || manifest.deferred_boundary?.rsh_055_authorized !== true || manifest.deferred_boundary?.rsh_056_authorized !== true || manifest.deferred_boundary?.rsh_057_authorized !== false) errors.push("RSH-057 deferred boundary changed");
+  if (later.length) errors.push(`RSH-058 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-058" || manifest.deferred_boundary?.rsh_055_authorized !== true || manifest.deferred_boundary?.rsh_056_authorized !== true || manifest.deferred_boundary?.rsh_057_authorized !== true || manifest.deferred_boundary?.rsh_058_authorized !== false) errors.push("RSH-058 deferred boundary changed");
   return { errors, locked: errors.length === 0 };
 }
 
@@ -127,5 +127,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`scopus fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`scopus ok: RSH-055 locked; RSH-057 deferred`);
+  console.log(`scopus ok: RSH-055 locked; RSH-058 deferred`);
 }
