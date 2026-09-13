@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 26.0.0
+**Version:** 27.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-043 implementation base:** `b7fb239daed34b5e14bf4760bde25ec86c0b656b`
-**State effective on:** merge of the RSH-043 pull request
+**RSH-044 implementation base:** `7d147df5db571c915a8c104f553ba4a635f75f6f`
+**State effective on:** merge of the RSH-044 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-044 — deferred and not authorised
+**Next scheduled unit:** RSH-045 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 43 |
+| Accepted units | 44 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-044 — deferred/not authorised |
+| Queue head | RSH-045 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 24 |
-| RSH-043 one-unit authority | consumed 1/1 |
+| Remaining units | 23 |
+| RSH-044 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -68,5 +68,6 @@
 | RSH-041 | WebGL context-loss recovery locked on validated merge |
 | RSH-042 | 30-minute soak contract locked on validated merge |
 | RSH-043 | browser and device support matrix locked on validated merge |
+| RSH-044 | keyboard, touch and gamepad input maps unified on validated merge |
 
-No RSH-044 branch, PR or implementation structure is authorised by this state.
+No RSH-045 branch, PR or implementation structure is authorised by this state.

@@ -1,7 +1,7 @@
 {
-  "schema_version": "26.0.0",
+  "schema_version": "27.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T07:08:04.000Z",
+  "generated_at": "2026-09-13T07:40:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -399,7 +399,7 @@
       "codex_review": 5063773430,
       "unresolved_review_threads": 0,
       "recorded_at": "2026-08-31T07:45:28.147Z",
-      "description": "Save schema v3, deterministic 0\u21921\u21922\u21923 migrations and fail-closed source-byte preservation accepted."
+      "description": "Save schema v3, deterministic 0→1→2→3 migrations and fail-closed source-byte preservation accepted."
     },
     {
       "id": "B022-rsh-022-accepted",
@@ -764,23 +764,34 @@
       "post_merge_workflow_run": 34743990139,
       "recorded_at": "2026-09-13T07:08:04.000Z",
       "description": "RSH-042 accepted."
+    },
+    {
+      "id": "B043-rsh-043-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-043",
+      "pull_request": 48,
+      "commit_sha": "7d147df5db571c915a8c104f553ba4a635f75f6f",
+      "tree_sha": "20b09eece568e0eeebf55a426d26c9f403a4a73c",
+      "validated_head_sha": "457628e2264fe4852b76222c2a249dfa61eede3d",
+      "recorded_at": "2026-09-13T07:15:43Z",
+      "description": "RSH-043 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-043",
+    "unit": "RSH-044",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "b7fb239daed34b5e14bf4760bde25ec86c0b656b",
-    "branch": "agent/rsh-043-device-matrix",
-    "manifest": "DEVICE-MATRIX-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-043 pull request"
+    "implementation_base_sha": "7d147df5db571c915a8c104f553ba4a635f75f6f",
+    "branch": "agent/rsh-044-input-maps",
+    "manifest": "INPUT-MAPS-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-044 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-044",
+    "queue_head": "RSH-045",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_044_authorized": false
+    "RSH_045_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

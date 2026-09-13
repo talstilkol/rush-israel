@@ -13,7 +13,7 @@
   },
   "track_identity": {
     "id": "ayalon",
-    "name_he": "\u05e0\u05ea\u05d9\u05d1\u05d9 \u05d0\u05d9\u05d9\u05dc\u05d5\u05df",
+    "name_he": "נתיבי איילון",
     "name_en": "Ayalon Highway",
     "theme": "highway",
     "open": true,
@@ -113,22 +113,22 @@
     "hashalom_index_sha256": "5f63d02f48f85d47916917c5dd6eb29c1c6b559bce6359e1e4f985cad339dc10",
     "pixel_golden_sha256": "a8d05fcda8af97d67689f866a03dda052afb5b09c1181797875ccf7ce67fc621",
     "ayalon_hash_script_sha256": "961470f70d518c6db9a2cbc81c4c2d08217f64e70fc24a34921692ee5d9425ca",
-    "checker_test_sha256": "418cca2e77fdb4bd2bd1ecae46cec376abdd5417b35e7245d51db7f033a70e75",
+    "checker_test_sha256": "e35c43e1c9235aefb178bd5d45799813498f6bdfc8f6e924b01660c4f0ea488a",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-044",
+    "queue_head": "RSH-045",
     "rsh_026_authorized": true,
     "rsh_026_started": true,
     "forbidden_prefixes": [
-      ".rsh044",
-      ".github/workflows/rsh-044-",
-      "RSH-044-",
-      "scripts/rsh044-",
-      "scripts/check-input-maps",
-      "scripts/check-unified-input",
-      "scripts/check-control-maps",
-      "src/game/input-maps/"
+      ".rsh045",
+      ".github/workflows/rsh-045-",
+      "RSH-045-",
+      "scripts/rsh045-",
+      "scripts/check-rtl-scope",
+      "scripts/check-i18n-rtl",
+      "scripts/check-arabic-scope",
+      "src/game/rtl-scope/"
     ],
     "rsh_026_state": "accepted_on_merge",
     "rsh_027_authorized": true,
@@ -174,8 +174,10 @@
     "rsh_042_started": true,
     "rsh_043_authorized": true,
     "rsh_043_started": true,
-    "rsh_044_authorized": false,
-    "rsh_044_started": false
+    "rsh_044_authorized": true,
+    "rsh_044_started": true,
+    "rsh_045_authorized": false,
+    "rsh_045_started": false
   },
   "rsh_026_overlay": {
     "state": "accepted_on_merge",

@@ -1,32 +1,32 @@
 {
   "schema_version": "1.0.0",
-  "document_type": "rush-device-matrix-manifest",
-  "unit": "RSH-043",
-  "title": "Validate the browser and device support matrix",
-  "generated_at": "2026-09-13T07:08:04.000Z",
+  "document_type": "rush-input-maps-manifest",
+  "unit": "RSH-044",
+  "title": "Unify keyboard, touch and gamepad input maps",
+  "generated_at": "2026-09-13T07:40:00.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "implementation_base": {
-    "commit_sha": "b7fb239daed34b5e14bf4760bde25ec86c0b656b",
-    "tree_sha": "7b606b14f43a29fa40a06d472deaa46724152c63",
-    "branch": "agent/rsh-043-device-matrix"
+    "commit_sha": "7d147df5db571c915a8c104f553ba4a635f75f6f",
+    "tree_sha": "20b09eece568e0eeebf55a426d26c9f403a4a73c",
+    "branch": "agent/rsh-044-input-maps"
   },
   "lock": {
-    "device_matrix_enforced": true,
-    "real_device_baseline_accepted": false,
-    "webgl2_required": true,
-    "webgpu_default": false,
-    "target_browser_count": 6,
-    "input_maps_unified": false,
+    "input_maps_unified": true,
+    "touch_action": "none",
+    "canvas_touch_none": true,
+    "pointer_cancel_locked": true,
+    "unified_action_count": 7,
+    "rtl_scope_complete": false,
     "gis_claim": false,
     "owner_freeze": false,
     "owner_settings_freeze": false,
     "public_distribution": false
   },
   "lock_module": {
-    "directory": "src/game/device-matrix",
-    "lock": "src/game/device-matrix/matrix.ts",
-    "index": "src/game/device-matrix/index.ts"
+    "directory": "src/game/input-maps",
+    "lock": "src/game/input-maps/maps.ts",
+    "index": "src/game/input-maps/index.ts"
   },
   "preservation": {
     "golden_png_changes": 0,
@@ -36,39 +36,46 @@
     "physics_changes": 0,
     "cars_changes": 0,
     "audio_hud_changes": 0,
+    "input_source_changes": 0,
     "engine_adapter_changes": 0,
     "live_cache_changes": 0,
     "quality_profile_changes": 0,
     "registry_changes": 0,
     "leak_cycle_changes": 0,
     "context_loss_changes": 0,
+    "device_matrix_changes": 0,
     "package_json_changes": 0,
     "public_distribution_authorized": false,
     "release_gates_green": 0,
     "release_gates_total": 13
   },
   "identities": {
-    "lock_source_sha256": "52f16f14894ae8d9fefe2d97c060733648642b6571e1b75d94d28df6b908547b",
-    "index_source_sha256": "2d224d6bf4d12dde39827e733cc725eab8245c4218ce7ae0ef5b626675afe873",
-    "contract_sha256": "433245e925715ab5add9bef52c9a5628e99a1c1f76aede69da2bfa63081362aa",
-    "checker_test_sha256": "a2bd8a54949d74ce111990497663299ad69bdd93f4b9795c269a72fe21afbe20",
+    "lock_source_sha256": "8381cea4daa2fed5034ac53f7de29d0b9e1afc65b4aca6b01e831861456ae003",
+    "index_source_sha256": "a55d5f13d31ecb92492a156fed4e64841272d031195f7d624f05d2fb422ed88c",
+    "contract_sha256": "33c2ba66cfe688865a1a43438041e0b12c239f4e100a9948e42dd23ecedd0892",
+    "checker_test_sha256": "e76422d96a1bde0f38d23e1eb99a3696fdaa18780087e63ae3c73fb402067377",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
     "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
-    "lock_digest_sha256": "e910d790e6b452d618b0ac9ddead8a7bd502d68beb0471348347c8c2f9f9c0a7",
+    "input_source_sha256": "51d638c0a004d080d2b558d34a58e4631e74606129d557eb1ffc835218c124aa",
+    "touch_source_sha256": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
+    "feel_source_sha256": "fea9f1a017261cb0c0649ed8c472825954bb236224e741a00ac51b71255abc1e",
+    "race_source_sha256": "e01c955f700b0f7c1fa20f876a8f3ad8b294f3edbdf3bcdf4ed16e6821188670",
+    "lock_digest_sha256": "fbafb52fe362fbf0fbaee36b86fb305eee4a255ee14b8d282cb5ff8de815fdc2",
     "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1",
     "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
     "quality_profiles_source_sha256": "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a",
     "budgets_source_sha256": "c51a8040c9179ff6a5290ed39249eb7c38d1cd14dc0143982cc594801c421990",
-    "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
+    "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f",
+    "device_matrix_lock_sha256": "52f16f14894ae8d9fefe2d97c060733648642b6571e1b75d94d28df6b908547b"
   },
   "deferred_boundary": {
     "queue_head": "RSH-045",
-    "rsh_043_authorized": true,
-    "rsh_043_started": true,
     "rsh_044_authorized": true,
     "rsh_044_started": true,
+    "rsh_045_authorized": false,
+    "rsh_045_started": false,
     "forbidden_prefixes": [
       ".rsh045",
       ".github/workflows/rsh-045-",
@@ -78,8 +85,6 @@
       "scripts/check-i18n-rtl",
       "scripts/check-arabic-scope",
       "src/game/rtl-scope/"
-    ],
-    "rsh_045_authorized": false,
-    "rsh_045_started": false
+    ]
   }
 }
