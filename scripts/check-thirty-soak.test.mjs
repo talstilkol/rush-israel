@@ -21,18 +21,18 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-042 thirty-soak lock passes and RSH-043 remains absent", () => {
+test("committed RSH-042 thirty-soak lock passes and RSH-044 remains absent", () => {
   const result = validateThirtySoak();
   assert.deepEqual(result.errors, []);
   assert.equal(result.locked, true);
   assert.equal(result.durationS, 1800);
 });
 
-test("RSH-043 precreation fails closed", () => {
+test("RSH-044 precreation fails closed", () => {
   const result = validateThirtySoak({
-    repositoryFiles: ["RSH-043-PREFLIGHT.json", "src/game/device-matrix/matrix.ts", "scripts/check-device-matrix.mjs"],
+    repositoryFiles: ["RSH-044-PREFLIGHT.json", "src/game/input-maps/lock.ts", "scripts/check-input-maps.mjs"],
   });
-  assert.match(messages(result), /RSH-043 was precreated/);
+  assert.match(messages(result), /RSH-044 was precreated/);
 });
 
 test("2-cycle smoke does not satisfy the 30-minute soak", () => {
@@ -68,7 +68,7 @@ test("thirty-minute soak is locked to soak-30min without a device matrix or real
   assert.equal(manifest.lock.real_device_baseline_accepted, false);
   assert.equal(manifest.lock.gis_claim, false);
   assert.equal(manifest.lock.public_distribution, false);
-  assert.equal(manifest.deferred_boundary.queue_head, "RSH-043");
+  assert.equal(manifest.deferred_boundary.queue_head, "RSH-044");
   assert.equal(SOAK_DURATION_S, 1800);
   assert.equal(REQUIRED_CI_CYCLES, 2);
   assert.equal(SOAK_ENFORCED, true);

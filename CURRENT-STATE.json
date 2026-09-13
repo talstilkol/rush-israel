@@ -1,24 +1,24 @@
 {
-  "schema_version": "25.0.0",
+  "schema_version": "26.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-13T06:05:00.000Z",
+  "generated_at": "2026-09-13T07:08:04.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_042_pull_request",
-    "implementation_base_sha": "e8129df3e1fa5b62720d11b794395fdc531eaddf",
-    "self_reference_boundary": "The RSH-042 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_043_pull_request",
+    "implementation_base_sha": "b7fb239daed34b5e14bf4760bde25ec86c0b656b",
+    "self_reference_boundary": "The RSH-043 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "e8129df3e1fa5b62720d11b794395fdc531eaddf",
-    "tree_sha": "fef0d3f728fae5c7e18b4c5ba8363eaec53ea463",
-    "commit_authored_at": "2026-09-13T05:54:16Z",
-    "commit_message": "Merge PR #45: RSH-041 \u2014 Pass WebGL context-loss and recovery tests",
+    "head_sha": "b7fb239daed34b5e14bf4760bde25ec86c0b656b",
+    "tree_sha": "7b606b14f43a29fa40a06d472deaa46724152c63",
+    "commit_authored_at": "2026-09-13T06:56:32Z",
+    "commit_message": "Merge PR #46: RSH-042 \u2014 Pass the 30-minute soak test",
     "commit_signature_verified": true,
-    "role": "RSH-042 exact implementation base"
+    "role": "RSH-043 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 42,
+    "accepted_units": 43,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 25,
-    "remaining_units": 25,
-    "queue_head": "RSH-043",
+    "deferred_units": 24,
+    "remaining_units": 24,
+    "queue_head": "RSH-044",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -1284,7 +1284,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-042": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-042-thirty-soak",
       "pull_request_resolution": "the pull request created from the exact RSH-042 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -1303,16 +1303,50 @@
       "gis_claim": false,
       "owner_freeze": false,
       "public_distribution": false,
-      "rsh_043_created": false
+      "rsh_043_created": true,
+      "pull_request": 46,
+      "validated_head_sha": "040ff0031fecf81817eb5cf0babd9b3086d2c76b",
+      "merge_sha": "b7fb239daed34b5e14bf4760bde25ec86c0b656b",
+      "tree_sha": "7b606b14f43a29fa40a06d472deaa46724152c63",
+      "workflow_run": 34742472787,
+      "workflow_job": 103684393650,
+      "artifact_id": 10312915636,
+      "artifact_digest": "sha256:11deb037c5293a77ef54247a94a344f0636f3c53864979057cba9ab8e76aa7fa",
+      "post_merge_workflow_run": 34743990139,
+      "post_merge_workflow_job": 103688376043,
+      "post_merge_artifact_id": 10313588501,
+      "post_merge_artifact_digest": "sha256:e3fab7bb51dbc4703fc07d68603ca093b0e1ab677146c2d072a31ea1aa2992e8",
+      "unresolved_review_threads": 0
+    },
+    "RSH-043": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-043-device-matrix",
+      "pull_request_resolution": "the pull request created from the exact RSH-043 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-043 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-043 merge SHA",
+      "manifest": "DEVICE-MATRIX-MANIFEST.json",
+      "contract": "RSH-043-DEVICE-MATRIX-CONTRACT.md",
+      "lock_module": "src/game/device-matrix",
+      "device_matrix_enforced": true,
+      "real_device_baseline_accepted": false,
+      "webgl2_required": true,
+      "webgpu_default": false,
+      "target_browser_count": 6,
+      "input_maps_unified": false,
+      "gis_claim": false,
+      "owner_freeze": false,
+      "public_distribution": false,
+      "rsh_044_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-042",
+    "unit": "RSH-043",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-042-thirty-soak",
+    "branch": "agent/rsh-043-device-matrix",
     "authority_consumed": true,
-    "next_unit": "RSH-043",
+    "next_unit": "RSH-044",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -1414,7 +1448,10 @@
     "RSH-042_authorized": false,
     "RSH-042_was_separately_authorized": true,
     "RSH-042_authorization_consumed": true,
-    "RSH-043_authorized": false
+    "RSH-043_authorized": false,
+    "RSH-043_was_separately_authorized": true,
+    "RSH-043_authorization_consumed": true,
+    "RSH-044_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -1489,12 +1526,12 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The standing owner instruction authorised exactly RSH-042 after RSH-041 merged and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-043.",
+    "The standing owner instruction authorised exactly RSH-043 after RSH-042 merged and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-044.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13.",
     "The standing owner instruction to finish the master plan authorised RSH-036 through RSH-067, but only the queue head may start.",
-    "RSH-043 remains deferred until this unit is accepted on merge."
+    "RSH-044 remains deferred until this unit is accepted on merge."
   ],
   "validation": {
     "queue_units": 67,
@@ -1620,12 +1657,12 @@
   "single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-042"
+      "RSH-043"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-042_merge",
-    "RSH_043_authorized": false
+    "state": "consumed_on_RSH-043_merge",
+    "RSH_044_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -1664,12 +1701,12 @@
   "prior_single_unit_authorization": {
     "instruction": "next",
     "authorized_units": [
-      "RSH-041"
+      "RSH-042"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-041_merge",
-    "RSH_042_authorized": false
+    "state": "consumed_on_RSH-042_merge",
+    "RSH_043_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -2342,7 +2379,7 @@
     "post_merge_workflow_run": 34741441092
   },
   "rsh_042_thirty_soak": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "THIRTY-SOAK-MANIFEST.json",
     "human_contract": "RSH-042-THIRTY-SOAK-CONTRACT.md",
     "validator": "scripts/check-thirty-soak.mjs",
@@ -2357,7 +2394,31 @@
     "gis_claim": false,
     "owner_freeze": false,
     "public_distribution": false,
-    "RSH_043_created": false,
-    "RSH_043_authorized": false
+    "RSH_043_created": true,
+    "RSH_043_authorized": true,
+    "pull_request": 46,
+    "validated_head_sha": "040ff0031fecf81817eb5cf0babd9b3086d2c76b",
+    "merge_sha": "b7fb239daed34b5e14bf4760bde25ec86c0b656b",
+    "tree_sha": "7b606b14f43a29fa40a06d472deaa46724152c63",
+    "workflow_run": 34742472787,
+    "post_merge_workflow_run": 34743990139
+  },
+  "rsh_043_device_matrix": {
+    "state": "accepted_on_merge",
+    "machine_authority": "DEVICE-MATRIX-MANIFEST.json",
+    "human_contract": "RSH-043-DEVICE-MATRIX-CONTRACT.md",
+    "validator": "scripts/check-device-matrix.mjs",
+    "test": "scripts/check-device-matrix.test.mjs",
+    "device_matrix_enforced": true,
+    "real_device_baseline_accepted": false,
+    "webgl2_required": true,
+    "webgpu_default": false,
+    "target_browser_count": 6,
+    "input_maps_unified": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "public_distribution": false,
+    "RSH_044_created": false,
+    "RSH_044_authorized": false
   }
 }

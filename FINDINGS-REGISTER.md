@@ -5,7 +5,7 @@
 **State effective on:** merge of the RSH-024 pull request
 **Date:** 2 September 2026
 **Total:** 42 findings — 12 P0, 18 P1, 12 P2
-**Status:** 12 OPEN, 8 MITIGATED, 22 CLOSED
+**Status:** 11 OPEN, 8 MITIGATED, 23 CLOSED
 
 ## Status rules
 
@@ -60,4 +60,4 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P2-09 | P2 | **OPEN** | No bundle or asset budget is enforced | RSH-039 locks cache/streaming/draw-call budgets but does not check production JS/asset byte size. A numeric bundle threshold remains RSH-039 follow-on / release-gate work. | RSH-039 |
 | P2-10 | P2 | **OPEN** | Touch-action behaviour is not explicitly locked | Pointer cancellation exists, but browser gesture suppression is not a verified contract. | RSH-044 |
 | P2-11 | P2 | **OPEN** | Crash reporting, telemetry and privacy policy are undefined | No accepted collection and retention policy exists. | RSH-048 |
-| P2-12 | P2 | **OPEN** | No browser and device support matrix exists | Supported Chrome, Edge, Firefox, Safari and mobile versions are undefined. | RSH-043 |
+| P2-12 | P2 | **CLOSED** | Browser and device support matrix now exists | RSH-043 locks six target browsers (Chrome/Edge/Firefox/Safari desktop + Chrome Android + Safari iOS) with WebGL2 required. Status is target, not a verified real-device baseline (P1-13 stays OPEN). | RSH-043 |

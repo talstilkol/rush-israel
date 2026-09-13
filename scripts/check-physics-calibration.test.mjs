@@ -6,18 +6,18 @@ function messages(result) {
   return result.errors.join("\n");
 }
 
-test("committed RSH-033 physics calibration lock passes and RSH-043 remains absent", () => {
+test("committed RSH-033 physics calibration lock passes and RSH-044 remains absent", () => {
   const result = validatePhysicsCalibration();
   assert.deepEqual(result.errors, []);
   assert.equal(result.physicsVersion, 7);
   assert.deepEqual(result.claims, [8.4, 6.6, 4.9, 5.8, 3.5]);
 });
 
-test("RSH-043 precreation fails closed", () => {
+test("RSH-044 precreation fails closed", () => {
   const result = validatePhysicsCalibration({
-    repositoryFiles: ["RSH-043-PREFLIGHT.json", "src/game/device-matrix/matrix.ts"],
+    repositoryFiles: ["RSH-044-PREFLIGHT.json", "src/game/input-maps/lock.ts"],
   });
-  assert.match(messages(result), /RSH-043 was precreated/);
+  assert.match(messages(result), /RSH-044 was precreated/);
 });
 
 test("claim rewrite and version drift fail closed", () => {

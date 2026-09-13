@@ -1,7 +1,7 @@
 {
-  "schema_version": "25.0.0",
+  "schema_version": "26.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T06:05:00.000Z",
+  "generated_at": "2026-09-13T07:08:04.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -751,23 +751,36 @@
       "post_merge_workflow_run": 34741441092,
       "recorded_at": "2026-09-13T05:54:16Z",
       "description": "WebGL context-loss recovery locked."
+    },
+    {
+      "id": "B042-rsh-042-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-042",
+      "pull_request": 46,
+      "commit_sha": "b7fb239daed34b5e14bf4760bde25ec86c0b656b",
+      "tree_sha": "7b606b14f43a29fa40a06d472deaa46724152c63",
+      "validated_head_sha": "040ff0031fecf81817eb5cf0babd9b3086d2c76b",
+      "workflow_run": 34742472787,
+      "post_merge_workflow_run": 34743990139,
+      "recorded_at": "2026-09-13T07:08:04.000Z",
+      "description": "RSH-042 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-042",
+    "unit": "RSH-043",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "e8129df3e1fa5b62720d11b794395fdc531eaddf",
-    "branch": "agent/rsh-042-thirty-soak",
-    "manifest": "THIRTY-SOAK-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-042 pull request"
+    "implementation_base_sha": "b7fb239daed34b5e14bf4760bde25ec86c0b656b",
+    "branch": "agent/rsh-043-device-matrix",
+    "manifest": "DEVICE-MATRIX-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-043 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-043",
+    "queue_head": "RSH-044",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_043_authorized": false
+    "RSH_044_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

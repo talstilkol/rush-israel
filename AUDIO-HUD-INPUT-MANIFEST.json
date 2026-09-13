@@ -114,26 +114,26 @@
     "touch_source_sha256": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "checker_test_sha256": "01807edd91cd7bfb89a53caf68d3bcf2d8e84226993a3eff12ab23b02c8c2087",
+    "checker_test_sha256": "63b48228b48c781482b4f73177c194ddeb07d2e966acae97f7b948bbe1b37388",
     "audio_digest_sha256": "b5a3a609d13ad78708f362bbff4caaf071454c884aa34bf874fbeff18f56ca3f",
     "input_digest_sha256": "ee389f24969bad529a9e10df5b881f7efc773ecd845056b8aefcc8c52f149809",
     "hud_digest_sha256": "a4516f8b7784d8270fbb8a766515e40ca9ffa70103fe81b63af3733ce05faecb"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-043",
+    "queue_head": "RSH-044",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "forbidden_prefixes": [
-      ".rsh043",
-      ".github/workflows/rsh-043-",
-      "RSH-043-",
-      "scripts/rsh043-",
-      "scripts/check-device-matrix",
-      "scripts/check-browser-matrix",
-      "scripts/check-support-matrix",
-      "src/game/device-matrix/"
+      ".rsh044",
+      ".github/workflows/rsh-044-",
+      "RSH-044-",
+      "scripts/rsh044-",
+      "scripts/check-input-maps",
+      "scripts/check-unified-input",
+      "scripts/check-control-maps",
+      "src/game/input-maps/"
     ],
     "rsh_035_state": "accepted_on_merge",
     "rsh_036_authorized": true,
@@ -150,7 +150,9 @@
     "rsh_041_started": true,
     "rsh_042_authorized": true,
     "rsh_042_started": true,
-    "rsh_043_authorized": false,
-    "rsh_043_started": false
+    "rsh_043_authorized": true,
+    "rsh_043_started": true,
+    "rsh_044_authorized": false,
+    "rsh_044_started": false
   }
 }

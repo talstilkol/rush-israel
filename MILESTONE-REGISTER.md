@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 25.0.0
+**Version:** 26.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-042 implementation base:** `e8129df3e1fa5b62720d11b794395fdc531eaddf`
-**State effective on:** merge of the RSH-042 pull request
+**RSH-043 implementation base:** `b7fb239daed34b5e14bf4760bde25ec86c0b656b`
+**State effective on:** merge of the RSH-043 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-043 — deferred and not authorised
+**Next scheduled unit:** RSH-044 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -18,7 +18,7 @@
 | M3 | Architecture decomposition | RSH-013–RSH-020 | 8 | ACCEPTED | Core, UI, resources and dependencies have explicit owners and boundaries. |
 | M4 | Data integrity and production security | RSH-021–RSH-024 | 4 | ACCEPTED | Save data is recoverable and production has no debug or secret exposure. |
 | M5 | Ayalon vertical slice | RSH-025–RSH-036 | 12 | ACCEPTED | Ayalon is owner-approved, golden-locked and dependency-frozen. |
-| M6 | Performance and reliability | RSH-037–RSH-043 | 7 | IN PROGRESS | Performance, leak, recovery, soak and compatibility targets pass. |
+| M6 | Performance and reliability | RSH-037–RSH-043 | 7 | ACCEPTED | Performance, leak, recovery, soak and compatibility targets pass. |
 | M7 | UX, accessibility and mobile | RSH-044–RSH-048 | 5 | DEFERRED | Keyboard, touch and gamepad flows pass UX, accessibility and privacy gates. |
 | M8 | Eight-track Version 1 content | RSH-049–RSH-062 | 14 | DEFERRED | Eight of eight MVP tracks are driveable, golden-approved and frozen. |
 | M9 | Release | RSH-063–RSH-067 | 5 | DEFERRED | All 13 release gates pass and `v1.0.0` has rollback proof. |
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 42 |
+| Accepted units | 43 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-043 — deferred/not authorised |
+| Queue head | RSH-044 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 25 |
-| RSH-042 one-unit authority | consumed 1/1 |
+| Remaining units | 24 |
+| RSH-043 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -67,5 +67,6 @@
 | RSH-040 | 20 enter-exit leak cycles locked on validated merge |
 | RSH-041 | WebGL context-loss recovery locked on validated merge |
 | RSH-042 | 30-minute soak contract locked on validated merge |
+| RSH-043 | browser and device support matrix locked on validated merge |
 
-No RSH-043 branch, PR or implementation structure is authorised by this state.
+No RSH-044 branch, PR or implementation structure is authorised by this state.
