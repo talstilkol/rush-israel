@@ -1,24 +1,24 @@
 {
-  "schema_version": "33.0.0",
+  "schema_version": "34.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-13T11:03:43.000Z",
+  "generated_at": "2026-09-13T11:12:34.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_050_pull_request",
-    "implementation_base_sha": "e1ba64df57ba14a23f793e1243e0b8b7c17aa5f2",
-    "self_reference_boundary": "The RSH-050 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_051_pull_request",
+    "implementation_base_sha": "b74fcd39cea0661f3a21beb06fb78d79ff0d8dd9",
+    "self_reference_boundary": "The RSH-051 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "e1ba64df57ba14a23f793e1243e0b8b7c17aa5f2",
-    "tree_sha": "eb2bf56b66ddf9d06ac4d909fd26955377392b0f",
-    "commit_authored_at": "2026-09-13T10:59:54Z",
-    "commit_message": "Merge PR #54: RSH-049 — Rothschild geometry and driving",
+    "head_sha": "b74fcd39cea0661f3a21beb06fb78d79ff0d8dd9",
+    "tree_sha": "f564d0b04ad4cfeb6a9d713a06c93cc7371b2734",
+    "commit_authored_at": "2026-09-13T11:09:33Z",
+    "commit_message": "Merge PR #55: RSH-050 — Rothschild art, golden and freeze",
     "commit_signature_verified": true,
-    "role": "RSH-050 exact implementation base"
+    "role": "RSH-051 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 50,
+    "accepted_units": 51,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 17,
-    "remaining_units": 17,
-    "queue_head": "RSH-051",
+    "deferred_units": 16,
+    "remaining_units": 16,
+    "queue_head": "RSH-052",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -1565,7 +1565,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-050": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-050-rothschild-golden",
       "pull_request_resolution": "the pull request created from the exact RSH-050 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -1583,16 +1583,50 @@
       "owner_freeze": false,
       "public_distribution": false,
       "real_device_baseline_accepted": false,
-      "rsh_051_created": false
+      "rsh_051_created": true,
+      "pull_request": 55,
+      "validated_head_sha": "ff122b7ec3f244aa01b3abb88c81d938eaa9f41e",
+      "merge_sha": "b74fcd39cea0661f3a21beb06fb78d79ff0d8dd9",
+      "tree_sha": "f564d0b04ad4cfeb6a9d713a06c93cc7371b2734",
+      "workflow_run": 34753455867,
+      "workflow_job": 103713759245,
+      "artifact_id": 10315803714,
+      "artifact_digest": "sha256:5260e954b94de0707101f2d2c9039eb6ee7d36320500ee5f7b4337d905ea79ac",
+      "post_merge_workflow_run": 34753706925,
+      "post_merge_workflow_job": 103714411631,
+      "post_merge_artifact_id": 10316817753,
+      "post_merge_artifact_digest": "sha256:0aa4c9264f3bd2bbaee9fef777161296bdfd54861b593aadecd2d11a02009277",
+      "unresolved_review_threads": 0
+    },
+    "RSH-051": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-051-namal",
+      "pull_request_resolution": "the pull request created from the exact RSH-051 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-051 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-051 merge SHA",
+      "manifest": "NAMAL-GEOMETRY-MANIFEST.json",
+      "contract": "RSH-051-NAMAL-CONTRACT.md",
+      "lock_module": "src/game/namal",
+      "track_id": "namal",
+      "geometry_locked": true,
+      "driving_locked": true,
+      "art_golden_locked": false,
+      "track_freeze_granted": false,
+      "gis_claim": false,
+      "owner_freeze": false,
+      "public_distribution": false,
+      "real_device_baseline_accepted": false,
+      "rsh_052_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-050",
+    "unit": "RSH-051",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-050-rothschild-golden",
+    "branch": "agent/rsh-051-namal",
     "authority_consumed": true,
-    "next_unit": "RSH-051",
+    "next_unit": "RSH-052",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -1718,7 +1752,10 @@
     "RSH-050_authorized": false,
     "RSH-050_was_separately_authorized": true,
     "RSH-050_authorization_consumed": true,
-    "RSH-051_authorized": false
+    "RSH-051_authorized": false,
+    "RSH-051_was_separately_authorized": true,
+    "RSH-051_authorization_consumed": true,
+    "RSH-052_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -1793,12 +1830,12 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The standing owner instruction authorised exactly RSH-050 after RSH-049 merged and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-051.",
+    "The standing owner instruction authorised exactly RSH-051 after RSH-050 merged and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-052.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13.",
     "The standing owner instruction to finish the master plan authorised RSH-036 through RSH-067, but only the queue head may start.",
-    "RSH-051 remains deferred until this unit is accepted on merge."
+    "RSH-052 remains deferred until this unit is accepted on merge."
   ],
   "validation": {
     "queue_units": 67,
@@ -1924,12 +1961,12 @@
   "single_unit_authorization": {
     "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
     "authorized_units": [
-      "RSH-050"
+      "RSH-051"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-050_merge",
-    "RSH_051_authorized": false
+    "state": "consumed_on_RSH-051_merge",
+    "RSH_052_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -1968,12 +2005,12 @@
   "prior_single_unit_authorization": {
     "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
     "authorized_units": [
-      "RSH-049"
+      "RSH-050"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-049_merge",
-    "RSH_050_authorized": false
+    "state": "consumed_on_RSH-050_merge",
+    "RSH_051_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -2730,7 +2767,7 @@
     "post_merge_workflow_run": 34753275523
   },
   "rsh_050_rothschild_golden": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "ROTHSCHILD-GOLDEN-MANIFEST.json",
     "human_contract": "RSH-050-ROTHSCHILD-GOLDEN-CONTRACT.md",
     "validator": "scripts/check-rothschild-golden.mjs",
@@ -2743,7 +2780,30 @@
     "gis_claim": false,
     "owner_freeze": false,
     "public_distribution": false,
-    "RSH_051_created": false,
-    "RSH_051_authorized": false
+    "RSH_051_created": true,
+    "RSH_051_authorized": true,
+    "pull_request": 55,
+    "validated_head_sha": "ff122b7ec3f244aa01b3abb88c81d938eaa9f41e",
+    "merge_sha": "b74fcd39cea0661f3a21beb06fb78d79ff0d8dd9",
+    "tree_sha": "f564d0b04ad4cfeb6a9d713a06c93cc7371b2734",
+    "workflow_run": 34753455867,
+    "post_merge_workflow_run": 34753706925
+  },
+  "rsh_051_namal_geometry": {
+    "state": "accepted_on_merge",
+    "machine_authority": "NAMAL-GEOMETRY-MANIFEST.json",
+    "human_contract": "RSH-051-NAMAL-CONTRACT.md",
+    "validator": "scripts/check-namal.mjs",
+    "test": "scripts/check-namal.test.mjs",
+    "track_id": "namal",
+    "geometry_locked": true,
+    "driving_locked": true,
+    "art_golden_locked": false,
+    "track_freeze_granted": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "public_distribution": false,
+    "RSH_052_created": false,
+    "RSH_052_authorized": false
   }
 }

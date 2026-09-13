@@ -114,26 +114,26 @@
     "touch_source_sha256": "3f89972a7cf2aa62a81d0bc82aec098a91b41eae5a9d25dd74038c14577868b8",
     "cars_source_sha256": "bbdf2b01bc8ae5a9169b2706fd522d34ec3584e17255fc284740c93942236542",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
-    "checker_test_sha256": "68054681145d57cd33b2b245febd3c8b8a6670ac6c0d4d80b799f4ed6bd5b008",
+    "checker_test_sha256": "464c2dfc4bb8ae573ecb61a5ec2d436d2c294727d5b737f2fcfd3892f006d33a",
     "audio_digest_sha256": "b5a3a609d13ad78708f362bbff4caaf071454c884aa34bf874fbeff18f56ca3f",
     "input_digest_sha256": "ee389f24969bad529a9e10df5b881f7efc773ecd845056b8aefcc8c52f149809",
     "hud_digest_sha256": "a4516f8b7784d8270fbb8a766515e40ca9ffa70103fe81b63af3733ce05faecb"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-051",
+    "queue_head": "RSH-052",
     "rsh_034_authorized": true,
     "rsh_034_started": true,
     "rsh_035_authorized": true,
     "rsh_035_started": true,
     "forbidden_prefixes": [
-      ".rsh051",
-      ".github/workflows/rsh-051-",
-      "RSH-051-",
-      "scripts/rsh051-",
-      "scripts/check-namal",
-      "scripts/check-yarkon-geometry",
-      "scripts/check-reading-geometry",
-      "src/game/namal/"
+      ".rsh052",
+      ".github/workflows/rsh-052-",
+      "RSH-052-",
+      "scripts/rsh052-",
+      "scripts/check-namal-golden",
+      "scripts/check-yarkon-golden",
+      "scripts/check-reading-golden",
+      "src/game/namal-golden/"
     ],
     "rsh_035_state": "accepted_on_merge",
     "rsh_036_authorized": true,
@@ -166,7 +166,9 @@
     "rsh_049_started": true,
     "rsh_050_authorized": true,
     "rsh_050_started": true,
-    "rsh_051_authorized": false,
-    "rsh_051_started": false
+    "rsh_051_authorized": true,
+    "rsh_051_started": true,
+    "rsh_052_authorized": false,
+    "rsh_052_started": false
   }
 }

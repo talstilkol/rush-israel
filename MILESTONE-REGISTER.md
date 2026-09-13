@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 33.0.0
+**Version:** 34.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-050 implementation base:** `e1ba64df57ba14a23f793e1243e0b8b7c17aa5f2`
-**State effective on:** merge of the RSH-050 pull request
+**RSH-051 implementation base:** `b74fcd39cea0661f3a21beb06fb78d79ff0d8dd9`
+**State effective on:** merge of the RSH-051 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-051 — deferred and not authorised
+**Next scheduled unit:** RSH-052 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 50 |
+| Accepted units | 51 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-051 — deferred/not authorised |
+| Queue head | RSH-052 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 17 |
-| RSH-050 one-unit authority | consumed 1/1 |
+| Remaining units | 16 |
+| RSH-051 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -75,5 +75,6 @@
 | RSH-048 | accessibility, privacy and Alpha UX gates locked on validated merge |
 | RSH-049 | Rothschild geometry and driving locked on validated merge |
 | RSH-050 | Rothschild art, golden and source freeze locked on validated merge |
+| RSH-051 | Yarkon–Reading geometry and driving locked on validated merge |
 
-No RSH-051 branch, PR or implementation structure is authorised by this state.
+No RSH-052 branch, PR or implementation structure is authorised by this state.

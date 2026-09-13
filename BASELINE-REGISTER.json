@@ -1,7 +1,7 @@
 {
-  "schema_version": "33.0.0",
+  "schema_version": "34.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T11:03:43.000Z",
+  "generated_at": "2026-09-13T11:12:34.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -853,23 +853,36 @@
       "post_merge_workflow_run": 34753275523,
       "recorded_at": "2026-09-13T11:03:43.000Z",
       "description": "RSH-049 accepted."
+    },
+    {
+      "id": "B050-rsh-050-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-050",
+      "pull_request": 55,
+      "commit_sha": "b74fcd39cea0661f3a21beb06fb78d79ff0d8dd9",
+      "tree_sha": "f564d0b04ad4cfeb6a9d713a06c93cc7371b2734",
+      "validated_head_sha": "ff122b7ec3f244aa01b3abb88c81d938eaa9f41e",
+      "workflow_run": 34753455867,
+      "post_merge_workflow_run": 34753706925,
+      "recorded_at": "2026-09-13T11:12:34.000Z",
+      "description": "RSH-050 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-050",
+    "unit": "RSH-051",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "e1ba64df57ba14a23f793e1243e0b8b7c17aa5f2",
-    "branch": "agent/rsh-050-rothschild-golden",
-    "manifest": "ROTHSCHILD-GOLDEN-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-050 pull request"
+    "implementation_base_sha": "b74fcd39cea0661f3a21beb06fb78d79ff0d8dd9",
+    "branch": "agent/rsh-051-namal",
+    "manifest": "NAMAL-GEOMETRY-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-051 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-051",
+    "queue_head": "RSH-052",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_051_authorized": false
+    "RSH_052_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",

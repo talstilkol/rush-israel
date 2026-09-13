@@ -106,7 +106,7 @@
     "ghost_block_sha256": "59948dace66f2683d4f7cfc480f270579727dd94be257f5ea6637bd18e217674"
   },
   "deferred_boundary": {
-    "queue_head": "RSH-051",
+    "queue_head": "RSH-052",
     "rsh_023_authorized": true,
     "rsh_023_started": true,
     "rsh_023_state": "accepted_on_merge",
@@ -117,14 +117,14 @@
     "rsh_025_started": true,
     "rsh_025_state": "accepted_on_merge",
     "forbidden_prefixes": [
-      ".rsh051",
-      ".github/workflows/rsh-051-",
-      "RSH-051-",
-      "scripts/rsh051-",
-      "scripts/check-namal",
-      "scripts/check-yarkon-geometry",
-      "scripts/check-reading-geometry",
-      "src/game/namal/"
+      ".rsh052",
+      ".github/workflows/rsh-052-",
+      "RSH-052-",
+      "scripts/rsh052-",
+      "scripts/check-namal-golden",
+      "scripts/check-yarkon-golden",
+      "scripts/check-reading-golden",
+      "src/game/namal-golden/"
     ],
     "rsh_026_authorized": true,
     "rsh_026_started": true,
@@ -186,8 +186,10 @@
     "rsh_049_started": true,
     "rsh_050_authorized": true,
     "rsh_050_started": true,
-    "rsh_051_authorized": false,
-    "rsh_051_started": false
+    "rsh_051_authorized": true,
+    "rsh_051_started": true,
+    "rsh_052_authorized": false,
+    "rsh_052_started": false
   },
   "rsh_028_overlay": {
     "state": "accepted_on_merge",
