@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 48.0.0
+**Version:** 49.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-065 implementation base:** `0371d78de65279d8db7cdba2d65ce1ee332e2da0`
-**State effective on:** merge of the RSH-065 pull request
+**RSH-066 implementation base:** `1cb4f2281a6062494839dd6f60fdba4e5e9c6ec0`
+**State effective on:** merge of the RSH-066 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-066 — deferred and not authorised
+**Next scheduled unit:** RSH-067 — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -27,13 +27,13 @@
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 65 |
+| Accepted units | 66 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-066 — deferred/not authorised |
+| Queue head | RSH-067 — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 2 |
-| RSH-065 one-unit authority | consumed 1/1 |
+| Remaining units | 1 |
+| RSH-066 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -90,5 +90,6 @@
 | RSH-063 | SemVer, changelog and private release automation locked on validated merge |
 | RSH-064 | preview, staging, production and rollback channels locked on validated merge |
 | RSH-065 | private v0.1.0-alpha.1 identity locked on validated merge |
+| RSH-066 | private RC1 identity locked; blocking program defects remain owner-gated |
 
-No RSH-066 branch, PR or implementation structure is authorised by this state.
+No RSH-067 branch, PR or implementation structure is authorised by this state.
