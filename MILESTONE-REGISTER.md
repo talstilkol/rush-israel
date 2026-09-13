@@ -1,12 +1,12 @@
 # RUSH Israel — Milestone Register
 
-**Version:** 49.0.0
+**Version:** 50.0.0
 **Established by:** RSH-003
 **Canonical source:** `MASTER-PLAN.md` and `QUEUE.json`
-**RSH-066 implementation base:** `1cb4f2281a6062494839dd6f60fdba4e5e9c6ec0`
-**State effective on:** merge of the RSH-066 pull request
+**RSH-067 implementation base:** `66afc517c52faff8aa93bb9ee8b1f0c21a92dd2d`
+**State effective on:** merge of the RSH-067 pull request
 **Next eligible unit:** none
-**Next scheduled unit:** RSH-067 — deferred and not authorised
+**Next scheduled unit:** none — deferred and not authorised
 
 ## Version 1 milestones
 
@@ -21,19 +21,19 @@
 | M6 | Performance and reliability | RSH-037–RSH-043 | 7 | ACCEPTED | Performance, leak, recovery, soak and compatibility targets pass. |
 | M7 | UX, accessibility and mobile | RSH-044–RSH-048 | 5 | ACCEPTED | Keyboard, touch and gamepad flows pass UX, accessibility and privacy gates. |
 | M8 | Eight-track Version 1 content | RSH-049–RSH-062 | 14 | ACCEPTED | Eight of eight MVP tracks are driveable, golden-approved and frozen. |
-| M9 | Release | RSH-063–RSH-067 | 5 | DEFERRED | All 13 release gates pass and `v1.0.0` has rollback proof. |
+| M9 | Release | RSH-063–RSH-067 | 5 | ACCEPTED | All 13 release gates pass and `v1.0.0` has rollback proof. |
 
 ## Post-merge program evidence
 
 | Metric | Value |
 |---|---:|
-| Accepted units | 66 |
+| Accepted units | 67 |
 | Units in review | 0 |
 | Eligible units | 0 |
-| Queue head | RSH-067 — deferred/not authorised |
+| Queue head | none — deferred/not authorised |
 | Active PR | none |
-| Remaining units | 1 |
-| RSH-066 one-unit authority | consumed 1/1 |
+| Remaining units | 0 |
+| RSH-067 one-unit authority | consumed 1/1 |
 | Verified release gates | 0/13 |
 | Git tags | 0 |
 | GitHub Releases | 0 |
@@ -91,5 +91,6 @@
 | RSH-064 | preview, staging, production and rollback channels locked on validated merge |
 | RSH-065 | private v0.1.0-alpha.1 identity locked on validated merge |
 | RSH-066 | private RC1 identity locked; blocking program defects remain owner-gated |
+| RSH-067 | private v1.0.0 dossier and rollback proof locked; public distribution forbidden |
 
-No RSH-067 branch, PR or implementation structure is authorised by this state.
+No none branch, PR or implementation structure is authorised by this state.

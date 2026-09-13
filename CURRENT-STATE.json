@@ -1,24 +1,24 @@
 {
-  "schema_version": "49.0.0",
+  "schema_version": "50.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-13T13:41:11.000Z",
+  "generated_at": "2026-09-13T13:58:30.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_066_pull_request",
-    "implementation_base_sha": "1cb4f2281a6062494839dd6f60fdba4e5e9c6ec0",
-    "self_reference_boundary": "The RSH-066 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_067_pull_request",
+    "implementation_base_sha": "66afc517c52faff8aa93bb9ee8b1f0c21a92dd2d",
+    "self_reference_boundary": "The RSH-067 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "1cb4f2281a6062494839dd6f60fdba4e5e9c6ec0",
-    "tree_sha": "e3ce3cc7d7561e36c5ba83ced63234b7410b6c3e",
-    "commit_authored_at": "2026-09-13T13:37:22Z",
-    "commit_message": "Merge PR #70: RSH-065 — Publish and evaluate v0.1.0-alpha.1",
+    "head_sha": "66afc517c52faff8aa93bb9ee8b1f0c21a92dd2d",
+    "tree_sha": "e80404dcc97a6b17b4d3bae5397dbdd7cb260614",
+    "commit_authored_at": "2026-09-13T13:46:53Z",
+    "commit_message": "Merge PR #71: RSH-066 — Produce RC1 and close all blocking defects",
     "commit_signature_verified": true,
-    "role": "RSH-066 exact implementation base"
+    "role": "RSH-067 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,13 +55,13 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 66,
+    "accepted_units": 67,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 1,
-    "remaining_units": 1,
-    "queue_head": "RSH-067",
-    "queue_head_state": "deferred_not_authorized",
+    "deferred_units": 0,
+    "remaining_units": 0,
+    "queue_head": "none",
+    "queue_head_state": "program_complete",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
     "automatic_execution": false,
@@ -2106,7 +2106,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-066": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-066-rc1-close",
       "pull_request_resolution": "the pull request created from the exact RSH-066 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -2123,16 +2123,49 @@
       "gis_claim": false,
       "owner_freeze": false,
       "real_device_baseline_accepted": false,
-      "rsh_067_created": false
+      "rsh_067_created": true,
+      "pull_request": 71,
+      "validated_head_sha": "eb72f316d317919e4a28ae4a5559ade1832edef8",
+      "merge_sha": "66afc517c52faff8aa93bb9ee8b1f0c21a92dd2d",
+      "tree_sha": "e80404dcc97a6b17b4d3bae5397dbdd7cb260614",
+      "workflow_run": 34760535636,
+      "workflow_job": 103732474668,
+      "artifact_id": 10319065942,
+      "artifact_digest": "sha256:7e769d37ec23fddca423018d69666aadc62c480164f82ef479859b56294f7a40",
+      "post_merge_workflow_run": 34760795211,
+      "post_merge_workflow_job": 103733159961,
+      "post_merge_artifact_id": 10318459324,
+      "post_merge_artifact_digest": "sha256:bd4689ed49702a9532bdb233045192120027eb809d846215ef9a2bf456895d34",
+      "unresolved_review_threads": 0
+    },
+    "RSH-067": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-067-v1-publish",
+      "pull_request_resolution": "the pull request created from the exact RSH-067 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-067 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-067 merge SHA",
+      "manifest": "V1-PUBLISH-MANIFEST.json",
+      "contract": "RSH-067-V1-PUBLISH-CONTRACT.md",
+      "lock_module": "src/game/v1-publish",
+      "v1_identity": "1.0.0-private",
+      "dossier_locked": true,
+      "rollback_proof_locked": true,
+      "signed_tag_created": false,
+      "public_distribution": false,
+      "gis_claim": false,
+      "owner_freeze": false,
+      "real_device_baseline_accepted": false,
+      "rsh_068_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-066",
+    "unit": "RSH-067",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-066-rc1-close",
+    "branch": "agent/rsh-067-v1-publish",
     "authority_consumed": true,
-    "next_unit": "RSH-067",
+    "next_unit": "none",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -2306,7 +2339,10 @@
     "RSH-066_authorized": false,
     "RSH-066_was_separately_authorized": true,
     "RSH-066_authorization_consumed": true,
-    "RSH-067_authorized": false
+    "RSH-067_authorized": false,
+    "RSH-067_was_separately_authorized": true,
+    "RSH-067_authorization_consumed": true,
+    "none_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -2381,12 +2417,12 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The standing owner instruction authorised exactly RSH-066 after RSH-065 merged and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-067.",
+    "The standing owner instruction authorised exactly RSH-067 after RSH-066 merged and is consumed on its validated merge.",
+    "Do not pre-create or execute none.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13.",
     "The standing owner instruction to finish the master plan authorised RSH-036 through RSH-067, but only the queue head may start.",
-    "RSH-067 remains deferred until this unit is accepted on merge."
+    "The 67-unit master plan is complete on this merge."
   ],
   "validation": {
     "queue_units": 67,
@@ -2512,12 +2548,12 @@
   "single_unit_authorization": {
     "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
     "authorized_units": [
-      "RSH-066"
+      "RSH-067"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-066_merge",
-    "RSH_067_authorized": false
+    "state": "consumed_on_RSH-067_merge",
+    "none_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -2556,12 +2592,12 @@
   "prior_single_unit_authorization": {
     "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
     "authorized_units": [
-      "RSH-065"
+      "RSH-066"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-065_merge",
-    "RSH_066_authorized": false
+    "state": "consumed_on_RSH-066_merge",
+    "RSH_067_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
@@ -3683,7 +3719,7 @@
     "post_merge_workflow_run": 34760358131
   },
   "rsh_066_rc1": {
-    "state": "accepted_on_merge",
+    "state": "accepted",
     "machine_authority": "RC1-MANIFEST.json",
     "human_contract": "RSH-066-RC1-CONTRACT.md",
     "validator": "scripts/check-rc1-close.mjs",
@@ -3695,7 +3731,29 @@
     "v1_published": false,
     "gis_claim": false,
     "owner_freeze": false,
-    "RSH_067_created": false,
-    "RSH_067_authorized": false
+    "RSH_067_created": true,
+    "RSH_067_authorized": true,
+    "pull_request": 71,
+    "validated_head_sha": "eb72f316d317919e4a28ae4a5559ade1832edef8",
+    "merge_sha": "66afc517c52faff8aa93bb9ee8b1f0c21a92dd2d",
+    "tree_sha": "e80404dcc97a6b17b4d3bae5397dbdd7cb260614",
+    "workflow_run": 34760535636,
+    "post_merge_workflow_run": 34760795211
+  },
+  "rsh_067_v1_publish": {
+    "state": "accepted_on_merge",
+    "machine_authority": "V1-PUBLISH-MANIFEST.json",
+    "human_contract": "RSH-067-V1-PUBLISH-CONTRACT.md",
+    "validator": "scripts/check-v1-publish.mjs",
+    "test": "scripts/check-v1-publish.test.mjs",
+    "v1_identity": "1.0.0-private",
+    "dossier_locked": true,
+    "rollback_proof_locked": true,
+    "signed_tag_created": false,
+    "public_distribution": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "RSH_068_created": false,
+    "RSH_068_authorized": false
   }
 }

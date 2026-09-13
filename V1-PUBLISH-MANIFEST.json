@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "rush-v1-publish-manifest",
+  "unit": "RSH-067",
+  "title": "Publish v1.0.0 with signed tag, dossier and rollback proof",
+  "generated_at": "2026-09-13T13:58:30.000Z",
+  "repository": "talstilkol/rush-israel",
+  "canonical_branch": "main",
+  "implementation_base": {
+    "commit_sha": "66afc517c52faff8aa93bb9ee8b1f0c21a92dd2d",
+    "tree_sha": "e80404dcc97a6b17b4d3bae5397dbdd7cb260614",
+    "branch": "agent/rsh-067-v1-publish"
+  },
+  "lock": {
+    "v1_identity": "1.0.0-private",
+    "dossier_locked": true,
+    "rollback_proof_locked": true,
+    "signed_tag_created": false,
+    "public_distribution": false,
+    "gis_claim": false,
+    "owner_freeze": false,
+    "owner_settings_freeze": false,
+    "real_device_baseline_accepted": false
+  },
+  "lock_module": {
+    "directory": "src/game/v1-publish",
+    "lock": "src/game/v1-publish/v1.ts",
+    "index": "src/game/v1-publish/index.ts"
+  },
+  "preservation": {
+    "golden_png_changes": 0,
+    "ayalon_lock_changes": 0,
+    "track_source_changes": 0,
+    "world_changes": 0,
+    "physics_changes": 0,
+    "cars_changes": 0,
+    "audio_hud_changes": 0,
+    "engine_adapter_changes": 0,
+    "live_cache_changes": 0,
+    "quality_profile_changes": 0,
+    "registry_changes": 0,
+    "leak_cycle_changes": 0,
+    "context_loss_changes": 0,
+    "package_json_changes": 0,
+    "public_distribution_authorized": false,
+    "release_gates_green": 0,
+    "release_gates_total": 13
+  },
+  "identities": {
+    "lock_source_sha256": "de6170dd598e75a3a53cd401a5d2622f11b48e62c14bceec343c4d8656df9420",
+    "index_source_sha256": "5eab97e3315c1220b4ffe26f6333ee83cef6fbd3f8313c4a158ef1cc730981ab",
+    "contract_sha256": "70fde8b629740eea1fe1d46ad54bce31a3fabb5a1b019ecd3de31b1a12651abe",
+    "checker_test_sha256": "7fb5c2fa242a885968e99c1f18c21ba0a8832caf1f51cfb34b9c88c229e5b8a1",
+    "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+    "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
+    "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",
+    "loop_adapter_source_sha256": "88d8f39ff363664cc0a0ab965f7d9a174377961b8683d0752b200769439262c8",
+    "lock_digest_sha256": "1776f45fadf2ce02744be9d0ef8248a2ada935b2943d107de68811dd40476f7c",
+    "freeze_source_sha256": "a55772d9a2579200e67a8ebcf788b07720fcd1cb9332946971a71fb851a5dcb1",
+    "hud_source_sha256": "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35",
+    "quality_profiles_source_sha256": "566b1b15cbe67e4a9d6c8c4d671b8f5b29f036f38e0d3815616b59c3b3706a0a",
+    "budgets_source_sha256": "c51a8040c9179ff6a5290ed39249eb7c38d1cd14dc0143982cc594801c421990",
+    "stream_flag_source_sha256": "725fa71482e7d45fbe92bbe3dcd6d90feed05bd58f2b4f7fa45e815f4bad3f7f"
+  },
+  "deferred_boundary": {
+    "queue_head": "none",
+    "rsh_067_authorized": true,
+    "rsh_067_started": true,
+    "rsh_068_authorized": false,
+    "rsh_068_started": false,
+    "forbidden_prefixes": [
+      ".rsh068",
+      ".github/workflows/rsh-068-",
+      "RSH-068-",
+      "scripts/rsh068-",
+      "scripts/check-post-v1",
+      "scripts/check-v1-followon",
+      "scripts/check-public-distribution",
+      "src/game/post-v1/"
+    ]
+  }
+}
