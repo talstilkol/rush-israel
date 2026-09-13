@@ -1,7 +1,7 @@
 {
-  "schema_version": "46.0.0",
+  "schema_version": "47.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T13:15:02.000Z",
+  "generated_at": "2026-09-13T13:23:45.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -1022,23 +1022,36 @@
       "post_merge_workflow_run": 34758949619,
       "recorded_at": "2026-09-13T13:15:02.000Z",
       "description": "RSH-062 accepted."
+    },
+    {
+      "id": "B063-rsh-063-accepted",
+      "kind": "accepted-unit",
+      "unit": "RSH-063",
+      "pull_request": 68,
+      "commit_sha": "5f098303fa80289fcb6e694779edb22c073709a0",
+      "tree_sha": "bb011f10836d10723e791a7af8c106e5cb98035e",
+      "validated_head_sha": "f756090b2f2b4d12248284470ca851e6c5ea2750",
+      "workflow_run": 34759311880,
+      "post_merge_workflow_run": 34759568608,
+      "recorded_at": "2026-09-13T13:23:45.000Z",
+      "description": "RSH-063 accepted."
     }
   ],
   "working_state": {
-    "unit": "RSH-063",
+    "unit": "RSH-064",
     "state": "accepted_on_merge",
-    "implementation_base_sha": "58e58a912c24d84cc07eb501a30262e8590e4e0d",
-    "branch": "agent/rsh-063-semver-release",
-    "manifest": "SEMVER-RELEASE-MANIFEST.json",
-    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-063 pull request"
+    "implementation_base_sha": "5f098303fa80289fcb6e694779edb22c073709a0",
+    "branch": "agent/rsh-064-preview-staging",
+    "manifest": "PREVIEW-STAGING-MANIFEST.json",
+    "merge_sha_resolution": "live main HEAD created by merging the validated RSH-064 pull request"
   },
   "post_merge_queue": {
-    "queue_head": "RSH-064",
+    "queue_head": "RSH-065",
     "state": "deferred_not_authorized",
     "branch": null,
     "pull_request": null,
     "requires_new_next": true,
-    "RSH_064_authorized": false
+    "RSH_065_authorized": false
   },
   "rules": [
     "A baseline records immutable Git evidence; it is not a release by itself.",
