@@ -50,7 +50,7 @@
     "lock_source_sha256": "5655fa792bcc5670205223cb2c334263f8cbe5ff5ccde2a93704ee0b8a23d918",
     "index_source_sha256": "0fed1e6288471c894edff66cab9024017ce1d887fcefb915134e757e6ae2c79d",
     "contract_sha256": "6264daa35b1ba61a6ad6a171d0042a32da65cdcf622ef28f9159800a4f8c6817",
-    "checker_test_sha256": "2db594f11a11f639a910f59cf49845017ef882456b45805d44d974c470cecfdf",
+    "checker_test_sha256": "e54f70e24b3247aaa1d0f2ba0e13b2a9a6d5d886b3cad2d4114e626af1d8805e",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",

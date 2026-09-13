@@ -27,7 +27,7 @@ test("committed RSH-034 audio/HUD/input lock passes and none remains absent", ()
 
 test("none precreation fails closed", () => {
   const result = validateAudioHudInput({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/input-maps/lock.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/input-maps/lock.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

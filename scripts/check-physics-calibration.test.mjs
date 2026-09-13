@@ -15,7 +15,7 @@ test("committed RSH-033 physics calibration lock passes and none remains absent"
 
 test("none precreation fails closed", () => {
   const result = validatePhysicsCalibration({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/input-maps/lock.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/input-maps/lock.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

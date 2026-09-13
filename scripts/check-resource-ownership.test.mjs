@@ -64,6 +64,6 @@ test("shared texture disposal, world order drift and leak-gate drift fail closed
 
 test("none precreation fails closed", () => {
   const input = baseline();
-  input.repositoryFiles.push("none-PREFLIGHT.json");
+  input.repositoryFiles.push("RSH-068-PREFLIGHT.json");
   assert.match(messages(validateResourceOwnership(input)), /none was precreated/);
 });

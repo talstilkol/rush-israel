@@ -25,7 +25,7 @@ test("committed RSH-026 Ayalon geometry lock passes under the RSH-029 overlay an
 
 test("none precreation fails closed", () => {
   const result = validateAyalonGeometry({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/ayalon-lock/geometry.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/ayalon-lock/geometry.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

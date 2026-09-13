@@ -51,7 +51,7 @@
     "lock_source_sha256": "52f16f14894ae8d9fefe2d97c060733648642b6571e1b75d94d28df6b908547b",
     "index_source_sha256": "2d224d6bf4d12dde39827e733cc725eab8245c4218ce7ae0ef5b626675afe873",
     "contract_sha256": "433245e925715ab5add9bef52c9a5628e99a1c1f76aede69da2bfa63081362aa",
-    "checker_test_sha256": "17f5e7d3ee2bdaf265d0bd6cdd9828e76c190bfec38885f34bd77d6ac207516e",
+    "checker_test_sha256": "6362ec583f1d3364f40e6c917cbda59a47e224d8425cd8c575d8906944193699",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",

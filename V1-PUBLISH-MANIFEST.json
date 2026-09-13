@@ -3,7 +3,7 @@
   "document_type": "rush-v1-publish-manifest",
   "unit": "RSH-067",
   "title": "Publish v1.0.0 with signed tag, dossier and rollback proof",
-  "generated_at": "2026-09-13T13:52:12.000Z",
+  "generated_at": "2026-09-13T13:58:30.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "implementation_base": {
@@ -50,7 +50,7 @@
     "lock_source_sha256": "de6170dd598e75a3a53cd401a5d2622f11b48e62c14bceec343c4d8656df9420",
     "index_source_sha256": "5eab97e3315c1220b4ffe26f6333ee83cef6fbd3f8313c4a158ef1cc730981ab",
     "contract_sha256": "70fde8b629740eea1fe1d46ad54bce31a3fabb5a1b019ecd3de31b1a12651abe",
-    "checker_test_sha256": "9952f1b50db55bdae898c3b962286aaf7f72fc845a5bbf513f163897e00c8fae",
+    "checker_test_sha256": "7fb5c2fa242a885968e99c1f18c21ba0a8832caf1f51cfb34b9c88c229e5b8a1",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "registry_source_sha256": "97a4d36cb120714df59c7f14c4218169b7ac05a9875be87089acdd96caeeed35",
     "leak_cycles_source_sha256": "b45b8e137ede67201a960d107f7f709296483bb154e5b03bb4463322ad5b60bd",

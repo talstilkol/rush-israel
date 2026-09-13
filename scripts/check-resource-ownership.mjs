@@ -107,7 +107,7 @@ export function validateResourceOwnership(overrides = {}) {
   const later = input.repositoryFiles.filter((path) =>
     path.startsWith(".rsh068") ||
     path.startsWith(".github/workflows/rsh-068-") ||
-    path.startsWith("none-") ||
+    path.startsWith("RSH-068-") ||
     path.startsWith("scripts/rsh068-") ||
     path.startsWith("scripts/check-post-v1") ||
     path.startsWith("scripts/check-v1-followon") ||

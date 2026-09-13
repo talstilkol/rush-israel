@@ -22,7 +22,7 @@ test("committed RSH-036 Ayalon freeze passes and none remains absent", () => {
 
 test("none precreation fails closed", () => {
   const result = validateAyalonFreeze({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/input-maps/lock.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/input-maps/lock.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

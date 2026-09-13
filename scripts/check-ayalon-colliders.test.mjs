@@ -27,7 +27,7 @@ test("committed RSH-027 Ayalon collider lock passes under the RSH-029 overlay an
 
 test("none precreation fails closed", () => {
   const result = validateAyalonColliders({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/ayalon-colliders/colliders.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/ayalon-colliders/colliders.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

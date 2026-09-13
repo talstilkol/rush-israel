@@ -27,7 +27,7 @@ test("committed RSH-028 Ayalon landmark lock passes under the RSH-029 overlay an
 
 test("none precreation fails closed", () => {
   const result = validateAyalonLandmarks({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/ayalon-landmarks/landmarks.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/ayalon-landmarks/landmarks.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

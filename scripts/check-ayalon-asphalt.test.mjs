@@ -29,7 +29,7 @@ test("committed RSH-029 Ayalon asphalt lock passes and none remains absent", () 
 
 test("none precreation fails closed", () => {
   const result = validateAyalonAsphalt({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/ayalon-asphalt/asphalt.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/ayalon-asphalt/asphalt.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

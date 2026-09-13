@@ -28,7 +28,7 @@ test("committed RSH-032 night/headlight/weather lock passes and none remains abs
 
 test("none precreation fails closed", () => {
   const result = validateNightWeather({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/ayalon-night/night.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/ayalon-night/night.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

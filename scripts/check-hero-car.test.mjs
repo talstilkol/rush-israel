@@ -30,7 +30,7 @@ test("committed RSH-030 hero-car lock passes and none remains absent", () => {
 
 test("none precreation fails closed", () => {
   const result = validateHeroCar({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/hero-car/hero.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/hero-car/hero.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

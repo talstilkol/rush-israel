@@ -23,7 +23,7 @@ test("committed RSH-024 production-security authority passes under the RSH-029 o
 
 test("none precreation fails closed", () => {
   const result = validateProductionSecurity({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/security/production-policy.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/security/production-policy.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

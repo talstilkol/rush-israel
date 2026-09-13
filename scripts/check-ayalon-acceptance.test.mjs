@@ -18,7 +18,7 @@ test("committed RSH-025 Ayalon acceptance authority passes under the RSH-029 ove
 
 test("none precreation fails closed", () => {
   const result = validateAyalonAcceptance({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/tracks/ayalon.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/tracks/ayalon.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

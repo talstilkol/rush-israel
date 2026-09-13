@@ -23,7 +23,7 @@ test("committed RSH-037 performance instrument passes and none remains absent", 
 
 test("none precreation fails closed", () => {
   const result = validatePerfInstrument({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/input-maps/lock.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/input-maps/lock.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

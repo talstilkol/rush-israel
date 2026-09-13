@@ -26,7 +26,7 @@ test("committed RSH-023 timed-record authority passes under the RSH-029 overlay 
 
 test("none precreation fails closed", () => {
   const result = validateTimedRecords({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/records.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/records.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

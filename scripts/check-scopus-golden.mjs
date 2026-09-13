@@ -5,11 +5,11 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "4146cb45379cc4062ddd172e77e5b6a3947c6fd1a899d194454b03b954c753f7";
+export const EXPECTED_MANIFEST_SHA256 = "ceeafe3cf9b6b5abf26ac9fb45930d3669f48a48bc69c4feb58ff93180dace42";
 export const EXPECTED_LOCK_SHA256 = "9118115bac9a4e436b731566773f37738512f842eb0b705f5ec9f7356ff18ef3";
 export const EXPECTED_INDEX_SHA256 = "b76c1ab7dfc915791e6ffccfacafc95453d740149e3dee79f13d34e0b4bb575d";
 export const EXPECTED_CONTRACT_SHA256 = "dc67f0e28dcf3bf02ed231ea4a7aa3773712b4ceedec580d7fe347eca2176b2c";
-export const EXPECTED_CHECKER_TEST_SHA256 = "77d63d5791390d75ca415c71936d3908e5f553f654b466bd9d43f3225ee481ca";
+export const EXPECTED_CHECKER_TEST_SHA256 = "5b2a750c4e170082ba89e99b1358f50174103c70a4e3e4d92af06e6397914d86";
 export const EXPECTED_DIGEST_SHA256 = "233215e477d4f49ff594c51c0b7b4c25fa174328ff9c22d068fc04860bb8f57e";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_HUD_SHA256 = "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35";

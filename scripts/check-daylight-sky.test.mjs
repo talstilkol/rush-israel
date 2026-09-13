@@ -28,7 +28,7 @@ test("committed RSH-031 daylight/sky/IBL lock passes and none remains absent", (
 
 test("none precreation fails closed", () => {
   const result = validateDaylightSky({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/ayalon-light/daylight.ts"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/ayalon-light/daylight.ts"],
   });
   assert.match(messages(result), /none was precreated/);
 });

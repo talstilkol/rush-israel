@@ -30,7 +30,7 @@ test("committed RSH-042 thirty-soak lock passes and none remains absent", () => 
 
 test("none precreation fails closed", () => {
   const result = validateThirtySoak({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/rothschild-golden/lock.ts", "scripts/check-oldjaffa.mjs"],
   });
   assert.match(messages(result), /none was precreated/);
 });

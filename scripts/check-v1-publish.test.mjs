@@ -26,7 +26,7 @@ test("committed RSH-067 lock passes and none remains absent", () => {
 
 test("none precreation fails closed", () => {
   const result = validateLock({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/post-v1/v1.ts", "scripts/check-post-v1.mjs"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/post-v1/v1.ts", "scripts/check-post-v1.mjs"],
   });
   assert.match(messages(result), /none was precreated/);
 });

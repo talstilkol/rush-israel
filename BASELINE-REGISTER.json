@@ -1,7 +1,7 @@
 {
   "schema_version": "50.0.0",
   "document_type": "rush-baseline-register",
-  "generated_at": "2026-09-13T13:52:12.000Z",
+  "generated_at": "2026-09-13T13:58:30.000Z",
   "repository": "talstilkol/rush-israel",
   "canonical_branch": "main",
   "release_gates": {
@@ -1072,7 +1072,7 @@
       "validated_head_sha": "eb72f316d317919e4a28ae4a5559ade1832edef8",
       "workflow_run": 34760535636,
       "post_merge_workflow_run": 34760795211,
-      "recorded_at": "2026-09-13T13:52:12.000Z",
+      "recorded_at": "2026-09-13T13:58:30.000Z",
       "description": "RSH-066 accepted."
     }
   ],

@@ -26,7 +26,7 @@ test("committed RSH-053 lock passes and none remains absent", () => {
 
 test("none precreation fails closed", () => {
   const result = validateLock({
-    repositoryFiles: ["none-PREFLIGHT.json", "src/game/scopus/lock.ts", "scripts/check-oldjaffa-golden.mjs"],
+    repositoryFiles: ["RSH-068-PREFLIGHT.json", "src/game/scopus/lock.ts", "scripts/check-oldjaffa-golden.mjs"],
   });
   assert.match(messages(result), /none was precreated/);
 });
