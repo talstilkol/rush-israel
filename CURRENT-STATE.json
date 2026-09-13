@@ -1,24 +1,24 @@
 {
-  "schema_version": "29.0.0",
+  "schema_version": "30.0.0",
   "document_type": "rush-current-state",
-  "generated_at": "2026-09-13T11:40:00.000Z",
+  "generated_at": "2026-09-13T12:15:00.000Z",
   "source_of_truth": {
     "repository": "talstilkol/rush-israel",
     "canonical_branch": "main",
     "policy": "Live GitHub state supersedes chat summaries, local copies and recorded SHAs."
   },
   "state_semantics": {
-    "effective_event": "merge_of_RSH_046_pull_request",
-    "implementation_base_sha": "97a3190306c59cc14aaffc659c7c499a8a95b7c9",
-    "self_reference_boundary": "The RSH-046 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
+    "effective_event": "merge_of_RSH_047_pull_request",
+    "implementation_base_sha": "660c1e024ae6cccaad2f492d0aa1cda7c0cd19b6",
+    "self_reference_boundary": "The RSH-047 candidate cannot contain its own future merge SHA. Exact PR, merge, review and post-merge CI evidence are resolved from live GitHub and recorded on the pull request after acceptance."
   },
   "verified_main": {
-    "head_sha": "97a3190306c59cc14aaffc659c7c499a8a95b7c9",
-    "tree_sha": "6f7d5c9d3e9fa89776d4e208f19002a18f4dd44c",
-    "commit_authored_at": "2026-09-13T08:29:28Z",
-    "commit_message": "Merge PR #50: RSH-045 — Complete Hebrew RTL, English LTR and the Arabic-scope decision",
+    "head_sha": "660c1e024ae6cccaad2f492d0aa1cda7c0cd19b6",
+    "tree_sha": "1d9943d53d49360b81505e50f99b76420a356529",
+    "commit_authored_at": "2026-09-13T09:00:20Z",
+    "commit_message": "Merge PR #51: RSH-046 — Complete onboarding, settings, error and recovery flows",
     "commit_signature_verified": true,
-    "role": "RSH-046 exact implementation base"
+    "role": "RSH-047 exact implementation base"
   },
   "repository_snapshot": {
     "visibility_current": "public",
@@ -55,12 +55,12 @@
   },
   "program_status": {
     "program_units_total": 67,
-    "accepted_units": 46,
+    "accepted_units": 47,
     "units_in_review": 0,
     "eligible_units": 0,
-    "deferred_units": 21,
-    "remaining_units": 21,
-    "queue_head": "RSH-047",
+    "deferred_units": 20,
+    "remaining_units": 20,
+    "queue_head": "RSH-048",
     "queue_head_state": "deferred_not_authorized",
     "queue_head_branch": null,
     "queue_head_pull_request": null,
@@ -1418,7 +1418,7 @@
       "unresolved_review_threads": 0
     },
     "RSH-046": {
-      "state": "accepted_on_merge",
+      "state": "accepted",
       "branch": "agent/rsh-046-onboarding",
       "pull_request_resolution": "the pull request created from the exact RSH-046 candidate head",
       "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
@@ -1438,16 +1438,54 @@
       "gis_claim": false,
       "owner_freeze": false,
       "public_distribution": false,
-      "rsh_047_created": false
+      "rsh_047_created": true,
+      "pull_request": 51,
+      "validated_head_sha": "d52fcf1d1022cea7f1133dbe4e4e69a9753d226f",
+      "merge_sha": "660c1e024ae6cccaad2f492d0aa1cda7c0cd19b6",
+      "tree_sha": "1d9943d53d49360b81505e50f99b76420a356529",
+      "workflow_run": 34748595108,
+      "workflow_job": 103701113874,
+      "artifact_id": 10315396165,
+      "artifact_digest": "sha256:1d4bb645249ef7dd21972a0dd430954d5f4f88c930af29e57d2f902e5c2b3697",
+      "post_merge_workflow_run": 34748790582,
+      "post_merge_workflow_job": 103701552431,
+      "post_merge_artifact_id": 10315017344,
+      "post_merge_artifact_digest": "sha256:d58a1a0545cb83edf8cad41af297438d506cbf7c2f28508b06d117d0b93072c3",
+      "unresolved_review_threads": 0
+    },
+    "RSH-047": {
+      "state": "accepted_on_merge",
+      "branch": "agent/rsh-047-pwa",
+      "pull_request_resolution": "the pull request created from the exact RSH-047 candidate head",
+      "validated_head_resolution": "exact pull-request head accepted by required-ci / validate and Codex review",
+      "merge_sha_resolution": "live main HEAD created by merging the validated RSH-047 pull request",
+      "post_merge_ci_resolution": "required-ci / validate on the exact RSH-047 merge SHA",
+      "manifest": "PWA-MANIFEST.json",
+      "contract": "RSH-047-PWA-CONTRACT.md",
+      "lock_module": "src/game/pwa",
+      "pwa_complete": true,
+      "manifest_present": true,
+      "manifest_path": "/__grok/manifest.webmanifest",
+      "display_standalone": true,
+      "start_url": "/",
+      "service_worker": false,
+      "offline_cache": false,
+      "update_prompt": false,
+      "public_install": false,
+      "a11y_complete": false,
+      "gis_claim": false,
+      "owner_freeze": false,
+      "public_distribution": false,
+      "rsh_048_created": false
     }
   },
   "active_change": null,
   "last_transition": {
-    "unit": "RSH-046",
+    "unit": "RSH-047",
     "state": "accepted_on_merge",
-    "branch": "agent/rsh-046-onboarding",
+    "branch": "agent/rsh-047-pwa",
     "authority_consumed": true,
-    "next_unit": "RSH-047",
+    "next_unit": "RSH-048",
     "next_unit_authorized": false
   },
   "batch_authorization": {
@@ -1561,7 +1599,10 @@
     "RSH-046_authorized": false,
     "RSH-046_was_separately_authorized": true,
     "RSH-046_authorization_consumed": true,
-    "RSH-047_authorized": false
+    "RSH-047_authorized": false,
+    "RSH-047_was_separately_authorized": true,
+    "RSH-047_authorization_consumed": true,
+    "RSH-048_authorized": false
   },
   "rsh_009_definition": {
     "machine_authority": "PRODUCT-DEFINITION.json",
@@ -1636,13 +1677,13 @@
     "Do not claim the repository is private until GitHub metadata confirms it.",
     "Do not claim branch protection is applied until GitHub metadata confirms it.",
     "Do not claim legal clearance while 66 asset files remain unverified.",
-    "The standing owner instruction authorised exactly RSH-046 after RSH-045 merged and is consumed on its validated merge.",
-    "Do not pre-create or execute RSH-047.",
+    "The standing owner instruction authorised exactly RSH-047 after RSH-046 merged and is consumed on its validated merge.",
+    "Do not pre-create or execute RSH-048.",
     "Public distribution remains unauthorized.",
     "Release gates remain 0/13.",
     "The standing owner instruction to finish the master plan authorised RSH-036 through RSH-067, but only the queue head may start.",
-    "RSH-047 remains deferred until this unit is accepted on merge.",
-    "Onboarding is title-boot plus settings and save-recovery UX; there is no first-run wizard."
+    "RSH-048 remains deferred until this unit is accepted on merge.",
+    "PWA is the live __grok standalone manifest; there is no service worker, offline cache, update prompt or public install."
   ],
   "validation": {
     "queue_units": 67,
@@ -1768,12 +1809,12 @@
   "single_unit_authorization": {
     "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
     "authorized_units": [
-      "RSH-046"
+      "RSH-047"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-046_merge",
-    "RSH_047_authorized": false
+    "state": "consumed_on_RSH-047_merge",
+    "RSH_048_authorized": false
   },
   "rsh_015_world_core": {
     "state": "accepted",
@@ -1812,12 +1853,12 @@
   "prior_single_unit_authorization": {
     "instruction": "המשך ברצף עד לסיום כל ה master plan עד הסוף",
     "authorized_units": [
-      "RSH-045"
+      "RSH-046"
     ],
     "completed_units": 1,
     "total_units": 1,
-    "state": "consumed_on_RSH-045_merge",
-    "RSH_046_authorized": false
+    "state": "consumed_on_RSH-046_merge",
+    "RSH_047_authorized": false
   },
   "rsh_016_world_builders": {
     "state": "accepted",
