@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "c30d09be01109551066470464b40bdceaaad13e12c51a781df5cc67df929e9e3";
+export const EXPECTED_MANIFEST_SHA256 = "d1aca2db7e094c90ea9456620b2e226072d9d0a2da47e8d6ed5b35fdc3ad3c65";
 export const EXPECTED_METRICS_SHA256 = "d76bc0131c31dfbf3d86de081d45a70fba49d0130755ad04368aceaf4592492a";
 export const EXPECTED_INDEX_SHA256 = "adb2baa7d31786c21d36a65088606633dd5687a7388943fede5c3b1d1d1e546a";
 export const EXPECTED_CONTRACT_SHA256 = "2e5ec28867b83bf444043be2b60a9aaa30e2296704e3f9a914e29f296f7066ec";
@@ -14,7 +14,7 @@ export const EXPECTED_LOOP_SHA256 = "88d8f39ff363664cc0a0ab965f7d9a174377961b868
 export const EXPECTED_RENDERING_SHA256 = "947ca69a89f12550a4ba5c631f2004598dec8849368a762b29ed9d681a2d7132";
 export const EXPECTED_QA_SHA256 = "973b8606f5e417e9477bf4b07a2bf8fba49b500003833a9e0d76396ad903730c";
 export const EXPECTED_HUD_SHA256 = "97eae819cf490729bf36de0dbaf9f79a6154e52b844f42a5dd76e159e76eca35";
-export const EXPECTED_CHECKER_TEST_SHA256 = "c30793675db5f9dbdeecff0b75ec063c27ce6139382a9bc90a7e480544750062";
+export const EXPECTED_CHECKER_TEST_SHA256 = "e2a138be1313d68489bfa14a60bbbe994b824ab026e135b8374c51f66491880e";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_PERF_DIGEST_SHA256 = "7475ef5f789a4950cf82743aa5a7d499075e8d37813a65ef4c0dc6b658b222fd";
 export const EXPECTED_FREEZE_DIGEST_SHA256 = "9b7a9ffa0ed5835294f11c3f941d40abf015d85c76c03f2e9e94403bd08b5098";
@@ -124,8 +124,8 @@ export function validatePerfInstrument(overrides = {}) {
   if (!/\| P1-13 \| P1 \| \*\*OPEN\*\*/.test(input.findingsSource)) errors.push("P1-13 must remain OPEN until a real-device baseline exists");
   if (manifest.preservation?.golden_png_changes !== 0 || manifest.preservation?.package_json_changes !== 0 || manifest.preservation?.release_gates_green !== 0) errors.push("RSH-037 preservation counts changed");
   const later = input.repositoryFiles.filter((path) => manifest.deferred_boundary?.forbidden_prefixes?.some((prefix) => path.startsWith(prefix)));
-  if (later.length) errors.push(`RSH-052 was precreated: ${later.join(", ")}`);
-  if (manifest.deferred_boundary?.queue_head !== "RSH-052" || manifest.deferred_boundary?.rsh_038_authorized !== true || manifest.deferred_boundary?.rsh_039_authorized !== true || manifest.deferred_boundary?.rsh_040_authorized !== true || manifest.deferred_boundary?.rsh_041_authorized !== true || manifest.deferred_boundary?.rsh_042_authorized !== true || manifest.deferred_boundary?.rsh_043_authorized !== true || manifest.deferred_boundary?.rsh_045_authorized !== true || manifest.deferred_boundary?.rsh_046_authorized !== true || manifest.deferred_boundary?.rsh_047_authorized !== true || manifest.deferred_boundary?.rsh_048_authorized !== true || manifest.deferred_boundary?.rsh_049_authorized !== true || manifest.deferred_boundary?.rsh_050_authorized !== true || manifest.deferred_boundary?.rsh_051_authorized !== true || manifest.deferred_boundary?.rsh_052_authorized !== false || manifest.deferred_boundary?.rsh_038_started !== true || manifest.deferred_boundary?.rsh_039_started !== true || manifest.deferred_boundary?.rsh_040_started !== true || manifest.deferred_boundary?.rsh_041_started !== true || manifest.deferred_boundary?.rsh_042_started !== true || manifest.deferred_boundary?.rsh_043_started !== true || manifest.deferred_boundary?.rsh_045_started !== true || manifest.deferred_boundary?.rsh_046_started !== true || manifest.deferred_boundary?.rsh_047_started !== true || manifest.deferred_boundary?.rsh_048_started !== true || manifest.deferred_boundary?.rsh_049_started !== true || manifest.deferred_boundary?.rsh_050_started !== true || manifest.deferred_boundary?.rsh_051_started !== true || manifest.deferred_boundary?.rsh_052_started !== false) errors.push("RSH-052 deferred boundary changed");
+  if (later.length) errors.push(`RSH-053 was precreated: ${later.join(", ")}`);
+  if (manifest.deferred_boundary?.queue_head !== "RSH-053" || manifest.deferred_boundary?.rsh_038_authorized !== true || manifest.deferred_boundary?.rsh_039_authorized !== true || manifest.deferred_boundary?.rsh_040_authorized !== true || manifest.deferred_boundary?.rsh_041_authorized !== true || manifest.deferred_boundary?.rsh_042_authorized !== true || manifest.deferred_boundary?.rsh_043_authorized !== true || manifest.deferred_boundary?.rsh_045_authorized !== true || manifest.deferred_boundary?.rsh_046_authorized !== true || manifest.deferred_boundary?.rsh_047_authorized !== true || manifest.deferred_boundary?.rsh_048_authorized !== true || manifest.deferred_boundary?.rsh_049_authorized !== true || manifest.deferred_boundary?.rsh_050_authorized !== true || manifest.deferred_boundary?.rsh_051_authorized !== true || manifest.deferred_boundary?.rsh_052_authorized !== true || manifest.deferred_boundary?.rsh_053_authorized !== false || manifest.deferred_boundary?.rsh_038_started !== true || manifest.deferred_boundary?.rsh_039_started !== true || manifest.deferred_boundary?.rsh_040_started !== true || manifest.deferred_boundary?.rsh_041_started !== true || manifest.deferred_boundary?.rsh_042_started !== true || manifest.deferred_boundary?.rsh_043_started !== true || manifest.deferred_boundary?.rsh_045_started !== true || manifest.deferred_boundary?.rsh_046_started !== true || manifest.deferred_boundary?.rsh_047_started !== true || manifest.deferred_boundary?.rsh_048_started !== true || manifest.deferred_boundary?.rsh_049_started !== true || manifest.deferred_boundary?.rsh_050_started !== true || manifest.deferred_boundary?.rsh_051_started !== true || manifest.deferred_boundary?.rsh_052_started !== true || manifest.deferred_boundary?.rsh_053_started !== false) errors.push("RSH-053 deferred boundary changed");
   return { errors, instrumented: errors.length === 0, metrics: PERF_METRICS_COUNT() };
 }
 
@@ -142,5 +142,5 @@ if (isMainModule(import.meta.url)) {
     console.error(`perf-instrument fail\n${result.errors.map((error) => `- ${error}`).join("\n")}`);
     process.exit(1);
   }
-  console.log(`perf-instrument ok: p50/p95/p99 + draw/tri/memory; RSH-052 deferred`);
+  console.log(`perf-instrument ok: p50/p95/p99 + draw/tri/memory; RSH-053 deferred`);
 }
