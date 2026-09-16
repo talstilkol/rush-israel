@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "document_type": "rush-live-github-status",
-  "observed_at": "2026-09-13T18:25:00Z",
+  "observed_at": "2026-09-16T11:18:00Z",
   "repository": "talstilkol/rush-israel",
   "authority": "Live GitHub supersedes CURRENT-STATE.json repository_snapshot. That snapshot remains the RSH-067 merge record required by scripts/program-control.test.mjs and must not be rewritten here.",
   "live": {
@@ -17,6 +17,7 @@
     "required_status_checks": ["required-ci / validate"],
     "force_push_blocked": true,
     "deletion_blocked": true,
+    "required_signatures": false,
     "github_releases": 0,
     "git_tags": 0,
     "release_gates_green_live": 2,
@@ -24,6 +25,24 @@
     "findings_open_live": 4,
     "findings_mitigated_live": 8,
     "findings_closed_live": 30
+  },
+  "latest_main": {
+    "sha": "d6da3aa43bfb19a4be8e673b9a28dcf6df7fdafb",
+    "merged_pull_request": 74,
+    "merged_at": "2026-09-16T11:11:57Z",
+    "validated_head_sha": "d803a992db238ef8400b38b30124993f99276023"
+  },
+  "pr_74": {
+    "number": 74,
+    "title": "Close stale post-v1 findings (P0-10, P1-16) and mitigate P2-04",
+    "merge_sha": "d6da3aa43bfb19a4be8e673b9a28dcf6df7fdafb",
+    "merged_at": "2026-09-16T11:11:57Z",
+    "validated_head_sha": "d803a992db238ef8400b38b30124993f99276023",
+    "pr_workflow_run_id": 34774680420,
+    "pr_workflow_job_id": 103770505359,
+    "post_merge_workflow_run_id": 35089028213,
+    "post_merge_workflow_job_id": 104770648259,
+    "post_merge_conclusion": "success"
   },
   "gate_2_evidence": {
     "gate": "main is protected and PR delivery is enforced",
@@ -46,11 +65,81 @@
     "required_check": "required-ci / validate",
     "integration_id": 15368,
     "strict_required_status_checks_policy": true,
-    "latest_success_run_id": 34763470528,
-    "latest_success_head_sha": "7bd895d5fd6bc81f5c3f230566e695605b69e7e9",
+    "latest_success_run_id": 35089028213,
+    "latest_success_head_sha": "d6da3aa43bfb19a4be8e673b9a28dcf6df7fdafb",
+    "latest_success_job_id": 104770648259,
     "latest_success_conclusion": "success",
-    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/34763470528"
+    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/35089028213",
+    "latest_success_completed_at": "2026-09-16T11:17:55Z"
   },
+  "remaining_red_gates": [
+    {
+      "id": 1,
+      "gate": "Visibility and licensing agree with owner policy",
+      "state": "RED",
+      "blocker": "66 unverified assets remain uncleared (P0-12). Live visibility is private and agrees with owner policy, but legal clearance is not complete."
+    },
+    {
+      "id": 3,
+      "gate": "A clean clone installs and builds reproducibly",
+      "state": "RED",
+      "blocker": "required-ci on ubuntu-24.04 ran toolchain verify, npm ci and build:dev successfully on d6da3aa43bfb19a4be8e673b9a28dcf6df7fdafb. Evidence exists; unit manifests still freeze release_gates_green at 0 so this is not a release-authority close."
+    },
+    {
+      "id": 5,
+      "gate": "Production contains no QA hook or secrets",
+      "state": "RED",
+      "blocker": "check:qa and secret scanning run inside required-ci. P1-01 stays MITIGATED because the RSH-067 CURRENT-STATE snapshot still records unapplied GitHub enforcement."
+    },
+    {
+      "id": 6,
+      "gate": "Ayalon is owner-approved and frozen",
+      "state": "RED",
+      "blocker": "G5 is accepted and freeze_granted=true with 36 hashes. Accepted-unit progress is not release readiness."
+    },
+    {
+      "id": 7,
+      "gate": "Driving, physics, ramps and damage pass",
+      "state": "RED",
+      "blocker": "RSH-027/RSH-033/RSH-034 are accepted. P1-12 stays OPEN because golden/damage/HaShalom/long-soak are not all required on every PR."
+    },
+    {
+      "id": 8,
+      "gate": "Desktop performance meets its budget",
+      "state": "RED",
+      "blocker": "RSH-037–RSH-039 lock budgets. P1-13 stays OPEN: no accepted real-device p95."
+    },
+    {
+      "id": 9,
+      "gate": "Mobile performance meets its budget",
+      "state": "RED",
+      "blocker": "Device matrix is a target list only. P1-13 stays OPEN: no accepted real-device mobile p95."
+    },
+    {
+      "id": 10,
+      "gate": "Soak, memory and context recovery pass",
+      "state": "RED",
+      "blocker": "RSH-040–RSH-042 lock leak, context-loss and 30-minute soak contracts. Required-CI soak-smoke stays 2 cycles. P1-12 stays OPEN."
+    },
+    {
+      "id": 11,
+      "gate": "Save and records are recoverable and valid",
+      "state": "RED",
+      "blocker": "RSH-021–RSH-023 are accepted. Accepted-unit progress is not release readiness."
+    },
+    {
+      "id": 12,
+      "gate": "UX, input, languages, accessibility and legal checks pass",
+      "state": "RED",
+      "blocker": "RSH-044–RSH-048 are accepted as locks. No WCAG AA, no privacy policy, 66 unverified assets remain."
+    },
+    {
+      "id": 13,
+      "gate": "Signed release, artifacts and rollback proof exist",
+      "state": "RED",
+      "blocker": "Private dossier and rollback proof are locked. signed_tag_created=false. Git tags=0. GitHub Releases=0. Public distribution remains forbidden."
+    }
+  ],
   "frozen_rsh_067_snapshot": {
     "file": "CURRENT-STATE.json",
     "visibility_current": "public",
