@@ -59,3 +59,14 @@ RSH-067 snapshot.
 Still not done: signed tag, GitHub Release, real-device p95, 30-minute soak in
 required CI, production JS/asset byte-size gate, clearance of 66 unverified assets,
 commit-signing enforcement.
+
+## Post-merge CI after PR #74 — 2026-09-16
+
+Not a new RSH unit. Operating-rule-6 reconciliation of PR #74 merge evidence.
+
+- Merge SHA: `d6da3aa43bfb19a4be8e673b9a28dcf6df7fdafb`
+- Validated head: `d803a992db238ef8400b38b30124993f99276023`
+- Post-merge `required-ci / validate`: run `35089028213` **success**
+- Live release gates stay **2/13** (gates 2 and 4 GREEN)
+- Remaining eleven gates recorded as RED with live blockers
+- Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged

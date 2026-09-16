@@ -34,7 +34,7 @@
 | Active PR | none |
 | Remaining units | 0 |
 | RSH-067 one-unit authority | consumed 1/1 |
-| Verified release gates | 2/13 live (`LIVE-GITHUB-STATUS.json`); RSH-067 snapshot stays 0/13 |
+| Verified release gates | 2/13 live (`LIVE-GITHUB-STATUS.json`); RSH-067 snapshot stays 0/13; post-merge CI after PR #74 is run `35089028213` success on `d6da3aa` |
 | Git tags | 0 |
 | GitHub Releases | 0 |
 
