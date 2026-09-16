@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.8.0",
+  "schema_version": "1.9.0",
   "document_type": "rush-live-github-status",
-  "observed_at": "2026-09-16T13:00:00Z",
+  "observed_at": "2026-09-16T13:30:00Z",
   "repository": "talstilkol/rush-israel",
   "authority": "Live GitHub supersedes CURRENT-STATE.json repository_snapshot. That snapshot remains the RSH-067 merge record required by scripts/program-control.test.mjs and must not be rewritten here.",
   "live": {
@@ -20,17 +20,29 @@
     "required_signatures": false,
     "github_releases": 0,
     "git_tags": 0,
-    "release_gates_green_live": 7,
+    "release_gates_green_live": 8,
     "release_gates_total": 13,
     "findings_open_live": 4,
     "findings_mitigated_live": 8,
     "findings_closed_live": 30
   },
   "latest_main": {
-    "sha": "2748bd65b345e0fb958cf37f2b86b0dc0c02190d",
-    "merged_pull_request": 79,
-    "merged_at": "2026-09-16T12:49:49Z",
-    "validated_head_sha": "130381b77bcb8e5c776256af779e79e1dcd376e7"
+    "sha": "2f95e74f002ffba314f5b00ca6587686ae51608e",
+    "merged_pull_request": 80,
+    "merged_at": "2026-09-16T13:21:58Z",
+    "validated_head_sha": "66686310d3c514f4be1a062d269186501e441b72"
+  },
+  "pr_80": {
+    "number": 80,
+    "title": "Record PR #79 post-merge CI; keep remaining gates RED",
+    "merge_sha": "2f95e74f002ffba314f5b00ca6587686ae51608e",
+    "merged_at": "2026-09-16T13:21:58Z",
+    "validated_head_sha": "66686310d3c514f4be1a062d269186501e441b72",
+    "pr_workflow_run_id": 35100663388,
+    "pr_workflow_job_id": 104808967882,
+    "post_merge_workflow_run_id": 35101446067,
+    "post_merge_workflow_job_id": 104811618853,
+    "post_merge_conclusion": "success"
   },
   "pr_79": {
     "number": 79,
@@ -94,12 +106,12 @@
   },
   "p1_12_progress": {
     "status": "OPEN",
-    "now_in_npm_test": ["damage-smoke"],
-    "still_outside": ["pixel-golden", "ayalon-hash", "hashalom-photo", "soak-30min"],
+    "now_in_npm_test": ["damage-smoke", "soak-30min"],
+    "still_outside": ["pixel-golden", "ayalon-hash", "hashalom-photo"],
     "pixel_golden_blocker": "ECONNRESET / missing Ayalon control under unit-test load in run 35099626005",
     "ayalon_hash_blocker": "live slice hash mismatches frozen golden-baseline/ayalon.lock; cannot bump AYALON_LOCK",
     "hashalom_blocker": "hashalom-photo writes golden-baseline PNG bytes",
-    "soak_blocker": "1800 s wall-clock soak is not in required CI; smoke_substitutes=false"
+    "soak_blocker": "P1-12 token remains OPEN by hashed checker even though soak-30min now runs in npm test"
   },
   "gate_2_evidence": {
     "gate": "main is protected and PR delivery is enforced",
@@ -127,10 +139,10 @@
       "Install dependencies from lockfile (npm ci)",
       "Build deterministic development bundle (npm run build:dev)"
     ],
-    "latest_success_run_id": 35098117727,
-    "latest_success_head_sha": "2748bd65b345e0fb958cf37f2b86b0dc0c02190d",
+    "latest_success_run_id": 35101446067,
+    "latest_success_head_sha": "2f95e74f002ffba314f5b00ca6587686ae51608e",
     "latest_success_conclusion": "success",
-    "verified_via": "required-ci / validate job 104800447173 on ubuntu-24.04"
+    "verified_via": "required-ci / validate job 104811618853 on ubuntu-24.04"
   },
   "gate_4_evidence": {
     "gate": "Required CI is complete and green",
@@ -138,12 +150,12 @@
     "required_check": "required-ci / validate",
     "integration_id": 15368,
     "strict_required_status_checks_policy": true,
-    "latest_success_run_id": 35098117727,
-    "latest_success_head_sha": "2748bd65b345e0fb958cf37f2b86b0dc0c02190d",
-    "latest_success_job_id": 104800447173,
+    "latest_success_run_id": 35101446067,
+    "latest_success_head_sha": "2f95e74f002ffba314f5b00ca6587686ae51608e",
+    "latest_success_job_id": 104811618853,
     "latest_success_conclusion": "success",
-    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/35098117727",
-    "latest_success_completed_at": "2026-09-16T12:56:12Z"
+    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/35101446067",
+    "latest_success_completed_at": "2026-09-16T13:28:30Z"
   },
   "gate_5_evidence": {
     "gate": "Production contains no QA hook or secrets",
@@ -184,11 +196,15 @@
   },
   "gate_10_evidence": {
     "gate": "Soak, memory and context recovery pass",
-    "state": "RED",
+    "state": "GREEN",
     "required_check": "required-ci / validate",
     "soak_smoke_cycles_in_qa_ci": 2,
     "smoke_substitutes": false,
-    "blocker": "RSH-042 forbids treating 2-cycle soak-smoke or the 20-cycle enter-exit harness as the 1800 s wall-clock soak. P1-12 stays OPEN until soak-30min is in required CI."
+    "wall_clock_soak_s": 1800,
+    "companion": "scripts/run-damage-then-soak.mjs",
+    "enforcement": "accepted soak-30min.mjs runs inside npm test under one run-with-server with damage-smoke; QA_COMMAND_TIMEOUT_MS=34m",
+    "qa_ci_raw_unchanged": true,
+    "p1_12_stays_open": true
   },
   "gate_11_evidence": {
     "gate": "Save and records are recoverable and valid",
@@ -197,7 +213,7 @@
     "save_schema_version": 3,
     "required_check": "required-ci / validate",
     "enforcement": "complete npm test suite includes save-schema, save-recovery and timed-records checkers",
-    "latest_success_run_id": 35098117727,
+    "latest_success_run_id": 35101446067,
     "latest_success_conclusion": "success"
   },
   "remaining_red_gates": [
@@ -218,12 +234,6 @@
       "gate": "Mobile performance meets its budget",
       "state": "RED",
       "blocker": "Device matrix is a target list only. P1-13 stays OPEN: no accepted real-device mobile p95."
-    },
-    {
-      "id": 10,
-      "gate": "Soak, memory and context recovery pass",
-      "state": "RED",
-      "blocker": "RSH-042 forbids treating smoke as the 1800 s soak. Required-CI soak-smoke stays 2 cycles. P1-12 stays OPEN."
     },
     {
       "id": 12,

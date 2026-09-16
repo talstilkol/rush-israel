@@ -139,3 +139,18 @@ required. Hashed `qa:ci:raw` is unchanged.
 - P1-12 stays **OPEN**
 - P1-13, P2-03, P2-09 stay **OPEN**
 - Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged
+
+## Live gate 10 — 2026-09-16 (after PR #80)
+
+Not a new RSH unit. Companion `scripts/run-damage-then-soak.mjs` runs
+accepted `damage-smoke.mjs` then the 1800 s wall-clock `soak-30min.mjs`
+inside `npm test` under one `run-with-server` process.
+`QA_COMMAND_TIMEOUT_MS` is 34 minutes for that spawn. Hashed `qa:ci:raw`
+still runs 2-cycle soak-smoke. This is not a smoke substitute.
+
+- Gate 10 **GREEN**
+- Live release gates **8/13**
+- P1-12 stays **OPEN** (hashed token)
+- P1-13, P2-03, P2-09 stay **OPEN**
+- Remaining RED: 1, 8, 9, 12, 13
+- Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged
