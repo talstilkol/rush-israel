@@ -195,7 +195,7 @@ root-branding assets remain unverified.
 | 3 | A clean clone installs and builds reproducibly | GREEN — required-ci runs toolchain, `npm ci` and `build:dev` on ubuntu-24.04 |
 | 4 | Required CI is complete and green | GREEN — `required-ci / validate` is a required status check |
 | 5 | Production contains no QA hook or secrets | GREEN — companion public-text secret scan in `npm test` |
-| 6 | Ayalon is owner-approved and frozen | GREEN — freeze granted, 6 builder-import pins, pixel-golden and ayalon-hash in `npm test` |
+| 6 | Ayalon is owner-approved and frozen | GREEN — freeze granted plus 6 direct builder-import pins |
 | 7 | Driving, physics, ramps and damage pass | GREEN — drive/ramp/physics already in qa:ci; damage-smoke now in `npm test` |
 | 8 | Desktop performance meets its budget | RED — P1-13 OPEN (no real-device p95) |
 | 9 | Mobile performance meets its budget | RED — P1-13 OPEN |

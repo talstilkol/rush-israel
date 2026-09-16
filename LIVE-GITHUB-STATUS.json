@@ -94,8 +94,10 @@
   },
   "p1_12_progress": {
     "status": "OPEN",
-    "now_in_npm_test": ["damage-smoke", "ayalon-hash", "pixel-golden"],
-    "still_outside": ["hashalom-photo", "soak-30min"],
+    "now_in_npm_test": ["damage-smoke"],
+    "still_outside": ["pixel-golden", "ayalon-hash", "hashalom-photo", "soak-30min"],
+    "pixel_golden_blocker": "ECONNRESET / missing Ayalon control under unit-test load in run 35099626005",
+    "ayalon_hash_blocker": "live slice hash mismatches frozen golden-baseline/ayalon.lock; cannot bump AYALON_LOCK",
     "hashalom_blocker": "hashalom-photo writes golden-baseline PNG bytes",
     "soak_blocker": "1800 s wall-clock soak is not in required CI; smoke_substitutes=false"
   },
@@ -168,9 +170,7 @@
       "src/game/sign-assets.ts",
       "src/game/road-assets.ts",
       "src/game/world-builders/shared.ts"
-    ],
-    "pixel_golden_in_npm_test": true,
-    "ayalon_hash_in_npm_test": true
+    ]
   },
   "gate_7_evidence": {
     "gate": "Driving, physics, ramps and damage pass",

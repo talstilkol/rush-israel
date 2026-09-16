@@ -46,8 +46,6 @@ test("LIVE-GITHUB-STATUS is private, protected and names exact gate evidence", (
   assert.equal(live.gate_6_evidence.freeze_granted, true);
   assert.equal(live.gate_6_evidence.transitive_hashes, 36);
   assert.equal(live.gate_6_evidence.direct_import_pins, 6);
-  assert.equal(live.gate_6_evidence.pixel_golden_in_npm_test, true);
-  assert.equal(live.gate_6_evidence.ayalon_hash_in_npm_test, true);
   assert.equal(live.gate_7_evidence.state, "GREEN");
   assert.equal(live.gate_7_evidence.qa_ci_raw_unchanged, true);
   assert.equal(live.gate_10_evidence.state, "RED");
@@ -87,8 +85,13 @@ test("PR #79 merge evidence, P1-12 progress and six remaining gates stay RED", (
   assert.equal(live.latest_main.sha, live.pr_79.merge_sha);
   assert.equal(live.latest_main.merged_pull_request, 79);
   assert.equal(live.p1_12_progress.status, "OPEN");
-  assert.deepEqual(live.p1_12_progress.now_in_npm_test, ["damage-smoke", "ayalon-hash", "pixel-golden"]);
-  assert.deepEqual(live.p1_12_progress.still_outside, ["hashalom-photo", "soak-30min"]);
+  assert.deepEqual(live.p1_12_progress.now_in_npm_test, ["damage-smoke"]);
+  assert.deepEqual(live.p1_12_progress.still_outside, [
+    "pixel-golden",
+    "ayalon-hash",
+    "hashalom-photo",
+    "soak-30min",
+  ]);
   const red = live.remaining_red_gates;
   assert.equal(red.length, 6);
   assert.deepEqual(red.map((row) => row.id), [1, 8, 9, 10, 12, 13]);
@@ -98,7 +101,7 @@ test("PR #79 merge evidence, P1-12 progress and six remaining gates stay RED", (
     assert.ok(row.blocker.length > 20);
   }
   const changelog = readFileSync(fromRoot("CHANGELOG.md"), "utf8");
-  assert.match(changelog, /Pixel-golden and Ayalon lock join required npm test — 2026-09-16/);
+  assert.match(changelog, /Pixel-golden and Ayalon lock stay outside required npm test — 2026-09-16/);
   assert.match(changelog, /35098117727/);
   const adr = readFileSync(fromRoot("ADR-REGISTER.md"), "utf8");
   assert.match(adr, /ADR-012/);
