@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.3.0",
+  "schema_version": "1.4.0",
   "document_type": "rush-live-github-status",
-  "observed_at": "2026-09-16T11:18:00Z",
+  "observed_at": "2026-09-16T11:35:00Z",
   "repository": "talstilkol/rush-israel",
   "authority": "Live GitHub supersedes CURRENT-STATE.json repository_snapshot. That snapshot remains the RSH-067 merge record required by scripts/program-control.test.mjs and must not be rewritten here.",
   "live": {
@@ -20,28 +20,28 @@
     "required_signatures": false,
     "github_releases": 0,
     "git_tags": 0,
-    "release_gates_green_live": 2,
+    "release_gates_green_live": 4,
     "release_gates_total": 13,
     "findings_open_live": 4,
     "findings_mitigated_live": 8,
     "findings_closed_live": 30
   },
   "latest_main": {
-    "sha": "d6da3aa43bfb19a4be8e673b9a28dcf6df7fdafb",
-    "merged_pull_request": 74,
-    "merged_at": "2026-09-16T11:11:57Z",
-    "validated_head_sha": "d803a992db238ef8400b38b30124993f99276023"
+    "sha": "2cfd6616cb0affcb687611aaa9b15ae33fa8fc32",
+    "merged_pull_request": 75,
+    "merged_at": "2026-09-16T11:29:04Z",
+    "validated_head_sha": "cca7f065e214b3ba47f42301ad3de6d77c5ce119"
   },
-  "pr_74": {
-    "number": 74,
-    "title": "Close stale post-v1 findings (P0-10, P1-16) and mitigate P2-04",
-    "merge_sha": "d6da3aa43bfb19a4be8e673b9a28dcf6df7fdafb",
-    "merged_at": "2026-09-16T11:11:57Z",
-    "validated_head_sha": "d803a992db238ef8400b38b30124993f99276023",
-    "pr_workflow_run_id": 34774680420,
-    "pr_workflow_job_id": 103770505359,
-    "post_merge_workflow_run_id": 35089028213,
-    "post_merge_workflow_job_id": 104770648259,
+  "pr_75": {
+    "number": 75,
+    "title": "Record PR #74 post-merge CI and remaining RED release gates",
+    "merge_sha": "2cfd6616cb0affcb687611aaa9b15ae33fa8fc32",
+    "merged_at": "2026-09-16T11:29:04Z",
+    "validated_head_sha": "cca7f065e214b3ba47f42301ad3de6d77c5ce119",
+    "pr_workflow_run_id": 35089835295,
+    "pr_workflow_job_id": 104773278227,
+    "post_merge_workflow_run_id": 35090558345,
+    "post_merge_workflow_job_id": 104775596463,
     "post_merge_conclusion": "success"
   },
   "gate_2_evidence": {
@@ -59,43 +59,78 @@
     "deletion_blocked": true,
     "verified_via": "GET /repos/talstilkol/rush-israel/branches/main protected=true and GET /repos/talstilkol/rush-israel/rulesets/23177340"
   },
+  "gate_3_evidence": {
+    "gate": "A clean clone installs and builds reproducibly",
+    "state": "GREEN",
+    "required_check": "required-ci / validate",
+    "steps": [
+      "Set up pinned Node.js from .nvmrc",
+      "Install pinned npm@10.9.2",
+      "Verify toolchain",
+      "Install dependencies from lockfile (npm ci)",
+      "Build deterministic development bundle (npm run build:dev)"
+    ],
+    "latest_success_run_id": 35090558345,
+    "latest_success_head_sha": "2cfd6616cb0affcb687611aaa9b15ae33fa8fc32",
+    "latest_success_conclusion": "success",
+    "verified_via": "required-ci / validate job 104775596463 on ubuntu-24.04"
+  },
   "gate_4_evidence": {
     "gate": "Required CI is complete and green",
     "state": "GREEN",
     "required_check": "required-ci / validate",
     "integration_id": 15368,
     "strict_required_status_checks_policy": true,
-    "latest_success_run_id": 35089028213,
-    "latest_success_head_sha": "d6da3aa43bfb19a4be8e673b9a28dcf6df7fdafb",
-    "latest_success_job_id": 104770648259,
+    "latest_success_run_id": 35090558345,
+    "latest_success_head_sha": "2cfd6616cb0affcb687611aaa9b15ae33fa8fc32",
+    "latest_success_job_id": 104775596463,
     "latest_success_conclusion": "success",
-    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/35089028213",
-    "latest_success_completed_at": "2026-09-16T11:17:55Z"
+    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/35090558345",
+    "latest_success_completed_at": "2026-09-16T11:34:49Z"
+  },
+  "gate_5_evidence": {
+    "gate": "Production contains no QA hook or secrets",
+    "state": "RED",
+    "required_check": "required-ci / validate",
+    "qa_step": "Run self-starting QA gate (npm run qa:ci)",
+    "blocker": "Secret scan excludes every public/ path. Shipped text under public/basis and public/__grok is not scanned, so this cannot prove production contains no secrets."
+  },
+  "gate_6_evidence": {
+    "gate": "Ayalon is owner-approved and frozen",
+    "state": "RED",
+    "freeze_granted": true,
+    "transitive_hashes": 36,
+    "lock_directory": "src/game/ayalon-freeze/",
+    "blocker": "The 36-hash freeze inventory does not cover direct Ayalon builder dependencies (spline, arrow-assets, sign-assets, road-assets, world-builders/shared). freeze_granted=true is not a complete dependency closure."
+  },
+  "gate_11_evidence": {
+    "gate": "Save and records are recoverable and valid",
+    "state": "GREEN",
+    "accepted_units": ["RSH-021", "RSH-022", "RSH-023"],
+    "save_schema_version": 3,
+    "required_check": "required-ci / validate",
+    "enforcement": "complete npm test suite includes save-schema, save-recovery and timed-records checkers",
+    "latest_success_run_id": 35090558345,
+    "latest_success_conclusion": "success"
   },
   "remaining_red_gates": [
     {
       "id": 1,
       "gate": "Visibility and licensing agree with owner policy",
       "state": "RED",
-      "blocker": "66 unverified assets remain uncleared (P0-12). Live visibility is private and agrees with owner policy, but legal clearance is not complete."
-    },
-    {
-      "id": 3,
-      "gate": "A clean clone installs and builds reproducibly",
-      "state": "RED",
-      "blocker": "required-ci on ubuntu-24.04 ran toolchain verify, npm ci and build:dev successfully on d6da3aa43bfb19a4be8e673b9a28dcf6df7fdafb. Evidence exists; unit manifests still freeze release_gates_green at 0 so this is not a release-authority close."
+      "blocker": "66 unverified assets remain uncleared (P0-12). Live visibility is private. Asset checkers freeze unverified_asset_files at 66."
     },
     {
       "id": 5,
       "gate": "Production contains no QA hook or secrets",
       "state": "RED",
-      "blocker": "check:qa and secret scanning run inside required-ci. P1-01 stays MITIGATED because the RSH-067 CURRENT-STATE snapshot still records unapplied GitHub enforcement."
+      "blocker": "Secret scan excludes public/. Shipped public/basis and public/__grok text is not scanned."
     },
     {
       "id": 6,
       "gate": "Ayalon is owner-approved and frozen",
       "state": "RED",
-      "blocker": "G5 is accepted and freeze_granted=true with 36 hashes. Accepted-unit progress is not release readiness."
+      "blocker": "freeze_granted=true with 36 hashes. Direct Ayalon builder dependencies are outside the freeze inventory."
     },
     {
       "id": 7,
@@ -122,12 +157,6 @@
       "blocker": "RSH-040–RSH-042 lock leak, context-loss and 30-minute soak contracts. Required-CI soak-smoke stays 2 cycles. P1-12 stays OPEN."
     },
     {
-      "id": 11,
-      "gate": "Save and records are recoverable and valid",
-      "state": "RED",
-      "blocker": "RSH-021–RSH-023 are accepted. Accepted-unit progress is not release readiness."
-    },
-    {
       "id": 12,
       "gate": "UX, input, languages, accessibility and legal checks pass",
       "state": "RED",
@@ -137,7 +166,7 @@
       "id": 13,
       "gate": "Signed release, artifacts and rollback proof exist",
       "state": "RED",
-      "blocker": "Private dossier and rollback proof are locked. signed_tag_created=false. Git tags=0. GitHub Releases=0. Public distribution remains forbidden."
+      "blocker": "Private dossier and rollback proof are locked. signed_tag_created=false in the hashed v1-publish lock. Git tags=0. GitHub Releases=0. Public distribution remains forbidden. Agent commits are unsigned so required_signatures cannot be enabled without blocking merge-commit delivery."
     }
   ],
   "frozen_rsh_067_snapshot": {
