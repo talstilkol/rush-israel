@@ -23,7 +23,7 @@ test("LIVE-GITHUB-STATUS is private, protected and names exact gate evidence", (
   assert.equal(live.live.required_signatures, false);
   assert.equal(live.live.github_releases, 0);
   assert.equal(live.live.git_tags, 0);
-  assert.equal(live.live.release_gates_green_live, 8);
+  assert.equal(live.live.release_gates_green_live, 7);
   assert.equal(live.live.release_gates_total, 13);
   assert.equal(live.live.findings_open_live, 4);
   assert.equal(live.live.findings_mitigated_live, 8);
@@ -48,8 +48,7 @@ test("LIVE-GITHUB-STATUS is private, protected and names exact gate evidence", (
   assert.equal(live.gate_6_evidence.direct_import_pins, 6);
   assert.equal(live.gate_7_evidence.state, "GREEN");
   assert.equal(live.gate_7_evidence.qa_ci_raw_unchanged, true);
-  assert.equal(live.gate_10_evidence.state, "GREEN");
-  assert.equal(live.gate_10_evidence.enter_exit_cycles_in_npm_test, 20);
+  assert.equal(live.gate_10_evidence.state, "RED");
   assert.equal(live.gate_10_evidence.smoke_substitutes, false);
   assert.equal(live.gate_11_evidence.state, "GREEN");
 });
@@ -77,7 +76,7 @@ test("live findings close stale vertical-slice items and keep checker-locked OPE
   assert.match(findings, /\| P1-01 \| P1 \| \*\*MITIGATED\*\*/);
 });
 
-test("PR #78 merge evidence and five remaining gates stay RED", () => {
+test("PR #78 merge evidence and six remaining gates stay RED", () => {
   const live = readJson("LIVE-GITHUB-STATUS.json");
   assert.equal(live.pr_78.number, 78);
   assert.equal(live.pr_78.merge_sha, "a0850f9523224b8224d940b910c69e8986681578");
@@ -86,18 +85,18 @@ test("PR #78 merge evidence and five remaining gates stay RED", () => {
   assert.equal(live.latest_main.sha, live.pr_78.merge_sha);
   assert.equal(live.latest_main.merged_pull_request, 78);
   const red = live.remaining_red_gates;
-  assert.equal(red.length, 5);
-  assert.deepEqual(red.map((row) => row.id), [1, 8, 9, 12, 13]);
+  assert.equal(red.length, 6);
+  assert.deepEqual(red.map((row) => row.id), [1, 8, 9, 10, 12, 13]);
   for (const row of red) {
     assert.equal(row.state, "RED");
     assert.equal(typeof row.blocker, "string");
     assert.ok(row.blocker.length > 20);
   }
   const changelog = readFileSync(fromRoot("CHANGELOG.md"), "utf8");
-  assert.match(changelog, /Live gate 10 — 2026-09-16/);
+  assert.match(changelog, /Live gate 10 stays RED — 2026-09-16/);
   assert.match(changelog, /35095481235/);
   const adr = readFileSync(fromRoot("ADR-REGISTER.md"), "utf8");
   assert.match(adr, /ADR-011/);
   const plan = readFileSync(fromRoot("MASTER-PLAN.md"), "utf8");
-  assert.match(plan, /\*\*8\/13\*\* \(gates 2, 3, 4, 5, 6, 7, 10 and 11\)/);
+  assert.match(plan, /\*\*7\/13\*\* \(gates 2, 3, 4, 5, 6, 7 and 11\)/);
 });

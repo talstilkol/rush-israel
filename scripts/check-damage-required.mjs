@@ -3,7 +3,6 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot } from "./project-root.mjs";
-import { withQaPortLockSync } from "./qa-port-lock.mjs";
 
 export const DAMAGE_SMOKE_TOKENS = ["setDamage", "getDamage", "Escape", "resetStart"];
 
@@ -13,7 +12,7 @@ export function missingDamageSmokeTokens() {
 }
 
 export function runDamageSmoke() {
-  return withQaPortLockSync(() => spawnSync(
+  return spawnSync(
     process.execPath,
     [
       fromRoot("scripts", "run-with-server.mjs"),
@@ -26,7 +25,7 @@ export function runDamageSmoke() {
       encoding: "utf8",
       timeout: 180_000,
     },
-  ));
+  );
 }
 
 function isMainModule(url) {

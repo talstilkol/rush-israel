@@ -20,7 +20,7 @@
     "required_signatures": false,
     "github_releases": 0,
     "git_tags": 0,
-    "release_gates_green_live": 8,
+    "release_gates_green_live": 7,
     "release_gates_total": 13,
     "findings_open_live": 4,
     "findings_mitigated_live": 8,
@@ -163,16 +163,11 @@
   },
   "gate_10_evidence": {
     "gate": "Soak, memory and context recovery pass",
-    "state": "GREEN",
+    "state": "RED",
     "required_check": "required-ci / validate",
     "soak_smoke_cycles_in_qa_ci": 2,
-    "enter_exit_cycles_in_npm_test": 20,
-    "companion": "scripts/check-leak-required.test.mjs",
-    "context_loss_checker": "scripts/check-context-loss.test.mjs",
-    "enforcement": "qa:ci already runs soak-smoke (2 cycles). npm test now runs the 20-cycle enter-exit leak harness and the context-loss lock checker. 1800 s wall-clock soak stays outside required CI.",
     "smoke_substitutes": false,
-    "qa_ci_raw_unchanged": true,
-    "p1_12_stays_open": true
+    "blocker": "RSH-042 forbids treating 2-cycle soak-smoke or the 20-cycle enter-exit harness as the 1800 s wall-clock soak. P1-12 stays OPEN until soak-30min is in required CI."
   },
   "gate_11_evidence": {
     "gate": "Save and records are recoverable and valid",
@@ -202,6 +197,12 @@
       "gate": "Mobile performance meets its budget",
       "state": "RED",
       "blocker": "Device matrix is a target list only. P1-13 stays OPEN: no accepted real-device mobile p95."
+    },
+    {
+      "id": 10,
+      "gate": "Soak, memory and context recovery pass",
+      "state": "RED",
+      "blocker": "RSH-042 forbids treating smoke as the 1800 s soak. Required-CI soak-smoke stays 2 cycles. P1-12 stays OPEN."
     },
     {
       "id": 12,
