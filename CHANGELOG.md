@@ -85,3 +85,16 @@ Frozen unit manifests stay `release_gates_green: 0`.
 - Live release gates **4/13**
 - P1-12, P1-13, P2-03, P2-09 stay **OPEN**
 - Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged
+
+## Live gates 5 and 6 — 2026-09-16 (after PR #76)
+
+Not a new RSH unit. Companion checkers close the Codex gaps without rewriting
+hashed RSH-024 / RSH-036 identities.
+
+- PR #76 merge SHA: `2c248783c72433b101b90c299a5a1f8ecbb1fefa`
+- Post-merge `required-ci / validate`: run `35092771176` **success**
+- Gate 5 **GREEN** — `scripts/check-public-secrets.mjs` scans 8 shipped public text/SVG files in `npm test` (frozen `secrets-check.mjs` still excludes `public/`)
+- Gate 6 **GREEN** — `scripts/check-ayalon-builder-deps.mjs` pins the 6 direct Ayalon builder imports (36-hash freeze inventory unchanged)
+- Live release gates **6/13**
+- P1-12, P1-13, P2-03, P2-09 stay **OPEN**
+- Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged

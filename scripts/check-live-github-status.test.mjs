@@ -9,7 +9,7 @@ test("LIVE-GITHUB-STATUS is private, protected and names exact gate evidence", (
   const live = readJson("LIVE-GITHUB-STATUS.json");
   assert.equal(live.document_type, "rush-live-github-status");
   assert.equal(live.repository, "talstilkol/rush-israel");
-  assert.equal(live.schema_version, "1.4.0");
+  assert.equal(live.schema_version, "1.5.0");
   assert.equal(live.live.visibility, "private");
   assert.equal(live.live.private, true);
   assert.equal(live.live.main_protected, true);
@@ -23,7 +23,7 @@ test("LIVE-GITHUB-STATUS is private, protected and names exact gate evidence", (
   assert.equal(live.live.required_signatures, false);
   assert.equal(live.live.github_releases, 0);
   assert.equal(live.live.git_tags, 0);
-  assert.equal(live.live.release_gates_green_live, 4);
+  assert.equal(live.live.release_gates_green_live, 6);
   assert.equal(live.live.release_gates_total, 13);
   assert.equal(live.live.findings_open_live, 4);
   assert.equal(live.live.findings_mitigated_live, 8);
@@ -38,12 +38,14 @@ test("LIVE-GITHUB-STATUS is private, protected and names exact gate evidence", (
   assert.equal(live.gate_4_evidence.latest_success_conclusion, "success");
   assert.equal(typeof live.gate_4_evidence.latest_success_run_id, "number");
   assert.match(live.gate_4_evidence.latest_success_head_sha, /^[0-9a-f]{40}$/);
-  assert.equal(live.gate_4_evidence.latest_success_run_id, 35090558345);
-  assert.equal(live.gate_4_evidence.latest_success_head_sha, "2cfd6616cb0affcb687611aaa9b15ae33fa8fc32");
-  assert.equal(live.gate_5_evidence.state, "RED");
-  assert.equal(live.gate_6_evidence.state, "RED");
+  assert.equal(live.gate_4_evidence.latest_success_run_id, 35092771176);
+  assert.equal(live.gate_4_evidence.latest_success_head_sha, "2c248783c72433b101b90c299a5a1f8ecbb1fefa");
+  assert.equal(live.gate_5_evidence.state, "GREEN");
+  assert.equal(live.gate_5_evidence.public_text_files_scanned, 8);
+  assert.equal(live.gate_6_evidence.state, "GREEN");
   assert.equal(live.gate_6_evidence.freeze_granted, true);
   assert.equal(live.gate_6_evidence.transitive_hashes, 36);
+  assert.equal(live.gate_6_evidence.direct_import_pins, 6);
   assert.equal(live.gate_11_evidence.state, "GREEN");
 });
 
@@ -70,27 +72,27 @@ test("live findings close stale vertical-slice items and keep checker-locked OPE
   assert.match(findings, /\| P1-01 \| P1 \| \*\*MITIGATED\*\*/);
 });
 
-test("PR #75 merge evidence and nine remaining gates stay RED", () => {
+test("PR #76 merge evidence and seven remaining gates stay RED", () => {
   const live = readJson("LIVE-GITHUB-STATUS.json");
-  assert.equal(live.pr_75.number, 75);
-  assert.equal(live.pr_75.merge_sha, "2cfd6616cb0affcb687611aaa9b15ae33fa8fc32");
-  assert.equal(live.pr_75.post_merge_workflow_run_id, 35090558345);
-  assert.equal(live.pr_75.post_merge_conclusion, "success");
-  assert.equal(live.latest_main.sha, live.pr_75.merge_sha);
-  assert.equal(live.latest_main.merged_pull_request, 75);
+  assert.equal(live.pr_76.number, 76);
+  assert.equal(live.pr_76.merge_sha, "2c248783c72433b101b90c299a5a1f8ecbb1fefa");
+  assert.equal(live.pr_76.post_merge_workflow_run_id, 35092771176);
+  assert.equal(live.pr_76.post_merge_conclusion, "success");
+  assert.equal(live.latest_main.sha, live.pr_76.merge_sha);
+  assert.equal(live.latest_main.merged_pull_request, 76);
   const red = live.remaining_red_gates;
-  assert.equal(red.length, 9);
-  assert.deepEqual(red.map((row) => row.id), [1, 5, 6, 7, 8, 9, 10, 12, 13]);
+  assert.equal(red.length, 7);
+  assert.deepEqual(red.map((row) => row.id), [1, 7, 8, 9, 10, 12, 13]);
   for (const row of red) {
     assert.equal(row.state, "RED");
     assert.equal(typeof row.blocker, "string");
     assert.ok(row.blocker.length > 20);
   }
   const changelog = readFileSync(fromRoot("CHANGELOG.md"), "utf8");
-  assert.match(changelog, /Live gates 3 and 11 — 2026-09-16/);
-  assert.match(changelog, /35090558345/);
+  assert.match(changelog, /Live gates 5 and 6 — 2026-09-16/);
+  assert.match(changelog, /35092771176/);
   const adr = readFileSync(fromRoot("ADR-REGISTER.md"), "utf8");
-  assert.match(adr, /ADR-008/);
+  assert.match(adr, /ADR-009/);
   const plan = readFileSync(fromRoot("MASTER-PLAN.md"), "utf8");
-  assert.match(plan, /\*\*4\/13\*\* \(gates 2, 3, 4 and 11\)/);
+  assert.match(plan, /\*\*6\/13\*\* \(gates 2, 3, 4, 5, 6 and 11\)/);
 });
