@@ -98,3 +98,16 @@ hashed RSH-024 / RSH-036 identities.
 - Live release gates **6/13**
 - P1-12, P1-13, P2-03, P2-09 stay **OPEN**
 - Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged
+
+## Live gate 7 — 2026-09-16 (after PR #77)
+
+Not a new RSH unit. Companion `scripts/check-damage-required.test.mjs` runs
+accepted `damage-smoke.mjs` inside `npm test`. Hashed `qa:ci:raw` is unchanged.
+
+- PR #77 merge SHA: `5914600cd6e5f66f79b18cb64d7e79c6c5039c3b`
+- Post-merge `required-ci / validate`: run `35094034867` **success**
+- Gate 7 **GREEN** — drive/ramp/physics already in qa:ci; damage-smoke now required via npm test
+- Live release gates **7/13**
+- P1-12 stays **OPEN** (golden/HaShalom/long-soak still outside the required gate)
+- P1-13, P2-03, P2-09 stay **OPEN**
+- Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged
