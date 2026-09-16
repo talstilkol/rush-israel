@@ -1,12 +1,12 @@
 # RUSH Israel — Findings Register
 
-**Version:** 2.5.0
+**Version:** 2.6.0
 **RSH-024 implementation base:** `10d0624fce7813b7ad7082adc3c4e92e56c1b851`
-**Live GitHub re-verification:** 13 September 2026 after owner settings applied on `main` `ce1f8bc`
+**Live GitHub re-verification:** 13 September 2026 after owner settings on `main` `7bd895d` and post-v1 findings pass
 **State effective on:** live GitHub supersedes recorded SHAs
 **Date:** 13 September 2026
 **Total:** 42 findings — 12 P0, 18 P1, 12 P2
-**Status:** 6 OPEN, 8 MITIGATED, 28 CLOSED
+**Status:** 4 OPEN, 8 MITIGATED, 30 CLOSED
 
 ## Status rules
 
@@ -29,8 +29,8 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P0-07 | P0 | **CLOSED** | Secret scanning is too narrow | RSH-024 scans tracked text under `src/`, `scripts/`, `server/` and `.github/` with eight fail-closed patterns instead of only `src/game`. | RSH-024 |
 | P0-08 | P0 | **MITIGATED** | Operational contracts are ignored by Git | Governance, contribution, security, toolchain, QA, CI, product and metadata contracts are versioned; ignored AGENTS/startup files still require a decision. | RSH-002, RSH-004, RSH-012 |
 | P0-09 | P0 | **CLOSED** | Program status sources contradict one another | Canonical state, queue, master plan and NEXT authority are merged; historical files are explicitly non-controlling. | RSH-001 |
-| P0-10 | P0 | **MITIGATED** | The last audit is stale and sequencing rules were violated | The queue was reset, product scope was frozen, all 56 tracks were classified and asset/metadata authorities were established; vertical-slice enforcement remains pending. | RSH-009–RSH-012, RSH-025 |
-| P0-11 | P0 | **MITIGATED** | No version, tag, release or rollback baseline exists | Immutable baseline, milestone, label and release registers exist; tags, releases and rollback proof remain absent. | RSH-063, RSH-064, RSH-067 |
+| P0-10 | P0 | **CLOSED** | The last audit is stale and sequencing rules were violated | RSH-009 froze the product definition. RSH-010 classified 8 MVP and 48 deferred tracks. RSH-025–RSH-036 accepted the Ayalon vertical slice including freeze. G5 is ACCEPTED. Historical sequencing violations are retained, not rewritten. | RSH-009–RSH-012, RSH-025–RSH-036 |
+| P0-11 | P0 | **MITIGATED** | No version, tag, release or rollback baseline exists | Immutable baseline, milestone, label and release registers exist; private dossier and rollback proof are locked. Git tags and GitHub Releases remain absent. | Owner signed tag; public GitHub Release remains forbidden |
 | P0-12 | P0 | **MITIGATED** | Root licensing and asset provenance are incomplete | RSH-011 inventories 134/134 public files; RSH-012 establishes the proprietary root licence. Exactly 66 asset files remain unverified and uncleared. | Replace or document every unverified asset; keep public distribution blocked |
 | P1-01 | P1 | **MITIGATED** | Production QA-hook removal is not enforced by GitHub | `check:qa` runs inside `required-ci / validate`. Live ruleset `23177340` now requires that check on `main`. CURRENT-STATE still records the RSH-067-era unapplied claim, so this finding stays mitigated rather than overstating a control-plane freeze. | Keep ruleset active |
 | P1-02 | P1 | **CLOSED** | Timed-record hashes are generated but not verified on read | RSH-023 verifies SHA-256 record hashes on every load, drops stale physics versions and structurally invalid rows, and bounds storage to 24 per track/car plus 200 overall. | RSH-023 |
@@ -47,14 +47,14 @@ A complete asset inventory and proprietary root licence do not clear unverified 
 | P1-13 | P1 | **OPEN** | No accepted real-device performance baseline exists | No verified desktop/mobile p95, memory or draw-call evidence exists. | RSH-037, RSH-043 |
 | P1-14 | P1 | **CLOSED** | Core source files are excessively large | RSH-014–RSH-017 establish track, world and engine boundaries. RSH-018 reduces `game-app.tsx` from 1540 to 179 lines and moves screens, HUD and race control into three manifest-bound modules with byte-exact reconstruction. | RSH-014–RSH-018 |
 | P1-15 | P1 | **CLOSED** | Content, rendering, physics, UI and QA are tightly coupled | RSH-013–RSH-019 establish track, world, engine, UI and resource boundaries. RSH-020 removes unused template subsystems and pins the final direct dependency surface. | RSH-013–RSH-020 |
-| P1-16 | P1 | **OPEN** | Catalogue breadth precedes a verified vertical slice | RSH-010 classifies 8 MVP and 48 deferred tracks, but no track has an owner-approved release freeze. | RSH-025 through RSH-036 |
-| P1-17 | P1 | **MITIGATED** | Golden evidence does not yet form a trusted acceptance authority | RSH-035 records owner approval of the 20 unique Ayalon/HaShalom frames and keeps the four duplicate placeholders non-authority. Ayalon freeze and transitive-dependency hashes remain RSH-036. | RSH-036 |
+| P1-16 | P1 | **CLOSED** | Catalogue breadth precedes a verified vertical slice | RSH-036 granted Ayalon freeze (`freeze_granted=true`, 36 transitive SHA-256 hashes). RSH-049–RSH-062 locked the remaining seven Version 1 tracks. All eight MVP tracks have accepted geometry and golden/freeze units. 48 catalogue entries remain deferred. | RSH-025 through RSH-062 |
+| P1-17 | P1 | **MITIGATED** | Golden evidence does not yet form a trusted acceptance authority | RSH-035 records owner approval of the 20 unique Ayalon/HaShalom frames and keeps the four duplicate placeholders non-authority. RSH-036 granted freeze with 36 hashes. Pixel-golden comparison is still outside required CI, so this stays mitigated. | Keep freeze; P1-12 covers CI expansion |
 | P1-18 | P1 | **MITIGATED** | `EXECUTION_PLAN.md` is an operational monolith | RSH-001 removed it from queue authority, but the historic monolith remains. | RSH-001 |
 | P2-01 | P2 | **CLOSED** | Product metadata references Israel and New York | RSH-012 aligns the root title, description, package metadata, Open Graph and both PWA runtime paths to the frozen Israel-inspired private product. | RSH-012 |
 | P2-02 | P2 | **CLOSED** | CODEOWNERS and contribution templates are absent | RSH-002 merged CODEOWNERS, a PR template, contribution policy and governance contract. | RSH-002 |
 | P2-03 | P2 | **OPEN** | Commit-signing policy is not enforced | Recent GitHub merge commits are verified, but historical commits and future enforcement are not governed by a required rule. | RSH-063 |
-| P2-04 | P2 | **OPEN** | Commit cadence and direct-main history reduce reviewability | New work uses PRs, but historical rapid direct-main changes remain and technical settings enforcement is pending. | Apply desired ruleset |
-| P2-05 | P2 | **CLOSED** | No changelog or architecture-decision register exists | Private `CHANGELOG.md` records RSH-001–RSH-067. Private `ADR-REGISTER.md` records ADR-001–ADR-005. Neither is a public GitHub Release. | CHANGELOG.md, ADR-REGISTER.md |
+| P2-04 | P2 | **MITIGATED** | Commit cadence and direct-main history reduce reviewability | Live ruleset `rush-main-protection` requires pull requests and `required-ci / validate` on `main`. Historical rapid direct-main commits remain and will not be rewritten. | Keep ruleset active; do not rewrite history |
+| P2-05 | P2 | **CLOSED** | No changelog or architecture-decision register exists | Private `CHANGELOG.md` records RSH-001–RSH-067. Private `ADR-REGISTER.md` records ADR-001–ADR-006. Neither is a public GitHub Release. | CHANGELOG.md, ADR-REGISTER.md |
 | P2-06 | P2 | **CLOSED** | No dependency-update policy exists | `DEPENDENCY-POLICY.md` defines lockfile authority, monthly/release review, isolated updates, exact-head validation and serial-queue restrictions. | RSH-020 |
 | P2-07 | P2 | **CLOSED** | A beta Nitro version is on the build path | RSH-020 records npm registry evidence that `3.0.260610-beta` is the `latest` dist-tag, retains an exact pin and requires full validation for replacement. | RSH-020 |
 | P2-08 | P2 | **CLOSED** | README does not document reproducible setup and validation | RSH-012 documents exact Node/npm versions, `npm ci`, development, full tests, self-starting QA and deterministic build commands. | RSH-012 |

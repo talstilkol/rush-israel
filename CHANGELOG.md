@@ -44,5 +44,18 @@ Live GitHub, not a new RSH unit:
 - Required check: `required-ci / validate`
 - Force-push and branch deletion: blocked
 
+## Post-v1 findings pass 2026-09-13 (after PR #73)
+
+Not a new RSH unit. Frozen product sources, `package.json` and
+`.github/workflows/required-ci.yml` unchanged. `CURRENT-STATE.json` stays the
+RSH-067 snapshot.
+
+- P0-10 **CLOSED** — G5 Ayalon vertical slice is accepted
+- P1-16 **CLOSED** — all eight Version 1 tracks have accepted golden/freeze units
+- P2-04 **MITIGATED** — live ruleset requires PRs; historical direct-main remains
+- P1-12, P1-13, P2-03, P2-09 stay **OPEN**
+- P1-17 stays **MITIGATED** (pixel-golden still outside required CI)
+
 Still not done: signed tag, GitHub Release, real-device p95, 30-minute soak in
-required CI, production JS/asset byte-size gate, clearance of 66 unverified assets.
+required CI, production JS/asset byte-size gate, clearance of 66 unverified assets,
+commit-signing enforcement.

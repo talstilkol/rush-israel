@@ -97,7 +97,7 @@ root-branding assets remain unverified.
 | Active PR | none |
 | RSH-067 one-unit authority | 1/1 — consumed |
 | Release gates green | 2/13 live in `LIVE-GITHUB-STATUS.json` (RSH-067 `CURRENT-STATE.json` snapshot stays 0/13) |
-| Findings OPEN / MITIGATED / CLOSED | 6 / 8 / 28 |
+| Findings OPEN / MITIGATED / CLOSED | 4 / 8 / 30 |
 
 ## 6. Stage map
 
