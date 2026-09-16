@@ -9,7 +9,7 @@ test("LIVE-GITHUB-STATUS is private, protected and names exact gate evidence", (
   const live = readJson("LIVE-GITHUB-STATUS.json");
   assert.equal(live.document_type, "rush-live-github-status");
   assert.equal(live.repository, "talstilkol/rush-israel");
-  assert.equal(live.schema_version, "1.7.0");
+  assert.equal(live.schema_version, "1.8.0");
   assert.equal(live.live.visibility, "private");
   assert.equal(live.live.private, true);
   assert.equal(live.live.main_protected, true);
@@ -38,8 +38,8 @@ test("LIVE-GITHUB-STATUS is private, protected and names exact gate evidence", (
   assert.equal(live.gate_4_evidence.latest_success_conclusion, "success");
   assert.equal(typeof live.gate_4_evidence.latest_success_run_id, "number");
   assert.match(live.gate_4_evidence.latest_success_head_sha, /^[0-9a-f]{40}$/);
-  assert.equal(live.gate_4_evidence.latest_success_run_id, 35095481235);
-  assert.equal(live.gate_4_evidence.latest_success_head_sha, "a0850f9523224b8224d940b910c69e8986681578");
+  assert.equal(live.gate_4_evidence.latest_success_run_id, 35098117727);
+  assert.equal(live.gate_4_evidence.latest_success_head_sha, "2748bd65b345e0fb958cf37f2b86b0dc0c02190d");
   assert.equal(live.gate_5_evidence.state, "GREEN");
   assert.equal(live.gate_5_evidence.public_text_files_scanned, 8);
   assert.equal(live.gate_6_evidence.state, "GREEN");
@@ -76,14 +76,22 @@ test("live findings close stale vertical-slice items and keep checker-locked OPE
   assert.match(findings, /\| P1-01 \| P1 \| \*\*MITIGATED\*\*/);
 });
 
-test("PR #78 merge evidence and six remaining gates stay RED", () => {
+test("PR #79 merge evidence, P1-12 progress and six remaining gates stay RED", () => {
   const live = readJson("LIVE-GITHUB-STATUS.json");
-  assert.equal(live.pr_78.number, 78);
-  assert.equal(live.pr_78.merge_sha, "a0850f9523224b8224d940b910c69e8986681578");
-  assert.equal(live.pr_78.post_merge_workflow_run_id, 35095481235);
-  assert.equal(live.pr_78.post_merge_conclusion, "success");
-  assert.equal(live.latest_main.sha, live.pr_78.merge_sha);
-  assert.equal(live.latest_main.merged_pull_request, 78);
+  assert.equal(live.pr_79.number, 79);
+  assert.equal(live.pr_79.merge_sha, "2748bd65b345e0fb958cf37f2b86b0dc0c02190d");
+  assert.equal(live.pr_79.post_merge_workflow_run_id, 35098117727);
+  assert.equal(live.pr_79.post_merge_conclusion, "success");
+  assert.equal(live.latest_main.sha, live.pr_79.merge_sha);
+  assert.equal(live.latest_main.merged_pull_request, 79);
+  assert.equal(live.p1_12_progress.status, "OPEN");
+  assert.deepEqual(live.p1_12_progress.now_in_npm_test, ["damage-smoke"]);
+  assert.deepEqual(live.p1_12_progress.still_outside, [
+    "pixel-golden",
+    "ayalon-hash",
+    "hashalom-photo",
+    "soak-30min",
+  ]);
   const red = live.remaining_red_gates;
   assert.equal(red.length, 6);
   assert.deepEqual(red.map((row) => row.id), [1, 8, 9, 10, 12, 13]);
@@ -93,10 +101,10 @@ test("PR #78 merge evidence and six remaining gates stay RED", () => {
     assert.ok(row.blocker.length > 20);
   }
   const changelog = readFileSync(fromRoot("CHANGELOG.md"), "utf8");
-  assert.match(changelog, /Live gate 10 stays RED — 2026-09-16/);
-  assert.match(changelog, /35095481235/);
+  assert.match(changelog, /Pixel-golden and Ayalon lock stay outside required npm test — 2026-09-16/);
+  assert.match(changelog, /35098117727/);
   const adr = readFileSync(fromRoot("ADR-REGISTER.md"), "utf8");
-  assert.match(adr, /ADR-011/);
+  assert.match(adr, /ADR-012/);
   const plan = readFileSync(fromRoot("MASTER-PLAN.md"), "utf8");
   assert.match(plan, /\*\*7\/13\*\* \(gates 2, 3, 4, 5, 6, 7 and 11\)/);
 });

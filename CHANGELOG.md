@@ -124,3 +124,18 @@ substitute for the 1800 s wall-clock soak.
 - P1-12 stays **OPEN**
 - P1-13, P2-03, P2-09 stay **OPEN**
 - Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged
+
+## Pixel-golden and Ayalon lock stay outside required npm test — 2026-09-16 (after PR #79)
+
+Not a new RSH unit. Required CI of the golden/ayalon-hash attempt failed
+(run `35099626005`): `ayalon-hash` mismatches frozen `ayalon.lock`, and
+`pixel-golden` aborted with ECONNRESET / missing Ayalon control under
+unit-test load. Those scripts stay outside `npm test`. Damage-smoke remains
+required. Hashed `qa:ci:raw` is unchanged.
+
+- PR #79 merge SHA: `2748bd65b345e0fb958cf37f2b86b0dc0c02190d`
+- Post-merge `required-ci / validate`: run `35098117727` **success**
+- Live release gates stay **7/13**
+- P1-12 stays **OPEN**
+- P1-13, P2-03, P2-09 stay **OPEN**
+- Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged
