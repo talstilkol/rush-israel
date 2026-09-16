@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.5.0",
+  "schema_version": "1.6.0",
   "document_type": "rush-live-github-status",
-  "observed_at": "2026-09-16T12:00:00Z",
+  "observed_at": "2026-09-16T12:13:00Z",
   "repository": "talstilkol/rush-israel",
   "authority": "Live GitHub supersedes CURRENT-STATE.json repository_snapshot. That snapshot remains the RSH-067 merge record required by scripts/program-control.test.mjs and must not be rewritten here.",
   "live": {
@@ -20,17 +20,29 @@
     "required_signatures": false,
     "github_releases": 0,
     "git_tags": 0,
-    "release_gates_green_live": 6,
+    "release_gates_green_live": 7,
     "release_gates_total": 13,
     "findings_open_live": 4,
     "findings_mitigated_live": 8,
     "findings_closed_live": 30
   },
   "latest_main": {
-    "sha": "2c248783c72433b101b90c299a5a1f8ecbb1fefa",
-    "merged_pull_request": 76,
-    "merged_at": "2026-09-16T11:53:35Z",
-    "validated_head_sha": "6770521272883306e19810aafadfe1fa558b36bb"
+    "sha": "5914600cd6e5f66f79b18cb64d7e79c6c5039c3b",
+    "merged_pull_request": 77,
+    "merged_at": "2026-09-16T12:07:26Z",
+    "validated_head_sha": "30dc2cc945cd2a7b7df3f78baf0827f5c3f52021"
+  },
+  "pr_77": {
+    "number": 77,
+    "title": "Enforce public secret scan and Ayalon builder-import pins",
+    "merge_sha": "5914600cd6e5f66f79b18cb64d7e79c6c5039c3b",
+    "merged_at": "2026-09-16T12:07:26Z",
+    "validated_head_sha": "30dc2cc945cd2a7b7df3f78baf0827f5c3f52021",
+    "pr_workflow_run_id": 35093496180,
+    "pr_workflow_job_id": 104785143602,
+    "post_merge_workflow_run_id": 35094034867,
+    "post_merge_workflow_job_id": 104786865661,
+    "post_merge_conclusion": "success"
   },
   "pr_76": {
     "number": 76,
@@ -82,10 +94,10 @@
       "Install dependencies from lockfile (npm ci)",
       "Build deterministic development bundle (npm run build:dev)"
     ],
-    "latest_success_run_id": 35092771176,
-    "latest_success_head_sha": "2c248783c72433b101b90c299a5a1f8ecbb1fefa",
+    "latest_success_run_id": 35094034867,
+    "latest_success_head_sha": "5914600cd6e5f66f79b18cb64d7e79c6c5039c3b",
     "latest_success_conclusion": "success",
-    "verified_via": "required-ci / validate job 104782766184 on ubuntu-24.04"
+    "verified_via": "required-ci / validate job 104786865661 on ubuntu-24.04"
   },
   "gate_4_evidence": {
     "gate": "Required CI is complete and green",
@@ -93,12 +105,12 @@
     "required_check": "required-ci / validate",
     "integration_id": 15368,
     "strict_required_status_checks_policy": true,
-    "latest_success_run_id": 35092771176,
-    "latest_success_head_sha": "2c248783c72433b101b90c299a5a1f8ecbb1fefa",
-    "latest_success_job_id": 104782766184,
+    "latest_success_run_id": 35094034867,
+    "latest_success_head_sha": "5914600cd6e5f66f79b18cb64d7e79c6c5039c3b",
+    "latest_success_job_id": 104786865661,
     "latest_success_conclusion": "success",
-    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/35092771176",
-    "latest_success_completed_at": "2026-09-16T11:59:25Z"
+    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/35094034867",
+    "latest_success_completed_at": "2026-09-16T12:12:06Z"
   },
   "gate_5_evidence": {
     "gate": "Production contains no QA hook or secrets",
@@ -127,6 +139,16 @@
       "src/game/world-builders/shared.ts"
     ]
   },
+  "gate_7_evidence": {
+    "gate": "Driving, physics, ramps and damage pass",
+    "state": "GREEN",
+    "required_check": "required-ci / validate",
+    "already_in_qa_ci": ["drive-smoke", "ramp-smoke", "w-determinism", "collider-offset-smoke", "airborne-smoke"],
+    "companion": "scripts/check-damage-required.test.mjs",
+    "enforcement": "damage-smoke now runs inside npm test via run-with-server, so required-ci executes it on every PR",
+    "qa_ci_raw_unchanged": true,
+    "p1_12_stays_open": true
+  },
   "gate_11_evidence": {
     "gate": "Save and records are recoverable and valid",
     "state": "GREEN",
@@ -134,7 +156,7 @@
     "save_schema_version": 3,
     "required_check": "required-ci / validate",
     "enforcement": "complete npm test suite includes save-schema, save-recovery and timed-records checkers",
-    "latest_success_run_id": 35092771176,
+    "latest_success_run_id": 35094034867,
     "latest_success_conclusion": "success"
   },
   "remaining_red_gates": [
@@ -143,12 +165,6 @@
       "gate": "Visibility and licensing agree with owner policy",
       "state": "RED",
       "blocker": "66 unverified assets remain uncleared (P0-12). Live visibility is private. Asset checkers freeze unverified_asset_files at 66."
-    },
-    {
-      "id": 7,
-      "gate": "Driving, physics, ramps and damage pass",
-      "state": "RED",
-      "blocker": "RSH-027/RSH-033/RSH-034 are accepted. P1-12 stays OPEN because golden/damage/HaShalom/long-soak are not all required on every PR."
     },
     {
       "id": 8,
