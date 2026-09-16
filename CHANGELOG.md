@@ -111,3 +111,18 @@ accepted `damage-smoke.mjs` inside `npm test`. Hashed `qa:ci:raw` is unchanged.
 - P1-12 stays **OPEN** (golden/HaShalom/long-soak still outside the required gate)
 - P1-13, P2-03, P2-09 stay **OPEN**
 - Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged
+
+## Live gate 10 — 2026-09-16 (after PR #78)
+
+Not a new RSH unit. Companion `scripts/check-leak-required.test.mjs` runs the
+accepted 20-cycle enter-exit leak harness inside `npm test`. Hashed `qa:ci:raw`
+still runs 2-cycle soak-smoke only.
+
+- PR #78 merge SHA: `a0850f9523224b8224d940b910c69e8986681578`
+- Post-merge `required-ci / validate`: run `35095481235` **success**
+- Gate 10 **GREEN** — soak-smoke (2) in qa:ci; 20-cycle leak in npm test; context-loss lock in npm test
+- 1800 s wall-clock soak stays outside required CI (`smoke_substitutes=false`)
+- Live release gates **8/13**
+- P1-12 stays **OPEN**
+- P1-13, P2-03, P2-09 stay **OPEN**
+- Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged

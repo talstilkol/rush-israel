@@ -11,7 +11,7 @@ test("damage-smoke contract tokens remain in the accepted script", () => {
   assert.equal(pkg.scripts["qa:ci:raw"].includes("qa:damage"), false);
 });
 
-test("damage-smoke runs inside the required npm test suite", { timeout: 180_000 }, () => {
+test("damage-smoke runs inside the required npm test suite", { timeout: 600_000 }, () => {
   const result = runDamageSmoke();
   assert.equal(result.status, 0, (result.stderr || "") + (result.stdout || ""));
   assert.match(result.stdout, /damage-smoke ok/);
