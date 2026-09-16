@@ -11,20 +11,39 @@ export function missingDamageSmokeTokens() {
   return DAMAGE_SMOKE_TOKENS.filter((token) => !source.includes(token));
 }
 
+function runScript(args, timeout) {
+  return spawnSync(process.execPath, args, {
+    cwd: fromRoot(),
+    encoding: "utf8",
+    timeout,
+  });
+}
+
+export function runAyalonLock() {
+  return runScript([fromRoot("scripts", "ayalon-hash.mjs")], 30_000);
+}
+
 export function runDamageSmoke() {
-  return spawnSync(
-    process.execPath,
+  return runScript(
     [
       fromRoot("scripts", "run-with-server.mjs"),
       "--",
       process.execPath,
       fromRoot("scripts", "damage-smoke.mjs"),
     ],
-    {
-      cwd: fromRoot(),
-      encoding: "utf8",
-      timeout: 180_000,
-    },
+    180_000,
+  );
+}
+
+export function runPixelGolden() {
+  return runScript(
+    [
+      fromRoot("scripts", "run-with-server.mjs"),
+      "--",
+      process.execPath,
+      fromRoot("scripts", "pixel-golden.mjs"),
+    ],
+    180_000,
   );
 }
 
@@ -44,11 +63,23 @@ if (isMainModule(import.meta.url)) {
     console.error("damage-required fail: smoke lost tokens " + missing.join(", "));
     process.exit(1);
   }
-  const result = runDamageSmoke();
-  if (result.status !== 0) {
-    process.stderr.write(result.stderr || result.stdout || "damage-smoke failed\n");
-    process.exit(result.status === null ? 1 : result.status);
+  const lock = runAyalonLock();
+  if (lock.status !== 0) {
+    process.stderr.write(lock.stderr || lock.stdout || "ayalon-hash failed\n");
+    process.exit(lock.status === null ? 1 : lock.status);
   }
-  process.stdout.write(result.stdout);
+  process.stdout.write(lock.stdout);
+  const damage = runDamageSmoke();
+  if (damage.status !== 0) {
+    process.stderr.write(damage.stderr || damage.stdout || "damage-smoke failed\n");
+    process.exit(damage.status === null ? 1 : damage.status);
+  }
+  process.stdout.write(damage.stdout);
+  const golden = runPixelGolden();
+  if (golden.status !== 0) {
+    process.stderr.write(golden.stderr || golden.stdout || "pixel-golden failed\n");
+    process.exit(golden.status === null ? 1 : golden.status);
+  }
+  process.stdout.write(golden.stdout);
   console.log("damage-required ok");
 }

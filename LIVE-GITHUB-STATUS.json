@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.7.0",
+  "schema_version": "1.8.0",
   "document_type": "rush-live-github-status",
-  "observed_at": "2026-09-16T12:30:00Z",
+  "observed_at": "2026-09-16T13:00:00Z",
   "repository": "talstilkol/rush-israel",
   "authority": "Live GitHub supersedes CURRENT-STATE.json repository_snapshot. That snapshot remains the RSH-067 merge record required by scripts/program-control.test.mjs and must not be rewritten here.",
   "live": {
@@ -27,10 +27,22 @@
     "findings_closed_live": 30
   },
   "latest_main": {
-    "sha": "a0850f9523224b8224d940b910c69e8986681578",
-    "merged_pull_request": 78,
-    "merged_at": "2026-09-16T12:22:49Z",
-    "validated_head_sha": "5893d3520f09c91ccb5031b11dd2d8a04ec908c1"
+    "sha": "2748bd65b345e0fb958cf37f2b86b0dc0c02190d",
+    "merged_pull_request": 79,
+    "merged_at": "2026-09-16T12:49:49Z",
+    "validated_head_sha": "130381b77bcb8e5c776256af779e79e1dcd376e7"
+  },
+  "pr_79": {
+    "number": 79,
+    "title": "Record PR #78 post-merge CI; keep gate 10 RED",
+    "merge_sha": "2748bd65b345e0fb958cf37f2b86b0dc0c02190d",
+    "merged_at": "2026-09-16T12:49:49Z",
+    "validated_head_sha": "130381b77bcb8e5c776256af779e79e1dcd376e7",
+    "pr_workflow_run_id": 35097412611,
+    "pr_workflow_job_id": 104798101867,
+    "post_merge_workflow_run_id": 35098117727,
+    "post_merge_workflow_job_id": 104800447173,
+    "post_merge_conclusion": "success"
   },
   "pr_78": {
     "number": 78,
@@ -80,6 +92,13 @@
     "post_merge_workflow_job_id": 104775596463,
     "post_merge_conclusion": "success"
   },
+  "p1_12_progress": {
+    "status": "OPEN",
+    "now_in_npm_test": ["damage-smoke", "ayalon-hash", "pixel-golden"],
+    "still_outside": ["hashalom-photo", "soak-30min"],
+    "hashalom_blocker": "hashalom-photo writes golden-baseline PNG bytes",
+    "soak_blocker": "1800 s wall-clock soak is not in required CI; smoke_substitutes=false"
+  },
   "gate_2_evidence": {
     "gate": "main is protected and PR delivery is enforced",
     "state": "GREEN",
@@ -106,10 +125,10 @@
       "Install dependencies from lockfile (npm ci)",
       "Build deterministic development bundle (npm run build:dev)"
     ],
-    "latest_success_run_id": 35095481235,
-    "latest_success_head_sha": "a0850f9523224b8224d940b910c69e8986681578",
+    "latest_success_run_id": 35098117727,
+    "latest_success_head_sha": "2748bd65b345e0fb958cf37f2b86b0dc0c02190d",
     "latest_success_conclusion": "success",
-    "verified_via": "required-ci / validate job 104791647966 on ubuntu-24.04"
+    "verified_via": "required-ci / validate job 104800447173 on ubuntu-24.04"
   },
   "gate_4_evidence": {
     "gate": "Required CI is complete and green",
@@ -117,12 +136,12 @@
     "required_check": "required-ci / validate",
     "integration_id": 15368,
     "strict_required_status_checks_policy": true,
-    "latest_success_run_id": 35095481235,
-    "latest_success_head_sha": "a0850f9523224b8224d940b910c69e8986681578",
-    "latest_success_job_id": 104791647966,
+    "latest_success_run_id": 35098117727,
+    "latest_success_head_sha": "2748bd65b345e0fb958cf37f2b86b0dc0c02190d",
+    "latest_success_job_id": 104800447173,
     "latest_success_conclusion": "success",
-    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/35095481235",
-    "latest_success_completed_at": "2026-09-16T12:28:42Z"
+    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/35098117727",
+    "latest_success_completed_at": "2026-09-16T12:56:12Z"
   },
   "gate_5_evidence": {
     "gate": "Production contains no QA hook or secrets",
@@ -149,7 +168,9 @@
       "src/game/sign-assets.ts",
       "src/game/road-assets.ts",
       "src/game/world-builders/shared.ts"
-    ]
+    ],
+    "pixel_golden_in_npm_test": true,
+    "ayalon_hash_in_npm_test": true
   },
   "gate_7_evidence": {
     "gate": "Driving, physics, ramps and damage pass",
@@ -176,7 +197,7 @@
     "save_schema_version": 3,
     "required_check": "required-ci / validate",
     "enforcement": "complete npm test suite includes save-schema, save-recovery and timed-records checkers",
-    "latest_success_run_id": 35095481235,
+    "latest_success_run_id": 35098117727,
     "latest_success_conclusion": "success"
   },
   "remaining_red_gates": [
