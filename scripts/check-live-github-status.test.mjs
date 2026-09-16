@@ -23,7 +23,7 @@ test("LIVE-GITHUB-STATUS is private, protected and names exact gate evidence", (
   assert.equal(live.live.required_signatures, false);
   assert.equal(live.live.github_releases, 0);
   assert.equal(live.live.git_tags, 0);
-  assert.equal(live.live.release_gates_green_live, 6);
+  assert.equal(live.live.release_gates_green_live, 4);
   assert.equal(live.live.release_gates_total, 13);
   assert.equal(live.live.findings_open_live, 4);
   assert.equal(live.live.findings_mitigated_live, 8);
@@ -40,8 +40,8 @@ test("LIVE-GITHUB-STATUS is private, protected and names exact gate evidence", (
   assert.match(live.gate_4_evidence.latest_success_head_sha, /^[0-9a-f]{40}$/);
   assert.equal(live.gate_4_evidence.latest_success_run_id, 35090558345);
   assert.equal(live.gate_4_evidence.latest_success_head_sha, "2cfd6616cb0affcb687611aaa9b15ae33fa8fc32");
-  assert.equal(live.gate_5_evidence.state, "GREEN");
-  assert.equal(live.gate_6_evidence.state, "GREEN");
+  assert.equal(live.gate_5_evidence.state, "RED");
+  assert.equal(live.gate_6_evidence.state, "RED");
   assert.equal(live.gate_6_evidence.freeze_granted, true);
   assert.equal(live.gate_6_evidence.transitive_hashes, 36);
   assert.equal(live.gate_11_evidence.state, "GREEN");
@@ -70,7 +70,7 @@ test("live findings close stale vertical-slice items and keep checker-locked OPE
   assert.match(findings, /\| P1-01 \| P1 \| \*\*MITIGATED\*\*/);
 });
 
-test("PR #75 merge evidence and seven remaining gates stay RED", () => {
+test("PR #75 merge evidence and nine remaining gates stay RED", () => {
   const live = readJson("LIVE-GITHUB-STATUS.json");
   assert.equal(live.pr_75.number, 75);
   assert.equal(live.pr_75.merge_sha, "2cfd6616cb0affcb687611aaa9b15ae33fa8fc32");
@@ -79,18 +79,18 @@ test("PR #75 merge evidence and seven remaining gates stay RED", () => {
   assert.equal(live.latest_main.sha, live.pr_75.merge_sha);
   assert.equal(live.latest_main.merged_pull_request, 75);
   const red = live.remaining_red_gates;
-  assert.equal(red.length, 7);
-  assert.deepEqual(red.map((row) => row.id), [1, 7, 8, 9, 10, 12, 13]);
+  assert.equal(red.length, 9);
+  assert.deepEqual(red.map((row) => row.id), [1, 5, 6, 7, 8, 9, 10, 12, 13]);
   for (const row of red) {
     assert.equal(row.state, "RED");
     assert.equal(typeof row.blocker, "string");
     assert.ok(row.blocker.length > 20);
   }
   const changelog = readFileSync(fromRoot("CHANGELOG.md"), "utf8");
-  assert.match(changelog, /Live gates 3, 5, 6 and 11 — 2026-09-16/);
+  assert.match(changelog, /Live gates 3 and 11 — 2026-09-16/);
   assert.match(changelog, /35090558345/);
   const adr = readFileSync(fromRoot("ADR-REGISTER.md"), "utf8");
   assert.match(adr, /ADR-008/);
   const plan = readFileSync(fromRoot("MASTER-PLAN.md"), "utf8");
-  assert.match(plan, /\*\*6\/13\*\* \(gates 2, 3, 4, 5, 6 and 11\)/);
+  assert.match(plan, /\*\*4\/13\*\* \(gates 2, 3, 4 and 11\)/);
 });

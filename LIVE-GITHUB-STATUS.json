@@ -20,7 +20,7 @@
     "required_signatures": false,
     "github_releases": 0,
     "git_tags": 0,
-    "release_gates_green_live": 6,
+    "release_gates_green_live": 4,
     "release_gates_total": 13,
     "findings_open_live": 4,
     "findings_mitigated_live": 8,
@@ -90,22 +90,18 @@
   },
   "gate_5_evidence": {
     "gate": "Production contains no QA hook or secrets",
-    "state": "GREEN",
+    "state": "RED",
     "required_check": "required-ci / validate",
     "qa_step": "Run self-starting QA gate (npm run qa:ci)",
-    "secret_scan": "check-production-security runs inside npm test",
-    "latest_success_run_id": 35090558345,
-    "latest_success_conclusion": "success",
-    "note": "P1-01 stays MITIGATED because unit checkers require that token against the frozen RSH-067 CURRENT-STATE snapshot."
+    "blocker": "Secret scan excludes every public/ path. Shipped text under public/basis and public/__grok is not scanned, so this cannot prove production contains no secrets."
   },
   "gate_6_evidence": {
     "gate": "Ayalon is owner-approved and frozen",
-    "state": "GREEN",
+    "state": "RED",
     "freeze_granted": true,
     "transitive_hashes": 36,
     "lock_directory": "src/game/ayalon-freeze/",
-    "g5_units": "RSH-025–RSH-036 accepted",
-    "verified_via": "AYALON-FREEZE-MANIFEST.json freeze_granted=true"
+    "blocker": "The 36-hash freeze inventory does not cover direct Ayalon builder dependencies (spline, arrow-assets, sign-assets, road-assets, world-builders/shared). freeze_granted=true is not a complete dependency closure."
   },
   "gate_11_evidence": {
     "gate": "Save and records are recoverable and valid",
@@ -123,6 +119,18 @@
       "gate": "Visibility and licensing agree with owner policy",
       "state": "RED",
       "blocker": "66 unverified assets remain uncleared (P0-12). Live visibility is private. Asset checkers freeze unverified_asset_files at 66."
+    },
+    {
+      "id": 5,
+      "gate": "Production contains no QA hook or secrets",
+      "state": "RED",
+      "blocker": "Secret scan excludes public/. Shipped public/basis and public/__grok text is not scanned."
+    },
+    {
+      "id": 6,
+      "gate": "Ayalon is owner-approved and frozen",
+      "state": "RED",
+      "blocker": "freeze_granted=true with 36 hashes. Direct Ayalon builder dependencies are outside the freeze inventory."
     },
     {
       "id": 7,

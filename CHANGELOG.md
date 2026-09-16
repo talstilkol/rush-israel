@@ -71,18 +71,17 @@ Not a new RSH unit. Operating-rule-6 reconciliation of PR #74 merge evidence.
 - Remaining eleven gates recorded as RED with live blockers
 - Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged
 
-## Live gates 3, 5, 6 and 11 — 2026-09-16 (after PR #75)
+## Live gates 3 and 11 — 2026-09-16 (after PR #75)
 
 Not a new RSH unit. Owner instruction to finish the master plan authorises
-recording live GREEN where the gate text already matches accepted CI or product
-locks. Frozen unit manifests stay `release_gates_green: 0`.
+recording live GREEN where the gate text already matches accepted CI.
+Frozen unit manifests stay `release_gates_green: 0`.
 
 - PR #75 merge SHA: `2cfd6616cb0affcb687611aaa9b15ae33fa8fc32`
 - Post-merge `required-ci / validate`: run `35090558345` **success**
 - Gate 3 **GREEN** — clean clone `npm ci` + toolchain + `build:dev` on ubuntu-24.04
-- Gate 5 **GREEN** — `qa:ci` and secret scanning run inside required CI (P1-01 stays MITIGATED)
-- Gate 6 **GREEN** — Ayalon freeze granted, 36 hashes
 - Gate 11 **GREEN** — save schema v3 and timed-records checkers run in `npm test`
-- Live release gates **6/13**
+- Gates 5 and 6 stay **RED** — secret scan excludes `public/`; Ayalon freeze inventory is not a complete dependency closure
+- Live release gates **4/13**
 - P1-12, P1-13, P2-03, P2-09 stay **OPEN**
 - Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged
