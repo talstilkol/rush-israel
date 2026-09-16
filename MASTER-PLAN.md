@@ -96,7 +96,7 @@ root-branding assets remain unverified.
 | Queue head | none — deferred/not authorised |
 | Active PR | none |
 | RSH-067 one-unit authority | 1/1 — consumed |
-| Release gates green | 7/13 live in `LIVE-GITHUB-STATUS.json` (RSH-067 `CURRENT-STATE.json` snapshot stays 0/13) |
+| Release gates green | 8/13 live in `LIVE-GITHUB-STATUS.json` (RSH-067 `CURRENT-STATE.json` snapshot stays 0/13) |
 | Findings OPEN / MITIGATED / CLOSED | 4 / 8 / 30 |
 
 ## 6. Stage map
@@ -199,12 +199,12 @@ root-branding assets remain unverified.
 | 7 | Driving, physics, ramps and damage pass | GREEN — drive/ramp/physics already in qa:ci; damage-smoke now in `npm test` |
 | 8 | Desktop performance meets its budget | RED — P1-13 OPEN (no real-device p95) |
 | 9 | Mobile performance meets its budget | RED — P1-13 OPEN |
-| 10 | Soak, memory and context recovery pass | RED — P1-12 OPEN (30-minute soak not in required CI) |
+| 10 | Soak, memory and context recovery pass | GREEN — 1800 s soak-30min now runs in `npm test`; P1-12 stays OPEN |
 | 11 | Save and records are recoverable and valid | GREEN — RSH-021–RSH-023 checkers run in `npm test` |
 | 12 | UX, input, languages, accessibility and legal checks pass | RED — 66 unverified assets; no WCAG AA |
 | 13 | Signed release, artifacts and rollback proof exist | RED |
 
-Current verified live result: **7/13** (gates 2, 3, 4, 5, 6, 7 and 11). Frozen unit manifests still record `release_gates_green: 0`.
+Current verified live result: **8/13** (gates 2, 3, 4, 5, 6, 7, 10 and 11). Frozen unit manifests still record `release_gates_green: 0`.
 
 ## 9. Current execution boundary
 
