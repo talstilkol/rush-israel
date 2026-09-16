@@ -111,3 +111,16 @@ accepted `damage-smoke.mjs` inside `npm test`. Hashed `qa:ci:raw` is unchanged.
 - P1-12 stays **OPEN** (golden/HaShalom/long-soak still outside the required gate)
 - P1-13, P2-03, P2-09 stay **OPEN**
 - Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged
+
+## Live gate 10 stays RED — 2026-09-16 (after PR #78)
+
+Not a new RSH unit. Post-merge CI of PR #78 is recorded. Gate 10 stays
+**RED**: 2-cycle soak-smoke and the 20-cycle enter-exit harness do not
+substitute for the 1800 s wall-clock soak.
+
+- PR #78 merge SHA: `a0850f9523224b8224d940b910c69e8986681578`
+- Post-merge `required-ci / validate`: run `35095481235` **success**
+- Live release gates stay **7/13**
+- P1-12 stays **OPEN**
+- P1-13, P2-03, P2-09 stay **OPEN**
+- Frozen product sources, `package.json`, `required-ci.yml` and `CURRENT-STATE.json` unchanged

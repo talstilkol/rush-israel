@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.6.0",
+  "schema_version": "1.7.0",
   "document_type": "rush-live-github-status",
-  "observed_at": "2026-09-16T12:13:00Z",
+  "observed_at": "2026-09-16T12:30:00Z",
   "repository": "talstilkol/rush-israel",
   "authority": "Live GitHub supersedes CURRENT-STATE.json repository_snapshot. That snapshot remains the RSH-067 merge record required by scripts/program-control.test.mjs and must not be rewritten here.",
   "live": {
@@ -27,10 +27,22 @@
     "findings_closed_live": 30
   },
   "latest_main": {
-    "sha": "5914600cd6e5f66f79b18cb64d7e79c6c5039c3b",
-    "merged_pull_request": 77,
-    "merged_at": "2026-09-16T12:07:26Z",
-    "validated_head_sha": "30dc2cc945cd2a7b7df3f78baf0827f5c3f52021"
+    "sha": "a0850f9523224b8224d940b910c69e8986681578",
+    "merged_pull_request": 78,
+    "merged_at": "2026-09-16T12:22:49Z",
+    "validated_head_sha": "5893d3520f09c91ccb5031b11dd2d8a04ec908c1"
+  },
+  "pr_78": {
+    "number": 78,
+    "title": "Run damage-smoke inside the required npm test suite",
+    "merge_sha": "a0850f9523224b8224d940b910c69e8986681578",
+    "merged_at": "2026-09-16T12:22:49Z",
+    "validated_head_sha": "5893d3520f09c91ccb5031b11dd2d8a04ec908c1",
+    "pr_workflow_run_id": 35094810361,
+    "pr_workflow_job_id": 104789415648,
+    "post_merge_workflow_run_id": 35095481235,
+    "post_merge_workflow_job_id": 104791647966,
+    "post_merge_conclusion": "success"
   },
   "pr_77": {
     "number": 77,
@@ -94,10 +106,10 @@
       "Install dependencies from lockfile (npm ci)",
       "Build deterministic development bundle (npm run build:dev)"
     ],
-    "latest_success_run_id": 35094034867,
-    "latest_success_head_sha": "5914600cd6e5f66f79b18cb64d7e79c6c5039c3b",
+    "latest_success_run_id": 35095481235,
+    "latest_success_head_sha": "a0850f9523224b8224d940b910c69e8986681578",
     "latest_success_conclusion": "success",
-    "verified_via": "required-ci / validate job 104786865661 on ubuntu-24.04"
+    "verified_via": "required-ci / validate job 104791647966 on ubuntu-24.04"
   },
   "gate_4_evidence": {
     "gate": "Required CI is complete and green",
@@ -105,12 +117,12 @@
     "required_check": "required-ci / validate",
     "integration_id": 15368,
     "strict_required_status_checks_policy": true,
-    "latest_success_run_id": 35094034867,
-    "latest_success_head_sha": "5914600cd6e5f66f79b18cb64d7e79c6c5039c3b",
-    "latest_success_job_id": 104786865661,
+    "latest_success_run_id": 35095481235,
+    "latest_success_head_sha": "a0850f9523224b8224d940b910c69e8986681578",
+    "latest_success_job_id": 104791647966,
     "latest_success_conclusion": "success",
-    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/35094034867",
-    "latest_success_completed_at": "2026-09-16T12:12:06Z"
+    "latest_success_url": "https://github.com/talstilkol/rush-israel/actions/runs/35095481235",
+    "latest_success_completed_at": "2026-09-16T12:28:42Z"
   },
   "gate_5_evidence": {
     "gate": "Production contains no QA hook or secrets",
@@ -149,6 +161,14 @@
     "qa_ci_raw_unchanged": true,
     "p1_12_stays_open": true
   },
+  "gate_10_evidence": {
+    "gate": "Soak, memory and context recovery pass",
+    "state": "RED",
+    "required_check": "required-ci / validate",
+    "soak_smoke_cycles_in_qa_ci": 2,
+    "smoke_substitutes": false,
+    "blocker": "RSH-042 forbids treating 2-cycle soak-smoke or the 20-cycle enter-exit harness as the 1800 s wall-clock soak. P1-12 stays OPEN until soak-30min is in required CI."
+  },
   "gate_11_evidence": {
     "gate": "Save and records are recoverable and valid",
     "state": "GREEN",
@@ -156,7 +176,7 @@
     "save_schema_version": 3,
     "required_check": "required-ci / validate",
     "enforcement": "complete npm test suite includes save-schema, save-recovery and timed-records checkers",
-    "latest_success_run_id": 35094034867,
+    "latest_success_run_id": 35095481235,
     "latest_success_conclusion": "success"
   },
   "remaining_red_gates": [
@@ -182,7 +202,7 @@
       "id": 10,
       "gate": "Soak, memory and context recovery pass",
       "state": "RED",
-      "blocker": "RSH-040–RSH-042 lock leak, context-loss and 30-minute soak contracts. Required-CI soak-smoke stays 2 cycles. P1-12 stays OPEN."
+      "blocker": "RSH-042 forbids treating smoke as the 1800 s soak. Required-CI soak-smoke stays 2 cycles. P1-12 stays OPEN."
     },
     {
       "id": 12,
