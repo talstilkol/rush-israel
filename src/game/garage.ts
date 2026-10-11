@@ -34,11 +34,14 @@ export function emptyTune(): Tune {
 export function applyTune(base: CarDef, tune: Tune): CarDef {
   const paint = PAINTS[tune.paint];
   const color = !paint || paint.id === 0 || paint.color === 0 ? base.color : paint.color;
+  const accel = base.accel + tune.engine * 0.38;
+  const claim = base.zeroTo100 ?? 8.4;
   return {
     ...base,
     color,
     maxSpeed: base.maxSpeed + tune.engine * 1.4,
-    accel: base.accel + tune.engine * 0.38,
+    accel,
+    zeroTo100: claim * (base.accel / accel),
     turnRate: base.turnRate + tune.tires * 0.1,
     grip: Math.min(0.99, base.grip + tune.tires * 0.034),
     nitroDrain: 0.42 - tune.nitro * 0.07,
