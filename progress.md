@@ -3,6 +3,7 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- A best time is stored by track, mode, weather, car, handling, assists, and lap count. A clear 90s and a rain 80s stay in different classes. An older track-only time is shown as Legacy and is not overwritten.
+- Touch controls sit in two rows beside a smaller pad, so eight actions fit a narrow phone. Letting go, cancel, or leaving the page clears the touch input.
+- Tire upgrades change `turnRate`, and that now changes how hard the car yaws. Checked: 1.85 turns less than 2.15.
 
-Not done: browser `qa:drive`, the 60 contract failures, devices, Alpha through release.
+Not done: a real phone, browser `qa:drive`, the 60 contract failures, devices, Alpha through release.

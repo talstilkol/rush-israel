@@ -391,7 +391,8 @@ export class ArcadeCar {
     const wb = 2.55;
     const ht = 0.76;
     const iz = mass * 2.85;
-    const maxSteer = 0.5 * (1 - 0.4 * clamp(speedAbs / 36, 0, 1));
+    const steerMul = clamp((this.stats.turnRate || 1.85) / 1.85, 0.7, 1.45);
+    const maxSteer = 0.5 * steerMul * (1 - 0.4 * clamp(speedAbs / 36, 0, 1));
     const steer = (racing ? steerIn : 0) * maxSteer * reverse;
     const longs = [wb * 0.5, wb * 0.5, -wb * 0.5, -wb * 0.5];
     const lats = [-ht, ht, -ht, ht];
@@ -417,7 +418,7 @@ export class ArcadeCar {
     const speedFactor = clamp(speedAbs / 7.5, 0, 1) * (1 - 0.4 * clamp(speedAbs / 38, 0, 1));
     const crawl = 1 - clamp((speedAbs - 4) / 6, 0, 1);
     this.kinMix = crawl;
-    const kin = steerIn * 1.7 * clamp(speedAbs / 6.5, 0, 1) * reverse * (wantDrift ? 1.28 : 1) * (0.92 + front * 0.16);
+    const kin = steerIn * 1.7 * steerMul * clamp(speedAbs / 6.5, 0, 1) * reverse * (wantDrift ? 1.28 : 1) * (0.92 + front * 0.16);
     const tire = (yawT / iz) * 80;
     // Below ~10 m/s Pacejka is too weak to turn; crawl keeps kinematic yaw.
     // At speed, yaw is tire + ESC only — not a 34% blend.
