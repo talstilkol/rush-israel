@@ -3,6 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- The daily and weekly time targets were one number for every track, 85 and 78 seconds. A clean Hermon lap is 129 seconds and a clean two-lap Rothschild is about 122, so gold was impossible. Targets now follow a measured lap: Hermon gold is 136, Rothschild time gold is 130, today's Jaffa time gold is 74 against a clean two laps of about 70. Drift targets scale the same way. Rain, storm, and hamsin add time; those multipliers are estimates, not measured laps.
+- Storm gold used 1.2 times a clear lap. A clean Hermon lap in the storm took 167.5 seconds against a clear 128.6, so that gold was still too fast. Storm is now 1.38. Hermon storm gold is 177. Rain and hamsin were already slower than the measured laps: Hermon rain 138.5 against gold 144, Ayalon rain 91.1 against gold 100.
 
 Not done: browser `qa:drive`, the remaining hash locks, devices, Alpha through release.

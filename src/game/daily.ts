@@ -44,7 +44,7 @@ export function medalTargets(trackId: string, mode: RaceMode, weather: Weather) 
     const gold = Math.round(lap * laps * 90);
     return { gold, silver: Math.round(gold * 0.62), bronze: Math.round(gold * 0.38) };
   }
-  const wx = weather === "storm" ? 1.2 : weather === "rain" ? 1.12 : weather === "hamsin" ? 1.1 : 1.06;
+  const wx = weather === "storm" ? 1.38 : weather === "rain" ? 1.12 : weather === "hamsin" ? 1.1 : 1.06;
   const gold = Math.round(lap * laps * wx);
   return { gold, silver: Math.round(gold * 1.16), bronze: Math.round(gold * 1.34) };
 }
