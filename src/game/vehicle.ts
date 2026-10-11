@@ -818,10 +818,12 @@ export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): 
   const offLine = Math.abs(lat - car.aiOffset) > track.width * 0.42 || car.offTrackT > 0.35;
   if (offLine) {
     const slow = car.speed < 8;
+    const fast = car.speed > 18;
+    const cap = slow ? 0.5 : fast ? 0.45 : 0.8;
     return {
-      steer: clamp(err * (slow ? 1.1 : 2.2), slow ? -0.5 : -1, slow ? 0.5 : 1),
-      throttle: slow ? 1 : car.speed < 14 ? 0.7 : 0.35,
-      brake: car.speed > 22 ? 0.4 : 0,
+      steer: clamp(err * (slow ? 1.1 : 1.4), -cap, cap),
+      throttle: slow ? 1 : fast ? 0.2 : 0.55,
+      brake: fast ? 0.55 : 0,
       drift: false,
       nitro: false,
     };

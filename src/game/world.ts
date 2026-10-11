@@ -3,7 +3,7 @@ import { Lensflare, LensflareElement } from "three/examples/jsm/objects/Lensflar
 import { Reflector } from "three/examples/jsm/objects/Reflector.js";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 import { mulberry32, lerp, clamp, hash01 } from "./math";
-import { nearestIndex } from "./spline";
+import { nearestIndex, roadEdgeBarriers } from "./spline";
 import type { BuiltTrack } from "./spline";
 import type { Collider, Ramp, SkyPreset, TrackDef, Weather } from "./types";
 import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, her, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, ram, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
@@ -2422,23 +2422,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const nycLand = await import("./nyc-landmarks");
     nycLand.addNycLandmarks(group, def, bag, shadows, isNight, landmarkGlows, emitList, colliders);
   }
-  const edgeStep = Math.max(3, Math.floor(built.samples.length / 360));
-  const wallD = built.width / 2 + 1.55;
-  for (let i = 0; i < built.samples.length; i += edgeStep) {
-    const s = built.samples[i];
-    colliders.push({
-      x: s.x + s.rx * wallD,
-      z: s.z + s.rz * wallD,
-      r: 0.62,
-      kind: "barrier"
-    });
-    colliders.push({
-      x: s.x - s.rx * wallD,
-      z: s.z - s.rz * wallD,
-      r: 1.05,
-      kind: "barrier"
-    });
-  }
+  colliders.push(...roadEdgeBarriers(built));
   let bHits = 0;
   for (const p of placements) {
     if (bHits >= 80) break;

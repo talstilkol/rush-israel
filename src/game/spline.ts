@@ -1,5 +1,5 @@
 import { catmullRom } from "./math";
-import type { Sample, TrackDef, Vec2 } from "./types";
+import type { Collider, Sample, TrackDef, Vec2 } from "./types";
 
 export type BuiltTrack = {
   samples: Sample[];
@@ -122,6 +122,25 @@ export function nearestIndex(samples: Sample[], x: number, z: number, hint: numb
   }
   const s = samples[bestI];
   return { index: bestI, dist: Math.hypot(s.x - x, s.z - z) };
+}
+
+export function roadEdgeBarriers(built: BuiltTrack): Collider[] {
+  const edgeStep = Math.max(3, Math.floor(built.samples.length / 360));
+  const wallD = built.width / 2 + 1.55;
+  const keepOut = built.width / 2 + 0.9;
+  const out: Collider[] = [];
+  for (let i = 0; i < built.samples.length; i += edgeStep) {
+    const s = built.samples[i];
+    const pair: Collider[] = [
+      { x: s.x + s.rx * wallD, z: s.z + s.rz * wallD, r: 0.62, kind: "barrier" },
+      { x: s.x - s.rx * wallD, z: s.z - s.rz * wallD, r: 1.05, kind: "barrier" },
+    ];
+    for (const c of pair) {
+      if (nearestIndex(built.samples, c.x, c.z, i).dist < keepOut) continue;
+      out.push(c);
+    }
+  }
+  return out;
 }
 
 export function startGridT(index: number, count: number) {
