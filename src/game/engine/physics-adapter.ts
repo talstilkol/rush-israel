@@ -615,6 +615,7 @@ export function endRace(this: EngineAdapterHost)
       ghostBeaten: false,
       line: finishLine(place, this.busted, this.opts.langHe, this.rivalIdx),
       eligible,
+      voidReason: eligible ? undefined : this.timeVoided ? "stall" : this.qaForcedFinish ? "qa" : this.totalTime < 8 ? "short" : "invalid",
       board: this.standings().map((r) => ({ name: r.name, you: r === this.player })),
     };
     const purse = eligible ? racePayout(resultDraft) : 0;

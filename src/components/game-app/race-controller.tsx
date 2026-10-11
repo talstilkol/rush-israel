@@ -667,15 +667,19 @@ export function RaceController({
 				}) : null,
 				result.eligible === false ? /* @__PURE__ */ jsx("p", {
 					className: "mt-2 text-sm text-muted",
-					children: t("הזמן לא נשמר", "Time not saved")
+					children: result.voidReason === "stall"
+						? t("הזמן לא נשמר · עצירה", "Time not saved · stall")
+						: result.voidReason === "short"
+							? t("הזמן לא נשמר · קצר מדי", "Time not saved · too short")
+							: t("הזמן לא נשמר", "Time not saved")
 				}) : null,
 				result.driftScore > 0 ? /* @__PURE__ */ jsx("p", {
 					className: "mt-2 text-sm tabular-nums text-muted",
 					children: `${t("דריפט", "Drift")} ${result.driftScore}`
 				}) : null,
-				paid > 0 ? /* @__PURE__ */ jsx("p", {
+				paid !== 0 ? /* @__PURE__ */ jsx("p", {
 					className: "mt-2 text-sm font-medium tabular-nums",
-					children: `+₪${paid.toLocaleString()}`
+					children: `${paid > 0 ? "+" : ""}₪${paid.toLocaleString()}`
 				}) : null,
 				result.clean ? /* @__PURE__ */ jsx("p", {
 					className: "mt-1 text-sm font-medium text-accent",
