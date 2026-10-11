@@ -470,7 +470,7 @@ export class RaceEngine {
         const ai = new ArcadeCar(d, this.opts.langHe ? rival.he : rival.en);
         ai.isAi = true;
         ai.aiSkill = 0.94 - i * 0.045;
-        ai.aiOffset = (i % 2 === 0 ? -1 : 1) * (2.15 + (i % 3) * 0.35);
+        ai.aiOffset = 0;
         ai.handling = this.player.handling;
         ai.assists = { abs: true, tcs: true, esc: true };
         ai.weather = this.weather;
