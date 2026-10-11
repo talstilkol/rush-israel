@@ -8,7 +8,7 @@ import { CARS } from "../cars";
 import { clamp, hashStr } from "../math";
 import { prefersReducedMotion } from "../a11y";
 import { getCash, recordGhost, setDamage } from "../save";
-import { behindProgress, crossedForward, sampleAtT } from "../spline";
+import { behindProgress, crossedForward, nearestIndex, sampleAtT } from "../spline";
 import type { Collider, RaceResult } from "../types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting } from "../vehicle";
 import type { RaceEngine } from "../engine";
@@ -504,7 +504,13 @@ export function stampPois(this: EngineAdapterHost)
     for (let i = 0; i < pois.length; i++) {
       if (this.poiGot.has(i)) continue;
       const p = pois[i];
-      if (Math.hypot(this.player.x - p.x, this.player.z - p.z) < p.r * 0.72) {
+      const near = nearestIndex(this.built.samples, p.x, p.z, 0);
+      const off = near.dist > p.r * 0.72;
+      const s = this.built.samples[near.index];
+      const ax = off ? s.x : p.x;
+      const az = off ? s.z : p.z;
+      const rad = off ? Math.max(this.built.width * 0.55, 8) : p.r * 0.72;
+      if (Math.hypot(this.player.x - ax, this.player.z - az) < rad) {
         this.poiGot.add(i);
         this.audio.checkpoint();
         this.ping = 1;
