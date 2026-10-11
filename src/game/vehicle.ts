@@ -434,8 +434,10 @@ export class ArcadeCar {
     const kin = steerIn * 1.7 * steerMul * clamp(speedAbs / 6.5, 0, 1) * reverse * (wantDrift ? 1.28 : 1) * (0.92 + front * 0.16);
     const tire = (yawT / iz) * 80;
     // Below ~10 m/s Pacejka is too weak to turn; crawl keeps kinematic yaw.
-    // At speed, yaw is tire + ESC only — not a 34% blend.
-    this.yawRate = kin * crawl + tire;
+    // At speed the tire term saturates and flips, so the wheel has to keep a share.
+    const kinYaw = kin * Math.max(crawl, 0.85);
+    const tireYaw = clamp(tire, -1.1, 1.1);
+    this.yawRate = clamp(kinYaw + tireYaw * 0.35, -2.4, 2.4);
     const latNow = this.vx * rx + this.vz * rz;
     const slipAng = Math.atan2(latNow, Math.max(2.4, speedAbs));
     const esc = escYaw(slipAng, this.yawRate, this.assists.esc && racing, wantDrift);
