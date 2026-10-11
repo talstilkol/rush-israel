@@ -351,7 +351,7 @@ export class ArcadeCar {
       this.driftAngle = Math.asin(clamp(this.slip, 0, 1)) * 57.3;
       if (!this.isAi) {
         const a = this.driftAngle;
-        const zone = a < 12 ? 0.38 : a > 52 ? 0.55 : a > 18 && a < 42 ? 1.42 : 1;
+        const zone = a < 12 ? 0 : a > 52 ? 0.55 : a > 18 && a < 42 ? 1.42 : 1;
         this.driftScore += speedAbs * (0.55 + this.driftCharge) * dt * 14 * zone * this.comboMul;
       }
     } else {

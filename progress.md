@@ -3,6 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- Time-attack gold on the launch roads was faster than a clean starter-car run, so three stars were impossible. The targets now sit just behind that run. A clean Namal two-lap run is 124 seconds and gold is 128. Wet Namal is 126 and gold is 130. Dry Ayalon is 90 and gold is 93. Wet Ayalon is 90 and gold is 94. Drift targets were not changed.
+- A drift under 12 degrees no longer scores. On Jaffa, a run that held a real angle and stayed on the road scored 9172, so the lesson gold of 7200 and the later gold of 9000 are reachable. A sloppier run scored 5988. On Hermon the same kind of run scored 32601, so gold was raised from 8000 to 24000, silver to 15000, and bronze to 8000.
 
 Not done: browser `qa:drive`, the remaining hash locks, devices, Alpha through release.
