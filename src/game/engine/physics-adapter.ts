@@ -138,6 +138,7 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
         if (ending) this.endRace();
       }
       if (ev.lapComplete && this.mode === "knockout") this.checkKnockout();
+      if (!ev.lapComplete && ev.checkpoint && this.mode === "knockout" && this.trackDef.open) this.checkKnockout();
     }
 
     this.applyAltitudeLook();
@@ -542,9 +543,12 @@ export function checkKnockout(this: EngineAdapterHost)
 // RSH-017-BODY-BEGIN:checkKnockout
 {
     const alive = this.racers.filter((r) => !r.eliminated && !r.finished);
-    const leadLap = Math.max(0, ...alive.map((r) => r.lap));
-    if (leadLap <= this.koMarked) return;
-    this.koMarked = leadLap;
+    const mark = this.trackDef.open
+      ? Math.max(0, ...alive.map((r) => r.nextCheckpoint))
+      : Math.max(0, ...alive.map((r) => r.lap));
+    if (this.trackDef.open && mark < 2) return;
+    if (mark <= this.koMarked) return;
+    this.koMarked = mark;
     if (alive.length <= 1) return;
     const last = [...alive].sort((a, b) => a.raceScore() - b.raceScore())[0];
     last.eliminated = true;

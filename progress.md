@@ -3,6 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- An engine upgrade now shortens the 0–100 claim, which is what the launch actually uses. Stock Sabra: claimed 8.4 s, measured 8.65 s. Engine level 3: claimed 7.10 s, measured 7.28 s. A straight 200 m run on Ayalon, with landmark colliders, stayed on the road with damage 0. That was not a browser `qa:drive`.
+- Knockout on an open road now drops the last car as the field passes each gate, after the first one. A field of six on an open road ended with only the player left, and the race closed as a win. On a closed road the first lap still removes one car and does not end the race. This was a logic simulation, not a browser race.
 
-Not done: the remaining hash locks, browser `qa:drive`, devices, Alpha through release.
+Not done: browser `qa:drive`, the remaining hash locks, devices, Alpha through release.
