@@ -229,21 +229,65 @@ export function retrySavePersistence() {
   return lastSaveStatus;
 }
 
+export function assistKey(flags: { abs: boolean; tcs: boolean; esc: boolean }) {
+  const parts = [flags.abs ? "abs" : "", flags.tcs ? "tcs" : "", flags.esc ? "esc" : ""].filter(Boolean);
+  return parts.join("+") || "none";
+}
+
+export function rulesetKey(
+  trackId: string,
+  rules: { mode: string; weather: string; carId: string; handling: string; assists: string; laps: number },
+) {
+  return [trackId, rules.mode, rules.weather, rules.carId, rules.handling, rules.assists, String(rules.laps)].join("|");
+}
+
 export function getBest(id: TrackId) {
   return load().best[id] ?? null;
 }
 
-export function recordBest(id: TrackId, time: number, opts?: { eligible?: boolean; carId?: CarId }) {
+export function getRulesBest(
+  id: TrackId,
+  rules: { mode: string; weather: string; carId: string; handling: string; assists: string; laps: number },
+) {
+  return load().rules?.[rulesetKey(id, rules)] ?? null;
+}
+
+export function recordBest(
+  id: TrackId,
+  time: number,
+  opts?: {
+    eligible?: boolean;
+    carId?: CarId;
+    rules?: { mode: string; weather: string; carId: string; handling: string; assists: string; laps: number };
+  },
+) {
   if (opts?.eligible === false) return false;
   if (!Number.isFinite(time) || time < 8 || time > 2700) return false;
   const data = load();
+  const carId = opts?.carId ?? "sabra";
+  if (opts?.rules) {
+    const key = rulesetKey(id, { ...opts.rules, carId: opts.rules.carId || carId });
+    const prev = data.rules?.[key];
+    const better = prev == null || time < prev;
+    if (better) {
+      data.rules = { ...(data.rules ?? {}), [key]: time };
+      write(data);
+    }
+    void persistTimed({
+      t: time,
+      trackId: id,
+      carId,
+      physicsVersion: PHYSICS_VERSION,
+      hash: hashTimedRecord({ t: time, trackId: id, carId, physicsVersion: PHYSICS_VERSION }),
+    });
+    return better;
+  }
   const prev = data.best[id];
   const better = prev == null || time < prev;
   if (better) {
     data.best[id] = time;
     write(data);
   }
-  const carId = opts?.carId ?? "sabra";
   void persistTimed({
     t: time,
     trackId: id,

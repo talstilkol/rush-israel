@@ -3,7 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- GO is shown only after the countdown reaches zero, which is the same moment the throttle is released.
-- A load that throws or takes more than 20 seconds leaves a retry and a way back to the menu, instead of a stuck overlay.
+- A best time is stored by track, mode, weather, car, handling, assists, and lap count. A clear 90s and a rain 80s stay in different classes. An older track-only time is shown as Legacy and is not overwritten.
 
 Not done: browser `qa:drive`, the 60 contract failures, devices, Alpha through release.

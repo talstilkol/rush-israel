@@ -17,9 +17,11 @@ import { Button } from "@/components/ui/button";
 import { CARS } from "@/game/cars";
 import { chapters, maxStars, CAR_UNLOCK, dailyEvent, weeklyEvent } from "@/game/career";
 import { applyTune, LIVERIES, nextCost, PAINTS } from "@/game/garage";
-import { MODE_INFO, RACE_MODES } from "@/game/modes";
+import { MODE_INFO, MODE_LAPS, RACE_MODES } from "@/game/modes";
 import {
   allBests,
+  assistKey,
+  getRulesBest,
   allEventStars,
   getCash,
   getTune,
@@ -542,10 +544,24 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 													className: "mt-1 text-xs text-muted",
 													children: tr.lengthHint
 												}),
-												bests[tr.id] ? /* @__PURE__ */ jsx("p", {
-													className: "mt-1 text-xs font-medium tabular-nums text-fg",
-													children: `${t("שיא", "Best")} ${formatTime(bests[tr.id]!)}`
-												}) : null,
+												(() => {
+													const classBest = getRulesBest(tr.id, {
+														mode,
+														weather,
+														carId,
+														handling,
+														assists: assistKey(assists),
+														laps: tr.open ? 1 : MODE_LAPS[mode],
+													});
+													if (classBest) return /* @__PURE__ */ jsx("p", {
+														className: "mt-1 text-xs font-medium tabular-nums text-fg",
+														children: `${t("שיא", "Best")} ${formatTime(classBest)}`
+													});
+													return bests[tr.id] ? /* @__PURE__ */ jsx("p", {
+														className: "mt-1 text-xs font-medium tabular-nums text-muted",
+														children: `${t("ישן", "Legacy")} ${formatTime(bests[tr.id]!)}`
+													}) : null;
+												})(),
 												/* @__PURE__ */ jsx("p", {
 													className: "mt-2 text-xs leading-relaxed text-subtle",
 													children: langHe ? tr.description : tr.descriptionEn

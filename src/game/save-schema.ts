@@ -24,6 +24,7 @@ export type SaveMigrationCode =
 export type SaveData = {
   version: typeof SAVE_SCHEMA_VERSION;
   best: Partial<Record<TrackId, number>>;
+  rules?: Record<string, number>;
   muted?: boolean;
   night?: boolean;
   quality?: Quality;
@@ -190,6 +191,7 @@ function normalizeV3(value: Record<string, unknown>, issues: string[]): SaveData
   const career = isRecord(value.career) ? value.career : {};
   if (value.career !== undefined && !isRecord(value.career)) issue(issues, "career", "reset");
   const best = sanitizeNumberMap(value.best, "best", 8, 2700, issues) as Partial<Record<TrackId, number>>;
+  const rules = sanitizeNumberMap(value.rules, "rules", 8, 2700, issues);
   const stars = sanitizeNumberMap(career.stars, "career.stars", 0, 3, issues, true);
   const tunes: Partial<Record<CarId, Tune>> = {};
   const rawTunes = isRecord(value.tunes) ? value.tunes : {};
@@ -244,6 +246,7 @@ function normalizeV3(value: Record<string, unknown>, issues: string[]): SaveData
   return {
     version: SAVE_SCHEMA_VERSION,
     best,
+    rules,
     muted: optionalBoolean(value, "muted", issues),
     night: optionalBoolean(value, "night", issues),
     quality,
@@ -312,6 +315,7 @@ export function emptySave(): SaveData {
   return {
     version: SAVE_SCHEMA_VERSION,
     best: {},
+    rules: {},
     career: { stars: {} },
     cash: 500,
     tunes: {},

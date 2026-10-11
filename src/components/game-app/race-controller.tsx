@@ -15,8 +15,10 @@ import { getEvent, maxStars, nextCareerId, starsFor } from "@/game/career";
 import { racePayout } from "@/game/garage";
 import { estimateLoadMs, recordLoadMs } from "@/game/load-eta";
 import { formatTime } from "@/game/math";
+import { MODE_LAPS } from "@/game/modes";
 import {
   addCash,
+  assistKey,
   getCash,
   getDamage,
   getTune,
@@ -180,7 +182,18 @@ export function RaceController({
 				onRestore: () => setRaceKey((k) => k + 1),
 				onFinish: (r) => {
 					const ok = r.eligible !== false;
-					const isBest = ok ? recordBest(r.trackId, r.totalTime, { eligible: true, carId }) : false;
+					const isBest = ok ? recordBest(r.trackId, r.totalTime, {
+						eligible: true,
+						carId,
+						rules: {
+							mode,
+							weather,
+							carId,
+							handling,
+							assists: assistKey(assists),
+							laps: track.open ? 1 : MODE_LAPS[mode],
+						},
+					}) : false;
 					setRecord(isBest);
 					const ev = r.eventId ? getEvent(r.eventId) : null;
 					const got = !ok ? 0 : ev ? starsFor(ev, r) : r.place === 1 ? 3 : r.place === 2 ? 2 : r.place === 3 ? 1 : 0;
