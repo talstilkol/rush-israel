@@ -1,6 +1,6 @@
 import type { CarId, RaceMode, RaceResult, TrackId, Weather } from "./types";
 import { isV1Track } from "./tracks";
-import { todayChallenge } from "./daily";
+import { todayChallenge, medalTargets } from "./daily";
 
 /** Codex 69: keep this file until freeze tree-shake. Do not add online features. */
 export const KEEP_CAREER_MODULE = true;
@@ -1086,7 +1086,7 @@ export const CAREER: CareerEvent[] = [
 
 export function dailyEvent(d = new Date()): CareerEvent {
   const ch = todayChallenge(d);
-  const timeGold = 85;
+  const medals = medalTargets(ch.trackId, ch.mode, ch.weather);
   return {
     id: `daily-${ch.key}`,
     chapter: 0,
@@ -1098,9 +1098,9 @@ export function dailyEvent(d = new Date()): CareerEvent {
     nameEn: "Daily challenge",
     night: ch.night,
     unlockStars: 0,
-    gold: ch.mode === "time" ? timeGold : ch.mode === "drift" ? 7000 : ch.mode === "heat" ? timeGold + 20 : 1,
-    silver: ch.mode === "time" ? timeGold + 22 : ch.mode === "drift" ? 4200 : ch.mode === "heat" ? timeGold + 50 : 2,
-    bronze: ch.mode === "time" ? timeGold + 48 : ch.mode === "drift" ? 2200 : ch.mode === "heat" ? timeGold + 90 : 3,
+    gold: medals.gold,
+    silver: medals.silver,
+    bronze: medals.bronze,
     weather: ch.weather,
   };
 }
@@ -1130,20 +1130,22 @@ export function weeklyKey(d = new Date()) {
 export function weeklyEvent(d = new Date()): CareerEvent {
   const key = weeklyKey(d);
   const ch = todayChallenge(new Date(d.getFullYear(), d.getMonth(), d.getDate() + 3));
+  const mode = ch.mode === "heat" ? "circuit" : ch.mode;
+  const medals = medalTargets(ch.trackId, mode, ch.weather);
   return {
     id: `weekly-${key}`,
     chapter: 0,
     chapterHe: "אליפות השבוע",
     chapterEn: "Weekly cup",
     trackId: ch.trackId,
-    mode: ch.mode === "heat" ? "circuit" : ch.mode,
+    mode,
     nameHe: "אליפות השבוע",
     nameEn: "Weekly cup",
     night: true,
     unlockStars: 0,
-    gold: ch.mode === "time" ? 78 : ch.mode === "drift" ? 8000 : 1,
-    silver: ch.mode === "time" ? 98 : ch.mode === "drift" ? 4800 : 2,
-    bronze: ch.mode === "time" ? 122 : ch.mode === "drift" ? 2400 : 3,
+    gold: medals.gold,
+    silver: medals.silver,
+    bronze: medals.bronze,
     weather: ch.weather,
   };
 }
