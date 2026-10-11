@@ -28,8 +28,9 @@ import {
   setMutedSave,
   setNightSave,
   setQualitySave,
-  totalStars,
+  v1Stars,
 } from "@/game/save";
+import { isV1Track } from "@/game/tracks";
 import type { RaceEngine } from "@/game/engine";
 import type {
   AssistFlags,
@@ -152,10 +153,11 @@ export function RaceController({
 			if (cancelled) return;
 			const { RaceEngine } = await import("@/game/engine");
 			const { loadAyalonRoad } = await import("@/game/road-assets");
-			if (trackId === "ayalon") await loadAyalonRoad();
+			const launchId = isV1Track(trackId) ? trackId : "ayalon";
+			if (launchId === "ayalon") await loadAyalonRoad();
 			if (cancelled) return;
 			inst = new RaceEngine(canvas, {
-				trackId,
+				trackId: launchId,
 				carId,
 				langHe,
 				night,
@@ -171,7 +173,7 @@ export function RaceController({
 				handling,
 				assists,
 				onHud: setHud,
-				onBoot: (frac) => setBoot((b) => (b ? { ...b, frac } : { etaMs: estimateLoadMs(trackId, quality, night), frac })),
+				onBoot: (frac) => setBoot((b) => (b ? { ...b, frac } : { etaMs: estimateLoadMs(launchId, quality, night), frac })),
 				onRestore: () => setRaceKey((k) => k + 1),
 				onFinish: (r) => {
 					const ok = r.eligible !== false;
@@ -183,11 +185,11 @@ export function RaceController({
 					if (ok && r.eventId) recordEventStars(r.eventId, got);
 					if (ok && r.eventId?.startsWith("daily-")) markDailyDone(r.eventId.slice(6));
 					if (ok && r.eventId?.startsWith("weekly-")) markWeeklyDone(r.eventId.slice(7));
-					setStarTotal(totalStars());
+					setStarTotal(v1Stars());
 					const pay = ok ? (r.cash || racePayout(r)) : 0;
 					setPaid(pay);
 					setCash(ok ? addCash(pay) : getCash());
-					const crowned = ok && totalStars() >= maxStars();
+					const crowned = ok && v1Stars() >= maxStars();
 					const bonus = crowned && markChampion();
 					if (bonus) setCash(getCash());
 					setCrown(crowned);
@@ -663,14 +665,14 @@ export function RaceController({
 					}), eventId ? /* @__PURE__ */ jsx(Button, {
 						variant: "outline",
 						onClick: () => {
-							const next = nextCareerId(eventId, totalStars());
+							const next = nextCareerId(eventId, v1Stars());
 							setResult(null);
 							setHud(null);
 							setPaused(false);
 							if (next) onStartEvent(next);
 							else setScreen("career");
 						},
-						children: nextCareerId(eventId, totalStars()) ? t("אירוע הבא", "Next event") : t("קריירה", "Career")
+						children: nextCareerId(eventId, v1Stars()) ? t("אירוע הבא", "Next event") : t("קריירה", "Career")
 					}) : null]
 				})
 			] }) : null

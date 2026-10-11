@@ -14,8 +14,14 @@ export function getTrack(id: TrackId) {
   return t;
 }
 
+export const V1_TRACK_IDS = ["ayalon", "rothschild", "namal", "oldjaffa", "scopus", "haifa", "ramon", "hermon"] as const;
+
+export function isV1Track(id: string) {
+  return (V1_TRACK_IDS as readonly string[]).includes(id);
+}
+
 export function isDriveable(track: TrackDef) {
-  return track.width >= 19.5 && track.city !== "nyc";
+  return isV1Track(track.id);
 }
 
 export function streetName(track: TrackDef, t: number, he: boolean) {

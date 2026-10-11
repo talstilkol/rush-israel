@@ -1,9 +1,12 @@
 # Progress — honest
 
-Not 99%. That number was a session estimate of menu wiring, not the master plan.
+Branch `agent/playable-session`. Not a release.
 
-- GitHub: [talstilkol/rush-israel](https://github.com/talstilkol/rush-israel) private. There is no `race-israel` repo.
-- `main` at `b2c0d46`. Local gameplay edits are uncommitted and are not on GitHub.
-- Master plan on that commit claims release gates **8/13**. This session did not re-run `required-ci`.
-- Visual plan in TASKS.md is still the honest bar: the slice is not an Asphalt-class game.
-- Not driven this session: Playwright Chromium is not installed. 56 track records loaded; 52 pass the width filter; 4 NYC tracks are blocked on purpose.
+Fixed on this branch, not driven in a browser:
+- TypeScript: sky imports and `HudState.cash` (typecheck clean).
+- Ramon elevation no longer returns NaN at t = 0.9.
+- Ayalon canal water no longer reads a missing body color on day/night/weather.
+- Colliders stay on their meshes. The branch had shoved them toward the road; that was the 200 m damage regression.
+- Quick race, daily, weekly, career, and engine start use the eight V1 tracks. Lesson 1 is Ayalon. 16 career events. Deferred tracks stay in the data and off the launch list.
+
+Not done: browser `qa:drive`, the 60 contract failures, device proof, signed release.

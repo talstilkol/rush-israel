@@ -1,6 +1,6 @@
 import type { AssistFlags, CarId, HandlingMode, Quality, TrackId, Tune } from "./types";
 import type { Lang } from "./i18n";
-import { CAR_UNLOCK } from "./career";
+import { CAR_UNLOCK, activeCareer } from "./career";
 import { emptyTune, type GhostFrame } from "./garage";
 import { PHYSICS_VERSION } from "./physics";
 import {
@@ -381,6 +381,13 @@ export function totalStars() {
   return n;
 }
 
+export function v1Stars() {
+  const s = load().career.stars;
+  let n = 0;
+  for (const ev of activeCareer()) n += s[ev.id] ?? 0;
+  return n;
+}
+
 export function recordEventStars(id: string, stars: number) {
   const data = load();
   const prev = data.career.stars[id] ?? 0;
@@ -393,7 +400,7 @@ export function recordEventStars(id: string, stars: number) {
 }
 
 export function isCarUnlocked(id: CarId) {
-  return totalStars() >= (CAR_UNLOCK[id] ?? 0);
+  return v1Stars() >= (CAR_UNLOCK[id] ?? 0);
 }
 
 export function getCash() {

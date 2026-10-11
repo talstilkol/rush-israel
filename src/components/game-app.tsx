@@ -25,7 +25,7 @@ import {
   setQualitySave,
   setTrafficSave,
   setVolumeSave,
-  totalStars,
+  v1Stars,
 } from "@/game/save";
 import { copy, dirFor, nextLang, type Lang } from "@/game/i18n";
 import type { RaceEngine } from "@/game/engine";
@@ -75,7 +75,7 @@ export function GameApp() {
 		setGrid(getGrid());
 		setVolume(getVolume());
 		setTraffic(getTraffic());
-		setStarTotal(totalStars());
+		setStarTotal(v1Stars());
 		setCash(getCash());
 		setHandling(getHandling());
 		setAssists(getAssists());
@@ -124,7 +124,7 @@ export function GameApp() {
 				onStartEvent: (id: string) => {
 					const ev = getEvent(id);
 					if (!ev) return;
-					if (totalStars() < ev.unlockStars) return;
+					if (v1Stars() < ev.unlockStars) return;
 					setEventId(ev.id);
 					setTrackId(ev.trackId);
 					setMode(ev.mode);
@@ -208,7 +208,7 @@ export function GameApp() {
 				startCareer: (id: string) => {
 					const ev = getEvent(id);
 					if (!ev) return;
-					if (totalStars() < ev.unlockStars) return;
+					if (v1Stars() < ev.unlockStars) return;
 					setEventId(ev.id);
 					setTrackId(ev.trackId);
 					setMode(ev.mode);

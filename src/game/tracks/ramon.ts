@@ -51,9 +51,9 @@ export default defineTrack({
       ram(30.5722, 34.7974),
     ],
     elevation: (t) => {
-      if (t < 0.08) return 168;
-      if (t > 0.9) return 1.2;
-      const u = (t - 0.08) / 0.82;
+      if (t <= 0.08) return 168;
+      if (t >= 0.9) return 1.2;
+      const u = Math.min(1, Math.max(0, (t - 0.08) / 0.82));
       return 168 * Math.pow(1 - u, 1.18) + 1.2;
     },
     streets: [

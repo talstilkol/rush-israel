@@ -1,4 +1,5 @@
 import type { CarId, RaceMode, RaceResult, TrackId, Weather } from "./types";
+import { isV1Track } from "./tracks";
 import { todayChallenge } from "./daily";
 
 /** Codex 69: keep this file until freeze tree-shake. Do not add online features. */
@@ -37,7 +38,7 @@ export const CAREER: CareerEvent[] = [
     chapter: 0,
     chapterHe: "רישיון תל אביב",
     chapterEn: "TLV license",
-    trackId: "hayarkon",
+    trackId: "ayalon",
     mode: "circuit",
     nameHe: "שיעור 1 · הישאר על הכביש",
     nameEn: "Lesson 1 · Stay on the road",
@@ -1104,10 +1105,17 @@ export function dailyEvent(d = new Date()): CareerEvent {
   };
 }
 
+export function activeCareer() {
+  return CAREER.filter((ev) => isV1Track(ev.trackId)).map((ev, i) => ({
+    ...ev,
+    unlockStars: Math.min(ev.unlockStars, i * 2),
+  }));
+}
+
 export function getEvent(id: string) {
   if (id.startsWith("daily-")) return dailyEvent();
   if (id.startsWith("weekly-")) return weeklyEvent();
-  return CAREER.find((e) => e.id === id) ?? null;
+  return activeCareer().find((e) => e.id === id) ?? null;
 }
 
 export function weeklyKey(d = new Date()) {
@@ -1167,12 +1175,12 @@ export function starsFor(ev: CareerEvent, r: RaceResult): number {
 }
 
 export function maxStars() {
-  return CAREER.length * 3;
+  return activeCareer().length * 3;
 }
 
 export function chapters() {
   const map = new Map<number, { he: string; en: string; events: CareerEvent[] }>();
-  for (const ev of CAREER) {
+  for (const ev of activeCareer()) {
     const cur = map.get(ev.chapter) ?? { he: ev.chapterHe, en: ev.chapterEn, events: [] };
     cur.events.push(ev);
     map.set(ev.chapter, cur);
@@ -1181,10 +1189,11 @@ export function chapters() {
 }
 
 export function nextCareerId(current: string, stars: number) {
-  const i = CAREER.findIndex((e) => e.id === current);
+  const list = activeCareer();
+  const i = list.findIndex((e) => e.id === current);
   if (i < 0) return null;
-  for (let k = i + 1; k < CAREER.length; k++) {
-    if (stars >= CAREER[k]!.unlockStars) return CAREER[k]!.id;
+  for (let k = i + 1; k < list.length; k++) {
+    if (stars >= list[k]!.unlockStars) return list[k]!.id;
   }
   return null;
 }

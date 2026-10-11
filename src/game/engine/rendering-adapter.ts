@@ -15,6 +15,7 @@ import { gfxPassFlags } from "../../rendering/DynamicQualityController";
 import { exportPhotoPng } from "../photo-export";
 import { prefersReducedMotion } from "../a11y";
 import { getCash } from "../save";
+import { getSkyDay, getSkyNight } from "../sky-assets";
 import { AYALON_GOLDEN } from "../../world/goldenCameras";
 import type { RaceEngine } from "../engine";
 import type { EngineAdapterHost } from "./adapter-host";

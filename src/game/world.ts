@@ -2726,8 +2726,12 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     if (waterMats.length) for (let i = 0; i < waterMats.length; i++) {
       const src = bodies[i];
       const mat = waterMats[i];
-      mat.color.setHex(src.color);
-      if (n > 0.35) mat.color.multiplyScalar(lerp(1, 0.5, n));
+      if (!src) {
+        mat.color.setHex(n > 0.35 ? 0x1a3a48 : 0x2a6a78);
+      } else {
+        mat.color.setHex(src.color);
+        if (n > 0.35) mat.color.multiplyScalar(lerp(1, 0.5, n));
+      }
       mat.envMapIntensity = lerp(1.7, 2.6, n);
       mat.roughness = lerp(0.08, 0.03, n);
       mat.opacity = lerp(0.82, 0.9, n);
