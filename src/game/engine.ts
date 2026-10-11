@@ -161,6 +161,7 @@ export class RaceEngine {
   private paused = false;
   private racing = false;
   private countdown = 3.8;
+  private goFlash = 0;
   private totalTime = 0;
   private lapTime = 0;
   private bestLap = Infinity;
@@ -863,6 +864,7 @@ export class RaceEngine {
   restartRace() {
     this.placeGrid();
     this.countdown = 3.8;
+    this.goFlash = 0;
     this.totalTime = 0;
     this.lapTime = 0;
     this.laps = [];

@@ -175,6 +175,7 @@ export type HudState = {
   drifting: boolean;
   wrongWay: boolean;
   countdown: number;
+  goFlash?: number;
   finished: boolean;
   place: number;
   onTrack: boolean;

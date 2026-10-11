@@ -4,9 +4,12 @@ type Props = {
   langHe: boolean;
   city: string;
   name: string;
+  failed?: boolean;
+  onRetry?: () => void;
+  onMenu?: () => void;
 };
 
-export function BootOverlay({ etaMs, frac, langHe, city, name }: Props) {
+export function BootOverlay({ etaMs, frac, langHe, city, name, failed, onRetry, onMenu }: Props) {
   const ms = Math.max(400, Math.min(20000, Math.round(etaMs)));
   const p = Math.max(0, Math.min(1, frac));
   const remain = p >= 0.18 ? Math.max(0, (ms * (1 - p)) / 1000) : null;
@@ -20,13 +23,25 @@ export function BootOverlay({ etaMs, frac, langHe, city, name }: Props) {
       data-boot-frac={p.toFixed(2)}
       role="status"
       aria-live="polite"
-      aria-busy="true"
+      aria-busy={failed ? "false" : "true"}
     >
       <div className="w-full max-w-md">
         <p className="text-xs font-medium uppercase tracking-widest text-muted">{city}</p>
-        <h2 className="mt-2 text-2xl font-semibold tracking-tight">{langHe ? "טוען מסלול" : "Loading track"}</h2>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight">
+          {failed ? (langHe ? "הטעינה נכשלה" : "Load failed") : langHe ? "טוען מסלול" : "Loading track"}
+        </h2>
         <p className="mt-1 text-sm text-muted">{name}</p>
-
+        {failed ? (
+          <div className="mt-8 flex justify-center gap-3">
+            <button type="button" className="rounded-md bg-fg px-4 py-2 text-sm font-medium text-bg" onClick={onRetry}>
+              {langHe ? "נסו שוב" : "Try again"}
+            </button>
+            <button type="button" className="rounded-md border border-border px-4 py-2 text-sm font-medium" onClick={onMenu}>
+              {langHe ? "תפריט" : "Menu"}
+            </button>
+          </div>
+        ) : (
+          <>
         <p className="mt-8 text-center text-3xl font-semibold tabular-nums tracking-tight">
           {remain == null || stuck
             ? langHe
@@ -43,6 +58,8 @@ export function BootOverlay({ etaMs, frac, langHe, city, name }: Props) {
         <p className="mt-3 text-center text-xs font-medium uppercase tracking-widest text-subtle">
           {langHe ? "זמן שנותר עד הזינוק" : "Time left until start"}
         </p>
+          </>
+        )}
       </div>
     </div>
   );

@@ -45,6 +45,7 @@ export type EngineAdapterHost = {
   cops: RaceEngine["cops"];
   copVis: RaceEngine["copVis"];
   countdown: RaceEngine["countdown"];
+  goFlash: RaceEngine["goFlash"];
   csm: RaceEngine["csm"];
   csmMuted: RaceEngine["csmMuted"];
   csmWanted: RaceEngine["csmWanted"];

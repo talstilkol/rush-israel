@@ -790,6 +790,7 @@ export function pushHud(this: EngineAdapterHost)
       drifting: this.player.drifting,
       wrongWay: this.player.wrongWayT > 0.45,
       countdown: this.countdown,
+      goFlash: this.goFlash,
       finished: this.player.finished,
       place,
       onTrack: this.player.onTrack,

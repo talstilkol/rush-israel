@@ -61,9 +61,11 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
       }
       if (prev > 0 && this.countdown <= 0) {
         this.racing = true;
+        this.goFlash = 0.7;
         this.audio.beep(980, 0.22, 0.2);
       }
     }
+    if (this.goFlash > 0) this.goFlash = Math.max(0, this.goFlash - dt);
 
     if (this.freeze > 0) {
       this.freeze -= dt;

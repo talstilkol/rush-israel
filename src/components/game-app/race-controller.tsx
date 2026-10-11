@@ -116,6 +116,7 @@ export function RaceController({
 	const [crown, setCrown] = useState(false);
 	const [crownPay, setCrownPay] = useState(0);
 	const [boot, setBoot] = useState<{ etaMs: number; frac: number } | null>(null);
+	const [bootErr, setBootErr] = useState(false);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const mapRef = useRef<HTMLCanvasElement>(null);
 // RSH-018-BLOCK-BEGIN:boot-effect
@@ -147,7 +148,9 @@ export function RaceController({
 		let inst: RaceEngine | null = null;
 		const t0 = performance.now();
 		setHud(null);
+		setBootErr(false);
 		void (async () => {
+			try {
 			await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
 			await new Promise((r) => setTimeout(r, 48));
 			if (cancelled) return;
@@ -198,7 +201,17 @@ export function RaceController({
 					setResult(r);
 				},
 			});
-			await inst.ready;
+			let bootTimer: ReturnType<typeof setTimeout> | undefined;
+			try {
+				await Promise.race([
+					inst.ready,
+					new Promise((_, reject) => {
+						bootTimer = setTimeout(() => reject(new Error("boot-timeout")), 20000);
+					}),
+				]);
+			} finally {
+				clearTimeout(bootTimer);
+			}
 			if (cancelled) {
 				inst.dispose();
 				return;
@@ -208,6 +221,13 @@ export function RaceController({
 			engineRef.current = inst;
 			if (muted) inst.toggleMute();
 			setBoot(null);
+			setBootErr(false);
+			} catch {
+				if (cancelled) return;
+				inst?.dispose();
+				if (engineRef.current === inst) engineRef.current = null;
+				setBootErr(true);
+			}
 		})();
 		return () => {
 			cancelled = true;
@@ -392,7 +412,16 @@ export function RaceController({
 				className: "block h-full w-full touch-none",
 				onPointerDown: () => engineRef.current?.unlockAudio()
 			}),
-			boot ? /* @__PURE__ */ jsx(BootOverlay, {
+			bootErr ? /* @__PURE__ */ jsx(BootOverlay, {
+				etaMs: 0,
+				frac: 0,
+				langHe,
+				city: langHe ? track.cityHe : track.cityEn,
+				name: langHe ? track.nameHe : track.nameEn,
+				failed: true,
+				onRetry: () => setRaceKey((k) => k + 1),
+				onMenu: () => setScreen("title")
+			}) : boot ? /* @__PURE__ */ jsx(BootOverlay, {
 				etaMs: boot.etaMs,
 				frac: boot.frac,
 				langHe,
@@ -434,13 +463,13 @@ export function RaceController({
 				engine: engineRef.current,
 				langHe
 			}) : null,
-			hud && hud.countdown > 0 && !boot ? /* @__PURE__ */ jsxs("div", {
+			hud && (hud.countdown > 0 || (hud.goFlash ?? 0) > 0) && !boot ? /* @__PURE__ */ jsxs("div", {
 				className: "pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center gap-6",
 				children: [
 					/* @__PURE__ */ jsx("div", {
 						className: "flex gap-3",
 						children: [0, 1, 2, 3, 4].map((i) => {
-							const go = hud.countdown <= 1;
+							const go = (hud.goFlash ?? 0) > 0 && hud.countdown <= 0;
 							const on = go || hud.countdown < 3.8 - i * 0.56;
 							return /* @__PURE__ */ jsx("span", {
 								className: "size-5 rounded-full border border-border",
@@ -453,7 +482,7 @@ export function RaceController({
 					}),
 					/* @__PURE__ */ jsx("div", {
 						className: "text-6xl font-semibold tabular-nums tracking-tight text-fg",
-						children: hud.countdown > 1 ? Math.ceil(hud.countdown) : t("סע!", "GO")
+						children: hud.countdown > 0 ? Math.ceil(hud.countdown) : t("סע!", "GO")
 					}),
 					/* @__PURE__ */ jsx("p", {
 						className: "rounded-full border border-border bg-surface/80 px-4 py-2 text-sm font-medium text-fg",
