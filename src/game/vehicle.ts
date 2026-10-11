@@ -874,14 +874,21 @@ export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): 
   let throttle = abs > 0.55 ? 0.35 : 1;
   if (player && HANDLING[car.handling].rubberBand) {
     const gap = player.raceScore() - car.raceScore();
-    const target = 1 + clamp(gap * 0.004, -0.12, 0.08);
+    const target = 1 + clamp(gap * 2.5, -0.45, 0.15);
     throttle *= car.aiSkill * target;
   } else {
     throttle *= car.aiSkill;
   }
   if (bend > 0.42 && car.speed > 14) throttle *= 0.72;
   if (bend > 0.75 && car.speed > 18) throttle *= 0.7;
-  const brake = car.speed > 20 && bend > 0.9 ? 0.35 : 0;
+  let brake = car.speed > 20 && bend > 0.9 ? 0.35 : 0;
+  if (player && HANDLING[car.handling].rubberBand && player.speed > 12 && car.speed > player.speed + 0.4) {
+    const aheadOfPlayer = car.raceScore() >= player.raceScore();
+    if (aheadOfPlayer) {
+      throttle = Math.min(throttle, 0.25);
+      brake = Math.max(brake, 0.85);
+    }
+  }
   const drift = abs > 0.5 && car.speed > 16;
   const nitro = car.nitro > 0.4 && abs < 0.22 && car.speed > 16;
   return {

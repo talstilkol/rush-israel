@@ -3,6 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- A drift under 12 degrees no longer scores. On Jaffa, a run that held a real angle and stayed on the road scored 9172, so the lesson gold of 7200 and the later gold of 9000 are reachable. A sloppier run scored 5988. On Hermon the same kind of run scored 32601, so gold was raised from 8000 to 24000, silver to 15000, and bronze to 8000.
+- Rival throttle used to ignore a lead, because the gap was multiplied by 0.004. A starter Sabra lost Ayalon by about 17 seconds to the fast cars. A rival who is level or ahead and faster than the player now brakes, as long as the player is still moving. A clean Sabra from the front won Ayalon by 1.8 seconds. A slow car from the back lost by 12 seconds. A car that stops after 12 seconds does not finish, and the field does. On Rothschild the same Sabra finished half a second behind. Damage stayed under 0.1.
 
 Not done: browser `qa:drive`, the remaining hash locks, devices, Alpha through release.
