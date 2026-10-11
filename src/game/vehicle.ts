@@ -542,14 +542,15 @@ export class ArcadeCar {
         const road = Math.atan2(-s.tx, -s.tz);
         const aim = wrapPi(road - Math.sign(latSigned || 1) * clamp(Math.abs(latSigned) / half, 0, 1) * 0.28);
         const err = wrapPi(aim - this.yaw);
-        this.yaw = wrapPi(this.yaw + clamp(err, -1.4, 1.4) * dt * 2.4);
+        this.yaw = wrapPi(this.yaw + clamp(err, -1.4, 1.4) * dt * (wide ? 8 : 2.4));
         const nfx = -Math.sin(this.yaw);
         const nfz = -Math.cos(this.yaw);
         const nrx = Math.cos(this.yaw);
         const nrz = -Math.sin(this.yaw);
         const latNow = this.vx * nrx + this.vz * nrz;
-        this.vx = nfx * this.speed + nrx * latNow;
-        this.vz = nfz * this.speed + nrz * latNow;
+        const keep = wide ? 0.985 : 1;
+        this.vx = nfx * this.speed + nrx * latNow * keep;
+        this.vz = nfz * this.speed + nrz * latNow * keep;
       }
     }
     if (!this.onTrack) {

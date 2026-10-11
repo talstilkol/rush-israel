@@ -3,6 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- Heat cops sat still for 5 seconds, then never caught a clean car. They now drive from the start, on the racing line, and ease off inside 20 meters so they trail instead of sticking. Bust still waits 5 seconds. A clean Haifa run finished in 32 seconds with heat 0.43 and the nearest cop 11 meters back, and was not busted. A car that slows down after 8 seconds was busted at 12.5 seconds. Ayalon still finished, with the cops just outside the bust range.
+- Holding the wheel straight on Hermon slid to the edge and left the road. When the car is already wide, it now yaws back harder and sheds sideways speed. Over 30 seconds the widest it got was 10.6 meters on a 26 meter road, still on the asphalt, no damage. Ayalon stayed in its lane. A rival still finishes Hermon and Ayalon without leaving the road. 0–100 is still 8.65 seconds, and full steer still moves the car about 14 meters.
 
 Not done: browser `qa:drive`, the remaining hash locks, devices, Alpha through release.
