@@ -668,7 +668,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 																	className: "mt-0.5 block h-1 rounded-full bg-surface-2",
 																	children: /* @__PURE__ */ jsx("span", {
 																		className: "block h-full rounded-full bg-fg",
-																		style: { width: `${Math.round(c.maxSpeed / 52 * 100)}%` }
+																		style: { width: `${Math.round(c.maxSpeed / 86 * 100)}%` }
 																	})
 																})]
 															}),
@@ -681,7 +681,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 																	className: "mt-0.5 block h-1 rounded-full bg-surface-2",
 																	children: /* @__PURE__ */ jsx("span", {
 																		className: "block h-full rounded-full bg-fg",
-																		style: { width: `${Math.round(c.accel / 24 * 100)}%` }
+																		style: { width: `${Math.round(c.accel / 10.4 * 100)}%` }
 																	})
 																})]
 															}),
