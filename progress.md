@@ -3,7 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- A rejected time says why: stall, or too short. A negative purse, such as camera fines on a void run, is shown.
-- All eight launch tracks were stepped for two seconds. Positions and speed stayed finite.
+- A rival that was stopped in a tight corner now turns toward the road and drives. Over 15 seconds, with no position jump: Ayalon 354 m, Rothschild 82 m, Namal 93 m, Jaffa 74 m, Scopus 101 m, Haifa 170 m, Ramon 167 m, Hermon 202 m. Several are still slow.
 
-Not done: browser `qa:drive`, the 60 contract failures, devices, Alpha through release.
+Not done: a full rival race to the flag, browser `qa:drive`, the 60 contract failures, devices, Alpha through release.

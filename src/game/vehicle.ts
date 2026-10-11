@@ -363,6 +363,14 @@ export class ArcadeCar {
 
     if (!this.onTrack) this.offTrackT += dt;
     else this.offTrackT = 0;
+    if (this.isAi && !this.isTraffic && !this.isCop && racing && (Math.abs(this.speed) < 6 || this.offTrackT > 0.45)) {
+      const aheadT = track.closed ? (this.progress + 0.02) % 1 : Math.min(0.995, this.progress + 0.02);
+      const ahead = sampleAtT(track.samples, aheadT);
+      const want = Math.atan2(-(ahead.x - this.x), -(ahead.z - this.z));
+      const err = wrapPi(want - this.yaw);
+      this.yaw = wrapPi(this.yaw + clamp(err, -1, 1) * 3.2 * dt);
+      if (this.speed < 4) this.speed += 8 * dt;
+    }
     if (!this.isTraffic && !this.isCop) {
       if (!this.onTrack || this.surfaceKind === "sand") this.dirt += dt * 0.075;
       else if (this.surfaceKind === "curb") this.dirt += dt * 0.028;
@@ -808,17 +816,25 @@ export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): 
   const lat = (car.x - here.x) * here.rx + (car.z - here.z) * here.rz;
   const offLine = Math.abs(lat - car.aiOffset) > track.width * 0.42 || car.offTrackT > 0.35;
   if (offLine) {
-    const reverse = car.speed > -7 && car.speed < 4 && car.offTrackT > 0.7;
     return {
-      steer: clamp((reverse ? -err : err) * 2.2, -1, 1),
-      throttle: reverse ? 0 : 0.62,
-      brake: reverse ? 1 : car.speed > 16 ? 0.5 : 0,
+      steer: clamp(err * 2.2, -1, 1),
+      throttle: car.speed < 14 ? 0.7 : 0.35,
+      brake: car.speed > 22 ? 0.45 : 0,
       drift: false,
       nitro: false,
     };
   }
   const steer = clamp(err * 1.6, -1, 1);
   const abs = Math.abs(err);
+  if (abs > 0.55) {
+    return {
+      steer: clamp(err * 2.4, -1, 1),
+      throttle: 0.85,
+      brake: 0,
+      drift: false,
+      nitro: false,
+    };
+  }
   const ahead = sampleAtT(track.samples, track.closed ? (car.progress + 0.09) % 1 : Math.min(0.995, car.progress + 0.09));
   const bend = Math.abs(wrapPi(Math.atan2(-ahead.tx, -ahead.tz) - car.yaw));
   let throttle = abs > 0.55 ? 0.35 : 1;
