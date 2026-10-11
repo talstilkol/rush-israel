@@ -62,6 +62,7 @@ export type RaceControllerProps = {
 	fov: number;
 	grid: number;
 	volume: number;
+	setVolumeMode: (v: number) => void;
 	traffic: "off" | "low" | "normal" | "dense";
 	mode: RaceMode;
 	eventId: string | null;
@@ -69,6 +70,7 @@ export type RaceControllerProps = {
 	tuneTick: number;
 	handling: HandlingMode;
 	assists: AssistFlags;
+	setAssistsMode: (a: AssistFlags) => void;
 	muted: boolean;
 	setMuted: Dispatch<SetStateAction<boolean>>;
 	setStarTotal: Dispatch<SetStateAction<number>>;
@@ -92,6 +94,7 @@ export function RaceController({
 	fov,
 	grid,
 	volume,
+	setVolumeMode,
 	traffic,
 	mode,
 	eventId,
@@ -99,6 +102,7 @@ export function RaceController({
 	tuneTick,
 	handling,
 	assists,
+	setAssistsMode,
 	muted,
 	setMuted,
 	setStarTotal,
@@ -518,6 +522,7 @@ export function RaceController({
 							setPaused(false);
 							engineRef.current?.setPaused(false);
 						},
+						autoFocus: true,
 						children: [/* @__PURE__ */ jsx(Play, { className: "size-4" }), t("המשך", "Resume")]
 					}),
 					/* @__PURE__ */ jsxs(Button, {
@@ -552,9 +557,34 @@ export function RaceController({
 						},
 						children: [muted ? /* @__PURE__ */ jsx(VolumeX, { className: "size-4" }) : /* @__PURE__ */ jsx(Volume2, { className: "size-4" }), muted ? t("מושתק", "Muted") : t("צליל", "Sound")]
 					}),
-					/* @__PURE__ */ jsx("p", {
-						className: "mt-2 text-xs font-medium uppercase tracking-widest text-muted",
-						children: t("הגדרות", "Settings")
+					/* @__PURE__ */ jsx("label", {
+						className: "mt-2 flex items-center gap-3 text-sm",
+						children: [
+							t("עוצמה", "Volume"),
+							/* @__PURE__ */ jsx("input", {
+								type: "range",
+								min: 0,
+								max: 1,
+								step: 0.05,
+								value: volume,
+								"aria-label": t("עוצמה", "Volume"),
+								className: "w-full",
+								onChange: (e: { target: { value: string } }) => setVolumeMode(Number(e.target.value))
+							})
+						]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "flex gap-2",
+						children: (["abs", "tcs", "esc"] as const).map((key) => /* @__PURE__ */ jsx(Button, {
+							variant: assists[key] ? "primary" : "outline",
+							className: "flex-1",
+							onClick: () => {
+								const next = { ...assists, [key]: !assists[key] };
+								setAssistsMode(next);
+								engineRef.current?.setAssists(next);
+							},
+							children: key.toUpperCase()
+						}, key))
 					}),
 					/* @__PURE__ */ jsxs(Button, {
 						variant: "outline",

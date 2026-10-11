@@ -107,6 +107,11 @@ export function GameApp() {
 				fov,
 				grid,
 				volume,
+				setVolumeMode: (v: number) => {
+					setVolume(v);
+					setVolumeSave(v);
+					engineRef.current?.setVolume(v);
+				},
 				traffic,
 				mode,
 				eventId,
@@ -114,6 +119,10 @@ export function GameApp() {
 				tuneTick,
 				handling,
 				assists,
+				setAssistsMode: (a: AssistFlags) => {
+					setAssists(a);
+					setAssistsSave(a);
+				},
 				muted,
 				setMuted,
 				setStarTotal,

@@ -72,8 +72,10 @@ export function resolveTrack(trackId: TrackId): TrackDef {
 function Overlay({ children }: { children: ReactNode }) {
 	return /* @__PURE__ */ jsx("div", {
 		className: "absolute inset-0 z-40 flex items-center justify-center bg-bg/70 p-4",
+		role: "dialog",
+		"aria-modal": "true",
 		children: /* @__PURE__ */ jsx("div", {
-			className: "w-full max-w-sm rounded-xl border border-border bg-surface p-6",
+			className: "max-h-[85%] w-full max-w-sm overflow-y-auto rounded-xl border border-border bg-surface p-6",
 			children
 		})
 	});

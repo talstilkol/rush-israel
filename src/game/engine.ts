@@ -908,6 +908,11 @@ export class RaceEngine {
     this.audio.setLevel(v);
   }
 
+  setAssists(flags: AssistFlags) {
+    this.player.assists = { ...flags };
+    this.opts.assists = { ...flags };
+  }
+
   toggleMute() {
     this.audio.setMuted(!this.audio.isMuted());
     return this.audio.isMuted();
