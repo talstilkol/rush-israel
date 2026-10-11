@@ -240,14 +240,16 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     this.trauma = Math.max(0, this.trauma - dt * 2.4);
     if (this.racing && this.countdown <= 0) this.stepDriftCraft(dt);
     if (this.racing && this.countdown <= 0 && this.racers.length > 1 && !this.player.finished) {
+      if (this.overtakePayT > 0) this.overtakePayT = Math.max(0, this.overtakePayT - dt);
       const place = this.standings().indexOf(this.player) + 1;
       if (this.lastPlace === 0) {
         this.lastPlace = place;
       } else if (place !== this.lastPlace && this.totalTime > 1.2) {
-        if (place < this.lastPlace) {
+        if (place < this.lastPlace && this.overtakePayT <= 0) {
           this.ledger += 160;
           this.cashNote = "+₪160";
           this.cashNoteT = 1.5;
+          this.overtakePayT = 2.8;
         }
         this.banter = overtakeLine(place < this.lastPlace, this.opts.langHe, this.rivalIdx);
         this.banterT = 2.8;
@@ -722,6 +724,7 @@ export function takePack(this: EngineAdapterHost)
       wanted: this.wanted,
       ledger: this.ledger,
       lastPlace: this.lastPlace,
+      overtakePayT: this.overtakePayT,
       cars: this.racers.map((c) => c.snap()),
       traffic: this.traffic.map((c) => c.snap()),
       cops: this.cops.map((c) => c.snap()),
@@ -742,6 +745,7 @@ export function applyPack(this: EngineAdapterHost, p: Parameters<RaceEngine["app
     this.wanted = p.wanted ?? this.wanted;
     if (typeof p.ledger === "number") this.ledger = p.ledger;
     if (typeof p.lastPlace === "number") this.lastPlace = p.lastPlace;
+    if (typeof p.overtakePayT === "number") this.overtakePayT = p.overtakePayT;
     for (let i = 0; i < this.racers.length; i++) {
       const s = p.cars[i];
       if (s) this.racers[i].load(s);

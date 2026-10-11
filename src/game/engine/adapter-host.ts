@@ -104,6 +104,7 @@ export type EngineAdapterHost = {
   lastDirt: RaceEngine["lastDirt"];
   lastDrifting: RaceEngine["lastDrifting"];
   lastPlace: RaceEngine["lastPlace"];
+  overtakePayT: RaceEngine["overtakePayT"];
   ledger: RaceEngine["ledger"];
   cashNote: RaceEngine["cashNote"];
   cashNoteT: RaceEngine["cashNoteT"];
