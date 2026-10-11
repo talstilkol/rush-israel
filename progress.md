@@ -3,6 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- Rival throttle used to ignore a lead, because the gap was multiplied by 0.004. A starter Sabra lost Ayalon by about 17 seconds to the fast cars. A rival who is level or ahead and faster than the player now brakes, as long as the player is still moving. A clean Sabra from the front won Ayalon by 1.8 seconds. A slow car from the back lost by 12 seconds. A car that stops after 12 seconds does not finish, and the field does. On Rothschild the same Sabra finished half a second behind. Damage stayed under 0.1.
+- A rival in a corner skipped the speed hold. That path now brakes too when it is nosing ahead of a moving player. A clean Sabra wins Ayalon by 0.1 seconds. On Rothschild, with no contact, it ties the nearest rival at 59.9 seconds. With contact it finishes 0.2 seconds behind. A slow car from the back still loses by about 40 seconds.
 
 Not done: browser `qa:drive`, the remaining hash locks, devices, Alpha through release.

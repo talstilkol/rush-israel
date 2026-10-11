@@ -860,10 +860,17 @@ export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): 
   const steer = clamp(err * 1.6, -1, 1);
   const abs = Math.abs(err);
   if (abs > 0.55) {
+    let holdThrottle = 0.85;
+    let holdBrake = 0;
+    const scoreGap = player ? player.raceScore() - car.raceScore() : 0;
+    if (player && HANDLING[car.handling].rubberBand && player.speed > 12 && car.speed > player.speed + 0.4 && scoreGap <= 0.012 && scoreGap > -0.04) {
+      holdThrottle = 0.25;
+      holdBrake = 0.85;
+    }
     return {
       steer: clamp(err * 2.4, -1, 1),
-      throttle: 0.85,
-      brake: 0,
+      throttle: holdThrottle,
+      brake: holdBrake,
       drift: false,
       nitro: false,
     };
@@ -883,8 +890,8 @@ export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): 
   if (bend > 0.75 && car.speed > 18) throttle *= 0.7;
   let brake = car.speed > 20 && bend > 0.9 ? 0.35 : 0;
   if (player && HANDLING[car.handling].rubberBand && player.speed > 12 && car.speed > player.speed + 0.4) {
-    const aheadOfPlayer = car.raceScore() >= player.raceScore();
-    if (aheadOfPlayer) {
+    const scoreGap = player.raceScore() - car.raceScore();
+    if (scoreGap <= 0.012 && scoreGap > -0.04) {
       throttle = Math.min(throttle, 0.25);
       brake = Math.max(brake, 0.85);
     }
