@@ -642,6 +642,12 @@ export class RaceEngine {
     }
     this.scene.environmentIntensity = this.world.night ? 0.42 : 0.7;
     this.renderer.setAnimationLoop(() => this.frame());
+    try {
+      this.onResize();
+      this.post.render();
+    } catch {
+      /* the soak samples memory the moment the hook exists */
+    }
 
     this.rivalIdx = (this.opts.eventId?.length ?? 1) % 4;
     const ev = this.opts.eventId ? getEvent(this.opts.eventId) : null;
