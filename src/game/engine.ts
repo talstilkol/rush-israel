@@ -22,7 +22,7 @@ import {
   WEATHER_SPEC,
 } from "./physics";
 import { getDamage, getGhost, recordGhost, setDamage } from "./save";
-import { buildTrack, nearestIndex, sampleAtT } from "./spline";
+import { buildTrack, nearestIndex, sampleAtT, startGridT } from "./spline";
 import { getTrack, nearestPoi, nightAmt, streetName, todLabel, tlv } from "./tracks";
 import type { AssistFlags, CarId, Collider, HandlingMode, HudState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting, type CarSnap } from "./vehicle";
@@ -650,7 +650,7 @@ export class RaceEngine {
   private placeGrid() {
     const n = this.racers.length;
     for (let i = 0; i < n; i++) {
-      const t = i === 0 ? 0.03 : (0.03 - 0.012 * i + 1) % 1;
+      const t = startGridT(i, n);
       const lat = i === 0 ? (this.trackDef.id === "rothschild" ? -10.2 : -2.2) : this.racers[i].aiOffset;
       if (i === 0) this.racers[i].aiOffset = lat;
       this.racers[i].spawn(this.built, t, lat);
@@ -753,7 +753,7 @@ export class RaceEngine {
       cop.weather = this.weather;
       cop.handling = this.player.handling;
       cop.assists = { abs: true, tcs: true, esc: true };
-      cop.spawn(this.built, (0.86 - i * 0.04 + 1) % 1, cop.aiOffset);
+      cop.spawn(this.built, this.trackDef.open ? 0.004 + i * 0.003 : (0.86 - i * 0.04 + 1) % 1, cop.aiOffset);
       this.cops.push(cop);
       const vis = createCarVisual(color, accent, false, false, "gt", true);
       setCarLights(vis, this.opts.night);
@@ -858,14 +858,43 @@ export class RaceEngine {
   /** Codex 64: restart zeros damage. Esc/pause does not. */
   restartRace() {
     this.placeGrid();
+    this.countdown = 3.8;
+    this.totalTime = 0;
+    this.lapTime = 0;
+    this.laps = [];
+    this.bestLap = Infinity;
+    this.finishedSent = false;
+    this.pendingResult = null;
+    this.replaying = false;
+    this.replayT = 0;
+    this.replayBuf = [];
+    this.ghostBuf = [];
+    this.rewindBuf = [];
+    this.poiGot = new Set();
+    this.heat = 0;
+    this.heatMax = 0;
+    this.bustAcc = 0;
+    this.busted = false;
+    this.cooldown = 0;
+    this.wanted = 1;
+    this.cashWon = 0;
+    this.timeVoided = false;
+    this.sectorClock = 0;
+    this.sectorIdx = 0;
+    this.sectorDelta = 0;
+    this.lapNote = "";
+    this.lapNoteT = 0;
+    this.cashNote = "";
+    this.koMarked = 0;
+    this.lastPlace = 0;
+    this.racing = true;
+    this.paused = false;
+    this.clearRoadblock();
+    this.player.finished = false;
     this.player.damage = 0;
     this.player.dirt = 0;
     if (this.visuals[0]) applyDamage(this.visuals[0], 0, 0);
-    this.countdown = 0;
-    this.lastPlace = 0;
-    this.racing = true;
-    this.player.finished = false;
-    this.paused = false;
+    this.pushHud();
   }
 
   setVolume(v: number) {

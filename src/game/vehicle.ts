@@ -153,8 +153,8 @@ export class ArcadeCar {
     this.speed = 0;
     this.progress = t;
     this.sampleIndex = Math.floor(t * track.samples.length) % track.samples.length;
-    this.nextCheckpoint = 1;
-    this.lastCheckpoint = 0;
+    this.nextCheckpoint = track.closed ? 1 : 0;
+    this.lastCheckpoint = track.closed ? 0 : -1;
     this.lap = 0;
     this.boostT = 0;
     this.driftCharge = 0;
@@ -669,15 +669,22 @@ export class ArcadeCar {
     if (this.finished || this.isTraffic || this.isCop || this.eliminated) return { lapComplete: false, checkpoint: false };
     const n = forwardDelta(prevProgress, this.progress, track.closed);
     if (n < 0 || n > 0.18) return { lapComplete: false, checkpoint: false };
-    if (!track.closed && this.progress > 0.96 && this.lap < 1) {
-      this.lap += 1;
-      this.lastCheckpoint = track.checkpoints.length - 1;
-      return { lapComplete: true, checkpoint: true };
-    }
     const count = track.checkpoints.length;
     let checkpoint = false;
     let lapComplete = false;
-    const nextT = track.checkpoints[this.nextCheckpoint] ?? 0;
+    const nextT = track.checkpoints[Math.min(this.nextCheckpoint, count - 1)] ?? 0;
+    if (!track.closed) {
+      if (this.nextCheckpoint < count && prevProgress < nextT && this.progress >= nextT) {
+        checkpoint = true;
+        this.lastCheckpoint = this.nextCheckpoint;
+        this.nextCheckpoint += 1;
+        if (this.lastCheckpoint === count - 1) {
+          this.lap += 1;
+          lapComplete = true;
+        }
+      }
+      return { lapComplete, checkpoint };
+    }
     if (this.didCross(prevProgress, this.progress, nextT)) {
       checkpoint = true;
       this.lastCheckpoint = this.nextCheckpoint;
@@ -691,8 +698,8 @@ export class ArcadeCar {
   }
 
   private didCross(prev: number, now: number, gate: number) {
-    if (prev <= now) return prev < gate && now >= gate;
-    return prev < gate || now >= gate;
+    if (prev <= now) return prev < gate && now >= gate && now - prev < 0.25;
+    return gate < 0.15 && prev > 0.85 && now < 0.2;
   }
 
   respawn(track: BuiltTrack) {

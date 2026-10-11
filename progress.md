@@ -2,11 +2,10 @@
 
 Branch `agent/playable-session`. Not a release.
 
-Fixed on this branch, not driven in a browser:
-- TypeScript: sky imports and `HudState.cash` (typecheck clean).
-- Ramon elevation no longer returns NaN at t = 0.9.
-- Ayalon canal water no longer reads a missing body color on day/night/weather.
-- Colliders stay on their meshes. The branch had shoved them toward the road; that was the 200 m damage regression.
-- Quick race, daily, weekly, career, and engine start use the eight V1 tracks. Lesson 1 is Ayalon. 16 career events. Deferred tracks stay in the data and off the launch list.
+Race loop, checked in Node, not in a browser:
+- Grid stays in the first 6% of the track. It no longer wraps to the finish.
+- An open track ends only after the last gate, in order. Ramon crossed 8 gates before the lap counted.
+- Restart clears time, laps, result, replay, heat, and the countdown.
+- Earlier on this branch: typecheck clean, Ramon elevation finite, Ayalon canal tint, colliders on their meshes, V1-only launch.
 
-Not done: browser `qa:drive`, the 60 contract failures, device proof, signed release.
+Not done: browser `qa:drive`, the 60 contract failures, devices, Alpha through release.

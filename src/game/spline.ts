@@ -124,6 +124,17 @@ export function nearestIndex(samples: Sample[], x: number, z: number, hint: numb
   return { index: bestI, dist: Math.hypot(s.x - x, s.z - z) };
 }
 
+export function startGridT(index: number, count: number) {
+  const lead = Math.max(0, count - 1 - index);
+  return 0.006 + lead * 0.007;
+}
+
+export function behindProgress(progress: number, back: number, open: boolean) {
+  const t = progress - back;
+  if (!open) return ((t % 1) + 1) % 1;
+  return Math.max(0.002, t);
+}
+
 export function sampleAtT(samples: Sample[], t: number): Sample {
   const n = samples.length;
   const u = ((t % 1) + 1) % 1;

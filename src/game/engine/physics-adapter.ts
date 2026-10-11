@@ -8,7 +8,7 @@ import { CARS } from "../cars";
 import { clamp, hashStr } from "../math";
 import { prefersReducedMotion } from "../a11y";
 import { addCash, getCash, recordGhost, setDamage } from "../save";
-import { sampleAtT } from "../spline";
+import { behindProgress, sampleAtT } from "../spline";
 import type { Collider, RaceResult } from "../types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting } from "../vehicle";
 import type { RaceEngine } from "../engine";
@@ -112,7 +112,7 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
           this.sectorIdx = idx;
         }
       }
-      if (ev.lapComplete && i === 0) {
+      if (ev.lapComplete && i === 0 && this.countdown <= 0 && this.racing) {
         const had = Number.isFinite(this.bestLap);
         const fresh = had && this.lapTime < this.bestLap;
         this.laps.push(this.lapTime);
@@ -355,7 +355,7 @@ export function pushCopsBack(this: EngineAdapterHost)
 // RSH-017-BODY-BEGIN:pushCopsBack
 {
     for (let i = 0; i < this.cops.length; i++) {
-      const t = (this.player.progress - 0.12 - i * 0.03 + 1) % 1;
+      const t = behindProgress(this.player.progress, 0.12 + i * 0.03, !!this.trackDef.open);
       this.cops[i].spawn(this.built, t, this.cops[i].aiOffset);
       this.cops[i].speed = 18;
     }
@@ -403,7 +403,7 @@ export function addCop(this: EngineAdapterHost, i: Parameters<RaceEngine["addCop
     cop.nitro = 0.55;
     cop.baseGrip = SURFACE_GRIP[this.trackDef.theme] ?? 1;
     cop.surfaceGrip = cop.baseGrip;
-    cop.spawn(this.built, (this.player.progress - 0.1 - i * 0.03 + 1) % 1, cop.aiOffset);
+    cop.spawn(this.built, behindProgress(this.player.progress, 0.1 + i * 0.03, !!this.trackDef.open), cop.aiOffset);
     this.cops.push(cop);
     const vis = createCarVisual(color, accent, false, false, "gt", true);
     setCarLights(vis, this.world.night);
@@ -577,6 +577,7 @@ export function endRace(this: EngineAdapterHost)
 // RSH-017-BODY-BEGIN:endRace
 {
     if (this.finishedSent || this.pendingResult) return;
+    if (this.countdown > 0 && !this.qaForcedFinish && !this.busted) return;
     this.player.finished = true;
     this.audio.finish();
     this.audio.cheer();
