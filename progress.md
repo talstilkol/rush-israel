@@ -3,6 +3,7 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- Save schema, recovery, timed records, and the records unit tests failed because the locks still hashed the old save files. The live save keeps ruleset bests, grid, volume, traffic, and the champion bonus. Those four locks now hash the current files. 56 tests passed. Older checkers such as world-core still name the previous bytes. `CURRENT-STATE.json` was not rewritten.
+- `npm run qa:drive` passed in headless Chromium. Ayalon reached 30.5 m/s, the 200 m corridor stayed on the road with damage under the limit, and the wheel turned both ways. This is one smoke, not a full race and not the other seven tracks.
+- The engine-adapter lock still expects the old September engine byte for byte. I did not retarget it. Doing that would make the reconstruction claim false.
 
-Not done: browser `qa:drive`, the remaining hash locks, devices, Alpha through release.
+Not done: the other tracks in the browser, the remaining architecture locks, devices, Alpha through release.
