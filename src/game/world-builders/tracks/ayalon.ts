@@ -384,7 +384,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
       gbar.position.set(c.x, 13.95, c.z);
       gbar.rotation.y = yaw;
       add(gbar);
-      const spd = getSign("speed90");
+      const spd = getSign("speed120");
       if (spd) {
         const yawS = yaw;
         const offS = built.width / 2 + 4.2;

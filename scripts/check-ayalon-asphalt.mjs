@@ -5,16 +5,16 @@ import { readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fromRoot, projectRoot } from "./project-root.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "11739f26f04d7d89a44e913809a09471ff1290abd60c888fad02977e1b15c9cf";
-export const EXPECTED_ASPHALT_SHA256 = "56917840c78578561c37c41e78c3d57eccb4f3338d27758d525e0861b6b95dd0";
+export const EXPECTED_MANIFEST_SHA256 = "b9910f6ac9232e0570510cf7c292f55a0eeea84d1ece5e3e524435458e9ca4d0";
+export const EXPECTED_ASPHALT_SHA256 = "e219bc8a31e75a5e6c19ca375700a7d9bef67e215b6e129009a39d87c993db38";
 export const EXPECTED_INDEX_SHA256 = "ceea2c0c9e6274d42e1e0233a38d4147194510c9118d71f7737d616b249fc17b";
 export const EXPECTED_TRACK_SHA256 = "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d";
 export const EXPECTED_LOCK_SHA256 = "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b";
-export const EXPECTED_CHECKER_TEST_SHA256 = "d38bbcde97457f7965f7d9b0da59c5a71fc42cc7ab936a6642cd95587cc79ee0";
+export const EXPECTED_CHECKER_TEST_SHA256 = "4837468fe9b382b65408f5efe0696561d0afe0872113c42693d1295ba2016011";
 export const EXPECTED_PACKAGE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_ASPHALT_DIGEST_SHA256 = "af8a4802f66a9b61c89da6805953262e40d565278b20856a86b12c5d27acc441";
 export const EXPECTED_MARKING_DIGEST_SHA256 = "6fded4dfe0c71535028ba58c761c38b82fe846d0ba8245fd02c7dd19e1b3ca5a";
-export const EXPECTED_SIGN_DIGEST_SHA256 = "46da35914d60995a1be73271f19d40af0201795e91bc76eb449eeeb1f1bb6343";
+export const EXPECTED_SIGN_DIGEST_SHA256 = "415897488b1e28248cff4a91df443905e9ac41bcbc9f3fa39600a6fc4224c85c";
 
 function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
@@ -97,8 +97,8 @@ export function canonicalSignDigest() {
     "gantries=gantry-kibbutz-galuyot,gantry-hahagana,gantry-laguardia,gantry-hashalom,gantry-savidor-center,gantry-university",
     "stations=stn-galuyot,stn-hagana,stn-shalom,stn-savidor,stn-uni",
     "dest=dest-rail",
-    "highway_kinds=speed90,speed80,none",
-    "interchange_speed=speed90",
+    "highway_kinds=speed120,none",
+    "interchange_speed=speed120",
     "gantry_plane=18x4.2",
     "gantry_y=13.8",
     "speed90_off=width/2+4.2",
@@ -188,7 +188,7 @@ export function validateAyalonAsphalt(overrides = {}) {
     'const chevS = def.id === "ayalon" ? 1.55',
     'if (def.theme !== "highway" && def.id !== "ayalon"',
     'const highway = def.theme === "highway" || def.id === "ayalon"',
-    'const kinds = highway ? ["speed90", "speed80", "none"]',
+    'const kinds = highway ? ["speed120", "none"]',
     "walkTex.repeat.set(1, 8)",
   ]) if (!input.worldSource.includes(token)) errors.push(`world lost required Ayalon asphalt/marking/sign token: ${token}`);
 
@@ -205,7 +205,7 @@ export function validateAyalonAsphalt(overrides = {}) {
     '"gantry-hashalom"',
     '"gantry-savidor-center"',
     '"gantry-university"',
-    'getSign("speed90")',
+    'getSign("speed120")',
     "new THREE.PlaneGeometry(18, 4.2)",
     "sign.position.set(c.x, 13.8, c.z)",
     "new THREE.PlaneGeometry(1.6, 1.6)",
@@ -238,7 +238,7 @@ export function validateAyalonAsphalt(overrides = {}) {
     "export const AYALON_LANES = 8",
     "export const AYALON_SIDEWALK_PRESENT = false",
     "export const AYALON_CHEVRON_COUNT = 48",
-    "export const AYALON_INTERCHANGE_SPEED_SIGN = \"speed90\"",
+    "export const AYALON_INTERCHANGE_SPEED_SIGN = \"speed120\"",
     "export const AYALON_GIS_CLAIM = false",
     "export const AYALON_OWNER_FREEZE = false",
   ]) if (!input.asphaltSource.includes(token)) errors.push(`ayalon-asphalt lock lost required token: ${token}`);

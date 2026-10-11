@@ -3,6 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- Ayalon cameras fined only above 42 m/s, which is 151 km/h. A clean Sabra peaks at 112, a flat-out Sabra at 123, and the Yam at 128, so the cameras never fired. The limit is now 33 m/s, 119 km/h. A clean Sabra passes the three gates at 103, 105, and 107 and is not fined. A flat-out Sabra is fined at the second and third gates. The Yam is fined at the first and third.
+- Ayalon signs said 90 while the camera fined from 119. Highway signs now read 120, drawn in the game so no extra file was added. The camera fines when the HUD shows 120 or more. A clean Sabra still passes the three gates at 103, 105 and 107. A flat-out Sabra is fined at 120 and 123. The Yam is fined at 120.
 
-Not done: browser `qa:drive`, the remaining hash locks, devices, Alpha through release.
+Not done: browser `qa:drive`, the remaining hash locks that were not this sign, devices, Alpha through release.

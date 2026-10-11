@@ -491,6 +491,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       getSign("speed50"),
       getSign("speed80"),
       getSign("speed90"),
+      getSign("speed120"),
       getWaterNormal(),
       getChecker(),
       getFlare0(),
@@ -1186,9 +1187,9 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const skipSigns = def.theme === "desert" || def.theme === "snow" || def.id === "ramon" || def.id === "hermon" || def.id === "masada" || def.id === "deadsea";
     if (!skipSigns) {
     const highway = def.theme === "highway" || def.id === "ayalon" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6";
-    const kinds = highway ? ["speed90", "speed80", "none"] : ["stop", "speed50", "yield"];
+    const kinds = highway ? ["speed120", "none"] : ["stop", "speed50", "yield"];
     const maps: Record<string, THREE.Texture> = {};
-    for (const k of ["stop", "yield", "none", "speed50", "speed80", "speed90"]) maps[k] = keep(tiSignTex(k));
+    for (const k of ["stop", "yield", "none", "speed50", "speed80", "speed90", "speed120"]) maps[k] = keep(tiSignTex(k));
     const poleM = keep(new THREE.MeshStandardMaterial({ color: 0x8a9098, roughness: 0.55, metalness: 0.4 }));
     const poleG = keep(new THREE.CylinderGeometry(0.07, 0.09, 3.2, 6));
     poleG.translate(0, 1.6, 0);

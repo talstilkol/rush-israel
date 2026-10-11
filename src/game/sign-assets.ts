@@ -44,4 +44,33 @@ export async function loadSigns() {
       kits.set(k, t);
     }),
   ]);
+  kits.set("speed120", paintSpeed(120));
+}
+
+function paintSpeed(n: number) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 256;
+  canvas.height = 256;
+  const g = canvas.getContext("2d");
+  if (!g) throw new Error("speed sign canvas missing");
+  g.clearRect(0, 0, 256, 256);
+  g.fillStyle = "#ffffff";
+  g.beginPath();
+  g.arc(128, 128, 118, 0, Math.PI * 2);
+  g.fill();
+  g.strokeStyle = "#c8102e";
+  g.lineWidth = 22;
+  g.beginPath();
+  g.arc(128, 128, 107, 0, Math.PI * 2);
+  g.stroke();
+  g.fillStyle = "#111111";
+  g.font = "700 78px sans-serif";
+  g.textAlign = "center";
+  g.textBaseline = "middle";
+  g.fillText(String(n), 128, 132);
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 4;
+  tex.needsUpdate = true;
+  return tex;
 }
