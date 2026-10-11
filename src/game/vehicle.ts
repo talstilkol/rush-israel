@@ -166,7 +166,7 @@ export class ArcadeCar {
     this.rpm = 0;
     this.yawRate = 0;
     this.impact = 0;
-    this.damage = 0;
+    if (this.isAi) this.damage = 0;
     this.dirt = 0;
     this.finished = false;
     this.eliminated = false;
@@ -900,6 +900,7 @@ export function separateCars(cars: ArcadeCar[]): number {
     for (let j = i + 1; j < n; j++) {
       const a = cars[i];
       const b = cars[j];
+      if (Math.abs(a.y - b.y) > 4) continue;
       const dx = a.x - b.x;
       const dz = a.z - b.z;
       const d = Math.hypot(dx, dz);

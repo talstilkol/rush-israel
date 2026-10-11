@@ -839,7 +839,7 @@ export function pushHud(this: EngineAdapterHost)
       lookingBack: this.lookBack,
       lapNote: this.lapNote,
       cashNote: this.cashNote,
-      cash: getCash(),
+      cash: getCash() + this.ledger,
       camFlash: this.camFlash,
       brakeWarn: this.brakeWarn,
       saving: this.droppedTier,

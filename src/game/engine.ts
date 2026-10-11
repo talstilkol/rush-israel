@@ -102,6 +102,8 @@ type RewindPack = {
   bustAcc: number;
   cooldown?: number;
   wanted?: number;
+  ledger?: number;
+  lastPlace?: number;
   cars: CarSnap[];
   traffic: CarSnap[];
   cops: CarSnap[];
@@ -184,6 +186,7 @@ export class RaceEngine {
   private banter = "";
   private banterT = 0;
   private lastPlace = 0;
+  private ledger = 0;
   private cashNote = "";
   private cashNoteT = 0;
   private camCd = 2.5;
@@ -887,6 +890,7 @@ export class RaceEngine {
     this.cashNote = "";
     this.koMarked = 0;
     this.lastPlace = 0;
+    this.ledger = 0;
     this.racing = true;
     this.paused = false;
     this.clearRoadblock();

@@ -186,9 +186,10 @@ export function RaceController({
 					if (ok && r.eventId?.startsWith("daily-")) markDailyDone(r.eventId.slice(6));
 					if (ok && r.eventId?.startsWith("weekly-")) markWeeklyDone(r.eventId.slice(7));
 					setStarTotal(v1Stars());
-					const pay = ok ? (r.cash || racePayout(r)) : 0;
-					setPaid(pay);
-					setCash(ok ? addCash(pay) : getCash());
+					const pay = r.cash || (ok ? racePayout(r) : 0);
+					const committed = ok ? pay : Math.min(0, pay);
+					setPaid(committed);
+					setCash(addCash(committed));
 					const crowned = ok && v1Stars() >= maxStars();
 					const bonus = crowned && markChampion();
 					if (bonus) setCash(getCash());

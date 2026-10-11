@@ -7,7 +7,7 @@ import { racePayout } from "../garage";
 import { CARS } from "../cars";
 import { clamp, hashStr } from "../math";
 import { prefersReducedMotion } from "../a11y";
-import { addCash, getCash, recordGhost, setDamage } from "../save";
+import { getCash, recordGhost, setDamage } from "../save";
 import { behindProgress, sampleAtT } from "../spline";
 import type { Collider, RaceResult } from "../types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting } from "../vehicle";
@@ -206,9 +206,9 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     const camRoad = this.trackDef.theme === "highway" || this.trackDef.id === "gushdan" || this.trackDef.id === "hw90";
     if (camRoad && this.racing && this.countdown <= 0 && !this.player.finished && this.camCd <= 0 && this.player.onTrack && Math.abs(this.player.speed) > 42) {
       this.camCd = 8;
-      const fine = Math.min(getCash(), 80);
+      const fine = Math.min(Math.max(0, getCash() + this.ledger), 80);
       if (fine > 0) {
-        addCash(-fine);
+        this.ledger -= fine;
         this.cashNote = `-₪${fine}`;
         this.cashNoteT = 1.6;
       }
@@ -235,9 +235,8 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
         this.lastPlace = place;
       } else if (place !== this.lastPlace && this.totalTime > 1.2) {
         if (place < this.lastPlace) {
-          const pay = 160;
-          addCash(pay);
-          this.cashNote = `+₪${pay}`;
+          this.ledger += 160;
+          this.cashNote = "+₪160";
           this.cashNoteT = 1.5;
         }
         this.banter = overtakeLine(place < this.lastPlace, this.opts.langHe, this.rivalIdx);
@@ -611,13 +610,14 @@ export function endRace(this: EngineAdapterHost)
       eligible,
       board: this.standings().map((r) => ({ name: r.name, you: r === this.player })),
     };
-    this.cashWon = eligible ? racePayout(resultDraft) : 0;
-    if (eligible && !this.busted && this.player.damage < 0.12) {
-      const clean = 320;
-      this.cashWon += clean;
-      resultDraft.clean = clean;
-    }
+    const purse = eligible ? racePayout(resultDraft) : 0;
+    const clean = eligible && !this.busted && this.player.damage < 0.12 ? 320 : 0;
+    const prizes = eligible ? Math.max(0, this.ledger) : 0;
+    const fines = Math.min(0, this.ledger);
+    this.cashWon = purse + clean + prizes + fines;
+    if (clean) resultDraft.clean = clean;
     resultDraft.cash = this.cashWon;
+    this.ledger = 0;
     if (eligible && !this.busted) {
       this.ghostBeaten = recordGhost(this.opts.trackId, this.totalTime, this.ghostBuf);
       resultDraft.ghostBeaten = this.ghostBeaten;
@@ -700,6 +700,8 @@ export function takePack(this: EngineAdapterHost)
       bustAcc: this.bustAcc,
       cooldown: this.cooldown,
       wanted: this.wanted,
+      ledger: this.ledger,
+      lastPlace: this.lastPlace,
       cars: this.racers.map((c) => c.snap()),
       traffic: this.traffic.map((c) => c.snap()),
       cops: this.cops.map((c) => c.snap()),
@@ -718,6 +720,8 @@ export function applyPack(this: EngineAdapterHost, p: Parameters<RaceEngine["app
     this.bustAcc = p.bustAcc;
     this.cooldown = p.cooldown ?? this.cooldown;
     this.wanted = p.wanted ?? this.wanted;
+    if (typeof p.ledger === "number") this.ledger = p.ledger;
+    if (typeof p.lastPlace === "number") this.lastPlace = p.lastPlace;
     for (let i = 0; i < this.racers.length; i++) {
       const s = p.cars[i];
       if (s) this.racers[i].load(s);

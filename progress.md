@@ -2,10 +2,9 @@
 
 Branch `agent/playable-session`. Not a release.
 
-Race loop, checked in Node, not in a browser:
-- Grid stays in the first 6% of the track. It no longer wraps to the finish.
-- An open track ends only after the last gate, in order. Ramon crossed 8 gates before the lap counted.
-- Restart clears time, laps, result, replay, heat, and the countdown.
-- Earlier on this branch: typecheck clean, Ramon elevation finite, Ayalon canal tint, colliders on their meshes, V1-only launch.
+Also on this branch:
+- Cars more than 4 m apart in height do not collide. Checked: a car 40 m up is ignored; a car beside you is still pushed.
+- Overtake cash and speed-camera fines sit in a race ledger. Rewind restores that ledger. The wallet is written once at the result, and a void result keeps only fines.
+- The player's saved damage is not wiped when the grid is placed.
 
 Not done: browser `qa:drive`, the 60 contract failures, devices, Alpha through release.
