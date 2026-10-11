@@ -3,6 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- The car select bars divided speed by 52 and acceleration by 24. Every car is faster than 52, so the speed bar overflowed, and acceleration sat around 30 percent. They now use the fastest car: speed over 86, acceleration over 10.4. Sabra fills about 62 percent of the speed bar. Yam fills it.
+- Ayalon cameras fined only above 42 m/s, which is 151 km/h. A clean Sabra peaks at 112, a flat-out Sabra at 123, and the Yam at 128, so the cameras never fired. The limit is now 33 m/s, 119 km/h. A clean Sabra passes the three gates at 103, 105, and 107 and is not fined. A flat-out Sabra is fined at the second and third gates. The Yam is fined at the first and third.
 
 Not done: browser `qa:drive`, the remaining hash locks, devices, Alpha through release.

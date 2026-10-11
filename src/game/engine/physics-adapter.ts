@@ -213,7 +213,7 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     if (camRoad && this.racing && this.countdown <= 0 && !this.player.finished && this.player.onTrack) {
       for (let i = 0; i < gates.length; i++) {
         if (!crossedForward(this.camAt, this.player.progress, gates[i])) continue;
-        if (Math.abs(this.player.speed) <= 42) continue;
+        if (Math.abs(this.player.speed) <= 33) continue;
         const fine = Math.min(Math.max(0, getCash() + this.ledger), 80);
         if (fine > 0) {
           this.ledger -= fine;
