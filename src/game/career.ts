@@ -1179,3 +1179,12 @@ export function chapters() {
   }
   return [...map.entries()].sort((a, b) => a[0] - b[0]).map(([, v]) => v);
 }
+
+export function nextCareerId(current: string, stars: number) {
+  const i = CAREER.findIndex((e) => e.id === current);
+  if (i < 0) return null;
+  for (let k = i + 1; k < CAREER.length; k++) {
+    if (stars >= CAREER[k]!.unlockStars) return CAREER[k]!.id;
+  }
+  return null;
+}

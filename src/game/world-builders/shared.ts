@@ -48,9 +48,21 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     });
   };
   const hit = (x: number, z: number, r: number, hx?: number, hz?: number, yaw?: number) => {
+    const near = nearestIndex(built.samples, x, z, 0);
+    const s = built.samples[near.index];
+    const reach = Math.max(r, hx ?? 0, hz ?? 0);
+    const limit = built.width / 2 + reach + 1.8;
+    let px = x;
+    let pz = z;
+    if (near.dist < limit) {
+      const along = (x - s.x) * s.rx + (z - s.z) * s.rz;
+      const push = along >= 0 ? 1 : -1;
+      px = s.x + s.rx * limit * push;
+      pz = s.z + s.rz * limit * push;
+    }
     colliders.push({
-      x,
-      z,
+      x: px,
+      z: pz,
       r,
       hx: hx ?? r * 0.72,
       hz: hz ?? r * 0.72,

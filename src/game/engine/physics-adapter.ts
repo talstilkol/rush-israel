@@ -6,7 +6,8 @@ import { finishLine, overtakeLine } from "../dialog";
 import { racePayout } from "../garage";
 import { CARS } from "../cars";
 import { clamp, hashStr } from "../math";
-import { recordGhost, setDamage } from "../save";
+import { prefersReducedMotion } from "../a11y";
+import { addCash, getCash, recordGhost, setDamage } from "../save";
 import { sampleAtT } from "../spline";
 import type { Collider, RaceResult } from "../types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting } from "../vehicle";
@@ -112,10 +113,26 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
         }
       }
       if (ev.lapComplete && i === 0) {
+        const had = Number.isFinite(this.bestLap);
+        const fresh = had && this.lapTime < this.bestLap;
         this.laps.push(this.lapTime);
         if (this.lapTime < this.bestLap) this.bestLap = this.lapTime;
+        const ending = car.lap >= this.totalLaps && this.mode !== "roam";
+        const last = !ending && this.totalLaps > 1 && car.lap === this.totalLaps - 1;
+        if (!ending) {
+          this.lapNote = fresh
+            ? (this.opts.langHe ? "הקפה שיא" : "BEST LAP")
+            : last
+              ? (this.opts.langHe ? "הקפה אחרונה" : "LAST LAP")
+              : (this.opts.langHe ? `הקפה ${car.lap}` : `LAP ${car.lap}`);
+          this.lapNoteT = last ? 2.8 : 2.2;
+          if (last) {
+            this.audio.beep(880, 0.09, 0.08);
+            this.audio.beep(1174, 0.16, 0.07);
+          }
+        }
         this.lapTime = 0;
-        if (car.lap >= this.totalLaps && this.mode !== "roam") this.endRace();
+        if (ending) this.endRace();
       }
       if (ev.lapComplete && this.mode === "knockout") this.checkKnockout();
     }
@@ -185,6 +202,20 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     this.audio.pulseMusic(this.world.night, dt);
     this.audio.updateSiren(this.mode === "heat" && this.racing && !this.busted && !this.escaping, dt);
     this.audio.updateRain(this.weather === "rain" || this.weather === "storm", this.weather === "storm");
+    this.camCd = Math.max(0, this.camCd - dt);
+    const camRoad = this.trackDef.theme === "highway" || this.trackDef.id === "gushdan" || this.trackDef.id === "hw90";
+    if (camRoad && this.racing && this.countdown <= 0 && !this.player.finished && this.camCd <= 0 && this.player.onTrack && Math.abs(this.player.speed) > 42) {
+      this.camCd = 8;
+      const fine = Math.min(getCash(), 80);
+      if (fine > 0) {
+        addCash(-fine);
+        this.cashNote = `-₪${fine}`;
+        this.cashNoteT = 1.6;
+      }
+      this.camFlash = 1;
+      this.audio.beep(980, 0.05, 0.07);
+      this.audio.beep(1480, 0.07, 0.05);
+    }
     if (this.racing && !this.player.finished) {
       this.ghostAcc += dt;
       if (this.ghostAcc >= 0.16) {
@@ -200,11 +231,19 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     if (this.racing && this.countdown <= 0) this.stepDriftCraft(dt);
     if (this.racing && this.countdown <= 0 && this.racers.length > 1 && !this.player.finished) {
       const place = this.standings().indexOf(this.player) + 1;
-      if (place !== this.lastPlace && this.totalTime > 2.2) {
+      if (this.lastPlace === 0) {
+        this.lastPlace = place;
+      } else if (place !== this.lastPlace && this.totalTime > 1.2) {
+        if (place < this.lastPlace) {
+          const pay = 160;
+          addCash(pay);
+          this.cashNote = `+₪${pay}`;
+          this.cashNoteT = 1.5;
+        }
         this.banter = overtakeLine(place < this.lastPlace, this.opts.langHe, this.rivalIdx);
         this.banterT = 2.8;
+        this.lastPlace = place;
       }
-      this.lastPlace = place;
     }
   }
 // RSH-017-BODY-END:fixed
@@ -241,7 +280,7 @@ export function stepDriftCraft(this: EngineAdapterHost, dt: Parameters<RaceEngin
       this.combo = Math.min(12, this.combo + 1);
       this.missCd = 0.7;
       this.bonusT = 1.4;
-      this.driftBonus = this.opts.langHe ? `ניר-מיס +${pts}` : `Near miss +${pts}`;
+      this.driftBonus = this.opts.langHe ? `כמעט +${pts}` : `Near miss +${pts}`;
       this.trauma = Math.min(1, this.trauma + 0.22);
       break;
     }
@@ -569,8 +608,14 @@ export function endRace(this: EngineAdapterHost)
       ghostBeaten: false,
       line: finishLine(place, this.busted, this.opts.langHe, this.rivalIdx),
       eligible,
+      board: this.standings().map((r) => ({ name: r.name, you: r === this.player })),
     };
     this.cashWon = eligible ? racePayout(resultDraft) : 0;
+    if (eligible && !this.busted && this.player.damage < 0.12) {
+      const clean = 320;
+      this.cashWon += clean;
+      resultDraft.clean = clean;
+    }
     resultDraft.cash = this.cashWon;
     if (eligible && !this.busted) {
       this.ghostBeaten = recordGhost(this.opts.trackId, this.totalTime, this.ghostBuf);
@@ -578,6 +623,13 @@ export function endRace(this: EngineAdapterHost)
     }
     setDamage(this.opts.carId, this.player.damage);
     this.pendingResult = resultDraft;
+    if (this.replayBuf.length > 15) {
+      this.replaying = true;
+      this.replayT = 0;
+      this.camMode = 0;
+      this.hood = false;
+      return;
+    }
     this.emitFinish();
   }
 // RSH-017-BODY-END:endRace
@@ -738,9 +790,9 @@ export function stepReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine["s
       car.yaw = ra.yaw + dy * f;
       car.speed = ra.speed + (rb.speed - ra.speed) * f;
     }
-    if (Math.floor(this.replayT / 2.8) !== Math.floor((this.replayT - dt) / 2.8)) {
-      this.camMode = 0;
-      this.hood = false;
+    if (!prefersReducedMotion() && Math.floor(this.replayT / 2.8) !== Math.floor((this.replayT - dt) / 2.8)) {
+      this.camMode = (this.camMode + 1) % this.camNames.length;
+      this.hood = this.camMode === 1;
     }
   }
 // RSH-017-BODY-END:stepReplay

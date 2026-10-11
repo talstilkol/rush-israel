@@ -1,5 +1,5 @@
 import type { RaceMode, TrackId, Weather } from "./types";
-import { TRACKS } from "./tracks";
+import { TRACKS, isDriveable } from "./tracks";
 
 export type DailyChallenge = {
   key: string;
@@ -25,7 +25,8 @@ export function dailyKey(d = new Date()) {
 export function todayChallenge(d = new Date()): DailyChallenge {
   const key = dailyKey(d);
   const h = hash(key);
-  const track = TRACKS[h % TRACKS.length];
+  const pool = TRACKS.filter(isDriveable);
+  const track = pool[h % pool.length] ?? TRACKS[0]!;
   return {
     key,
     trackId: track.id,

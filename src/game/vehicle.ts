@@ -634,10 +634,16 @@ export class ArcadeCar {
         if (kind === "building") {
           this.vx -= nx * into;
           this.vz -= nz * into;
-          this.speed *= hit > 10 ? 0.02 : hit > 5 ? 0.07 : 0.14;
-          this.yaw = wrapPi(this.yaw + (nx * fz - nz * fx) * 0.12 * Math.min(1, hit / 9));
-          this.damage = clamp(this.damage + hit * 0.085, 0, 1);
-          if (hit > 2.5) this.impact = Math.max(this.impact, Math.min(1, hit / 7));
+          const fx = -Math.sin(this.yaw);
+          const fz = -Math.cos(this.yaw);
+          this.speed = this.vx * fx + this.vz * fz;
+          const bite = Math.min(hit, 3.5);
+          this.speed *= bite > 2.5 ? 0.72 : 0.88;
+          this.yaw = wrapPi(this.yaw + (nx * fz - nz * fx) * 0.08 * Math.min(1, bite / 6));
+          if (Math.abs(this.speed) > 3.5) {
+            this.damage = clamp(this.damage + Math.min(0.04, bite * 0.01), 0, 1);
+            this.impact = Math.max(this.impact, Math.min(0.65, bite / 8));
+          }
         } else if (kind === "car") {
           this.vx -= nx * into * 0.68;
           this.vz -= nz * into * 0.68;

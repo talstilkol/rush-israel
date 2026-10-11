@@ -120,6 +120,9 @@ type Options = {
   tune?: Tune;
   handling?: HandlingMode;
   assists?: AssistFlags;
+  grid?: number;
+  volume?: number;
+  traffic?: "off" | "low" | "normal" | "dense";
   onHud: (h: HudState) => void;
   onFinish: (r: RaceResult) => void;
   onBoot?: (frac: number) => void;
@@ -154,7 +157,7 @@ export class RaceEngine {
   private disposed = false;
   private paused = false;
   private racing = false;
-  private countdown = 1.45;
+  private countdown = 3.8;
   private totalTime = 0;
   private lapTime = 0;
   private bestLap = Infinity;
@@ -166,6 +169,12 @@ export class RaceEngine {
   private hood = false;
   private hudTimer = 0;
   private hoodEdge = false;
+  private photoEdge = false;
+  private resetEdge = false;
+  private hornEdge = false;
+  private hornCd = 0;
+  private lapNote = "";
+  private lapNoteT = 0;
   private lookBack = false;
   private autoCycle = false;
   private clock = 0.5;
@@ -174,7 +183,15 @@ export class RaceEngine {
   private replaySlow = false;
   private banter = "";
   private banterT = 0;
-  private lastPlace = 4;
+  private lastPlace = 0;
+  private cashNote = "";
+  private cashNoteT = 0;
+  private camCd = 2.5;
+  private camFlash = 0;
+  private goldenIdx = 0;
+  private goldenName = "";
+  private brakeWarn = false;
+  private brakeBeep = 0;
   private rivalIdx = 0;
   private combo = 0;
   private comboHold = 0;
@@ -239,6 +256,8 @@ export class RaceEngine {
   private koMarked = 0;
   private nowSec = 0;
   private weather: Weather = "clear";
+  private raceWeather: Weather = "clear";
+  private raceClock = 0.5;
   private rainMesh: THREE.Points | null = null;
   private rainPos: Float32Array | null = null;
   private ghostVis: CarVisual | null = null;
@@ -257,7 +276,7 @@ export class RaceEngine {
   private replayBuf: { x: number; y: number; z: number; yaw: number; speed: number }[][] = [];
   private replayAcc = 0;
   private pendingResult: RaceResult | null = null;
-  private camNames = ["chase"];
+  private camNames = ["chase", "hood", "bumper", "heli"];
   private rewindBuf: RewindPack[] = [];
   private rewindAcc = 0;
   private rewinding = false;
@@ -424,8 +443,9 @@ export class RaceEngine {
     this.input = new GameInput(this.canvas);
     this.audio = new GameAudio();
     this.audio.setVoice(getCar(this.opts.carId).body);
+    if (this.opts.volume != null) this.audio.setLevel(this.opts.volume);
 
-    const playerDef = applyTune(getCar(this.opts.carId), emptyTune());
+    const playerDef = applyTune(getCar(this.opts.carId), this.opts.tune ?? emptyTune());
     this.player = new ArcadeCar(playerDef, playerDef.nameHe);
     this.player.roam = (this.opts.mode ?? "circuit") === "roam" || this.opts.trackId === "gushdan";
     this.player.weatherGrip = WEATHER_GRIP[this.weather] ?? 1;
@@ -437,18 +457,20 @@ export class RaceEngine {
     this.totalLaps = this.trackDef.open ? 1 : MODE_LAPS[this.mode];
     this.racers = [this.player];
     if (hasAiPack(this.mode)) {
-      const aiDefs = CARS.filter((c) => c.id !== this.opts.carId).slice(0, 3);
-      aiDefs.forEach((d, i) => {
+      const pool = CARS.filter((c) => c.id !== this.opts.carId);
+      const want = Math.max(1, Math.min(7, (this.opts.grid ?? 6) - 1));
+      for (let i = 0; i < want; i++) {
+        const d = pool[i % pool.length]!;
         const rival = RIVALS[i % RIVALS.length];
         const ai = new ArcadeCar(d, this.opts.langHe ? rival.he : rival.en);
         ai.isAi = true;
-        ai.aiSkill = 0.9 - i * 0.05;
-        ai.aiOffset = (i % 2 === 0 ? -1 : 1) * (2.2 + i * 0.4);
+        ai.aiSkill = 0.94 - i * 0.045;
+        ai.aiOffset = (i % 2 === 0 ? -1 : 1) * (2.15 + (i % 3) * 0.35);
         ai.handling = this.player.handling;
         ai.assists = { abs: true, tcs: true, esc: true };
         ai.weather = this.weather;
         this.racers.push(ai);
-      });
+      }
     }
     const gMul = WEATHER_GRIP[this.weather] ?? 1;
     const sg = SURFACE_GRIP[this.trackDef.theme] ?? 1;
@@ -652,7 +674,9 @@ export class RaceEngine {
 
   private spawnTraffic() {
     const highway = this.trackDef.theme === "highway" || this.trackDef.id === "gushdan" || this.trackDef.id === "hw90";
-    const n = this.lite ? 4 : highway ? 11 : this.mode === "roam" ? 9 : 7;
+    const count = this.lite ? 4 : highway ? 11 : this.mode === "roam" ? 9 : 7;
+    const mul = this.opts.traffic === "off" ? 0 : this.opts.traffic === "low" ? 0.45 : this.opts.traffic === "dense" ? 1.55 : 1;
+    const n = Math.round(count * mul);
     const nyc = this.trackDef.city === "nyc";
     const base = CARS[0];
     for (let i = 0; i < n; i++) {
@@ -838,9 +862,14 @@ export class RaceEngine {
     this.player.dirt = 0;
     if (this.visuals[0]) applyDamage(this.visuals[0], 0, 0);
     this.countdown = 0;
+    this.lastPlace = 0;
     this.racing = true;
     this.player.finished = false;
     this.paused = false;
+  }
+
+  setVolume(v: number) {
+    this.audio.setLevel(v);
   }
 
   toggleMute() {
@@ -852,12 +881,35 @@ export class RaceEngine {
     this.input.setTouch(partial);
   }
 
+  /** C / touch: chase → hood → bumper → heli. */
+  cycleCam() {
+    if (this.photo || this.replaying) return;
+    this.camMode = (this.camMode + 1) % this.camNames.length;
+    this.hood = this.camMode === 1;
+  }
+
+  rescue() {
+    if (!this.built || this.photo || this.replaying || this.player.finished) return;
+    this.player.respawn(this.built);
+  }
+
+  horn() {
+    if (this.hornCd > 0 || this.photo) return;
+    this.hornCd = 0.38;
+    this.audio.beep(466, 0.11, 0.2);
+    this.audio.beep(349, 0.16, 0.16);
+  }
+
   enterPhoto() {
     return engineRendering.enterPhoto.call(engineAdapterHost(this));
   }
 
   exitPhoto() {
     return engineRendering.exitPhoto.call(engineAdapterHost(this));
+  }
+
+  snapHashalom() {
+    return engineRendering.snapHashalom.call(engineAdapterHost(this));
   }
 
   frameWorld(x: number, z: number, y = 52, camY = 22, back = 28, fov = 40) {

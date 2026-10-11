@@ -629,14 +629,19 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   sunHalo.visible = !isNight;
   sunHalo.frustumCulled = false;
   group.add(sunHalo);
+  const skyTex = (nightNow: boolean) => (nightNow ? getSkyNight() : getSkyDay()) ?? getSkyDay() ?? getSkyNight() ?? null;
+  const initialSky = skyTex(isNight);
   const skyDomeMat = keep(new THREE.MeshBasicMaterial({
-    color: isNight ? 0x2a4a6c : 0x3c9ee0,
+    map: initialSky,
+    color: initialSky ? 0xffffff : isNight ? 0x2a4a6c : 0x3c9ee0,
     fog: false,
     depthWrite: false,
-    side: THREE.BackSide,
+    side: THREE.FrontSide,
     toneMapped: false
   }));
-  const skyDome = new THREE.Mesh(keep(new THREE.SphereGeometry(8200, 40, 20)), skyDomeMat);
+  const skyGeo = keep(new THREE.SphereGeometry(8200, 48, 24));
+  skyGeo.scale(-1, 1, 1);
+  const skyDome = new THREE.Mesh(skyGeo, skyDomeMat);
   skyDome.frustumCulled = false;
   skyDome.renderOrder = -2000;
   group.add(skyDome);
@@ -2639,8 +2644,14 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const morning = n <= 0.5 && clock < 0.38;
     const next = skyAt(def, clock, wx);
     applySky(sky, sun, next);
-    skyDomeMat.map = null;
-    skyDomeMat.color.setHex(n > 0.5 ? 0x2a4a6c : 0x3c9ee0);
+    const tex = (n > 0.5 ? getSkyNight() : getSkyDay()) ?? getSkyDay() ?? getSkyNight() ?? null;
+    if (tex) {
+      skyDomeMat.map = tex;
+      skyDomeMat.color.setHex(0xffffff);
+    } else {
+      skyDomeMat.map = null;
+      skyDomeMat.color.setHex(n > 0.5 ? 0x2a4a6c : 0x3c9ee0);
+    }
     skyDomeMat.needsUpdate = true;
     if (n < 0.58) lightAim.copy(sun);
     else {

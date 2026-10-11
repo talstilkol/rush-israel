@@ -86,6 +86,12 @@ export type EngineAdapterHost = {
   heatMax: RaceEngine["heatMax"];
   hood: RaceEngine["hood"];
   hoodEdge: RaceEngine["hoodEdge"];
+  photoEdge: RaceEngine["photoEdge"];
+  resetEdge: RaceEngine["resetEdge"];
+  hornEdge: RaceEngine["hornEdge"];
+  hornCd: RaceEngine["hornCd"];
+  lapNote: RaceEngine["lapNote"];
+  lapNoteT: RaceEngine["lapNoteT"];
   hudTimer: RaceEngine["hudTimer"];
   impactCd: RaceEngine["impactCd"];
   input: RaceEngine["input"];
@@ -96,6 +102,14 @@ export type EngineAdapterHost = {
   lastDirt: RaceEngine["lastDirt"];
   lastDrifting: RaceEngine["lastDrifting"];
   lastPlace: RaceEngine["lastPlace"];
+  cashNote: RaceEngine["cashNote"];
+  cashNoteT: RaceEngine["cashNoteT"];
+  camCd: RaceEngine["camCd"];
+  camFlash: RaceEngine["camFlash"];
+  brakeWarn: RaceEngine["brakeWarn"];
+  goldenIdx: RaceEngine["goldenIdx"];
+  goldenName: RaceEngine["goldenName"];
+  brakeBeep: RaceEngine["brakeBeep"];
   lastPresent: RaceEngine["lastPresent"];
   leases: RaceEngine["leases"];
   lite: RaceEngine["lite"];
@@ -145,6 +159,8 @@ export type EngineAdapterHost = {
   replaySlow: RaceEngine["replaySlow"];
   replayT: RaceEngine["replayT"];
   restartRace: RaceEngine["restartRace"];
+  rescue: RaceEngine["rescue"];
+  horn: RaceEngine["horn"];
   rewindAcc: RaceEngine["rewindAcc"];
   rewindBuf: RaceEngine["rewindBuf"];
   rewinding: RaceEngine["rewinding"];
@@ -198,6 +214,8 @@ export type EngineAdapterHost = {
   visuals: RaceEngine["visuals"];
   wanted: RaceEngine["wanted"];
   weather: RaceEngine["weather"];
+  raceWeather: RaceEngine["raceWeather"];
+  raceClock: RaceEngine["raceClock"];
   webgpuOk: RaceEngine["webgpuOk"];
   webgpuReason: RaceEngine["webgpuReason"];
   webgpuTried: RaceEngine["webgpuTried"];

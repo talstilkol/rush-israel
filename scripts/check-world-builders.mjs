@@ -6,7 +6,7 @@ import { gitBlobSha1, reconstructRsh015WorldSource, sha256 } from "./load-world-
 import { stripRsh019Overlay } from "./rsh019-overlay.mjs";
 import { stripRsh033Overlay } from "./rsh033-overlay.mjs";
 
-export const EXPECTED_MANIFEST_SHA256 = "5921e14be99509e8b812bc3f556643b98d2244d1f8b77c2b928e02a99de90f00";
+export const EXPECTED_MANIFEST_SHA256 = "91ed16c512a601899937719cb75ea068f1b5c91f98e6afa68047299b08985327";
 export const EXPECTED_WORLD_SHA256 = "08d4e7c230bef3c67f0250fb672e1b1ca351cb5149266e0161dcb470f5274fd9";
 export const EXPECTED_TRACK_MANIFEST_SHA256 = "a8891a4af9345dbfa34fcb998302b77383f3b14f19fd240c9a8c46d2e5a43fdd";
 export const EXPECTED_RUNTIME_DIGEST = "a1ccf6f71ca7c4bad7fbc1280aecb04cdc4390ca400cf183cd3fde916d14294d";

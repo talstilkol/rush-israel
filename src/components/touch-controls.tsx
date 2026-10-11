@@ -40,11 +40,12 @@ export function TouchControls({ engine, langHe }: Props) {
         <button
           type="button"
           className="min-h-14 min-w-16 rounded-lg border border-border bg-surface/80 px-3 text-sm font-medium text-fg"
-          onPointerDown={() => engine?.setTouch({ rewind: true })}
-          onPointerUp={() => engine?.setTouch({ rewind: false })}
-          onPointerCancel={() => engine?.setTouch({ rewind: false })}
+          onPointerDown={(e) => {
+            e.preventDefault();
+            engine?.cycleCam();
+          }}
         >
-          {t("ריוויינד", "Rewind")}
+          {t("מצלמה", "Cam")}
         </button>
         <button
           type="button"
@@ -63,6 +64,35 @@ export function TouchControls({ engine, langHe }: Props) {
           onPointerCancel={() => engine?.setTouch({ drift: false })}
         >
           {t("דריפט", "Drift")}
+        </button>
+        <button
+          type="button"
+          className="min-h-14 min-w-16 rounded-lg border border-border bg-surface/80 px-3 text-sm font-medium text-fg"
+          onPointerDown={(e) => {
+            e.preventDefault();
+            engine?.horn();
+          }}
+        >
+          {t("צופר", "Horn")}
+        </button>
+        <button
+          type="button"
+          className="min-h-14 min-w-16 rounded-lg border border-border bg-surface/80 px-3 text-sm font-medium text-fg"
+          onPointerDown={(e) => {
+            e.preventDefault();
+            engine?.rescue();
+          }}
+        >
+          {t("כביש", "Reset")}
+        </button>
+        <button
+          type="button"
+          className="min-h-14 min-w-16 rounded-lg border border-border bg-surface/80 px-3 text-sm font-medium text-fg"
+          onPointerDown={() => engine?.setTouch({ rewind: true })}
+          onPointerUp={() => engine?.setTouch({ rewind: false })}
+          onPointerCancel={() => engine?.setTouch({ rewind: false })}
+        >
+          {t("אחורה", "Rewind")}
         </button>
         <button
           type="button"

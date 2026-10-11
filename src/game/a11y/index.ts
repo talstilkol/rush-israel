@@ -6,6 +6,7 @@ export {
   UNIT_ID,
   canonicalDigest,
   evaluateLock,
+  prefersReducedMotion,
   A11Y_COMPLETE,
   ARIA_CONTROLS,
   LIVE_REGIONS,

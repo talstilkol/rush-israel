@@ -3,6 +3,7 @@
 import * as THREE from "three";
 import { clamp } from "../math";
 import { MAX_ACCUMULATOR, MAX_CATCHUP_STEPS, PHYSICS_DT } from "../physics";
+import { prefersReducedMotion } from "../a11y";
 import { nightAmt } from "../tracks";
 import type { RaceEngine } from "../engine";
 import type { EngineAdapterHost } from "./adapter-host";
@@ -72,12 +73,39 @@ export function frame(this: EngineAdapterHost)
       if (act) this.applyGfxStep();
     }
 
-    const hoodDown = this.input.keys.has("KeyC") || this.input.keys.has("KeyV") || !!navigator.getGamepads?.()?.[0]?.buttons[3]?.pressed;
-    if (hoodDown && !this.hoodEdge && !this.photo) {
-      this.camMode = 0;
-      this.hood = false;
+    const camDown = this.input.keys.has("KeyC") || !!navigator.getGamepads?.()?.[0]?.buttons[3]?.pressed;
+    if (camDown && !this.hoodEdge && !this.photo && !this.replaying) {
+      this.camMode = (this.camMode + 1) % this.camNames.length;
+      this.hood = this.camMode === 1;
     }
-    this.hoodEdge = hoodDown;
+    this.hoodEdge = camDown;
+
+    const photoDown = this.input.keys.has("KeyF");
+    if (photoDown && !this.photoEdge && !this.photo && !this.replaying && !this.paused) this.enterPhoto();
+    this.photoEdge = photoDown;
+
+    const resetDown = this.input.keys.has("KeyH");
+    if (resetDown && !this.resetEdge && this.racing && !this.paused) this.rescue();
+    this.resetEdge = resetDown;
+
+    const hornDown = this.input.keys.has("KeyG");
+    if (hornDown && !this.hornEdge) this.horn();
+    this.hornEdge = hornDown;
+    if (this.hornCd > 0) this.hornCd = Math.max(0, this.hornCd - dt);
+    if (this.lapNoteT > 0) {
+      this.lapNoteT -= dt;
+      if (this.lapNoteT <= 0) this.lapNote = "";
+    }
+    if (this.cashNoteT > 0) {
+      this.cashNoteT -= dt;
+      if (this.cashNoteT <= 0) this.cashNote = "";
+    }
+    if (this.camFlash > 0) this.camFlash = Math.max(0, this.camFlash - dt * 2.4);
+    if (this.brakeBeep > 0) this.brakeBeep = Math.max(0, this.brakeBeep - dt);
+    if (this.brakeWarn && this.brakeBeep <= 0 && !this.replaying && !this.paused) {
+      this.audio.beep(620, 0.05, 0.045);
+      this.brakeBeep = 1.15;
+    }
 
     const radioDown = this.input.keys.has("KeyT");
     if (radioDown && !this.radioEdge) this.cycleRadio();
@@ -152,7 +180,8 @@ export function frame(this: EngineAdapterHost)
     this.updateCsm();
     this.updateProbe();
     const spd = clamp(Math.abs(this.player.speed) / 52, 0, 1);
-    this.post.setDrive(spd, this.player.boostT > 0);
+    const calm = prefersReducedMotion();
+    this.post.setDrive(calm ? 0 : spd, !calm && this.player.boostT > 0);
     this.post.render();
     this.flushSnap();
 

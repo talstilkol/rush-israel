@@ -11,15 +11,18 @@ import { Moon, Play, RotateCcw, Sun, Volume2, VolumeX } from "lucide-react";
 import { BootOverlay } from "@/components/boot-overlay";
 import { TouchControls } from "@/components/touch-controls";
 import { Button } from "@/components/ui/button";
-import { getEvent, starsFor } from "@/game/career";
-import { emptyTune, racePayout } from "@/game/garage";
+import { getEvent, maxStars, nextCareerId, starsFor } from "@/game/career";
+import { racePayout } from "@/game/garage";
 import { estimateLoadMs, recordLoadMs } from "@/game/load-eta";
 import { formatTime } from "@/game/math";
 import {
   addCash,
   getCash,
+  getDamage,
+  getTune,
   markDailyDone,
   markWeeklyDone,
+  markChampion,
   recordBest,
   recordEventStars,
   setMutedSave,
@@ -54,6 +57,9 @@ export type RaceControllerProps = {
 	quality: Quality;
 	setQuality: Dispatch<SetStateAction<Quality>>;
 	fov: number;
+	grid: number;
+	volume: number;
+	traffic: "off" | "low" | "normal" | "dense";
 	mode: RaceMode;
 	eventId: string | null;
 	weather: Weather;
@@ -67,6 +73,7 @@ export type RaceControllerProps = {
 	track: TrackDef;
 	t: CopyFn;
 	engineRef: { current: RaceEngine | null };
+	onStartEvent: (id: string) => void;
 };
 
 export function RaceController({
@@ -80,6 +87,9 @@ export function RaceController({
 	quality,
 	setQuality,
 	fov,
+	grid,
+	volume,
+	traffic,
 	mode,
 	eventId,
 	weather,
@@ -93,6 +103,7 @@ export function RaceController({
 	track,
 	t,
 	engineRef,
+	onStartEvent,
 }: RaceControllerProps) {
 	const [hud, setHud] = useState<HudState | null>(null);
 	const [result, setResult] = useState<RaceResult | null>(null);
@@ -100,6 +111,9 @@ export function RaceController({
 	const [record, setRecord] = useState(false);
 	const [raceKey, setRaceKey] = useState(0);
 	const [earned, setEarned] = useState(0);
+	const [paid, setPaid] = useState(0);
+	const [crown, setCrown] = useState(false);
+	const [crownPay, setCrownPay] = useState(0);
 	const [boot, setBoot] = useState<{ etaMs: number; frac: number } | null>(null);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const mapRef = useRef<HTMLCanvasElement>(null);
@@ -147,10 +161,13 @@ export function RaceController({
 				night,
 				quality,
 				fovExtra: fov,
+				grid,
+				volume,
+				traffic,
 				mode,
 				eventId: eventId ?? void 0,
 				weather,
-				tune: emptyTune(),
+				tune: getTune(carId),
 				handling,
 				assists,
 				onHud: setHud,
@@ -168,7 +185,13 @@ export function RaceController({
 					if (ok && r.eventId?.startsWith("weekly-")) markWeeklyDone(r.eventId.slice(7));
 					setStarTotal(totalStars());
 					const pay = ok ? (r.cash || racePayout(r)) : 0;
+					setPaid(pay);
 					setCash(ok ? addCash(pay) : getCash());
+					const crowned = ok && totalStars() >= maxStars();
+					const bonus = crowned && markChampion();
+					if (bonus) setCash(getCash());
+					setCrown(crowned);
+					setCrownPay(bonus ? 5000 : 0);
 					setResult(r);
 				},
 			});
@@ -200,7 +223,10 @@ export function RaceController({
 		weather,
 		tuneTick,
 		handling,
-		assists
+		assists,
+		grid,
+		traffic,
+		volume
 	]);
 // RSH-018-BLOCK-END:engine-effect
 // RSH-018-BLOCK-BEGIN:keyboard-effect
@@ -219,6 +245,10 @@ export function RaceController({
 			if (result) return;
 			if (engineRef.current?.isPhoto()) {
 				engineRef.current.exitPhoto();
+				setPaused((p) => {
+					engineRef.current?.setPaused(p);
+					return p;
+				});
 				return;
 			}
 			setPaused((p) => {
@@ -228,7 +258,38 @@ export function RaceController({
 			});
 		};
 		window.addEventListener("keydown", onKey);
-		return () => window.removeEventListener("keydown", onKey);
+		let startWas = false;
+		let selectWas = false;
+		let raf = 0;
+		const pollPad = () => {
+			const gp = navigator.getGamepads?.()?.[0];
+			const start = !!gp?.buttons[9]?.pressed;
+			const select = !!gp?.buttons[8]?.pressed;
+			if (start && !startWas && !result) {
+				if (engineRef.current?.isPhoto()) {
+					engineRef.current.exitPhoto();
+					setPaused((p) => {
+						engineRef.current?.setPaused(p);
+						return p;
+					});
+				} else {
+					setPaused((p) => {
+						const next = !p;
+						engineRef.current?.setPaused(next);
+						return next;
+					});
+				}
+			}
+			if (select && !selectWas && !result) engineRef.current?.horn();
+			startWas = start;
+			selectWas = select;
+			raf = requestAnimationFrame(pollPad);
+		};
+		raf = requestAnimationFrame(pollPad);
+		return () => {
+			cancelAnimationFrame(raf);
+			window.removeEventListener("keydown", onKey);
+		};
 	}, [
 		screen,
 		result,
@@ -355,8 +416,16 @@ export function RaceController({
 				onSkipReplay: () => engineRef.current?.skipReplay(),
 				onPhotoFilter: () => engineRef.current?.cyclePhotoFilter(),
 				onPhotoHide: () => engineRef.current?.togglePhotoHud(),
-				onPhotoExit: () => engineRef.current?.exitPhoto(),
-				onPhotoSave: () => engineRef.current?.capturePhoto()
+				onPhotoExit: () => {
+					engineRef.current?.exitPhoto();
+					setPaused((p) => {
+						engineRef.current?.setPaused(p);
+						return p;
+					});
+				},
+				onPhotoSave: () => engineRef.current?.capturePhoto(),
+				onPhotoLock: () => engineRef.current?.snapHashalom(),
+				onRadio: () => engineRef.current?.cycleRadio()
 			}) : null,
 			hud && !hud.photo && !boot ? /* @__PURE__ */ jsx(TouchControls, {
 				engine: engineRef.current,
@@ -366,12 +435,26 @@ export function RaceController({
 				className: "pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center gap-6",
 				children: [
 					/* @__PURE__ */ jsx("div", {
+						className: "flex gap-3",
+						children: [0, 1, 2, 3, 4].map((i) => {
+							const go = hud.countdown <= 1;
+							const on = go || hud.countdown < 3.8 - i * 0.56;
+							return /* @__PURE__ */ jsx("span", {
+								className: "size-5 rounded-full border border-border",
+								style: {
+									background: on ? (go ? "#3ddc97" : "#e23b32") : "#14161a",
+									boxShadow: on ? `0 0 18px ${go ? "#3ddc97" : "#e23b32"}` : "none"
+								}
+							}, i);
+						})
+					}),
+					/* @__PURE__ */ jsx("div", {
 						className: "text-6xl font-semibold tabular-nums tracking-tight text-fg",
 						children: hud.countdown > 1 ? Math.ceil(hud.countdown) : t("סע!", "GO")
 					}),
 					/* @__PURE__ */ jsx("p", {
 						className: "rounded-full border border-border bg-surface/80 px-4 py-2 text-sm font-medium text-fg",
-						children: t("W גז · A/D הגה", "W gas · A/D steer")
+						children: t("W גז · A שמאלה · D ימינה · F צילום", "W gas · A left · D right · F photo")
 					}),
 					hud.banter ? /* @__PURE__ */ jsx("p", {
 						className: "max-w-md px-6 text-center text-sm font-medium text-fg",
@@ -399,6 +482,11 @@ export function RaceController({
 							setPaused(false);
 						},
 						children: [/* @__PURE__ */ jsx(RotateCcw, { className: "size-4" }), t("התחל מחדש", "Restart")]
+					}),
+					/* @__PURE__ */ jsxs(Button, {
+						variant: "outline",
+						onClick: () => engineRef.current?.enterPhoto(),
+						children: t("מצב צילום", "Photo mode")
 					}),
 					/* @__PURE__ */ jsx(Button, {
 						variant: "outline",
@@ -472,8 +560,16 @@ export function RaceController({
 				}),
 				/* @__PURE__ */ jsx("h2", {
 					className: "mt-2 text-3xl font-semibold tracking-tight",
-					children: result.place === 1 ? t("ניצחון", "Victory") : t(`מקום ${result.place}`, `P${result.place}`)
+					children: result.busted ? t("נתפסת", "Busted") : result.place === 1 ? t("ניצחון", "Victory") : t(`מקום ${result.place}`, `P${result.place}`)
 				}),
+				earned > 0 ? /* @__PURE__ */ jsx("p", {
+					className: "mt-2 text-lg tracking-widest text-accent",
+					children: `${"★".repeat(earned)}${"☆".repeat(Math.max(0, 3 - earned))}`
+				}) : null,
+				record ? /* @__PURE__ */ jsx("p", {
+					className: "mt-2 text-sm font-medium text-accent",
+					children: t("שיא חדש", "New record")
+				}) : null,
 				/* @__PURE__ */ jsx("p", {
 					className: "mt-3 font-medium tabular-nums text-lg",
 					children: formatTime(result.totalTime)
@@ -486,6 +582,58 @@ export function RaceController({
 						formatTime(result.bestLap)
 					]
 				}),
+				result.line ? /* @__PURE__ */ jsx("p", {
+					className: "mt-3 max-w-sm text-sm text-fg",
+					children: result.line
+				}) : null,
+				result.ghostBeaten ? /* @__PURE__ */ jsx("p", {
+					className: "mt-2 text-sm font-medium text-accent",
+					children: t("עקפת את הרוח", "Ghost beaten")
+				}) : null,
+				result.eligible === false ? /* @__PURE__ */ jsx("p", {
+					className: "mt-2 text-sm text-muted",
+					children: t("הזמן לא נשמר", "Time not saved")
+				}) : null,
+				result.driftScore > 0 ? /* @__PURE__ */ jsx("p", {
+					className: "mt-2 text-sm tabular-nums text-muted",
+					children: `${t("דריפט", "Drift")} ${result.driftScore}`
+				}) : null,
+				paid > 0 ? /* @__PURE__ */ jsx("p", {
+					className: "mt-2 text-sm font-medium tabular-nums",
+					children: `+₪${paid.toLocaleString()}`
+				}) : null,
+				result.clean ? /* @__PURE__ */ jsx("p", {
+					className: "mt-1 text-sm font-medium text-accent",
+					children: t(`כולל מרוץ נקי ₪${result.clean}`, `Includes clean-race ₪${result.clean}`)
+				}) : null,
+				crown ? /* @__PURE__ */ jsx("p", {
+					className: "mt-3 text-lg font-semibold tracking-tight",
+					children: crownPay ? t("אלוף העונה +₪5,000", "Season champion +₪5,000") : t("אלוף העונה", "Season champion")
+				}) : null,
+				getDamage(carId) > 0.08 ? /* @__PURE__ */ jsx("p", {
+					className: "mt-2 text-sm text-danger",
+					children: t("הרכב ניזוק · תקן במוסך", "Car damaged · repair in the garage")
+				}) : null,
+				result.laps.length > 1 ? /* @__PURE__ */ jsx("ol", {
+					className: "mt-3 w-full space-y-0.5",
+					children: result.laps.map((lap, i) => /* @__PURE__ */ jsxs("li", {
+						className: "flex justify-between text-xs tabular-nums text-muted",
+						children: [
+							/* @__PURE__ */ jsx("span", { children: t(`הקפה ${i + 1}`, `Lap ${i + 1}`) }),
+							/* @__PURE__ */ jsx("span", { children: formatTime(lap) })
+						]
+					}, i))
+				}) : null,
+				result.board && result.board.length > 1 ? /* @__PURE__ */ jsx("ol", {
+					className: "mt-4 space-y-1",
+					children: result.board.map((row, i) => /* @__PURE__ */ jsxs("li", {
+						className: row.you ? "flex justify-between text-sm font-semibold" : "flex justify-between text-sm text-muted",
+						children: [
+							/* @__PURE__ */ jsx("span", { children: `${i + 1}  ${row.name}` }),
+							row.you ? /* @__PURE__ */ jsx("span", { children: t("אתה", "You") }) : null
+						]
+					}, `${row.name}-${i}`))
+				}) : null,
 				/* @__PURE__ */ jsxs("div", {
 					className: "mt-6 flex flex-col gap-2",
 					children: [/* @__PURE__ */ jsxs(Button, {
@@ -504,7 +652,26 @@ export function RaceController({
 							setScreen("tracks");
 						},
 						children: t("בחירת מסלול", "Choose track")
-					})]
+					}), /* @__PURE__ */ jsx(Button, {
+						variant: "outline",
+						onClick: () => {
+							setResult(null);
+							setHud(null);
+							setScreen("garage");
+						},
+						children: t("מוסך", "Garage")
+					}), eventId ? /* @__PURE__ */ jsx(Button, {
+						variant: "outline",
+						onClick: () => {
+							const next = nextCareerId(eventId, totalStars());
+							setResult(null);
+							setHud(null);
+							setPaused(false);
+							if (next) onStartEvent(next);
+							else setScreen("career");
+						},
+						children: nextCareerId(eventId, totalStars()) ? t("אירוע הבא", "Next event") : t("קריירה", "Career")
+					}) : null]
 				})
 			] }) : null
 		] });

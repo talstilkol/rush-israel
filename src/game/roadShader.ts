@@ -20,6 +20,20 @@ export function injectRoadLanes(shader: { fragmentShader: string; uniforms: Reco
       float skipMid = 0.0;
       float bound = 1.0 - smoothstep(0.018, 0.04, abs(fract(laneU + 0.5) - 0.5));
       diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.96), bound * dash * (1.0 - skipEdge) * (1.0 - skipMid) * 0.92);
+      float grain = fract(sin(dot(floor(ru * vec2(64.0, 22.0)), vec2(127.1, 311.7))) * 43758.5453);
+      diffuseColor.rgb *= mix(0.84, 1.0, grain);
+      float wear = smoothstep(0.34, 0.06, abs(fract(laneU) - 0.5));
+      diffuseColor.rgb *= mix(1.0, 0.78, wear * (1.0 - skipEdge) * 0.65);
+      float rumble = step(0.5, fract(meters * 1.7));
+      float shoulder = max(smoothstep(0.055, 0.02, ru.x), smoothstep(0.945, 0.98, ru.x));
+      diffuseColor.rgb = mix(diffuseColor.rgb, mix(vec3(0.12), vec3(0.9), rumble), shoulder * 0.9);
+      float along = fract(meters / 18.0);
+      float head = smoothstep(0.02, 0.12, along) * smoothstep(0.34, 0.16, along);
+      float shaft = step(0.1, along) * step(along, 0.28);
+      float lateral = abs(fract(laneU) - 0.5);
+      float inLane = (1.0 - skipEdge) * smoothstep(0.22, 0.04, lateral);
+      float chevron = max(head * smoothstep(0.14, 0.02, lateral), shaft * step(lateral, 0.035));
+      diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.96, 0.96, 0.9), chevron * inLane * 0.55);
       float wet = uWet;
       diffuseColor.rgb *= mix(1.0, 0.88, wet);
     }`,

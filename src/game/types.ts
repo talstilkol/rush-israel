@@ -213,6 +213,15 @@ export type HudState = {
   checkpointPing: number;
   rivalName: string;
   rivalGap: number;
+  board?: { name: string; you: boolean; gap: number }[];
+  lookingBack?: boolean;
+  lapNote?: string;
+  cashNote?: string;
+  camFlash?: number;
+  brakeWarn?: boolean;
+  saving?: boolean;
+  canLock?: boolean;
+  landmark?: string;
   sector: number;
   sectorDelta: number;
   gear: number;
@@ -260,9 +269,11 @@ export type RaceResult = {
   eventId?: string;
   weather: Weather;
   cash: number;
+  clean?: number;
   ghostBeaten: boolean;
   line: string;
   eligible?: boolean;
+  board?: { name: string; you: boolean }[];
 };
 
 export type Sample = {

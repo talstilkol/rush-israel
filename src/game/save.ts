@@ -322,12 +322,56 @@ export function setFovSave(fov: number) {
   write(data);
 }
 
+export function getGrid() {
+  const n = load().grid ?? 6;
+  return n >= 7 ? 8 : n >= 5 ? 6 : 4;
+}
+
+export function setGridSave(grid: number) {
+  const data = load();
+  data.grid = grid >= 7 ? 8 : grid >= 5 ? 6 : 4;
+  write(data);
+}
+
+export function getVolume() {
+  const v = load().volume;
+  return v === undefined ? 0.55 : Math.max(0, Math.min(1, v));
+}
+
+export function setVolumeSave(volume: number) {
+  const data = load();
+  data.volume = Math.max(0, Math.min(1, volume));
+  write(data);
+}
+
+export type TrafficDensity = "off" | "low" | "normal" | "dense";
+
+export function getTraffic(): TrafficDensity {
+  const t = load().traffic;
+  return t === "off" || t === "low" || t === "dense" ? t : "normal";
+}
+
+export function setTrafficSave(traffic: TrafficDensity) {
+  const data = load();
+  data.traffic = traffic;
+  write(data);
+}
+
 export function eventStars(id: string) {
   return load().career.stars[id] ?? 0;
 }
 
 export function allEventStars() {
   return load().career.stars;
+}
+
+export function markChampion() {
+  const data = load();
+  if (data.champion) return false;
+  data.champion = true;
+  data.cash = Math.max(0, Math.round(data.cash + 5000));
+  write(data);
+  return true;
 }
 
 export function totalStars() {
