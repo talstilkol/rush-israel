@@ -24,7 +24,7 @@ import {
 import { getDamage, getGhost, recordGhost, setDamage } from "./save";
 import { buildTrack, nearestIndex, sampleAtT, startGridT } from "./spline";
 import { getTrack, nearestPoi, nightAmt, streetName, todLabel, tlv } from "./tracks";
-import type { AssistFlags, CarId, Collider, HandlingMode, HudState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
+import type { AssistFlags, CarId, Collider, HandlingMode, HudState, InputState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting, type CarSnap } from "./vehicle";
 import { createWorld, type World } from "./world";
 import { bindRoadCompile } from "./roadShader";
@@ -138,6 +138,7 @@ export class RaceEngine {
   private scene: THREE.Scene;
   private camera: THREE.PerspectiveCamera;
   private input!: GameInput;
+  private inputSnap: InputState = { steer: 0, throttle: 0, brake: 0, drift: false, nitro: false };
   private audio!: GameAudio;
   private world!: World;
   private post!: PostStack;

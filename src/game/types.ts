@@ -217,6 +217,7 @@ export type HudState = {
   lookingBack?: boolean;
   lapNote?: string;
   cashNote?: string;
+  voidRun?: boolean;
   cash?: number;
   camFlash?: number;
   brakeWarn?: boolean;

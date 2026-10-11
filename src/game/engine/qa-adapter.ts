@@ -57,7 +57,7 @@ export function exposeControls(this: EngineAdapterHost)
       getRoll: () => this.player.roll,
       getSurface: () => this.player.surfaceGrip,
       getGear: () => this.player.gear,
-      getSteer: () => this.input.poll().steer,
+      getSteer: () => this.inputSnap.steer,
       getKinMix: () => this.player.kinMix,
       getCsmCascades: () => this.csmWanted(),
       getCycle: () => this.autoCycle,

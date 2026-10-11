@@ -95,6 +95,7 @@ export type EngineAdapterHost = {
   hudTimer: RaceEngine["hudTimer"];
   impactCd: RaceEngine["impactCd"];
   input: RaceEngine["input"];
+  inputSnap: RaceEngine["inputSnap"];
   koMarked: RaceEngine["koMarked"];
   laps: RaceEngine["laps"];
   lapTime: RaceEngine["lapTime"];

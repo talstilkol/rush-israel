@@ -227,6 +227,10 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 				className: cn("pointer-events-none absolute left-1/2 top-44 -translate-x-1/2 text-2xl font-semibold tracking-widest", hud.lapNote === "הקפה אחרונה" || hud.lapNote === "LAST LAP" ? "text-danger" : "text-fg"),
 				children: hud.lapNote
 			}) : null,
+			hud.voidRun && !hud.finished ? /* @__PURE__ */ jsx("p", {
+				className: "pointer-events-none absolute left-1/2 top-60 -translate-x-1/2 text-sm font-semibold tracking-widest text-danger",
+				children: langHe ? "השיא לא נשמר" : "RUN NOT SAVED"
+			}) : null,
 			hud.cashNote ? /* @__PURE__ */ jsx("p", {
 				className: "pointer-events-none absolute left-1/2 top-52 -translate-x-1/2 text-xl font-semibold tabular-nums text-accent",
 				children: hud.cashNote

@@ -54,7 +54,7 @@ export class GameInput {
     if (partial.rewind !== undefined) this.touchRewind = partial.rewind;
   }
 
-  poll(): InputState {
+  poll(step?: number): InputState {
     let steer = 0;
     if (this.keys.has("KeyA") || this.keys.has("ArrowLeft")) steer += 1;
     if (this.keys.has("KeyD") || this.keys.has("ArrowRight")) steer -= 1;
@@ -82,8 +82,8 @@ export class GameInput {
     if (this.brakeOverride !== null) brake = this.brakeOverride;
 
     const now = typeof performance !== "undefined" ? performance.now() : 0;
-    const dt = this.lastPoll ? Math.min(0.05, (now - this.lastPoll) / 1000) : 0.016;
-    this.lastPoll = now;
+    const dt = step ?? (this.lastPoll ? Math.min(0.05, (now - this.lastPoll) / 1000) : 0.016);
+    if (step == null) this.lastPoll = now;
     if (this.steerOverride !== null) this.steerFilt = steer;
     else {
       const k = Math.abs(steer) < 0.05 ? 11 : 6.5;

@@ -450,7 +450,7 @@ export function stepPhoto(this: EngineAdapterHost, dt: Parameters<RaceEngine["st
       this.post.setFilter(this.photoFilter);
       return;
     }
-    const inp = this.input.poll();
+    const inp = this.inputSnap;
     this.photoYaw += inp.steer * 1.55 * dt;
     this.photoPitch = clamp(this.photoPitch + (inp.throttle - inp.brake) * 0.7 * dt, -0.4, 0.85);
     if (inp.nitro) this.photoDist = Math.max(3.2, this.photoDist - 9 * dt);
@@ -486,11 +486,11 @@ export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine["pres
     }
     for (let i = 0; i < this.racers.length; i++) {
       const c = this.racers[i];
-      const steer = i === 0 ? this.input.poll().steer : clamp(c.roll * -3, -1, 1);
-      updateCarVisual(this.visuals[i], c.yaw, c.speed, steer, i === 0 ? this.input.poll().brake : 0, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
+      const steer = i === 0 ? this.inputSnap.steer : clamp(c.roll * -3, -1, 1);
+      updateCarVisual(this.visuals[i], c.yaw, c.speed, steer, i === 0 ? this.inputSnap.brake : 0, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
       if (i === 0) {
         setExhaust(this.visuals[i], c.boostT > 0, this.nowSec * 22);
-        const steerNow = this.input.poll().steer;
+        const steerNow = this.inputSnap.steer;
         setIndicators(this.visuals[i], steerNow < -0.35, steerNow > 0.35, this.nowSec);
       }
       const blob = this.blobs[i];
@@ -839,6 +839,7 @@ export function pushHud(this: EngineAdapterHost)
       lookingBack: this.lookBack,
       lapNote: this.lapNote,
       cashNote: this.cashNote,
+      voidRun: this.timeVoided,
       cash: getCash() + this.ledger,
       camFlash: this.camFlash,
       brakeWarn: this.brakeWarn,

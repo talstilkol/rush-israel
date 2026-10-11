@@ -73,7 +73,8 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     }
     this.impactCd = Math.max(0, this.impactCd - dt);
 
-    const playerInput = this.input.poll();
+    const playerInput = this.input.poll(dt);
+    this.inputSnap = playerInput;
     if (this.countdown > 0) {
       playerInput.throttle = 0;
       playerInput.brake = 0;

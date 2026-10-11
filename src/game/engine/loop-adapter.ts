@@ -162,7 +162,10 @@ export function frame(this: EngineAdapterHost)
       this.acc -= FIXED;
       steps++;
     }
-    if (this.acc >= FIXED && steps >= MAX_CATCHUP_STEPS) this.timeVoided = true;
+    if (this.acc >= FIXED && steps >= MAX_CATCHUP_STEPS) {
+      this.timeVoided = true;
+      this.acc = 0;
+    }
 
     this.world.tick(now, this.player.x, this.player.z);
     this.nowSec = now / 1000;
