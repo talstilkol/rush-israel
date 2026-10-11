@@ -129,10 +129,10 @@ export function startGridT(index: number, count: number) {
   return 0.006 + lead * 0.007;
 }
 
-export function behindProgress(progress: number, back: number, open: boolean) {
+export function behindProgress(progress: number, back: number, _open: boolean) {
   const t = progress - back;
-  if (!open) return ((t % 1) + 1) % 1;
-  return Math.max(0.002, t);
+  if (t >= 0.002) return t;
+  return 0.002;
 }
 
 export function sampleAtT(samples: Sample[], t: number): Sample {

@@ -779,7 +779,8 @@ export class ArcadeCar {
   }
 
   raceScore() {
-    return this.lap * 1000 + this.lastCheckpoint * 10 + this.progress;
+    const along = this.lap === 0 && this.progress > 0.5 ? this.progress - 1 : this.progress;
+    return this.lap * 1000 + Math.max(0, this.lastCheckpoint) * 10 + along;
   }
 }
 

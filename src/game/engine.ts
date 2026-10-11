@@ -758,7 +758,7 @@ export class RaceEngine {
       cop.weather = this.weather;
       cop.handling = this.player.handling;
       cop.assists = { abs: true, tcs: true, esc: true };
-      cop.spawn(this.built, this.trackDef.open ? 0.004 + i * 0.003 : (0.86 - i * 0.04 + 1) % 1, cop.aiOffset);
+      cop.spawn(this.built, 0.004 + i * 0.003, cop.aiOffset);
       this.cops.push(cop);
       const vis = createCarVisual(color, accent, false, false, "gt", true);
       setCarLights(vis, this.opts.night);
