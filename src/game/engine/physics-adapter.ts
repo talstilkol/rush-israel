@@ -162,7 +162,9 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
       cab.step(dt, inp, this.built, this.racing && this.countdown <= 0, this.world.colliders.concat(this.extraHits), this.world.streets, this.world.ramps);
     }
 
+    const chase = this.mode !== "heat" || this.totalTime > 5;
     for (const cop of this.cops) {
+      if (!chase) continue;
       const inp = copInput(cop, this.built, this.player, this.heat);
       if (this.countdown > 0) {
         inp.throttle = 0;
@@ -180,7 +182,7 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
       this.player.drafting = false;
     }
 
-    const hit = separateCars([...this.racers, ...this.traffic, ...this.cops]);
+    const hit = separateCars([...this.racers, ...this.traffic, ...(chase ? this.cops : [])]);
     if (this.player.nitroPulse) this.audio.whoosh();
     if (this.player.impact > 0.55 && this.impactCd <= 0) {
       this.audio.impact(this.player.impact);
@@ -308,7 +310,7 @@ export function standings(this: EngineAdapterHost)
 export function stepHeat(this: EngineAdapterHost, dt: Parameters<RaceEngine["stepHeat"]>[0])
 // RSH-017-BODY-BEGIN:stepHeat
 {
-    if (this.busted || this.player.finished) return;
+    if (this.busted || this.player.finished || this.totalTime <= 5) return;
     let nearest = Infinity;
     for (const cop of this.cops) {
       nearest = Math.min(nearest, Math.hypot(cop.x - this.player.x, cop.z - this.player.z));

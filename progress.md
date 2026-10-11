@@ -3,6 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- Free roam can finish on every launch track. Landmarks that sat off the road, including all nine on Ayalon, now count when the car passes the nearest point on the road. Driving the center line collected every landmark and ended the roam on all eight tracks. That was not a browser session.
+- Heat no longer starts with the police on the grid. They wait at the start line for five seconds, then chase. The old placement busted the player at 24 seconds and the car never finished. With the wait, the same run reached 82% of Ayalon in 140 seconds and the bust meter stayed at 0. Not a browser race.
 
 Not done: browser `qa:drive`, the remaining hash locks, devices, Alpha through release.
