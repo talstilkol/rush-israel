@@ -107,7 +107,7 @@ export type EngineAdapterHost = {
   ledger: RaceEngine["ledger"];
   cashNote: RaceEngine["cashNote"];
   cashNoteT: RaceEngine["cashNoteT"];
-  camCd: RaceEngine["camCd"];
+  camAt: RaceEngine["camAt"];
   camFlash: RaceEngine["camFlash"];
   brakeWarn: RaceEngine["brakeWarn"];
   goldenIdx: RaceEngine["goldenIdx"];

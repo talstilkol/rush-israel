@@ -8,7 +8,7 @@ import { CARS } from "../cars";
 import { clamp, hashStr } from "../math";
 import { prefersReducedMotion } from "../a11y";
 import { getCash, recordGhost, setDamage } from "../save";
-import { behindProgress, sampleAtT } from "../spline";
+import { behindProgress, crossedForward, sampleAtT } from "../spline";
 import type { Collider, RaceResult } from "../types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting } from "../vehicle";
 import type { RaceEngine } from "../engine";
@@ -205,20 +205,24 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     this.audio.pulseMusic(this.world.night, dt);
     this.audio.updateSiren(this.mode === "heat" && this.racing && !this.busted && !this.escaping, dt);
     this.audio.updateRain(this.weather === "rain" || this.weather === "storm", this.weather === "storm");
-    this.camCd = Math.max(0, this.camCd - dt);
     const camRoad = this.trackDef.theme === "highway" || this.trackDef.id === "gushdan" || this.trackDef.id === "hw90";
-    if (camRoad && this.racing && this.countdown <= 0 && !this.player.finished && this.camCd <= 0 && this.player.onTrack && Math.abs(this.player.speed) > 42) {
-      this.camCd = 8;
-      const fine = Math.min(Math.max(0, getCash() + this.ledger), 80);
-      if (fine > 0) {
-        this.ledger -= fine;
-        this.cashNote = `-₪${fine}`;
-        this.cashNoteT = 1.6;
+    const gates = [0.22, 0.48, 0.73];
+    if (camRoad && this.racing && this.countdown <= 0 && !this.player.finished && this.player.onTrack) {
+      for (let i = 0; i < gates.length; i++) {
+        if (!crossedForward(this.camAt, this.player.progress, gates[i])) continue;
+        if (Math.abs(this.player.speed) <= 42) continue;
+        const fine = Math.min(Math.max(0, getCash() + this.ledger), 80);
+        if (fine > 0) {
+          this.ledger -= fine;
+          this.cashNote = `-₪${fine}`;
+          this.cashNoteT = 1.6;
+        }
+        this.camFlash = 1;
+        this.audio.beep(980, 0.05, 0.07);
+        this.audio.beep(1480, 0.07, 0.05);
       }
-      this.camFlash = 1;
-      this.audio.beep(980, 0.05, 0.07);
-      this.audio.beep(1480, 0.07, 0.05);
     }
+    this.camAt = this.player.progress;
     if (this.racing && !this.player.finished) {
       this.ghostAcc += dt;
       if (this.ghostAcc >= 0.16) {

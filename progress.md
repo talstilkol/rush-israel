@@ -3,6 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- Chase cars spawn behind the grid. Pushing them back no longer wraps them onto the finish line. A car still sitting at 86% with zero laps ranks behind a car at 5%.
+- A highway fine happens only when the car crosses a camera at 22%, 48%, or 73% of the lap above 42 m/s. Sitting on the throttle no longer pays every eight seconds. A jump or a reverse pass does not count.
 
 Not done: browser `qa:drive`, the 60 contract failures, devices, Alpha through release.

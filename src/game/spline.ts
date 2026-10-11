@@ -135,6 +135,10 @@ export function behindProgress(progress: number, back: number, _open: boolean) {
   return 0.002;
 }
 
+export function crossedForward(prev: number, now: number, gate: number) {
+  return prev < gate && now >= gate && now - prev < 0.2;
+}
+
 export function sampleAtT(samples: Sample[], t: number): Sample {
   const n = samples.length;
   const u = ((t % 1) + 1) % 1;

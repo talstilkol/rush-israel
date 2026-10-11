@@ -191,7 +191,7 @@ export class RaceEngine {
   private ledger = 0;
   private cashNote = "";
   private cashNoteT = 0;
-  private camCd = 2.5;
+  private camAt = 0;
   private camFlash = 0;
   private goldenIdx = 0;
   private goldenName = "";
@@ -864,7 +864,7 @@ export class RaceEngine {
   restartRace() {
     this.placeGrid();
     this.countdown = 3.8;
-    this.goFlash = 0;
+    this.camAt = 0;
     this.totalTime = 0;
     this.lapTime = 0;
     this.laps = [];
