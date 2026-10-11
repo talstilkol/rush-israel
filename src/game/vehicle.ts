@@ -136,6 +136,7 @@ export class ArcadeCar {
   stats: CarDef;
   name: string;
   private nitroHeld = false;
+  private holdSteer = 0;
 
   constructor(stats: CarDef, name: string) {
     this.stats = stats;
@@ -339,6 +340,7 @@ export class ArcadeCar {
     if (wantDrift) grip = Math.min(grip, 0.22 + (1 - front) * 0.12);
 
     this.stepWheels(dt, input.steer, grip, speedAbs, fx, fz, rx, rz, racing, reverse, wantDrift, front, mass);
+    this.holdSteer = wantDrift ? 1 : input.steer;
 
     this.integrateMotion(dt, track, grip, colliders, streets, ramps);
 
@@ -531,6 +533,23 @@ export class ArcadeCar {
     this.onTrack = onMain || onAlley || onRamp || (this.roam && dist < half * 2.6);
     this.sideStreet = onRamp ? rp.r.he : onAlley && !onMain ? alley!.street.he : "";
     this.sideStreetEn = onRamp ? rp.r.en : onAlley && !onMain ? alley!.street.en : "";
+    if (this.onTrack && !this.drifting && speedAbs > 6) {
+      const latSigned = (this.x - s.x) * s.rx + (this.z - s.z) * s.rz;
+      const wide = Math.abs(latSigned) > track.width * 0.28;
+      if (Math.abs(this.holdSteer) < 0.15 || wide) {
+        const road = Math.atan2(-s.tx, -s.tz);
+        const aim = wrapPi(road - Math.sign(latSigned || 1) * clamp(Math.abs(latSigned) / half, 0, 1) * 0.28);
+        const err = wrapPi(aim - this.yaw);
+        this.yaw = wrapPi(this.yaw + clamp(err, -1.4, 1.4) * dt * 2.4);
+        const nfx = -Math.sin(this.yaw);
+        const nfz = -Math.cos(this.yaw);
+        const nrx = Math.cos(this.yaw);
+        const nrz = -Math.sin(this.yaw);
+        const latNow = this.vx * nrx + this.vz * nrz;
+        this.vx = nfx * this.speed + nrx * latNow;
+        this.vz = nfz * this.speed + nrz * latNow;
+      }
+    }
     if (!this.onTrack) {
       this.surfaceKind = "sand";
       this.surfaceGrip = this.baseGrip * 0.54;
@@ -814,7 +833,8 @@ export const SURFACE_GRIP: Record<string, number> = {
 };
 
 export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): InputState {
-  const look = 0.045 + clamp(car.speed / 80, 0, 0.04);
+  const lookM = 24 + clamp(car.speed, 0, 32) * 0.55;
+  const look = Math.min(0.06, lookM / Math.max(200, track.length));
   const t = track.closed ? (car.progress + look) % 1 : Math.min(0.995, car.progress + look);
   const a = sampleAtT(track.samples, t);
   const tx = a.x + a.rx * car.aiOffset;
@@ -846,7 +866,8 @@ export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): 
       nitro: false,
     };
   }
-  const ahead = sampleAtT(track.samples, track.closed ? (car.progress + 0.09) % 1 : Math.min(0.995, car.progress + 0.09));
+  const bendLook = Math.min(0.08, 55 / Math.max(200, track.length));
+  const ahead = sampleAtT(track.samples, track.closed ? (car.progress + bendLook) % 1 : Math.min(0.995, car.progress + bendLook));
   const bend = Math.abs(wrapPi(Math.atan2(-ahead.tx, -ahead.tz) - car.yaw));
   let throttle = abs > 0.55 ? 0.35 : 1;
   if (player && HANDLING[car.handling].rubberBand) {
