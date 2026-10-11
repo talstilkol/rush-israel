@@ -3,7 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- Ghost frames carry the race clock. Five seconds into a ten-second recording samples the middle, and playback lasts as long as the recording, not `count * 0.16`.
-- Replay uses the same clock. Rewind drops frames newer than the restored time.
+- Rival cars no longer teleport back to a checkpoint after 3.2 s off the road. Off the racing line they brake, reverse, and steer back. Checked on Ayalon: progress stayed put and drift stayed off.
 
-Not done: browser `qa:drive`, the 60 contract failures, devices, Alpha through release.
+Not done: a full AI race to the flag, browser `qa:drive`, the 60 contract failures, devices, Alpha through release.

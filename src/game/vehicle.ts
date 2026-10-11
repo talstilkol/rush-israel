@@ -370,7 +370,7 @@ export class ArcadeCar {
       if (this.weatherGrip < 0.95 && this.onTrack) this.dirt -= dt * 0.11;
       this.dirt = clamp(this.dirt, 0, 1);
     }
-    if (this.offTrackT > 3.2) this.respawn(track);
+    if (!(this.isAi && !this.isTraffic && !this.isCop) && this.offTrackT > 3.2) this.respawn(track);
   }
 
   private stepWheels(
@@ -802,6 +802,19 @@ export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): 
   const tx = a.x + a.rx * car.aiOffset;
   const tz = a.z + a.rz * car.aiOffset;
   const err = wrapPi(Math.atan2(-(tx - car.x), -(tz - car.z)) - car.yaw);
+  const here = sampleAtT(track.samples, car.progress);
+  const lat = (car.x - here.x) * here.rx + (car.z - here.z) * here.rz;
+  const offLine = Math.abs(lat - car.aiOffset) > track.width * 0.42 || car.offTrackT > 0.35;
+  if (offLine) {
+    const reverse = car.speed > -7 && car.speed < 4 && car.offTrackT > 0.7;
+    return {
+      steer: clamp((reverse ? -err : err) * 2.2, -1, 1),
+      throttle: reverse ? 0 : 0.62,
+      brake: reverse ? 1 : car.speed > 16 ? 0.5 : 0,
+      drift: false,
+      nitro: false,
+    };
+  }
   const steer = clamp(err * 1.6, -1, 1);
   const abs = Math.abs(err);
   const ahead = sampleAtT(track.samples, track.closed ? (car.progress + 0.09) % 1 : Math.min(0.995, car.progress + 0.09));
