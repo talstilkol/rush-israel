@@ -3,7 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- A road-edge barrier that would sit inside the driving line is not placed.
-- Off the line at speed, a rival eases off and steers gently instead of locking the wheel and bouncing wall to wall. With those barriers, one rival reached the last gate or completed a lap on all eight tracks. Scopus finished with damage 0.44 instead of 1. Hermon still ended on full damage. No buildings were included.
+- Cars that are only touching no longer take damage on every physics frame. A bump has to close faster than 6 m/s. With seven traffic cars and the road-edge barriers, one rival finished every launch track. Scopus damage at the flag fell from 0.73 to 0.34. Ramon from 1 to 0.86. Hermon still finished on full damage. No buildings.
 
-Not done: buildings and traffic, browser `qa:drive`, the 60 contract failures, devices, Alpha through release.
+Not done: buildings, browser `qa:drive`, the 60 contract failures, devices, Alpha through release.

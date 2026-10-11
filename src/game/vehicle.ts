@@ -951,7 +951,7 @@ export function separateCars(cars: ArcadeCar[]): number {
       b.x -= nx * push * (ma / m);
       b.z -= nz * push * (ma / m);
       const rel = (a.vx - b.vx) * nx + (a.vz - b.vz) * nz;
-      if (rel >= 0) continue;
+      if (rel >= -3) continue;
       const imp = (-1.42 * rel) / (1 / ma + 1 / mb);
       a.vx += (imp / ma) * nx;
       a.vz += (imp / ma) * nz;
@@ -967,8 +967,9 @@ export function separateCars(cars: ArcadeCar[]): number {
       const loss = clamp(closing / 34, 0.04, 0.32);
       a.speed *= 1 - loss * (mb / m) * 0.45;
       b.speed *= 1 - loss * (ma / m) * 0.45;
-      a.damage = clamp(a.damage + closing * 0.014 * (mb / m), 0, 1);
-      b.damage = clamp(b.damage + closing * 0.014 * (ma / m), 0, 1);
+      const bump = closing > 6 ? closing * 0.006 : 0;
+      a.damage = clamp(a.damage + bump * (mb / m), 0, 1);
+      b.damage = clamp(b.damage + bump * (ma / m), 0, 1);
       if (!a.isAi || !b.isAi) {
         peak = Math.max(peak, closing);
         const hit = Math.min(0.55, closing / 22);
