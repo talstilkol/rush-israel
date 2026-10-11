@@ -106,6 +106,7 @@ export class ArcadeCar {
   aiOffset = 0;
   weatherGrip = 1;
   damage = 0;
+  wallDmgT = 0;
   drafting = false;
   roll = 0;
   surfaceGrip = 1;
@@ -167,6 +168,7 @@ export class ArcadeCar {
     this.yawRate = 0;
     this.impact = 0;
     if (this.isAi) this.damage = 0;
+    this.wallDmgT = 0;
     this.dirt = 0;
     this.finished = false;
     this.eliminated = false;
@@ -181,6 +183,7 @@ export class ArcadeCar {
     this.impact = 0;
     this.lastHit = "";
     this.nitroPulse = false;
+    this.wallDmgT = Math.max(0, this.wallDmgT - dt);
     if (this.finished || this.eliminated) {
       this.speed *= Math.exp(-2.2 * dt);
       this.integrateMotion(dt, track, 0, colliders, streets, ramps);
@@ -572,7 +575,10 @@ export class ArcadeCar {
           if (out > 8) {
             this.speed *= 0.9;
             this.impact = Math.max(this.impact, Math.min(0.35, out / 36));
-            this.damage = clamp(this.damage + out * 0.004, 0, 1);
+            if (this.wallDmgT <= 0) {
+              this.damage = clamp(this.damage + Math.min(0.05, out * 0.0016), 0, 1);
+              this.wallDmgT = 0.55;
+            }
           }
         }
       }
@@ -666,9 +672,10 @@ export class ArcadeCar {
           this.vz -= nz * into * 1.08;
           this.speed = this.vx * fx + this.vz * fz;
           this.speed *= hit > 12 ? 0.78 : 0.92;
-          if (hit > 9) {
-            this.damage = clamp(this.damage + hit * 0.008, 0, 1);
-            this.impact = Math.max(this.impact, Math.min(0.38, hit / 30));
+          if (-into > 8 && this.wallDmgT <= 0) {
+            this.damage = clamp(this.damage + Math.min(0.05, -into * 0.0016), 0, 1);
+            this.impact = Math.max(this.impact, Math.min(0.38, -into / 40));
+            this.wallDmgT = 0.55;
           }
         }
       }
