@@ -750,7 +750,7 @@ export class RaceEngine {
       cop.isAi = true;
       cop.isCop = true;
       cop.aiSkill = 0.96;
-      cop.aiOffset = (i % 2 === 0 ? -1 : 1) * 2.4;
+      cop.aiOffset = 0;
       cop.nitro = 0.55;
       cop.baseGrip = SURFACE_GRIP[this.trackDef.theme] ?? 1;
       cop.surfaceGrip = cop.baseGrip;

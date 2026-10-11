@@ -940,7 +940,7 @@ export function copInput(car: ArcadeCar, track: BuiltTrack, target: ArcadeCar, h
   const fwd = -Math.sin(car.yaw);
   const lat = dx * side + dz * fwd;
   if (dist < 14 && heat > 0.35) steer = clamp(steer + Math.sign(lat) * 0.28, -1, 1);
-  const throttle = dist > 7 ? 1 : 0.4;
+  const throttle = dist > 20 ? 1 : dist > 13 ? 0.7 : 0.28;
   const brake = Math.abs(err) > 1.05 && car.speed > 20 ? 0.42 : 0;
   const drift = Math.abs(err) > 0.62 && car.speed > 15;
   const nitro = dist > 20 && car.nitro > 0.08;

@@ -162,7 +162,7 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
       cab.step(dt, inp, this.built, this.racing && this.countdown <= 0, this.world.colliders.concat(this.extraHits), this.world.streets, this.world.ramps);
     }
 
-    const chase = this.mode !== "heat" || this.totalTime > 5;
+    const chase = true;
     for (const cop of this.cops) {
       if (!chase) continue;
       const inp = copInput(cop, this.built, this.player, this.heat);
@@ -408,7 +408,7 @@ export function addCop(this: EngineAdapterHost, i: Parameters<RaceEngine["addCop
     cop.isAi = true;
     cop.isCop = true;
     cop.aiSkill = 0.96;
-    cop.aiOffset = (i % 2 === 0 ? -1 : 1) * 2.4;
+    cop.aiOffset = 0;
     cop.nitro = 0.55;
     cop.baseGrip = SURFACE_GRIP[this.trackDef.theme] ?? 1;
     cop.surfaceGrip = cop.baseGrip;
