@@ -2422,7 +2422,13 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const nycLand = await import("./nyc-landmarks");
     nycLand.addNycLandmarks(group, def, bag, shadows, isNight, landmarkGlows, emitList, colliders);
   }
-  colliders.push(...roadEdgeBarriers(built));
+  const edgeStep = Math.max(3, Math.floor(built.samples.length / 360));
+  const wallD = built.width / 2 + 1.55;
+  for (const barrier of roadEdgeBarriers(built, edgeStep, wallD)) {
+    colliders.push(barrier.r > 0.8
+      ? { x: barrier.x, z: barrier.z, r: 1.05, kind: "barrier" }
+      : { x: barrier.x, z: barrier.z, r: 0.62, kind: "barrier" });
+  }
   let bHits = 0;
   for (const p of placements) {
     if (bHits >= 80) break;

@@ -124,9 +124,11 @@ export function nearestIndex(samples: Sample[], x: number, z: number, hint: numb
   return { index: bestI, dist: Math.hypot(s.x - x, s.z - z) };
 }
 
-export function roadEdgeBarriers(built: BuiltTrack): Collider[] {
-  const edgeStep = Math.max(3, Math.floor(built.samples.length / 360));
-  const wallD = built.width / 2 + 1.55;
+export function roadEdgeBarriers(
+  built: BuiltTrack,
+  edgeStep = Math.max(3, Math.floor(built.samples.length / 360)),
+  wallD = built.width / 2 + 1.55,
+): Collider[] {
   const keepOut = built.width / 2 + 0.9;
   const out: Collider[] = [];
   for (let i = 0; i < built.samples.length; i += edgeStep) {
