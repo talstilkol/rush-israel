@@ -846,9 +846,9 @@ export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): 
   } else {
     throttle *= car.aiSkill;
   }
-  if (bend > 0.42) throttle *= 0.5;
-  if (bend > 0.75) throttle *= 0.55;
-  const brake = (abs > 0.85 && car.speed > 22) || bend > 0.82 ? 0.48 : 0;
+  if (bend > 0.42 && car.speed > 14) throttle *= 0.72;
+  if (bend > 0.75 && car.speed > 18) throttle *= 0.7;
+  const brake = car.speed > 20 && bend > 0.9 ? 0.35 : 0;
   const drift = abs > 0.5 && car.speed > 16;
   const nitro = car.nitro > 0.4 && abs < 0.22 && car.speed > 16;
   return {
