@@ -3,7 +3,7 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- Driving input is sampled once per physics tick, with that tick's dt. The picture and the QA hook read the snapshot instead of sampling again.
-- A frame that cannot catch up marks the run void, drops the leftover time, and the HUD says the record will not be saved.
+- Ghost frames carry the race clock. Five seconds into a ten-second recording samples the middle, and playback lasts as long as the recording, not `count * 0.16`.
+- Replay uses the same clock. Rewind drops frames newer than the restored time.
 
 Not done: browser `qa:drive`, the 60 contract failures, devices, Alpha through release.

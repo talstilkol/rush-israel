@@ -3,7 +3,7 @@
 import * as THREE from "three";
 import { createCarVisual, setCarLights, applyDamage } from "../car-mesh";
 import { finishLine, overtakeLine } from "../dialog";
-import { racePayout } from "../garage";
+import { racePayout, timedSpan } from "../garage";
 import { CARS } from "../cars";
 import { clamp, hashStr } from "../math";
 import { prefersReducedMotion } from "../a11y";
@@ -221,7 +221,7 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
       this.ghostAcc += dt;
       if (this.ghostAcc >= 0.16) {
         this.ghostAcc = 0;
-        this.ghostBuf.push({ x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.player.yaw });
+        this.ghostBuf.push({ x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.player.yaw, t: this.totalTime });
       }
       this.recordReplay(dt);
     }
@@ -664,7 +664,7 @@ export function skipReplay(this: EngineAdapterHost)
 export function recordSnap(this: EngineAdapterHost)
 // RSH-017-BODY-BEGIN:recordSnap
 {
-    this.replayBuf.push(this.racers.map((r) => ({ x: r.x, y: r.y, z: r.z, yaw: r.yaw, speed: r.speed })));
+    this.replayBuf.push(this.racers.map((r) => ({ x: r.x, y: r.y, z: r.z, yaw: r.yaw, speed: r.speed, t: this.totalTime })));
     if (this.replayBuf.length > 140) this.replayBuf.shift();
   }
 // RSH-017-BODY-END:recordSnap
@@ -736,10 +736,21 @@ export function applyPack(this: EngineAdapterHost, p: Parameters<RaceEngine["app
       if (s) this.cops[i].load(s);
     }
     applyDamage(this.visuals[0], this.player.damage);
-    const keepGhost = Math.max(0, Math.floor(this.totalTime / 0.16));
-    if (this.ghostBuf.length > keepGhost) this.ghostBuf.length = keepGhost;
-    const keepRep = Math.max(0, Math.floor(this.totalTime / 0.1));
-    if (this.replayBuf.length > keepRep) this.replayBuf.length = keepRep;
+    const gt = this.totalTime + 1e-4;
+    const gLast = this.ghostBuf[this.ghostBuf.length - 1];
+    if (gLast && typeof gLast.t === "number") {
+      while (this.ghostBuf.length && (this.ghostBuf[this.ghostBuf.length - 1]?.t ?? 0) > gt) this.ghostBuf.pop();
+    } else {
+      const keepGhost = Math.max(0, Math.floor(this.totalTime / 0.16));
+      if (this.ghostBuf.length > keepGhost) this.ghostBuf.length = keepGhost;
+    }
+    const rLast = this.replayBuf[this.replayBuf.length - 1]?.[0];
+    if (rLast && typeof rLast.t === "number") {
+      while (this.replayBuf.length && (this.replayBuf[this.replayBuf.length - 1]?.[0]?.t ?? 0) > gt) this.replayBuf.pop();
+    } else {
+      const keepRep = Math.max(0, Math.floor(this.totalTime / 0.1));
+      if (this.replayBuf.length > keepRep) this.replayBuf.length = keepRep;
+    }
   }
 // RSH-017-BODY-END:applyPack
 // RSH-017-END:applyPack
@@ -770,7 +781,8 @@ export function stepRewind(this: EngineAdapterHost, dt: Parameters<RaceEngine["s
 export function stepReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine["stepReplay"]>[0])
 // RSH-017-BODY-BEGIN:stepReplay
 {
-    const dur = this.replayBuf.length * 0.1;
+    const heads = this.replayBuf.map((row) => ({ t: row[0]?.t }));
+    const dur = Math.max(0.1, timedSpan(heads, 0.1));
     const slow = this.replayT < 1.35 || this.replayT > dur - 2.1;
     this.replayT += slow ? dt * 0.42 : dt;
     this.replaySlow = slow;
@@ -778,10 +790,26 @@ export function stepReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine["s
       this.skipReplay();
       return;
     }
-    const i = Math.min(this.replayBuf.length - 1, Math.floor(this.replayT / 0.1));
+    const t0 = this.replayBuf[0]?.[0]?.t ?? 0;
+    const nowT = t0 + this.replayT;
+    let i = 0;
+    if (typeof this.replayBuf[0]?.[0]?.t === "number") {
+      let lo = 0;
+      let hi = this.replayBuf.length - 1;
+      while (lo < hi) {
+        const mid = (lo + hi + 1) >> 1;
+        if ((this.replayBuf[mid]?.[0]?.t ?? 0) <= nowT) lo = mid;
+        else hi = mid - 1;
+      }
+      i = lo;
+    } else {
+      i = Math.min(this.replayBuf.length - 1, Math.floor(this.replayT / 0.1));
+    }
     const a = this.replayBuf[i];
     const b = this.replayBuf[Math.min(this.replayBuf.length - 1, i + 1)];
-    const f = Math.min(1, (this.replayT - i * 0.1) / 0.1);
+    const ta = a?.[0]?.t ?? i * 0.1;
+    const tb = b?.[0]?.t ?? ta + 0.1;
+    const f = tb > ta ? Math.min(1, Math.max(0, (nowT - ta) / (tb - ta))) : 0;
     for (let c = 0; c < this.racers.length; c++) {
       const ra = a[c];
       const rb = b[c] ?? ra;

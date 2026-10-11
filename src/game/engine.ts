@@ -277,7 +277,7 @@ export class RaceEngine {
   private camMode = 0;
   private replaying = false;
   private replayT = 0;
-  private replayBuf: { x: number; y: number; z: number; yaw: number; speed: number }[][] = [];
+  private replayBuf: { x: number; y: number; z: number; yaw: number; speed: number; t?: number }[][] = [];
   private replayAcc = 0;
   private pendingResult: RaceResult | null = null;
   private camNames = ["chase", "hood", "bumper", "heli"];

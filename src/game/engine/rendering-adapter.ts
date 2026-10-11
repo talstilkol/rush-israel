@@ -3,7 +3,7 @@
 import * as THREE from "three";
 import { RADIO } from "../audio";
 import { pulsePolice, setCarLights, setExhaust, setIndicators, updateCarVisual, applyDamage } from "../car-mesh";
-import { sampleGhost, sampleGhostLoop } from "../garage";
+import { sampleGhost, sampleGhostLoop, timedSpan } from "../garage";
 import { clamp, expSmooth, lerp, hash01 } from "../math";
 import { bakeEnv, createPost } from "../postfx";
 import { PHYSICS_HZ } from "../physics";
@@ -635,7 +635,7 @@ export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine["pres
       if (g) {
         this.ghostVis.group.visible = true;
         updateCarVisual(this.ghostVis, g.yaw, 18, 0, 0, dt, g.x, g.y, g.z, 0, 0);
-        this.ghostDelta = this.totalTime - this.ghostFrames.length * 0.16 * this.player.progress;
+        this.ghostDelta = this.totalTime - timedSpan(this.ghostFrames, 0.16) * this.player.progress;
       }
     }
     if (this.rivalGhostVis && this.rivalGhostFrames.length && !this.replaying) {
@@ -643,7 +643,7 @@ export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine["pres
       if (g) {
         this.rivalGhostVis.group.visible = true;
         updateCarVisual(this.rivalGhostVis, g.yaw, 22, 0, 0, dt, g.x, g.y, g.z, 0, 0);
-        const lapT = this.rivalGhostFrames.length * 0.16;
+        const lapT = Math.max(0.16, timedSpan(this.rivalGhostFrames, 0.16));
         const mine = (this.player.progress + this.player.lap) * lapT;
         this.rivalGhostDelta = this.totalTime - mine;
       }
