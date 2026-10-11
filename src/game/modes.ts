@@ -53,6 +53,20 @@ export const MODE_INFO: Record<
 
 export const RACE_MODES: RaceMode[] = ["circuit", "time", "drift", "knockout", "heat", "roam"];
 
+export function modeBlurb(mode: RaceMode, open: boolean, he: boolean) {
+  if (open && mode === "circuit") {
+    return he ? "ירידה אחת מול יריבים. מקום ראשון = שלושה כוכבים." : "One run against rivals. First place is three stars.";
+  }
+  if (open && mode === "time") {
+    return he ? "ירידה אחת נקייה. בלי יריבים — רק אתה, השעון והרחוב." : "One clean run. No rivals — just you, the clock and the street.";
+  }
+  if (open && mode === "knockout") {
+    return he ? "כל שער מוציא את האחרון. תשרוד עד הסוף." : "Last place is cut at each gate. Survive to the end.";
+  }
+  const info = MODE_INFO[mode];
+  return he ? info.blurbHe : info.blurbEn;
+}
+
 export function hasAiPack(mode: RaceMode) {
   return mode === "circuit" || mode === "knockout";
 }

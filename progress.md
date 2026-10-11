@@ -3,6 +3,6 @@
 Branch `agent/playable-session`. Not a release.
 
 Also on this branch:
-- Heat no longer starts with the police on the grid. They wait at the start line for five seconds, then chase. The old placement busted the player at 24 seconds and the car never finished. With the wait, the same run reached 82% of Ayalon in 140 seconds and the bust meter stayed at 0. Not a browser race.
+- An open road no longer claims three laps. Circuit, time attack, and knockout say one run, or a cut at each gate, when the selected track is open. The first career line matches Ayalon: one run, stay on the asphalt. Closed roads still say three laps or two laps.
 
-Not done: browser `qa:drive`, the remaining hash locks, devices, Alpha through release.
+Not done: browser `qa:drive`, the remaining hash locks, devices, Alpha through release. A rival that starts off the center line still walks toward the barrier. That was not fixed.

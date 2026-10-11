@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { CARS } from "@/game/cars";
 import { chapters, maxStars, CAR_UNLOCK, dailyEvent, weeklyEvent } from "@/game/career";
 import { applyTune, LIVERIES, nextCost, PAINTS } from "@/game/garage";
-import { MODE_INFO, MODE_LAPS, RACE_MODES } from "@/game/modes";
+import { MODE_INFO, MODE_LAPS, RACE_MODES, modeBlurb } from "@/game/modes";
 import {
   allBests,
   assistKey,
@@ -499,7 +499,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 									}),
 									/* @__PURE__ */ jsx("p", {
 										className: "mt-2 text-xs leading-relaxed text-muted",
-										children: langHe ? MODE_INFO[mode].blurbHe : MODE_INFO[mode].blurbEn
+										children: modeBlurb(mode, !!getTrack(trackId).open, langHe)
 									})
 								]
 							}),

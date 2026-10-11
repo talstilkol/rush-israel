@@ -47,8 +47,8 @@ export const CAREER: CareerEvent[] = [
     gold: 1,
     silver: 2,
     bronze: 3,
-    lineHe: "נועם: שלוש הקפות. בלי לרדת לחול.",
-    lineEn: "Noam: Three laps. Stay off the sand.",
+    lineHe: "נועם: ירידה אחת באיילון. תישאר על האספלט.",
+    lineEn: "Noam: One run down Ayalon. Stay on the asphalt.",
   },
   {
     id: "lic-brake",
