@@ -436,6 +436,7 @@ export class ArcadeCar {
     const esc = escYaw(slipAng, this.yawRate, this.assists.esc && racing, wantDrift);
     this.escActive = esc.active;
     this.yawRate += esc.yaw * 1.55 * speedFactor;
+    this.yawRate = clamp(this.yawRate, -3.2, 3.2);
     this.yaw = wrapPi(this.yaw + this.yawRate * dt);
     this.vx = fx * this.speed + rx * latNow;
     this.vz = fz * this.speed + rz * latNow;
