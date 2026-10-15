@@ -5,7 +5,7 @@ export const GIS_CLAIM = false;
 export const OWNER_FREEZE = false;
 export const PUBLIC_DISTRIBUTION = false;
 export const PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
-export const ONBOARDING_COMPLETE = true;
+export const ONBOARDING_COMPLETE = false;
 export const TITLE_BOOT = true;
 export const SETTINGS_PANEL = true;
 export const SAVE_RECOVERY_UX = true;
@@ -36,7 +36,7 @@ export function evaluateLock(report: LockReport = {}) {
 
 export function canonicalDigest(): string {
   return [
-    "onboarding_complete=true",
+    "onboarding_complete=false",
     "title_boot=true",
     "settings_panel=true",
     "save_recovery_ux=true",

@@ -5,7 +5,7 @@ export const GIS_CLAIM = false;
 export const OWNER_FREEZE = false;
 export const PUBLIC_DISTRIBUTION = false;
 export const PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
-export const RTL_SCOPE_COMPLETE = true;
+export const RTL_SCOPE_COMPLETE = false;
 export const HEBREW_RTL = true;
 export const ENGLISH_LTR = true;
 export const ARABIC_IN_SCOPE = true;
@@ -41,7 +41,7 @@ export function evaluateLock(report: LockReport = {}) {
 
 export function canonicalDigest(): string {
   return [
-    "rtl_scope_complete=true",
+    "rtl_scope_complete=false",
     "hebrew_rtl=true",
     "english_ltr=true",
     "arabic_in_scope=true",

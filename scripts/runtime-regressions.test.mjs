@@ -102,8 +102,12 @@ test('a recorded ruleset survives serialization and cannot be changed without br
 test('readiness flags do not claim complete accessibility or offline support', async () => {
   const a11y = await import('../src/game/a11y/gates.ts');
   const pwa = await import('../src/game/pwa/offline.ts');
+  const rtl = await import('../src/game/rtl-scope/scope.ts');
+  const onboarding = await import('../src/game/onboarding/flow.ts');
   assert.equal(a11y.A11Y_COMPLETE, false);
   assert.equal(pwa.PWA_COMPLETE, false);
+  assert.equal(rtl.RTL_SCOPE_COMPLETE, false);
+  assert.equal(onboarding.ONBOARDING_COMPLETE, false);
 });
 
 const { closestSample, sampleAtT, behindProgress } = await import('../src/game/spline.ts');

@@ -324,6 +324,7 @@ export class RaceEngine {
   private tickId = 0;
   private timeVoided = false;
   private assisted = false;
+  private rulesChanged = false;
   private recordClass: string;
   private bestRewardPlace = Infinity;
   private qaForcedFinish = false;
@@ -907,6 +908,7 @@ export class RaceEngine {
     this.goFlash = 0;
     this.rewindAcc = this.rewindTickT = this.replayAcc = this.ghostAcc = 0;
     this.rewinding = this.replaySlow = this.qaForcedFinish = this.assisted = false;
+    this.assisted = this.rulesChanged;
     this.bestRewardPlace = Infinity;
     this.bestSectors = [Infinity, Infinity, Infinity];
     this.combo = this.comboHold = 0;
@@ -966,7 +968,10 @@ export class RaceEngine {
   }
 
   setAssists(flags: AssistFlags) {
-    if (this.racing && Object.entries(flags).some(([key, value]) => this.player.assists[key as keyof AssistFlags] !== value)) this.assisted = true;
+    if (Object.entries(flags).some(([key, value]) => this.player.assists[key as keyof AssistFlags] !== value)) {
+      this.rulesChanged = true;
+      this.assisted = true;
+    }
     this.player.assists = { ...flags };
     this.opts.assists = { ...flags };
   }
@@ -1051,6 +1056,10 @@ export class RaceEngine {
   }
 
   setNight(night: boolean) {
+    if (night !== (nightAmt(this.clock) > 0.5)) {
+      this.rulesChanged = true;
+      this.assisted = true;
+    }
     return engineRendering.setNight.call(engineAdapterHost(this), night);
   }
 

@@ -533,7 +533,7 @@ export function RaceController({
 					/* @__PURE__ */ jsxs(Button, {
 						variant: "outline",
 						onClick: () => {
-							engineRef.current?.restartRace();
+							setRaceKey((key) => key + 1);
 							setPaused(false);
 						},
 						children: [/* @__PURE__ */ jsx(RotateCcw, { className: "size-4" }), t("התחל מחדש", "Restart")]
