@@ -59,9 +59,13 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
   browser:
-    name: Current source / browser behavior
+    name: Current source / browser behavior (${{ matrix.suite }})
     runs-on: ubuntu-24.04
     timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [worlds-races, driving-lifecycle]
     env:
       CI: "true"
       PLAYWRIGHT_BROWSERS_PATH: "0"
@@ -82,13 +86,13 @@ jobs:
         run: npm ci --no-audit
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
-      - name: Test real worlds, driving, damage, WebGL and 20 lifecycle cycles
-        run: node scripts/run-with-server.mjs -- npm run qa:runtime:raw
+      - name: Test the unchanged canonical browser gates assigned to this job
+        run: node scripts/run-with-server.mjs -- node scripts/browser-ci-suite.mjs ${{ matrix.suite }}
       - name: Upload diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: current-browser-${{ github.run_id }}-${{ github.run_attempt }}
+          name: current-browser-${{ matrix.suite }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             artifacts/**
             screenshots/**

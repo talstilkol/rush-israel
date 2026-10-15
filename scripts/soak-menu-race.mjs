@@ -6,8 +6,23 @@ import { fromRoot } from './project-root.mjs';
 const CYCLES = Number(process.env.SOAK_CYCLES || 20);
 if (!Number.isSafeInteger(CYCLES) || CYCLES < 1) throw new Error('SOAK_CYCLES must be positive');
 const url = process.env.SOAK_URL || 'http://127.0.0.1:8080/?qa=1';
-const browser = await chromium.launch({ headless: true });
 const rows = [];
+const warmup = [];
+let baseline = null;
+const dir = fromRoot('artifacts', 'lifecycle');
+await mkdir(dir, { recursive: true });
+async function report(passed, error) {
+  await writeFile(`${dir}/cycles.json`, `${JSON.stringify({
+    kind: 'headless-allocation-counters', deviceAcceptance: false,
+    expectedCycles: CYCLES, measuredCycles: rows.length,
+    status: passed ? 'complete' : error ? 'failed' : 'running',
+    warmup, baseline, rows, passed, ...(error ? { error } : {}),
+  }, null, 2)}\n`);
+}
+// Replace a previous two-cycle smoke result before starting the full run.
+// Even a killed process must never leave that earlier green as its verdict.
+await report(false);
+const browser = await chromium.launch({ headless: true });
 try {
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
   const errors = [];
@@ -42,20 +57,22 @@ try {
     if (errors.length) throw new Error(errors.join('\n'));
     return memory;
   }
-  const warmup = [await cycle(), await cycle()];
-  const baseline = {
+  for (let i = 0; i < 2; i++) warmup.push(await cycle());
+  baseline = {
     textures: Math.max(...warmup.map(row => row.textures)),
     geometries: Math.max(...warmup.map(row => row.geometries)),
   };
   for (let i = 0; i < CYCLES; i++) {
     const memory = await cycle();
     rows.push(memory);
+    await report(false);
     console.log('cycle', i + 1, '/', CYCLES, 'tex', memory.textures, 'geo', memory.geometries);
     if (memory.textures > baseline.textures + 2) throw new Error(`texture leak at cycle ${i + 1}: ${memory.textures} > ${baseline.textures} + 2`);
     if (memory.geometries > baseline.geometries + 2) throw new Error(`geometry leak at cycle ${i + 1}: ${memory.geometries} > ${baseline.geometries} + 2`);
   }
-  const dir = fromRoot('artifacts', 'lifecycle');
-  await mkdir(dir, { recursive: true });
-  await writeFile(`${dir}/cycles.json`, `${JSON.stringify({ kind: 'headless-allocation-counters', deviceAcceptance: false, warmup, baseline, rows, passed: true }, null, 2)}\n`);
+  await report(true);
   console.log('soak ok', CYCLES, 'measured cycles; every cycle <= warmed baseline + 2', baseline);
+} catch (error) {
+  await report(false, String(error));
+  throw error;
 } finally { await browser.close(); }
