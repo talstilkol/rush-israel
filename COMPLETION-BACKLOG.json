@@ -563,7 +563,7 @@
       "acceptance": "משתתף חדש מסיים משימה; RTL text scale contrast reduced motion נבדקו",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "A11Y_COMPLETE הוחזר ל-false; WCAG AA, RTL מלא, ניגודיות ו-onboarding אינם סגורים.",
+      "verification_note": "דגלי A11Y/RTL/onboarding הוחזרו ל-false. WCAG AA, RTL מלא, ניגודיות ו-onboarding אינם סגורים.",
       "external_evidence_required": true
     },
     {
@@ -645,7 +645,7 @@
       "acceptance": "תנועה/progress/finish ומדדי משאבים תקינים; WEBGL_lose_context ושחזור בדפדפן",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "סוק 1800 שניות פעיל על snapshot r2; אין לסגור לפני סיומו. 20 מחזורים ו-56 עולמות נבדקו בנפרד. קבלת context recovery עדיין פתוחה.",
+      "verification_note": "סוק r2 עבר 1800 שניות/15 מרוצים על snapshot קודם; סוק של HEAD הסופי ו-context recovery נשארים פתוחים.",
       "external_evidence_required": false
     },
     {

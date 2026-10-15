@@ -194,14 +194,14 @@ All gates must be evidenced on the same final candidate before release. Local co
 |---|---|---|
 | 1 | licensing | **not-done** — 66 unverified image assets; source/creator/licence evidence required. |
 | 2 | main protection | **verified-settings** — Live ruleset 23177340 is active and requires strict required-ci / validate, PRs, no bypass, no deletion or force push. |
-| 3 | clean clone and build | **partial** — Clean offline npm ci, typecheck and production build pass locally; exact final clean-checkout proof pending. |
-| 4 | CI | **partial** — 6395474 hosted run 38797243247 failed 61 historical-source contracts; new separate jobs require hosted verification. |
+| 3 | clean clone and build | **partial** — Clean f03d13f clone: npm ci --offline --no-audit and production build without QA hooks passed. Latest patched dependencies also install and build; final-head hosted verification pending. |
+| 4 | CI | **partial** — Current-source unit/build/security and historical jobs passed on earlier development commits. Replaced runs were cancelled; complete required-ci / validate on the final PR head is not yet verified. |
 | 5 | secrets | **partial** — Local tracked-source scan passed; repeat on staged final source and bind to final commit. |
-| 6 | Ayalon freeze | **not-done** — Runtime changed; old hashes are historical. New owner still and golden acceptance required. |
-| 7 | driving | **partial** — 200m Ayalon browser drive and 8-track simulation pass; full browser V1 acceptance pending. |
+| 6 | Ayalon freeze | **not-done** — Low Ayalon ramps and on-road supports were corrected and visually rechecked. All real-world clearance checks pass; owner golden/still acceptance is still absent. |
+| 7 | driving | **partial** — Eight assisted browser V1 races reached result UI on f03d13f, without official records/stars. New current-source condition/restart UI test passed. Heavy damage and human playability acceptance remain open. |
 | 8 | desktop p95 | **not-done** — Named physical Windows device, exact build and raw measurements unavailable. |
 | 9 | mobile p95 | **not-done** — Named physical mobile device, exact build, thermal and raw measurements unavailable. |
-| 10 | 30-minute soak | **running** — Frozen snapshot r2 is running with real steering and completed-race requirement; not accepted until completion and exact-final-commit verification. |
+| 10 | 30-minute soak | **pending** — Earlier immutable r2 soak passed 1800 seconds with 15 completed races and zero off-road ratio; it predates current runtime. A newer intermediate snapshot run was explicitly stopped after replacement. Clean f03d13f soak is running separately. Final-head required-CI soak remains pending; no earlier result accepts the final candidate. |
 | 11 | save | **partial** — Current record-class roundtrips tested; current migration/recovery and owner save acceptance pending. |
 | 12 | accessibility and legal | **not-done** — WCAG AA, canvas accessibility, privacy and licence acceptance unavailable; A11Y_COMPLETE=false. |
 | 13 | signed release tag | **not-done** — Version is 0.0.0-private; signed tag, private staging, Alpha, RC and rollback evidence unavailable. |

@@ -365,14 +365,14 @@
       "id": 3,
       "name": "clean clone and build",
       "status": "partial",
-      "note": "Clean offline npm ci, typecheck and production build pass locally; exact final clean-checkout proof pending.",
+      "note": "Clean f03d13f clone: npm ci --offline --no-audit and production build without QA hooks passed. Latest patched dependencies also install and build; final-head hosted verification pending.",
       "evidence": []
     },
     {
       "id": 4,
       "name": "CI",
       "status": "partial",
-      "note": "6395474 hosted run 38797243247 failed 61 historical-source contracts; new separate jobs require hosted verification.",
+      "note": "Current-source unit/build/security and historical jobs passed on earlier development commits. Replaced runs were cancelled; complete required-ci / validate on the final PR head is not yet verified.",
       "evidence": []
     },
     {
@@ -386,14 +386,14 @@
       "id": 6,
       "name": "Ayalon freeze",
       "status": "not-done",
-      "note": "Runtime changed; old hashes are historical. New owner still and golden acceptance required.",
+      "note": "Low Ayalon ramps and on-road supports were corrected and visually rechecked. All real-world clearance checks pass; owner golden/still acceptance is still absent.",
       "evidence": []
     },
     {
       "id": 7,
       "name": "driving",
       "status": "partial",
-      "note": "Eight assisted browser-engine V1 races reached their result UI on isolated runtime tree 35e56ceab2770a0abafd6faf6f28aabbf1d42850456c79b6ecd58dda46c8ce65. No official records or stars were persisted. Heavy damage and visually obstructed Ayalon road remain open; human driving acceptance is not established.",
+      "note": "Eight assisted browser V1 races reached result UI on f03d13f, without official records/stars. New current-source condition/restart UI test passed. Heavy damage and human playability acceptance remain open.",
       "evidence": []
     },
     {
@@ -413,8 +413,8 @@
     {
       "id": 10,
       "name": "30-minute soak",
-      "status": "running",
-      "note": "Final-runtime 1800-second wall-clock soak is running against isolated source tree 35e56ceab2770a0abafd6faf6f28aabbf1d42850456c79b6ecd58dda46c8ce65. An earlier r2 snapshot is measured separately. Neither running status is a pass.",
+      "status": "pending",
+      "note": "Earlier immutable r2 soak passed 1800 seconds with 15 completed races and zero off-road ratio; it predates current runtime. A newer intermediate snapshot run was explicitly stopped after replacement. Clean f03d13f soak is running separately. Final-head required-CI soak remains pending; no earlier result accepts the final candidate.",
       "evidence": []
     },
     {

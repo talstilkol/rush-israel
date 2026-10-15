@@ -32,14 +32,14 @@
 |---|---|---|
 | 1: licensing | not-done | 66 unverified image assets; source/creator/licence evidence required. |
 | 2: main protection | verified-settings | Live ruleset 23177340 is active and requires strict required-ci / validate, PRs, no bypass, no deletion or force push. |
-| 3: clean clone and build | partial | Clean offline npm ci, typecheck and production build pass locally; exact final clean-checkout proof pending. |
-| 4: CI | partial | 6395474 hosted run 38797243247 failed 61 historical-source contracts; new separate jobs require hosted verification. |
+| 3: clean clone and build | partial | Clean f03d13f clone: npm ci --offline --no-audit and production build without QA hooks passed. Latest patched dependencies also install and build; final-head hosted verification pending. |
+| 4: CI | partial | Current-source unit/build/security and historical jobs passed on earlier development commits. Replaced runs were cancelled; complete required-ci / validate on the final PR head is not yet verified. |
 | 5: secrets | partial | Local tracked-source scan passed; repeat on staged final source and bind to final commit. |
-| 6: Ayalon freeze | not-done | Runtime changed; old hashes are historical. New owner still and golden acceptance required. |
-| 7: driving | partial | Eight assisted browser-engine V1 races reached their result UI on isolated runtime tree 35e56ceab2770a0abafd6faf6f28aabbf1d42850456c79b6ecd58dda46c8ce65. No official records or stars were persisted. Heavy damage and visually obstructed Ayalon road remain open; human driving acceptance is not established. |
+| 6: Ayalon freeze | not-done | Low Ayalon ramps and on-road supports were corrected and visually rechecked. All real-world clearance checks pass; owner golden/still acceptance is still absent. |
+| 7: driving | partial | Eight assisted browser V1 races reached result UI on f03d13f, without official records/stars. New current-source condition/restart UI test passed. Heavy damage and human playability acceptance remain open. |
 | 8: desktop p95 | not-done | Named physical Windows device, exact build and raw measurements unavailable. |
 | 9: mobile p95 | not-done | Named physical mobile device, exact build, thermal and raw measurements unavailable. |
-| 10: 30-minute soak | running | Final-runtime 1800-second wall-clock soak is running against isolated source tree 35e56ceab2770a0abafd6faf6f28aabbf1d42850456c79b6ecd58dda46c8ce65. An earlier r2 snapshot is measured separately. Neither running status is a pass. |
+| 10: 30-minute soak | pending | Earlier immutable r2 soak passed 1800 seconds with 15 completed races and zero off-road ratio; it predates current runtime. A newer intermediate snapshot run was explicitly stopped after replacement. Clean f03d13f soak is running separately. Final-head required-CI soak remains pending; no earlier result accepts the final candidate. |
 | 11: save | partial | Current record-class roundtrips tested; current migration/recovery and owner save acceptance pending. |
 | 12: accessibility and legal | not-done | WCAG AA, canvas accessibility, privacy and licence acceptance unavailable; A11Y_COMPLETE=false. |
 | 13: signed release tag | not-done | Version is 0.0.0-private; signed tag, private staging, Alpha, RC and rollback evidence unavailable. |
@@ -87,7 +87,7 @@
 | MP-037 | נכסים ותחזוקת תלויות | partial | נוצר CSV מדויק של 66 תמונות לא מאומתות עם SHA-256. מקור/יוצר/רישיון עדיין חסרים. |
 | MP-038 | Assets עם content fingerprints | partial | הוסרה הוראת immutable לקבצי game/basis ללא טביעת תוכן; נדרשת בדיקת A→B ו-rollback וכן pipeline fingerprints. |
 | MP-039 | Production packaging ו-Staging | partial | Production build עבר ובדיקה לא מצאה QA hooks; בדיקת staging פרטי ו-build ארוז נדרשת. |
-| MP-040 | Soak leak ו-context recovery אמיתיים | partial | סוק 1800 שניות פעיל על snapshot r2; אין לסגור לפני סיומו. 20 מחזורים ו-56 עולמות נבדקו בנפרד. קבלת context recovery עדיין פתוחה. |
+| MP-040 | Soak leak ו-context recovery אמיתיים | partial | סוק r2 עבר 1800 שניות/15 מרוצים על snapshot קודם. סוק של HEAD הסופי ו-context recovery עדיין פתוחים; אין להעביר ראיות אוטומטית בין גרסאות. |
 | MP-041 | Browser ומכשירים פיזיים | open | לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה. |
 | MP-042 | Alpha ומשוב משחקנים | open | לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה. |
 | MP-043 | RC והוכחת rollback | open | לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה. |
@@ -386,3 +386,5 @@
 10. **תיקון בעקבות הבדיקה החזותית:** איילון מסנן רמפות דקורטיביות החודרות למעטפת מעבר בגובה 4.5 מטר מעל נתיבי המרוץ; תמיכות מוצבות מחוץ לכביש. מיקום אובייקטים סטטיים משתמש בחיפוש גאומטרי ולא ברמז התקדמות של רכב. בדיקת 56 העולמות בודקת גם חציות רמפה ותמיכות בפועל. נדרשת עדיין קבלת אמנות ו־Playtest; בדיקות הסוק הישנות אינן מיוחסות אוטומטית לתיקון החדש.
 
 11. **עדכוני תלויות קיימים:** שולבו שלוש רשומות patch מענפי Dependabot של PR 82 ו־PR 47. המקורות, הגרסאות ו־integrity נרשמו ב־evidence/2026-10-15/dependabot-patch-integration.json. אין מכאן טענה שכל הפגיעויות במאגר נסגרו; קבלת סריקת תלויות מלאה נשארת פתוחה.
+
+12. **תנאי מרוץ ומצב השלמה:** RTL_SCOPE_COMPLETE ו־ONBOARDING_COMPLETE הוחזרו ל־false. שינוי ידני של יום/לילה או assists פוסל את הסשן לשיא, גם לפני GO; פסילה זו נשמרת באיפוס פנימי. Restart ב־UI יוצר מנוע חדש עם התנאים העדכניים. בדיקת דפדפן ייעודית עברה ונכללת ב־required browser QA.
