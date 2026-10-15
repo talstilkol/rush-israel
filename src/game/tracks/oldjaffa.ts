@@ -39,7 +39,12 @@ export default defineTrack({
       tlv(32.0556, 34.7578),
       tlv(32.0556, 34.7566),
     ],
-    elevation: (t) => (t > 0.12 && t < 0.45 ? 3.6 : 0.6),
+    elevation: (t) => {
+      const up = Math.max(0, Math.min(1, (t - 0.09) / 0.06));
+      const down = Math.max(0, Math.min(1, (0.48 - t) / 0.06));
+      const ramp = Math.min(up, down);
+      return 0.6 + 3 * ramp * ramp * (3 - 2 * ramp);
+    },
     streets: [
       { from: 0.0, to: 0.16, he: "מגדל השעון", en: "Clock Tower" },
       { from: 0.16, to: 0.32, he: "יפת", en: "Yefet St" },

@@ -19,7 +19,12 @@ import { nearestIndex, sampleAtT, type BuiltTrack } from "./spline";
 import { nearestStreet, type StreetRibbon } from "./streets";
 import type { CarDef, Collider, InputState, Ramp, Weather } from "./types";
 
+type CarTransientState = Pick<ArcadeCar,
+  "drifting" | "nitroPulse" | "impact" | "lastHit" | "onTrack" | "sideStreet" | "sideStreetEn" | "drafting" | "surfaceGrip" | "slip" | "rpm" | "kinMix" | "surfaceKind" | "dirt" | "airborne" | "airMs" | "rideCompress" | "wasCurb" | "comboMul" | "wheelsLocked" | "driftAngle" | "reverseHold" | "absActive" | "tcsActive" | "escActive" | "slipRatio" | "wallDmgT"
+> & { nitroHeld: boolean; holdSteer: number };
+
 export type CarSnap = {
+  transient?: CarTransientState;
   x: number;
   y: number;
   z: number;
@@ -154,7 +159,9 @@ export class ArcadeCar {
     this.vy = 0;
     this.speed = 0;
     this.progress = t;
-    this.sampleIndex = Math.floor(t * track.samples.length) % track.samples.length;
+    this.sampleIndex = track.closed
+      ? Math.floor(s.t * track.samples.length) % track.samples.length
+      : Math.floor(s.t * (track.samples.length - 1));
     this.nextCheckpoint = track.closed ? 1 : 0;
     this.lastCheckpoint = track.closed ? 0 : -1;
     this.lap = 0;
@@ -178,6 +185,17 @@ export class ArcadeCar {
     this.airMs = 0;
     this.rideCompress = 0;
     this.wasCurb = false;
+    this.offTrackT = 0;
+    this.drifting = this.nitroPulse = this.nitroHeld = false;
+    this.holdSteer = this.reverseHold = this.driftAngle = 0;
+    this.lastHit = "";
+    this.onTrack = true;
+    this.sideStreet = this.sideStreetEn = "";
+    this.drafting = this.wheelsLocked = false;
+    this.absActive = this.tcsActive = this.escActive = false;
+    this.surfaceGrip = this.comboMul = 1;
+    this.slip = this.slipRatio = this.kinMix = 0;
+    this.surfaceKind = "asphalt";
   }
 
   step(dt: number, input: InputState, track: BuiltTrack, racing: boolean, colliders: Collider[] = [], streets: StreetRibbon[] = [], ramps: Ramp[] = []) {
@@ -678,7 +696,7 @@ export class ArcadeCar {
           const bite = Math.min(hit, 3.5);
           this.speed *= bite > 2.5 ? 0.72 : 0.88;
           this.yaw = wrapPi(this.yaw + (nx * fz - nz * fx) * 0.08 * Math.min(1, bite / 6));
-          if (Math.abs(this.speed) > 3.5) {
+          if (-into > 3.5) {
             this.damage = clamp(this.damage + Math.min(0.04, bite * 0.01), 0, 1);
             this.impact = Math.max(this.impact, Math.min(0.65, bite / 8));
           }
@@ -784,10 +802,42 @@ export class ArcadeCar {
       roll: this.roll,
       gear: this.gear,
       yawRate: this.yawRate,
+      transient: {
+        drifting: this.drifting,
+        nitroPulse: this.nitroPulse,
+        impact: this.impact,
+        lastHit: this.lastHit,
+        onTrack: this.onTrack,
+        sideStreet: this.sideStreet,
+        sideStreetEn: this.sideStreetEn,
+        drafting: this.drafting,
+        surfaceGrip: this.surfaceGrip,
+        slip: this.slip,
+        rpm: this.rpm,
+        kinMix: this.kinMix,
+        surfaceKind: this.surfaceKind,
+        dirt: this.dirt,
+        airborne: this.airborne,
+        airMs: this.airMs,
+        rideCompress: this.rideCompress,
+        wasCurb: this.wasCurb,
+        comboMul: this.comboMul,
+        wheelsLocked: this.wheelsLocked,
+        driftAngle: this.driftAngle,
+        reverseHold: this.reverseHold,
+        absActive: this.absActive,
+        tcsActive: this.tcsActive,
+        escActive: this.escActive,
+        slipRatio: this.slipRatio,
+        wallDmgT: this.wallDmgT,
+        nitroHeld: this.nitroHeld,
+        holdSteer: this.holdSteer,
+      },
     };
   }
 
   load(s: CarSnap) {
+    if (s.transient) Object.assign(this, s.transient);
     this.x = s.x;
     this.y = s.y;
     this.z = s.z;

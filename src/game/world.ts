@@ -3,7 +3,7 @@ import { Lensflare, LensflareElement } from "three/examples/jsm/objects/Lensflar
 import { Reflector } from "three/examples/jsm/objects/Reflector.js";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 import { mulberry32, lerp, clamp, hash01 } from "./math";
-import { nearestIndex, roadEdgeBarriers } from "./spline";
+import { closestSample, roadEdgeBarriers } from "./spline";
 import type { BuiltTrack } from "./spline";
 import type { Collider, Ramp, SkyPreset, TrackDef, Weather } from "./types";
 import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, her, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, ram, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
@@ -25,6 +25,7 @@ import { getJaffaClock } from "./clock-assets";
 import { getIsraelFlag } from "./flag-assets";
 import { getFoliage, getBark } from "./tree-assets";
 import { getAyalonRoad, getBakedRoad } from "./road-assets";
+import { roadLaneCount } from "./road-layout";
 import { getSkyDay, getSkyNight } from "./sky-assets";
 import { getBlob } from "./blob-assets";
 
@@ -266,11 +267,7 @@ function buildEdgeLine(built: BuiltTrack, side: number, inset = 0.28, hw = 0.28,
   return geo;
 }
 function laneCountFor(def: TrackDef) {
-  if (def.id === "ayalon") return 8;
-  if (def.id === "telaviv" || def.id === "namal" || def.id === "gushdan" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6") return 4;
-  if (def.theme === "highway") return 4;
-  if (def.id === "rothschild" || def.id === "hayarkon" || def.id === "jerusalem") return 3;
-  return 3;
+  return roadLaneCount(def);
 }
 function buildCurb(built: BuiltTrack, side: number, centerOff = 0) {
   const d0 = built.width / 2;
@@ -327,14 +324,13 @@ function buildJersey(built: BuiltTrack, side: number, centerOff = 0) {
   return geo;
 }
 function buildRail(built: BuiltTrack, side: number) {
-  const samples = built.samples;
   const d = built.width / 2 + 0.48;
   const pos = [];
   const idx = [];
   const uvs: number[] = [];
-  const n = samples.length;
+  const n = segsOf(built);
   for (let i = 0; i <= n; i++) {
-    const s = samples[i % n];
+    const s = samp(built, i);
     const rx = s.rx * side;
     const rz = s.rz * side;
     pos.push(s.x + rx * d, s.y + 0.22, s.z + rz * d);
@@ -354,15 +350,14 @@ function buildRail(built: BuiltTrack, side: number) {
   return geo;
 }
 function buildShoulder(built: BuiltTrack, side: number) {
-  const samples = built.samples;
   const d0 = built.width / 2 + 3.95;
   const d1 = d0 + 8.5;
   const pos = [];
   const uv = [];
   const idx = [];
-  const n = samples.length;
+  const n = segsOf(built);
   for (let i = 0; i <= n; i++) {
-    const s = samples[i % n];
+    const s = samp(built, i);
     const v = (i === n ? built.length : s.s) / 10;
     const rx = s.rx * side;
     const rz = s.rz * side;
@@ -515,6 +510,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   let lodShads = null;
   const lodWear: THREE.InstancedMesh[] = [];
   let lodPuddles: THREE.InstancedMesh | null = null;
+  let puddlesAllowed = true;
   const preset = skyFor(def, isNight, wx);
   const sky = new Sky();
   sky.visible = false;
@@ -733,7 +729,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   }
   const lanes = laneCountFor(def);
   const roadMaps = asphaltTexture(lanes);
-  if (!getBakedRoad(lanes)) bag.push(roadMaps.map, roadMaps.roughnessMap, roadMaps.bumpMap);
+  for (const texture of Object.values(roadMaps)) shared.add(texture);
   const roadMat = keep(new THREE.MeshPhysicalMaterial({
     map: roadMaps.map,
     roughnessMap: roadMaps.roughnessMap,
@@ -1629,7 +1625,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     if (inClear2(jx, jz)) continue;
     const alley = nearestStreet(jx, jz, streets);
     if (alley && alley.dist < alley.street.half + (canyon ? 3.2 : 7)) continue;
-    const near = nearestIndex(built.samples, jx, jz, 0);
+    const near = closestSample(built.samples, jx, jz);
     if (near.dist < built.width / 2 + (canyon ? 8 : 16)) continue;
     const t01 = near.index / built.samples.length;
     if ((t01 < 0.05 || t01 > 0.95) && near.dist < built.width / 2 + 16) continue;
@@ -1916,7 +1912,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   }
   if (def.theme === "park") for (let x = -40; x <= 40; x += 14) for (let z = -100; z <= 120; z += 14) {
     if (inWater2(x, z)) continue;
-    if (nearestIndex(built.samples, x, z, 0).dist < built.width / 2 + 6) continue;
+    if (closestSample(built.samples, x, z).dist < built.width / 2 + 6) continue;
     treeSpots.push({
       x: x + (rng() - 0.5) * 6,
       z: z + (rng() - 0.5) * 6,
@@ -1928,7 +1924,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const forestStep = def.id === "hw1" ? 28 : 24;
     for (let x = -forestR; x <= forestR; x += forestStep) for (let z = -forestR; z <= forestR; z += forestStep) {
       if (inWater2(x, z)) continue;
-      const near = nearestIndex(built.samples, x, z, 0);
+      const near = closestSample(built.samples, x, z);
       if (near.dist < built.width / 2 + 16) continue;
       const s = built.samples[near.index];
       treeSpots.push({
@@ -2433,7 +2429,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   let bHits = 0;
   for (const p of placements) {
     if (bHits >= 80) break;
-    if (nearestIndex(built.samples, p.x, p.z, 0).dist < built.width / 2 + 8) continue;
+    if (closestSample(built.samples, p.x, p.z).dist < built.width / 2 + 8) continue;
     colliders.push({
       x: p.x,
       z: p.z,
@@ -2559,7 +2555,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       hemi.intensity = bolt ? 1.4 : lerp(0.55, 0.52, n);
     }
     const wetAmt = wx === "storm" ? 1 : wx === "rain" ? 0.82 : lerp(0.08, 0.42, nightAmt(clock));
-    puddles.visible = wetAmt > 0.1;
+    puddles.visible = puddlesAllowed && wetAmt > 0.1;
     puddleMat.opacity = 0.32 + wetAmt * 0.58;
     const ripple = 1 + Math.sin(t * 2.2) * 0.035 * (wx === "clear" ? 0.4 : 1);
     for (let i = 0; i < puddlePos.length; i++) {
@@ -2755,6 +2751,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   };
   const setLod = (tier: "low" | "mid" | "high") => {
     const hi = tier === "high";
+    puddlesAllowed = hi;
     const mid = tier === "mid";
     if (lodCrowns) {
       lodCrowns.visible = hi || mid;
@@ -2807,7 +2804,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       ]);
       for (let index = bag.length - 1; index >= 0; index -= 1) {
         const resource = bag[index];
-        if (disposedSceneResources.has(resource)) continue;
+        if (shared.has(resource) || disposedSceneResources.has(resource)) continue;
+        disposedSceneResources.add(resource);
         try {
           resource.dispose();
         } catch {

@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../spline";
+import { closestSample } from "../spline";
 import { tlv } from "../tracks";
 import type { TrackWorldBuilderInput } from "./types";
 
@@ -59,7 +59,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     });
   };
   const roadYaw = (x: number, z: number) => {
-    const s = built.samples[nearestIndex(built.samples, x, z, 0).index];
+    const s = built.samples[closestSample(built.samples, x, z).index];
     return Math.atan2(s.tx, s.tz);
   };
   const hitRoad = (x: number, z: number, r: number, hx?: number, hz?: number) => hit(x, z, r, hx, hz, roadYaw(x, z));
@@ -340,7 +340,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
   const sqTex = curtainTexture("dark");
   const gateTex = curtainTexture("dark");
   const tohaTex = curtainTexture("gold");
-  bag.push(winTex, triTex, sqTex, gateTex, tohaTex);
+  // These textures belong to the process asset cache, not this world.
   const mkGlass = (map: THREE.Texture, color: number, nightEmi: number) => new THREE.MeshPhysicalMaterial({
     map,
     color,
@@ -396,7 +396,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     });
     bag.push(azBand);
     const roundP = tlv(32.07455, 34.79195);
-    const nAz = nearestIndex(built.samples, roundP.x, roundP.z, 0);
+    const nAz = closestSample(built.samples, roundP.x, roundP.z);
     const sAz = built.samples[nAz.index];
     const park = built.width / 2 + 52;
     const cx = sAz.x + sAz.rx * park;
@@ -542,7 +542,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
   };
   const parkTower = (lat: number, lon: number, extra = 48) => {
     const hint = tlv(lat, lon);
-    const nH = nearestIndex(built.samples, hint.x, hint.z, 0);
+    const nH = closestSample(built.samples, hint.x, hint.z);
     const sH = built.samples[nH.index];
     return nH.dist < built.width / 2 + extra - 8
       ? { x: sH.x + sH.rx * (built.width / 2 + extra), z: sH.z + sH.rz * (built.width / 2 + extra) }
@@ -586,7 +586,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
   };
   const placeToHa = (s: number, lat = 32.0713, lon = 34.7886) => {
     const hint = tlv(lat, lon);
-    const nH = nearestIndex(built.samples, hint.x, hint.z, 0);
+    const nH = closestSample(built.samples, hint.x, hint.z);
     const sH = built.samples[nH.index];
     const p = nH.dist < built.width / 2 + 40
       ? { x: sH.x + sH.rx * (built.width / 2 + 48), z: sH.z + sH.rz * (built.width / 2 + 48) }

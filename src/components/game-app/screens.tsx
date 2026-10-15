@@ -554,6 +554,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 														handling,
 														assists: assistKey(assists),
 														laps: tr.open ? 1 : MODE_LAPS[mode],
+														tune: getTune(carId), night, traffic, grid,
 													});
 													if (classBest) return /* @__PURE__ */ jsx("p", {
 														className: "mt-1 text-xs font-medium tabular-nums text-fg",

@@ -32,7 +32,7 @@ export class GameInput {
     const up = (e: KeyboardEvent) => {
       this.keys.delete(e.code);
     };
-    const blur = () => this.keys.clear();
+    const blur = () => this.reset();
     window.addEventListener("keydown", down);
     window.addEventListener("keyup", up);
     window.addEventListener("blur", blur);
@@ -52,6 +52,15 @@ export class GameInput {
     if (partial.drift !== undefined) this.touchDrift = partial.drift;
     if (partial.nitro !== undefined) this.touchNitro = partial.nitro;
     if (partial.rewind !== undefined) this.touchRewind = partial.rewind;
+  }
+
+  /** Release every input source when focus or the race is lost. */
+  reset() {
+    this.keys.clear();
+    this.touchSteer = this.touchThrottle = this.touchBrake = 0;
+    this.touchDrift = this.touchNitro = this.touchRewind = false;
+    this.steerOverride = this.throttleOverride = this.brakeOverride = null;
+    this.steerFilt = this.thrFilt = this.lastPoll = 0;
   }
 
   poll(step?: number): InputState {
@@ -134,6 +143,6 @@ export class GameInput {
   dispose() {
     for (const u of this.unbind) u();
     this.unbind = [];
-    this.keys.clear();
+    this.reset();
   }
 }

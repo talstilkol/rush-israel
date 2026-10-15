@@ -3,6 +3,9 @@ import type { Lang } from "./i18n";
 import { CAR_UNLOCK, activeCareer } from "./career";
 import { emptyTune, type GhostFrame } from "./garage";
 import { PHYSICS_VERSION } from "./physics";
+import { decodeGhostRuns, ghostStorageKey, validGhostRun } from "./ghost-records";
+import { rulesetKey, type RaceRules } from "./race-rules";
+export { rulesetKey } from "./race-rules";
 import {
   hashTimedRecord,
   loadTimedRecords,
@@ -234,20 +237,13 @@ export function assistKey(flags: { abs: boolean; tcs: boolean; esc: boolean }) {
   return parts.join("+") || "none";
 }
 
-export function rulesetKey(
-  trackId: string,
-  rules: { mode: string; weather: string; carId: string; handling: string; assists: string; laps: number },
-) {
-  return [trackId, rules.mode, rules.weather, rules.carId, rules.handling, rules.assists, String(rules.laps)].join("|");
-}
-
 export function getBest(id: TrackId) {
   return load().best[id] ?? null;
 }
 
 export function getRulesBest(
   id: TrackId,
-  rules: { mode: string; weather: string; carId: string; handling: string; assists: string; laps: number },
+  rules: RaceRules,
 ) {
   return load().rules?.[rulesetKey(id, rules)] ?? null;
 }
@@ -258,7 +254,7 @@ export function recordBest(
   opts?: {
     eligible?: boolean;
     carId?: CarId;
-    rules?: { mode: string; weather: string; carId: string; handling: string; assists: string; laps: number };
+    rules?: RaceRules;
   },
 ) {
   if (opts?.eligible === false) return false;
@@ -278,7 +274,8 @@ export function recordBest(
       trackId: id,
       carId,
       physicsVersion: PHYSICS_VERSION,
-      hash: hashTimedRecord({ t: time, trackId: id, carId, physicsVersion: PHYSICS_VERSION }),
+      ruleset: key,
+      hash: hashTimedRecord({ t: time, trackId: id, carId, physicsVersion: PHYSICS_VERSION, ruleset: key }),
     });
     return better;
   }
@@ -501,29 +498,29 @@ export function repairCost(id: CarId) {
   return Math.max(80, Math.round(dmg * 850));
 }
 
-type GhostBlob = Partial<Record<TrackId, { time: number; frames: GhostFrame[] }>>;
+type GhostBlob = ReturnType<typeof decodeGhostRuns>;
 
 function loadGhosts(): GhostBlob {
   try {
     const raw = localStorage.getItem(GHOST_KEY);
     if (!raw) return {};
-    return JSON.parse(raw) as GhostBlob;
+    return decodeGhostRuns(raw);
   } catch {
     return {};
   }
 }
 
-export function getGhost(id: TrackId) {
-  return loadGhosts()[id] ?? null;
+export function getGhost(id: TrackId, ruleset?: string) {
+  return loadGhosts()[ghostStorageKey(id, ruleset)] ?? null;
 }
 
-export function recordGhost(id: TrackId, time: number, frames: GhostFrame[]) {
-  if (!Number.isFinite(time) || time < 8) return false;
-  if (frames.length < 8) return false;
+export function recordGhost(id: TrackId, time: number, frames: GhostFrame[], ruleset?: string) {
+  if (!validGhostRun({ time, frames }, !!ruleset)) return false;
+  const key = ghostStorageKey(id, ruleset);
   const all = loadGhosts();
-  const prev = all[id];
+  const prev = all[key];
   if (prev && prev.time <= time) return false;
-  all[id] = { time, frames };
+  all[key] = { time, frames };
   try {
     localStorage.setItem(GHOST_KEY, JSON.stringify(all));
   } catch {

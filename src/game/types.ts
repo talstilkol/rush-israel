@@ -276,7 +276,7 @@ export type RaceResult = {
   ghostBeaten: boolean;
   line: string;
   eligible?: boolean;
-  voidReason?: "stall" | "short" | "qa" | "invalid";
+  voidReason?: "stall" | "short" | "qa" | "invalid" | "assisted";
   board?: { name: string; you: boolean }[];
 };
 

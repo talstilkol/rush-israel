@@ -39,7 +39,6 @@ const report = await p.evaluate(async () => {
     const x = r.x + r.sx * along;
     const z = r.z + r.sz * along;
     const expect = r.y0 + (r.y1 - r.y0) * k;
-    t.teleport(x, z, Math.atan2(-r.sx, -r.sz), expect);
     samples.push({ k, expect, x, z });
   }
   return { ok: true, n: ramps.length, r, samples };
@@ -53,12 +52,21 @@ for (const s of report.samples) {
     window.__controlsTest.setThrottle(0);
     window.__controlsTest.setKeys([]);
     window.__controlsTest.setSteer(0);
+    window.__controlsTest.advanceTime(1000);
   }, { x: s.x, z: s.z, yaw: Math.atan2(-report.r.sx, -report.r.sz) });
-  await p.waitForTimeout(180);
-  const y = await p.evaluate(() => window.__controlsTest.getY());
-  measured.push({ k: s.k, expect: s.expect, y });
-  if (Math.abs(y - s.expect) > 0.85) {
-    throw new Error(`Y@${s.k}=${y.toFixed(2)} want ${s.expect.toFixed(2)} ±0.85`);
+  // Surface following is a fixed-step physics assertion, not a frame-rate benchmark.
+  const actual = await p.evaluate(() => ({
+    x: window.__controlsTest.getX(), z: window.__controlsTest.getZ(), y: window.__controlsTest.getY(),
+  }));
+  // teleport() deliberately starts the test car at 14 m/s. Compare the ramp
+  // height at its measured position after settling, not its earlier position.
+  const along = (actual.x - report.r.x) * report.r.sx + (actual.z - report.r.z) * report.r.sz;
+  const k = along / report.r.len + 0.5;
+  if (k < 0 || k > 1) throw new Error(`left the measured ramp at k=${k}`);
+  const expect = report.r.y0 + (report.r.y1 - report.r.y0) * k;
+  measured.push({ k, expect, y: actual.y });
+  if (Math.abs(actual.y - expect) > 0.85) {
+    throw new Error(`Y@${k}=${actual.y.toFixed(2)} want ${expect.toFixed(2)} ±0.85`);
   }
 }
 const span = measured[measured.length - 1].y - measured[0].y;

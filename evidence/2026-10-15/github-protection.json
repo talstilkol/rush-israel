@@ -1,0 +1,65 @@
+{
+  "observed_at": "2026-10-15 20:42:13 UTC",
+  "repository": "talstilkol/rush-israel",
+  "main_sha": "b2c0d46dd43c3bd8f27dc0009e4809c27c54c60e",
+  "main_protected": true,
+  "ruleset": {
+    "id": 23177340,
+    "name": "rush-main-protection",
+    "enforcement": "active",
+    "conditions": {
+      "ref_name": {
+        "exclude": [],
+        "include": [
+          "refs/heads/main"
+        ]
+      }
+    },
+    "rules": [
+      {
+        "type": "deletion"
+      },
+      {
+        "type": "pull_request",
+        "parameters": {
+          "required_approving_review_count": 0,
+          "dismiss_stale_reviews_on_push": true,
+          "required_reviewers": [],
+          "require_code_owner_review": false,
+          "require_last_push_approval": false,
+          "required_review_thread_resolution": true,
+          "require_extra_approval_for_unattributed_changes": true,
+          "allowed_merge_methods": [
+            "merge"
+          ]
+        }
+      },
+      {
+        "type": "required_status_checks",
+        "parameters": {
+          "strict_required_status_checks_policy": true,
+          "do_not_enforce_on_create": false,
+          "required_status_checks": [
+            {
+              "context": "required-ci / validate",
+              "integration_id": 15368
+            }
+          ]
+        }
+      },
+      {
+        "type": "non_fast_forward"
+      }
+    ],
+    "bypass_actors": [],
+    "current_user_can_bypass": "never"
+  },
+  "legacy_branch_protection_read": {
+    "status": 403,
+    "reason": "Resource not accessible by integration"
+  },
+  "source_urls": [
+    "https://api.github.com/repos/talstilkol/rush-israel/branches/main",
+    "https://api.github.com/repos/talstilkol/rush-israel/rulesets/23177340"
+  ]
+}

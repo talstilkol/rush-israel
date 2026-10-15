@@ -124,6 +124,18 @@ export function nearestIndex(samples: Sample[], x: number, z: number, hint: numb
   return { index: bestI, dist: Math.hypot(s.x - x, s.z - z) };
 }
 
+/** Geometric query for static placement. Progress hints must not bias buildings or props. */
+export function closestSample(samples: Sample[], x: number, z: number) {
+  let index = 0;
+  let distanceSq = Infinity;
+  for (let i = 0; i < samples.length; i++) {
+    const sample = samples[i];
+    const next = (sample.x - x) ** 2 + (sample.z - z) ** 2;
+    if (next < distanceSq) { distanceSq = next; index = i; }
+  }
+  return { index, dist: Math.sqrt(distanceSq) };
+}
+
 export function roadEdgeBarriers(
   built: BuiltTrack,
   edgeStep = Math.max(3, Math.floor(built.samples.length / 360)),
@@ -150,10 +162,9 @@ export function startGridT(index: number, count: number) {
   return 0.006 + lead * 0.007;
 }
 
-export function behindProgress(progress: number, back: number, _open: boolean) {
+export function behindProgress(progress: number, back: number, open: boolean) {
   const t = progress - back;
-  if (t >= 0.002) return t;
-  return 0.002;
+  return open ? Math.max(0.002, t) : ((t % 1) + 1) % 1;
 }
 
 export function crossedForward(prev: number, now: number, gate: number) {
@@ -162,7 +173,8 @@ export function crossedForward(prev: number, now: number, gate: number) {
 
 export function sampleAtT(samples: Sample[], t: number): Sample {
   const n = samples.length;
-  const u = ((t % 1) + 1) % 1;
-  const idx = Math.min(n - 1, Math.floor(u * n));
+  const open = samples[n - 1].t === 1;
+  const u = open ? Math.max(0, Math.min(1, t)) : ((t % 1) + 1) % 1;
+  const idx = Math.min(n - 1, Math.floor(u * (open ? n - 1 : n)));
   return samples[idx];
 }

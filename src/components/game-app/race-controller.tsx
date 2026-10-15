@@ -12,7 +12,6 @@ import { BootOverlay } from "@/components/boot-overlay";
 import { TouchControls } from "@/components/touch-controls";
 import { Button } from "@/components/ui/button";
 import { getEvent, maxStars, nextCareerId, starsFor } from "@/game/career";
-import { racePayout } from "@/game/garage";
 import { estimateLoadMs, recordLoadMs } from "@/game/load-eta";
 import { formatTime } from "@/game/math";
 import { MODE_LAPS } from "@/game/modes";
@@ -151,6 +150,9 @@ export function RaceController({
 		const canvas = canvasRef.current;
 		if (!canvas) return;
 		let cancelled = false;
+		const settledResults = new WeakSet<RaceResult>();
+		const raceTune = getTune(carId);
+		const raceEvent = eventId ? getEvent(eventId) : null;
 		let inst: RaceEngine | null = null;
 		const t0 = performance.now();
 		setHud(null);
@@ -178,14 +180,16 @@ export function RaceController({
 				mode,
 				eventId: eventId ?? void 0,
 				weather,
-				tune: getTune(carId),
+				tune: raceTune,
 				handling,
 				assists,
 				onHud: setHud,
 				onBoot: (frac) => setBoot((b) => (b ? { ...b, frac } : { etaMs: estimateLoadMs(launchId, quality, night), frac })),
 				onRestore: () => setRaceKey((k) => k + 1),
 				onFinish: (r) => {
-					const ok = r.eligible !== false;
+					if (cancelled || settledResults.has(r)) return;
+					settledResults.add(r);
+					const ok = r.eligible === true && !r.busted;
 					const isBest = ok ? recordBest(r.trackId, r.totalTime, {
 						eligible: true,
 						carId,
@@ -196,17 +200,18 @@ export function RaceController({
 							handling,
 							assists: assistKey(assists),
 							laps: track.open ? 1 : MODE_LAPS[mode],
+							tune: raceTune, night, traffic, grid,
 						},
 					}) : false;
 					setRecord(isBest);
-					const ev = r.eventId ? getEvent(r.eventId) : null;
+					const ev = raceEvent;
 					const got = !ok ? 0 : ev ? starsFor(ev, r) : r.place === 1 ? 3 : r.place === 2 ? 2 : r.place === 3 ? 1 : 0;
 					setEarned(got);
 					if (ok && r.eventId) recordEventStars(r.eventId, got);
 					if (ok && r.eventId?.startsWith("daily-")) markDailyDone(r.eventId.slice(6));
 					if (ok && r.eventId?.startsWith("weekly-")) markWeeklyDone(r.eventId.slice(7));
 					setStarTotal(v1Stars());
-					const pay = r.cash || (ok ? racePayout(r) : 0);
+					const pay = Number.isFinite(r.cash) ? r.cash : 0;
 					const committed = ok ? pay : Math.min(0, pay);
 					setPaid(committed);
 					setCash(addCash(committed));
@@ -533,7 +538,7 @@ export function RaceController({
 						},
 						children: [/* @__PURE__ */ jsx(RotateCcw, { className: "size-4" }), t("התחל מחדש", "Restart")]
 					}),
-					/* @__PURE__ */ jsxs(Button, {
+					/* @__PURE__ */ jsx(Button, {
 						variant: "outline",
 						onClick: () => engineRef.current?.enterPhoto(),
 						children: t("מצב צילום", "Photo mode")

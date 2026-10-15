@@ -1,89 +1,176 @@
 name: required-ci
-
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
   group: required-ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
-  validate:
-    name: required-ci / validate
+  unit:
+    name: Current source / unit, build and security
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 15
     env:
       CI: "true"
       NODE_OPTIONS: "--experimental-strip-types"
-      PLAYWRIGHT_BROWSERS_PATH: "0"
     steps:
       - name: Check out exact revision
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
-
-      - name: Set up pinned Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: npm
-
       - name: Install pinned npm
         run: npm install --global npm@10.9.2
-
-      - name: Verify toolchain
-        run: npm run toolchain:verify
-
       - name: Install dependencies from lockfile
-        run: npm ci
-
-      - name: Install Chromium for Playwright
-        run: npx playwright install --with-deps chromium
-
-      - name: Validate repository governance contract
+        run: npm ci --no-audit
+      - name: Validate governance configuration
         run: node scripts/check-governance-contract.mjs
-
-      - name: Lint all tracked source
-        run: npm run lint
-
-      - name: Run complete unit-test suite
+      - run: npm run toolchain:verify
+      - run: npm run check:dependencies
+      - run: npm run lint
+      - run: npm run typecheck
+      - name: Run current-source unit suite
         run: npm test
-
-      - name: Run self-starting QA gate
-        run: npm run qa:ci
-
-      - name: Build deterministic development bundle
-        run: npm run build:dev
-
-      - name: Write deterministic diagnostic summary
-        if: always()
-        env:
-          CI_JOB_STATUS: ${{ job.status }}
-        run: node scripts/write-ci-summary.mjs
-
-      - name: Upload required-CI diagnostics
+      - name: Build production and reject QA hooks
+        run: npm run check:qa
+      - run: npm run check:secrets
+      - run: npm run check:paths
+      - run: npm run check:canvas
+      - run: npm run check:copy
+      - run: npm run check:webgl
+      - name: Upload diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: required-ci-${{ github.run_id }}-${{ github.run_attempt }}
+          name: current-unit-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             artifacts/**
             screenshots/**
-            dist/**
-            .output/**
-            test-results/**
-            playwright-report/**
-            npm-debug.log*
           if-no-files-found: warn
           retention-days: 14
-          compression-level: 6
-          include-hidden-files: true
+  browser:
+    name: Current source / browser behavior
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CI: "true"
+      PLAYWRIGHT_BROWSERS_PATH: "0"
+      NODE_OPTIONS: "--experimental-strip-types"
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+      - name: Install dependencies from lockfile
+        run: npm ci --no-audit
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Test real worlds, driving, damage, WebGL and 20 lifecycle cycles
+        run: node scripts/run-with-server.mjs -- npm run qa:runtime:raw
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-browser-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/**
+            screenshots/**
+          if-no-files-found: warn
+          retention-days: 14
+  soak:
+    name: Current source / required 1800-second driving soak
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CI: "true"
+      PLAYWRIGHT_BROWSERS_PATH: "0"
+      NODE_OPTIONS: "--experimental-strip-types"
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+      - name: Install dependencies from lockfile
+        run: npm ci --no-audit
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run current damage smoke then full wall-clock driving acceptance
+        run: npm run test:soak
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-30-minute-soak-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/**
+            screenshots/**
+          if-no-files-found: warn
+          retention-days: 14
+  historical:
+    name: Historical b2c0d46 contracts / no product acceptance
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install pinned npm
+        run: npm install --global npm@10.9.2
+      - name: Install dependencies from lockfile
+        run: npm ci --no-audit
+      - name: Fetch the immutable historical baseline
+        run: git fetch --no-tags --depth=1 origin b2c0d46dd43c3bd8f27dc0009e4809c27c54c60e
+      - name: Reconstruct exact historical Git tree and test its archived contracts
+        run: npm run test:historical
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: historical-contracts-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/historical-contracts.json
+            artifacts/historical-tests.tap
+          if-no-files-found: warn
+          retention-days: 14
+  validate:
+    name: required-ci / validate
+    runs-on: ubuntu-24.04
+    needs: [unit, browser, soak, historical]
+    if: always()
+    steps:
+      - name: Require every current and historical job to succeed
+        env:
+          UNIT: ${{ needs.unit.result }}
+          BROWSER: ${{ needs.browser.result }}
+          SOAK: ${{ needs.soak.result }}
+          HISTORICAL: ${{ needs.historical.result }}
+        run: |
+          test "$UNIT" = success
+          test "$BROWSER" = success
+          test "$SOAK" = success
+          test "$HISTORICAL" = success

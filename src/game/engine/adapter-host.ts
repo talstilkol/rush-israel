@@ -5,6 +5,8 @@ import type { RaceEngine } from "../engine";
 // signature, ambient overload or permissive value boundary is allowed.
 export type EngineAdapterHost = {
   acc: RaceEngine["acc"];
+  assisted: RaceEngine["assisted"];
+  bestRewardPlace: RaceEngine["bestRewardPlace"];
   addCop: RaceEngine["addCop"];
   applyAltitudeLook: RaceEngine["applyAltitudeLook"];
   applyClockSky: RaceEngine["applyClockSky"];
@@ -154,6 +156,7 @@ export type EngineAdapterHost = {
   radioToast: RaceEngine["radioToast"];
   rainMesh: RaceEngine["rainMesh"];
   rainPos: RaceEngine["rainPos"];
+  recordClass: RaceEngine["recordClass"];
   recordReplay: RaceEngine["recordReplay"];
   recordSnap: RaceEngine["recordSnap"];
   renderer: RaceEngine["renderer"];

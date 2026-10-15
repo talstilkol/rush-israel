@@ -115,5 +115,5 @@ if (isMainModule(import.meta.url)) {
     console.error("governance-contract fail\n" + errors.map((error) => `- ${error}`).join("\n"));
     process.exit(1);
   }
-  console.log(`governance-contract ok: ${REQUIRED_CONTEXT}; live protection remains owner action`);
+  console.log(`governance-contract ok: ${REQUIRED_CONTEXT}; configuration validated; live protection requires current API evidence`);
 }

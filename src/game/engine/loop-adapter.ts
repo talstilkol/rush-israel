@@ -61,12 +61,14 @@ export function frame(this: EngineAdapterHost)
 // RSH-017-BODY-BEGIN:frame
 {
     if (this.disposed || this.glLost) return;
-    if (this.disposed) return;
     const now = performance.now();
     let dt = (now - this.last) / 1000;
     this.last = now;
-    dt = Math.min(dt, 0.1);
     this.telem.push(dt * 1000);
+    if (dt > 0.1 && this.racing && this.countdown <= 0 && !this.paused && !this.photo && !this.replaying) {
+      this.timeVoided = true;
+    }
+    dt = Math.min(dt, 0.1);
     if (!this.soft && this.quality !== "low") {
       const snap = this.telem.snapshot();
       const act = this.dyn.note(snap.p95, dt);

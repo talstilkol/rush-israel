@@ -229,7 +229,7 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     if (this.racing && !this.player.finished) {
       this.ghostAcc += dt;
       if (this.ghostAcc >= 0.16) {
-        this.ghostAcc = 0;
+        this.ghostAcc -= 0.16;
         this.ghostBuf.push({ x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.player.yaw, t: this.totalTime });
       }
       this.recordReplay(dt);
@@ -244,8 +244,10 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
       const place = this.standings().indexOf(this.player) + 1;
       if (this.lastPlace === 0) {
         this.lastPlace = place;
+        this.bestRewardPlace = Math.min(this.bestRewardPlace, place);
       } else if (place !== this.lastPlace && this.totalTime > 1.2) {
-        if (place < this.lastPlace && this.overtakePayT <= 0) {
+        if (place < this.bestRewardPlace) {
+          this.bestRewardPlace = place;
           this.ledger += 160;
           this.cashNote = "+₪160";
           this.cashNoteT = 1.5;
@@ -609,6 +611,7 @@ export function endRace(this: EngineAdapterHost)
     }
     const eligible =
       !this.timeVoided &&
+      !this.assisted &&
       !this.qaForcedFinish &&
       Number.isFinite(this.totalTime) &&
       this.totalTime >= 8;
@@ -629,7 +632,7 @@ export function endRace(this: EngineAdapterHost)
       ghostBeaten: false,
       line: finishLine(place, this.busted, this.opts.langHe, this.rivalIdx),
       eligible,
-      voidReason: eligible ? undefined : this.timeVoided ? "stall" : this.qaForcedFinish ? "qa" : this.totalTime < 8 ? "short" : "invalid",
+      voidReason: eligible ? undefined : this.assisted ? "assisted" : this.timeVoided ? "stall" : this.qaForcedFinish ? "qa" : this.totalTime < 8 ? "short" : "invalid",
       board: this.standings().map((r) => ({ name: r.name, you: r === this.player })),
     };
     const purse = eligible ? racePayout(resultDraft) : 0;
@@ -641,7 +644,7 @@ export function endRace(this: EngineAdapterHost)
     resultDraft.cash = this.cashWon;
     this.ledger = 0;
     if (eligible && !this.busted) {
-      this.ghostBeaten = recordGhost(this.opts.trackId, this.totalTime, this.ghostBuf);
+      this.ghostBeaten = recordGhost(this.opts.trackId, this.totalTime, this.ghostBuf, this.recordClass);
       resultDraft.ghostBeaten = this.ghostBeaten;
     }
     setDamage(this.opts.carId, this.player.damage);
@@ -698,12 +701,12 @@ export function recordReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine[
     if (!this.racing || this.player.finished) return;
     this.replayAcc += dt;
     if (this.replayAcc >= 0.1) {
-      this.replayAcc = 0;
+      this.replayAcc -= 0.1;
       this.recordSnap();
     }
     this.rewindAcc += dt;
     if (this.rewindAcc >= 0.05) {
-      this.rewindAcc = 0;
+      this.rewindAcc -= 0.05;
       this.rewindBuf.push(this.takePack());
       if (this.rewindBuf.length > 100) this.rewindBuf.shift();
     }
@@ -716,6 +719,23 @@ export function takePack(this: EngineAdapterHost)
 // RSH-017-BODY-BEGIN:takePack
 {
     return {
+      laps: this.laps.slice(),
+      bestLap: this.bestLap,
+      bestSectors: this.bestSectors.slice(),
+      sectorClock: this.sectorClock,
+      sectorIdx: this.sectorIdx,
+      sectorDelta: this.sectorDelta,
+      koMarked: this.koMarked,
+      poiGot: [...this.poiGot],
+      heatMax: this.heatMax,
+      busted: this.busted,
+      escaping: this.escaping,
+      camAt: this.camAt,
+      combo: this.combo,
+      comboHold: this.comboHold,
+      lastDrifting: this.lastDrifting,
+      ghostAcc: this.ghostAcc,
+      replayAcc: this.replayAcc,
       totalTime: this.totalTime,
       lapTime: this.lapTime,
       heat: this.heat,
@@ -737,6 +757,23 @@ export function takePack(this: EngineAdapterHost)
 export function applyPack(this: EngineAdapterHost, p: Parameters<RaceEngine["applyPack"]>[0])
 // RSH-017-BODY-BEGIN:applyPack
 {
+    this.laps = p.laps.slice();
+    this.bestLap = p.bestLap;
+    this.bestSectors = p.bestSectors.slice();
+    this.sectorClock = p.sectorClock;
+    this.sectorIdx = p.sectorIdx;
+    this.sectorDelta = p.sectorDelta;
+    this.koMarked = p.koMarked;
+    this.poiGot = new Set(p.poiGot);
+    this.heatMax = p.heatMax;
+    this.busted = p.busted;
+    this.escaping = p.escaping;
+    this.camAt = p.camAt;
+    this.combo = p.combo;
+    this.comboHold = p.comboHold;
+    this.lastDrifting = p.lastDrifting;
+    this.ghostAcc = p.ghostAcc;
+    this.replayAcc = p.replayAcc;
     this.totalTime = p.totalTime;
     this.lapTime = p.lapTime;
     this.heat = p.heat;
@@ -782,6 +819,8 @@ export function applyPack(this: EngineAdapterHost, p: Parameters<RaceEngine["app
 export function stepRewind(this: EngineAdapterHost, dt: Parameters<RaceEngine["stepRewind"]>[0])
 // RSH-017-BODY-BEGIN:stepRewind
 {
+    this.assisted = true;
+    if (!this.rewinding) this.clearRoadblock();
     this.rewinding = true;
     this.rewindTickT += dt;
     if (this.rewindTickT > 0.08) {

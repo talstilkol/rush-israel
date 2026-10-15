@@ -1,3 +1,7 @@
+> 1. Update 2026-10-15: `npm test` executes current unit tests; `npm run test:historical` reproduces archived contracts; `npm run test:soak` is the explicit required long run. See [CI-CONTRACT.md](CI-CONTRACT.md) and [COMPLETION-PLAN.md](COMPLETION-PLAN.md).
+> 1.1 `qa:soak` measures every lifecycle cycle at a stable start pose against two warm-up cycles. It records all 20 measurements. It does not establish physical-device GPU memory acceptance.
+> 1.2 Unversioned `/game/` and `/basis/` URLs now revalidate (`no-cache`); immutable caching requires a future content-fingerprint pipeline. Hashed Vite `/assets/` bundles retain their separate generated caching policy.
+
 # RUSH Israel — Self-Starting QA Harness
 
 **Unit:** RSH-006  

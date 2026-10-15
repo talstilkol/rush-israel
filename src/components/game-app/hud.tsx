@@ -235,7 +235,7 @@ function Hud({ hud, langHe, mapRef, onPause, onMute, muted, night, onNight, onSk
 				className: "pointer-events-none absolute left-1/2 top-52 -translate-x-1/2 text-xl font-semibold tabular-nums text-accent",
 				children: hud.cashNote
 			}) : null,
-			(hud.camFlash ?? 0) > 0.04 ? /* @__PURE__ */ jsxs("div", {
+			(hud.camFlash ?? 0) > 0.04 ? /* @__PURE__ */ jsx("div", {
 				className: "pointer-events-none absolute inset-0 z-20 flex items-start justify-center pt-28",
 				style: { background: `rgba(242,238,232,${(hud.camFlash ?? 0) * 0.45})` },
 				children: /* @__PURE__ */ jsx("p", {

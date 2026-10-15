@@ -10,3 +10,5 @@
 - hero glTF: user-supplied / NOT PRESENT
 
 `/basis/basis_transcoder.{js,wasm}` is the Khronos Basis Universal transcoder (Apache-2.0), used only if a Basis KTX2 is present.
+
+- sign-speed120.svg: deterministic vector authored in the 2026-10-15 completion change from the existing runtime paintSpeed(120) geometry and text. No external image or embedded font. Private owner-controlled asset; no public-distribution authorization is implied.

@@ -21,7 +21,7 @@ import {
   PHYSICS_VERSION,
   WEATHER_SPEC,
 } from "./physics";
-import { getDamage, getGhost, recordGhost, setDamage } from "./save";
+import { assistKey, getDamage, getGhost, recordGhost, setDamage } from "./save";
 import { buildTrack, nearestIndex, sampleAtT, startGridT } from "./spline";
 import { getTrack, nearestPoi, nightAmt, streetName, todLabel, tlv } from "./tracks";
 import type { AssistFlags, CarId, Collider, HandlingMode, HudState, InputState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
@@ -47,6 +47,7 @@ import { loadFlake } from "./flake-assets";
 import { loadCars } from "./car-assets";
 import { loadRoadFor } from "./road-assets";
 import { loadSky } from "./sky-assets";
+import { rulesetKey } from "./race-rules";
 import { RenderTelemetry } from "../rendering/RenderTelemetry";
 import { AYALON_GOLDEN } from "../world/goldenCameras";
 import { RendererFacade } from "../rendering/RendererFacade";
@@ -96,6 +97,23 @@ function isSoftwareGL(renderer: THREE.WebGLRenderer) {
 }
 
 type RewindPack = {
+  laps: number[];
+  bestLap: number;
+  bestSectors: number[];
+  sectorClock: number;
+  sectorIdx: number;
+  sectorDelta: number;
+  koMarked: number;
+  poiGot: number[];
+  heatMax: number;
+  busted: boolean;
+  escaping: boolean;
+  camAt: number;
+  combo: number;
+  comboHold: number;
+  lastDrifting: boolean;
+  ghostAcc: number;
+  replayAcc: number;
   totalTime: number;
   lapTime: number;
   heat: number;
@@ -305,6 +323,9 @@ export class RaceEngine {
   private booted = false;
   private tickId = 0;
   private timeVoided = false;
+  private assisted = false;
+  private recordClass: string;
+  private bestRewardPlace = Infinity;
   private qaForcedFinish = false;
   private glLost = false;
   private telem: RenderTelemetry;
@@ -314,6 +335,12 @@ export class RaceEngine {
     this.opts = opts;
     this.trackDef = getTrack(opts.trackId);
     this.built = buildTrack(this.trackDef);
+    this.recordClass = rulesetKey(opts.trackId, {
+      mode: opts.mode ?? "circuit", weather: opts.weather ?? "clear", carId: opts.carId,
+      handling: opts.handling ?? "arcade", assists: assistKey(opts.assists ?? DEFAULT_ASSISTS),
+      laps: this.trackDef.open ? 1 : MODE_LAPS[opts.mode ?? "circuit"],
+      tune: opts.tune ?? emptyTune(), night: opts.night, traffic: opts.traffic ?? "normal", grid: opts.grid ?? 6,
+    });
     this.weather = opts.weather ?? "clear";
 
     const mobile = canvas.clientWidth < 700 || /Mobi|Android/i.test(navigator.userAgent);
@@ -812,7 +839,7 @@ export class RaceEngine {
       vis.bodyMat.depthWrite = false;
       setCarLights(vis, false);
     };
-    const stored = getGhost(this.opts.trackId);
+    const stored = getGhost(this.opts.trackId, this.recordClass);
     if (stored?.frames.length) {
       this.ghostFrames = stored.frames;
       const vis = createCarVisual(0x6ec8c4, 0x163048, false, false, this.player.stats.body);
@@ -841,6 +868,9 @@ export class RaceEngine {
   setPaused(p: boolean) {
     if (this.photoLock && !p) return;
     this.paused = p;
+    this.input.reset();
+    this.acc = 0;
+    this.last = performance.now();
     if (!p && this.photo) this.exitPhoto();
   }
 
@@ -870,6 +900,24 @@ export class RaceEngine {
 
   /** Codex 64: restart zeros damage. Esc/pause does not. */
   restartRace() {
+    this.input.reset();
+    this.inputSnap = { steer: 0, throttle: 0, brake: 0, drift: false, nitro: false };
+    this.acc = this.freeze = this.impactCd = this.trauma = 0;
+    this.last = performance.now();
+    this.goFlash = 0;
+    this.rewindAcc = this.rewindTickT = this.replayAcc = this.ghostAcc = 0;
+    this.rewinding = this.replaySlow = this.qaForcedFinish = this.assisted = false;
+    this.bestRewardPlace = Infinity;
+    this.bestSectors = [Infinity, Infinity, Infinity];
+    this.combo = this.comboHold = 0;
+    this.lastDrifting = false;
+    this.escaping = false;
+    this.ghostBeaten = false;
+    this.ghostDelta = this.rivalGhostDelta = 0;
+    this.blockCd = 0;
+    this.camFlash = this.brakeBeep = this.cashNoteT = this.bonusT = this.banterT = 0;
+    this.brakeWarn = false;
+    this.driftBonus = this.banter = "";
     this.placeGrid();
     this.countdown = 3.8;
     this.camAt = 0;
@@ -903,7 +951,7 @@ export class RaceEngine {
     this.lastPlace = 0;
     this.overtakePayT = 0;
     this.ledger = 0;
-    this.racing = true;
+    this.racing = false;
     this.paused = false;
     this.clearRoadblock();
     this.player.finished = false;
@@ -918,6 +966,7 @@ export class RaceEngine {
   }
 
   setAssists(flags: AssistFlags) {
+    if (this.racing && Object.entries(flags).some(([key, value]) => this.player.assists[key as keyof AssistFlags] !== value)) this.assisted = true;
     this.player.assists = { ...flags };
     this.opts.assists = { ...flags };
   }
@@ -940,6 +989,7 @@ export class RaceEngine {
 
   rescue() {
     if (!this.built || this.photo || this.replaying || this.player.finished) return;
+    this.assisted = true;
     this.player.respawn(this.built);
   }
 
@@ -1217,6 +1267,7 @@ export class RaceEngine {
     if (import.meta.env.DEV || import.meta.env.VITE_QA === "1") {
       delete window.__controlsTest;
       delete window.render_game_to_text;
+      delete window.advanceTime;
     }
   }
 }
@@ -1226,6 +1277,8 @@ export class RaceEngine {
 declare global {
   interface Window {
     __controlsTest?: {
+      followRoad?: () => void;
+      isFinished?: () => boolean;
       getYaw: () => number;
       getSpeed: () => number;
       getOnTrack?: () => boolean;
@@ -1314,5 +1367,6 @@ declare global {
       getMemory?: () => { textures: number; geometries: number };
     };
     render_game_to_text?: () => string;
+    advanceTime?: (ms: number) => void;
   }
 }
