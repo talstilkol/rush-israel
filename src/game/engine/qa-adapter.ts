@@ -4,7 +4,7 @@ import { aiInput } from "../vehicle";
 import { getCar } from "../cars";
 import { SSGI_OFF, PHOTO_AA } from "../postfx";
 import { PHYSICS_DT, PHYSICS_HZ, PHYSICS_VERSION, WEATHER_SPEC } from "../physics";
-import { nearestIndex } from "../spline";
+import { closestSample } from "../spline";
 import { nightAmt, tlv } from "../tracks";
 import { blobIsKtx2 } from "../blob-assets";
 import { AYALON_GOLDEN } from "../../world/goldenCameras";
@@ -131,7 +131,7 @@ export function exposeControls(this: EngineAdapterHost)
           kind: c.kind ?? "building",
         })),
       getTrackWidth: () => this.built.width,
-      getNearestDist: (x: number, z: number) => nearestIndex(this.built.samples, x, z, 0).dist,
+      getNearestDist: (x: number, z: number) => closestSample(this.built.samples, x, z).dist,
       getSide: () => this.player.sideStreet,
       getRamps: () =>
         this.world.ramps.map((r) => ({
@@ -178,7 +178,7 @@ export function exposeControls(this: EngineAdapterHost)
       frameWorld: (x: number, z: number, y?: number) => this.frameWorld(x, z, y),
       frameAzrieli: () => {
         const p = tlv(32.07455, 34.79195);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -195,7 +195,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       frameToHa: () => {
         const p = tlv(32.0695, 34.7894);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -212,7 +212,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       frameCityGate: () => {
         const p = tlv(32.0832, 34.8027);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -229,7 +229,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       frameMidtown: () => {
         const p = tlv(32.0806, 34.7926);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -246,7 +246,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       frameElectra: () => {
         const p = tlv(32.0699, 34.7918);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -263,7 +263,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       frameSavidor: () => {
         const p = tlv(32.0837, 34.79835);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -280,7 +280,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       frameHagana: () => {
         const p = tlv(32.0547, 34.7982);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -297,7 +297,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       frameUniversity: () => {
         const p = tlv(32.1035, 34.79815);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -314,7 +314,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       frameGaluyot: () => {
         const p = tlv(32.0525, 34.79605);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -331,7 +331,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       framePlatinum: () => {
         const p = tlv(32.0842, 34.8036);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -348,7 +348,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       frameTau: () => {
         const p = tlv(32.1124, 34.8046);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -365,7 +365,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       frameSarona: () => {
         const p = tlv(32.0714, 34.7866);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -382,7 +382,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       frameHakirya: () => {
         const p = tlv(32.0756, 34.7878);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;
@@ -399,7 +399,7 @@ export function exposeControls(this: EngineAdapterHost)
       },
       frameShalomMeir: () => {
         const p = tlv(32.0639, 34.7704);
-        const n = nearestIndex(this.built.samples, p.x, p.z, 0);
+        const n = closestSample(this.built.samples, p.x, p.z);
         const s = this.built.samples[n.index];
         this.enterPhoto();
         this.photoHide = true;

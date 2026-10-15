@@ -95,10 +95,11 @@
     "test:historical": "node scripts/test-historical-contracts.mjs",
     "test:soak": "node --test scripts/check-damage-required.test.mjs",
     "qa:world:raw": "node scripts/world-runtime-audit.mjs",
-    "qa:runtime:raw": "npm run qa:world:raw && npm run qa:conditions:raw && npm run qa:v1:raw && npm run qa:raw && npm run qa:damage:raw && npm run qa:soak:raw",
+    "qa:runtime:raw": "npm run qa:world:raw && npm run qa:conditions:raw && npm run qa:photo:raw && npm run qa:v1:raw && npm run qa:raw && npm run qa:damage:raw && npm run qa:soak:raw",
     "check:release": "node scripts/check-product-readiness.mjs",
     "qa:v1:raw": "node scripts/qa-v1-races.mjs",
-    "qa:conditions:raw": "node scripts/race-condition-smoke.mjs"
+    "qa:conditions:raw": "node scripts/race-condition-smoke.mjs",
+    "qa:photo:raw": "node scripts/photo-position-smoke.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",

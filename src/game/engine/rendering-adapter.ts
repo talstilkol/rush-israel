@@ -7,7 +7,7 @@ import { sampleGhost, sampleGhostLoop, timedSpan } from "../garage";
 import { clamp, expSmooth, lerp, hash01 } from "../math";
 import { bakeEnv, createPost } from "../postfx";
 import { PHYSICS_HZ } from "../physics";
-import { nearestIndex, sampleAtT } from "../spline";
+import { closestSample, nearestIndex, sampleAtT } from "../spline";
 import { nearestPoi, nightAmt, streetName, todLabel } from "../tracks";
 import { bindRoadCompile } from "../roadShader";
 import { FOG, fogKey, LOOKS, lookFromFlags } from "../../rendering/EnvironmentState";
@@ -154,7 +154,7 @@ export function frameWorld(this: EngineAdapterHost, x: Parameters<RaceEngine["fr
 {
     this.enterPhoto();
     this.photoHide = true;
-    const n = nearestIndex(this.built.samples, x, z, 0);
+    const n = closestSample(this.built.samples, x, z);
     const s = this.built.samples[n.index];
     this.player.spawn(this.built, n.index / Math.max(1, this.built.samples.length - 1), 0);
     this.photoLock = {
