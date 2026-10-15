@@ -1,6 +1,6 @@
 import type { AssistFlags, CarId, HandlingMode, Quality, TrackId, Tune } from "./types";
 import type { Lang } from "./i18n";
-import { CAR_UNLOCK } from "./career";
+import { CAR_UNLOCK, activeCareer } from "./career";
 import { emptyTune, type GhostFrame } from "./garage";
 import { PHYSICS_VERSION } from "./physics";
 import {
@@ -229,21 +229,65 @@ export function retrySavePersistence() {
   return lastSaveStatus;
 }
 
+export function assistKey(flags: { abs: boolean; tcs: boolean; esc: boolean }) {
+  const parts = [flags.abs ? "abs" : "", flags.tcs ? "tcs" : "", flags.esc ? "esc" : ""].filter(Boolean);
+  return parts.join("+") || "none";
+}
+
+export function rulesetKey(
+  trackId: string,
+  rules: { mode: string; weather: string; carId: string; handling: string; assists: string; laps: number },
+) {
+  return [trackId, rules.mode, rules.weather, rules.carId, rules.handling, rules.assists, String(rules.laps)].join("|");
+}
+
 export function getBest(id: TrackId) {
   return load().best[id] ?? null;
 }
 
-export function recordBest(id: TrackId, time: number, opts?: { eligible?: boolean; carId?: CarId }) {
+export function getRulesBest(
+  id: TrackId,
+  rules: { mode: string; weather: string; carId: string; handling: string; assists: string; laps: number },
+) {
+  return load().rules?.[rulesetKey(id, rules)] ?? null;
+}
+
+export function recordBest(
+  id: TrackId,
+  time: number,
+  opts?: {
+    eligible?: boolean;
+    carId?: CarId;
+    rules?: { mode: string; weather: string; carId: string; handling: string; assists: string; laps: number };
+  },
+) {
   if (opts?.eligible === false) return false;
   if (!Number.isFinite(time) || time < 8 || time > 2700) return false;
   const data = load();
+  const carId = opts?.carId ?? "sabra";
+  if (opts?.rules) {
+    const key = rulesetKey(id, { ...opts.rules, carId: opts.rules.carId || carId });
+    const prev = data.rules?.[key];
+    const better = prev == null || time < prev;
+    if (better) {
+      data.rules = { ...(data.rules ?? {}), [key]: time };
+      write(data);
+    }
+    void persistTimed({
+      t: time,
+      trackId: id,
+      carId,
+      physicsVersion: PHYSICS_VERSION,
+      hash: hashTimedRecord({ t: time, trackId: id, carId, physicsVersion: PHYSICS_VERSION }),
+    });
+    return better;
+  }
   const prev = data.best[id];
   const better = prev == null || time < prev;
   if (better) {
     data.best[id] = time;
     write(data);
   }
-  const carId = opts?.carId ?? "sabra";
   void persistTimed({
     t: time,
     trackId: id,
@@ -322,6 +366,41 @@ export function setFovSave(fov: number) {
   write(data);
 }
 
+export function getGrid() {
+  const n = load().grid ?? 6;
+  return n >= 7 ? 8 : n >= 5 ? 6 : 4;
+}
+
+export function setGridSave(grid: number) {
+  const data = load();
+  data.grid = grid >= 7 ? 8 : grid >= 5 ? 6 : 4;
+  write(data);
+}
+
+export function getVolume() {
+  const v = load().volume;
+  return v === undefined ? 0.55 : Math.max(0, Math.min(1, v));
+}
+
+export function setVolumeSave(volume: number) {
+  const data = load();
+  data.volume = Math.max(0, Math.min(1, volume));
+  write(data);
+}
+
+export type TrafficDensity = "off" | "low" | "normal" | "dense";
+
+export function getTraffic(): TrafficDensity {
+  const t = load().traffic;
+  return t === "off" || t === "low" || t === "dense" ? t : "normal";
+}
+
+export function setTrafficSave(traffic: TrafficDensity) {
+  const data = load();
+  data.traffic = traffic;
+  write(data);
+}
+
 export function eventStars(id: string) {
   return load().career.stars[id] ?? 0;
 }
@@ -330,10 +409,26 @@ export function allEventStars() {
   return load().career.stars;
 }
 
+export function markChampion() {
+  const data = load();
+  if (data.champion) return false;
+  data.champion = true;
+  data.cash = Math.max(0, Math.round(data.cash + 5000));
+  write(data);
+  return true;
+}
+
 export function totalStars() {
   const s = load().career.stars;
   let n = 0;
   for (const v of Object.values(s)) n += v ?? 0;
+  return n;
+}
+
+export function v1Stars() {
+  const s = load().career.stars;
+  let n = 0;
+  for (const ev of activeCareer()) n += s[ev.id] ?? 0;
   return n;
 }
 
@@ -349,7 +444,7 @@ export function recordEventStars(id: string, stars: number) {
 }
 
 export function isCarUnlocked(id: CarId) {
-  return totalStars() >= (CAR_UNLOCK[id] ?? 0);
+  return v1Stars() >= (CAR_UNLOCK[id] ?? 0);
 }
 
 export function getCash() {

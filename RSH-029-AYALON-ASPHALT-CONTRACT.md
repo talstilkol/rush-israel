@@ -36,7 +36,7 @@ tokens. Signs stay the live gantry, station and speed-90 recipes.
 | Arrow gantries | `7` latitudes × `2` longitudes, `8` arrows each |
 | Interchange gantries | `6` |
 | Station gantries | `5` |
-| Interchange speed sign | `speed90` |
+| Interchange speed sign | `speed120` |
 | GIS / navigation claim | forbidden |
 | Owner freeze | forbidden |
 

@@ -43,6 +43,10 @@ export function evaluateLock(report: LockReport = {}) {
   };
 }
 
+export function prefersReducedMotion() {
+  return typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export function canonicalDigest(): string {
   return [
     "a11y_complete=true",

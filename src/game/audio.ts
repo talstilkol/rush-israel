@@ -93,6 +93,7 @@ export class GameAudio {
   private driftGain: GainNode | null = null;
   private driftSrc: AudioBufferSourceNode | null = null;
   private musicGain: GainNode | null = null;
+  private masterLevel = 0.55;
   private muted = false;
   private started = false;
   private sirenOsc: OscillatorNode | null = null;
@@ -146,7 +147,7 @@ export class GameAudio {
     this.sfx = ctx.createGain();
     this.engineGain = ctx.createGain();
     this.driftGain = ctx.createGain();
-    this.master.gain.value = 0.55;
+    this.master.gain.value = this.muted ? 0 : this.masterLevel;
     this.sfx.gain.value = 0.7;
     this.engineGain.gain.value = 0;
     this.driftGain.gain.value = 0;
@@ -230,9 +231,14 @@ export class GameAudio {
     return this.noise ?? this.makeNoise();
   }
 
+  setLevel(v: number) {
+    this.masterLevel = Math.max(0, Math.min(1, v));
+    if (this.master && this.ctx && !this.muted) this.master.gain.setTargetAtTime(this.masterLevel, this.ctx.currentTime, 0.04);
+  }
+
   setMuted(m: boolean) {
     this.muted = m;
-    if (this.master) this.master.gain.setTargetAtTime(m ? 0 : 0.55, this.ctx!.currentTime, 0.04);
+    if (this.master && this.ctx) this.master.gain.setTargetAtTime(m ? 0 : this.masterLevel, this.ctx.currentTime, 0.04);
   }
 
   isMuted() {

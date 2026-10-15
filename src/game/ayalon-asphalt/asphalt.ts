@@ -74,8 +74,8 @@ export const AYALON_STATION_GANTRY_IDS = [
   "stn-uni",
 ] as const;
 export const AYALON_DEST_RAIL = "dest-rail" as const;
-export const AYALON_HIGHWAY_SIGN_KINDS = ["speed90", "speed80", "none"] as const;
-export const AYALON_INTERCHANGE_SPEED_SIGN = "speed90" as const;
+export const AYALON_HIGHWAY_SIGN_KINDS = ["speed120", "none"] as const;
+export const AYALON_INTERCHANGE_SPEED_SIGN = "speed120" as const;
 export const AYALON_GANTRY_PLANE_WIDTH = 18;
 export const AYALON_GANTRY_PLANE_HEIGHT = 4.2;
 export const AYALON_GANTRY_Y = 13.8;

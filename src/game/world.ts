@@ -3,7 +3,7 @@ import { Lensflare, LensflareElement } from "three/examples/jsm/objects/Lensflar
 import { Reflector } from "three/examples/jsm/objects/Reflector.js";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 import { mulberry32, lerp, clamp, hash01 } from "./math";
-import { nearestIndex } from "./spline";
+import { nearestIndex, roadEdgeBarriers } from "./spline";
 import type { BuiltTrack } from "./spline";
 import type { Collider, Ramp, SkyPreset, TrackDef, Weather } from "./types";
 import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, her, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, ram, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
@@ -491,6 +491,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       getSign("speed50"),
       getSign("speed80"),
       getSign("speed90"),
+      getSign("speed120"),
       getWaterNormal(),
       getChecker(),
       getFlare0(),
@@ -629,14 +630,19 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   sunHalo.visible = !isNight;
   sunHalo.frustumCulled = false;
   group.add(sunHalo);
+  const skyTex = (nightNow: boolean) => (nightNow ? getSkyNight() : getSkyDay()) ?? getSkyDay() ?? getSkyNight() ?? null;
+  const initialSky = skyTex(isNight);
   const skyDomeMat = keep(new THREE.MeshBasicMaterial({
-    color: isNight ? 0x2a4a6c : 0x3c9ee0,
+    map: initialSky,
+    color: initialSky ? 0xffffff : isNight ? 0x2a4a6c : 0x3c9ee0,
     fog: false,
     depthWrite: false,
-    side: THREE.BackSide,
+    side: THREE.FrontSide,
     toneMapped: false
   }));
-  const skyDome = new THREE.Mesh(keep(new THREE.SphereGeometry(8200, 40, 20)), skyDomeMat);
+  const skyGeo = keep(new THREE.SphereGeometry(8200, 48, 24));
+  skyGeo.scale(-1, 1, 1);
+  const skyDome = new THREE.Mesh(skyGeo, skyDomeMat);
   skyDome.frustumCulled = false;
   skyDome.renderOrder = -2000;
   group.add(skyDome);
@@ -1181,9 +1187,9 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const skipSigns = def.theme === "desert" || def.theme === "snow" || def.id === "ramon" || def.id === "hermon" || def.id === "masada" || def.id === "deadsea";
     if (!skipSigns) {
     const highway = def.theme === "highway" || def.id === "ayalon" || def.id === "hw1" || def.id === "hw2" || def.id === "hw6";
-    const kinds = highway ? ["speed90", "speed80", "none"] : ["stop", "speed50", "yield"];
+    const kinds = highway ? ["speed120", "none"] : ["stop", "speed50", "yield"];
     const maps: Record<string, THREE.Texture> = {};
-    for (const k of ["stop", "yield", "none", "speed50", "speed80", "speed90"]) maps[k] = keep(tiSignTex(k));
+    for (const k of ["stop", "yield", "none", "speed50", "speed80", "speed90", "speed120"]) maps[k] = keep(tiSignTex(k));
     const poleM = keep(new THREE.MeshStandardMaterial({ color: 0x8a9098, roughness: 0.55, metalness: 0.4 }));
     const poleG = keep(new THREE.CylinderGeometry(0.07, 0.09, 3.2, 6));
     poleG.translate(0, 1.6, 0);
@@ -2419,20 +2425,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   }
   const edgeStep = Math.max(3, Math.floor(built.samples.length / 360));
   const wallD = built.width / 2 + 1.55;
-  for (let i = 0; i < built.samples.length; i += edgeStep) {
-    const s = built.samples[i];
-    colliders.push({
-      x: s.x + s.rx * wallD,
-      z: s.z + s.rz * wallD,
-      r: 0.62,
-      kind: "barrier"
-    });
-    colliders.push({
-      x: s.x - s.rx * wallD,
-      z: s.z - s.rz * wallD,
-      r: 1.05,
-      kind: "barrier"
-    });
+  for (const barrier of roadEdgeBarriers(built, edgeStep, wallD)) {
+    colliders.push(barrier.r > 0.8
+      ? { x: barrier.x, z: barrier.z, r: 1.05, kind: "barrier" }
+      : { x: barrier.x, z: barrier.z, r: 0.62, kind: "barrier" });
   }
   let bHits = 0;
   for (const p of placements) {
@@ -2639,8 +2635,14 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     const morning = n <= 0.5 && clock < 0.38;
     const next = skyAt(def, clock, wx);
     applySky(sky, sun, next);
-    skyDomeMat.map = null;
-    skyDomeMat.color.setHex(n > 0.5 ? 0x2a4a6c : 0x3c9ee0);
+    const tex = (n > 0.5 ? getSkyNight() : getSkyDay()) ?? getSkyDay() ?? getSkyNight() ?? null;
+    if (tex) {
+      skyDomeMat.map = tex;
+      skyDomeMat.color.setHex(0xffffff);
+    } else {
+      skyDomeMat.map = null;
+      skyDomeMat.color.setHex(n > 0.5 ? 0x2a4a6c : 0x3c9ee0);
+    }
     skyDomeMat.needsUpdate = true;
     if (n < 0.58) lightAim.copy(sun);
     else {
@@ -2715,8 +2717,12 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     if (waterMats.length) for (let i = 0; i < waterMats.length; i++) {
       const src = bodies[i];
       const mat = waterMats[i];
-      mat.color.setHex(src.color);
-      if (n > 0.35) mat.color.multiplyScalar(lerp(1, 0.5, n));
+      if (!src) {
+        mat.color.setHex(n > 0.35 ? 0x1a3a48 : 0x2a6a78);
+      } else {
+        mat.color.setHex(src.color);
+        if (n > 0.35) mat.color.multiplyScalar(lerp(1, 0.5, n));
+      }
       mat.envMapIntensity = lerp(1.7, 2.6, n);
       mat.roughness = lerp(0.08, 0.03, n);
       mat.opacity = lerp(0.82, 0.9, n);

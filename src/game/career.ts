@@ -1,5 +1,6 @@
 import type { CarId, RaceMode, RaceResult, TrackId, Weather } from "./types";
-import { todayChallenge } from "./daily";
+import { isV1Track } from "./tracks";
+import { todayChallenge, medalTargets } from "./daily";
 
 /** Codex 69: keep this file until freeze tree-shake. Do not add online features. */
 export const KEEP_CAREER_MODULE = true;
@@ -37,7 +38,7 @@ export const CAREER: CareerEvent[] = [
     chapter: 0,
     chapterHe: "רישיון תל אביב",
     chapterEn: "TLV license",
-    trackId: "hayarkon",
+    trackId: "ayalon",
     mode: "circuit",
     nameHe: "שיעור 1 · הישאר על הכביש",
     nameEn: "Lesson 1 · Stay on the road",
@@ -46,8 +47,8 @@ export const CAREER: CareerEvent[] = [
     gold: 1,
     silver: 2,
     bronze: 3,
-    lineHe: "נועם: שלוש הקפות. בלי לרדת לחול.",
-    lineEn: "Noam: Three laps. Stay off the sand.",
+    lineHe: "נועם: ירידה אחת באיילון. תישאר על האספלט.",
+    lineEn: "Noam: One run down Ayalon. Stay on the asphalt.",
   },
   {
     id: "lic-brake",
@@ -60,9 +61,9 @@ export const CAREER: CareerEvent[] = [
     nameEn: "Lesson 2 · Port braking",
     night: false,
     unlockStars: 1,
-    gold: 88,
-    silver: 108,
-    bronze: 132,
+    gold: 128,
+    silver: 146,
+    bronze: 168,
     lineHe: "מאיה: בלום לפני הפנייה. לא בתוכה.",
     lineEn: "Maya: Brake before the corner. Not in it.",
   },
@@ -111,9 +112,9 @@ export const CAREER: CareerEvent[] = [
     nameEn: "Lesson 5 · Wet Ayalon",
     night: true,
     unlockStars: 8,
-    gold: 82,
-    silver: 102,
-    bronze: 126,
+    gold: 94,
+    silver: 110,
+    bronze: 128,
     weather: "rain",
     lineHe: "מאיה: שלוליות בצד. תישאר במרכז.",
     lineEn: "Maya: Puddles on the edge. Stay center.",
@@ -180,9 +181,9 @@ export const CAREER: CareerEvent[] = [
     nameEn: "Port time attack",
     night: true,
     unlockStars: 2,
-    gold: 85,
-    silver: 105,
-    bronze: 130,
+    gold: 130,
+    silver: 148,
+    bronze: 172,
     weather: "rain",
   },
   {
@@ -551,8 +552,8 @@ export const CAREER: CareerEvent[] = [
     nameEn: "Ayalon attack",
     night: true,
     unlockStars: 4,
-    gold: 82,
-    silver: 102,
+    gold: 93,
+    silver: 108,
     bronze: 128,
   },
   {
@@ -696,9 +697,9 @@ export const CAREER: CareerEvent[] = [
     nameEn: "Snow drift",
     night: false,
     unlockStars: 20,
-    gold: 8000,
-    silver: 4800,
-    bronze: 2400,
+    gold: 24000,
+    silver: 15000,
+    bronze: 8000,
     lineHe: "ארי: אחיזה חצי. הזווית תעשה את השאר.",
     lineEn: "Ari: Half grip. The angle does the rest.",
   },
@@ -1085,7 +1086,7 @@ export const CAREER: CareerEvent[] = [
 
 export function dailyEvent(d = new Date()): CareerEvent {
   const ch = todayChallenge(d);
-  const timeGold = 85;
+  const medals = medalTargets(ch.trackId, ch.mode, ch.weather);
   return {
     id: `daily-${ch.key}`,
     chapter: 0,
@@ -1097,17 +1098,24 @@ export function dailyEvent(d = new Date()): CareerEvent {
     nameEn: "Daily challenge",
     night: ch.night,
     unlockStars: 0,
-    gold: ch.mode === "time" ? timeGold : ch.mode === "drift" ? 7000 : ch.mode === "heat" ? timeGold + 20 : 1,
-    silver: ch.mode === "time" ? timeGold + 22 : ch.mode === "drift" ? 4200 : ch.mode === "heat" ? timeGold + 50 : 2,
-    bronze: ch.mode === "time" ? timeGold + 48 : ch.mode === "drift" ? 2200 : ch.mode === "heat" ? timeGold + 90 : 3,
+    gold: medals.gold,
+    silver: medals.silver,
+    bronze: medals.bronze,
     weather: ch.weather,
   };
+}
+
+export function activeCareer() {
+  return CAREER.filter((ev) => isV1Track(ev.trackId)).map((ev, i) => ({
+    ...ev,
+    unlockStars: Math.min(ev.unlockStars, i * 2),
+  }));
 }
 
 export function getEvent(id: string) {
   if (id.startsWith("daily-")) return dailyEvent();
   if (id.startsWith("weekly-")) return weeklyEvent();
-  return CAREER.find((e) => e.id === id) ?? null;
+  return activeCareer().find((e) => e.id === id) ?? null;
 }
 
 export function weeklyKey(d = new Date()) {
@@ -1122,20 +1130,22 @@ export function weeklyKey(d = new Date()) {
 export function weeklyEvent(d = new Date()): CareerEvent {
   const key = weeklyKey(d);
   const ch = todayChallenge(new Date(d.getFullYear(), d.getMonth(), d.getDate() + 3));
+  const mode = ch.mode === "heat" ? "circuit" : ch.mode;
+  const medals = medalTargets(ch.trackId, mode, ch.weather);
   return {
     id: `weekly-${key}`,
     chapter: 0,
     chapterHe: "אליפות השבוע",
     chapterEn: "Weekly cup",
     trackId: ch.trackId,
-    mode: ch.mode === "heat" ? "circuit" : ch.mode,
+    mode,
     nameHe: "אליפות השבוע",
     nameEn: "Weekly cup",
     night: true,
     unlockStars: 0,
-    gold: ch.mode === "time" ? 78 : ch.mode === "drift" ? 8000 : 1,
-    silver: ch.mode === "time" ? 98 : ch.mode === "drift" ? 4800 : 2,
-    bronze: ch.mode === "time" ? 122 : ch.mode === "drift" ? 2400 : 3,
+    gold: medals.gold,
+    silver: medals.silver,
+    bronze: medals.bronze,
     weather: ch.weather,
   };
 }
@@ -1167,15 +1177,25 @@ export function starsFor(ev: CareerEvent, r: RaceResult): number {
 }
 
 export function maxStars() {
-  return CAREER.length * 3;
+  return activeCareer().length * 3;
 }
 
 export function chapters() {
   const map = new Map<number, { he: string; en: string; events: CareerEvent[] }>();
-  for (const ev of CAREER) {
+  for (const ev of activeCareer()) {
     const cur = map.get(ev.chapter) ?? { he: ev.chapterHe, en: ev.chapterEn, events: [] };
     cur.events.push(ev);
     map.set(ev.chapter, cur);
   }
   return [...map.entries()].sort((a, b) => a[0] - b[0]).map(([, v]) => v);
+}
+
+export function nextCareerId(current: string, stars: number) {
+  const list = activeCareer();
+  const i = list.findIndex((e) => e.id === current);
+  if (i < 0) return null;
+  for (let k = i + 1; k < list.length; k++) {
+    if (stars >= list[k]!.unlockStars) return list[k]!.id;
+  }
+  return null;
 }

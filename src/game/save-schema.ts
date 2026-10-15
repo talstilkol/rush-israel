@@ -24,10 +24,14 @@ export type SaveMigrationCode =
 export type SaveData = {
   version: typeof SAVE_SCHEMA_VERSION;
   best: Partial<Record<TrackId, number>>;
+  rules?: Record<string, number>;
   muted?: boolean;
   night?: boolean;
   quality?: Quality;
   fov?: number;
+  grid?: number;
+  volume?: number;
+  traffic?: "off" | "low" | "normal" | "dense";
   career: { stars: Partial<Record<string, number>> };
   cash: number;
   tunes: Partial<Record<CarId, Tune>>;
@@ -37,6 +41,7 @@ export type SaveData = {
   handling?: HandlingMode;
   assists?: AssistFlags;
   lang?: Lang;
+  champion?: boolean;
 };
 
 export type SaveMigrationResult = {
@@ -186,6 +191,7 @@ function normalizeV3(value: Record<string, unknown>, issues: string[]): SaveData
   const career = isRecord(value.career) ? value.career : {};
   if (value.career !== undefined && !isRecord(value.career)) issue(issues, "career", "reset");
   const best = sanitizeNumberMap(value.best, "best", 8, 2700, issues) as Partial<Record<TrackId, number>>;
+  const rules = sanitizeNumberMap(value.rules, "rules", 8, 2700, issues);
   const stars = sanitizeNumberMap(career.stars, "career.stars", 0, 3, issues, true);
   const tunes: Partial<Record<CarId, Tune>> = {};
   const rawTunes = isRecord(value.tunes) ? value.tunes : {};
@@ -240,10 +246,14 @@ function normalizeV3(value: Record<string, unknown>, issues: string[]): SaveData
   return {
     version: SAVE_SCHEMA_VERSION,
     best,
+    rules,
     muted: optionalBoolean(value, "muted", issues),
     night: optionalBoolean(value, "night", issues),
     quality,
     fov: value.fov === undefined ? undefined : boundedNumber(value.fov, 0, 0, 12, "fov", issues),
+    grid: value.grid === undefined ? undefined : boundedNumber(value.grid, 6, 4, 8, "grid", issues),
+    volume: value.volume === undefined ? undefined : boundedNumber(value.volume, 0.55, 0, 1, "volume", issues),
+    traffic: value.traffic === "off" || value.traffic === "low" || value.traffic === "normal" || value.traffic === "dense" ? value.traffic : undefined,
     career: { stars },
     cash: boundedNumber(value.cash, 500, 0, Number.MAX_SAFE_INTEGER, "cash", issues, true),
     tunes,
@@ -253,6 +263,7 @@ function normalizeV3(value: Record<string, unknown>, issues: string[]): SaveData
     handling,
     assists,
     lang,
+    champion: optionalBoolean(value, "champion", issues),
   };
 }
 
@@ -304,6 +315,7 @@ export function emptySave(): SaveData {
   return {
     version: SAVE_SCHEMA_VERSION,
     best: {},
+    rules: {},
     career: { stars: {} },
     cash: 500,
     tunes: {},

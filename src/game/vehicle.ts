@@ -106,6 +106,7 @@ export class ArcadeCar {
   aiOffset = 0;
   weatherGrip = 1;
   damage = 0;
+  wallDmgT = 0;
   drafting = false;
   roll = 0;
   surfaceGrip = 1;
@@ -135,6 +136,7 @@ export class ArcadeCar {
   stats: CarDef;
   name: string;
   private nitroHeld = false;
+  private holdSteer = 0;
 
   constructor(stats: CarDef, name: string) {
     this.stats = stats;
@@ -153,8 +155,8 @@ export class ArcadeCar {
     this.speed = 0;
     this.progress = t;
     this.sampleIndex = Math.floor(t * track.samples.length) % track.samples.length;
-    this.nextCheckpoint = 1;
-    this.lastCheckpoint = 0;
+    this.nextCheckpoint = track.closed ? 1 : 0;
+    this.lastCheckpoint = track.closed ? 0 : -1;
     this.lap = 0;
     this.boostT = 0;
     this.driftCharge = 0;
@@ -166,7 +168,8 @@ export class ArcadeCar {
     this.rpm = 0;
     this.yawRate = 0;
     this.impact = 0;
-    this.damage = 0;
+    if (this.isAi) this.damage = 0;
+    this.wallDmgT = 0;
     this.dirt = 0;
     this.finished = false;
     this.eliminated = false;
@@ -181,6 +184,7 @@ export class ArcadeCar {
     this.impact = 0;
     this.lastHit = "";
     this.nitroPulse = false;
+    this.wallDmgT = Math.max(0, this.wallDmgT - dt);
     if (this.finished || this.eliminated) {
       this.speed *= Math.exp(-2.2 * dt);
       this.integrateMotion(dt, track, 0, colliders, streets, ramps);
@@ -336,6 +340,7 @@ export class ArcadeCar {
     if (wantDrift) grip = Math.min(grip, 0.22 + (1 - front) * 0.12);
 
     this.stepWheels(dt, input.steer, grip, speedAbs, fx, fz, rx, rz, racing, reverse, wantDrift, front, mass);
+    this.holdSteer = wantDrift ? 1 : input.steer;
 
     this.integrateMotion(dt, track, grip, colliders, streets, ramps);
 
@@ -346,7 +351,7 @@ export class ArcadeCar {
       this.driftAngle = Math.asin(clamp(this.slip, 0, 1)) * 57.3;
       if (!this.isAi) {
         const a = this.driftAngle;
-        const zone = a < 12 ? 0.38 : a > 52 ? 0.55 : a > 18 && a < 42 ? 1.42 : 1;
+        const zone = a < 12 ? 0 : a > 52 ? 0.55 : a > 18 && a < 42 ? 1.42 : 1;
         this.driftScore += speedAbs * (0.55 + this.driftCharge) * dt * 14 * zone * this.comboMul;
       }
     } else {
@@ -363,6 +368,14 @@ export class ArcadeCar {
 
     if (!this.onTrack) this.offTrackT += dt;
     else this.offTrackT = 0;
+    if (this.isAi && !this.isTraffic && !this.isCop && racing && (Math.abs(this.speed) < 6 || this.offTrackT > 0.45)) {
+      const aheadT = track.closed ? (this.progress + 0.02) % 1 : Math.min(0.995, this.progress + 0.02);
+      const ahead = sampleAtT(track.samples, aheadT);
+      const want = Math.atan2(-(ahead.x - this.x), -(ahead.z - this.z));
+      const err = wrapPi(want - this.yaw);
+      this.yaw = wrapPi(this.yaw + clamp(err, -1, 1) * 3.2 * dt);
+      if (this.speed < 4) this.speed += 8 * dt;
+    }
     if (!this.isTraffic && !this.isCop) {
       if (!this.onTrack || this.surfaceKind === "sand") this.dirt += dt * 0.075;
       else if (this.surfaceKind === "curb") this.dirt += dt * 0.028;
@@ -370,7 +383,7 @@ export class ArcadeCar {
       if (this.weatherGrip < 0.95 && this.onTrack) this.dirt -= dt * 0.11;
       this.dirt = clamp(this.dirt, 0, 1);
     }
-    if (this.offTrackT > 3.2) this.respawn(track);
+    if (!(this.isAi && !this.isTraffic && !this.isCop) && this.offTrackT > 3.2) this.respawn(track);
   }
 
   private stepWheels(
@@ -391,7 +404,8 @@ export class ArcadeCar {
     const wb = 2.55;
     const ht = 0.76;
     const iz = mass * 2.85;
-    const maxSteer = 0.5 * (1 - 0.4 * clamp(speedAbs / 36, 0, 1));
+    const steerMul = clamp((this.stats.turnRate || 1.85) / 1.85, 0.7, 1.45);
+    const maxSteer = 0.5 * steerMul * (1 - 0.4 * clamp(speedAbs / 36, 0, 1));
     const steer = (racing ? steerIn : 0) * maxSteer * reverse;
     const longs = [wb * 0.5, wb * 0.5, -wb * 0.5, -wb * 0.5];
     const lats = [-ht, ht, -ht, ht];
@@ -417,16 +431,19 @@ export class ArcadeCar {
     const speedFactor = clamp(speedAbs / 7.5, 0, 1) * (1 - 0.4 * clamp(speedAbs / 38, 0, 1));
     const crawl = 1 - clamp((speedAbs - 4) / 6, 0, 1);
     this.kinMix = crawl;
-    const kin = steerIn * 1.7 * clamp(speedAbs / 6.5, 0, 1) * reverse * (wantDrift ? 1.28 : 1) * (0.92 + front * 0.16);
+    const kin = steerIn * 1.7 * steerMul * clamp(speedAbs / 6.5, 0, 1) * reverse * (wantDrift ? 1.28 : 1) * (0.92 + front * 0.16);
     const tire = (yawT / iz) * 80;
     // Below ~10 m/s Pacejka is too weak to turn; crawl keeps kinematic yaw.
-    // At speed, yaw is tire + ESC only — not a 34% blend.
-    this.yawRate = kin * crawl + tire;
+    // At speed the tire term saturates and flips, so the wheel has to keep a share.
+    const kinYaw = kin * Math.max(crawl, 0.85);
+    const tireYaw = clamp(tire, -1.1, 1.1);
+    this.yawRate = clamp(kinYaw + tireYaw * 0.35, -2.4, 2.4);
     const latNow = this.vx * rx + this.vz * rz;
     const slipAng = Math.atan2(latNow, Math.max(2.4, speedAbs));
     const esc = escYaw(slipAng, this.yawRate, this.assists.esc && racing, wantDrift);
     this.escActive = esc.active;
     this.yawRate += esc.yaw * 1.55 * speedFactor;
+    this.yawRate = clamp(this.yawRate, -3.2, 3.2);
     this.yaw = wrapPi(this.yaw + this.yawRate * dt);
     this.vx = fx * this.speed + rx * latNow;
     this.vz = fz * this.speed + rz * latNow;
@@ -518,6 +535,24 @@ export class ArcadeCar {
     this.onTrack = onMain || onAlley || onRamp || (this.roam && dist < half * 2.6);
     this.sideStreet = onRamp ? rp.r.he : onAlley && !onMain ? alley!.street.he : "";
     this.sideStreetEn = onRamp ? rp.r.en : onAlley && !onMain ? alley!.street.en : "";
+    if (this.onTrack && !this.drifting && speedAbs > 6) {
+      const latSigned = (this.x - s.x) * s.rx + (this.z - s.z) * s.rz;
+      const wide = Math.abs(latSigned) > track.width * 0.28;
+      if (Math.abs(this.holdSteer) < 0.15 || wide) {
+        const road = Math.atan2(-s.tx, -s.tz);
+        const aim = wrapPi(road - Math.sign(latSigned || 1) * clamp(Math.abs(latSigned) / half, 0, 1) * 0.28);
+        const err = wrapPi(aim - this.yaw);
+        this.yaw = wrapPi(this.yaw + clamp(err, -1.4, 1.4) * dt * (wide ? 8 : 2.4));
+        const nfx = -Math.sin(this.yaw);
+        const nfz = -Math.cos(this.yaw);
+        const nrx = Math.cos(this.yaw);
+        const nrz = -Math.sin(this.yaw);
+        const latNow = this.vx * nrx + this.vz * nrz;
+        const keep = wide ? 0.985 : 1;
+        this.vx = nfx * this.speed + nrx * latNow * keep;
+        this.vz = nfz * this.speed + nrz * latNow * keep;
+      }
+    }
     if (!this.onTrack) {
       this.surfaceKind = "sand";
       this.surfaceGrip = this.baseGrip * 0.54;
@@ -562,7 +597,10 @@ export class ArcadeCar {
           if (out > 8) {
             this.speed *= 0.9;
             this.impact = Math.max(this.impact, Math.min(0.35, out / 36));
-            this.damage = clamp(this.damage + out * 0.004, 0, 1);
+            if (this.wallDmgT <= 0) {
+              this.damage = clamp(this.damage + Math.min(0.05, out * 0.0016), 0, 1);
+              this.wallDmgT = 0.55;
+            }
           }
         }
       }
@@ -634,10 +672,16 @@ export class ArcadeCar {
         if (kind === "building") {
           this.vx -= nx * into;
           this.vz -= nz * into;
-          this.speed *= hit > 10 ? 0.02 : hit > 5 ? 0.07 : 0.14;
-          this.yaw = wrapPi(this.yaw + (nx * fz - nz * fx) * 0.12 * Math.min(1, hit / 9));
-          this.damage = clamp(this.damage + hit * 0.085, 0, 1);
-          if (hit > 2.5) this.impact = Math.max(this.impact, Math.min(1, hit / 7));
+          const fx = -Math.sin(this.yaw);
+          const fz = -Math.cos(this.yaw);
+          this.speed = this.vx * fx + this.vz * fz;
+          const bite = Math.min(hit, 3.5);
+          this.speed *= bite > 2.5 ? 0.72 : 0.88;
+          this.yaw = wrapPi(this.yaw + (nx * fz - nz * fx) * 0.08 * Math.min(1, bite / 6));
+          if (Math.abs(this.speed) > 3.5) {
+            this.damage = clamp(this.damage + Math.min(0.04, bite * 0.01), 0, 1);
+            this.impact = Math.max(this.impact, Math.min(0.65, bite / 8));
+          }
         } else if (kind === "car") {
           this.vx -= nx * into * 0.68;
           this.vz -= nz * into * 0.68;
@@ -650,9 +694,10 @@ export class ArcadeCar {
           this.vz -= nz * into * 1.08;
           this.speed = this.vx * fx + this.vz * fz;
           this.speed *= hit > 12 ? 0.78 : 0.92;
-          if (hit > 9) {
-            this.damage = clamp(this.damage + hit * 0.008, 0, 1);
-            this.impact = Math.max(this.impact, Math.min(0.38, hit / 30));
+          if (-into > 8 && this.wallDmgT <= 0) {
+            this.damage = clamp(this.damage + Math.min(0.05, -into * 0.0016), 0, 1);
+            this.impact = Math.max(this.impact, Math.min(0.38, -into / 40));
+            this.wallDmgT = 0.55;
           }
         }
       }
@@ -663,15 +708,22 @@ export class ArcadeCar {
     if (this.finished || this.isTraffic || this.isCop || this.eliminated) return { lapComplete: false, checkpoint: false };
     const n = forwardDelta(prevProgress, this.progress, track.closed);
     if (n < 0 || n > 0.18) return { lapComplete: false, checkpoint: false };
-    if (!track.closed && this.progress > 0.96 && this.lap < 1) {
-      this.lap += 1;
-      this.lastCheckpoint = track.checkpoints.length - 1;
-      return { lapComplete: true, checkpoint: true };
-    }
     const count = track.checkpoints.length;
     let checkpoint = false;
     let lapComplete = false;
-    const nextT = track.checkpoints[this.nextCheckpoint] ?? 0;
+    const nextT = track.checkpoints[Math.min(this.nextCheckpoint, count - 1)] ?? 0;
+    if (!track.closed) {
+      if (this.nextCheckpoint < count && prevProgress < nextT && this.progress >= nextT) {
+        checkpoint = true;
+        this.lastCheckpoint = this.nextCheckpoint;
+        this.nextCheckpoint += 1;
+        if (this.lastCheckpoint === count - 1) {
+          this.lap += 1;
+          lapComplete = true;
+        }
+      }
+      return { lapComplete, checkpoint };
+    }
     if (this.didCross(prevProgress, this.progress, nextT)) {
       checkpoint = true;
       this.lastCheckpoint = this.nextCheckpoint;
@@ -685,8 +737,8 @@ export class ArcadeCar {
   }
 
   private didCross(prev: number, now: number, gate: number) {
-    if (prev <= now) return prev < gate && now >= gate;
-    return prev < gate || now >= gate;
+    if (prev <= now) return prev < gate && now >= gate && now - prev < 0.25;
+    return gate < 0.15 && prev > 0.85 && now < 0.2;
   }
 
   respawn(track: BuiltTrack) {
@@ -765,7 +817,8 @@ export class ArcadeCar {
   }
 
   raceScore() {
-    return this.lap * 1000 + this.lastCheckpoint * 10 + this.progress;
+    const along = this.lap === 0 && this.progress > 0.5 ? this.progress - 1 : this.progress;
+    return this.lap * 1000 + Math.max(0, this.lastCheckpoint) * 10 + along;
   }
 }
 
@@ -783,27 +836,67 @@ export const SURFACE_GRIP: Record<string, number> = {
 };
 
 export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): InputState {
-  const look = 0.045 + clamp(car.speed / 80, 0, 0.04);
+  const lookM = 24 + clamp(car.speed, 0, 32) * 0.55;
+  const look = Math.min(0.06, lookM / Math.max(200, track.length));
   const t = track.closed ? (car.progress + look) % 1 : Math.min(0.995, car.progress + look);
   const a = sampleAtT(track.samples, t);
   const tx = a.x + a.rx * car.aiOffset;
   const tz = a.z + a.rz * car.aiOffset;
   const err = wrapPi(Math.atan2(-(tx - car.x), -(tz - car.z)) - car.yaw);
+  const here = sampleAtT(track.samples, car.progress);
+  const lat = (car.x - here.x) * here.rx + (car.z - here.z) * here.rz;
+  const offLine = Math.abs(lat - car.aiOffset) > track.width * 0.42 || car.offTrackT > 0.35;
+  if (offLine) {
+    const slow = car.speed < 8;
+    const fast = car.speed > 18;
+    const cap = slow ? 0.5 : fast ? 0.45 : 0.8;
+    return {
+      steer: clamp(err * (slow ? 1.1 : 1.4), -cap, cap),
+      throttle: slow ? 1 : fast ? 0.2 : 0.55,
+      brake: fast ? 0.55 : 0,
+      drift: false,
+      nitro: false,
+    };
+  }
   const steer = clamp(err * 1.6, -1, 1);
   const abs = Math.abs(err);
-  const ahead = sampleAtT(track.samples, track.closed ? (car.progress + 0.09) % 1 : Math.min(0.995, car.progress + 0.09));
+  if (abs > 0.55) {
+    let holdThrottle = 0.85;
+    let holdBrake = 0;
+    const scoreGap = player ? player.raceScore() - car.raceScore() : 0;
+    if (player && HANDLING[car.handling].rubberBand && player.speed > 12 && car.speed > player.speed + 0.4 && scoreGap <= 0.012 && scoreGap > -0.04) {
+      holdThrottle = 0.25;
+      holdBrake = 0.85;
+    }
+    return {
+      steer: clamp(err * 2.4, -1, 1),
+      throttle: holdThrottle,
+      brake: holdBrake,
+      drift: false,
+      nitro: false,
+    };
+  }
+  const bendLook = Math.min(0.08, 55 / Math.max(200, track.length));
+  const ahead = sampleAtT(track.samples, track.closed ? (car.progress + bendLook) % 1 : Math.min(0.995, car.progress + bendLook));
   const bend = Math.abs(wrapPi(Math.atan2(-ahead.tx, -ahead.tz) - car.yaw));
   let throttle = abs > 0.55 ? 0.35 : 1;
   if (player && HANDLING[car.handling].rubberBand) {
     const gap = player.raceScore() - car.raceScore();
-    const target = 1 + clamp(gap * 0.004, -0.12, 0.08);
+    const target = 1 + clamp(gap * 2.5, -0.45, 0.15);
     throttle *= car.aiSkill * target;
   } else {
     throttle *= car.aiSkill;
   }
-  if (bend > 0.42) throttle *= 0.5;
-  if (bend > 0.75) throttle *= 0.55;
-  const brake = (abs > 0.85 && car.speed > 22) || bend > 0.82 ? 0.48 : 0;
+  if (bend > 0.42 && car.speed > 14) throttle *= 0.72;
+  if (bend > 0.75 && car.speed > 18) throttle *= 0.7;
+  let brake = car.speed > 20 && bend > 0.9 ? 0.35 : 0;
+  if (player && HANDLING[car.handling].rubberBand && player.speed > 12 && car.speed > player.speed + 0.4) {
+    const scoreGap = player.raceScore() - car.raceScore();
+    if (scoreGap <= 0.012 && scoreGap > -0.04) {
+      throttle = Math.min(throttle, 0.25);
+      brake = Math.max(brake, 0.85);
+    }
+  }
   const drift = abs > 0.5 && car.speed > 16;
   const nitro = car.nitro > 0.4 && abs < 0.22 && car.speed > 16;
   return {
@@ -848,7 +941,7 @@ export function copInput(car: ArcadeCar, track: BuiltTrack, target: ArcadeCar, h
   const fwd = -Math.sin(car.yaw);
   const lat = dx * side + dz * fwd;
   if (dist < 14 && heat > 0.35) steer = clamp(steer + Math.sign(lat) * 0.28, -1, 1);
-  const throttle = dist > 7 ? 1 : 0.4;
+  const throttle = dist > 20 ? 1 : dist > 13 ? 0.7 : 0.28;
   const brake = Math.abs(err) > 1.05 && car.speed > 20 ? 0.42 : 0;
   const drift = Math.abs(err) > 0.62 && car.speed > 15;
   const nitro = dist > 20 && car.nitro > 0.08;
@@ -887,6 +980,7 @@ export function separateCars(cars: ArcadeCar[]): number {
     for (let j = i + 1; j < n; j++) {
       const a = cars[i];
       const b = cars[j];
+      if (Math.abs(a.y - b.y) > 4) continue;
       const dx = a.x - b.x;
       const dz = a.z - b.z;
       const d = Math.hypot(dx, dz);
@@ -902,7 +996,7 @@ export function separateCars(cars: ArcadeCar[]): number {
       b.x -= nx * push * (ma / m);
       b.z -= nz * push * (ma / m);
       const rel = (a.vx - b.vx) * nx + (a.vz - b.vz) * nz;
-      if (rel >= 0) continue;
+      if (rel >= -3) continue;
       const imp = (-1.42 * rel) / (1 / ma + 1 / mb);
       a.vx += (imp / ma) * nx;
       a.vz += (imp / ma) * nz;
@@ -918,8 +1012,9 @@ export function separateCars(cars: ArcadeCar[]): number {
       const loss = clamp(closing / 34, 0.04, 0.32);
       a.speed *= 1 - loss * (mb / m) * 0.45;
       b.speed *= 1 - loss * (ma / m) * 0.45;
-      a.damage = clamp(a.damage + closing * 0.014 * (mb / m), 0, 1);
-      b.damage = clamp(b.damage + closing * 0.014 * (ma / m), 0, 1);
+      const bump = closing > 6 ? closing * 0.006 : 0;
+      a.damage = clamp(a.damage + bump * (mb / m), 0, 1);
+      b.damage = clamp(b.damage + bump * (ma / m), 0, 1);
       if (!a.isAi || !b.isAi) {
         peak = Math.max(peak, closing);
         const hit = Math.min(0.55, closing / 22);

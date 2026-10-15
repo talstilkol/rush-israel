@@ -167,7 +167,7 @@ test("the RSH-021 schema remains exact beneath the accepted RSH-022 recovery ove
   assert.equal(result.currentVersion, 3);
   assert.equal(result.migrationCount, 3);
   const manifest = JSON.parse(readFileSync(fromRoot("SAVE-SCHEMA-MANIFEST.json"), "utf8"));
-  assert.equal(manifest.identities.schema_source_sha256, "59fad6a40fcfb372222e211394e02c1fe1d7993fc0695a58e8a3289e832a7358");
+  assert.equal(manifest.identities.schema_source_sha256, "bea485c25f9c32b1926c05c9f551fe252054ea4ad815da3302d71e23946a59f5");
   assert.equal(manifest.identities.save_facade_source_sha256, "700d264ef071be635d76d8b02da5eda3b7c966bdf3a4756ac1bdeb7e83f56b24");
   assert.equal(manifest.recovery.backups_created, true);
   assert.equal(manifest.recovery.backup_restore, true);

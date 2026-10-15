@@ -35,9 +35,9 @@
     },
     "shared": {
       "path": "src/game/world-builders/shared.ts",
-      "sha256": "f0c50f4deb850d9e2d13ccdf404a88f5102fd1335c3a02f2b5ecd45d01984ba2",
-      "lines": 986,
-      "bytes": 35625
+      "sha256": "df1236464ade9f5040f7a7c240560a340fcaf4011c2ec73afec74f63fab98c54",
+      "lines": 998,
+      "bytes": 36067
     },
     "registry": {
       "path": "src/game/world-builders/index.ts",
@@ -2008,10 +2008,10 @@
       "final_begin": "/* RSH-016:BEGIN-LEGACY-FINAL */",
       "final_end": "/* RSH-016:END-LEGACY-FINAL */"
     },
-    "expected_lines": 9006,
-    "expected_bytes": 352625,
-    "expected_sha256": "64d3aed2e9d4a6dca0fcdbd7d27bb924783afc441549d76cb4079f399b11b107",
-    "expected_git_blob_sha1": "a6586b78725573f97ef9d938f592ab545aba793d"
+    "expected_lines": 9018,
+    "expected_bytes": 353067,
+    "expected_sha256": "ed424d149ca472e443eddb8cda41edf7871cbaf73b5cc5a966d72ffe8cdd82e8",
+    "expected_git_blob_sha1": "12fb5ae07a843f0585648a31efacf8429215ff19"
   },
   "track_preservation": {
     "track_count": 56,
