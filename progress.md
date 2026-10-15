@@ -41,3 +41,7 @@ Not done: a 30-minute soak, devices, the architecture locks, Alpha through relea
 - Production menu-to-driving keyboard smoke passed without exposed QA hooks; no-cache headers verified. Visual inspection found Ayalon structures/planes obstructing the view; MP-006/022/030 remain open.
 - Final-runtime 1800s soak is running on isolated tree 35e56ceab2770a0abafd6faf6f28aabbf1d42850456c79b6ecd58dda46c8ce65. Running is not passed.
 - Vite generated cache is excluded from source lint, like other generated output; this does not suppress application-source diagnostics.
+
+- Committed and pushed eb4516712099e2bf320ee3d4507395355db28245; draft PR 84 targets main, no merge. Hosted run 38807141774 current-source unit/build/security and historical jobs passed; browser/soak still running at observation.
+- Earlier r2 snapshot soak genuinely passed: elapsedMs 1800226, 15 completed races, offRoadRatio 0. This predates later source and is not final-head acceptance or physical-device p95.
+- Visual investigation found low interchange ramps/supports intruding on the race road. New clearance filter preserves a 4.5m envelope, shifts side-ramp centers outside the carriageway, omits on-road piers and uses geometric static placement. All 56 worlds pass including real Ayalon ramp/pier clearance checks. New runtime requires fresh exact-head CI; previous soak stays historical.

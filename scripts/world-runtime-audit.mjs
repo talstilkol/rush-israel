@@ -19,7 +19,7 @@ try {
     const dependency = name => imports.find(url => url.split('?')[0].endsWith(`/${name}`)) || `/src/game/${name}`;
     const THREE = await import(dependency('three.js'));
     const { TRACKS } = await import(dependency('tracks.ts'));
-    const { buildTrack } = await import(dependency('spline.ts'));
+    const { buildTrack, closestSample } = await import(dependency('spline.ts'));
     const { createWorld } = await import('/src/game/world.ts');
     const { ArcadeCar } = await import('/src/game/vehicle.ts');
     const { CARS } = await import('/src/game/cars.ts');
@@ -69,6 +69,27 @@ try {
             if (positions?.some(value => !Number.isFinite(value))) nonFiniteGeometries++;
           });
           Object.assign(result, { meshes, colliders: world.colliders.length, nonFiniteGeometries });
+          if (definition.id === 'ayalon') {
+            let crossings = 0;
+            for (const ramp of world.ramps) for (const sample of built.samples) for (const lane of [-0.5, -0.25, 0, 0.25, 0.5]) {
+              const dx = sample.x + sample.rx * built.width * lane - ramp.x;
+              const dz = sample.z + sample.rz * built.width * lane - ramp.z;
+              const along = dx * ramp.sx + dz * ramp.sz;
+              const across = dx * ramp.sz - dz * ramp.sx;
+              if (Math.abs(along) > ramp.len / 2 || Math.abs(across) > ramp.half) continue;
+              crossings++;
+              const underside = ramp.y0 + (along / ramp.len + 0.5) * (ramp.y1 - ramp.y0) - 0.475;
+              if (underside < sample.y + 4.5) throw new Error(`ramp blocks race road: ${ramp.en}`);
+            }
+            let piers = 0;
+            world.group.traverse(object => {
+              if (object.name !== 'ayalon-ramp-pier') return;
+              piers++;
+              if (closestSample(built.samples, object.position.x, object.position.z).dist < built.width / 2 + 1.5) throw new Error('ramp pier occupies race road');
+            });
+            if (!crossings || !piers) throw new Error('interchange clearance check lost its real ramps or piers');
+            Object.assign(result, { rampCrossingSamples: crossings, rampPiers: piers, raceRoadClearance: 'passed' });
+          }
           world.setClock(0.5);
           world.setTime(true);
           world.setWeather('rain');

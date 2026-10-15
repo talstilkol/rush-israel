@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
+import { rampIntrudesOnRaceRoad } from "../race-road-clearance";
 import { tlv } from "../../tracks";
 import { getLaneArrow } from "../../arrow-assets";
 import { getSign, getGantry } from "../../sign-assets";
@@ -47,7 +48,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
     placeShalomMeir(1.15);
     const parkOff = (lat: number, lon: number, extra: number, east: boolean) => {
       const hint = tlv(lat, lon);
-      const n = nearestIndex(built.samples, hint.x, hint.z, 0);
+      const n = closestSample(built.samples, hint.x, hint.z);
       const s = built.samples[n.index];
       const latOff = east ? built.width + 18 + built.width / 2 + extra : -(built.width / 2 + extra);
       return { x: s.x + s.rx * latOff, z: s.z + s.rz * latOff, y: s.y };
@@ -164,7 +165,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
     glowAt(tau.x, 16, tau.z, 0xf2e8d0, 28, 22);
     hit(tau.x, tau.z, 22);
     const hsHint = tlv(32.0735, 34.79605);
-    const hsNear = nearestIndex(built.samples, hsHint.x, hsHint.z, 0);
+    const hsNear = closestSample(built.samples, hsHint.x, hsHint.z);
     const hsS = built.samples[hsNear.index];
     const hsMid = built.width / 2 + 9;
     const hs = { x: hsS.x + hsS.rx * hsMid, z: hsS.z + hsS.rz * hsMid };
@@ -188,7 +189,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
       add(rib);
     }
     const mallHint = tlv(32.1004, 34.7996);
-    const mallNear = nearestIndex(built.samples, mallHint.x, mallHint.z, 0);
+    const mallNear = closestSample(built.samples, mallHint.x, mallHint.z);
     const mallS = built.samples[mallNear.index];
     const mallLat = built.width + 18 + built.width / 2 + 32;
     const mall = { x: mallS.x + mallS.rx * mallLat, z: mallS.z + mallS.rz * mallLat };
@@ -225,6 +226,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
     });
     bag.push(rampAsphalt, conc, greenSign);
     const pushRamp = (x: number, z: number, sx: number, sz: number, len: number, half: number, y0: number, y12: number, he: string, en: string) => {
+      if (rampIntrudesOnRaceRoad(built, { x, z, sx, sz, len, half, y0, y1: y12, he, en })) return;
       ramps.push({
         x,
         z,
@@ -258,9 +260,11 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
         const t = (i + 0.5) / 4 - 0.5;
         const px = x + sx * t * len;
         const pz = z + sz * t * len;
+        if (closestSample(built.samples, px, pz).dist < built.width / 2 + 1.5) continue;
         const py = (y0 + y12) * 0.5 + (y12 - y0) * t;
         const h = Math.max(1.4, py);
         const pier = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.72, h, 8), conc);
+        pier.name = "ayalon-ramp-pier";
         pier.position.set(px, h * 0.5, pz);
         pier.castShadow = true;
         add(pier);
@@ -328,16 +332,16 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
       }
     ]) {
       const hint = tlv(ic.lat, 34.79605);
-      const n0 = nearestIndex(built.samples, hint.x, hint.z, 0);
+      const n0 = closestSample(built.samples, hint.x, hint.z);
       const sm0 = built.samples[n0.index];
       const oppOff = built.width + 18;
       const midOff = oppOff / 2;
       const c = { x: sm0.x + sm0.rx * midOff, z: sm0.z + sm0.rz * midOff };
       const yaw = Math.atan2(sm0.tx, sm0.tz);
-      const westX = sm0.x - sm0.rx * (built.width / 2 + 2.4);
-      const westZ = sm0.z - sm0.rz * (built.width / 2 + 2.4);
-      const eastX = sm0.x + sm0.rx * (oppOff + built.width / 2 + 2.4);
-      const eastZ = sm0.z + sm0.rz * (oppOff + built.width / 2 + 2.4);
+      const westX = sm0.x - sm0.rx * (built.width / 2 + 10.2 + 2.4);
+      const westZ = sm0.z - sm0.rz * (built.width / 2 + 10.2 + 2.4);
+      const eastX = sm0.x + sm0.rx * (oppOff + built.width / 2 + 10.2 + 2.4);
+      const eastZ = sm0.z + sm0.rz * (oppOff + built.width / 2 + 10.2 + 2.4);
       const deckY = 9.4;
       const span = oppOff + built.width + 16;
       const deck = new THREE.Mesh(new THREE.BoxGeometry(span, 1.15, 16), conc);
@@ -356,7 +360,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
         const col = new THREE.Mesh(new THREE.BoxGeometry(1.8, deckY, 1.8), conc);
         col.position.set(px, deckY * 0.5, pz);
         add(col);
-        const colNear = nearestIndex(built.samples, px, pz, 0);
+        const colNear = closestSample(built.samples, px, pz);
         if (colNear.dist > built.width / 2 + 2.5) hitRoad(px, pz, 1.4, 0.95, 0.95);
       }
       for (const lx of [-28, -10, 10, 28]) {
@@ -436,7 +440,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
       { lat: 32.0837, he: "סבידור מרכז", en: "Savidor Center" },
     ]) {
       const p = tlv(ic.lat, 34.795);
-      const near = nearestIndex(built.samples, p.x, p.z, 0);
+      const near = closestSample(built.samples, p.x, p.z);
       const sm = built.samples[near.index];
       const rc = built.width / 2 + 6;
       pushRamp(sm.x + sm.rx * rc, sm.z + sm.rz * rc, sm.tx, sm.tz, 46, 6.4, 0.4, 8.6, ic.he, ic.en);
@@ -503,7 +507,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
       }
     ]) {
       const hint = tlv(st.lat, midLon);
-      const near = nearestIndex(built.samples, hint.x, hint.z, 0);
+      const near = closestSample(built.samples, hint.x, hint.z);
       const s = built.samples[near.index];
       const p = { x: s.x + s.rx * midOff, z: s.z + s.rz * midOff };
       const py = s.y;
@@ -533,7 +537,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
         add(col);
       }
       const hallP = tlv(st.lat, st.kind === "uni" ? 34.7988 : 34.7932);
-      const nearHall = nearestIndex(built.samples, hallP.x, hallP.z, 0);
+      const nearHall = closestSample(built.samples, hallP.x, hallP.z);
       const hallW = st.kind === "savidor" ? 28 : st.kind === "shalom" ? 24 : st.kind === "hagana" ? 18 : 16;
       const hallH = st.kind === "hagana" ? 6.4 : st.kind === "uni" ? 7.2 : 9.2;
       const hallMat = st.kind === "hagana" ? conc : st.kind === "uni" ? terracotta : cream;
@@ -668,7 +672,7 @@ export default function buildAyalon(context: TrackWorldBuilderContext): void {
     for (const lat of [32.055, 32.061, 32.067, 32.0735, 32.083, 32.092, 32.101]) {
       for (const lon of [34.795, 34.7971]) {
       const p = tlv(lat, lon);
-      const near = nearestIndex(built.samples, p.x, p.z, 0);
+      const near = closestSample(built.samples, p.x, p.z);
       const s = built.samples[near.index];
       const hw = built.width / 2 + 1.8;
       for (const side of [-1, 1]) {
