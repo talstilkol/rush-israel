@@ -31,45 +31,47 @@ const report = await p.evaluate(async () => {
   t.skipCountdown();
   const ramps = t.getRamps?.() ?? [];
   const list = ramps.filter((x) => /שלום|HaShalom/i.test(x.he) && Math.abs(x.y1 - x.y0) > 5);
-  const r = list[list.length - 1] ?? list[0];
-  if (!r) return { ok: false, n: ramps.length, samples: [] };
-  const samples = [];
-  for (const k of [0.1, 0.22, 0.34, 0.48]) {
-    const along = (k - 0.5) * r.len;
-    const x = r.x + r.sx * along;
-    const z = r.z + r.sz * along;
-    const expect = r.y0 + (r.y1 - r.y0) * k;
-    samples.push({ k, expect, x, z });
-  }
-  return { ok: true, n: ramps.length, r, samples };
+  const selected = [list.find(r => r.y1 > r.y0), list.find(r => r.y1 < r.y0)];
+  if (selected.some(r => !r)) return { ok: false, n: ramps.length, samples: [] };
+  return { ok: true, n: ramps.length, ramps: selected.map(r => ({
+    r,
+    samples: [0.1, 0.22, 0.34, 0.48].map(k => ({
+      x: r.x + r.sx * (k - 0.5) * r.len,
+      z: r.z + r.sz * (k - 0.5) * r.len,
+    })),
+  })) };
 });
 if (!report.ok) throw new Error("no HaShalom ramp n=" + report.n);
 
-const measured = [];
-for (const s of report.samples) {
-  await p.evaluate(({ x, z, yaw }) => {
-    window.__controlsTest.teleport(x, z, yaw, 0.2);
-    window.__controlsTest.setThrottle(0);
-    window.__controlsTest.setKeys([]);
-    window.__controlsTest.setSteer(0);
-    window.__controlsTest.advanceTime(1000);
-  }, { x: s.x, z: s.z, yaw: Math.atan2(-report.r.sx, -report.r.sz) });
-  // Surface following is a fixed-step physics assertion, not a frame-rate benchmark.
-  const actual = await p.evaluate(() => ({
-    x: window.__controlsTest.getX(), z: window.__controlsTest.getZ(), y: window.__controlsTest.getY(),
-  }));
-  // teleport() deliberately starts the test car at 14 m/s. Compare the ramp
-  // height at its measured position after settling, not its earlier position.
-  const along = (actual.x - report.r.x) * report.r.sx + (actual.z - report.r.z) * report.r.sz;
-  const k = along / report.r.len + 0.5;
-  if (k < 0 || k > 1) throw new Error(`left the measured ramp at k=${k}`);
-  const expect = report.r.y0 + (report.r.y1 - report.r.y0) * k;
-  measured.push({ k, expect, y: actual.y });
-  if (Math.abs(actual.y - expect) > 0.85) {
-    throw new Error(`Y@${k}=${actual.y.toFixed(2)} want ${expect.toFixed(2)} ±0.85`);
+for (const { r, samples } of report.ramps) {
+  const measured = [];
+  for (const s of samples) {
+    await p.evaluate(({ x, z, yaw }) => {
+      window.__controlsTest.teleport(x, z, yaw, 0.2);
+      window.__controlsTest.setThrottle(0);
+      window.__controlsTest.setKeys([]);
+      window.__controlsTest.setSteer(0);
+      window.__controlsTest.advanceTime(1000);
+    }, { x: s.x, z: s.z, yaw: Math.atan2(-r.sx, -r.sz) });
+    // Surface following is a fixed-step physics assertion, not a frame-rate benchmark.
+    const actual = await p.evaluate(() => ({
+      x: window.__controlsTest.getX(), z: window.__controlsTest.getZ(), y: window.__controlsTest.getY(),
+    }));
+    // teleport() deliberately starts the test car at 14 m/s. Compare the ramp
+    // height at its measured position after settling, not its earlier position.
+    const along = (actual.x - r.x) * r.sx + (actual.z - r.z) * r.sz;
+    const k = along / r.len + 0.5;
+    if (k < 0 || k > 1) throw new Error(`left the measured ramp at k=${k}`);
+    const expect = r.y0 + (r.y1 - r.y0) * k;
+    measured.push({ k, expect, y: actual.y });
+    if (Math.abs(actual.y - expect) > 0.85) {
+      throw new Error(`Y@${k}=${actual.y.toFixed(2)} want ${expect.toFixed(2)} ±0.85`);
+    }
   }
+  const delta = measured[measured.length - 1].y - measured[0].y;
+  if (delta * (r.y1 - r.y0) <= 0) throw new Error('car height moves against the real ramp grade');
+  const span = Math.max(...measured.map(m => m.y)) - Math.min(...measured.map(m => m.y));
+  if (span < 3) throw new Error("Y span " + span.toFixed(2) + " too small");
+  console.log("ramp-smoke ok", measured.map((m) => `${m.k}:${m.y.toFixed(1)}`).join(" "), "span", +span.toFixed(2));
 }
-const span = measured[measured.length - 1].y - measured[0].y;
-if (span < 3) throw new Error("Y span " + span.toFixed(2) + " too small");
-console.log("ramp-smoke ok", measured.map((m) => `${m.k}:${m.y.toFixed(1)}`).join(" "), "span", +span.toFixed(2));
 await b.close();
