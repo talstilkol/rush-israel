@@ -12,6 +12,7 @@ try {
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
   const errors = [];
   page.on('pageerror', error => errors.push(String(error)));
+  page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
   await page.goto(url, { waitUntil: 'networkidle', timeout: 40000 });
   await page.locator('[data-game-ready="true"]').waitFor();
   async function cycle() {

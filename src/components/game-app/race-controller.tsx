@@ -562,7 +562,7 @@ export function RaceController({
 						},
 						children: [muted ? /* @__PURE__ */ jsx(VolumeX, { className: "size-4" }) : /* @__PURE__ */ jsx(Volume2, { className: "size-4" }), muted ? t("מושתק", "Muted") : t("צליל", "Sound")]
 					}),
-					/* @__PURE__ */ jsx("label", {
+					/* @__PURE__ */ jsxs("label", {
 						className: "mt-2 flex items-center gap-3 text-sm",
 						children: [
 							t("עוצמה", "Volume"),
