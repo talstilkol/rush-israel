@@ -1,8 +1,8 @@
 {
   "document_type": "active_unified_completion_backlog",
-  "review_date": "2026-10-15",
+  "review_date": "2026-10-16",
   "main_sha": "b2c0d46dd43c3bd8f27dc0009e4809c27c54c60e",
-  "candidate_sha": "6395474913c071cb25bc2720238a7b8072045288",
+  "candidate_sha": null,
   "execution_authorized_by_this_document": false,
   "tasks": [
     {
@@ -12,10 +12,10 @@
       "title": "איחוד מצב מוצר ותוכנית",
       "depends_on": [],
       "deliverable": "מקור פעיל אחד ל-Scope, commit וראיות",
-      "acceptance": "המסמכים מתייחסים לאותה גרסה; snapshots היסטוריים מסומנים",
+      "acceptance": "התוכנית הפעילה מצביעה על quality contract, backlog ומצב מוצר עקביים; current HEAD נקרא מ-Git ולא מתווית היסטורית.",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "היסטוריית 67 היחידות מופרדת ממצב מוצר; אין יחידה בציון 100.",
+      "verification_note": "התוכנית עודכנה באישור המשתמש; 46 מזהים ותלויות נשמרו, ללא קבלת מוצר אוטומטית.",
       "external_evidence_required": false
     },
     {
@@ -200,10 +200,10 @@
         "MP-009"
       ],
       "deliverable": "height filtering וסדר spawn/damage",
-      "acceptance": "40 מטר בין מכוניות אינם collision; persistent damage נשמר לפי מוצר",
+      "acceptance": "התאמה בין mesh ו-collider, מעבר מפלסים ללא קפיצה, נזק עקבי; סיוע ההיגוי אינו מושך רכב לאי תנועה.",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "בדיקות רכב בגובה שונה ונזק מתמשך עברו; פגיעה חזיתית בקיר אמיתי נבדקה. כל מעטפת collision עדיין דורשת קבלה.",
+      "verification_note": "Physics 9: בדיקה מבודדת נכשלת ב-20/20 מקרים עם הכוח הישן ועוברת אחרי תיקון; 20 מקרים עם colliders אמיתיים עברו ללא נזק. זו אינה קבלת כל ההתנגשויות.",
       "external_evidence_required": false
     },
     {
@@ -263,10 +263,10 @@
         "MP-015"
       ],
       "deliverable": "מבחני acceleration brake steering drift surface",
-      "acceptance": "stock ו-upgraded תואמים לפעולת הפרמטרים; שינויי tuning מוסברים",
-      "status": "open",
+      "acceptance": "חמש מכוניות, שני מצבי Handling, ארבעה סוגי מזג אוויר ו-stock/upgraded: תאוצה, בלימה, היגוי, משטח ודריפט; יעד ויחידה פיזיקלית מפורשים, ספים אינם נחלשים כדי להעביר בדיקה.",
+      "status": "partial",
       "assigned_person": null,
-      "verification_note": "לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.",
+      "verification_note": "Physics 9: 15 ריצות תאוצה בדפדפן עברו מול אותם יעדים וסבילות; יתר מדדי Handling ואימות מכשיר עדיין פתוחים.",
       "external_evidence_required": false
     },
     {
@@ -279,10 +279,10 @@
         "MP-017"
       ],
       "deliverable": "speed plan avoidance ועקיפה במטרים",
-      "acceptance": "יריבים מסיימים כל launch track בלי teleport או recovery loop",
-      "status": "open",
+      "acceptance": "כל יריב מסיים את שמונת מסלולי V1 ללא teleport או recovery loop; קו הנסיעה נמנע מאיי תנועה ומכשולים; נזק סטטי ועקיפות נמדדים; rubber-band מכובה ב-simcade ואינו עוקף חוקי אחיזה.",
+      "status": "partial",
       "assigned_person": null,
-      "verification_note": "לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.",
+      "verification_note": "תוקן זינוק היריבים על אי התנועה ברוטשילד ויעד הסיוע הועבר לנתיב הנכון. מרוץ אמיתי של שלוש הקפות הגיע לנזק 0.569 לעומת 1 בבדיקה הקודמת: עדיין לא מתקבל.",
       "external_evidence_required": false
     },
     {
@@ -345,10 +345,10 @@
         "MP-045"
       ],
       "deliverable": "reference pack ו-road/sky/material composition",
-      "acceptance": "הכביש והצמתים קריאים ביום בלילה וב-weather; Golden מאושר מחדש",
+      "acceptance": "Q-ART: סצנות יום/לילה/גשם מזוהות, חומרי כביש/רכב עקביים, ללא חדירת מצלמה או תמיכה לכביש; Playtest והשוואה חזותית אנושית מתועדים.",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.",
+      "verification_note": "40 בדיקות underpass עברו לפני שינוי זה וגם בבדיקת העולם החדשה; אין עדיין קבלת אמנות או השוואה התומכת בטענה הטוב בעולם.",
       "external_evidence_required": true
     },
     {
@@ -395,10 +395,10 @@
         "MP-046"
       ],
       "deliverable": "raw CPU/frame/GPU/bytes/loading metrics",
-      "acceptance": "מכשיר build quality resolution ונתונים גולמיים מתועדים; budgets נאכפים",
+      "acceptance": "Q-PERF: מכשיר Windows ומובייל מזוהים, build זהה ונתוני frame-time גולמיים; יעדי p95/p99 מפורטים ב-QUALITY-TARGETS.md.",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.",
+      "verification_note": "אין מדידה במכשירים פיזיים. p95 של SwiftShader נשאר אבחון בלבד.",
       "external_evidence_required": true
     },
     {
@@ -493,10 +493,10 @@
         "MP-030"
       ],
       "deliverable": "7 מסלולים עם checklist זהה לאיילון",
-      "acceptance": "מרוץ AI visuals audio input weather ו-performance evidence לכל מסלול",
+      "acceptance": "Q-DRIVE ו-Q-ART בכל שמונת מסלולי V1: מרוץ מלא, גאומטריה ונתיבים בטוחים, בלי תקיעה/recovery אוטומטי, תיעוד נזק ומצלמות; קבלת נהיגה אנושית נפרדת מסיוע QA.",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.",
+      "verification_note": "מרוצי V1 עברו על fa4630a. ברוטשילד חל שיפור עם Physics 9 אך הנזק עדיין גבוה; ביפו וביתר האמנות נותרה עבודה.",
       "external_evidence_required": true
     },
     {
@@ -642,10 +642,10 @@
         "MP-039"
       ],
       "deliverable": "20 מחזורים ו-1800 שניות עם assertions",
-      "acceptance": "תנועה/progress/finish ומדדי משאבים תקינים; WEBGL_lose_context ושחזור בדפדפן",
+      "acceptance": "1800 שניות שעון אמיתיות על אותו candidate, השלמת מרוצים, דליפות/context recovery; דוח בלתי שלם נשאר נכשל; Q-RELIABILITY ואימות מכשיר נפרדים.",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "סוק r2 עבר 1800 שניות/15 מרוצים על snapshot קודם; סוק של HEAD הסופי ו-context recovery נשארים פתוחים.",
+      "verification_note": "fa4630a עבר סוק אמיתי: 1800304ms, שני מרוצים ו-offRoadRatio=0. אינו מועבר אוטומטית ל-Physics 9; נדרשת ריצה חדשה.",
       "external_evidence_required": false
     },
     {
@@ -676,10 +676,10 @@
         "MP-041"
       ],
       "deliverable": "defect log ותוצאות Playtest אמיתיות",
-      "acceptance": "תקלות מתועדפות ותוקנו; handling ו-UX נבדקו אחרי תיקון",
+      "acceptance": "Q-PLAYTEST: שלושה בודקים אנושיים לפחות שאינם כותב השינוי, תרחישי נהיגה/מצלמה/שליטה מדווחים, כל blocker מתוקן ונבדק מחדש; השוואות איכות הן תוצאה מתועדת ולא סיסמה.",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.",
+      "verification_note": "לא קיים Playtest אנושי העומד ביעד זה; יעד מוצע לא הוצג כתוצאה.",
       "external_evidence_required": true
     },
     {
@@ -746,6 +746,9 @@
     }
   ],
   "working_branch": "fix/rush-completion-2026-10-15",
-  "execution_authority": "Direct user request to fix issues and complete the existing plans; this file records evidence and is not release approval.",
-  "all_product_units_complete": false
+  "execution_authority": "Direct user authorization on 2026-10-16 to revise plans and implement all necessary game improvements. External facts, legal rights, hardware evidence and release acceptance still require real evidence.",
+  "all_product_units_complete": false,
+  "audited_pr83_sha": "6395474913c071cb25bc2720238a7b8072045288",
+  "last_verified_candidate_sha": "fa4630abbe216bac4b2b313bac8b1af747d6e796",
+  "quality_contract": "QUALITY-TARGETS.md"
 }

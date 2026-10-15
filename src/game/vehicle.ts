@@ -16,6 +16,7 @@ import {
   type HandlingMode,
 } from "./physics";
 import { nearestIndex, sampleAtT, type BuiltTrack } from "./spline";
+import { roadLaneOffset } from "./road-layout";
 import { nearestStreet, type StreetRibbon } from "./streets";
 import type { CarDef, Collider, InputState, Ramp, Weather } from "./types";
 
@@ -559,10 +560,13 @@ export class ArcadeCar {
     this.sideStreetEn = onRamp ? rp.r.en : onAlley && !onMain ? alley!.street.en : "";
     if (this.onTrack && !this.drifting && speedAbs > 6) {
       const latSigned = (this.x - s.x) * s.rx + (this.z - s.z) * s.rz;
-      const wide = Math.abs(latSigned) > track.width * 0.28;
+      const laneCenter = track.medianHalfWidth ? roadLaneOffset(track, latSigned) : 0;
+      const laneError = latSigned - laneCenter;
+      const laneHalf = track.medianHalfWidth ? (half - track.medianHalfWidth) / 2 : half;
+      const wide = Math.abs(laneError) > laneHalf * 0.56;
       if (Math.abs(this.holdSteer) < 0.15 || wide) {
         const road = Math.atan2(-s.tx, -s.tz);
-        const aim = wrapPi(road - Math.sign(latSigned || 1) * clamp(Math.abs(latSigned) / half, 0, 1) * 0.28);
+        const aim = wrapPi(road - Math.sign(laneError || 1) * clamp(Math.abs(laneError) / laneHalf, 0, 1) * 0.28);
         const err = wrapPi(aim - this.yaw);
         this.yaw = wrapPi(this.yaw + clamp(err, -1.4, 1.4) * dt * (wide ? 8 : 2.4));
         const nfx = -Math.sin(this.yaw);

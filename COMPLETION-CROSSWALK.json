@@ -1,0 +1,692 @@
+{
+  "schema_version": 1,
+  "meaning": "Work coverage only. Acceptance and status live in PRODUCT-READINESS.json and COMPLETION-BACKLOG.json. A link is not proof of completion.",
+  "units": [
+    {
+      "unit": "RSH-001",
+      "title": "Canonical program control",
+      "completion_tasks": [
+        "MP-001"
+      ]
+    },
+    {
+      "unit": "RSH-002",
+      "title": "Repository governance and visibility policy",
+      "completion_tasks": [
+        "MP-001",
+        "MP-007",
+        "MP-037",
+        "MP-039",
+        "MP-044"
+      ]
+    },
+    {
+      "unit": "RSH-003",
+      "title": "Baseline, milestones, labels and release register",
+      "completion_tasks": [
+        "MP-001",
+        "MP-025",
+        "MP-042",
+        "MP-043",
+        "MP-044"
+      ]
+    },
+    {
+      "unit": "RSH-004",
+      "title": "Pin Node, npm and reproducible installation",
+      "completion_tasks": [
+        "MP-002",
+        "MP-007",
+        "MP-039"
+      ]
+    },
+    {
+      "unit": "RSH-005",
+      "title": "Remove absolute workspace paths and make scripts portable",
+      "completion_tasks": [
+        "MP-007",
+        "MP-039"
+      ]
+    },
+    {
+      "unit": "RSH-006",
+      "title": "Build a self-starting QA harness",
+      "completion_tasks": [
+        "MP-003",
+        "MP-004",
+        "MP-007",
+        "MP-039",
+        "MP-040"
+      ]
+    },
+    {
+      "unit": "RSH-007",
+      "title": "Create GitHub Actions CI",
+      "completion_tasks": [
+        "MP-007",
+        "MP-039",
+        "MP-040"
+      ]
+    },
+    {
+      "unit": "RSH-008",
+      "title": "Enforce required checks, branch protection and CI artifacts",
+      "completion_tasks": [
+        "MP-007",
+        "MP-037",
+        "MP-039",
+        "MP-040",
+        "MP-044"
+      ]
+    },
+    {
+      "unit": "RSH-009",
+      "title": "Freeze the Version 1 product definition",
+      "completion_tasks": [
+        "MP-008",
+        "MP-032"
+      ]
+    },
+    {
+      "unit": "RSH-010",
+      "title": "Classify the track catalogue into 8 MVP and 48 deferred tracks",
+      "completion_tasks": [
+        "MP-008",
+        "MP-026",
+        "MP-027",
+        "MP-031"
+      ]
+    },
+    {
+      "unit": "RSH-011",
+      "title": "Create the complete asset provenance and licence inventory",
+      "completion_tasks": [
+        "MP-037"
+      ]
+    },
+    {
+      "unit": "RSH-012",
+      "title": "Align README, metadata, branding, licence and PWA scope",
+      "completion_tasks": [
+        "MP-035",
+        "MP-036",
+        "MP-037",
+        "MP-039"
+      ]
+    },
+    {
+      "unit": "RSH-013",
+      "title": "Define and validate the canonical track schema",
+      "completion_tasks": [
+        "MP-005",
+        "MP-008",
+        "MP-009",
+        "MP-030"
+      ]
+    },
+    {
+      "unit": "RSH-014",
+      "title": "Split `tracks.ts` into one module per track",
+      "completion_tasks": [
+        "MP-005",
+        "MP-008",
+        "MP-030",
+        "MP-031"
+      ]
+    },
+    {
+      "unit": "RSH-015",
+      "title": "Extract the world core from `world.ts`",
+      "completion_tasks": [
+        "MP-004",
+        "MP-005",
+        "MP-006",
+        "MP-020",
+        "MP-021",
+        "MP-030",
+        "MP-045",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-016",
+      "title": "Create isolated world builders per track",
+      "completion_tasks": [
+        "MP-004",
+        "MP-006",
+        "MP-020",
+        "MP-022",
+        "MP-030",
+        "MP-031",
+        "MP-045",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-017",
+      "title": "Split `engine.ts` into loop, rendering, physics and QA adapters",
+      "completion_tasks": [
+        "MP-009",
+        "MP-010",
+        "MP-011",
+        "MP-012",
+        "MP-013",
+        "MP-014",
+        "MP-015",
+        "MP-016",
+        "MP-017",
+        "MP-018",
+        "MP-019",
+        "MP-028",
+        "MP-040",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-018",
+      "title": "Split `game-app.tsx` into screens, HUD and race controller",
+      "completion_tasks": [
+        "MP-008",
+        "MP-010",
+        "MP-014",
+        "MP-019",
+        "MP-024",
+        "MP-026",
+        "MP-027",
+        "MP-028",
+        "MP-033",
+        "MP-034",
+        "MP-035",
+        "MP-039"
+      ]
+    },
+    {
+      "unit": "RSH-019",
+      "title": "Complete resource ownership, disposal and leak accounting",
+      "completion_tasks": [
+        "MP-020",
+        "MP-021",
+        "MP-040"
+      ]
+    },
+    {
+      "unit": "RSH-020",
+      "title": "Isolate or remove unused auth, DB, multiplayer and template dependencies",
+      "completion_tasks": [
+        "MP-007",
+        "MP-037",
+        "MP-039"
+      ]
+    },
+    {
+      "unit": "RSH-021",
+      "title": "Version the save schema and implement deterministic migrations",
+      "completion_tasks": [
+        "MP-029"
+      ]
+    },
+    {
+      "unit": "RSH-022",
+      "title": "Add save backup, corruption recovery and user-visible failure handling",
+      "completion_tasks": [
+        "MP-029"
+      ]
+    },
+    {
+      "unit": "RSH-023",
+      "title": "Harden timed records, write ordering, deduplication and storage limits",
+      "completion_tasks": [
+        "MP-011",
+        "MP-014",
+        "MP-016",
+        "MP-028",
+        "MP-029"
+      ]
+    },
+    {
+      "unit": "RSH-024",
+      "title": "Harden production security and separate DB migration from build",
+      "completion_tasks": [
+        "MP-037",
+        "MP-038",
+        "MP-039"
+      ]
+    },
+    {
+      "unit": "RSH-025",
+      "title": "Define Ayalon acceptance criteria and reference pack",
+      "completion_tasks": [
+        "MP-003",
+        "MP-022",
+        "MP-025"
+      ]
+    },
+    {
+      "unit": "RSH-026",
+      "title": "Lock Ayalon road geometry, widths and lanes",
+      "completion_tasks": [
+        "MP-003",
+        "MP-005",
+        "MP-006",
+        "MP-030"
+      ]
+    },
+    {
+      "unit": "RSH-027",
+      "title": "Lock Ayalon ramps, barriers, colliders and checkpoints",
+      "completion_tasks": [
+        "MP-003",
+        "MP-006",
+        "MP-009",
+        "MP-013",
+        "MP-030"
+      ]
+    },
+    {
+      "unit": "RSH-028",
+      "title": "Lock Ayalon landmark placement",
+      "completion_tasks": [
+        "MP-006",
+        "MP-022",
+        "MP-030"
+      ]
+    },
+    {
+      "unit": "RSH-029",
+      "title": "Lock Ayalon asphalt, sidewalks, markings and signs",
+      "completion_tasks": [
+        "MP-006",
+        "MP-022",
+        "MP-038",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-030",
+      "title": "Deliver the Version 1 hero car, LODs and silhouette gate",
+      "completion_tasks": [
+        "MP-023",
+        "MP-032"
+      ]
+    },
+    {
+      "unit": "RSH-031",
+      "title": "Lock daylight, sky and image-based lighting",
+      "completion_tasks": [
+        "MP-022",
+        "MP-025",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-032",
+      "title": "Lock night lighting, headlights and weather",
+      "completion_tasks": [
+        "MP-004",
+        "MP-022",
+        "MP-025",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-033",
+      "title": "Calibrate driving physics and the five-car performance table",
+      "completion_tasks": [
+        "MP-017",
+        "MP-018",
+        "MP-032"
+      ]
+    },
+    {
+      "unit": "RSH-034",
+      "title": "Lock audio, HUD, keyboard, touch and gamepad behaviour",
+      "completion_tasks": [
+        "MP-015",
+        "MP-016",
+        "MP-024",
+        "MP-033",
+        "MP-034"
+      ]
+    },
+    {
+      "unit": "RSH-035",
+      "title": "Produce the unique Ayalon golden pack and owner approval record",
+      "completion_tasks": [
+        "MP-022",
+        "MP-025"
+      ]
+    },
+    {
+      "unit": "RSH-036",
+      "title": "Freeze Ayalon and hash all transitive dependencies",
+      "completion_tasks": [
+        "MP-022",
+        "MP-025",
+        "MP-037",
+        "MP-039"
+      ]
+    },
+    {
+      "unit": "RSH-037",
+      "title": "Instrument p50, p95, p99, draw calls, triangles and memory",
+      "completion_tasks": [
+        "MP-011",
+        "MP-021",
+        "MP-025",
+        "MP-041"
+      ]
+    },
+    {
+      "unit": "RSH-038",
+      "title": "Define quality profiles and dynamic-quality hysteresis",
+      "completion_tasks": [
+        "MP-021",
+        "MP-025",
+        "MP-041"
+      ]
+    },
+    {
+      "unit": "RSH-039",
+      "title": "Set bundle, asset-streaming and cache budgets",
+      "completion_tasks": [
+        "MP-025",
+        "MP-037",
+        "MP-038",
+        "MP-039"
+      ]
+    },
+    {
+      "unit": "RSH-040",
+      "title": "Pass 20 race enter-exit cycles without a resource leak",
+      "completion_tasks": [
+        "MP-020",
+        "MP-021",
+        "MP-040"
+      ]
+    },
+    {
+      "unit": "RSH-041",
+      "title": "Pass WebGL context-loss and recovery tests",
+      "completion_tasks": [
+        "MP-010",
+        "MP-020",
+        "MP-021",
+        "MP-040"
+      ]
+    },
+    {
+      "unit": "RSH-042",
+      "title": "Pass the 30-minute soak test",
+      "completion_tasks": [
+        "MP-040"
+      ]
+    },
+    {
+      "unit": "RSH-043",
+      "title": "Validate the browser and device support matrix",
+      "completion_tasks": [
+        "MP-025",
+        "MP-032",
+        "MP-041"
+      ]
+    },
+    {
+      "unit": "RSH-044",
+      "title": "Unify keyboard, touch and gamepad input maps",
+      "completion_tasks": [
+        "MP-015",
+        "MP-033",
+        "MP-034"
+      ]
+    },
+    {
+      "unit": "RSH-045",
+      "title": "Complete Hebrew RTL, English LTR and the Arabic-scope decision",
+      "completion_tasks": [
+        "MP-035"
+      ]
+    },
+    {
+      "unit": "RSH-046",
+      "title": "Complete onboarding, settings, error and recovery flows",
+      "completion_tasks": [
+        "MP-010",
+        "MP-029",
+        "MP-035"
+      ]
+    },
+    {
+      "unit": "RSH-047",
+      "title": "Complete PWA, offline, update and manifest behaviour",
+      "completion_tasks": [
+        "MP-029",
+        "MP-036",
+        "MP-038",
+        "MP-039"
+      ]
+    },
+    {
+      "unit": "RSH-048",
+      "title": "Pass accessibility, privacy and Alpha UX gates",
+      "completion_tasks": [
+        "MP-024",
+        "MP-033",
+        "MP-034",
+        "MP-035",
+        "MP-042"
+      ]
+    },
+    {
+      "unit": "RSH-049",
+      "title": "Rothschild geometry and driving",
+      "completion_tasks": [
+        "MP-005",
+        "MP-006",
+        "MP-009",
+        "MP-018",
+        "MP-030",
+        "MP-031",
+        "MP-032"
+      ]
+    },
+    {
+      "unit": "RSH-050",
+      "title": "Rothschild art, golden and freeze",
+      "completion_tasks": [
+        "MP-022",
+        "MP-025",
+        "MP-031",
+        "MP-045",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-051",
+      "title": "Yarkon–Reading geometry and driving",
+      "completion_tasks": [
+        "MP-005",
+        "MP-006",
+        "MP-009",
+        "MP-018",
+        "MP-030",
+        "MP-031",
+        "MP-032"
+      ]
+    },
+    {
+      "unit": "RSH-052",
+      "title": "Yarkon–Reading art, golden and freeze",
+      "completion_tasks": [
+        "MP-022",
+        "MP-025",
+        "MP-031",
+        "MP-045",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-053",
+      "title": "Jaffa geometry and driving",
+      "completion_tasks": [
+        "MP-005",
+        "MP-006",
+        "MP-009",
+        "MP-018",
+        "MP-030",
+        "MP-031",
+        "MP-032"
+      ]
+    },
+    {
+      "unit": "RSH-054",
+      "title": "Jaffa art, golden and freeze",
+      "completion_tasks": [
+        "MP-022",
+        "MP-025",
+        "MP-031",
+        "MP-045",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-055",
+      "title": "Jerusalem–Scopus geometry and driving",
+      "completion_tasks": [
+        "MP-005",
+        "MP-006",
+        "MP-009",
+        "MP-018",
+        "MP-030",
+        "MP-031",
+        "MP-032"
+      ]
+    },
+    {
+      "unit": "RSH-056",
+      "title": "Jerusalem–Scopus art, golden and freeze",
+      "completion_tasks": [
+        "MP-022",
+        "MP-025",
+        "MP-031",
+        "MP-045",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-057",
+      "title": "Haifa–Carmel geometry and driving",
+      "completion_tasks": [
+        "MP-005",
+        "MP-006",
+        "MP-009",
+        "MP-018",
+        "MP-030",
+        "MP-031",
+        "MP-032"
+      ]
+    },
+    {
+      "unit": "RSH-058",
+      "title": "Haifa–Carmel art, golden and freeze",
+      "completion_tasks": [
+        "MP-022",
+        "MP-025",
+        "MP-031",
+        "MP-045",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-059",
+      "title": "Ramon geometry and driving",
+      "completion_tasks": [
+        "MP-005",
+        "MP-006",
+        "MP-009",
+        "MP-018",
+        "MP-030",
+        "MP-031",
+        "MP-032"
+      ]
+    },
+    {
+      "unit": "RSH-060",
+      "title": "Ramon art, golden and freeze",
+      "completion_tasks": [
+        "MP-022",
+        "MP-025",
+        "MP-031",
+        "MP-045",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-061",
+      "title": "Hermon geometry and driving",
+      "completion_tasks": [
+        "MP-005",
+        "MP-006",
+        "MP-009",
+        "MP-018",
+        "MP-030",
+        "MP-031",
+        "MP-032"
+      ]
+    },
+    {
+      "unit": "RSH-062",
+      "title": "Hermon art, golden and freeze",
+      "completion_tasks": [
+        "MP-022",
+        "MP-025",
+        "MP-031",
+        "MP-045",
+        "MP-046"
+      ]
+    },
+    {
+      "unit": "RSH-063",
+      "title": "Establish SemVer, changelog and release automation",
+      "completion_tasks": [
+        "MP-039",
+        "MP-043",
+        "MP-044"
+      ]
+    },
+    {
+      "unit": "RSH-064",
+      "title": "Establish preview, staging, production and rollback",
+      "completion_tasks": [
+        "MP-038",
+        "MP-039",
+        "MP-043",
+        "MP-044"
+      ]
+    },
+    {
+      "unit": "RSH-065",
+      "title": "Publish and evaluate `v0.1.0-alpha.1`",
+      "completion_tasks": [
+        "MP-042"
+      ]
+    },
+    {
+      "unit": "RSH-066",
+      "title": "Produce RC1 and close all blocking defects",
+      "completion_tasks": [
+        "MP-043"
+      ]
+    },
+    {
+      "unit": "RSH-067",
+      "title": "Publish `v1.0.0` with signed tag, dossier and rollback proof",
+      "completion_tasks": [
+        "MP-037",
+        "MP-039",
+        "MP-041",
+        "MP-043",
+        "MP-044"
+      ]
+    }
+  ]
+}

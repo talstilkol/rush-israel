@@ -1,0 +1,488 @@
+TAP version 13
+# Subtest: actual V1 road layout keeps the Rothschild median separate from racing lanes
+ok 1 - actual V1 road layout keeps the Rothschild median separate from racing lanes
+  ---
+  duration_ms: 3.843125
+  type: 'test'
+  ...
+# Subtest: sabra: left carriageway survives eight seconds of straight acceleration
+not ok 2 - sabra: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 10.692375
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: 'car entered the landscaped median: clearance=-5.455709190013906'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:46:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: sabra: left carriageway survives eight seconds of AI input
+not ok 3 - sabra: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 7.78025
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: 'car entered the landscaped median: clearance=-2.088638965635769'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:46:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: sabra: right carriageway survives eight seconds of straight acceleration
+not ok 4 - sabra: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 6.322916
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: 'car entered the landscaped median: clearance=-5.656967965785598'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:46:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: sabra: right carriageway survives eight seconds of AI input
+not ok 5 - sabra: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 5.581125
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: 'car entered the landscaped median: clearance=-2.1461656268199327'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:46:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: carmel: left carriageway survives eight seconds of straight acceleration
+not ok 6 - carmel: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 4.26825
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    steering assistance crossed the central island
+    
+    1 !== -1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: -1
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:42:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: carmel: left carriageway survives eight seconds of AI input
+not ok 7 - carmel: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.960458
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: 'car entered the landscaped median: clearance=-1.6938727271279328'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:46:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: carmel: right carriageway survives eight seconds of straight acceleration
+not ok 8 - carmel: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.078083
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    steering assistance crossed the central island
+    
+    -1 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: -1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:42:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: carmel: right carriageway survives eight seconds of AI input
+not ok 9 - carmel: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.805083
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: 'car entered the landscaped median: clearance=-1.820811393206892'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:46:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: kfir: left carriageway survives eight seconds of straight acceleration
+not ok 10 - kfir: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 4.756542
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    steering assistance crossed the central island
+    
+    1 !== -1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: -1
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:42:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: kfir: left carriageway survives eight seconds of AI input
+not ok 11 - kfir: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 5.225625
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: 'car entered the landscaped median: clearance=-3.987425138914119'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:46:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: kfir: right carriageway survives eight seconds of straight acceleration
+not ok 12 - kfir: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.684417
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    steering assistance crossed the central island
+    
+    -1 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: -1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:42:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: kfir: right carriageway survives eight seconds of AI input
+not ok 13 - kfir: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 4.472916
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: 'car entered the landscaped median: clearance=-2.5505655162782004'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:46:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: negev: left carriageway survives eight seconds of straight acceleration
+not ok 14 - negev: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.757375
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    steering assistance crossed the central island
+    
+    1 !== -1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: -1
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:42:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: negev: left carriageway survives eight seconds of AI input
+not ok 15 - negev: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 4.009166
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: 'car entered the landscaped median: clearance=-2.6654351426199066'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:46:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: negev: right carriageway survives eight seconds of straight acceleration
+not ok 16 - negev: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 2.975416
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    steering assistance crossed the central island
+    
+    -1 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: -1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:42:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: negev: right carriageway survives eight seconds of AI input
+not ok 17 - negev: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.464667
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: 'car entered the landscaped median: clearance=-2.812940734424884'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:46:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: yam: left carriageway survives eight seconds of straight acceleration
+not ok 18 - yam: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 2.132375
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    steering assistance crossed the central island
+    
+    1 !== -1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: -1
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:42:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: yam: left carriageway survives eight seconds of AI input
+not ok 19 - yam: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.676
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: 'car entered the landscaped median: clearance=-3.797889123136831'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:46:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: yam: right carriageway survives eight seconds of straight acceleration
+not ok 20 - yam: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.90675
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    steering assistance crossed the central island
+    
+    -1 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: -1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:42:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: yam: right carriageway survives eight seconds of AI input
+not ok 21 - yam: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 4.167292
+  type: 'test'
+  location: '/private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:32:3'
+  failureType: 'testCodeFailure'
+  error: 'car entered the landscaped median: clearance=-3.344450413058178'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-median-regression-before/scripts/median-driving.test.mjs:46:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 1
+# fail 20
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 442.838625

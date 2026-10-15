@@ -63,7 +63,7 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
     const medIdx = [];
     const walkPos = [];
     const walkIdx = [];
-    const medHalf = 6.2;
+    const medHalf = built.medianHalfWidth ?? 0;
     const pathHalf = 1.5;
     for (let i = 0; i <= n; i++) {
       const s = built.samples[i % n];

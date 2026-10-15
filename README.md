@@ -6,12 +6,13 @@ simcade בקצב קבוע של 120Hz ומסלולים בדיוניים בהשר�
 Private owner-controlled Three.js WebGL simcade driving game on fictional routes
 inspired by Israeli places.
 
-## 1. מצב פעיל — 15.10.2026
+## 1. מצב פעיל — 16.10.2026
 
 1.1 המשחק בתהליך השלמה ואינו מוצר גמור. תוכנית ההמשך המאוחדת היא [COMPLETION-PLAN.md](COMPLETION-PLAN.md); מקור מצב 67 היחידות ו־13 השערים הוא [PRODUCT-READINESS.json](PRODUCT-READINESS.json).
-1.2 המאגר פרטי. Ruleset פעיל ב־GitHub אומת בקריאה חדשה; [הראיה](evidence/2026-10-15/github-protection.json) כוללת את ההקשר המחייב `required-ci / validate`.
-1.3 קיימות 66 תמונות ללא ראיית רישוי מספקת. אין אישור לשחרור ציבורי, קבלת WCAG AA, ביצועי מכשיר מאושרים או תג שחרור חתום.
-1.4 `CURRENT-STATE.json`, `QUEUE.json` וקובצי RSH מתעדים היסטוריה. ACCEPTED במסמכים אלו אינו הוכחת משחק גמור.
+1.2 יעדי האיכות וההוכחה מפורטים ב־[QUALITY-TARGETS.md](QUALITY-TARGETS.md).
+1.3 המאגר פרטי. Ruleset פעיל ב־GitHub אומת בקריאה חדשה; [הראיה](evidence/2026-10-15/github-protection.json) כוללת את ההקשר המחייב `required-ci / validate`.
+1.4 קיימות 66 תמונות ללא ראיית רישוי מספקת. אין אישור לשחרור ציבורי, קבלת WCAG AA, ביצועי מכשיר מאושרים או תג שחרור חתום.
+1.5 `CURRENT-STATE.json`, `QUEUE.json` וקובצי RSH מתעדים היסטוריה. ACCEPTED במסמכים אלו אינו הוכחת משחק גמור.
 
 ## גבול המוצר
 

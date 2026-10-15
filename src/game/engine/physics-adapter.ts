@@ -5,6 +5,7 @@ import { createCarVisual, setCarLights, applyDamage } from "../car-mesh";
 import { finishLine, overtakeLine } from "../dialog";
 import { racePayout, timedSpan } from "../garage";
 import { CARS } from "../cars";
+import { roadLaneOffset } from "../road-layout";
 import { clamp, hashStr } from "../math";
 import { prefersReducedMotion } from "../a11y";
 import { getCash, recordGhost, setDamage } from "../save";
@@ -412,7 +413,7 @@ export function addCop(this: EngineAdapterHost, i: Parameters<RaceEngine["addCop
     cop.isAi = true;
     cop.isCop = true;
     cop.aiSkill = 0.96;
-    cop.aiOffset = 0;
+    cop.aiOffset = roadLaneOffset(this.built, this.player.aiOffset);
     cop.nitro = 0.55;
     cop.baseGrip = SURFACE_GRIP[this.trackDef.theme] ?? 1;
     cop.surfaceGrip = cop.baseGrip;

@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "physicsVersion": 8,
+  "physicsVersion": 9,
   "track": "ayalon",
   "gate": "current-behaviour regression",
   "claimGate": "RSH-033",
   "regressionToleranceSeconds": 0.1,
   "claimTolerance": 0.15,
-  "authority": "RSH-033 live qa:accel means with PHYSICS_VERSION 8. Launch drag is compensated below V100_MPS and gear dump is suppressed until |speed| > 27.778. Timing starts after speed > 0.5 m/s. Physics8 rejects inaccessible overhead ramps. Prior target means were retained only after 15 actual browser runs passed the unchanged regression and claim thresholds; see evidence/2026-10-15/physics8-ramp-calibration.json.",
+  "authority": "Physics 9 corrects median-aware steering and racer/traffic/police lane placement. All five target means and tolerances are unchanged from physics 8. Fifteen actual browser runs passed regression and claim gates; see evidence/2026-10-16/physics9-acceleration.json and physics9-median-fix.json for source hashes and limits.",
   "runs": [
     {
       "carId": "sabra",

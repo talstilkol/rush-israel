@@ -8,6 +8,7 @@ import { finishLine, introLine, overtakeLine } from "./dialog";
 import { applyTune, emptyTune, paceGhost, racePayout, sampleGhost, sampleGhostLoop, WEATHER_GRIP, type GhostFrame } from "./garage";
 import { CARS, getCar, RIVALS } from "./cars";
 import { GameInput } from "./input";
+import { roadLaneOffset } from "./road-layout";
 import { clamp, expSmooth, lerp, hash01, hashStr } from "./math";
 import { hasAiPack, hasCops, MODE_LAPS } from "./modes";
 import { bakeEnv, createPost, SSGI_OFF, PHOTO_AA, type PostStack } from "./postfx";
@@ -500,7 +501,7 @@ export class RaceEngine {
         const ai = new ArcadeCar(d, this.opts.langHe ? rival.he : rival.en);
         ai.isAi = true;
         ai.aiSkill = 0.94 - i * 0.045;
-        ai.aiOffset = 0;
+        ai.aiOffset = this.built.medianHalfWidth ? roadLaneOffset(this.built, i % 2 === 0 ? -1 : 1) : 0;
         ai.handling = this.player.handling;
         ai.assists = { abs: true, tcs: true, esc: true };
         ai.weather = this.weather;
@@ -692,7 +693,7 @@ export class RaceEngine {
     const n = this.racers.length;
     for (let i = 0; i < n; i++) {
       const t = startGridT(i, n);
-      const lat = i === 0 ? (this.trackDef.id === "rothschild" ? -10.2 : -2.2) : this.racers[i].aiOffset;
+      const lat = i === 0 ? roadLaneOffset(this.built, -2.2) : this.racers[i].aiOffset;
       if (i === 0) this.racers[i].aiOffset = lat;
       this.racers[i].spawn(this.built, t, lat);
     }
@@ -743,8 +744,8 @@ export class RaceEngine {
       cab.isAi = true;
       cab.isTraffic = true;
       cab.aiSkill = 0.48 + (i % 3) * 0.08;
-      const lane = this.trackDef.id === "rothschild" ? 10.2 : Math.min(kind === "truck" ? 2.6 : 3.4, this.built.width * 0.28);
-      cab.aiOffset = (i % 2 === 0 ? -1 : 1) * lane;
+      const lane = Math.min(kind === "truck" ? 2.6 : 3.4, this.built.width * 0.28);
+      cab.aiOffset = roadLaneOffset(this.built, (i % 2 === 0 ? -1 : 1) * lane);
       cab.baseGrip = SURFACE_GRIP[this.trackDef.theme] ?? 1;
       cab.surfaceGrip = cab.baseGrip;
       cab.weatherGrip = WEATHER_GRIP[this.weather] ?? 1;
@@ -786,7 +787,7 @@ export class RaceEngine {
       cop.isAi = true;
       cop.isCop = true;
       cop.aiSkill = 0.96;
-      cop.aiOffset = 0;
+      cop.aiOffset = roadLaneOffset(this.built, this.player.aiOffset);
       cop.nitro = 0.55;
       cop.baseGrip = SURFACE_GRIP[this.trackDef.theme] ?? 1;
       cop.surfaceGrip = cop.baseGrip;

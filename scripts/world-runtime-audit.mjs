@@ -19,9 +19,10 @@ try {
     const dependency = name => imports.find(url => url.split('?')[0].endsWith(`/${name}`)) || `/src/game/${name}`;
     const THREE = await import(dependency('three.js'));
     const { TRACKS } = await import(dependency('tracks.ts'));
-    const { buildTrack, closestSample } = await import(dependency('spline.ts'));
+    const { buildTrack, closestSample, sampleAtT } = await import(dependency('spline.ts'));
     const { createWorld } = await import('/src/game/world.ts');
-    const { ArcadeCar } = await import('/src/game/vehicle.ts');
+    const { ArcadeCar, aiInput } = await import('/src/game/vehicle.ts');
+    const { roadLaneOffset } = await import('/src/game/road-layout.ts');
     const { CARS } = await import('/src/game/cars.ts');
     const modules = ['arrow', 'beam', 'blob', 'clock', 'curb', 'facade', 'flag', 'flake', 'flare', 'foam', 'ground', 'road', 'sign', 'sky', 'stone', 'tree', 'walk', 'water'];
     const cachedTextures = new Set();
@@ -69,6 +70,25 @@ try {
             if (positions?.some(value => !Number.isFinite(value))) nonFiniteGeometries++;
           });
           Object.assign(result, { meshes, colliders: world.colliders.length, nonFiniteGeometries });
+          if (definition.id === 'rothschild') {
+            const lanes = [];
+            for (const definition of CARS) for (const side of [-1, 1]) for (const follow of [false, true]) {
+              const car = new ArcadeCar(definition, definition.nameEn);
+              car.aiOffset = roadLaneOffset(built, side);
+              car.spawn(built, 0.08, car.aiOffset);
+              let minimumClearance = Infinity;
+              for (let tick = 0; tick < 120 * 8; tick++) {
+                car.step(1 / 120, follow ? aiInput(car, built) : { steer: 0, throttle: 1, brake: 0, drift: false, nitro: false }, built, true, world.colliders, world.streets, world.ramps);
+                const road = sampleAtT(built.samples, car.progress);
+                const lateral = (car.x - road.x) * road.rx + (car.z - road.z) * road.rz;
+                minimumClearance = Math.min(minimumClearance, side * lateral - built.medianHalfWidth);
+              }
+              const row = { car: definition.id, side, follow, minimumClearance, damage: car.damage, speed: car.speed };
+              if (minimumClearance <= 1.4 || car.damage !== 0 || car.speed <= 15) throw new Error(`median lane regression with real world colliders: ${JSON.stringify(row)}`);
+              lanes.push(row);
+            }
+            result.medianLaneChecks = lanes;
+          }
           if (definition.id === 'ayalon') {
             let crossings = 0;
             let underpassChecks = 0;

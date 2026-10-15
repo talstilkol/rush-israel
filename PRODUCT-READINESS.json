@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "observed_on": "2026-10-15",
+  "observed_on": "2026-10-16",
   "repository": "talstilkol/rush-israel",
   "release_target_sha": null,
   "release_ready": false,
@@ -365,21 +365,21 @@
       "id": 3,
       "name": "clean clone and build",
       "status": "partial",
-      "note": "Clean f03d13f clone: npm ci --offline --no-audit and production build without QA hooks passed. Latest patched dependencies also install and build; final-head hosted verification pending.",
+      "note": "fa4630a hosted clean npm ci and production build passed. New Physics 9 candidate requires its own clean build and CI.",
       "evidence": []
     },
     {
       "id": 4,
       "name": "CI",
       "status": "partial",
-      "note": "Current-source unit/build/security and historical jobs passed on earlier development commits. Replaced runs were cancelled; complete required-ci / validate on the final PR head is not yet verified.",
+      "note": "All six jobs succeeded on fa4630a, run 38821145482, refreshed from GitHub. New Physics 9 candidate is not covered by that run.",
       "evidence": []
     },
     {
       "id": 5,
       "name": "secrets",
       "status": "partial",
-      "note": "Local tracked-source scan passed; repeat on staged final source and bind to final commit.",
+      "note": "fa4630a tracked-source and reachable-history pattern scans passed within declared scope; repeat tracked-source scan on the new candidate. Not a comprehensive security audit.",
       "evidence": []
     },
     {
@@ -393,7 +393,7 @@
       "id": 7,
       "name": "driving",
       "status": "partial",
-      "note": "Eight assisted browser V1 races reached result UI on f03d13f, without official records/stars. New current-source condition/restart UI test passed. Heavy damage and human playability acceptance remain open.",
+      "note": "Eight assisted V1 browser races passed on fa4630a. Physics 9 corrects median steering and spawn lanes; current Rothschild actual-grid race finished 3 laps with damage 0.569. Human handling, collision avoidance and Jaffa remain open.",
       "evidence": []
     },
     {
@@ -413,15 +413,15 @@
     {
       "id": 10,
       "name": "30-minute soak",
-      "status": "pending",
-      "note": "Earlier immutable r2 soak passed 1800 seconds with 15 completed races and zero off-road ratio; it predates current runtime. A newer intermediate snapshot run was explicitly stopped after replacement. Clean f03d13f soak is running separately. Final-head required-CI soak remains pending; no earlier result accepts the final candidate.",
+      "status": "partial",
+      "note": "Actual fa4630a required hosted soak passed: elapsedMs=1800304, completedRaces=2, offRoadRatio=0. Physics 9 requires a fresh full-duration run. No transfer of acceptance across source changes.",
       "evidence": []
     },
     {
       "id": 11,
       "name": "save",
       "status": "partial",
-      "note": "Current record-class roundtrips tested; current migration/recovery and owner save acceptance pending.",
+      "note": "fa4630a production UI recovered a real settings save, preserved rejected bytes and required double confirmation before fresh start. Full Legacy migration matrix and current-candidate acceptance remain open.",
       "evidence": []
     },
     {
@@ -443,5 +443,12 @@
     "Historical ACCEPTED means a past program artifact was accepted; it does not mean the game is complete.",
     "Local tests, simulation and headless telemetry do not substitute for physical devices or owner visual/legal acceptance.",
     "A release requires all 13 gates on the same identified candidate plus owner distribution authorization."
-  ]
+  ],
+  "last_verified_code_candidate": {
+    "sha": "fa4630abbe216bac4b2b313bac8b1af747d6e796",
+    "ci_run": 38821145482,
+    "conclusion": "success",
+    "evidence": "evidence/2026-10-16/last-verified-ci-fa4630a.json",
+    "scope": "Previous code candidate only; Physics 9 work requires fresh CI. Product and release remain unaccepted."
+  }
 }
