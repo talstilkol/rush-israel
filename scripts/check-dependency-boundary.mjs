@@ -8,7 +8,7 @@ import { fromRoot, projectRoot } from "./project-root.mjs";
 export const EXPECTED_MANIFEST_SHA256 = "f7116fbfee2467241961dd1fc7656d1a746f1b3b090e08998b763d9de07cb53c";
 export const EXPECTED_PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const EXPECTED_DEPENDENCY_MAP_SHA256 = "a3e951f6e3e7d32ee06008b2b3f294b619c7b3753419001624399e477c8038ea";
-export const EXPECTED_PACKAGE_LOCK_SHA256 = "55afd975f03b12867aada083c375e2fadc402b654ddaf0f0934807966fa9f1ed";
+export const EXPECTED_PACKAGE_LOCK_SHA256 = "06e69d3e7bc878b6cb6101558744fd67b7126999972c4d9ab88d395238ec3018";
 export const EXPECTED_RUNTIME_PACKAGES = [
   "@tailwindcss/vite",
   "@tanstack/react-router",

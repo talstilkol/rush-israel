@@ -1,0 +1,27 @@
+{
+  "changes": [
+    {
+      "package_path": "node_modules/brace-expansion",
+      "from": "1.1.18",
+      "to": "1.1.21",
+      "source_commit": "ed83336a6092f806025578519d978c04128f776f",
+      "integrity": "sha512-9zeA+KLZNNzglF2TPKRQEDyx6Yby7daAkuy8MiPzpXPsYDWi/DRM8jmwUDxokQjYqBpv5DgPiwD4h4ZZSy1Ujw=="
+    },
+    {
+      "package_path": "node_modules/@typescript-eslint/typescript-estree/node_modules/brace-expansion",
+      "from": "5.0.9",
+      "to": "5.0.12",
+      "source_commit": "ed83336a6092f806025578519d978c04128f776f",
+      "integrity": "sha512-YovQ3rzhaLMIrDjNDMkNS01tea93qhEhG5xy8f6+R0l+dw3Ki+5sCoIoI942iuLZTHWogWktgwVDhU09iNEimQ=="
+    },
+    {
+      "package_path": "node_modules/js-yaml",
+      "from": "4.3.1",
+      "to": "4.3.2",
+      "source_commit": "6a514150f0b32c6faaa8530b168e19596bd834a4",
+      "integrity": "sha512-SFNOvSJ+Dgf/9An904Yx+CgSlIPCkIpao4qo51lpee25TIRejdH3rhR4EZMGoNx3/TP3O+wzWuiTFl4sqbltzA=="
+    }
+  ],
+  "lock_sha256": "06e69d3e7bc878b6cb6101558744fd67b7126999972c4d9ab88d395238ec3018",
+  "scope": "Only three version/resolved/integrity records changed. No unrelated optional-package removal. No dependency-audit acceptance claimed."
+}
