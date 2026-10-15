@@ -15,6 +15,7 @@
 
 2.1 Each producing job uploads diagnostics on success or failure. No `continue-on-error` is used.
 2.2 The soak job has a 45-minute limit. Its nested command and test timeouts exceed the full 30-minute measurement. A smoke duration is explicitly labelled diagnostic and cannot satisfy the long acceptance.
+2.3 Browser QA has a 30-minute command budget inside a 35-minute job. Hosted run 38808938418 completed all eight races but reached the former 15-minute command cap during lifecycle checks. This budget change removes no assertions and does not shorten the soak.
 2.3 `TEST-CLASSIFICATION.json` accounts for every test file. `npm test` rejects an unclassified file. Historical source digests have not been rewritten to match new behavior.
 
 3. Evidence boundary

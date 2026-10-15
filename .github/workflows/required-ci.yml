@@ -59,11 +59,12 @@ jobs:
   browser:
     name: Current source / browser behavior
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 35
     env:
       CI: "true"
       PLAYWRIGHT_BROWSERS_PATH: "0"
       NODE_OPTIONS: "--experimental-strip-types"
+      QA_COMMAND_TIMEOUT_MS: "1800000"
     steps:
       - name: Check out exact revision
         uses: actions/checkout@v4

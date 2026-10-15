@@ -52,3 +52,5 @@ Not done: a 30-minute soak, devices, the architecture locks, Alpha through relea
 
 - Removed remaining unsupported completion flags for RTL and onboarding (both false, alongside accessibility/offline).
 - Manual night/assist condition changes mark a race assisted even before GO. The disqualification survives in-place engine reset. The real UI Restart now creates a fresh engine with current UI settings and a newly bound record class, rather than retaining an original condition fingerprint. A dedicated real-browser condition/restart check is included in required browser QA.
+
+- Hosted 6297ab2 browser job 116677136327 failed because the QA command exceeded 900000ms, after all eight V1 browser races and subsequent driving checks had completed. The unchanged harness default was too short for the expanded runtime suite on hosted software rendering. Browser command budget is now 1800000ms inside a 35-minute job; all assertions and the separate 1800-second soak remain required. The failed run is preserved and not accepted.
