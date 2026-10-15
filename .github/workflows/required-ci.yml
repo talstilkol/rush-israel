@@ -39,6 +39,8 @@ jobs:
       - run: npm run typecheck
       - name: Run current-source unit suite
         run: npm test
+      - name: Recheck current save behavior; historical SHA contracts run separately
+        run: node scripts/test-current-save-behavior.mjs
       - name: Build production and reject QA hooks
         run: npm run check:qa
       - run: npm run check:secrets

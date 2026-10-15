@@ -6,18 +6,12 @@ const url = process.env.SMOKE_URL ?? "http://127.0.0.1:8080/?qa=1";
 const b = await chromium.launch({ headless: true });
 const p = await b.newPage({ viewport: { width: 1280, height: 800 } });
 await p.goto(url, { waitUntil: "networkidle", timeout: 25000 });
-await p.waitForTimeout(500);
-await p.evaluate(() =>
-  [...document.querySelectorAll("button")].find((n) => /בחר מסלול/.test(n.textContent || ""))?.click(),
-);
-await p.waitForTimeout(250);
-await p.evaluate(() =>
-  [...document.querySelectorAll("button")].find((n) => /^הכל$/.test((n.textContent || "").trim()))?.click(),
-);
-await p.waitForTimeout(200);
-await p.evaluate(() => {
-  [...document.querySelectorAll("button")].find((b) => /נתיבי איילון/.test(b.textContent || ""))?.click();
-});
+// SSR text may be present before React attaches the menu handlers. Wait for
+// actual hydration and use actionable controls instead of timed DOM clicks.
+await p.locator('[data-game-ready="true"]').waitFor();
+await p.getByRole("button", { name: /בחר מסלול/ }).click();
+await p.locator("button").filter({ hasText: /^הכל$/ }).click();
+await p.locator("button").filter({ hasText: /נתיבי איילון/ }).click();
 await p.waitForFunction(() => !!window.__controlsTest, { timeout: 35000 });
 await p.evaluate(() => window.__controlsTest.skipCountdown());
 

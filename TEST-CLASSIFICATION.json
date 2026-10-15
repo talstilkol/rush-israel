@@ -1,5 +1,6 @@
 {
   "historical_base": "b2c0d46dd43c3bd8f27dc0009e4809c27c54c60e",
+  "additional_current_recheck": "scripts/test-current-save-behavior.mjs runs both historical save test files against current source, excluding only their two named SHA-identity contracts. These checks overlap the historical job and must not be added to its unique-test count.",
   "semantics": {
     "current-unit": "Executes current source. Does not establish product/release completion.",
     "historical-contract": "Executes unchanged tests and sources from the exact historical Git tree. No claim about current game completion.",
