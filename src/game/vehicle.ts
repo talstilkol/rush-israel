@@ -54,6 +54,7 @@ export type CarSnap = {
 };
 
 function probeRamp(x: number, z: number, ramps: Ramp[], yHint = 0) {
+  const maxStep = 1.2;
   let best: { r: Ramp; y: number; dyds: number; score: number } | null = null;
   for (const r of ramps) {
     const dx = x - r.x;
@@ -63,9 +64,12 @@ function probeRamp(x: number, z: number, ramps: Ramp[], yHint = 0) {
     if (Math.abs(along) <= r.len * 0.5 && Math.abs(across) <= r.half) {
       const t = clamp(along / r.len + 0.5, 0, 1);
       const y = r.y0 + (r.y1 - r.y0) * t;
+      // An overhead deck is not the ground for a car passing underneath.
+      // Apply the existing entry-height tolerance to every candidate.
+      if (y > yHint + maxStep) continue;
       const dyds = (r.y1 - r.y0) / r.len;
       const score = Math.abs(y - yHint);
-      if (!best || score + 0.04 < best.score || (score <= best.score + 0.04 && y > best.y && y <= yHint + 1.2)) {
+      if (!best || score + 0.04 < best.score || (score <= best.score + 0.04 && y > best.y && y <= yHint + maxStep)) {
         best = { r, y, dyds, score };
       }
     }

@@ -16,6 +16,9 @@ export default defineConfig(({ command, isPreview }) => ({
     host: "0.0.0.0",
     port: 8080,
     strictPort: true,
+    // Test evidence and exact-tree historical fixtures are generated output.
+    // Watching their HTML/tsconfig files reloads an unrelated active race.
+    watch: { ignored: ["**/artifacts/**"] },
   },
   preview: {
     host: "127.0.0.1",

@@ -1,0 +1,110 @@
+{
+  "observed_utc": "2026-10-15T22:15:55.891252+00:00",
+  "kind": "physics8-layer-selection-calibration-review",
+  "source_state": "working tree before commit; identified by actual source hashes",
+  "vehicle_source_sha256": "f6d2e78f383ecf71e05380fa6e09795c74184befc970b74d52b34ae941000f7a",
+  "reference_physics7_baseline_sha256": "3bd812e9f60184a846fbd1ffe6392b3a9d42a6a1f25c6df83bfb9a3e966fa224",
+  "retained_all_prior_target_means": true,
+  "changed_regression_or_claim_tolerances": false,
+  "physical_or_human_acceptance": false,
+  "measurements": {
+    "schemaVersion": 2,
+    "physicsVersion": 8,
+    "referencePhysicsVersion": 7,
+    "kind": "actual-browser-physics8-review-against-unchanged-version7-targets",
+    "track": "ayalon",
+    "gate": "current-behaviour regression",
+    "claimGate": "RSH-033",
+    "note": "Diagnostic v8 measurements compared against unchanged stored v7 means and current car claims; does not update the accepted baseline.",
+    "regressionOk": true,
+    "claimsOk": true,
+    "claimGaps": [],
+    "runs": [
+      {
+        "carId": "sabra",
+        "times": [
+          8.45,
+          8.45,
+          8.45
+        ],
+        "mean": 8.45,
+        "baselineMean": 8.4,
+        "regressionDeltaSeconds": 0.05,
+        "regressionToleranceSeconds": 0.1,
+        "regressionOk": true,
+        "claim": 8.4,
+        "claimTolerance": 0.15,
+        "claimOk": true,
+        "model": "extrusion"
+      },
+      {
+        "carId": "carmel",
+        "times": [
+          6.6,
+          6.6,
+          6.6
+        ],
+        "mean": 6.6,
+        "baselineMean": 6.6,
+        "regressionDeltaSeconds": 0,
+        "regressionToleranceSeconds": 0.1,
+        "regressionOk": true,
+        "claim": 6.6,
+        "claimTolerance": 0.15,
+        "claimOk": true,
+        "model": "extrusion"
+      },
+      {
+        "carId": "kfir",
+        "times": [
+          4.9,
+          4.9,
+          4.9
+        ],
+        "mean": 4.9,
+        "baselineMean": 4.9,
+        "regressionDeltaSeconds": 0,
+        "regressionToleranceSeconds": 0.1,
+        "regressionOk": true,
+        "claim": 4.9,
+        "claimTolerance": 0.15,
+        "claimOk": true,
+        "model": "extrusion"
+      },
+      {
+        "carId": "negev",
+        "times": [
+          5.8,
+          5.8,
+          5.8
+        ],
+        "mean": 5.8,
+        "baselineMean": 5.75,
+        "regressionDeltaSeconds": 0.05,
+        "regressionToleranceSeconds": 0.1,
+        "regressionOk": true,
+        "claim": 5.8,
+        "claimTolerance": 0.15,
+        "claimOk": true,
+        "model": "extrusion"
+      },
+      {
+        "carId": "yam",
+        "times": [
+          3.45,
+          3.45,
+          3.45
+        ],
+        "mean": 3.45,
+        "baselineMean": 3.45,
+        "regressionDeltaSeconds": 0,
+        "regressionToleranceSeconds": 0.1,
+        "regressionOk": true,
+        "claim": 3.5,
+        "claimTolerance": 0.15,
+        "claimOk": true,
+        "model": "extrusion"
+      }
+    ]
+  }
+}

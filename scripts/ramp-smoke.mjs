@@ -38,6 +38,7 @@ const report = await p.evaluate(async () => {
     samples: [0.1, 0.22, 0.34, 0.48].map(k => ({
       x: r.x + r.sx * (k - 0.5) * r.len,
       z: r.z + r.sz * (k - 0.5) * r.len,
+      y: r.y0 + (r.y1 - r.y0) * k,
     })),
   })) };
 });
@@ -46,13 +47,13 @@ if (!report.ok) throw new Error("no HaShalom ramp n=" + report.n);
 for (const { r, samples } of report.ramps) {
   const measured = [];
   for (const s of samples) {
-    await p.evaluate(({ x, z, yaw }) => {
-      window.__controlsTest.teleport(x, z, yaw, 0.2);
+    await p.evaluate(({ x, z, yaw, y }) => {
+      window.__controlsTest.teleport(x, z, yaw, y);
       window.__controlsTest.setThrottle(0);
       window.__controlsTest.setKeys([]);
       window.__controlsTest.setSteer(0);
       window.__controlsTest.advanceTime(1000);
-    }, { x: s.x, z: s.z, yaw: Math.atan2(-r.sx, -r.sz) });
+    }, { x: s.x, z: s.z, y: s.y, yaw: Math.atan2(-r.sx, -r.sz) });
     // Surface following is a fixed-step physics assertion, not a frame-rate benchmark.
     const actual = await p.evaluate(() => ({
       x: window.__controlsTest.getX(), z: window.__controlsTest.getZ(), y: window.__controlsTest.getY(),

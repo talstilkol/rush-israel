@@ -35,22 +35,25 @@ try {
         result = await page.evaluate(() => {
           const t = window.__controlsTest;
           let maxJump = 0;
+          let maxGroundedVerticalJump = 0;
           let offRoad = 0;
           let steps = 0;
           for (; steps < 100 && !t.isFinished(); steps++) {
-            const x = t.getX(), z = t.getZ();
+            const x = t.getX(), z = t.getZ(), y = t.getY(), wasAirborne = t.getAirborne();
             t.followRoad();
             t.advanceTime(50);
             // Finishing may immediately start the replay, which deliberately
             // cuts the presentation back to an earlier recorded position.
             if (t.isFinished()) break;
             maxJump = Math.max(maxJump, Math.hypot(t.getX() - x, t.getZ() - z));
+            if (!wasAirborne && !t.getAirborne()) maxGroundedVerticalJump = Math.max(maxGroundedVerticalJump, Math.abs(t.getY() - y));
             if (!t.getOnTrack()) offRoad++;
           }
-          return { ...JSON.parse(window.render_game_to_text()), maxJump, offRoad, steps };
+          return { ...JSON.parse(window.render_game_to_text()), maxJump, maxGroundedVerticalJump, offRoad, steps };
         });
         if (result.maxJump > 10) throw new Error(`position discontinuity ${result.maxJump}m in 50ms; recovery/teleport cannot count as a clean race`);
-        if (![result.speed, result.progress, result.totalTime].every(Number.isFinite)) throw new Error('non-finite race state');
+        if (result.maxGroundedVerticalJump > 1.5) throw new Error(`grounded vertical discontinuity ${result.maxGroundedVerticalJump}m in 50ms`);
+        if (![result.speed, result.progress, result.totalTime, result.position.x, result.position.y, result.position.z, result.maxGroundedVerticalJump].every(Number.isFinite)) throw new Error('non-finite race state');
         if (errors.length) throw new Error(errors.join('\n'));
         if (result.finished) break;
       }

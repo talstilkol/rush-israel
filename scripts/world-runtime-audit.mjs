@@ -71,6 +71,7 @@ try {
           Object.assign(result, { meshes, colliders: world.colliders.length, nonFiniteGeometries });
           if (definition.id === 'ayalon') {
             let crossings = 0;
+            let underpassChecks = 0;
             for (const ramp of world.ramps) for (const sample of built.samples) for (const lane of [-0.5, -0.25, 0, 0.25, 0.5]) {
               const dx = sample.x + sample.rx * built.width * lane - ramp.x;
               const dz = sample.z + sample.rz * built.width * lane - ramp.z;
@@ -80,6 +81,13 @@ try {
               crossings++;
               const underside = ramp.y0 + (along / ramp.len + 0.5) * (ramp.y1 - ramp.y0) - 0.475;
               if (underside < sample.y + 4.5) throw new Error(`ramp blocks race road: ${ramp.en}`);
+              if (lane === 0) {
+                const car = new ArcadeCar(CARS[0], CARS[0].nameEn);
+                car.spawn(built, sample.t, 0);
+                for (let tick = 0; tick < 24; tick++) car.step(1 / 120, { steer: 0, throttle: 0, brake: 1, drift: false, nitro: false }, built, true, world.colliders, world.streets, world.ramps);
+                if (Math.abs(car.y - sample.y) > 0.5) throw new Error(`car snapped onto an overhead ramp: y=${car.y}, road=${sample.y}, ramp=${ramp.en}`);
+                underpassChecks++;
+              }
             }
             let piers = 0;
             world.group.traverse(object => {
@@ -87,8 +95,8 @@ try {
               piers++;
               if (closestSample(built.samples, object.position.x, object.position.z).dist < built.width / 2 + 1.5) throw new Error('ramp pier occupies race road');
             });
-            if (!crossings || !piers) throw new Error('interchange clearance check lost its real ramps or piers');
-            Object.assign(result, { rampCrossingSamples: crossings, rampPiers: piers, raceRoadClearance: 'passed' });
+            if (!crossings || !piers || !underpassChecks) throw new Error('interchange clearance check lost its real ramps, piers or underpasses');
+            Object.assign(result, { rampCrossingSamples: crossings, rampPiers: piers, underpassChecks, raceRoadClearance: 'passed' });
           }
           world.setClock(0.5);
           world.setTime(true);
