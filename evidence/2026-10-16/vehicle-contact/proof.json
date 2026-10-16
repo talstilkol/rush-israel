@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-16T10:28:55.534418+00:00",
+  "observed_at": "2026-10-16T10:30:21.891672+00:00",
   "base_head": "b90e7cf99a6e11fe0bb884c0f147dc572c6f7b6c",
   "source_authority": "Final438 runtime hashes below;containing commit andhosted CI/1800-second soak bound externally. Parent/failure/intermediate records retain original authority.",
   "runtime_files": {
@@ -454,6 +454,7 @@
     "QUALITY-TARGETS.md": "75d8485a47f8c4b5579a62890ccabe8461421fcf54f320e894db193631dea57c"
   },
   "artifact_hashes": {
+    "README.md": "1d031ebafeb934faefed265a71294dcdfc7b034213e64d2cc4a43d8a43a1fc55",
     "acceleration.json": "9965019f1f4b374bcf6c2ac80122a684df78c9113d6453230f2af552d0ac5b0f",
     "actual-alignment/summary.json": "b5748f6805fa17c3e6332d68b09008b342bde5e1bfcfca8cb8adec2db2f33a4a",
     "actual-footprints/summary.json": "543fc720418d332b7810a7529ae9c211fd7e17fa250abaad9772c543f456cb84",
@@ -484,6 +485,7 @@
     "intermediate-bounds-failure.log": "34c9860632b10378f461bbdb4e38a4f3e1667c2ab0906d3b254dd4e0106f4690",
     "intermediate-immediate-height/haifa-damage.json": "a45ec8682b2a07b09ceb4d7b6991be2c7c0ec8ffb3badf05e536c1140d1ab8ca",
     "intermediate-immediate-height/native-contact.json": "d607dccbf8c35fe82cb3d07325708497ea8563e1d59239aba031df721b219eed",
+    "intermediate-immediate-height/native-contact.log": "30d5bf311284e2fef9730f4b615df06036c96a89ad410c485d323565c16c19f6",
     "intermediate-immediate-height/races.json": "1be6f6ac92e183069dd756c5a49940e1b809ab944d3688b34c0f239b2c341a61",
     "intermediate-immediate-height/source.json": "1160cfcfee59ac438ac340b8d496f5bffd52d5f85ee78b065c5e527ccc67bff4",
     "intermediate-immediate-height/worlds-races.log": "4f66b5316b7d9e459a3e85e9011014ee9beec8a98de0fc3251e70eba9721f6b2",
@@ -505,7 +507,6 @@
     "native-geometry-protocol.mjs.txt": "049c5b8d8ef2b5de9cea7713609fdbefd371554aabb5ac49b2a874516346990f",
     "native-namal-20s.png": "74ec256575cd674f537da99e00b9ab38f8cf2c4b7f9e7b212fa88e8f933f32e0",
     "native-summary.json": "afc4c3aa96efd08bfd1766c088b5826d8f3079cf5b5ce1a7f7ea282a162f531c",
-    "native.log": "30d5bf311284e2fef9730f4b615df06036c96a89ad410c485d323565c16c19f6",
     "official-skill-client.mjs.txt": "e95c3bcbdc0d15eb08fd3a6021283ec32f715b51f1e5847d3db20df526be5996",
     "parent-acceleration-reference.json": "f3aeb2942a88e60ed0d99a93a41643c423b9b0d56dc79a71e2e682846577b09b",
     "parent-race-comparison.json": "6920735da21fbbcb85aaeb085b3315906ad3fe057f925fab175039eef1eeac39",
