@@ -1,0 +1,2975 @@
+{
+  "kind": "actual-world-ramp-production-vehicle-force-regression",
+  "physicsVersion": 11,
+  "passed": true,
+  "rows": [
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "arcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.942851228772759,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.98626054249825,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.942851228772759,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.98626054249825,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "arcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.938826228772759,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.982235542498249,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.938826228772759,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.982235542498249,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "arcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.936142895439426,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9795522091649165,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.936142895439426,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9795522091649165,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "arcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.941701228772759,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.98511054249825,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.941701228772759,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.98511054249825,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "simcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.942851228772759,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.98626054249825,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.942851228772759,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.98626054249825,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "simcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.938826228772759,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.982235542498249,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.938826228772759,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.982235542498249,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "simcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.936142895439426,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9795522091649165,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.936142895439426,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9795522091649165,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "simcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.941701228772759,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.98511054249825,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.941701228772759,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.98511054249825,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "arcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.942814708435457,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.986224022160948,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.942814708435457,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.986224022160948,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "arcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.938789708435458,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.982199022160948,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.938789708435458,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.982199022160948,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "arcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.936106375102124,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.979515688827615,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.936106375102124,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.979515688827615,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "arcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.941664708435457,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.985074022160948,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.941664708435457,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.985074022160948,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "simcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.942814708435457,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.986224022160948,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.942814708435457,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.986224022160948,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "simcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.938789708435458,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.982199022160948,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.938789708435458,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.982199022160948,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "simcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.936106375102124,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.979515688827615,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.936106375102124,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.979515688827615,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "simcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.941664708435457,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.985074022160948,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.941664708435457,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.985074022160948,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "arcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.942898951931519,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9863082656570095,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.942898951931519,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9863082656570095,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "arcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.938873951931519,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.982283265657009,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.938873951931519,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.982283265657009,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "arcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.936190618598185,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9795999323236755,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.936190618598185,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9795999323236755,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "arcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.941748951931519,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9851582656570095,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.941748951931519,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9851582656570095,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "simcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.942898951931519,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9863082656570095,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.942898951931519,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9863082656570095,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "simcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.938873951931519,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.982283265657009,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.938873951931519,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.982283265657009,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "simcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.936190618598185,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9795999323236755,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.936190618598185,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9795999323236755,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "simcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.941748951931519,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9851582656570095,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.941748951931519,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9851582656570095,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "arcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.942879595588235,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.986288909313726,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.942879595588235,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.986288909313726,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "arcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.938854595588235,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.982263909313725,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.938854595588235,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.982263909313725,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "arcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.936171262254902,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.979580575980393,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.936171262254902,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.979580575980393,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "arcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.941729595588235,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.985138909313726,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.941729595588235,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.985138909313726,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "simcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.942879595588235,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.986288909313726,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.942879595588235,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.986288909313726,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "simcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.938854595588235,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.982263909313725,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.938854595588235,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.982263909313725,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "simcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.936171262254902,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.979580575980393,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.936171262254902,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.979580575980393,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "simcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.941729595588235,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.985138909313726,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.941729595588235,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.985138909313726,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "arcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.942872392574051,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9862817062995415,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.942872392574051,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9862817062995415,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "arcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.938847392574051,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.982256706299541,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.938847392574051,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.982256706299541,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "arcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.936164059240717,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9795733729662075,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.936164059240717,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9795733729662075,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "arcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.941722392574051,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9851317062995415,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.941722392574051,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9851317062995415,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "simcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.942872392574051,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9862817062995415,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.942872392574051,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9862817062995415,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "simcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.938847392574051,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.982256706299541,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.938847392574051,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.982256706299541,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "simcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.936164059240717,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9795733729662075,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.936164059240717,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9795733729662075,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": 8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "simcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.941722392574051,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.9851317062995415,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.941722392574051,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.9851317062995415,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "arcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.98626054249825,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.942851228772759,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.98626054249825,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.942851228772759,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "arcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.982235542498249,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.938826228772759,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.982235542498249,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.938826228772759,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "arcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.9795522091649165,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.936142895439426,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9795522091649165,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.936142895439426,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "arcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.98511054249825,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.941701228772759,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.98511054249825,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.941701228772759,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "simcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.98626054249825,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.942851228772759,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.98626054249825,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.942851228772759,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "simcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.982235542498249,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.938826228772759,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.982235542498249,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.938826228772759,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "simcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.9795522091649165,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.936142895439426,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9795522091649165,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.936142895439426,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "sabra",
+      "handling": "simcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.98511054249825,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.941701228772759,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.98511054249825,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.941701228772759,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "arcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.986224022160948,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.942814708435457,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.986224022160948,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.942814708435457,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "arcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.982199022160948,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.938789708435458,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.982199022160948,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.938789708435458,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "arcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.979515688827615,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.936106375102124,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.979515688827615,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.936106375102124,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "arcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.985074022160948,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.941664708435457,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.985074022160948,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.941664708435457,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "simcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.986224022160948,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.942814708435457,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.986224022160948,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.942814708435457,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "simcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.982199022160948,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.938789708435458,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.982199022160948,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.938789708435458,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "simcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.979515688827615,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.936106375102124,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.979515688827615,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.936106375102124,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "carmel",
+      "handling": "simcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.985074022160948,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.941664708435457,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.985074022160948,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.941664708435457,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "arcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.9863082656570095,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.942898951931519,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9863082656570095,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.942898951931519,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "arcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.982283265657009,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.938873951931519,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.982283265657009,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.938873951931519,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "arcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.9795999323236755,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.936190618598185,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9795999323236755,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.936190618598185,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "arcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.9851582656570095,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.941748951931519,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9851582656570095,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.941748951931519,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "simcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.9863082656570095,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.942898951931519,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9863082656570095,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.942898951931519,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "simcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.982283265657009,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.938873951931519,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.982283265657009,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.938873951931519,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "simcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.9795999323236755,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.936190618598185,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9795999323236755,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.936190618598185,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "kfir",
+      "handling": "simcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.9851582656570095,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.941748951931519,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9851582656570095,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.941748951931519,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "arcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.986288909313726,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.942879595588235,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.986288909313726,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.942879595588235,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "arcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.982263909313725,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.938854595588235,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.982263909313725,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.938854595588235,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "arcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.979580575980393,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.936171262254902,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.979580575980393,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.936171262254902,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "arcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.985138909313726,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.941729595588235,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.985138909313726,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.941729595588235,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "simcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.986288909313726,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.942879595588235,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.986288909313726,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.942879595588235,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "simcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.982263909313725,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.938854595588235,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.982263909313725,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.938854595588235,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "simcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.979580575980393,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.936171262254902,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.979580575980393,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.936171262254902,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "negev",
+      "handling": "simcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.985138909313726,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.941729595588235,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.985138909313726,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.941729595588235,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "arcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.9862817062995415,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.942872392574051,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9862817062995415,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.942872392574051,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "arcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.982256706299541,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.938847392574051,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.982256706299541,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.938847392574051,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "arcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.9795733729662075,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.936164059240717,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9795733729662075,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.936164059240717,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "arcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.9851317062995415,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.941722392574051,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9851317062995415,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.941722392574051,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "simcade",
+      "weather": "clear",
+      "along": {
+        "speed": 4.9862817062995415,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.942872392574051,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9862817062995415,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.942872392574051,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "simcade",
+      "weather": "rain",
+      "along": {
+        "speed": 4.982256706299541,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.938847392574051,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.982256706299541,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.938847392574051,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "simcade",
+      "weather": "storm",
+      "along": {
+        "speed": 4.9795733729662075,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.936164059240717,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9795733729662075,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.936164059240717,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    },
+    {
+      "ramp": "HaShalom",
+      "rise": -8.9,
+      "length": 68,
+      "car": "yam",
+      "handling": "simcade",
+      "weather": "hamsin",
+      "along": {
+        "speed": 4.9851317062995415,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "opposite": {
+        "speed": 4.941722392574051,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "alongBackwards": {
+        "speed": -4.9851317062995415,
+        "pitch": -0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "oppositeBackwards": {
+        "speed": -4.941722392574051,
+        "pitch": 0.03215414858379398,
+        "damage": 0,
+        "onTrack": true,
+        "recovered": false
+      },
+      "passed": true
+    }
+  ],
+  "testedSourceSha256": {
+    "src/game/vehicle.ts": "381faaa87c333c56146399d7027beae702c0aca25938a76c250f5d6c5fd6bb7d",
+    "src/game/physics.ts": "9b65e365209c1eca2c317c8905ea410b459bf963085a6fd5d8728266ca1fef73",
+    "src/game/cars.ts": "27ab0833dd6556ba002365494ac5a098c2b53f8a5746839a885d9b7cae121d4d",
+    "src/game/spline.ts": "e459b235a2c3e6d50f8ee21e8748af45b8d7c737a131ade1204561b02878742d",
+    "src/game/world-builders/tracks/ayalon.ts": "049fef958d2667805f217ab68072751d91c62f3feb4941c4ee2b8432a86f4c32",
+    "scripts/ramp-smoke.mjs": "01d03f633ad23d9724b0b01ae35a6e1eefc94bef174310bf6a5fa5481f0cb832"
+  }
+}

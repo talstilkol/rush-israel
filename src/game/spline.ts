@@ -1,5 +1,6 @@
 import { catmullRom } from "./math";
-import type { Sample, TrackDef, Vec2 } from "./types";
+import { roadMedianHalfWidth, roadEdgeHeightRange } from "./road-layout";
+import type { Collider, Sample, TrackDef, Vec2 } from "./types";
 
 export type BuiltTrack = {
   samples: Sample[];
@@ -7,6 +8,8 @@ export type BuiltTrack = {
   width: number;
   checkpoints: number[];
   closed: boolean;
+  medianHalfWidth?: number;
+  edgeHeightRange?: { minY: number; maxY: number };
 };
 
 export function sampleSpline(points: Vec2[], stepsPerSeg = 28, open = false): { x: number; z: number; t: number }[] {
@@ -88,7 +91,7 @@ export function buildTrack(def: TrackDef): BuiltTrack {
     checkpoints.push(closed ? i / def.checkpointCount : (i + 1) / (def.checkpointCount + 0.15));
   }
 
-  return { samples, length, width: Math.max(18.5, def.width), checkpoints, closed };
+  return { samples, length, width: Math.max(18.5, def.width), checkpoints, closed, medianHalfWidth: roadMedianHalfWidth(def), edgeHeightRange: roadEdgeHeightRange(def) };
 }
 
 export function nearestIndex(samples: Sample[], x: number, z: number, hint: number, closed = true) {
@@ -124,9 +127,60 @@ export function nearestIndex(samples: Sample[], x: number, z: number, hint: numb
   return { index: bestI, dist: Math.hypot(s.x - x, s.z - z) };
 }
 
+/** Geometric query for static placement. Progress hints must not bias buildings or props. */
+export function closestSample(samples: Sample[], x: number, z: number) {
+  let index = 0;
+  let distanceSq = Infinity;
+  for (let i = 0; i < samples.length; i++) {
+    const sample = samples[i];
+    const next = (sample.x - x) ** 2 + (sample.z - z) ** 2;
+    if (next < distanceSq) { distanceSq = next; index = i; }
+  }
+  return { index, dist: Math.sqrt(distanceSq) };
+}
+
+export function roadEdgeBarriers(
+  built: BuiltTrack,
+  edgeStep = Math.max(3, Math.floor(built.samples.length / 360)),
+  wallD = built.width / 2 + 1.55,
+): Collider[] {
+  const keepOut = built.width / 2 + 0.9;
+  const out: Collider[] = [];
+  for (let i = 0; i < built.samples.length; i += edgeStep) {
+    const s = built.samples[i];
+    const pair: Collider[] = [
+      { x: s.x + s.rx * wallD, z: s.z + s.rz * wallD, r: 0.62, kind: "barrier" },
+      { x: s.x - s.rx * wallD, z: s.z - s.rz * wallD, r: 1.05, kind: "barrier" },
+    ];
+    for (const c of pair) {
+      if (nearestIndex(built.samples, c.x, c.z, i).dist < keepOut) continue;
+      // Preserve the actual rendered rail/jersey range at this road level.
+      // Legacy guards without a rendered structure retain their old envelope.
+      const range = built.edgeHeightRange;
+      out.push(range ? { ...c, minY: s.y + range.minY, maxY: s.y + range.maxY } : c);
+    }
+  }
+  return out;
+}
+
+export function startGridT(index: number, count: number) {
+  const lead = Math.max(0, count - 1 - index);
+  return 0.006 + lead * 0.007;
+}
+
+export function behindProgress(progress: number, back: number, open: boolean) {
+  const t = progress - back;
+  return open ? Math.max(0.002, t) : ((t % 1) + 1) % 1;
+}
+
+export function crossedForward(prev: number, now: number, gate: number) {
+  return prev < gate && now >= gate && now - prev < 0.2;
+}
+
 export function sampleAtT(samples: Sample[], t: number): Sample {
   const n = samples.length;
-  const u = ((t % 1) + 1) % 1;
-  const idx = Math.min(n - 1, Math.floor(u * n));
+  const open = samples[n - 1].t === 1;
+  const u = open ? Math.max(0, Math.min(1, t)) : ((t % 1) + 1) % 1;
+  const idx = Math.min(n - 1, Math.floor(u * (open ? n - 1 : n)));
   return samples[idx];
 }

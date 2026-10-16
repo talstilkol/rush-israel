@@ -1,0 +1,10 @@
+{
+  "path": "public/game/sign-speed120.svg",
+  "sha256": "960b4bcd12364fb69bded05889d455daf5af043c7f1fef08e3ad0a6971b6f24b",
+  "creation": "Deterministic SVG equivalent of the existing runtime speed-120 canvas drawing",
+  "external_image_used": false,
+  "embedded_font_used": false,
+  "public_distribution_authorized": false,
+  "source": "public/game/sign-speed120.svg",
+  "evidence": "public/game/LICENSES.md"
+}

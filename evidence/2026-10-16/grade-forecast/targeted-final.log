@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: aiInput: actual Haifa 5.25s grade approach needs early braking
+ok 1 - aiInput: actual Haifa 5.25s grade approach needs early braking
+  ---
+  duration_ms: 1.138375
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 5.65s grade approach needs early braking
+ok 2 - aiInput: actual Haifa 5.65s grade approach needs early braking
+  ---
+  duration_ms: 0.07925
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 5.70s grade approach needs early braking
+ok 3 - aiInput: actual Haifa 5.70s grade approach needs early braking
+  ---
+  duration_ms: 0.105917
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 5.75s grade approach needs early braking
+ok 4 - aiInput: actual Haifa 5.75s grade approach needs early braking
+  ---
+  duration_ms: 0.060875
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 6.15s grade approach needs early braking
+ok 5 - aiInput: actual Haifa 6.15s grade approach needs early braking
+  ---
+  duration_ms: 0.08925
+  type: 'test'
+  ...
+# Subtest: aiInput: off-road follower cannot borrow the main-road grade forecast
+ok 6 - aiInput: off-road follower cannot borrow the main-road grade forecast
+  ---
+  duration_ms: 0.27725
+  type: 'test'
+  ...
+# Subtest: aiInput: off-road leader cannot borrow the main-road grade forecast
+ok 7 - aiInput: off-road leader cannot borrow the main-road grade forecast
+  ---
+  duration_ms: 0.141958
+  type: 'test'
+  ...
+# Subtest: aiInput: same horizontal pose on another level must not become a grade hazard (-12m)
+ok 8 - aiInput: same horizontal pose on another level must not become a grade hazard (-12m)
+  ---
+  duration_ms: 0.063584
+  type: 'test'
+  ...
+# Subtest: aiInput: same horizontal pose on another level must not become a grade hazard (12m)
+ok 9 - aiInput: same horizontal pose on another level must not become a grade hazard (12m)
+  ---
+  duration_ms: 0.212375
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 5.25s grade approach needs early braking
+ok 10 - trafficInput: actual Haifa 5.25s grade approach needs early braking
+  ---
+  duration_ms: 0.249083
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 5.65s grade approach needs early braking
+ok 11 - trafficInput: actual Haifa 5.65s grade approach needs early braking
+  ---
+  duration_ms: 0.096167
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 5.70s grade approach needs early braking
+ok 12 - trafficInput: actual Haifa 5.70s grade approach needs early braking
+  ---
+  duration_ms: 0.032916
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 5.75s grade approach needs early braking
+ok 13 - trafficInput: actual Haifa 5.75s grade approach needs early braking
+  ---
+  duration_ms: 0.02825
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 6.15s grade approach needs early braking
+ok 14 - trafficInput: actual Haifa 6.15s grade approach needs early braking
+  ---
+  duration_ms: 0.031791
+  type: 'test'
+  ...
+# Subtest: trafficInput: off-road follower cannot borrow the main-road grade forecast
+ok 15 - trafficInput: off-road follower cannot borrow the main-road grade forecast
+  ---
+  duration_ms: 0.065667
+  type: 'test'
+  ...
+# Subtest: trafficInput: off-road leader cannot borrow the main-road grade forecast
+ok 16 - trafficInput: off-road leader cannot borrow the main-road grade forecast
+  ---
+  duration_ms: 0.036167
+  type: 'test'
+  ...
+# Subtest: trafficInput: same horizontal pose on another level must not become a grade hazard (-12m)
+ok 17 - trafficInput: same horizontal pose on another level must not become a grade hazard (-12m)
+  ---
+  duration_ms: 0.031125
+  type: 'test'
+  ...
+# Subtest: trafficInput: same horizontal pose on another level must not become a grade hazard (12m)
+ok 18 - trafficInput: same horizontal pose on another level must not become a grade hazard (12m)
+  ---
+  duration_ms: 0.025208
+  type: 'test'
+  ...
+# Subtest: actual Hermon route fold: another elevation almost100m along the road must not cause false emergency braking
+ok 19 - actual Hermon route fold: another elevation almost100m along the road must not cause false emergency braking
+  ---
+  duration_ms: 0.503875
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 373.568625

@@ -1,0 +1,641 @@
+TAP version 13
+# Subtest: ayalon: spawning keeps the grade sample at the actual vehicle position
+not ok 1 - ayalon: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 2.194125
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    spawn t=0.07307692307692307
+    + actual - expected
+    
+      [
+        1061.4374999999397,
+    +   1.6339553332401442,
+    +   -968.4840000002508
+    -   1.6481254607627691,
+    -   -965.1444000002572
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 1061.4374999999397
+    1: 1.6481254607627691
+    2: -965.1444000002572
+  actual:
+    0: 1061.4374999999397
+    1: 1.6339553332401442
+    2: -968.4840000002508
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:20:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: ayalon: recovery replaces the old grade sample with the actual checkpoint position
+not ok 2 - ayalon: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.412917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:23:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    checkpoint=0
+    + actual - expected
+    
+      [
+        1061.4374999999397,
+    +   0.5239635376748789,
+    +   1450.9467353331488
+    -   1.9353867181580307,
+    -   -834.9000000001264
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 1061.4374999999397
+    1: 1.9353867181580307
+    2: -834.9000000001264
+  actual:
+    0: 1061.4374999999397
+    1: 0.5239635376748789
+    2: 1450.9467353331488
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:30:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: rothschild: spawning keeps the grade sample at the actual vehicle position
+not ok 3 - rothschild: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.143708
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    spawn t=0.10416666666666666
+    + actual - expected
+    
+      [
+    +   175.7740499998827,
+    -   178.3214999998749,
+        0.4,
+    +   -454.2781811334619
+    -   -451.21706666678836
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 178.3214999998749
+    1: 0.4
+    2: -451.21706666678836
+  actual:
+    0: 175.7740499998827
+    1: 0.4
+    2: -454.2781811334619
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:20:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: rothschild: recovery replaces the old grade sample with the actual checkpoint position
+not ok 4 - rothschild: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.129416
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:23:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    checkpoint=0
+    + actual - expected
+    
+      [
+    +   48.49841599987884,
+    -   50.94899999988126,
+        0.4,
+    +   -595.0484437333854
+    -   -591.1092000000461
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 50.94899999988126
+    1: 0.4
+    2: -591.1092000000461
+  actual:
+    0: 48.49841599987884
+    1: 0.4
+    2: -595.0484437333854
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:30:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: namal: spawning keeps the grade sample at the actual vehicle position
+not ok 5 - namal: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.270458
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    spawn t=0.09607843137254901
+    + actual - expected
+    
+      [
+    +   217.38239999977333,
+    -   219.0806999997689,
+        0.4,
+    +   1130.1206399998493
+    -   1132.7923199998406
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 219.0806999997689
+    1: 0.4
+    2: 1132.7923199998406
+  actual:
+    0: 217.38239999977333
+    1: 0.4
+    2: 1130.1206399998493
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:20:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: namal: recovery replaces the old grade sample with the actual checkpoint position
+not ok 6 - namal: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.061041
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:23:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    checkpoint=0
+    + actual - expected
+    
+      [
+    +   136.87039999998203,
+    -   135.86399999998505,
+        0.4,
+    +   999.154886399797
+    -   1001.8799999998007
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 135.86399999998505
+    1: 0.4
+    2: 1001.8799999998007
+  actual:
+    0: 136.87039999998203
+    1: 0.4
+    2: 999.154886399797
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:30:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa: spawning keeps the grade sample at the actual vehicle position
+not ok 7 - oldjaffa: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.152
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    spawn t=0.09607843137254901
+    + actual - expected
+    
+      [
+    +   -679.3200000001135,
+    +   0.6404482438880974,
+    +   -1049.729788800028
+    -   -680.7352500001225,
+    -   0.6861299366173056,
+    -   -1050.7588494333572
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: -680.7352500001225
+    1: 0.6861299366173056
+    2: -1050.7588494333572
+  actual:
+    0: -679.3200000001135
+    1: 0.6404482438880974
+    2: -1049.729788800028
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:20:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa: recovery replaces the old grade sample with the actual checkpoint position
+not ok 8 - oldjaffa: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.050667
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:23:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    checkpoint=0
+    + actual - expected
+    
+      [
+    +   -608.5751120000908,
+    -   -611.3880000000836,
+        0.6,
+    +   -1004.7698671999735
+    -   -1006.8893999999669
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: -611.3880000000836
+    1: 0.6
+    2: -1006.8893999999669
+  actual:
+    0: -608.5751120000908
+    1: 0.6
+    2: -1004.7698671999735
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:30:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus: spawning keeps the grade sample at the actual vehicle position
+not ok 9 - scopus: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.39975
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    spawn t=0.1515151515151515
+    + actual - expected
+    
+      [
+    +   499.85760000007,
+    +   13.00221074864809,
+    +   623.035776000065
+    -   503.95996666673886,
+    -   13.212523308227956,
+    -   625.743944222288
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 503.95996666673886
+    1: 13.212523308227956
+    2: 625.743944222288
+  actual:
+    0: 499.85760000007
+    1: 13.00221074864809
+    2: 623.035776000065
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:20:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus: recovery replaces the old grade sample with the actual checkpoint position
+not ok 10 - scopus: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.234125
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:23:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    checkpoint=0
+    + actual - expected
+    
+      [
+    +   824.7038551293955,
+    +   81.73532090234937,
+    +   736.3115034815488
+    -   467.0386666667117,
+    -   11.339495022985894,
+    -   598.6542222222845
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 467.0386666667117
+    1: 11.339495022985894
+    2: 598.6542222222845
+  actual:
+    0: 824.7038551293955
+    1: 81.73532090234937
+    2: 736.3115034815488
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:30:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa: spawning keeps the grade sample at the actual vehicle position
+not ok 11 - haifa: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.110417
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    spawn t=0.006666666666666666
+    + actual - expected
+    
+      [
+    +   -155.67750000008562,
+    +   120,
+    +   -160.30079999998236
+    -   -156.20733333342045,
+    -   119.58310840361692,
+    -   -158.69946179997956
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: -156.20733333342045
+    1: 119.58310840361692
+    2: -158.69946179997956
+  actual:
+    0: -155.67750000008562
+    1: 120
+    2: -160.30079999998236
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:20:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa: recovery replaces the old grade sample with the actual checkpoint position
+not ok 12 - haifa: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.055542
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:23:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    checkpoint=0
+    + actual - expected
+    
+      [
+    +   570.9021174998655,
+    +   2.2793402241521687,
+    +   111.66787500010226
+    -   -189.97704000016472,
+    -   105.04659356632745,
+    -   -52.097759999861495
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: -189.97704000016472
+    1: 105.04659356632745
+    2: -52.097759999861495
+  actual:
+    0: 570.9021174998655
+    1: 2.2793402241521687
+    2: 111.66787500010226
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:30:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon: spawning keeps the grade sample at the actual vehicle position
+not ok 13 - ramon: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.088333
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    spawn t=0.0980392156862745
+    + actual - expected
+    
+      [
+    +   202.59840000009808,
+    +   165.79228630253436,
+    +   66.70294400006128
+    -   207.8216888889867,
+    -   165.3198377871187,
+    -   64.07929651858761
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 207.8216888889867
+    1: 165.3198377871187
+    2: 64.07929651858761
+  actual:
+    0: 202.59840000009808
+    1: 165.79228630253436
+    2: 66.70294400006128
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:20:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon: recovery replaces the old grade sample with the actual checkpoint position
+not ok 14 - ramon: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.055292
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:23:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    checkpoint=0
+    + actual - expected
+    
+      [
+    +   -218.43377777761015,
+    +   1.2,
+    +   -2099.784425851891
+    -   267.2298666667359,
+    -   159.19703103940822,
+    -   27.432546370488886
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 267.2298666667359
+    1: 159.19703103940822
+    2: 27.432546370488886
+  actual:
+    0: -218.43377777761015
+    1: 1.2
+    2: -2099.784425851891
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:30:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon: spawning keeps the grade sample at the actual vehicle position
+not ok 15 - hermon: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.232542
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    spawn t=0.5125
+    + actual - expected
+    
+      [
+    +   170.18667614805207,
+    +   82.7400527436826,
+    +   434.86506571849634
+    -   176.18251851842294,
+    -   83.10157126350924,
+    -   439.1780148147932
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 176.18251851842294
+    1: 83.10157126350924
+    2: 439.1780148147932
+  actual:
+    0: 170.18667614805207
+    1: 82.7400527436826
+    2: 434.86506571849634
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:20:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon: recovery replaces the old grade sample with the actual checkpoint position
+not ok 16 - hermon: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.043042
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:23:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    checkpoint=0
+    + actual - expected
+    
+      [
+    +   740.8936154072587,
+    +   171.6080490299738,
+    +   1387.0641866073327
+    -   38.16045985176626,
+    -   19.752825009106154,
+    -   -283.3247374222158
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 38.16045985176626
+    1: 19.752825009106154
+    2: -283.3247374222158
+  actual:
+    0: 740.8936154072587
+    1: 171.6080490299738
+    2: 1387.0641866073327
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-direction.test.mjs:30:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 0
+# fail 16
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 428.175

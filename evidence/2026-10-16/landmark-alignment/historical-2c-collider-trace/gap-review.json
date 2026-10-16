@@ -1,0 +1,64 @@
+{
+  "source_head": "2c365ba1198c5b48cfaae3dde40cd1ce074c1d29",
+  "observed_at": "2026-10-16T07:07:51.138853+00:00",
+  "scope": "MP006.1 complete gap inventory of42 historical offsets; no full contact acceptance.",
+  "counts": {
+    "historical": 42,
+    "tracks": 26,
+    "unambiguousOriginalIdentity": 34,
+    "exactMeshOrigin": 32,
+    "requiresMapping": [
+      {
+        "track": "namal",
+        "historicalIndex": 1
+      },
+      {
+        "track": "hw1",
+        "historicalIndex": 0
+      },
+      {
+        "track": "hw1",
+        "historicalIndex": 2
+      },
+      {
+        "track": "hw1",
+        "historicalIndex": 4
+      },
+      {
+        "track": "ramon",
+        "historicalIndex": 1
+      },
+      {
+        "track": "ramon",
+        "historicalIndex": 4
+      },
+      {
+        "track": "ramon",
+        "historicalIndex": 6
+      },
+      {
+        "track": "ramon",
+        "historicalIndex": 10
+      }
+    ],
+    "acceptedContacts": 0
+  },
+  "confirmed_source_defects": [
+    "Hermon lodge/light moved separately from its old collider.",
+    "Ashkelon central proxy does not correspond to its visible tower/walls."
+  ],
+  "isolated_fix": "Being tested separately; not acceptance of source2c.",
+  "still_open": [
+    "8 prior identities need explicit mapping across changed tunnel/landmark generation.",
+    "32 center correspondences do not establish complete hull/height/contact agreement.",
+    "Ashkelon is preview outsideV1; preview race acceptance not established."
+  ],
+  "files": {
+    "trace.json": "21a0302f1fbda4d9db6587cf359222653d0789d5368a0cd4ebbf01f43f2f1e60",
+    "trace.log": "84ee8a0577914c738e0edca2c071eca5a0384b1335ce27ee87d255ed78c52fb9",
+    "historical-identities.json": "d384680afd1bf45896cbab9e71a8897ab321a6b7a5b87897fa183b7ac19f2f4e",
+    "protocol.mjs": "b49a9c9ac2fe295c3bdf32f004501fa6fe1913e1896474b81850a8ffe5937780",
+    "historical-pr83-scenes.json": "103ff38d4cf38c988109fb2f060d01afff67b3a02b6823d4276933dbb02d34a0",
+    "historical-main-scenes.json": "2bec0eba2960c2e5dead4dc1057f0b809dae4175c8ace9f57fc7b0155d0f5d33"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "kind": "headless-allocation-counters",
+  "deviceAcceptance": false,
+  "expectedCycles": 2,
+  "measuredCycles": 0,
+  "status": "failed",
+  "warmup": [],
+  "baseline": null,
+  "rows": [],
+  "passed": false,
+  "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:8080/?qa=1\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:8080/?qa=1\", waiting until \"networkidle\"\u001b[22m\n"
+}

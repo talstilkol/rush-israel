@@ -98,4 +98,7 @@ export const RIVALS = [
   { he: "מאיה לוי", en: "Maya Levi" },
   { he: "ארי מזרחי", en: "Ari Mizrahi" },
   { he: "תמר בן דוד", en: "Tamar Ben-David" },
+  { he: "יונתן אביב", en: "Yonatan Aviv" },
+  { he: "שירה אלון", en: "Shira Alon" },
+  { he: "עומר דהן", en: "Omer Dahan" },
 ] as const;

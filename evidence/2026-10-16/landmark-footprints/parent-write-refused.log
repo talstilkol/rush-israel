@@ -1,0 +1,11 @@
+file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/landmark-footprint-smoke.mjs:10
+ if(git('rev-parse','HEAD')!=='1bb8bf2ecce6857796cbd14d7f1b4599be7f3d5f'||git('diff','HEAD','--','src','public')||git('ls-files','--others','--exclude-standard','src','public'))throw Error('Parent capture requires exact clean1bb8bf2 runtime;refuse to overwrite immutable evidence');
+                                                                                                                                                                                       ^
+
+Error: Parent capture requires exact clean1bb8bf2 runtime;refuse to overwrite immutable evidence
+    at file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/landmark-footprint-smoke.mjs:10:184
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.16.0

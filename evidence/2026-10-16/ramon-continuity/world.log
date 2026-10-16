@@ -1,0 +1,12 @@
+
+> app-builder-workspace@0.0.0-private qa:world:raw
+> node scripts/world-runtime-audit.mjs
+
+{
+  "count": 56,
+  "failures": [],
+  "cachedTextureDisposals": 0,
+  "duplicateDisposals": 0,
+  "buildingImpactVerified": true,
+  "pageErrors": []
+}

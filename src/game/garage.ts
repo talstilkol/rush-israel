@@ -34,11 +34,14 @@ export function emptyTune(): Tune {
 export function applyTune(base: CarDef, tune: Tune): CarDef {
   const paint = PAINTS[tune.paint];
   const color = !paint || paint.id === 0 || paint.color === 0 ? base.color : paint.color;
+  const accel = base.accel + tune.engine * 0.38;
+  const claim = base.zeroTo100 ?? 8.4;
   return {
     ...base,
     color,
     maxSpeed: base.maxSpeed + tune.engine * 1.4,
-    accel: base.accel + tune.engine * 0.38,
+    accel,
+    zeroTo100: claim * (base.accel / accel),
     turnRate: base.turnRate + tune.tires * 0.1,
     grip: Math.min(0.99, base.grip + tune.tires * 0.034),
     nitroDrain: 0.42 - tune.nitro * 0.07,
@@ -83,14 +86,17 @@ export function weatherLabel(w: Weather, he: boolean, ar = false) {
   return he ? "בהיר" : ar ? "صافي" : "Clear";
 }
 
-export type GhostFrame = { x: number; z: number; y: number; yaw: number };
+export type GhostFrame = { x: number; z: number; y: number; yaw: number; t?: number };
 
-export function sampleGhost(frames: GhostFrame[], time: number, dt = 0.16) {
-  if (!frames.length) return null;
-  const i = Math.min(frames.length - 1, Math.max(0, Math.floor(time / dt)));
-  const a = frames[i];
-  const b = frames[Math.min(frames.length - 1, i + 1)];
-  const f = Math.min(1, (time - i * dt) / dt);
+export function timedSpan(frames: { t?: number }[], fallbackDt: number) {
+  if (frames.length < 2) return 0;
+  const a = frames[0]?.t;
+  const b = frames[frames.length - 1]?.t;
+  if (typeof a === "number" && typeof b === "number" && b >= a) return b - a;
+  return Math.max(0, frames.length - 1) * fallbackDt;
+}
+
+function mixFrame(a: GhostFrame, b: GhostFrame, f: number) {
   let dy = b.yaw - a.yaw;
   while (dy > Math.PI) dy -= Math.PI * 2;
   while (dy < -Math.PI) dy += Math.PI * 2;
@@ -102,10 +108,36 @@ export function sampleGhost(frames: GhostFrame[], time: number, dt = 0.16) {
   };
 }
 
+function sampleTimed(frames: GhostFrame[], time: number) {
+  let lo = 0;
+  let hi = frames.length - 1;
+  while (lo < hi) {
+    const mid = (lo + hi + 1) >> 1;
+    if ((frames[mid]?.t ?? 0) <= time) lo = mid;
+    else hi = mid - 1;
+  }
+  const a = frames[lo]!;
+  const b = frames[Math.min(frames.length - 1, lo + 1)]!;
+  const span = (b.t ?? 0) - (a.t ?? 0);
+  const f = span > 1e-6 ? Math.min(1, Math.max(0, (time - (a.t ?? 0)) / span)) : 0;
+  return mixFrame(a, b, f);
+}
+
+export function sampleGhost(frames: GhostFrame[], time: number, dt = 0.16) {
+  if (!frames.length) return null;
+  if (typeof frames[0]?.t === "number") return sampleTimed(frames, time);
+  const i = Math.min(frames.length - 1, Math.max(0, Math.floor(time / dt)));
+  const a = frames[i]!;
+  const b = frames[Math.min(frames.length - 1, i + 1)]!;
+  const f = Math.min(1, (time - i * dt) / dt);
+  return mixFrame(a, b, f);
+}
+
 export function sampleGhostLoop(frames: GhostFrame[], time: number, dt = 0.16) {
   if (!frames.length) return null;
-  const period = frames.length * dt;
-  const t = ((time % period) + period) % period;
+  const period = typeof frames[0]?.t === "number" ? Math.max(dt, timedSpan(frames, dt)) : Math.max(dt, frames.length * dt);
+  const t0 = frames[0]?.t ?? 0;
+  const t = t0 + ((((time - t0) % period) + period) % period);
   return sampleGhost(frames, t, dt);
 }
 
@@ -134,6 +166,7 @@ export function paceGhost(samples: { x: number; y: number; z: number; tx: number
       y: a.y + (b.y - a.y) * f,
       z: a.z + (b.z - a.z) * f,
       yaw: Math.atan2(-a.tx, -a.tz),
+      t,
     });
   }
   return frames;

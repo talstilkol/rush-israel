@@ -1,0 +1,117 @@
+{
+  "kind": "current-source-terrain-regression",
+  "source_base": "ccaabd20d4247e3aac863af7982efa80aa33719e",
+  "source_sha": null,
+  "source_authority": "sha256 for each tested source; Git provides final HEAD after commit",
+  "source_files": [
+    {
+      "file": "src/game/terrain.ts",
+      "sha256": "9428385f0923169ff306b21875366a5a30b59060fc355dd3152543e3d41088ec"
+    },
+    {
+      "file": "src/game/roadside.ts",
+      "sha256": "6b0a367bc493ad2987e4b5629629f2e2e50356e9160dc24eeb996db9c54f7899"
+    },
+    {
+      "file": "src/game/world.ts",
+      "sha256": "1d1bfaa8f0330b2a5a226e9ac0fbc786d9fa790510289a748cf8f9707e2dfecf"
+    },
+    {
+      "file": "src/game/world-builders/types.ts",
+      "sha256": "40b6dba1c0d4335c8e4b9ca188496e50db05c0591e01d6ea652992598967d7ad"
+    },
+    {
+      "file": "src/game/world-builders/shared.ts",
+      "sha256": "a00997e02ec9817a88f062c7abb810fd969f8a77d7bdf2366d362338947cf758"
+    },
+    {
+      "file": "src/game/world-builders/tracks/scopus.ts",
+      "sha256": "c5b26bc990d68ccedfa22bcf259a8580cf2aff73e2a081f6476fb676a27f031c"
+    },
+    {
+      "file": "scripts/terrain.test.mjs",
+      "sha256": "cc407dd9ac73f33ad28e4f9af7bfa7687d638b427a49d4d9054569ecd43d29db"
+    },
+    {
+      "file": "scripts/terrain-height.test.mjs",
+      "sha256": "000877baabfdbbfe7e0360ed0ad9dadbb401f269886010304e19c33cd2514a77"
+    },
+    {
+      "file": "scripts/azrieli-bands.test.mjs",
+      "sha256": "0348053b73afd70e48d7903606c5a40170f9f71ccc67c084dbd9bc83ce0e4660"
+    },
+    {
+      "file": "scripts/world-runtime-audit.mjs",
+      "sha256": "7bd168d1fa342f05d59a1bd4b42897918303637038e2ca23fea49a4aee777e79"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "before.log",
+      "sha256": "76ad3d179cfd7206b75ef0aed173f058b90714b315b08e5ba96f275097024220"
+    },
+    {
+      "file": "after.log",
+      "sha256": "c2a8428c58f1cfc7570af9075934accb05f99478327c2b5938c42764422161e0"
+    },
+    {
+      "file": "height-query.log",
+      "sha256": "729e8de6a788a6780c1eb94bc44797fbac277be5d586da13fcd7b602004edfd7"
+    },
+    {
+      "file": "unit.log",
+      "sha256": "81f713492a8f759c0fde1dcbaf1600fc5e6c96f1b953f7d8ab12a55010e06909"
+    },
+    {
+      "file": "lint.log",
+      "sha256": "75ec7dc2e291581eeeb38bf4ba0535b6220ec7c990e8878fb27a4770c2a261b6"
+    },
+    {
+      "file": "typecheck.log",
+      "sha256": "602ec0d473a17c01dcdc2e92e85bf4ba1bdc73a68d0f14c2da2e4b2748e00204"
+    },
+    {
+      "file": "save.log",
+      "sha256": "afa37d5b4bf3fee76bf23ea94260df54afad529b6d175139bd52bb898c13719c"
+    },
+    {
+      "file": "production.log",
+      "sha256": "63f1e5e53aca36ad9e69060a426c146106b5904adb8547bccb065912e02b9538"
+    },
+    {
+      "file": "worlds.json",
+      "sha256": "9d1c8bb7b6ca15dfc50c40ffe70a68ae3ef45e920522f8730c7ee1f3d411271b"
+    },
+    {
+      "file": "races.json",
+      "sha256": "05812c22d31ef022d160e03736cd50af1831e2596c60bcaca4d6d80d5fa26669"
+    },
+    {
+      "file": "capture-generation.json",
+      "sha256": "cb22dedeb805964b5306f663280a7e3dfbf4986ab6822389ead260f84f19d189"
+    },
+    {
+      "file": "keyboard-state.json",
+      "sha256": "50bd0c314e6b14bb984c6ddfd4fae2ddfbd8a662de8a3e541313a8c17fd2d6f7"
+    }
+  ],
+  "verified": [
+    "7 of8 terrain regressions fail with extracted original source;8passafter",
+    "4 actual-mesh height-query tests pass",
+    "291 current-source units;36 save rechecks;TypeScript;lint0errors111existingwarnings;production9JSnoQA",
+    "56 actual worlds,8 assisted fullraces withGLerror0",
+    "All actual generated tree roots match rendered support;32 Scopus cypresses grounded and outside actual route corridor",
+    "Native Apple M4 Max8captures inspected;actual keyboard burst positive25.66m/s,damage0"
+  ],
+  "productAccepted": false,
+  "deviceAcceptance": false,
+  "artAccepted": false,
+  "currentSourceSoak1800": false,
+  "limitations": [
+    "Terrain is derived from existing fictional game route heights, not surveyed elevation data.",
+    "Coarse silhouettes, landmark grounding and art direction still require work; this is not photoreal or approved golden.",
+    "Race damage is unchanged and remains open.",
+    "No new public assets or licence assertions.",
+    "Local20-cycle proof applies to precedingccaabd2 source; final candidate requires its own requiredCI and1800seconds."
+  ]
+}

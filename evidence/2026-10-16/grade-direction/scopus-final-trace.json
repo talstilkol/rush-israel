@@ -1,0 +1,121 @@
+{
+  "sourceUrl": "http://127.0.0.1:8118/?qa=1",
+  "kind": "real-assisted-scopus-read-only-vehicle-instrumentation",
+  "state": {
+    "track": "scopus",
+    "quality": "high",
+    "weather": "clear",
+    "night": false,
+    "speed": 27.81,
+    "progress": 0.982,
+    "onTrack": true,
+    "coordinates": "metres; x/z horizontal, y up; yaw radians",
+    "position": {
+      "x": 659.9194837125185,
+      "y": 56.321250929432495,
+      "z": 778.2059527974735
+    },
+    "countdown": 0,
+    "totalTime": 63.34166666666371,
+    "lapTime": 0,
+    "lap": 1,
+    "checkpoints": 7,
+    "finished": true,
+    "damage": 0.16261236152959174,
+    "assisted": true,
+    "timeVoided": true,
+    "telem": {
+      "n": 16,
+      "p50": 221.7,
+      "p95": 4297.1,
+      "p99": 4297.1,
+      "last": 151.3,
+      "backend": "webgl2"
+    },
+    "csm": false,
+    "photo": false,
+    "webgpuTried": false,
+    "webgpuOk": false,
+    "webgpuReason": "",
+    "blobKtx2": false,
+    "ssgiOff": true,
+    "photoAa": "smaa"
+  },
+  "trace": {
+    "events": [
+      {
+        "kind": "inside-player-step",
+        "delta": 0.030539018688267867,
+        "progress": 0.11515151515151514,
+        "x": 456.0709711163585,
+        "y": 10.929734859014072,
+        "z": 595.185314253269,
+        "speed": 10.137884739521201,
+        "pitch": -0.27391506043543373,
+        "lastHit": "barrier",
+        "impact": 0.38,
+        "nearby": [
+          {
+            "name": "נועם כהן",
+            "x": 458.93156597031157,
+            "y": 10.929734859014072,
+            "z": 592.451673621942,
+            "speed": 27.46850580389597,
+            "isAi": true,
+            "isTraffic": false,
+            "isCop": false
+          }
+        ]
+      },
+      {
+        "kind": "between-player-steps",
+        "delta": 0.09346561003565765,
+        "progress": 0.11515151515151514,
+        "x": 459.1159089629488,
+        "y": 11.032017283831106,
+        "z": 594.9124825864558,
+        "speed": 13.984989020990742,
+        "pitch": -0.546809515860093,
+        "lastHit": "",
+        "impact": 0.55,
+        "nearby": [
+          {
+            "name": "נועם כהן",
+            "x": 464.0951422225901,
+            "y": 11.236897365817015,
+            "z": 596.3865988515669,
+            "speed": 26.229346979576277,
+            "isAi": true,
+            "isTraffic": false,
+            "isCop": false
+          },
+          {
+            "name": "מאיה לוי",
+            "x": 459.3137987697895,
+            "y": 10.929734859014072,
+            "z": 592.4704875773805,
+            "speed": 20.203501537008975,
+            "isAi": true,
+            "isTraffic": false,
+            "isCop": false
+          }
+        ]
+      },
+      {
+        "kind": "inside-player-step",
+        "delta": 0.03860773280566622,
+        "progress": 0.5848484848484848,
+        "x": 491.2972097562786,
+        "y": 46.65025271464145,
+        "z": 633.9557073152605,
+        "speed": 3.78404439519645,
+        "pitch": -0.6301223035209614,
+        "lastHit": "barrier",
+        "impact": 0.38,
+        "nearby": []
+      }
+    ],
+    "ticks": 7601
+  },
+  "errors": []
+}

@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
+import { clearRoadsidePoint } from "../../roadside";
 import { jer } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -8,6 +9,7 @@ export default function buildScopus(context: TrackWorldBuilderContext): void {
     def,
     bag,
     built,
+    terrainHeight,
     add,
     glowAt,
     hit,
@@ -22,11 +24,11 @@ export default function buildScopus(context: TrackWorldBuilderContext): void {
     const uniP = jer(31.7938, 35.2452);
     const sc = jer(31.7912, 35.2454);
     {
-      const nU = nearestIndex(built.samples, uniP.x, uniP.z, 0);
+      const nU = closestSample(built.samples, uniP.x, uniP.z);
       const sU = built.samples[nU.index];
       uniP.x = sU.x + sU.rx * (built.width / 2 + 24);
       uniP.z = sU.z + sU.rz * (built.width / 2 + 24);
-      const nS = nearestIndex(built.samples, sc.x, sc.z, 0);
+      const nS = closestSample(built.samples, sc.x, sc.z);
       const sS = built.samples[nS.index];
       sc.x = sS.x + sS.rx * (built.width / 2 + 22);
       sc.z = sS.z + sS.rz * (built.width / 2 + 22);
@@ -91,11 +93,11 @@ export default function buildScopus(context: TrackWorldBuilderContext): void {
     }
     for (let i = 0; i < 32; i++) {
       const t = 0.06 + i / 32 * 0.85;
-      const p = jer(31.7866 + t * 5e-3, 35.2344 + t * 0.01 + Math.sin(i) * 18e-4);
-      const y = def.elevation(t);
       const side = i % 2 ? 1 : -1;
       const cyp = new THREE.Mesh(new THREE.ConeGeometry(1.2, 6.8, 7), pineM);
-      cyp.position.set(p.x + side * (13 + i % 4 * 3), y + 3.4, p.z + i % 3 * 3);
+      const { x, z } = clearRoadsidePoint(built, t, side, 1.2);
+      cyp.position.set(x, terrainHeight(x, z) + 3.4, z);
+      cyp.name = "scopus-grounded-cypress";
       add(cyp);
     }
     glowAt(sc.x, peakY + 4, sc.z, 16769184, 22, 18);

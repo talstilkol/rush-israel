@@ -5,6 +5,8 @@ import type { RaceEngine } from "../engine";
 // signature, ambient overload or permissive value boundary is allowed.
 export type EngineAdapterHost = {
   acc: RaceEngine["acc"];
+  assisted: RaceEngine["assisted"];
+  bestRewardPlace: RaceEngine["bestRewardPlace"];
   addCop: RaceEngine["addCop"];
   applyAltitudeLook: RaceEngine["applyAltitudeLook"];
   applyClockSky: RaceEngine["applyClockSky"];
@@ -45,6 +47,7 @@ export type EngineAdapterHost = {
   cops: RaceEngine["cops"];
   copVis: RaceEngine["copVis"];
   countdown: RaceEngine["countdown"];
+  goFlash: RaceEngine["goFlash"];
   csm: RaceEngine["csm"];
   csmMuted: RaceEngine["csmMuted"];
   csmWanted: RaceEngine["csmWanted"];
@@ -86,9 +89,16 @@ export type EngineAdapterHost = {
   heatMax: RaceEngine["heatMax"];
   hood: RaceEngine["hood"];
   hoodEdge: RaceEngine["hoodEdge"];
+  photoEdge: RaceEngine["photoEdge"];
+  resetEdge: RaceEngine["resetEdge"];
+  hornEdge: RaceEngine["hornEdge"];
+  hornCd: RaceEngine["hornCd"];
+  lapNote: RaceEngine["lapNote"];
+  lapNoteT: RaceEngine["lapNoteT"];
   hudTimer: RaceEngine["hudTimer"];
   impactCd: RaceEngine["impactCd"];
   input: RaceEngine["input"];
+  inputSnap: RaceEngine["inputSnap"];
   koMarked: RaceEngine["koMarked"];
   laps: RaceEngine["laps"];
   lapTime: RaceEngine["lapTime"];
@@ -96,6 +106,16 @@ export type EngineAdapterHost = {
   lastDirt: RaceEngine["lastDirt"];
   lastDrifting: RaceEngine["lastDrifting"];
   lastPlace: RaceEngine["lastPlace"];
+  overtakePayT: RaceEngine["overtakePayT"];
+  ledger: RaceEngine["ledger"];
+  cashNote: RaceEngine["cashNote"];
+  cashNoteT: RaceEngine["cashNoteT"];
+  camAt: RaceEngine["camAt"];
+  camFlash: RaceEngine["camFlash"];
+  brakeWarn: RaceEngine["brakeWarn"];
+  goldenIdx: RaceEngine["goldenIdx"];
+  goldenName: RaceEngine["goldenName"];
+  brakeBeep: RaceEngine["brakeBeep"];
   lastPresent: RaceEngine["lastPresent"];
   leases: RaceEngine["leases"];
   lite: RaceEngine["lite"];
@@ -136,6 +156,7 @@ export type EngineAdapterHost = {
   radioToast: RaceEngine["radioToast"];
   rainMesh: RaceEngine["rainMesh"];
   rainPos: RaceEngine["rainPos"];
+  recordClass: RaceEngine["recordClass"];
   recordReplay: RaceEngine["recordReplay"];
   recordSnap: RaceEngine["recordSnap"];
   renderer: RaceEngine["renderer"];
@@ -145,6 +166,8 @@ export type EngineAdapterHost = {
   replaySlow: RaceEngine["replaySlow"];
   replayT: RaceEngine["replayT"];
   restartRace: RaceEngine["restartRace"];
+  rescue: RaceEngine["rescue"];
+  horn: RaceEngine["horn"];
   rewindAcc: RaceEngine["rewindAcc"];
   rewindBuf: RaceEngine["rewindBuf"];
   rewinding: RaceEngine["rewinding"];
@@ -198,6 +221,8 @@ export type EngineAdapterHost = {
   visuals: RaceEngine["visuals"];
   wanted: RaceEngine["wanted"];
   weather: RaceEngine["weather"];
+  raceWeather: RaceEngine["raceWeather"];
+  raceClock: RaceEngine["raceClock"];
   webgpuOk: RaceEngine["webgpuOk"];
   webgpuReason: RaceEngine["webgpuReason"];
   webgpuTried: RaceEngine["webgpuTried"];

@@ -1,3 +1,4 @@
+/** Historical RSH lock metadata; no current product/source freeze is granted. */
 /** Canonical RSH-053 Jaffa geometry and driving lock. Honest: no GIS, no public distribution, no real-device baseline. */
 export const UNIT_ID = "RSH-053" as const;
 export const LOCK_DEFINED = true;
@@ -6,8 +7,8 @@ export const OWNER_FREEZE = false;
 export const PUBLIC_DISTRIBUTION = false;
 export const PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const TRACK_ID = "oldjaffa" as const;
-export const GEOMETRY_LOCKED = true;
-export const DRIVING_LOCKED = true;
+export const GEOMETRY_LOCKED = false;
+export const DRIVING_LOCKED = false;
 export const ART_GOLDEN_LOCKED = false;
 export const TRACK_FREEZE_GRANTED = false;
 
@@ -24,6 +25,6 @@ export function evaluateLock(report: LockReport = { claimedVerified: false }) {
 }
 
 export function canonicalDigest(): string {
-  return "track_id=oldjaffa\ngeometry_locked=true\ndriving_locked=true\nart_golden_locked=false\ntrack_freeze_granted=false\ngis=false\nowner_freeze=false\npublic_distribution=false\n";
+  return "track_id=oldjaffa\ngeometry_locked=false\ndriving_locked=false\nart_golden_locked=false\ntrack_freeze_granted=false\ngis=false\nowner_freeze=false\npublic_distribution=false\n";
 }
 

@@ -1,0 +1,196 @@
+{
+  "base_sha": "8e55b8a558b821e14869f71d781e18a9d2ae2cbb",
+  "kind": "observed-real-browser-engine-automatic-rescue",
+  "candidate_source_sha256": {
+    "src/game/vehicle.ts": "c075870b09f76ec19f6eccae4c86aebc4371c5ac5f635107ff3b78b46971a9e2",
+    "src/game/engine/physics-adapter.ts": "763950287e867a33a1925fdcd0fb60e586f78ac2a5ce7b6cea4ae4a73418bb80",
+    "scripts/runtime-regressions.test.mjs": "521b192500bf86670578970c24c52e7614dd714d2d6028aff63f1f22185dbfaf",
+    "scripts/race-condition-smoke.mjs": "b43ec5c129e0f3902d4b88a63792b16a3cea599034c1fc3884630cdd2ff827c4"
+  },
+  "before": {
+    "candidates": 1,
+    "chosen": {
+      "index": 30,
+      "t": 0.038461538461538464,
+      "lateral": -14.4
+    },
+    "actualRecoveries": 1,
+    "before": {
+      "track": "ayalon",
+      "quality": "high",
+      "weather": "clear",
+      "night": false,
+      "speed": 0,
+      "progress": 0.038,
+      "onTrack": true,
+      "coordinates": "metres; x/z horizontal, y up; yaw radians",
+      "position": {
+        "x": 1047.0374999999397,
+        "y": 1.1877673911555315,
+        "z": -1051.97400000004
+      },
+      "countdown": 0,
+      "totalTime": 0,
+      "lapTime": 0,
+      "lap": 0,
+      "checkpoints": -1,
+      "finished": false,
+      "damage": 0,
+      "assisted": false,
+      "timeVoided": false,
+      "telem": {
+        "n": 3,
+        "p50": 1037.4,
+        "p95": 4515.3,
+        "p99": 4515.3,
+        "last": 99.7,
+        "backend": "webgl2"
+      },
+      "csm": false,
+      "photo": false,
+      "webgpuTried": false,
+      "webgpuOk": false,
+      "webgpuReason": "",
+      "blobKtx2": false,
+      "ssgiOff": true,
+      "photoAa": "smaa"
+    },
+    "after": {
+      "track": "ayalon",
+      "quality": "high",
+      "weather": "clear",
+      "night": false,
+      "speed": 0,
+      "progress": 0.038,
+      "onTrack": true,
+      "coordinates": "metres; x/z horizontal, y up; yaw radians",
+      "position": {
+        "x": 1059.1030385035365,
+        "y": 1.1877673911555315,
+        "z": -1051.9809327957487
+      },
+      "countdown": 0,
+      "totalTime": 3.249999999999991,
+      "lapTime": 3.249999999999991,
+      "lap": 0,
+      "checkpoints": -1,
+      "finished": false,
+      "damage": 0,
+      "assisted": false,
+      "timeVoided": false,
+      "telem": {
+        "n": 3,
+        "p50": 1037.4,
+        "p95": 4515.3,
+        "p99": 4515.3,
+        "last": 99.7,
+        "backend": "webgl2"
+      },
+      "csm": false,
+      "photo": false,
+      "webgpuTried": false,
+      "webgpuOk": false,
+      "webgpuReason": "",
+      "blobKtx2": false,
+      "ssgiOff": true,
+      "photoAa": "smaa"
+    }
+  },
+  "after": {
+    "candidates": 1,
+    "chosen": {
+      "index": 30,
+      "t": 0.038461538461538464,
+      "lateral": -14.4
+    },
+    "actualRecoveries": 1,
+    "before": {
+      "track": "ayalon",
+      "quality": "high",
+      "weather": "clear",
+      "night": false,
+      "speed": 0,
+      "progress": 0.038,
+      "onTrack": true,
+      "coordinates": "metres; x/z horizontal, y up; yaw radians",
+      "position": {
+        "x": 1047.0374999999397,
+        "y": 1.1877673911555315,
+        "z": -1051.97400000004
+      },
+      "countdown": 0,
+      "totalTime": 0,
+      "lapTime": 0,
+      "lap": 0,
+      "checkpoints": -1,
+      "finished": false,
+      "damage": 0,
+      "assisted": false,
+      "timeVoided": false,
+      "telem": {
+        "n": 3,
+        "p50": 975.1,
+        "p95": 4485.4,
+        "p99": 4485.4,
+        "last": 100.4,
+        "backend": "webgl2"
+      },
+      "csm": false,
+      "photo": false,
+      "webgpuTried": false,
+      "webgpuOk": false,
+      "webgpuReason": "",
+      "blobKtx2": false,
+      "ssgiOff": true,
+      "photoAa": "smaa"
+    },
+    "after": {
+      "track": "ayalon",
+      "quality": "high",
+      "weather": "clear",
+      "night": false,
+      "speed": 0,
+      "progress": 0.038,
+      "onTrack": true,
+      "coordinates": "metres; x/z horizontal, y up; yaw radians",
+      "position": {
+        "x": 1059.1030385035365,
+        "y": 1.1877673911555315,
+        "z": -1051.9809327957487
+      },
+      "countdown": 0,
+      "totalTime": 3.249999999999991,
+      "lapTime": 3.249999999999991,
+      "lap": 0,
+      "checkpoints": -1,
+      "finished": false,
+      "damage": 0,
+      "assisted": true,
+      "timeVoided": false,
+      "telem": {
+        "n": 3,
+        "p50": 975.1,
+        "p95": 4485.4,
+        "p99": 4485.4,
+        "last": 100.4,
+        "backend": "webgl2"
+      },
+      "csm": false,
+      "photo": false,
+      "webgpuTried": false,
+      "webgpuOk": false,
+      "webgpuReason": "",
+      "blobKtx2": false,
+      "ssgiOff": true,
+      "photoAa": "smaa"
+    }
+  },
+  "assertions": {
+    "same_real_route_location": true,
+    "real_rescues_before": 1,
+    "real_rescues_after": 1,
+    "now_record_disqualified": true,
+    "previously_missing_assisted_disqualification": true
+  },
+  "scope": "Real Ayalon world, streets, ramps, colliders and racers. Parked just outside actual road via production ArcadeCar.spawn; unmodified automatic off-road recovery observed through its real respawn method. Fixed-step browser test; no physical device, human or whole-race acceptance."
+}

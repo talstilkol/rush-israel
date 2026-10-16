@@ -1,0 +1,17 @@
+{
+  "head": "working-tree-on-fa4630a",
+  "physicsVersion": 9,
+  "kind": "accelerated-assisted-browser-engine-actual-grid-no-reset-teleport",
+  "physicalDeviceAcceptance": false,
+  "results": [
+    {
+      "track": "rothschild",
+      "complete": true,
+      "resultUi": true,
+      "lap": 3,
+      "seconds": 194.66666666665395,
+      "damage": 0.5692529691795798,
+      "assisted": true
+    }
+  ]
+}

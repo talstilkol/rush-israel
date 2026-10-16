@@ -1,13 +1,14 @@
 import * as THREE from "three";
 import { GameAudio, RADIO } from "./audio";
 // RSH-019-OVERLAY-BEGIN:engine-car-disposer-import
-import { createCarVisual, disposeCarVisual, pulsePolice, setCarLights, updateCarVisual, applyDamage, type CarVisual } from "./car-mesh";
+import { carContactBounds, createCarVisual, disposeCarVisual, pulsePolice, setCarLights, updateCarVisual, applyDamage, type CarVisual } from "./car-mesh";
 // RSH-019-OVERLAY-END:engine-car-disposer-import
 import { getEvent } from "./career";
 import { finishLine, introLine, overtakeLine } from "./dialog";
 import { applyTune, emptyTune, paceGhost, racePayout, sampleGhost, sampleGhostLoop, WEATHER_GRIP, type GhostFrame } from "./garage";
 import { CARS, getCar, RIVALS } from "./cars";
 import { GameInput } from "./input";
+import { roadLaneOffset } from "./road-layout";
 import { clamp, expSmooth, lerp, hash01, hashStr } from "./math";
 import { hasAiPack, hasCops, MODE_LAPS } from "./modes";
 import { bakeEnv, createPost, SSGI_OFF, PHOTO_AA, type PostStack } from "./postfx";
@@ -21,10 +22,10 @@ import {
   PHYSICS_VERSION,
   WEATHER_SPEC,
 } from "./physics";
-import { getDamage, getGhost, recordGhost, setDamage } from "./save";
-import { buildTrack, nearestIndex, sampleAtT } from "./spline";
+import { assistKey, getDamage, getGhost, recordGhost, setDamage } from "./save";
+import { buildTrack, nearestIndex, sampleAtT, startGridT } from "./spline";
 import { getTrack, nearestPoi, nightAmt, streetName, todLabel, tlv } from "./tracks";
-import type { AssistFlags, CarId, Collider, HandlingMode, HudState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
+import type { AssistFlags, CarId, Collider, HandlingMode, HudState, InputState, Quality, RaceMode, RaceResult, TrackId, Tune, Weather } from "./types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting, type CarSnap } from "./vehicle";
 import { createWorld, type World } from "./world";
 import { bindRoadCompile } from "./roadShader";
@@ -47,6 +48,7 @@ import { loadFlake } from "./flake-assets";
 import { loadCars } from "./car-assets";
 import { loadRoadFor } from "./road-assets";
 import { loadSky } from "./sky-assets";
+import { rulesetKey } from "./race-rules";
 import { RenderTelemetry } from "../rendering/RenderTelemetry";
 import { AYALON_GOLDEN } from "../world/goldenCameras";
 import { RendererFacade } from "../rendering/RendererFacade";
@@ -96,12 +98,32 @@ function isSoftwareGL(renderer: THREE.WebGLRenderer) {
 }
 
 type RewindPack = {
+  laps: number[];
+  bestLap: number;
+  bestSectors: number[];
+  sectorClock: number;
+  sectorIdx: number;
+  sectorDelta: number;
+  koMarked: number;
+  poiGot: number[];
+  heatMax: number;
+  busted: boolean;
+  escaping: boolean;
+  camAt: number;
+  combo: number;
+  comboHold: number;
+  lastDrifting: boolean;
+  ghostAcc: number;
+  replayAcc: number;
   totalTime: number;
   lapTime: number;
   heat: number;
   bustAcc: number;
   cooldown?: number;
   wanted?: number;
+  ledger?: number;
+  lastPlace?: number;
+  overtakePayT?: number;
   cars: CarSnap[];
   traffic: CarSnap[];
   cops: CarSnap[];
@@ -120,6 +142,9 @@ type Options = {
   tune?: Tune;
   handling?: HandlingMode;
   assists?: AssistFlags;
+  grid?: number;
+  volume?: number;
+  traffic?: "off" | "low" | "normal" | "dense";
   onHud: (h: HudState) => void;
   onFinish: (r: RaceResult) => void;
   onBoot?: (frac: number) => void;
@@ -133,6 +158,7 @@ export class RaceEngine {
   private scene: THREE.Scene;
   private camera: THREE.PerspectiveCamera;
   private input!: GameInput;
+  private inputSnap: InputState = { steer: 0, throttle: 0, brake: 0, drift: false, nitro: false };
   private audio!: GameAudio;
   private world!: World;
   private post!: PostStack;
@@ -154,7 +180,8 @@ export class RaceEngine {
   private disposed = false;
   private paused = false;
   private racing = false;
-  private countdown = 1.45;
+  private countdown = 3.8;
+  private goFlash = 0;
   private totalTime = 0;
   private lapTime = 0;
   private bestLap = Infinity;
@@ -166,6 +193,12 @@ export class RaceEngine {
   private hood = false;
   private hudTimer = 0;
   private hoodEdge = false;
+  private photoEdge = false;
+  private resetEdge = false;
+  private hornEdge = false;
+  private hornCd = 0;
+  private lapNote = "";
+  private lapNoteT = 0;
   private lookBack = false;
   private autoCycle = false;
   private clock = 0.5;
@@ -174,7 +207,17 @@ export class RaceEngine {
   private replaySlow = false;
   private banter = "";
   private banterT = 0;
-  private lastPlace = 4;
+  private lastPlace = 0;
+  private overtakePayT = 0;
+  private ledger = 0;
+  private cashNote = "";
+  private cashNoteT = 0;
+  private camAt = 0;
+  private camFlash = 0;
+  private goldenIdx = 0;
+  private goldenName = "";
+  private brakeWarn = false;
+  private brakeBeep = 0;
   private rivalIdx = 0;
   private combo = 0;
   private comboHold = 0;
@@ -239,6 +282,8 @@ export class RaceEngine {
   private koMarked = 0;
   private nowSec = 0;
   private weather: Weather = "clear";
+  private raceWeather: Weather = "clear";
+  private raceClock = 0.5;
   private rainMesh: THREE.Points | null = null;
   private rainPos: Float32Array | null = null;
   private ghostVis: CarVisual | null = null;
@@ -254,10 +299,10 @@ export class RaceEngine {
   private camMode = 0;
   private replaying = false;
   private replayT = 0;
-  private replayBuf: { x: number; y: number; z: number; yaw: number; speed: number }[][] = [];
+  private replayBuf: { x: number; y: number; z: number; yaw: number; speed: number; t?: number }[][] = [];
   private replayAcc = 0;
   private pendingResult: RaceResult | null = null;
-  private camNames = ["chase"];
+  private camNames = ["chase", "hood", "bumper", "heli"];
   private rewindBuf: RewindPack[] = [];
   private rewindAcc = 0;
   private rewinding = false;
@@ -279,6 +324,10 @@ export class RaceEngine {
   private booted = false;
   private tickId = 0;
   private timeVoided = false;
+  private assisted = false;
+  private rulesChanged = false;
+  private recordClass: string;
+  private bestRewardPlace = Infinity;
   private qaForcedFinish = false;
   private glLost = false;
   private telem: RenderTelemetry;
@@ -288,6 +337,12 @@ export class RaceEngine {
     this.opts = opts;
     this.trackDef = getTrack(opts.trackId);
     this.built = buildTrack(this.trackDef);
+    this.recordClass = rulesetKey(opts.trackId, {
+      mode: opts.mode ?? "circuit", weather: opts.weather ?? "clear", carId: opts.carId,
+      handling: opts.handling ?? "arcade", assists: assistKey(opts.assists ?? DEFAULT_ASSISTS),
+      laps: this.trackDef.open ? 1 : MODE_LAPS[opts.mode ?? "circuit"],
+      tune: opts.tune ?? emptyTune(), night: opts.night, traffic: opts.traffic ?? "normal", grid: opts.grid ?? 6,
+    });
     this.weather = opts.weather ?? "clear";
 
     const mobile = canvas.clientWidth < 700 || /Mobi|Android/i.test(navigator.userAgent);
@@ -303,7 +358,7 @@ export class RaceEngine {
     if (soft) this.lite = true;
     const shadows = !mobile && !soft;
     this.renderer.shadowMap.enabled = shadows;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.shadowMap.type = THREE.PCFShadowMap;
 
     this.scene = new THREE.Scene();
     const spec = FOG[fogKey(this.trackDef.theme, opts.trackId)];
@@ -424,8 +479,9 @@ export class RaceEngine {
     this.input = new GameInput(this.canvas);
     this.audio = new GameAudio();
     this.audio.setVoice(getCar(this.opts.carId).body);
+    if (this.opts.volume != null) this.audio.setLevel(this.opts.volume);
 
-    const playerDef = applyTune(getCar(this.opts.carId), emptyTune());
+    const playerDef = applyTune(getCar(this.opts.carId), this.opts.tune ?? emptyTune());
     this.player = new ArcadeCar(playerDef, playerDef.nameHe);
     this.player.roam = (this.opts.mode ?? "circuit") === "roam" || this.opts.trackId === "gushdan";
     this.player.weatherGrip = WEATHER_GRIP[this.weather] ?? 1;
@@ -437,18 +493,20 @@ export class RaceEngine {
     this.totalLaps = this.trackDef.open ? 1 : MODE_LAPS[this.mode];
     this.racers = [this.player];
     if (hasAiPack(this.mode)) {
-      const aiDefs = CARS.filter((c) => c.id !== this.opts.carId).slice(0, 3);
-      aiDefs.forEach((d, i) => {
+      const pool = CARS.filter((c) => c.id !== this.opts.carId);
+      const want = Math.max(1, Math.min(7, (this.opts.grid ?? 6) - 1));
+      for (let i = 0; i < want; i++) {
+        const d = pool[i % pool.length]!;
         const rival = RIVALS[i % RIVALS.length];
         const ai = new ArcadeCar(d, this.opts.langHe ? rival.he : rival.en);
         ai.isAi = true;
-        ai.aiSkill = 0.9 - i * 0.05;
-        ai.aiOffset = (i % 2 === 0 ? -1 : 1) * (2.2 + i * 0.4);
+        ai.aiSkill = 0.94 - i * 0.045;
+        ai.aiOffset = this.built.medianHalfWidth ? roadLaneOffset(this.built, i % 2 === 0 ? -1 : 1) : 0;
         ai.handling = this.player.handling;
         ai.assists = { abs: true, tcs: true, esc: true };
         ai.weather = this.weather;
         this.racers.push(ai);
-      });
+      }
     }
     const gMul = WEATHER_GRIP[this.weather] ?? 1;
     const sg = SURFACE_GRIP[this.trackDef.theme] ?? 1;
@@ -469,6 +527,7 @@ export class RaceEngine {
         r.stats.kit === "police",
         i === 0 ? this.opts.tune : undefined,
       );
+      r.contactBounds = carContactBounds(vis);
       setCarLights(vis, this.opts.night);
       if (i === 0) applyDamage(vis, this.player.damage, this.player.dirt);
       this.scene.add(vis.group);
@@ -613,6 +672,12 @@ export class RaceEngine {
     }
     this.scene.environmentIntensity = this.world.night ? 0.42 : 0.7;
     this.renderer.setAnimationLoop(() => this.frame());
+    try {
+      this.onResize();
+      this.post.render();
+    } catch {
+      /* the soak samples memory the moment the hook exists */
+    }
 
     this.rivalIdx = (this.opts.eventId?.length ?? 1) % 4;
     const ev = this.opts.eventId ? getEvent(this.opts.eventId) : null;
@@ -628,8 +693,8 @@ export class RaceEngine {
   private placeGrid() {
     const n = this.racers.length;
     for (let i = 0; i < n; i++) {
-      const t = i === 0 ? 0.03 : (0.03 - 0.012 * i + 1) % 1;
-      const lat = i === 0 ? (this.trackDef.id === "rothschild" ? -10.2 : -2.2) : this.racers[i].aiOffset;
+      const t = startGridT(i, n);
+      const lat = i === 0 ? roadLaneOffset(this.built, -2.2) : this.racers[i].aiOffset;
       if (i === 0) this.racers[i].aiOffset = lat;
       this.racers[i].spawn(this.built, t, lat);
     }
@@ -652,7 +717,9 @@ export class RaceEngine {
 
   private spawnTraffic() {
     const highway = this.trackDef.theme === "highway" || this.trackDef.id === "gushdan" || this.trackDef.id === "hw90";
-    const n = this.lite ? 4 : highway ? 11 : this.mode === "roam" ? 9 : 7;
+    const count = this.lite ? 4 : highway ? 11 : this.mode === "roam" ? 9 : 7;
+    const mul = this.opts.traffic === "off" ? 0 : this.opts.traffic === "low" ? 0.45 : this.opts.traffic === "dense" ? 1.55 : 1;
+    const n = Math.round(count * mul);
     const nyc = this.trackDef.city === "nyc";
     const base = CARS[0];
     for (let i = 0; i < n; i++) {
@@ -678,8 +745,8 @@ export class RaceEngine {
       cab.isAi = true;
       cab.isTraffic = true;
       cab.aiSkill = 0.48 + (i % 3) * 0.08;
-      const lane = this.trackDef.id === "rothschild" ? 10.2 : Math.min(kind === "truck" ? 2.6 : 3.4, this.built.width * 0.28);
-      cab.aiOffset = (i % 2 === 0 ? -1 : 1) * lane;
+      const lane = Math.min(kind === "truck" ? 2.6 : 3.4, this.built.width * 0.28);
+      cab.aiOffset = roadLaneOffset(this.built, (i % 2 === 0 ? -1 : 1) * lane);
       cab.baseGrip = SURFACE_GRIP[this.trackDef.theme] ?? 1;
       cab.surfaceGrip = cab.baseGrip;
       cab.weatherGrip = WEATHER_GRIP[this.weather] ?? 1;
@@ -691,6 +758,7 @@ export class RaceEngine {
       const vis = createCarVisual(color, accent, false, false, body);
       if (kind === "bus") vis.group.scale.set(1.12, 1.22, 1.38);
       if (kind === "truck") vis.group.scale.set(1.18, 1.28, 1.42);
+      cab.contactBounds = carContactBounds(vis);
       setCarLights(vis, this.opts.night);
       this.scene.add(vis.group);
       this.trafficVis.push(vis);
@@ -721,7 +789,7 @@ export class RaceEngine {
       cop.isAi = true;
       cop.isCop = true;
       cop.aiSkill = 0.96;
-      cop.aiOffset = (i % 2 === 0 ? -1 : 1) * 2.4;
+      cop.aiOffset = roadLaneOffset(this.built, this.player.aiOffset);
       cop.nitro = 0.55;
       cop.baseGrip = SURFACE_GRIP[this.trackDef.theme] ?? 1;
       cop.surfaceGrip = cop.baseGrip;
@@ -729,9 +797,10 @@ export class RaceEngine {
       cop.weather = this.weather;
       cop.handling = this.player.handling;
       cop.assists = { abs: true, tcs: true, esc: true };
-      cop.spawn(this.built, (0.86 - i * 0.04 + 1) % 1, cop.aiOffset);
+      cop.spawn(this.built, 0.002, cop.aiOffset);
       this.cops.push(cop);
       const vis = createCarVisual(color, accent, false, false, "gt", true);
+      cop.contactBounds = carContactBounds(vis);
       setCarLights(vis, this.opts.night);
       this.scene.add(vis.group);
       this.copVis.push(vis);
@@ -775,7 +844,7 @@ export class RaceEngine {
       vis.bodyMat.depthWrite = false;
       setCarLights(vis, false);
     };
-    const stored = getGhost(this.opts.trackId);
+    const stored = getGhost(this.opts.trackId, this.recordClass);
     if (stored?.frames.length) {
       this.ghostFrames = stored.frames;
       const vis = createCarVisual(0x6ec8c4, 0x163048, false, false, this.player.stats.body);
@@ -804,6 +873,9 @@ export class RaceEngine {
   setPaused(p: boolean) {
     if (this.photoLock && !p) return;
     this.paused = p;
+    this.input.reset();
+    this.acc = 0;
+    this.last = performance.now();
     if (!p && this.photo) this.exitPhoto();
   }
 
@@ -833,14 +905,79 @@ export class RaceEngine {
 
   /** Codex 64: restart zeros damage. Esc/pause does not. */
   restartRace() {
+    this.input.reset();
+    this.inputSnap = { steer: 0, throttle: 0, brake: 0, drift: false, nitro: false };
+    this.acc = this.freeze = this.impactCd = this.trauma = 0;
+    this.last = performance.now();
+    this.goFlash = 0;
+    this.rewindAcc = this.rewindTickT = this.replayAcc = this.ghostAcc = 0;
+    this.rewinding = this.replaySlow = this.qaForcedFinish = this.assisted = false;
+    this.assisted = this.rulesChanged;
+    this.bestRewardPlace = Infinity;
+    this.bestSectors = [Infinity, Infinity, Infinity];
+    this.combo = this.comboHold = 0;
+    this.lastDrifting = false;
+    this.escaping = false;
+    this.ghostBeaten = false;
+    this.ghostDelta = this.rivalGhostDelta = 0;
+    this.blockCd = 0;
+    this.camFlash = this.brakeBeep = this.cashNoteT = this.bonusT = this.banterT = 0;
+    this.brakeWarn = false;
+    this.driftBonus = this.banter = "";
     this.placeGrid();
+    this.countdown = 3.8;
+    this.camAt = 0;
+    this.totalTime = 0;
+    this.lapTime = 0;
+    this.laps = [];
+    this.bestLap = Infinity;
+    this.finishedSent = false;
+    this.pendingResult = null;
+    this.replaying = false;
+    this.replayT = 0;
+    this.replayBuf = [];
+    this.ghostBuf = [];
+    this.rewindBuf = [];
+    this.poiGot = new Set();
+    this.heat = 0;
+    this.heatMax = 0;
+    this.bustAcc = 0;
+    this.busted = false;
+    this.cooldown = 0;
+    this.wanted = 1;
+    this.cashWon = 0;
+    this.timeVoided = false;
+    this.sectorClock = 0;
+    this.sectorIdx = 0;
+    this.sectorDelta = 0;
+    this.lapNote = "";
+    this.lapNoteT = 0;
+    this.cashNote = "";
+    this.koMarked = 0;
+    this.lastPlace = 0;
+    this.overtakePayT = 0;
+    this.ledger = 0;
+    this.racing = false;
+    this.paused = false;
+    this.clearRoadblock();
+    this.player.finished = false;
     this.player.damage = 0;
     this.player.dirt = 0;
     if (this.visuals[0]) applyDamage(this.visuals[0], 0, 0);
-    this.countdown = 0;
-    this.racing = true;
-    this.player.finished = false;
-    this.paused = false;
+    this.pushHud();
+  }
+
+  setVolume(v: number) {
+    this.audio.setLevel(v);
+  }
+
+  setAssists(flags: AssistFlags) {
+    if (Object.entries(flags).some(([key, value]) => this.player.assists[key as keyof AssistFlags] !== value)) {
+      this.rulesChanged = true;
+      this.assisted = true;
+    }
+    this.player.assists = { ...flags };
+    this.opts.assists = { ...flags };
   }
 
   toggleMute() {
@@ -852,12 +989,36 @@ export class RaceEngine {
     this.input.setTouch(partial);
   }
 
+  /** C / touch: chase → hood → bumper → heli. */
+  cycleCam() {
+    if (this.photo || this.replaying) return;
+    this.camMode = (this.camMode + 1) % this.camNames.length;
+    this.hood = this.camMode === 1;
+  }
+
+  rescue() {
+    if (!this.built || this.photo || this.replaying || this.player.finished) return;
+    this.assisted = true;
+    this.player.respawn(this.built);
+  }
+
+  horn() {
+    if (this.hornCd > 0 || this.photo) return;
+    this.hornCd = 0.38;
+    this.audio.beep(466, 0.11, 0.2);
+    this.audio.beep(349, 0.16, 0.16);
+  }
+
   enterPhoto() {
     return engineRendering.enterPhoto.call(engineAdapterHost(this));
   }
 
   exitPhoto() {
     return engineRendering.exitPhoto.call(engineAdapterHost(this));
+  }
+
+  snapHashalom() {
+    return engineRendering.snapHashalom.call(engineAdapterHost(this));
   }
 
   frameWorld(x: number, z: number, y = 52, camY = 22, back = 28, fov = 40) {
@@ -899,6 +1060,10 @@ export class RaceEngine {
   }
 
   setNight(night: boolean) {
+    if (night !== (nightAmt(this.clock) > 0.5)) {
+      this.rulesChanged = true;
+      this.assisted = true;
+    }
     return engineRendering.setNight.call(engineAdapterHost(this), night);
   }
 
@@ -1115,6 +1280,7 @@ export class RaceEngine {
     if (import.meta.env.DEV || import.meta.env.VITE_QA === "1") {
       delete window.__controlsTest;
       delete window.render_game_to_text;
+      delete window.advanceTime;
     }
   }
 }
@@ -1124,6 +1290,8 @@ export class RaceEngine {
 declare global {
   interface Window {
     __controlsTest?: {
+      followRoad?: () => void;
+      isFinished?: () => boolean;
       getYaw: () => number;
       getSpeed: () => number;
       getOnTrack?: () => boolean;
@@ -1187,6 +1355,7 @@ declare global {
       getPhysicsVersion?: () => number;
       getVis?: () => number;
       exportTelemetry?: () => { n: number; p50: number; p95: number; p99: number; last: number; backend: string };
+      getGlError?: () => number;
       gotoGolden?: (id: string) => boolean;
       frameWorld?: (x: number, z: number, y?: number) => void;
       frameAzrieli?: () => void;
@@ -1212,5 +1381,6 @@ declare global {
       getMemory?: () => { textures: number; geometries: number };
     };
     render_game_to_text?: () => string;
+    advanceTime?: (ms: number) => void;
   }
 }

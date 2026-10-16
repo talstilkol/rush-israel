@@ -20,7 +20,7 @@ test("damage-smoke and soak-30min contract tokens remain in the accepted scripts
 });
 
 test(
-  "damage-smoke then 1800s wall-clock soak run inside the required npm test suite",
+  "explicit required-CI soak job runs damage-smoke then 1800s wall-clock driving",
   { timeout: DAMAGE_THEN_SOAK_SPAWN_TIMEOUT_MS },
   () => {
     const result = runDamageThenSoak();

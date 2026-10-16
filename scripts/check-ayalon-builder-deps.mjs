@@ -10,7 +10,7 @@ export const AYALON_BUILDER_DEPS = {
   "src/game/arrow-assets.ts": "4ae76b3c40e1049ac93dcdd7a316bf1065cdb03017f4af1989113f49f3ef84d9",
   "src/game/sign-assets.ts": "e32237575c42ec1efcb9a3edaae8aa2a382920aaaceecabb875ce6c12da8387b",
   "src/game/road-assets.ts": "17cc9cc0ad287a6fcd74e0a40b122ad830733247b50b1e39eb6f2afb8a35146e",
-  "src/game/world-builders/shared.ts": "f0c50f4deb850d9e2d13ccdf404a88f5102fd1335c3a02f2b5ecd45d01984ba2",
+  "src/game/world-builders/shared.ts": "df1236464ade9f5040f7a7c240560a340fcaf4011c2ec73afec74f63fab98c54",
 };
 
 function sha256File(path) {

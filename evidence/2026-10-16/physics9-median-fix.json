@@ -1,0 +1,53 @@
+{
+  "kind": "physics9-median-steering-and-spawn-regression",
+  "base_sha": "fa4630abbe216bac4b2b313bac8b1af747d6e796",
+  "physics_version": 9,
+  "source_sha256": {
+    "src/game/vehicle.ts": "0e306fddab05708ecc1eef0ddd7a4b70407fd8af5fc37028785a87324ef3bbb2",
+    "src/game/physics.ts": "41a7bca34af440e82c533cdc1fe57c49e3532342e40e7fd5887638cc03e74bae",
+    "src/game/spline.ts": "e459b235a2c3e6d50f8ee21e8748af45b8d7c737a131ade1204561b02878742d",
+    "src/game/road-layout.ts": "556f5f3c08f7621ff5b56177ca0104c7bdaf68e5b365f50280e30d21bd555c96",
+    "src/game/engine.ts": "c1330f8fc408d8500e141a3e84be90bcbee2a10bed6ead9626f5ba7e7ef775d9",
+    "src/game/engine/physics-adapter.ts": "ec386c8ef6e03654a997cba2dda345e05ed30ec2d727aac6684cd7d26ae2ecb0",
+    "src/game/world-builders/tracks/rothschild.ts": "25ee33029fcefb39f5038d76df45d64ded9240370a2854f65f1a2f2d94084a79",
+    "scripts/median-driving.test.mjs": "73e605604d76ce8a3bb0bba3c0109255b6a9c31275509172802a21349591f2d0",
+    "scripts/world-runtime-audit.mjs": "93c9cb4d57abf16bb518f733c757cc9bedb8f666472816336862db5f72830154",
+    "golden-baseline/accel.json": "d1e9c2beab19d9ca71bad2226670ddf277340e4eb118a3d31e8c5bddd47d7ef7"
+  },
+  "before": {
+    "scope": "Isolated reproduction: original fa4630a vehicle.ts copied into current geometry/test harness; it reproduces the original centerline steering force, not an untouched full pre-fix checkout.",
+    "source_sha256": "f6d2e78f383ecf71e05380fa6e09795c74184befc970b74d52b34ae941000f7a",
+    "cases": 20,
+    "failed": 20,
+    "layout_check_passed": true,
+    "log": "median-force-before.log"
+  },
+  "after": {
+    "current_unit_tests": 217,
+    "median_driving_cases": 20,
+    "median_driving_passed": 20,
+    "real_world_collider_cases": 20,
+    "real_world_collider_damage": 0,
+    "all_worlds": 56,
+    "world_errors": 0,
+    "underpass_cases": 40,
+    "acceleration_browser_runs": 15,
+    "acceleration_targets_and_tolerances_unchanged": true,
+    "rothschild_actual_grid_completed_laps": 3,
+    "rothschild_actual_grid_damage": 0.5692529691795798
+  },
+  "interrupted_browser_run": {
+    "passed": false,
+    "cause": "Live edits to plan/test catalogue during Vite QA caused a page reload and execution-context destruction. Run was stopped; no full-browser acceptance is claimed."
+  },
+  "acceptance": {
+    "full_browser_suite": false,
+    "current_candidate_soak": false,
+    "human_playtest": false,
+    "art": false,
+    "physical_device": false,
+    "product_units": 0,
+    "release": false
+  },
+  "remaining": "Rothschild race damage remains high; Jaffa full race has maximum damage. Corner speed planning, static obstacle avoidance, camera/art and human/device acceptance remain open."
+}

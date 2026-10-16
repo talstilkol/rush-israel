@@ -1,0 +1,11 @@
+from pathlib import Path
+import subprocess,os,json,hashlib,datetime
+w=Path(__file__).resolve().parent;r=w/'rush-glazing-ci';env={**os.environ,'PATH':str(w/'toolchain/node-v22.16.0-darwin-arm64/bin')+':'+os.environ['PATH'],'SMOKE_URL':'http://127.0.0.1:8127/','SOAK_URL':'http://127.0.0.1:8127/'}
+source=json.loads((w/'rothschild-bend-candidate-source.json').read_text())
+for f,h in source.items():assert hashlib.sha256((r/f).read_bytes()).hexdigest()==h,f
+for name,cmd in [('worlds-races',['node','scripts/browser-ci-suite.mjs','worlds-races']),('driving',['node','scripts/browser-ci-suite.mjs','driving-lifecycle']),('skill',['node',str(w/'tunnel-skill-setup.mjs'),'--url','http://127.0.0.1:8127/','--actions-file',str(w/'physics11-skill-client/actions.json'),'--iterations','2','--pause-ms','250','--headless','false','--screenshot-dir',str(w/'rothschild-bend-skill')])]:
+ print(datetime.datetime.now(datetime.timezone.utc).isoformat(),name,'START',flush=True)
+ with open(w/('rothschild-bend-'+name+'.log'),'w')as out:x=subprocess.run(cmd,cwd=r,env=env,stdout=out,stderr=subprocess.STDOUT)
+ print(name,x.returncode,flush=True);assert x.returncode==0,name
+ for f,h in source.items():assert hashlib.sha256((r/f).read_bytes()).hexdigest()==h,f
+print('All serial frozen Rothschild browser checks finished',flush=True)

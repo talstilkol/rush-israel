@@ -1,0 +1,27 @@
+{
+  "kind": "real-ui-record-condition-restart",
+  "before": {
+    "night": false,
+    "assisted": false
+  },
+  "changed": {
+    "night": true,
+    "assisted": true
+  },
+  "reset": {
+    "assisted": true
+  },
+  "restarted": {
+    "night": true,
+    "assisted": false
+  },
+  "automaticRecovery": {
+    "routeSampleIndex": 30,
+    "lateral": -14.4,
+    "beforeAssisted": false,
+    "afterAssisted": true,
+    "observedRecoveries": 1,
+    "seconds": 3.249999999999991
+  },
+  "pageErrors": []
+}

@@ -1,0 +1,27 @@
+{
+  "observed_at": "2026-10-16T03:22:12+00:00",
+  "scope": "MP-001 plan/control consistency only; not completion of gameplay, legal, device, human, art or release acceptance.",
+  "source_authority": "Git HEAD and exact file hashes; current candidate CI remains separate.",
+  "git_head_at_review": "7e6e09a1094bfc493991771ca1ea625eee387bd0",
+  "working_tree_dirty_at_review": true,
+  "tasks": 46,
+  "dependency_edges": 96,
+  "acyclic": true,
+  "covered_product_units": 67,
+  "all_tasks_and_units_mapped": true,
+  "quality_gate_families": 7,
+  "release_gate_inventory": 13,
+  "product_accepted": 0,
+  "release_ready": false,
+  "historical_ACCEPTED_labels_not_current_acceptance": true,
+  "source_head_is_read_from_git": true,
+  "files": {
+    "COMPLETION-BACKLOG.json": "61b9f53b19dc4edb618f2c65a120d65978efad99bb34fb990380c48da3567c6a",
+    "COMPLETION-CROSSWALK.json": "f54a994e48b4675c1938058e4220bab81c6f3f97a06a796a46ef608885f5ff2f",
+    "COMPLETION-PLAN.md": "7f4dd1e919e6ca9f6247dd65c5409ec8e64c1ce7c98ac3c07c2b281909a918f9",
+    "QUALITY-TARGETS.md": "75d8485a47f8c4b5579a62890ccabe8461421fcf54f320e894db193631dea57c",
+    "PRODUCT-READINESS.json": "cae85eb54656ddb008fd341464b0dffb3349734cb909434b34e101cca76516b9",
+    "MASTER-PLAN.md": "41c66f3d7f9a6170951a62f580e682be39016cbb44fd85ba088dc44616983c2f",
+    "scripts/check-product-readiness.mjs": "bf04747e1333b27e30b605e7d2d12c0289d6617e134a69ed9febeee7a2932160"
+  }
+}

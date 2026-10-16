@@ -1,0 +1,6 @@
+
+> app-builder-workspace@0.0.0-private qa:photo:raw
+> node scripts/photo-position-smoke.mjs
+
+photo-position-smoke ok [{"id":"g04","horizontalDistance":27.999999999999993},{"id":"g05","horizontalDistance":28},{"id":"g06","horizontalDistance":28}]
+{"rows":[["racer",true],["traffic",true],["cop",true]],"photo":{"track":"haifa","roadGrade":-0.19993684653705138,"pitch":0.5188460045456011,"roll":-0.04233116114320222,"before":[0.28536530250008063,6.090364724834082,-0.04233116114320222,"YXZ"],"after":[0.28536530250008063,6.090364724834082,-0.04233116114320222,"YXZ"],"wheelsFrozen":true,"carFrozen":true,"passed":true},"errors":[]}

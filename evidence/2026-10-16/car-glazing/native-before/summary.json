@@ -1,0 +1,174 @@
+{
+  "kind": "loaded-car-glazing-and-resource-regression",
+  "scope": "Actual production models/materials. No human/art/device/performance acceptance.",
+  "cars": [
+    {
+      "id": "sabra",
+      "constructionMs": 1.5,
+      "windows": [
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        }
+      ]
+    },
+    {
+      "id": "carmel",
+      "constructionMs": 0.8000000715255737,
+      "windows": [
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        }
+      ]
+    },
+    {
+      "id": "kfir",
+      "constructionMs": 0.8999999761581421,
+      "windows": [
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        }
+      ]
+    },
+    {
+      "id": "negev",
+      "constructionMs": 0.7999999523162842,
+      "windows": [
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        }
+      ]
+    },
+    {
+      "id": "yam",
+      "constructionMs": 0.6999999284744263,
+      "windows": [
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        },
+        {
+          "name": "",
+          "visibleBeforeBody": false,
+          "vertices": 24,
+          "opaque": false
+        }
+      ]
+    }
+  ],
+  "allVisible": false,
+  "resourceScope": "20 measured cycles after 2 warmups, each creating/rendering/disposing all five actual car visuals in the actual scene. Not whole-race enter/exit or complete memory acceptance.",
+  "samples": [],
+  "stable": false,
+  "construction": {
+    "samples": 0,
+    "p95Ms": null,
+    "scope": "Hot CPU createCarVisual duration only; not frame time or full load latency."
+  },
+  "graphics": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+    "render": [
+      1440,
+      900
+    ]
+  },
+  "passed": false,
+  "errors": []
+}

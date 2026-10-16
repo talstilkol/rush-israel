@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { lerp } from "../../math";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { her } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -9,6 +9,7 @@ export default function buildHermon(context: TrackWorldBuilderContext): void {
     def,
     bag,
     built,
+    terrainBounds,
     add,
     glowAt,
     hit,
@@ -36,6 +37,15 @@ export default function buildHermon(context: TrackWorldBuilderContext): void {
       roughness: 0.92
     });
     bag.push(snowM, rock, pineM, bark);
+    const foundation = (x: number, z: number, width: number, depth: number, material: THREE.Material) => {
+      const support = terrainBounds(x, z, width / 2, depth / 2);
+      const bottom = support.min - 0.08, top = support.max + 0.02;
+      const base = new THREE.Mesh(new THREE.BoxGeometry(width, top - bottom, depth), material);
+      base.name = "rush-hermon-foundation";
+      base.position.set(x, (bottom + top) / 2, z);
+      add(base);
+      return top;
+    };
     const peak = her(33.3112, 35.79);
     const start = her(33.2688, 35.7712);
     for (let i = 0; i < 10; i++) {
@@ -53,11 +63,11 @@ export default function buildHermon(context: TrackWorldBuilderContext): void {
     add(peakCone);
     const liftA = her(33.2924, 35.7802);
     const liftB = her(33.3084, 35.7876);
-    const nA = nearestIndex(built.samples, liftA.x, liftA.z, 0);
+    const nA = closestSample(built.samples, liftA.x, liftA.z);
     const sA = built.samples[nA.index];
     liftA.x = sA.x + sA.rx * (built.width / 2 + 20);
     liftA.z = sA.z + sA.rz * (built.width / 2 + 20);
-    const nB = nearestIndex(built.samples, liftB.x, liftB.z, 0);
+    const nB = closestSample(built.samples, liftB.x, liftB.z);
     const sB = built.samples[nB.index];
     liftB.x = sB.x + sB.rx * (built.width / 2 + 20);
     liftB.z = sB.z + sB.rz * (built.width / 2 + 20);
@@ -118,7 +128,7 @@ export default function buildHermon(context: TrackWorldBuilderContext): void {
     ];
     for (let i = 0; i < village.length; i++) {
       const p = her(village[i].lat, village[i].lon);
-      const n = nearestIndex(built.samples, p.x, p.z, 0);
+      const n = closestSample(built.samples, p.x, p.z);
       const extra = built.width / 2 + 22;
       if (n.dist < extra) {
         const s = built.samples[n.index];
@@ -126,25 +136,35 @@ export default function buildHermon(context: TrackWorldBuilderContext): void {
         p.z = s.z + s.rz * extra;
       }
       const house = new THREE.Mesh(new THREE.BoxGeometry(6.4, 4.2, 7.4), stone);
-      house.position.set(p.x, built.samples[n.index].y + 2.2, p.z);
+      const baseY = foundation(p.x, p.z, house.geometry.parameters.width, house.geometry.parameters.depth, stone);
+      house.position.set(p.x, baseY + house.geometry.parameters.height / 2, p.z);
       add(house);
       const rf = new THREE.Mesh(new THREE.ConeGeometry(5.4, 2.8, 4), snowM);
       rf.rotation.y = Math.PI / 4;
-      rf.position.set(p.x, built.samples[n.index].y + 5.8, p.z);
+      rf.position.set(p.x, house.position.y + house.geometry.parameters.height / 2
+        + rf.geometry.parameters.height / 2, p.z);
       add(rf);
     }
-    const lodgeY = def.elevation(0.9);
+    let lodgeY = def.elevation(0.9);
     {
-      const nL = nearestIndex(built.samples, peak.x, peak.z, 0);
+      const nL = closestSample(built.samples, peak.x, peak.z);
       const sL = built.samples[nL.index];
       const lx = sL.x + sL.rx * (built.width / 2 + 22);
       const lz = sL.z + sL.rz * (built.width / 2 + 22);
       const lodge = new THREE.Mesh(new THREE.BoxGeometry(16, 5.4, 10), rock);
-      lodge.position.set(lx, lodgeY + 2.8, lz);
+      lodgeY = foundation(lx, lz, lodge.geometry.parameters.width, lodge.geometry.parameters.depth, rock);
+      lodge.position.set(lx, lodgeY + lodge.geometry.parameters.height / 2, lz);
       add(lodge);
       const roof = new THREE.Mesh(new THREE.ConeGeometry(11, 5.4, 4), snowM);
-      roof.position.set(lx, lodgeY + 8.4, lz);
+      roof.position.set(lx, lodge.position.y + lodge.geometry.parameters.height / 2
+        + roof.geometry.parameters.height / 2, lz);
       add(roof);
+      const halfWidth = lodge.geometry.parameters.width / 2;
+      const halfDepth = lodge.geometry.parameters.depth / 2;
+      const collider = hit(lodge.position.x, lodge.position.z,
+        Math.hypot(halfWidth, halfDepth), halfWidth, halfDepth, lodge.rotation.y);
+      collider.maxY = roof.position.y + roof.geometry.parameters.height / 2;
+      glowAt(lodge.position.x, lodgeY + 10, lodge.position.z, 16771272, 26, 18);
     }
     const snowField = new THREE.Mesh(new THREE.CircleGeometry(168, 24), snowM);
     snowField.rotation.x = -Math.PI / 2;
@@ -174,13 +194,13 @@ export default function buildHermon(context: TrackWorldBuilderContext): void {
     }
     const nim = her(33.2526, 35.7147);
     const fort = new THREE.Mesh(new THREE.BoxGeometry(16, 9, 12), stone);
-    fort.position.set(nim.x, 10, nim.z);
+    const fortY = foundation(nim.x, nim.z, fort.geometry.parameters.width, fort.geometry.parameters.depth, stone);
+    fort.position.set(nim.x, fortY + fort.geometry.parameters.height / 2, nim.z);
     add(fort);
     const keepT = new THREE.Mesh(new THREE.BoxGeometry(7, 14, 7), stone);
-    keepT.position.set(nim.x, 14, nim.z);
+    const keepY = foundation(nim.x, nim.z, keepT.geometry.parameters.width, keepT.geometry.parameters.depth, stone);
+    keepT.position.set(nim.x, keepY + keepT.geometry.parameters.height / 2, nim.z);
     add(keepT);
-    glowAt(peak.x - 18, lodgeY + 10, peak.z - 8, 16771272, 26, 18);
-    hit(peak.x - 18, peak.z - 8, 9);
     hit(nim.x, nim.z, 10);
   /* RSH-016:END-LEGACY-TRACK-BODY */
 }

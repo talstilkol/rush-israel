@@ -1,0 +1,12 @@
+from pathlib import Path
+import time,subprocess
+w=Path(__file__).resolve().parent
+for _ in range(1500):
+ s=(w/'run-v1-bends-arc-browser-checks.log').read_text()
+ if 'AssertionError'in s or'Traceback'in s:raise RuntimeError(s)
+ if 'All serial frozen final V1 bends/arc browser checks finished'in s:break
+ time.sleep(1)
+else:raise TimeoutError('Final browser suite incomplete')
+with open(w/'v1-bends-arc-native-capture.log','w')as f:x=subprocess.run([str(w/'toolchain/node-v22.16.0-darwin-arm64/bin/node'),str(w/'v1-bends-arc-native-capture.mjs')],cwd=w.parent,stdout=f,stderr=subprocess.STDOUT)
+assert x.returncode==0
+print('Three final native races and loaded Hermon arc controls completed',flush=True)

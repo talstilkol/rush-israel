@@ -1,0 +1,74 @@
+{
+  "sha": "fa4630abbe216bac4b2b313bac8b1af747d6e796",
+  "conclusion": "success",
+  "url": "https://github.com/talstilkol/rush-israel/actions/runs/38821145482",
+  "jobs": [
+    {
+      "name": "Current source / unit, build and security",
+      "conclusion": "success",
+      "status": "completed",
+      "databaseId": 116717745891,
+      "startedAt": "2026-10-15T23:03:02Z",
+      "completedAt": "2026-10-15T23:04:05Z"
+    },
+    {
+      "name": "Current source / required 1800-second driving soak",
+      "conclusion": "success",
+      "status": "completed",
+      "databaseId": 116717746185,
+      "startedAt": "2026-10-15T23:03:01Z",
+      "completedAt": "2026-10-15T23:34:45Z"
+    },
+    {
+      "name": "Historical b2c0d46 contracts / no product acceptance",
+      "conclusion": "success",
+      "status": "completed",
+      "databaseId": 116717746232,
+      "startedAt": "2026-10-15T23:03:02Z",
+      "completedAt": "2026-10-15T23:04:20Z"
+    },
+    {
+      "name": "Current source / browser behavior (worlds-races)",
+      "conclusion": "success",
+      "status": "completed",
+      "databaseId": 116717746238,
+      "startedAt": "2026-10-15T23:03:01Z",
+      "completedAt": "2026-10-15T23:17:09Z"
+    },
+    {
+      "name": "Current source / browser behavior (driving-lifecycle)",
+      "conclusion": "success",
+      "status": "completed",
+      "databaseId": 116717746272,
+      "startedAt": "2026-10-15T23:03:01Z",
+      "completedAt": "2026-10-15T23:18:21Z"
+    },
+    {
+      "name": "required-ci / validate",
+      "conclusion": "success",
+      "status": "completed",
+      "databaseId": 116728393606,
+      "startedAt": "2026-10-15T23:34:47Z",
+      "completedAt": "2026-10-15T23:34:50Z"
+    }
+  ],
+  "soak": {
+    "kind": "30-minute-driving",
+    "passed": true,
+    "completedRaces": 2,
+    "elapsedMs": 1800304,
+    "ticks": 2064,
+    "maxSpeed": 33.61,
+    "maxProgress": 0.982,
+    "offRoadRatio": 0,
+    "p95Worst": 10373.5,
+    "memoryHigh": {
+      "textures": 33,
+      "geometries": 1605
+    },
+    "deviceAcceptance": false
+  },
+  "productAcceptance": false,
+  "physics9Acceptance": false,
+  "refreshed_date_utc": "2026-10-15"
+}

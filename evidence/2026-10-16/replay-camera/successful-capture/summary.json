@@ -1,0 +1,17 @@
+{
+  "kind": "diagnostic-smoke",
+  "passed": true,
+  "completedRaces": 0,
+  "deviceAcceptance": false,
+  "elapsedMs": 20013,
+  "ticks": 187,
+  "maxSpeed": 30.72,
+  "maxProgress": 0.214,
+  "offRoadRatio": 0,
+  "p95Worst": 614.7,
+  "memoryHigh": {
+    "textures": 50,
+    "geometries": 1992
+  },
+  "captureStatus": "captured"
+}

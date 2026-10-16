@@ -1,5 +1,7 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { buildRamonCliff } from "../ramon-cliff";
+import { clearRoadsidePoint, fitRoadTunnel } from "../../roadside";
+import { closestSample } from "../../spline";
 import { ram } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -15,8 +17,6 @@ export default function buildRamon(context: TrackWorldBuilderContext): void {
     hit,
     placeTunnel,
     _dummy,
-    samp,
-    segsOf,
   } = context;
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const dust = new THREE.MeshStandardMaterial({
@@ -87,29 +87,10 @@ export default function buildRamon(context: TrackWorldBuilderContext): void {
     rocks.instanceMatrix.needsUpdate = true;
     group.add(rocks);
     {
-      const cPos = [];
-      const cIdx = [];
-      const nC = segsOf(built);
-      for (let i = 0; i <= nC; i++) {
-        const s = samp(built, i);
-        const vs = s.rx * (floor.x - s.x) + s.rz * (floor.z - s.z) >= 0 ? 1 : -1;
-        const ms = -vs;
-        const d = built.width / 2 + 9.5;
-        const y0 = s.y - 4;
-        const y1 = s.y + 150 + Math.min(90, s.y * 0.55);
-        cPos.push(s.x + s.rx * d * ms, y0, s.z + s.rz * d * ms);
-        cPos.push(s.x + s.rx * d * ms, y1, s.z + s.rz * d * ms);
-      }
-      for (let i = 0; i < nC; i++) {
-        const a = i * 2;
-        cIdx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-      }
-      const cGeo = new THREE.BufferGeometry();
-      cGeo.setAttribute("position", new THREE.Float32BufferAttribute(cPos, 3));
-      cGeo.setIndex(cIdx);
-      cGeo.computeVertexNormals();
+      const cGeo = buildRamonCliff(built, floor);
       bag.push(cGeo);
       const wall = new THREE.Mesh(cGeo, rust);
+      wall.name = "ramon-canyon-wall";
       wall.receiveShadow = true;
       add(wall);
     }
@@ -134,7 +115,7 @@ export default function buildRamon(context: TrackWorldBuilderContext): void {
     }
     const lk = ram(30.6132, 34.801);
     {
-      const n = nearestIndex(built.samples, lk.x, lk.z, 0);
+      const n = closestSample(built.samples, lk.x, lk.z);
       const s = built.samples[n.index];
       lk.x = s.x + s.rx * (built.width / 2 + 26);
       lk.z = s.z + s.rz * (built.width / 2 + 26);
@@ -156,17 +137,26 @@ export default function buildRamon(context: TrackWorldBuilderContext): void {
       add(post);
     }
     const cut = ram(30.5992, 34.806);
-    const nCut = ram(30.5964, 34.8044);
-    const cutYaw = Math.atan2(nCut.x - cut.x, nCut.z - cut.z);
-    const cutY = def.elevation(0.55);
-    placeTunnel(cut.x, cut.z, cutYaw, 42, built.width * 0.62, 7.6, cutY);
-    const crx = Math.cos(cutYaw);
-    const crz = -Math.sin(cutYaw);
+    const tunnel = fitRoadTunnel(built, cut.x, cut.z, 42, built.width * 0.62, 7.6);
+    const cutSample = tunnel.sample;
+    cut.x = cutSample.x;
+    cut.z = cutSample.z;
+    const cutYaw = tunnel.yaw;
+    const cutY = cutSample.y;
+    placeTunnel(cut.x, cut.z, cutYaw, tunnel.length, tunnel.half, tunnel.height, tunnel.floor);
+    // Keep the full footprint outside the route, including adjacent hairpins.
+    const spurRadius = Math.hypot(22 / 2, 30 / 2);
+    const left = clearRoadsidePoint(built, cutSample.t, -1, spurRadius, false);
+    const right = clearRoadsidePoint(built, cutSample.t, 1, spurRadius, false);
     const spurL = new THREE.Mesh(new THREE.BoxGeometry(22, 36, 30), darkRock);
-    spurL.position.set(cut.x - crx * 28, cutY + 18, cut.z - crz * 28);
+    spurL.position.set(left.x, cutY + 18, left.z);
+    spurL.rotation.y = cutYaw;
+    spurL.name = "ramon-tunnel-spur-left";
     add(spurL);
     const spurR = new THREE.Mesh(new THREE.BoxGeometry(22, 32, 30), sand);
-    spurR.position.set(cut.x + crx * 28, cutY + 16, cut.z + crz * 28);
+    spurR.position.set(right.x, cutY + 16, right.z);
+    spurR.rotation.y = cutYaw;
+    spurR.name = "ramon-tunnel-spur-right";
     add(spurR);
     const bushM = new THREE.MeshStandardMaterial({ color: 6978104, roughness: 0.92, flatShading: true });
     bag.push(bushM);
@@ -177,7 +167,10 @@ export default function buildRamon(context: TrackWorldBuilderContext): void {
     }
     glowAt(lk.x, lookY + 5, lk.z, 16763e3, 24, 20);
     hit(lk.x, lk.z, 4);
-    hit(cut.x - crx * 28, cut.z - crz * 28, 8);
-    hit(cut.x + crx * 28, cut.z + crz * 28, 8);
+    for (const spur of [spurL, spurR]) {
+      const dimensions = spur.geometry.parameters;
+      const collider = hit(spur.position.x, spur.position.z, spurRadius, dimensions.width / 2, dimensions.depth / 2, spur.rotation.y);
+      collider.maxY = spur.position.y + dimensions.height / 2;
+    }
   /* RSH-016:END-LEGACY-TRACK-BODY */
 }

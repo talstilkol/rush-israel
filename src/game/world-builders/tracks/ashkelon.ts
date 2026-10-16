@@ -6,6 +6,7 @@ export default function buildAshkelon(context: TrackWorldBuilderContext): void {
   const {
     add,
     hit,
+    colliders,
     stone,
   } = context;
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
@@ -36,10 +37,22 @@ export default function buildAshkelon(context: TrackWorldBuilderContext): void {
       const wall = new THREE.Mesh(new THREE.BoxGeometry(12, 8, 3.2), stone);
       wall.position.set(p.x, 4, p.z);
       add(wall);
+      const halfWidth = wall.geometry.parameters.width / 2;
+      const halfDepth = wall.geometry.parameters.depth / 2;
+      const collider = hit(wall.position.x, wall.position.z,
+        Math.hypot(halfWidth, halfDepth), halfWidth, halfDepth, wall.rotation.y);
+      collider.maxY = wall.position.y + wall.geometry.parameters.height / 2;
     }
     const tower = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.8, 14, 8), stone);
     tower.position.set(np.x + 12, 7, np.z);
     add(tower);
-    hit(np.x, np.z, 12);
+    // The tower is circular; omit box extents so collision uses its real radius.
+    colliders.push({
+      x: tower.position.x,
+      z: tower.position.z,
+      r: Math.max(tower.geometry.parameters.radiusTop, tower.geometry.parameters.radiusBottom),
+      maxY: tower.position.y + tower.geometry.parameters.height / 2,
+      kind: "building",
+    });
   /* RSH-016:END-LEGACY-TRACK-BODY */
 }

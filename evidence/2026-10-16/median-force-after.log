@@ -1,0 +1,136 @@
+TAP version 13
+# Subtest: actual V1 road layout keeps the Rothschild median separate from racing lanes
+ok 1 - actual V1 road layout keeps the Rothschild median separate from racing lanes
+  ---
+  duration_ms: 4.128292
+  type: 'test'
+  ...
+# Subtest: sabra: left carriageway survives eight seconds of straight acceleration
+ok 2 - sabra: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 10.806333
+  type: 'test'
+  ...
+# Subtest: sabra: left carriageway survives eight seconds of AI input
+ok 3 - sabra: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 7.96275
+  type: 'test'
+  ...
+# Subtest: sabra: right carriageway survives eight seconds of straight acceleration
+ok 4 - sabra: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 6.582959
+  type: 'test'
+  ...
+# Subtest: sabra: right carriageway survives eight seconds of AI input
+ok 5 - sabra: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 5.462334
+  type: 'test'
+  ...
+# Subtest: carmel: left carriageway survives eight seconds of straight acceleration
+ok 6 - carmel: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 4.763416
+  type: 'test'
+  ...
+# Subtest: carmel: left carriageway survives eight seconds of AI input
+ok 7 - carmel: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.884459
+  type: 'test'
+  ...
+# Subtest: carmel: right carriageway survives eight seconds of straight acceleration
+ok 8 - carmel: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.304208
+  type: 'test'
+  ...
+# Subtest: carmel: right carriageway survives eight seconds of AI input
+ok 9 - carmel: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 4.087041
+  type: 'test'
+  ...
+# Subtest: kfir: left carriageway survives eight seconds of straight acceleration
+ok 10 - kfir: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 5.641042
+  type: 'test'
+  ...
+# Subtest: kfir: left carriageway survives eight seconds of AI input
+ok 11 - kfir: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 5.699959
+  type: 'test'
+  ...
+# Subtest: kfir: right carriageway survives eight seconds of straight acceleration
+ok 12 - kfir: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 4.275333
+  type: 'test'
+  ...
+# Subtest: kfir: right carriageway survives eight seconds of AI input
+ok 13 - kfir: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 4.465667
+  type: 'test'
+  ...
+# Subtest: negev: left carriageway survives eight seconds of straight acceleration
+ok 14 - negev: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 4.832667
+  type: 'test'
+  ...
+# Subtest: negev: left carriageway survives eight seconds of AI input
+ok 15 - negev: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.646792
+  type: 'test'
+  ...
+# Subtest: negev: right carriageway survives eight seconds of straight acceleration
+ok 16 - negev: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.424
+  type: 'test'
+  ...
+# Subtest: negev: right carriageway survives eight seconds of AI input
+ok 17 - negev: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.582667
+  type: 'test'
+  ...
+# Subtest: yam: left carriageway survives eight seconds of straight acceleration
+ok 18 - yam: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.6225
+  type: 'test'
+  ...
+# Subtest: yam: left carriageway survives eight seconds of AI input
+ok 19 - yam: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 5.135833
+  type: 'test'
+  ...
+# Subtest: yam: right carriageway survives eight seconds of straight acceleration
+ok 20 - yam: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 5.3235
+  type: 'test'
+  ...
+# Subtest: yam: right carriageway survives eight seconds of AI input
+ok 21 - yam: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 5.689333
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 461.5155

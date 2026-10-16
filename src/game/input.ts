@@ -32,7 +32,7 @@ export class GameInput {
     const up = (e: KeyboardEvent) => {
       this.keys.delete(e.code);
     };
-    const blur = () => this.keys.clear();
+    const blur = () => this.reset();
     window.addEventListener("keydown", down);
     window.addEventListener("keyup", up);
     window.addEventListener("blur", blur);
@@ -54,7 +54,16 @@ export class GameInput {
     if (partial.rewind !== undefined) this.touchRewind = partial.rewind;
   }
 
-  poll(): InputState {
+  /** Release every input source when focus or the race is lost. */
+  reset() {
+    this.keys.clear();
+    this.touchSteer = this.touchThrottle = this.touchBrake = 0;
+    this.touchDrift = this.touchNitro = this.touchRewind = false;
+    this.steerOverride = this.throttleOverride = this.brakeOverride = null;
+    this.steerFilt = this.thrFilt = this.lastPoll = 0;
+  }
+
+  poll(step?: number): InputState {
     let steer = 0;
     if (this.keys.has("KeyA") || this.keys.has("ArrowLeft")) steer += 1;
     if (this.keys.has("KeyD") || this.keys.has("ArrowRight")) steer -= 1;
@@ -82,8 +91,8 @@ export class GameInput {
     if (this.brakeOverride !== null) brake = this.brakeOverride;
 
     const now = typeof performance !== "undefined" ? performance.now() : 0;
-    const dt = this.lastPoll ? Math.min(0.05, (now - this.lastPoll) / 1000) : 0.016;
-    this.lastPoll = now;
+    const dt = step ?? (this.lastPoll ? Math.min(0.05, (now - this.lastPoll) / 1000) : 0.016);
+    if (step == null) this.lastPoll = now;
     if (this.steerOverride !== null) this.steerFilt = steer;
     else {
       const k = Math.abs(steer) < 0.05 ? 11 : 6.5;
@@ -134,6 +143,6 @@ export class GameInput {
   dispose() {
     for (const u of this.unbind) u();
     this.unbind = [];
-    this.keys.clear();
+    this.reset();
   }
 }

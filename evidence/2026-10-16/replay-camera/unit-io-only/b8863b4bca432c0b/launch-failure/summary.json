@@ -1,0 +1,6 @@
+{
+  "kind": "diagnostic-smoke",
+  "passed": false,
+  "completedRaces": 0,
+  "deviceAcceptance": false
+}

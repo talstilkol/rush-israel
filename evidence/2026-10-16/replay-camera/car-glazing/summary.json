@@ -1,0 +1,298 @@
+{
+  "kind": "loaded-car-glazing-and-resource-regression",
+  "scope": "Actual production models/materials. GPU batches explicitly drained; no human/art/device/performance acceptance.",
+  "cars": [
+    {
+      "id": "sabra",
+      "constructionMs": 1.7000000476837158,
+      "windows": [
+        {
+          "name": "window-front",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-rear",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-left",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-right",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        }
+      ]
+    },
+    {
+      "id": "carmel",
+      "constructionMs": 1,
+      "windows": [
+        {
+          "name": "window-front",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-rear",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-left",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-right",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        }
+      ]
+    },
+    {
+      "id": "kfir",
+      "constructionMs": 0.7999999523162842,
+      "windows": [
+        {
+          "name": "window-front",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-rear",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-left",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-right",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        }
+      ]
+    },
+    {
+      "id": "negev",
+      "constructionMs": 0.7999999523162842,
+      "windows": [
+        {
+          "name": "window-front",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-rear",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-left",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-right",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        }
+      ]
+    },
+    {
+      "id": "yam",
+      "constructionMs": 1.3000000715255737,
+      "windows": [
+        {
+          "name": "window-front",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-rear",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-left",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        },
+        {
+          "name": "window-right",
+          "visibleBeforeBody": true,
+          "vertices": 45,
+          "opaque": true
+        }
+      ]
+    }
+  ],
+  "allVisible": true,
+  "resourceScope": "20 measured cycles after 2 warmups, each creating/rendering/disposing all five actual car visuals in the actual scene. Not whole-race enter/exit or complete memory acceptance.",
+  "samples": [
+    {
+      "cycle": 1,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 2,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 3,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 4,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 5,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 6,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 7,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 8,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 9,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 10,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 11,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 12,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 13,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 14,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 15,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 16,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 17,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 18,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 19,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    },
+    {
+      "cycle": 20,
+      "geometries": 1086,
+      "textures": 30,
+      "programs": 61
+    }
+  ],
+  "stable": true,
+  "construction": {
+    "samples": 100,
+    "p95Ms": 1.1999999284744263,
+    "scope": "Hot CPU createCarVisual duration only; not frame time or full load latency."
+  },
+  "graphics": {
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+    "render": [
+      1440,
+      900
+    ]
+  },
+  "passed": true,
+  "errors": [],
+  "screenshot": {
+    "status": "captured"
+  }
+}

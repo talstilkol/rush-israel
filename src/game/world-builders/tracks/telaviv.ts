@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { tlv } from "../../tracks";
 import { getIsraelFlag } from "../../flag-assets";
 import type { TrackWorldBuilderContext } from "../shared";
@@ -28,7 +28,7 @@ export default function buildTelaviv(context: TrackWorldBuilderContext): void {
   } = context;
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const offTlv = (p: { x: number; z: number }, extra = 26) => {
-      const n = nearestIndex(built.samples, p.x, p.z, 0);
+      const n = closestSample(built.samples, p.x, p.z);
       if (n.dist < built.width / 2 + extra) {
         const s = built.samples[n.index];
         p.x = s.x + s.rx * (built.width / 2 + extra);

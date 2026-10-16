@@ -1,4 +1,7 @@
 import * as THREE from "three";
+import { getTrack } from "./tracks";
+import { roadLaneCount } from "./road-layout";
+import type { TrackId } from "./types";
 
 export type RoadKit = {
   map: THREE.Texture;
@@ -56,8 +59,6 @@ export async function loadHwyRoad() {
   return loadLane(4);
 }
 
-export async function loadRoadFor(trackId: string) {
-  if (trackId === "ayalon") return loadLane(8);
-  if (trackId === "hw1" || trackId === "hw2" || trackId === "hw6" || trackId === "hw40" || trackId === "hw90") return loadLane(4);
-  return loadLane(3);
+export async function loadRoadFor(trackId: TrackId) {
+  return loadLane(roadLaneCount(getTrack(trackId)));
 }

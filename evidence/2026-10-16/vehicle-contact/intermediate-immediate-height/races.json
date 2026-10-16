@@ -1,0 +1,86 @@
+{
+  "kind": "accelerated-assisted-browser-engine",
+  "physicalDeviceAcceptance": false,
+  "results": [
+    {
+      "track": "oldjaffa",
+      "complete": true,
+      "resultUi": true,
+      "lap": 3,
+      "seconds": 112.35833333336882,
+      "damage": 0,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "namal",
+      "complete": true,
+      "resultUi": true,
+      "lap": 3,
+      "seconds": 223.66666666662758,
+      "damage": 0,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "haifa",
+      "complete": true,
+      "resultUi": true,
+      "lap": 1,
+      "seconds": 62.48333333333043,
+      "damage": 0.11254832299526121,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "rothschild",
+      "complete": true,
+      "resultUi": true,
+      "lap": 3,
+      "seconds": 297.6999999998936,
+      "damage": 0.09495938364763545,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "ayalon",
+      "complete": true,
+      "resultUi": true,
+      "lap": 1,
+      "seconds": 88.53333333334986,
+      "damage": 0,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "hermon",
+      "complete": true,
+      "resultUi": true,
+      "lap": 1,
+      "seconds": 140.27500000003675,
+      "damage": 0,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "scopus",
+      "complete": true,
+      "resultUi": true,
+      "lap": 1,
+      "seconds": 94.16666666668768,
+      "damage": 0.12527160734042753,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "ramon",
+      "complete": true,
+      "resultUi": true,
+      "lap": 1,
+      "seconds": 114.02500000003681,
+      "damage": 0,
+      "assisted": true,
+      "glError": 0
+    }
+  ]
+}

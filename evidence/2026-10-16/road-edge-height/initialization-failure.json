@@ -1,0 +1,7 @@
+{
+  "kind": "actual-road-edge-height",
+  "passed": false,
+  "scope": "Actual captured Scopus foreign-level contacts, loaded world colliders and upright vehicle bounds; full clear/default assisted Scopus race. Not complete rail hulls, tilted/swept collision, calibrated physics, art, pace, human or device acceptance.",
+  "errors": [],
+  "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:8133/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:8133/\", waiting until \"networkidle\"\u001b[22m\n"
+}

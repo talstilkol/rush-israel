@@ -25,7 +25,7 @@
     "owner_freeze": false,
     "asphalt_sha256": "af8a4802f66a9b61c89da6805953262e40d565278b20856a86b12c5d27acc441",
     "marking_sha256": "6fded4dfe0c71535028ba58c761c38b82fe846d0ba8245fd02c7dd19e1b3ca5a",
-    "sign_sha256": "46da35914d60995a1be73271f19d40af0201795e91bc76eb449eeeb1f1bb6343",
+    "sign_sha256": "415897488b1e28248cff4a91df443905e9ac41bcbc9f3fa39600a6fc4224c85c",
     "ieee_note": "RSH-029 records the live Version 1 Ayalon asphalt, sidewalk-absent, marking and sign recipes. It does not rewrite them."
   },
   "lock_module": {
@@ -48,15 +48,15 @@
     "release_gates_total": 13
   },
   "identities": {
-    "asphalt_source_sha256": "56917840c78578561c37c41e78c3d57eccb4f3338d27758d525e0861b6b95dd0",
+    "asphalt_source_sha256": "e219bc8a31e75a5e6c19ca375700a7d9bef67e215b6e129009a39d87c993db38",
     "index_source_sha256": "ceea2c0c9e6274d42e1e0233a38d4147194510c9118d71f7737d616b249fc17b",
     "track_source_sha256": "8b8f149f8ae2eb43c4593e4916244f14012397cb0cf5b2b42481e1406317404d",
     "ayalon_lock_sha256": "1a9b976bcc38e5bca090398418b6a9bb07bb9eb6e661eff7c83340a787cb2a6b",
-    "checker_test_sha256": "d38bbcde97457f7965f7d9b0da59c5a71fc42cc7ab936a6642cd95587cc79ee0",
+    "checker_test_sha256": "4837468fe9b382b65408f5efe0696561d0afe0872113c42693d1295ba2016011",
     "package_source_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
     "asphalt_sha256": "af8a4802f66a9b61c89da6805953262e40d565278b20856a86b12c5d27acc441",
     "marking_sha256": "6fded4dfe0c71535028ba58c761c38b82fe846d0ba8245fd02c7dd19e1b3ca5a",
-    "sign_sha256": "46da35914d60995a1be73271f19d40af0201795e91bc76eb449eeeb1f1bb6343"
+    "sign_sha256": "415897488b1e28248cff4a91df443905e9ac41bcbc9f3fa39600a6fc4224c85c"
   },
   "deferred_boundary": {
     "queue_head": "none",

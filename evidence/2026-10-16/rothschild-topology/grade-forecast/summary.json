@@ -1,0 +1,783 @@
+{
+  "kind": "actual-road-relative-grade-forecast",
+  "passed": true,
+  "scope": "Actual dd1 Haifa approach states and one full assisted Haifa race using actual engine/traffic. Clear weather/default setup only. Not calibrated braking,competitive pace,human driving,art,all conditions ordevice acceptance.",
+  "errors": [],
+  "forecasts": [
+    {
+      "time": 5.250000000000051,
+      "controller": "aiInput",
+      "relativeLevel": -0.6140014713565307,
+      "verticalDifference": -6.401125889125311,
+      "input": {
+        "steer": 0.06997874304037524,
+        "throttle": 0,
+        "brake": 0.0018753722693506552,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.250000000000051,
+      "controller": "trafficInput",
+      "relativeLevel": -0.6140014713565307,
+      "verticalDifference": -6.401125889125311,
+      "input": {
+        "steer": 0.0776970869578909,
+        "throttle": 0,
+        "brake": 0.0018753722693506552,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.300000000000053,
+      "controller": "aiInput",
+      "relativeLevel": -0.5540014713565711,
+      "verticalDifference": -6.341125889125351,
+      "input": {
+        "steer": 0.0486570093260454,
+        "throttle": 0,
+        "brake": 0.09695166477406118,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.300000000000053,
+      "controller": "trafficInput",
+      "relativeLevel": -0.5540014713565711,
+      "verticalDifference": -6.341125889125351,
+      "input": {
+        "steer": 0.062041221001600394,
+        "throttle": 0,
+        "brake": 0.09695166477406118,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.350000000000056,
+      "controller": "aiInput",
+      "relativeLevel": -0.7769256249113141,
+      "verticalDifference": -6.15006832611482,
+      "input": {
+        "steer": 0.0679069244345051,
+        "throttle": 0,
+        "brake": 0.19387690380512235,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.350000000000056,
+      "controller": "trafficInput",
+      "relativeLevel": -0.7769256249113141,
+      "verticalDifference": -6.15006832611482,
+      "input": {
+        "steer": 0.07424822631087745,
+        "throttle": 0,
+        "brake": 0.19387690380512235,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.400000000000058,
+      "controller": "aiInput",
+      "relativeLevel": -0.06053212390732199,
+      "verticalDifference": -5.84631832611484,
+      "input": {
+        "steer": 0.10423082606124226,
+        "throttle": 0,
+        "brake": 0.2926903718004092,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.400000000000058,
+      "controller": "trafficInput",
+      "relativeLevel": -0.06053212390732199,
+      "verticalDifference": -5.84631832611484,
+      "input": {
+        "steer": 0.10699023631814614,
+        "throttle": 0,
+        "brake": 0.2926903718004092,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.450000000000061,
+      "controller": "aiInput",
+      "relativeLevel": 0.2882178760927019,
+      "verticalDifference": -5.497568326114816,
+      "input": {
+        "steer": 0.13395262349120074,
+        "throttle": 0,
+        "brake": 0.39189858977969777,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.450000000000061,
+      "controller": "trafficInput",
+      "relativeLevel": 0.2882178760927019,
+      "verticalDifference": -5.497568326114816,
+      "input": {
+        "steer": 0.13452825142066593,
+        "throttle": 0,
+        "brake": 0.39189858977969777,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.500000000000063,
+      "controller": "aiInput",
+      "relativeLevel": -0.006872423272056949,
+      "verticalDifference": -5.3787702779314515,
+      "input": {
+        "steer": 0.15083881734211887,
+        "throttle": 0,
+        "brake": 0.4912376220242278,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.500000000000063,
+      "controller": "trafficInput",
+      "relativeLevel": -0.006872423272056949,
+      "verticalDifference": -5.3787702779314515,
+      "input": {
+        "steer": 0.1443236215501498,
+        "throttle": 0,
+        "brake": 0.4912376220242278,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.5500000000000655,
+      "controller": "aiInput",
+      "relativeLevel": -0.021872423272071728,
+      "verticalDifference": -5.393770277931466,
+      "input": {
+        "steer": 0.17094468997831175,
+        "throttle": 0,
+        "brake": 0.5903728188128151,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.5500000000000655,
+      "controller": "trafficInput",
+      "relativeLevel": -0.021872423272071728,
+      "verticalDifference": -5.393770277931466,
+      "input": {
+        "steer": 0.1636824664854928,
+        "throttle": 0,
+        "brake": 0.5903728188128151,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.600000000000068,
+      "controller": "aiInput",
+      "relativeLevel": -0.4506670706431777,
+      "verticalDifference": -5.408770277931453,
+      "input": {
+        "steer": 0.18150195967912452,
+        "throttle": 0,
+        "brake": 0.6900044510663721,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.600000000000068,
+      "controller": "trafficInput",
+      "relativeLevel": -0.4506670706431777,
+      "verticalDifference": -5.408770277931453,
+      "input": {
+        "steer": 0.16829937145369506,
+        "throttle": 0,
+        "brake": 0.6900044510663721,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.6500000000000705,
+      "controller": "aiInput",
+      "relativeLevel": -0.46566707064319246,
+      "verticalDifference": -5.423770277931467,
+      "input": {
+        "steer": 0.15387166495519866,
+        "throttle": 0,
+        "brake": 0.7805962008611108,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.6500000000000705,
+      "controller": "trafficInput",
+      "relativeLevel": -0.46566707064319246,
+      "verticalDifference": -5.423770277931467,
+      "input": {
+        "steer": 0.14738295754715927,
+        "throttle": 0,
+        "brake": 0.7805962008611108,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.700000000000073,
+      "controller": "aiInput",
+      "relativeLevel": -0.8344620667445213,
+      "verticalDifference": -5.378864660431788,
+      "input": {
+        "steer": 0.11341341208213865,
+        "throttle": 0,
+        "brake": 0.8732295339226755,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.700000000000073,
+      "controller": "trafficInput",
+      "relativeLevel": -0.8344620667445213,
+      "verticalDifference": -5.378864660431788,
+      "input": {
+        "steer": 0.10908933050268627,
+        "throttle": 0,
+        "brake": 0.8732295339226755,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.7500000000000755,
+      "controller": "aiInput",
+      "relativeLevel": -0.2081668027478969,
+      "verticalDifference": -5.1651146604318114,
+      "input": {
+        "steer": 0.08735755154712949,
+        "throttle": 0,
+        "brake": 0.9703543855982238,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.7500000000000755,
+      "controller": "trafficInput",
+      "relativeLevel": -0.2081668027478969,
+      "verticalDifference": -5.1651146604318114,
+      "input": {
+        "steer": 0.0894356508205852,
+        "throttle": 0,
+        "brake": 0.9703543855982238,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.800000000000078,
+      "controller": "aiInput",
+      "relativeLevel": -0.3630230465252424,
+      "verticalDifference": -4.906364660431791,
+      "input": {
+        "steer": 0.06373011041386434,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.800000000000078,
+      "controller": "trafficInput",
+      "relativeLevel": -0.3630230465252424,
+      "verticalDifference": -4.906364660431791,
+      "input": {
+        "steer": 0.06533617543670454,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.8500000000000805,
+      "controller": "aiInput",
+      "relativeLevel": -0.06302304652525947,
+      "verticalDifference": -4.606364660431808,
+      "input": {
+        "steer": 0.049284406447333146,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.8500000000000805,
+      "controller": "trafficInput",
+      "relativeLevel": -0.06302304652525947,
+      "verticalDifference": -4.606364660431808,
+      "input": {
+        "steer": 0.05526046141864482,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.900000000000083,
+      "controller": "aiInput",
+      "relativeLevel": -0.16903458193728227,
+      "verticalDifference": -4.298864660431775,
+      "input": {
+        "steer": 0.08660341322951767,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.900000000000083,
+      "controller": "trafficInput",
+      "relativeLevel": -0.16903458193728227,
+      "verticalDifference": -4.298864660431775,
+      "input": {
+        "steer": 0.08250935533694584,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.950000000000085,
+      "controller": "aiInput",
+      "relativeLevel": -0.11923313570771654,
+      "verticalDifference": -4.249063214202209,
+      "input": {
+        "steer": 0.12453650943320299,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 5.950000000000085,
+      "controller": "trafficInput",
+      "relativeLevel": -0.11923313570771654,
+      "verticalDifference": -4.249063214202209,
+      "input": {
+        "steer": 0.11644508644569808,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 6.000000000000088,
+      "controller": "aiInput",
+      "relativeLevel": -0.6076496216967371,
+      "verticalDifference": -4.324063214202198,
+      "input": {
+        "steer": 0.15300387046474742,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 6.000000000000088,
+      "controller": "trafficInput",
+      "relativeLevel": -0.6076496216967371,
+      "verticalDifference": -4.324063214202198,
+      "input": {
+        "steer": 0.1363523901955922,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 6.05000000000009,
+      "controller": "aiInput",
+      "relativeLevel": -0.6563955832609594,
+      "verticalDifference": -4.37280917576642,
+      "input": {
+        "steer": 0.17712193711081242,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 6.05000000000009,
+      "controller": "trafficInput",
+      "relativeLevel": -0.6563955832609594,
+      "verticalDifference": -4.37280917576642,
+      "input": {
+        "steer": 0.15861774336216722,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 6.100000000000093,
+      "controller": "aiInput",
+      "relativeLevel": -0.511020017092946,
+      "verticalDifference": -4.226559175766411,
+      "input": {
+        "steer": 0.19644761466061028,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 6.100000000000093,
+      "controller": "trafficInput",
+      "relativeLevel": -0.511020017092946,
+      "verticalDifference": -4.226559175766411,
+      "input": {
+        "steer": 0.17100151051122187,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 6.150000000000095,
+      "controller": "aiInput",
+      "relativeLevel": -0.3197700170929494,
+      "verticalDifference": -4.035309175766415,
+      "input": {
+        "steer": 0.15561770536754482,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    },
+    {
+      "time": 6.150000000000095,
+      "controller": "trafficInput",
+      "relativeLevel": -0.3197700170929494,
+      "verticalDifference": -4.035309175766415,
+      "input": {
+        "steer": 0.13824515502182438,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      }
+    }
+  ],
+  "approach": {
+    "track": "haifa",
+    "quality": "high",
+    "weather": "clear",
+    "night": false,
+    "speed": 25.45,
+    "progress": 0.13,
+    "onTrack": true,
+    "coordinates": "metres; x/z horizontal, y up; yaw radians",
+    "position": {
+      "x": -194.59565958729664,
+      "y": 103.98628094124307,
+      "z": -42.90213517936218
+    },
+    "countdown": 0,
+    "totalTime": 6.000000000000088,
+    "lapTime": 6.000000000000088,
+    "lap": 0,
+    "checkpoints": 0,
+    "finished": false,
+    "damage": 0,
+    "assisted": true,
+    "timeVoided": false,
+    "telem": {
+      "n": 6,
+      "p50": 98,
+      "p95": 3539.3,
+      "p99": 3539.3,
+      "last": 93.8,
+      "backend": "webgl2"
+    },
+    "csm": false,
+    "photo": false,
+    "webgpuTried": false,
+    "webgpuOk": false,
+    "webgpuReason": "",
+    "blobKtx2": false,
+    "ssgiOff": true,
+    "photoAa": "smaa",
+    "maxJump": 1.4015415780824796,
+    "maxGroundedVerticalJump": 0.3487500000000239
+  },
+  "race": {
+    "track": "haifa",
+    "quality": "high",
+    "weather": "clear",
+    "night": false,
+    "speed": 31.7,
+    "progress": 0.983,
+    "onTrack": true,
+    "coordinates": "metres; x/z horizontal, y up; yaw radians",
+    "position": {
+      "x": 195.8138842865289,
+      "y": 38.77296724957595,
+      "z": 227.5229860476151
+    },
+    "countdown": 0,
+    "totalTime": 62.066666666663785,
+    "lapTime": 0,
+    "lap": 1,
+    "checkpoints": 7,
+    "finished": true,
+    "damage": 0,
+    "assisted": true,
+    "timeVoided": false,
+    "telem": {
+      "n": 6,
+      "p50": 98,
+      "p95": 3539.3,
+      "p99": 3539.3,
+      "last": 93.8,
+      "backend": "webgl2"
+    },
+    "csm": false,
+    "photo": false,
+    "webgpuTried": false,
+    "webgpuOk": false,
+    "webgpuReason": "",
+    "blobKtx2": false,
+    "ssgiOff": true,
+    "photoAa": "smaa",
+    "maxJump": 0.440193915098615,
+    "maxGroundedVerticalJump": 0.040870408575761186
+  },
+  "batches": [
+    {
+      "time": 1.9999999999999953,
+      "damage": 0,
+      "maxJump": 0.5183191403266629,
+      "maxGroundedVerticalJump": 0.13914153792532602
+    },
+    {
+      "time": 3.9999999999999885,
+      "damage": 0,
+      "maxJump": 1.0333549437715654,
+      "maxGroundedVerticalJump": 0.21618644386232688
+    },
+    {
+      "time": 6.000000000000088,
+      "damage": 0,
+      "maxJump": 1.4015415780824796,
+      "maxGroundedVerticalJump": 0.3487500000000239
+    },
+    {
+      "time": 8.000000000000187,
+      "damage": 0,
+      "maxJump": 1.2620599695551213,
+      "maxGroundedVerticalJump": 0.31299278552234
+    },
+    {
+      "time": 10.000000000000073,
+      "damage": 0,
+      "maxJump": 0.6686761300102555,
+      "maxGroundedVerticalJump": 0.19834855609181545
+    },
+    {
+      "time": 11.99999999999996,
+      "damage": 0,
+      "maxJump": 0.4768040777803281,
+      "maxGroundedVerticalJump": 0.19743180429516372
+    },
+    {
+      "time": 13.999999999999845,
+      "damage": 0,
+      "maxJump": 0.4599156725182975,
+      "maxGroundedVerticalJump": 0.15375000000001648
+    },
+    {
+      "time": 15.999999999999732,
+      "damage": 0,
+      "maxJump": 0.4627630190344374,
+      "maxGroundedVerticalJump": 0.17273186711656763
+    },
+    {
+      "time": 17.99999999999962,
+      "damage": 0,
+      "maxJump": 0.4575861806704158,
+      "maxGroundedVerticalJump": 0.19593884797565408
+    },
+    {
+      "time": 19.999999999999506,
+      "damage": 0,
+      "maxJump": 0.46268197200986644,
+      "maxGroundedVerticalJump": 0.19504585173612554
+    },
+    {
+      "time": 21.999999999999392,
+      "damage": 0,
+      "maxJump": 0.4599435267872892,
+      "maxGroundedVerticalJump": 0.1462500000000091
+    },
+    {
+      "time": 23.99999999999928,
+      "damage": 0,
+      "maxJump": 0.460932501005542,
+      "maxGroundedVerticalJump": 0.19364627572835502
+    },
+    {
+      "time": 25.999999999999165,
+      "damage": 0,
+      "maxJump": 0.46228052966231625,
+      "maxGroundedVerticalJump": 0.19316250846907224
+    },
+    {
+      "time": 27.99999999999905,
+      "damage": 0,
+      "maxJump": 0.46332962885826107,
+      "maxGroundedVerticalJump": 0.1925448447962168
+    },
+    {
+      "time": 29.999999999998938,
+      "damage": 0,
+      "maxJump": 0.4606535131724832,
+      "maxGroundedVerticalJump": 0.19203989938100108
+    },
+    {
+      "time": 31.999999999998824,
+      "damage": 0,
+      "maxJump": 0.45705630546667664,
+      "maxGroundedVerticalJump": 0.19126352567838012
+    },
+    {
+      "time": 33.999999999998714,
+      "damage": 0,
+      "maxJump": 0.4598804853604693,
+      "maxGroundedVerticalJump": 0.19005339952423128
+    },
+    {
+      "time": 35.9999999999986,
+      "damage": 0,
+      "maxJump": 0.4632452378019461,
+      "maxGroundedVerticalJump": 0.1330480843782169
+    },
+    {
+      "time": 37.99999999999849,
+      "damage": 0,
+      "maxJump": 0.46729925240897047,
+      "maxGroundedVerticalJump": 0.11880297776150428
+    },
+    {
+      "time": 39.99999999999837,
+      "damage": 0,
+      "maxJump": 0.9257033572944328,
+      "maxGroundedVerticalJump": 0.18819853043770962
+    },
+    {
+      "time": 41.99999999999826,
+      "damage": 0,
+      "maxJump": 1.5307755561119059,
+      "maxGroundedVerticalJump": 0.28125
+    },
+    {
+      "time": 43.999999999998145,
+      "damage": 0,
+      "maxJump": 1.5349191262513253,
+      "maxGroundedVerticalJump": 0.3176603477706763
+    },
+    {
+      "time": 45.99999999999803,
+      "damage": 0,
+      "maxJump": 1.559691207827146,
+      "maxGroundedVerticalJump": 0.28993627769055763
+    },
+    {
+      "time": 47.99999999999792,
+      "damage": 0,
+      "maxJump": 1.5809725004514774,
+      "maxGroundedVerticalJump": 0.26624999999999943
+    },
+    {
+      "time": 49.999999999997804,
+      "damage": 0,
+      "maxJump": 1.5961880566930782,
+      "maxGroundedVerticalJump": 0.2702795988426985
+    },
+    {
+      "time": 51.99999999999769,
+      "damage": 0,
+      "maxJump": 1.5995217936250639,
+      "maxGroundedVerticalJump": 0.23113960285490975
+    },
+    {
+      "time": 53.99999999999758,
+      "damage": 0,
+      "maxJump": 1.5957888601997774,
+      "maxGroundedVerticalJump": 0.2472702529130686
+    },
+    {
+      "time": 55.99999999999746,
+      "damage": 0,
+      "maxJump": 1.5944802771139588,
+      "maxGroundedVerticalJump": 0.2496070306894893
+    },
+    {
+      "time": 57.99999999999735,
+      "damage": 0,
+      "maxJump": 1.577447204699195,
+      "maxGroundedVerticalJump": 0.30609778901494344
+    },
+    {
+      "time": 59.999999999997236,
+      "damage": 0,
+      "maxJump": 1.5697761824799275,
+      "maxGroundedVerticalJump": 0.25874999999999915
+    },
+    {
+      "time": 61.99999999999712,
+      "damage": 0,
+      "maxJump": 1.5068261245222607,
+      "maxGroundedVerticalJump": 0.2137500000000001
+    },
+    {
+      "time": 62.066666666663785,
+      "damage": 0,
+      "maxJump": 0.440193915098615,
+      "maxGroundedVerticalJump": 0.040870408575761186
+    }
+  ],
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+  "glError": 0,
+  "physicsVersion": 18
+}

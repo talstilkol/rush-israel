@@ -1,0 +1,20 @@
+{
+  "scope": "Actual20s native diagnostic before the capture fix. Process exited1 on real EISDIR while its old summary incorrectly retained passed=true. Not a30-minute pass.",
+  "summary": {
+    "kind": "diagnostic-smoke",
+    "passed": true,
+    "completedRaces": 0,
+    "elapsedMs": 20016,
+    "ticks": 187,
+    "maxSpeed": 31.19,
+    "maxProgress": 0.217,
+    "offRoadRatio": 0,
+    "p95Worst": 607,
+    "memoryHigh": {
+      "textures": 50,
+      "geometries": 1992
+    },
+    "deviceAcceptance": false,
+    "error": "Error: EISDIR: illegal operation on a directory, open '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/artifacts/driving-soak/drive-30min-end.png'"
+  }
+}

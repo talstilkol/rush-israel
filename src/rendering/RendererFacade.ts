@@ -67,7 +67,7 @@ export class RendererFacade {
   setQuality(profile: QualityProfile) {
     this.profile = profile;
     this.gl.shadowMap.enabled = profile.shadows > 0;
-    this.gl.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.gl.shadowMap.type = THREE.PCFShadowMap;
   }
 
   resize(width: number, height: number, dpr: number) {

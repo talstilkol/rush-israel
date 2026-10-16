@@ -1,0 +1,9 @@
+{
+  "scope": "Canonical plan consistency only; no product acceptance",
+  "files": {
+    "COMPLETION-BACKLOG.json": "8228ea30d9198556647773ce981e1bb6e8454a97bdc8f91998761b583e761c32",
+    "COMPLETION-PLAN.md": "d47cad61e02a95d5dec192679d005a24ce0a93b2fc9b772db03101b2de8a9d1b",
+    "QUALITY-TARGETS.md": "75d8485a47f8c4b5579a62890ccabe8461421fcf54f320e894db193631dea57c",
+    "PRODUCT-READINESS.json": "cae85eb54656ddb008fd341464b0dffb3349734cb909434b34e101cca76516b9"
+  }
+}

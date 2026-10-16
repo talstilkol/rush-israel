@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { bsv } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -17,7 +17,7 @@ export default function buildBeersheva(context: TrackWorldBuilderContext): void 
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const ch = bsv(31.252, 34.791);
     {
-      const n = nearestIndex(built.samples, ch.x, ch.z, 0);
+      const n = closestSample(built.samples, ch.x, ch.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         ch.x = s.x + s.rx * (built.width / 2 + 26);

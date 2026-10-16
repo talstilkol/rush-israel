@@ -1,6 +1,8 @@
 import * as THREE from "three";
+import type { VehicleContactBounds } from "./vehicle-contact";
 import type { CarDef, Tune } from "./types";
 import { cloneCarBody } from "./car-assets";
+import { fitCarWindows } from "./car-glazing";
 import { getBeam } from "./beam-assets";
 import { getFlake } from "./flake-assets";
 import { disposeObject3D, type Object3DDisposalTracker } from "../rendering/disposeObject3D";
@@ -21,6 +23,9 @@ export type CarVisual = {
   dents: THREE.Mesh[];
   scratch?: THREE.Mesh;
   police?: { red: THREE.MeshPhysicalMaterial; blue: THREE.MeshPhysicalMaterial };
+  flames?: THREE.Mesh[];
+  indL?: THREE.Mesh;
+  indR?: THREE.Mesh;
 };
 
 let FLAKE: THREE.Texture | null = null;
@@ -224,6 +229,35 @@ function layout(kind: CarDef["body"]): Layout {
 
 const TAXI_COLORS = new Set([0xf5c400, 0xf0c400]);
 
+function addLivery(
+  put: (geo: THREE.BufferGeometry, mat: THREE.Material, x: number, y: number, z: number) => void,
+  L: ReturnType<typeof layout>,
+  id: number,
+) {
+  if (!id) return;
+  const y = L.wheelY + L.bodyH * 0.78;
+  const stripe = (color: number, w: number, d: number, x: number, z: number, h = 0.025) => {
+    const mat = new THREE.MeshStandardMaterial({ color, roughness: 0.32, metalness: 0.2 });
+    put(new THREE.BoxGeometry(w, h, d), mat, x, y, z);
+  };
+  if (id === 1) {
+    stripe(0xf2eee8, 0.07, L.L * 0.7, -0.22, 0);
+    stripe(0xf2eee8, 0.07, L.L * 0.7, 0.22, 0);
+  } else if (id === 2) {
+    stripe(0xe07040, L.W * 0.7, 0.55, 0, L.L * 0.28);
+    stripe(0xf2c14e, L.W * 0.55, 0.28, 0, L.L * 0.12);
+  } else if (id === 3) {
+    for (let i = 0; i < 4; i++) stripe(i % 2 ? 0x111214 : 0xf2eee8, 0.22, 0.22, -0.24 + (i % 2) * 0.24, L.L * 0.18 - Math.floor(i / 2) * 0.24);
+  } else if (id === 4) {
+    stripe(0xd23a22, 0.34, 0.7, -L.W * 0.28, 0.2, 0.03);
+    stripe(0xf08a2a, 0.22, 0.45, -L.W * 0.22, 0.55, 0.03);
+  } else if (id === 5) {
+    stripe(0xd4b15a, 0.06, L.L * 0.78, 0, 0);
+  } else if (id === 6) {
+    stripe(0x1a1c22, L.W * 0.46, L.L * 0.62, L.W * 0.22, 0);
+  }
+}
+
 export function createCarVisual(
   color: number,
   accent: number,
@@ -278,13 +312,18 @@ export function createCarVisual(
   const half = L.L / 2;
   const bodyY = L.wheelY + L.bodyH * 0.22;
   const baked = cloneCarBody(kind, color, shadows);
+  let shell: THREE.Mesh;
   if (baked) {
+    const rich = paint(color);
+    baked.material = rich;
+    bodyMat = rich;
     group.add(baked);
-    bodyMat = baked.material as THREE.MeshPhysicalMaterial;
-    bindPaintFlakes(bodyMat);
+    shell = baked;
   } else {
-    put(bodyGeo(kind, L.W * 0.9), bodyMat, 0, 0, 0);
+    shell = put(bodyGeo(kind, L.W * 0.9), bodyMat, 0, 0, 0);
+    shell.name = "body";
   }
+  addLivery(put, L, tune?.livery ?? 0);
 
   const cabinY = L.wheelY + L.bodyH * 0.55 + L.cabinH * 0.42;
 
@@ -301,6 +340,15 @@ export function createCarVisual(
   const houseR = put(new THREE.BoxGeometry(0.38, 0.14, 0.08), chrome, hx, headY, headZ);
   const headL = put(lampGeo, emitHead, -hx, headY, headZ + 0.03, Math.PI / 2, 0, 0);
   const headR = put(lampGeo.clone(), emitHead, hx, headY, headZ + 0.03, Math.PI / 2, 0, 0);
+  const indMat = () => new THREE.MeshStandardMaterial({ color: 0xffb14a, emissive: 0xff8a1a, emissiveIntensity: 2.4 });
+  const indL = put(new THREE.BoxGeometry(0.11, 0.06, 0.04), indMat(), -hx - 0.24, headY, headZ);
+  const indR = put(new THREE.BoxGeometry(0.11, 0.06, 0.04), indMat(), hx + 0.24, headY, headZ);
+  indL.visible = false;
+  indR.visible = false;
+  put(new THREE.BoxGeometry(L.W * 0.34, 0.1, 0.03), black, 0, headY - 0.14, headZ + 0.01);
+  for (let slat = 0; slat < 3; slat++) {
+    put(new THREE.BoxGeometry(L.W * 0.28, 0.012, 0.018), chrome, 0, headY - 0.17 + slat * 0.035, headZ + 0.02);
+  }
 
   const glowMat = new THREE.MeshBasicMaterial({ color: 0xfff4d0, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false });
   const gL = new THREE.Mesh(new THREE.SphereGeometry(0.14, 10, 8), glowMat);
@@ -325,10 +373,14 @@ export function createCarVisual(
 
   const glassW = L.W * 0.68;
   const pane = (w: number, h: number) => new THREE.BoxGeometry(w, h, 0.036);
-  put(pane(glassW, L.cabinH * 0.72), glass, 0, cabinY + 0.02, L.cabinZ + L.cabinL * 0.42, -0.62);
-  put(pane(glassW * 0.96, L.cabinH * 0.58), glass, 0, cabinY, L.cabinZ - L.cabinL * 0.42, 0.52);
-  put(pane(L.cabinL * 0.62, L.cabinH * 0.48), glass, -L.W * 0.445, cabinY, L.cabinZ, 0, Math.PI / 2);
-  put(pane(L.cabinL * 0.62, L.cabinH * 0.48), glass, L.W * 0.445, cabinY, L.cabinZ, 0, -Math.PI / 2);
+  const windows = [
+    put(pane(glassW, L.cabinH * 0.72), glass, 0, cabinY + 0.02, L.cabinZ + L.cabinL * 0.42, -0.62),
+    put(pane(glassW * 0.96, L.cabinH * 0.58), glass, 0, cabinY, L.cabinZ - L.cabinL * 0.42, 0.52),
+    put(pane(L.cabinL * 0.62, L.cabinH * 0.48), glass, -L.W * 0.445, cabinY, L.cabinZ, 0, Math.PI / 2),
+    put(pane(L.cabinL * 0.62, L.cabinH * 0.48), glass, L.W * 0.445, cabinY, L.cabinZ, 0, -Math.PI / 2),
+  ] as THREE.Mesh<THREE.BoxGeometry, THREE.MeshPhysicalMaterial>[];
+  for (const [i, window] of windows.entries()) window.name = `window-${["front", "rear", "left", "right"][i]}`;
+  group.userData.glazingFitted = fitCarWindows(shell, windows, L.cabinH);
 
   put(new THREE.BoxGeometry(0.18, 0.1, 0.14), black, -L.W * 0.48, cabinY + 0.01, L.cabinZ + L.cabinL * 0.18);
   put(new THREE.BoxGeometry(0.18, 0.1, 0.14), black, L.W * 0.48, cabinY + 0.01, L.cabinZ + L.cabinL * 0.18);
@@ -336,6 +388,12 @@ export function createCarVisual(
   put(new THREE.BoxGeometry(0.07, 0.07, 0.1), glass, L.W * 0.54, cabinY + 0.01, L.cabinZ + L.cabinL * 0.18);
 
   put(new THREE.BoxGeometry(L.W * 0.88, 0.08, L.L * 0.72), black, 0, L.wheelY * 0.22, 0);
+  put(new THREE.BoxGeometry(0.07, 0.1, L.L * 0.46), dark, L.W * 0.48, L.wheelY * 0.34, 0.05);
+  put(new THREE.BoxGeometry(0.07, 0.1, L.L * 0.46), dark, -L.W * 0.48, L.wheelY * 0.34, 0.05);
+  put(new THREE.BoxGeometry(L.W * 0.64, 0.07, 0.24), dark, 0, L.wheelY * 0.3, -half - 0.04);
+  if (kind === "super" || kind === "muscle") {
+    put(new THREE.BoxGeometry(L.W * 0.78, 0.04, 0.32), accentMat, 0, cabinY + L.cabinH * 0.55, L.cabinZ - L.cabinL * 0.15);
+  }
   put(new THREE.BoxGeometry(0.36, 0.1, 0.02), chrome, 0, L.wheelY * 0.78, -half - 0.04);
   const ex = new THREE.CylinderGeometry(0.042, 0.048, 0.16, 10);
   ex.rotateX(Math.PI / 2);
@@ -523,6 +581,26 @@ export function createCarVisual(
   scratch.position.set(L.W * 0.48, bodyY, 0.15);
   group.add(scratch);
 
+  const flameGeo = new THREE.ConeGeometry(0.08, 0.46, 7);
+  flameGeo.rotateX(Math.PI / 2);
+  const flames: THREE.Mesh[] = [];
+  for (const sx of kind === "muscle" || kind === "super" ? [-0.3, 0.3] : [-0.16, 0.16]) {
+    const f = new THREE.Mesh(
+      flameGeo,
+      new THREE.MeshBasicMaterial({
+        color: 0xff6a1a,
+        transparent: true,
+        opacity: 0.9,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      }),
+    );
+    f.position.set(sx, L.wheelY * 0.48, -half - 0.18);
+    f.visible = false;
+    group.add(f);
+    flames.push(f);
+  }
+
   const blob = new THREE.Mesh(
     new THREE.CircleGeometry(L.W * 0.72, 16),
     new THREE.MeshBasicMaterial({ color: 0x0a0c10, transparent: true, opacity: 0, depthWrite: false }),
@@ -552,7 +630,50 @@ export function createCarVisual(
     dents,
     scratch,
     police: policeMats,
+    flames,
+    indL,
+    indR,
   };
+}
+
+/** Measure opaque physical parts before suspension/steering animation. Effects
+ * (glass, headlight pools, exhaust and shadow planes) do not enlarge contacts.
+ * Root scale is retained, including the traffic bus/truck scale. */
+export function carContactBounds(vis: CarVisual): VehicleContactBounds {
+  const root = vis.group;
+  root.updateMatrixWorld(true);
+  const unpose = new THREE.Matrix4().compose(root.getWorldPosition(new THREE.Vector3()), root.getWorldQuaternion(new THREE.Quaternion()), new THREE.Vector3(1, 1, 1)).invert();
+  const bounds = new THREE.Box3();
+  root.traverse((object) => {
+    if (!(object instanceof THREE.Mesh)) return;
+    const materials = Array.isArray(object.material) ? object.material : [object.material];
+    if (materials.every(material => material.transparent)) return;
+    const positions = object.geometry.getAttribute("position");
+    if (!positions) return;
+    const matrix = new THREE.Matrix4().multiplyMatrices(unpose, object.matrixWorld);
+    const point = new THREE.Vector3();
+    for (let i = 0; i < positions.count; i++) bounds.expandByPoint(point.fromBufferAttribute(positions, i).applyMatrix4(matrix));
+  });
+  if (bounds.isEmpty() || ![...bounds.min.toArray(), ...bounds.max.toArray()].every(Number.isFinite)) throw new Error("Actual car solid bounds unavailable");
+  // Rendering faces yaw + PI; the physics frame faces yaw.
+  return { minX: -bounds.max.x, maxX: -bounds.min.x, minY: bounds.min.y, maxY: bounds.max.y, minZ: -bounds.max.z, maxZ: -bounds.min.z };
+}
+
+export function setIndicators(vis: CarVisual, left: boolean, right: boolean, t: number) {
+  const blink = Math.sin(t * 9) > 0;
+  if (vis.indL) vis.indL.visible = left && blink;
+  if (vis.indR) vis.indR.visible = right && blink;
+}
+
+export function setExhaust(vis: CarVisual, on: boolean, flicker: number) {
+  if (!vis.flames) return;
+  const pulse = 0.65 + Math.abs(Math.sin(flicker)) * 0.5;
+  for (const f of vis.flames) {
+    f.visible = on;
+    if (!on) continue;
+    f.scale.set(1, 1, pulse);
+    (f.material as THREE.MeshBasicMaterial).opacity = 0.45 + pulse * 0.4;
+  }
 }
 
 export function applyDamage(vis: CarVisual, dmg: number, dirt = 0) {

@@ -1,0 +1,15 @@
+{
+  "observedAt": "2026-10-16T06:53:55.784393+00:00",
+  "candidate": "2c365ba1198c5b48cfaae3dde40cd1ce074c1d29",
+  "base": "b2c0d46dd43c3bd8f27dc0009e4809c27c54c60e",
+  "integrationMerge": "db571da30e3039e5c4254e18b9d61999d92b3c86",
+  "parents": [
+    "b2c0d46dd43c3bd8f27dc0009e4809c27c54c60e",
+    "2c365ba1198c5b48cfaae3dde40cd1ce074c1d29"
+  ],
+  "tree": "7e2968789d6848a012cbada9e928b2980177cbbe",
+  "candidateTree": "7e2968789d6848a012cbada9e928b2980177cbbe",
+  "directory": "/private/tmp/rush-main-integration-2c365ba",
+  "scope": "Actual unpushed local two-parent integration of remote-main snapshot and candidate. No remote main merge, release or product acceptance.",
+  "initialAttempt": "Local object copy lacked historical trees/commits; parent/tree validation rejected the misleading already-up-to-date output. Missing objects were refetched from GitHub; only the verified two-parent merge above is tested."
+}

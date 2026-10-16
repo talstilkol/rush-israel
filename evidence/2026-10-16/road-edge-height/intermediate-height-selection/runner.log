@@ -1,0 +1,9 @@
+2026-10-16T11:08:55.105962+00:00 native-grade START
+native-grade EXIT 0
+2026-10-16T11:08:59.345257+00:00 worlds-races START
+worlds-races EXIT 1
+Traceback (most recent call last):
+  File "/Users/tal/Documents/Codex/2026-10-11/new-chat/work/run-road-edge-height-browser-checks.py", line 13, in <module>
+    print(name,'EXIT',result.returncode,flush=True);assert result.returncode==0,name
+                                                           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: worlds-races

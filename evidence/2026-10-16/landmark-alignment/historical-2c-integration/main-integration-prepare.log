@@ -1,0 +1,14 @@
+fatal: unable to read tree (2f95e74f002ffba314f5b00ca6587686ae51608e)
+Traceback (most recent call last):
+  File "/Users/tal/Documents/Codex/2026-10-11/new-chat/work/prepare-main-integration.py", line 8, in <module>
+    merge=subprocess.check_output(['git','rev-parse','HEAD'],cwd=T,text=True).strip();parents=subprocess.check_output(['git','show','-s','--format=%P','HEAD'],cwd=T,text=True).strip().split();assert parents==[BASE,HEAD]
+                                                                                              ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['git', 'show', '-s', '--format=%P', 'HEAD']' returned non-zero exit status 128.

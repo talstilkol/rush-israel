@@ -5,7 +5,7 @@ export const GIS_CLAIM = false;
 export const OWNER_FREEZE = false;
 export const PUBLIC_DISTRIBUTION = false;
 export const PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
-export const PWA_COMPLETE = true;
+export const PWA_COMPLETE = false;
 export const MANIFEST_PRESENT = true;
 export const MANIFEST_PATH = "/__grok/manifest.webmanifest" as const;
 export const DISPLAY_STANDALONE = true;
@@ -37,7 +37,7 @@ export function evaluateLock(report: LockReport = {}) {
 
 export function canonicalDigest(): string {
   return [
-    "pwa_complete=true",
+    "pwa_complete=false",
     "manifest_present=true",
     "manifest_path=/__grok/manifest.webmanifest",
     "display_standalone=true",

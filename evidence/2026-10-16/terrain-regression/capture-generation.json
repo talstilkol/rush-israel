@@ -1,0 +1,231 @@
+{
+  "kind": "candidate-actual-engine-track-captures",
+  "sourceHead": null,
+  "sourceBase": "ccaabd20d4247e3aac863af7982efa80aa33719e",
+  "candidate": "isolated-terrain-r2",
+  "source": "Real production RaceEngine, geometry and committed game assets; static camera export with no external photographs.",
+  "generatorSha256": "b01f3d15971480741db611eb4c1a1ffdf4518c02c74a90a160445838751fbce4",
+  "shipping": false,
+  "ownerArtApproved": false,
+  "publicLegalClearance": false,
+  "rows": [
+    {
+      "id": "oldjaffa",
+      "nameHe": "דרום תל אביב · נמל יפו",
+      "pose": {
+        "glError": 0,
+        "sampleIndex": 102,
+        "routeT": 0.19999999999999998,
+        "camera": {
+          "x": -747.3878640000634,
+          "y": 6.800000000000001,
+          "z": -1098.060480000311
+        },
+        "target": {
+          "x": -764.8463880000057,
+          "y": 4.8,
+          "z": -1110.0830400002776
+        },
+        "fov": 58,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+        "drawingBuffer": [
+          1088,
+          612
+        ]
+      },
+      "file": "oldjaffa.jpg",
+      "sha256": "9b08e4a41bdc71447f766ee16bb4b136990bfc19062c23e9231b1b39786b2bb7"
+    },
+    {
+      "id": "namal",
+      "nameHe": "צפון תל אביב",
+      "pose": {
+        "glError": 0,
+        "sampleIndex": 102,
+        "routeT": 0.19999999999999998,
+        "camera": {
+          "x": 297.88181999992844,
+          "y": 3.6,
+          "z": 1258.3612799999319
+        },
+        "target": {
+          "x": 315.20447999988323,
+          "y": 1.6,
+          "z": 1290.4214399998316
+        },
+        "fov": 58,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+        "drawingBuffer": [
+          1088,
+          612
+        ]
+      },
+      "file": "namal.jpg",
+      "sha256": "302f1bda79e1a7ef4e8530291d1e58233a39865cba55084027b7890cb576489f"
+    },
+    {
+      "id": "haifa",
+      "nameHe": "ירידת הכרמל",
+      "pose": {
+        "glError": 0,
+        "sampleIndex": 60,
+        "routeT": 0.2,
+        "camera": {
+          "x": -201.48876000013078,
+          "y": 100.81470530579334,
+          "z": 2.003759999978259
+        },
+        "target": {
+          "x": -200.27700000013596,
+          "y": 93.87807379317132,
+          "z": 38.39204159995893
+        },
+        "fov": 58,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+        "drawingBuffer": [
+          1088,
+          612
+        ]
+      },
+      "file": "haifa.jpg",
+      "sha256": "c0fa5cf18445208ad0ca93e2ad47f0a8cb5780f4371b054959bc736faba369d9"
+    },
+    {
+      "id": "rothschild",
+      "nameHe": "שדרות רוטשילד",
+      "pose": {
+        "glError": 0,
+        "sampleIndex": 96,
+        "routeT": 0.2,
+        "camera": {
+          "x": 271.75494026006464,
+          "y": 3.6,
+          "z": -323.43978523483975
+        },
+        "target": {
+          "x": 302.79133252981495,
+          "y": 1.6,
+          "z": -287.3026652223553
+        },
+        "fov": 58,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+        "drawingBuffer": [
+          1088,
+          612
+        ]
+      },
+      "file": "rothschild.jpg",
+      "sha256": "9e5448d712121219f2d6a352af04d82b1fa971b77060849f57dbb5f4b873a434"
+    },
+    {
+      "id": "ayalon",
+      "nameHe": "נתיבי איילון",
+      "pose": {
+        "glError": 0,
+        "sampleIndex": 156,
+        "routeT": 0.2,
+        "camera": {
+          "x": 1061.4374999999397,
+          "y": 4.768166247659989,
+          "z": -651.222000000262
+        },
+        "target": {
+          "x": 1061.4374999999397,
+          "y": 2.6297200850747844,
+          "z": -611.1468000002386
+        },
+        "fov": 58,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+        "drawingBuffer": [
+          1088,
+          612
+        ]
+      },
+      "file": "ayalon.jpg",
+      "sha256": "b6ce5bb7863a2bc46c324ca96b9a45bef2abbb3ecd0307beb41621a22911832c"
+    },
+    {
+      "id": "hermon",
+      "nameHe": "החרמון · העלייה",
+      "pose": {
+        "glError": 0,
+        "sampleIndex": 96,
+        "routeT": 0.2,
+        "camera": {
+          "x": 193.0239999998139,
+          "y": 32.967406357832985,
+          "z": -151.39519999996355
+        },
+        "target": {
+          "x": 148.5987839998119,
+          "y": 34.84498863861944,
+          "z": -111.99682560004779
+        },
+        "fov": 58,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+        "drawingBuffer": [
+          1088,
+          612
+        ]
+      },
+      "file": "hermon.jpg",
+      "sha256": "e6477f88fcba5f3ebefc9ae757ad906ae6be04c0abb3c6de8798d54c4a42b595"
+    },
+    {
+      "id": "scopus",
+      "nameHe": "הר הצופים",
+      "pose": {
+        "glError": 0,
+        "sampleIndex": 66,
+        "routeT": 0.2,
+        "camera": {
+          "x": 549.0860000000656,
+          "y": 18.75815170537399,
+          "z": 645.6560000000773
+        },
+        "target": {
+          "x": 606.493887999956,
+          "y": 19.376577161066482,
+          "z": 642.9843200001072
+        },
+        "fov": 58,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+        "drawingBuffer": [
+          1088,
+          612
+        ]
+      },
+      "file": "scopus.jpg",
+      "sha256": "a24c5ce577b41a698c06675cbd3218922b68906cbcc287d953beefd7cdaecbe2"
+    },
+    {
+      "id": "ramon",
+      "nameHe": "מכתש רמון · הירידה",
+      "pose": {
+        "glError": 0,
+        "sampleIndex": 102,
+        "routeT": 0.19999999999999998,
+        "camera": {
+          "x": 343.2191999998877,
+          "y": 146.55624579387467,
+          "z": -92.44012800003452
+        },
+        "target": {
+          "x": 318.1823999999651,
+          "y": 139.02762704293153,
+          "z": -150.14841599997592
+        },
+        "fov": 58,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+        "drawingBuffer": [
+          1088,
+          612
+        ]
+      },
+      "file": "ramon.jpg",
+      "sha256": "2911a67509e15a26f1efd4f1ae8eb8a6935e919fbe6fd637787133fa3cd92805"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": []
+}

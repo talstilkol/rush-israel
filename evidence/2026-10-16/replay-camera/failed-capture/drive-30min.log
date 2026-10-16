@@ -1,0 +1,3 @@
+2026-10-16T05:52:38.293Z start ms=20000 backend-drive kind=diagnostic-smoke steering=real-input-ai
+2026-10-16T05:52:53.359Z t=15s spd=28.7 on=true p=0.159 finished=0 offTicks=0 p95=13.6
+2026-10-16T05:52:58.559Z FAIL Error: EISDIR: illegal operation on a directory, open '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/artifacts/driving-soak/drive-30min-end.png'

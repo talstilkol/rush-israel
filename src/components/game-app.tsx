@@ -6,20 +6,26 @@ import {
   getAssists,
   getCash,
   getFov,
+  getGrid,
   getHandling,
   getLang,
   getMuted,
   getNight,
   getQuality,
+  getTraffic,
+  getVolume,
   isCarUnlocked,
   setAssistsSave,
   setFovSave,
+  setGridSave,
   setHandlingSave,
   setLangSave,
   setMutedSave,
   setNightSave,
   setQualitySave,
-  totalStars,
+  setTrafficSave,
+  setVolumeSave,
+  v1Stars,
 } from "@/game/save";
 import { copy, dirFor, nextLang, type Lang } from "@/game/i18n";
 import type { RaceEngine } from "@/game/engine";
@@ -32,10 +38,12 @@ import type {
   TrackId,
   Weather,
 } from "@/game/types";
+import type { TrafficDensity } from "@/game/save";
 import { RaceController } from "@/components/game-app/race-controller";
 import { Menu, resolveTrack } from "@/components/game-app/screens";
 
 export function GameApp() {
+	const [hydrated, setHydrated] = useState(false);
 	const [screen, setScreen] = useState("title");
 	const [trackId, setTrackId] = useState<TrackId>("ayalon");
 	const [carId, setCarId] = useState<CarId>("sabra");
@@ -43,6 +51,9 @@ export function GameApp() {
 	const [night, setNight] = useState(false);
 	const [quality, setQuality] = useState<Quality>("high");
 	const [fov, setFov] = useState(0);
+	const [grid, setGrid] = useState(6);
+	const [volume, setVolume] = useState(0.55);
+	const [traffic, setTraffic] = useState<TrafficDensity>("normal");
 	const [lang, setLang] = useState<Lang>("he");
 	const langHe = lang === "he";
 	const [handling, setHandling] = useState<HandlingMode>("arcade");
@@ -55,19 +66,23 @@ export function GameApp() {
 	const [tuneTick, setTuneTick] = useState(0);
 	const engineRef = useRef<RaceEngine | null>(null);
 	useEffect(() => {
-		if (screen === "cars" || screen === "career" || screen === "garage") setScreen(screen === "cars" ? "race" : "tracks");
+		if (screen === "cars") setScreen("race");
 	}, [screen]);
 	useEffect(() => {
 		setMuted(getMuted());
 		setNight(getNight());
 		setQuality(getQuality());
 		setFov(getFov());
-		setStarTotal(totalStars());
+		setGrid(getGrid());
+		setVolume(getVolume());
+		setTraffic(getTraffic());
+		setStarTotal(v1Stars());
 		setCash(getCash());
 		setHandling(getHandling());
 		setAssists(getAssists());
 		const savedLang = getLang();
 		if (savedLang) setLang(savedLang);
+		setHydrated(true);
 	}, []);
 	const t = (he: string, en: string, ar?: string) => copy(lang, he, en, ar);
 	const track = resolveTrack(trackId);
@@ -79,6 +94,8 @@ export function GameApp() {
 	};
 	return /* @__PURE__ */ jsxs("div", {
 		dir: dirFor(lang),
+		inert: !hydrated,
+		"data-game-ready": hydrated ? "true" : "false",
 		className: "relative h-dvh w-full overflow-hidden bg-bg text-fg",
 		children: [
 			/* @__PURE__ */ jsx(RaceController, {
@@ -92,12 +109,24 @@ export function GameApp() {
 				quality,
 				setQuality,
 				fov,
+				grid,
+				volume,
+				setVolumeMode: (v: number) => {
+					setVolume(v);
+					setVolumeSave(v);
+					engineRef.current?.setVolume(v);
+				},
+				traffic,
 				mode,
 				eventId,
 				weather,
 				tuneTick,
 				handling,
 				assists,
+				setAssistsMode: (a: AssistFlags) => {
+					setAssists(a);
+					setAssistsSave(a);
+				},
 				muted,
 				setMuted,
 				setStarTotal,
@@ -105,6 +134,19 @@ export function GameApp() {
 				track,
 				t,
 				engineRef,
+				onStartEvent: (id: string) => {
+					const ev = getEvent(id);
+					if (!ev) return;
+					if (v1Stars() < ev.unlockStars) return;
+					setEventId(ev.id);
+					setTrackId(ev.trackId);
+					setMode(ev.mode);
+					setNight(ev.night);
+					setNightSave(ev.night);
+					setWeather(ev.weather ?? "clear");
+					if (!isCarUnlocked(carId)) setCarId("sabra");
+					setScreen("race");
+				},
 			}),
 			screen !== "race" ? /* @__PURE__ */ jsx(Menu, {
 				screen,
@@ -140,6 +182,22 @@ export function GameApp() {
 					setFovSave(v);
 					engineRef.current?.setFovExtra(v);
 				},
+				grid,
+				setGridMode: (n: number) => {
+					setGrid(n);
+					setGridSave(n);
+				},
+				volume,
+				setVolumeMode: (v: number) => {
+					setVolume(v);
+					setVolumeSave(v);
+					engineRef.current?.setVolume(v);
+				},
+				traffic,
+				setTrafficMode: (d: TrafficDensity) => {
+					setTraffic(d);
+					setTrafficSave(d);
+				},
 				mode,
 				setMode,
 				starTotal,
@@ -163,7 +221,7 @@ export function GameApp() {
 				startCareer: (id: string) => {
 					const ev = getEvent(id);
 					if (!ev) return;
-					if (totalStars() < ev.unlockStars) return;
+					if (v1Stars() < ev.unlockStars) return;
 					setEventId(ev.id);
 					setTrackId(ev.trackId);
 					setMode(ev.mode);

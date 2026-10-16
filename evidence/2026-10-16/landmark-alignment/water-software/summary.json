@@ -1,0 +1,146 @@
+{
+  "kind": "actual-Ayalon-water-environment-switches",
+  "scope": "Actual canal material and GPU rendering through existing world/sky setters. No UI particle, art, performance or device acceptance.",
+  "passed": true,
+  "rows": [
+    {
+      "condition": {
+        "id": "clear-day",
+        "weather": "clear",
+        "clock": 0.5
+      },
+      "actual": {
+        "weather": "clear",
+        "clock": 0.5,
+        "values": {
+          "r": 0.023153366173251363,
+          "g": 0.14412847084818123,
+          "b": 0.1878207722902346,
+          "roughness": 0.08,
+          "metalness": 0.06,
+          "opacity": 0.82,
+          "waterY": -0.13400102203709421
+        },
+        "finite": true,
+        "glError": 0,
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+      }
+    },
+    {
+      "condition": {
+        "id": "clear-night",
+        "weather": "clear",
+        "clock": 0.9
+      },
+      "actual": {
+        "weather": "clear",
+        "clock": 0.9,
+        "values": {
+          "r": 0.010329823026364548,
+          "g": 0.04231141061442144,
+          "b": 0.06480326668529614,
+          "roughness": 0.03477457514062633,
+          "metalness": 0.06,
+          "opacity": 0.8923606797749979,
+          "waterY": -0.11235059349950174
+        },
+        "finite": true,
+        "glError": 0,
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+      }
+    },
+    {
+      "condition": {
+        "id": "rain-day",
+        "weather": "rain",
+        "clock": 0.5
+      },
+      "actual": {
+        "weather": "rain",
+        "clock": 0.5,
+        "values": {
+          "r": 0.023153366173251363,
+          "g": 0.14412847084818123,
+          "b": 0.1878207722902346,
+          "roughness": 0.08,
+          "metalness": 0.06,
+          "opacity": 0.82,
+          "waterY": -0.08512816796909331
+        },
+        "finite": true,
+        "glError": 0,
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+      }
+    },
+    {
+      "condition": {
+        "id": "storm-day",
+        "weather": "storm",
+        "clock": 0.5
+      },
+      "actual": {
+        "weather": "storm",
+        "clock": 0.5,
+        "values": {
+          "r": 0.023153366173251363,
+          "g": 0.14412847084818123,
+          "b": 0.1878207722902346,
+          "roughness": 0.08,
+          "metalness": 0.06,
+          "opacity": 0.82,
+          "waterY": -0.057829061841607694
+        },
+        "finite": true,
+        "glError": 0,
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+      }
+    },
+    {
+      "condition": {
+        "id": "storm-night",
+        "weather": "storm",
+        "clock": 0.9
+      },
+      "actual": {
+        "weather": "storm",
+        "clock": 0.9,
+        "values": {
+          "r": 0.010329823026364548,
+          "g": 0.04231141061442144,
+          "b": 0.06480326668529614,
+          "roughness": 0.03477457514062633,
+          "metalness": 0.06,
+          "opacity": 0.8923606797749979,
+          "waterY": -0.045477614017993044
+        },
+        "finite": true,
+        "glError": 0,
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+      }
+    },
+    {
+      "condition": {
+        "id": "clear-restored",
+        "weather": "clear",
+        "clock": 0.5
+      },
+      "actual": {
+        "weather": "clear",
+        "clock": 0.5,
+        "values": {
+          "r": 0.023153366173251363,
+          "g": 0.14412847084818123,
+          "b": 0.1878207722902346,
+          "roughness": 0.08,
+          "metalness": 0.06,
+          "opacity": 0.82,
+          "waterY": -0.040010033650311964
+        },
+        "finite": true,
+        "glError": 0,
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+      }
+    }
+  ],
+  "errors": []
+}

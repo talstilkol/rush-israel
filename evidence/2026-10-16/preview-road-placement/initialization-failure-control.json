@@ -1,0 +1,8 @@
+{
+  "observed_at": "2026-10-16T09:52:14.112914+00:00",
+  "observed_port_closed": true,
+  "prior_report_passed": true,
+  "exit_code": 1,
+  "subsequent_report_passed": false,
+  "scope": "Actual connection-refused initialization replaced prior success. No mocked browser/data andno gameplay/soak acceptance."
+}

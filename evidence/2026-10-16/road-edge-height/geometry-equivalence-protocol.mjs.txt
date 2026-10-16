@@ -1,0 +1,16 @@
+import {createHash} from 'node:crypto';
+import {writeFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {TRACKS as beforeTracks} from './rush-israel-pr83/src/game/tracks.ts';
+import {buildTrack as beforeTrack} from './rush-israel-pr83/src/game/spline.ts';
+import {buildJersey as beforeJersey,buildRail as beforeRail} from './rush-israel-pr83/src/game/road-geometry.ts';
+import {TRACKS as afterTracks} from './rush-glazing-ci/src/game/tracks.ts';
+import {buildTrack as afterTrack} from './rush-glazing-ci/src/game/spline.ts';
+import {buildJersey as afterJersey,buildRail as afterRail} from './rush-glazing-ci/src/game/road-geometry.ts';
+const old='3d8200ffe961bb24b905932b1393c07a28cc4d75',repo=new URL('./rush-israel-pr83/',import.meta.url).pathname;
+if(execFileSync('git',['-C',repo,'rev-parse','HEAD'],{encoding:'utf8'}).trim()!==old||execFileSync('git',['-C',repo,'status','--porcelain'],{encoding:'utf8'}).trim())throw Error('Geometry comparison needs exact clean parent');
+const hash=g=>{const h=createHash('sha256');for(const name of Object.keys(g.attributes).sort()){const a=g.attributes[name].array;h.update(name);h.update(new Uint8Array(a.buffer,a.byteOffset,a.byteLength))}if(g.index){const a=g.index.array;h.update(new Uint8Array(a.buffer,a.byteOffset,a.byteLength))}return h.digest('hex')},rows=[];
+for(const def of beforeTracks){const next=afterTracks.find(d=>d.id===def.id);if(!next)throw Error('Actual track removed');for(const[type,a,b]of[['rail',beforeRail,afterRail],['jersey',beforeJersey,afterJersey]])for(const side of[-1,1]){
+ const left=a(beforeTrack(def),side),right=b(afterTrack(next),side);try{const prior=hash(left),current=hash(right);if(prior!==current)throw Error('Rendered geometry changed:'+def.id+'/'+type+'/'+side);rows.push({track:def.id,type,side,prior,current,vertices:left.attributes.position.count})}finally{left.dispose();right.dispose()}
+}}
+await writeFile(new URL('./road-edge-height-geometry-equivalence.json',import.meta.url),JSON.stringify({parent:old,scope:'Actual rail/jersey vertex,normal,uv,index buffers for every committed TrackDef andboth sides;no fullscene/art/terrain acceptance',trackCount:beforeTracks.length,rows},null,2)+'\n');console.log(JSON.stringify({tracks:beforeTracks.length,exactGeometryBuffers:rows.length}));

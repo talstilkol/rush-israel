@@ -1,0 +1,34 @@
+
+> app-builder-workspace@0.0.0-private qa:world:raw
+> node scripts/world-runtime-audit.mjs
+
+{
+  "count": 56,
+  "failures": [],
+  "cachedTextureDisposals": 0,
+  "duplicateDisposals": 0,
+  "buildingImpactVerified": true,
+  "pageErrors": []
+}
+
+> app-builder-workspace@0.0.0-private qa:conditions:raw
+> node scripts/race-condition-smoke.mjs
+
+race-condition-smoke ok {"kind":"real-ui-record-condition-restart","before":{"night":false,"assisted":false},"changed":{"night":true,"assisted":true},"reset":{"assisted":true},"restarted":{"night":true,"assisted":false},"automaticRecovery":{"routeSampleIndex":30,"lateral":-14.4,"beforeAssisted":false,"afterAssisted":true,"observedRecoveries":1,"seconds":3.249999999999991},"pageErrors":[]}
+
+> app-builder-workspace@0.0.0-private qa:photo:raw
+> node scripts/photo-position-smoke.mjs
+
+photo-position-smoke ok [{"id":"g04","horizontalDistance":27.999999999999993},{"id":"g05","horizontalDistance":28},{"id":"g06","horizontalDistance":28}]
+
+> app-builder-workspace@0.0.0-private qa:v1:raw
+> node scripts/qa-v1-races.mjs
+
+{"track":"oldjaffa","complete":true,"resultUi":true,"lap":3,"seconds":110.50833333336735,"damage":0.36707217621985844,"assisted":true,"glError":0}
+{"track":"namal","complete":true,"resultUi":true,"lap":3,"seconds":185.98333333332852,"damage":0.09086336586130714,"assisted":true,"glError":0}
+{"track":"haifa","complete":true,"resultUi":true,"lap":1,"seconds":33.78333333333206,"damage":0.11651195518936609,"assisted":true,"glError":0}
+{"track":"rothschild","complete":true,"resultUi":true,"lap":3,"seconds":197.0416666666518,"damage":0.2821324233203074,"assisted":true,"glError":0}
+{"track":"ayalon","complete":true,"resultUi":true,"lap":1,"seconds":87.68333333334918,"damage":0,"assisted":true,"glError":0}
+{"track":"hermon","complete":true,"resultUi":true,"lap":1,"seconds":137.09166666670632,"damage":0,"assisted":true,"glError":0}
+{"track":"scopus","complete":true,"resultUi":true,"lap":1,"seconds":61.89999999999713,"damage":0.16539540566390942,"assisted":true,"glError":0}
+{"track":"ramon","complete":true,"resultUi":true,"lap":1,"seconds":97.31666666669018,"damage":0,"assisted":true,"glError":0}

@@ -58,7 +58,7 @@ const GRADE = {
         col = mix(col, vec3(cr, col.g, cb), k * 0.2);
       }
 
-      float vig = smoothstep(1.22, 0.28, r);
+      float vig = 1.0 - smoothstep(0.28, 1.22, r);
       col *= mix(1.0, vig, mix(0.05, 0.2, k) + uNight * 0.08);
 
       float f = uFilter;
@@ -200,8 +200,8 @@ export function createPost(
     dispose() {
       if (disposed) return;
       disposed = true;
+      for (const pass of composer.passes) pass.dispose();
       composer.dispose();
-      rt.dispose();
     },
   };
 }

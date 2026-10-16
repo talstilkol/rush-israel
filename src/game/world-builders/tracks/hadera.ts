@@ -7,7 +7,7 @@ export default function buildHadera(context: TrackWorldBuilderContext): void {
     bag,
     add,
     glowAt,
-    hit,
+    hitBox,
     cream,
   } = context;
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
@@ -26,8 +26,9 @@ export default function buildHadera(context: TrackWorldBuilderContext): void {
     }
     const hall = new THREE.Mesh(new THREE.BoxGeometry(28, 10, 16), cream);
     hall.position.set(plant.x, 5, plant.z + 16);
+    hall.name = "rush-hadera-hall";
     add(hall);
+    hitBox(hall);
     glowAt(plant.x, 50, plant.z, 16746564, 36, 40);
-    hit(plant.x, plant.z, 14);
   /* RSH-016:END-LEGACY-TRACK-BODY */
 }

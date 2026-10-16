@@ -1,0 +1,1 @@
+{"exit": 0, "command": "node scripts/browser-ci-suite.mjs driving-lifecycle", "SMOKE_URL": "http://127.0.0.1:8124/", "SOAK_URL": "http://127.0.0.1:8124/", "runtime_head": "d6f8b6e8f52129199ba5cb7467fe03fe2245e60d"}

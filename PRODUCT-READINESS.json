@@ -1,0 +1,456 @@
+{
+  "schema_version": 1,
+  "observed_on": "2026-10-16",
+  "repository": "talstilkol/rush-israel",
+  "release_target_sha": null,
+  "release_ready": false,
+  "verified_product_units": 0,
+  "units": [
+    {
+      "id": "RSH-001",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-002",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-003",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-004",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-005",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-006",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-007",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-008",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-009",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-010",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-011",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-012",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-013",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-014",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-015",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-016",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-017",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-018",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-019",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-020",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-021",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-022",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-023",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-024",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-025",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-026",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-027",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-028",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-029",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-030",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-031",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-032",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-033",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-034",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-035",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-036",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-037",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-038",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-039",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-040",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-041",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-042",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-043",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-044",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-045",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-046",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-047",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-048",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-049",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-050",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-051",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-052",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-053",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-054",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-055",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-056",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-057",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-058",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-059",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-060",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-061",
+      "status": "partial",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-062",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-063",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-064",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-065",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-066",
+      "status": "not-done",
+      "product_accepted": false
+    },
+    {
+      "id": "RSH-067",
+      "status": "not-done",
+      "product_accepted": false
+    }
+  ],
+  "gates": [
+    {
+      "id": 1,
+      "name": "licensing",
+      "status": "not-done",
+      "note": "66 unverified image assets; source/creator/licence evidence required.",
+      "evidence": [
+        "evidence/2026-10-15/asset-clearance-required.csv"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "main protection",
+      "status": "verified-settings",
+      "note": "Live ruleset 23177340 is active and requires strict required-ci / validate, PRs, no bypass, no deletion or force push.",
+      "evidence": [
+        "evidence/2026-10-15/github-protection.json"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "clean clone and build",
+      "status": "partial",
+      "note": "fa4630a hosted clean npm ci and production build passed. New Physics 9 candidate requires its own clean build and CI.",
+      "evidence": []
+    },
+    {
+      "id": 4,
+      "name": "CI",
+      "status": "partial",
+      "note": "All six jobs succeeded on fa4630a, run 38821145482, refreshed from GitHub. New Physics 9 candidate is not covered by that run.",
+      "evidence": []
+    },
+    {
+      "id": 5,
+      "name": "secrets",
+      "status": "partial",
+      "note": "fa4630a tracked-source and reachable-history pattern scans passed within declared scope; repeat tracked-source scan on the new candidate. Not a comprehensive security audit.",
+      "evidence": []
+    },
+    {
+      "id": 6,
+      "name": "Ayalon freeze",
+      "status": "not-done",
+      "note": "Low Ayalon ramps and on-road supports were corrected and visually rechecked. All real-world clearance checks pass; owner golden/still acceptance is still absent.",
+      "evidence": []
+    },
+    {
+      "id": 7,
+      "name": "driving",
+      "status": "partial",
+      "note": "Eight assisted V1 browser races passed on fa4630a. Physics 9 corrects median steering and spawn lanes; current Rothschild actual-grid race finished 3 laps with damage 0.569. Human handling, collision avoidance and Jaffa remain open.",
+      "evidence": []
+    },
+    {
+      "id": 8,
+      "name": "desktop p95",
+      "status": "not-done",
+      "note": "Named physical Windows device, exact build and raw measurements unavailable.",
+      "evidence": []
+    },
+    {
+      "id": 9,
+      "name": "mobile p95",
+      "status": "not-done",
+      "note": "Named physical mobile device, exact build, thermal and raw measurements unavailable.",
+      "evidence": []
+    },
+    {
+      "id": 10,
+      "name": "30-minute soak",
+      "status": "partial",
+      "note": "Actual fa4630a required hosted soak passed: elapsedMs=1800304, completedRaces=2, offRoadRatio=0. Physics 9 requires a fresh full-duration run. No transfer of acceptance across source changes.",
+      "evidence": []
+    },
+    {
+      "id": 11,
+      "name": "save",
+      "status": "partial",
+      "note": "fa4630a production UI recovered a real settings save, preserved rejected bytes and required double confirmation before fresh start. Full Legacy migration matrix and current-candidate acceptance remain open.",
+      "evidence": []
+    },
+    {
+      "id": 12,
+      "name": "accessibility and legal",
+      "status": "not-done",
+      "note": "WCAG AA, canvas accessibility, privacy and licence acceptance unavailable; A11Y_COMPLETE=false.",
+      "evidence": []
+    },
+    {
+      "id": 13,
+      "name": "signed release tag",
+      "status": "not-done",
+      "note": "Version is 0.0.0-private; signed tag, private staging, Alpha, RC and rollback evidence unavailable.",
+      "evidence": []
+    }
+  ],
+  "rules": [
+    "Historical ACCEPTED means a past program artifact was accepted; it does not mean the game is complete.",
+    "Local tests, simulation and headless telemetry do not substitute for physical devices or owner visual/legal acceptance.",
+    "A release requires all 13 gates on the same identified candidate plus owner distribution authorization."
+  ],
+  "last_verified_code_candidate": {
+    "sha": "fa4630abbe216bac4b2b313bac8b1af747d6e796",
+    "ci_run": 38821145482,
+    "conclusion": "success",
+    "evidence": "evidence/2026-10-16/last-verified-ci-fa4630a.json",
+    "scope": "Previous code candidate only; Physics 9 work requires fresh CI. Product and release remain unaccepted."
+  },
+  "implementation_evidence": "evidence/2026-10-16/physics10/proof.json",
+  "implementation_evidence_is_product_acceptance": false
+}

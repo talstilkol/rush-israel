@@ -20,6 +20,8 @@ export default defineTrack({
     sky: { ...TLV_BLUE, fogDensity: 0.00085 },
     water: { x: tlv(32.0524, 34.7488).x, z: tlv(32.0524, 34.7488).z, w: 220, d: 380, color: 0x1a6a78 },
     checkpointCount: 10,
+    // Locally fair the fictional route corners to fit the unchanged road width.
+    // Coordinates are authored from the existing control points, not new GIS data.
     points: [
       tlv(32.0549, 34.7556),
       tlv(32.0544, 34.7546),
@@ -27,7 +29,7 @@ export default defineTrack({
       tlv(32.0532, 34.7526),
       tlv(32.0526, 34.7516),
       tlv(32.0520, 34.7508),
-      tlv(32.0514, 34.7504),
+      tlv(32.05140000, 34.75050000),
       tlv(32.0508, 34.7510),
       tlv(32.0506, 34.7520),
       tlv(32.0510, 34.7532),
@@ -35,11 +37,16 @@ export default defineTrack({
       tlv(32.0526, 34.7556),
       tlv(32.0534, 34.7568),
       tlv(32.0542, 34.7580),
-      tlv(32.0550, 34.7588),
+      tlv(32.05496400, 34.75847600),
       tlv(32.0556, 34.7578),
       tlv(32.0556, 34.7566),
     ],
-    elevation: (t) => (t > 0.12 && t < 0.45 ? 3.6 : 0.6),
+    elevation: (t) => {
+      const up = Math.max(0, Math.min(1, (t - 0.09) / 0.06));
+      const down = Math.max(0, Math.min(1, (0.48 - t) / 0.06));
+      const ramp = Math.min(up, down);
+      return 0.6 + 3 * ramp * ramp * (3 - 2 * ramp);
+    },
     streets: [
       { from: 0.0, to: 0.16, he: "מגדל השעון", en: "Clock Tower" },
       { from: 0.16, to: 0.32, he: "יפת", en: "Yefet St" },

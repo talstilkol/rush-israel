@@ -1,0 +1,6 @@
+page.evaluate: Execution context was destroyed, most likely because of a navigation
+    at doChoreography (/Users/tal/Documents/Codex/2026-10-11/new-chat/work/physics11-skill-client/client.mjs:245:18)
+    at async main (/Users/tal/Documents/Codex/2026-10-11/new-chat/work/physics11-skill-client/client.mjs:324:5) {
+  log: [],
+  name: 'Error'
+}

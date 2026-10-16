@@ -1,0 +1,96 @@
+{
+  "kind": "candidate-actual-engine-track-captures",
+  "sourceHead": "30a2c19fb379479955379223907858d40e18d0f1",
+  "sourceBase": "138b91aa0703c5450cf6898c324383d562b2e43a",
+  "candidate": "physics10-138b91a",
+  "source": "Real production RaceEngine, geometry and committed game assets; static camera export with no external photographs.",
+  "generatorSha256": "d2f1f8428287929828ac025f8621d1294042f659deec499ae5daf9c2f8b9e406",
+  "shipping": false,
+  "ownerArtApproved": false,
+  "publicLegalClearance": false,
+  "rows": [
+    {
+      "id": "namal",
+      "nameHe": "צפון תל אביב",
+      "pose": {
+        "glError": 0,
+        "sampleIndex": 158,
+        "routeT": 0.30980392156862746,
+        "camera": {
+          "x": 368.30465999975695,
+          "y": 3.6,
+          "z": 1407.6606954665992
+        },
+        "target": {
+          "x": 389.70323999983344,
+          "y": 1.6,
+          "z": 1437.7705290665222
+        },
+        "fov": 58,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+        "drawingBuffer": [
+          1088,
+          612
+        ]
+      },
+      "file": "namal.jpg",
+      "sha256": "c9244b9ccc828ee9d6c6ca2d24755e9ce99bcea9a187bd6211549769903360e1"
+    },
+    {
+      "id": "haifa",
+      "nameHe": "ירידת הכרמל",
+      "pose": {
+        "glError": 0,
+        "sampleIndex": 142,
+        "routeT": 0.47333333333333333,
+        "camera": {
+          "x": -58.61078666666959,
+          "y": 67.41111085014258,
+          "z": 205.45219200025372
+        },
+        "target": {
+          "x": -15.705506666650004,
+          "y": 60.59680004503261,
+          "z": 218.67700800020293
+        },
+        "fov": 58,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+        "drawingBuffer": [
+          1088,
+          612
+        ]
+      },
+      "file": "haifa.jpg",
+      "sha256": "39872e4326b144a0524b6283dcc713bf46156700978c0d87608e708ad472c65f"
+    },
+    {
+      "id": "ramon",
+      "nameHe": "מכתש רמון · הירידה",
+      "pose": {
+        "glError": 0,
+        "sampleIndex": 270,
+        "routeT": 0.5294117647058824,
+        "camera": {
+          "x": 173.95199999988927,
+          "y": 72.68368803408904,
+          "z": -575.0345919999618
+        },
+        "target": {
+          "x": 193.38239999991765,
+          "y": 65.75317925742382,
+          "z": -630.3383679999974
+        },
+        "fov": 58,
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+        "drawingBuffer": [
+          1088,
+          612
+        ]
+      },
+      "file": "ramon.jpg",
+      "sha256": "7899b48c30b23b77f22629fd9a21af0189e82a3c450d8da271f2932e5036d234"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": []
+}

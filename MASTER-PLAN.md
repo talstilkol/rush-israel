@@ -1,11 +1,14 @@
-# RUSH Israel — Canonical Master Plan
+> **עדכון 15.10.2026:** מצב ההשלמה הפעיל נמצא ב־[COMPLETION-PLAN.md](COMPLETION-PLAN.md) וב־[PRODUCT-READINESS.json](PRODUCT-READINESS.json). טבלאות ACCEPTED והשערים להלן הן היסטוריה; הן אינן קבלת המוצר הנוכחי או אישור שחרור.
+
+# RUSH Israel — Master Plan and Historical Program Record
 
 **Schema:** 50.0.0
 **Repository:** `talstilkol/rush-israel`
 **Canonical branch:** `main`
 **RSH-067 implementation base:** `66afc517c52faff8aa93bb9ee8b1f0c21a92dd2d`
 **State effective on:** merge of the RSH-067 pull request
-**Next unit:** none — deferred and not authorised
+**Active continuation:** MP-001–MP-046 in `COMPLETION-PLAN.md`, authorised by the current user request.
+**Historical RSH queue head:** none (archived program ledger only)
 **Product-definition authority:** `PRODUCT-DEFINITION.json`
 **Track-classification authority:** `TRACK-CATALOGUE-CLASSIFICATION.json`
 **Asset-provenance authority:** `ASSET-PROVENANCE.json`
@@ -83,25 +86,22 @@ root-branding assets remain unverified.
 8. The RSH-010–RSH-014 owner batch is closed at 5/5.
 9. The standing owner instruction to finish the master plan authorised remaining deferred units serially. RSH-067 is consumed on validated merge; none is not authorised until that merge.
 
-## 5. Post-RSH-067 program state
+## 5. Current product state versus historical program acceptances
 
-| Metric | Value |
-|---|---:|
-| Total units | 67 |
-| Accepted | 67 |
-| In review | 0 |
-| Eligible | 0 |
-| Deferred | 0 |
-| Remaining | 0 |
-| Queue head | none — deferred/not authorised |
-| Active PR | none |
-| RSH-067 one-unit authority | 1/1 — consumed |
-| Release gates green | 8/13 live in `LIVE-GITHUB-STATUS.json` (RSH-067 `CURRENT-STATE.json` snapshot stays 0/13) |
-| Findings OPEN / MITIGATED / CLOSED | 4 / 8 / 30 |
+| Metric | Current interpretation |
+|---|---|
+| Historical RSH artifact acceptances | 67; preserved as historical program evidence |
+| Fully accepted current product units | **0/67** |
+| Current release readiness | **false**; see `PRODUCT-READINESS.json` |
+| Remaining RSH product acceptance | **67 units require full or partial revalidation** |
+| Active completion work | MP-001–MP-046, preserving the existing dependency graph |
+| Observed main | `b2c0d46dd43c3bd8f27dc0009e4809c27c54c60e` |
+| PR 83 | open at `6395474913c071cb25bc2720238a7b8072045288` |
+| Completion branch | `fix/rush-completion-2026-10-15` |
 
-## 6. Stage map
+## 6. Historical stage map (artifact acceptance, not product completion)
 
-| Stage | Units | Count | Purpose | Post-merge state |
+| Stage | Units | Count | Purpose | Historical artifact state |
 |---|---:|---:|---|---|
 | G0 | RSH-001–003 | 3 | Control and governance | ACCEPTED |
 | G1 | RSH-004–008 | 5 | Reproducible toolchain and CI | ACCEPTED; live `main` protected |
@@ -186,28 +186,30 @@ root-branding assets remain unverified.
 | RSH-066 | Produce RC1 and close all blocking defects |
 | RSH-067 | Publish `v1.0.0` with signed tag, dossier and rollback proof |
 
-## 8. Release gates
+## 8. Active release gates — 15 October 2026
 
-| # | Gate | Current state |
-|---:|---|---|
-| 1 | Visibility and licensing agree with owner policy | RED — repository is now **private**; 66 assets remain unverified |
-| 2 | `main` is protected and PR delivery is enforced | GREEN — ruleset `rush-main-protection` (`23177340`) active |
-| 3 | A clean clone installs and builds reproducibly | GREEN — required-ci runs toolchain, `npm ci` and `build:dev` on ubuntu-24.04 |
-| 4 | Required CI is complete and green | GREEN — `required-ci / validate` is a required status check |
-| 5 | Production contains no QA hook or secrets | GREEN — companion public-text secret scan in `npm test` |
-| 6 | Ayalon is owner-approved and frozen | GREEN — freeze granted plus 6 direct builder-import pins |
-| 7 | Driving, physics, ramps and damage pass | GREEN — drive/ramp/physics already in qa:ci; damage-smoke now in `npm test` |
-| 8 | Desktop performance meets its budget | RED — P1-13 OPEN (no real-device p95) |
-| 9 | Mobile performance meets its budget | RED — P1-13 OPEN |
-| 10 | Soak, memory and context recovery pass | GREEN — 1800 s soak-30min now runs in `npm test`; P1-12 stays OPEN |
-| 11 | Save and records are recoverable and valid | GREEN — RSH-021–RSH-023 checkers run in `npm test` |
-| 12 | UX, input, languages, accessibility and legal checks pass | RED — 66 unverified assets; no WCAG AA |
-| 13 | Signed release, artifacts and rollback proof exist | RED |
+All gates must be evidenced on the same final candidate before release. Local code checks, a settings observation and a historical artifact acceptance do not establish a released product.
 
-Current verified live result: **8/13** (gates 2, 3, 4, 5, 6, 7, 10 and 11). Frozen unit manifests still record `release_gates_green: 0`.
+| # | Gate | Current evidence state |
+|---|---|---|
+| 1 | licensing | **not-done** — 66 unverified image assets; source/creator/licence evidence required. |
+| 2 | main protection | **verified-settings** — Live ruleset 23177340 is active and requires strict required-ci / validate, PRs, no bypass, no deletion or force push. |
+| 3 | clean clone and build | **partial** — Clean f03d13f clone: npm ci --offline --no-audit and production build without QA hooks passed. Latest patched dependencies also install and build; final-head hosted verification pending. |
+| 4 | CI | **partial** — Current-source unit/build/security and historical jobs passed on earlier development commits. Replaced runs were cancelled; complete required-ci / validate on the final PR head is not yet verified. |
+| 5 | secrets | **partial** — Local tracked-source scan passed; repeat on staged final source and bind to final commit. |
+| 6 | Ayalon freeze | **not-done** — Low Ayalon ramps and on-road supports were corrected and visually rechecked. All real-world clearance checks pass; owner golden/still acceptance is still absent. |
+| 7 | driving | **partial** — Eight assisted browser V1 races reached result UI on f03d13f, without official records/stars. New current-source condition/restart UI test passed. Heavy damage and human playability acceptance remain open. |
+| 8 | desktop p95 | **not-done** — Named physical Windows device, exact build and raw measurements unavailable. |
+| 9 | mobile p95 | **not-done** — Named physical mobile device, exact build, thermal and raw measurements unavailable. |
+| 10 | 30-minute soak | **pending** — Earlier immutable r2 soak passed 1800 seconds with 15 completed races and zero off-road ratio; it predates current runtime. A newer intermediate snapshot run was explicitly stopped after replacement. Clean f03d13f soak is running separately. Final-head required-CI soak remains pending; no earlier result accepts the final candidate. |
+| 11 | save | **partial** — Current record-class roundtrips tested; current migration/recovery and owner save acceptance pending. |
+| 12 | accessibility and legal | **not-done** — WCAG AA, canvas accessibility, privacy and licence acceptance unavailable; A11Y_COMPLETE=false. |
+| 13 | signed release tag | **not-done** — Version is 0.0.0-private; signed tag, private staging, Alpha, RC and rollback evidence unavailable. |
 
-## 9. Current execution boundary
+The earlier 8/13 GREEN claims have been preserved in `evidence/2026-10-15/historical-release-gate-claims.md`, not carried forward as acceptance. The original claim “soak runs inside npm test” described invocation, not successful driving or final-source proof. The current workflow makes the full driving soak an explicit required job.
 
-RSH-021 through RSH-036 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28, 8 lanes of 3.5, 27 hashed spline samples, 50 interchange ramps, 8 open checkpoints, 9 inspired POIs, baked 8-lane asphalt, no sidewalks, 6 gantries). Daylight stays the live `summer14` look with baked `sky-day.png` and tiny non-HDRI PMREM. Night stays look `night` with baked `sky-night.png`, two headlight spots, ten street lamps and four weather specs. Default boot stays day / clear. Driving physics version 7 matches the five fictional 0–100 claims inside a ±15% band without rewriting `cars.ts`. Audio stays Web Audio oscillators with four radio stations; HUD speed is integer km/h from `speed * 3.6`; keyboard/touch/gamepad maps stay the live Version 1 lock. The unique Ayalon golden pack is the 20 non-placeholder frames with owner approval recorded; the four byte-identical HaShalom placeholders stay non-authority. Ayalon freeze is granted with 36 transitive SHA-256 hashes at `src/game/ayalon-freeze/`. Historical unique-pack `freeze_granted` stays false. GIS claims and public distribution remain forbidden. Live GitHub now requires `required-ci / validate` on `main` via ruleset `23177340`; the repository is private.
+## 9. Historical execution boundary — superseded for changed runtime
+
+The following paragraph records prior program claims. It does not grant a new freeze, owner approval or current release acceptance. RSH-021 through RSH-036 were accepted as artifacts on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28, 8 lanes of 3.5, 27 hashed spline samples, 50 interchange ramps, 8 open checkpoints, 9 inspired POIs, baked 8-lane asphalt, no sidewalks, 6 gantries). Daylight stays the live `summer14` look with baked `sky-day.png` and tiny non-HDRI PMREM. Night stays look `night` with baked `sky-night.png`, two headlight spots, ten street lamps and four weather specs. Default boot stays day / clear. Driving physics version 7 matches the five fictional 0–100 claims inside a ±15% band without rewriting `cars.ts`. Audio stays Web Audio oscillators with four radio stations; HUD speed is integer km/h from `speed * 3.6`; keyboard/touch/gamepad maps stay the live Version 1 lock. The unique Ayalon golden pack is the 20 non-placeholder frames with owner approval recorded; the four byte-identical HaShalom placeholders stay non-authority. Ayalon freeze is granted with 36 transitive SHA-256 hashes at `src/game/ayalon-freeze/`. Historical unique-pack `freeze_granted` stays false. GIS claims and public distribution remain forbidden. Live GitHub now requires `required-ci / validate` on `main` via ruleset `23177340`; the repository is private.
 
 Ghosts remain byte-preserved and remain assigned outside this unit. The 30-minute soak contract is locked at `src/game/thirty-soak/` with duration 1800 s; required-CI soak-smoke stays 2 cycles and does not substitute. P1-12 stays OPEN. The RSH-067 one-unit authority is consumed on merge. none remains deferred and cannot start without a new explicit owner instruction after this merge. Keyboard/touch/gamepad maps stay unified at `src/game/input-maps/`; Hebrew RTL / English LTR / Arabic-scope stay locked at `src/game/rtl-scope/`. Onboarding is title-boot plus settings and save-recovery UX at `src/game/onboarding/`; there is no first-run wizard. PWA is the live `__grok` standalone manifest at `src/game/pwa/` with no service worker, offline cache, update prompt or public install. Accessibility is live aria controls, live regions and reduced-motion at `src/game/a11y/` with no WCAG AA, canvas a11y, privacy policy, telemetry or crash reporting. Rothschild geometry remains RSH-049.

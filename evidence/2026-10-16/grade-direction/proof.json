@@ -1,0 +1,257 @@
+{
+  "observed_at": "2026-10-16T03:22:12+00:00",
+  "source_base_sha": "7e6e09a1094bfc493991771ca1ea625eee387bd0",
+  "source_authority": "Exact tested source file hashes below, before the containing commit. Current-head hosted CI/1800-second proof must be bound externally after commit.",
+  "physics_version": 11,
+  "files": {
+    "src/game/vehicle.ts": "381faaa87c333c56146399d7027beae702c0aca25938a76c250f5d6c5fd6bb7d",
+    "src/game/physics.ts": "9b65e365209c1eca2c317c8905ea410b459bf963085a6fd5d8728266ca1fef73",
+    "src/game/engine/physics-adapter.ts": "c95344527fcaf638127cb0e99873a58b6099032dc1196cc875d6ee5da531aad7",
+    "src/game/engine/qa-adapter.ts": "8913a8d229d8fca5190106740eb050604f653fc487e095d2e72464e73fcedcfc",
+    "scripts/ramp-smoke.mjs": "01d03f633ad23d9724b0b01ae35a6e1eefc94bef174310bf6a5fa5481f0cb832",
+    "scripts/grade-direction.test.mjs": "7668bff32efe6d5d587d61ebbf1d63763a7737207b8f89dcae4232e74430b18c",
+    "scripts/ai-corner-speed.test.mjs": "e6ddb904a7f81a6fb68309c52f8169b4fef14933c8e261ad0219d392464a1f03",
+    "scripts/ai-vehicle-avoidance.test.mjs": "33e3a0957bd8ff875519d7b66d0e6e1802152ee987aa09d2bd1cd8c0bab5af06",
+    "golden-baseline/accel.json": "b4164ecce15580adad2aac0794d19e967d512b64d3fa881d433e2548f3ac0931",
+    "TEST-CLASSIFICATION.json": "c1ea69bab660644be5c068d164a7c1088db8965192b0d00ca1479872107ffb8a"
+  },
+  "tested_src_public_files_matching_snapshot": 435,
+  "reproduced_before": {
+    "road_grade": {
+      "cases": 160,
+      "failed": 160
+    },
+    "actual_world_ramps": {
+      "cases": 80,
+      "failed": 80
+    },
+    "sharp_bends_actual_Jaffa_Hermon": {
+      "cases": 80,
+      "failed": 80
+    },
+    "vehicle_awareness": {
+      "cases": 60,
+      "failed_hazard": 10,
+      "passed_non_hazards": 50
+    }
+  },
+  "local_current_unit_pass": 627,
+  "additional_unique_unit_cases": 300,
+  "local_historical_contracts": "separate immutable historical baseline; not added to current test count",
+  "actual_worlds": 56,
+  "actual_ramp_groups": 80,
+  "actual_browser_acceleration_runs": 15,
+  "unchanged_acceleration_thresholds": {
+    "regression_seconds": 0.1,
+    "claim_fraction": 0.15
+  },
+  "actual_full_races": [
+    {
+      "track": "oldjaffa",
+      "complete": true,
+      "resultUi": true,
+      "lap": 3,
+      "seconds": 193.18333333332197,
+      "damage": 0,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "namal",
+      "complete": true,
+      "resultUi": true,
+      "lap": 3,
+      "seconds": 195.37499999998664,
+      "damage": 0,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "haifa",
+      "complete": true,
+      "resultUi": true,
+      "lap": 1,
+      "seconds": 43.05833333333153,
+      "damage": 0,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "rothschild",
+      "complete": true,
+      "resultUi": true,
+      "lap": 3,
+      "seconds": 240.0833333332793,
+      "damage": 0.2071873613911937,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "ayalon",
+      "complete": true,
+      "resultUi": true,
+      "lap": 1,
+      "seconds": 87.9166666666827,
+      "damage": 0,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "hermon",
+      "complete": true,
+      "resultUi": true,
+      "lap": 1,
+      "seconds": 139.33333333337094,
+      "damage": 0,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "scopus",
+      "complete": true,
+      "resultUi": true,
+      "lap": 1,
+      "seconds": 63.34166666666371,
+      "damage": 0.16261177984751118,
+      "assisted": true,
+      "glError": 0
+    },
+    {
+      "track": "ramon",
+      "complete": true,
+      "resultUi": true,
+      "lap": 1,
+      "seconds": 100.80833333335963,
+      "damage": 0,
+      "assisted": true,
+      "glError": 0
+    }
+  ],
+  "damage_free_races": 6,
+  "remaining_quality": {
+    "rothschild_damage": 0.2071873613911937,
+    "scopus_damage": 0.16261177984751118,
+    "pace_change": "Jaffa 110.51s historical to193.18s current; no competitive pace, gold-time balancing or human acceptance claimed.",
+    "unverified": "All-rival finishes, overtaking, static-clearance quality, full condition matrix, steady-turn/slip/drift/frame invariance, devices, human/art/legal/release."
+  },
+  "actual_lifecycle": {
+    "cycles": 20,
+    "textures_every_cycle": 30,
+    "geometries_every_cycle": 1086,
+    "deviceAcceptance": false
+  },
+  "module_calibration_rows": 80,
+  "snapshot_braking_replays": 80,
+  "lint_errors": 0,
+  "lint_existing_warnings": 111,
+  "typecheck_exit": 0,
+  "production_qa_hooks": "absent,9JS",
+  "rejected_candidates": [
+    "Full grade projection alone: Scopus damage0.3036; narrow tests did not authorize promotion.",
+    "Heading-only grade correction: Scopus damage0.3598; rejected.",
+    "Corner braking alone: Scopus diagnostic damage0.2901; insufficient without vehicle awareness."
+  ],
+  "failed_setup_or_interrupted_runs": "Original route-test spawn rounding setup and omitted-half-width ramp probe were invalid setups and excluded from physical reproduction counts. The long keyboard-client run was interrupted and not counted as passed. All retained outside this scoped proof.",
+  "product_accepted": false,
+  "release_ready": false,
+  "hosted_ci_authority": "GitHub required-ci at actual Git HEAD; historical green is not transferred.",
+  "skill_client_sha256": "e95c3bcbdc0d15eb08fd3a6021283ec32f715b51f1e5847d3db20df526be5996",
+  "artifacts": [
+    {
+      "path": "evidence/2026-10-16/grade-direction/accel.json",
+      "sha256": "70ca350fd6ed5a10e28d7040da66eee96e656619cc413d54d09e571173810f02"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/calibration-80.json",
+      "sha256": "11a2ee08eccd84fe8f74219f443f9b1e1b05630f63cd36c6a7a2c3ce0aa99e85"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/corner-before.log",
+      "sha256": "7727a2623dd788a241f9d8748ae2b905c1af4417d31fc7dbc8108668bdab56b8"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/current-unit.log",
+      "sha256": "6c824d5ef23c64ceb204a96ef5e6fc48ecc0b6a674569d377901aad3c5b89abf"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/cycles.json",
+      "sha256": "10100b75f015e9744ce21a5de2e286a838f2e529ba17ed2ae12d2c0bd62cb545"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/grade-before.log",
+      "sha256": "2d53990236d043e7ed8591c1d12dc3ca42ed8555f61f113b314112330fcdb47d"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/keyboard-smoke-state.json",
+      "sha256": "f7055b49fbb0341b0ea73c36277997c534eacd7af30d27e1b6a95ec36020db35"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/keyboard-smoke.png",
+      "sha256": "5670ebd45d359a6c61d8281ead6119c2c464882128e3f47b75143aaac1bb1325"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/lint.log",
+      "sha256": "fcceecf76f1c7dd96dfb6e51affe29d2fecb8a1e1d6c3d4093685647b2800ca0"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/photo-position.json",
+      "sha256": "8cd34cc057d0f725006ea9b443ef5ed609be8398815580d508fdef446f707e56"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/physics-gap-audit.json",
+      "sha256": "9c2ab0c9420e5824a838b5bd64b7c2d7d4149593757aa3579da93e9863c0307f"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/production.log",
+      "sha256": "152981126670db89de1a98bae2682f1251a3f0e912d198713cae415a0a499063"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/race-conditions.json",
+      "sha256": "e247e590c371db003aac2ea9c35bf52f2aca3bae9743cb47972b562513fdf469"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/races.json",
+      "sha256": "6577f658f57fd272e730615042a0fd6d78b6e12fc6534ac76ea496d175a8fc64"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/ramp-after.json",
+      "sha256": "9cc8e59aa3c29dca10686403f4728d08714728c519f1c4476d730be25a6bb73a"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/ramp-before.json",
+      "sha256": "0661a01f814b873b3df3971002f94dc8562ca7b57ecd6d22c5b51507c360f80d"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/runtime.log",
+      "sha256": "89ac781f64e54a4e0d105ab9cd49dca8eff88b4dddaa99142989bfca09286884"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/scopus-baseline-trace.json",
+      "sha256": "b347c5aa56f71d9a967980eb54fc471ab07311b839695881fae228d9c1ca763b"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/scopus-final-trace.json",
+      "sha256": "ea2ba298c47d1f7f43482350a4f1890e71e8905efca509b96594785ce8c7be79"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/skill-actions.json",
+      "sha256": "b71a8a0f23c80f33cce8d257884b7703dd1163edfa52e44b3a74409188f70b93"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/typecheck.log",
+      "sha256": "602ec0d473a17c01dcdc2e92e85bf4ba1bdc73a68d0f14c2da2e4b2748e00204"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/vehicle-avoidance-before.log",
+      "sha256": "b6e7491192ffe422de96be66b2194ce3f5d4efeb007a1bd67c27d94f56d442ed"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/worlds.json",
+      "sha256": "0e618ecaa8a4e955e7db63d77b11f00cba4fd648b6177e06600157288e1e3b83"
+    },
+    {
+      "path": "evidence/2026-10-16/grade-direction/plan-consistency.json",
+      "sha256": "4c55e2a94152b9fae010c5b5a6328919ace3458202c7d434ad933265d56c8932"
+    }
+  ]
+}

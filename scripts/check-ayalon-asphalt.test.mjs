@@ -43,7 +43,7 @@ test("live Ayalon asphalt stays 8-lane baked kit, sidewalks stay absent, signs s
   assert.match(world, /def\.theme !== "highway" && def\.id !== "ayalon"/);
   const builder = readFileSync(fromRoot("src", "game", "world-builders", "tracks", "ayalon.ts"), "utf8");
   assert.match(builder, /getAyalonRoad\(\)/);
-  assert.match(builder, /getSign\("speed90"\)/);
+  assert.match(builder, /getSign\("speed120"\)/);
   const manifest = JSON.parse(readFileSync(fromRoot("AYALON-ASPHALT-MANIFEST.json"), "utf8"));
   assert.equal(manifest.asphalt.gis_claim, false);
   assert.equal(manifest.asphalt.owner_freeze, false);

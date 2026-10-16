@@ -5,7 +5,7 @@ import { readDependencyBoundaryInputs, validateDependencyBoundary } from "./chec
 function baseline() { return structuredClone(readDependencyBoundaryInputs()); }
 function messages(result) { return result.errors.join("\n"); }
 
-test("RSH-020 pins the 74-to-30 direct dependency boundary", () => {
+test("current dependency policy keeps the exact 10-runtime/20-development package boundary", () => {
   const result = validateDependencyBoundary();
   assert.deepEqual(result.errors, []);
   assert.equal(result.runtimePackages, 10);

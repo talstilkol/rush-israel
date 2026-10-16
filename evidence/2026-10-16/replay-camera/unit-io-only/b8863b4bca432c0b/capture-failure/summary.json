@@ -1,0 +1,25 @@
+{
+  "kind": "capture-verdict-unit-io",
+  "evidenceRole": "historical-recorded-input-not-a-new-soak",
+  "recordedSourceHead": "c3d3de4a2e938837647c691d4064a59e1064d8e8",
+  "recordedRunId": 38854508031,
+  "recordedInput": {
+    "kind": "30-minute-driving",
+    "passed": true,
+    "completedRaces": 1,
+    "elapsedMs": 1800322,
+    "ticks": 1250,
+    "maxSpeed": 31.42,
+    "maxProgress": 0.982,
+    "offRoadRatio": 0,
+    "p95Worst": 12414.3,
+    "memoryHigh": {
+      "textures": 33,
+      "geometries": 1595
+    },
+    "deviceAcceptance": false
+  },
+  "passed": false,
+  "captureStatus": "failed",
+  "error": "Error: EISDIR: illegal operation on a directory, open '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/artifacts/capture-verdict/b8863b4bca432c0b/capture-failure/capture.png'"
+}

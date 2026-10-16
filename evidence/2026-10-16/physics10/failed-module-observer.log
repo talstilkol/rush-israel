@@ -1,0 +1,27 @@
+
+> app-builder-workspace@0.0.0-private qa:world:raw
+> node scripts/world-runtime-audit.mjs
+
+{
+  "count": 56,
+  "failures": [],
+  "cachedTextureDisposals": 0,
+  "duplicateDisposals": 0,
+  "buildingImpactVerified": true,
+  "pageErrors": []
+}
+
+> app-builder-workspace@0.0.0-private qa:conditions:raw
+> node scripts/race-condition-smoke.mjs
+
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at /Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/race-condition-smoke.mjs:49:14 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.16.0

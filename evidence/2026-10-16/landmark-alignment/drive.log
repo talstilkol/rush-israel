@@ -1,0 +1,9 @@
+
+> app-builder-workspace@0.0.0-private qa:drive:raw
+> node scripts/drive-smoke.mjs
+
+drive-smoke ok {
+  dA: 0.6360938566359382,
+  dD: -0.6180943730113608,
+  speed: 29.82773157661549
+}

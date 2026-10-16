@@ -1,0 +1,71 @@
+{
+  "parent_head": "b90e7cf99a6e11fe0bb884c0f147dc572c6f7b6c",
+  "current_authority": "vehicle-contact-source.json hashes;containing commit bound after all verification",
+  "scope": "Actual assisted browser reported simulation times anddamage. UI/frame scheduling is not isolated;this is an observational comparison,not a causal/calibrated pace benchmark or acceptance.",
+  "rows": [
+    {
+      "track": "oldjaffa",
+      "parent_seconds": 193.18333333332197,
+      "current_seconds": 295.9999999998951,
+      "ratio": 1.5322232766797301,
+      "parent_damage": 0,
+      "current_damage": 0
+    },
+    {
+      "track": "namal",
+      "parent_seconds": 195.37499999998664,
+      "current_seconds": 223.66666666662758,
+      "ratio": 1.1448069950947812,
+      "parent_damage": 0,
+      "current_damage": 0
+    },
+    {
+      "track": "haifa",
+      "parent_seconds": 43.34166666666485,
+      "current_seconds": 61.74999999999714,
+      "ratio": 1.4247260142280267,
+      "parent_damage": 0,
+      "current_damage": 0.02598519591302683
+    },
+    {
+      "track": "rothschild",
+      "parent_seconds": 240.0833333332793,
+      "current_seconds": 297.6999999998936,
+      "ratio": 1.2399861159318037,
+      "parent_damage": 0.2071873613911937,
+      "current_damage": 0.09495938364763545
+    },
+    {
+      "track": "ayalon",
+      "parent_seconds": 87.9166666666827,
+      "current_seconds": 88.53333333334986,
+      "ratio": 1.007014218009483,
+      "parent_damage": 0,
+      "current_damage": 0
+    },
+    {
+      "track": "hermon",
+      "parent_seconds": 139.55000000003741,
+      "current_seconds": 140.5500000000365,
+      "ratio": 1.007165890361869,
+      "parent_damage": 0,
+      "current_damage": 0
+    },
+    {
+      "track": "scopus",
+      "parent_seconds": 63.34166666666371,
+      "current_seconds": 96.86666666668982,
+      "ratio": 1.529272464149891,
+      "parent_damage": 0.16261177984751118,
+      "current_damage": 0.11542301376378872
+    },
+    {
+      "track": "ramon",
+      "parent_seconds": 99.48333333335857,
+      "current_seconds": 114.02500000003681,
+      "ratio": 1.1461718880885363,
+      "parent_damage": 0,
+      "current_damage": 0
+    }
+  ]
+}

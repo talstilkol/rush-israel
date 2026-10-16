@@ -5,7 +5,7 @@ export const GIS_CLAIM = false;
 export const OWNER_FREEZE = false;
 export const PUBLIC_DISTRIBUTION = false;
 export const PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
-export const A11Y_COMPLETE = true;
+export const A11Y_COMPLETE = false;
 export const ARIA_CONTROLS = true;
 export const LIVE_REGIONS = true;
 export const REDUCED_MOTION = true;
@@ -43,9 +43,13 @@ export function evaluateLock(report: LockReport = {}) {
   };
 }
 
+export function prefersReducedMotion() {
+  return typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export function canonicalDigest(): string {
   return [
-    "a11y_complete=true",
+    "a11y_complete=false",
     "aria_controls=true",
     "live_regions=true",
     "reduced_motion=true",

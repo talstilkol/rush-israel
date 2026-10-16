@@ -1,0 +1,907 @@
+{
+  "scope": "Read-only analysis of recorded actual parent states against unchanged Rothschild geometry; not current-head race acceptance",
+  "captureHead": "dd27b9dbfba15821420799be50454166fcddc98f",
+  "trackLength": 1702.8657573880948,
+  "rows": [
+    {
+      "time": 231.94999999995338,
+      "speed": 27.61543553105487,
+      "progress": 0.90625,
+      "lateral": -8.283782832992072,
+      "nominalLookMetres": 39.18848954208018,
+      "actualCenterlineArcMetres": 18.721648458830032,
+      "chordMetres": 15.51496957628177,
+      "err": -0.15988088286016947,
+      "input": {
+        "steer": -0.2558094125762711,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 231.99999999995333,
+      "speed": 27.022864914118482,
+      "progress": 0.90625,
+      "lateral": -8.38459114578072,
+      "nominalLookMetres": 38.86257570276517,
+      "actualCenterlineArcMetres": 17.29926790334298,
+      "chordMetres": 13.303864627403366,
+      "err": -0.15182808685845672,
+      "input": {
+        "steer": -0.2429249389735304,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.0499999999533,
+      "speed": 26.421991625060645,
+      "progress": 0.9083333333333333,
+      "lateral": -8.481369484551275,
+      "nominalLookMetres": 38.53209539378336,
+      "actualCenterlineArcMetres": 16.796938137607185,
+      "chordMetres": 12.892532192445481,
+      "err": -0.1409313257197924,
+      "input": {
+        "steer": -0.22549012115166747,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.09999999995324,
+      "speed": 25.81625598733868,
+      "progress": 0.9104166666666667,
+      "lateral": -8.586245061480637,
+      "nominalLookMetres": 38.19894079303627,
+      "actualCenterlineArcMetres": 16.258682646263196,
+      "chordMetres": 12.375509185861281,
+      "err": -0.13313467132897738,
+      "input": {
+        "steer": -0.21301547412636382,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.1499999999532,
+      "speed": 25.207840192697642,
+      "progress": 0.9125,
+      "lateral": -8.7007253328439,
+      "nominalLookMetres": 37.8643121059837,
+      "actualCenterlineArcMetres": 15.687168851367232,
+      "chordMetres": 11.736517963902077,
+      "err": -0.12806591813039048,
+      "input": {
+        "steer": -0.20490546900862477,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.19999999995315,
+      "speed": 24.59812437434351,
+      "progress": 0.9145833333333333,
+      "lateral": -8.825241749708285,
+      "nominalLookMetres": 37.52896840588893,
+      "actualCenterlineArcMetres": 15.085985415628556,
+      "chordMetres": 10.95724165224736,
+      "err": -0.12529896392773332,
+      "input": {
+        "steer": -0.20047834228437333,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.2499999999531,
+      "speed": 23.987977381600427,
+      "progress": 0.9145833333333333,
+      "lateral": -8.96198849427471,
+      "nominalLookMetres": 37.193387559880236,
+      "actualCenterlineArcMetres": 15.085985415628556,
+      "chordMetres": 9.773296610607451,
+      "err": -0.12161551976998553,
+      "input": {
+        "steer": -0.19458483163197648,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.29999999995306,
+      "speed": 23.3779421648934,
+      "progress": 0.9166666666666666,
+      "lateral": -9.095773817340422,
+      "nominalLookMetres": 36.85786819069137,
+      "actualCenterlineArcMetres": 14.459930256423604,
+      "chordMetres": 8.771559468439884,
+      "err": -0.12168501057677017,
+      "input": {
+        "steer": -0.19469601692283192,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.349999999953,
+      "speed": 22.768353967803204,
+      "progress": 0.91875,
+      "lateral": -9.236564632450936,
+      "nominalLookMetres": 36.52259468229176,
+      "actualCenterlineArcMetres": 13.792053835368733,
+      "chordMetres": 7.341264021553935,
+      "err": -0.11679920623523476,
+      "input": {
+        "steer": -0.18687872997637564,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.39999999995297,
+      "speed": 22.159415679388815,
+      "progress": 0.9208333333333333,
+      "lateral": -9.382036028731074,
+      "nominalLookMetres": 36.18767862366385,
+      "actualCenterlineArcMetres": 13.084262933971331,
+      "chordMetres": 5.559900082823975,
+      "err": -0.09307428128577011,
+      "input": {
+        "steer": -0.14891885005723218,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.44999999995292,
+      "speed": 21.55124587357248,
+      "progress": 0.9229166666666667,
+      "lateral": -9.527677047315471,
+      "nominalLookMetres": 35.85318523046487,
+      "actualCenterlineArcMetres": 12.371027932055085,
+      "chordMetres": 3.679826359613538,
+      "err": -0.03945479234486627,
+      "input": {
+        "steer": -0.06312766775178602,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.49999999995288,
+      "speed": 20.943909434907447,
+      "progress": 0.925,
+      "lateral": -9.664322838214993,
+      "nominalLookMetres": 35.519150189199095,
+      "actualCenterlineArcMetres": 11.686766585971782,
+      "chordMetres": 1.9326144396415155,
+      "err": 0.18274132158879433,
+      "input": {
+        "steer": 0.2923861145420709,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.54999999995283,
+      "speed": 20.337437082153482,
+      "progress": 0.9270833333333334,
+      "lateral": -9.777450693134634,
+      "nominalLookMetres": 35.18559039518442,
+      "actualCenterlineArcMetres": 10.198328935927293,
+      "chordMetres": 0.9126565278010047,
+      "err": 0.2562122425274917,
+      "input": {
+        "steer": 0.4099395880439867,
+        "throttle": 0.504,
+        "brake": 0.35
+      }
+    },
+    {
+      "time": 232.5999999999528,
+      "speed": 20.082028071522373,
+      "progress": 0.9291666666666667,
+      "lateral": -9.84779786181624,
+      "nominalLookMetres": 35.04511543933731,
+      "actualCenterlineArcMetres": 9.640641057062112,
+      "chordMetres": 1.027429492315,
+      "err": 2.1876415193891994,
+      "input": {
+        "steer": 1,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.64999999995274,
+      "speed": 19.498519314166284,
+      "progress": 0.93125,
+      "lateral": -9.855243174782652,
+      "nominalLookMetres": 34.72418562279146,
+      "actualCenterlineArcMetres": 9.171880218658316,
+      "chordMetres": 2.28184954062804,
+      "err": 2.4254113381734377,
+      "input": {
+        "steer": 1,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.6999999999527,
+      "speed": 18.90797058229586,
+      "progress": 0.9333333333333333,
+      "lateral": -9.767337196543501,
+      "nominalLookMetres": 34.39938382026273,
+      "actualCenterlineArcMetres": 8.810861418536888,
+      "chordMetres": 3.3063543471402053,
+      "err": 2.466787661570664,
+      "input": {
+        "steer": 1,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.74999999995265,
+      "speed": 18.313231251641753,
+      "progress": 0.9375,
+      "lateral": -9.521383087198993,
+      "nominalLookMetres": 34.072277188402964,
+      "actualCenterlineArcMetres": 8.454019640766091,
+      "chordMetres": 3.952834105339381,
+      "err": 2.572303456432162,
+      "input": {
+        "steer": 1,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.7999999999526,
+      "speed": 17.716107582643854,
+      "progress": 0.9604166666666667,
+      "lateral": -6.581020015985402,
+      "nominalLookMetres": 33.74385917045412,
+      "actualCenterlineArcMetres": 12.656477318224916,
+      "chordMetres": 14.684372541616392,
+      "err": -1.6557604040277334,
+      "input": {
+        "steer": -1,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.84999999995256,
+      "speed": 17.117740836056008,
+      "progress": 0.9604166666666667,
+      "lateral": -5.645958525515625,
+      "nominalLookMetres": 33.4147574598308,
+      "actualCenterlineArcMetres": 12.656477318224916,
+      "chordMetres": 14.881094943887819,
+      "err": -1.1007829500550852,
+      "input": {
+        "steer": -1,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 232.8999999999525,
+      "speed": 16.51884834492416,
+      "progress": 0.9604166666666667,
+      "lateral": -4.704920136235132,
+      "nominalLookMetres": 33.085366589708286,
+      "actualCenterlineArcMetres": 12.656477318224916,
+      "chordMetres": 14.854627497146891,
+      "err": -0.7412387265453113,
+      "input": {
+        "steer": -1,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 258.9499999999288,
+      "speed": 27.785265414254457,
+      "progress": 0.3625,
+      "lateral": -12.210151973168166,
+      "nominalLookMetres": 39.28189597783995,
+      "actualCenterlineArcMetres": 27.71364867142961,
+      "chordMetres": 16.6027467164341,
+      "err": -0.2779609206384237,
+      "input": {
+        "steer": -0.44473747302147804,
+        "throttle": 0.504,
+        "brake": 0.35
+      }
+    },
+    {
+      "time": 258.9999999999288,
+      "speed": 27.537494070568805,
+      "progress": 0.3645833333333333,
+      "lateral": -12.147881633272489,
+      "nominalLookMetres": 39.14562173881284,
+      "actualCenterlineArcMetres": 27.87794904052339,
+      "chordMetres": 17.3639235108411,
+      "err": -0.3341792309141261,
+      "input": {
+        "steer": -0.5346867694626017,
+        "throttle": 0.504,
+        "brake": 0.35
+      }
+    },
+    {
+      "time": 259.04999999992873,
+      "speed": 27.290151685315983,
+      "progress": 0.3666666666666667,
+      "lateral": -12.062891065153389,
+      "nominalLookMetres": 39.00958342692379,
+      "actualCenterlineArcMetres": 25.302675837143624,
+      "chordMetres": 16.10611124211168,
+      "err": -0.33817385643674874,
+      "input": {
+        "steer": -0.541078170298798,
+        "throttle": 0.504,
+        "brake": 0.35
+      }
+    },
+    {
+      "time": 259.0999999999287,
+      "speed": 27.043265438564056,
+      "progress": 0.36875,
+      "lateral": -11.93934827321299,
+      "nominalLookMetres": 38.87379599121023,
+      "actualCenterlineArcMetres": 25.71370418050924,
+      "chordMetres": 17.11928486885494,
+      "err": -0.3942972257361623,
+      "input": {
+        "steer": -0.6308755611778598,
+        "throttle": 0.504,
+        "brake": 0.35
+      }
+    },
+    {
+      "time": 259.14999999992864,
+      "speed": 26.79685061936688,
+      "progress": 0.37083333333333335,
+      "lateral": -11.758347209288422,
+      "nominalLookMetres": 38.73826784065179,
+      "actualCenterlineArcMetres": 26.271762179390635,
+      "chordMetres": 18.32875412625688,
+      "err": -0.4451279878956867,
+      "input": {
+        "steer": -0.7122047806330988,
+        "throttle": 0,
+        "brake": 0.40563757560369473
+      }
+    },
+    {
+      "time": 259.1999999999286,
+      "speed": 26.523393862349106,
+      "progress": 0.3729166666666667,
+      "lateral": -11.500250447082708,
+      "nominalLookMetres": 38.58786662429201,
+      "actualCenterlineArcMetres": 26.956306004022963,
+      "chordMetres": 19.70284597521379,
+      "err": -0.4565448597429616,
+      "input": {
+        "steer": -0.7304717755887387,
+        "throttle": 0,
+        "brake": 0.35457414969585455
+      }
+    },
+    {
+      "time": 259.24999999992855,
+      "speed": 26.271383302642302,
+      "progress": 0.375,
+      "lateral": -11.155450002374904,
+      "nominalLookMetres": 38.44926081645327,
+      "actualCenterlineArcMetres": 27.741760412360918,
+      "chordMetres": 21.228541845903035,
+      "err": -0.456894269714462,
+      "input": {
+        "steer": -0.7310308315431392,
+        "throttle": 0,
+        "brake": 0.31348445121666374
+      }
+    },
+    {
+      "time": 259.2999999999285,
+      "speed": 26.03809552457161,
+      "progress": 0.3770833333333333,
+      "lateral": -10.745954461080633,
+      "nominalLookMetres": 38.32095253851439,
+      "actualCenterlineArcMetres": 28.5632059691809,
+      "chordMetres": 22.881156324209787,
+      "err": -0.4505319640723551,
+      "input": {
+        "steer": -0.7208511425157682,
+        "throttle": 0,
+        "brake": 0.2890244896908249
+      }
+    },
+    {
+      "time": 259.34999999992846,
+      "speed": 25.816476237441456,
+      "progress": 0.37916666666666665,
+      "lateral": -10.318967933945565,
+      "nominalLookMetres": 38.199061930592805,
+      "actualCenterlineArcMetres": 29.365732360043012,
+      "chordMetres": 24.637183598958902,
+      "err": -0.4385324253865943,
+      "input": {
+        "steer": -0.701651880618551,
+        "throttle": 0,
+        "brake": 0.057141925124620144
+      }
+    },
+    {
+      "time": 259.3999999999284,
+      "speed": 25.706438727448713,
+      "progress": 0.37916666666666665,
+      "lateral": -9.890577812496337,
+      "nominalLookMetres": 38.13854130009679,
+      "actualCenterlineArcMetres": 29.365732360043012,
+      "chordMetres": 23.529420279368615,
+      "err": -0.40610935773340495,
+      "input": {
+        "steer": -0.649774972373448,
+        "throttle": 0,
+        "brake": 0.06227472777806679
+      }
+    },
+    {
+      "time": 259.44999999992837,
+      "speed": 25.594457365365788,
+      "progress": 0.38125,
+      "lateral": -9.4606437653269,
+      "nominalLookMetres": 38.076951550951186,
+      "actualCenterlineArcMetres": 30.13626808564004,
+      "chordMetres": 25.360593198481055,
+      "err": -0.3909179845109878,
+      "input": {
+        "steer": -0.6254687752175805,
+        "throttle": 0.72,
+        "brake": 0
+      }
+    },
+    {
+      "time": 259.4999999999283,
+      "speed": 25.221139120180734,
+      "progress": 0.38333333333333336,
+      "lateral": -9.063975271673565,
+      "nominalLookMetres": 37.871626516099404,
+      "actualCenterlineArcMetres": 30.864168445745463,
+      "chordMetres": 27.26592330138313,
+      "err": -0.4012152914660567,
+      "input": {
+        "steer": -0.6419444663456908,
+        "throttle": 0.72,
+        "brake": 0
+      }
+    },
+    {
+      "time": 259.5499999999283,
+      "speed": 25.317287626929648,
+      "progress": 0.38333333333333336,
+      "lateral": -8.61560355135867,
+      "nominalLookMetres": 37.92450819481131,
+      "actualCenterlineArcMetres": 30.864168445745463,
+      "chordMetres": 26.24093249480707,
+      "err": -0.4099695030780768,
+      "input": {
+        "steer": -0.6559512049249229,
+        "throttle": 0.72,
+        "brake": 0
+      }
+    },
+    {
+      "time": 259.59999999992823,
+      "speed": 25.41338428246466,
+      "progress": 0.3854166666666667,
+      "lateral": -8.199241488238085,
+      "nominalLookMetres": 37.97736135535556,
+      "actualCenterlineArcMetres": 31.540826111791603,
+      "chordMetres": 28.271421120885307,
+      "err": -0.37226115346348454,
+      "input": {
+        "steer": -0.5956178455415753,
+        "throttle": 0.72,
+        "brake": 0
+      }
+    },
+    {
+      "time": 259.6499999999282,
+      "speed": 25.509428918016333,
+      "progress": 0.3854166666666667,
+      "lateral": -7.857870734844647,
+      "nominalLookMetres": 38.03018590490898,
+      "actualCenterlineArcMetres": 31.540826111791603,
+      "chordMetres": 27.18208461553045,
+      "err": -0.3057319915285741,
+      "input": {
+        "steer": -0.4891711864457186,
+        "throttle": 0.72,
+        "brake": 0
+      }
+    },
+    {
+      "time": 259.69999999992814,
+      "speed": 25.605421365225986,
+      "progress": 0.3875,
+      "lateral": -7.5726181945073945,
+      "nominalLookMetres": 38.082981750874296,
+      "actualCenterlineArcMetres": 32.15932468054439,
+      "chordMetres": 29.165018889283548,
+      "err": -0.25725886172588464,
+      "input": {
+        "steer": -0.41161417876141543,
+        "throttle": 0.72,
+        "brake": 0
+      }
+    },
+    {
+      "time": 259.7499999999281,
+      "speed": 25.70136145614664,
+      "progress": 0.3875,
+      "lateral": -7.37975907838925,
+      "nominalLookMetres": 38.13574880088065,
+      "actualCenterlineArcMetres": 32.15932468054439,
+      "chordMetres": 27.99424496795855,
+      "err": -0.22498858643084718,
+      "input": {
+        "steer": -0.35998173828935554,
+        "throttle": 1,
+        "brake": 0
+      }
+    },
+    {
+      "time": 259.79999999992805,
+      "speed": 25.866706694241874,
+      "progress": 0.38958333333333334,
+      "lateral": -7.229240610377425,
+      "nominalLookMetres": 38.22668868183303,
+      "actualCenterlineArcMetres": 32.71414595076317,
+      "chordMetres": 29.939562868280415,
+      "err": -0.19588274720592302,
+      "input": {
+        "steer": -0.31341239552947686,
+        "throttle": 1,
+        "brake": 0
+      }
+    },
+    {
+      "time": 259.849999999928,
+      "speed": 26.291466064415598,
+      "progress": 0.38958333333333334,
+      "lateral": -7.159240696105018,
+      "nominalLookMetres": 38.460306335428584,
+      "actualCenterlineArcMetres": 32.71414595076317,
+      "chordMetres": 28.704348275531444,
+      "err": -0.17719476059475436,
+      "input": {
+        "steer": -0.283511616951607,
+        "throttle": 1,
+        "brake": 0
+      }
+    },
+    {
+      "time": 259.89999999992796,
+      "speed": 26.563561711551856,
+      "progress": 0.39166666666666666,
+      "lateral": -7.114719985053695,
+      "nominalLookMetres": 38.609958941353526,
+      "actualCenterlineArcMetres": 33.20093099573228,
+      "chordMetres": 30.603094050176747,
+      "err": -0.15757810842020437,
+      "input": {
+        "steer": -0.252124973472327,
+        "throttle": 1,
+        "brake": 0
+      }
+    },
+    {
+      "time": 290.79999999989985,
+      "speed": 29.144176717692698,
+      "progress": 0.9,
+      "lateral": -7.881051987367932,
+      "nominalLookMetres": 40.02929719473099,
+      "actualCenterlineArcMetres": 20.185572589213507,
+      "chordMetres": 17.400328768772262,
+      "err": -0.193365136987957,
+      "input": {
+        "steer": -0.3093842191807312,
+        "throttle": 1,
+        "brake": 0
+      }
+    },
+    {
+      "time": 290.8499999998998,
+      "speed": 29.171246565706348,
+      "progress": 0.9020833333333333,
+      "lateral": -7.935012214513152,
+      "nominalLookMetres": 40.04418561113849,
+      "actualCenterlineArcMetres": 19.740580894232153,
+      "chordMetres": 17.10958391290128,
+      "err": -0.19656547082565523,
+      "input": {
+        "steer": -0.31450475332104805,
+        "throttle": 1,
+        "brake": 0
+      }
+    },
+    {
+      "time": 290.89999999989976,
+      "speed": 29.19816221469392,
+      "progress": 0.9020833333333333,
+      "lateral": -8.002095560019349,
+      "nominalLookMetres": 40.058989218081656,
+      "actualCenterlineArcMetres": 19.740580894232153,
+      "chordMetres": 15.70567686757122,
+      "err": -0.20314308422264185,
+      "input": {
+        "steer": -0.32502893475622696,
+        "throttle": 1,
+        "brake": 0
+      }
+    },
+    {
+      "time": 290.9499999998997,
+      "speed": 29.22492439318333,
+      "progress": 0.9041666666666667,
+      "lateral": -8.063744274949563,
+      "nominalLookMetres": 40.07370841625083,
+      "actualCenterlineArcMetres": 19.25215197885359,
+      "chordMetres": 15.306964058705955,
+      "err": -0.20901147638816653,
+      "input": {
+        "steer": -0.33441836222106613,
+        "throttle": 0.72,
+        "brake": 0
+      }
+    },
+    {
+      "time": 290.99999999989967,
+      "speed": 29.21893929856578,
+      "progress": 0.90625,
+      "lateral": -8.129182305135695,
+      "nominalLookMetres": 40.07041661421118,
+      "actualCenterlineArcMetres": 18.721648458830032,
+      "chordMetres": 14.791031795507173,
+      "err": -0.21729114111676373,
+      "input": {
+        "steer": -0.347665825786822,
+        "throttle": 0.72,
+        "brake": 0
+      }
+    },
+    {
+      "time": 291.0499999998996,
+      "speed": 29.212982525793738,
+      "progress": 0.9083333333333333,
+      "lateral": -8.195932858764012,
+      "nominalLookMetres": 40.06714038918656,
+      "actualCenterlineArcMetres": 18.151010096949904,
+      "chordMetres": 14.14523459398,
+      "err": -0.22830735166970428,
+      "input": {
+        "steer": -0.36529176267152685,
+        "throttle": 0.72,
+        "brake": 0
+      }
+    },
+    {
+      "time": 291.0999999998996,
+      "speed": 29.20705393480445,
+      "progress": 0.9104166666666667,
+      "lateral": -8.261855909372175,
+      "nominalLookMetres": 40.06387966414245,
+      "actualCenterlineArcMetres": 17.542908464656648,
+      "chordMetres": 13.354527489454538,
+      "err": -0.24246305837918494,
+      "input": {
+        "steer": -0.3879408934066955,
+        "throttle": 0.72,
+        "brake": 0
+      }
+    },
+    {
+      "time": 291.14999999989953,
+      "speed": 29.20115338628364,
+      "progress": 0.9125,
+      "lateral": -8.324942200500582,
+      "nominalLookMetres": 40.060634362456,
+      "actualCenterlineArcMetres": 16.900960433975115,
+      "chordMetres": 12.402154821256408,
+      "err": -0.2586304111222941,
+      "input": {
+        "steer": -0.4138086577956706,
+        "throttle": 0.504,
+        "brake": 0
+      }
+    },
+    {
+      "time": 291.1999999998995,
+      "speed": 29.1701002674824,
+      "progress": 0.9145833333333333,
+      "lateral": -8.38159565351592,
+      "nominalLookMetres": 40.04355514711532,
+      "actualCenterlineArcMetres": 16.230019344094217,
+      "chordMetres": 11.17978680181042,
+      "err": -0.2883023522082806,
+      "input": {
+        "steer": -0.46128376353324896,
+        "throttle": 0.504,
+        "brake": 0.35
+      }
+    },
+    {
+      "time": 291.24999999989944,
+      "speed": 28.91944826106353,
+      "progress": 0.9166666666666666,
+      "lateral": -8.419851996859784,
+      "nominalLookMetres": 39.905696543584945,
+      "actualCenterlineArcMetres": 15.513222845100927,
+      "chordMetres": 9.523896019667836,
+      "err": -0.3214349974206363,
+      "input": {
+        "steer": -0.5142959958730181,
+        "throttle": 0.504,
+        "brake": 0.35
+      }
+    },
+    {
+      "time": 291.2999999998994,
+      "speed": 28.66934789187534,
+      "progress": 0.91875,
+      "lateral": -8.4355319830529,
+      "nominalLookMetres": 39.768141340531436,
+      "actualCenterlineArcMetres": 14.752603069731322,
+      "chordMetres": 7.51592538175716,
+      "err": -0.34932097053235434,
+      "input": {
+        "steer": -0.5589135528517669,
+        "throttle": 0.504,
+        "brake": 0.35
+      }
+    },
+    {
+      "time": 291.34999999989935,
+      "speed": 28.419793192602267,
+      "progress": 0.9208333333333333,
+      "lateral": -8.427547511977114,
+      "nominalLookMetres": 39.630886255931244,
+      "actualCenterlineArcMetres": 13.982802777199822,
+      "chordMetres": 5.390389159215257,
+      "err": -0.34374128508677293,
+      "input": {
+        "steer": -0.549986056138836,
+        "throttle": 0.504,
+        "brake": 0.35
+      }
+    },
+    {
+      "time": 291.3999999998993,
+      "speed": 28.170778240083685,
+      "progress": 0.9229166666666667,
+      "lateral": -8.400396458537395,
+      "nominalLookMetres": 39.49392803204603,
+      "actualCenterlineArcMetres": 13.238471357417211,
+      "chordMetres": 3.3049260844986623,
+      "err": -0.34734431613297057,
+      "input": {
+        "steer": -0.5557509058127529,
+        "throttle": 0.504,
+        "brake": 0.35
+      }
+    },
+    {
+      "time": 291.44999999989926,
+      "speed": 27.922297154700676,
+      "progress": 0.925,
+      "lateral": -8.349894220073043,
+      "nominalLookMetres": 39.35726343508537,
+      "actualCenterlineArcMetres": 12.551459262593653,
+      "chordMetres": 1.4046298736085665,
+      "err": -0.4199046753404078,
+      "input": {
+        "steer": -0.6718474805446534,
+        "throttle": 0.504,
+        "brake": 0.35
+      }
+    },
+    {
+      "time": 291.4999999998992,
+      "speed": 27.674344099770675,
+      "progress": 0.9270833333333334,
+      "lateral": -8.277766575203426,
+      "nominalLookMetres": 39.220889254873875,
+      "actualCenterlineArcMetres": 11.948332733488087,
+      "chordMetres": 0.4207945450849488,
+      "err": -2.5494546829904987,
+      "input": {
+        "steer": -1,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 291.54999999989917,
+      "speed": 27.117046720016095,
+      "progress": 0.9291666666666667,
+      "lateral": -8.191515073673038,
+      "nominalLookMetres": 38.914375696008854,
+      "actualCenterlineArcMetres": 10.525952178001035,
+      "chordMetres": 1.7714689586795591,
+      "err": -2.8120540270547565,
+      "input": {
+        "steer": -1,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 291.5999999998991,
+      "speed": 26.53868270618063,
+      "progress": 0.9333333333333333,
+      "lateral": -8.056770206333224,
+      "nominalLookMetres": 38.59627548839935,
+      "actualCenterlineArcMetres": 9.78339203668429,
+      "chordMetres": 3.2059566936612547,
+      "err": -2.844159423884051,
+      "input": {
+        "steer": -1,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 291.6499999998991,
+      "speed": 25.947189630942145,
+      "progress": 0.9395833333333333,
+      "lateral": -7.78332919249199,
+      "nominalLookMetres": 38.27095429701818,
+      "actualCenterlineArcMetres": 9.634800994545685,
+      "chordMetres": 4.663632565761411,
+      "err": -2.3755184811089425,
+      "input": {
+        "steer": -1,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 291.69999999989903,
+      "speed": 25.347748694891813,
+      "progress": 0.9583333333333334,
+      "lateral": -5.288871594578161,
+      "nominalLookMetres": 37.941261782190495,
+      "actualCenterlineArcMetres": 13.803193212658243,
+      "chordMetres": 16.104208425723865,
+      "err": -0.9631443167776796,
+      "input": {
+        "steer": -1,
+        "throttle": 0,
+        "brake": 1
+      }
+    },
+    {
+      "time": 291.749999999899,
+      "speed": 24.74365207532101,
+      "progress": 0.9604166666666667,
+      "lateral": -4.002562968897595,
+      "nominalLookMetres": 37.609008641426556,
+      "actualCenterlineArcMetres": 14.295004944436869,
+      "chordMetres": 17.715323059499323,
+      "err": -0.6048132899771395,
+      "input": {
+        "steer": -1,
+        "throttle": 0,
+        "brake": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,1604 @@
+{
+  "kind": "actual-landmark-box-footprints",
+  "scope": "Actual obelisk,hall andfour highway support meshes. Horizontal contact/maximum-height regression only;no complete3D,terrain alignment,all42 envelope or preview-race acceptance.",
+  "passed": true,
+  "errors": [],
+  "actual": {
+    "physicsVersion": 16,
+    "rows": [
+      {
+        "track": "ksaba",
+        "solids": [
+          {
+            "role": "obelisk-0",
+            "position": [
+              -1.5106266420488268,
+              6,
+              -27.148093895590115
+            ],
+            "quaternion": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "dimensions": {
+              "width": 1.4,
+              "height": 12,
+              "depth": 1.4,
+              "widthSegments": 1,
+              "heightSegments": 1,
+              "depthSegments": 1
+            },
+            "yaw": 0,
+            "mapping": 1,
+            "contacts": [
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.1,
+                "position": [
+                  -3.2406266420488268,
+                  1,
+                  -27.708093895590114
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000000018
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000000018
+                }
+              },
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.5,
+                "position": [
+                  -3.2406266420488268,
+                  1,
+                  -27.148093895590115
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000000018
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000000018
+                }
+              },
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.9,
+                "position": [
+                  -3.2406266420488268,
+                  1,
+                  -26.588093895590116
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000000018
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000000018
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.1,
+                "position": [
+                  0.2193733579511732,
+                  1,
+                  -27.708093895590114
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000000018
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000000018
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.5,
+                "position": [
+                  0.2193733579511732,
+                  1,
+                  -27.148093895590115
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000000018
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000000018
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.9,
+                "position": [
+                  0.2193733579511732,
+                  1,
+                  -26.588093895590116
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000000018
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000000018
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.1,
+                "position": [
+                  -2.070626642048827,
+                  1,
+                  -28.878093895590116
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999999574
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999999574
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.5,
+                "position": [
+                  -1.5106266420488268,
+                  1,
+                  -28.878093895590116
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999999574
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999999574
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.9,
+                "position": [
+                  -0.9506266420488269,
+                  1,
+                  -28.878093895590116
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999999574
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999999574
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.1,
+                "position": [
+                  -2.070626642048827,
+                  1,
+                  -25.418093895590115
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999999574
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999999574
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.5,
+                "position": [
+                  -1.5106266420488268,
+                  1,
+                  -25.418093895590115
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999999574
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999999574
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.9,
+                "position": [
+                  -0.9506266420488269,
+                  1,
+                  -25.418093895590115
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999999574
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999999574
+                }
+              }
+            ],
+            "above": {
+              "damage": 0,
+              "displacement": 0
+            },
+            "passed": true
+          }
+        ],
+        "legacy": [
+          {
+            "x": 0,
+            "z": 0,
+            "r": 8,
+            "hx": 5.76,
+            "hz": 5.76,
+            "yaw": 0,
+            "kind": "building"
+          }
+        ],
+        "ghosts": [
+          {
+            "position": [
+              6.79,
+              1,
+              0
+            ],
+            "hit": {
+              "damage": 0,
+              "displacement": 0
+            }
+          }
+        ],
+        "passed": true
+      },
+      {
+        "track": "hadera",
+        "solids": [
+          {
+            "role": "hall-0",
+            "position": [
+              -84.33000000010307,
+              5,
+              1518.820000000057
+            ],
+            "quaternion": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "dimensions": {
+              "width": 28,
+              "height": 10,
+              "depth": 16,
+              "widthSegments": 1,
+              "heightSegments": 1,
+              "depthSegments": 1
+            },
+            "yaw": 0,
+            "mapping": 1,
+            "contacts": [
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.1,
+                "position": [
+                  -99.36000000010307,
+                  1,
+                  1512.420000000057
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999999602
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999999602
+                }
+              },
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.5,
+                "position": [
+                  -99.36000000010307,
+                  1,
+                  1518.820000000057
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999999602
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999999602
+                }
+              },
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.9,
+                "position": [
+                  -99.36000000010307,
+                  1,
+                  1525.220000000057
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999999602
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999999602
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.1,
+                "position": [
+                  -69.30000000010307,
+                  1,
+                  1512.420000000057
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999999602
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999999602
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.5,
+                "position": [
+                  -69.30000000010307,
+                  1,
+                  1518.820000000057
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999999602
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999999602
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.9,
+                "position": [
+                  -69.30000000010307,
+                  1,
+                  1525.220000000057
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999999602
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999999602
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.1,
+                "position": [
+                  -95.53000000010307,
+                  1,
+                  1509.790000000057
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.5,
+                "position": [
+                  -84.33000000010307,
+                  1,
+                  1509.790000000057
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.9,
+                "position": [
+                  -73.13000000010307,
+                  1,
+                  1509.790000000057
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.1,
+                "position": [
+                  -95.53000000010307,
+                  1,
+                  1527.850000000057
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.5,
+                "position": [
+                  -84.33000000010307,
+                  1,
+                  1527.850000000057
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.9,
+                "position": [
+                  -73.13000000010307,
+                  1,
+                  1527.850000000057
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              }
+            ],
+            "above": {
+              "damage": 0,
+              "displacement": 0
+            },
+            "passed": true
+          }
+        ],
+        "legacy": [
+          {
+            "x": -84.33000000010307,
+            "z": 1502.820000000057,
+            "r": 14,
+            "hx": 10.08,
+            "hz": 10.08,
+            "yaw": 0,
+            "kind": "building"
+          }
+        ],
+        "ghosts": [
+          {
+            "position": [
+              -73.22000000010307,
+              1,
+              1502.820000000057
+            ],
+            "hit": {
+              "damage": 0,
+              "displacement": 0
+            }
+          }
+        ],
+        "passed": true
+      },
+      {
+        "track": "hw6",
+        "solids": [
+          {
+            "role": "pier-0",
+            "position": [
+              -288.72000000001026,
+              4.6,
+              249.35680000005163
+            ],
+            "quaternion": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "dimensions": {
+              "width": 3.6,
+              "height": 9,
+              "depth": 3.6,
+              "widthSegments": 1,
+              "heightSegments": 1,
+              "depthSegments": 1
+            },
+            "yaw": 0,
+            "mapping": 1,
+            "contacts": [
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.1,
+                "position": [
+                  -291.55000000001024,
+                  1.0999999999999996,
+                  247.91680000005164
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000038654
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000038654
+                }
+              },
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.5,
+                "position": [
+                  -291.55000000001024,
+                  1.0999999999999996,
+                  249.35680000005163
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000038654
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000038654
+                }
+              },
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.9,
+                "position": [
+                  -291.55000000001024,
+                  1.0999999999999996,
+                  250.79680000005163
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000038654
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000038654
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.1,
+                "position": [
+                  -285.8900000000103,
+                  1.0999999999999996,
+                  247.91680000005164
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000038654
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000038654
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.5,
+                "position": [
+                  -285.8900000000103,
+                  1.0999999999999996,
+                  249.35680000005163
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000038654
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000038654
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.9,
+                "position": [
+                  -285.8900000000103,
+                  1.0999999999999996,
+                  250.79680000005163
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000038654
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.020000000000038654
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.1,
+                "position": [
+                  -290.16000000001026,
+                  1.0999999999999996,
+                  246.52680000005162
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.5,
+                "position": [
+                  -288.72000000001026,
+                  1.0999999999999996,
+                  246.52680000005162
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.9,
+                "position": [
+                  -287.28000000001026,
+                  1.0999999999999996,
+                  246.52680000005162
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.1,
+                "position": [
+                  -290.16000000001026,
+                  1.0999999999999996,
+                  252.18680000005165
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.5,
+                "position": [
+                  -288.72000000001026,
+                  1.0999999999999996,
+                  252.18680000005165
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.9,
+                "position": [
+                  -287.28000000001026,
+                  1.0999999999999996,
+                  252.18680000005165
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              }
+            ],
+            "above": {
+              "damage": 0,
+              "displacement": 0
+            },
+            "passed": true
+          },
+          {
+            "role": "pier-1",
+            "position": [
+              -252.72000000001026,
+              4.6,
+              249.35680000005163
+            ],
+            "quaternion": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "dimensions": {
+              "width": 3.6,
+              "height": 9,
+              "depth": 3.6,
+              "widthSegments": 1,
+              "heightSegments": 1,
+              "depthSegments": 1
+            },
+            "yaw": 0,
+            "mapping": 1,
+            "contacts": [
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.1,
+                "position": [
+                  -255.55000000001027,
+                  1.0999999999999996,
+                  247.91680000005164
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.5,
+                "position": [
+                  -255.55000000001027,
+                  1.0999999999999996,
+                  249.35680000005163
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.9,
+                "position": [
+                  -255.55000000001027,
+                  1.0999999999999996,
+                  250.79680000005163
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.1,
+                "position": [
+                  -249.89000000001025,
+                  1.0999999999999996,
+                  247.91680000005164
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.5,
+                "position": [
+                  -249.89000000001025,
+                  1.0999999999999996,
+                  249.35680000005163
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.9,
+                "position": [
+                  -249.89000000001025,
+                  1.0999999999999996,
+                  250.79680000005163
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.1,
+                "position": [
+                  -254.16000000001026,
+                  1.0999999999999996,
+                  246.52680000005162
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.5,
+                "position": [
+                  -252.72000000001026,
+                  1.0999999999999996,
+                  246.52680000005162
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.9,
+                "position": [
+                  -251.28000000001026,
+                  1.0999999999999996,
+                  246.52680000005162
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.1,
+                "position": [
+                  -254.16000000001026,
+                  1.0999999999999996,
+                  252.18680000005165
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.5,
+                "position": [
+                  -252.72000000001026,
+                  1.0999999999999996,
+                  252.18680000005165
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.9,
+                "position": [
+                  -251.28000000001026,
+                  1.0999999999999996,
+                  252.18680000005165
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.01999999999998181
+                }
+              }
+            ],
+            "above": {
+              "damage": 0,
+              "displacement": 0
+            },
+            "passed": true
+          },
+          {
+            "role": "pole-0",
+            "position": [
+              347.4947781441387,
+              4.2,
+              1386.8982778238674
+            ],
+            "quaternion": [
+              0,
+              0.13378537753386105,
+              0,
+              0.9910103292893179
+            ],
+            "dimensions": {
+              "width": 0.6,
+              "height": 8.2,
+              "depth": 0.6,
+              "widthSegments": 1,
+              "heightSegments": 1,
+              "depthSegments": 1
+            },
+            "yaw": 0.26837544034827693,
+            "mapping": 1,
+            "contacts": [
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.1,
+                "position": [
+                  346.148748534901,
+                  1.1000000000000005,
+                  1387.0195390751203
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                }
+              },
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.5,
+                "position": [
+                  346.2123882266021,
+                  1.1000000000000005,
+                  1387.2509477820442
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                }
+              },
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.9,
+                "position": [
+                  346.2760279183032,
+                  1.1000000000000005,
+                  1387.4823564889682
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.1,
+                "position": [
+                  348.7135283699742,
+                  1.1000000000000005,
+                  1386.3141991587665
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.5,
+                "position": [
+                  348.7771680616753,
+                  1.1000000000000005,
+                  1386.5456078656905
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.9,
+                "position": [
+                  348.8408077533764,
+                  1.1000000000000005,
+                  1386.7770165726145
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.1,
+                "position": [
+                  346.910699479038,
+                  1.1000000000000005,
+                  1385.6795275980319
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999901694
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999901694
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.5,
+                "position": [
+                  347.1421081859619,
+                  1.1000000000000005,
+                  1385.6158879063307
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.9,
+                "position": [
+                  347.37351689288573,
+                  1.1000000000000005,
+                  1385.5522482146296
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.1,
+                "position": [
+                  347.6160393953917,
+                  1.1000000000000005,
+                  1388.2443074331052
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.5,
+                "position": [
+                  347.8474481023155,
+                  1.1000000000000005,
+                  1388.180667741404
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.9,
+                "position": [
+                  348.0788568092394,
+                  1.1000000000000005,
+                  1388.1170280497029
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999901694
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999901694
+                }
+              }
+            ],
+            "above": {
+              "damage": 0,
+              "displacement": 0
+            },
+            "passed": true
+          },
+          {
+            "role": "pole-1",
+            "position": [
+              387.99130185582095,
+              4.2,
+              1375.7613317761775
+            ],
+            "quaternion": [
+              0,
+              0.13378537753386105,
+              0,
+              0.9910103292893179
+            ],
+            "dimensions": {
+              "width": 0.6,
+              "height": 8.2,
+              "depth": 0.6,
+              "widthSegments": 1,
+              "heightSegments": 1,
+              "depthSegments": 1
+            },
+            "yaw": 0.26837544034827693,
+            "mapping": 1,
+            "contacts": [
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.1,
+                "position": [
+                  386.64527224658326,
+                  1.1000000000000005,
+                  1375.8825930274304
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                }
+              },
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.5,
+                "position": [
+                  386.70891193828436,
+                  1.1000000000000005,
+                  1376.1140017343544
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                }
+              },
+              {
+                "axis": "x",
+                "side": -1,
+                "u": 0.9,
+                "position": [
+                  386.77255162998546,
+                  1.1000000000000005,
+                  1376.3454104412783
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.1,
+                "position": [
+                  389.21005208165644,
+                  1.1000000000000005,
+                  1375.1772531110767
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.5,
+                "position": [
+                  389.27369177335754,
+                  1.1000000000000005,
+                  1375.4086618180006
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                }
+              },
+              {
+                "axis": "x",
+                "side": 1,
+                "u": 0.9,
+                "position": [
+                  389.33733146505864,
+                  1.1000000000000005,
+                  1375.6400705249246
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999996236
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.1,
+                "position": [
+                  387.40722319072023,
+                  1.1000000000000005,
+                  1374.542581550342
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999901694
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999901694
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.5,
+                "position": [
+                  387.63863189764413,
+                  1.1000000000000005,
+                  1374.4789418586408
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                }
+              },
+              {
+                "axis": "z",
+                "side": -1,
+                "u": 0.9,
+                "position": [
+                  387.870040604568,
+                  1.1000000000000005,
+                  1374.4153021669397
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.1,
+                "position": [
+                  388.1125631070739,
+                  1.1000000000000005,
+                  1377.1073613854153
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.5,
+                "position": [
+                  388.34397181399777,
+                  1.1000000000000005,
+                  1377.0437216937141
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999886622
+                }
+              },
+              {
+                "axis": "z",
+                "side": 1,
+                "u": 0.9,
+                "position": [
+                  388.57538052092167,
+                  1.1000000000000005,
+                  1376.980082002013
+                ],
+                "hit": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999901694
+                },
+                "individual": {
+                  "damage": 0.035,
+                  "displacement": 0.019999999999901694
+                }
+              }
+            ],
+            "above": {
+              "damage": 0,
+              "displacement": 0
+            },
+            "passed": true
+          }
+        ],
+        "legacy": [
+          {
+            "x": -270.72000000001026,
+            "z": 249.35680000005163,
+            "r": 8,
+            "hx": 5.76,
+            "hz": 5.76,
+            "yaw": 0,
+            "kind": "building"
+          },
+          {
+            "x": 421.11999999998034,
+            "z": 1603.0080000000607,
+            "r": 4,
+            "hx": 2.88,
+            "hz": 2.88,
+            "yaw": 0,
+            "kind": "building"
+          }
+        ],
+        "ghosts": [
+          {
+            "position": [
+              -263.93000000001024,
+              1.0999999999999996,
+              249.35680000005163
+            ],
+            "hit": {
+              "damage": 0,
+              "displacement": 0
+            }
+          },
+          {
+            "position": [
+              425.02999999998036,
+              1.0999999999999996,
+              1603.0080000000607
+            ],
+            "hit": {
+              "damage": 0,
+              "displacement": 0
+            }
+          }
+        ],
+        "passed": true
+      }
+    ],
+    "passed": true
+  }
+}

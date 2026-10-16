@@ -11,10 +11,14 @@ import { gameCachePlugin } from "./scripts/game-cache-plugin.mjs";
 // The /__grok PWA paths are retained compatibility URLs owned by RUSH Israel.
 // Auth, database, multiplayer and preview-host template plugins are intentionally absent.
 export default defineConfig(({ command, isPreview }) => ({
+  cacheDir: ".cache/vite",
   server: {
     host: "0.0.0.0",
     port: 8080,
     strictPort: true,
+    // Test evidence and exact-tree historical fixtures are generated output.
+    // Watching their HTML/tsconfig files reloads an unrelated active race.
+    watch: { ignored: ["**/artifacts/**"] },
   },
   preview: {
     host: "127.0.0.1",
@@ -32,6 +36,11 @@ export default defineConfig(({ command, isPreview }) => ({
           nitro({
             preset: "vercel",
             serverDir: "./server",
+            routeRules: {
+              "/game/**": { headers: { "cache-control": "no-cache" } },
+              "/basis/**": { headers: { "cache-control": "no-cache" } },
+              "/": { headers: { "cache-control": "no-cache" } },
+            },
           }),
         ]
       : []),

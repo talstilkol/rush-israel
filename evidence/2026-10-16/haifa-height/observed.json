@@ -1,0 +1,270 @@
+{
+  "kind": "actual-haifa-invisible-collider-observation",
+  "position": {
+    "x": -38.31000000022051,
+    "y": 61.600651640436816,
+    "z": 221.99556663561205
+  },
+  "colliders": [
+    {
+      "x": -33.66000000022051,
+      "z": 220.4136000001982,
+      "r": 5,
+      "hx": 3.5999999999999996,
+      "hz": 3.5999999999999996,
+      "yaw": 0,
+      "kind": "building"
+    }
+  ],
+  "meshes": [
+    {
+      "name": "",
+      "type": "SphereGeometry",
+      "parameters": {
+        "radius": 8200,
+        "widthSegments": 48,
+        "heightSegments": 24,
+        "phiStart": 0,
+        "phiLength": 6.283185307179586,
+        "thetaStart": 0,
+        "thetaLength": 3.141592653589793
+      },
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "min": [
+        -8200,
+        -8200,
+        -8200
+      ],
+      "max": [
+        8200,
+        8200,
+        8200
+      ],
+      "atCarHeight": true
+    },
+    {
+      "name": "rush-base-ground",
+      "type": "PlaneGeometry",
+      "parameters": {
+        "width": 1631.660851581068,
+        "height": 1631.660851581068,
+        "widthSegments": 1,
+        "heightSegments": 1
+      },
+      "position": [
+        0,
+        -0.4,
+        0
+      ],
+      "min": [
+        -815.8304443359375,
+        -0.40000000000018116,
+        -815.8304443359375
+      ],
+      "max": [
+        815.8304443359375,
+        -0.3999999999998189,
+        815.8304443359375
+      ],
+      "atCarHeight": false
+    },
+    {
+      "name": "",
+      "type": "SphereGeometry",
+      "parameters": {
+        "radius": 8600,
+        "widthSegments": 24,
+        "heightSegments": 10,
+        "phiStart": 0,
+        "phiLength": 6.283185307179586,
+        "thetaStart": 0,
+        "thetaLength": 1.6964600329384885
+      },
+      "position": [
+        0,
+        -80,
+        0
+      ],
+      "min": [
+        -8591.68359375,
+        -1157.8658447265625,
+        -8591.68359375
+      ],
+      "max": [
+        8591.68359375,
+        8520,
+        8591.68359375
+      ],
+      "atCarHeight": true
+    },
+    {
+      "name": "rush-terrain",
+      "type": "BufferGeometry",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "min": [
+        -396,
+        -0.3499999940395355,
+        -348
+      ],
+      "max": [
+        768,
+        197.99996948242188,
+        420
+      ],
+      "atCarHeight": true
+    },
+    {
+      "name": "rush-race-road",
+      "type": "BufferGeometry",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "min": [
+        -215.0858154296875,
+        2.0399999618530273,
+        -164.38438415527344
+      ],
+      "max": [
+        581.8732299804688,
+        120.04000091552734,
+        243.43238830566406
+      ],
+      "atCarHeight": true
+    },
+    {
+      "name": "",
+      "type": "BufferGeometry",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "min": [
+        -215.6358184814453,
+        2.059999942779541,
+        -164.55714416503906
+      ],
+      "max": [
+        582.2816772460938,
+        120.58000183105469,
+        243.98239135742188
+      ],
+      "atCarHeight": true
+    },
+    {
+      "name": "",
+      "type": "BufferGeometry",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "min": [
+        -227.5357208251953,
+        2.009999990463257,
+        -168.29519653320312
+      ],
+      "max": [
+        591.1181030273438,
+        120.02999877929688,
+        255.88238525390625
+      ],
+      "atCarHeight": true
+    },
+    {
+      "name": "",
+      "type": "BoxGeometry",
+      "parameters": {
+        "width": 9.2,
+        "height": 8.4,
+        "depth": 7.6,
+        "widthSegments": 1,
+        "heightSegments": 1,
+        "depthSegments": 1
+      },
+      "position": [
+        -33.66000000022051,
+        4.2,
+        220.4136000001982
+      ],
+      "min": [
+        -38.25999990485308,
+        1.9073486345888568e-7,
+        216.6136000478819
+      ],
+      "max": [
+        -29.060000095587945,
+        8.399999809265136,
+        224.21359995251447
+      ],
+      "atCarHeight": false
+    },
+    {
+      "name": "",
+      "type": "ConeGeometry",
+      "parameters": {
+        "radius": 6.4399999999999995,
+        "height": 3.2,
+        "radialSegments": 4,
+        "heightSegments": 1,
+        "openEnded": false,
+        "thetaStart": 0,
+        "thetaLength": 6.283185307179586
+      },
+      "position": [
+        -33.66000000022051,
+        10,
+        220.4136000001982
+      ],
+      "min": [
+        -42.76753542282519,
+        8.399999976158142,
+        211.3060645775935
+      ],
+      "max": [
+        -24.552464577615833,
+        11.600000023841858,
+        229.52113542280287
+      ],
+      "atCarHeight": false
+    },
+    {
+      "name": "",
+      "type": "BoxGeometry",
+      "parameters": {
+        "width": 15.569616785791288,
+        "height": 0.06,
+        "depth": 0.06,
+        "widthSegments": 1,
+        "heightSegments": 1,
+        "depthSegments": 1
+      },
+      "position": [
+        -41.69002877096514,
+        63.75391200186557,
+        226.55079015762544
+      ],
+      "min": [
+        -44.006024440018216,
+        63.723912002536125,
+        219.10077905858014
+      ],
+      "max": [
+        -39.37403310191207,
+        63.78391200119502,
+        234.00080125667074
+      ],
+      "atCarHeight": false
+    }
+  ]
+}

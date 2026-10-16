@@ -1,0 +1,33 @@
+2026-10-16T11:16:51.101057+00:00 native-edge START
+native-edge EXIT 0
+2026-10-16T11:16:55.495880+00:00 native-grade START
+native-grade EXIT 0
+2026-10-16T11:16:59.948471+00:00 worlds-races START
+worlds-races EXIT 0
+2026-10-16T11:20:54.173371+00:00 driving START
+driving EXIT 0
+2026-10-16T11:25:28.579566+00:00 native-contact START
+native-contact EXIT 0
+2026-10-16T11:25:32.177177+00:00 water-native START
+water-native EXIT 0
+2026-10-16T11:25:36.576169+00:00 skill START
+Traceback (most recent call last):
+  File "/Users/tal/Documents/Codex/2026-10-11/new-chat/work/run-road-edge-height-browser-checks.py", line 12, in <module>
+    with open(W/('road-edge-height-'+name+'.log'),'w')as log:result=subprocess.run(cmd,cwd=cwd,env={**env,**extra},stdout=log,stderr=subprocess.STDOUT)
+                                                                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 557, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 1213, in communicate
+    self.wait()
+    ~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 1279, in wait
+    return self._wait(timeout=timeout)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 2084, in _wait
+    (pid, sts) = self._try_wait(0)
+                 ~~~~~~~~~~~~~~^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.4_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 2042, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

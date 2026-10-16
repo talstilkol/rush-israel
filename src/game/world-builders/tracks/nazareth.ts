@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { naz } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -19,7 +19,7 @@ export default function buildNazareth(context: TrackWorldBuilderContext): void {
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const ba = naz(32.7014, 35.2962);
     {
-      const n = nearestIndex(built.samples, ba.x, ba.z, 0);
+      const n = closestSample(built.samples, ba.x, ba.z);
       if (n.dist < built.width / 2 + 16) {
         const s = built.samples[n.index];
         ba.x = s.x + s.rx * (built.width / 2 + 32);
@@ -88,7 +88,7 @@ export default function buildNazareth(context: TrackWorldBuilderContext): void {
     add(cliff);
     for (let i = 0; i < 8; i++) {
       const p = naz(32.704 + i * 0.00035, 35.2994 + (i % 3) * 0.0002);
-      const near = nearestIndex(built.samples, p.x, p.z, 0);
+      const near = closestSample(built.samples, p.x, p.z);
       if (near.dist < built.width / 2 + 6) continue;
       const stall = new THREE.Mesh(new THREE.BoxGeometry(4.2, 3.4, 4.6), i % 2 ? cream : stone);
       stall.position.set(p.x, 1.7, p.z);

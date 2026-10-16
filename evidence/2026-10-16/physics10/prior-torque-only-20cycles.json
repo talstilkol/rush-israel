@@ -1,0 +1,104 @@
+{
+  "kind": "headless-allocation-counters",
+  "deviceAcceptance": false,
+  "expectedCycles": 20,
+  "measuredCycles": 20,
+  "status": "complete",
+  "warmup": [
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    }
+  ],
+  "baseline": {
+    "textures": 30,
+    "geometries": 1086
+  },
+  "rows": [
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    },
+    {
+      "textures": 30,
+      "geometries": 1086
+    }
+  ],
+  "passed": true
+}

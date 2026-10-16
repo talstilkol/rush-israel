@@ -59,7 +59,7 @@ export type TrackId =
 export type HandlingMode = "arcade" | "simcade";
 export type AssistFlags = { abs: boolean; tcs: boolean; esc: boolean };
 export type Quality = "low" | "mid" | "high";
-export type Collider = { x: number; z: number; r: number; kind?: "building" | "barrier" | "car"; hx?: number; hz?: number; yaw?: number };
+export type Collider = { x: number; z: number; r: number; minY?: number; maxY?: number; kind?: "building" | "barrier" | "car"; hx?: number; hz?: number; yaw?: number };
 export type Ramp = {
   x: number;
   z: number;
@@ -175,6 +175,7 @@ export type HudState = {
   drifting: boolean;
   wrongWay: boolean;
   countdown: number;
+  goFlash?: number;
   finished: boolean;
   place: number;
   onTrack: boolean;
@@ -213,6 +214,17 @@ export type HudState = {
   checkpointPing: number;
   rivalName: string;
   rivalGap: number;
+  board?: { name: string; you: boolean; gap: number }[];
+  lookingBack?: boolean;
+  lapNote?: string;
+  cashNote?: string;
+  voidRun?: boolean;
+  cash?: number;
+  camFlash?: number;
+  brakeWarn?: boolean;
+  saving?: boolean;
+  canLock?: boolean;
+  landmark?: string;
   sector: number;
   sectorDelta: number;
   gear: number;
@@ -260,9 +272,12 @@ export type RaceResult = {
   eventId?: string;
   weather: Weather;
   cash: number;
+  clean?: number;
   ghostBeaten: boolean;
   line: string;
   eligible?: boolean;
+  voidReason?: "stall" | "short" | "qa" | "invalid" | "assisted";
+  board?: { name: string; you: boolean }[];
 };
 
 export type Sample = {

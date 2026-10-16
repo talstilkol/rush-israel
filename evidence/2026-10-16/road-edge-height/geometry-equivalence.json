@@ -1,0 +1,1799 @@
+{
+  "parent": "3d8200ffe961bb24b905932b1393c07a28cc4d75",
+  "scope": "Actual rail/jersey vertex,normal,uv,index buffers for every committed TrackDef andboth sides;no fullscene/art/terrain acceptance",
+  "trackCount": 56,
+  "rows": [
+    {
+      "track": "hayarkon",
+      "type": "rail",
+      "side": -1,
+      "prior": "1b1230aa74c95e2e8fbe8d7b7786097c65b47ffb535618a785463e60eccb9f81",
+      "current": "1b1230aa74c95e2e8fbe8d7b7786097c65b47ffb535618a785463e60eccb9f81",
+      "vertices": 2822
+    },
+    {
+      "track": "hayarkon",
+      "type": "rail",
+      "side": 1,
+      "prior": "0aff27f669ab9c3af1552be72e0ca89a4f82d50df1727b660a37fb0f0e8c2d34",
+      "current": "0aff27f669ab9c3af1552be72e0ca89a4f82d50df1727b660a37fb0f0e8c2d34",
+      "vertices": 2822
+    },
+    {
+      "track": "hayarkon",
+      "type": "jersey",
+      "side": -1,
+      "prior": "6d485f39e6adba09543a8d14894b26bba9bfb424e1e0d6cd956ca09fa8802346",
+      "current": "6d485f39e6adba09543a8d14894b26bba9bfb424e1e0d6cd956ca09fa8802346",
+      "vertices": 2822
+    },
+    {
+      "track": "hayarkon",
+      "type": "jersey",
+      "side": 1,
+      "prior": "0e529a6ce50b5c76cfd1d6b6e07be6e2af1e49a7a0014e9a7c084ce9505140a4",
+      "current": "0e529a6ce50b5c76cfd1d6b6e07be6e2af1e49a7a0014e9a7c084ce9505140a4",
+      "vertices": 2822
+    },
+    {
+      "track": "oldjaffa",
+      "type": "rail",
+      "side": -1,
+      "prior": "c325e52dfbfbab19a84fa9266d246b924287102f0efdad95471b94b819dd19ff",
+      "current": "c325e52dfbfbab19a84fa9266d246b924287102f0efdad95471b94b819dd19ff",
+      "vertices": 1022
+    },
+    {
+      "track": "oldjaffa",
+      "type": "rail",
+      "side": 1,
+      "prior": "cf0d3e712a19f8ab6e73b0ed00ad4500e12fb725be066964ad3fbce7c2e0db64",
+      "current": "cf0d3e712a19f8ab6e73b0ed00ad4500e12fb725be066964ad3fbce7c2e0db64",
+      "vertices": 1022
+    },
+    {
+      "track": "oldjaffa",
+      "type": "jersey",
+      "side": -1,
+      "prior": "e456e3e425b5ecf80e0643962868d673ccb210ac1afab4137a481758c2ff9e7a",
+      "current": "e456e3e425b5ecf80e0643962868d673ccb210ac1afab4137a481758c2ff9e7a",
+      "vertices": 1022
+    },
+    {
+      "track": "oldjaffa",
+      "type": "jersey",
+      "side": 1,
+      "prior": "8fb6f75c7747e5fd9d271056346ec886fb594d3aa616112ae09ece0ce52e748c",
+      "current": "8fb6f75c7747e5fd9d271056346ec886fb594d3aa616112ae09ece0ce52e748c",
+      "vertices": 1022
+    },
+    {
+      "track": "telaviv",
+      "type": "rail",
+      "side": -1,
+      "prior": "4a551436bb6283724c0fae2f733b36c48bb9528a5eb1735f3c64c96385e33e8e",
+      "current": "4a551436bb6283724c0fae2f733b36c48bb9528a5eb1735f3c64c96385e33e8e",
+      "vertices": 722
+    },
+    {
+      "track": "telaviv",
+      "type": "rail",
+      "side": 1,
+      "prior": "47ea31ddc78ca85146f24eaa47ad0b9ff60def43981e6b586080c2b546960276",
+      "current": "47ea31ddc78ca85146f24eaa47ad0b9ff60def43981e6b586080c2b546960276",
+      "vertices": 722
+    },
+    {
+      "track": "telaviv",
+      "type": "jersey",
+      "side": -1,
+      "prior": "eaf81b73f7b9774551642f00c6ab1dd97b75fbd6955fb36fd7d88d0e46248364",
+      "current": "eaf81b73f7b9774551642f00c6ab1dd97b75fbd6955fb36fd7d88d0e46248364",
+      "vertices": 722
+    },
+    {
+      "track": "telaviv",
+      "type": "jersey",
+      "side": 1,
+      "prior": "f3e298e493a2bda99a262fef791ab7255b8c0b5130701f59bd93ad5c1d24a2aa",
+      "current": "f3e298e493a2bda99a262fef791ab7255b8c0b5130701f59bd93ad5c1d24a2aa",
+      "vertices": 722
+    },
+    {
+      "track": "namal",
+      "type": "rail",
+      "side": -1,
+      "prior": "9354569f166c3bd6018259803c1a7cde6a74b36f117f21808803658dda1c7b38",
+      "current": "9354569f166c3bd6018259803c1a7cde6a74b36f117f21808803658dda1c7b38",
+      "vertices": 1022
+    },
+    {
+      "track": "namal",
+      "type": "rail",
+      "side": 1,
+      "prior": "d400deaf445578f2d4f7e769ad626c6edac5f97fbafcbd20c9b95ca0e4503a1b",
+      "current": "d400deaf445578f2d4f7e769ad626c6edac5f97fbafcbd20c9b95ca0e4503a1b",
+      "vertices": 1022
+    },
+    {
+      "track": "namal",
+      "type": "jersey",
+      "side": -1,
+      "prior": "e9a56eb28b1abc0d3b2ab4a66bdb1a4f4695e3bb48a535e7c733bb4711cd1259",
+      "current": "e9a56eb28b1abc0d3b2ab4a66bdb1a4f4695e3bb48a535e7c733bb4711cd1259",
+      "vertices": 1022
+    },
+    {
+      "track": "namal",
+      "type": "jersey",
+      "side": 1,
+      "prior": "5a1e02c9527eb3bb52227b5b0e7084df663897159430d59be8c5b9f7df211387",
+      "current": "5a1e02c9527eb3bb52227b5b0e7084df663897159430d59be8c5b9f7df211387",
+      "vertices": 1022
+    },
+    {
+      "track": "jerusalem",
+      "type": "rail",
+      "side": -1,
+      "prior": "0a2c1f1dda4be90119a15c9359caff6a5939f1cd076e63b7448df9057899adce",
+      "current": "0a2c1f1dda4be90119a15c9359caff6a5939f1cd076e63b7448df9057899adce",
+      "vertices": 842
+    },
+    {
+      "track": "jerusalem",
+      "type": "rail",
+      "side": 1,
+      "prior": "5c82b7088e62d39eda2b988fa5d38f1e241f18acc91fc1eede0ab7a293da463a",
+      "current": "5c82b7088e62d39eda2b988fa5d38f1e241f18acc91fc1eede0ab7a293da463a",
+      "vertices": 842
+    },
+    {
+      "track": "jerusalem",
+      "type": "jersey",
+      "side": -1,
+      "prior": "d13488e390eeeb145f4c027f9ed8e3eabb3b7a13d164f79e6d1c8adbcfe38912",
+      "current": "d13488e390eeeb145f4c027f9ed8e3eabb3b7a13d164f79e6d1c8adbcfe38912",
+      "vertices": 842
+    },
+    {
+      "track": "jerusalem",
+      "type": "jersey",
+      "side": 1,
+      "prior": "b1e9f987b009ea6e16c2411365c61479339ae131b28c450d11ae548161954048",
+      "current": "b1e9f987b009ea6e16c2411365c61479339ae131b28c450d11ae548161954048",
+      "vertices": 842
+    },
+    {
+      "track": "haifa",
+      "type": "rail",
+      "side": -1,
+      "prior": "63ace985fa7a2058793a5aae85dc52a20ad2c145d5fb0e0136909c8337bf02be",
+      "current": "63ace985fa7a2058793a5aae85dc52a20ad2c145d5fb0e0136909c8337bf02be",
+      "vertices": 602
+    },
+    {
+      "track": "haifa",
+      "type": "rail",
+      "side": 1,
+      "prior": "56ca409470ca983d48d06cc51d7bf4e7393031e352bfe288c103ce479e19c5f7",
+      "current": "56ca409470ca983d48d06cc51d7bf4e7393031e352bfe288c103ce479e19c5f7",
+      "vertices": 602
+    },
+    {
+      "track": "haifa",
+      "type": "jersey",
+      "side": -1,
+      "prior": "b32e89411b3a802384b144a084685d37acaeb67117fad22bf0ea0222779c47dc",
+      "current": "b32e89411b3a802384b144a084685d37acaeb67117fad22bf0ea0222779c47dc",
+      "vertices": 602
+    },
+    {
+      "track": "haifa",
+      "type": "jersey",
+      "side": 1,
+      "prior": "432bdfc235653c03f536681bf42ef502bc1a63c1191b02b5c202eaa0c58ffa47",
+      "current": "432bdfc235653c03f536681bf42ef502bc1a63c1191b02b5c202eaa0c58ffa47",
+      "vertices": 602
+    },
+    {
+      "track": "eilat",
+      "type": "rail",
+      "side": -1,
+      "prior": "06d037edae06191be4c07c450b488e4c70d802561fdce6b49625e8c5f009ddbc",
+      "current": "06d037edae06191be4c07c450b488e4c70d802561fdce6b49625e8c5f009ddbc",
+      "vertices": 782
+    },
+    {
+      "track": "eilat",
+      "type": "rail",
+      "side": 1,
+      "prior": "d5769f871d1d809baa3f0d542f359fc98ccbf793469bb8e3b7b45f7fb9c33d0d",
+      "current": "d5769f871d1d809baa3f0d542f359fc98ccbf793469bb8e3b7b45f7fb9c33d0d",
+      "vertices": 782
+    },
+    {
+      "track": "eilat",
+      "type": "jersey",
+      "side": -1,
+      "prior": "b4f7e0bd4648d0b95a3173f2e5c189e1458c2fa923ec5f24a67ea5b4a3b17aaf",
+      "current": "b4f7e0bd4648d0b95a3173f2e5c189e1458c2fa923ec5f24a67ea5b4a3b17aaf",
+      "vertices": 782
+    },
+    {
+      "track": "eilat",
+      "type": "jersey",
+      "side": 1,
+      "prior": "493359b6e66f0ff80d76fef2bdf72a79db0db8a8f031da4164b9a0087bfdaef8",
+      "current": "493359b6e66f0ff80d76fef2bdf72a79db0db8a8f031da4164b9a0087bfdaef8",
+      "vertices": 782
+    },
+    {
+      "track": "rothschild",
+      "type": "rail",
+      "side": -1,
+      "prior": "2e493e3a5c24c3abbce9ef4c1490ea427d95eea12a580807472b366450733a38",
+      "current": "2e493e3a5c24c3abbce9ef4c1490ea427d95eea12a580807472b366450733a38",
+      "vertices": 962
+    },
+    {
+      "track": "rothschild",
+      "type": "rail",
+      "side": 1,
+      "prior": "69bcd4f56431aba7755a6915c62f1739e4198be87315d45d43d6de49a1159232",
+      "current": "69bcd4f56431aba7755a6915c62f1739e4198be87315d45d43d6de49a1159232",
+      "vertices": 962
+    },
+    {
+      "track": "rothschild",
+      "type": "jersey",
+      "side": -1,
+      "prior": "cfcd2c3fe465c4ec6acd0268b2da99b0b9d8ccd1060f6c4dbd7172a2bbf86f31",
+      "current": "cfcd2c3fe465c4ec6acd0268b2da99b0b9d8ccd1060f6c4dbd7172a2bbf86f31",
+      "vertices": 962
+    },
+    {
+      "track": "rothschild",
+      "type": "jersey",
+      "side": 1,
+      "prior": "f2493db20427aa7d1cb3538eb11366e2e0bc5ff6002c00b6dbdfe4b06c3432f3",
+      "current": "f2493db20427aa7d1cb3538eb11366e2e0bc5ff6002c00b6dbdfe4b06c3432f3",
+      "vertices": 962
+    },
+    {
+      "track": "ayalon",
+      "type": "rail",
+      "side": -1,
+      "prior": "177dbfb390da4f18bb6fcbdbcc78ea6d5834e71711bc7bad95f00b2b8514cabf",
+      "current": "177dbfb390da4f18bb6fcbdbcc78ea6d5834e71711bc7bad95f00b2b8514cabf",
+      "vertices": 1562
+    },
+    {
+      "track": "ayalon",
+      "type": "rail",
+      "side": 1,
+      "prior": "d7fdffd549edf9e3a9ee5df31990a27d367d2a21d71f73e6f1103ed62debf7a7",
+      "current": "d7fdffd549edf9e3a9ee5df31990a27d367d2a21d71f73e6f1103ed62debf7a7",
+      "vertices": 1562
+    },
+    {
+      "track": "ayalon",
+      "type": "jersey",
+      "side": -1,
+      "prior": "f6fdac9548b49ce310665be78b5567abaf2e12e359935162cea41f279c284d3e",
+      "current": "f6fdac9548b49ce310665be78b5567abaf2e12e359935162cea41f279c284d3e",
+      "vertices": 1562
+    },
+    {
+      "track": "ayalon",
+      "type": "jersey",
+      "side": 1,
+      "prior": "530dfc17bd2ea5d8a501e23723334e75489455e68b00fe64e2b6471ac04a3a58",
+      "current": "530dfc17bd2ea5d8a501e23723334e75489455e68b00fe64e2b6471ac04a3a58",
+      "vertices": 1562
+    },
+    {
+      "track": "caesarea",
+      "type": "rail",
+      "side": -1,
+      "prior": "240a2d79453299d86a3d0de60308502f624ab2608195d77bdfe7c9f1677aabc4",
+      "current": "240a2d79453299d86a3d0de60308502f624ab2608195d77bdfe7c9f1677aabc4",
+      "vertices": 722
+    },
+    {
+      "track": "caesarea",
+      "type": "rail",
+      "side": 1,
+      "prior": "dcdd9a09beb018fe472a3f16bfa2b9d5d31e588e83e90002e062cc20dfecaf76",
+      "current": "dcdd9a09beb018fe472a3f16bfa2b9d5d31e588e83e90002e062cc20dfecaf76",
+      "vertices": 722
+    },
+    {
+      "track": "caesarea",
+      "type": "jersey",
+      "side": -1,
+      "prior": "a52afb6f736e4cb2c2833592068462bbab18c7f3d67f77fb9e494e1804f58a32",
+      "current": "a52afb6f736e4cb2c2833592068462bbab18c7f3d67f77fb9e494e1804f58a32",
+      "vertices": 722
+    },
+    {
+      "track": "caesarea",
+      "type": "jersey",
+      "side": 1,
+      "prior": "1ff5c97b6ffaf7313b0441d7d7fe86fa805be9065261341ccc9254b4ee8f4f7e",
+      "current": "1ff5c97b6ffaf7313b0441d7d7fe86fa805be9065261341ccc9254b4ee8f4f7e",
+      "vertices": 722
+    },
+    {
+      "track": "deadsea",
+      "type": "rail",
+      "side": -1,
+      "prior": "e1c20adaccb06f810f76e19b93766cbeefe23927b3909f649a2ad0dbb45790fa",
+      "current": "e1c20adaccb06f810f76e19b93766cbeefe23927b3909f649a2ad0dbb45790fa",
+      "vertices": 902
+    },
+    {
+      "track": "deadsea",
+      "type": "rail",
+      "side": 1,
+      "prior": "9539902f7b645ec7b87fba3b4282be30c59a24799dc4904656c4fea8660bebe6",
+      "current": "9539902f7b645ec7b87fba3b4282be30c59a24799dc4904656c4fea8660bebe6",
+      "vertices": 902
+    },
+    {
+      "track": "deadsea",
+      "type": "jersey",
+      "side": -1,
+      "prior": "8320c1b30dd92be3d2d1695347fb85b702c770ae92e2d2d315d3e30969ebaccb",
+      "current": "8320c1b30dd92be3d2d1695347fb85b702c770ae92e2d2d315d3e30969ebaccb",
+      "vertices": 902
+    },
+    {
+      "track": "deadsea",
+      "type": "jersey",
+      "side": 1,
+      "prior": "eaeafb388771c1f817c0f7788c3ba6250ed4fc5cae2ef16a45105c97ade9a68f",
+      "current": "eaeafb388771c1f817c0f7788c3ba6250ed4fc5cae2ef16a45105c97ade9a68f",
+      "vertices": 902
+    },
+    {
+      "track": "acre",
+      "type": "rail",
+      "side": -1,
+      "prior": "c8a0dc56cfadb7b51d0b3a80c6c730cc29c5acdf7c266472a331b90191b7d416",
+      "current": "c8a0dc56cfadb7b51d0b3a80c6c730cc29c5acdf7c266472a331b90191b7d416",
+      "vertices": 602
+    },
+    {
+      "track": "acre",
+      "type": "rail",
+      "side": 1,
+      "prior": "75f5e8ba8ddcb7f1c85f68805d6f0e1c180d251d7db099e7c5e39cd1279a6062",
+      "current": "75f5e8ba8ddcb7f1c85f68805d6f0e1c180d251d7db099e7c5e39cd1279a6062",
+      "vertices": 602
+    },
+    {
+      "track": "acre",
+      "type": "jersey",
+      "side": -1,
+      "prior": "29e5a0721b6118240b6e38f7fe8739fc633c2ca84d878b1ce2d0889a44aa9396",
+      "current": "29e5a0721b6118240b6e38f7fe8739fc633c2ca84d878b1ce2d0889a44aa9396",
+      "vertices": 602
+    },
+    {
+      "track": "acre",
+      "type": "jersey",
+      "side": 1,
+      "prior": "f8a8b4436fb04b65a5a5072effb402fb9f0bc151043d31ca85de6aa57fcc5cae",
+      "current": "f8a8b4436fb04b65a5a5072effb402fb9f0bc151043d31ca85de6aa57fcc5cae",
+      "vertices": 602
+    },
+    {
+      "track": "centralpark",
+      "type": "rail",
+      "side": -1,
+      "prior": "5a69d59b352adc068c2ce5e91e55796017ff60af193ec84188b0e926aa723412",
+      "current": "5a69d59b352adc068c2ce5e91e55796017ff60af193ec84188b0e926aa723412",
+      "vertices": 842
+    },
+    {
+      "track": "centralpark",
+      "type": "rail",
+      "side": 1,
+      "prior": "34ff7b475b22e045fff01c107e0801a8337dddc669be96fd2ec0ad1380e9e758",
+      "current": "34ff7b475b22e045fff01c107e0801a8337dddc669be96fd2ec0ad1380e9e758",
+      "vertices": 842
+    },
+    {
+      "track": "centralpark",
+      "type": "jersey",
+      "side": -1,
+      "prior": "fe79b2650ff75f73662c1533dd04331df9a53f3c02dc1b5665c0e8fbebeff56f",
+      "current": "fe79b2650ff75f73662c1533dd04331df9a53f3c02dc1b5665c0e8fbebeff56f",
+      "vertices": 842
+    },
+    {
+      "track": "centralpark",
+      "type": "jersey",
+      "side": 1,
+      "prior": "77d111212bc4dd38ed0f225b2622569922a332b0c0a4d3fcd2f454743658e02c",
+      "current": "77d111212bc4dd38ed0f225b2622569922a332b0c0a4d3fcd2f454743658e02c",
+      "vertices": 842
+    },
+    {
+      "track": "timessquare",
+      "type": "rail",
+      "side": -1,
+      "prior": "690a651a472d9f6a29b0414b2da59e562c6e1f067d59ef17fa5753c9699b401d",
+      "current": "690a651a472d9f6a29b0414b2da59e562c6e1f067d59ef17fa5753c9699b401d",
+      "vertices": 722
+    },
+    {
+      "track": "timessquare",
+      "type": "rail",
+      "side": 1,
+      "prior": "476ca9db732831156aff96ddc6c972e9d5f88362140f534f7ac2e211020797b4",
+      "current": "476ca9db732831156aff96ddc6c972e9d5f88362140f534f7ac2e211020797b4",
+      "vertices": 722
+    },
+    {
+      "track": "timessquare",
+      "type": "jersey",
+      "side": -1,
+      "prior": "d9535c204979b4f9e8a8daff0868b2d3621d7affd630dc3e77d886b6aebf4d99",
+      "current": "d9535c204979b4f9e8a8daff0868b2d3621d7affd630dc3e77d886b6aebf4d99",
+      "vertices": 722
+    },
+    {
+      "track": "timessquare",
+      "type": "jersey",
+      "side": 1,
+      "prior": "7d42cdc7a439ea2f2eae1fc1febcfa384e92c4a344e33b3c6c7382b7f13440d4",
+      "current": "7d42cdc7a439ea2f2eae1fc1febcfa384e92c4a344e33b3c6c7382b7f13440d4",
+      "vertices": 722
+    },
+    {
+      "track": "brooklynbridge",
+      "type": "rail",
+      "side": -1,
+      "prior": "d27b27e5fcfc2998921cd839ec760e33190f7a8d6830b7c0511f4182cb7c8dd1",
+      "current": "d27b27e5fcfc2998921cd839ec760e33190f7a8d6830b7c0511f4182cb7c8dd1",
+      "vertices": 842
+    },
+    {
+      "track": "brooklynbridge",
+      "type": "rail",
+      "side": 1,
+      "prior": "d8c9d5d6ca3554671a54d8e8e1ac5f6b1fd475cbb70d154a4aa1e94741a53f84",
+      "current": "d8c9d5d6ca3554671a54d8e8e1ac5f6b1fd475cbb70d154a4aa1e94741a53f84",
+      "vertices": 842
+    },
+    {
+      "track": "brooklynbridge",
+      "type": "jersey",
+      "side": -1,
+      "prior": "91910dbefedc94aa7fbdd906d9c97e2c83bf24748dcee17a61bcac1439ede5b4",
+      "current": "91910dbefedc94aa7fbdd906d9c97e2c83bf24748dcee17a61bcac1439ede5b4",
+      "vertices": 842
+    },
+    {
+      "track": "brooklynbridge",
+      "type": "jersey",
+      "side": 1,
+      "prior": "586de4ac1007995e625ed2ce9ef277937c6946f8c66e69db7595680896bc1278",
+      "current": "586de4ac1007995e625ed2ce9ef277937c6946f8c66e69db7595680896bc1278",
+      "vertices": 842
+    },
+    {
+      "track": "manhattan",
+      "type": "rail",
+      "side": -1,
+      "prior": "5f148940ba0cc043070756353094757570822b0ed0f3c5e725e3ce3cfe56ed1c",
+      "current": "5f148940ba0cc043070756353094757570822b0ed0f3c5e725e3ce3cfe56ed1c",
+      "vertices": 1022
+    },
+    {
+      "track": "manhattan",
+      "type": "rail",
+      "side": 1,
+      "prior": "94a517468e6885aff1c8d7631fb13d921801fd810513e27135d217ac13cd3200",
+      "current": "94a517468e6885aff1c8d7631fb13d921801fd810513e27135d217ac13cd3200",
+      "vertices": 1022
+    },
+    {
+      "track": "manhattan",
+      "type": "jersey",
+      "side": -1,
+      "prior": "f2f337f57f04f0f11767a619e1746e74707a72aa59c24191694e34905857f08e",
+      "current": "f2f337f57f04f0f11767a619e1746e74707a72aa59c24191694e34905857f08e",
+      "vertices": 1022
+    },
+    {
+      "track": "manhattan",
+      "type": "jersey",
+      "side": 1,
+      "prior": "95424964c078ea7c45ad8da40cab017ba964912cc25ffd4422b16f133f937a21",
+      "current": "95424964c078ea7c45ad8da40cab017ba964912cc25ffd4422b16f133f937a21",
+      "vertices": 1022
+    },
+    {
+      "track": "beersheva",
+      "type": "rail",
+      "side": -1,
+      "prior": "0c411d6bab3d7dc2b7578ef179878c63c4dd32358359af915066842a0caf5e95",
+      "current": "0c411d6bab3d7dc2b7578ef179878c63c4dd32358359af915066842a0caf5e95",
+      "vertices": 902
+    },
+    {
+      "track": "beersheva",
+      "type": "rail",
+      "side": 1,
+      "prior": "fb891754370170360efd4810bbd635e9b36f34b21365ba7a9afc4b46657083ed",
+      "current": "fb891754370170360efd4810bbd635e9b36f34b21365ba7a9afc4b46657083ed",
+      "vertices": 902
+    },
+    {
+      "track": "beersheva",
+      "type": "jersey",
+      "side": -1,
+      "prior": "7433fee3ca9965a29b523e0135c24b0bf9f08829f6bf0f959d23a7a73a50e188",
+      "current": "7433fee3ca9965a29b523e0135c24b0bf9f08829f6bf0f959d23a7a73a50e188",
+      "vertices": 902
+    },
+    {
+      "track": "beersheva",
+      "type": "jersey",
+      "side": 1,
+      "prior": "9018be64e5ba687da2fd8d26bf496807284b3c89232be6c947d2b1a65d0054e7",
+      "current": "9018be64e5ba687da2fd8d26bf496807284b3c89232be6c947d2b1a65d0054e7",
+      "vertices": 902
+    },
+    {
+      "track": "netanya",
+      "type": "rail",
+      "side": -1,
+      "prior": "40fff592bf9cdc4ba47a5a460d88a47f223989192979d35c656234917e6cf439",
+      "current": "40fff592bf9cdc4ba47a5a460d88a47f223989192979d35c656234917e6cf439",
+      "vertices": 722
+    },
+    {
+      "track": "netanya",
+      "type": "rail",
+      "side": 1,
+      "prior": "ad09afcef4575a4c50aabd664dc46411b35ad351994ad1bd7869c88d8015a284",
+      "current": "ad09afcef4575a4c50aabd664dc46411b35ad351994ad1bd7869c88d8015a284",
+      "vertices": 722
+    },
+    {
+      "track": "netanya",
+      "type": "jersey",
+      "side": -1,
+      "prior": "6e2e1734186613497fbda8ba9697dd11039cb4517d6c3c4fe394d4927e0482bb",
+      "current": "6e2e1734186613497fbda8ba9697dd11039cb4517d6c3c4fe394d4927e0482bb",
+      "vertices": 722
+    },
+    {
+      "track": "netanya",
+      "type": "jersey",
+      "side": 1,
+      "prior": "dc33798353031efa2e49aa2451d195fbac51b4f14bf19765f06ed95a877dc1d1",
+      "current": "dc33798353031efa2e49aa2451d195fbac51b4f14bf19765f06ed95a877dc1d1",
+      "vertices": 722
+    },
+    {
+      "track": "hw1",
+      "type": "rail",
+      "side": -1,
+      "prior": "8bbceb14cf8c948c39cd3e6202b161551f8a1f280b9d4aad7daeedc735015afe",
+      "current": "8bbceb14cf8c948c39cd3e6202b161551f8a1f280b9d4aad7daeedc735015afe",
+      "vertices": 362
+    },
+    {
+      "track": "hw1",
+      "type": "rail",
+      "side": 1,
+      "prior": "bfeeac9ef4421fcd530033a7194c3323592cc7783e6126359613446a2c238746",
+      "current": "bfeeac9ef4421fcd530033a7194c3323592cc7783e6126359613446a2c238746",
+      "vertices": 362
+    },
+    {
+      "track": "hw1",
+      "type": "jersey",
+      "side": -1,
+      "prior": "3df17f1ff33b271b518141aebf65577419d22da7cdcfd07f2868c3f6fe4db28e",
+      "current": "3df17f1ff33b271b518141aebf65577419d22da7cdcfd07f2868c3f6fe4db28e",
+      "vertices": 362
+    },
+    {
+      "track": "hw1",
+      "type": "jersey",
+      "side": 1,
+      "prior": "4128ebbbc3eaff781bf42e855ef8ffd4069c004e12f11209febf1e6419d12430",
+      "current": "4128ebbbc3eaff781bf42e855ef8ffd4069c004e12f11209febf1e6419d12430",
+      "vertices": 362
+    },
+    {
+      "track": "herzliya",
+      "type": "rail",
+      "side": -1,
+      "prior": "77b12603a0326cef0ca4e4b4bf68854e9790437ecabe60b054aeb5f2d5bafd07",
+      "current": "77b12603a0326cef0ca4e4b4bf68854e9790437ecabe60b054aeb5f2d5bafd07",
+      "vertices": 662
+    },
+    {
+      "track": "herzliya",
+      "type": "rail",
+      "side": 1,
+      "prior": "e0408795fb1fc0cf2d4d84a35eb26c98a397fd0996102614e5b76742589be41b",
+      "current": "e0408795fb1fc0cf2d4d84a35eb26c98a397fd0996102614e5b76742589be41b",
+      "vertices": 662
+    },
+    {
+      "track": "herzliya",
+      "type": "jersey",
+      "side": -1,
+      "prior": "ab93ccca61b6d2cc62096e6089325c8cfdc39e7b5e180e172b7dbfa9ec3cf4e8",
+      "current": "ab93ccca61b6d2cc62096e6089325c8cfdc39e7b5e180e172b7dbfa9ec3cf4e8",
+      "vertices": 662
+    },
+    {
+      "track": "herzliya",
+      "type": "jersey",
+      "side": 1,
+      "prior": "3b6fc74e1ab17f63c83da73fe7e06ffcf073e3b04632b3b0a89d380cbb527cb4",
+      "current": "3b6fc74e1ab17f63c83da73fe7e06ffcf073e3b04632b3b0a89d380cbb527cb4",
+      "vertices": 662
+    },
+    {
+      "track": "hanikra",
+      "type": "rail",
+      "side": -1,
+      "prior": "67360bfe583b5dec963fe9cc3b0ad693306b135a1d2f6cfde0e1357fc3321518",
+      "current": "67360bfe583b5dec963fe9cc3b0ad693306b135a1d2f6cfde0e1357fc3321518",
+      "vertices": 722
+    },
+    {
+      "track": "hanikra",
+      "type": "rail",
+      "side": 1,
+      "prior": "c24bcf108ef16b92fc471f9e8d8cceb6c6288bb43876a0e8a78e10b002b7891f",
+      "current": "c24bcf108ef16b92fc471f9e8d8cceb6c6288bb43876a0e8a78e10b002b7891f",
+      "vertices": 722
+    },
+    {
+      "track": "hanikra",
+      "type": "jersey",
+      "side": -1,
+      "prior": "363039e3d5193bef4a8f15c4cbd6a3b5a6f4f3a850b69fc1e8ae4b9cba27c07a",
+      "current": "363039e3d5193bef4a8f15c4cbd6a3b5a6f4f3a850b69fc1e8ae4b9cba27c07a",
+      "vertices": 722
+    },
+    {
+      "track": "hanikra",
+      "type": "jersey",
+      "side": 1,
+      "prior": "b4366ac3fcc1412c64807e5b154f942ef0fe00de6e7d07b22225c6d2433ab718",
+      "current": "b4366ac3fcc1412c64807e5b154f942ef0fe00de6e7d07b22225c6d2433ab718",
+      "vertices": 722
+    },
+    {
+      "track": "haifaport",
+      "type": "rail",
+      "side": -1,
+      "prior": "922a3634986dd6146454c1d3d5247a30554603eabe93b81dcc77320dc5216d4c",
+      "current": "922a3634986dd6146454c1d3d5247a30554603eabe93b81dcc77320dc5216d4c",
+      "vertices": 962
+    },
+    {
+      "track": "haifaport",
+      "type": "rail",
+      "side": 1,
+      "prior": "678af459d0b06267f3a479bda9611e77992b409ce9a0dc14bf07195d76cdb16e",
+      "current": "678af459d0b06267f3a479bda9611e77992b409ce9a0dc14bf07195d76cdb16e",
+      "vertices": 962
+    },
+    {
+      "track": "haifaport",
+      "type": "jersey",
+      "side": -1,
+      "prior": "47004bea7cdc12dc2df804cb052a25d3106d0e813e9cfc2e15cefed01952ff1b",
+      "current": "47004bea7cdc12dc2df804cb052a25d3106d0e813e9cfc2e15cefed01952ff1b",
+      "vertices": 962
+    },
+    {
+      "track": "haifaport",
+      "type": "jersey",
+      "side": 1,
+      "prior": "b8dbd9f254bb73283610579c797af71dfdbe696455aaf2b9b9644476d6cfea00",
+      "current": "b8dbd9f254bb73283610579c797af71dfdbe696455aaf2b9b9644476d6cfea00",
+      "vertices": 962
+    },
+    {
+      "track": "stellamaris",
+      "type": "rail",
+      "side": -1,
+      "prior": "6f43df853a8f8c97785ba0f6d2b4d2f7ba02b6b5d29ff95fc1cc522e1dd7cc21",
+      "current": "6f43df853a8f8c97785ba0f6d2b4d2f7ba02b6b5d29ff95fc1cc522e1dd7cc21",
+      "vertices": 422
+    },
+    {
+      "track": "stellamaris",
+      "type": "rail",
+      "side": 1,
+      "prior": "2fe4fdeac9a3cc002d59e8e5c56c0db5d47d28bd27a97cc7bb07b3356acae79f",
+      "current": "2fe4fdeac9a3cc002d59e8e5c56c0db5d47d28bd27a97cc7bb07b3356acae79f",
+      "vertices": 422
+    },
+    {
+      "track": "stellamaris",
+      "type": "jersey",
+      "side": -1,
+      "prior": "76e4b42cf886d7012416dd09f1eed60eb4933bf3dbbb105362db096eae1be1c8",
+      "current": "76e4b42cf886d7012416dd09f1eed60eb4933bf3dbbb105362db096eae1be1c8",
+      "vertices": 422
+    },
+    {
+      "track": "stellamaris",
+      "type": "jersey",
+      "side": 1,
+      "prior": "d43c9f38c3ab5d638f943fb10d0de1c9f772017b422f47a83499fa82e964ada3",
+      "current": "d43c9f38c3ab5d638f943fb10d0de1c9f772017b422f47a83499fa82e964ada3",
+      "vertices": 422
+    },
+    {
+      "track": "tiberias",
+      "type": "rail",
+      "side": -1,
+      "prior": "faa2030dadfbcb465fdc6a55b71e75158042131aa680b2e4e960e145a12c26c5",
+      "current": "faa2030dadfbcb465fdc6a55b71e75158042131aa680b2e4e960e145a12c26c5",
+      "vertices": 722
+    },
+    {
+      "track": "tiberias",
+      "type": "rail",
+      "side": 1,
+      "prior": "d35b6f11b9c6ae5a1f5572937346202882ee13c1440d6a2259a6c697ee7d622a",
+      "current": "d35b6f11b9c6ae5a1f5572937346202882ee13c1440d6a2259a6c697ee7d622a",
+      "vertices": 722
+    },
+    {
+      "track": "tiberias",
+      "type": "jersey",
+      "side": -1,
+      "prior": "b03c781cd2444ddd5cd95b4f24bdf41bc201ad228fdce1de24fa1ec89c93ccc9",
+      "current": "b03c781cd2444ddd5cd95b4f24bdf41bc201ad228fdce1de24fa1ec89c93ccc9",
+      "vertices": 722
+    },
+    {
+      "track": "tiberias",
+      "type": "jersey",
+      "side": 1,
+      "prior": "9da6c66f7fbd193fa6afe08845b2ab56fc245339cd63f1fb3c367a75fb3231bc",
+      "current": "9da6c66f7fbd193fa6afe08845b2ab56fc245339cd63f1fb3c367a75fb3231bc",
+      "vertices": 722
+    },
+    {
+      "track": "golan",
+      "type": "rail",
+      "side": -1,
+      "prior": "4e6c5c2c49c3cf44289a230f7b56b59f24f4ea02512cbb060d14d7b08b43d072",
+      "current": "4e6c5c2c49c3cf44289a230f7b56b59f24f4ea02512cbb060d14d7b08b43d072",
+      "vertices": 662
+    },
+    {
+      "track": "golan",
+      "type": "rail",
+      "side": 1,
+      "prior": "69c58308549837da7ab81d2496d56cfe3f1cb3383c640ffc4b54f0faa73e713e",
+      "current": "69c58308549837da7ab81d2496d56cfe3f1cb3383c640ffc4b54f0faa73e713e",
+      "vertices": 662
+    },
+    {
+      "track": "golan",
+      "type": "jersey",
+      "side": -1,
+      "prior": "450c072c1d715827e0c5286ce8a9644a932f1c2704949e10aec436ee365f7544",
+      "current": "450c072c1d715827e0c5286ce8a9644a932f1c2704949e10aec436ee365f7544",
+      "vertices": 662
+    },
+    {
+      "track": "golan",
+      "type": "jersey",
+      "side": 1,
+      "prior": "ad2f751cadb877458195b94a1c353692c4299f9c5abc5fbc5c23f5ea28280bd7",
+      "current": "ad2f751cadb877458195b94a1c353692c4299f9c5abc5fbc5c23f5ea28280bd7",
+      "vertices": 662
+    },
+    {
+      "track": "hermon",
+      "type": "rail",
+      "side": -1,
+      "prior": "f310bbad45225d9c1a91c940f98d6a530fb800d512cf852ca4dcb8f147463a80",
+      "current": "f310bbad45225d9c1a91c940f98d6a530fb800d512cf852ca4dcb8f147463a80",
+      "vertices": 962
+    },
+    {
+      "track": "hermon",
+      "type": "rail",
+      "side": 1,
+      "prior": "7db1de3d1d1593bd1d5d38a2b9b37e38b3ebbca30f8bb67e2c6017fc6df5b23a",
+      "current": "7db1de3d1d1593bd1d5d38a2b9b37e38b3ebbca30f8bb67e2c6017fc6df5b23a",
+      "vertices": 962
+    },
+    {
+      "track": "hermon",
+      "type": "jersey",
+      "side": -1,
+      "prior": "2e0eafe7908e647ebf7350767bd903f1c9f84f748563595cbf5aeebe9ae4bfad",
+      "current": "2e0eafe7908e647ebf7350767bd903f1c9f84f748563595cbf5aeebe9ae4bfad",
+      "vertices": 962
+    },
+    {
+      "track": "hermon",
+      "type": "jersey",
+      "side": 1,
+      "prior": "def5593c76d442840e2ba3d12daf3decf40f3582342eb5cfb152fa999f12d1d0",
+      "current": "def5593c76d442840e2ba3d12daf3decf40f3582342eb5cfb152fa999f12d1d0",
+      "vertices": 962
+    },
+    {
+      "track": "hw6",
+      "type": "rail",
+      "side": -1,
+      "prior": "cd3eafc3363377dc488ec3eceda51f14d2818a37d45f8fe0de4816f822a34a29",
+      "current": "cd3eafc3363377dc488ec3eceda51f14d2818a37d45f8fe0de4816f822a34a29",
+      "vertices": 902
+    },
+    {
+      "track": "hw6",
+      "type": "rail",
+      "side": 1,
+      "prior": "1ca6004c64564d37390792ea8be8c808a820f748ba4f5dc0a400b3b5f2a6e77a",
+      "current": "1ca6004c64564d37390792ea8be8c808a820f748ba4f5dc0a400b3b5f2a6e77a",
+      "vertices": 902
+    },
+    {
+      "track": "hw6",
+      "type": "jersey",
+      "side": -1,
+      "prior": "028f4406105e5269768d2cccb014234eb9dc2df8bb97a4b17ceafeeb73425e13",
+      "current": "028f4406105e5269768d2cccb014234eb9dc2df8bb97a4b17ceafeeb73425e13",
+      "vertices": 902
+    },
+    {
+      "track": "hw6",
+      "type": "jersey",
+      "side": 1,
+      "prior": "4b2aec60fa1c67f3c0ccfabf90e726678eee338bfe91bcb26ba5dd27f9a1188e",
+      "current": "4b2aec60fa1c67f3c0ccfabf90e726678eee338bfe91bcb26ba5dd27f9a1188e",
+      "vertices": 902
+    },
+    {
+      "track": "hw2",
+      "type": "rail",
+      "side": -1,
+      "prior": "91f95c0486c78bf316a16327ca9086a6d2f31e330478a8956f762091cba29b76",
+      "current": "91f95c0486c78bf316a16327ca9086a6d2f31e330478a8956f762091cba29b76",
+      "vertices": 902
+    },
+    {
+      "track": "hw2",
+      "type": "rail",
+      "side": 1,
+      "prior": "79abd7a52be85eda842499cea4fe1245445ed0c415c87338b2745d82f47aab52",
+      "current": "79abd7a52be85eda842499cea4fe1245445ed0c415c87338b2745d82f47aab52",
+      "vertices": 902
+    },
+    {
+      "track": "hw2",
+      "type": "jersey",
+      "side": -1,
+      "prior": "43e910a41725d6831b073ac072b4d5f0da68740985f7446e07d476b0b7023aa4",
+      "current": "43e910a41725d6831b073ac072b4d5f0da68740985f7446e07d476b0b7023aa4",
+      "vertices": 902
+    },
+    {
+      "track": "hw2",
+      "type": "jersey",
+      "side": 1,
+      "prior": "a51be893759c8192250fb185001dd53f3687013e63485d1e8259bd4089424d61",
+      "current": "a51be893759c8192250fb185001dd53f3687013e63485d1e8259bd4089424d61",
+      "vertices": 902
+    },
+    {
+      "track": "hw90",
+      "type": "rail",
+      "side": -1,
+      "prior": "b1c6ef67c6c6610944c2ac472b814f1426e6f3c36047b2b644b46fcb2c1febbb",
+      "current": "b1c6ef67c6c6610944c2ac472b814f1426e6f3c36047b2b644b46fcb2c1febbb",
+      "vertices": 782
+    },
+    {
+      "track": "hw90",
+      "type": "rail",
+      "side": 1,
+      "prior": "0cffa640953c7896d8ba2b5baa7a5ff4a50b9afcdd8b91d645b1e7b6925bccf6",
+      "current": "0cffa640953c7896d8ba2b5baa7a5ff4a50b9afcdd8b91d645b1e7b6925bccf6",
+      "vertices": 782
+    },
+    {
+      "track": "hw90",
+      "type": "jersey",
+      "side": -1,
+      "prior": "1bcb583906d785bd90064ed461a7ec4a4c5d66092f8f5c49b79760f89216b59b",
+      "current": "1bcb583906d785bd90064ed461a7ec4a4c5d66092f8f5c49b79760f89216b59b",
+      "vertices": 782
+    },
+    {
+      "track": "hw90",
+      "type": "jersey",
+      "side": 1,
+      "prior": "f3a975c35b06bea8241dfcb60c48150ea4f922071a7e724f3032e82d2ff7b856",
+      "current": "f3a975c35b06bea8241dfcb60c48150ea4f922071a7e724f3032e82d2ff7b856",
+      "vertices": 782
+    },
+    {
+      "track": "petah",
+      "type": "rail",
+      "side": -1,
+      "prior": "96c3314d813b529199beba59e96f8cde0c68519c2a720abaa49db3c09da4e810",
+      "current": "96c3314d813b529199beba59e96f8cde0c68519c2a720abaa49db3c09da4e810",
+      "vertices": 722
+    },
+    {
+      "track": "petah",
+      "type": "rail",
+      "side": 1,
+      "prior": "7fc076bdaad5f7ebf32f272a41ed06660519a54b332a3f40d8c9deea42179803",
+      "current": "7fc076bdaad5f7ebf32f272a41ed06660519a54b332a3f40d8c9deea42179803",
+      "vertices": 722
+    },
+    {
+      "track": "petah",
+      "type": "jersey",
+      "side": -1,
+      "prior": "efb6dbee0ec5dae86e71e643bc3766e1965f5b0ffe9b3d671d92bf2f78655fee",
+      "current": "efb6dbee0ec5dae86e71e643bc3766e1965f5b0ffe9b3d671d92bf2f78655fee",
+      "vertices": 722
+    },
+    {
+      "track": "petah",
+      "type": "jersey",
+      "side": 1,
+      "prior": "defaf1292e9edbdb36c1cbe2ee419ed92eb44028b35ac0da26f92d3460a074aa",
+      "current": "defaf1292e9edbdb36c1cbe2ee419ed92eb44028b35ac0da26f92d3460a074aa",
+      "vertices": 722
+    },
+    {
+      "track": "rishon",
+      "type": "rail",
+      "side": -1,
+      "prior": "15d4809573088eeb8e04e226355a2765d7859651b1786f0f146743370cc3f6ad",
+      "current": "15d4809573088eeb8e04e226355a2765d7859651b1786f0f146743370cc3f6ad",
+      "vertices": 542
+    },
+    {
+      "track": "rishon",
+      "type": "rail",
+      "side": 1,
+      "prior": "204b220f0b0e5f37a6562a0740398cb67276af562e3a802f3de2adb3215cb9d3",
+      "current": "204b220f0b0e5f37a6562a0740398cb67276af562e3a802f3de2adb3215cb9d3",
+      "vertices": 542
+    },
+    {
+      "track": "rishon",
+      "type": "jersey",
+      "side": -1,
+      "prior": "1cae7ccc99acd4704d5656e29a416b83edb9458a233bc8ecac1bebf17928c106",
+      "current": "1cae7ccc99acd4704d5656e29a416b83edb9458a233bc8ecac1bebf17928c106",
+      "vertices": 542
+    },
+    {
+      "track": "rishon",
+      "type": "jersey",
+      "side": 1,
+      "prior": "18d9e43712c3ca16fb1c43c43629d52796d17b77cc9207539e8f0a7b1628a22a",
+      "current": "18d9e43712c3ca16fb1c43c43629d52796d17b77cc9207539e8f0a7b1628a22a",
+      "vertices": 542
+    },
+    {
+      "track": "ashdod",
+      "type": "rail",
+      "side": -1,
+      "prior": "00da8d277fa99bd44eca686e16c0c5af7d3e9b3f9482b921092340b1070451ea",
+      "current": "00da8d277fa99bd44eca686e16c0c5af7d3e9b3f9482b921092340b1070451ea",
+      "vertices": 602
+    },
+    {
+      "track": "ashdod",
+      "type": "rail",
+      "side": 1,
+      "prior": "37d9b89b58bbeb4737341ebf61cd2c3677ee01ea8dcb7971fba91a23e743e591",
+      "current": "37d9b89b58bbeb4737341ebf61cd2c3677ee01ea8dcb7971fba91a23e743e591",
+      "vertices": 602
+    },
+    {
+      "track": "ashdod",
+      "type": "jersey",
+      "side": -1,
+      "prior": "d9fd83778fc8ec903d3bbf3eb619ed5c0b9f9aea5b677842bf28d8182c988e5b",
+      "current": "d9fd83778fc8ec903d3bbf3eb619ed5c0b9f9aea5b677842bf28d8182c988e5b",
+      "vertices": 602
+    },
+    {
+      "track": "ashdod",
+      "type": "jersey",
+      "side": 1,
+      "prior": "d950b575ab1a1d5f183d2e90c752ac78a19c04e35be0532b18a5f77c3f0fee68",
+      "current": "d950b575ab1a1d5f183d2e90c752ac78a19c04e35be0532b18a5f77c3f0fee68",
+      "vertices": 602
+    },
+    {
+      "track": "ashkelon",
+      "type": "rail",
+      "side": -1,
+      "prior": "a3905e73f08729967d0995497038b19f3ae1c8801a68f022cc7eb394f0b19dd9",
+      "current": "a3905e73f08729967d0995497038b19f3ae1c8801a68f022cc7eb394f0b19dd9",
+      "vertices": 602
+    },
+    {
+      "track": "ashkelon",
+      "type": "rail",
+      "side": 1,
+      "prior": "dc0e25c2f5557464e087568ca658bfb4417dfde1240cc1e094e544dfb7f61846",
+      "current": "dc0e25c2f5557464e087568ca658bfb4417dfde1240cc1e094e544dfb7f61846",
+      "vertices": 602
+    },
+    {
+      "track": "ashkelon",
+      "type": "jersey",
+      "side": -1,
+      "prior": "89deeddcbb4dbe275a183129ede4ddf820d87c07f812744fda5aaa5d159d5f5c",
+      "current": "89deeddcbb4dbe275a183129ede4ddf820d87c07f812744fda5aaa5d159d5f5c",
+      "vertices": 602
+    },
+    {
+      "track": "ashkelon",
+      "type": "jersey",
+      "side": 1,
+      "prior": "24071fa034e0d0e310cd17a13a1afbdef59bc37b8ff1ac336aca454fc8cb1326",
+      "current": "24071fa034e0d0e310cd17a13a1afbdef59bc37b8ff1ac336aca454fc8cb1326",
+      "vertices": 602
+    },
+    {
+      "track": "scopus",
+      "type": "rail",
+      "side": -1,
+      "prior": "0aeca377988113fab76d282067732df003151e2101bfea09372c934dddcd0a63",
+      "current": "0aeca377988113fab76d282067732df003151e2101bfea09372c934dddcd0a63",
+      "vertices": 662
+    },
+    {
+      "track": "scopus",
+      "type": "rail",
+      "side": 1,
+      "prior": "b2d69e8f130955438ed88fbd623e6962597188bd8ce9cd99a84ad9eef7df190f",
+      "current": "b2d69e8f130955438ed88fbd623e6962597188bd8ce9cd99a84ad9eef7df190f",
+      "vertices": 662
+    },
+    {
+      "track": "scopus",
+      "type": "jersey",
+      "side": -1,
+      "prior": "c1e40a6ad6cbc02e2ce18bb77084207c830f7b1c41b558f20f6a305d695da1e3",
+      "current": "c1e40a6ad6cbc02e2ce18bb77084207c830f7b1c41b558f20f6a305d695da1e3",
+      "vertices": 662
+    },
+    {
+      "track": "scopus",
+      "type": "jersey",
+      "side": 1,
+      "prior": "e3cafed3848d7173f7131c94c91e7e00554fb10b8e8e87eefead4f9ea947457a",
+      "current": "e3cafed3848d7173f7131c94c91e7e00554fb10b8e8e87eefead4f9ea947457a",
+      "vertices": 662
+    },
+    {
+      "track": "walls",
+      "type": "rail",
+      "side": -1,
+      "prior": "8aedd8126f8a346ac00b5a20f06fa42c64255125a7dca03498c71665b27f426c",
+      "current": "8aedd8126f8a346ac00b5a20f06fa42c64255125a7dca03498c71665b27f426c",
+      "vertices": 902
+    },
+    {
+      "track": "walls",
+      "type": "rail",
+      "side": 1,
+      "prior": "ff78acc92becdfff80da8aa66a0b4e309a909a5a226e2ab6c5050b1664c0c2fe",
+      "current": "ff78acc92becdfff80da8aa66a0b4e309a909a5a226e2ab6c5050b1664c0c2fe",
+      "vertices": 902
+    },
+    {
+      "track": "walls",
+      "type": "jersey",
+      "side": -1,
+      "prior": "e43be7ab8fa9575282a21cb6e19ce2ee09bcb7041c45f83ac711f45760b3e8f3",
+      "current": "e43be7ab8fa9575282a21cb6e19ce2ee09bcb7041c45f83ac711f45760b3e8f3",
+      "vertices": 902
+    },
+    {
+      "track": "walls",
+      "type": "jersey",
+      "side": 1,
+      "prior": "21e908c83956162ac5dfe921a93c5fc22acb0d4eeca1b1b0aba80f564e85690d",
+      "current": "21e908c83956162ac5dfe921a93c5fc22acb0d4eeca1b1b0aba80f564e85690d",
+      "vertices": 902
+    },
+    {
+      "track": "modiin",
+      "type": "rail",
+      "side": -1,
+      "prior": "0de3548be7d110ca81f9426a770161535a5a952a152e3e365646d19ea62c7950",
+      "current": "0de3548be7d110ca81f9426a770161535a5a952a152e3e365646d19ea62c7950",
+      "vertices": 602
+    },
+    {
+      "track": "modiin",
+      "type": "rail",
+      "side": 1,
+      "prior": "00fc229a940ea7d2b105b92759fec4a68f0c07c2f10d79aa3ddbda366c3637ee",
+      "current": "00fc229a940ea7d2b105b92759fec4a68f0c07c2f10d79aa3ddbda366c3637ee",
+      "vertices": 602
+    },
+    {
+      "track": "modiin",
+      "type": "jersey",
+      "side": -1,
+      "prior": "664c3feff78a0dd6792068f42365b5a05840c4e089baba1ae88d80233620fd82",
+      "current": "664c3feff78a0dd6792068f42365b5a05840c4e089baba1ae88d80233620fd82",
+      "vertices": 602
+    },
+    {
+      "track": "modiin",
+      "type": "jersey",
+      "side": 1,
+      "prior": "c696d58b96efa2eae7279590d0aa45581507179c93d0a394eb25e91b7b008089",
+      "current": "c696d58b96efa2eae7279590d0aa45581507179c93d0a394eb25e91b7b008089",
+      "vertices": 602
+    },
+    {
+      "track": "ramon",
+      "type": "rail",
+      "side": -1,
+      "prior": "384ab1f691d7708c06a4d6deb96105b2c6b1944b147e46172756bb1c34cf53a7",
+      "current": "384ab1f691d7708c06a4d6deb96105b2c6b1944b147e46172756bb1c34cf53a7",
+      "vertices": 1022
+    },
+    {
+      "track": "ramon",
+      "type": "rail",
+      "side": 1,
+      "prior": "d35396f8069eeb0ce36adaeae84579aa6dbb3f512b1141a279652345b35c294b",
+      "current": "d35396f8069eeb0ce36adaeae84579aa6dbb3f512b1141a279652345b35c294b",
+      "vertices": 1022
+    },
+    {
+      "track": "ramon",
+      "type": "jersey",
+      "side": -1,
+      "prior": "6fb6f6e13192d129d2e1447258bc57dbb85959f498417e73c8e9b76008844484",
+      "current": "6fb6f6e13192d129d2e1447258bc57dbb85959f498417e73c8e9b76008844484",
+      "vertices": 1022
+    },
+    {
+      "track": "ramon",
+      "type": "jersey",
+      "side": 1,
+      "prior": "5c656705c98cfce28e853fdfaf03e8e2557865a5be1ccdc06d89872cbfc3f213",
+      "current": "5c656705c98cfce28e853fdfaf03e8e2557865a5be1ccdc06d89872cbfc3f213",
+      "vertices": 1022
+    },
+    {
+      "track": "hw40",
+      "type": "rail",
+      "side": -1,
+      "prior": "29d58306f055c2aab548d36dfba3edcd40e55a8d0042d055a3e9f8f2d4912571",
+      "current": "29d58306f055c2aab548d36dfba3edcd40e55a8d0042d055a3e9f8f2d4912571",
+      "vertices": 662
+    },
+    {
+      "track": "hw40",
+      "type": "rail",
+      "side": 1,
+      "prior": "da1b729e25781340dcfbcddced12f1ed9b25f072136ddd04a205d0210f0fc3e0",
+      "current": "da1b729e25781340dcfbcddced12f1ed9b25f072136ddd04a205d0210f0fc3e0",
+      "vertices": 662
+    },
+    {
+      "track": "hw40",
+      "type": "jersey",
+      "side": -1,
+      "prior": "5d6f5580669f3cf97374071195f38f243b648f9fb09e6ea7afa310553ef8d7e2",
+      "current": "5d6f5580669f3cf97374071195f38f243b648f9fb09e6ea7afa310553ef8d7e2",
+      "vertices": 662
+    },
+    {
+      "track": "hw40",
+      "type": "jersey",
+      "side": 1,
+      "prior": "224aa4377085087111e435df25cd8efa9936530aa656f326d87fb99f5abf3702",
+      "current": "224aa4377085087111e435df25cd8efa9936530aa656f326d87fb99f5abf3702",
+      "vertices": 662
+    },
+    {
+      "track": "eilatmtn",
+      "type": "rail",
+      "side": -1,
+      "prior": "2e16b78ce2056f208654c88112a7491ef2fad627c6fc3497e8ac46bcf69beda2",
+      "current": "2e16b78ce2056f208654c88112a7491ef2fad627c6fc3497e8ac46bcf69beda2",
+      "vertices": 662
+    },
+    {
+      "track": "eilatmtn",
+      "type": "rail",
+      "side": 1,
+      "prior": "11064459d63f86dccbabcf9644b2ade1714aecc908b4f211fe6d7597f3a18818",
+      "current": "11064459d63f86dccbabcf9644b2ade1714aecc908b4f211fe6d7597f3a18818",
+      "vertices": 662
+    },
+    {
+      "track": "eilatmtn",
+      "type": "jersey",
+      "side": -1,
+      "prior": "4c35bbadbdca625b71b7dcb37e8a0343ca4bc34e0a967bf57d9738bcd45f5e38",
+      "current": "4c35bbadbdca625b71b7dcb37e8a0343ca4bc34e0a967bf57d9738bcd45f5e38",
+      "vertices": 662
+    },
+    {
+      "track": "eilatmtn",
+      "type": "jersey",
+      "side": 1,
+      "prior": "81c4595e0640a994bf469b46ab478476a717dcdbe62ad5cd35a61ec42e04d501",
+      "current": "81c4595e0640a994bf469b46ab478476a717dcdbe62ad5cd35a61ec42e04d501",
+      "vertices": 662
+    },
+    {
+      "track": "gushdan",
+      "type": "rail",
+      "side": -1,
+      "prior": "14ad98f5d99f73ffbc553d45b027c33620020b2f92cf457757e7696cda001371",
+      "current": "14ad98f5d99f73ffbc553d45b027c33620020b2f92cf457757e7696cda001371",
+      "vertices": 842
+    },
+    {
+      "track": "gushdan",
+      "type": "rail",
+      "side": 1,
+      "prior": "9164de9663a41fa5c827a92105bd1beb830b1ee42a1adb36decf267f5d1dfd05",
+      "current": "9164de9663a41fa5c827a92105bd1beb830b1ee42a1adb36decf267f5d1dfd05",
+      "vertices": 842
+    },
+    {
+      "track": "gushdan",
+      "type": "jersey",
+      "side": -1,
+      "prior": "983052778fb5548a172ad115e92f80fff99e2b1768012e1fe9d9b785e088bbd9",
+      "current": "983052778fb5548a172ad115e92f80fff99e2b1768012e1fe9d9b785e088bbd9",
+      "vertices": 842
+    },
+    {
+      "track": "gushdan",
+      "type": "jersey",
+      "side": 1,
+      "prior": "96ff60588c9397e661a2ef9422e2294d715e45714069c612e4c13fe5cdf9b6a8",
+      "current": "96ff60588c9397e661a2ef9422e2294d715e45714069c612e4c13fe5cdf9b6a8",
+      "vertices": 842
+    },
+    {
+      "track": "nazareth",
+      "type": "rail",
+      "side": -1,
+      "prior": "73eee5f443dea9fb237e51b122a37e23337d7ab13db5959489a79adddde764ae",
+      "current": "73eee5f443dea9fb237e51b122a37e23337d7ab13db5959489a79adddde764ae",
+      "vertices": 602
+    },
+    {
+      "track": "nazareth",
+      "type": "rail",
+      "side": 1,
+      "prior": "17488ad824302d88e7179ef673239a21f848d4491cbe5d7ef9d586ad6a6d4ba3",
+      "current": "17488ad824302d88e7179ef673239a21f848d4491cbe5d7ef9d586ad6a6d4ba3",
+      "vertices": 602
+    },
+    {
+      "track": "nazareth",
+      "type": "jersey",
+      "side": -1,
+      "prior": "34647e96899dd41ebac5c663f39c6b8002add48501057ecbf7b7ea9ce3c54275",
+      "current": "34647e96899dd41ebac5c663f39c6b8002add48501057ecbf7b7ea9ce3c54275",
+      "vertices": 602
+    },
+    {
+      "track": "nazareth",
+      "type": "jersey",
+      "side": 1,
+      "prior": "756771f434bc162b1fc168d7ad52595d7823982dedf7c625a62877bf61b7ee30",
+      "current": "756771f434bc162b1fc168d7ad52595d7823982dedf7c625a62877bf61b7ee30",
+      "vertices": 602
+    },
+    {
+      "track": "tzfat",
+      "type": "rail",
+      "side": -1,
+      "prior": "381ff08b0e847e19f8ec8e51e9ec63c9b517c9e96b474c2fafd053c05d7b6a35",
+      "current": "381ff08b0e847e19f8ec8e51e9ec63c9b517c9e96b474c2fafd053c05d7b6a35",
+      "vertices": 542
+    },
+    {
+      "track": "tzfat",
+      "type": "rail",
+      "side": 1,
+      "prior": "a6a40537feca4e34d51a5d57df73aedd0b181c4b0bb3679bf562330505dd2306",
+      "current": "a6a40537feca4e34d51a5d57df73aedd0b181c4b0bb3679bf562330505dd2306",
+      "vertices": 542
+    },
+    {
+      "track": "tzfat",
+      "type": "jersey",
+      "side": -1,
+      "prior": "c12a9b45fadc49a5b86a1394e232763301cb7eae34248f9b5ee2b8d578e7479f",
+      "current": "c12a9b45fadc49a5b86a1394e232763301cb7eae34248f9b5ee2b8d578e7479f",
+      "vertices": 542
+    },
+    {
+      "track": "tzfat",
+      "type": "jersey",
+      "side": 1,
+      "prior": "066c50111e8227c073cd0fbc4566ea50580c82bfd843087f3bd263e8f8c81718",
+      "current": "066c50111e8227c073cd0fbc4566ea50580c82bfd843087f3bd263e8f8c81718",
+      "vertices": 542
+    },
+    {
+      "track": "masada",
+      "type": "rail",
+      "side": -1,
+      "prior": "9a0f8e83ffce35511abbfef3912195c375271cdecf8e2c57ab812f35773f02ce",
+      "current": "9a0f8e83ffce35511abbfef3912195c375271cdecf8e2c57ab812f35773f02ce",
+      "vertices": 302
+    },
+    {
+      "track": "masada",
+      "type": "rail",
+      "side": 1,
+      "prior": "9b5054ad2a0e9a86f4df0cc86d9f1ae7fc9ebb0bc79f4f16a9a389b58e20732c",
+      "current": "9b5054ad2a0e9a86f4df0cc86d9f1ae7fc9ebb0bc79f4f16a9a389b58e20732c",
+      "vertices": 302
+    },
+    {
+      "track": "masada",
+      "type": "jersey",
+      "side": -1,
+      "prior": "3f027c8c342fff799c094c270db71c2cd08f40f0fd197b85d2e5b05b28059394",
+      "current": "3f027c8c342fff799c094c270db71c2cd08f40f0fd197b85d2e5b05b28059394",
+      "vertices": 302
+    },
+    {
+      "track": "masada",
+      "type": "jersey",
+      "side": 1,
+      "prior": "8d60227f3c0196fc7076309cf84b382a4c112a8be461f15dbc97dc39a4dca690",
+      "current": "8d60227f3c0196fc7076309cf84b382a4c112a8be461f15dbc97dc39a4dca690",
+      "vertices": 302
+    },
+    {
+      "track": "batyam",
+      "type": "rail",
+      "side": -1,
+      "prior": "2f4107930d006aee520ace4b465d161c4a13dbbcf80df065160a22549bce3e1d",
+      "current": "2f4107930d006aee520ace4b465d161c4a13dbbcf80df065160a22549bce3e1d",
+      "vertices": 602
+    },
+    {
+      "track": "batyam",
+      "type": "rail",
+      "side": 1,
+      "prior": "c554e8a0f19f1f3b03c25c3c05e91317a4f60a1fd2ea854215c806c92d2e2d34",
+      "current": "c554e8a0f19f1f3b03c25c3c05e91317a4f60a1fd2ea854215c806c92d2e2d34",
+      "vertices": 602
+    },
+    {
+      "track": "batyam",
+      "type": "jersey",
+      "side": -1,
+      "prior": "19db78575667c3d403e1f2f1781d8921757ef55ecd7fc320fe127bf91654caba",
+      "current": "19db78575667c3d403e1f2f1781d8921757ef55ecd7fc320fe127bf91654caba",
+      "vertices": 602
+    },
+    {
+      "track": "batyam",
+      "type": "jersey",
+      "side": 1,
+      "prior": "ead1a2b6c6d340c24e4151f6ee46466f9fd642d90283b37c7759ed4d61158840",
+      "current": "ead1a2b6c6d340c24e4151f6ee46466f9fd642d90283b37c7759ed4d61158840",
+      "vertices": 602
+    },
+    {
+      "track": "rehovot",
+      "type": "rail",
+      "side": -1,
+      "prior": "3ed84e8a380157e56426f6a2832986ac742b8d31edd8002f9df36ca043508718",
+      "current": "3ed84e8a380157e56426f6a2832986ac742b8d31edd8002f9df36ca043508718",
+      "vertices": 662
+    },
+    {
+      "track": "rehovot",
+      "type": "rail",
+      "side": 1,
+      "prior": "f9d311ee1115caa768e13a0007877dde9f5be07525da44ce01f45dfd73df1e6f",
+      "current": "f9d311ee1115caa768e13a0007877dde9f5be07525da44ce01f45dfd73df1e6f",
+      "vertices": 662
+    },
+    {
+      "track": "rehovot",
+      "type": "jersey",
+      "side": -1,
+      "prior": "c36cdb9c1c8f38cd1220cd655e5a5df5535a8a262974886490b77aaaf95170d2",
+      "current": "c36cdb9c1c8f38cd1220cd655e5a5df5535a8a262974886490b77aaaf95170d2",
+      "vertices": 662
+    },
+    {
+      "track": "rehovot",
+      "type": "jersey",
+      "side": 1,
+      "prior": "2e3627abad1e3758016e8173154a8f6e65c2c245ee7bedb932c0f7d76934c9ca",
+      "current": "2e3627abad1e3758016e8173154a8f6e65c2c245ee7bedb932c0f7d76934c9ca",
+      "vertices": 662
+    },
+    {
+      "track": "nahariya",
+      "type": "rail",
+      "side": -1,
+      "prior": "c3499df8cd3ae98245d5979ddd21d2a685e7db74a8466f198122d83057bf458c",
+      "current": "c3499df8cd3ae98245d5979ddd21d2a685e7db74a8466f198122d83057bf458c",
+      "vertices": 602
+    },
+    {
+      "track": "nahariya",
+      "type": "rail",
+      "side": 1,
+      "prior": "71730f91a04294afb38ad76605fe00e80c2cfd3f0ed870d12a3c45aea3c9fa40",
+      "current": "71730f91a04294afb38ad76605fe00e80c2cfd3f0ed870d12a3c45aea3c9fa40",
+      "vertices": 602
+    },
+    {
+      "track": "nahariya",
+      "type": "jersey",
+      "side": -1,
+      "prior": "15e68e20b4028ba35f23ad10480c94ed537e6b0bb4ec5c570e8f7aeeeff55c65",
+      "current": "15e68e20b4028ba35f23ad10480c94ed537e6b0bb4ec5c570e8f7aeeeff55c65",
+      "vertices": 602
+    },
+    {
+      "track": "nahariya",
+      "type": "jersey",
+      "side": 1,
+      "prior": "d28809f05f3d742b66d106f1c7ebe49a5bb0251fb246ba94de0ec4a070cc4be4",
+      "current": "d28809f05f3d742b66d106f1c7ebe49a5bb0251fb246ba94de0ec4a070cc4be4",
+      "vertices": 602
+    },
+    {
+      "track": "ramla",
+      "type": "rail",
+      "side": -1,
+      "prior": "22281017947d53b4d91263ff031b559fabe70d23f33ed7e5b103738f658b6b15",
+      "current": "22281017947d53b4d91263ff031b559fabe70d23f33ed7e5b103738f658b6b15",
+      "vertices": 542
+    },
+    {
+      "track": "ramla",
+      "type": "rail",
+      "side": 1,
+      "prior": "7bf8488fb198cf18e82d7c6f15de30a30dcd3b9e8baf7d71dd92d42e2f565f2b",
+      "current": "7bf8488fb198cf18e82d7c6f15de30a30dcd3b9e8baf7d71dd92d42e2f565f2b",
+      "vertices": 542
+    },
+    {
+      "track": "ramla",
+      "type": "jersey",
+      "side": -1,
+      "prior": "ccbfb863a11f3c7e59946036b8c14e0fc62b2e25e15ffc4655190a4f2161bbeb",
+      "current": "ccbfb863a11f3c7e59946036b8c14e0fc62b2e25e15ffc4655190a4f2161bbeb",
+      "vertices": 542
+    },
+    {
+      "track": "ramla",
+      "type": "jersey",
+      "side": 1,
+      "prior": "6eea79460611be6987493a0644e3b0f5ef38555f72f89208b591b337250458b9",
+      "current": "6eea79460611be6987493a0644e3b0f5ef38555f72f89208b591b337250458b9",
+      "vertices": 542
+    },
+    {
+      "track": "holon",
+      "type": "rail",
+      "side": -1,
+      "prior": "07b8154479cbcb37096f079f0e9a64745e7601108cf3acecd0169166c6e7304a",
+      "current": "07b8154479cbcb37096f079f0e9a64745e7601108cf3acecd0169166c6e7304a",
+      "vertices": 602
+    },
+    {
+      "track": "holon",
+      "type": "rail",
+      "side": 1,
+      "prior": "e871f873e44063523d35f24fb1c61c0d82c521e0274e1bff2306bd014c5c0247",
+      "current": "e871f873e44063523d35f24fb1c61c0d82c521e0274e1bff2306bd014c5c0247",
+      "vertices": 602
+    },
+    {
+      "track": "holon",
+      "type": "jersey",
+      "side": -1,
+      "prior": "3d6e96fef7074a7b75860d933849bcb4e9aa6b88da722c1884242a93b2623d90",
+      "current": "3d6e96fef7074a7b75860d933849bcb4e9aa6b88da722c1884242a93b2623d90",
+      "vertices": 602
+    },
+    {
+      "track": "holon",
+      "type": "jersey",
+      "side": 1,
+      "prior": "3f86d35d1353215935374da6a0fb165334802e500234f1a62153326e287e6bda",
+      "current": "3f86d35d1353215935374da6a0fb165334802e500234f1a62153326e287e6bda",
+      "vertices": 602
+    },
+    {
+      "track": "beitshan",
+      "type": "rail",
+      "side": -1,
+      "prior": "d036332c0f4f5ac07f7d4821ae9f68349e81d0056172e626621627c4be8bd8ca",
+      "current": "d036332c0f4f5ac07f7d4821ae9f68349e81d0056172e626621627c4be8bd8ca",
+      "vertices": 542
+    },
+    {
+      "track": "beitshan",
+      "type": "rail",
+      "side": 1,
+      "prior": "24f853564e31c3ce8d934e427ef9f87836e69afa9d36057575fad3c37d7d2349",
+      "current": "24f853564e31c3ce8d934e427ef9f87836e69afa9d36057575fad3c37d7d2349",
+      "vertices": 542
+    },
+    {
+      "track": "beitshan",
+      "type": "jersey",
+      "side": -1,
+      "prior": "7b6a9d0120ec390b900979b3a51edf4212bc257f60fd238ebdb05652bc35a71c",
+      "current": "7b6a9d0120ec390b900979b3a51edf4212bc257f60fd238ebdb05652bc35a71c",
+      "vertices": 542
+    },
+    {
+      "track": "beitshan",
+      "type": "jersey",
+      "side": 1,
+      "prior": "a33fed53d668c0e89b8631e021294db409a95dde84e38b7c174e737eda4ea34f",
+      "current": "a33fed53d668c0e89b8631e021294db409a95dde84e38b7c174e737eda4ea34f",
+      "vertices": 542
+    },
+    {
+      "track": "hadera",
+      "type": "rail",
+      "side": -1,
+      "prior": "c4d6d369e3c5df504ce968079f4a58b800dde0635b794cd2ffc6a9ae1cf18a1e",
+      "current": "c4d6d369e3c5df504ce968079f4a58b800dde0635b794cd2ffc6a9ae1cf18a1e",
+      "vertices": 602
+    },
+    {
+      "track": "hadera",
+      "type": "rail",
+      "side": 1,
+      "prior": "e468d462ac4dd021eaf37733066c6bd3dc05e757c9b7a844f436acd4cf8133ea",
+      "current": "e468d462ac4dd021eaf37733066c6bd3dc05e757c9b7a844f436acd4cf8133ea",
+      "vertices": 602
+    },
+    {
+      "track": "hadera",
+      "type": "jersey",
+      "side": -1,
+      "prior": "f330117f0ab7ba7ade278ff7b80fcbc8b88fe10db0ae1258c6537e6cce1d4593",
+      "current": "f330117f0ab7ba7ade278ff7b80fcbc8b88fe10db0ae1258c6537e6cce1d4593",
+      "vertices": 602
+    },
+    {
+      "track": "hadera",
+      "type": "jersey",
+      "side": 1,
+      "prior": "709316f714ccf7c9260586bb76a436d80076ecfa94fc3a8b1d2e18a60374af5f",
+      "current": "709316f714ccf7c9260586bb76a436d80076ecfa94fc3a8b1d2e18a60374af5f",
+      "vertices": 602
+    },
+    {
+      "track": "lod",
+      "type": "rail",
+      "side": -1,
+      "prior": "f29bd4aa7b0b7d946ec7402b96be2f192e8d0eb04c19fb291a2d22689baf0b53",
+      "current": "f29bd4aa7b0b7d946ec7402b96be2f192e8d0eb04c19fb291a2d22689baf0b53",
+      "vertices": 662
+    },
+    {
+      "track": "lod",
+      "type": "rail",
+      "side": 1,
+      "prior": "98d5e2f05ba49455ad63d58d01fbcd299e68eda94bc2664e10c06ea3a38d37ba",
+      "current": "98d5e2f05ba49455ad63d58d01fbcd299e68eda94bc2664e10c06ea3a38d37ba",
+      "vertices": 662
+    },
+    {
+      "track": "lod",
+      "type": "jersey",
+      "side": -1,
+      "prior": "4c0a5fbc67f1d98deb9d8670e98102471087fa7a7663437c10d7a5fac683bf08",
+      "current": "4c0a5fbc67f1d98deb9d8670e98102471087fa7a7663437c10d7a5fac683bf08",
+      "vertices": 662
+    },
+    {
+      "track": "lod",
+      "type": "jersey",
+      "side": 1,
+      "prior": "a55fa73e3917f85fb10ceada047f57a60f7f15dc9edb0ebdb176482bc903b56f",
+      "current": "a55fa73e3917f85fb10ceada047f57a60f7f15dc9edb0ebdb176482bc903b56f",
+      "vertices": 662
+    },
+    {
+      "track": "kshmona",
+      "type": "rail",
+      "side": -1,
+      "prior": "c9479f256500fdbb16f34410102c2fd0fb669644f63d3653d8bb3a7ca16055c2",
+      "current": "c9479f256500fdbb16f34410102c2fd0fb669644f63d3653d8bb3a7ca16055c2",
+      "vertices": 542
+    },
+    {
+      "track": "kshmona",
+      "type": "rail",
+      "side": 1,
+      "prior": "6b1d2c49c48de484af1766542656cd2cb2445c025c17da3524aabbb8dff5636c",
+      "current": "6b1d2c49c48de484af1766542656cd2cb2445c025c17da3524aabbb8dff5636c",
+      "vertices": 542
+    },
+    {
+      "track": "kshmona",
+      "type": "jersey",
+      "side": -1,
+      "prior": "196b11e65fb8a668de9097582939c647197ab5776ad990698062f080a9a37566",
+      "current": "196b11e65fb8a668de9097582939c647197ab5776ad990698062f080a9a37566",
+      "vertices": 542
+    },
+    {
+      "track": "kshmona",
+      "type": "jersey",
+      "side": 1,
+      "prior": "c7faf25e6018a3b2f1991fcb8a26aadaaae673a2efd46846ec11abc6f25f8b98",
+      "current": "c7faf25e6018a3b2f1991fcb8a26aadaaae673a2efd46846ec11abc6f25f8b98",
+      "vertices": 542
+    },
+    {
+      "track": "raanana",
+      "type": "rail",
+      "side": -1,
+      "prior": "fc7b0fe437166beb0cdb352e54f6eae09a8aa56a70b86ecd0d418c1b1bec64a9",
+      "current": "fc7b0fe437166beb0cdb352e54f6eae09a8aa56a70b86ecd0d418c1b1bec64a9",
+      "vertices": 602
+    },
+    {
+      "track": "raanana",
+      "type": "rail",
+      "side": 1,
+      "prior": "0ce63abe3b77b305b9325ec26662fe7f057178aa6ea45496db6dfc3f78c7fdd6",
+      "current": "0ce63abe3b77b305b9325ec26662fe7f057178aa6ea45496db6dfc3f78c7fdd6",
+      "vertices": 602
+    },
+    {
+      "track": "raanana",
+      "type": "jersey",
+      "side": -1,
+      "prior": "b3148745a3d5b64fdf45c0000da564107fba9e22a8f46a31bb1c0f11490cb57e",
+      "current": "b3148745a3d5b64fdf45c0000da564107fba9e22a8f46a31bb1c0f11490cb57e",
+      "vertices": 602
+    },
+    {
+      "track": "raanana",
+      "type": "jersey",
+      "side": 1,
+      "prior": "147e67d52df5be5d2c132f7faa60a4b0415545106534d9797966a1d05bf3ac64",
+      "current": "147e67d52df5be5d2c132f7faa60a4b0415545106534d9797966a1d05bf3ac64",
+      "vertices": 602
+    },
+    {
+      "track": "afula",
+      "type": "rail",
+      "side": -1,
+      "prior": "ae1b633e39094cd8aee6a5f5256e807ec0c610b9ecdc589319daf3c4d50efa29",
+      "current": "ae1b633e39094cd8aee6a5f5256e807ec0c610b9ecdc589319daf3c4d50efa29",
+      "vertices": 602
+    },
+    {
+      "track": "afula",
+      "type": "rail",
+      "side": 1,
+      "prior": "893bcb2c7929febfbbe1e5717ff2121b166416bfda2e97a5a24779e5253927e0",
+      "current": "893bcb2c7929febfbbe1e5717ff2121b166416bfda2e97a5a24779e5253927e0",
+      "vertices": 602
+    },
+    {
+      "track": "afula",
+      "type": "jersey",
+      "side": -1,
+      "prior": "fad84fbb63774624575b1d010c016bd35cf631d7942ffa03b3367552d9ecec5b",
+      "current": "fad84fbb63774624575b1d010c016bd35cf631d7942ffa03b3367552d9ecec5b",
+      "vertices": 602
+    },
+    {
+      "track": "afula",
+      "type": "jersey",
+      "side": 1,
+      "prior": "296c885dc667255093c57ebe4aeb238132a98ef3fe95acaaf66d2a949c9ed6d5",
+      "current": "296c885dc667255093c57ebe4aeb238132a98ef3fe95acaaf66d2a949c9ed6d5",
+      "vertices": 602
+    },
+    {
+      "track": "ksaba",
+      "type": "rail",
+      "side": -1,
+      "prior": "fa4b12b7cd27d627b2504651f91ae62fb24dcbc1e17d97d232e0c4e5f46ffaa1",
+      "current": "fa4b12b7cd27d627b2504651f91ae62fb24dcbc1e17d97d232e0c4e5f46ffaa1",
+      "vertices": 542
+    },
+    {
+      "track": "ksaba",
+      "type": "rail",
+      "side": 1,
+      "prior": "1eca966c7663a002538ec3e438b3d454ffcc2ca63b82e02cac3aff2cff22346b",
+      "current": "1eca966c7663a002538ec3e438b3d454ffcc2ca63b82e02cac3aff2cff22346b",
+      "vertices": 542
+    },
+    {
+      "track": "ksaba",
+      "type": "jersey",
+      "side": -1,
+      "prior": "87f802d1354a80673ea8cc00472e56a363164927e75a51783aeb420b9773d649",
+      "current": "87f802d1354a80673ea8cc00472e56a363164927e75a51783aeb420b9773d649",
+      "vertices": 542
+    },
+    {
+      "track": "ksaba",
+      "type": "jersey",
+      "side": 1,
+      "prior": "45b2df903f866aafbb3ea656eb9ea3d1923c3818412cd6c97d19c246e005977d",
+      "current": "45b2df903f866aafbb3ea656eb9ea3d1923c3818412cd6c97d19c246e005977d",
+      "vertices": 542
+    },
+    {
+      "track": "arad",
+      "type": "rail",
+      "side": -1,
+      "prior": "14360bb63742bb74f2a71ac223dab3a9495f9a36f0a9afebd39dbac694b23864",
+      "current": "14360bb63742bb74f2a71ac223dab3a9495f9a36f0a9afebd39dbac694b23864",
+      "vertices": 602
+    },
+    {
+      "track": "arad",
+      "type": "rail",
+      "side": 1,
+      "prior": "d41b097b80af8b9cc48b6a874993ed5053d9e1be5f0b33b3263ff292eb8d0096",
+      "current": "d41b097b80af8b9cc48b6a874993ed5053d9e1be5f0b33b3263ff292eb8d0096",
+      "vertices": 602
+    },
+    {
+      "track": "arad",
+      "type": "jersey",
+      "side": -1,
+      "prior": "b10b8205bfa98acc8b6cc449daf19c9de2b6f94718c677b223013ae8b17b6793",
+      "current": "b10b8205bfa98acc8b6cc449daf19c9de2b6f94718c677b223013ae8b17b6793",
+      "vertices": 602
+    },
+    {
+      "track": "arad",
+      "type": "jersey",
+      "side": 1,
+      "prior": "6066f3347abdcc607342dc1598b8e4cf4a96cbd92d5ccf62d85826d675ba654b",
+      "current": "6066f3347abdcc607342dc1598b8e4cf4a96cbd92d5ccf62d85826d675ba654b",
+      "vertices": 602
+    }
+  ]
+}

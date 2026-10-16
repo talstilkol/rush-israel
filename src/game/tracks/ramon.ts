@@ -51,10 +51,11 @@ export default defineTrack({
       ram(30.5722, 34.7974),
     ],
     elevation: (t) => {
-      if (t < 0.08) return 168;
-      if (t > 0.9) return 1.2;
-      const u = (t - 0.08) / 0.82;
-      return 168 * Math.pow(1 - u, 1.18) + 1.2;
+      const top = 168, floor = 1.2;
+      if (t <= 0.08) return top;
+      if (t >= 0.9) return floor;
+      const u = Math.min(1, Math.max(0, (t - 0.08) / 0.82));
+      return (top - floor) * Math.pow(1 - u, 1.18) + floor;
     },
     streets: [
       { from: 0.0, to: 0.14, he: "התצפית", en: "The Lookout" },

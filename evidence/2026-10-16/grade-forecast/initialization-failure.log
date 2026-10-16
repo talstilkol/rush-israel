@@ -1,0 +1,16 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:8133/
+Call log:
+[2m  - navigating to "http://127.0.0.1:8133/", waiting until "networkidle"[22m
+
+    at /Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/grade-forecast-smoke.mjs:11:13 {
+  log: [
+    '  - navigating to "http://127.0.0.1:8133/", waiting until "networkidle"'
+  ],
+  name: 'Error'
+}
+
+Node.js v22.16.0

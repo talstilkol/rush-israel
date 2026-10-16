@@ -1,13 +1,15 @@
 // RSH-017: generated extraction from the accepted engine.ts.
 // Do not change behavior here without an explicit later authority.
 import * as THREE from "three";
-import { createCarVisual, setCarLights, applyDamage } from "../car-mesh";
+import { carContactBounds, createCarVisual, setCarLights, applyDamage } from "../car-mesh";
 import { finishLine, overtakeLine } from "../dialog";
-import { racePayout } from "../garage";
+import { racePayout, timedSpan } from "../garage";
 import { CARS } from "../cars";
+import { roadLaneOffset } from "../road-layout";
 import { clamp, hashStr } from "../math";
-import { recordGhost, setDamage } from "../save";
-import { sampleAtT } from "../spline";
+import { prefersReducedMotion } from "../a11y";
+import { getCash, recordGhost, setDamage } from "../save";
+import { behindProgress, crossedForward, nearestIndex, sampleAtT } from "../spline";
 import type { Collider, RaceResult } from "../types";
 import { aiInput, ArcadeCar, copInput, separateCars, SURFACE_GRIP, trafficInput, updateDrafting } from "../vehicle";
 import type { RaceEngine } from "../engine";
@@ -60,9 +62,11 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
       }
       if (prev > 0 && this.countdown <= 0) {
         this.racing = true;
+        this.goFlash = 0.7;
         this.audio.beep(980, 0.22, 0.2);
       }
     }
+    if (this.goFlash > 0) this.goFlash = Math.max(0, this.goFlash - dt);
 
     if (this.freeze > 0) {
       this.freeze -= dt;
@@ -72,7 +76,8 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     }
     this.impactCd = Math.max(0, this.impactCd - dt);
 
-    const playerInput = this.input.poll();
+    const playerInput = this.input.poll(dt);
+    this.inputSnap = playerInput;
     if (this.countdown > 0) {
       playerInput.throttle = 0;
       playerInput.brake = 0;
@@ -85,16 +90,18 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
       this.lapTime += dt;
     }
 
+    const vehicles = [...this.racers, ...this.traffic, ...this.cops];
     for (let i = 0; i < this.racers.length; i++) {
       const car = this.racers[i];
       const prev = car.progress;
-      const inp = i === 0 ? playerInput : aiInput(car, this.built, this.player);
+      const inp = i === 0 ? playerInput : aiInput(car, this.built, this.player, vehicles);
       if (i !== 0 && this.countdown > 0) {
         inp.throttle = 0;
         inp.brake = 0;
         inp.drift = false;
       }
-      car.step(dt, inp, this.built, this.racing && this.countdown <= 0, this.world.colliders.concat(this.extraHits), this.world.streets, this.world.ramps);
+      const recovered = car.step(dt, inp, this.built, this.racing && this.countdown <= 0, this.world.colliders.concat(this.extraHits), this.world.streets, this.world.ramps);
+      if (i === 0 && recovered) this.assisted = true;
       const ev = car.consumeCheckpoints(this.built, prev);
       if (ev.checkpoint && i === 0) {
         this.audio.checkpoint();
@@ -111,13 +118,30 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
           this.sectorIdx = idx;
         }
       }
-      if (ev.lapComplete && i === 0) {
+      if (ev.lapComplete && i === 0 && this.countdown <= 0 && this.racing) {
+        const had = Number.isFinite(this.bestLap);
+        const fresh = had && this.lapTime < this.bestLap;
         this.laps.push(this.lapTime);
         if (this.lapTime < this.bestLap) this.bestLap = this.lapTime;
+        const ending = car.lap >= this.totalLaps && this.mode !== "roam";
+        const last = !ending && this.totalLaps > 1 && car.lap === this.totalLaps - 1;
+        if (!ending) {
+          this.lapNote = fresh
+            ? (this.opts.langHe ? "הקפה שיא" : "BEST LAP")
+            : last
+              ? (this.opts.langHe ? "הקפה אחרונה" : "LAST LAP")
+              : (this.opts.langHe ? `הקפה ${car.lap}` : `LAP ${car.lap}`);
+          this.lapNoteT = last ? 2.8 : 2.2;
+          if (last) {
+            this.audio.beep(880, 0.09, 0.08);
+            this.audio.beep(1174, 0.16, 0.07);
+          }
+        }
         this.lapTime = 0;
-        if (car.lap >= this.totalLaps && this.mode !== "roam") this.endRace();
+        if (ending) this.endRace();
       }
       if (ev.lapComplete && this.mode === "knockout") this.checkKnockout();
+      if (!ev.lapComplete && ev.checkpoint && this.mode === "knockout" && this.trackDef.open) this.checkKnockout();
     }
 
     this.applyAltitudeLook();
@@ -133,7 +157,7 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     } else this.wrongBeep = 0;
 
     for (const cab of this.traffic) {
-      const inp = trafficInput(cab, this.built);
+      const inp = trafficInput(cab, this.built, vehicles);
       if (this.countdown > 0) {
         inp.throttle = 0;
         inp.brake = 0;
@@ -141,7 +165,9 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
       cab.step(dt, inp, this.built, this.racing && this.countdown <= 0, this.world.colliders.concat(this.extraHits), this.world.streets, this.world.ramps);
     }
 
+    const chase = true;
     for (const cop of this.cops) {
+      if (!chase) continue;
       const inp = copInput(cop, this.built, this.player, this.heat);
       if (this.countdown > 0) {
         inp.throttle = 0;
@@ -159,7 +185,7 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
       this.player.drafting = false;
     }
 
-    const hit = separateCars([...this.racers, ...this.traffic, ...this.cops]);
+    const hit = separateCars([...this.racers, ...this.traffic, ...(chase ? this.cops : [])]);
     if (this.player.nitroPulse) this.audio.whoosh();
     if (this.player.impact > 0.55 && this.impactCd <= 0) {
       this.audio.impact(this.player.impact);
@@ -185,11 +211,29 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     this.audio.pulseMusic(this.world.night, dt);
     this.audio.updateSiren(this.mode === "heat" && this.racing && !this.busted && !this.escaping, dt);
     this.audio.updateRain(this.weather === "rain" || this.weather === "storm", this.weather === "storm");
+    const camRoad = this.trackDef.theme === "highway" || this.trackDef.id === "gushdan" || this.trackDef.id === "hw90";
+    const gates = [0.22, 0.48, 0.73];
+    if (camRoad && this.racing && this.countdown <= 0 && !this.player.finished && this.player.onTrack) {
+      for (let i = 0; i < gates.length; i++) {
+        if (!crossedForward(this.camAt, this.player.progress, gates[i])) continue;
+        if (Math.round(Math.abs(this.player.speed) * 3.6) < 120) continue;
+        const fine = Math.min(Math.max(0, getCash() + this.ledger), 80);
+        if (fine > 0) {
+          this.ledger -= fine;
+          this.cashNote = `-₪${fine}`;
+          this.cashNoteT = 1.6;
+        }
+        this.camFlash = 1;
+        this.audio.beep(980, 0.05, 0.07);
+        this.audio.beep(1480, 0.07, 0.05);
+      }
+    }
+    this.camAt = this.player.progress;
     if (this.racing && !this.player.finished) {
       this.ghostAcc += dt;
       if (this.ghostAcc >= 0.16) {
-        this.ghostAcc = 0;
-        this.ghostBuf.push({ x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.player.yaw });
+        this.ghostAcc -= 0.16;
+        this.ghostBuf.push({ x: this.player.x, y: this.player.y, z: this.player.z, yaw: this.player.yaw, t: this.totalTime });
       }
       this.recordReplay(dt);
     }
@@ -199,12 +243,23 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     this.trauma = Math.max(0, this.trauma - dt * 2.4);
     if (this.racing && this.countdown <= 0) this.stepDriftCraft(dt);
     if (this.racing && this.countdown <= 0 && this.racers.length > 1 && !this.player.finished) {
+      if (this.overtakePayT > 0) this.overtakePayT = Math.max(0, this.overtakePayT - dt);
       const place = this.standings().indexOf(this.player) + 1;
-      if (place !== this.lastPlace && this.totalTime > 2.2) {
+      if (this.lastPlace === 0) {
+        this.lastPlace = place;
+        this.bestRewardPlace = Math.min(this.bestRewardPlace, place);
+      } else if (place !== this.lastPlace && this.totalTime > 1.2) {
+        if (place < this.bestRewardPlace) {
+          this.bestRewardPlace = place;
+          this.ledger += 160;
+          this.cashNote = "+₪160";
+          this.cashNoteT = 1.5;
+          this.overtakePayT = 2.8;
+        }
         this.banter = overtakeLine(place < this.lastPlace, this.opts.langHe, this.rivalIdx);
         this.banterT = 2.8;
+        this.lastPlace = place;
       }
-      this.lastPlace = place;
     }
   }
 // RSH-017-BODY-END:fixed
@@ -241,7 +296,7 @@ export function stepDriftCraft(this: EngineAdapterHost, dt: Parameters<RaceEngin
       this.combo = Math.min(12, this.combo + 1);
       this.missCd = 0.7;
       this.bonusT = 1.4;
-      this.driftBonus = this.opts.langHe ? `ניר-מיס +${pts}` : `Near miss +${pts}`;
+      this.driftBonus = this.opts.langHe ? `כמעט +${pts}` : `Near miss +${pts}`;
       this.trauma = Math.min(1, this.trauma + 0.22);
       break;
     }
@@ -262,7 +317,7 @@ export function standings(this: EngineAdapterHost)
 export function stepHeat(this: EngineAdapterHost, dt: Parameters<RaceEngine["stepHeat"]>[0])
 // RSH-017-BODY-BEGIN:stepHeat
 {
-    if (this.busted || this.player.finished) return;
+    if (this.busted || this.player.finished || this.totalTime <= 5) return;
     let nearest = Infinity;
     for (const cop of this.cops) {
       nearest = Math.min(nearest, Math.hypot(cop.x - this.player.x, cop.z - this.player.z));
@@ -316,7 +371,7 @@ export function pushCopsBack(this: EngineAdapterHost)
 // RSH-017-BODY-BEGIN:pushCopsBack
 {
     for (let i = 0; i < this.cops.length; i++) {
-      const t = (this.player.progress - 0.12 - i * 0.03 + 1) % 1;
+      const t = behindProgress(this.player.progress, 0.12 + i * 0.03, !!this.trackDef.open);
       this.cops[i].spawn(this.built, t, this.cops[i].aiOffset);
       this.cops[i].speed = 18;
     }
@@ -360,13 +415,14 @@ export function addCop(this: EngineAdapterHost, i: Parameters<RaceEngine["addCop
     cop.isAi = true;
     cop.isCop = true;
     cop.aiSkill = 0.96;
-    cop.aiOffset = (i % 2 === 0 ? -1 : 1) * 2.4;
+    cop.aiOffset = roadLaneOffset(this.built, this.player.aiOffset);
     cop.nitro = 0.55;
     cop.baseGrip = SURFACE_GRIP[this.trackDef.theme] ?? 1;
     cop.surfaceGrip = cop.baseGrip;
-    cop.spawn(this.built, (this.player.progress - 0.1 - i * 0.03 + 1) % 1, cop.aiOffset);
+    cop.spawn(this.built, behindProgress(this.player.progress, 0.1 + i * 0.03, !!this.trackDef.open), cop.aiOffset);
     this.cops.push(cop);
     const vis = createCarVisual(color, accent, false, false, "gt", true);
+    cop.contactBounds = carContactBounds(vis);
     setCarLights(vis, this.world.night);
     this.scene.add(vis.group);
     this.copVis.push(vis);
@@ -458,7 +514,13 @@ export function stampPois(this: EngineAdapterHost)
     for (let i = 0; i < pois.length; i++) {
       if (this.poiGot.has(i)) continue;
       const p = pois[i];
-      if (Math.hypot(this.player.x - p.x, this.player.z - p.z) < p.r * 0.72) {
+      const near = nearestIndex(this.built.samples, p.x, p.z, 0);
+      const off = near.dist > p.r * 0.72;
+      const s = this.built.samples[near.index];
+      const ax = off ? s.x : p.x;
+      const az = off ? s.z : p.z;
+      const rad = off ? Math.max(this.built.width * 0.55, 8) : p.r * 0.72;
+      if (Math.hypot(this.player.x - ax, this.player.z - az) < rad) {
         this.poiGot.add(i);
         this.audio.checkpoint();
         this.ping = 1;
@@ -497,9 +559,12 @@ export function checkKnockout(this: EngineAdapterHost)
 // RSH-017-BODY-BEGIN:checkKnockout
 {
     const alive = this.racers.filter((r) => !r.eliminated && !r.finished);
-    const leadLap = Math.max(0, ...alive.map((r) => r.lap));
-    if (leadLap <= this.koMarked) return;
-    this.koMarked = leadLap;
+    const mark = this.trackDef.open
+      ? Math.max(0, ...alive.map((r) => r.nextCheckpoint))
+      : Math.max(0, ...alive.map((r) => r.lap));
+    if (this.trackDef.open && mark < 2) return;
+    if (mark <= this.koMarked) return;
+    this.koMarked = mark;
     if (alive.length <= 1) return;
     const last = [...alive].sort((a, b) => a.raceScore() - b.raceScore())[0];
     last.eliminated = true;
@@ -538,6 +603,7 @@ export function endRace(this: EngineAdapterHost)
 // RSH-017-BODY-BEGIN:endRace
 {
     if (this.finishedSent || this.pendingResult) return;
+    if (this.countdown > 0 && !this.qaForcedFinish && !this.busted) return;
     this.player.finished = true;
     this.audio.finish();
     this.audio.cheer();
@@ -549,6 +615,7 @@ export function endRace(this: EngineAdapterHost)
     }
     const eligible =
       !this.timeVoided &&
+      !this.assisted &&
       !this.qaForcedFinish &&
       Number.isFinite(this.totalTime) &&
       this.totalTime >= 8;
@@ -569,15 +636,30 @@ export function endRace(this: EngineAdapterHost)
       ghostBeaten: false,
       line: finishLine(place, this.busted, this.opts.langHe, this.rivalIdx),
       eligible,
+      voidReason: eligible ? undefined : this.assisted ? "assisted" : this.timeVoided ? "stall" : this.qaForcedFinish ? "qa" : this.totalTime < 8 ? "short" : "invalid",
+      board: this.standings().map((r) => ({ name: r.name, you: r === this.player })),
     };
-    this.cashWon = eligible ? racePayout(resultDraft) : 0;
+    const purse = eligible ? racePayout(resultDraft) : 0;
+    const clean = eligible && !this.busted && this.player.damage < 0.12 ? 320 : 0;
+    const prizes = eligible ? Math.max(0, this.ledger) : 0;
+    const fines = Math.min(0, this.ledger);
+    this.cashWon = purse + clean + prizes + fines;
+    if (clean) resultDraft.clean = clean;
     resultDraft.cash = this.cashWon;
+    this.ledger = 0;
     if (eligible && !this.busted) {
-      this.ghostBeaten = recordGhost(this.opts.trackId, this.totalTime, this.ghostBuf);
+      this.ghostBeaten = recordGhost(this.opts.trackId, this.totalTime, this.ghostBuf, this.recordClass);
       resultDraft.ghostBeaten = this.ghostBeaten;
     }
     setDamage(this.opts.carId, this.player.damage);
     this.pendingResult = resultDraft;
+    if (this.replayBuf.length > 15) {
+      this.replaying = true;
+      this.replayT = 0;
+      this.camMode = 0;
+      this.hood = false;
+      return;
+    }
     this.emitFinish();
   }
 // RSH-017-BODY-END:endRace
@@ -610,7 +692,7 @@ export function skipReplay(this: EngineAdapterHost)
 export function recordSnap(this: EngineAdapterHost)
 // RSH-017-BODY-BEGIN:recordSnap
 {
-    this.replayBuf.push(this.racers.map((r) => ({ x: r.x, y: r.y, z: r.z, yaw: r.yaw, speed: r.speed })));
+    this.replayBuf.push(this.racers.map((r) => ({ x: r.x, y: r.y, z: r.z, yaw: r.yaw, speed: r.speed, t: this.totalTime })));
     if (this.replayBuf.length > 140) this.replayBuf.shift();
   }
 // RSH-017-BODY-END:recordSnap
@@ -623,12 +705,12 @@ export function recordReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine[
     if (!this.racing || this.player.finished) return;
     this.replayAcc += dt;
     if (this.replayAcc >= 0.1) {
-      this.replayAcc = 0;
+      this.replayAcc -= 0.1;
       this.recordSnap();
     }
     this.rewindAcc += dt;
     if (this.rewindAcc >= 0.05) {
-      this.rewindAcc = 0;
+      this.rewindAcc -= 0.05;
       this.rewindBuf.push(this.takePack());
       if (this.rewindBuf.length > 100) this.rewindBuf.shift();
     }
@@ -641,12 +723,32 @@ export function takePack(this: EngineAdapterHost)
 // RSH-017-BODY-BEGIN:takePack
 {
     return {
+      laps: this.laps.slice(),
+      bestLap: this.bestLap,
+      bestSectors: this.bestSectors.slice(),
+      sectorClock: this.sectorClock,
+      sectorIdx: this.sectorIdx,
+      sectorDelta: this.sectorDelta,
+      koMarked: this.koMarked,
+      poiGot: [...this.poiGot],
+      heatMax: this.heatMax,
+      busted: this.busted,
+      escaping: this.escaping,
+      camAt: this.camAt,
+      combo: this.combo,
+      comboHold: this.comboHold,
+      lastDrifting: this.lastDrifting,
+      ghostAcc: this.ghostAcc,
+      replayAcc: this.replayAcc,
       totalTime: this.totalTime,
       lapTime: this.lapTime,
       heat: this.heat,
       bustAcc: this.bustAcc,
       cooldown: this.cooldown,
       wanted: this.wanted,
+      ledger: this.ledger,
+      lastPlace: this.lastPlace,
+      overtakePayT: this.overtakePayT,
       cars: this.racers.map((c) => c.snap()),
       traffic: this.traffic.map((c) => c.snap()),
       cops: this.cops.map((c) => c.snap()),
@@ -659,12 +761,32 @@ export function takePack(this: EngineAdapterHost)
 export function applyPack(this: EngineAdapterHost, p: Parameters<RaceEngine["applyPack"]>[0])
 // RSH-017-BODY-BEGIN:applyPack
 {
+    this.laps = p.laps.slice();
+    this.bestLap = p.bestLap;
+    this.bestSectors = p.bestSectors.slice();
+    this.sectorClock = p.sectorClock;
+    this.sectorIdx = p.sectorIdx;
+    this.sectorDelta = p.sectorDelta;
+    this.koMarked = p.koMarked;
+    this.poiGot = new Set(p.poiGot);
+    this.heatMax = p.heatMax;
+    this.busted = p.busted;
+    this.escaping = p.escaping;
+    this.camAt = p.camAt;
+    this.combo = p.combo;
+    this.comboHold = p.comboHold;
+    this.lastDrifting = p.lastDrifting;
+    this.ghostAcc = p.ghostAcc;
+    this.replayAcc = p.replayAcc;
     this.totalTime = p.totalTime;
     this.lapTime = p.lapTime;
     this.heat = p.heat;
     this.bustAcc = p.bustAcc;
     this.cooldown = p.cooldown ?? this.cooldown;
     this.wanted = p.wanted ?? this.wanted;
+    if (typeof p.ledger === "number") this.ledger = p.ledger;
+    if (typeof p.lastPlace === "number") this.lastPlace = p.lastPlace;
+    if (typeof p.overtakePayT === "number") this.overtakePayT = p.overtakePayT;
     for (let i = 0; i < this.racers.length; i++) {
       const s = p.cars[i];
       if (s) this.racers[i].load(s);
@@ -678,10 +800,21 @@ export function applyPack(this: EngineAdapterHost, p: Parameters<RaceEngine["app
       if (s) this.cops[i].load(s);
     }
     applyDamage(this.visuals[0], this.player.damage);
-    const keepGhost = Math.max(0, Math.floor(this.totalTime / 0.16));
-    if (this.ghostBuf.length > keepGhost) this.ghostBuf.length = keepGhost;
-    const keepRep = Math.max(0, Math.floor(this.totalTime / 0.1));
-    if (this.replayBuf.length > keepRep) this.replayBuf.length = keepRep;
+    const gt = this.totalTime + 1e-4;
+    const gLast = this.ghostBuf[this.ghostBuf.length - 1];
+    if (gLast && typeof gLast.t === "number") {
+      while (this.ghostBuf.length && (this.ghostBuf[this.ghostBuf.length - 1]?.t ?? 0) > gt) this.ghostBuf.pop();
+    } else {
+      const keepGhost = Math.max(0, Math.floor(this.totalTime / 0.16));
+      if (this.ghostBuf.length > keepGhost) this.ghostBuf.length = keepGhost;
+    }
+    const rLast = this.replayBuf[this.replayBuf.length - 1]?.[0];
+    if (rLast && typeof rLast.t === "number") {
+      while (this.replayBuf.length && (this.replayBuf[this.replayBuf.length - 1]?.[0]?.t ?? 0) > gt) this.replayBuf.pop();
+    } else {
+      const keepRep = Math.max(0, Math.floor(this.totalTime / 0.1));
+      if (this.replayBuf.length > keepRep) this.replayBuf.length = keepRep;
+    }
   }
 // RSH-017-BODY-END:applyPack
 // RSH-017-END:applyPack
@@ -690,6 +823,8 @@ export function applyPack(this: EngineAdapterHost, p: Parameters<RaceEngine["app
 export function stepRewind(this: EngineAdapterHost, dt: Parameters<RaceEngine["stepRewind"]>[0])
 // RSH-017-BODY-BEGIN:stepRewind
 {
+    this.assisted = true;
+    if (!this.rewinding) this.clearRoadblock();
     this.rewinding = true;
     this.rewindTickT += dt;
     if (this.rewindTickT > 0.08) {
@@ -712,18 +847,36 @@ export function stepRewind(this: EngineAdapterHost, dt: Parameters<RaceEngine["s
 export function stepReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine["stepReplay"]>[0])
 // RSH-017-BODY-BEGIN:stepReplay
 {
-    const dur = this.replayBuf.length * 0.1;
+    const heads = this.replayBuf.map((row) => ({ t: row[0]?.t }));
+    const dur = Math.max(0.1, timedSpan(heads, 0.1));
     const slow = this.replayT < 1.35 || this.replayT > dur - 2.1;
+    const previousReplayT = this.replayT;
     this.replayT += slow ? dt * 0.42 : dt;
     this.replaySlow = slow;
     if (this.replayT >= dur) {
       this.skipReplay();
       return;
     }
-    const i = Math.min(this.replayBuf.length - 1, Math.floor(this.replayT / 0.1));
+    const t0 = this.replayBuf[0]?.[0]?.t ?? 0;
+    const nowT = t0 + this.replayT;
+    let i = 0;
+    if (typeof this.replayBuf[0]?.[0]?.t === "number") {
+      let lo = 0;
+      let hi = this.replayBuf.length - 1;
+      while (lo < hi) {
+        const mid = (lo + hi + 1) >> 1;
+        if ((this.replayBuf[mid]?.[0]?.t ?? 0) <= nowT) lo = mid;
+        else hi = mid - 1;
+      }
+      i = lo;
+    } else {
+      i = Math.min(this.replayBuf.length - 1, Math.floor(this.replayT / 0.1));
+    }
     const a = this.replayBuf[i];
     const b = this.replayBuf[Math.min(this.replayBuf.length - 1, i + 1)];
-    const f = Math.min(1, (this.replayT - i * 0.1) / 0.1);
+    const ta = a?.[0]?.t ?? i * 0.1;
+    const tb = b?.[0]?.t ?? ta + 0.1;
+    const f = tb > ta ? Math.min(1, Math.max(0, (nowT - ta) / (tb - ta))) : 0;
     for (let c = 0; c < this.racers.length; c++) {
       const ra = a[c];
       const rb = b[c] ?? ra;
@@ -738,9 +891,9 @@ export function stepReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine["s
       car.yaw = ra.yaw + dy * f;
       car.speed = ra.speed + (rb.speed - ra.speed) * f;
     }
-    if (Math.floor(this.replayT / 2.8) !== Math.floor((this.replayT - dt) / 2.8)) {
-      this.camMode = 0;
-      this.hood = false;
+    if (!prefersReducedMotion() && Math.floor(this.replayT / 2.8) !== Math.floor(previousReplayT / 2.8)) {
+      this.camMode = (this.camMode + 1) % this.camNames.length;
+      this.hood = this.camMode === 1;
     }
   }
 // RSH-017-BODY-END:stepReplay

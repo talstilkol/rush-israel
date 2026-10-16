@@ -4,6 +4,7 @@ export type TimedRecord = {
   carId: string;
   physicsVersion: number;
   hash: string;
+  ruleset?: string;
 };
 
 export type TimedPersistStatus =
@@ -82,8 +83,9 @@ export function sha256hexSync(value: string) {
   return [h0, h1, h2, h3, h4, h5, h6, h7].map((word) => word.toString(16).padStart(8, "0")).join("");
 }
 
-export function recordPayload(trackId: string, carId: string, t: number, physicsVersion: number) {
-  return `${trackId}|${carId}|${t}|${physicsVersion}`;
+export function recordPayload(trackId: string, carId: string, t: number, physicsVersion: number, ruleset?: string) {
+  const legacy = `${trackId}|${carId}|${t}|${physicsVersion}`;
+  return ruleset ? `${legacy}|${ruleset}` : legacy;
 }
 
 export function isLiveRecord(r: Pick<TimedRecord, "physicsVersion">, version: number) {
@@ -95,8 +97,8 @@ export async function sha256hex(s: string) {
   return Array.from(new Uint8Array(buf), (b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-export function hashTimedRecord(rec: Pick<TimedRecord, "trackId" | "carId" | "t" | "physicsVersion">) {
-  return sha256hexSync(recordPayload(rec.trackId, rec.carId, rec.t, rec.physicsVersion));
+export function hashTimedRecord(rec: Pick<TimedRecord, "trackId" | "carId" | "t" | "physicsVersion" | "ruleset">) {
+  return sha256hexSync(recordPayload(rec.trackId, rec.carId, rec.t, rec.physicsVersion, rec.ruleset));
 }
 
 export function timedRecordIdentity(rec: TimedRecord) {
@@ -114,7 +116,8 @@ export function isStructurallyValidRecord(value: unknown): value is TimedRecord 
     && typeof rec.trackId === "string" && rec.trackId.length > 0 && rec.trackId.length < 64
     && typeof rec.carId === "string" && rec.carId.length > 0 && rec.carId.length < 32
     && Number.isInteger(rec.physicsVersion)
-    && HASH_RE.test(rec.hash);
+    && HASH_RE.test(rec.hash)
+    && (rec.ruleset === undefined || (typeof rec.ruleset === "string" && HASH_RE.test(rec.ruleset)));
 }
 
 export function recordHashMatches(rec: TimedRecord) {
@@ -139,6 +142,7 @@ export function canonicalTimedRecordsString(records: TimedRecord[]) {
     physicsVersion: rec.physicsVersion,
     t: rec.t,
     trackId: rec.trackId,
+    ...(rec.ruleset ? { ruleset: rec.ruleset } : {}),
   }));
   rows.sort((a, b) => a.t - b.t || a.trackId.localeCompare(b.trackId) || a.carId.localeCompare(b.carId) || a.hash.localeCompare(b.hash));
   return JSON.stringify(rows);
@@ -165,7 +169,7 @@ export function sanitizeTimedRecords(records: TimedRecord[], physicsVersion: num
   const grouped = new Map<string, number>();
   const limited: TimedRecord[] = [];
   for (const rec of live) {
-    const key = `${rec.trackId}|${rec.carId}|${rec.physicsVersion}`;
+    const key = `${rec.trackId}|${rec.carId}|${rec.physicsVersion}|${rec.ruleset ?? "legacy"}`;
     const used = grouped.get(key) ?? 0;
     if (used >= RECORD_LIMIT_PER_TRACK_CAR) {
       dropped += 1;

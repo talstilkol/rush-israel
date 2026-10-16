@@ -30,6 +30,8 @@ export default defineTrack({
       fogDensity: 0.00026,
     },
     checkpointCount: 8,
+    // Locally fair the fictional route corners to fit the unchanged road width.
+    // Coordinates are authored from the existing control points, not new GIS data.
     points: [
       her(33.2688, 35.7712),
       her(33.2716, 35.7746),
@@ -39,13 +41,13 @@ export default defineTrack({
       her(33.2818, 35.7764),
       her(33.284, 35.7726),
       her(33.2872, 35.778),
-      her(33.2894, 35.7742),
-      her(33.2924, 35.7802),
+      her(33.28944000, 35.77469000),
+      her(33.29236000, 35.77971000),
       her(33.2946, 35.7764),
       her(33.2978, 35.7824),
-      her(33.3, 35.7786),
+      her(33.30005000, 35.77911000),
       her(33.3032, 35.785),
-      her(33.3054, 35.7814),
+      her(33.30544000, 35.78189000),
       her(33.3084, 35.7876),
       her(33.3112, 35.79),
     ],

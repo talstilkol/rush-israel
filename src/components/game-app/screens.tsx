@@ -15,21 +15,26 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CARS } from "@/game/cars";
-import { chapters, maxStars, CAR_UNLOCK } from "@/game/career";
+import { chapters, maxStars, CAR_UNLOCK, dailyEvent, weeklyEvent } from "@/game/career";
 import { applyTune, LIVERIES, nextCost, PAINTS } from "@/game/garage";
-import { MODE_INFO } from "@/game/modes";
+import { MODE_INFO, MODE_LAPS, RACE_MODES, modeBlurb } from "@/game/modes";
 import {
   allBests,
+  assistKey,
+  getRulesBest,
   allEventStars,
   getCash,
   getTune,
   isCarUnlocked,
+  isDailyDone,
+  isWeeklyDone,
   repairCar,
   repairCost,
   setTune,
   spendCash,
 } from "@/game/save";
-import { CITY_FILTERS, TRACKS, isDriveable } from "@/game/tracks";
+import { CITY_FILTERS, TRACKS, getTrack, isDriveable } from "@/game/tracks";
+import { formatTime } from "@/game/math";
 import { langShort, type Lang } from "@/game/i18n";
 import { cn } from "@/lib/utils";
 import type {
@@ -67,8 +72,10 @@ export function resolveTrack(trackId: TrackId): TrackDef {
 function Overlay({ children }: { children: ReactNode }) {
 	return /* @__PURE__ */ jsx("div", {
 		className: "absolute inset-0 z-40 flex items-center justify-center bg-bg/70 p-4",
+		role: "dialog",
+		"aria-modal": "true",
 		children: /* @__PURE__ */ jsx("div", {
-			className: "w-full max-w-sm rounded-xl border border-border bg-surface p-6",
+			className: "max-h-[85%] w-full max-w-sm overflow-y-auto rounded-xl border border-border bg-surface p-6",
 			children
 		})
 	});
@@ -99,6 +106,12 @@ type MenuProps = {
 	setQualityMode: (q: Quality) => void;
 	fov: number;
 	setFovMode: (v: number) => void;
+	grid: number;
+	setGridMode: (n: number) => void;
+	volume: number;
+	setVolumeMode: (v: number) => void;
+	traffic: "off" | "low" | "normal" | "dense";
+	setTrafficMode: (d: "off" | "low" | "normal" | "dense") => void;
 	mode: RaceMode;
 	setMode: Dispatch<SetStateAction<RaceMode>>;
 	starTotal: number;
@@ -117,10 +130,10 @@ type MenuProps = {
 };
 // RSH-018-BLOCK-END:MenuProps
 // RSH-018-BLOCK-BEGIN:Menu
-function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe, lang, cycleLang, muted, setMuted, night, setNightMode, t, track, car, quality, setQualityMode, fov, setFovMode, mode, setMode, starTotal, eventId, setEventId, weather, setWeatherMode, cash, setCash, handling, setHandlingMode, assists, setAssistsMode, onTuned, startCareer }: MenuProps) {
+function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe, lang, cycleLang, muted, setMuted, night, setNightMode, t, track, car, quality, setQualityMode, fov, setFovMode, grid, setGridMode, volume, setVolumeMode, traffic, setTrafficMode, mode, setMode, starTotal, eventId, setEventId, weather, setWeatherMode, cash, setCash, handling, setHandlingMode, assists, setAssistsMode, onTuned, startCareer }: MenuProps) {
 	const [cityFilter, setCityFilter] = useState("telaviv");
 	const [showSet, setShowSet] = useState(false);
-	allBests();
+	const bests = allBests();
 	return /* @__PURE__ */ jsxs("div", {
 		className: "relative flex h-full min-h-0 flex-col",
 		children: [
@@ -135,6 +148,9 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 				children: [/* @__PURE__ */ jsx("p", {
 					className: "text-sm font-medium tracking-wide text-muted",
 					children: "RUSH"
+				}), /* @__PURE__ */ jsx("p", {
+					className: "text-xs font-medium tabular-nums text-muted",
+					children: starTotal >= maxStars() ? t(`אלוף · ★ ${starTotal} · ₪${cash.toLocaleString()}`, `Champion · ★ ${starTotal} · ₪${cash.toLocaleString()}`) : `★ ${starTotal} · ₪${cash.toLocaleString()}`
 				}), /* @__PURE__ */ jsxs("div", {
 					className: "flex items-center gap-2",
 					children: [/* @__PURE__ */ jsx("button", {
@@ -196,6 +212,94 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 						className: "mt-3 flex min-h-10 w-full items-center justify-center gap-2 rounded-md border border-border text-sm",
 						onClick: () => setMuted(!muted),
 						children: [muted ? /* @__PURE__ */ jsx(VolumeX, { className: "size-4" }) : /* @__PURE__ */ jsx(Volume2, { className: "size-4" }), muted ? t("מושתק", "Muted") : t("צליל", "Sound")]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "mt-3 flex gap-2",
+						children: [/* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", handling === "arcade" ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setHandlingMode("arcade"),
+							children: t("ארקייד", "Arcade")
+						}), /* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", handling === "simcade" ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setHandlingMode("simcade"),
+							children: t("סימקייד", "Simcade")
+						})]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "mt-3 flex gap-2",
+						children: [/* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", assists.abs ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setAssistsMode({ ...assists, abs: !assists.abs }),
+							children: "ABS"
+						}), /* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", assists.tcs ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setAssistsMode({ ...assists, tcs: !assists.tcs }),
+							children: "TCS"
+						}), /* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", assists.esc ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setAssistsMode({ ...assists, esc: !assists.esc }),
+							children: "ESC"
+						})]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "mt-3 flex gap-2",
+						children: [/* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", fov <= 0 ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setFovMode(0),
+							children: t("צר", "Narrow")
+						}), /* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", fov > 0 && fov < 10 ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setFovMode(6),
+							children: t("רגיל", "Normal")
+						}), /* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", fov >= 10 ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setFovMode(12),
+							children: t("רחב", "Wide")
+						})]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "mt-3 flex gap-2",
+						children: [4, 6, 8].map((n) => /* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", grid === n ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setGridMode(n),
+							children: t(`${n} מכוניות`, `${n} cars`)
+						}, n))
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "mt-3 flex gap-2",
+						children: [
+							[0.28, t("שקט", "Quiet")],
+							[0.55, t("רגיל", "Normal")],
+							[0.85, t("חזק", "Loud")]
+						].map(([v, label]) => /* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", Math.abs(volume - Number(v)) < 0.08 ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setVolumeMode(Number(v)),
+							children: label
+						}, String(v)))
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "mt-3 flex gap-2",
+						children: [
+							["off", t("בלי", "None")],
+							["low", t("דלילה", "Light")],
+							["normal", t("רגילה", "Normal")],
+							["dense", t("צפופה", "Dense")]
+						].map(([id, label]) => /* @__PURE__ */ jsx("button", {
+							type: "button",
+							className: cn("min-h-10 flex-1 rounded-md border text-sm", traffic === id ? "border-fg bg-fg text-bg" : "border-border"),
+							onClick: () => setTrafficMode(id as "off" | "low" | "normal" | "dense"),
+							children: label
+						}, id))
 					})
 				]
 			}) : null,
@@ -215,7 +319,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 							}),
 							/* @__PURE__ */ jsx("p", {
 								className: "mt-4 max-w-md text-pretty text-sm leading-relaxed text-muted",
-								children: t("בחר מסלול וסע. W גז, A/D הגה.", "Pick a track and drive. W gas, A/D steer.", "اختر مساراً وقد. W بنزين، A/D توجيه.")
+								children: t("בחר מסלול וסע. W גז, A שמאלה, D ימינה, Shift דריפט, E ניטרו, C מצלמה.", "Pick a track and drive. W gas, A left, D right, Shift drift, E nitro, C camera.", "اختر مساراً وقد. W بنزين، A يسار، D يمين، Shift دريفت، E نيترو، C كاميرا.")
 							}),
 							/* @__PURE__ */ jsxs(Button, {
 								className: "mt-8 min-h-14 w-full text-base",
@@ -226,9 +330,36 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 								},
 								children: [/* @__PURE__ */ jsx(Flag, { className: "size-4" }), t("בחר מסלול", "Choose track", "اختر المسار")]
 							}),
+							/* @__PURE__ */ jsxs("div", {
+								className: "mt-3 flex gap-2",
+								children: [/* @__PURE__ */ jsxs(Button, {
+									variant: "outline",
+									className: "min-h-12 flex-1",
+									onClick: () => setScreen("career"),
+									children: [/* @__PURE__ */ jsx(Trophy, { className: "size-4" }), t("קריירה", "Career", "مسيرة")]
+								}), /* @__PURE__ */ jsxs(Button, {
+									variant: "outline",
+									className: "min-h-12 flex-1",
+									onClick: () => setScreen("garage"),
+									children: [/* @__PURE__ */ jsx(Gauge, { className: "size-4" }), t("מוסך", "Garage", "الورشة")]
+								})]
+							}),
+							/* @__PURE__ */ jsx(Button, {
+								variant: "outline",
+								className: "mt-3 min-h-12 w-full",
+								onClick: () => startCareer(dailyEvent().id),
+								children: t(
+									`אתגר היום · ${getTrack(dailyEvent().trackId).nameHe}${isDailyDone(dailyEvent().id.slice(6)) ? " · הושלם" : ""}`,
+									`Daily · ${getTrack(dailyEvent().trackId).nameEn}${isDailyDone(dailyEvent().id.slice(6)) ? " · done" : ""}`,
+								)
+							}),
 							/* @__PURE__ */ jsx("p", {
 								className: "mt-6 text-xs text-subtle",
-								children: t("W גז · A/D הגה · Esc תפריט", "W gas · A/D steer · Esc menu", "W بنزين · A/D توجيه · Esc قائمة")
+								children: t("W גז · A שמאלה · D ימינה · Shift דריפט · E ניטרו · G צופר · R ריוויינד · H חזרה לכביש · B מבט אחורה · C מצלמה · F צילום", "W gas · A left · D right · Shift drift · E nitro · G horn · R rewind · H reset · B look back · C camera · F photo", "W بنزين · A يسار · D يمين · Shift دريفت · E نيترو · G بوق · R إرجاع · H طريق · B خلف · C كاميرا · F صورة")
+							}),
+							/* @__PURE__ */ jsx("p", {
+								className: "mt-1 text-xs text-subtle",
+								children: t("בקר: RT גז · LT בלם · A ניטרו · LB דריפט · Start השהיה · Select צופר", "Pad: RT gas · LT brake · A nitro · LB drift · Start pause · Select horn")
 							})
 						]
 					}) : null,
@@ -270,7 +401,6 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 										/* @__PURE__ */ jsx(Button, {
 											className: "min-h-11 shrink-0 px-5",
 											onClick: () => {
-												setMode("circuit");
 												setEventId(null);
 												setScreen("race");
 											},
@@ -314,6 +444,66 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 								})]
 							}),
 							/* @__PURE__ */ jsx("div", {
+								className: "mt-3 grid grid-cols-4 gap-2",
+								children: ([
+									["clear", "בהיר", "Clear"],
+									["rain", "גשם", "Rain"],
+									["storm", "סערה", "Storm"],
+									["hamsin", "חמסין", "Hamsin"],
+								] as const).map(([id, he, en]) => /* @__PURE__ */ jsx("button", {
+									type: "button",
+									onClick: () => setWeatherMode(id),
+									className: cn("min-h-11 rounded-lg border text-sm font-medium", weather === id ? "border-fg bg-fg text-bg" : "border-border bg-surface/80 text-muted"),
+									children: t(he, en)
+								}, id))
+							}),
+							/* @__PURE__ */ jsx("div", {
+								className: "mt-3 flex gap-2 overflow-x-auto pb-1",
+								children: CARS.map((c) => {
+									const unlocked = isCarUnlocked(c.id);
+									const active = c.id === carId;
+									return /* @__PURE__ */ jsxs("button", {
+										type: "button",
+										disabled: !unlocked,
+										onClick: () => {
+											if (unlocked) setCarId(c.id);
+										},
+										className: cn("min-h-14 min-w-[8.5rem] shrink-0 rounded-lg border px-3 py-2 text-start", active ? "border-fg bg-surface" : "border-border bg-surface/80", !unlocked && "opacity-45"),
+										children: [
+											/* @__PURE__ */ jsx("span", {
+												className: "block text-sm font-medium",
+												children: langHe ? c.nameHe : c.nameEn
+											}),
+											/* @__PURE__ */ jsx("span", {
+												className: "mt-0.5 block truncate text-[11px] text-muted",
+												children: unlocked ? c.tagline : t("נעול", "Locked")
+											})
+										]
+									}, c.id);
+								})
+							}),
+							/* @__PURE__ */ jsxs("div", {
+								className: "mt-4",
+								children: [
+									/* @__PURE__ */ jsx("div", {
+										className: "flex flex-wrap gap-2",
+										children: RACE_MODES.map((id) => /* @__PURE__ */ jsx("button", {
+											type: "button",
+											onClick: () => {
+												setMode(id);
+												setEventId(null);
+											},
+											className: cn("min-h-11 rounded-lg border px-3 text-sm font-medium", mode === id ? "border-fg bg-fg text-bg" : "border-border bg-surface/80 text-muted"),
+											children: t(MODE_INFO[id].he, MODE_INFO[id].en)
+										}, id))
+									}),
+									/* @__PURE__ */ jsx("p", {
+										className: "mt-2 text-xs leading-relaxed text-muted",
+										children: modeBlurb(mode, !!getTrack(trackId).open, langHe)
+									})
+								]
+							}),
+							/* @__PURE__ */ jsx("div", {
 								className: "mt-5 grid gap-3 sm:grid-cols-2",
 								children: TRACKS.filter((tr) => isDriveable(tr) && (cityFilter === "all" || tr.city === cityFilter)).map((tr) => {
 									const active = tr.id === trackId;
@@ -322,17 +512,18 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 										onClick: () => {
 											setTrackId(tr.id);
 											setEventId(null);
-											setMode("circuit");
 											setScreen("race");
 										},
 										className: cn("overflow-hidden rounded-xl border text-start", active ? "border-fg" : "border-border"),
 										children: [/* @__PURE__ */ jsxs("span", {
 											className: "relative block",
 											children: [
-												/* @__PURE__ */ jsx("span", {
-													className: "block h-24 w-full",
-													style: { background: themeWash(tr.theme, night) },
-													"aria-hidden": true
+												/* @__PURE__ */ jsx("img", {
+													src: `/tracks/${tr.id}.jpg`,
+													alt: "",
+													draggable: false,
+													className: "block h-28 w-full object-cover",
+													style: { background: themeWash(tr.theme, night) }
 												}),
 												night ? /* @__PURE__ */ jsx("span", { className: "pointer-events-none absolute inset-0 bg-bg/35" }) : null,
 												/* @__PURE__ */ jsxs("span", {
@@ -355,6 +546,25 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 													className: "mt-1 text-xs text-muted",
 													children: tr.lengthHint
 												}),
+												(() => {
+													const classBest = getRulesBest(tr.id, {
+														mode,
+														weather,
+														carId,
+														handling,
+														assists: assistKey(assists),
+														laps: tr.open ? 1 : MODE_LAPS[mode],
+														tune: getTune(carId), night, traffic, grid,
+													});
+													if (classBest) return /* @__PURE__ */ jsx("p", {
+														className: "mt-1 text-xs font-medium tabular-nums text-fg",
+														children: `${t("שיא", "Best")} ${formatTime(classBest)}`
+													});
+													return bests[tr.id] ? /* @__PURE__ */ jsx("p", {
+														className: "mt-1 text-xs font-medium tabular-nums text-muted",
+														children: `${t("ישן", "Legacy")} ${formatTime(bests[tr.id]!)}`
+													}) : null;
+												})(),
 												/* @__PURE__ */ jsx("p", {
 													className: "mt-2 text-xs leading-relaxed text-subtle",
 													children: langHe ? tr.description : tr.descriptionEn
@@ -459,7 +669,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 																	className: "mt-0.5 block h-1 rounded-full bg-surface-2",
 																	children: /* @__PURE__ */ jsx("span", {
 																		className: "block h-full rounded-full bg-fg",
-																		style: { width: `${Math.round(c.maxSpeed / 52 * 100)}%` }
+																		style: { width: `${Math.round(c.maxSpeed / 86 * 100)}%` }
 																	})
 																})]
 															}),
@@ -472,7 +682,7 @@ function Menu({ screen, setScreen, trackId, setTrackId, carId, setCarId, langHe,
 																	className: "mt-0.5 block h-1 rounded-full bg-surface-2",
 																	children: /* @__PURE__ */ jsx("span", {
 																		className: "block h-full rounded-full bg-fg",
-																		style: { width: `${Math.round(c.accel / 24 * 100)}%` }
+																		style: { width: `${Math.round(c.accel / 10.4 * 100)}%` }
 																	})
 																})]
 															}),
@@ -544,6 +754,42 @@ function CareerPanel({ langHe, t, starTotal, onBack, onStart }: { langHe: boolea
 						maxStars()
 					]
 				})]
+			}),
+			starTotal >= maxStars() ? /* @__PURE__ */ jsx("p", {
+				className: "mt-4 rounded-lg border border-fg px-4 py-3 text-sm font-medium",
+				children: t("אלוף העונה. כל הכוכבים על הלוח.", "Season champion. Every star is on the board.")
+			}) : null,
+			/* @__PURE__ */ jsx("div", {
+				className: "mt-6 grid gap-2 sm:grid-cols-2",
+				children: [dailyEvent(), weeklyEvent()].map((ev) => {
+					const track = getTrack(ev.trackId);
+					const done = ev.id.startsWith("weekly-") ? isWeeklyDone(ev.id.slice(7)) : isDailyDone(ev.id.slice(6));
+					const info = MODE_INFO[ev.mode];
+					return /* @__PURE__ */ jsxs("button", {
+						type: "button",
+						onClick: () => onStart(ev.id),
+						className: "rounded-lg border border-fg bg-surface p-4 text-start",
+						children: [
+							/* @__PURE__ */ jsx("span", {
+								className: "block text-xs font-medium uppercase tracking-widest text-muted",
+								children: langHe ? ev.chapterHe : ev.chapterEn
+							}),
+							/* @__PURE__ */ jsx("span", {
+								className: "mt-1 block font-medium",
+								children: langHe ? track.nameHe : track.nameEn
+							}),
+							/* @__PURE__ */ jsxs("span", {
+								className: "mt-0.5 block text-xs text-muted",
+								children: [
+									langHe ? info.he : info.en,
+									ev.night ? ` · ${t("לילה", "Night")}` : ` · ${t("יום", "Day")}`,
+									ev.weather && ev.weather !== "clear" ? ` · ${ev.weather === "storm" ? t("סערה", "Storm") : ev.weather === "hamsin" ? t("חמסין", "Hamsin") : t("גשם", "Rain")}` : "",
+									done ? ` · ${t("הושלם", "Done")}` : ""
+								]
+							})
+						]
+					}, ev.id);
+				})
 			}),
 			/* @__PURE__ */ jsx("div", {
 				className: "mt-6 space-y-8",

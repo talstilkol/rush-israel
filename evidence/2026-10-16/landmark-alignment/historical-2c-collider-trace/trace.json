@@ -1,0 +1,5442 @@
+{
+  "sourceHead": "2c365ba1198c5b48cfaae3dde40cd1ce074c1d29",
+  "kind": "historical-collider-current-identity-trace",
+  "scope": "All42 archived historical offsets reconstructed from real old CPU reports. Current26 worlds assembled in Chromium with real committed assets. Exact-coordinate/radius identity and mesh-origin/bounds trace only; changed identities and full shape/height/contact alignment remain unaccepted.",
+  "rows": [
+    {
+      "track": "namal",
+      "historicalIndex": 1,
+      "before": {
+        "x": 363.8100298813223,
+        "z": 1373.6910960332066,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": 0.5832367144125764,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 365.15313172475936,
+        "z": 1359.5723649463066,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": 0.5832367144125764,
+        "kind": "building"
+      },
+      "distance": 14.182471225637642,
+      "currentIdentity": null,
+      "identityMatches": 0,
+      "nearestMeshOrigins": [],
+      "exactMeshOrigin": false,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "haifa",
+      "historicalIndex": 2,
+      "before": {
+        "x": -33.66000000022051,
+        "z": 220.4136000001982,
+        "r": 5,
+        "hx": 3.5999999999999996,
+        "hz": 3.5999999999999996,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -43.243462030976644,
+        "z": 231.59226314644306,
+        "r": 5,
+        "hx": 3.5999999999999996,
+        "hz": 3.5999999999999996,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 14.724308276865088,
+      "currentIdentity": {
+        "collider": {
+          "x": -33.66000000022051,
+          "z": 220.4136000001982,
+          "r": 5,
+          "hx": 3.5999999999999996,
+          "hz": 3.5999999999999996,
+          "yaw": 0,
+          "kind": "building",
+          "maxY": 11.6
+        },
+        "index": 2
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -33.66000000022051,
+            4.2,
+            220.4136000001982
+          ],
+          "bounds": {
+            "min": [
+              -38.25999990485308,
+              1.9073486345888568e-7,
+              216.6136000478819
+            ],
+            "max": [
+              -29.060000095587945,
+              8.399999809265136,
+              224.21359995251447
+            ]
+          },
+          "size": [
+            9.199999809265137,
+            8.399999618530273,
+            7.599999904632568
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "ConeGeometry",
+          "instance": null,
+          "center": [
+            -33.66000000022051,
+            10,
+            220.4136000001982
+          ],
+          "bounds": {
+            "min": [
+              -42.76753542282519,
+              8.399999976158142,
+              211.3060645775935
+            ],
+            "max": [
+              -24.552464577615833,
+              11.600000023841858,
+              229.52113542280287
+            ]
+          },
+          "size": [
+            18.215070845209357,
+            3.200000047683716,
+            18.215070845209368
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -19.346084999984818,
+            65.99714604100497,
+            217.75861800020596
+          ],
+          "bounds": {
+            "min": [
+              -23.16814163553317,
+              65.7221460350445,
+              203.13598907624228
+            ],
+            "max": [
+              -15.524028364436463,
+              66.27214604696543,
+              232.38124692416963
+            ]
+          },
+          "size": [
+            7.644113271096709,
+            0.550000011920929,
+            29.24525784792735
+          ],
+          "centerDistance": 14.558059350554084
+        },
+        {
+          "name": "rush-terrain-tree-trunks",
+          "type": "CylinderGeometry",
+          "instance": 58,
+          "center": [
+            -33.805198669433594,
+            57.836509704589844,
+            241.84487915039062
+          ],
+          "bounds": {
+            "min": [
+              -34.18928829521397,
+              57.83650965288401,
+              241.46078952461025
+            ],
+            "max": [
+              -33.42110904365322,
+              65.86069885104655,
+              242.228968776171
+            ]
+          },
+          "size": [
+            0.7681792515607526,
+            8.024189198162539,
+            0.7681792515607526
+          ],
+          "centerDistance": 21.43177101097841
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "eilat",
+      "historicalIndex": 5,
+      "before": {
+        "x": 387.2000000001293,
+        "z": 194.80999999994145,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 377.2486984066032,
+        "z": 211.9275815053611,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 19.80000000000001,
+      "currentIdentity": {
+        "collider": {
+          "x": 387.2000000001293,
+          "z": 194.80999999994145,
+          "r": 8,
+          "hx": 5.76,
+          "hz": 5.76,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 5
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            387.2000000001293,
+            8.600000000000001,
+            194.80999999994145
+          ],
+          "bounds": {
+            "min": [
+              381.30942762682105,
+              8.174999988079072,
+              184.74633620664753
+            ],
+            "max": [
+              393.09057237343757,
+              9.02500001192093,
+              204.87366379323538
+            ]
+          },
+          "size": [
+            11.78114474661652,
+            0.8500000238418579,
+            20.127327586587853
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            387.2000000001293,
+            9.25,
+            194.80999999994145
+          ],
+          "bounds": {
+            "min": [
+              386.9500000001293,
+              9,
+              194.71999999636517
+            ],
+            "max": [
+              387.4500000001293,
+              9.5,
+              194.90000000351773
+            ]
+          },
+          "size": [
+            0.5,
+            0.5,
+            0.18000000715255737
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 0,
+          "center": [
+            380.8171081542969,
+            5.550000190734863,
+            205.78945922851562
+          ],
+          "bounds": {
+            "min": [
+              379.8671081662178,
+              4.600000202655792,
+              204.83945924043655
+            ],
+            "max": [
+              381.76710814237595,
+              6.500000178813934,
+              206.7394592165947
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 12.699993435727306
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            379.0580259690625,
+            17.666963151749222,
+            208.81529395892116
+          ],
+          "bounds": {
+            "min": [
+              377.5632050366113,
+              17.391963145788758,
+              207.9176630361164
+            ],
+            "max": [
+              380.5528469015137,
+              17.941963157709687,
+              209.7129248817259
+            ]
+          },
+          "size": [
+            2.98964186490241,
+            0.550000011920929,
+            1.7952618456095024
+          ],
+          "centerDistance": 16.199999999999992
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "timessquare",
+      "historicalIndex": 2,
+      "before": {
+        "x": 18,
+        "z": 8,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 13.196548218081771,
+        "z": 21.283030520046413,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 14.124873408908764,
+      "currentIdentity": {
+        "collider": {
+          "x": 18,
+          "z": 8,
+          "r": 8,
+          "hx": 5.76,
+          "hz": 5.76,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 2
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            18,
+            26,
+            8
+          ],
+          "bounds": {
+            "min": [
+              12,
+              0,
+              3
+            ],
+            "max": [
+              24,
+              52,
+              13
+            ]
+          },
+          "size": [
+            12,
+            52,
+            10
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": null,
+          "center": [
+            18,
+            56,
+            8
+          ],
+          "bounds": {
+            "min": [
+              15.599999904632568,
+              53.59999990463257,
+              5.599999904632568
+            ],
+            "max": [
+              20.40000009536743,
+              58.40000009536743,
+              10.400000095367432
+            ]
+          },
+          "size": [
+            4.800000190734863,
+            4.800000190734863,
+            4.800000190734863
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 1,
+          "center": [
+            17.18880271911621,
+            5.349999904632568,
+            14.388814926147461
+          ],
+          "bounds": {
+            "min": [
+              16.23880273103714,
+              4.399999916553497,
+              13.43881493806839
+            ],
+            "max": [
+              18.138802707195282,
+              6.299999892711639,
+              15.338814914226532
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 6.440108476499278
+        },
+        {
+          "name": "",
+          "type": "PlaneGeometry",
+          "instance": null,
+          "center": [
+            13.82860989784992,
+            3.21269465723032,
+            13.358196261024418
+          ],
+          "bounds": {
+            "min": [
+              13.782894745858483,
+              2.637694669151249,
+              12.785016436563254
+            ],
+            "max": [
+              13.874325049841358,
+              3.787694645309391,
+              13.931376085485581
+            ]
+          },
+          "size": [
+            0.09143030398287522,
+            1.149999976158142,
+            1.1463596489223278
+          ],
+          "centerDistance": 6.790490597590995
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "brooklynbridge",
+      "historicalIndex": 2,
+      "before": {
+        "x": -70,
+        "z": 8,
+        "r": 5.5,
+        "hx": 3.96,
+        "hz": 3.96,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -68.73924359183121,
+        "z": -5.970350618359058,
+        "r": 5.5,
+        "hx": 3.96,
+        "hz": 3.96,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 14.027123836361607,
+      "currentIdentity": {
+        "collider": {
+          "x": -70,
+          "z": 8,
+          "r": 5.5,
+          "hx": 3.96,
+          "hz": 3.96,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 2
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -70,
+            32.45,
+            8
+          ],
+          "bounds": {
+            "min": [
+              -73.84999990463257,
+              -7.629394502828291e-7,
+              4.150000095367432
+            ],
+            "max": [
+              -66.15000009536743,
+              64.90000076293946,
+              11.849999904632568
+            ]
+          },
+          "size": [
+            7.699999809265137,
+            64.9000015258789,
+            7.699999809265137
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": null,
+          "center": [
+            -70,
+            71.5,
+            8
+          ],
+          "bounds": {
+            "min": [
+              -70.85736513137817,
+              63.80000019073486,
+              7.009999990463257
+            ],
+            "max": [
+              -69.14263486862183,
+              79.19999980926514,
+              8.990000009536743
+            ]
+          },
+          "size": [
+            1.7147302627563477,
+            15.399999618530273,
+            1.9800000190734863
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -70,
+            29,
+            8
+          ],
+          "bounds": {
+            "min": [
+              -76,
+              0,
+              2
+            ],
+            "max": [
+              -64,
+              58,
+              14
+            ]
+          },
+          "size": [
+            12,
+            58,
+            12
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": null,
+          "center": [
+            -70,
+            64,
+            8
+          ],
+          "bounds": {
+            "min": [
+              -73.59999990463257,
+              58,
+              4.400000095367432
+            ],
+            "max": [
+              -66.40000009536743,
+              70,
+              11.599999904632568
+            ]
+          },
+          "size": [
+            7.199999809265137,
+            12,
+            7.199999809265137
+          ],
+          "centerDistance": 0
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "brooklynbridge",
+      "historicalIndex": 3,
+      "before": {
+        "x": -52.4,
+        "z": 23.400000000000002,
+        "r": 4.95,
+        "hx": 3.564,
+        "hz": 3.564,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -53.55256682980647,
+        "z": 25.605626516685536,
+        "r": 4.95,
+        "hx": 3.564,
+        "hz": 3.564,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 2.488613796529407,
+      "currentIdentity": {
+        "collider": {
+          "x": -52.4,
+          "z": 23.400000000000002,
+          "r": 4.95,
+          "hx": 3.564,
+          "hz": 3.564,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 3
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -52.4,
+            25.3,
+            23.400000000000002
+          ],
+          "bounds": {
+            "min": [
+              -56.80000009536743,
+              7.629394538355427e-7,
+              20.100000047683718
+            ],
+            "max": [
+              -47.99999990463257,
+              50.599999237060544,
+              26.699999952316286
+            ]
+          },
+          "size": [
+            8.800000190734863,
+            50.599998474121094,
+            6.599999904632568
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -52.4,
+            56.1,
+            23.400000000000002
+          ],
+          "bounds": {
+            "min": [
+              -55.15,
+              50.04999980926514,
+              21.199999952316286
+            ],
+            "max": [
+              -49.65,
+              62.150000190734865,
+              25.600000047683718
+            ]
+          },
+          "size": [
+            5.5,
+            12.100000381469727,
+            4.400000095367432
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 184,
+          "center": [
+            -56.561004638671875,
+            5.44109582901001,
+            24.623022079467773
+          ],
+          "bounds": {
+            "min": [
+              -57.54700463795662,
+              4.519588706871843,
+              23.63702208018303
+            ],
+            "max": [
+              -55.57500463938713,
+              6.362602951148176,
+              25.609022078752517
+            ]
+          },
+          "size": [
+            1.971999998569487,
+            1.8430142442763326,
+            1.971999998569487
+          ],
+          "centerDistance": 4.337020014931283
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 181,
+          "center": [
+            -56.2910041809082,
+            5.984462738037109,
+            25.74302101135254
+          ],
+          "bounds": {
+            "min": [
+              -57.61700416946411,
+              4.7451944659242,
+              24.417021022796632
+            ],
+            "max": [
+              -54.965004192352296,
+              7.2237310101500185,
+              27.069020999908446
+            ]
+          },
+          "size": [
+            2.6519999771118137,
+            2.4785365442258183,
+            2.6519999771118137
+          ],
+          "centerDistance": 4.541988660871424
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "hw1",
+      "historicalIndex": 0,
+      "before": {
+        "x": 220.57399662973384,
+        "z": -82.79325924922615,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": 2.0911127626680246,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 221.38603883874578,
+        "z": -88.93700920823346,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": 2.0911127626680246,
+        "kind": "building"
+      },
+      "distance": 6.197182917101874,
+      "currentIdentity": null,
+      "identityMatches": 0,
+      "nearestMeshOrigins": [],
+      "exactMeshOrigin": false,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "hw1",
+      "historicalIndex": 2,
+      "before": {
+        "x": 228.6721744146985,
+        "z": -87.43336998866073,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": 2.0911127626680246,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 231.32742011353287,
+        "z": -94.57472904182538,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": 2.0911127626680246,
+        "kind": "building"
+      },
+      "distance": 7.619011671299308,
+      "currentIdentity": null,
+      "identityMatches": 0,
+      "nearestMeshOrigins": [],
+      "exactMeshOrigin": false,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "hw1",
+      "historicalIndex": 4,
+      "before": {
+        "x": 236.77035219966317,
+        "z": -92.0734807280953,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": 2.0911127626680246,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 236.26773867089997,
+        "z": -97.41954209766018,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": 2.0911127626680246,
+        "kind": "building"
+      },
+      "distance": 5.369636163321468,
+      "currentIdentity": null,
+      "identityMatches": 0,
+      "nearestMeshOrigins": [],
+      "exactMeshOrigin": false,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "herzliya",
+      "historicalIndex": 2,
+      "before": {
+        "x": -18.75999999995628,
+        "z": 100.18800000016199,
+        "r": 10,
+        "hx": 7.199999999999999,
+        "hz": 7.199999999999999,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -26.796234228556578,
+        "z": 99.31917452980646,
+        "r": 10,
+        "hx": 7.199999999999999,
+        "hz": 7.199999999999999,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 8.083063668861303,
+      "currentIdentity": {
+        "collider": {
+          "x": -18.75999999995628,
+          "z": 100.18800000016199,
+          "r": 10,
+          "hx": 7.199999999999999,
+          "hz": 7.199999999999999,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 2
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -18.75999999995628,
+            18,
+            100.18800000016199
+          ],
+          "bounds": {
+            "min": [
+              -25.75999999995628,
+              0,
+              91.18800000016199
+            ],
+            "max": [
+              -11.759999999956278,
+              36,
+              109.18800000016199
+            ]
+          },
+          "size": [
+            14,
+            36,
+            18
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -18.75999999995628,
+            37.4,
+            100.18800000016199
+          ],
+          "bounds": {
+            "min": [
+              -23.75999999995628,
+              35.79999997615814,
+              94.18800000016199
+            ],
+            "max": [
+              -13.759999999956278,
+              39.00000002384186,
+              106.18800000016199
+            ]
+          },
+          "size": [
+            10,
+            3.200000047683716,
+            12
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": 6,
+          "center": [
+            -13.00370979309082,
+            4.5,
+            101.45389556884766
+          ],
+          "bounds": {
+            "min": [
+              -13.343709796667099,
+              0.40000009536743164,
+              101.11389556527138
+            ],
+            "max": [
+              -12.663709789514542,
+              8.599999904632568,
+              101.79389557242393
+            ]
+          },
+          "size": [
+            0.6800000071525574,
+            8.199999809265137,
+            0.6800000071525574
+          ],
+          "centerDistance": 5.893841577144161
+        },
+        {
+          "name": "",
+          "type": "ConeGeometry",
+          "instance": 72,
+          "center": [
+            -13.00370979309082,
+            8.449999809265137,
+            101.45389556884766
+          ],
+          "bounds": {
+            "min": [
+              -13.377477670780795,
+              6.095205076246828,
+              97.98285291864765
+            ],
+            "max": [
+              -12.280524966545922,
+              8.98216500112477,
+              101.95745958612072
+            ]
+          },
+          "size": [
+            1.096952704234873,
+            2.8869599248779414,
+            3.9746066674730685
+          ],
+          "centerDistance": 5.893841577144161
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "hanikra",
+      "historicalIndex": 0,
+      "before": {
+        "x": -279.6000000000106,
+        "z": 445.2800000001487,
+        "r": 14,
+        "hx": 10.08,
+        "hz": 10.08,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -299.3821852302986,
+        "z": 461.84216011030867,
+        "r": 14,
+        "hx": 10.08,
+        "hz": 10.08,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 25.799999999999997,
+      "currentIdentity": {
+        "collider": {
+          "x": -279.6000000000106,
+          "z": 445.2800000001487,
+          "r": 14,
+          "hx": 10.08,
+          "hz": 10.08,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -279.6000000000106,
+            9.4,
+            445.2800000001487
+          ],
+          "bounds": {
+            "min": [
+              -288.53925222599094,
+              8.974999988079071,
+              437.779774551783
+            ],
+            "max": [
+              -270.66074777403026,
+              9.82500001192093,
+              452.78022544851433
+            ]
+          },
+          "size": [
+            17.87850445196068,
+            0.8500000238418579,
+            15.000450896731309
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -279.6000000000106,
+            10.049999999999999,
+            445.2800000001487
+          ],
+          "bounds": {
+            "min": [
+              -279.8500000000106,
+              9.799999999999999,
+              445.1899999965724
+            ],
+            "max": [
+              -279.3500000000106,
+              10.299999999999999,
+              445.37000000372495
+            ]
+          },
+          "size": [
+            0.5,
+            0.5,
+            0.18000000715255737
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -279.6000000000106,
+            14.4,
+            450.2800000001487
+          ],
+          "bounds": {
+            "min": [
+              -290.6000000000106,
+              -3.5999999999999996,
+              444.2800000001487
+            ],
+            "max": [
+              -268.6000000000106,
+              32.4,
+              456.2800000001487
+            ]
+          },
+          "size": [
+            22,
+            36,
+            12
+          ],
+          "centerDistance": 5
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -279.6000000000106,
+            12,
+            439.2800000001487
+          ],
+          "bounds": {
+            "min": [
+              -290.6000000000106,
+              -3,
+              433.2800000001487
+            ],
+            "max": [
+              -268.6000000000106,
+              27,
+              445.2800000001487
+            ]
+          },
+          "size": [
+            22,
+            30,
+            12
+          ],
+          "centerDistance": 6
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "haifaport",
+      "historicalIndex": 0,
+      "before": {
+        "x": -33.66000000022051,
+        "z": 220.4136000001982,
+        "r": 5,
+        "hx": 3.5999999999999996,
+        "hz": 3.5999999999999996,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -41.14411466127709,
+        "z": 205.57435557616466,
+        "r": 5,
+        "hx": 3.5999999999999996,
+        "hz": 3.5999999999999996,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 16.619721638344366,
+      "currentIdentity": {
+        "collider": {
+          "x": -33.66000000022051,
+          "z": 220.4136000001982,
+          "r": 5,
+          "hx": 3.5999999999999996,
+          "hz": 3.5999999999999996,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -33.66000000022051,
+            4,
+            220.4136000001982
+          ],
+          "bounds": {
+            "min": [
+              -38.16000000022051,
+              0,
+              215.4136000001982
+            ],
+            "max": [
+              -29.160000000220514,
+              8,
+              225.4136000001982
+            ]
+          },
+          "size": [
+            9,
+            8,
+            10
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "ConeGeometry",
+          "instance": null,
+          "center": [
+            -33.66000000022051,
+            9.5,
+            220.4136000001982
+          ],
+          "bounds": {
+            "min": [
+              -42.56954571291084,
+              8,
+              211.50405428750787
+            ],
+            "max": [
+              -24.750454287530186,
+              11,
+              229.3231457128885
+            ]
+          },
+          "size": [
+            17.819091425380652,
+            3,
+            17.819091425380634
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -42.0750000002009,
+            8.700000000000001,
+            225.42300000000856
+          ],
+          "bounds": {
+            "min": [
+              -49.71600811287795,
+              8.274999988079072,
+              216.6033099591914
+            ],
+            "max": [
+              -34.43399188752385,
+              9.12500001192093,
+              234.24269004082572
+            ]
+          },
+          "size": [
+            15.282016225354099,
+            0.8500000238418579,
+            17.63938008163433
+          ],
+          "centerDistance": 9.793176877692453
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -42.0750000002009,
+            9.35,
+            225.42300000000856
+          ],
+          "bounds": {
+            "min": [
+              -42.3250000002009,
+              9.1,
+              225.33299999643228
+            ],
+            "max": [
+              -41.8250000002009,
+              9.6,
+              225.51300000358484
+            ]
+          },
+          "size": [
+            0.5,
+            0.5,
+            0.18000000715255737
+          ],
+          "centerDistance": 9.793176877692453
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "haifaport",
+      "historicalIndex": 3,
+      "before": {
+        "x": 58.90499999986272,
+        "z": 210.39480000022155,
+        "r": 5,
+        "hx": 3.5999999999999996,
+        "hz": 3.5999999999999996,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 57.497940479819725,
+        "z": 195.41800064109157,
+        "r": 5,
+        "hx": 3.5999999999999996,
+        "hz": 3.5999999999999996,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 15.042750265047276,
+      "currentIdentity": {
+        "collider": {
+          "x": 58.90499999986272,
+          "z": 210.39480000022155,
+          "r": 5,
+          "hx": 3.5999999999999996,
+          "hz": 3.5999999999999996,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 3
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            58.90499999986272,
+            4.4,
+            210.39480000022155
+          ],
+          "bounds": {
+            "min": [
+              53.40499999986272,
+              -9.536743128535363e-8,
+              205.39480000022155
+            ],
+            "max": [
+              64.40499999986272,
+              8.800000095367432,
+              215.39480000022155
+            ]
+          },
+          "size": [
+            11.000000000000007,
+            8.800000190734863,
+            10
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "ConeGeometry",
+          "instance": null,
+          "center": [
+            58.90499999986272,
+            10.3,
+            210.39480000022155
+          ],
+          "bounds": {
+            "min": [
+              48.015555839329714,
+              8.8,
+              199.50535583968855
+            ],
+            "max": [
+              69.79444416039573,
+              11.8,
+              221.28424416075455
+            ]
+          },
+          "size": [
+            21.778888321066013,
+            3,
+            21.778888321066006
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 2,
+          "center": [
+            46.18769073486328,
+            5.650000095367432,
+            199.73814392089844
+          ],
+          "bounds": {
+            "min": [
+              45.23769074678421,
+              4.700000107288361,
+              198.78814393281937
+            ],
+            "max": [
+              47.13769072294235,
+              6.600000083446503,
+              200.6881439089775
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 16.59199426635071
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            52.457706853467315,
+            10.943160151597112,
+            228.52287723781032
+          ],
+          "bounds": {
+            "min": [
+              50.757056868638,
+              10.668160145636648,
+              228.43991929924005
+            ],
+            "max": [
+              54.158356838296626,
+              11.218160157557577,
+              228.6058351763806
+            ]
+          },
+          "size": [
+            3.4012999696586235,
+            0.550000011920929,
+            0.16591587714054867
+          ],
+          "centerDistance": 19.24044628504082
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "tiberias",
+      "historicalIndex": 0,
+      "before": {
+        "x": 46.599999999891395,
+        "z": 166.98000000000633,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 50.80697585219839,
+        "z": 168.3985810518721,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 4.439709227258783,
+      "currentIdentity": {
+        "collider": {
+          "x": 46.599999999891395,
+          "z": 166.98000000000633,
+          "r": 8,
+          "hx": 5.76,
+          "hz": 5.76,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            46.599999999891395,
+            0.7,
+            166.98000000000633
+          ],
+          "bounds": {
+            "min": [
+              6.599999999891395,
+              0.1250000119209289,
+              165.2799999523226
+            ],
+            "max": [
+              86.5999999998914,
+              1.274999988079071,
+              168.68000004769004
+            ]
+          },
+          "size": [
+            80,
+            1.149999976158142,
+            3.4000000953674316
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": null,
+          "center": [
+            42.599999999891395,
+            3.6,
+            170.98000000000633
+          ],
+          "bounds": {
+            "min": [
+              42.32287186969387,
+              0.10000000000000009,
+              170.66000000715889
+            ],
+            "max": [
+              42.87712813008892,
+              7.1,
+              171.29999999285377
+            ]
+          },
+          "size": [
+            0.55425626039505,
+            7,
+            0.6399999856948853
+          ],
+          "centerDistance": 5.656854249492381
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": null,
+          "center": [
+            42.599999999891395,
+            7.6,
+            170.98000000000633
+          ],
+          "bounds": {
+            "min": [
+              40.80000004757511,
+              5.8000000476837155,
+              169.42115424156822
+            ],
+            "max": [
+              44.39999995220768,
+              9.399999952316284,
+              172.53884575844444
+            ]
+          },
+          "size": [
+            3.5999999046325684,
+            3.5999999046325684,
+            3.1176915168762207
+          ],
+          "centerDistance": 5.656854249492381
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": null,
+          "center": [
+            50.599999999891395,
+            3.6,
+            170.98000000000633
+          ],
+          "bounds": {
+            "min": [
+              50.32287186969387,
+              0.10000000000000009,
+              170.66000000715889
+            ],
+            "max": [
+              50.87712813008892,
+              7.1,
+              171.29999999285377
+            ]
+          },
+          "size": [
+            0.55425626039505,
+            7,
+            0.6399999856948853
+          ],
+          "centerDistance": 5.656854249492381
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "tiberias",
+      "historicalIndex": 2,
+      "before": {
+        "x": 23.29999999978014,
+        "z": 83.49000000000316,
+        "r": 7,
+        "hx": 5.04,
+        "hz": 5.04,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 32.663013355317815,
+        "z": 83.80474823007548,
+        "r": 7,
+        "hx": 5.04,
+        "hz": 5.04,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 9.368302169780312,
+      "currentIdentity": {
+        "collider": {
+          "x": 23.29999999978014,
+          "z": 83.49000000000316,
+          "r": 7,
+          "hx": 5.04,
+          "hz": 5.04,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 2
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            23.29999999978014,
+            4.2,
+            83.49000000000316
+          ],
+          "bounds": {
+            "min": [
+              17.29999999978014,
+              0.20000000000000018,
+              78.49000000000316
+            ],
+            "max": [
+              29.29999999978014,
+              8.2,
+              88.49000000000316
+            ]
+          },
+          "size": [
+            12,
+            7.999999999999999,
+            10
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": null,
+          "center": [
+            23.29999999978014,
+            8.4,
+            83.49000000000316
+          ],
+          "bounds": {
+            "min": [
+              19.700000095147573,
+              8.4,
+              79.8900000953706
+            ],
+            "max": [
+              26.89999990441271,
+              11.999999904632569,
+              87.08999990463573
+            ]
+          },
+          "size": [
+            7.199999809265137,
+            3.5999999046325684,
+            7.199999809265137
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 3,
+          "center": [
+            21.913715362548828,
+            5.449999809265137,
+            54.020389556884766
+          ],
+          "bounds": {
+            "min": [
+              20.963715374469757,
+              4.499999821186066,
+              53.070389568805695
+            ],
+            "max": [
+              22.8637153506279,
+              6.399999797344208,
+              54.97038954496384
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 29.502198642890612
+        },
+        {
+          "name": "",
+          "type": "PlaneGeometry",
+          "instance": null,
+          "center": [
+            -5.258876398999226,
+            3.3499999999999996,
+            35.18073678218202
+          ],
+          "bounds": {
+            "min": [
+              -5.729878231866776,
+              2.875000005960464,
+              35.11923663768651
+            ],
+            "max": [
+              -4.787874566131677,
+              3.824999994039535,
+              35.24223692667752
+            ]
+          },
+          "size": [
+            0.9420036657350987,
+            0.949999988079071,
+            0.12300028899100823
+          ],
+          "centerDistance": 56.11946483894411
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "hermon",
+      "historicalIndex": 0,
+      "before": {
+        "x": 724.3999999998523,
+        "z": 1381.273599999926,
+        "r": 9,
+        "hx": 6.4799999999999995,
+        "hz": 6.4799999999999995,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 713.421824044516,
+        "z": 1387.163941494376,
+        "r": 9,
+        "hx": 6.4799999999999995,
+        "hz": 6.4799999999999995,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 12.458590218301708,
+      "currentIdentity": {
+        "collider": {
+          "x": 724.3999999998523,
+          "z": 1381.273599999926,
+          "r": 9,
+          "hx": 6.4799999999999995,
+          "hz": 6.4799999999999995,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "rush-terrain-tree-trunks",
+          "type": "CylinderGeometry",
+          "instance": 190,
+          "center": [
+            710.6092529296875,
+            167.47645568847656,
+            1388.690185546875
+          ],
+          "bounds": {
+            "min": [
+              710.1773613834932,
+              167.47645562950123,
+              1388.2582940006807
+            ],
+            "max": [
+              711.0411444758818,
+              176.6287931191256,
+              1389.1220770930693
+            ]
+          },
+          "size": [
+            0.8637830923885303,
+            9.152337489624358,
+            0.8637830923885303
+          ],
+          "centerDistance": 15.658558232751522
+        },
+        {
+          "name": "",
+          "type": "ConeGeometry",
+          "instance": 570,
+          "center": [
+            710.6092529296875,
+            173.16574096679688,
+            1388.690185546875
+          ],
+          "bounds": {
+            "min": [
+              707.338840562326,
+              170.6723474927186,
+              1385.4197731795134
+            ],
+            "max": [
+              713.879665297049,
+              175.65913444087516,
+              1391.9605979142366
+            ]
+          },
+          "size": [
+            6.540824734722946,
+            4.986786948156578,
+            6.540824734723174
+          ],
+          "centerDistance": 15.658558232751522
+        },
+        {
+          "name": "",
+          "type": "ConeGeometry",
+          "instance": 571,
+          "center": [
+            710.6092529296875,
+            176.31959533691406,
+            1388.690185546875
+          ],
+          "bounds": {
+            "min": [
+              708.0654512729906,
+              173.82620186283577,
+              1386.1463838901782
+            ],
+            "max": [
+              713.1530545863844,
+              178.81298881099235,
+              1391.2339872035718
+            ]
+          },
+          "size": [
+            5.087603313393856,
+            4.986786948156578,
+            5.087603313393629
+          ],
+          "centerDistance": 15.658558232751522
+        },
+        {
+          "name": "",
+          "type": "ConeGeometry",
+          "instance": 572,
+          "center": [
+            710.6092529296875,
+            179.4734344482422,
+            1388.690185546875
+          ],
+          "bounds": {
+            "min": [
+              708.8179366524176,
+              176.9800409741639,
+              1386.898869269605
+            ],
+            "max": [
+              712.4005692069574,
+              181.96682792232048,
+              1390.481501824145
+            ]
+          },
+          "size": [
+            3.582632554539714,
+            4.986786948156578,
+            3.5826325545399413
+          ],
+          "centerDistance": 15.658558232751522
+        }
+      ],
+      "exactMeshOrigin": false,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "hw6",
+      "historicalIndex": 1,
+      "before": {
+        "x": 421.11999999998034,
+        "z": 1603.0080000000607,
+        "r": 4,
+        "hx": 2.88,
+        "hz": 2.88,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 420.7613674934322,
+        "z": 1621.8045790166066,
+        "r": 4,
+        "hx": 2.88,
+        "hz": 2.88,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 18.800000000000097,
+      "currentIdentity": {
+        "collider": {
+          "x": 421.11999999998034,
+          "z": 1603.0080000000607,
+          "r": 4,
+          "hx": 2.88,
+          "hz": 2.88,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 1
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            421.11999999998034,
+            8.2,
+            1603.0080000000607
+          ],
+          "bounds": {
+            "min": [
+              407.11999999998034,
+              7.89999998807907,
+              1602.3080000119817
+            ],
+            "max": [
+              435.11999999998034,
+              8.500000011920928,
+              1603.7079999881398
+            ]
+          },
+          "size": [
+            28,
+            0.6000000238418579,
+            1.399999976158142
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            421.11999999998034,
+            9.4,
+            1603.0080000000607
+          ],
+          "bounds": {
+            "min": [
+              420.7623436857173,
+              8.974999988079071,
+              1587.9294088079857
+            ],
+            "max": [
+              421.47765631424335,
+              9.82500001192093,
+              1618.0865911921358
+            ]
+          },
+          "size": [
+            0.7153126285260214,
+            0.8500000238418579,
+            30.15718238415002
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            421.11999999998034,
+            10.049999999999999,
+            1603.0080000000607
+          ],
+          "bounds": {
+            "min": [
+              420.86999999998034,
+              9.799999999999999,
+              1602.9179999964845
+            ],
+            "max": [
+              421.36999999998034,
+              10.299999999999999,
+              1603.098000003637
+            ]
+          },
+          "size": [
+            0.5,
+            0.5,
+            0.18000000715255737
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            421.11999999998034,
+            8.2,
+            1603.8080000000607
+          ],
+          "bounds": {
+            "min": [
+              416.11999999998034,
+              6.9999999523162835,
+              1603.7079999985706
+            ],
+            "max": [
+              426.11999999998034,
+              9.400000047683715,
+              1603.9080000015508
+            ]
+          },
+          "size": [
+            10,
+            2.4000000953674316,
+            0.20000000298023224
+          ],
+          "centerDistance": 0.7999999999999545
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "hw90",
+      "historicalIndex": 0,
+      "before": {
+        "x": 345.6000000000131,
+        "z": 846.0320000000056,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 326.554123388634,
+        "z": 854.3922980870431,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 20.79999999999996,
+      "currentIdentity": {
+        "collider": {
+          "x": 345.6000000000131,
+          "z": 846.0320000000056,
+          "r": 8,
+          "hx": 5.76,
+          "hz": 5.76,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            345.6000000000131,
+            2.7,
+            846.0320000000056
+          ],
+          "bounds": {
+            "min": [
+              338.6000000000131,
+              0.10000009536743182,
+              841.0320000000056
+            ],
+            "max": [
+              352.6000000000131,
+              5.2999999046325685,
+              851.0320000000056
+            ]
+          },
+          "size": [
+            14,
+            5.199999809265137,
+            10
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": null,
+          "center": [
+            357.6000000000131,
+            3.2,
+            846.0320000000056
+          ],
+          "bounds": {
+            "min": [
+              354.8000000476968,
+              -4.7683715642676816e-8,
+              843.2320000476893
+            ],
+            "max": [
+              360.3999999523294,
+              6.400000047683716,
+              848.8319999523219
+            ]
+          },
+          "size": [
+            5.599999904632568,
+            6.400000095367432,
+            5.599999904632568
+          ],
+          "centerDistance": 12
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 3,
+          "center": [
+            358.1446533203125,
+            5.550000190734863,
+            840.5254516601562
+          ],
+          "bounds": {
+            "min": [
+              357.19465333223343,
+              4.600000202655792,
+              839.5754516720772
+            ],
+            "max": [
+              359.09465330839157,
+              6.500000178813934,
+              841.4754516482353
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 13.700014654940942
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            332.8000000000159,
+            6.6000000000000005,
+            816.9931472592664
+          ],
+          "bounds": {
+            "min": [
+              321.08985417967665,
+              6.324999994039536,
+              811.7959523413547
+            ],
+            "max": [
+              344.5101458203552,
+              6.875000005960465,
+              822.1903421771781
+            ]
+          },
+          "size": [
+            23.420291640678556,
+            0.550000011920929,
+            10.394389835823404
+          ],
+          "centerDistance": 31.73475962565757
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "rishon",
+      "historicalIndex": 0,
+      "before": {
+        "x": 23.574999999777546,
+        "z": -11.131999999974056,
+        "r": 10,
+        "hx": 7.199999999999999,
+        "hz": 7.199999999999999,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 15.283503024018682,
+        "z": -18.345262663770146,
+        "r": 10,
+        "hx": 7.199999999999999,
+        "hz": 7.199999999999999,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 10.989999106275354,
+      "currentIdentity": {
+        "collider": {
+          "x": 23.574999999777546,
+          "z": -11.131999999974056,
+          "r": 10,
+          "hx": 7.199999999999999,
+          "hz": 7.199999999999999,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            23.574999999777546,
+            5.6,
+            -11.131999999974056
+          ],
+          "bounds": {
+            "min": [
+              15.574999999777546,
+              0.09999999999999964,
+              -18.131999999974056
+            ],
+            "max": [
+              31.574999999777546,
+              11.1,
+              -4.131999999974056
+            ]
+          },
+          "size": [
+            16,
+            11,
+            14
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": null,
+          "center": [
+            23.574999999777546,
+            11,
+            -11.131999999974056
+          ],
+          "bounds": {
+            "min": [
+              18.37500019051241,
+              11,
+              -16.201625377629085
+            ],
+            "max": [
+              28.774999809042683,
+              16.199999809265137,
+              -6.062374622319027
+            ]
+          },
+          "size": [
+            10.399999618530273,
+            5.199999809265137,
+            10.139250755310059
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "PlaneGeometry",
+          "instance": null,
+          "center": [
+            15.80766624176032,
+            3.55,
+            -8.040247453980106
+          ],
+          "bounds": {
+            "min": [
+              15.664525544389223,
+              3.0750000059604643,
+              -8.493166580418453
+            ],
+            "max": [
+              15.950806939131416,
+              4.024999994039535,
+              -7.587328327541759
+            ]
+          },
+          "size": [
+            0.2862813947421934,
+            0.949999988079071,
+            0.905838252876694
+          ],
+          "centerDistance": 8.36004829615799
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": null,
+          "center": [
+            16.574999999777546,
+            9,
+            -5.131999999974056
+          ],
+          "bounds": {
+            "min": [
+              14.775000047461262,
+              1,
+              -6.93199995229034
+            ],
+            "max": [
+              18.37499995209383,
+              17,
+              -3.332000047657772
+            ]
+          },
+          "size": [
+            3.5999999046325684,
+            16,
+            3.5999999046325684
+          ],
+          "centerDistance": 9.219544457292887
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "ashkelon",
+      "historicalIndex": 0,
+      "before": {
+        "x": -570.0000000000216,
+        "z": -389.62000000008067,
+        "r": 12,
+        "hx": 8.64,
+        "hz": 8.64,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -556.468860314855,
+        "z": -385.53561577294244,
+        "r": 12,
+        "hx": 8.64,
+        "hz": 8.64,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 14.134140783733088,
+      "currentIdentity": {
+        "collider": {
+          "x": -570.0000000000216,
+          "z": -389.62000000008067,
+          "r": 12,
+          "hx": 8.64,
+          "hz": 8.64,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": null,
+          "center": [
+            -558.0000000000216,
+            7,
+            -389.62000000008067
+          ],
+          "bounds": {
+            "min": [
+              -561.7999999523379,
+              0,
+              -393.41999995239695
+            ],
+            "max": [
+              -554.2000000477053,
+              14,
+              -385.8200000477644
+            ]
+          },
+          "size": [
+            7.599999904632568,
+            14,
+            7.599999904632568
+          ],
+          "centerDistance": 12
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -579.4999999999994,
+            4,
+            -400.75200000005475
+          ],
+          "bounds": {
+            "min": [
+              -585.4999999999994,
+              0,
+              -402.3520000238966
+            ],
+            "max": [
+              -573.4999999999994,
+              8,
+              -399.1519999762129
+            ]
+          },
+          "size": [
+            12,
+            8,
+            3.200000047683716
+          ],
+          "centerDistance": 14.634596817097552
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -551.0000000000659,
+            4,
+            -367.35600000013255
+          ],
+          "bounds": {
+            "min": [
+              -557.0000000000659,
+              0,
+              -368.9560000239744
+            ],
+            "max": [
+              -545.0000000000659,
+              8,
+              -365.7559999762907
+            ]
+          },
+          "size": [
+            12,
+            8,
+            3.200000047683716
+          ],
+          "centerDistance": 29.26919363419506
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 8,
+          "center": [
+            -591.4097290039062,
+            5.75,
+            -365.4635925292969
+          ],
+          "bounds": {
+            "min": [
+              -592.3597289919853,
+              4.800000011920929,
+              -366.41359251737595
+            ],
+            "max": [
+              -590.4597290158272,
+              6.699999988079071,
+              -364.5135925412178
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 32.27860774436095
+        }
+      ],
+      "exactMeshOrigin": false,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "walls",
+      "historicalIndex": 0,
+      "before": {
+        "x": -11.306159168313847,
+        "z": -72.5583658325055,
+        "r": 6,
+        "hx": 4.8,
+        "hz": 5.2,
+        "yaw": 0.4,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -3.095066537831734,
+        "z": -69.04671119255218,
+        "r": 6,
+        "hx": 4.8,
+        "hz": 5.2,
+        "yaw": 0.4,
+        "kind": "building"
+      },
+      "distance": 8.93049609465585,
+      "currentIdentity": {
+        "collider": {
+          "x": -11.306159168313847,
+          "z": -72.5583658325055,
+          "r": 6,
+          "hx": 4.8,
+          "hz": 5.2,
+          "yaw": 0.4,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -11.306159168313847,
+            8,
+            -72.5583658325055
+          ],
+          "bounds": {
+            "min": [
+              -17.398025352870082,
+              0,
+              -78.91605334290885
+            ],
+            "max": [
+              -5.214292983757612,
+              16,
+              -66.20067832210215
+            ]
+          },
+          "size": [
+            12.18373236911247,
+            16,
+            12.715375020806704
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -9.464037180308075,
+            21.8,
+            -73.33720251712279
+          ],
+          "bounds": {
+            "min": [
+              -13.13269999963713,
+              20.699999976158143,
+              -78.97294317307122
+            ],
+            "max": [
+              -5.795374360979021,
+              22.90000002384186,
+              -67.70146186117437
+            ]
+          },
+          "size": [
+            7.3373256386581085,
+            2.200000047683716,
+            11.27148131189685
+          ],
+          "centerDistance": 1.999999999999997
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": 0,
+          "center": [
+            -7.238457202911377,
+            2.1500000953674316,
+            -74.36322021484375
+          ],
+          "bounds": {
+            "min": [
+              -7.455620272486014,
+              1.7130000929236413,
+              -74.61832431629513
+            ],
+            "max": [
+              -7.02129413333674,
+              2.587000097811222,
+              -74.10811611339237
+            ]
+          },
+          "size": [
+            0.43432613914927387,
+            0.8740000048875807,
+            0.5102082029027599
+          ],
+          "centerDistance": 4.450134674454775
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -0.25342724027922436,
+            21.8,
+            -77.2313859402093
+          ],
+          "bounds": {
+            "min": [
+              -3.922090059608279,
+              20.699999976158143,
+              -82.86712659615772
+            ],
+            "max": [
+              3.4152355790498303,
+              22.90000002384186,
+              -71.59564528426087
+            ]
+          },
+          "size": [
+            7.337325638658109,
+            2.200000047683716,
+            11.27148131189685
+          ],
+          "centerDistance": 11.999999999999996
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "walls",
+      "historicalIndex": 2,
+      "before": {
+        "x": 131.78850270303082,
+        "z": 195.6279010257188,
+        "r": 6,
+        "hx": 4.8,
+        "hz": 5.2,
+        "yaw": 2.2,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 128.64191456889483,
+        "z": 191.34936321608367,
+        "r": 6,
+        "hx": 4.8,
+        "hz": 5.2,
+        "yaw": 2.2,
+        "kind": "building"
+      },
+      "distance": 5.311017103565269,
+      "currentIdentity": {
+        "collider": {
+          "x": 131.78850270303082,
+          "z": 195.6279010257188,
+          "r": 6,
+          "hx": 4.8,
+          "hz": 5.2,
+          "yaw": 2.2,
+          "kind": "building"
+        },
+        "index": 2
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            131.78850270303082,
+            8,
+            195.6279010257188
+          ],
+          "bounds": {
+            "min": [
+              125.09776565628381,
+              0,
+              189.04716162225392
+            ],
+            "max": [
+              138.47923974977783,
+              16,
+              202.2086404291837
+            ]
+          },
+          "size": [
+            13.38147409349402,
+            16,
+            13.161478806929779
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            130.61150046852015,
+            21.8,
+            194.01090821807963
+          ],
+          "bounds": {
+            "min": [
+              125.24516788339413,
+              20.699999976158143,
+              189.4585582037315
+            ],
+            "max": [
+              135.97783305364618,
+              22.90000002384186,
+              198.56325823242776
+            ]
+          },
+          "size": [
+            10.732665170252048,
+            2.200000047683716,
+            9.104700028696243
+          ],
+          "centerDistance": 1.9999999999999838
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            124.72648929596667,
+            21.8,
+            185.92594417988371
+          ],
+          "bounds": {
+            "min": [
+              119.36015671084066,
+              20.699999976158143,
+              181.3735941655356
+            ],
+            "max": [
+              130.0928218810927,
+              22.90000002384186,
+              190.47829419423184
+            ]
+          },
+          "size": [
+            10.732665170252048,
+            2.200000047683716,
+            9.104700028696243
+          ],
+          "centerDistance": 12.000000000000009
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            119.28546042177031,
+            17.62544984733686,
+            189.70743787245885
+          ],
+          "bounds": {
+            "min": [
+              117.6643656882555,
+              17.350449841376395,
+              189.0987046686054
+            ],
+            "max": [
+              120.90655515528512,
+              17.900449853297324,
+              190.31617107631232
+            ]
+          },
+          "size": [
+            3.2421894670296183,
+            0.550000011920929,
+            1.2174664077069224
+          ],
+          "centerDistance": 13.833941963016064
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "walls",
+      "historicalIndex": 4,
+      "before": {
+        "x": 413.0778897770862,
+        "z": 138.01988963957984,
+        "r": 6,
+        "hx": 4.8,
+        "hz": 5.2,
+        "yaw": 3.3,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 399.0658193525907,
+        "z": 148.93327948434893,
+        "r": 6,
+        "hx": 4.8,
+        "hz": 5.2,
+        "yaw": 3.3,
+        "kind": "building"
+      },
+      "distance": 17.76063612275559,
+      "currentIdentity": {
+        "collider": {
+          "x": 413.0778897770862,
+          "z": 138.01988963957984,
+          "r": 6,
+          "hx": 4.8,
+          "hz": 5.2,
+          "yaw": 3.3,
+          "kind": "building"
+        },
+        "index": 4
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            413.0778897770862,
+            8,
+            138.01988963957984
+          ],
+          "bounds": {
+            "min": [
+              407.8455023417801,
+              0,
+              132.3726351663909
+            ],
+            "max": [
+              418.31027721239235,
+              16,
+              143.6671441127688
+            ]
+          },
+          "size": [
+            10.464774870612246,
+            16,
+            11.294508946377903
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            411.10293023726854,
+            21.8,
+            138.33538102786633
+          ],
+          "bounds": {
+            "min": [
+              408.57238781791943,
+              20.699999976158143,
+              132.73482248861964
+            ],
+            "max": [
+              413.63347265661764,
+              22.90000002384186,
+              143.93593956711302
+            ]
+          },
+          "size": [
+            5.061084838698207,
+            2.200000047683716,
+            11.201117078493382
+          ],
+          "centerDistance": 1.9999999999999591
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            401.22813253817986,
+            21.8,
+            139.9128379692988
+          ],
+          "bounds": {
+            "min": [
+              398.69759011883076,
+              20.699999976158143,
+              134.31227943005212
+            ],
+            "max": [
+              403.75867495752897,
+              22.90000002384186,
+              145.5133965085455
+            ]
+          },
+          "size": [
+            5.061084838698207,
+            2.200000047683716,
+            11.201117078493382
+          ],
+          "centerDistance": 11.999999999999982
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 22,
+          "center": [
+            411.4322204589844,
+            6.75,
+            121.1307144165039
+          ],
+          "bounds": {
+            "min": [
+              410.4822204709053,
+              5.800000011920929,
+              120.18071442842484
+            ],
+            "max": [
+              412.38222044706345,
+              7.699999988079071,
+              122.08071440458298
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 16.969162242736203
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "walls",
+      "historicalIndex": 6,
+      "before": {
+        "x": 58.884196158361135,
+        "z": -281.5555307967379,
+        "r": 6,
+        "hx": 4.8,
+        "hz": 5.2,
+        "yaw": 5.2,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 45.9142540588391,
+        "z": -269.67240666605755,
+        "r": 6,
+        "hx": 4.8,
+        "hz": 5.2,
+        "yaw": 5.2,
+        "kind": "building"
+      },
+      "distance": 17.590566709748494,
+      "currentIdentity": {
+        "collider": {
+          "x": 58.884196158361135,
+          "z": -281.5555307967379,
+          "r": 6,
+          "hx": 4.8,
+          "hz": 5.2,
+          "yaw": 5.2,
+          "kind": "building"
+        },
+        "index": 6
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            58.884196158361135,
+            8,
+            -281.5555307967379
+          ],
+          "bounds": {
+            "min": [
+              52.358597858908674,
+              0,
+              -287.8736601039805
+            ],
+            "max": [
+              65.4097944578136,
+              16,
+              -275.2374014894953
+            ]
+          },
+          "size": [
+            13.05119659890493,
+            16,
+            12.6362586144852
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            59.82122950096189,
+            21.8,
+            -279.7886214852976
+          ],
+          "bounds": {
+            "min": [
+              54.25409591226901,
+              20.699999976158143,
+              -283.82048451185153
+            ],
+            "max": [
+              65.38836308965477,
+              22.90000002384186,
+              -275.75675845874366
+            ]
+          },
+          "size": [
+            11.134267177385766,
+            2.200000047683716,
+            8.063726053107871
+          ],
+          "centerDistance": 2.000000000000009
+        },
+        {
+          "name": "",
+          "type": "PlaneGeometry",
+          "instance": null,
+          "center": [
+            56.7909749824322,
+            4.65,
+            -276.5820047295308
+          ],
+          "bounds": {
+            "min": [
+              56.79048164508637,
+              4.075000011920929,
+              -277.15700450597353
+            ],
+            "max": [
+              56.79146831977803,
+              5.224999988079071,
+              -276.0070049530881
+            ]
+          },
+          "size": [
+            0.0009866746916600277,
+            1.149999976158142,
+            1.149999552885447
+          ],
+          "centerDistance": 5.396066755753291
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 36,
+          "center": [
+            56.790245056152344,
+            6.75,
+            -275.73199462890625
+          ],
+          "bounds": {
+            "min": [
+              55.84024506807327,
+              5.800000011920929,
+              -276.6819946169853
+            ],
+            "max": [
+              57.740245044231415,
+              7.699999988079071,
+              -274.7819946408272
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 6.18855433170663
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "ramon",
+      "historicalIndex": 1,
+      "before": {
+        "x": 184.14354400799644,
+        "z": -579.6979043574672,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": -2.6837313973731787,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 202.906327725614,
+        "z": -583.5011769441638,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": -2.6837313973731787,
+        "kind": "building"
+      },
+      "distance": 19.14437084896792,
+      "currentIdentity": null,
+      "identityMatches": 0,
+      "nearestMeshOrigins": [],
+      "exactMeshOrigin": false,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "ramon",
+      "historicalIndex": 4,
+      "before": {
+        "x": 204.4977779885603,
+        "z": -613.1395962863224,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": -2.6837313973731787,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 211.6332250575767,
+        "z": -620.912106763706,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": -2.6837313973731787,
+        "kind": "building"
+      },
+      "distance": 10.551138516566441,
+      "currentIdentity": null,
+      "identityMatches": 0,
+      "nearestMeshOrigins": [],
+      "exactMeshOrigin": false,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "ramon",
+      "historicalIndex": 6,
+      "before": {
+        "x": 199.85645599179074,
+        "z": -622.5580956424992,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": -2.6837313973731787,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 210.33221780280104,
+        "z": -633.261324799038,
+        "r": 1.05,
+        "hx": 0.55,
+        "hz": 2.4,
+        "yaw": -2.6837313973731787,
+        "kind": "building"
+      },
+      "distance": 14.976671856537545,
+      "currentIdentity": null,
+      "identityMatches": 0,
+      "nearestMeshOrigins": [],
+      "exactMeshOrigin": false,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "ramon",
+      "historicalIndex": 10,
+      "before": {
+        "x": 166.88400171675542,
+        "z": -588.7511413419311,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 168.2156430921476,
+        "z": -603.414900846573,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 14.72409968597851,
+      "currentIdentity": null,
+      "identityMatches": 0,
+      "nearestMeshOrigins": [],
+      "exactMeshOrigin": false,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "hw40",
+      "historicalIndex": 0,
+      "before": {
+        "x": -240.91200000000916,
+        "z": 529.883200000094,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -242.94785587455058,
+        "z": 535.3884748423133,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 5.869647368477686,
+      "currentIdentity": {
+        "collider": {
+          "x": -240.91200000000916,
+          "z": 529.883200000094,
+          "r": 8,
+          "hx": 5.76,
+          "hz": 5.76,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -240.91200000000916,
+            2.2,
+            529.883200000094
+          ],
+          "bounds": {
+            "min": [
+              -245.91200000000916,
+              0.20000000000000018,
+              525.883200000094
+            ],
+            "max": [
+              -235.91200000000916,
+              4.2,
+              533.883200000094
+            ]
+          },
+          "size": [
+            10,
+            4,
+            8
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": 19,
+          "center": [
+            -260.934814453125,
+            1.399999976158142,
+            523.3721923828125
+          ],
+          "bounds": {
+            "min": [
+              -261.31554597420666,
+              1.4000000365413152,
+              522.9914608617308
+            ],
+            "max": [
+              -260.55408293204334,
+              5.958776710860548,
+              523.7529239038942
+            ]
+          },
+          "size": [
+            0.7614630421633137,
+            4.558776674319232,
+            0.7614630421633137
+          ],
+          "centerDistance": 21.054840745448598
+        },
+        {
+          "name": "",
+          "type": "ConeGeometry",
+          "instance": 19,
+          "center": [
+            -260.934814453125,
+            6.591940402984619,
+            523.3721923828125
+          ],
+          "bounds": {
+            "min": [
+              -267.0352885765321,
+              6.151940386891365,
+              517.2726176458366
+            ],
+            "max": [
+              -254.83434032971792,
+              7.031940419077873,
+              529.4717671197884
+            ]
+          },
+          "size": [
+            12.200948246814164,
+            0.8800000321865085,
+            12.19914947395182
+          ],
+          "centerDistance": 21.054840745448598
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 6,
+          "center": [
+            -227.3106689453125,
+            6.550000190734863,
+            564.838134765625
+          ],
+          "bounds": {
+            "min": [
+              -228.26066893339157,
+              5.600000202655792,
+              563.8881347775459
+            ],
+            "max": [
+              -226.36066895723343,
+              7.500000178813934,
+              565.7881347537041
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 37.50791477704383
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "tzfat",
+      "historicalIndex": 0,
+      "before": {
+        "x": -123.0239999997133,
+        "z": 202.04579999974666,
+        "r": 7,
+        "hx": 5.04,
+        "hz": 5.04,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -119.61678452333689,
+        "z": 209.38970736408305,
+        "r": 7,
+        "hx": 5.04,
+        "hz": 5.04,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 8.095807104817478,
+      "currentIdentity": {
+        "collider": {
+          "x": -123.0239999997133,
+          "z": 202.04579999974666,
+          "r": 7,
+          "hx": 5.04,
+          "hz": 5.04,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -123.0239999997133,
+            5,
+            202.04579999974666
+          ],
+          "bounds": {
+            "min": [
+              -128.52399999971328,
+              1,
+              196.54579999974666
+            ],
+            "max": [
+              -117.5239999997133,
+              9,
+              207.54579999974666
+            ]
+          },
+          "size": [
+            10.999999999999986,
+            8,
+            11
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": null,
+          "center": [
+            -123.0239999997133,
+            9.2,
+            202.04579999974666
+          ],
+          "bounds": {
+            "min": [
+              -127.62399990434587,
+              9.2,
+              197.56113174489437
+            ],
+            "max": [
+              -118.42400009508073,
+              13.799999904632568,
+              206.53046825459896
+            ]
+          },
+          "size": [
+            9.199999809265137,
+            4.599999904632568,
+            8.96933650970459
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": null,
+          "center": [
+            -123.0239999997133,
+            14.2,
+            202.04579999974666
+          ],
+          "bounds": {
+            "min": [
+              -123.57400001163423,
+              13.300000023841857,
+              201.49579998782573
+            ],
+            "max": [
+              -122.47399998779237,
+              15.099999976158141,
+              202.5958000116676
+            ]
+          },
+          "size": [
+            1.100000023841858,
+            1.7999999523162842,
+            1.100000023841858
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": 4,
+          "center": [
+            -136.44683837890625,
+            2.3499999046325684,
+            196.1356658935547
+          ],
+          "bounds": {
+            "min": [
+              -136.70635720162204,
+              1.9224999213218688,
+              195.89832229066232
+            ],
+            "max": [
+              -136.18731955619046,
+              2.777499887943268,
+              196.37300949644705
+            ]
+          },
+          "size": [
+            0.519037645431581,
+            0.8549999666213992,
+            0.47468720578473267
+          ],
+          "centerDistance": 14.666365442982421
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "tzfat",
+      "historicalIndex": 6,
+      "before": {
+        "x": -41.00799999990443,
+        "z": 159.18759999962901,
+        "r": 4,
+        "hx": 2.88,
+        "hz": 2.88,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -47.36165332351649,
+        "z": 152.93262575252686,
+        "r": 4,
+        "hx": 2.88,
+        "hz": 2.88,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 8.915919099484798,
+      "currentIdentity": {
+        "collider": {
+          "x": -41.00799999990443,
+          "z": 159.18759999962901,
+          "r": 4,
+          "hx": 2.88,
+          "hz": 2.88,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 6
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -41.00799999990443,
+            3.6,
+            159.18759999962901
+          ],
+          "bounds": {
+            "min": [
+              -44.25799999990443,
+              9.536743172944284e-8,
+              155.68759999962901
+            ],
+            "max": [
+              -37.75799999990443,
+              7.199999904632568,
+              162.68759999962901
+            ]
+          },
+          "size": [
+            6.5,
+            7.199999809265137,
+            7
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -41.00799999990443,
+            1.2,
+            162.787599999629
+          ],
+          "bounds": {
+            "min": [
+              -41.608000023746285,
+              0.09999997615814205,
+              162.6875999981389
+            ],
+            "max": [
+              -40.40799997606257,
+              2.300000023841858,
+              162.88760000111913
+            ]
+          },
+          "size": [
+            1.2000000476837158,
+            2.200000047683716,
+            0.20000000298023224
+          ],
+          "centerDistance": 3.5999999999999943
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": 1,
+          "center": [
+            -44.7205810546875,
+            2.3499999046325684,
+            154.86074829101562
+          ],
+          "bounds": {
+            "min": [
+              -44.973631817500575,
+              1.8844999014139177,
+              154.5967960151566
+            ],
+            "max": [
+              -44.467530291874425,
+              2.815499907851219,
+              155.12470056687465
+            ]
+          },
+          "size": [
+            0.5061015256261499,
+            0.9310000064373014,
+            0.5279045517180521
+          ],
+          "centerDistance": 5.701307200692207
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -54.32045770428472,
+            17.556724283099175,
+            161.5220379692177
+          ],
+          "bounds": {
+            "min": [
+              -55.41007177490994,
+              17.28172427713871,
+              160.154406827621
+            ],
+            "max": [
+              -53.230843633659504,
+              17.83172428905964,
+              162.88966911081442
+            ]
+          },
+          "size": [
+            2.1792281412504337,
+            0.550000011920929,
+            2.7352622831934355
+          ],
+          "centerDistance": 13.51558843575712
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "rehovot",
+      "historicalIndex": 0,
+      "before": {
+        "x": -37.759999999912,
+        "z": 679.0519999999993,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -44.63339319942329,
+        "z": 694.8649423605004,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 17.242177361679644,
+      "currentIdentity": {
+        "collider": {
+          "x": -37.759999999912,
+          "z": 679.0519999999993,
+          "r": 8,
+          "hx": 5.76,
+          "hz": 5.76,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -37.759999999912,
+            4.5,
+            679.0519999999993
+          ],
+          "bounds": {
+            "min": [
+              -45.759999999912,
+              0,
+              674.0519999999993
+            ],
+            "max": [
+              -29.759999999911997,
+              9,
+              684.0519999999993
+            ]
+          },
+          "size": [
+            16,
+            9,
+            10
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": 16,
+          "center": [
+            -54.9780158996582,
+            1.25,
+            677.7435913085938
+          ],
+          "bounds": {
+            "min": [
+              -55.241977680117735,
+              0.8225000166893004,
+              677.4877923211648
+            ],
+            "max": [
+              -54.71405411919867,
+              1.6774999833106996,
+              677.9993902960227
+            ]
+          },
+          "size": [
+            0.5279235609190636,
+            0.8549999666213992,
+            0.5115979748579775
+          ],
+          "centerDistance": 17.267657769010214
+        },
+        {
+          "name": "",
+          "type": "PlaneGeometry",
+          "instance": 44,
+          "center": [
+            -20.624391555786133,
+            4.300000190734863,
+            681.7651977539062
+          ],
+          "bounds": {
+            "min": [
+              -23.57178673367791,
+              0.5000002384185791,
+              680.519059067277
+            ],
+            "max": [
+              -17.676996377894355,
+              8.100000143051147,
+              683.0113364405355
+            ]
+          },
+          "size": [
+            5.894790355783556,
+            7.599999904632568,
+            2.492277373258503
+          ],
+          "centerDistance": 17.349078327167792
+        },
+        {
+          "name": "",
+          "type": "PlaneGeometry",
+          "instance": 45,
+          "center": [
+            -20.624391555786133,
+            4.300000190734863,
+            681.7651977539062
+          ],
+          "bounds": {
+            "min": [
+              -21.87053024241535,
+              0.5000002384185791,
+              678.8178025760145
+            ],
+            "max": [
+              -19.378252869156917,
+              8.100000143051147,
+              684.712592931798
+            ]
+          },
+          "size": [
+            2.492277373258432,
+            7.599999904632568,
+            5.894790355783471
+          ],
+          "centerDistance": 17.349078327167792
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "rehovot",
+      "historicalIndex": 2,
+      "before": {
+        "x": -66.079999999846,
+        "z": 634.5239999999054,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -61.54314125878544,
+        "z": 629.3784056598976,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 6.86004579782514,
+      "currentIdentity": {
+        "collider": {
+          "x": -66.079999999846,
+          "z": 634.5239999999054,
+          "r": 8,
+          "hx": 5.76,
+          "hz": 5.76,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 2
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -66.079999999846,
+            4,
+            634.5239999999054
+          ],
+          "bounds": {
+            "min": [
+              -75.079999999846,
+              0,
+              629.5239999999054
+            ],
+            "max": [
+              -57.079999999845995,
+              8,
+              639.5239999999054
+            ]
+          },
+          "size": [
+            18,
+            8,
+            10
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 143,
+          "center": [
+            -60.594417572021484,
+            9.672045707702637,
+            628.360595703125
+          ],
+          "bounds": {
+            "min": [
+              -62.09941761314869,
+              7.938833726058476,
+              626.8555956619978
+            ],
+            "max": [
+              -59.08941753089428,
+              11.405257689346797,
+              629.8655957442522
+            ]
+          },
+          "size": [
+            3.0100000822544075,
+            3.466423963288321,
+            3.0100000822544644
+          ],
+          "centerDistance": 8.251010065320992
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 140,
+          "center": [
+            -60.844417572021484,
+            10.207691192626953,
+            626.860595703125
+          ],
+          "bounds": {
+            "min": [
+              -62.65041759574413,
+              8.127836942803953,
+              625.0545956794024
+            ],
+            "max": [
+              -59.03841754829884,
+              12.287545442449954,
+              628.6665957268476
+            ]
+          },
+          "size": [
+            3.6120000474452922,
+            4.159708499646001,
+            3.6120000474452354
+          ],
+          "centerDistance": 9.281114629959987
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": 23,
+          "center": [
+            -59.694419860839844,
+            0.699999988079071,
+            627.4105834960938
+          ],
+          "bounds": {
+            "min": [
+              -60.35156714199741,
+              0.700000115786681,
+              626.7534362149362
+            ],
+            "max": [
+              -59.03727257968228,
+              10.341601295163855,
+              628.0677307772513
+            ]
+          },
+          "size": [
+            1.3142945623151263,
+            9.641601179377174,
+            1.3142945623151263
+          ],
+          "centerDistance": 9.559096613612082
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "rehovot",
+      "historicalIndex": 3,
+      "before": {
+        "x": 9.439999999978,
+        "z": 701.3159999999475,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 8.888909097101827,
+        "z": 684.511718600013,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 16.813315394395577,
+      "currentIdentity": {
+        "collider": {
+          "x": 9.439999999978,
+          "z": 701.3159999999475,
+          "r": 8,
+          "hx": 5.76,
+          "hz": 5.76,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 3
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            9.439999999978,
+            7,
+            701.3159999999475
+          ],
+          "bounds": {
+            "min": [
+              3.4399999999779993,
+              0,
+              696.3159999999475
+            ],
+            "max": [
+              15.439999999978,
+              14,
+              706.3159999999475
+            ]
+          },
+          "size": [
+            12,
+            14,
+            10
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 17,
+          "center": [
+            36.3204231262207,
+            5.849999904632568,
+            710.6693115234375
+          ],
+          "bounds": {
+            "min": [
+              35.37042313814163,
+              4.899999916553497,
+              709.7193115353584
+            ],
+            "max": [
+              37.270423114299774,
+              6.799999892711639,
+              711.6193115115166
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 28.461229486817576
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 133,
+          "center": [
+            -3.374392509460449,
+            9.477190017700195,
+            672.2651977539062
+          ],
+          "bounds": {
+            "min": [
+              -5.26639258313179,
+              7.479771582099744,
+              670.3731976802349
+            ],
+            "max": [
+              -1.4823924357891087,
+              11.474608453300647,
+              674.1571978275776
+            ]
+          },
+          "size": [
+            3.784000147342681,
+            3.994836871200903,
+            3.7840001473427947
+          ],
+          "centerDistance": 31.751500224785406
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 137,
+          "center": [
+            -5.524392604827881,
+            8.924779891967773,
+            672.7152099609375
+          ],
+          "bounds": {
+            "min": [
+              -7.029392645955085,
+              7.335924262857191,
+              671.2102099198103
+            ],
+            "max": [
+              -4.019392563700677,
+              10.513635521078356,
+              674.2202100020647
+            ]
+          },
+          "size": [
+            3.0100000822544075,
+            3.1777112582211657,
+            3.0100000822544644
+          ],
+          "centerDistance": 32.27906809197414
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "ramla",
+      "historicalIndex": 0,
+      "before": {
+        "x": 47.19999999989,
+        "z": 133.58400000008416,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 47.598157019571865,
+        "z": 137.69981398501707,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 4.135027662651279,
+      "currentIdentity": {
+        "collider": {
+          "x": 47.19999999989,
+          "z": 133.58400000008416,
+          "r": 8,
+          "hx": 5.76,
+          "hz": 5.76,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            47.19999999989,
+            14,
+            133.58400000008416
+          ],
+          "bounds": {
+            "min": [
+              44.60000009525743,
+              0,
+              130.9840000954516
+            ],
+            "max": [
+              49.799999904522565,
+              28,
+              136.18399990471673
+            ]
+          },
+          "size": [
+            5.199999809265137,
+            28,
+            5.199999809265137
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            47.19999999989,
+            29,
+            133.58400000008416
+          ],
+          "bounds": {
+            "min": [
+              44.10000009525743,
+              27.399999976158142,
+              130.4840000954516
+            ],
+            "max": [
+              50.299999904522565,
+              30.600000023841858,
+              136.68399990471673
+            ]
+          },
+          "size": [
+            6.199999809265137,
+            3.200000047683716,
+            6.199999809265137
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 3,
+          "center": [
+            55.86894989013672,
+            5.949999809265137,
+            120.60112762451172
+          ],
+          "bounds": {
+            "min": [
+              54.91894990205765,
+              4.999999821186066,
+              119.65112763643265
+            ],
+            "max": [
+              56.81894987821579,
+              6.899999797344208,
+              121.55112761259079
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 15.611075149393479
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            34.52679999988448,
+            7,
+            122.82770499994474
+          ],
+          "bounds": {
+            "min": [
+              26.816254845940648,
+              6.7249999940395355,
+              114.06854010623908
+            ],
+            "max": [
+              42.237345153828315,
+              7.2750000059604645,
+              131.5868698936504
+            ]
+          },
+          "size": [
+            15.421090307887667,
+            0.550000011920929,
+            17.518329787411318
+          ],
+          "centerDistance": 16.62251125342269
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "beitshan",
+      "historicalIndex": 0,
+      "before": {
+        "x": 93.80000000011464,
+        "z": 166.98000000000633,
+        "r": 12,
+        "hx": 8.64,
+        "hz": 8.64,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 113.46036834489719,
+        "z": 153.5669497672117,
+        "r": 12,
+        "hx": 8.64,
+        "hz": 8.64,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 23.8,
+      "currentIdentity": {
+        "collider": {
+          "x": 93.80000000011464,
+          "z": 166.98000000000633,
+          "r": 12,
+          "hx": 8.64,
+          "hz": 8.64,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": null,
+          "center": [
+            93.80000000011464,
+            3.2,
+            166.98000000000633
+          ],
+          "bounds": {
+            "min": [
+              89.12697989241083,
+              0.20000000000000018,
+              151.2542479642679
+            ],
+            "max": [
+              109.52575203585306,
+              6.2,
+              178.03273192804096
+            ]
+          },
+          "size": [
+            20.39877214344223,
+            6,
+            26.778483963773056
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            93.80000000011464,
+            8.8,
+            166.98000000000633
+          ],
+          "bounds": {
+            "min": [
+              84.17818513374463,
+              8.374999988079072,
+              160.38472211735572
+            ],
+            "max": [
+              103.42181486648464,
+              9.22500001192093,
+              173.57527788265693
+            ]
+          },
+          "size": [
+            19.243629732740004,
+            0.8500000238418579,
+            13.190555765301212
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            93.80000000011464,
+            9.45,
+            166.98000000000633
+          ],
+          "bounds": {
+            "min": [
+              93.55000000011464,
+              9.2,
+              166.88999999643005
+            ],
+            "max": [
+              94.05000000011464,
+              9.7,
+              167.0700000035826
+            ]
+          },
+          "size": [
+            0.5,
+            0.5,
+            0.18000000715255737
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 0,
+          "center": [
+            104.2910385131836,
+            5.75,
+            159.82261657714844
+          ],
+          "bounds": {
+            "min": [
+              103.34103852510452,
+              4.800000011920929,
+              158.87261658906937
+            ],
+            "max": [
+              105.24103850126266,
+              6.699999988079071,
+              160.7726165652275
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 12.700001045058897
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "hadera",
+      "historicalIndex": 0,
+      "before": {
+        "x": -84.33000000010307,
+        "z": 1502.820000000057,
+        "r": 14,
+        "hx": 10.08,
+        "hz": 10.08,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -100.46678490693827,
+        "z": 1522.950677407202,
+        "r": 14,
+        "hx": 10.08,
+        "hz": 10.08,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 25.80000000000002,
+      "currentIdentity": {
+        "collider": {
+          "x": -84.33000000010307,
+          "z": 1502.820000000057,
+          "r": 14,
+          "hx": 10.08,
+          "hz": 10.08,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -84.33000000010307,
+            8.700000000000001,
+            1502.820000000057
+          ],
+          "bounds": {
+            "min": [
+              -91.63991699620705,
+              8.274999988079072,
+              1493.7252154825992
+            ],
+            "max": [
+              -77.02008300399909,
+              9.12500001192093,
+              1511.9147845175148
+            ]
+          },
+          "size": [
+            14.619833992207958,
+            0.8500000238418579,
+            18.18956903491562
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -84.33000000010307,
+            9.35,
+            1502.820000000057
+          ],
+          "bounds": {
+            "min": [
+              -84.58000000010307,
+              9.1,
+              1502.7299999964807
+            ],
+            "max": [
+              -84.08000000010307,
+              9.6,
+              1502.9100000036333
+            ]
+          },
+          "size": [
+            0.5,
+            0.5,
+            0.18000000715255737
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 0,
+          "center": [
+            -92.27330017089844,
+            5.650000095367432,
+            1512.729248046875
+          ],
+          "bounds": {
+            "min": [
+              -93.22330015897751,
+              4.700000107288361,
+              1511.779248058796
+            ],
+            "max": [
+              -91.32330018281937,
+              6.600000083446503,
+              1513.679248034954
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 12.69996907306171
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -84.33000000010307,
+            5,
+            1518.820000000057
+          ],
+          "bounds": {
+            "min": [
+              -98.33000000010307,
+              0,
+              1510.820000000057
+            ],
+            "max": [
+              -70.33000000010307,
+              10,
+              1526.820000000057
+            ]
+          },
+          "size": [
+            28,
+            10,
+            16
+          ],
+          "centerDistance": 16
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "kshmona",
+      "historicalIndex": 0,
+      "before": {
+        "x": -111.60000000000423,
+        "z": -133.58400000000506,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -111.60000000000421,
+        "z": -142.25200000011012,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 8.668000000105053,
+      "currentIdentity": {
+        "collider": {
+          "x": -111.60000000000423,
+          "z": -133.58400000000506,
+          "r": 8,
+          "hx": 5.76,
+          "hz": 5.76,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -111.60000000000423,
+            4.2,
+            -133.58400000000506
+          ],
+          "bounds": {
+            "min": [
+              -114.60000000000423,
+              0.20000000000000018,
+              -135.58400000000506
+            ],
+            "max": [
+              -108.60000000000423,
+              8.2,
+              -131.58400000000506
+            ]
+          },
+          "size": [
+            6,
+            7.999999999999999,
+            4
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "PlaneGeometry",
+          "instance": null,
+          "center": [
+            -111.60000000000421,
+            4.25,
+            -134.3020000001101
+          ],
+          "bounds": {
+            "min": [
+              -111.60000000000421,
+              3.7750000059604645,
+              -134.77699999414963
+            ],
+            "max": [
+              -111.60000000000421,
+              4.7249999940395355,
+              -133.82700000607056
+            ]
+          },
+          "size": [
+            0,
+            0.949999988079071,
+            0.949999988079071
+          ],
+          "centerDistance": 0.718000000105036
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": null,
+          "center": [
+            -118.3474074720412,
+            377.4934994456502,
+            -141.04094802901596
+          ],
+          "bounds": {
+            "min": [
+              -130.3474074720412,
+              365.4934994456502,
+              -153.04094802901596
+            ],
+            "max": [
+              -106.3474074720412,
+              389.4934994456502,
+              -129.04094802901596
+            ]
+          },
+          "size": [
+            24,
+            24,
+            24
+          ],
+          "centerDistance": 10.056519353189248
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": null,
+          "center": [
+            -118.3474074720412,
+            377.4934994456502,
+            -141.04094802901596
+          ],
+          "bounds": {
+            "min": [
+              -146.3474074720412,
+              349.4934994456502,
+              -169.04094802901596
+            ],
+            "max": [
+              -90.3474074720412,
+              405.4934994456502,
+              -113.04094802901596
+            ]
+          },
+          "size": [
+            56,
+            56,
+            56
+          ],
+          "centerDistance": 10.056519353189248
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "ksaba",
+      "historicalIndex": 0,
+      "before": {
+        "x": 0,
+        "z": 0,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": 7.327450977292658,
+        "z": -18.394250791357962,
+        "r": 8,
+        "hx": 5.76,
+        "hz": 5.76,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 19.800000000000004,
+      "currentIdentity": {
+        "collider": {
+          "x": 0,
+          "z": 0,
+          "r": 8,
+          "hx": 5.76,
+          "hz": 5.76,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 0
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": null,
+          "center": [
+            0,
+            0,
+            0
+          ],
+          "bounds": {
+            "min": [
+              -8200,
+              -8200,
+              -8200
+            ],
+            "max": [
+              8200,
+              8200,
+              8200
+            ]
+          },
+          "size": [
+            16400,
+            16400,
+            16400
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": null,
+          "center": [
+            0,
+            -80,
+            0
+          ],
+          "bounds": {
+            "min": [
+              -8591.68359375,
+              -1157.8658447265625,
+              -8591.68359375
+            ],
+            "max": [
+              8591.68359375,
+              8520,
+              8591.68359375
+            ]
+          },
+          "size": [
+            17183.3671875,
+            9677.865844726562,
+            17183.3671875
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BufferGeometry",
+          "instance": null,
+          "center": [
+            0,
+            0,
+            0
+          ],
+          "bounds": {
+            "min": [
+              -262.90625,
+              0.5600000023841858,
+              -66.2096939086914
+            ],
+            "max": [
+              344.0798034667969,
+              1.0800000429153442,
+              344.510009765625
+            ]
+          },
+          "size": [
+            606.9860534667969,
+            0.5200000405311584,
+            410.7197036743164
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "BufferGeometry",
+          "instance": null,
+          "center": [
+            0,
+            0,
+            0
+          ],
+          "bounds": {
+            "min": [
+              -242.3562469482422,
+              0.5600000023841858,
+              -45.6602897644043
+            ],
+            "max": [
+              323.53564453125,
+              1.0800000429153442,
+              323.9599914550781
+            ]
+          },
+          "size": [
+            565.8918914794922,
+            0.5200000405311584,
+            369.6202812194824
+          ],
+          "centerDistance": 0
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "arad",
+      "historicalIndex": 1,
+      "before": {
+        "x": -282.74399999994984,
+        "z": 0,
+        "r": 4,
+        "hx": 2.88,
+        "hz": 2.88,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -280.2301438964652,
+        "z": 3.9090852785937624,
+        "r": 4,
+        "hx": 2.88,
+        "hz": 2.88,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 4.647625224170438,
+      "currentIdentity": {
+        "collider": {
+          "x": -282.74399999994984,
+          "z": 0,
+          "r": 4,
+          "hx": 2.88,
+          "hz": 2.88,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 1
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -282.74399999994984,
+            2.8,
+            0
+          ],
+          "bounds": {
+            "min": [
+              -286.74399999994984,
+              4.7683715642676816e-8,
+              -3
+            ],
+            "max": [
+              -278.74399999994984,
+              5.599999952316284,
+              3
+            ]
+          },
+          "size": [
+            8,
+            5.599999904632568,
+            6
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": 0,
+          "center": [
+            -284.61065673828125,
+            2.200000047683716,
+            15.838164329528809
+          ],
+          "bounds": {
+            "min": [
+              -284.99920158074815,
+              2.200000095585131,
+              15.449619487061906
+            ],
+            "max": [
+              -284.22211189581435,
+              5.816435670417263,
+              16.22670917199571
+            ]
+          },
+          "size": [
+            0.7770896849337987,
+            3.616435574832132,
+            0.7770896849338058
+          ],
+          "centerDistance": 15.947785322981897
+        },
+        {
+          "name": "",
+          "type": "ConeGeometry",
+          "instance": 0,
+          "center": [
+            -284.61065673828125,
+            6.318718433380127,
+            15.838164329528809
+          ],
+          "bounds": {
+            "min": [
+              -291.1369668287757,
+              5.878718417286873,
+              9.33059280738911
+            ],
+            "max": [
+              -278.0843466477868,
+              6.758718449473381,
+              22.345735851668508
+            ]
+          },
+          "size": [
+            13.052620180988924,
+            0.8800000321865085,
+            13.015143044279398
+          ],
+          "centerDistance": 15.947785322981897
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -299.8799999999099,
+            10.400000000000002,
+            0
+          ],
+          "bounds": {
+            "min": [
+              -307.98149754435116,
+              9.974999988079073,
+              -8.399616702834642
+            ],
+            "max": [
+              -291.77850245546864,
+              10.825000011920931,
+              8.399616702834642
+            ]
+          },
+          "size": [
+            16.202995088882517,
+            0.8500000238418579,
+            16.799233405669284
+          ],
+          "centerDistance": 17.135999999960063
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "arad",
+      "historicalIndex": 2,
+      "before": {
+        "x": -317.01599999986996,
+        "z": 40.07520000008457,
+        "r": 4,
+        "hx": 2.88,
+        "hz": 2.88,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -303.1591565541364,
+        "z": 35.99499500785732,
+        "r": 4,
+        "hx": 2.88,
+        "hz": 2.88,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 14.445074698947213,
+      "currentIdentity": {
+        "collider": {
+          "x": -317.01599999986996,
+          "z": 40.07520000008457,
+          "r": 4,
+          "hx": 2.88,
+          "hz": 2.88,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 2
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -317.01599999986996,
+            2.4,
+            40.07520000008457
+          ],
+          "bounds": {
+            "min": [
+              -321.01599999986996,
+              -9.536743172944284e-8,
+              37.07520000008457
+            ],
+            "max": [
+              -313.01599999986996,
+              4.800000095367432,
+              43.07520000008457
+            ]
+          },
+          "size": [
+            8,
+            4.800000190734863,
+            6
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "SphereGeometry",
+          "instance": 29,
+          "center": [
+            -306.25146484375,
+            7.349999904632568,
+            36.21310806274414
+          ],
+          "bounds": {
+            "min": [
+              -307.20146483182907,
+              6.399999916553497,
+              35.26310807466507
+            ],
+            "max": [
+              -305.30146485567093,
+              8.29999989271164,
+              37.16310805082321
+            ]
+          },
+          "size": [
+            1.899999976158142,
+            1.899999976158142,
+            1.899999976158142
+          ],
+          "centerDistance": 11.436388033807377
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -333.2227560986643,
+            17.917409126926213,
+            48.32187603400047
+          ],
+          "bounds": {
+            "min": [
+              -333.75756533912516,
+              17.64240912096575,
+              46.67877519985865
+            ],
+            "max": [
+              -332.6879468582035,
+              18.192409132886677,
+              49.96497686814229
+            ]
+          },
+          "size": [
+            1.0696184809216902,
+            0.550000011920929,
+            3.2862016682836384
+          ],
+          "centerDistance": 18.184240673016042
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": 84,
+          "center": [
+            -288.7100830078125,
+            2.200000047683716,
+            34.109107971191406
+          ],
+          "bounds": {
+            "min": [
+              -289.0835062257453,
+              2.200000114230262,
+              33.73568475325864
+            ],
+            "max": [
+              -288.3366597898797,
+              7.224095831338673,
+              34.482531189124174
+            ]
+          },
+          "size": [
+            0.7468464358655638,
+            5.024095717108411,
+            0.7468464358655353
+          ],
+          "centerDistance": 28.927827275107784
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    },
+    {
+      "track": "arad",
+      "historicalIndex": 3,
+      "before": {
+        "x": -257.04000000000974,
+        "z": -20.0375999999533,
+        "r": 4,
+        "hx": 2.88,
+        "hz": 2.88,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "shifted": {
+        "x": -254.4400484571995,
+        "z": -13.274762915946049,
+        "r": 4,
+        "hx": 2.88,
+        "hz": 2.88,
+        "yaw": 0,
+        "kind": "building"
+      },
+      "distance": 7.245392566989384,
+      "currentIdentity": {
+        "collider": {
+          "x": -257.04000000000974,
+          "z": -20.0375999999533,
+          "r": 4,
+          "hx": 2.88,
+          "hz": 2.88,
+          "yaw": 0,
+          "kind": "building"
+        },
+        "index": 3
+      },
+      "identityMatches": 1,
+      "nearestMeshOrigins": [
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -257.04000000000974,
+            3.1,
+            -20.0375999999533
+          ],
+          "bounds": {
+            "min": [
+              -261.04000000000974,
+              9.536743172944284e-8,
+              -23.0375999999533
+            ],
+            "max": [
+              -253.04000000000974,
+              6.199999904632568,
+              -17.0375999999533
+            ]
+          },
+          "size": [
+            8,
+            6.199999809265137,
+            6
+          ],
+          "centerDistance": 0
+        },
+        {
+          "name": "",
+          "type": "CylinderGeometry",
+          "instance": 2,
+          "center": [
+            -237.4822235107422,
+            2.200000047683716,
+            -2.083488941192627
+          ],
+          "bounds": {
+            "min": [
+              -237.79672640040306,
+              2.200000101024455,
+              -2.3979918308534915
+            ],
+            "max": [
+              -237.16772062108132,
+              6.227090871940959,
+              -1.7689860515317624
+            ]
+          },
+          "size": [
+            0.6290057793217443,
+            4.027090770916503,
+            0.6290057793217292
+          ],
+          "centerDistance": 26.549137935429442
+        },
+        {
+          "name": "",
+          "type": "ConeGeometry",
+          "instance": 2,
+          "center": [
+            -237.4822235107422,
+            6.786409378051758,
+            -2.083488941192627
+          ],
+          "bounds": {
+            "min": [
+              -242.76399810227997,
+              6.346409361958504,
+              -7.392491403123977
+            ],
+            "max": [
+              -232.2004489192044,
+              7.226409394145012,
+              3.2255135207387227
+            ]
+          },
+          "size": [
+            10.563549183075565,
+            0.8800000321865085,
+            10.6180049238627
+          ],
+          "centerDistance": 26.549137935429442
+        },
+        {
+          "name": "",
+          "type": "BoxGeometry",
+          "instance": null,
+          "center": [
+            -282.74399999994984,
+            2.8,
+            0
+          ],
+          "bounds": {
+            "min": [
+              -286.74399999994984,
+              4.7683715642676816e-8,
+              -3
+            ],
+            "max": [
+              -278.74399999994984,
+              5.599999952316284,
+              3
+            ]
+          },
+          "size": [
+            8,
+            5.599999904632568,
+            6
+          ],
+          "centerDistance": 32.59142570915008
+        }
+      ],
+      "exactMeshOrigin": true,
+      "scope": "Current collider identity and mesh-origin/bounds inspection only. No full hull,vertical clearance,contact or visual acceptance."
+    }
+  ],
+  "errors": [],
+  "counts": {
+    "historical": 42,
+    "tracks": 26,
+    "unambiguousOriginalIdentity": 34,
+    "exactMeshOrigin": 32,
+    "requiresMapping": [
+      {
+        "track": "namal",
+        "historicalIndex": 1
+      },
+      {
+        "track": "hw1",
+        "historicalIndex": 0
+      },
+      {
+        "track": "hw1",
+        "historicalIndex": 2
+      },
+      {
+        "track": "hw1",
+        "historicalIndex": 4
+      },
+      {
+        "track": "ramon",
+        "historicalIndex": 1
+      },
+      {
+        "track": "ramon",
+        "historicalIndex": 4
+      },
+      {
+        "track": "ramon",
+        "historicalIndex": 6
+      },
+      {
+        "track": "ramon",
+        "historicalIndex": 10
+      }
+    ],
+    "acceptedContacts": 0
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "kind": "actual-road-relative-grade-forecast",
+  "passed": false,
+  "scope": "Actual dd1 Haifa approach states and one full assisted Haifa race using actual engine/traffic. Clear weather/default setup only. Not calibrated braking,competitive pace,human driving,art,all conditions ordevice acceptance.",
+  "errors": [],
+  "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:8133/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:8133/\", waiting until \"networkidle\"\u001b[22m\n"
+}

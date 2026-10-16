@@ -1,0 +1,316 @@
+TAP version 13
+# Subtest: actual V1 road layout keeps the Rothschild median separate from racing lanes
+ok 1 - actual V1 road layout keeps the Rothschild median separate from racing lanes
+  ---
+  duration_ms: 4.265584
+  type: 'test'
+  ...
+# Subtest: sabra: left carriageway survives eight seconds of straight acceleration
+ok 2 - sabra: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 11.232542
+  type: 'test'
+  ...
+# Subtest: sabra: left carriageway survives eight seconds of AI input
+ok 3 - sabra: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 8.176125
+  type: 'test'
+  ...
+# Subtest: sabra: right carriageway survives eight seconds of straight acceleration
+ok 4 - sabra: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 7.408292
+  type: 'test'
+  ...
+# Subtest: sabra: right carriageway survives eight seconds of AI input
+ok 5 - sabra: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 6.724708
+  type: 'test'
+  ...
+# Subtest: carmel: left carriageway survives eight seconds of straight acceleration
+ok 6 - carmel: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 4.359417
+  type: 'test'
+  ...
+# Subtest: carmel: left carriageway survives eight seconds of AI input
+ok 7 - carmel: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.96225
+  type: 'test'
+  ...
+# Subtest: carmel: right carriageway survives eight seconds of straight acceleration
+ok 8 - carmel: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.400167
+  type: 'test'
+  ...
+# Subtest: carmel: right carriageway survives eight seconds of AI input
+ok 9 - carmel: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 4.151291
+  type: 'test'
+  ...
+# Subtest: kfir: left carriageway survives eight seconds of straight acceleration
+ok 10 - kfir: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 5.643417
+  type: 'test'
+  ...
+# Subtest: kfir: left carriageway survives eight seconds of AI input
+ok 11 - kfir: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 5.958167
+  type: 'test'
+  ...
+# Subtest: kfir: right carriageway survives eight seconds of straight acceleration
+ok 12 - kfir: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 4.566916
+  type: 'test'
+  ...
+# Subtest: kfir: right carriageway survives eight seconds of AI input
+ok 13 - kfir: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 4.7765
+  type: 'test'
+  ...
+# Subtest: negev: left carriageway survives eight seconds of straight acceleration
+ok 14 - negev: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 4.560417
+  type: 'test'
+  ...
+# Subtest: negev: left carriageway survives eight seconds of AI input
+ok 15 - negev: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.731208
+  type: 'test'
+  ...
+# Subtest: negev: right carriageway survives eight seconds of straight acceleration
+ok 16 - negev: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.338958
+  type: 'test'
+  ...
+# Subtest: negev: right carriageway survives eight seconds of AI input
+ok 17 - negev: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.698625
+  type: 'test'
+  ...
+# Subtest: yam: left carriageway survives eight seconds of straight acceleration
+ok 18 - yam: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.476
+  type: 'test'
+  ...
+# Subtest: yam: left carriageway survives eight seconds of AI input
+ok 19 - yam: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.773208
+  type: 'test'
+  ...
+# Subtest: yam: right carriageway survives eight seconds of straight acceleration
+ok 20 - yam: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 4.265958
+  type: 'test'
+  ...
+# Subtest: yam: right carriageway survives eight seconds of AI input
+ok 21 - yam: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 4.742208
+  type: 'test'
+  ...
+# Subtest: sabra: initial tire yaw follows steering -0.3
+ok 22 - sabra: initial tire yaw follows steering -0.3
+  ---
+  duration_ms: 1.467708
+  type: 'test'
+  ...
+# Subtest: sabra: initial tire yaw follows steering -0.2
+ok 23 - sabra: initial tire yaw follows steering -0.2
+  ---
+  duration_ms: 0.235083
+  type: 'test'
+  ...
+# Subtest: sabra: initial tire yaw follows steering -0.1
+ok 24 - sabra: initial tire yaw follows steering -0.1
+  ---
+  duration_ms: 0.1405
+  type: 'test'
+  ...
+# Subtest: sabra: initial tire yaw follows steering 0.1
+ok 25 - sabra: initial tire yaw follows steering 0.1
+  ---
+  duration_ms: 0.228125
+  type: 'test'
+  ...
+# Subtest: sabra: initial tire yaw follows steering 0.2
+ok 26 - sabra: initial tire yaw follows steering 0.2
+  ---
+  duration_ms: 0.132084
+  type: 'test'
+  ...
+# Subtest: sabra: initial tire yaw follows steering 0.3
+ok 27 - sabra: initial tire yaw follows steering 0.3
+  ---
+  duration_ms: 0.10875
+  type: 'test'
+  ...
+# Subtest: carmel: initial tire yaw follows steering -0.3
+ok 28 - carmel: initial tire yaw follows steering -0.3
+  ---
+  duration_ms: 0.298042
+  type: 'test'
+  ...
+# Subtest: carmel: initial tire yaw follows steering -0.2
+ok 29 - carmel: initial tire yaw follows steering -0.2
+  ---
+  duration_ms: 0.124583
+  type: 'test'
+  ...
+# Subtest: carmel: initial tire yaw follows steering -0.1
+ok 30 - carmel: initial tire yaw follows steering -0.1
+  ---
+  duration_ms: 0.622916
+  type: 'test'
+  ...
+# Subtest: carmel: initial tire yaw follows steering 0.1
+ok 31 - carmel: initial tire yaw follows steering 0.1
+  ---
+  duration_ms: 0.371792
+  type: 'test'
+  ...
+# Subtest: carmel: initial tire yaw follows steering 0.2
+ok 32 - carmel: initial tire yaw follows steering 0.2
+  ---
+  duration_ms: 0.153666
+  type: 'test'
+  ...
+# Subtest: carmel: initial tire yaw follows steering 0.3
+ok 33 - carmel: initial tire yaw follows steering 0.3
+  ---
+  duration_ms: 0.110666
+  type: 'test'
+  ...
+# Subtest: kfir: initial tire yaw follows steering -0.3
+ok 34 - kfir: initial tire yaw follows steering -0.3
+  ---
+  duration_ms: 1.825875
+  type: 'test'
+  ...
+# Subtest: kfir: initial tire yaw follows steering -0.2
+ok 35 - kfir: initial tire yaw follows steering -0.2
+  ---
+  duration_ms: 0.117917
+  type: 'test'
+  ...
+# Subtest: kfir: initial tire yaw follows steering -0.1
+ok 36 - kfir: initial tire yaw follows steering -0.1
+  ---
+  duration_ms: 0.094667
+  type: 'test'
+  ...
+# Subtest: kfir: initial tire yaw follows steering 0.1
+ok 37 - kfir: initial tire yaw follows steering 0.1
+  ---
+  duration_ms: 0.078458
+  type: 'test'
+  ...
+# Subtest: kfir: initial tire yaw follows steering 0.2
+ok 38 - kfir: initial tire yaw follows steering 0.2
+  ---
+  duration_ms: 0.077166
+  type: 'test'
+  ...
+# Subtest: kfir: initial tire yaw follows steering 0.3
+ok 39 - kfir: initial tire yaw follows steering 0.3
+  ---
+  duration_ms: 0.073167
+  type: 'test'
+  ...
+# Subtest: negev: initial tire yaw follows steering -0.3
+ok 40 - negev: initial tire yaw follows steering -0.3
+  ---
+  duration_ms: 0.073
+  type: 'test'
+  ...
+# Subtest: negev: initial tire yaw follows steering -0.2
+ok 41 - negev: initial tire yaw follows steering -0.2
+  ---
+  duration_ms: 0.07125
+  type: 'test'
+  ...
+# Subtest: negev: initial tire yaw follows steering -0.1
+ok 42 - negev: initial tire yaw follows steering -0.1
+  ---
+  duration_ms: 0.073792
+  type: 'test'
+  ...
+# Subtest: negev: initial tire yaw follows steering 0.1
+ok 43 - negev: initial tire yaw follows steering 0.1
+  ---
+  duration_ms: 0.072042
+  type: 'test'
+  ...
+# Subtest: negev: initial tire yaw follows steering 0.2
+ok 44 - negev: initial tire yaw follows steering 0.2
+  ---
+  duration_ms: 0.070083
+  type: 'test'
+  ...
+# Subtest: negev: initial tire yaw follows steering 0.3
+ok 45 - negev: initial tire yaw follows steering 0.3
+  ---
+  duration_ms: 0.026125
+  type: 'test'
+  ...
+# Subtest: yam: initial tire yaw follows steering -0.3
+ok 46 - yam: initial tire yaw follows steering -0.3
+  ---
+  duration_ms: 0.025791
+  type: 'test'
+  ...
+# Subtest: yam: initial tire yaw follows steering -0.2
+ok 47 - yam: initial tire yaw follows steering -0.2
+  ---
+  duration_ms: 0.024625
+  type: 'test'
+  ...
+# Subtest: yam: initial tire yaw follows steering -0.1
+ok 48 - yam: initial tire yaw follows steering -0.1
+  ---
+  duration_ms: 0.025208
+  type: 'test'
+  ...
+# Subtest: yam: initial tire yaw follows steering 0.1
+ok 49 - yam: initial tire yaw follows steering 0.1
+  ---
+  duration_ms: 0.025125
+  type: 'test'
+  ...
+# Subtest: yam: initial tire yaw follows steering 0.2
+ok 50 - yam: initial tire yaw follows steering 0.2
+  ---
+  duration_ms: 0.02525
+  type: 'test'
+  ...
+# Subtest: yam: initial tire yaw follows steering 0.3
+ok 51 - yam: initial tire yaw follows steering 0.3
+  ---
+  duration_ms: 0.068041
+  type: 'test'
+  ...
+1..51
+# tests 51
+# suites 0
+# pass 51
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 483.70075

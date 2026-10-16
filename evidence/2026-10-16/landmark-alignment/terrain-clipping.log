@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: Hermon support bounds match independently clipped terrain triangles under nine actual building footprints
+ok 1 - Hermon support bounds match independently clipped terrain triangles under nine actual building footprints
+  ---
+  duration_ms: 115.047334
+  type: 'test'
+  ...
+# Subtest: haifa: actual terrain faces upward throughout the route
+ok 2 - haifa: actual terrain faces upward throughout the route
+  ---
+  duration_ms: 14.361
+  type: 'test'
+  ...
+# Subtest: haifa: actual terrain cannot cover the driving corridor
+ok 3 - haifa: actual terrain cannot cover the driving corridor
+  ---
+  duration_ms: 374.743416
+  type: 'test'
+  ...
+# Subtest: hermon: actual terrain faces upward throughout the route
+ok 4 - hermon: actual terrain faces upward throughout the route
+  ---
+  duration_ms: 36.049041
+  type: 'test'
+  ...
+# Subtest: hermon: actual terrain cannot cover the driving corridor
+ok 5 - hermon: actual terrain cannot cover the driving corridor
+  ---
+  duration_ms: 1985.345667
+  type: 'test'
+  ...
+# Subtest: scopus: actual terrain faces upward throughout the route
+ok 6 - scopus: actual terrain faces upward throughout the route
+  ---
+  duration_ms: 10.609042
+  type: 'test'
+  ...
+# Subtest: scopus: actual terrain cannot cover the driving corridor
+ok 7 - scopus: actual terrain cannot cover the driving corridor
+  ---
+  duration_ms: 217.280042
+  type: 'test'
+  ...
+# Subtest: ramon: actual terrain faces upward throughout the route
+ok 8 - ramon: actual terrain faces upward throughout the route
+  ---
+  duration_ms: 49.082916
+  type: 'test'
+  ...
+# Subtest: ramon: actual terrain cannot cover the driving corridor
+ok 9 - ramon: actual terrain cannot cover the driving corridor
+  ---
+  duration_ms: 2372.103083
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5504.848917

@@ -1,4 +1,5 @@
 import type * as THREE from "three";
+import type { StreetRibbon } from "../streets";
 import type { BuiltTrack } from "../spline";
 import type { Collider, Ramp, TrackDef } from "../types";
 
@@ -23,8 +24,10 @@ export type TrackWorldBuilderInput = {
   colliders: Collider[];
   movers: Mover[];
   ramps: Ramp[];
-  streets: unknown[];
+  streets: StreetRibbon[];
   built: BuiltTrack;
+  terrainHeight?: (x: number, z: number) => number;
+  terrainBounds?: (x: number, z: number, hx: number, hz: number) => { min: number; max: number };
   support: {
     _dummy: THREE.Object3D;
     barkTexture: () => THREE.Texture;

@@ -1,0 +1,4725 @@
+
+> app-builder-workspace@0.0.0-private test
+> node scripts/test-suite.mjs
+
+CURRENT SOURCE UNIT TESTS: 42 files. Historical contracts and the 30-minute browser job are separate required CI jobs.
+TAP version 13
+# Subtest: the current acceleration reference matches the record epoch without changing prior numerical targets
+ok 1 - the current acceleration reference matches the record epoch without changing prior numerical targets
+  ---
+  duration_ms: 0.763792
+  type: 'test'
+  ...
+# Subtest: oldjaffa/sabra/arcade/clear: brake before accelerating into a sharp real bend
+ok 2 - oldjaffa/sabra/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 1.528292
+  type: 'test'
+  ...
+# Subtest: oldjaffa/sabra/arcade/rain: brake before accelerating into a sharp real bend
+ok 3 - oldjaffa/sabra/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.9985
+  type: 'test'
+  ...
+# Subtest: oldjaffa/sabra/arcade/storm: brake before accelerating into a sharp real bend
+ok 4 - oldjaffa/sabra/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 1.554583
+  type: 'test'
+  ...
+# Subtest: oldjaffa/sabra/arcade/hamsin: brake before accelerating into a sharp real bend
+ok 5 - oldjaffa/sabra/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.2925
+  type: 'test'
+  ...
+# Subtest: oldjaffa/sabra/simcade/clear: brake before accelerating into a sharp real bend
+ok 6 - oldjaffa/sabra/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.332333
+  type: 'test'
+  ...
+# Subtest: oldjaffa/sabra/simcade/rain: brake before accelerating into a sharp real bend
+ok 7 - oldjaffa/sabra/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.228791
+  type: 'test'
+  ...
+# Subtest: oldjaffa/sabra/simcade/storm: brake before accelerating into a sharp real bend
+ok 8 - oldjaffa/sabra/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.278041
+  type: 'test'
+  ...
+# Subtest: oldjaffa/sabra/simcade/hamsin: brake before accelerating into a sharp real bend
+ok 9 - oldjaffa/sabra/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.226791
+  type: 'test'
+  ...
+# Subtest: oldjaffa/carmel/arcade/clear: brake before accelerating into a sharp real bend
+ok 10 - oldjaffa/carmel/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.411333
+  type: 'test'
+  ...
+# Subtest: oldjaffa/carmel/arcade/rain: brake before accelerating into a sharp real bend
+ok 11 - oldjaffa/carmel/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.437458
+  type: 'test'
+  ...
+# Subtest: oldjaffa/carmel/arcade/storm: brake before accelerating into a sharp real bend
+ok 12 - oldjaffa/carmel/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.253333
+  type: 'test'
+  ...
+# Subtest: oldjaffa/carmel/arcade/hamsin: brake before accelerating into a sharp real bend
+ok 13 - oldjaffa/carmel/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.203042
+  type: 'test'
+  ...
+# Subtest: oldjaffa/carmel/simcade/clear: brake before accelerating into a sharp real bend
+ok 14 - oldjaffa/carmel/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.189458
+  type: 'test'
+  ...
+# Subtest: oldjaffa/carmel/simcade/rain: brake before accelerating into a sharp real bend
+ok 15 - oldjaffa/carmel/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.215958
+  type: 'test'
+  ...
+# Subtest: oldjaffa/carmel/simcade/storm: brake before accelerating into a sharp real bend
+ok 16 - oldjaffa/carmel/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 51.658333
+  type: 'test'
+  ...
+# Subtest: oldjaffa/carmel/simcade/hamsin: brake before accelerating into a sharp real bend
+ok 17 - oldjaffa/carmel/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.685167
+  type: 'test'
+  ...
+# Subtest: oldjaffa/kfir/arcade/clear: brake before accelerating into a sharp real bend
+ok 18 - oldjaffa/kfir/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.187042
+  type: 'test'
+  ...
+# Subtest: oldjaffa/kfir/arcade/rain: brake before accelerating into a sharp real bend
+ok 19 - oldjaffa/kfir/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.49825
+  type: 'test'
+  ...
+# Subtest: oldjaffa/kfir/arcade/storm: brake before accelerating into a sharp real bend
+ok 20 - oldjaffa/kfir/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.18375
+  type: 'test'
+  ...
+# Subtest: oldjaffa/kfir/arcade/hamsin: brake before accelerating into a sharp real bend
+ok 21 - oldjaffa/kfir/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.169459
+  type: 'test'
+  ...
+# Subtest: oldjaffa/kfir/simcade/clear: brake before accelerating into a sharp real bend
+ok 22 - oldjaffa/kfir/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.190125
+  type: 'test'
+  ...
+# Subtest: oldjaffa/kfir/simcade/rain: brake before accelerating into a sharp real bend
+ok 23 - oldjaffa/kfir/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.176583
+  type: 'test'
+  ...
+# Subtest: oldjaffa/kfir/simcade/storm: brake before accelerating into a sharp real bend
+ok 24 - oldjaffa/kfir/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.464084
+  type: 'test'
+  ...
+# Subtest: oldjaffa/kfir/simcade/hamsin: brake before accelerating into a sharp real bend
+ok 25 - oldjaffa/kfir/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.167
+  type: 'test'
+  ...
+# Subtest: oldjaffa/negev/arcade/clear: brake before accelerating into a sharp real bend
+ok 26 - oldjaffa/negev/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.153458
+  type: 'test'
+  ...
+# Subtest: oldjaffa/negev/arcade/rain: brake before accelerating into a sharp real bend
+ok 27 - oldjaffa/negev/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.157417
+  type: 'test'
+  ...
+# Subtest: oldjaffa/negev/arcade/storm: brake before accelerating into a sharp real bend
+ok 28 - oldjaffa/negev/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.145292
+  type: 'test'
+  ...
+# Subtest: oldjaffa/negev/arcade/hamsin: brake before accelerating into a sharp real bend
+ok 29 - oldjaffa/negev/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.145333
+  type: 'test'
+  ...
+# Subtest: oldjaffa/negev/simcade/clear: brake before accelerating into a sharp real bend
+ok 30 - oldjaffa/negev/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.144125
+  type: 'test'
+  ...
+# Subtest: oldjaffa/negev/simcade/rain: brake before accelerating into a sharp real bend
+ok 31 - oldjaffa/negev/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.168625
+  type: 'test'
+  ...
+# Subtest: oldjaffa/negev/simcade/storm: brake before accelerating into a sharp real bend
+ok 32 - oldjaffa/negev/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.119333
+  type: 'test'
+  ...
+# Subtest: oldjaffa/negev/simcade/hamsin: brake before accelerating into a sharp real bend
+ok 33 - oldjaffa/negev/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.115875
+  type: 'test'
+  ...
+# Subtest: oldjaffa/yam/arcade/clear: brake before accelerating into a sharp real bend
+ok 34 - oldjaffa/yam/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.115417
+  type: 'test'
+  ...
+# Subtest: oldjaffa/yam/arcade/rain: brake before accelerating into a sharp real bend
+ok 35 - oldjaffa/yam/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.115875
+  type: 'test'
+  ...
+# Subtest: oldjaffa/yam/arcade/storm: brake before accelerating into a sharp real bend
+ok 36 - oldjaffa/yam/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.116083
+  type: 'test'
+  ...
+# Subtest: oldjaffa/yam/arcade/hamsin: brake before accelerating into a sharp real bend
+ok 37 - oldjaffa/yam/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.115875
+  type: 'test'
+  ...
+# Subtest: oldjaffa/yam/simcade/clear: brake before accelerating into a sharp real bend
+ok 38 - oldjaffa/yam/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.114333
+  type: 'test'
+  ...
+# Subtest: oldjaffa/yam/simcade/rain: brake before accelerating into a sharp real bend
+ok 39 - oldjaffa/yam/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.122667
+  type: 'test'
+  ...
+# Subtest: oldjaffa/yam/simcade/storm: brake before accelerating into a sharp real bend
+ok 40 - oldjaffa/yam/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.113
+  type: 'test'
+  ...
+# Subtest: oldjaffa/yam/simcade/hamsin: brake before accelerating into a sharp real bend
+ok 41 - oldjaffa/yam/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.114834
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/arcade/clear: brake before accelerating into a sharp real bend
+ok 42 - hermon/sabra/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.133958
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/arcade/rain: brake before accelerating into a sharp real bend
+ok 43 - hermon/sabra/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.101542
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/arcade/storm: brake before accelerating into a sharp real bend
+ok 44 - hermon/sabra/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.100334
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/arcade/hamsin: brake before accelerating into a sharp real bend
+ok 45 - hermon/sabra/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.139583
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/simcade/clear: brake before accelerating into a sharp real bend
+ok 46 - hermon/sabra/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.111042
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/simcade/rain: brake before accelerating into a sharp real bend
+ok 47 - hermon/sabra/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.099625
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/simcade/storm: brake before accelerating into a sharp real bend
+ok 48 - hermon/sabra/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.100084
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/simcade/hamsin: brake before accelerating into a sharp real bend
+ok 49 - hermon/sabra/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.100417
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/arcade/clear: brake before accelerating into a sharp real bend
+ok 50 - hermon/carmel/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.107125
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/arcade/rain: brake before accelerating into a sharp real bend
+ok 51 - hermon/carmel/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.099416
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/arcade/storm: brake before accelerating into a sharp real bend
+ok 52 - hermon/carmel/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.09975
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/arcade/hamsin: brake before accelerating into a sharp real bend
+ok 53 - hermon/carmel/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.099958
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/simcade/clear: brake before accelerating into a sharp real bend
+ok 54 - hermon/carmel/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.102667
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/simcade/rain: brake before accelerating into a sharp real bend
+ok 55 - hermon/carmel/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.091875
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/simcade/storm: brake before accelerating into a sharp real bend
+ok 56 - hermon/carmel/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.083417
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/simcade/hamsin: brake before accelerating into a sharp real bend
+ok 57 - hermon/carmel/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.082042
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/arcade/clear: brake before accelerating into a sharp real bend
+ok 58 - hermon/kfir/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.0835
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/arcade/rain: brake before accelerating into a sharp real bend
+ok 59 - hermon/kfir/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.083875
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/arcade/storm: brake before accelerating into a sharp real bend
+ok 60 - hermon/kfir/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.08325
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/arcade/hamsin: brake before accelerating into a sharp real bend
+ok 61 - hermon/kfir/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.083
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/simcade/clear: brake before accelerating into a sharp real bend
+ok 62 - hermon/kfir/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.082917
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/simcade/rain: brake before accelerating into a sharp real bend
+ok 63 - hermon/kfir/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.082417
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/simcade/storm: brake before accelerating into a sharp real bend
+ok 64 - hermon/kfir/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.085542
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/simcade/hamsin: brake before accelerating into a sharp real bend
+ok 65 - hermon/kfir/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.082042
+  type: 'test'
+  ...
+# Subtest: hermon/negev/arcade/clear: brake before accelerating into a sharp real bend
+ok 66 - hermon/negev/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.08375
+  type: 'test'
+  ...
+# Subtest: hermon/negev/arcade/rain: brake before accelerating into a sharp real bend
+ok 67 - hermon/negev/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.082667
+  type: 'test'
+  ...
+# Subtest: hermon/negev/arcade/storm: brake before accelerating into a sharp real bend
+ok 68 - hermon/negev/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.085125
+  type: 'test'
+  ...
+# Subtest: hermon/negev/arcade/hamsin: brake before accelerating into a sharp real bend
+ok 69 - hermon/negev/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.084375
+  type: 'test'
+  ...
+# Subtest: hermon/negev/simcade/clear: brake before accelerating into a sharp real bend
+ok 70 - hermon/negev/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.083208
+  type: 'test'
+  ...
+# Subtest: hermon/negev/simcade/rain: brake before accelerating into a sharp real bend
+ok 71 - hermon/negev/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.084417
+  type: 'test'
+  ...
+# Subtest: hermon/negev/simcade/storm: brake before accelerating into a sharp real bend
+ok 72 - hermon/negev/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.083625
+  type: 'test'
+  ...
+# Subtest: hermon/negev/simcade/hamsin: brake before accelerating into a sharp real bend
+ok 73 - hermon/negev/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.082541
+  type: 'test'
+  ...
+# Subtest: hermon/yam/arcade/clear: brake before accelerating into a sharp real bend
+ok 74 - hermon/yam/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.086125
+  type: 'test'
+  ...
+# Subtest: hermon/yam/arcade/rain: brake before accelerating into a sharp real bend
+ok 75 - hermon/yam/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.082875
+  type: 'test'
+  ...
+# Subtest: hermon/yam/arcade/storm: brake before accelerating into a sharp real bend
+ok 76 - hermon/yam/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.086625
+  type: 'test'
+  ...
+# Subtest: hermon/yam/arcade/hamsin: brake before accelerating into a sharp real bend
+ok 77 - hermon/yam/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.092417
+  type: 'test'
+  ...
+# Subtest: hermon/yam/simcade/clear: brake before accelerating into a sharp real bend
+ok 78 - hermon/yam/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.08325
+  type: 'test'
+  ...
+# Subtest: hermon/yam/simcade/rain: brake before accelerating into a sharp real bend
+ok 79 - hermon/yam/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.083625
+  type: 'test'
+  ...
+# Subtest: hermon/yam/simcade/storm: brake before accelerating into a sharp real bend
+ok 80 - hermon/yam/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.083583
+  type: 'test'
+  ...
+# Subtest: hermon/yam/simcade/hamsin: brake before accelerating into a sharp real bend
+ok 81 - hermon/yam/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.090791
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 5.25s grade approach needs early braking
+ok 82 - aiInput: actual Haifa 5.25s grade approach needs early braking
+  ---
+  duration_ms: 3.116459
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 5.65s grade approach needs early braking
+ok 83 - aiInput: actual Haifa 5.65s grade approach needs early braking
+  ---
+  duration_ms: 0.29275
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 5.70s grade approach needs early braking
+ok 84 - aiInput: actual Haifa 5.70s grade approach needs early braking
+  ---
+  duration_ms: 0.321167
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 5.75s grade approach needs early braking
+ok 85 - aiInput: actual Haifa 5.75s grade approach needs early braking
+  ---
+  duration_ms: 0.200208
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 6.15s grade approach needs early braking
+ok 86 - aiInput: actual Haifa 6.15s grade approach needs early braking
+  ---
+  duration_ms: 0.147208
+  type: 'test'
+  ...
+# Subtest: aiInput: off-road follower cannot borrow the main-road grade forecast
+ok 87 - aiInput: off-road follower cannot borrow the main-road grade forecast
+  ---
+  duration_ms: 0.359834
+  type: 'test'
+  ...
+# Subtest: aiInput: off-road leader cannot borrow the main-road grade forecast
+ok 88 - aiInput: off-road leader cannot borrow the main-road grade forecast
+  ---
+  duration_ms: 0.183541
+  type: 'test'
+  ...
+# Subtest: aiInput: same horizontal pose on another level must not become a grade hazard (-12m)
+ok 89 - aiInput: same horizontal pose on another level must not become a grade hazard (-12m)
+  ---
+  duration_ms: 0.081208
+  type: 'test'
+  ...
+# Subtest: aiInput: same horizontal pose on another level must not become a grade hazard (12m)
+ok 90 - aiInput: same horizontal pose on another level must not become a grade hazard (12m)
+  ---
+  duration_ms: 0.241625
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 5.25s grade approach needs early braking
+ok 91 - trafficInput: actual Haifa 5.25s grade approach needs early braking
+  ---
+  duration_ms: 0.274792
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 5.65s grade approach needs early braking
+ok 92 - trafficInput: actual Haifa 5.65s grade approach needs early braking
+  ---
+  duration_ms: 0.096041
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 5.70s grade approach needs early braking
+ok 93 - trafficInput: actual Haifa 5.70s grade approach needs early braking
+  ---
+  duration_ms: 0.042542
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 5.75s grade approach needs early braking
+ok 94 - trafficInput: actual Haifa 5.75s grade approach needs early braking
+  ---
+  duration_ms: 0.036875
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 6.15s grade approach needs early braking
+ok 95 - trafficInput: actual Haifa 6.15s grade approach needs early braking
+  ---
+  duration_ms: 0.03725
+  type: 'test'
+  ...
+# Subtest: trafficInput: off-road follower cannot borrow the main-road grade forecast
+ok 96 - trafficInput: off-road follower cannot borrow the main-road grade forecast
+  ---
+  duration_ms: 0.071125
+  type: 'test'
+  ...
+# Subtest: trafficInput: off-road leader cannot borrow the main-road grade forecast
+ok 97 - trafficInput: off-road leader cannot borrow the main-road grade forecast
+  ---
+  duration_ms: 0.039
+  type: 'test'
+  ...
+# Subtest: trafficInput: same horizontal pose on another level must not become a grade hazard (-12m)
+ok 98 - trafficInput: same horizontal pose on another level must not become a grade hazard (-12m)
+  ---
+  duration_ms: 0.038708
+  type: 'test'
+  ...
+# Subtest: trafficInput: same horizontal pose on another level must not become a grade hazard (12m)
+ok 99 - trafficInput: same horizontal pose on another level must not become a grade hazard (12m)
+  ---
+  duration_ms: 0.033333
+  type: 'test'
+  ...
+# Subtest: actual Hermon route fold: another elevation almost100m along the road must not cause false emergency braking
+ok 100 - actual Hermon route fold: another elevation almost100m along the road must not cause false emergency braking
+  ---
+  duration_ms: 25.518875
+  type: 'test'
+  ...
+# Subtest: sabra/aiInput: brake for an actual slower vehicle ahead
+ok 101 - sabra/aiInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.991334
+  type: 'test'
+  ...
+# Subtest: sabra/aiInput: adjacent lane must not falsely stop traffic
+ok 102 - sabra/aiInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.336375
+  type: 'test'
+  ...
+# Subtest: sabra/aiInput: separate elevation must not falsely stop traffic
+ok 103 - sabra/aiInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.13625
+  type: 'test'
+  ...
+# Subtest: sabra/aiInput: behind must not falsely stop traffic
+ok 104 - sabra/aiInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.056333
+  type: 'test'
+  ...
+# Subtest: sabra/aiInput: receding must not falsely stop traffic
+ok 105 - sabra/aiInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.245042
+  type: 'test'
+  ...
+# Subtest: sabra/aiInput: far ahead must not falsely stop traffic
+ok 106 - sabra/aiInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.098875
+  type: 'test'
+  ...
+# Subtest: sabra/trafficInput: brake for an actual slower vehicle ahead
+ok 107 - sabra/trafficInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.070959
+  type: 'test'
+  ...
+# Subtest: sabra/trafficInput: adjacent lane must not falsely stop traffic
+ok 108 - sabra/trafficInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.039583
+  type: 'test'
+  ...
+# Subtest: sabra/trafficInput: separate elevation must not falsely stop traffic
+ok 109 - sabra/trafficInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.195375
+  type: 'test'
+  ...
+# Subtest: sabra/trafficInput: behind must not falsely stop traffic
+ok 110 - sabra/trafficInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.249458
+  type: 'test'
+  ...
+# Subtest: sabra/trafficInput: receding must not falsely stop traffic
+ok 111 - sabra/trafficInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.116916
+  type: 'test'
+  ...
+# Subtest: sabra/trafficInput: far ahead must not falsely stop traffic
+ok 112 - sabra/trafficInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.040833
+  type: 'test'
+  ...
+# Subtest: carmel/aiInput: brake for an actual slower vehicle ahead
+ok 113 - carmel/aiInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.033792
+  type: 'test'
+  ...
+# Subtest: carmel/aiInput: adjacent lane must not falsely stop traffic
+ok 114 - carmel/aiInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.02675
+  type: 'test'
+  ...
+# Subtest: carmel/aiInput: separate elevation must not falsely stop traffic
+ok 115 - carmel/aiInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.025083
+  type: 'test'
+  ...
+# Subtest: carmel/aiInput: behind must not falsely stop traffic
+ok 116 - carmel/aiInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.022291
+  type: 'test'
+  ...
+# Subtest: carmel/aiInput: receding must not falsely stop traffic
+ok 117 - carmel/aiInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.024084
+  type: 'test'
+  ...
+# Subtest: carmel/aiInput: far ahead must not falsely stop traffic
+ok 118 - carmel/aiInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.021834
+  type: 'test'
+  ...
+# Subtest: carmel/trafficInput: brake for an actual slower vehicle ahead
+ok 119 - carmel/trafficInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.02325
+  type: 'test'
+  ...
+# Subtest: carmel/trafficInput: adjacent lane must not falsely stop traffic
+ok 120 - carmel/trafficInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.022042
+  type: 'test'
+  ...
+# Subtest: carmel/trafficInput: separate elevation must not falsely stop traffic
+ok 121 - carmel/trafficInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.020791
+  type: 'test'
+  ...
+# Subtest: carmel/trafficInput: behind must not falsely stop traffic
+ok 122 - carmel/trafficInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.020375
+  type: 'test'
+  ...
+# Subtest: carmel/trafficInput: receding must not falsely stop traffic
+ok 123 - carmel/trafficInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.060083
+  type: 'test'
+  ...
+# Subtest: carmel/trafficInput: far ahead must not falsely stop traffic
+ok 124 - carmel/trafficInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.021375
+  type: 'test'
+  ...
+# Subtest: kfir/aiInput: brake for an actual slower vehicle ahead
+ok 125 - kfir/aiInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.024334
+  type: 'test'
+  ...
+# Subtest: kfir/aiInput: adjacent lane must not falsely stop traffic
+ok 126 - kfir/aiInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.024458
+  type: 'test'
+  ...
+# Subtest: kfir/aiInput: separate elevation must not falsely stop traffic
+ok 127 - kfir/aiInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.021417
+  type: 'test'
+  ...
+# Subtest: kfir/aiInput: behind must not falsely stop traffic
+ok 128 - kfir/aiInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.023125
+  type: 'test'
+  ...
+# Subtest: kfir/aiInput: receding must not falsely stop traffic
+ok 129 - kfir/aiInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.02375
+  type: 'test'
+  ...
+# Subtest: kfir/aiInput: far ahead must not falsely stop traffic
+ok 130 - kfir/aiInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.022
+  type: 'test'
+  ...
+# Subtest: kfir/trafficInput: brake for an actual slower vehicle ahead
+ok 131 - kfir/trafficInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.058792
+  type: 'test'
+  ...
+# Subtest: kfir/trafficInput: adjacent lane must not falsely stop traffic
+ok 132 - kfir/trafficInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.019875
+  type: 'test'
+  ...
+# Subtest: kfir/trafficInput: separate elevation must not falsely stop traffic
+ok 133 - kfir/trafficInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.01975
+  type: 'test'
+  ...
+# Subtest: kfir/trafficInput: behind must not falsely stop traffic
+ok 134 - kfir/trafficInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.019334
+  type: 'test'
+  ...
+# Subtest: kfir/trafficInput: receding must not falsely stop traffic
+ok 135 - kfir/trafficInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.019417
+  type: 'test'
+  ...
+# Subtest: kfir/trafficInput: far ahead must not falsely stop traffic
+ok 136 - kfir/trafficInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.021458
+  type: 'test'
+  ...
+# Subtest: negev/aiInput: brake for an actual slower vehicle ahead
+ok 137 - negev/aiInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.020459
+  type: 'test'
+  ...
+# Subtest: negev/aiInput: adjacent lane must not falsely stop traffic
+ok 138 - negev/aiInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.023792
+  type: 'test'
+  ...
+# Subtest: negev/aiInput: separate elevation must not falsely stop traffic
+ok 139 - negev/aiInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.022042
+  type: 'test'
+  ...
+# Subtest: negev/aiInput: behind must not falsely stop traffic
+ok 140 - negev/aiInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.021541
+  type: 'test'
+  ...
+# Subtest: negev/aiInput: receding must not falsely stop traffic
+ok 141 - negev/aiInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.022084
+  type: 'test'
+  ...
+# Subtest: negev/aiInput: far ahead must not falsely stop traffic
+ok 142 - negev/aiInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.020833
+  type: 'test'
+  ...
+# Subtest: negev/trafficInput: brake for an actual slower vehicle ahead
+ok 143 - negev/trafficInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.020083
+  type: 'test'
+  ...
+# Subtest: negev/trafficInput: adjacent lane must not falsely stop traffic
+ok 144 - negev/trafficInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.037208
+  type: 'test'
+  ...
+# Subtest: negev/trafficInput: separate elevation must not falsely stop traffic
+ok 145 - negev/trafficInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.029792
+  type: 'test'
+  ...
+# Subtest: negev/trafficInput: behind must not falsely stop traffic
+ok 146 - negev/trafficInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.083916
+  type: 'test'
+  ...
+# Subtest: negev/trafficInput: receding must not falsely stop traffic
+ok 147 - negev/trafficInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.024
+  type: 'test'
+  ...
+# Subtest: negev/trafficInput: far ahead must not falsely stop traffic
+ok 148 - negev/trafficInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.021209
+  type: 'test'
+  ...
+# Subtest: yam/aiInput: brake for an actual slower vehicle ahead
+ok 149 - yam/aiInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.0235
+  type: 'test'
+  ...
+# Subtest: yam/aiInput: adjacent lane must not falsely stop traffic
+ok 150 - yam/aiInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.023875
+  type: 'test'
+  ...
+# Subtest: yam/aiInput: separate elevation must not falsely stop traffic
+ok 151 - yam/aiInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.051708
+  type: 'test'
+  ...
+# Subtest: yam/aiInput: behind must not falsely stop traffic
+ok 152 - yam/aiInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.02225
+  type: 'test'
+  ...
+# Subtest: yam/aiInput: receding must not falsely stop traffic
+ok 153 - yam/aiInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.0245
+  type: 'test'
+  ...
+# Subtest: yam/aiInput: far ahead must not falsely stop traffic
+ok 154 - yam/aiInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.021542
+  type: 'test'
+  ...
+# Subtest: yam/trafficInput: brake for an actual slower vehicle ahead
+ok 155 - yam/trafficInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.025959
+  type: 'test'
+  ...
+# Subtest: yam/trafficInput: adjacent lane must not falsely stop traffic
+ok 156 - yam/trafficInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.020375
+  type: 'test'
+  ...
+# Subtest: yam/trafficInput: separate elevation must not falsely stop traffic
+ok 157 - yam/trafficInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.024583
+  type: 'test'
+  ...
+# Subtest: yam/trafficInput: behind must not falsely stop traffic
+ok 158 - yam/trafficInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.0195
+  type: 'test'
+  ...
+# Subtest: yam/trafficInput: receding must not falsely stop traffic
+ok 159 - yam/trafficInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.01975
+  type: 'test'
+  ...
+# Subtest: yam/trafficInput: far ahead must not falsely stop traffic
+ok 160 - yam/trafficInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.019042
+  type: 'test'
+  ...
+# Subtest: Azrieli uses 3 InstancedMesh floor bands, no per-floor Mesh
+ok 161 - Azrieli uses 3 InstancedMesh floor bands, no per-floor Mesh
+  ---
+  duration_ms: 0.506125
+  type: 'test'
+  ...
+# Subtest: normalizes and hashes body text deterministically
+ok 162 - normalizes and hashes body text deterministically
+  ---
+  duration_ms: 0.711625
+  type: 'test'
+  ...
+# Subtest: identical verdicts do not diverge
+ok 163 - identical verdicts do not diverge
+  ---
+  duration_ms: 0.362583
+  type: 'test'
+  ...
+# Subtest: navigation, rendering and error regressions diverge
+ok 164 - navigation, rendering and error regressions diverge
+  ---
+  duration_ms: 0.185917
+  type: 'test'
+  ...
+# Subtest: body collapse and meaningful replacement diverge
+ok 165 - body collapse and meaningful replacement diverge
+  ---
+  duration_ms: 0.057792
+  type: 'test'
+  ...
+# Subtest: trivial body hash drift with the same prefix is tolerated
+ok 166 - trivial body hash drift with the same prefix is tolerated
+  ---
+  duration_ms: 0.043375
+  type: 'test'
+  ...
+# Subtest: missing viewport and degenerate current verdict fail closed
+ok 167 - missing viewport and degenerate current verdict fail closed
+  ---
+  duration_ms: 0.117
+  type: 'test'
+  ...
+# Subtest: baseline JSON validation fails closed
+ok 168 - baseline JSON validation fails closed
+  ---
+  duration_ms: 0.107416
+  type: 'test'
+  ...
+# Subtest: parseSmokeArgs uses the actual repository root
+ok 169 - parseSmokeArgs uses the actual repository root
+  ---
+  duration_ms: 0.089917
+  type: 'test'
+  ...
+# Subtest: parseSmokeArgs handles baseline flags without shifting positionals
+ok 170 - parseSmokeArgs handles baseline flags without shifting positionals
+  ---
+  duration_ms: 0.278333
+  type: 'test'
+  ...
+# Subtest: environment baseline is supported and explicit flag wins
+ok 171 - environment baseline is supported and explicit flag wins
+  ---
+  duration_ms: 0.269291
+  type: 'test'
+  ...
+# Subtest: derivedPaths is extension-safe and root-agnostic
+ok 172 - derivedPaths is extension-safe and root-agnostic
+  ---
+  duration_ms: 0.156417
+  type: 'test'
+  ...
+# Subtest: exit codes distinguish navigation failure and page errors
+ok 173 - exit codes distinguish navigation failure and page errors
+  ---
+  duration_ms: 0.061708
+  type: 'test'
+  ...
+# Subtest: browser smoke source contains no fixed workspace root
+ok 174 - browser smoke source contains no fixed workspace root
+  ---
+  duration_ms: 0.208875
+  type: 'test'
+  ...
+# Subtest: real capture filesystem error replaces a prior recorded green with false
+ok 175 - real capture filesystem error replaces a prior recorded green with false
+  ---
+  duration_ms: 17.524333
+  type: 'test'
+  ...
+# Subtest: successful real file capture preserves the measured verdict only after capture
+ok 176 - successful real file capture preserves the measured verdict only after capture
+  ---
+  duration_ms: 5.351083
+  type: 'test'
+  ...
+# Subtest: real cleanup failure cannot leave the captured measured verdict green
+ok 177 - real cleanup failure cannot leave the captured measured verdict green
+  ---
+  duration_ms: 4.708875
+  type: 'test'
+  ...
+# Subtest: recapturing an actually failed prior record cannot revive its erroneous green flag
+ok 178 - recapturing an actually failed prior record cannot revive its erroneous green flag
+  ---
+  duration_ms: 4.37975
+  type: 'test'
+  ...
+# Subtest: real browser-launch failure invalidates a prior recorded green before starting
+ok 179 - real browser-launch failure invalidates a prior recorded green before starting
+  ---
+  duration_ms: 457.257416
+  type: 'test'
+  ...
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# Subtest: sabra: actual fallback body must not hide its four window surfaces
+ok 180 - sabra: actual fallback body must not hide its four window surfaces
+  ---
+  duration_ms: 56.893083
+  type: 'test'
+  ...
+# Subtest: sabra: repeated construction preserves geometry and independent disposal
+ok 181 - sabra: repeated construction preserves geometry and independent disposal
+  ---
+  duration_ms: 26.729833
+  type: 'test'
+  ...
+# Subtest: carmel: actual fallback body must not hide its four window surfaces
+ok 182 - carmel: actual fallback body must not hide its four window surfaces
+  ---
+  duration_ms: 15.692542
+  type: 'test'
+  ...
+# Subtest: carmel: repeated construction preserves geometry and independent disposal
+ok 183 - carmel: repeated construction preserves geometry and independent disposal
+  ---
+  duration_ms: 8.021
+  type: 'test'
+  ...
+# Subtest: kfir: actual fallback body must not hide its four window surfaces
+ok 184 - kfir: actual fallback body must not hide its four window surfaces
+  ---
+  duration_ms: 11.153542
+  type: 'test'
+  ...
+# Subtest: kfir: repeated construction preserves geometry and independent disposal
+ok 185 - kfir: repeated construction preserves geometry and independent disposal
+  ---
+  duration_ms: 18.758542
+  type: 'test'
+  ...
+# Subtest: negev: actual fallback body must not hide its four window surfaces
+ok 186 - negev: actual fallback body must not hide its four window surfaces
+  ---
+  duration_ms: 6.017625
+  type: 'test'
+  ...
+# Subtest: negev: repeated construction preserves geometry and independent disposal
+ok 187 - negev: repeated construction preserves geometry and independent disposal
+  ---
+  duration_ms: 3.801083
+  type: 'test'
+  ...
+# Subtest: yam: actual fallback body must not hide its four window surfaces
+ok 188 - yam: actual fallback body must not hide its four window surfaces
+  ---
+  duration_ms: 33.253291
+  type: 'test'
+  ...
+# Subtest: yam: repeated construction preserves geometry and independent disposal
+ok 189 - yam: repeated construction preserves geometry and independent disposal
+  ---
+  duration_ms: 25.163583
+  type: 'test'
+  ...
+# Subtest: failed fitting is atomic: missing window coverage
+ok 190 - failed fitting is atomic: missing window coverage
+  ---
+  duration_ms: 15.30625
+  type: 'test'
+  ...
+# Subtest: failed fitting is atomic: changed shell transform
+ok 191 - failed fitting is atomic: changed shell transform
+  ---
+  duration_ms: 2.303541
+  type: 'test'
+  ...
+# Subtest: RSH-019 gives every cloned car body per-engine geometry ownership
+ok 192 - RSH-019 gives every cloned car body per-engine geometry ownership
+  ---
+  duration_ms: 0.422541
+  type: 'test'
+  ...
+# Subtest: RSH-019 car disposal stays texture-safe and covers every visual family
+ok 193 - RSH-019 car disposal stays texture-safe and covers every visual family
+  ---
+  duration_ms: 0.479333
+  type: 'test'
+  ...
+# Subtest: current dependency policy keeps the exact 10-runtime/20-development package boundary
+ok 194 - current dependency policy keeps the exact 10-runtime/20-development package boundary
+  ---
+  duration_ms: 82.321708
+  type: 'test'
+  ...
+# Subtest: forbidden direct dependencies and backend scripts fail closed
+ok 195 - forbidden direct dependencies and backend scripts fail closed
+  ---
+  duration_ms: 165.086708
+  type: 'test'
+  ...
+# Subtest: QA build and server entry points cannot restore the removed app-env wrapper
+ok 196 - QA build and server entry points cannot restore the removed app-env wrapper
+  ---
+  duration_ms: 125.367709
+  type: 'test'
+  ...
+# Subtest: auth, DB, multiplayer and preview-host paths fail closed
+ok 197 - auth, DB, multiplayer and preview-host paths fail closed
+  ---
+  duration_ms: 193.141625
+  type: 'test'
+  ...
+# Subtest: retained PWA compatibility and Nitro pin fail closed
+ok 198 - retained PWA compatibility and Nitro pin fail closed
+  ---
+  duration_ms: 113.015291
+  type: 'test'
+  ...
+# Subtest: tracked build output and a missing ignore rule fail closed
+ok 199 - tracked build output and a missing ignore rule fail closed
+  ---
+  duration_ms: 335.241417
+  type: 'test'
+  ...
+# Subtest: RSH-034 precreation and every temporary RSH-020 transport fail closed
+ok 200 - RSH-034 precreation and every temporary RSH-020 transport fail closed
+  ---
+  duration_ms: 243.373209
+  type: 'test'
+  ...
+# Subtest: committed governance contract is internally valid
+ok 201 - committed governance contract is internally valid
+  ---
+  duration_ms: 1.19775
+  type: 'test'
+  ...
+# Subtest: desired ruleset requires the stable CI context and blocks destructive updates
+ok 202 - desired ruleset requires the stable CI context and blocks destructive updates
+  ---
+  duration_ms: 0.145709
+  type: 'test'
+  ...
+# Subtest: live claims fail closed while the administrative setting is unapplied
+ok 203 - live claims fail closed while the administrative setting is unapplied
+  ---
+  duration_ms: 0.183292
+  type: 'test'
+  ...
+# Subtest: workflow keeps diagnostics on success and failure
+ok 204 - workflow keeps diagnostics on success and failure
+  ---
+  duration_ms: 0.14825
+  type: 'test'
+  ...
+# Subtest: governance validator rejects a missing required check
+ok 205 - governance validator rejects a missing required check
+  ---
+  duration_ms: 0.145875
+  type: 'test'
+  ...
+# Subtest: workflow validator rejects failure suppression
+ok 206 - workflow validator rejects failure suppression
+  ---
+  duration_ms: 0.082833
+  type: 'test'
+  ...
+# Subtest: shipped public text and SVG files contain no secret-like values
+ok 207 - shipped public text and SVG files contain no secret-like values
+  ---
+  duration_ms: 72.156292
+  type: 'test'
+  ...
+# Subtest: public secret scanner fails closed on a planted leak
+ok 208 - public secret scanner fails closed on a planted leak
+  ---
+  duration_ms: 0.125208
+  type: 'test'
+  ...
+# Subtest: recorded Haifa house cannot block the actual elevated driving surface
+ok 209 - recorded Haifa house cannot block the actual elevated driving surface
+  ---
+  duration_ms: 16.161417
+  type: 'test'
+  ...
+# Subtest: the same recorded house still resolves real overlap below its roof
+ok 210 - the same recorded house still resolves real overlap below its roof
+  ---
+  duration_ms: 0.286166
+  type: 'test'
+  ...
+# Subtest: the human-readable completion plan agrees with all 46 canonical task records
+ok 211 - the human-readable completion plan agrees with all 46 canonical task records
+  ---
+  duration_ms: 0.803
+  type: 'test'
+  ...
+# Subtest: the real completion backlog is a complete acyclic dependency graph
+ok 212 - the real completion backlog is a complete acyclic dependency graph
+  ---
+  duration_ms: 0.588167
+  type: 'test'
+  ...
+# Subtest: all real RSH units and completion tasks have coverage without creating another acceptance ledger
+ok 213 - all real RSH units and completion tasks have coverage without creating another acceptance ledger
+  ---
+  duration_ms: 0.312583
+  type: 'test'
+  ...
+# Subtest: current source cannot assert a product freeze while its owner authority is false
+ok 214 - current source cannot assert a product freeze while its owner authority is false
+  ---
+  duration_ms: 9.140584
+  type: 'test'
+  ...
+# Subtest: an Ayalon freeze requires its exact transitive source bytes and current approval
+ok 215 - an Ayalon freeze requires its exact transitive source bytes and current approval
+  ---
+  duration_ms: 3.701209
+  type: 'test'
+  ...
+# Subtest: RC metadata cannot certify a release candidate absent from the actual readiness ledger
+ok 216 - RC metadata cannot certify a release candidate absent from the actual readiness ledger
+  ---
+  duration_ms: 0.146333
+  type: 'test'
+  ...
+# Subtest: drop order planar → bloom → CSM → pixelScale
+ok 217 - drop order planar → bloom → CSM → pixelScale
+  ---
+  duration_ms: 4.561208
+  type: 'test'
+  ...
+# Subtest: 90 frames p95>20 drops one step; 5s under 16ms raises
+ok 218 - 90 frames p95>20 drops one step; 5s under 16ms raises
+  ---
+  duration_ms: 0.210917
+  type: 'test'
+  ...
+# Subtest: ayalon: spawning keeps the grade sample at the actual vehicle position
+ok 219 - ayalon: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 2.099834
+  type: 'test'
+  ...
+# Subtest: ayalon: recovery replaces the old grade sample with the actual checkpoint position
+ok 220 - ayalon: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.102292
+  type: 'test'
+  ...
+# Subtest: rothschild: spawning keeps the grade sample at the actual vehicle position
+ok 221 - rothschild: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.407083
+  type: 'test'
+  ...
+# Subtest: rothschild: recovery replaces the old grade sample with the actual checkpoint position
+ok 222 - rothschild: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.107542
+  type: 'test'
+  ...
+# Subtest: namal: spawning keeps the grade sample at the actual vehicle position
+ok 223 - namal: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.431958
+  type: 'test'
+  ...
+# Subtest: namal: recovery replaces the old grade sample with the actual checkpoint position
+ok 224 - namal: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.040791
+  type: 'test'
+  ...
+# Subtest: oldjaffa: spawning keeps the grade sample at the actual vehicle position
+ok 225 - oldjaffa: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.477083
+  type: 'test'
+  ...
+# Subtest: oldjaffa: recovery replaces the old grade sample with the actual checkpoint position
+ok 226 - oldjaffa: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.036917
+  type: 'test'
+  ...
+# Subtest: scopus: spawning keeps the grade sample at the actual vehicle position
+ok 227 - scopus: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.50825
+  type: 'test'
+  ...
+# Subtest: scopus: recovery replaces the old grade sample with the actual checkpoint position
+ok 228 - scopus: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.279834
+  type: 'test'
+  ...
+# Subtest: haifa: spawning keeps the grade sample at the actual vehicle position
+ok 229 - haifa: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.335
+  type: 'test'
+  ...
+# Subtest: haifa: recovery replaces the old grade sample with the actual checkpoint position
+ok 230 - haifa: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.033208
+  type: 'test'
+  ...
+# Subtest: ramon: spawning keeps the grade sample at the actual vehicle position
+ok 231 - ramon: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.3895
+  type: 'test'
+  ...
+# Subtest: ramon: recovery replaces the old grade sample with the actual checkpoint position
+ok 232 - ramon: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.025375
+  type: 'test'
+  ...
+# Subtest: hermon: spawning keeps the grade sample at the actual vehicle position
+ok 233 - hermon: spawning keeps the grade sample at the actual vehicle position
+  ---
+  duration_ms: 0.337291
+  type: 'test'
+  ...
+# Subtest: hermon: recovery replaces the old grade sample with the actual checkpoint position
+ok 234 - hermon: recovery replaces the old grade sample with the actual checkpoint position
+  ---
+  duration_ms: 0.023334
+  type: 'test'
+  ...
+# Subtest: haifa/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+ok 235 - haifa/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 1.506083
+  type: 'test'
+  ...
+# Subtest: haifa/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+ok 236 - haifa/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.515709
+  type: 'test'
+  ...
+# Subtest: haifa/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+ok 237 - haifa/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.607208
+  type: 'test'
+  ...
+# Subtest: haifa/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 238 - haifa/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 11.23875
+  type: 'test'
+  ...
+# Subtest: haifa/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+ok 239 - haifa/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.919041
+  type: 'test'
+  ...
+# Subtest: haifa/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+ok 240 - haifa/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.100542
+  type: 'test'
+  ...
+# Subtest: haifa/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+ok 241 - haifa/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.067333
+  type: 'test'
+  ...
+# Subtest: haifa/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 242 - haifa/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.10825
+  type: 'test'
+  ...
+# Subtest: haifa/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+ok 243 - haifa/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056625
+  type: 'test'
+  ...
+# Subtest: haifa/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+ok 244 - haifa/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.054417
+  type: 'test'
+  ...
+# Subtest: haifa/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+ok 245 - haifa/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.050708
+  type: 'test'
+  ...
+# Subtest: haifa/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 246 - haifa/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.050459
+  type: 'test'
+  ...
+# Subtest: haifa/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+ok 247 - haifa/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049833
+  type: 'test'
+  ...
+# Subtest: haifa/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+ok 248 - haifa/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.101875
+  type: 'test'
+  ...
+# Subtest: haifa/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+ok 249 - haifa/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060125
+  type: 'test'
+  ...
+# Subtest: haifa/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 250 - haifa/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.051416
+  type: 'test'
+  ...
+# Subtest: haifa/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+ok 251 - haifa/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.05575
+  type: 'test'
+  ...
+# Subtest: haifa/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+ok 252 - haifa/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047959
+  type: 'test'
+  ...
+# Subtest: haifa/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+ok 253 - haifa/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049083
+  type: 'test'
+  ...
+# Subtest: haifa/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 254 - haifa/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048833
+  type: 'test'
+  ...
+# Subtest: haifa/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+ok 255 - haifa/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048583
+  type: 'test'
+  ...
+# Subtest: haifa/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+ok 256 - haifa/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048083
+  type: 'test'
+  ...
+# Subtest: haifa/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+ok 257 - haifa/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048167
+  type: 'test'
+  ...
+# Subtest: haifa/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 258 - haifa/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047792
+  type: 'test'
+  ...
+# Subtest: haifa/negev/arcade/clear: slope force follows the nose, not route order or velocity
+ok 259 - haifa/negev/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.050708
+  type: 'test'
+  ...
+# Subtest: haifa/negev/arcade/rain: slope force follows the nose, not route order or velocity
+ok 260 - haifa/negev/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047959
+  type: 'test'
+  ...
+# Subtest: haifa/negev/arcade/storm: slope force follows the nose, not route order or velocity
+ok 261 - haifa/negev/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048416
+  type: 'test'
+  ...
+# Subtest: haifa/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 262 - haifa/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.050292
+  type: 'test'
+  ...
+# Subtest: haifa/negev/simcade/clear: slope force follows the nose, not route order or velocity
+ok 263 - haifa/negev/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047709
+  type: 'test'
+  ...
+# Subtest: haifa/negev/simcade/rain: slope force follows the nose, not route order or velocity
+ok 264 - haifa/negev/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048625
+  type: 'test'
+  ...
+# Subtest: haifa/negev/simcade/storm: slope force follows the nose, not route order or velocity
+ok 265 - haifa/negev/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04825
+  type: 'test'
+  ...
+# Subtest: haifa/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 266 - haifa/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047666
+  type: 'test'
+  ...
+# Subtest: haifa/yam/arcade/clear: slope force follows the nose, not route order or velocity
+ok 267 - haifa/yam/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.051166
+  type: 'test'
+  ...
+# Subtest: haifa/yam/arcade/rain: slope force follows the nose, not route order or velocity
+ok 268 - haifa/yam/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048
+  type: 'test'
+  ...
+# Subtest: haifa/yam/arcade/storm: slope force follows the nose, not route order or velocity
+ok 269 - haifa/yam/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049833
+  type: 'test'
+  ...
+# Subtest: haifa/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 270 - haifa/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047417
+  type: 'test'
+  ...
+# Subtest: haifa/yam/simcade/clear: slope force follows the nose, not route order or velocity
+ok 271 - haifa/yam/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048166
+  type: 'test'
+  ...
+# Subtest: haifa/yam/simcade/rain: slope force follows the nose, not route order or velocity
+ok 272 - haifa/yam/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047
+  type: 'test'
+  ...
+# Subtest: haifa/yam/simcade/storm: slope force follows the nose, not route order or velocity
+ok 273 - haifa/yam/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048667
+  type: 'test'
+  ...
+# Subtest: haifa/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 274 - haifa/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048459
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+ok 275 - hermon/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.064583
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+ok 276 - hermon/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056208
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+ok 277 - hermon/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049208
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 278 - hermon/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048708
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+ok 279 - hermon/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.05275
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+ok 280 - hermon/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049917
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+ok 281 - hermon/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.050208
+  type: 'test'
+  ...
+# Subtest: hermon/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 282 - hermon/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049958
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+ok 283 - hermon/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.054042
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+ok 284 - hermon/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048959
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+ok 285 - hermon/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048459
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 286 - hermon/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.062542
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+ok 287 - hermon/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048667
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+ok 288 - hermon/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04775
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+ok 289 - hermon/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.055708
+  type: 'test'
+  ...
+# Subtest: hermon/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 290 - hermon/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047917
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+ok 291 - hermon/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048666
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+ok 292 - hermon/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.051042
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+ok 293 - hermon/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048042
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 294 - hermon/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048083
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+ok 295 - hermon/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047875
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+ok 296 - hermon/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048292
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+ok 297 - hermon/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047875
+  type: 'test'
+  ...
+# Subtest: hermon/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 298 - hermon/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047917
+  type: 'test'
+  ...
+# Subtest: hermon/negev/arcade/clear: slope force follows the nose, not route order or velocity
+ok 299 - hermon/negev/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049292
+  type: 'test'
+  ...
+# Subtest: hermon/negev/arcade/rain: slope force follows the nose, not route order or velocity
+ok 300 - hermon/negev/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048583
+  type: 'test'
+  ...
+# Subtest: hermon/negev/arcade/storm: slope force follows the nose, not route order or velocity
+ok 301 - hermon/negev/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.050875
+  type: 'test'
+  ...
+# Subtest: hermon/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 302 - hermon/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049083
+  type: 'test'
+  ...
+# Subtest: hermon/negev/simcade/clear: slope force follows the nose, not route order or velocity
+ok 303 - hermon/negev/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047541
+  type: 'test'
+  ...
+# Subtest: hermon/negev/simcade/rain: slope force follows the nose, not route order or velocity
+ok 304 - hermon/negev/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.051125
+  type: 'test'
+  ...
+# Subtest: hermon/negev/simcade/storm: slope force follows the nose, not route order or velocity
+ok 305 - hermon/negev/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048375
+  type: 'test'
+  ...
+# Subtest: hermon/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 306 - hermon/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048083
+  type: 'test'
+  ...
+# Subtest: hermon/yam/arcade/clear: slope force follows the nose, not route order or velocity
+ok 307 - hermon/yam/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047333
+  type: 'test'
+  ...
+# Subtest: hermon/yam/arcade/rain: slope force follows the nose, not route order or velocity
+ok 308 - hermon/yam/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047
+  type: 'test'
+  ...
+# Subtest: hermon/yam/arcade/storm: slope force follows the nose, not route order or velocity
+ok 309 - hermon/yam/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057833
+  type: 'test'
+  ...
+# Subtest: hermon/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 310 - hermon/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047417
+  type: 'test'
+  ...
+# Subtest: hermon/yam/simcade/clear: slope force follows the nose, not route order or velocity
+ok 311 - hermon/yam/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047166
+  type: 'test'
+  ...
+# Subtest: hermon/yam/simcade/rain: slope force follows the nose, not route order or velocity
+ok 312 - hermon/yam/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044667
+  type: 'test'
+  ...
+# Subtest: hermon/yam/simcade/storm: slope force follows the nose, not route order or velocity
+ok 313 - hermon/yam/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.0445
+  type: 'test'
+  ...
+# Subtest: hermon/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 314 - hermon/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.045042
+  type: 'test'
+  ...
+# Subtest: scopus/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+ok 315 - scopus/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047375
+  type: 'test'
+  ...
+# Subtest: scopus/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+ok 316 - scopus/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04475
+  type: 'test'
+  ...
+# Subtest: scopus/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+ok 317 - scopus/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.045125
+  type: 'test'
+  ...
+# Subtest: scopus/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 318 - scopus/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044291
+  type: 'test'
+  ...
+# Subtest: scopus/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+ok 319 - scopus/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.0495
+  type: 'test'
+  ...
+# Subtest: scopus/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+ok 320 - scopus/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.053208
+  type: 'test'
+  ...
+# Subtest: scopus/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+ok 321 - scopus/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.046125
+  type: 'test'
+  ...
+# Subtest: scopus/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 322 - scopus/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.045
+  type: 'test'
+  ...
+# Subtest: scopus/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+ok 323 - scopus/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04975
+  type: 'test'
+  ...
+# Subtest: scopus/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+ok 324 - scopus/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044958
+  type: 'test'
+  ...
+# Subtest: scopus/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+ok 325 - scopus/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.05125
+  type: 'test'
+  ...
+# Subtest: scopus/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 326 - scopus/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.045292
+  type: 'test'
+  ...
+# Subtest: scopus/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+ok 327 - scopus/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.0445
+  type: 'test'
+  ...
+# Subtest: scopus/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+ok 328 - scopus/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044375
+  type: 'test'
+  ...
+# Subtest: scopus/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+ok 329 - scopus/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04525
+  type: 'test'
+  ...
+# Subtest: scopus/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 330 - scopus/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056292
+  type: 'test'
+  ...
+# Subtest: scopus/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+ok 331 - scopus/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044958
+  type: 'test'
+  ...
+# Subtest: scopus/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+ok 332 - scopus/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04775
+  type: 'test'
+  ...
+# Subtest: scopus/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+ok 333 - scopus/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047209
+  type: 'test'
+  ...
+# Subtest: scopus/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 334 - scopus/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.043833
+  type: 'test'
+  ...
+# Subtest: scopus/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+ok 335 - scopus/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.045667
+  type: 'test'
+  ...
+# Subtest: scopus/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+ok 336 - scopus/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.043834
+  type: 'test'
+  ...
+# Subtest: scopus/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+ok 337 - scopus/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04825
+  type: 'test'
+  ...
+# Subtest: scopus/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 338 - scopus/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.045292
+  type: 'test'
+  ...
+# Subtest: scopus/negev/arcade/clear: slope force follows the nose, not route order or velocity
+ok 339 - scopus/negev/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044792
+  type: 'test'
+  ...
+# Subtest: scopus/negev/arcade/rain: slope force follows the nose, not route order or velocity
+ok 340 - scopus/negev/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044125
+  type: 'test'
+  ...
+# Subtest: scopus/negev/arcade/storm: slope force follows the nose, not route order or velocity
+ok 341 - scopus/negev/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044125
+  type: 'test'
+  ...
+# Subtest: scopus/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 342 - scopus/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.043875
+  type: 'test'
+  ...
+# Subtest: scopus/negev/simcade/clear: slope force follows the nose, not route order or velocity
+ok 343 - scopus/negev/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044083
+  type: 'test'
+  ...
+# Subtest: scopus/negev/simcade/rain: slope force follows the nose, not route order or velocity
+ok 344 - scopus/negev/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056375
+  type: 'test'
+  ...
+# Subtest: scopus/negev/simcade/storm: slope force follows the nose, not route order or velocity
+ok 345 - scopus/negev/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044792
+  type: 'test'
+  ...
+# Subtest: scopus/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 346 - scopus/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.046041
+  type: 'test'
+  ...
+# Subtest: scopus/yam/arcade/clear: slope force follows the nose, not route order or velocity
+ok 347 - scopus/yam/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044666
+  type: 'test'
+  ...
+# Subtest: scopus/yam/arcade/rain: slope force follows the nose, not route order or velocity
+ok 348 - scopus/yam/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04575
+  type: 'test'
+  ...
+# Subtest: scopus/yam/arcade/storm: slope force follows the nose, not route order or velocity
+ok 349 - scopus/yam/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044375
+  type: 'test'
+  ...
+# Subtest: scopus/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 350 - scopus/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044666
+  type: 'test'
+  ...
+# Subtest: scopus/yam/simcade/clear: slope force follows the nose, not route order or velocity
+ok 351 - scopus/yam/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044
+  type: 'test'
+  ...
+# Subtest: scopus/yam/simcade/rain: slope force follows the nose, not route order or velocity
+ok 352 - scopus/yam/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.043958
+  type: 'test'
+  ...
+# Subtest: scopus/yam/simcade/storm: slope force follows the nose, not route order or velocity
+ok 353 - scopus/yam/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.043625
+  type: 'test'
+  ...
+# Subtest: scopus/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 354 - scopus/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044625
+  type: 'test'
+  ...
+# Subtest: ramon/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+ok 355 - ramon/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057041
+  type: 'test'
+  ...
+# Subtest: ramon/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+ok 356 - ramon/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04475
+  type: 'test'
+  ...
+# Subtest: ramon/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+ok 357 - ramon/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04725
+  type: 'test'
+  ...
+# Subtest: ramon/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 358 - ramon/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047709
+  type: 'test'
+  ...
+# Subtest: ramon/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+ok 359 - ramon/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.046041
+  type: 'test'
+  ...
+# Subtest: ramon/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+ok 360 - ramon/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056042
+  type: 'test'
+  ...
+# Subtest: ramon/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+ok 361 - ramon/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047791
+  type: 'test'
+  ...
+# Subtest: ramon/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 362 - ramon/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04825
+  type: 'test'
+  ...
+# Subtest: ramon/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+ok 363 - ramon/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.050708
+  type: 'test'
+  ...
+# Subtest: ramon/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+ok 364 - ramon/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049417
+  type: 'test'
+  ...
+# Subtest: ramon/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+ok 365 - ramon/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048
+  type: 'test'
+  ...
+# Subtest: ramon/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 366 - ramon/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049833
+  type: 'test'
+  ...
+# Subtest: ramon/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+ok 367 - ramon/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049
+  type: 'test'
+  ...
+# Subtest: ramon/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+ok 368 - ramon/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04675
+  type: 'test'
+  ...
+# Subtest: ramon/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+ok 369 - ramon/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.046666
+  type: 'test'
+  ...
+# Subtest: ramon/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 370 - ramon/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049708
+  type: 'test'
+  ...
+# Subtest: ramon/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+ok 371 - ramon/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.069542
+  type: 'test'
+  ...
+# Subtest: ramon/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+ok 372 - ramon/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048041
+  type: 'test'
+  ...
+# Subtest: ramon/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+ok 373 - ramon/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.050209
+  type: 'test'
+  ...
+# Subtest: ramon/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 374 - ramon/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.054125
+  type: 'test'
+  ...
+# Subtest: ramon/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+ok 375 - ramon/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047708
+  type: 'test'
+  ...
+# Subtest: ramon/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+ok 376 - ramon/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048167
+  type: 'test'
+  ...
+# Subtest: ramon/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+ok 377 - ramon/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.04525
+  type: 'test'
+  ...
+# Subtest: ramon/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 378 - ramon/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.046167
+  type: 'test'
+  ...
+# Subtest: ramon/negev/arcade/clear: slope force follows the nose, not route order or velocity
+ok 379 - ramon/negev/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.048333
+  type: 'test'
+  ...
+# Subtest: ramon/negev/arcade/rain: slope force follows the nose, not route order or velocity
+ok 380 - ramon/negev/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047208
+  type: 'test'
+  ...
+# Subtest: ramon/negev/arcade/storm: slope force follows the nose, not route order or velocity
+ok 381 - ramon/negev/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047208
+  type: 'test'
+  ...
+# Subtest: ramon/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 382 - ramon/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.046792
+  type: 'test'
+  ...
+# Subtest: ramon/negev/simcade/clear: slope force follows the nose, not route order or velocity
+ok 383 - ramon/negev/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.046584
+  type: 'test'
+  ...
+# Subtest: ramon/negev/simcade/rain: slope force follows the nose, not route order or velocity
+ok 384 - ramon/negev/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.046708
+  type: 'test'
+  ...
+# Subtest: ramon/negev/simcade/storm: slope force follows the nose, not route order or velocity
+ok 385 - ramon/negev/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.055166
+  type: 'test'
+  ...
+# Subtest: ramon/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 386 - ramon/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047708
+  type: 'test'
+  ...
+# Subtest: ramon/yam/arcade/clear: slope force follows the nose, not route order or velocity
+ok 387 - ramon/yam/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.058584
+  type: 'test'
+  ...
+# Subtest: ramon/yam/arcade/rain: slope force follows the nose, not route order or velocity
+ok 388 - ramon/yam/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.046708
+  type: 'test'
+  ...
+# Subtest: ramon/yam/arcade/storm: slope force follows the nose, not route order or velocity
+ok 389 - ramon/yam/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.047917
+  type: 'test'
+  ...
+# Subtest: ramon/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+ok 390 - ramon/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.05475
+  type: 'test'
+  ...
+# Subtest: ramon/yam/simcade/clear: slope force follows the nose, not route order or velocity
+ok 391 - ramon/yam/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.050834
+  type: 'test'
+  ...
+# Subtest: ramon/yam/simcade/rain: slope force follows the nose, not route order or velocity
+ok 392 - ramon/yam/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.0605
+  type: 'test'
+  ...
+# Subtest: ramon/yam/simcade/storm: slope force follows the nose, not route order or velocity
+ok 393 - ramon/yam/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.044833
+  type: 'test'
+  ...
+# Subtest: ramon/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+ok 394 - ramon/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.068833
+  type: 'test'
+  ...
+# Subtest: injects before </head>
+ok 395 - injects before </head>
+  ---
+  duration_ms: 1.05675
+  type: 'test'
+  ...
+# Subtest: injects the extensions script without a project id
+ok 396 - injects the extensions script without a project id
+  ---
+  duration_ms: 0.183708
+  type: 'test'
+  ...
+# Subtest: injects project id on the script and meta when provided
+ok 397 - injects project id on the script and meta when provided
+  ---
+  duration_ms: 0.130583
+  type: 'test'
+  ...
+# Subtest: does not duplicate grok:app_id
+ok 398 - does not duplicate grok:app_id
+  ---
+  duration_ms: 0.199292
+  type: 'test'
+  ...
+# Subtest: omits x:creator tags without both creator values
+ok 399 - omits x:creator tags without both creator values
+  ---
+  duration_ms: 0.338
+  type: 'test'
+  ...
+# Subtest: injects x:creator tags when both creator values are set
+ok 400 - injects x:creator tags when both creator values are set
+  ---
+  duration_ms: 0.116916
+  type: 'test'
+  ...
+# Subtest: escapes x:creator values
+ok 401 - escapes x:creator values
+  ---
+  duration_ms: 0.042792
+  type: 'test'
+  ...
+# Subtest: does not duplicate x:creator tags
+ok 402 - does not duplicate x:creator tags
+  ---
+  duration_ms: 0.260708
+  type: 'test'
+  ...
+# Subtest: platform chrome overwrites share-card metas and always sets og:title
+ok 403 - platform chrome overwrites share-card metas and always sets og:title
+  ---
+  duration_ms: 0.272917
+  type: 'test'
+  ...
+# Subtest: does not duplicate twitter:card or og:title
+ok 404 - does not duplicate twitter:card or og:title
+  ---
+  duration_ms: 0.316209
+  type: 'test'
+  ...
+# Subtest: baked identity does not need a workspace filesystem
+ok 405 - baked identity does not need a workspace filesystem
+  ---
+  duration_ms: 0.301458
+  type: 'test'
+  ...
+# Subtest: a cwd custom card intentionally augments an explicit empty site
+ok 406 - a cwd custom card intentionally augments an explicit empty site
+  ---
+  duration_ms: 0.454
+  type: 'test'
+  ...
+# Subtest: snapshotOgIdentity stamps card=custom from a public card file
+ok 407 - snapshotOgIdentity stamps card=custom from a public card file
+  ---
+  duration_ms: 0.25475
+  type: 'test'
+  ...
+# Subtest: snapshotOgIdentity stamps banner from public/x-banner.jpg
+ok 408 - snapshotOgIdentity stamps banner from public/x-banner.jpg
+  ---
+  duration_ms: 0.215959
+  type: 'test'
+  ...
+# Subtest: emits x:game:image for a public host when site.banner is set
+ok 409 - emits x:game:image for a public host when site.banner is set
+  ---
+  duration_ms: 0.073917
+  type: 'test'
+  ...
+# Subtest: does not emit x:game:image without a public host or banner
+ok 410 - does not emit x:game:image without a public host or banner
+  ---
+  duration_ms: 0.083042
+  type: 'test'
+  ...
+# Subtest: site title Grok App is a real name, not a sentinel
+ok 411 - site title Grok App is a real name, not a sentinel
+  ---
+  duration_ms: 1.192958
+  type: 'test'
+  ...
+# Subtest: published grok.me slug is still a title fallback
+ok 412 - published grok.me slug is still a title fallback
+  ---
+  duration_ms: 0.324583
+  type: 'test'
+  ...
+# Subtest: emits og:image for a public host and prefers a custom card
+ok 413 - emits og:image for a public host and prefers a custom card
+  ---
+  duration_ms: 0.251167
+  type: 'test'
+  ...
+# Subtest: placeholder og:image appends site.color when it is 6-digit hex
+ok 414 - placeholder og:image appends site.color when it is 6-digit hex
+  ---
+  duration_ms: 0.458584
+  type: 'test'
+  ...
+# Subtest: document title entities are not double-escaped on og:title
+ok 415 - document title entities are not double-escaped on og:title
+  ---
+  duration_ms: 0.093834
+  type: 'test'
+  ...
+# Subtest: site.json title wins over the host slug
+ok 416 - site.json title wins over the host slug
+  ---
+  duration_ms: 0.061084
+  type: 'test'
+  ...
+# Subtest: injects into documents with no head element
+ok 417 - injects into documents with no head element
+  ---
+  duration_ms: 0.117458
+  type: 'test'
+  ...
+# Subtest: streaming injector matches </HEAD> case-insensitively
+ok 418 - streaming injector matches </HEAD> case-insensitively
+  ---
+  duration_ms: 0.195416
+  type: 'test'
+  ...
+# Subtest: does not duplicate the extensions script
+ok 419 - does not duplicate the extensions script
+  ---
+  duration_ms: 0.09525
+  type: 'test'
+  ...
+# Subtest: is idempotent
+ok 420 - is idempotent
+  ---
+  duration_ms: 0.072791
+  type: 'test'
+  ...
+# Subtest: uses the app name in the injected title tag
+ok 421 - uses the app name in the injected title tag
+  ---
+  duration_ms: 0.048
+  type: 'test'
+  ...
+# Subtest: streaming injector handles </head> split across chunks
+ok 422 - streaming injector handles </head> split across chunks
+  ---
+  duration_ms: 0.176375
+  type: 'test'
+  ...
+# Subtest: streaming injector passes post-head chunks through untouched
+ok 423 - streaming injector passes post-head chunks through untouched
+  ---
+  duration_ms: 0.10575
+  type: 'test'
+  ...
+# Subtest: streaming injector falls back when no </head> is seen
+ok 424 - streaming injector falls back when no </head> is seen
+  ---
+  duration_ms: 0.069458
+  type: 'test'
+  ...
+# Subtest: detects install query
+ok 425 - detects install query
+  ---
+  duration_ms: 0.127667
+  type: 'test'
+  ...
+# Subtest: filters non-document paths
+ok 426 - filters non-document paths
+  ---
+  duration_ms: 0.066791
+  type: 'test'
+  ...
+# Subtest: strips install params from the app link
+ok 427 - strips install params from the app link
+  ---
+  duration_ms: 0.044417
+  type: 'test'
+  ...
+# Subtest: names the install page from host slug
+ok 428 - names the install page from host slug
+  ---
+  duration_ms: 0.02825
+  type: 'test'
+  ...
+# Subtest: rejects hosts that are not plain slugs
+ok 429 - rejects hosts that are not plain slugs
+  ---
+  duration_ms: 0.027375
+  type: 'test'
+  ...
+# Subtest: renders install page markup
+ok 430 - renders install page markup
+  ---
+  duration_ms: 0.163958
+  type: 'test'
+  ...
+# Subtest: escapes host-derived values in the install page
+ok 431 - escapes host-derived values in the install page
+  ---
+  duration_ms: 0.061958
+  type: 'test'
+  ...
+# Subtest: renders the manifest with the per-app name
+ok 432 - renders the manifest with the per-app name
+  ---
+  duration_ms: 0.066208
+  type: 'test'
+  ...
+# Subtest: vite config keeps the nitro serverDir wiring
+ok 433 - vite config keeps the nitro serverDir wiring
+  ---
+  duration_ms: 0.065417
+  type: 'test'
+  ...
+# Subtest: nitro middleware and its bundled assets exist
+ok 434 - nitro middleware and its bundled assets exist
+  ---
+  duration_ms: 0.199458
+  type: 'test'
+  ...
+# Subtest: vite plugin bakes og identity as a virtual module
+ok 435 - vite plugin bakes og identity as a virtual module
+  ---
+  duration_ms: 0.05125
+  type: 'test'
+  ...
+# Subtest: padCurve deadzone and exponent 1.6
+ok 436 - padCurve deadzone and exponent 1.6
+  ---
+  duration_ms: 0.366334
+  type: 'test'
+  ...
+# Subtest: ksaba/obelisk-0: real geometry rays agree with vehicle contact andheight
+ok 437 - ksaba/obelisk-0: real geometry rays agree with vehicle contact andheight
+  ---
+  duration_ms: 2.712125
+  type: 'test'
+  ...
+# Subtest: hadera/hall-0: real geometry rays agree with vehicle contact andheight
+ok 438 - hadera/hall-0: real geometry rays agree with vehicle contact andheight
+  ---
+  duration_ms: 0.488041
+  type: 'test'
+  ...
+# Subtest: hw6/pier-0: real geometry rays agree with vehicle contact andheight
+ok 439 - hw6/pier-0: real geometry rays agree with vehicle contact andheight
+  ---
+  duration_ms: 0.435208
+  type: 'test'
+  ...
+# Subtest: hw6/pier-1: real geometry rays agree with vehicle contact andheight
+ok 440 - hw6/pier-1: real geometry rays agree with vehicle contact andheight
+  ---
+  duration_ms: 0.241417
+  type: 'test'
+  ...
+# Subtest: hw6/pole-0: real geometry rays agree with vehicle contact andheight
+ok 441 - hw6/pole-0: real geometry rays agree with vehicle contact andheight
+  ---
+  duration_ms: 0.18975
+  type: 'test'
+  ...
+# Subtest: hw6/pole-1: real geometry rays agree with vehicle contact andheight
+ok 442 - hw6/pole-1: real geometry rays agree with vehicle contact andheight
+  ---
+  duration_ms: 0.16675
+  type: 'test'
+  ...
+# Subtest: actual HW1 cloned right lining keeps its rendered orientation despite Euler aliasing
+ok 443 - actual HW1 cloned right lining keeps its rendered orientation despite Euler aliasing
+  ---
+  duration_ms: 1.248208
+  type: 'test'
+  ...
+# Subtest: fog table keys
+ok 444 - fog table keys
+  ---
+  duration_ms: 0.330292
+  type: 'test'
+  ...
+# Subtest: lookFromFlags
+ok 445 - lookFromFlags
+  ---
+  duration_ms: 0.0675
+  type: 'test'
+  ...
+# Subtest: actual V1 road layout keeps the Rothschild median separate from racing lanes
+ok 446 - actual V1 road layout keeps the Rothschild median separate from racing lanes
+  ---
+  duration_ms: 14.193792
+  type: 'test'
+  ...
+# Subtest: sabra: left carriageway survives eight seconds of straight acceleration
+ok 447 - sabra: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 36.803334
+  type: 'test'
+  ...
+# Subtest: sabra: left carriageway survives eight seconds of AI input
+ok 448 - sabra: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 32.592042
+  type: 'test'
+  ...
+# Subtest: sabra: right carriageway survives eight seconds of straight acceleration
+ok 449 - sabra: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 38.545125
+  type: 'test'
+  ...
+# Subtest: sabra: right carriageway survives eight seconds of AI input
+ok 450 - sabra: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 17.638333
+  type: 'test'
+  ...
+# Subtest: carmel: left carriageway survives eight seconds of straight acceleration
+ok 451 - carmel: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 10.350375
+  type: 'test'
+  ...
+# Subtest: carmel: left carriageway survives eight seconds of AI input
+ok 452 - carmel: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 15.081792
+  type: 'test'
+  ...
+# Subtest: carmel: right carriageway survives eight seconds of straight acceleration
+ok 453 - carmel: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.920625
+  type: 'test'
+  ...
+# Subtest: carmel: right carriageway survives eight seconds of AI input
+ok 454 - carmel: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 4.086041
+  type: 'test'
+  ...
+# Subtest: kfir: left carriageway survives eight seconds of straight acceleration
+ok 455 - kfir: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 36.771833
+  type: 'test'
+  ...
+# Subtest: kfir: left carriageway survives eight seconds of AI input
+ok 456 - kfir: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 16.830959
+  type: 'test'
+  ...
+# Subtest: kfir: right carriageway survives eight seconds of straight acceleration
+ok 457 - kfir: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 17.175542
+  type: 'test'
+  ...
+# Subtest: kfir: right carriageway survives eight seconds of AI input
+ok 458 - kfir: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 4.660375
+  type: 'test'
+  ...
+# Subtest: negev: left carriageway survives eight seconds of straight acceleration
+ok 459 - negev: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 9.544083
+  type: 'test'
+  ...
+# Subtest: negev: left carriageway survives eight seconds of AI input
+ok 460 - negev: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.69025
+  type: 'test'
+  ...
+# Subtest: negev: right carriageway survives eight seconds of straight acceleration
+ok 461 - negev: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.602917
+  type: 'test'
+  ...
+# Subtest: negev: right carriageway survives eight seconds of AI input
+ok 462 - negev: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.492292
+  type: 'test'
+  ...
+# Subtest: yam: left carriageway survives eight seconds of straight acceleration
+ok 463 - yam: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 21.4355
+  type: 'test'
+  ...
+# Subtest: yam: left carriageway survives eight seconds of AI input
+ok 464 - yam: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 28.819125
+  type: 'test'
+  ...
+# Subtest: yam: right carriageway survives eight seconds of straight acceleration
+ok 465 - yam: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 21.921917
+  type: 'test'
+  ...
+# Subtest: yam: right carriageway survives eight seconds of AI input
+ok 466 - yam: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 4.525709
+  type: 'test'
+  ...
+# Subtest: a current package freeze claim requires the actual bytes and owner authority
+ok 467 - a current package freeze claim requires the actual bytes and owner authority
+  ---
+  duration_ms: 5.250792
+  type: 'test'
+  ...
+# Subtest: ksaba/ksaba-garden: actual parent triangles expose original preview-road overlap
+ok 468 - ksaba/ksaba-garden: actual parent triangles expose original preview-road overlap
+  ---
+  duration_ms: 37.156458
+  type: 'test'
+  ...
+# Subtest: ksaba/rush-ksaba-obelisk: actual parent triangles expose original preview-road overlap
+ok 469 - ksaba/rush-ksaba-obelisk: actual parent triangles expose original preview-road overlap
+  ---
+  duration_ms: 8.808834
+  type: 'test'
+  ...
+# Subtest: hw6/rush-hw6-pier--1: actual parent triangles expose original preview-road overlap
+ok 470 - hw6/rush-hw6-pier--1: actual parent triangles expose original preview-road overlap
+  ---
+  duration_ms: 22.58575
+  type: 'test'
+  ...
+# Subtest: hw6/rush-hw6-pier-1: actual parent triangles expose original preview-road overlap
+ok 471 - hw6/rush-hw6-pier-1: actual parent triangles expose original preview-road overlap
+  ---
+  duration_ms: 7.682125
+  type: 'test'
+  ...
+# Subtest: hw6/rush-hw6-pole--1: actual parent triangles expose original preview-road overlap
+ok 472 - hw6/rush-hw6-pole--1: actual parent triangles expose original preview-road overlap
+  ---
+  duration_ms: 3.434333
+  type: 'test'
+  ...
+# Subtest: hw6/rush-hw6-pole-1: actual parent triangles expose original preview-road overlap
+ok 473 - hw6/rush-hw6-pole-1: actual parent triangles expose original preview-road overlap
+  ---
+  duration_ms: 0.702625
+  type: 'test'
+  ...
+# Subtest: actual Ramon cliff never crosses the driver path on either side of its faces
+ok 474 - actual Ramon cliff never crosses the driver path on either side of its faces
+  ---
+  duration_ms: 169.148542
+  type: 'test'
+  ...
+# Subtest: actual Ramon descent never climbs above its preceding road sample
+ok 475 - actual Ramon descent never climbs above its preceding road sample
+  ---
+  duration_ms: 0.605292
+  type: 'test'
+  ...
+# Subtest: actual Ramon plateau boundaries meet the descent without height jumps
+ok 476 - actual Ramon plateau boundaries meet the descent without height jumps
+  ---
+  duration_ms: 0.468
+  type: 'test'
+  ...
+# Subtest: handwritten static JSX calls never pass a single element or string as children
+ok 477 - handwritten static JSX calls never pass a single element or string as children
+  ---
+  duration_ms: 144.634875
+  type: 'test'
+  ...
+# Subtest: old physicsVersion is rejected
+ok 478 - old physicsVersion is rejected
+  ---
+  duration_ms: 0.356666
+  type: 'test'
+  ...
+# Subtest: current physicsVersion is kept
+ok 479 - current physicsVersion is kept
+  ---
+  duration_ms: 0.542167
+  type: 'test'
+  ...
+# Subtest: payload + sha256
+ok 480 - payload + sha256
+  ---
+  duration_ms: 21.726792
+  type: 'test'
+  ...
+# Subtest: writeRecords replaces the whole key
+ok 481 - writeRecords replaces the whole key
+  ---
+  duration_ms: 0.221541
+  type: 'test'
+  ...
+# Subtest: read path drops malformed, unverified and stale records
+ok 482 - read path drops malformed, unverified and stale records
+  ---
+  duration_ms: 0.315375
+  type: 'test'
+  ...
+# Subtest: duplicate records are collapsed and the per-car cap is enforced
+ok 483 - duplicate records are collapsed and the per-car cap is enforced
+  ---
+  duration_ms: 1.21575
+  type: 'test'
+  ...
+# Subtest: serial persist verifies hashes, rejects duplicates and survives quota
+ok 484 - serial persist verifies hashes, rejects duplicates and survives quota
+  ---
+  duration_ms: 0.481833
+  type: 'test'
+  ...
+# Subtest: concurrent persist calls are serialised and do not drop the earlier write
+ok 485 - concurrent persist calls are serialised and do not drop the earlier write
+  ---
+  duration_ms: 0.632459
+  type: 'test'
+  ...
+# Subtest: canonical serialization is byte-stable
+ok 486 - canonical serialization is byte-stable
+  ---
+  duration_ms: 0.247417
+  type: 'test'
+  ...
+# Subtest: ResourceRegistry ref-counts and disposes in reverse creation order
+ok 487 - ResourceRegistry ref-counts and disposes in reverse creation order
+  ---
+  duration_ms: 0.645833
+  type: 'test'
+  ...
+# Subtest: ResourceRegistry rejects split ownership for one id
+ok 488 - ResourceRegistry rejects split ownership for one id
+  ---
+  duration_ms: 0.208125
+  type: 'test'
+  ...
+# Subtest: ResourceRegistry releases late resources and continues after disposal errors
+ok 489 - ResourceRegistry releases late resources and continues after disposal errors
+  ---
+  duration_ms: 0.130208
+  type: 'test'
+  ...
+# Subtest: hayarkon: actual asphalt surface is visible with front-face culling
+ok 490 - hayarkon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 39.830708
+  type: 'test'
+  ...
+# Subtest: oldjaffa: actual asphalt surface is visible with front-face culling
+ok 491 - oldjaffa: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 12.037667
+  type: 'test'
+  ...
+# Subtest: telaviv: actual asphalt surface is visible with front-face culling
+ok 492 - telaviv: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.964916
+  type: 'test'
+  ...
+# Subtest: namal: actual asphalt surface is visible with front-face culling
+ok 493 - namal: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 1.233792
+  type: 'test'
+  ...
+# Subtest: jerusalem: actual asphalt surface is visible with front-face culling
+ok 494 - jerusalem: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.883584
+  type: 'test'
+  ...
+# Subtest: haifa: actual asphalt surface is visible with front-face culling
+ok 495 - haifa: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.581375
+  type: 'test'
+  ...
+# Subtest: eilat: actual asphalt surface is visible with front-face culling
+ok 496 - eilat: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.734917
+  type: 'test'
+  ...
+# Subtest: rothschild: actual asphalt surface is visible with front-face culling
+ok 497 - rothschild: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.800083
+  type: 'test'
+  ...
+# Subtest: ayalon: actual asphalt surface is visible with front-face culling
+ok 498 - ayalon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 1.561916
+  type: 'test'
+  ...
+# Subtest: caesarea: actual asphalt surface is visible with front-face culling
+ok 499 - caesarea: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.874083
+  type: 'test'
+  ...
+# Subtest: deadsea: actual asphalt surface is visible with front-face culling
+ok 500 - deadsea: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 1.219916
+  type: 'test'
+  ...
+# Subtest: acre: actual asphalt surface is visible with front-face culling
+ok 501 - acre: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.502792
+  type: 'test'
+  ...
+# Subtest: centralpark: actual asphalt surface is visible with front-face culling
+ok 502 - centralpark: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.726709
+  type: 'test'
+  ...
+# Subtest: timessquare: actual asphalt surface is visible with front-face culling
+ok 503 - timessquare: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.637291
+  type: 'test'
+  ...
+# Subtest: brooklynbridge: actual asphalt surface is visible with front-face culling
+ok 504 - brooklynbridge: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.596667
+  type: 'test'
+  ...
+# Subtest: manhattan: actual asphalt surface is visible with front-face culling
+ok 505 - manhattan: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.697542
+  type: 'test'
+  ...
+# Subtest: beersheva: actual asphalt surface is visible with front-face culling
+ok 506 - beersheva: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.588709
+  type: 'test'
+  ...
+# Subtest: netanya: actual asphalt surface is visible with front-face culling
+ok 507 - netanya: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.481667
+  type: 'test'
+  ...
+# Subtest: hw1: actual asphalt surface is visible with front-face culling
+ok 508 - hw1: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.2995
+  type: 'test'
+  ...
+# Subtest: herzliya: actual asphalt surface is visible with front-face culling
+ok 509 - herzliya: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.452708
+  type: 'test'
+  ...
+# Subtest: hanikra: actual asphalt surface is visible with front-face culling
+ok 510 - hanikra: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.487209
+  type: 'test'
+  ...
+# Subtest: haifaport: actual asphalt surface is visible with front-face culling
+ok 511 - haifaport: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.635959
+  type: 'test'
+  ...
+# Subtest: stellamaris: actual asphalt surface is visible with front-face culling
+ok 512 - stellamaris: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 4.086792
+  type: 'test'
+  ...
+# Subtest: tiberias: actual asphalt surface is visible with front-face culling
+ok 513 - tiberias: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.542958
+  type: 'test'
+  ...
+# Subtest: golan: actual asphalt surface is visible with front-face culling
+ok 514 - golan: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.463167
+  type: 'test'
+  ...
+# Subtest: hermon: actual asphalt surface is visible with front-face culling
+ok 515 - hermon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.714792
+  type: 'test'
+  ...
+# Subtest: hw6: actual asphalt surface is visible with front-face culling
+ok 516 - hw6: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.573
+  type: 'test'
+  ...
+# Subtest: hw2: actual asphalt surface is visible with front-face culling
+ok 517 - hw2: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 1.249
+  type: 'test'
+  ...
+# Subtest: hw90: actual asphalt surface is visible with front-face culling
+ok 518 - hw90: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.581084
+  type: 'test'
+  ...
+# Subtest: petah: actual asphalt surface is visible with front-face culling
+ok 519 - petah: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.560167
+  type: 'test'
+  ...
+# Subtest: rishon: actual asphalt surface is visible with front-face culling
+ok 520 - rishon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.388166
+  type: 'test'
+  ...
+# Subtest: ashdod: actual asphalt surface is visible with front-face culling
+ok 521 - ashdod: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.406459
+  type: 'test'
+  ...
+# Subtest: ashkelon: actual asphalt surface is visible with front-face culling
+ok 522 - ashkelon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.403041
+  type: 'test'
+  ...
+# Subtest: scopus: actual asphalt surface is visible with front-face culling
+ok 523 - scopus: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.475417
+  type: 'test'
+  ...
+# Subtest: walls: actual asphalt surface is visible with front-face culling
+ok 524 - walls: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.568625
+  type: 'test'
+  ...
+# Subtest: modiin: actual asphalt surface is visible with front-face culling
+ok 525 - modiin: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 7.110459
+  type: 'test'
+  ...
+# Subtest: ramon: actual asphalt surface is visible with front-face culling
+ok 526 - ramon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.6405
+  type: 'test'
+  ...
+# Subtest: hw40: actual asphalt surface is visible with front-face culling
+ok 527 - hw40: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.385334
+  type: 'test'
+  ...
+# Subtest: eilatmtn: actual asphalt surface is visible with front-face culling
+ok 528 - eilatmtn: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.425917
+  type: 'test'
+  ...
+# Subtest: gushdan: actual asphalt surface is visible with front-face culling
+ok 529 - gushdan: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.394834
+  type: 'test'
+  ...
+# Subtest: nazareth: actual asphalt surface is visible with front-face culling
+ok 530 - nazareth: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.299292
+  type: 'test'
+  ...
+# Subtest: tzfat: actual asphalt surface is visible with front-face culling
+ok 531 - tzfat: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.273583
+  type: 'test'
+  ...
+# Subtest: masada: actual asphalt surface is visible with front-face culling
+ok 532 - masada: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.190667
+  type: 'test'
+  ...
+# Subtest: batyam: actual asphalt surface is visible with front-face culling
+ok 533 - batyam: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.301208
+  type: 'test'
+  ...
+# Subtest: rehovot: actual asphalt surface is visible with front-face culling
+ok 534 - rehovot: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.345417
+  type: 'test'
+  ...
+# Subtest: nahariya: actual asphalt surface is visible with front-face culling
+ok 535 - nahariya: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.289125
+  type: 'test'
+  ...
+# Subtest: ramla: actual asphalt surface is visible with front-face culling
+ok 536 - ramla: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.2535
+  type: 'test'
+  ...
+# Subtest: holon: actual asphalt surface is visible with front-face culling
+ok 537 - holon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.280125
+  type: 'test'
+  ...
+# Subtest: beitshan: actual asphalt surface is visible with front-face culling
+ok 538 - beitshan: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.271333
+  type: 'test'
+  ...
+# Subtest: hadera: actual asphalt surface is visible with front-face culling
+ok 539 - hadera: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.28325
+  type: 'test'
+  ...
+# Subtest: lod: actual asphalt surface is visible with front-face culling
+ok 540 - lod: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.299875
+  type: 'test'
+  ...
+# Subtest: kshmona: actual asphalt surface is visible with front-face culling
+ok 541 - kshmona: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.255417
+  type: 'test'
+  ...
+# Subtest: raanana: actual asphalt surface is visible with front-face culling
+ok 542 - raanana: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.278167
+  type: 'test'
+  ...
+# Subtest: afula: actual asphalt surface is visible with front-face culling
+ok 543 - afula: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.280584
+  type: 'test'
+  ...
+# Subtest: ksaba: actual asphalt surface is visible with front-face culling
+ok 544 - ksaba: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.253083
+  type: 'test'
+  ...
+# Subtest: arad: actual asphalt surface is visible with front-face culling
+ok 545 - arad: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.2925
+  type: 'test'
+  ...
+# Subtest: actual Ayalon opposing carriageway is also visible from above
+ok 546 - actual Ayalon opposing carriageway is also visible from above
+  ---
+  duration_ms: 2.295792
+  type: 'test'
+  ...
+# Subtest: actual Rothschild sidewalk on side -1 faces pedestrians above it
+ok 547 - actual Rothschild sidewalk on side -1 faces pedestrians above it
+  ---
+  duration_ms: 5.974542
+  type: 'test'
+  ...
+# Subtest: actual Rothschild sidewalk on side 1 faces pedestrians above it
+ok 548 - actual Rothschild sidewalk on side 1 faces pedestrians above it
+  ---
+  duration_ms: 4.968417
+  type: 'test'
+  ...
+# Subtest: actual physical shader changes wetness without painting a second set of lanes
+ok 549 - actual physical shader changes wetness without painting a second set of lanes
+  ---
+  duration_ms: 0.604375
+  type: 'test'
+  ...
+# Subtest: real road material chains compile hooks and keeps the actual precompile weather state
+ok 550 - real road material chains compile hooks and keeps the actual precompile weather state
+  ---
+  duration_ms: 0.569541
+  type: 'test'
+  ...
+# Subtest: each actual baked road kit already contains the declared lane boundaries
+ok 551 - each actual baked road kit already contains the declared lane boundaries
+  ---
+  duration_ms: 78.796458
+  type: 'test'
+  ...
+# Subtest: requires a child command
+ok 552 - requires a child command
+  ---
+  duration_ms: 0.678709
+  type: 'test'
+  ...
+# Subtest: parses command and deterministic defaults
+ok 553 - parses command and deterministic defaults
+  ---
+  duration_ms: 0.092208
+  type: 'test'
+  ...
+# Subtest: parses explicit timeouts and reuse flag
+ok 554 - parses explicit timeouts and reuse flag
+  ---
+  duration_ms: 0.106333
+  type: 'test'
+  ...
+# Subtest: rejects malformed URL and timeout values
+ok 555 - rejects malformed URL and timeout values
+  ---
+  duration_ms: 0.100875
+  type: 'test'
+  ...
+# Subtest: self-start is restricted to the exact canonical IPv4 loopback URL
+ok 556 - self-start is restricted to the exact canonical IPv4 loopback URL
+  ---
+  duration_ms: 0.071458
+  type: 'test'
+  ...
+# Subtest: dev server uses the repository-local Vite binary directly
+ok 557 - dev server uses the repository-local Vite binary directly
+  ---
+  duration_ms: 0.099625
+  type: 'test'
+  ...
+# Subtest: signal exit codes follow 128 plus the platform signal number
+ok 558 - signal exit codes follow 128 plus the platform signal number
+  ---
+  duration_ms: 0.093666
+  type: 'test'
+  ...
+# Subtest: probeServer accepts healthy or redirect responses and rejects failures
+ok 559 - probeServer accepts healthy or redirect responses and rejects failures
+  ---
+  duration_ms: 0.167375
+  type: 'test'
+  ...
+# Subtest: waitForServer resolves after a successful probe
+ok 560 - waitForServer resolves after a successful probe
+  ---
+  duration_ms: 252.705959
+  type: 'test'
+  ...
+# Subtest: waitForServer fails when the child exits before readiness
+ok 561 - waitForServer fails when the child exits before readiness
+  ---
+  duration_ms: 0.548209
+  type: 'test'
+  ...
+# Subtest: waitForServer reports spawn errors instead of waiting for timeout
+ok 562 - waitForServer reports spawn errors instead of waiting for timeout
+  ---
+  duration_ms: 252.754792
+  type: 'test'
+  ...
+# Subtest: waitForExit cancels the losing timer and removes the exit listener
+ok 563 - waitForExit cancels the losing timer and removes the exit listener
+  ---
+  duration_ms: 1.621167
+  type: 'test'
+  ...
+# Subtest: waitForExit removes the exit listener when the timeout wins
+ok 564 - waitForExit removes the exit listener when the timeout wins
+  ---
+  duration_ms: 0.087708
+  type: 'test'
+  ...
+# Subtest: main checks interrupts before starting a server and before spawning QA
+ok 565 - main checks interrupts before starting a server and before spawning QA
+  ---
+  duration_ms: 0.1805
+  type: 'test'
+  ...
+# Subtest: waitForCommandOutcome resolves normal exits and removes listeners
+ok 566 - waitForCommandOutcome resolves normal exits and removes listeners
+  ---
+  duration_ms: 1.460458
+  type: 'test'
+  ...
+# Subtest: waitForCommandOutcome rejects spawn errors and removes listeners
+ok 567 - waitForCommandOutcome rejects spawn errors and removes listeners
+  ---
+  duration_ms: 1.057583
+  type: 'test'
+  ...
+# Subtest: waitForCommandOutcome reports timeout and removes listeners
+ok 568 - waitForCommandOutcome reports timeout and removes listeners
+  ---
+  duration_ms: 6.110333
+  type: 'test'
+  ...
+# Subtest: restoring a real car snapshot reproduces its subsequent physics exactly
+ok 569 - restoring a real car snapshot reproduces its subsequent physics exactly
+  ---
+  duration_ms: 30.184542
+  type: 'test'
+  ...
+# Subtest: spawning again clears driving state and preserves the real accumulated player damage
+ok 570 - spawning again clears driving state and preserves the real accumulated player damage
+  ---
+  duration_ms: 15.542209
+  type: 'test'
+  ...
+# Subtest: cars on separated elevations cannot push each other sideways
+ok 571 - cars on separated elevations cannot push each other sideways
+  ---
+  duration_ms: 0.357208
+  type: 'test'
+  ...
+# Subtest: automatic off-road rescue reports the recovery tick to the race engine
+ok 572 - automatic off-road rescue reports the recovery tick to the race engine
+  ---
+  duration_ms: 6.643416
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hayarkon
+ok 573 - actual track geometry stays finite: hayarkon
+  ---
+  duration_ms: 1.778
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: oldjaffa
+ok 574 - actual track geometry stays finite: oldjaffa
+  ---
+  duration_ms: 10.057625
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: telaviv
+ok 575 - actual track geometry stays finite: telaviv
+  ---
+  duration_ms: 5.784166
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: namal
+ok 576 - actual track geometry stays finite: namal
+  ---
+  duration_ms: 0.659792
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: jerusalem
+ok 577 - actual track geometry stays finite: jerusalem
+  ---
+  duration_ms: 0.786708
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: haifa
+ok 578 - actual track geometry stays finite: haifa
+  ---
+  duration_ms: 0.570208
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: eilat
+ok 579 - actual track geometry stays finite: eilat
+  ---
+  duration_ms: 2.5735
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: rothschild
+ok 580 - actual track geometry stays finite: rothschild
+  ---
+  duration_ms: 11.700834
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: ayalon
+ok 581 - actual track geometry stays finite: ayalon
+  ---
+  duration_ms: 7.833209
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: caesarea
+ok 582 - actual track geometry stays finite: caesarea
+  ---
+  duration_ms: 0.336375
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: deadsea
+ok 583 - actual track geometry stays finite: deadsea
+  ---
+  duration_ms: 0.376583
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: acre
+ok 584 - actual track geometry stays finite: acre
+  ---
+  duration_ms: 0.2555
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: centralpark
+ok 585 - actual track geometry stays finite: centralpark
+  ---
+  duration_ms: 0.401209
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: timessquare
+ok 586 - actual track geometry stays finite: timessquare
+  ---
+  duration_ms: 0.326625
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: brooklynbridge
+ok 587 - actual track geometry stays finite: brooklynbridge
+  ---
+  duration_ms: 15.074708
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: manhattan
+ok 588 - actual track geometry stays finite: manhattan
+  ---
+  duration_ms: 8.466584
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: beersheva
+ok 589 - actual track geometry stays finite: beersheva
+  ---
+  duration_ms: 0.421125
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: netanya
+ok 590 - actual track geometry stays finite: netanya
+  ---
+  duration_ms: 0.309917
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hw1
+ok 591 - actual track geometry stays finite: hw1
+  ---
+  duration_ms: 0.1915
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: herzliya
+ok 592 - actual track geometry stays finite: herzliya
+  ---
+  duration_ms: 0.276875
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hanikra
+ok 593 - actual track geometry stays finite: hanikra
+  ---
+  duration_ms: 0.295709
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: haifaport
+ok 594 - actual track geometry stays finite: haifaport
+  ---
+  duration_ms: 0.382958
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: stellamaris
+ok 595 - actual track geometry stays finite: stellamaris
+  ---
+  duration_ms: 0.19325
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: tiberias
+ok 596 - actual track geometry stays finite: tiberias
+  ---
+  duration_ms: 0.346709
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: golan
+ok 597 - actual track geometry stays finite: golan
+  ---
+  duration_ms: 0.5005
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hermon
+ok 598 - actual track geometry stays finite: hermon
+  ---
+  duration_ms: 2.81
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hw6
+ok 599 - actual track geometry stays finite: hw6
+  ---
+  duration_ms: 0.385625
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hw2
+ok 600 - actual track geometry stays finite: hw2
+  ---
+  duration_ms: 0.251875
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hw90
+ok 601 - actual track geometry stays finite: hw90
+  ---
+  duration_ms: 0.199084
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: petah
+ok 602 - actual track geometry stays finite: petah
+  ---
+  duration_ms: 0.178333
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: rishon
+ok 603 - actual track geometry stays finite: rishon
+  ---
+  duration_ms: 0.137542
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: ashdod
+ok 604 - actual track geometry stays finite: ashdod
+  ---
+  duration_ms: 0.151041
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: ashkelon
+ok 605 - actual track geometry stays finite: ashkelon
+  ---
+  duration_ms: 0.148792
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: scopus
+ok 606 - actual track geometry stays finite: scopus
+  ---
+  duration_ms: 0.205667
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: walls
+ok 607 - actual track geometry stays finite: walls
+  ---
+  duration_ms: 0.2485
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: modiin
+ok 608 - actual track geometry stays finite: modiin
+  ---
+  duration_ms: 0.176458
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: ramon
+ok 609 - actual track geometry stays finite: ramon
+  ---
+  duration_ms: 0.93
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hw40
+ok 610 - actual track geometry stays finite: hw40
+  ---
+  duration_ms: 0.168708
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: eilatmtn
+ok 611 - actual track geometry stays finite: eilatmtn
+  ---
+  duration_ms: 0.18375
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: gushdan
+ok 612 - actual track geometry stays finite: gushdan
+  ---
+  duration_ms: 0.204459
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: nazareth
+ok 613 - actual track geometry stays finite: nazareth
+  ---
+  duration_ms: 0.146291
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: tzfat
+ok 614 - actual track geometry stays finite: tzfat
+  ---
+  duration_ms: 0.134667
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: masada
+ok 615 - actual track geometry stays finite: masada
+  ---
+  duration_ms: 0.100541
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: batyam
+ok 616 - actual track geometry stays finite: batyam
+  ---
+  duration_ms: 0.145708
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: rehovot
+ok 617 - actual track geometry stays finite: rehovot
+  ---
+  duration_ms: 0.156791
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: nahariya
+ok 618 - actual track geometry stays finite: nahariya
+  ---
+  duration_ms: 0.14475
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: ramla
+ok 619 - actual track geometry stays finite: ramla
+  ---
+  duration_ms: 0.131625
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: holon
+ok 620 - actual track geometry stays finite: holon
+  ---
+  duration_ms: 0.145084
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: beitshan
+ok 621 - actual track geometry stays finite: beitshan
+  ---
+  duration_ms: 0.177208
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hadera
+ok 622 - actual track geometry stays finite: hadera
+  ---
+  duration_ms: 0.089042
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: lod
+ok 623 - actual track geometry stays finite: lod
+  ---
+  duration_ms: 0.101458
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: kshmona
+ok 624 - actual track geometry stays finite: kshmona
+  ---
+  duration_ms: 0.077583
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: raanana
+ok 625 - actual track geometry stays finite: raanana
+  ---
+  duration_ms: 0.091833
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: afula
+ok 626 - actual track geometry stays finite: afula
+  ---
+  duration_ms: 0.094083
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: ksaba
+ok 627 - actual track geometry stays finite: ksaba
+  ---
+  duration_ms: 0.082875
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: arad
+ok 628 - actual track geometry stays finite: arad
+  ---
+  duration_ms: 0.08325
+  type: 'test'
+  ...
+# Subtest: Jaffa elevation has no vertical 3m discontinuity at the raised section
+ok 629 - Jaffa elevation has no vertical 3m discontinuity at the raised section
+  ---
+  duration_ms: 0.053291
+  type: 'test'
+  ...
+# Subtest: road loading and world building share the real track lane policy
+ok 630 - road loading and world building share the real track lane policy
+  ---
+  duration_ms: 0.136917
+  type: 'test'
+  ...
+# Subtest: performance upgrades and race conditions occupy separate record classes
+ok 631 - performance upgrades and race conditions occupy separate record classes
+  ---
+  duration_ms: 21.327417
+  type: 'test'
+  ...
+# Subtest: a recorded ruleset survives serialization and cannot be changed without breaking its hash
+ok 632 - a recorded ruleset survives serialization and cannot be changed without breaking its hash
+  ---
+  duration_ms: 0.370833
+  type: 'test'
+  ...
+# Subtest: readiness flags do not claim complete accessibility or offline support
+ok 633 - readiness flags do not claim complete accessibility or offline support
+  ---
+  duration_ms: 4.037958
+  type: 'test'
+  ...
+# Subtest: static nearest-road queries find the true geometric nearest sample throughout real tracks
+ok 634 - static nearest-road queries find the true geometric nearest sample throughout real tracks
+  ---
+  duration_ms: 4.7635
+  type: 'test'
+  ...
+# Subtest: open-track endpoint sampling cannot wrap a car back to the start
+ok 635 - open-track endpoint sampling cannot wrap a car back to the start
+  ---
+  duration_ms: 0.691625
+  type: 'test'
+  ...
+# Subtest: real simulated ghost trajectories stay in their own ruleset and corrupt storage is rejected
+ok 636 - real simulated ghost trajectories stay in their own ruleset and corrupt storage is rejected
+  ---
+  duration_ms: 8.674917
+  type: 'test'
+  ...
+# Subtest: src/game still has no secret-like values
+ok 637 - src/game still has no secret-like values
+  ---
+  duration_ms: 324.937375
+  type: 'test'
+  ...
+# Subtest: tracked product, script, server and workflow text has no secret-like values
+ok 638 - tracked product, script, server and workflow text has no secret-like values
+  ---
+  duration_ms: 675.41725
+  type: 'test'
+  ...
+# Subtest: secret scanning covers src, scripts, server and GitHub workflows
+ok 639 - secret scanning covers src, scripts, server and GitHub workflows
+  ---
+  duration_ms: 0.211166
+  type: 'test'
+  ...
+# Subtest: expanded patterns fail closed on representative secret-like fixtures
+ok 640 - expanded patterns fail closed on representative secret-like fixtures
+  ---
+  duration_ms: 0.903541
+  type: 'test'
+  ...
+# Subtest: SSGI stays off
+ok 641 - SSGI stays off
+  ---
+  duration_ms: 0.554167
+  type: 'test'
+  ...
+# Subtest: sabra: initial tire yaw follows steering -0.3
+ok 642 - sabra: initial tire yaw follows steering -0.3
+  ---
+  duration_ms: 16.619708
+  type: 'test'
+  ...
+# Subtest: sabra: initial tire yaw follows steering -0.2
+ok 643 - sabra: initial tire yaw follows steering -0.2
+  ---
+  duration_ms: 0.223042
+  type: 'test'
+  ...
+# Subtest: sabra: initial tire yaw follows steering -0.1
+ok 644 - sabra: initial tire yaw follows steering -0.1
+  ---
+  duration_ms: 0.141041
+  type: 'test'
+  ...
+# Subtest: sabra: initial tire yaw follows steering 0.1
+ok 645 - sabra: initial tire yaw follows steering 0.1
+  ---
+  duration_ms: 0.2035
+  type: 'test'
+  ...
+# Subtest: sabra: initial tire yaw follows steering 0.2
+ok 646 - sabra: initial tire yaw follows steering 0.2
+  ---
+  duration_ms: 0.134292
+  type: 'test'
+  ...
+# Subtest: sabra: initial tire yaw follows steering 0.3
+ok 647 - sabra: initial tire yaw follows steering 0.3
+  ---
+  duration_ms: 0.11
+  type: 'test'
+  ...
+# Subtest: carmel: initial tire yaw follows steering -0.3
+ok 648 - carmel: initial tire yaw follows steering -0.3
+  ---
+  duration_ms: 0.301625
+  type: 'test'
+  ...
+# Subtest: carmel: initial tire yaw follows steering -0.2
+ok 649 - carmel: initial tire yaw follows steering -0.2
+  ---
+  duration_ms: 0.132542
+  type: 'test'
+  ...
+# Subtest: carmel: initial tire yaw follows steering -0.1
+ok 650 - carmel: initial tire yaw follows steering -0.1
+  ---
+  duration_ms: 0.638084
+  type: 'test'
+  ...
+# Subtest: carmel: initial tire yaw follows steering 0.1
+ok 651 - carmel: initial tire yaw follows steering 0.1
+  ---
+  duration_ms: 0.364291
+  type: 'test'
+  ...
+# Subtest: carmel: initial tire yaw follows steering 0.2
+ok 652 - carmel: initial tire yaw follows steering 0.2
+  ---
+  duration_ms: 0.147833
+  type: 'test'
+  ...
+# Subtest: carmel: initial tire yaw follows steering 0.3
+ok 653 - carmel: initial tire yaw follows steering 0.3
+  ---
+  duration_ms: 0.101625
+  type: 'test'
+  ...
+# Subtest: kfir: initial tire yaw follows steering -0.3
+ok 654 - kfir: initial tire yaw follows steering -0.3
+  ---
+  duration_ms: 0.08625
+  type: 'test'
+  ...
+# Subtest: kfir: initial tire yaw follows steering -0.2
+ok 655 - kfir: initial tire yaw follows steering -0.2
+  ---
+  duration_ms: 0.0905
+  type: 'test'
+  ...
+# Subtest: kfir: initial tire yaw follows steering -0.1
+ok 656 - kfir: initial tire yaw follows steering -0.1
+  ---
+  duration_ms: 0.086083
+  type: 'test'
+  ...
+# Subtest: kfir: initial tire yaw follows steering 0.1
+ok 657 - kfir: initial tire yaw follows steering 0.1
+  ---
+  duration_ms: 0.092125
+  type: 'test'
+  ...
+# Subtest: kfir: initial tire yaw follows steering 0.2
+ok 658 - kfir: initial tire yaw follows steering 0.2
+  ---
+  duration_ms: 0.083
+  type: 'test'
+  ...
+# Subtest: kfir: initial tire yaw follows steering 0.3
+ok 659 - kfir: initial tire yaw follows steering 0.3
+  ---
+  duration_ms: 0.082542
+  type: 'test'
+  ...
+# Subtest: negev: initial tire yaw follows steering -0.3
+ok 660 - negev: initial tire yaw follows steering -0.3
+  ---
+  duration_ms: 0.081375
+  type: 'test'
+  ...
+# Subtest: negev: initial tire yaw follows steering -0.2
+ok 661 - negev: initial tire yaw follows steering -0.2
+  ---
+  duration_ms: 0.081375
+  type: 'test'
+  ...
+# Subtest: negev: initial tire yaw follows steering -0.1
+ok 662 - negev: initial tire yaw follows steering -0.1
+  ---
+  duration_ms: 0.083875
+  type: 'test'
+  ...
+# Subtest: negev: initial tire yaw follows steering 0.1
+ok 663 - negev: initial tire yaw follows steering 0.1
+  ---
+  duration_ms: 0.084375
+  type: 'test'
+  ...
+# Subtest: negev: initial tire yaw follows steering 0.2
+ok 664 - negev: initial tire yaw follows steering 0.2
+  ---
+  duration_ms: 0.086541
+  type: 'test'
+  ...
+# Subtest: negev: initial tire yaw follows steering 0.3
+ok 665 - negev: initial tire yaw follows steering 0.3
+  ---
+  duration_ms: 0.082541
+  type: 'test'
+  ...
+# Subtest: yam: initial tire yaw follows steering -0.3
+ok 666 - yam: initial tire yaw follows steering -0.3
+  ---
+  duration_ms: 0.081166
+  type: 'test'
+  ...
+# Subtest: yam: initial tire yaw follows steering -0.2
+ok 667 - yam: initial tire yaw follows steering -0.2
+  ---
+  duration_ms: 0.082375
+  type: 'test'
+  ...
+# Subtest: yam: initial tire yaw follows steering -0.1
+ok 668 - yam: initial tire yaw follows steering -0.1
+  ---
+  duration_ms: 0.083458
+  type: 'test'
+  ...
+# Subtest: yam: initial tire yaw follows steering 0.1
+ok 669 - yam: initial tire yaw follows steering 0.1
+  ---
+  duration_ms: 0.085
+  type: 'test'
+  ...
+# Subtest: yam: initial tire yaw follows steering 0.2
+ok 670 - yam: initial tire yaw follows steering 0.2
+  ---
+  duration_ms: 0.085333
+  type: 'test'
+  ...
+# Subtest: yam: initial tire yaw follows steering 0.3
+ok 671 - yam: initial tire yaw follows steering 0.3
+  ---
+  duration_ms: 0.077542
+  type: 'test'
+  ...
+# Subtest: haifa: height query matches the actual rendered terrain triangles
+ok 672 - haifa: height query matches the actual rendered terrain triangles
+  ---
+  duration_ms: 115.015541
+  type: 'test'
+  ...
+# Subtest: hermon: height query matches the actual rendered terrain triangles
+ok 673 - hermon: height query matches the actual rendered terrain triangles
+  ---
+  duration_ms: 157.491291
+  type: 'test'
+  ...
+# Subtest: scopus: height query matches the actual rendered terrain triangles
+ok 674 - scopus: height query matches the actual rendered terrain triangles
+  ---
+  duration_ms: 44.88875
+  type: 'test'
+  ...
+# Subtest: ramon: height query matches the actual rendered terrain triangles
+ok 675 - ramon: height query matches the actual rendered terrain triangles
+  ---
+  duration_ms: 141.099917
+  type: 'test'
+  ...
+# Subtest: Hermon support bounds match independently clipped terrain triangles under nine actual building footprints
+ok 676 - Hermon support bounds match independently clipped terrain triangles under nine actual building footprints
+  ---
+  duration_ms: 187.210208
+  type: 'test'
+  ...
+# Subtest: haifa: actual terrain faces upward throughout the route
+ok 677 - haifa: actual terrain faces upward throughout the route
+  ---
+  duration_ms: 16.826417
+  type: 'test'
+  ...
+# Subtest: haifa: actual terrain cannot cover the driving corridor
+ok 678 - haifa: actual terrain cannot cover the driving corridor
+  ---
+  duration_ms: 383.111916
+  type: 'test'
+  ...
+# Subtest: hermon: actual terrain faces upward throughout the route
+ok 679 - hermon: actual terrain faces upward throughout the route
+  ---
+  duration_ms: 37.061625
+  type: 'test'
+  ...
+# Subtest: hermon: actual terrain cannot cover the driving corridor
+ok 680 - hermon: actual terrain cannot cover the driving corridor
+  ---
+  duration_ms: 1815.447417
+  type: 'test'
+  ...
+# Subtest: scopus: actual terrain faces upward throughout the route
+ok 681 - scopus: actual terrain faces upward throughout the route
+  ---
+  duration_ms: 11.278833
+  type: 'test'
+  ...
+# Subtest: scopus: actual terrain cannot cover the driving corridor
+ok 682 - scopus: actual terrain cannot cover the driving corridor
+  ---
+  duration_ms: 196.942459
+  type: 'test'
+  ...
+# Subtest: ramon: actual terrain faces upward throughout the route
+ok 683 - ramon: actual terrain faces upward throughout the route
+  ---
+  duration_ms: 49.10675
+  type: 'test'
+  ...
+# Subtest: ramon: actual terrain cannot cover the driving corridor
+ok 684 - ramon: actual terrain cannot cover the driving corridor
+  ---
+  duration_ms: 2127.402375
+  type: 'test'
+  ...
+# Subtest: all tracked toolchain pins agree exactly
+ok 685 - all tracked toolchain pins agree exactly
+  ---
+  duration_ms: 0.78425
+  type: 'test'
+  ...
+# Subtest: package and lockfile root metadata remain synchronised
+ok 686 - package and lockfile root metadata remain synchronised
+  ---
+  duration_ms: 0.93
+  type: 'test'
+  ...
+# Subtest: r185 Photo AA is SMAA, no hand-rolled TRAA
+ok 687 - r185 Photo AA is SMAA, no hand-rolled TRAA
+  ---
+  duration_ms: 0.494
+  type: 'test'
+  ...
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# Subtest: actual Namal 8.000s: resolve recorded body penetrations
+ok 688 - actual Namal 8.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 4.505584
+  type: 'test'
+  ...
+# Subtest: actual Namal 9.000s: resolve recorded body penetrations
+ok 689 - actual Namal 9.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 0.739958
+  type: 'test'
+  ...
+# Subtest: actual Namal 10.000s: resolve recorded body penetrations
+ok 690 - actual Namal 10.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 0.37625
+  type: 'test'
+  ...
+# Subtest: actual Namal 11.000s: resolve recorded body penetrations
+ok 691 - actual Namal 11.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 1.922541
+  type: 'test'
+  ...
+# Subtest: actual Namal 12.000s: resolve recorded body penetrations
+ok 692 - actual Namal 12.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 1.74425
+  type: 'test'
+  ...
+# Subtest: actual Namal 13.000s: resolve recorded body penetrations
+ok 693 - actual Namal 13.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 0.352417
+  type: 'test'
+  ...
+# Subtest: actual Namal 14.000s: resolve recorded body penetrations
+ok 694 - actual Namal 14.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 11.496958
+  type: 'test'
+  ...
+# Subtest: actual Namal 15.000s: resolve recorded body penetrations
+ok 695 - actual Namal 15.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 71.456667
+  type: 'test'
+  ...
+# Subtest: actual Namal 16.000s: resolve recorded body penetrations
+ok 696 - actual Namal 16.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 1.124041
+  type: 'test'
+  ...
+# Subtest: actual Namal 17.000s: resolve recorded body penetrations
+ok 697 - actual Namal 17.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 0.765458
+  type: 'test'
+  ...
+# Subtest: actual Namal 19.000s: resolve recorded body penetrations
+ok 698 - actual Namal 19.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 4.9125
+  type: 'test'
+  ...
+# Subtest: actual Namal 20.000s: resolve recorded body penetrations
+ok 699 - actual Namal 20.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 0.332542
+  type: 'test'
+  ...
+# Subtest: actual measured bodies under controlled contact: coincident
+ok 700 - actual measured bodies under controlled contact: coincident
+  ---
+  duration_ms: 0.340583
+  type: 'test'
+  ...
+# Subtest: actual measured bodies under controlled contact: rear-end
+ok 701 - actual measured bodies under controlled contact: rear-end
+  ---
+  duration_ms: 0.069542
+  type: 'test'
+  ...
+# Subtest: actual measured bodies under controlled contact: side
+ok 702 - actual measured bodies under controlled contact: side
+  ---
+  duration_ms: 0.057958
+  type: 'test'
+  ...
+# Subtest: actual measured bodies under controlled contact: crossed
+ok 703 - actual measured bodies under controlled contact: crossed
+  ---
+  duration_ms: 0.052917
+  type: 'test'
+  ...
+# Subtest: actual measured bodies under controlled contact: separate elevation
+ok 704 - actual measured bodies under controlled contact: separate elevation
+  ---
+  duration_ms: 0.214167
+  type: 'test'
+  ...
+# Subtest: actual measured bodies under controlled contact: clear side lane
+ok 705 - actual measured bodies under controlled contact: clear side lane
+  ---
+  duration_ms: 0.046375
+  type: 'test'
+  ...
+# Subtest: eight actual measured bodies at the same position separate deterministically
+ok 706 - eight actual measured bodies at the same position separate deterministically
+  ---
+  duration_ms: 6.108667
+  type: 'test'
+  ...
+# Subtest: actual body head-on contact preserves momentum and charges one impact per pair
+ok 707 - actual body head-on contact preserves momentum and charges one impact per pair
+  ---
+  duration_ms: 0.221958
+  type: 'test'
+  ...
+# Subtest: sabra/1x1x1: contact bounds enclose the actual solid vertices
+ok 708 - sabra/1x1x1: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 34.888166
+  type: 'test'
+  ...
+# Subtest: sabra/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+ok 709 - sabra/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 14.332041
+  type: 'test'
+  ...
+# Subtest: sabra/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+ok 710 - sabra/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 5.959625
+  type: 'test'
+  ...
+# Subtest: carmel/1x1x1: contact bounds enclose the actual solid vertices
+ok 711 - carmel/1x1x1: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 6.639541
+  type: 'test'
+  ...
+# Subtest: carmel/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+ok 712 - carmel/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 3.862667
+  type: 'test'
+  ...
+# Subtest: carmel/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+ok 713 - carmel/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.9675
+  type: 'test'
+  ...
+# Subtest: kfir/1x1x1: contact bounds enclose the actual solid vertices
+ok 714 - kfir/1x1x1: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 7.598542
+  type: 'test'
+  ...
+# Subtest: kfir/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+ok 715 - kfir/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.880875
+  type: 'test'
+  ...
+# Subtest: kfir/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+ok 716 - kfir/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 3.574542
+  type: 'test'
+  ...
+# Subtest: negev/1x1x1: contact bounds enclose the actual solid vertices
+ok 717 - negev/1x1x1: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 6.25825
+  type: 'test'
+  ...
+# Subtest: negev/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+ok 718 - negev/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.971708
+  type: 'test'
+  ...
+# Subtest: negev/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+ok 719 - negev/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.3285
+  type: 'test'
+  ...
+# Subtest: yam/1x1x1: contact bounds enclose the actual solid vertices
+ok 720 - yam/1x1x1: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 5.021625
+  type: 'test'
+  ...
+# Subtest: yam/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+ok 721 - yam/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.444042
+  type: 'test'
+  ...
+# Subtest: yam/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+ok 722 - yam/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.857875
+  type: 'test'
+  ...
+# Subtest: actual Haifa downhill approach: brake before different road heights converge
+ok 723 - actual Haifa downhill approach: brake before different road heights converge
+  ---
+  duration_ms: 3.285083
+  type: 'test'
+  ...
+# Subtest: sabra: AI braking survives snapshots and clears on coast/spawn/old replay
+ok 724 - sabra: AI braking survives snapshots and clears on coast/spawn/old replay
+  ---
+  duration_ms: 2.151917
+  type: 'test'
+  ...
+# Subtest: sabra: countdown does not display inactive controls
+ok 725 - sabra: countdown does not display inactive controls
+  ---
+  duration_ms: 0.153083
+  type: 'test'
+  ...
+# Subtest: sabra: finished does not display inactive controls
+ok 726 - sabra: finished does not display inactive controls
+  ---
+  duration_ms: 0.100083
+  type: 'test'
+  ...
+# Subtest: sabra: eliminated does not display inactive controls
+ok 727 - sabra: eliminated does not display inactive controls
+  ---
+  duration_ms: 0.096292
+  type: 'test'
+  ...
+# Subtest: carmel: AI braking survives snapshots and clears on coast/spawn/old replay
+ok 728 - carmel: AI braking survives snapshots and clears on coast/spawn/old replay
+  ---
+  duration_ms: 0.599208
+  type: 'test'
+  ...
+# Subtest: carmel: countdown does not display inactive controls
+ok 729 - carmel: countdown does not display inactive controls
+  ---
+  duration_ms: 0.135292
+  type: 'test'
+  ...
+# Subtest: carmel: finished does not display inactive controls
+ok 730 - carmel: finished does not display inactive controls
+  ---
+  duration_ms: 0.225459
+  type: 'test'
+  ...
+# Subtest: carmel: eliminated does not display inactive controls
+ok 731 - carmel: eliminated does not display inactive controls
+  ---
+  duration_ms: 0.096625
+  type: 'test'
+  ...
+# Subtest: kfir: AI braking survives snapshots and clears on coast/spawn/old replay
+ok 732 - kfir: AI braking survives snapshots and clears on coast/spawn/old replay
+  ---
+  duration_ms: 0.616917
+  type: 'test'
+  ...
+# Subtest: kfir: countdown does not display inactive controls
+ok 733 - kfir: countdown does not display inactive controls
+  ---
+  duration_ms: 0.333125
+  type: 'test'
+  ...
+# Subtest: kfir: finished does not display inactive controls
+ok 734 - kfir: finished does not display inactive controls
+  ---
+  duration_ms: 0.146041
+  type: 'test'
+  ...
+# Subtest: kfir: eliminated does not display inactive controls
+ok 735 - kfir: eliminated does not display inactive controls
+  ---
+  duration_ms: 0.095875
+  type: 'test'
+  ...
+# Subtest: negev: AI braking survives snapshots and clears on coast/spawn/old replay
+ok 736 - negev: AI braking survives snapshots and clears on coast/spawn/old replay
+  ---
+  duration_ms: 0.304375
+  type: 'test'
+  ...
+# Subtest: negev: countdown does not display inactive controls
+ok 737 - negev: countdown does not display inactive controls
+  ---
+  duration_ms: 0.041208
+  type: 'test'
+  ...
+# Subtest: negev: finished does not display inactive controls
+ok 738 - negev: finished does not display inactive controls
+  ---
+  duration_ms: 0.0265
+  type: 'test'
+  ...
+# Subtest: negev: eliminated does not display inactive controls
+ok 739 - negev: eliminated does not display inactive controls
+  ---
+  duration_ms: 0.024375
+  type: 'test'
+  ...
+# Subtest: yam: AI braking survives snapshots and clears on coast/spawn/old replay
+ok 740 - yam: AI braking survives snapshots and clears on coast/spawn/old replay
+  ---
+  duration_ms: 0.079958
+  type: 'test'
+  ...
+# Subtest: yam: countdown does not display inactive controls
+ok 741 - yam: countdown does not display inactive controls
+  ---
+  duration_ms: 0.029584
+  type: 'test'
+  ...
+# Subtest: yam: finished does not display inactive controls
+ok 742 - yam: finished does not display inactive controls
+  ---
+  duration_ms: 0.024667
+  type: 'test'
+  ...
+# Subtest: yam: eliminated does not display inactive controls
+ok 743 - yam: eliminated does not display inactive controls
+  ---
+  duration_ms: 0.024709
+  type: 'test'
+  ...
+# Subtest: hash01 is deterministic
+ok 744 - hash01 is deterministic
+  ---
+  duration_ms: 0.442792
+  type: 'test'
+  ...
+# Subtest: errorId is stable
+ok 745 - errorId is stable
+  ---
+  duration_ms: 0.114583
+  type: 'test'
+  ...
+# Subtest: hashStr is stable
+ok 746 - hashStr is stable
+  ---
+  duration_ms: 0.049417
+  type: 'test'
+  ...
+# Subtest: brake force is monotonic in 0-1 including 82-83%
+ok 747 - brake force is monotonic in 0-1 including 82-83%
+  ---
+  duration_ms: 0.083875
+  type: 'test'
+  ...
+# Subtest: pacejka is odd and peaks near 0.12
+ok 748 - pacejka is odd and peaks near 0.12
+  ---
+  duration_ms: 0.866959
+  type: 'test'
+  ...
+# Subtest: ABS reduces brake only when locked
+ok 749 - ABS reduces brake only when locked
+  ---
+  duration_ms: 0.085458
+  type: 'test'
+  ...
+# Subtest: TCS reduces throttle on spin
+ok 750 - TCS reduces throttle on spin
+  ---
+  duration_ms: 0.11175
+  type: 'test'
+  ...
+# Subtest: hydroplane only in wet high speed
+ok 751 - hydroplane only in wet high speed
+  ---
+  duration_ms: 0.048458
+  type: 'test'
+  ...
+# Subtest: physics rate is 120Hz
+ok 752 - physics rate is 120Hz
+  ---
+  duration_ms: 0.19225
+  type: 'test'
+  ...
+# Subtest: clamp helper still works
+ok 753 - clamp helper still works
+  ---
+  duration_ms: 0.254167
+  type: 'test'
+  ...
+1..753
+# tests 753
+# suites 0
+# pass 753
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6931.442875

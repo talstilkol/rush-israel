@@ -1,0 +1,37 @@
+
+> app-builder-workspace@0.0.0-private qa:raw
+> npm run qa:drive:raw && npm run qa:ramp:raw && npm run qa:webgl2:raw && npm run qa:accel:raw && npm run qa:colliders:raw && npm run qa:airborne:raw && npm run qa:ktx2 && npm run qa:soak-smoke:raw
+
+
+> app-builder-workspace@0.0.0-private qa:drive:raw
+> node scripts/drive-smoke.mjs
+
+drive-smoke ok {
+  dA: 0.6360941432315068,
+  dD: -0.590689588782386,
+  speed: 28.06034484420286
+}
+
+> app-builder-workspace@0.0.0-private qa:ramp:raw
+> node scripts/ramp-smoke.mjs
+
+ramp-smoke ok 0.2582327807428785:2.8 0.37824558577976264:3.9 0.49824558577976275:4.9 0.6382455857797626:6.2 span 3.38
+ramp-smoke ok 0.29955341177011086:6.7 0.41921980542974246:5.7 0.5392198047242829:4.6 0.6792198047242671:3.4 span 3.38
+
+> app-builder-workspace@0.0.0-private qa:webgl2:raw
+> node scripts/webgl2-smoke.mjs
+
+webgl2-smoke ok WebKit WebGL
+
+> app-builder-workspace@0.0.0-private qa:accel:raw
+> node --import ./scripts/runtime-typescript-loader.mjs scripts/accel-smoke.mjs
+
+file:///private/tmp/rush-steering-3a1208f/scripts/accel-smoke.mjs:29
+    throw new Error(
+          ^
+
+Error: qa:accel baseline physicsVersion 9 != 10; create an explicitly reviewed baseline rather than accepting drift
+    at validateBaseline (file:///private/tmp/rush-steering-3a1208f/scripts/accel-smoke.mjs:29:11)
+    at file:///private/tmp/rush-steering-3a1208f/scripts/accel-smoke.mjs:58:18
+
+Node.js v22.16.0

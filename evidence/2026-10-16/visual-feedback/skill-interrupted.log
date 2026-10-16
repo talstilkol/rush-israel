@@ -1,0 +1,7 @@
+elementHandle.evaluate: Execution context was destroyed, most likely because of a navigation
+    at captureCanvasPngBase64 (/Users/tal/Documents/Codex/2026-10-11/new-chat/work/physics11-skill-client/client.mjs:144:17)
+    at captureScreenshot (/Users/tal/Documents/Codex/2026-10-11/new-chat/work/physics11-skill-client/client.mjs:179:31)
+    at main (/Users/tal/Documents/Codex/2026-10-11/new-chat/work/physics11-skill-client/client.mjs:328:11) {
+  log: [],
+  name: 'Error'
+}

@@ -1,0 +1,22 @@
+// Keep the official skill client byte-for-byte unchanged. Its one-click setup
+// cannot navigate the actual multi-screen track picker,so prepare it via UI.
+import {chromium} from './rush-israel-pr83/node_modules/playwright/index.mjs';
+const launch=chromium.launch.bind(chromium);
+chromium.launch=async(...args)=>{
+ const browser=await launch(...args),newPage=browser.newPage.bind(browser);
+ browser.newPage=async(...pageArgs)=>{
+  const page=await newPage(...pageArgs),goto=page.goto.bind(page);
+  page.goto=async(...gotoArgs)=>{
+   const response=await goto(...gotoArgs);
+   await page.locator('[data-game-ready="true"]').waitFor();
+   await page.getByRole('button',{name:/בחר מסלול/}).click();
+   await page.locator('button').filter({hasText:/^הכל$/}).click();
+   await page.locator('button').filter({hasText:/נמל תל אביב/}).click();
+   await page.waitForFunction(()=>!!window.__controlsTest?.resetStart,{timeout:40000});
+   return response;
+  };
+  return page;
+ };
+ return browser;
+};
+await import('./physics11-skill-client/client.mjs');

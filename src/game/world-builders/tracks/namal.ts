@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { fitRoadTunnel } from "../../roadside";
+import { closestSample } from "../../spline";
 import { tlv } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -57,7 +58,7 @@ export default function buildNamal(context: TrackWorldBuilderContext): void {
     ]) {
       const p = tlv(hg.lat, hg.lon);
       {
-        const n = nearestIndex(built.samples, p.x, p.z, 0);
+        const n = closestSample(built.samples, p.x, p.z);
         if (n.dist < built.width / 2 + 16) {
           const s = built.samples[n.index];
           p.x = s.x + s.rx * (built.width / 2 + 36);
@@ -82,7 +83,7 @@ export default function buildNamal(context: TrackWorldBuilderContext): void {
     hook.position.set(hp.x + 2, 18, hp.z + 30);
     add(hook);
     const rd = tlv(32.1035, 34.7788);
-    const rdNear = nearestIndex(built.samples, rd.x, rd.z, 0);
+    const rdNear = closestSample(built.samples, rd.x, rd.z);
     const rs = built.samples[rdNear.index];
     const rdYaw = Math.atan2(rs.tx, rs.tz);
     const ochre = new THREE.MeshStandardMaterial({
@@ -108,7 +109,8 @@ export default function buildNamal(context: TrackWorldBuilderContext): void {
       roughness: 0.48
     });
     bag.push(ochre, ochreDark, conc, redBand, whiteBand);
-    placeTunnel(rs.x, rs.z, rdYaw, 86, built.width / 2 + 0.6, 8.8, rs.y);
+    const tunnel = fitRoadTunnel(built, rs.x, rs.z, 86, built.width / 2 + 0.6, 8.8);
+    placeTunnel(tunnel.sample.x, tunnel.sample.z, tunnel.yaw, tunnel.length, tunnel.half, tunnel.height, tunnel.floor);
     const rx = Math.cos(rdYaw);
     const rz = -Math.sin(rdYaw);
     const fx = Math.sin(rdYaw);

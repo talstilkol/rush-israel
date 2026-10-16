@@ -1,0 +1,631 @@
+{
+  "kind": "actual-road-edge-height",
+  "passed": true,
+  "scope": "Actual captured Scopus foreign-level contacts, loaded world colliders and upright vehicle bounds; full clear/default assisted Scopus race. Not complete rail hulls, tilted/swept collision, calibrated physics, art, pace, human or device acceptance.",
+  "errors": [],
+  "contacts": [
+    {
+      "time": 9.775000000000086,
+      "mode": "original",
+      "collider": {
+        "x": 456.22734733152504,
+        "z": 596.223604424334,
+        "r": 1.05,
+        "kind": "barrier",
+        "minY": 44.30992245979394,
+        "maxY": 45.08992245979394
+      },
+      "origin": {
+        "index": 183,
+        "y": 44.29992245979394
+      },
+      "beforeY": 10.929734859014072,
+      "bounds": {
+        "minX": -1.128599990606308,
+        "maxX": 1.128599990606308,
+        "minY": -0.0343788695335388,
+        "maxY": 1.3702042016635332,
+        "minZ": -2.4299999952316282,
+        "maxZ": 2.409999997317791
+      },
+      "damaged": false,
+      "moved": false
+    },
+    {
+      "time": 9.775000000000086,
+      "mode": "same-level",
+      "collider": {
+        "x": 456.22734733152504,
+        "z": 596.223604424334,
+        "r": 1.05,
+        "kind": "barrier",
+        "minY": 44.30992245979394,
+        "maxY": 45.08992245979394
+      },
+      "origin": {
+        "index": 183,
+        "y": 44.29992245979394
+      },
+      "beforeY": 44.30992245979394,
+      "bounds": {
+        "minX": -1.128599990606308,
+        "maxX": 1.128599990606308,
+        "minY": -0.0343788695335388,
+        "maxY": 1.3702042016635332,
+        "minZ": -2.4299999952316282,
+        "maxZ": 2.409999997317791
+      },
+      "damaged": true,
+      "moved": true
+    },
+    {
+      "time": 9.775000000000086,
+      "mode": "below",
+      "collider": {
+        "x": 456.22734733152504,
+        "z": 596.223604424334,
+        "r": 1.05,
+        "kind": "barrier",
+        "minY": 44.30992245979394,
+        "maxY": 45.08992245979394
+      },
+      "origin": {
+        "index": 183,
+        "y": 44.29992245979394
+      },
+      "beforeY": 42.92971825813041,
+      "bounds": {
+        "minX": -1.128599990606308,
+        "maxX": 1.128599990606308,
+        "minY": -0.0343788695335388,
+        "maxY": 1.3702042016635332,
+        "minZ": -2.4299999952316282,
+        "maxZ": 2.409999997317791
+      },
+      "damaged": false,
+      "moved": false
+    },
+    {
+      "time": 9.775000000000086,
+      "mode": "overlap-below",
+      "collider": {
+        "x": 456.22734733152504,
+        "z": 596.223604424334,
+        "r": 1.05,
+        "kind": "barrier",
+        "minY": 44.30992245979394,
+        "maxY": 45.08992245979394
+      },
+      "origin": {
+        "index": 183,
+        "y": 44.29992245979394
+      },
+      "beforeY": 42.9497182581304,
+      "bounds": {
+        "minX": -1.128599990606308,
+        "maxX": 1.128599990606308,
+        "minY": -0.0343788695335388,
+        "maxY": 1.3702042016635332,
+        "minZ": -2.4299999952316282,
+        "maxZ": 2.409999997317791
+      },
+      "damaged": true,
+      "moved": true
+    },
+    {
+      "time": 9.775000000000086,
+      "mode": "above",
+      "collider": {
+        "x": 456.22734733152504,
+        "z": 596.223604424334,
+        "r": 1.05,
+        "kind": "barrier",
+        "minY": 44.30992245979394,
+        "maxY": 45.08992245979394
+      },
+      "origin": {
+        "index": 183,
+        "y": 44.29992245979394
+      },
+      "beforeY": 45.13430132932748,
+      "bounds": {
+        "minX": -1.128599990606308,
+        "maxX": 1.128599990606308,
+        "minY": -0.0343788695335388,
+        "maxY": 1.3702042016635332,
+        "minZ": -2.4299999952316282,
+        "maxZ": 2.409999997317791
+      },
+      "damaged": false,
+      "moved": false
+    },
+    {
+      "time": 9.775000000000086,
+      "mode": "overlap-above",
+      "collider": {
+        "x": 456.22734733152504,
+        "z": 596.223604424334,
+        "r": 1.05,
+        "kind": "barrier",
+        "minY": 44.30992245979394,
+        "maxY": 45.08992245979394
+      },
+      "origin": {
+        "index": 183,
+        "y": 44.29992245979394
+      },
+      "beforeY": 45.11430132932748,
+      "bounds": {
+        "minX": -1.128599990606308,
+        "maxX": 1.128599990606308,
+        "minY": -0.0343788695335388,
+        "maxY": 1.3702042016635332,
+        "minZ": -2.4299999952316282,
+        "maxZ": 2.409999997317791
+      },
+      "damaged": true,
+      "moved": true
+    },
+    {
+      "time": 67.82500000000005,
+      "mode": "original",
+      "collider": {
+        "x": 492.29599141163885,
+        "z": 634.2796443537662,
+        "r": 1.05,
+        "kind": "barrier",
+        "minY": 13.012210748648089,
+        "maxY": 13.792210748648088
+      },
+      "origin": {
+        "index": 48,
+        "y": 13.00221074864809
+      },
+      "beforeY": 46.65025271464145,
+      "bounds": {
+        "minX": -1.128599990606308,
+        "maxX": 1.128599990606308,
+        "minY": -0.0343788695335388,
+        "maxY": 1.3702042016635332,
+        "minZ": -2.4299999952316282,
+        "maxZ": 2.409999997317791
+      },
+      "damaged": false,
+      "moved": false
+    },
+    {
+      "time": 67.82500000000005,
+      "mode": "same-level",
+      "collider": {
+        "x": 492.29599141163885,
+        "z": 634.2796443537662,
+        "r": 1.05,
+        "kind": "barrier",
+        "minY": 13.012210748648089,
+        "maxY": 13.792210748648088
+      },
+      "origin": {
+        "index": 48,
+        "y": 13.00221074864809
+      },
+      "beforeY": 13.012210748648089,
+      "bounds": {
+        "minX": -1.128599990606308,
+        "maxX": 1.128599990606308,
+        "minY": -0.0343788695335388,
+        "maxY": 1.3702042016635332,
+        "minZ": -2.4299999952316282,
+        "maxZ": 2.409999997317791
+      },
+      "damaged": true,
+      "moved": true
+    },
+    {
+      "time": 67.82500000000005,
+      "mode": "below",
+      "collider": {
+        "x": 492.29599141163885,
+        "z": 634.2796443537662,
+        "r": 1.05,
+        "kind": "barrier",
+        "minY": 13.012210748648089,
+        "maxY": 13.792210748648088
+      },
+      "origin": {
+        "index": 48,
+        "y": 13.00221074864809
+      },
+      "beforeY": 11.632006546984556,
+      "bounds": {
+        "minX": -1.128599990606308,
+        "maxX": 1.128599990606308,
+        "minY": -0.0343788695335388,
+        "maxY": 1.3702042016635332,
+        "minZ": -2.4299999952316282,
+        "maxZ": 2.409999997317791
+      },
+      "damaged": false,
+      "moved": false
+    },
+    {
+      "time": 67.82500000000005,
+      "mode": "overlap-below",
+      "collider": {
+        "x": 492.29599141163885,
+        "z": 634.2796443537662,
+        "r": 1.05,
+        "kind": "barrier",
+        "minY": 13.012210748648089,
+        "maxY": 13.792210748648088
+      },
+      "origin": {
+        "index": 48,
+        "y": 13.00221074864809
+      },
+      "beforeY": 11.652006546984556,
+      "bounds": {
+        "minX": -1.128599990606308,
+        "maxX": 1.128599990606308,
+        "minY": -0.0343788695335388,
+        "maxY": 1.3702042016635332,
+        "minZ": -2.4299999952316282,
+        "maxZ": 2.409999997317791
+      },
+      "damaged": true,
+      "moved": true
+    },
+    {
+      "time": 67.82500000000005,
+      "mode": "above",
+      "collider": {
+        "x": 492.29599141163885,
+        "z": 634.2796443537662,
+        "r": 1.05,
+        "kind": "barrier",
+        "minY": 13.012210748648089,
+        "maxY": 13.792210748648088
+      },
+      "origin": {
+        "index": 48,
+        "y": 13.00221074864809
+      },
+      "beforeY": 13.836589618181627,
+      "bounds": {
+        "minX": -1.128599990606308,
+        "maxX": 1.128599990606308,
+        "minY": -0.0343788695335388,
+        "maxY": 1.3702042016635332,
+        "minZ": -2.4299999952316282,
+        "maxZ": 2.409999997317791
+      },
+      "damaged": false,
+      "moved": false
+    },
+    {
+      "time": 67.82500000000005,
+      "mode": "overlap-above",
+      "collider": {
+        "x": 492.29599141163885,
+        "z": 634.2796443537662,
+        "r": 1.05,
+        "kind": "barrier",
+        "minY": 13.012210748648089,
+        "maxY": 13.792210748648088
+      },
+      "origin": {
+        "index": 48,
+        "y": 13.00221074864809
+      },
+      "beforeY": 13.816589618181627,
+      "bounds": {
+        "minX": -1.128599990606308,
+        "maxX": 1.128599990606308,
+        "minY": -0.0343788695335388,
+        "maxY": 1.3702042016635332,
+        "minZ": -2.4299999952316282,
+        "maxZ": 2.409999997317791
+      },
+      "damaged": true,
+      "moved": true
+    }
+  ],
+  "approach": {
+    "track": "scopus",
+    "quality": "high",
+    "weather": "clear",
+    "night": false,
+    "speed": 17.28,
+    "progress": 0.067,
+    "onTrack": true,
+    "coordinates": "metres; x/z horizontal, y up; yaw radians",
+    "position": {
+      "x": 386.21555757275263,
+      "y": 7.66189468536346,
+      "z": 544.2649351747284
+    },
+    "countdown": 0,
+    "totalTime": 6.000000000000088,
+    "lapTime": 6.000000000000088,
+    "lap": 0,
+    "checkpoints": -1,
+    "finished": false,
+    "damage": 0,
+    "assisted": true,
+    "timeVoided": false,
+    "telem": {
+      "n": 6,
+      "p50": 96.4,
+      "p95": 3732.1,
+      "p99": 3732.1,
+      "last": 83,
+      "backend": "webgl2"
+    },
+    "csm": false,
+    "photo": false,
+    "webgpuTried": false,
+    "webgpuOk": false,
+    "webgpuReason": "",
+    "blobKtx2": false,
+    "ssgiOff": true,
+    "photoAa": "smaa",
+    "maxJump": 0.8612119607432652,
+    "maxGroundedVerticalJump": 0.09537520791165655
+  },
+  "race": {
+    "track": "scopus",
+    "quality": "high",
+    "weather": "clear",
+    "night": false,
+    "speed": 28,
+    "progress": 0.982,
+    "onTrack": true,
+    "coordinates": "metres; x/z horizontal, y up; yaw radians",
+    "position": {
+      "x": 660.6461210588764,
+      "y": 56.45254147427608,
+      "z": 779.9946189602725
+    },
+    "countdown": 0,
+    "totalTime": 68.42500000000052,
+    "lapTime": 0,
+    "lap": 1,
+    "checkpoints": 7,
+    "finished": true,
+    "damage": 0,
+    "assisted": true,
+    "timeVoided": false,
+    "telem": {
+      "n": 6,
+      "p50": 96.4,
+      "p95": 3732.1,
+      "p99": 3732.1,
+      "last": 83,
+      "backend": "webgl2"
+    },
+    "csm": false,
+    "photo": false,
+    "webgpuTried": false,
+    "webgpuOk": false,
+    "webgpuReason": "",
+    "blobKtx2": false,
+    "ssgiOff": true,
+    "photoAa": "smaa",
+    "maxJump": 1.4089461769695475,
+    "maxGroundedVerticalJump": 0.1320480259080199
+  },
+  "batches": [
+    {
+      "time": 1.9999999999999953,
+      "damage": 0,
+      "maxJump": 0.27627530182009713,
+      "maxGroundedVerticalJump": 0.0450968891401331
+    },
+    {
+      "time": 3.9999999999999885,
+      "damage": 0,
+      "maxJump": 0.5552546648947742,
+      "maxGroundedVerticalJump": 0.09239278741905466
+    },
+    {
+      "time": 6.000000000000088,
+      "damage": 0,
+      "maxJump": 0.8612119607432652,
+      "maxGroundedVerticalJump": 0.09537520791165655
+    },
+    {
+      "time": 8.000000000000187,
+      "damage": 0,
+      "maxJump": 1.1622140228257543,
+      "maxGroundedVerticalJump": 0.0986565779951043
+    },
+    {
+      "time": 10.000000000000073,
+      "damage": 0,
+      "maxJump": 1.388687210354648,
+      "maxGroundedVerticalJump": 0.10228242481703376
+    },
+    {
+      "time": 11.99999999999996,
+      "damage": 0,
+      "maxJump": 1.282507387413794,
+      "maxGroundedVerticalJump": 0.10462620854515592
+    },
+    {
+      "time": 13.999999999999845,
+      "damage": 0,
+      "maxJump": 0.6584499334892677,
+      "maxGroundedVerticalJump": 0.10566745147696999
+    },
+    {
+      "time": 15.999999999999732,
+      "damage": 0,
+      "maxJump": 0.5002718721725341,
+      "maxGroundedVerticalJump": 0.10663848192228542
+    },
+    {
+      "time": 17.99999999999962,
+      "damage": 0,
+      "maxJump": 0.49940268409868294,
+      "maxGroundedVerticalJump": 0.10776767493537776
+    },
+    {
+      "time": 19.999999999999506,
+      "damage": 0,
+      "maxJump": 0.4996332247987945,
+      "maxGroundedVerticalJump": 0.1084057029446246
+    },
+    {
+      "time": 21.999999999999392,
+      "damage": 0,
+      "maxJump": 0.4880249762988217,
+      "maxGroundedVerticalJump": 0.10941151971091045
+    },
+    {
+      "time": 23.99999999999928,
+      "damage": 0,
+      "maxJump": 0.4960768038260852,
+      "maxGroundedVerticalJump": 0.11017000477536953
+    },
+    {
+      "time": 25.999999999999165,
+      "damage": 0,
+      "maxJump": 0.7077245988645934,
+      "maxGroundedVerticalJump": 0.11106726119054855
+    },
+    {
+      "time": 27.99999999999905,
+      "damage": 0,
+      "maxJump": 0.789265187103452,
+      "maxGroundedVerticalJump": 0.1122403778422374
+    },
+    {
+      "time": 29.999999999998938,
+      "damage": 0,
+      "maxJump": 0.8525116011475521,
+      "maxGroundedVerticalJump": 0.22710706715617945
+    },
+    {
+      "time": 31.999999999998824,
+      "damage": 0,
+      "maxJump": 1.0926554625414333,
+      "maxGroundedVerticalJump": 0.11517008321259681
+    },
+    {
+      "time": 33.999999999998714,
+      "damage": 0,
+      "maxJump": 1.3372604440806422,
+      "maxGroundedVerticalJump": 0.11669619936406761
+    },
+    {
+      "time": 35.9999999999986,
+      "damage": 0,
+      "maxJump": 1.4131710328217717,
+      "maxGroundedVerticalJump": 0.11819940125956663
+    },
+    {
+      "time": 37.99999999999849,
+      "damage": 0,
+      "maxJump": 1.408860653415634,
+      "maxGroundedVerticalJump": 0.11926716337904253
+    },
+    {
+      "time": 39.99999999999837,
+      "damage": 0,
+      "maxJump": 1.3899779135542425,
+      "maxGroundedVerticalJump": 0.12060572307002815
+    },
+    {
+      "time": 41.99999999999826,
+      "damage": 0,
+      "maxJump": 1.4167994183858783,
+      "maxGroundedVerticalJump": 0.1218435957430728
+    },
+    {
+      "time": 43.999999999998145,
+      "damage": 0,
+      "maxJump": 1.404746763500204,
+      "maxGroundedVerticalJump": 0.12295424957122947
+    },
+    {
+      "time": 45.99999999999803,
+      "damage": 0,
+      "maxJump": 1.4142628932536927,
+      "maxGroundedVerticalJump": 0.12383975083371723
+    },
+    {
+      "time": 47.99999999999792,
+      "damage": 0,
+      "maxJump": 1.41358718811286,
+      "maxGroundedVerticalJump": 0.12460633343903282
+    },
+    {
+      "time": 49.999999999997804,
+      "damage": 0,
+      "maxJump": 1.414070163737051,
+      "maxGroundedVerticalJump": 0.12526787209434076
+    },
+    {
+      "time": 51.99999999999769,
+      "damage": 0,
+      "maxJump": 1.4132151941705202,
+      "maxGroundedVerticalJump": 0.12597406683594414
+    },
+    {
+      "time": 53.99999999999758,
+      "damage": 0,
+      "maxJump": 1.413904094648071,
+      "maxGroundedVerticalJump": 0.12665237115638917
+    },
+    {
+      "time": 55.99999999999746,
+      "damage": 0,
+      "maxJump": 1.4119123716043323,
+      "maxGroundedVerticalJump": 0.12736897265494207
+    },
+    {
+      "time": 57.99999999999735,
+      "damage": 0,
+      "maxJump": 1.4131104497998883,
+      "maxGroundedVerticalJump": 0.12799572136992765
+    },
+    {
+      "time": 59.999999999997236,
+      "damage": 0,
+      "maxJump": 1.4098074099621456,
+      "maxGroundedVerticalJump": 0.12871927716394538
+    },
+    {
+      "time": 61.99999999999712,
+      "damage": 0,
+      "maxJump": 1.3906356124049646,
+      "maxGroundedVerticalJump": 0.1295273809740678
+    },
+    {
+      "time": 63.99999999999701,
+      "damage": 0,
+      "maxJump": 1.4084056128162061,
+      "maxGroundedVerticalJump": 0.26011075027942354
+    },
+    {
+      "time": 65.9999999999986,
+      "damage": 0,
+      "maxJump": 1.397363989910829,
+      "maxGroundedVerticalJump": 0.1961168880857258
+    },
+    {
+      "time": 68.00000000000018,
+      "damage": 0,
+      "maxJump": 1.4103134159696797,
+      "maxGroundedVerticalJump": 0.1319004758997835
+    },
+    {
+      "time": 68.42500000000052,
+      "damage": 0,
+      "maxJump": 1.4089461769695475,
+      "maxGroundedVerticalJump": 0.1320480259080199
+    }
+  ],
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+  "glError": 0,
+  "physicsVersion": 18
+}

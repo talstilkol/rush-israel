@@ -2,17 +2,21 @@
 // Do not change behavior here without an explicit later authority.
 import * as THREE from "three";
 import { RADIO } from "../audio";
-import { pulsePolice, setCarLights, updateCarVisual, applyDamage } from "../car-mesh";
-import { sampleGhost, sampleGhostLoop } from "../garage";
+import { pulsePolice, setCarLights, setExhaust, setIndicators, updateCarVisual, applyDamage } from "../car-mesh";
+import { sampleGhost, sampleGhostLoop, timedSpan } from "../garage";
 import { clamp, expSmooth, lerp, hash01 } from "../math";
 import { bakeEnv, createPost } from "../postfx";
 import { PHYSICS_HZ } from "../physics";
-import { nearestIndex } from "../spline";
+import { closestSample, nearestIndex, sampleAtT } from "../spline";
 import { nearestPoi, nightAmt, streetName, todLabel } from "../tracks";
 import { bindRoadCompile } from "../roadShader";
 import { FOG, fogKey, LOOKS, lookFromFlags } from "../../rendering/EnvironmentState";
 import { gfxPassFlags } from "../../rendering/DynamicQualityController";
 import { exportPhotoPng } from "../photo-export";
+import { prefersReducedMotion } from "../a11y";
+import { getCash } from "../save";
+import { getSkyDay, getSkyNight } from "../sky-assets";
+import { AYALON_GOLDEN } from "../../world/goldenCameras";
 import type { RaceEngine } from "../engine";
 import type { EngineAdapterHost } from "./adapter-host";
 
@@ -65,6 +69,10 @@ export function enterPhoto(this: EngineAdapterHost)
     this.photoDist = 8;
     this.photoHide = false;
     this.photoLock = null;
+    this.goldenIdx = 0;
+    this.goldenName = "";
+    this.raceWeather = this.weather;
+    this.raceClock = this.clock;
     this.drivePR = this.renderer.getPixelRatio();
     this.driveExposure = this.renderer.toneMappingExposure;
     const cap = Math.min(window.devicePixelRatio || 1, 1.35);
@@ -83,6 +91,13 @@ export function exitPhoto(this: EngineAdapterHost)
     this.photo = false;
     this.photoHide = false;
     this.photoLock = null;
+    this.weather = this.raceWeather;
+    this.clock = this.raceClock;
+    this.world.setWeather(this.weather);
+    this.applyClockSky(false);
+    this.applyLook();
+    if (this.rainMesh) this.rainMesh.visible = this.quality !== "low" && this.weather !== "clear" && this.weather !== "hamsin";
+    this.audio.updateRain(this.weather === "rain" || this.weather === "storm", this.weather === "storm");
     this.post.setFilter(0);
     this.renderer.setPixelRatio(this.drivePR);
     this.renderer.toneMappingExposure = this.driveExposure;
@@ -92,13 +107,54 @@ export function exitPhoto(this: EngineAdapterHost)
 // RSH-017-BODY-END:exitPhoto
 // RSH-017-END:exitPhoto
 
+export function snapHashalom(this: EngineAdapterHost) {
+  if (!this.photo || this.opts.trackId !== "ayalon" || !this.built) return;
+  const n = AYALON_GOLDEN.length + 1;
+  const i = this.goldenIdx % n;
+  this.goldenIdx = (this.goldenIdx + 1) % n;
+  if (i === 0) {
+    this.photoLock = { px: 1061.4375, py: 48, pz: -50.094, lx: 931.942125, ly: 95, lz: -22.5423, fov: 28 };
+    this.goldenName = this.opts.langHe ? "השלום" : "HaShalom";
+    this.weather = this.raceWeather;
+    this.clock = this.raceClock;
+    this.world.setWeather(this.weather);
+    this.applyClockSky(false);
+    this.applyLook();
+    if (this.rainMesh) this.rainMesh.visible = this.quality !== "low" && this.weather !== "clear" && this.weather !== "hamsin";
+    this.audio.updateRain(this.weather === "rain" || this.weather === "storm", this.weather === "storm");
+  } else {
+    const cam = AYALON_GOLDEN[i - 1]!;
+    const s = sampleAtT(this.built.samples, cam.t);
+    this.photoLock = {
+      px: s.x - s.tx * 34 + s.rx * 16,
+      py: s.y + 18,
+      pz: s.z - s.tz * 34 + s.rz * 16,
+      lx: s.x + s.tx * 48,
+      ly: s.y + 6,
+      lz: s.z + s.tz * 48,
+      fov: 34,
+    };
+    this.goldenName = this.opts.langHe ? cam.he : cam.en;
+    const night = cam.look === "night" || cam.look === "nightrain";
+    const wet = cam.look === "rain" || cam.look === "nightrain";
+    this.weather = wet ? "rain" : "clear";
+    this.clock = cam.look === "golden" ? 0.32 : night ? 0.9 : 0.5;
+    this.world.setWeather(this.weather);
+    this.applyClockSky(false);
+    this.applyLook();
+    if (this.rainMesh) this.rainMesh.visible = this.quality !== "low" && wet;
+    this.audio.updateRain(wet, false);
+  }
+  this.pushHud();
+}
+
 // RSH-017-BEGIN:frameWorld
 export function frameWorld(this: EngineAdapterHost, x: Parameters<RaceEngine["frameWorld"]>[0], z: Parameters<RaceEngine["frameWorld"]>[1], y: Parameters<RaceEngine["frameWorld"]>[2] = 52, camY: Parameters<RaceEngine["frameWorld"]>[3] = 22, back: Parameters<RaceEngine["frameWorld"]>[4] = 28, fov: Parameters<RaceEngine["frameWorld"]>[5] = 40)
 // RSH-017-BODY-BEGIN:frameWorld
 {
     this.enterPhoto();
     this.photoHide = true;
-    const n = nearestIndex(this.built.samples, x, z, 0);
+    const n = closestSample(this.built.samples, x, z);
     const s = this.built.samples[n.index];
     this.player.spawn(this.built, n.index / Math.max(1, this.built.samples.length - 1), 0);
     this.photoLock = {
@@ -225,7 +281,8 @@ export function applyClockSky(this: EngineAdapterHost, rebake: Parameters<RaceEn
     this.world.setClock(this.clock);
     const n = nightAmt(this.clock);
     this.applyLook();
-    this.scene.background = new THREE.Color(n > 0.5 ? 0x2a4a6c : 0x3c9ee0);
+    const skyBg = (n > 0.5 ? getSkyNight() : getSkyDay()) ?? getSkyDay() ?? getSkyNight();
+    this.scene.background = skyBg ?? new THREE.Color(n > 0.5 ? 0x2a4a6c : 0x3c9ee0);
     this.scene.environmentIntensity = n > 0.5 ? 0.52 : 0.7;
     this.post.setNight(n > 0.5);
     const lamps = n > 0.42;
@@ -393,7 +450,7 @@ export function stepPhoto(this: EngineAdapterHost, dt: Parameters<RaceEngine["st
       this.post.setFilter(this.photoFilter);
       return;
     }
-    const inp = this.input.poll();
+    const inp = this.inputSnap;
     this.photoYaw += inp.steer * 1.55 * dt;
     this.photoPitch = clamp(this.photoPitch + (inp.throttle - inp.brake) * 0.7 * dt, -0.4, 0.85);
     if (inp.nitro) this.photoDist = Math.max(3.2, this.photoDist - 9 * dt);
@@ -412,7 +469,7 @@ export function stepPhoto(this: EngineAdapterHost, dt: Parameters<RaceEngine["st
     this.post.setFilter(this.photoFilter);
     for (let i = 0; i < this.racers.length; i++) {
       const c = this.racers[i];
-      updateCarVisual(this.visuals[i], c.yaw, 0, 0, 0, dt, c.x, c.y, c.z, c.pitch, 0);
+      updateCarVisual(this.visuals[i], c.yaw, c.speed, c.visualSteer, c.visualBrake, 0, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
     }
   }
 // RSH-017-BODY-END:stepPhoto
@@ -429,8 +486,12 @@ export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine["pres
     }
     for (let i = 0; i < this.racers.length; i++) {
       const c = this.racers[i];
-      const steer = i === 0 ? this.input.poll().steer : clamp(c.roll * -3, -1, 1);
-      updateCarVisual(this.visuals[i], c.yaw, c.speed, steer, i === 0 ? this.input.poll().brake : 0, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
+      updateCarVisual(this.visuals[i], c.yaw, c.speed, c.visualSteer, c.visualBrake, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
+      if (i === 0) {
+        setExhaust(this.visuals[i], c.boostT > 0, this.nowSec * 22);
+        const steerNow = this.inputSnap.steer;
+        setIndicators(this.visuals[i], steerNow < -0.35, steerNow > 0.35, this.nowSec);
+      }
       const blob = this.blobs[i];
       if (blob) {
         const sun = this.world.sunDir;
@@ -441,14 +502,19 @@ export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine["pres
         blob.visible = !c.eliminated;
         (blob.material as THREE.MeshBasicMaterial).opacity = (this.world.night ? 0.68 : 0.5) * (c.airborne ? 0.12 : 1);
       }
+      if (i === 0) {
+        const firstPerson = (this.camMode === 1 || this.camMode === 2) && !this.lookBack && !this.replaying && !this.photo;
+        this.visuals[0].group.visible = !firstPerson && !c.eliminated;
+        if (blob && firstPerson) blob.visible = false;
+      }
     }
     for (let i = 0; i < this.traffic.length; i++) {
       const c = this.traffic[i];
-      updateCarVisual(this.trafficVis[i], c.yaw, c.speed, 0, 0, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
+      updateCarVisual(this.trafficVis[i], c.yaw, c.speed, c.visualSteer, c.visualBrake, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
     }
     for (let i = 0; i < this.cops.length; i++) {
       const c = this.cops[i];
-      updateCarVisual(this.copVis[i], c.yaw, c.speed, 0, 0, dt, c.x, c.y, c.z, c.roll, c.pitch);
+      updateCarVisual(this.copVis[i], c.yaw, c.speed, c.visualSteer, c.visualBrake, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
       pulsePolice(this.copVis[i], this.nowSec + i * 0.17);
     }
 
@@ -568,7 +634,7 @@ export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine["pres
       if (g) {
         this.ghostVis.group.visible = true;
         updateCarVisual(this.ghostVis, g.yaw, 18, 0, 0, dt, g.x, g.y, g.z, 0, 0);
-        this.ghostDelta = this.totalTime - this.ghostFrames.length * 0.16 * this.player.progress;
+        this.ghostDelta = this.totalTime - timedSpan(this.ghostFrames, 0.16) * this.player.progress;
       }
     }
     if (this.rivalGhostVis && this.rivalGhostFrames.length && !this.replaying) {
@@ -576,7 +642,7 @@ export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine["pres
       if (g) {
         this.rivalGhostVis.group.visible = true;
         updateCarVisual(this.rivalGhostVis, g.yaw, 22, 0, 0, dt, g.x, g.y, g.z, 0, 0);
-        const lapT = this.rivalGhostFrames.length * 0.16;
+        const lapT = Math.max(0.16, timedSpan(this.rivalGhostFrames, 0.16));
         const mine = (this.player.progress + this.player.lap) * lapT;
         this.rivalGhostDelta = this.totalTime - mine;
       }
@@ -643,7 +709,7 @@ export function snapCamera(this: EngineAdapterHost, instant: Parameters<RaceEngi
       const road = this.built.samples[p.sampleIndex];
       if (this.cam.y < road.y + 1.55) this.cam.y = road.y + 1.55;
     }
-    const shake = this.replaying ? 0 : this.trauma * this.trauma;
+    const shake = this.replaying || prefersReducedMotion() ? 0 : this.trauma * this.trauma;
     this.camera.position.set(
       this.cam.x + Math.sin(this.tickId * 0.73) * shake * 0.14,
       this.cam.y + Math.cos(this.tickId * 1.17) * shake * 0.08,
@@ -689,6 +755,21 @@ export function pushHud(this: EngineAdapterHost)
         rivalGap = place > 1 ? ds * lapEst : -ds * lapEst;
       }
     }
+    let brakeWarn = false;
+    const samples = this.built?.samples;
+    if (samples && samples.length > 8 && this.racing && this.countdown <= 0 && !this.player.finished && !this.replaying) {
+      const speed = Math.abs(this.player.speed);
+      if (speed > 24) {
+        const n = samples.length;
+        const i0 = Math.floor((((this.player.progress % 1) + 1) % 1) * n) % n;
+        const step = Math.max(4, Math.min(28, Math.round(speed * 0.35)));
+        const a = samples[i0]!;
+        const b = samples[(i0 + step) % n]!;
+        const dot = a.tx * b.tx + a.tz * b.tz;
+        brakeWarn = 1 - dot > 0.22 && speed > 26;
+      }
+    }
+    this.brakeWarn = brakeWarn;
     this.opts.onHud({
       speedKmh: Math.abs(this.player.speed) * 3.6,
       lap: Math.min(this.totalLaps, this.player.lap + 1),
@@ -708,6 +789,7 @@ export function pushHud(this: EngineAdapterHost)
       drifting: this.player.drifting,
       wrongWay: this.player.wrongWayT > 0.45,
       countdown: this.countdown,
+      goFlash: this.goFlash,
       finished: this.player.finished,
       place,
       onTrack: this.player.onTrack,
@@ -750,6 +832,20 @@ export function pushHud(this: EngineAdapterHost)
       checkpointPing: this.ping,
       rivalName,
       rivalGap,
+      board: order.map((r) => {
+        const ds = r.lap + r.progress - (this.player.lap + this.player.progress);
+        return { name: r.name, you: r === this.player, gap: -ds * lapEst };
+      }),
+      lookingBack: this.lookBack,
+      lapNote: this.lapNote,
+      cashNote: this.cashNote,
+      voidRun: this.timeVoided,
+      cash: getCash() + this.ledger,
+      camFlash: this.camFlash,
+      brakeWarn: this.brakeWarn,
+      saving: this.droppedTier,
+      canLock: this.opts.trackId === "ayalon",
+      landmark: this.goldenName,
       sector: this.sectorIdx,
       sectorDelta: this.sectorDelta,
       gear: this.player.gear,

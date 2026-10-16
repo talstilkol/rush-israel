@@ -27,10 +27,10 @@ export function getGantry(id: string) {
 export async function loadSigns() {
   if (kits.size) return;
   const L = new THREE.TextureLoader();
-  const names = ["stop", "yield", "none", "speed50", "speed80", "speed90"] as const;
+  const names = ["stop", "yield", "none", "speed50", "speed80", "speed90", "speed120"] as const;
   await Promise.all([
     ...names.map(async (k) => {
-      const t = await L.loadAsync(`/game/sign-${k}.png`);
+      const t = await L.loadAsync(`/game/sign-${k}.${k === "speed120" ? "svg" : "png"}`);
       t.colorSpace = THREE.SRGBColorSpace;
       t.anisotropy = 4;
       t.needsUpdate = true;

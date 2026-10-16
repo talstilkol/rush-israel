@@ -1,0 +1,5 @@
+
+> app-builder-workspace@0.0.0-private check:paths
+> node scripts/check-portable-paths.mjs
+
+portable-paths ok — no fixed sandbox root in scripts/src/server

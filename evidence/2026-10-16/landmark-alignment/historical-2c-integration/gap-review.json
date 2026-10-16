@@ -1,0 +1,41 @@
+{
+  "source_head": "2c365ba1198c5b48cfaae3dde40cd1ce074c1d29",
+  "observed_at": "2026-10-16T07:07:51.135508+00:00",
+  "scope": "MP003.1 gap review only; not complete root-cause or product acceptance.",
+  "integration": {
+    "observedAt": "2026-10-16T06:53:55.784393+00:00",
+    "candidate": "2c365ba1198c5b48cfaae3dde40cd1ce074c1d29",
+    "base": "b2c0d46dd43c3bd8f27dc0009e4809c27c54c60e",
+    "integrationMerge": "db571da30e3039e5c4254e18b9d61999d92b3c86",
+    "parents": [
+      "b2c0d46dd43c3bd8f27dc0009e4809c27c54c60e",
+      "2c365ba1198c5b48cfaae3dde40cd1ce074c1d29"
+    ],
+    "tree": "7e2968789d6848a012cbada9e928b2980177cbbe",
+    "candidateTree": "7e2968789d6848a012cbada9e928b2980177cbbe",
+    "directory": "/private/tmp/rush-main-integration-2c365ba",
+    "scope": "Actual unpushed local two-parent integration of remote-main snapshot and candidate. No remote main merge, release or product acceptance.",
+    "initialAttempt": "Local object copy lacked historical trees/commits; parent/tree validation rejected the misleading already-up-to-date output. Missing objects were refetched from GitHub; only the verified two-parent merge above is tested."
+  },
+  "runtime_hashes_checked": 436,
+  "branch_and_integration_drive": "passed with identical printed steering/speed results",
+  "still_open": [
+    "The causal difference producing historical144.7908m/0.0415434damage was not isolated.",
+    "Remote main has not been merged; local integration is not remote integration/release.",
+    "Full race/conditions/human acceptance is separate."
+  ],
+  "files": {
+    "main-integration-merge-repaired.log": "b0eda02ce72b775024dbc9c9a1938aa8c409d0f977f1bfe02c0b83d12bcd4bfd",
+    "main-integration-refetch.log": "3deda37e6ffcb879a756d7d598343088d058ce8633ae3bd0ba1dcbe6f27f9336",
+    "main-integration-install.log": "c2231c9048c27fc9518d9df2fae7914b28f6bd0c974ee62bfebb5be16ccacdf1",
+    "integration-drive-2c365ba.log": "ad2604e2bf7536a092e3f1ef07c697bd30c4818025fa77e59dd798199219d8e8",
+    "finish-main-integration.py": "beee64f22af3c33b475fe48620dfbb30944e910efa454b863b7ca5d5dda8c4b2",
+    "main-integration-prepare.log": "edd72c20aa9be9b0c7340cd7140532afe943719ffa1b7b6919c009609fc64029",
+    "candidate-drive-2c365ba.log": "ad2604e2bf7536a092e3f1ef07c697bd30c4818025fa77e59dd798199219d8e8",
+    "canonical-git-connectivity-before.log": "855837292572c5afb705c25af6f209cdab7b560d1683c3157c58e7d84a18c7c7",
+    "main-integration-git.log": "a099b351b25718eae342e8bda2bad3742e19989fdceca7a2134694035a1aced4",
+    "main-integration-source.json": "3d2583c490e156195d5051160dfbf0afd6ab404f02800754af5f8b5b785237e0",
+    "prepare-main-integration.py": "61173e0803b6b556b421356b477d43894961e9c507d67085ed63aaa550d680dd",
+    "main-integration-finish.log": "1f6b6764881a0752134f3d2912bd0353cfe16d31cecbee3a87e4ac2671734fe3"
+  }
+}

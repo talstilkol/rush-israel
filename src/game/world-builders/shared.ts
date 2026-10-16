@@ -1,6 +1,8 @@
 import * as THREE from "three";
-import { nearestIndex } from "../spline";
+import { closestSample } from "../spline";
 import { tlv } from "../tracks";
+import { colliderForBox } from "../box-collider";
+import type { Collider } from "../types";
 import type { TrackWorldBuilderInput } from "./types";
 
 export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
@@ -17,6 +19,11 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     ramps,
     streets,
     built,
+    terrainHeight = (_x: number, _z: number) => -0.4,
+    terrainBounds = (x: number, z: number, _hx: number, _hz: number) => {
+      const y = terrainHeight(x, z);
+      return { min: y, max: y };
+    },
     support: {
       _dummy,
       barkTexture,
@@ -48,7 +55,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     });
   };
   const hit = (x: number, z: number, r: number, hx?: number, hz?: number, yaw?: number) => {
-    colliders.push({
+    const collider: Collider = {
       x,
       z,
       r,
@@ -56,10 +63,17 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
       hz: hz ?? r * 0.72,
       yaw: yaw ?? 0,
       kind: "building"
-    });
+    };
+    colliders.push(collider);
+    return collider;
+  };
+  const hitBox = (mesh: THREE.Mesh<THREE.BoxGeometry>) => {
+    const collider = colliderForBox(mesh);
+    colliders.push(collider);
+    return collider;
   };
   const roadYaw = (x: number, z: number) => {
-    const s = built.samples[nearestIndex(built.samples, x, z, 0).index];
+    const s = built.samples[closestSample(built.samples, x, z).index];
     return Math.atan2(s.tx, s.tz);
   };
   const hitRoad = (x: number, z: number, r: number, hx?: number, hz?: number) => hit(x, z, r, hx, hz, roadYaw(x, z));
@@ -93,21 +107,27 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
       roughness: 0.4
     });
     bag.push(wallMat, tileMat, ceilMat, lampMat);
+    // Derive contact from the rendered solid, rather than spaced point proxies.
+    const addTunnelSolid = (mesh: THREE.Mesh<THREE.BoxGeometry>, name: string) => {
+      mesh.name = `rush-tunnel-${name}`;
+      add(mesh);
+      hitBox(mesh);
+    };
     const wallL = new THREE.Mesh(new THREE.BoxGeometry(0.85, h, len), wallMat);
     wallL.position.set(cx - rx * half, y0 + h * 0.5, cz - rz * half);
     wallL.rotation.y = yaw;
-    add(wallL);
+    addTunnelSolid(wallL, "wall-left");
     const wallR = new THREE.Mesh(new THREE.BoxGeometry(0.85, h, len), wallMat);
     wallR.position.set(cx + rx * half, y0 + h * 0.5, cz + rz * half);
     wallR.rotation.y = yaw;
-    add(wallR);
+    addTunnelSolid(wallR, "wall-right");
     const tileL = new THREE.Mesh(new THREE.BoxGeometry(0.12, h * 0.55, len * 0.96), tileMat);
     tileL.position.set(cx - rx * (half - 0.5), y0 + h * 0.32, cz - rz * (half - 0.5));
     tileL.rotation.y = yaw;
-    add(tileL);
+    addTunnelSolid(tileL, "lining-left");
     const tileR = tileL.clone();
     tileR.position.set(cx + rx * (half - 0.5), y0 + h * 0.32, cz + rz * (half - 0.5));
-    add(tileR);
+    addTunnelSolid(tileR, "lining-right");
     const ceil = new THREE.Mesh(new THREE.BoxGeometry(half * 2 + 1.6, 0.7, len), ceilMat);
     ceil.position.set(cx, y0 + h + 0.15, cz);
     ceil.rotation.y = yaw;
@@ -119,7 +139,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
         const post = new THREE.Mesh(new THREE.BoxGeometry(1.15, h + 1.4, 1.35), tileMat);
         post.position.set(px + rx * half * side, y0 + (h + 1.4) * 0.5, pz + rz * half * side);
         post.rotation.y = yaw;
-        add(post);
+        addTunnelSolid(post, `post-${end}-${side}`);
       }
       const lintel = new THREE.Mesh(new THREE.BoxGeometry(half * 2 + 2.4, 1.5, 1.5), tileMat);
       lintel.position.set(px, y0 + h + 0.6, pz);
@@ -135,14 +155,6 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
       lamp.position.set(lx, y0 + h - 0.2, lz);
       lamp.rotation.y = yaw;
       add(lamp);
-    }
-    const nHit = Math.max(3, Math.round(len / 12));
-    for (let i = 0; i < nHit; i++) {
-      const t = (i + 0.5) / nHit - 0.5;
-      const wx = cx + fx * t * len;
-      const wz = cz + fz * t * len;
-      hit(wx - rx * (half + 0.4), wz - rz * (half + 0.4), 1.05, 0.55, 2.4, yaw);
-      hit(wx + rx * (half + 0.4), wz + rz * (half + 0.4), 1.05, 0.55, 2.4, yaw);
     }
   };
   const stone = new THREE.MeshStandardMaterial({
@@ -340,7 +352,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
   const sqTex = curtainTexture("dark");
   const gateTex = curtainTexture("dark");
   const tohaTex = curtainTexture("gold");
-  bag.push(winTex, triTex, sqTex, gateTex, tohaTex);
+  // These textures belong to the process asset cache, not this world.
   const mkGlass = (map: THREE.Texture, color: number, nightEmi: number) => new THREE.MeshPhysicalMaterial({
     map,
     color,
@@ -396,7 +408,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     });
     bag.push(azBand);
     const roundP = tlv(32.07455, 34.79195);
-    const nAz = nearestIndex(built.samples, roundP.x, roundP.z, 0);
+    const nAz = closestSample(built.samples, roundP.x, roundP.z);
     const sAz = built.samples[nAz.index];
     const park = built.width / 2 + 52;
     const cx = sAz.x + sAz.rx * park;
@@ -542,7 +554,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
   };
   const parkTower = (lat: number, lon: number, extra = 48) => {
     const hint = tlv(lat, lon);
-    const nH = nearestIndex(built.samples, hint.x, hint.z, 0);
+    const nH = closestSample(built.samples, hint.x, hint.z);
     const sH = built.samples[nH.index];
     return nH.dist < built.width / 2 + extra - 8
       ? { x: sH.x + sH.rx * (built.width / 2 + extra), z: sH.z + sH.rz * (built.width / 2 + extra) }
@@ -586,7 +598,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
   };
   const placeToHa = (s: number, lat = 32.0713, lon = 34.7886) => {
     const hint = tlv(lat, lon);
-    const nH = nearestIndex(built.samples, hint.x, hint.z, 0);
+    const nH = closestSample(built.samples, hint.x, hint.z);
     const sH = built.samples[nH.index];
     const p = nH.dist < built.width / 2 + 40
       ? { x: sH.x + sH.rx * (built.width / 2 + 48), z: sH.z + sH.rz * (built.width / 2 + 48) }
@@ -938,10 +950,13 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     ramps,
     streets,
     built,
+    terrainHeight,
+    terrainBounds,
     add,
     glowAt,
     hit,
     hitRoad,
+    hitBox,
     placeTunnel,
     stone,
     white,

@@ -1,0 +1,9 @@
+{
+  "scope": "46-task canonical backlog/plan consistency only; no product acceptance",
+  "files": {
+    "COMPLETION-BACKLOG.json": "644d44db41c7ffca3f74247a9fc71c87e46cef75037276b3b57f2c7249daff86",
+    "COMPLETION-PLAN.md": "7c4f2c77ffd67ea217aa8896aacede7549f75ea3f7afef6f41784207379c5d06",
+    "QUALITY-TARGETS.md": "75d8485a47f8c4b5579a62890ccabe8461421fcf54f320e894db193631dea57c",
+    "PRODUCT-READINESS.json": "cae85eb54656ddb008fd341464b0dffb3349734cb909434b34e101cca76516b9"
+  }
+}

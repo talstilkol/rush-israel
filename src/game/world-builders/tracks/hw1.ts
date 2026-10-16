@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { hwy1 } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -83,7 +83,7 @@ export default function buildHw1(context: TrackWorldBuilderContext): void {
       add(barrel);
     }
     const sg = hwy1(31.815, 35.023);
-    const sgNear = nearestIndex(built.samples, sg.x, sg.z, 0);
+    const sgNear = closestSample(built.samples, sg.x, sg.z);
     const sgs = built.samples[sgNear.index];
     const sgyaw = Math.atan2(sgs.tx, sgs.tz);
     placeTunnel(sg.x, sg.z, sgyaw, 28, built.width * 0.55, 9.2, sgs.y);

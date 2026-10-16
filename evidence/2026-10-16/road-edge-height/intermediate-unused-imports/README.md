@@ -1,0 +1,1 @@
+The fixture-driven world gate copied two unused controller imports from its parent protocol. Final evidence collection correctly rejected the claimed119-warning count:actual lint had121 warnings/0errors. Only unused bindings were removed;final native/software/failure/recovery gates rerun after this control-only cleanup. Runtime438 hashes unchanged.

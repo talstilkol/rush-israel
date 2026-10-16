@@ -1,0 +1,356 @@
+TAP version 13
+# Subtest: RSH-022 exposes bounded backup and quarantine keys
+ok 1 - RSH-022 exposes bounded backup and quarantine keys
+  ---
+  duration_ms: 0.462917
+  type: 'test'
+  ...
+# Subtest: the first save writes and verifies a recoverable backup before the current key
+ok 2 - the first save writes and verifies a recoverable backup before the current key
+  ---
+  duration_ms: 0.514959
+  type: 'test'
+  ...
+# Subtest: Retry completes a first save after the verified backup was seeded
+ok 3 - Retry completes a first save after the verified backup was seeded
+  ---
+  duration_ms: 0.662
+  type: 'test'
+  ...
+# Subtest: a follow-up mutation keeps pending retry authority and updates the seeded backup
+ok 4 - a follow-up mutation keeps pending retry authority and updates the seeded backup
+  ---
+  duration_ms: 0.199458
+  type: 'test'
+  ...
+# Subtest: Retry overwrites a verification-mismatched current key instead of rejecting
+ok 5 - Retry overwrites a verification-mismatched current key instead of rejecting
+  ---
+  duration_ms: 0.4255
+  type: 'test'
+  ...
+# Subtest: a later save rotates the exact prior current bytes into the backup
+ok 6 - a later save rotates the exact prior current bytes into the backup
+  ---
+  duration_ms: 0.228042
+  type: 'test'
+  ...
+# Subtest: a failed current write preserves the new data and requests retry instead of stale restore
+ok 7 - a failed current write preserves the new data and requests retry instead of stale restore
+  ---
+  duration_ms: 0.113709
+  type: 'test'
+  ...
+# Subtest: migration and repair back up exact source bytes before canonical overwrite
+ok 8 - migration and repair back up exact source bytes before canonical overwrite
+  ---
+  duration_ms: 0.446166
+  type: 'test'
+  ...
+# Subtest: Retry persists migrated current data after a transient canonicalization write failure
+ok 9 - Retry persists migrated current data after a transient canonicalization write failure
+  ---
+  duration_ms: 0.385333
+  type: 'test'
+  ...
+# Subtest: legacy migration verifies the exact legacy bytes in backup before creating the current key
+ok 10 - legacy migration verifies the exact legacy bytes in backup before creating the current key
+  ---
+  duration_ms: 0.340417
+  type: 'test'
+  ...
+# Subtest: a valid backup wins over retained legacy bytes when the current key is missing
+ok 11 - a valid backup wins over retained legacy bytes when the current key is missing
+  ---
+  duration_ms: 0.244375
+  type: 'test'
+  ...
+# Subtest: legacy migration fails closed before creating the current key when backup verification fails
+ok 12 - legacy migration fails closed before creating the current key when backup verification fails
+  ---
+  duration_ms: 0.111875
+  type: 'test'
+  ...
+# Subtest: corrupt current bytes are never overwritten and a valid backup is offered
+ok 13 - corrupt current bytes are never overwritten and a valid backup is offered
+  ---
+  duration_ms: 0.076916
+  type: 'test'
+  ...
+# Subtest: explicit restore quarantines exact corrupt bytes before restoring the verified backup
+ok 14 - explicit restore quarantines exact corrupt bytes before restoring the verified backup
+  ---
+  duration_ms: 0.085167
+  type: 'test'
+  ...
+# Subtest: a missing current key with a valid backup requires explicit recovery and blocks implicit replacement
+ok 15 - a missing current key with a valid backup requires explicit recovery and blocks implicit replacement
+  ---
+  duration_ms: 0.063
+  type: 'test'
+  ...
+# Subtest: fresh start is explicit, preserves rejected bytes and creates a verified backup
+ok 16 - fresh start is explicit, preserves rejected bytes and creates a verified backup
+  ---
+  duration_ms: 0.101
+  type: 'test'
+  ...
+# Subtest: fresh start refuses to discard a valid backup or valid active save
+ok 17 - fresh start refuses to discard a valid backup or valid active save
+  ---
+  duration_ms: 0.131958
+  type: 'test'
+  ...
+# Subtest: backup write or verification failure prevents current overwrite
+ok 18 - backup write or verification failure prevents current overwrite
+  ---
+  duration_ms: 0.108166
+  type: 'test'
+  ...
+# Subtest: an invalid backup is quarantined before replacement with a valid current snapshot
+ok 19 - an invalid backup is quarantined before replacement with a valid current snapshot
+  ---
+  duration_ms: 0.105958
+  type: 'test'
+  ...
+# Subtest: two rejected-save quarantine slots preserve distinct recovery attempts and then fail closed
+ok 20 - two rejected-save quarantine slots preserve distinct recovery attempts and then fail closed
+  ---
+  duration_ms: 0.115542
+  type: 'test'
+  ...
+# Subtest: storage read failures remain structured, visible and non-destructive
+ok 21 - storage read failures remain structured, visible and non-destructive
+  ---
+  duration_ms: 0.045292
+  type: 'test'
+  ...
+# Subtest: user-visible failure handling is accessible and avoids HTML injection
+ok 22 - user-visible failure handling is accessible and avoids HTML injection
+  ---
+  duration_ms: 0.222792
+  type: 'test'
+  ...
+# Subtest: the visible recovery notice preserves confirmation state and reappears after a healthy state
+ok 23 - the visible recovery notice preserves confirmation state and reappears after a healthy state
+  ---
+  duration_ms: 0.826417
+  type: 'test'
+  ...
+# Subtest: the save facade retains a canonical pending write and retries it before reloading stale storage
+ok 24 - the save facade retains a canonical pending write and retries it before reloading stale storage
+  ---
+  duration_ms: 0.117042
+  type: 'test'
+  ...
+# Subtest: the committed RSH-022 recovery authority passes under the RSH-023 overlay
+not ok 25 - the committed RSH-022 recovery authority passes under the RSH-023 overlay
+  ---
+  duration_ms: 8.355292
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/check-save-recovery.test.mjs:587:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + [
+    +   'save_facade_sha256 changed',
+    +   'records_source_sha256 changed',
+    +   'package_source_sha256 changed',
+    +   'package_lock_sha256 changed',
+    +   'required CI workflow changed outside RSH-022 authority',
+    +   'ghost block changed in RSH-023'
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0: 'save_facade_sha256 changed'
+    1: 'records_source_sha256 changed'
+    2: 'package_source_sha256 changed'
+    3: 'package_lock_sha256 changed'
+    4: 'required CI workflow changed outside RSH-022 authority'
+    5: 'ghost block changed in RSH-023'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/check-save-recovery.test.mjs:589:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: RSH-021 exposes one deterministic 0→1→2→3 migration graph
+ok 26 - RSH-021 exposes one deterministic 0→1→2→3 migration graph
+  ---
+  duration_ms: 0.835416
+  type: 'test'
+  ...
+# Subtest: current v3 data is canonical and migration-idempotent
+ok 27 - current v3 data is canonical and migration-idempotent
+  ---
+  duration_ms: 0.467083
+  type: 'test'
+  ...
+# Subtest: unversioned data migrates through all three ordered steps without mutating input
+ok 28 - unversioned data migrates through all three ordered steps without mutating input
+  ---
+  duration_ms: 0.164791
+  type: 'test'
+  ...
+# Subtest: v1 and v2 start at their exact deterministic migration edges
+ok 29 - v1 and v2 start at their exact deterministic migration edges
+  ---
+  duration_ms: 0.178375
+  type: 'test'
+  ...
+# Subtest: canonical serialization sorts nested keys deterministically
+ok 30 - canonical serialization sorts nested keys deterministically
+  ---
+  duration_ms: 0.143417
+  type: 'test'
+  ...
+# Subtest: invalid roots, versions and future saves fail closed with typed errors
+ok 31 - invalid roots, versions and future saves fail closed with typed errors
+  ---
+  duration_ms: 0.178209
+  type: 'test'
+  ...
+# Subtest: malformed recognized fields are repaired in stable field order
+ok 32 - malformed recognized fields are repaired in stable field order
+  ---
+  duration_ms: 0.215458
+  type: 'test'
+  ...
+# Subtest: legacy storage migrates to the current key and leaves the legacy bytes untouched
+ok 33 - legacy storage migrates to the current key and leaves the legacy bytes untouched
+  ---
+  duration_ms: 0.175
+  type: 'test'
+  ...
+# Subtest: the current key has strict precedence over legacy data
+ok 34 - the current key has strict precedence over legacy data
+  ---
+  duration_ms: 0.235792
+  type: 'test'
+  ...
+# Subtest: corrupt or future source bytes are explicit and are never overwritten
+ok 35 - corrupt or future source bytes are explicit and are never overwritten
+  ---
+  duration_ms: 0.352208
+  type: 'test'
+  ...
+# Subtest: read and write failures return explicit structured status
+ok 36 - read and write failures return explicit structured status
+  ---
+  duration_ms: 0.142667
+  type: 'test'
+  ...
+# Subtest: the RSH-021 schema remains exact beneath the accepted RSH-022 recovery overlay
+not ok 37 - the RSH-021 schema remains exact beneath the accepted RSH-022 recovery overlay
+  ---
+  duration_ms: 9.031208
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/check-save-schema.test.mjs:164:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + [
+    +   'RSH-022 save-facade overlay identity changed',
+    +   'RSH-023 records source identity changed',
+    +   'dependency/package boundary changed'
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0: 'RSH-022 save-facade overlay identity changed'
+    1: 'RSH-023 records source identity changed'
+    2: 'dependency/package boundary changed'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/check-save-schema.test.mjs:166:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: the save facade preserves rejected bytes and delegates explicit recovery
+ok 38 - the save facade preserves rejected bytes and delegates explicit recovery
+  ---
+  duration_ms: 0.248292
+  type: 'test'
+  ...
+# Subtest: old physicsVersion is rejected
+ok 39 - old physicsVersion is rejected
+  ---
+  duration_ms: 0.377208
+  type: 'test'
+  ...
+# Subtest: current physicsVersion is kept
+ok 40 - current physicsVersion is kept
+  ---
+  duration_ms: 0.256125
+  type: 'test'
+  ...
+# Subtest: payload + sha256
+ok 41 - payload + sha256
+  ---
+  duration_ms: 2.269208
+  type: 'test'
+  ...
+# Subtest: writeRecords replaces the whole key
+ok 42 - writeRecords replaces the whole key
+  ---
+  duration_ms: 0.20875
+  type: 'test'
+  ...
+# Subtest: read path drops malformed, unverified and stale records
+ok 43 - read path drops malformed, unverified and stale records
+  ---
+  duration_ms: 0.317917
+  type: 'test'
+  ...
+# Subtest: duplicate records are collapsed and the per-car cap is enforced
+ok 44 - duplicate records are collapsed and the per-car cap is enforced
+  ---
+  duration_ms: 1.310333
+  type: 'test'
+  ...
+# Subtest: serial persist verifies hashes, rejects duplicates and survives quota
+ok 45 - serial persist verifies hashes, rejects duplicates and survives quota
+  ---
+  duration_ms: 0.511
+  type: 'test'
+  ...
+# Subtest: concurrent persist calls are serialised and do not drop the earlier write
+ok 46 - concurrent persist calls are serialised and do not drop the earlier write
+  ---
+  duration_ms: 0.7245
+  type: 'test'
+  ...
+# Subtest: canonical serialization is byte-stable
+ok 47 - canonical serialization is byte-stable
+  ---
+  duration_ms: 0.341208
+  type: 'test'
+  ...
+1..47
+# tests 47
+# suites 0
+# pass 45
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 288.177958
