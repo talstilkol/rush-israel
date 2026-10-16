@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "physicsVersion": 10,
+  "physicsVersion": 11,
   "track": "ayalon",
   "gate": "current-behaviour regression",
   "claimGate": "RSH-033",
   "regressionToleranceSeconds": 0.1,
   "claimTolerance": 0.15,
-  "authority": "Physics10 corrects the sign of tire yaw torque and bounds real lower-level house colliders by their actual roof height. All five target means, 0.1-second regression tolerance and15percent claim tolerance remain unchanged. A fresh15-run browser recheck passed after the torque correction; final exact-headCI must recheck the combined candidate.",
+  "authority": "Physics11 projects road/ramp grade and terrain pitch into the vehicle forward direction and applies uphill resistance against actual travel in either gear. AI corner braking and relative-speed vehicle avoidance change the driving policy without changing acceleration targets or damage rules. All existing means and 0.1-second/15-percent thresholds remain unchanged; exact-source browser acceleration and hosted CI are required.",
   "runs": [
     {
       "carId": "sabra",

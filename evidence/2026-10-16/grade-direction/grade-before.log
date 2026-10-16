@@ -1,0 +1,3528 @@
+TAP version 13
+# Subtest: haifa/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 1 - haifa/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 2.35425
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9934064665425 vs 4.9934064665425'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: haifa/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 2 - haifa/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.578209
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9893814665425 vs 4.9893814665425'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: haifa/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 3 - haifa/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.703083
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.986698133209167 vs 4.986698133209167'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 4 - haifa/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.300709
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9922564665425 vs 4.9922564665425'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 5 - haifa/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.261459
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9934064665425 vs 4.9934064665425'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 6 - haifa/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.259083
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9893814665425 vs 4.9893814665425'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 7 - haifa/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.138375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.986698133209167 vs 4.986698133209167'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 8 - haifa/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.064834
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9922564665425 vs 4.9922564665425'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 9 - haifa/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.333709
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.993369946205198 vs 4.993369946205198'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 10 - haifa/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.224042
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.989344946205199 vs 4.989344946205199'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 11 - haifa/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.127
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.986661612871865 vs 4.986661612871865'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 12 - haifa/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.073041
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.992219946205198 vs 4.992219946205198'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 13 - haifa/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.069666
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.993369946205198 vs 4.993369946205198'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 14 - haifa/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056667
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.989344946205199 vs 4.989344946205199'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 15 - haifa/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.058875
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.986661612871865 vs 4.986661612871865'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 16 - haifa/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.992219946205198 vs 4.992219946205198'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 17 - haifa/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.096459
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.99345418970126 vs 4.99345418970126'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 18 - haifa/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.065541
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9894291897012595 vs 4.9894291897012595'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 19 - haifa/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060667
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.986745856367926 vs 4.986745856367926'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 20 - haifa/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060209
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.99230418970126 vs 4.99230418970126'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 21 - haifa/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.059
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.99345418970126 vs 4.99345418970126'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 22 - haifa/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9894291897012595 vs 4.9894291897012595'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 23 - haifa/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.065833
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.986745856367926 vs 4.986745856367926'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 24 - haifa/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.078458
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.99230418970126 vs 4.99230418970126'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/negev/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 25 - haifa/negev/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.0615
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.993434833357976 vs 4.993434833357976'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/negev/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 26 - haifa/negev/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.068084
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.989409833357976 vs 4.989409833357976'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/negev/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 27 - haifa/negev/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.0615
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.986726500024643 vs 4.986726500024643'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 28 - haifa/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.0635
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.992284833357976 vs 4.992284833357976'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/negev/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 29 - haifa/negev/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.058625
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.993434833357976 vs 4.993434833357976'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/negev/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 30 - haifa/negev/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.059375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.989409833357976 vs 4.989409833357976'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/negev/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 31 - haifa/negev/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.064792
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.986726500024643 vs 4.986726500024643'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 32 - haifa/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060333
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.992284833357976 vs 4.992284833357976'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/yam/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 33 - haifa/yam/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.0635
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.993427630343792 vs 4.993427630343792'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/yam/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 34 - haifa/yam/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.061333
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9894026303437915 vs 4.9894026303437915'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/yam/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 35 - haifa/yam/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.062834
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.986719297010458 vs 4.986719297010458'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 36 - haifa/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057625
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.992277630343792 vs 4.992277630343792'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/yam/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 37 - haifa/yam/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.053916
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.993427630343792 vs 4.993427630343792'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/yam/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 38 - haifa/yam/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.070708
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9894026303437915 vs 4.9894026303437915'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/yam/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 39 - haifa/yam/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.062542
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.986719297010458 vs 4.986719297010458'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 40 - haifa/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.069542
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.992277630343792 vs 4.992277630343792'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 41 - hermon/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.07625
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.944102119395951 vs 4.944102119395951'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 42 - hermon/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.077166
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9400771193959505 vs 4.9400771193959505'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 43 - hermon/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.053916
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.937393786062618 vs 4.937393786062618'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 44 - hermon/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.076917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.942952119395951 vs 4.942952119395951'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 45 - hermon/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.064916
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.944102119395951 vs 4.944102119395951'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 46 - hermon/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.064458
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9400771193959505 vs 4.9400771193959505'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 47 - hermon/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.937393786062618 vs 4.937393786062618'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 48 - hermon/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.06575
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.942952119395951 vs 4.942952119395951'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 49 - hermon/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.061458
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.944065599058649 vs 4.944065599058649'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 50 - hermon/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.052583
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.94004059905865 vs 4.94004059905865'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 51 - hermon/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.937357265725316 vs 4.937357265725316'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 52 - hermon/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060625
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.942915599058649 vs 4.942915599058649'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 53 - hermon/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.06075
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.944065599058649 vs 4.944065599058649'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 54 - hermon/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057541
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.94004059905865 vs 4.94004059905865'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 55 - hermon/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.0605
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.937357265725316 vs 4.937357265725316'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 56 - hermon/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.059167
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.942915599058649 vs 4.942915599058649'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 57 - hermon/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.058375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.944149842554711 vs 4.944149842554711'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 58 - hermon/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056459
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.94012484255471 vs 4.94012484255471'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 59 - hermon/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057583
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.937441509221377 vs 4.937441509221377'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 60 - hermon/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057417
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.942999842554711 vs 4.942999842554711'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 61 - hermon/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060125
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.944149842554711 vs 4.944149842554711'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 62 - hermon/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.05725
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.94012484255471 vs 4.94012484255471'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 63 - hermon/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.059917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.937441509221377 vs 4.937441509221377'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 64 - hermon/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.061083
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.942999842554711 vs 4.942999842554711'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 65 - hermon/negev/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056792
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.944130486211427 vs 4.944130486211427'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 66 - hermon/negev/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.052708
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.940105486211427 vs 4.940105486211427'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 67 - hermon/negev/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.063333
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.937422152878094 vs 4.937422152878094'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 68 - hermon/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057459
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.942980486211427 vs 4.942980486211427'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 69 - hermon/negev/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.05675
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.944130486211427 vs 4.944130486211427'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 70 - hermon/negev/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060709
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.940105486211427 vs 4.940105486211427'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 71 - hermon/negev/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.059
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.937422152878094 vs 4.937422152878094'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 72 - hermon/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.942980486211427 vs 4.942980486211427'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 73 - hermon/yam/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.059416
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.944123283197243 vs 4.944123283197243'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 74 - hermon/yam/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.052916
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.940098283197242 vs 4.940098283197242'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 75 - hermon/yam/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057042
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.937414949863909 vs 4.937414949863909'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 76 - hermon/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057583
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.942973283197243 vs 4.942973283197243'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 77 - hermon/yam/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.062666
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.944123283197243 vs 4.944123283197243'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 78 - hermon/yam/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057625
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.940098283197242 vs 4.940098283197242'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 79 - hermon/yam/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.068417
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.937414949863909 vs 4.937414949863909'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 80 - hermon/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.058125
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.942973283197243 vs 4.942973283197243'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 81 - scopus/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056167
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9476868057201795 vs 4.9476868057201795'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 82 - scopus/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.055625
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.943661805720179 vs 4.943661805720179'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 83 - scopus/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.940978472386846 vs 4.940978472386846'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 84 - scopus/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057333
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9465368057201795 vs 4.9465368057201795'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 85 - scopus/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056916
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9476868057201795 vs 4.9476868057201795'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 86 - scopus/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.064041
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.943661805720179 vs 4.943661805720179'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 87 - scopus/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056875
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.940978472386846 vs 4.940978472386846'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 88 - scopus/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.056791
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9465368057201795 vs 4.9465368057201795'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 89 - scopus/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057084
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.947650285382878 vs 4.947650285382878'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 90 - scopus/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.0565
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.943625285382878 vs 4.943625285382878'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 91 - scopus/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057291
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.940941952049545 vs 4.940941952049545'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 92 - scopus/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.0635
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.946500285382878 vs 4.946500285382878'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 93 - scopus/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.059792
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.947650285382878 vs 4.947650285382878'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 94 - scopus/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060083
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.943625285382878 vs 4.943625285382878'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 95 - scopus/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.072375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.940941952049545 vs 4.940941952049545'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 96 - scopus/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.0595
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.946500285382878 vs 4.946500285382878'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 97 - scopus/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.055709
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.947734528878939 vs 4.947734528878939'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 98 - scopus/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.063333
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.943709528878939 vs 4.943709528878939'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 99 - scopus/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060084
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.941026195545605 vs 4.941026195545605'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 100 - scopus/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060042
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.946584528878939 vs 4.946584528878939'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 101 - scopus/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.063959
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.947734528878939 vs 4.947734528878939'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 102 - scopus/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060583
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.943709528878939 vs 4.943709528878939'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 103 - scopus/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057125
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.941026195545605 vs 4.941026195545605'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 104 - scopus/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.059583
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.946584528878939 vs 4.946584528878939'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/negev/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 105 - scopus/negev/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057666
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.947715172535656 vs 4.947715172535656'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/negev/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 106 - scopus/negev/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.943690172535655 vs 4.943690172535655'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/negev/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 107 - scopus/negev/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060875
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9410068392023225 vs 4.9410068392023225'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 108 - scopus/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.068584
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.946565172535656 vs 4.946565172535656'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/negev/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 109 - scopus/negev/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.061292
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.947715172535656 vs 4.947715172535656'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/negev/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 110 - scopus/negev/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.061084
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.943690172535655 vs 4.943690172535655'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/negev/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 111 - scopus/negev/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057583
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9410068392023225 vs 4.9410068392023225'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 112 - scopus/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.061834
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.946565172535656 vs 4.946565172535656'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/yam/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 113 - scopus/yam/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.055583
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.947707969521471 vs 4.947707969521471'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/yam/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 114 - scopus/yam/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.166
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.943682969521471 vs 4.943682969521471'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/yam/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 115 - scopus/yam/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.109708
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.940999636188137 vs 4.940999636188137'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 116 - scopus/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.069958
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.946557969521471 vs 4.946557969521471'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/yam/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 117 - scopus/yam/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.059208
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.947707969521471 vs 4.947707969521471'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/yam/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 118 - scopus/yam/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.055542
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.943682969521471 vs 4.943682969521471'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/yam/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 119 - scopus/yam/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.053167
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.940999636188137 vs 4.940999636188137'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 120 - scopus/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.052792
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.946557969521471 vs 4.946557969521471'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 121 - ramon/sabra/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.059875
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.932522594082854 vs 4.932522594082854'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 122 - ramon/sabra/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.052625
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.928497594082853 vs 4.928497594082853'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 123 - ramon/sabra/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.055
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.925814260749521 vs 4.925814260749521'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 124 - ramon/sabra/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.051875
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.931372594082854 vs 4.931372594082854'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 125 - ramon/sabra/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.051083
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.932522594082854 vs 4.932522594082854'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 126 - ramon/sabra/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.051333
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.928497594082853 vs 4.928497594082853'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 127 - ramon/sabra/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.054708
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.925814260749521 vs 4.925814260749521'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 128 - ramon/sabra/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.054292
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.931372594082854 vs 4.931372594082854'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 129 - ramon/carmel/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.052
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.932486073745552 vs 4.932486073745552'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 130 - ramon/carmel/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.054708
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.928461073745552 vs 4.928461073745552'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 131 - ramon/carmel/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.054125
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.925777740412219 vs 4.925777740412219'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 132 - ramon/carmel/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.054167
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.931336073745552 vs 4.931336073745552'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 133 - ramon/carmel/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.051042
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.932486073745552 vs 4.932486073745552'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 134 - ramon/carmel/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.051583
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.928461073745552 vs 4.928461073745552'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 135 - ramon/carmel/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.053625
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.925777740412219 vs 4.925777740412219'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 136 - ramon/carmel/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.050875
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.931336073745552 vs 4.931336073745552'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 137 - ramon/kfir/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.054917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9325703172416135 vs 4.9325703172416135'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 138 - ramon/kfir/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.051375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.928545317241613 vs 4.928545317241613'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 139 - ramon/kfir/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.053708
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.92586198390828 vs 4.92586198390828'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 140 - ramon/kfir/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.055708
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.931420317241614 vs 4.931420317241614'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 141 - ramon/kfir/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.062917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.9325703172416135 vs 4.9325703172416135'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 142 - ramon/kfir/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.054708
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.928545317241613 vs 4.928545317241613'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 143 - ramon/kfir/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.064041
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.92586198390828 vs 4.92586198390828'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 144 - ramon/kfir/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.053292
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.931420317241614 vs 4.931420317241614'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/negev/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 145 - ramon/negev/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.053292
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.93255096089833 vs 4.93255096089833'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/negev/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 146 - ramon/negev/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.062042
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.928525960898329 vs 4.928525960898329'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/negev/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 147 - ramon/negev/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.053875
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.925842627564997 vs 4.925842627564997'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 148 - ramon/negev/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.054833
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.93140096089833 vs 4.93140096089833'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/negev/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 149 - ramon/negev/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.052042
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.93255096089833 vs 4.93255096089833'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/negev/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 150 - ramon/negev/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.052625
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.928525960898329 vs 4.928525960898329'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/negev/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 151 - ramon/negev/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.065292
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.925842627564997 vs 4.925842627564997'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 152 - ramon/negev/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.059125
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.93140096089833 vs 4.93140096089833'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/yam/arcade/clear: slope force follows the nose, not route order or velocity
+not ok 153 - ramon/yam/arcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.060709
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.932543757884146 vs 4.932543757884146'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/yam/arcade/rain: slope force follows the nose, not route order or velocity
+not ok 154 - ramon/yam/arcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057875
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.928518757884145 vs 4.928518757884145'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/yam/arcade/storm: slope force follows the nose, not route order or velocity
+not ok 155 - ramon/yam/arcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.057917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.925835424550812 vs 4.925835424550812'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 156 - ramon/yam/arcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.065875
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.931393757884146 vs 4.931393757884146'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/yam/simcade/clear: slope force follows the nose, not route order or velocity
+not ok 157 - ramon/yam/simcade/clear: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.051708
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.932543757884146 vs 4.932543757884146'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/yam/simcade/rain: slope force follows the nose, not route order or velocity
+not ok 158 - ramon/yam/simcade/rain: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.07125
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.928518757884145 vs 4.928518757884145'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/yam/simcade/storm: slope force follows the nose, not route order or velocity
+not ok 159 - ramon/yam/simcade/storm: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.054292
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.925835424550812 vs 4.925835424550812'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+not ok 160 - ramon/yam/simcade/hamsin: slope force follows the nose, not route order or velocity
+  ---
+  duration_ms: 0.049458
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:27:5'
+  failureType: 'testCodeFailure'
+  error: 'turning the nose must reverse grade effect: 4.931393757884146 vs 4.931393757884146'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/grade-direction.test.mjs:46:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..160
+# tests 160
+# suites 0
+# pass 0
+# fail 160
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 407.740916

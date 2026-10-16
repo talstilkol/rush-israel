@@ -322,29 +322,25 @@ export class ArcadeCar {
       this.boostT -= dt;
     }
     this.speed = clamp(this.speed, -maxSpeed * 0.32, maxSpeed * (firing ? 1.08 : 1));
-    {
-      const sG = track.samples[this.sampleIndex];
-      const nG = track.samples[Math.min(this.sampleIndex + 1, track.samples.length - 1)];
-      const gds = Math.hypot(nG.x - sG.x, nG.z - sG.z) || 1;
-      let grade = (nG.y - sG.y) / gds;
-      const rp = probeRamp(this.x, this.z, ramps, this.y);
-      if (rp) {
-        const alongV = this.vx * rp.r.sx + this.vz * rp.r.sz;
-        grade = rp.dyds * Math.sign(alongV || 1);
-      }
-      if (racing) {
-        this.speed += -grade * 16.2 * dt;
-        if (grade > 0.04) this.speed -= grade * 7.4 * dt;
-      }
+    const sG = track.samples[this.sampleIndex];
+    const nG = track.samples[Math.min(this.sampleIndex + 1, track.samples.length - 1)];
+    const gds = Math.hypot(nG.x - sG.x, nG.z - sG.z) || 1;
+    const rp = probeRamp(this.x, this.z, ramps, this.y);
+    // speed is signed in the car's forward direction. Project the supporting
+    // surface gradient into that same frame, even while stopped or reversing.
+    const grade = rp
+      ? rp.dyds * (fx * rp.r.sx + fz * rp.r.sz)
+      : ((nG.y - sG.y) / gds) * (fx * sG.tx + fz * sG.tz);
+    if (racing) {
+      this.speed += -grade * 16.2 * dt;
+      // Preserve the existing uphill resistance, opposing actual uphill travel
+      // in either gear rather than accelerating a downhill reverse roll.
+      if (grade * Math.sign(this.speed) > 0.04) this.speed -= grade * 7.4 * dt;
     }
 
     const speedAbs = Math.abs(this.speed);
     const loadTgt = racing ? brakeIn * 0.72 - throttle * 0.48 : 0;
-    const iG = this.sampleIndex;
-    const sG = track.samples[iG];
-    const nG = track.samples[Math.min(iG + 1, track.samples.length - 1)];
-    const gds = Math.hypot(nG.x - sG.x, nG.z - sG.z) || 1;
-    const terrainPitch = clamp(-(probeRamp(this.x, this.z, ramps, this.y)?.dyds ?? (nG.y - sG.y) / gds) * 3.4, -0.75, 0.75);
+    const terrainPitch = clamp(-grade * 3.4, -0.75, 0.75);
     this.pitch = expSmooth(this.pitch, loadTgt + terrainPitch, 9, dt);
     const rollTgt = racing ? -input.steer * clamp(speedAbs / 24, 0, 1) * 0.34 : 0;
     this.roll = expSmooth(this.roll, rollTgt, 7, dt);
@@ -901,7 +897,7 @@ export const SURFACE_GRIP: Record<string, number> = {
   snow: 0.5,
 };
 
-export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): InputState {
+function pathInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): InputState {
   const lookM = 24 + clamp(car.speed, 0, 32) * 0.55;
   const look = Math.min(0.06, lookM / Math.max(200, track.length));
   const t = track.closed ? (car.progress + look) % 1 : Math.min(0.995, car.progress + look);
@@ -927,12 +923,20 @@ export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): 
   const steer = clamp(err * 1.6, -1, 1);
   const abs = Math.abs(err);
   if (abs > 0.55) {
-    let holdThrottle = 0.85;
-    let holdBrake = 0;
+    // Plan a conservative corner-entry speed from the actual look-ahead chord,
+    // turn angle and configured grip. This is an AI planning heuristic, not a
+    // measured tire limit. Large heading errors also need an 18m/s recovery cap.
+    const chord = Math.hypot(tx - car.x, tz - car.z);
+    const radius = chord / Math.max(0.1, 2 * Math.sin(Math.min(abs, Math.PI / 2)));
+    const grip = Math.max(0.1, car.stats.grip * car.weatherGrip * car.surfaceGrip
+      * HANDLING[car.handling].gripMul * WEATHER_SPEC[car.weather].lat);
+    const cornerSpeed = Math.min(18, Math.sqrt(9.81 * grip * radius) * 0.85);
+    let holdThrottle = car.speed >= cornerSpeed ? 0 : 0.65;
+    let holdBrake = clamp((car.speed - cornerSpeed) / Math.max(1, car.stats.brake * 0.75), 0, 1);
     const scoreGap = player ? player.raceScore() - car.raceScore() : 0;
     if (player && HANDLING[car.handling].rubberBand && player.speed > 12 && car.speed > player.speed + 0.4 && scoreGap <= 0.012 && scoreGap > -0.04) {
-      holdThrottle = 0.25;
-      holdBrake = 0.85;
+      holdThrottle = Math.min(holdThrottle, 0.25);
+      holdBrake = Math.max(holdBrake, 0.85);
     }
     return {
       steer: clamp(err * 2.4, -1, 1),
@@ -974,7 +978,42 @@ export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): 
   };
 }
 
-export function trafficInput(car: ArcadeCar, track: BuiltTrack): InputState {
+// Same contact envelope as separateCars; height filtering is shared as well.
+export const VEHICLE_CONTACT_DISTANCE = 2.45;
+
+function avoidVehicleContact(car: ArcadeCar, input: InputState, vehicles: readonly ArcadeCar[]): InputState {
+  const fx = -Math.sin(car.yaw), fz = -Math.cos(car.yaw);
+  const rx = Math.cos(car.yaw), rz = -Math.sin(car.yaw);
+  let brake = input.brake;
+  let hazard = false;
+  for (const other of vehicles) {
+    if (other === car || Math.abs(other.y - car.y) > 4) continue;
+    const dx = other.x - car.x, dz = other.z - car.z;
+    const along = dx * fx + dz * fz;
+    if (along <= 0 || along > 72) continue;
+    if (Math.abs(dx * rx + dz * rz) > VEHICLE_CONTACT_DISTANCE + 0.35) continue;
+    const closing = (car.vx - other.vx) * fx + (car.vz - other.vz) * fz;
+    if (closing <= 0.5) continue;
+    // A two-second closing horizon and one metre of free space prevent the
+    // driver from waiting until an overlap before reacting. Receding vehicles
+    // and adjacent lanes do not impose a speed cap or change race position.
+    const gap = Math.max(0, along - VEHICLE_CONTACT_DISTANCE - 1);
+    const safeClosing = gap / 2;
+    if (closing <= safeClosing) continue;
+    const wx = WEATHER_SPEC[car.weather] ?? WEATHER_SPEC.clear;
+    const surface = SURFACE_SPEC[car.surfaceKind] ?? SURFACE_SPEC.asphalt;
+    const braking = Math.max(1, car.stats.brake * wx.long * surface.long * 0.7);
+    brake = Math.max(brake, clamp((closing - safeClosing) / braking, 0, 1));
+    hazard = true;
+  }
+  return hazard ? { ...input, throttle: 0, brake, nitro: false, drift: false } : input;
+}
+
+export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar, vehicles: readonly ArcadeCar[] = []): InputState {
+  return avoidVehicleContact(car, pathInput(car, track, player), vehicles);
+}
+
+export function trafficInput(car: ArcadeCar, track: BuiltTrack, vehicles: readonly ArcadeCar[] = []): InputState {
   const look = 0.028;
   const t = track.closed ? (car.progress + look) % 1 : Math.min(0.995, car.progress + look);
   const a = sampleAtT(track.samples, t);
@@ -983,13 +1022,13 @@ export function trafficInput(car: ArcadeCar, track: BuiltTrack): InputState {
   const err = wrapPi(Math.atan2(-(tx - car.x), -(tz - car.z)) - car.yaw);
   const steer = clamp(err * 1.35, -1, 1);
   const cruise = 12 + car.aiSkill * 7;
-  return {
+  return avoidVehicleContact(car, {
     steer: clamp(steer, -1, 1),
     throttle: car.speed < cruise ? 0.58 : 0.1,
     brake: Math.abs(err) > 0.65 && car.speed > 11 ? 0.45 : 0,
     drift: false,
     nitro: false,
-  };
+  }, vehicles);
 }
 
 export function copInput(car: ArcadeCar, track: BuiltTrack, target: ArcadeCar, heat = 0.4): InputState {
@@ -1040,7 +1079,7 @@ export function updateDrafting(player: ArcadeCar, others: ArcadeCar[]) {
 
 export function separateCars(cars: ArcadeCar[]): number {
   const n = cars.length;
-  const rad = 2.45;
+  const rad = VEHICLE_CONTACT_DISTANCE;
   let peak = 0;
   for (let i = 0; i < n; i++) {
     for (let j = i + 1; j < n; j++) {

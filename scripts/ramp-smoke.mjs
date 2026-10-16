@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 /** 21.8: Y follows HaShalom ramp surface (not spline-flat). */
 import { chromium } from "playwright";
+import { mkdir, writeFile, readFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { fromRoot } from "./project-root.mjs";
 
 const url = process.env.SMOKE_URL ?? "http://127.0.0.1:8080/?qa=1";
 const b = await chromium.launch({ headless: true });
@@ -75,4 +78,49 @@ for (const { r, samples } of report.ramps) {
   if (span < 3) throw new Error("Y span " + span.toFixed(2) + " too small");
   console.log("ramp-smoke ok", measured.map((m) => `${m.k}:${m.y.toFixed(1)}`).join(" "), "span", +span.toFixed(2));
 }
+// The real HaShalom ramps also need body-relative gravity while reversing.
+// Isolate surface forces with production cars and actual world ramp geometry;
+// this does not claim collision, full-race, controller or physical-device acceptance.
+const gradeReport = await p.evaluate(async () => {
+  const [{ ArcadeCar }, { CARS }, { buildTrack, closestSample }, { getTrack }, physics, { createWorld }] = await Promise.all([
+    import('/src/game/vehicle.ts'), import('/src/game/cars.ts'), import('/src/game/spline.ts'),
+    import('/src/game/tracks.ts'), import('/src/game/physics.ts'), import('/src/game/world.ts'),
+  ]);
+  const track = buildTrack(getTrack('ayalon'));
+  const world = await createWorld(getTrack('ayalon'), track, false, false, 'clear');
+  const actual = world.ramps.filter(r => /שלום|HaShalom/i.test(r.he) && Math.abs(r.y1 - r.y0) > 5);
+  const selected = [actual.find(r => r.y1 > r.y0), actual.find(r => r.y1 < r.y0)];
+  if (selected.some(r => !r)) throw new Error('Actual ascending and descending HaShalom ramps required');
+  const rows = [];
+  for (const r of selected) for (const def of CARS) for (const handling of ['arcade', 'simcade']) for (const weather of Object.keys(physics.WEATHER_SPEC)) {
+    const run = (turned, speed) => {
+      const car = new ArcadeCar(def, def.nameEn);
+      car.handling = handling; car.weather = weather;
+      const near = closestSample(track.samples, r.x, r.z);
+      car.spawn(track, track.samples[near.index].t, 0);
+      car.x = r.x; car.z = r.z; car.y = (r.y0 + r.y1) / 2;
+      car.yaw = Math.atan2(-r.sx, -r.sz) + (turned ? Math.PI : 0);
+      car.speed = speed; car.vx = -Math.sin(car.yaw) * speed; car.vz = -Math.cos(car.yaw) * speed;
+      const recovered = car.step(physics.PHYSICS_DT, { steer: 0, throttle: 0, brake: 0, drift: false, nitro: false }, track, true, [], [], selected);
+      return { speed: car.speed, pitch: car.pitch, damage: car.damage, onTrack: car.onTrack, recovered };
+    };
+    const along = run(false, 5), opposite = run(true, 5);
+    const alongBackwards = run(true, -5), oppositeBackwards = run(false, -5);
+    const sign = Math.sign(r.y1 - r.y0);
+    const passed = (opposite.speed - along.speed) * sign > 0.001
+      && Math.abs(along.speed + alongBackwards.speed) < 1e-8
+      && Math.abs(opposite.speed + oppositeBackwards.speed) < 1e-8
+      && along.pitch * sign < 0 && opposite.pitch * sign > 0
+      && [along, opposite, alongBackwards, oppositeBackwards].every(c => c.damage === 0 && c.onTrack && !c.recovered && [c.speed, c.pitch].every(Number.isFinite));
+    rows.push({ ramp: r.en, rise: r.y1 - r.y0, length: r.len, car: def.id, handling, weather, along, opposite, alongBackwards, oppositeBackwards, passed });
+  }
+  world.dispose();
+  return { kind: 'actual-world-ramp-production-vehicle-force-regression', physicsVersion: physics.PHYSICS_VERSION, passed: rows.length === 80 && rows.every(r => r.passed), rows };
+});
+const sourceFiles = ['src/game/vehicle.ts', 'src/game/physics.ts', 'src/game/cars.ts', 'src/game/spline.ts', 'src/game/world-builders/tracks/ayalon.ts', 'scripts/ramp-smoke.mjs'];
+gradeReport.testedSourceSha256 = Object.fromEntries(await Promise.all(sourceFiles.map(async file => [file, createHash('sha256').update(await readFile(fromRoot(file))).digest('hex')])));
+await mkdir(fromRoot('artifacts', 'ramp-grade'), { recursive: true });
+await writeFile(fromRoot('artifacts', 'ramp-grade', 'summary.json'), JSON.stringify(gradeReport, null, 2) + '\n');
 await b.close();
+if (!gradeReport.passed) throw new Error(`ramp-grade failed: ${JSON.stringify(gradeReport.rows.filter(r => !r.passed).slice(0, 4))}`);
+console.log(`ramp-grade ok: ${gradeReport.rows.length} actual-ramp/car/handling/weather cases; Physics ${gradeReport.physicsVersion}`);

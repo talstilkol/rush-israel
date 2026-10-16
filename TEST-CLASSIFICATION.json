@@ -114,6 +114,9 @@
     "steering-direction.test.mjs": "current-unit",
     "collider-height.test.mjs": "current-unit",
     "package-freeze-authority.test.mjs": "current-unit",
-    "current-freeze-claims.test.mjs": "current-unit"
+    "current-freeze-claims.test.mjs": "current-unit",
+    "grade-direction.test.mjs": "current-unit",
+    "ai-corner-speed.test.mjs": "current-unit",
+    "ai-vehicle-avoidance.test.mjs": "current-unit"
   }
 }

@@ -1,0 +1,175 @@
+{
+  "sourceUrl": "http://127.0.0.1:8114/?qa=1",
+  "kind": "real-assisted-scopus-read-only-vehicle-instrumentation",
+  "state": {
+    "track": "scopus",
+    "quality": "high",
+    "weather": "clear",
+    "night": false,
+    "speed": 28.06,
+    "progress": 0.982,
+    "onTrack": true,
+    "coordinates": "metres; x/z horizontal, y up; yaw radians",
+    "position": {
+      "x": 660.244812361064,
+      "y": 56.35676914446263,
+      "z": 778.831126358998
+    },
+    "countdown": 0,
+    "totalTime": 62.25833333333044,
+    "lapTime": 0,
+    "lap": 1,
+    "checkpoints": 7,
+    "finished": true,
+    "damage": 0.17680926305525055,
+    "assisted": true,
+    "timeVoided": true,
+    "telem": {
+      "n": 16,
+      "p50": 176.9,
+      "p95": 3787.6,
+      "p99": 3787.6,
+      "last": 110,
+      "backend": "webgl2"
+    },
+    "csm": false,
+    "photo": false,
+    "webgpuTried": false,
+    "webgpuOk": false,
+    "webgpuReason": "",
+    "blobKtx2": false,
+    "ssgiOff": true,
+    "photoAa": "smaa"
+  },
+  "trace": {
+    "events": [
+      {
+        "kind": "inside-player-step",
+        "delta": 0.030121387061605068,
+        "progress": 0.11515151515151514,
+        "x": 456.1810886139569,
+        "y": 10.929734859014072,
+        "z": 595.1648990100005,
+        "speed": 10.793794839693936,
+        "pitch": -0.6132097790365412,
+        "lastHit": "barrier",
+        "impact": 0.38,
+        "nearby": []
+      },
+      {
+        "kind": "between-player-steps",
+        "delta": 0.09821926417462877,
+        "progress": 0.11515151515151514,
+        "x": 459.4224916935866,
+        "y": 11.032017283831106,
+        "z": 594.973153312282,
+        "speed": 16.315296048697622,
+        "pitch": -0.6133258153380612,
+        "lastHit": "",
+        "impact": 0.55,
+        "nearby": [
+          {
+            "name": "ארי מזרחי",
+            "x": 459.358593664859,
+            "y": 10.929734859014072,
+            "z": 592.5239867107775,
+            "speed": 20.91875571745895,
+            "isAi": true,
+            "isTraffic": false,
+            "isCop": false
+          },
+          {
+            "name": "תמר בן דוד",
+            "x": 457.08714132760423,
+            "y": 10.827774956811217,
+            "z": 590.5981935399498,
+            "speed": 28.36105387248048,
+            "isAi": true,
+            "isTraffic": false,
+            "isCop": false
+          }
+        ]
+      },
+      {
+        "kind": "between-player-steps",
+        "delta": 0.02262909943140201,
+        "progress": 0.5787878787878787,
+        "x": 487.17742854444026,
+        "y": 46.402183453692984,
+        "z": 629.3535394481505,
+        "speed": 21.456327378837436,
+        "pitch": -0.6334099114394417,
+        "lastHit": "",
+        "impact": 0.3756926565819482,
+        "nearby": [
+          {
+            "name": "ארי מזרחי",
+            "x": 490.29022803600964,
+            "y": 46.65025271464145,
+            "z": 632.9804129327796,
+            "speed": 20.889637602440477,
+            "isAi": true,
+            "isTraffic": false,
+            "isCop": false
+          },
+          {
+            "name": "תמר בן דוד",
+            "x": 489.1396538899438,
+            "y": 46.52617932318173,
+            "z": 630.8173874742135,
+            "speed": 24.008094485315272,
+            "isAi": true,
+            "isTraffic": false,
+            "isCop": false
+          }
+        ]
+      },
+      {
+        "kind": "inside-player-step",
+        "delta": 0.0258395123876147,
+        "progress": 0.5848484848484848,
+        "x": 491.25003425188766,
+        "y": 46.65025271464145,
+        "z": 634.1875920861942,
+        "speed": 7.0557988828382605,
+        "pitch": -0.6300566907268681,
+        "lastHit": "barrier",
+        "impact": 0.38,
+        "nearby": [
+          {
+            "name": "נועם כהן",
+            "x": 497.1422496884507,
+            "y": 46.898476665950724,
+            "z": 634.9589906329564,
+            "speed": 16.837270408006518,
+            "isAi": true,
+            "isTraffic": false,
+            "isCop": false
+          },
+          {
+            "name": "ארי מזרחי",
+            "x": 492.42196893291134,
+            "y": 46.77432610610116,
+            "z": 636.917131519307,
+            "speed": 13.553935337194858,
+            "isAi": true,
+            "isTraffic": false,
+            "isCop": false
+          },
+          {
+            "name": "תמר בן דוד",
+            "x": 493.57070942549467,
+            "y": 46.77432610610116,
+            "z": 633.4292212452236,
+            "speed": 12.839782243985177,
+            "isAi": true,
+            "isTraffic": false,
+            "isCop": false
+          }
+        ]
+      }
+    ],
+    "ticks": 7471
+  },
+  "errors": []
+}

@@ -13,9 +13,9 @@
       "depends_on": [],
       "deliverable": "מקור פעיל אחד ל-Scope, commit וראיות",
       "acceptance": "התוכנית הפעילה מצביעה על quality contract, backlog ומצב מוצר עקביים; current HEAD נקרא מ-Git ולא מתווית היסטורית.",
-      "status": "partial",
+      "status": "locally-verified",
       "assigned_person": null,
-      "verification_note": "התוכנית עודכנה באישור המשתמש; 46 מזהים ותלויות נשמרו, ללא קבלת מוצר אוטומטית.",
+      "verification_note": "איחוד התוכנית אומת: 46 מזהים, 96 תלויות ללא מעגלים, כיסוי 67 יחידות ושבע קבוצות איכות. מקור נוכחי נקרא מ-Git; ראיות היסטוריות וקבלת מוצר נפרדות. evidence/2026-10-16/grade-direction/plan-consistency.json. אין קבלת RSH או release.",
       "external_evidence_required": false
     },
     {
@@ -266,7 +266,7 @@
       "acceptance": "חמש מכוניות, שני מצבי Handling, ארבעה סוגי מזג אוויר ו-stock/upgraded: תאוצה, בלימה, היגוי, משטח ודריפט; יעד ויחידה פיזיקלית מפורשים, ספים אינם נחלשים כדי להעביר בדיקה.",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "Physics 10 מתקן סימן הפוך במומנט הצמיגים: 20 מתוך 30 בדיקות כיוון היגוי נכשלו לפני התיקון, וכל 30 עוברות כעת. 15 ריצות תאוצה בשלב תיקון המומנט עברו מול אותם יעדים וסבילויות. כיול אחיזה, בלימה ודריפט רחב עדיין פתוח.",
+      "verification_note": "Physics11: 160 real-route body-relative grade cases and 80 real-world ramp combinations; unchanged acceleration means/tolerances. Full grade-only variants worsened Scopus damage and were rejected. Combined corner/vehicle-aware driving finished 8 races, 6 damage-free. Physical calibration, full conditions, frame invariance and human acceptance remain open.",
       "external_evidence_required": false
     },
     {
@@ -282,7 +282,7 @@
       "acceptance": "כל יריב מסיים את שמונת מסלולי V1 ללא teleport או recovery loop; קו הנסיעה נמנע מאיי תנועה ומכשולים; נזק סטטי ועקיפות נמדדים; rubber-band מכובה ב-simcade ואינו עוקף חוקי אחיזה.",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "כל שמונת מרוצי V1 מסתיימים ב־30a2c19. באיילון, בחרמון וברמון נמדד אפס נזק; בחמשת האחרים נותר נזק של 9.1%–36.7%. ניסויי שמירת מרחק ועקיפה שנעשו איטיים או נתקעו נדחו ואינם בקוד. הימנעות ותכנון מהירות של AI עדיין פתוחים.",
+      "verification_note": "Corner-entry braking plus real relative-speed vehicle awareness. Eight assisted browser races finish; six without damage, Rothschild20.7%/Scopus16.3% remain. Jaffa193s versus prior110s is an explicit pace tradeoff. 80 corner cases and60 vehicle-response cases are scoped regressions, not all-rival, overtaking or human acceptance.",
       "external_evidence_required": false
     },
     {
@@ -380,7 +380,7 @@
       "acceptance": "pause mute resume unlock עובדים; feedback מובן ב-Playtest",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.",
+      "verification_note": "Known feedback gap: rendering-adapter.ts passes brake=0 for rival and traffic visuals. Their actual applied controls must be represented in snapshot/replay/render state before human acceptance of new AI braking. Existing engine/brake/surface/impact audio and full pause/mute/unlock flows also remain to verify.",
       "external_evidence_required": false
     },
     {

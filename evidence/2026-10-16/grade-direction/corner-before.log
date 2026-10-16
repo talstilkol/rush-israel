@@ -1,0 +1,1768 @@
+TAP version 13
+# Subtest: oldjaffa/sabra/arcade/clear: brake before accelerating into a sharp real bend
+not ok 1 - oldjaffa/sabra/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 1.397
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: oldjaffa/sabra/arcade/rain: brake before accelerating into a sharp real bend
+not ok 2 - oldjaffa/sabra/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.296083
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: oldjaffa/sabra/arcade/storm: brake before accelerating into a sharp real bend
+not ok 3 - oldjaffa/sabra/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.238208
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/sabra/arcade/hamsin: brake before accelerating into a sharp real bend
+not ok 4 - oldjaffa/sabra/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.239708
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/sabra/simcade/clear: brake before accelerating into a sharp real bend
+not ok 5 - oldjaffa/sabra/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.244375
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/sabra/simcade/rain: brake before accelerating into a sharp real bend
+not ok 6 - oldjaffa/sabra/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 1.688083
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/sabra/simcade/storm: brake before accelerating into a sharp real bend
+not ok 7 - oldjaffa/sabra/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.19225
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/sabra/simcade/hamsin: brake before accelerating into a sharp real bend
+not ok 8 - oldjaffa/sabra/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.172208
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/carmel/arcade/clear: brake before accelerating into a sharp real bend
+not ok 9 - oldjaffa/carmel/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.515458
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/carmel/arcade/rain: brake before accelerating into a sharp real bend
+not ok 10 - oldjaffa/carmel/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.375542
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/carmel/arcade/storm: brake before accelerating into a sharp real bend
+not ok 11 - oldjaffa/carmel/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.210583
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/carmel/arcade/hamsin: brake before accelerating into a sharp real bend
+not ok 12 - oldjaffa/carmel/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.157166
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/carmel/simcade/clear: brake before accelerating into a sharp real bend
+not ok 13 - oldjaffa/carmel/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.150542
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/carmel/simcade/rain: brake before accelerating into a sharp real bend
+not ok 14 - oldjaffa/carmel/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.146875
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/carmel/simcade/storm: brake before accelerating into a sharp real bend
+not ok 15 - oldjaffa/carmel/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.145125
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/carmel/simcade/hamsin: brake before accelerating into a sharp real bend
+not ok 16 - oldjaffa/carmel/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.14475
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/kfir/arcade/clear: brake before accelerating into a sharp real bend
+not ok 17 - oldjaffa/kfir/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.188875
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/kfir/arcade/rain: brake before accelerating into a sharp real bend
+not ok 18 - oldjaffa/kfir/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.244125
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/kfir/arcade/storm: brake before accelerating into a sharp real bend
+not ok 19 - oldjaffa/kfir/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.193375
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/kfir/arcade/hamsin: brake before accelerating into a sharp real bend
+not ok 20 - oldjaffa/kfir/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.176875
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/kfir/simcade/clear: brake before accelerating into a sharp real bend
+not ok 21 - oldjaffa/kfir/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.159125
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/kfir/simcade/rain: brake before accelerating into a sharp real bend
+not ok 22 - oldjaffa/kfir/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.151333
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/kfir/simcade/storm: brake before accelerating into a sharp real bend
+not ok 23 - oldjaffa/kfir/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.149375
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/kfir/simcade/hamsin: brake before accelerating into a sharp real bend
+not ok 24 - oldjaffa/kfir/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.148375
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/negev/arcade/clear: brake before accelerating into a sharp real bend
+not ok 25 - oldjaffa/negev/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.147166
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/negev/arcade/rain: brake before accelerating into a sharp real bend
+not ok 26 - oldjaffa/negev/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.158708
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/negev/arcade/storm: brake before accelerating into a sharp real bend
+not ok 27 - oldjaffa/negev/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.166
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/negev/arcade/hamsin: brake before accelerating into a sharp real bend
+not ok 28 - oldjaffa/negev/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.117584
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/negev/simcade/clear: brake before accelerating into a sharp real bend
+not ok 29 - oldjaffa/negev/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.122167
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/negev/simcade/rain: brake before accelerating into a sharp real bend
+not ok 30 - oldjaffa/negev/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.128917
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/negev/simcade/storm: brake before accelerating into a sharp real bend
+not ok 31 - oldjaffa/negev/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.11925
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/negev/simcade/hamsin: brake before accelerating into a sharp real bend
+not ok 32 - oldjaffa/negev/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.117125
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/yam/arcade/clear: brake before accelerating into a sharp real bend
+not ok 33 - oldjaffa/yam/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.1185
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/yam/arcade/rain: brake before accelerating into a sharp real bend
+not ok 34 - oldjaffa/yam/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.117292
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/yam/arcade/storm: brake before accelerating into a sharp real bend
+not ok 35 - oldjaffa/yam/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.115125
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/yam/arcade/hamsin: brake before accelerating into a sharp real bend
+not ok 36 - oldjaffa/yam/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.066416
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/yam/simcade/clear: brake before accelerating into a sharp real bend
+not ok 37 - oldjaffa/yam/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.066
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/yam/simcade/rain: brake before accelerating into a sharp real bend
+not ok 38 - oldjaffa/yam/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.0665
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/yam/simcade/storm: brake before accelerating into a sharp real bend
+not ok 39 - oldjaffa/yam/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.069708
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: oldjaffa/yam/simcade/hamsin: brake before accelerating into a sharp real bend
+not ok 40 - oldjaffa/yam/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.067209
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.3296078431372549: {"steer":-1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/arcade/clear: brake before accelerating into a sharp real bend
+not ok 41 - hermon/sabra/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.115291
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/arcade/rain: brake before accelerating into a sharp real bend
+not ok 42 - hermon/sabra/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.0815
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/arcade/storm: brake before accelerating into a sharp real bend
+not ok 43 - hermon/sabra/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.080458
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/arcade/hamsin: brake before accelerating into a sharp real bend
+not ok 44 - hermon/sabra/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.08175
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/simcade/clear: brake before accelerating into a sharp real bend
+not ok 45 - hermon/sabra/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.080459
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/simcade/rain: brake before accelerating into a sharp real bend
+not ok 46 - hermon/sabra/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.080459
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/simcade/storm: brake before accelerating into a sharp real bend
+not ok 47 - hermon/sabra/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.081167
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/sabra/simcade/hamsin: brake before accelerating into a sharp real bend
+not ok 48 - hermon/sabra/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.138791
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/arcade/clear: brake before accelerating into a sharp real bend
+not ok 49 - hermon/carmel/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.089083
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/arcade/rain: brake before accelerating into a sharp real bend
+not ok 50 - hermon/carmel/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.080875
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/arcade/storm: brake before accelerating into a sharp real bend
+not ok 51 - hermon/carmel/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.080834
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/arcade/hamsin: brake before accelerating into a sharp real bend
+not ok 52 - hermon/carmel/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.080292
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/simcade/clear: brake before accelerating into a sharp real bend
+not ok 53 - hermon/carmel/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.080958
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/simcade/rain: brake before accelerating into a sharp real bend
+not ok 54 - hermon/carmel/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.087625
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/simcade/storm: brake before accelerating into a sharp real bend
+not ok 55 - hermon/carmel/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.08075
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/carmel/simcade/hamsin: brake before accelerating into a sharp real bend
+not ok 56 - hermon/carmel/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.081209
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/arcade/clear: brake before accelerating into a sharp real bend
+not ok 57 - hermon/kfir/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.083042
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/arcade/rain: brake before accelerating into a sharp real bend
+not ok 58 - hermon/kfir/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.085791
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/arcade/storm: brake before accelerating into a sharp real bend
+not ok 59 - hermon/kfir/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.069583
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/arcade/hamsin: brake before accelerating into a sharp real bend
+not ok 60 - hermon/kfir/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.070584
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/simcade/clear: brake before accelerating into a sharp real bend
+not ok 61 - hermon/kfir/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.07025
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/simcade/rain: brake before accelerating into a sharp real bend
+not ok 62 - hermon/kfir/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.070083
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/simcade/storm: brake before accelerating into a sharp real bend
+not ok 63 - hermon/kfir/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.07125
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/kfir/simcade/hamsin: brake before accelerating into a sharp real bend
+not ok 64 - hermon/kfir/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.069791
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/arcade/clear: brake before accelerating into a sharp real bend
+not ok 65 - hermon/negev/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.078791
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/arcade/rain: brake before accelerating into a sharp real bend
+not ok 66 - hermon/negev/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.069333
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/arcade/storm: brake before accelerating into a sharp real bend
+not ok 67 - hermon/negev/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.069458
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/arcade/hamsin: brake before accelerating into a sharp real bend
+not ok 68 - hermon/negev/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.071834
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/simcade/clear: brake before accelerating into a sharp real bend
+not ok 69 - hermon/negev/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.069209
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/simcade/rain: brake before accelerating into a sharp real bend
+not ok 70 - hermon/negev/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.069375
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/simcade/storm: brake before accelerating into a sharp real bend
+not ok 71 - hermon/negev/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.069125
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/negev/simcade/hamsin: brake before accelerating into a sharp real bend
+not ok 72 - hermon/negev/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.06925
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/arcade/clear: brake before accelerating into a sharp real bend
+not ok 73 - hermon/yam/arcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.069208
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/arcade/rain: brake before accelerating into a sharp real bend
+not ok 74 - hermon/yam/arcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.076333
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/arcade/storm: brake before accelerating into a sharp real bend
+not ok 75 - hermon/yam/arcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.073209
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/arcade/hamsin: brake before accelerating into a sharp real bend
+not ok 76 - hermon/yam/arcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.075084
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/simcade/clear: brake before accelerating into a sharp real bend
+not ok 77 - hermon/yam/simcade/clear: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.069333
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/simcade/rain: brake before accelerating into a sharp real bend
+not ok 78 - hermon/yam/simcade/rain: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.069583
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/simcade/storm: brake before accelerating into a sharp real bend
+not ok 79 - hermon/yam/simcade/storm: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.068875
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/yam/simcade/hamsin: brake before accelerating into a sharp real bend
+not ok 80 - hermon/yam/simcade/hamsin: brake before accelerating into a sharp real bend
+  ---
+  duration_ms: 0.068958
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:14:3'
+  failureType: 'testCodeFailure'
+  error: 'sharp bend at 0.12104166666666667: {"steer":1,"throttle":0.85,"brake":0,"drift":false,"nitro":false}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-corner-speed.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..80
+# tests 80
+# suites 0
+# pass 0
+# fail 80
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 453.947333

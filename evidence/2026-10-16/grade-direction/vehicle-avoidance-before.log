@@ -1,0 +1,568 @@
+TAP version 13
+# Subtest: sabra/aiInput: brake for an actual slower vehicle ahead
+not ok 1 - sabra/aiInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 3.291167
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:18:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(input.brake > 0)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:24:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: sabra/aiInput: adjacent lane must not falsely stop traffic
+ok 2 - sabra/aiInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.354667
+  type: 'test'
+  ...
+# Subtest: sabra/aiInput: separate elevation must not falsely stop traffic
+ok 3 - sabra/aiInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.055833
+  type: 'test'
+  ...
+# Subtest: sabra/aiInput: behind must not falsely stop traffic
+ok 4 - sabra/aiInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.047375
+  type: 'test'
+  ...
+# Subtest: sabra/aiInput: receding must not falsely stop traffic
+ok 5 - sabra/aiInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.21175
+  type: 'test'
+  ...
+# Subtest: sabra/aiInput: far ahead must not falsely stop traffic
+ok 6 - sabra/aiInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.114083
+  type: 'test'
+  ...
+# Subtest: sabra/trafficInput: brake for an actual slower vehicle ahead
+not ok 7 - sabra/trafficInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.174917
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:18:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(input.brake > 0)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:24:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: sabra/trafficInput: adjacent lane must not falsely stop traffic
+ok 8 - sabra/trafficInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.05875
+  type: 'test'
+  ...
+# Subtest: sabra/trafficInput: separate elevation must not falsely stop traffic
+ok 9 - sabra/trafficInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.195792
+  type: 'test'
+  ...
+# Subtest: sabra/trafficInput: behind must not falsely stop traffic
+ok 10 - sabra/trafficInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.243583
+  type: 'test'
+  ...
+# Subtest: sabra/trafficInput: receding must not falsely stop traffic
+ok 11 - sabra/trafficInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.148709
+  type: 'test'
+  ...
+# Subtest: sabra/trafficInput: far ahead must not falsely stop traffic
+ok 12 - sabra/trafficInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.044708
+  type: 'test'
+  ...
+# Subtest: carmel/aiInput: brake for an actual slower vehicle ahead
+not ok 13 - carmel/aiInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.066833
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:18:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(input.brake > 0)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:24:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: carmel/aiInput: adjacent lane must not falsely stop traffic
+ok 14 - carmel/aiInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.026458
+  type: 'test'
+  ...
+# Subtest: carmel/aiInput: separate elevation must not falsely stop traffic
+ok 15 - carmel/aiInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.023375
+  type: 'test'
+  ...
+# Subtest: carmel/aiInput: behind must not falsely stop traffic
+ok 16 - carmel/aiInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.022375
+  type: 'test'
+  ...
+# Subtest: carmel/aiInput: receding must not falsely stop traffic
+ok 17 - carmel/aiInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.023166
+  type: 'test'
+  ...
+# Subtest: carmel/aiInput: far ahead must not falsely stop traffic
+ok 18 - carmel/aiInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.020208
+  type: 'test'
+  ...
+# Subtest: carmel/trafficInput: brake for an actual slower vehicle ahead
+not ok 19 - carmel/trafficInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.043958
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:18:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(input.brake > 0)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:24:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: carmel/trafficInput: adjacent lane must not falsely stop traffic
+ok 20 - carmel/trafficInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.020584
+  type: 'test'
+  ...
+# Subtest: carmel/trafficInput: separate elevation must not falsely stop traffic
+ok 21 - carmel/trafficInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.022208
+  type: 'test'
+  ...
+# Subtest: carmel/trafficInput: behind must not falsely stop traffic
+ok 22 - carmel/trafficInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.021833
+  type: 'test'
+  ...
+# Subtest: carmel/trafficInput: receding must not falsely stop traffic
+ok 23 - carmel/trafficInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.02025
+  type: 'test'
+  ...
+# Subtest: carmel/trafficInput: far ahead must not falsely stop traffic
+ok 24 - carmel/trafficInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.019959
+  type: 'test'
+  ...
+# Subtest: kfir/aiInput: brake for an actual slower vehicle ahead
+not ok 25 - kfir/aiInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.039625
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:18:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(input.brake > 0)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:24:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: kfir/aiInput: adjacent lane must not falsely stop traffic
+ok 26 - kfir/aiInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.03225
+  type: 'test'
+  ...
+# Subtest: kfir/aiInput: separate elevation must not falsely stop traffic
+ok 27 - kfir/aiInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.023
+  type: 'test'
+  ...
+# Subtest: kfir/aiInput: behind must not falsely stop traffic
+ok 28 - kfir/aiInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.019417
+  type: 'test'
+  ...
+# Subtest: kfir/aiInput: receding must not falsely stop traffic
+ok 29 - kfir/aiInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.019917
+  type: 'test'
+  ...
+# Subtest: kfir/aiInput: far ahead must not falsely stop traffic
+ok 30 - kfir/aiInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.06325
+  type: 'test'
+  ...
+# Subtest: kfir/trafficInput: brake for an actual slower vehicle ahead
+not ok 31 - kfir/trafficInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.039417
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:18:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(input.brake > 0)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:24:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: kfir/trafficInput: adjacent lane must not falsely stop traffic
+ok 32 - kfir/trafficInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.020542
+  type: 'test'
+  ...
+# Subtest: kfir/trafficInput: separate elevation must not falsely stop traffic
+ok 33 - kfir/trafficInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.019167
+  type: 'test'
+  ...
+# Subtest: kfir/trafficInput: behind must not falsely stop traffic
+ok 34 - kfir/trafficInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.01875
+  type: 'test'
+  ...
+# Subtest: kfir/trafficInput: receding must not falsely stop traffic
+ok 35 - kfir/trafficInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.0185
+  type: 'test'
+  ...
+# Subtest: kfir/trafficInput: far ahead must not falsely stop traffic
+ok 36 - kfir/trafficInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.018458
+  type: 'test'
+  ...
+# Subtest: negev/aiInput: brake for an actual slower vehicle ahead
+not ok 37 - negev/aiInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.036125
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:18:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(input.brake > 0)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:24:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: negev/aiInput: adjacent lane must not falsely stop traffic
+ok 38 - negev/aiInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.019917
+  type: 'test'
+  ...
+# Subtest: negev/aiInput: separate elevation must not falsely stop traffic
+ok 39 - negev/aiInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.020083
+  type: 'test'
+  ...
+# Subtest: negev/aiInput: behind must not falsely stop traffic
+ok 40 - negev/aiInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.024208
+  type: 'test'
+  ...
+# Subtest: negev/aiInput: receding must not falsely stop traffic
+ok 41 - negev/aiInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.022833
+  type: 'test'
+  ...
+# Subtest: negev/aiInput: far ahead must not falsely stop traffic
+ok 42 - negev/aiInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.019291
+  type: 'test'
+  ...
+# Subtest: negev/trafficInput: brake for an actual slower vehicle ahead
+not ok 43 - negev/trafficInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.036292
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:18:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(input.brake > 0)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:24:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: negev/trafficInput: adjacent lane must not falsely stop traffic
+ok 44 - negev/trafficInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.020375
+  type: 'test'
+  ...
+# Subtest: negev/trafficInput: separate elevation must not falsely stop traffic
+ok 45 - negev/trafficInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.018417
+  type: 'test'
+  ...
+# Subtest: negev/trafficInput: behind must not falsely stop traffic
+ok 46 - negev/trafficInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.087375
+  type: 'test'
+  ...
+# Subtest: negev/trafficInput: receding must not falsely stop traffic
+ok 47 - negev/trafficInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.020167
+  type: 'test'
+  ...
+# Subtest: negev/trafficInput: far ahead must not falsely stop traffic
+ok 48 - negev/trafficInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.035875
+  type: 'test'
+  ...
+# Subtest: yam/aiInput: brake for an actual slower vehicle ahead
+not ok 49 - yam/aiInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.107375
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:18:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(input.brake > 0)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:24:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: yam/aiInput: adjacent lane must not falsely stop traffic
+ok 50 - yam/aiInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.021584
+  type: 'test'
+  ...
+# Subtest: yam/aiInput: separate elevation must not falsely stop traffic
+ok 51 - yam/aiInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.019875
+  type: 'test'
+  ...
+# Subtest: yam/aiInput: behind must not falsely stop traffic
+ok 52 - yam/aiInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.0265
+  type: 'test'
+  ...
+# Subtest: yam/aiInput: receding must not falsely stop traffic
+ok 53 - yam/aiInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.01975
+  type: 'test'
+  ...
+# Subtest: yam/aiInput: far ahead must not falsely stop traffic
+ok 54 - yam/aiInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.019333
+  type: 'test'
+  ...
+# Subtest: yam/trafficInput: brake for an actual slower vehicle ahead
+not ok 55 - yam/trafficInput: brake for an actual slower vehicle ahead
+  ---
+  duration_ms: 0.045375
+  type: 'test'
+  location: '/private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:18:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(input.brake > 0)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-physics10-grade-b69eaed7fe51/scripts/ai-vehicle-avoidance.test.mjs:24:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: yam/trafficInput: adjacent lane must not falsely stop traffic
+ok 56 - yam/trafficInput: adjacent lane must not falsely stop traffic
+  ---
+  duration_ms: 0.020083
+  type: 'test'
+  ...
+# Subtest: yam/trafficInput: separate elevation must not falsely stop traffic
+ok 57 - yam/trafficInput: separate elevation must not falsely stop traffic
+  ---
+  duration_ms: 0.017875
+  type: 'test'
+  ...
+# Subtest: yam/trafficInput: behind must not falsely stop traffic
+ok 58 - yam/trafficInput: behind must not falsely stop traffic
+  ---
+  duration_ms: 0.018125
+  type: 'test'
+  ...
+# Subtest: yam/trafficInput: receding must not falsely stop traffic
+ok 59 - yam/trafficInput: receding must not falsely stop traffic
+  ---
+  duration_ms: 0.018
+  type: 'test'
+  ...
+# Subtest: yam/trafficInput: far ahead must not falsely stop traffic
+ok 60 - yam/trafficInput: far ahead must not falsely stop traffic
+  ---
+  duration_ms: 0.019334
+  type: 'test'
+  ...
+1..60
+# tests 60
+# suites 0
+# pass 50
+# fail 10
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 397.830542

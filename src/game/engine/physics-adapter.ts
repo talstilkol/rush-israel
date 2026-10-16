@@ -90,10 +90,11 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
       this.lapTime += dt;
     }
 
+    const vehicles = [...this.racers, ...this.traffic, ...this.cops];
     for (let i = 0; i < this.racers.length; i++) {
       const car = this.racers[i];
       const prev = car.progress;
-      const inp = i === 0 ? playerInput : aiInput(car, this.built, this.player);
+      const inp = i === 0 ? playerInput : aiInput(car, this.built, this.player, vehicles);
       if (i !== 0 && this.countdown > 0) {
         inp.throttle = 0;
         inp.brake = 0;
@@ -156,7 +157,7 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
     } else this.wrongBeep = 0;
 
     for (const cab of this.traffic) {
-      const inp = trafficInput(cab, this.built);
+      const inp = trafficInput(cab, this.built, vehicles);
       if (this.countdown > 0) {
         inp.throttle = 0;
         inp.brake = 0;

@@ -1,0 +1,85 @@
+{
+  "observed_at": "2026-10-16T03:17:07+00:00",
+  "scope": "MP-017.1 gap/specification audit only. This completes the inventory of known proof and missing acceptance, not implementation or product acceptance.",
+  "audit_completed": true,
+  "implementation_accepted": false,
+  "product_accepted": false,
+  "physics_version": 11,
+  "source_authority": "Exact source hashes; containing commit is bound separately after commit, not guessed.",
+  "files": {
+    "src/game/vehicle.ts": "381faaa87c333c56146399d7027beae702c0aca25938a76c250f5d6c5fd6bb7d",
+    "src/game/physics.ts": "9b65e365209c1eca2c317c8905ea410b459bf963085a6fd5d8728266ca1fef73",
+    "src/game/input.ts": "2bc67f075d95f2fa8ba606be4cdd7ffb3527f6eca1a3f9a38cf154924cee1f89",
+    "src/game/engine/loop-adapter.ts": "6157d0c841168d220584902f9169d62d0e0c5394ccfc5d868cd950404001fca0",
+    "src/game/engine/physics-adapter.ts": "c95344527fcaf638127cb0e99873a58b6099032dc1196cc875d6ee5da531aad7",
+    "src/game/engine/qa-adapter.ts": "8913a8d229d8fca5190106740eb050604f653fc487e095d2e72464e73fcedcfc",
+    "QUALITY-TARGETS.md": "75d8485a47f8c4b5579a62890ccabe8461421fcf54f320e894db193631dea57c",
+    "COMPLETION-BACKLOG.json": "61b9f53b19dc4edb618f2c65a120d65978efad99bb34fb990380c48da3567c6a"
+  },
+  "matrix": [
+    {
+      "dimension": "0–100",
+      "evidence": "80 stock/max-upgrade module configurations and 15 current-source browser rechecks against unchanged targets",
+      "status": "locally-measured",
+      "remaining": "Other actual track/surface/device/condition browser combinations and human/vehicle calibration."
+    },
+    {
+      "dimension": "100–0",
+      "evidence": "80 module measurements sum actual horizontal per-tick path; 80 fresh-car snapshot braking replays match",
+      "status": "locally-measured",
+      "remaining": "Independent brake-distance/deceleration targets, browser/world surfaces, stability and device input."
+    },
+    {
+      "dimension": "steering",
+      "evidence": "30 initial tire-yaw sign regressions in current unit suite",
+      "status": "narrow-regression",
+      "remaining": "Steady-turn radius, steering return, slip-angle curves and full handling/weather/tuning combinations."
+    },
+    {
+      "dimension": "grade and ramps",
+      "evidence": "160 actual-road configurations and 80 actual-world ramp configurations; wrong-way/reverse consistency",
+      "status": "narrow-regression",
+      "remaining": "Continuous physical calibration, curb transitions, diagonal travel, all V1 slopes with collisions and actual driver input."
+    },
+    {
+      "dimension": "drift and grip transitions",
+      "evidence": "Existing code and historical narrow observations; not promoted to current-candidate acceptance",
+      "status": "not-verified",
+      "remaining": "Current-source initiation/hold/recovery/min-angle/scoring/boost tests across actual surfaces and legal upgrades."
+    },
+    {
+      "dimension": "jump/landing/contact",
+      "evidence": "Required browser airborne/collider smoke remains in canonical runtime pipeline",
+      "status": "partial",
+      "remaining": "Full per-car/weather/upgrade jump/landing/contact matrix, all elevation overlaps and human feel."
+    },
+    {
+      "dimension": "30/60/120 presentation and input",
+      "evidence": "Production fixed step is120Hz; input is sampled by fixed tick",
+      "status": "not-verified",
+      "remaining": "Real engine-frame scheduling and identical timestamped input stream comparisons; stall eligibility and render-independent state."
+    },
+    {
+      "dimension": "whole-race rewind/replay",
+      "evidence": "80 vehicle braking snapshot comparisons plus current unit/save rules",
+      "status": "partial",
+      "remaining": "Whole race session, checkpoints, KO, economy, ghost bounds and long replay matrix."
+    },
+    {
+      "dimension": "human/physical vehicle references",
+      "evidence": null,
+      "status": "unavailable",
+      "remaining": "Approved measured vehicle targets and actual drivers. No world-best physics or zero-bug certification."
+    }
+  ],
+  "scope_control": {
+    "all_5_cars": true,
+    "all_2_handling_modes": true,
+    "all_4_weather_settings": true,
+    "stock_and_max_legal_upgrades": true,
+    "matrix_above_is_not_full_browser_acceptance": true,
+    "no_synthetic_measured_vehicle_claims": true
+  },
+  "next_work": "Keep MP-017 implementation/current and final acceptance open; close only this audit substep with evidence. AI braking/avoidance is partial MP-018 work and needs pace, all-rival, overtaking, static-clearance and human evaluation.",
+  "known_visual_feedback_gap": "Rival/traffic brake lights receive0 in rendering-adapter.ts; actual applied input/snapshot/render linkage is still MP-024 work."
+}

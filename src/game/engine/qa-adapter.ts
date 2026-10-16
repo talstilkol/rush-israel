@@ -36,7 +36,7 @@ export function exposeControls(this: EngineAdapterHost)
     window.__controlsTest = {
       followRoad: () => {
         // Real steering/throttle through the input system; no position or clock changes.
-        const drive = aiInput(this.player, this.built);
+        const drive = aiInput(this.player, this.built, undefined, [...this.racers, ...this.traffic, ...this.cops]);
         this.assisted = true;
         this.input.steerOverride = drive.steer;
         this.input.throttleOverride = drive.throttle;

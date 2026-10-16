@@ -1,0 +1,222 @@
+
+> app-builder-workspace@0.0.0-private qa:runtime:raw
+> npm run qa:world:raw && npm run qa:conditions:raw && npm run qa:photo:raw && npm run qa:v1:raw && npm run qa:raw && npm run qa:damage:raw && npm run qa:soak:raw
+
+
+> app-builder-workspace@0.0.0-private qa:world:raw
+> node scripts/world-runtime-audit.mjs
+
+{
+  "count": 56,
+  "failures": [],
+  "cachedTextureDisposals": 0,
+  "duplicateDisposals": 0,
+  "buildingImpactVerified": true,
+  "pageErrors": []
+}
+
+> app-builder-workspace@0.0.0-private qa:conditions:raw
+> node scripts/race-condition-smoke.mjs
+
+race-condition-smoke ok {"kind":"real-ui-record-condition-restart","before":{"night":false,"assisted":false},"changed":{"night":true,"assisted":true},"reset":{"assisted":true},"restarted":{"night":true,"assisted":false},"cameraViews":[{"mode":0,"playerVisible":true,"playerShadowVisible":true},{"mode":1,"playerVisible":false,"playerShadowVisible":false,"lookBackRestoresExteriorAndShadow":true},{"mode":2,"playerVisible":false,"playerShadowVisible":false,"lookBackRestoresExteriorAndShadow":true},{"mode":3,"playerVisible":true,"playerShadowVisible":true},{"mode":0,"playerVisible":true,"playerShadowVisible":true}],"automaticRecovery":{"routeSampleIndex":30,"lateral":-14.4,"beforeAssisted":false,"afterAssisted":true,"observedRecoveries":1,"seconds":3.2500000000000178},"pageErrors":[]}
+
+> app-builder-workspace@0.0.0-private qa:photo:raw
+> node scripts/photo-position-smoke.mjs
+
+photo-position-smoke ok [{"id":"g04","horizontalDistance":27.999999999999993},{"id":"g05","horizontalDistance":28},{"id":"g06","horizontalDistance":28}]
+
+> app-builder-workspace@0.0.0-private qa:v1:raw
+> node scripts/qa-v1-races.mjs
+
+{"track":"oldjaffa","complete":true,"resultUi":true,"lap":3,"seconds":193.18333333332197,"damage":0,"assisted":true,"glError":0}
+{"track":"namal","complete":true,"resultUi":true,"lap":3,"seconds":195.37499999998664,"damage":0,"assisted":true,"glError":0}
+{"track":"haifa","complete":true,"resultUi":true,"lap":1,"seconds":43.05833333333153,"damage":0,"assisted":true,"glError":0}
+{"track":"rothschild","complete":true,"resultUi":true,"lap":3,"seconds":240.0833333332793,"damage":0.2071873613911937,"assisted":true,"glError":0}
+{"track":"ayalon","complete":true,"resultUi":true,"lap":1,"seconds":87.9166666666827,"damage":0,"assisted":true,"glError":0}
+{"track":"hermon","complete":true,"resultUi":true,"lap":1,"seconds":139.33333333337094,"damage":0,"assisted":true,"glError":0}
+{"track":"scopus","complete":true,"resultUi":true,"lap":1,"seconds":63.34166666666371,"damage":0.16261177984751118,"assisted":true,"glError":0}
+{"track":"ramon","complete":true,"resultUi":true,"lap":1,"seconds":100.80833333335963,"damage":0,"assisted":true,"glError":0}
+
+> app-builder-workspace@0.0.0-private qa:raw
+> npm run qa:drive:raw && npm run qa:ramp:raw && npm run qa:webgl2:raw && npm run qa:accel:raw && npm run qa:colliders:raw && npm run qa:airborne:raw && npm run qa:ktx2 && npm run qa:soak-smoke:raw
+
+
+> app-builder-workspace@0.0.0-private qa:drive:raw
+> node scripts/drive-smoke.mjs
+
+drive-smoke ok {
+  dA: 0.6360938566359382,
+  dD: -0.6180943730113608,
+  speed: 29.82773157661549
+}
+
+> app-builder-workspace@0.0.0-private qa:ramp:raw
+> node scripts/ramp-smoke.mjs
+
+ramp-smoke ok 0.2587307319380775:2.8 0.3787420768965347:3.9 0.4987420768965349:4.9 0.6387420768965348:6.2 span 3.38
+ramp-smoke ok 0.29894782329344005:6.7 0.41857043521350784:5.7 0.538570434633718:4.6 0.6785704347991808:3.4 span 3.38
+ramp-grade ok: 80 actual-ramp/car/handling/weather cases; Physics 11
+
+> app-builder-workspace@0.0.0-private qa:webgl2:raw
+> node scripts/webgl2-smoke.mjs
+
+webgl2-smoke ok WebKit WebGL
+
+> app-builder-workspace@0.0.0-private qa:accel:raw
+> node --import ./scripts/runtime-typescript-loader.mjs scripts/accel-smoke.mjs
+
+{
+  "schemaVersion": 2,
+  "physicsVersion": 11,
+  "track": "ayalon",
+  "gate": "current-behaviour regression",
+  "claimGate": "RSH-033",
+  "note": "CI fails on acceleration regression and on zeroTo100 claim gaps after RSH-033 calibration.",
+  "regressionOk": true,
+  "claimsOk": true,
+  "claimGaps": [],
+  "runs": [
+    {
+      "carId": "sabra",
+      "times": [
+        8.45,
+        8.45,
+        8.45
+      ],
+      "mean": 8.45,
+      "baselineMean": 8.4,
+      "regressionDeltaSeconds": 0.05,
+      "regressionToleranceSeconds": 0.1,
+      "regressionOk": true,
+      "claim": 8.4,
+      "claimTolerance": 0.15,
+      "claimOk": true,
+      "model": "extrusion"
+    },
+    {
+      "carId": "carmel",
+      "times": [
+        6.6,
+        6.6,
+        6.6
+      ],
+      "mean": 6.6,
+      "baselineMean": 6.6,
+      "regressionDeltaSeconds": 0,
+      "regressionToleranceSeconds": 0.1,
+      "regressionOk": true,
+      "claim": 6.6,
+      "claimTolerance": 0.15,
+      "claimOk": true,
+      "model": "extrusion"
+    },
+    {
+      "carId": "kfir",
+      "times": [
+        4.9,
+        4.9,
+        4.9
+      ],
+      "mean": 4.9,
+      "baselineMean": 4.9,
+      "regressionDeltaSeconds": 0,
+      "regressionToleranceSeconds": 0.1,
+      "regressionOk": true,
+      "claim": 4.9,
+      "claimTolerance": 0.15,
+      "claimOk": true,
+      "model": "extrusion"
+    },
+    {
+      "carId": "negev",
+      "times": [
+        5.8,
+        5.8,
+        5.8
+      ],
+      "mean": 5.8,
+      "baselineMean": 5.75,
+      "regressionDeltaSeconds": 0.05,
+      "regressionToleranceSeconds": 0.1,
+      "regressionOk": true,
+      "claim": 5.8,
+      "claimTolerance": 0.15,
+      "claimOk": true,
+      "model": "extrusion"
+    },
+    {
+      "carId": "yam",
+      "times": [
+        3.45,
+        3.45,
+        3.45
+      ],
+      "mean": 3.45,
+      "baselineMean": 3.45,
+      "regressionDeltaSeconds": 0,
+      "regressionToleranceSeconds": 0.1,
+      "regressionOk": true,
+      "claim": 3.5,
+      "claimTolerance": 0.15,
+      "claimOk": true,
+      "model": "extrusion"
+    }
+  ]
+}
+accel-smoke regression ok
+
+> app-builder-workspace@0.0.0-private qa:colliders:raw
+> node scripts/collider-offset-smoke.mjs
+
+collider-offset ok 32 closest 26 minCenter 26
+
+> app-builder-workspace@0.0.0-private qa:airborne:raw
+> node scripts/airborne-smoke.mjs
+
+airborne-smoke ok {
+  onRamp: false,
+  mid: { a: true, y: 1.9623015392881338 },
+  land: { a: false, y: 1.2796169976417149, on: true }
+}
+
+> app-builder-workspace@0.0.0-private qa:ktx2
+> node scripts/ktx2-smoke.mjs
+
+ktx2-smoke ok png-only no UASTC claim
+
+> app-builder-workspace@0.0.0-private qa:soak-smoke:raw
+> node scripts/soak-smoke.mjs
+
+cycle 1 / 2 tex 30 geo 1086
+cycle 2 / 2 tex 30 geo 1086
+soak ok 2 measured cycles; every cycle <= warmed baseline + 2 { textures: 30, geometries: 1086 }
+
+> app-builder-workspace@0.0.0-private qa:damage:raw
+> node scripts/damage-smoke.mjs
+
+damage-smoke ok { hurt: 0.7, afterEsc: 0.7, after: 0 }
+
+> app-builder-workspace@0.0.0-private qa:soak:raw
+> node scripts/soak-menu-race.mjs
+
+cycle 1 / 20 tex 30 geo 1086
+cycle 2 / 20 tex 30 geo 1086
+cycle 3 / 20 tex 30 geo 1086
+cycle 4 / 20 tex 30 geo 1086
+cycle 5 / 20 tex 30 geo 1086
+cycle 6 / 20 tex 30 geo 1086
+cycle 7 / 20 tex 30 geo 1086
+cycle 8 / 20 tex 30 geo 1086
+cycle 9 / 20 tex 30 geo 1086
+cycle 10 / 20 tex 30 geo 1086
+cycle 11 / 20 tex 30 geo 1086
+cycle 12 / 20 tex 30 geo 1086
+cycle 13 / 20 tex 30 geo 1086
+cycle 14 / 20 tex 30 geo 1086
+cycle 15 / 20 tex 30 geo 1086
+cycle 16 / 20 tex 30 geo 1086
+cycle 17 / 20 tex 30 geo 1086
+cycle 18 / 20 tex 30 geo 1086
+cycle 19 / 20 tex 30 geo 1086
+cycle 20 / 20 tex 30 geo 1086
+soak ok 20 measured cycles; every cycle <= warmed baseline + 2 { textures: 30, geometries: 1086 }
