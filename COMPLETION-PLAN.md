@@ -189,7 +189,7 @@
 5.28.1 מצב: partial; עדיפות P1; תלוי ב־MP-016, MP-019.
 5.28.2 תוצר: fingerprint של תנאי מרוץ וקטגוריות.
 5.28.3 קבלה: mode laps weather tune handling assists content ו-physics אינם מעורבבים
-5.28.4 ראיה וחסר: Best ו-timed records כוללים tune, car definition, track geometry, physics ותנאים; Ghosts מופרדים באותו ruleset ונבדקת תקינותם. קבלה מלאה עדיין פתוחה.
+5.28.4 ראיה וחסר: שיאים ו-Ghosts מופרדים לפי תנאים ופיזיקה. נוסף דיווח חילוץ אוטומטי: before/after בדפדפן האמיתי מאמת assisted=false לפני התיקון ו-true אחריו באותו חילוץ. קבלת שיאים מלאה של מועמד השחרור עדיין פתוחה.
 
 5.29 **MP-029 — Save migration והגנת Legacy**
 5.29.1 מצב: partial; עדיפות P1; תלוי ב־MP-027, MP-028.

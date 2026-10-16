@@ -99,7 +99,8 @@ export function fixed(this: EngineAdapterHost, dt: Parameters<RaceEngine["fixed"
         inp.brake = 0;
         inp.drift = false;
       }
-      car.step(dt, inp, this.built, this.racing && this.countdown <= 0, this.world.colliders.concat(this.extraHits), this.world.streets, this.world.ramps);
+      const recovered = car.step(dt, inp, this.built, this.racing && this.countdown <= 0, this.world.colliders.concat(this.extraHits), this.world.streets, this.world.ramps);
+      if (i === 0 && recovered) this.assisted = true;
       const ev = car.consumeCheckpoints(this.built, prev);
       if (ev.checkpoint && i === 0) {
         this.audio.checkpoint();

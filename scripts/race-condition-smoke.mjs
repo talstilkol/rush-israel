@@ -12,6 +12,17 @@ try {
   page.on('pageerror', error => errors.push(String(error)));
   await page.goto(process.env.SMOKE_URL || 'http://127.0.0.1:8080/', { waitUntil: 'networkidle' });
   await page.locator('[data-game-ready="true"]').waitFor();
+  // Observe the real engine created by the UI, including the fresh engine on
+  // Restart. No alternate physics host, synthetic world or production API.
+  await page.evaluate(async () => {
+    const { RaceEngine } = await import('/src/game/engine.ts');
+    const assemble = RaceEngine.prototype.assemble;
+    RaceEngine.prototype.assemble = async function (...args) {
+      const result = await assemble.apply(this, args);
+      window.__observedConditionEngine = this;
+      return result;
+    };
+  });
   await page.getByRole('button', { name: /בחר מסלול/ }).click();
   await page.locator('button').filter({ hasText: /^הכל$/ }).click();
   await page.locator('button').filter({ hasText: /נתיבי איילון/ }).click();
@@ -35,9 +46,42 @@ try {
   const restarted = await page.evaluate(() => JSON.parse(window.render_game_to_text()));
   assert.equal(restarted.assisted, false);
   assert.equal(restarted.night, changed.night);
+  await page.waitForFunction(() => window.__observedConditionEngine && !window.__observedConditionEngine.disposed);
+  const automaticRecovery = await page.evaluate(() => {
+    const engine = window.__observedConditionEngine;
+    const controls = window.__controlsTest;
+    const routeSampleIndex = 30;
+    const sample = engine.built.samples[routeSampleIndex];
+    const lateral = -(engine.built.width / 2 + 0.4);
+    // Actual Ayalon shoulder: outside the main road, before the adjacent
+    // side street. The real world, colliders and traffic remain active.
+    engine.player.spawn(engine.built, sample.t, lateral);
+    controls.skipCountdown();
+    controls.setKeys([]);
+    controls.setThrottle(0);
+    controls.setSteer(0);
+    const beforeAssisted = JSON.parse(window.render_game_to_text()).assisted;
+    let observedRecoveries = 0;
+    const respawn = engine.player.respawn;
+    engine.player.respawn = function (...args) {
+      observedRecoveries++;
+      return respawn.apply(this, args);
+    };
+    try {
+      const startTime = engine.totalTime;
+      for (let tick = 0; tick < 100 && !observedRecoveries; tick++) controls.advanceTime(50);
+      return { routeSampleIndex, lateral, beforeAssisted, afterAssisted: JSON.parse(window.render_game_to_text()).assisted, observedRecoveries, seconds: engine.totalTime - startTime };
+    } finally { engine.player.respawn = respawn; }
+  });
+  assert.equal(automaticRecovery.beforeAssisted, false);
+  assert.equal(automaticRecovery.observedRecoveries, 1, 'the actual automatic rescue must occur');
+  assert.ok(automaticRecovery.seconds >= 3.2 && automaticRecovery.seconds < 3.4);
+  assert.equal(automaticRecovery.afterAssisted, true, 'automatic rescue must disqualify official records');
   assert.deepEqual(errors, []);
-  const report = { kind: 'real-ui-record-condition-restart', before: { night: before.night, assisted: before.assisted }, changed: { night: changed.night, assisted: changed.assisted }, reset: { assisted: reset.assisted }, restarted: { night: restarted.night, assisted: restarted.assisted }, pageErrors: errors };
+  const report = { kind: 'real-ui-record-condition-restart', before: { night: before.night, assisted: before.assisted }, changed: { night: changed.night, assisted: changed.assisted }, reset: { assisted: reset.assisted }, restarted: { night: restarted.night, assisted: restarted.assisted }, automaticRecovery, pageErrors: errors };
   await mkdir(fromRoot('artifacts', 'race-conditions'), { recursive: true });
+  await page.getByText('השיא לא נשמר', { exact: true }).waitFor();
+  await page.screenshot({ path: fromRoot('artifacts', 'race-conditions', 'automatic-recovery-disqualified.png') });
   await writeFile(fromRoot('artifacts', 'race-conditions', 'summary.json'), JSON.stringify(report, null, 2) + '\n');
   console.log('race-condition-smoke ok', JSON.stringify(report));
 } finally { await browser.close(); }

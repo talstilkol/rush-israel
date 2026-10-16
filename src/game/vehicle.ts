@@ -203,7 +203,8 @@ export class ArcadeCar {
     this.surfaceKind = "asphalt";
   }
 
-  step(dt: number, input: InputState, track: BuiltTrack, racing: boolean, colliders: Collider[] = [], streets: StreetRibbon[] = [], ramps: Ramp[] = []) {
+  /** Returns true only when this tick automatically rescues the car. */
+  step(dt: number, input: InputState, track: BuiltTrack, racing: boolean, colliders: Collider[] = [], streets: StreetRibbon[] = [], ramps: Ramp[] = []): boolean {
     this.impact = 0;
     this.lastHit = "";
     this.nitroPulse = false;
@@ -212,7 +213,7 @@ export class ArcadeCar {
       this.speed *= Math.exp(-2.2 * dt);
       this.integrateMotion(dt, track, 0, colliders, streets, ramps);
       this.pitch = expSmooth(this.pitch, 0, 8, dt);
-      return;
+      return false;
     }
 
     const stats = this.stats;
@@ -406,7 +407,11 @@ export class ArcadeCar {
       if (this.weatherGrip < 0.95 && this.onTrack) this.dirt -= dt * 0.11;
       this.dirt = clamp(this.dirt, 0, 1);
     }
-    if (!(this.isAi && !this.isTraffic && !this.isCop) && this.offTrackT > 3.2) this.respawn(track);
+    if (!(this.isAi && !this.isTraffic && !this.isCop) && this.offTrackT > 3.2) {
+      this.respawn(track);
+      return true;
+    }
+    return false;
   }
 
   private stepWheels(

@@ -50,6 +50,30 @@ test('cars on separated elevations cannot push each other sideways', () => {
   assert.deepEqual(lower.snap(), before);
 });
 
+test('automatic off-road rescue reports the recovery tick to the race engine', () => {
+  const car = makeCar();
+  // Start just outside the actual Ayalon road, then let the existing physics
+  // and off-road timer perform their real recovery. No forced timer or collider.
+  car.spawn(ayalon, 0.03, ayalon.width / 2 + 4);
+  const coasting = { steer: 0, throttle: 0, brake: 0, drift: false, nitro: false };
+  let recoveries = 0;
+  let recoveryTime = 0;
+  for (let tick = 0; tick < 120 * 4; tick++) {
+    const recovered = car.step(PHYSICS_DT, coasting, ayalon, true);
+    assert.equal(typeof recovered, 'boolean');
+    if (recovered) {
+      recoveries++;
+      recoveryTime = (tick + 1) * PHYSICS_DT;
+      assert.equal(car.offTrackT, 0);
+      assert.equal(car.speed, 0);
+      assert.equal(car.y, ayalon.samples[car.sampleIndex].y);
+    }
+  }
+  assert.equal(recoveries, 1);
+  assert.ok(recoveryTime >= 3.2 && recoveryTime < 3.3);
+  assert.equal(car.step(PHYSICS_DT, coasting, ayalon, true), false);
+});
+
 for (const def of TRACKS) {
   test(`actual track geometry stays finite: ${def.id}`, () => {
     const built = buildTrack(def);

@@ -446,7 +446,7 @@
       "acceptance": "mode laps weather tune handling assists content ו-physics אינם מעורבבים",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "Best ו-timed records כוללים tune, car definition, track geometry, physics ותנאים; Ghosts מופרדים באותו ruleset ונבדקת תקינותם. קבלה מלאה עדיין פתוחה.",
+      "verification_note": "שיאים ו-Ghosts מופרדים לפי תנאים ופיזיקה. נוסף דיווח חילוץ אוטומטי: before/after בדפדפן האמיתי מאמת assisted=false לפני התיקון ו-true אחריו באותו חילוץ. קבלת שיאים מלאה של מועמד השחרור עדיין פתוחה.",
       "external_evidence_required": false
     },
     {
