@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "physicsVersion": 13,
+  "track": "ayalon",
+  "gate": "current-behaviour regression",
+  "claimGate": "RSH-033",
+  "regressionToleranceSeconds": 0.1,
+  "claimTolerance": 0.15,
+  "authority": "Tunnel contact epoch13 replaces spaced collision proxies with actual wall,lining andportal-post solids. All numerical targets,claims,tolerances andoriginal generatedFromPhysicsVersion8 provenance remain unchanged. Actual parent epoch12 is archived in evidence/2026-10-16/tunnel-solids/before-accel.json. New15-run browser and exact-head CI verification are separate from independent physical calibration.",
+  "runs": [
+    {
+      "carId": "sabra",
+      "mean": 8.4,
+      "claim": 8.4,
+      "claimOk": true
+    },
+    {
+      "carId": "carmel",
+      "mean": 6.6,
+      "claim": 6.6,
+      "claimOk": true
+    },
+    {
+      "carId": "kfir",
+      "mean": 4.9,
+      "claim": 4.9,
+      "claimOk": true
+    },
+    {
+      "carId": "negev",
+      "mean": 5.75,
+      "claim": 5.8,
+      "claimOk": true
+    },
+    {
+      "carId": "yam",
+      "mean": 3.45,
+      "claim": 3.5,
+      "claimOk": true
+    }
+  ],
+  "generatedFromPhysicsVersion": 8
+}

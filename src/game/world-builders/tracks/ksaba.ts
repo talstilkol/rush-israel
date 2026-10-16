@@ -6,7 +6,7 @@ export default function buildKsaba(context: TrackWorldBuilderContext): void {
   const {
     add,
     glowAt,
-    hit,
+    hitBox,
     stone,
   } = context;
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
@@ -19,8 +19,9 @@ export default function buildKsaba(context: TrackWorldBuilderContext): void {
     add(garden);
     const obelisk = new THREE.Mesh(new THREE.BoxGeometry(1.4, 12, 1.4), stone);
     obelisk.position.set(pk.x, 6, pk.z);
+    obelisk.name = "rush-ksaba-obelisk";
     add(obelisk);
+    hitBox(obelisk);
     glowAt(pk.x, 12, pk.z, 16771264, 18, 16);
-    hit(pk.x, pk.z, 8);
   /* RSH-016:END-LEGACY-TRACK-BODY */
 }

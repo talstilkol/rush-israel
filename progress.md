@@ -219,3 +219,11 @@ Not done: a 30-minute soak, devices, the architecture locks, Alpha through relea
 - Parent8d8fdd8;previous exact-head CI/soak remains separate and ongoing.
 - Actual frozen-parent54 contact poses at6 tunnel walls found14 unresponsive overlaps. Shared builder used short spaced proxies for continuous rendered walls.
 - Isolated change derives wall,lining andportal-post OBB/height from actual meshes;removes spaced proxies. No ceiling underside/full3D contact acceptance inferred. New actual contact/traversal/height/center-clearance tests required before publication.
+
+##2026-10-16 landmark footprint continuation
+- Parent1bb8bf2. Actual3world/6body probe confirmed four ghost hits(.035damageeach);5/6 intended bodies lacked contact at all12 tested faces.
+- Replace broad obelisk/hall/overpass/gantry-center proxies with actual upright mesh boxes. Shared helper also supplies existing tunnel contacts;quaternion orientation preserved. Tilted boxes explicitly require another model. No full3D/terrain/preview-race acceptance inferred.
+- Final source frozen as437 src/public hashes (includes new box-collider.ts). Native Metal geometry diagnostic inspected all6 actual models with diagnostic lighting/camera;not gameplay/art acceptance. Preview geometry still places the ksaba obelisk andsome hw6 poles inside road surfaces;layout/playability acceptance remains open,preview tracks stay unavailable in race picker.
+- Current save behavior runner passes36. A direct mixed historical/current invocation passes45/fails2 immutable SHA contracts;raw failed invocation retained andnot treated as current behavior acceptance. Production hook rerun from actualproject cwd passes9 JS;first wrapper invoked fromworkspace root failed ENOENT after successful build andis retained.
+
+- Final isolated verification:692 current tests,TypeScript,0 lint errors/119 existing warnings,production9 client JS without QA hooks,56 CPU worlds,8 assisted races(6 clean,2 damaged),15 acceleration runs,20 cycles(30 textures/1086 geometries),6 Metal water states,72 individual/integrated contact positions,6 above-body checks and4 former ghosts passed. Official keyboard client rerun completed2 captures after initial navigation interruption. Evidence/landmark-footprints/proof.json verifies506 hashes;no product acceptance.

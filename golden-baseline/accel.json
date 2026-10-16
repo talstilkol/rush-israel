@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "physicsVersion": 13,
+  "physicsVersion": 14,
   "track": "ayalon",
   "gate": "current-behaviour regression",
   "claimGate": "RSH-033",
   "regressionToleranceSeconds": 0.1,
   "claimTolerance": 0.15,
-  "authority": "Tunnel contact epoch13 replaces spaced collision proxies with actual wall,lining andportal-post solids. All numerical targets,claims,tolerances andoriginal generatedFromPhysicsVersion8 provenance remain unchanged. Actual parent epoch12 is archived in evidence/2026-10-16/tunnel-solids/before-accel.json. New15-run browser and exact-head CI verification are separate from independent physical calibration.",
+  "authority": "Landmark contact epoch14 corrects obelisk,hall andhighway support boxes using actual rendered geometry;the same helper retains existing tunnel geometry/quaternion behavior. All numerical means,claims,tolerances andoriginal generatedFromPhysicsVersion8 provenance remain unchanged from the archived epoch13 parent. New15-run browser andexact-head hosted CI are required;this is not independent physical calibration.",
   "runs": [
     {
       "carId": "sabra",

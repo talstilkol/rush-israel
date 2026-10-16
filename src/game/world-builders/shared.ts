@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { closestSample } from "../spline";
 import { tlv } from "../tracks";
+import { colliderForBox } from "../box-collider";
 import type { Collider } from "../types";
 import type { TrackWorldBuilderInput } from "./types";
 
@@ -66,6 +67,11 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     colliders.push(collider);
     return collider;
   };
+  const hitBox = (mesh: THREE.Mesh<THREE.BoxGeometry>) => {
+    const collider = colliderForBox(mesh);
+    colliders.push(collider);
+    return collider;
+  };
   const roadYaw = (x: number, z: number) => {
     const s = built.samples[closestSample(built.samples, x, z).index];
     return Math.atan2(s.tx, s.tz);
@@ -105,12 +111,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     const addTunnelSolid = (mesh: THREE.Mesh<THREE.BoxGeometry>, name: string) => {
       mesh.name = `rush-tunnel-${name}`;
       add(mesh);
-      const { width, height, depth } = mesh.geometry.parameters;
-      // A cloned quaternion can represent the same yaw with Euler x/z = PI.
-      const forward = new THREE.Vector3(0, 0, 1).applyQuaternion(mesh.quaternion);
-      const yaw = Math.atan2(forward.x, forward.z);
-      const collider = hit(mesh.position.x, mesh.position.z, Math.hypot(width / 2, depth / 2), width / 2, depth / 2, yaw);
-      collider.maxY = mesh.position.y + height / 2;
+      hitBox(mesh);
     };
     const wallL = new THREE.Mesh(new THREE.BoxGeometry(0.85, h, len), wallMat);
     wallL.position.set(cx - rx * half, y0 + h * 0.5, cz - rz * half);
@@ -955,6 +956,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     glowAt,
     hit,
     hitRoad,
+    hitBox,
     placeTunnel,
     stone,
     white,

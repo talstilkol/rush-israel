@@ -100,6 +100,7 @@
     "grade-direction.test.mjs": "current-unit",
     "grok-pwa-plugin.test.mjs": "current-unit",
     "input.test.mjs": "current-unit",
+    "landmark-box-collider.test.mjs": "current-unit",
     "look.test.mjs": "current-unit",
     "median-driving.test.mjs": "current-unit",
     "milestone-register.test.mjs": "historical-contract",

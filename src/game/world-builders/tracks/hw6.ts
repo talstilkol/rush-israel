@@ -6,7 +6,7 @@ export default function buildHw6(context: TrackWorldBuilderContext): void {
   const {
     bag,
     add,
-    hit,
+    hitBox,
     wood,
   } = context;
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
@@ -21,7 +21,9 @@ export default function buildHw6(context: TrackWorldBuilderContext): void {
     for (const side of [-1, 1]) {
       const pier = new THREE.Mesh(new THREE.BoxGeometry(3.6, 9, 3.6), conc);
       pier.position.set(ks.x + side * 18, 4.6, ks.z);
+      pier.name = `rush-hw6-pier-${side}`;
       add(pier);
+      hitBox(pier);
       const ramp = new THREE.Mesh(new THREE.BoxGeometry(8, 1.2, 28), conc);
       ramp.position.set(ks.x + side * 22, 4.4, ks.z);
       ramp.rotation.z = side * 0.18;
@@ -34,7 +36,9 @@ export default function buildHw6(context: TrackWorldBuilderContext): void {
     for (const side of [-1, 1]) {
       const pole = new THREE.Mesh(new THREE.BoxGeometry(0.6, 8.2, 0.6), conc);
       pole.position.set(ey.x + side * 13, 4.2, ey.z);
+      pole.name = `rush-hw6-pole-${side}`;
       add(pole);
+      hitBox(pole);
     }
     const sign = new THREE.Mesh(new THREE.BoxGeometry(10, 2.4, 0.2), greenSign);
     sign.position.set(ey.x, 8.2, ey.z + 0.8);
@@ -52,7 +56,5 @@ export default function buildHw6(context: TrackWorldBuilderContext): void {
       tr.position.set(p.x, 1.2, p.z);
       add(tr);
     }
-    hit(ks.x, ks.z, 8);
-    hit(ey.x, ey.z, 4);
   /* RSH-016:END-LEGACY-TRACK-BODY */
 }

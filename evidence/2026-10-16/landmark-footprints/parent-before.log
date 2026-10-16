@@ -1,0 +1,9 @@
+{"passed":false,"captureParent":true,"solids":6,"ghostDamage":[0.035,0.035,0.035,0.035],"mapping":[0,0,0,0,0,0]}
+file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/landmark-footprint-smoke.mjs:63
+ if(!report.passed)throw Error('Actual landmark footprint regression');
+                         ^
+
+Error: Actual landmark footprint regression
+    at file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/landmark-footprint-smoke.mjs:63:26
+
+Node.js v22.16.0

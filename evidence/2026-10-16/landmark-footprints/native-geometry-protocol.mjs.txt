@@ -1,0 +1,24 @@
+import {chromium} from './rush-glazing-ci/node_modules/playwright/index.mjs';
+import {mkdir,writeFile} from 'node:fs/promises';
+const out=new URL('./footprint-native-geometry/',import.meta.url);await mkdir(out,{recursive:true});
+const report={kind:'actual-preview-world-geometry-native',scope:'Actual world meshes and committed textures rendered with diagnostic camera and lighting. Not the gameplay pipeline,preview race,art or performance acceptance.',passed:false,rows:[],errors:[]};
+const persist=()=>writeFile(new URL('summary.json',out),JSON.stringify(report,null,2)+'\n');await persist();let browser;
+try{
+ browser=await chromium.launch({headless:false});const page=await browser.newPage({viewport:{width:1100,height:750}});page.on('pageerror',e=>report.errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text())});
+ await page.goto('http://127.0.0.1:8127/',{waitUntil:'networkidle'});
+ await page.evaluate(async()=>{
+  const source=await(await fetch('/src/game/world.ts')).text(),imports=[...source.matchAll(/from "([^"]+)"/g)].map(m=>m[1]);const dependency=name=>imports.find(url=>url.split('?')[0].endsWith(`/${name}`))||`/src/game/${name}`;
+  const THREE=await import(dependency('three.js')),{TRACKS}=await import(dependency('tracks.ts')),{buildTrack}=await import(dependency('spline.ts')),{createWorld}=await import('/src/game/world.ts');
+  for(const name of['arrow','beam','blob','clock','curb','facade','flag','flake','flare','foam','ground','road','sign','sky','stone','tree','walk','water']){const module=await import(dependency(`${name}-assets.ts`));for(const[key,load]of Object.entries(module))if(key.startsWith('load')&&key!=='loadRoadFor')await load()}
+  const canvas=document.createElement('canvas');document.body.replaceChildren(canvas);document.body.style.margin='0';const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setSize(1100,750);renderer.setPixelRatio(1);renderer.setClearColor(0x9cbed0);renderer.outputColorSpace=THREE.SRGBColorSpace;
+  window.__footprintDiagnostic=async(id,name)=>{
+   const definition=TRACKS.find(d=>d.id===id),world=await createWorld(definition,buildTrack(definition),false,false,'clear');
+   try{const mesh=world.group.getObjectByName(name);if(!mesh)throw Error('Actual target missing:'+name);const scene=new THREE.Scene();scene.add(world.group,new THREE.HemisphereLight(0xe8f1ff,0x5c5945,2));const sun=new THREE.DirectionalLight(0xfff2da,3);sun.position.set(50,100,40);scene.add(sun);world.group.updateMatrixWorld(true);const bounds=new THREE.Box3().setFromObject(mesh),center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3()),span=Math.max(size.x,size.y,size.z);const camera=new THREE.PerspectiveCamera(48,1100/750,.1,20000);camera.position.copy(center).add(new THREE.Vector3(span*.95,span*.65,span*1.6));camera.lookAt(center);renderer.render(scene,camera);const gl=renderer.getContext();gl.finish();const ext=gl.getExtension('WEBGL_debug_renderer_info');return{track:id,name,position:mesh.position.toArray(),dimensions:mesh.geometry.parameters,camera:camera.position.toArray(),renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),glError:gl.getError()}}finally{world.dispose()}
+  };
+  window.__closeFootprintDiagnostic=()=>renderer.dispose();
+ });
+ for(const[track,name]of[['ksaba','rush-ksaba-obelisk'],['hadera','rush-hadera-hall'],['hw6','rush-hw6-pier--1'],['hw6','rush-hw6-pier-1'],['hw6','rush-hw6-pole--1'],['hw6','rush-hw6-pole-1']]){
+  const actual=await page.evaluate(([track,name])=>window.__footprintDiagnostic(track,name),[track,name]);if(actual.glError||!actual.renderer.includes('Metal'))throw Error(JSON.stringify(actual));await page.locator('canvas').screenshot({path:new URL(name+'.png',out).pathname});report.rows.push(actual);await persist();
+ }
+ await page.evaluate(()=>window.__closeFootprintDiagnostic());await browser.close();browser=undefined;report.passed=report.rows.length===6&&!report.errors.length;await persist();if(!report.passed)throw Error('Native geometry diagnostic failed');console.log(JSON.stringify(report));
+}catch(error){report.error=String(error);report.passed=false;await persist();throw error}finally{if(browser)await browser.close()}

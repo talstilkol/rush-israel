@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 2,
+  "physicsVersion": 14,
+  "track": "ayalon",
+  "gate": "current-behaviour regression",
+  "claimGate": "RSH-033",
+  "note": "CI fails on acceleration regression and on zeroTo100 claim gaps after RSH-033 calibration.",
+  "regressionOk": true,
+  "claimsOk": true,
+  "claimGaps": [],
+  "runs": [
+    {
+      "carId": "sabra",
+      "times": [
+        8.45,
+        8.45,
+        8.45
+      ],
+      "mean": 8.45,
+      "baselineMean": 8.4,
+      "regressionDeltaSeconds": 0.05,
+      "regressionToleranceSeconds": 0.1,
+      "regressionOk": true,
+      "claim": 8.4,
+      "claimTolerance": 0.15,
+      "claimOk": true,
+      "model": "extrusion"
+    },
+    {
+      "carId": "carmel",
+      "times": [
+        6.6,
+        6.6,
+        6.6
+      ],
+      "mean": 6.6,
+      "baselineMean": 6.6,
+      "regressionDeltaSeconds": 0,
+      "regressionToleranceSeconds": 0.1,
+      "regressionOk": true,
+      "claim": 6.6,
+      "claimTolerance": 0.15,
+      "claimOk": true,
+      "model": "extrusion"
+    },
+    {
+      "carId": "kfir",
+      "times": [
+        4.9,
+        4.9,
+        4.9
+      ],
+      "mean": 4.9,
+      "baselineMean": 4.9,
+      "regressionDeltaSeconds": 0,
+      "regressionToleranceSeconds": 0.1,
+      "regressionOk": true,
+      "claim": 4.9,
+      "claimTolerance": 0.15,
+      "claimOk": true,
+      "model": "extrusion"
+    },
+    {
+      "carId": "negev",
+      "times": [
+        5.8,
+        5.8,
+        5.8
+      ],
+      "mean": 5.8,
+      "baselineMean": 5.75,
+      "regressionDeltaSeconds": 0.05,
+      "regressionToleranceSeconds": 0.1,
+      "regressionOk": true,
+      "claim": 5.8,
+      "claimTolerance": 0.15,
+      "claimOk": true,
+      "model": "extrusion"
+    },
+    {
+      "carId": "yam",
+      "times": [
+        3.45,
+        3.45,
+        3.45
+      ],
+      "mean": 3.45,
+      "baselineMean": 3.45,
+      "regressionDeltaSeconds": 0,
+      "regressionToleranceSeconds": 0.1,
+      "regressionOk": true,
+      "claim": 3.5,
+      "claimTolerance": 0.15,
+      "claimOk": true,
+      "model": "extrusion"
+    }
+  ]
+}
