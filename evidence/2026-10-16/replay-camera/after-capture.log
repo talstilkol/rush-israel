@@ -1,0 +1,21 @@
+2026-10-16T05:52:38.293Z start ms=20000 backend-drive kind=diagnostic-smoke steering=real-input-ai
+2026-10-16T05:52:53.359Z t=15s spd=28.7 on=true p=0.159 finished=0 offTicks=0 p95=13.6
+2026-10-16T05:52:58.559Z FAIL Error: EISDIR: illegal operation on a directory, open '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/artifacts/driving-soak/drive-30min-end.png'
+node:internal/fs/promises:633
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: EISDIR: illegal operation on a directory, open '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/artifacts/driving-soak/drive-30min-end.png'
+    at async open (node:internal/fs/promises:633:25)
+    at async Object.writeFile (node:internal/fs/promises:1207:14)
+    at async _Page.screenshot (/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/node_modules/playwright-core/lib/coreBundle.js:61393:11)
+    at async capture (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/soak-30min.mjs:105:7)
+    at async captureWithVerdict (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/capture-verdict.mjs:6:6)
+    at async file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/soak-30min.mjs:102:3 {
+  errno: -21,
+  code: 'EISDIR',
+  syscall: 'open',
+  path: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/artifacts/driving-soak/drive-30min-end.png'
+}
+
+Node.js v22.16.0

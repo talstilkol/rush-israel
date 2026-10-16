@@ -1,0 +1,61 @@
+{
+  "kind": "controlled-actual-replay-camera",
+  "scope": "Actual engine, actual Ayalon driven clip and recorded native frame intervals. Manual replay stepping only; not a completed race, soak, performance or human/device acceptance.",
+  "clip": {
+    "track": "ayalon",
+    "rows": 59,
+    "first": 0.10833333333333332,
+    "last": 5.908333333333417,
+    "assisted": true
+  },
+  "normal": {
+    "reducedMotion": "no-preference",
+    "early": [
+      {
+        "frame": 0,
+        "replayTime": 0.0034439999699592593,
+        "camMode": 0
+      },
+      {
+        "frame": 1,
+        "replayTime": 0.006972000010013581,
+        "camMode": 0
+      }
+    ],
+    "transitions": [
+      {
+        "frame": 556,
+        "before": 2.7840699999523144,
+        "after": 2.8001699999761565,
+        "from": 0,
+        "to": 1
+      }
+    ],
+    "finalReplayTime": 2.8516699999761568,
+    "finalCamera": 1,
+    "passed": true,
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)"
+  },
+  "reduced": {
+    "reducedMotion": "reduce",
+    "early": [
+      {
+        "frame": 0,
+        "replayTime": 0.0034439999699592593,
+        "camMode": 0
+      },
+      {
+        "frame": 1,
+        "replayTime": 0.006972000010013581,
+        "camMode": 0
+      }
+    ],
+    "transitions": [],
+    "finalReplayTime": 2.8516699999761568,
+    "finalCamera": 0,
+    "passed": true,
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)"
+  },
+  "errors": [],
+  "passed": true
+}

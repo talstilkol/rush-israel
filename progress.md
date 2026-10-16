@@ -181,3 +181,18 @@ Not done: a 30-minute soak, devices, the architecture locks, Alpha through relea
 - Sixteen real-route regressions fail before and pass after; grade-force coverage also passes (176 tests). Entire current suite675passes, TypeScript passes, lint0errors/111existingwarnings. Final browser/source-bound results are collected separately; no current hosted/race/soak acceptance is inherited from8b5edd7.
 - Initial official-client menu selector changed language; a Daily selector then failed in Hebrew. These are retained setup diagnostics, not gameplay passes. The observed Hebrew daily button succeeds; rerun on final physics bytes before claiming current-source keyboard coverage.
 - Full model detail, Hermon building/terrain alignment, rights, physical devices and release remain open. No product unit or complete task is closed by these corrections.
+
+# Replay camera slow-motion correction,2026-10-16
+
+- Native C3 frame recording exposed camera changes immediately after replay starts. Actual source advanced replayT by0.42*dt but compared against replayT-dt. Two actual8.2/8.4ms frame intervals switched the camera twice within0.006972s of replay time.
+- Added controlled actual-engine regression: real Ayalon cars/physics generate59 replay samples from six seconds assisted driving. Recorded native frame intervals are reused as replay timing inputs. This is manually stepped replay testing, not a completed race, soak or performance acceptance.
+- Before correction, normal motion fails with two immediate switches; reduced motion already passes. After saving the actual previous replay time and comparing the two replay positions, normal/reduced cases both pass, with exactly one normal camera transition at2.8s. The required Photo gate now includes the regression.
+- C3 CI/soak and two native rendering diagnostics remain C3 evidence. Do not retarget their acceptance to this source. Fixed-camera profiling, physical Windows/mobile, human/art/rights and release gates remain open.
+
+# Fail-closed soak capture and initialization,2026-10-16
+
+- Reproduced a separate truth-boundary bug with actual native20s diagnostic driving and an output PNG path that is a real directory: old code exited1 with EISDIR but left passed=true. This is not a fake30-minute result; it proves a failure path in the old verdict logic.
+- New shared capture transaction persists false before capture; success requires capture and cleanup. Prior errors cannot be revived by recapturing. Soak also clears its verdict before browser launch, resets its log and keeps the mandatory1800s/full-race conditions unchanged. Optional native backend/artifact directory are diagnostic/test controls; CI defaults remain headless.
+- Five new unit cases use real previously recorded C3 CI metrics/PNG as explicitly marked historical inputs and actual filesystem/process errors. Unit outputs are kind=capture-verdict-unit-io, never a new driving soak. Missing-browser initialization test exits before browser/driving; npm test is not1800s acceptance. An intermediate missing-prior-error guard failed one case and was corrected before publication.
+- Final actual20s failure diagnostic writes passed=false/captureStatus=failed; final actual20s success writes passed=true/captureStatus=captured with kind=diagnostic-smoke/deviceAcceptance=false. Initialfalse was observed while the failure diagnostic was running. These do not satisfy the30-minute gate.
+- New source requires its own full CI/soak. C3 all-six green, actual1,800,322ms soak and two native frame-diagnostic reports remain C3 evidence, with camera/background/development-build limitations. No product unit accepted.

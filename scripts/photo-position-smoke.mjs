@@ -3,6 +3,7 @@
 import assert from 'node:assert/strict';
 import {verifyVehicleVisualFeedback} from './visual-feedback-smoke.mjs';
 import {verifyCarGlazing} from './car-glazing-smoke.mjs';
+import {verifyReplayCamera} from './replay-camera-smoke.mjs';
 import { chromium } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fromRoot } from './project-root.mjs';
@@ -50,3 +51,5 @@ try {
 await verifyVehicleVisualFeedback();
 
 await verifyCarGlazing();
+
+await verifyReplayCamera();

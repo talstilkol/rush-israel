@@ -109,7 +109,7 @@
       "acceptance": "חוזים חדשים מאומתים בהתנהגות; חוזים היסטוריים נשמרים",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "194 בדיקות קוד נוכחי ו-466 בדיקות היסטוריות הופרדו; סוק הוא job חובה מפורש. CI חי על הענף המתוקן טרם נמדד.",
+      "verification_note": "194 בדיקות קוד נוכחי ו-466 בדיקות היסטוריות הופרדו; סוק הוא job חובה מפורש. CI חי על הענף המתוקן טרם נמדד. Capture verdict hardening: a real20s diagnostic with EISDIR previously exited1 while passed stayedtrue; capture/cleanup now must finish before restoring the measured flag, errors forcefalse and initialization invalidates an older record before browser launch. Five real filesystem/process unit cases cover capture, cleanup, prior error and missing browser; they are not a30-minute run.",
       "external_evidence_required": false
     },
     {
@@ -250,7 +250,7 @@
       "acceptance": "10 שניות הקלטה נשארות 10 שניות playback; rolling windows עקביים",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "שארית זמן ההקלטה נשמרת; timestamps קיימים. נדרשת בדיקת Replay ארוך וגבולות rewind.",
+      "verification_note": "שארית זמן ההקלטה נשמרת; timestamps קיימים. נדרשת בדיקת Replay ארוך וגבולות rewind. Replay camera boundary correction: compare actual previous and next replay times rather than subtracting unscaled dt during slow motion. Controlled real-engine test uses a59-sample Ayalon driven clip and actual native frame intervals; before:two immediate camera switches, after:none before2.8s and one crossing; reduced-motion remains fixed. This does not accept complete Ghost/Replay or human/device behavior.",
       "external_evidence_required": false
     },
     {

@@ -1,0 +1,23 @@
+{
+  "source_head": "c3d3de4a2e938837647c691d4064a59e1064d8e8",
+  "run_id": 38854508031,
+  "scope": "Actual prior successful CI data used only to test verdict/capture I/O. It is not evidence of a new run or acceptance of later code.",
+  "summary": {
+    "kind": "30-minute-driving",
+    "passed": true,
+    "completedRaces": 1,
+    "elapsedMs": 1800322,
+    "ticks": 1250,
+    "maxSpeed": 31.42,
+    "maxProgress": 0.982,
+    "offRoadRatio": 0,
+    "p95Worst": 12414.3,
+    "memoryHigh": {
+      "textures": 33,
+      "geometries": 1595
+    },
+    "deviceAcceptance": false
+  },
+  "raw_summary_sha256": "8632e83c25606a0f763927a1a7d1d6833b13a5794fa6ec1a48150a26fd2464b2",
+  "captured_png_sha256": "b8863b4bca432c0b40b9e87971d617afecc87636f2cdd8db67c15dc0ef04b40b"
+}

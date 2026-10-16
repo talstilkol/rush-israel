@@ -849,6 +849,7 @@ export function stepReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine["s
     const heads = this.replayBuf.map((row) => ({ t: row[0]?.t }));
     const dur = Math.max(0.1, timedSpan(heads, 0.1));
     const slow = this.replayT < 1.35 || this.replayT > dur - 2.1;
+    const previousReplayT = this.replayT;
     this.replayT += slow ? dt * 0.42 : dt;
     this.replaySlow = slow;
     if (this.replayT >= dur) {
@@ -889,7 +890,7 @@ export function stepReplay(this: EngineAdapterHost, dt: Parameters<RaceEngine["s
       car.yaw = ra.yaw + dy * f;
       car.speed = ra.speed + (rb.speed - ra.speed) * f;
     }
-    if (!prefersReducedMotion() && Math.floor(this.replayT / 2.8) !== Math.floor((this.replayT - dt) / 2.8)) {
+    if (!prefersReducedMotion() && Math.floor(this.replayT / 2.8) !== Math.floor(previousReplayT / 2.8)) {
       this.camMode = (this.camMode + 1) % this.camNames.length;
       this.hood = this.camMode === 1;
     }

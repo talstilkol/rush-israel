@@ -3,6 +3,7 @@
 import { chromium } from "playwright";
 import { appendFile, mkdir, writeFile } from "node:fs/promises";
 import { fromRoot } from "./project-root.mjs";
+import { captureWithVerdict } from "./capture-verdict.mjs";
 
 const MS = Number(process.env.SOAK_MS || 30 * 60 * 1000);
 const smokeOnly = process.env.SOAK_SMOKE === "1";
@@ -10,7 +11,7 @@ if (!Number.isFinite(MS) || MS <= 0 || (!smokeOnly && MS < 1800000)) {
   throw new Error("30-minute acceptance requires SOAK_MS >= 1800000; short diagnostics require SOAK_SMOKE=1");
 }
 const url = process.env.SOAK_URL || "http://127.0.0.1:8080/";
-const logDir = fromRoot("artifacts", "driving-soak");
+const logDir = process.env.SOAK_ARTIFACT_DIR || fromRoot("artifacts", "driving-soak");
 await mkdir(logDir, { recursive: true });
 const logFile = `${logDir}/drive-30min.log`;
 const line = async (s) => {
@@ -19,9 +20,12 @@ const line = async (s) => {
   await appendFile(logFile, row);
 };
 
-const browser = await chromium.launch({ headless: true });
+let summary = { kind: smokeOnly ? "diagnostic-smoke" : "30-minute-driving", passed: false, completedRaces: 0, deviceAcceptance: false };
+const persistSummary = value => writeFile(`${logDir}/summary.json`, `${JSON.stringify(value, null, 2)}\n`);
+await persistSummary(summary);
+await writeFile(logFile, "");
+const browser = await chromium.launch({ headless: process.env.SOAK_NATIVE !== "1" });
 let page;
-let summary = { kind: smokeOnly ? "diagnostic-smoke" : "30-minute-driving", passed: false, completedRaces: 0 };
 try {
   page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
   const errs = [];
@@ -95,15 +99,21 @@ try {
   if (!smokeOnly && completedRaces < 1) throw new Error("no complete race in 30 minutes");
   if (!smokeOnly && elapsedMs < 1800000) throw new Error("wall-clock duration too short");
   summary = { ...summary, passed: true, completedRaces, elapsedMs, ticks, maxSpeed, maxProgress, offRoadRatio: off / ticks, p95Worst, memoryHigh, deviceAcceptance: false };
-  await page.screenshot({ path: `${logDir}/drive-30min-end.png` });
-  await line(`ok ticks=${ticks} completed=${completedRaces} elapsed=${Math.round(elapsedMs / 1000)}s kind=${summary.kind}`);
+  await captureWithVerdict(summary, {
+    persist: persistSummary,
+    capture: async () => {
+      await page.screenshot({ path: `${logDir}/drive-30min-end.png`, timeout: 30000 });
+      await line(`ok ticks=${ticks} completed=${completedRaces} elapsed=${Math.round(elapsedMs / 1000)}s kind=${summary.kind}`);
+    },
+    cleanup: () => browser.close(),
+  });
 } catch (error) {
-  summary = { ...summary, error: String(error) };
+  summary = { ...summary, passed: false, error: String(error) };
   await page?.screenshot({ path: `${logDir}/failure.png` }).catch(() => {});
   if (page) await writeFile(`${logDir}/failure-dom.txt`, await page.locator("body").innerText().catch(() => "unavailable"));
   await line(`FAIL ${error}`);
   throw error;
 } finally {
-  await writeFile(`${logDir}/summary.json`, `${JSON.stringify(summary, null, 2)}\n`);
-  await browser.close();
+  try { if (browser.isConnected()) await browser.close(); }
+  finally { await persistSummary(summary); }
 }

@@ -1,0 +1,11 @@
+{
+  "observed_at": "2026-10-16T05:52:42.424064+00:00",
+  "scope": "Read while the final20s diagnostic process is still running. Initial verdict is false; not a completed acceptance run.",
+  "summary": {
+    "kind": "diagnostic-smoke",
+    "passed": false,
+    "completedRaces": 0,
+    "deviceAcceptance": false
+  },
+  "raw_sha256": "4cc6d6c5967808efbd1e35f464381b02d73011f5945c0b44c2721c556f1ab1c5"
+}

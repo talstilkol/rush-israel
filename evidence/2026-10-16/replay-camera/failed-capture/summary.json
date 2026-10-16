@@ -1,0 +1,18 @@
+{
+  "kind": "diagnostic-smoke",
+  "passed": false,
+  "completedRaces": 0,
+  "deviceAcceptance": false,
+  "elapsedMs": 20073,
+  "ticks": 188,
+  "maxSpeed": 30.77,
+  "maxProgress": 0.217,
+  "offRoadRatio": 0,
+  "p95Worst": 609.8,
+  "memoryHigh": {
+    "textures": 50,
+    "geometries": 1992
+  },
+  "captureStatus": "failed",
+  "error": "Error: EISDIR: illegal operation on a directory, open '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/artifacts/driving-soak/drive-30min-end.png'"
+}
