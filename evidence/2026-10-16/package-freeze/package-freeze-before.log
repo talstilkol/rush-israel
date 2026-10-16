@@ -1,0 +1,41 @@
+TAP version 13
+# Subtest: a current package freeze claim requires the actual bytes and owner authority
+not ok 1 - a current package freeze claim requires the actual bytes and owner authority
+  ---
+  duration_ms: 0.920958
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/package-freeze-authority.test.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    historical tokens must not certify the current working tree
+    + actual - expected
+    
+    + [
+    +   'package frozen without owner freeze',
+    +   'package bytes65f8324041e979f186b3e78c92f14fba0e4dbfcb76def47f038d211069ebeb39 differ from declared freezeae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94'
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0: 'package frozen without owner freeze'
+    1: 'package bytes65f8324041e979f186b3e78c92f14fba0e4dbfcb76def47f038d211069ebeb39 differ from declared freezeae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/package-freeze-authority.test.mjs:15:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 198.087958

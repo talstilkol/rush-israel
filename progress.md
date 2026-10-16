@@ -118,3 +118,9 @@ Not done: a 30-minute soak, devices, the architecture locks, Alpha through relea
 - The torque-only stage passed 20 allocation cycles at 30 textures/1086 geometries. Those results do not silently accept the later combined source. Final exact-head CI must run the browser gates, 20 cycles and an actual 1800-second soak. Product acceptance remains 0/67; asset rights, real target devices and human acceptance are still unavailable.
 
 - Hosted 3a1208f finished successfully in every required job, including an actual 1,800,524ms driving soak with two completed races and offRoadRatio0. Raw artifacts were downloaded and source-bound. This is Physics 9 before the new torque/height/tunnel fixes; it does not accept the next Physics 10 commit.
+
+## 2026-10-16: Remove stale package freeze authority
+- The exported package freeze asserted true despite OWNER_FREEZE=false and a historical digest differing from the actual package bytes. The new actual-byte guard fails before the fix and passes after clearing the three unsupported lock flags. The historical digest is preserved explicitly as historical, not refreshed to manufacture a freeze.
+- 324 current tests pass; TypeScript and production QA-hook exclusion pass; lint has zero errors and 111 existing warnings. Separate source-bound proof: evidence/2026-10-16/package-freeze/proof.json. Physics 10 gameplay is unchanged. Exact-head hosted CI and a fresh actual 1800-second run are required after this source change.
+- A separate NPC lane experiment passed 20 narrow unit cases but increased damage in several actual full races (Ayalon 0 to 0.142; Rothschild 0.282 to 0.484). It is rejected and remains outside the product branch. Unit green did not authorize shipping it.
+- Fresh GitHub secret-scanning API returned disabled/404, not an empty findings list. Full NPM metadata-upload audit remains unavailable pending specific authorization after automatic approval rejection. Product acceptance remains 0/67.

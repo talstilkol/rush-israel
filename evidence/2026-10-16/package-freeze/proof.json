@@ -1,0 +1,50 @@
+{
+  "source_base_sha": "6b1e62b396d51f5cd28ac77daa1c57486e86de88",
+  "source_authority": "Exact file hashes below; this proof precedes its containing commit and does not assert hosted CI.",
+  "files": {
+    "src/game/semver-release/semver.ts": "1f08e46881206f98ae1f7cf55753d39cd74ee57505481f39a0f22c84660e6ff2",
+    "scripts/package-freeze-authority.test.mjs": "0636ed4d7f622717b741cd2a784e5a89e5d178d8a96f525a213ea0f8aa7a07cb",
+    "package.json": "65f8324041e979f186b3e78c92f14fba0e4dbfcb76def47f038d211069ebeb39",
+    "TEST-CLASSIFICATION.json": "34110bc802d54870cb2631643959ba79bcb5d006acab4d4bb88b70563963bd32"
+  },
+  "actual_package_sha256": "65f8324041e979f186b3e78c92f14fba0e4dbfcb76def47f038d211069ebeb39",
+  "historical_package_sha256": "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94",
+  "before": "Guard failed on missing owner freeze and mismatched actual package bytes.",
+  "after": "Unsubstantiated package/semver/changelog lock flags are false. Historical digest retained as historical, not replaced by a new seal.",
+  "local_validation": {
+    "unit_pass": 324,
+    "unit_fail": 0,
+    "typecheck_exit": 0,
+    "lint_errors": 0,
+    "lint_existing_warnings": 111,
+    "production_qa_hook_check": "passed, nine JS files"
+  },
+  "gameplay_changes": false,
+  "product_accepted": false,
+  "artifacts": [
+    {
+      "path": "evidence/2026-10-16/package-freeze/package-freeze-before.log",
+      "sha256": "2bcf8f07fa19dfacaead03ee4ae3facc48790fa95a1d80bf551c58687ccbbb27"
+    },
+    {
+      "path": "evidence/2026-10-16/package-freeze/package-freeze-after.log",
+      "sha256": "05d9d66e1c0a22443744beb16ccad23b91ba5054769bfc54788bbf1580acf894"
+    },
+    {
+      "path": "evidence/2026-10-16/package-freeze/package-freeze-full-unit.log",
+      "sha256": "d05d553c52759ec8b14d39bd4c695b448d7ff69c0f4603505a616f982f05968d"
+    },
+    {
+      "path": "evidence/2026-10-16/package-freeze/package-freeze-typecheck.log",
+      "sha256": "602ec0d473a17c01dcdc2e92e85bf4ba1bdc73a68d0f14c2da2e4b2748e00204"
+    },
+    {
+      "path": "evidence/2026-10-16/package-freeze/package-freeze-lint.log",
+      "sha256": "75ec7dc2e291581eeeb38bf4ba0535b6220ec7c990e8878fb27a4770c2a261b6"
+    },
+    {
+      "path": "evidence/2026-10-16/package-freeze/package-freeze-production.log",
+      "sha256": "828c24cc0965ba0f5d510fafd5b2d0979d185339128fd44f2adfdbf3d7f81def"
+    }
+  ]
+}
