@@ -9,8 +9,8 @@ export const PHYSICS_DT = 1 / PHYSICS_HZ;
 export const MAX_CATCHUP_STEPS = 24;
 export const MAX_ACCUMULATOR = 0.2;
 // RSH-033-OVERLAY-BEGIN:physics-version
-// Preview garden andgantry now clear the actual road;record epoch advances with moved collision bodies.
-export const PHYSICS_VERSION = 18;
+// Grade traffic forecasts now use sampled road arc instead of uniform spline t.
+export const PHYSICS_VERSION = 19;
 export const V100_MPS = 27.778;
 export const CLAIM_TOLERANCE = 0.15;
 export function claimAccel(zeroTo100: number) {

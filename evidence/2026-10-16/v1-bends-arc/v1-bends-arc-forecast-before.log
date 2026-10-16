@@ -1,0 +1,234 @@
+TAP version 13
+# Subtest: aiInput: actual Haifa 5.25s grade approach needs early braking
+ok 1 - aiInput: actual Haifa 5.25s grade approach needs early braking
+  ---
+  duration_ms: 1.165666
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 5.65s grade approach needs early braking
+ok 2 - aiInput: actual Haifa 5.65s grade approach needs early braking
+  ---
+  duration_ms: 0.09175
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 5.70s grade approach needs early braking
+ok 3 - aiInput: actual Haifa 5.70s grade approach needs early braking
+  ---
+  duration_ms: 0.115
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 5.75s grade approach needs early braking
+ok 4 - aiInput: actual Haifa 5.75s grade approach needs early braking
+  ---
+  duration_ms: 0.063083
+  type: 'test'
+  ...
+# Subtest: aiInput: actual Haifa 6.15s grade approach needs early braking
+ok 5 - aiInput: actual Haifa 6.15s grade approach needs early braking
+  ---
+  duration_ms: 0.107542
+  type: 'test'
+  ...
+# Subtest: aiInput: off-road follower cannot borrow the main-road grade forecast
+ok 6 - aiInput: off-road follower cannot borrow the main-road grade forecast
+  ---
+  duration_ms: 0.39475
+  type: 'test'
+  ...
+# Subtest: aiInput: off-road leader cannot borrow the main-road grade forecast
+ok 7 - aiInput: off-road leader cannot borrow the main-road grade forecast
+  ---
+  duration_ms: 1.726125
+  type: 'test'
+  ...
+# Subtest: aiInput: same horizontal pose on another level must not become a grade hazard (-12m)
+ok 8 - aiInput: same horizontal pose on another level must not become a grade hazard (-12m)
+  ---
+  duration_ms: 0.111125
+  type: 'test'
+  ...
+# Subtest: aiInput: same horizontal pose on another level must not become a grade hazard (12m)
+ok 9 - aiInput: same horizontal pose on another level must not become a grade hazard (12m)
+  ---
+  duration_ms: 0.2385
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 5.25s grade approach needs early braking
+ok 10 - trafficInput: actual Haifa 5.25s grade approach needs early braking
+  ---
+  duration_ms: 0.274
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 5.65s grade approach needs early braking
+ok 11 - trafficInput: actual Haifa 5.65s grade approach needs early braking
+  ---
+  duration_ms: 0.082459
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 5.70s grade approach needs early braking
+ok 12 - trafficInput: actual Haifa 5.70s grade approach needs early braking
+  ---
+  duration_ms: 0.037708
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 5.75s grade approach needs early braking
+ok 13 - trafficInput: actual Haifa 5.75s grade approach needs early braking
+  ---
+  duration_ms: 0.035792
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Haifa 6.15s grade approach needs early braking
+ok 14 - trafficInput: actual Haifa 6.15s grade approach needs early braking
+  ---
+  duration_ms: 0.039
+  type: 'test'
+  ...
+# Subtest: trafficInput: off-road follower cannot borrow the main-road grade forecast
+ok 15 - trafficInput: off-road follower cannot borrow the main-road grade forecast
+  ---
+  duration_ms: 0.067167
+  type: 'test'
+  ...
+# Subtest: trafficInput: off-road leader cannot borrow the main-road grade forecast
+ok 16 - trafficInput: off-road leader cannot borrow the main-road grade forecast
+  ---
+  duration_ms: 0.033584
+  type: 'test'
+  ...
+# Subtest: trafficInput: same horizontal pose on another level must not become a grade hazard (-12m)
+ok 17 - trafficInput: same horizontal pose on another level must not become a grade hazard (-12m)
+  ---
+  duration_ms: 0.035167
+  type: 'test'
+  ...
+# Subtest: trafficInput: same horizontal pose on another level must not become a grade hazard (12m)
+ok 18 - trafficInput: same horizontal pose on another level must not become a grade hazard (12m)
+  ---
+  duration_ms: 0.03475
+  type: 'test'
+  ...
+# Subtest: aiInput: historical actual Hermon near-end grade traffic needs braking by measured arc
+not ok 19 - aiInput: historical actual Hermon near-end grade traffic needs braking by measured arc
+  ---
+  duration_ms: 0.623708
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/ai-grade-forecast.test.mjs:38:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/ai-grade-forecast.test.mjs:54:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: trafficInput: historical actual Hermon near-end grade traffic needs braking by measured arc
+not ok 20 - trafficInput: historical actual Hermon near-end grade traffic needs braking by measured arc
+  ---
+  duration_ms: 0.142375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/ai-grade-forecast.test.mjs:38:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0.1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 0.1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/ai-grade-forecast.test.mjs:54:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: aiInput: current actual Hermon near-end grade traffic needs braking by measured arc
+not ok 21 - aiInput: current actual Hermon near-end grade traffic needs braking by measured arc
+  ---
+  duration_ms: 0.098834
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/ai-grade-forecast.test.mjs:38:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/ai-grade-forecast.test.mjs:54:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: trafficInput: current actual Hermon near-end grade traffic needs braking by measured arc
+not ok 22 - trafficInput: current actual Hermon near-end grade traffic needs braking by measured arc
+  ---
+  duration_ms: 0.074417
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/ai-grade-forecast.test.mjs:38:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0.1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 0.1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/ai-grade-forecast.test.mjs:54:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: aiInput: actual Scopus overpass is far along its route despite x/z alignment
+ok 23 - aiInput: actual Scopus overpass is far along its route despite x/z alignment
+  ---
+  duration_ms: 0.329
+  type: 'test'
+  ...
+# Subtest: trafficInput: actual Scopus overpass is far along its route despite x/z alignment
+ok 24 - trafficInput: actual Scopus overpass is far along its route despite x/z alignment
+  ---
+  duration_ms: 0.194166
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 20
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 389.002125

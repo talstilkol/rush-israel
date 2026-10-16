@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: oldjaffa/-1/asphalt: actual mesh boundary has no folded route segments
+ok 1 - oldjaffa/-1/asphalt: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 7.648459
+  type: 'test'
+  ...
+# Subtest: oldjaffa/-1/outer sidewalk: actual mesh boundary has no folded route segments
+ok 2 - oldjaffa/-1/outer sidewalk: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 6.064708
+  type: 'test'
+  ...
+# Subtest: oldjaffa/1/asphalt: actual mesh boundary has no folded route segments
+ok 3 - oldjaffa/1/asphalt: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 2.777708
+  type: 'test'
+  ...
+# Subtest: oldjaffa/1/outer sidewalk: actual mesh boundary has no folded route segments
+ok 4 - oldjaffa/1/outer sidewalk: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 3.855792
+  type: 'test'
+  ...
+# Subtest: namal/-1/asphalt: actual mesh boundary has no folded route segments
+ok 5 - namal/-1/asphalt: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 3.947458
+  type: 'test'
+  ...
+# Subtest: namal/-1/outer sidewalk: actual mesh boundary has no folded route segments
+ok 6 - namal/-1/outer sidewalk: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 3.959833
+  type: 'test'
+  ...
+# Subtest: namal/1/asphalt: actual mesh boundary has no folded route segments
+ok 7 - namal/1/asphalt: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 3.997333
+  type: 'test'
+  ...
+# Subtest: namal/1/outer sidewalk: actual mesh boundary has no folded route segments
+ok 8 - namal/1/outer sidewalk: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 3.884375
+  type: 'test'
+  ...
+# Subtest: hermon/-1/asphalt: actual mesh boundary has no folded route segments
+ok 9 - hermon/-1/asphalt: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 2.423334
+  type: 'test'
+  ...
+# Subtest: hermon/1/asphalt: actual mesh boundary has no folded route segments
+ok 10 - hermon/1/asphalt: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 2.526583
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 383.663375

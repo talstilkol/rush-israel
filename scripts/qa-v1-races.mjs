@@ -58,7 +58,7 @@ try {
         if (result.finished) break;
       }
       if (!result?.finished) throw new Error(`race did not finish: ${JSON.stringify(result)}`);
-      if (track.id === 'rothschild' && result.damage !== 0) throw new Error(`Rothschild assisted race accumulated damage: ${result.damage}; folded-route regression or contact behavior needs investigation`);
+      if (result.damage !== 0) throw new Error(`${track.id} assisted race accumulated damage: ${result.damage}; route geometry or contact behavior needs investigation`);
       await page.evaluate(() => window.__controlsTest.skipReplay());
       await page.getByRole('dialog').getByRole('heading', { level: 2 }).waitFor();
       if (errors.length) throw new Error(errors.join('\n'));

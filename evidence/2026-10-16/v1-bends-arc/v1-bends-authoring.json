@@ -1,0 +1,61 @@
+{
+  "scope": "Deterministic local authoring from existing fictional route controls;offlinecandidate search;no new geographic survey.",
+  "records": [
+    {
+      "track": "oldjaffa",
+      "index": 6,
+      "old": "tlv(32.0514, 34.7504)",
+      "new": "tlv(32.05140000, 34.75050000)",
+      "candidateFactor": 0.2,
+      "candidateRounds": 2
+    },
+    {
+      "track": "oldjaffa",
+      "index": 14,
+      "old": "tlv(32.0550, 34.7588)",
+      "new": "tlv(32.05496400, 34.75847600)",
+      "candidateFactor": 0.2,
+      "candidateRounds": 2
+    },
+    {
+      "track": "namal",
+      "index": 0,
+      "old": "tlv(32.0950, 34.7732)",
+      "new": "tlv(32.09530625, 34.77381250)",
+      "candidateFactor": 0.25,
+      "candidateRounds": 2
+    },
+    {
+      "track": "hermon",
+      "index": 8,
+      "old": "her(33.2894, 35.7742)",
+      "new": "her(33.28944000, 35.77469000)",
+      "candidateFactor": 0.1,
+      "candidateRounds": 1
+    },
+    {
+      "track": "hermon",
+      "index": 9,
+      "old": "her(33.2924, 35.7802)",
+      "new": "her(33.29236000, 35.77971000)",
+      "candidateFactor": 0.1,
+      "candidateRounds": 1
+    },
+    {
+      "track": "hermon",
+      "index": 12,
+      "old": "her(33.3, 35.7786)",
+      "new": "her(33.30005000, 35.77911000)",
+      "candidateFactor": 0.1,
+      "candidateRounds": 1
+    },
+    {
+      "track": "hermon",
+      "index": 14,
+      "old": "her(33.3054, 35.7814)",
+      "new": "her(33.30544000, 35.78189000)",
+      "candidateFactor": 0.1,
+      "candidateRounds": 1
+    }
+  ]
+}

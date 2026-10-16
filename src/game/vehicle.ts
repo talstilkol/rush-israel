@@ -1000,11 +1000,15 @@ function pathInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): Input
 
 function sameForecastRoadLevel(car: ArcadeCar, other: ArcadeCar, track: BuiltTrack) {
   if (!car.onTrack || !other.onTrack) return false;
-  const ahead = forwardDelta(car.progress, other.progress, track.closed) * track.length;
-  // Nearby in x/z need not mean nearby along a folded or elevated route.
-  if (ahead < 0 || ahead > 72) return false;
   const here = track.samples[car.sampleIndex], there = track.samples[other.sampleIndex];
   if (!here || !there) return false;
+  // Spline t is not uniform in metres. Use the accumulated sampled centerline
+  // arc, preserving signed direction and the closed-loop seam.
+  let ahead = there.s - here.s;
+  if (track.closed && ahead < -track.length / 2) ahead += track.length;
+  else if (track.closed && ahead > track.length / 2) ahead -= track.length;
+  // Nearby in x/z need not mean nearby along a folded or elevated route.
+  if (ahead < 0 || ahead > 72) return false;
   return Math.abs((other.y - there.y) - (car.y - here.y)) <= 4;
 }
 

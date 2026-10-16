@@ -1,0 +1,394 @@
+TAP version 13
+# Subtest: oldjaffa/-1/asphalt: actual mesh boundary has no folded route segments
+not ok 1 - oldjaffa/-1/asphalt: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 8.883
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:26:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    actual rendered boundary must advance without self-crossing, touching or overlap
+    + actual - expected
+    
+      {
+    +   backwards: [
+    +     417,
+    +     418,
+    +     419,
+    +     420,
+    +     421
+    +   ],
+    +   crossings: [
+    +     [
+    +       415,
+    +       424
+    +     ]
+    +   ]
+    -   backwards: [],
+    -   crossings: []
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    backwards:
+    crossings:
+  actual:
+    backwards:
+      0: 417
+      1: 418
+      2: 419
+      3: 420
+      4: 421
+    crossings:
+      0:
+        0: 415
+        1: 424
+  operator: 'deepStrictEqual'
+  stack: |-
+    verifyBoundary (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:21:9)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:33:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: oldjaffa/-1/outer sidewalk: actual mesh boundary has no folded route segments
+not ok 2 - oldjaffa/-1/outer sidewalk: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 8.568292
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:26:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    actual rendered boundary must advance without self-crossing, touching or overlap
+    + actual - expected
+    
+      {
+    +   backwards: [
+    +     176,
+    +     177,
+    +     178,
+    +     179,
+    +     180,
+    +     416,
+    +     417,
+    +     418,
+    +     419,
+    +     420,
+    +     421,
+    +     422
+    +   ],
+    +   crossings: [
+    +     [
+    +       174,
+    +       182
+    +     ],
+    +     [
+    +       411,
+    +       427
+    +     ]
+    +   ]
+    -   backwards: [],
+    -   crossings: []
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    backwards:
+    crossings:
+  actual:
+    backwards:
+      0: 176
+      1: 177
+      2: 178
+      3: 179
+      4: 180
+      5: 416
+      6: 417
+      7: 418
+      8: 419
+      9: 420
+      10: 421
+      11: 422
+    crossings:
+      0:
+        0: 174
+        1: 182
+      1:
+        0: 411
+        1: 427
+  operator: 'deepStrictEqual'
+  stack: |-
+    verifyBoundary (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:21:9)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:33:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: oldjaffa/1/asphalt: actual mesh boundary has no folded route segments
+ok 3 - oldjaffa/1/asphalt: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 4.660416
+  type: 'test'
+  ...
+# Subtest: oldjaffa/1/outer sidewalk: actual mesh boundary has no folded route segments
+ok 4 - oldjaffa/1/outer sidewalk: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 2.909833
+  type: 'test'
+  ...
+# Subtest: namal/-1/asphalt: actual mesh boundary has no folded route segments
+ok 5 - namal/-1/asphalt: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 4.30725
+  type: 'test'
+  ...
+# Subtest: namal/-1/outer sidewalk: actual mesh boundary has no folded route segments
+ok 6 - namal/-1/outer sidewalk: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 4.11975
+  type: 'test'
+  ...
+# Subtest: namal/1/asphalt: actual mesh boundary has no folded route segments
+not ok 7 - namal/1/asphalt: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 4.288917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:26:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    actual rendered boundary must advance without self-crossing, touching or overlap
+    + actual - expected
+    
+      {
+    +   backwards: [
+    +     0,
+    +     1,
+    +     505,
+    +     506,
+    +     507,
+    +     508,
+    +     509
+    +   ],
+    +   crossings: [
+    +     [
+    +       5,
+    +       500
+    +     ]
+    +   ]
+    -   backwards: [],
+    -   crossings: []
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    backwards:
+    crossings:
+  actual:
+    backwards:
+      0: 0
+      1: 1
+      2: 505
+      3: 506
+      4: 507
+      5: 508
+      6: 509
+    crossings:
+      0:
+        0: 5
+        1: 500
+  operator: 'deepStrictEqual'
+  stack: |-
+    verifyBoundary (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:21:9)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:33:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: namal/1/outer sidewalk: actual mesh boundary has no folded route segments
+not ok 8 - namal/1/outer sidewalk: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 2.562833
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:26:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    actual rendered boundary must advance without self-crossing, touching or overlap
+    + actual - expected
+    
+      {
+    +   backwards: [
+    +     0,
+    +     1,
+    +     504,
+    +     505,
+    +     506,
+    +     507,
+    +     508,
+    +     509
+    +   ],
+    +   crossings: [
+    +     [
+    +       8,
+    +       497
+    +     ]
+    +   ]
+    -   backwards: [],
+    -   crossings: []
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    backwards:
+    crossings:
+  actual:
+    backwards:
+      0: 0
+      1: 1
+      2: 504
+      3: 505
+      4: 506
+      5: 507
+      6: 508
+      7: 509
+    crossings:
+      0:
+        0: 8
+        1: 497
+  operator: 'deepStrictEqual'
+  stack: |-
+    verifyBoundary (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:21:9)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:33:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/-1/asphalt: actual mesh boundary has no folded route segments
+not ok 9 - hermon/-1/asphalt: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 2.47325
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:26:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    actual rendered boundary must advance without self-crossing, touching or overlap
+    + actual - expected
+    
+      {
+    +   backwards: [
+    +     271
+    +   ],
+    +   crossings: [
+    +     [
+    +       270,
+    +       272
+    +     ]
+    +   ]
+    -   backwards: [],
+    -   crossings: []
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    backwards:
+    crossings:
+  actual:
+    backwards:
+      0: 271
+    crossings:
+      0:
+        0: 270
+        1: 272
+  operator: 'deepStrictEqual'
+  stack: |-
+    verifyBoundary (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:21:9)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:33:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon/1/asphalt: actual mesh boundary has no folded route segments
+not ok 10 - hermon/1/asphalt: actual mesh boundary has no folded route segments
+  ---
+  duration_ms: 2.467791
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:26:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    actual rendered boundary must advance without self-crossing, touching or overlap
+    + actual - expected
+    
+      {
+    +   backwards: [
+    +     238,
+    +     358,
+    +     418
+    +   ],
+    +   crossings: [
+    +     [
+    +       237,
+    +       239
+    +     ],
+    +     [
+    +       417,
+    +       419
+    +     ]
+    +   ]
+    -   backwards: [],
+    -   crossings: []
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    backwards:
+    crossings:
+  actual:
+    backwards:
+      0: 238
+      1: 358
+      2: 418
+    crossings:
+      0:
+        0: 237
+        1: 239
+      1:
+        0: 417
+        1: 419
+  operator: 'deepStrictEqual'
+  stack: |-
+    verifyBoundary (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:21:9)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/v1-route-mesh.test.mjs:33:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 4
+# fail 6
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 388.068334

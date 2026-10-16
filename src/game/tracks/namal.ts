@@ -28,8 +28,10 @@ export default defineTrack({
       { x: tlv(32.0968, 34.7735).x, z: tlv(32.0968, 34.7735).z, w: 80, d: 100 },
     ],
     checkpointCount: 10,
+    // Locally fair the fictional route corners to fit the unchanged road width.
+    // Coordinates are authored from the existing control points, not new GIS data.
     points: [
-      tlv(32.0950, 34.7732),
+      tlv(32.09530625, 34.77381250),
       tlv(32.0966, 34.7744),
       tlv(32.0982, 34.7756),
       tlv(32.0998, 34.7768),

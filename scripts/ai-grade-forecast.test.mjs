@@ -31,10 +31,37 @@ for(const control of [aiInput,trafficInput]){
  });
 }
 
-test('actual Hermon route fold: another elevation almost100m along the road must not cause false emergency braking',()=>{
- const observed=read('actual-fold.json')[0],built=buildTrack(getTrack(observed.track));assert.equal(observed.track,'hermon');assert.deepEqual(built.samples[observed.i],observed.a);assert.deepEqual(built.samples[observed.j],observed.b);
- const a=new ArcadeCar(CARS[0],CARS[0].id),b=new ArcadeCar(CARS[0],CARS[0].id);a.spawn(built,observed.a.t,0);b.spawn(built,observed.b.t,0);
- a.speed=50;a.vx=-Math.sin(a.yaw)*50;a.vz=-Math.cos(a.yaw)*50;b.speed=0;b.vx=b.vz=0;
- assert.ok(Math.abs(a.y-b.y)>4);assert.ok(observed.arc>90&&observed.along<65&&observed.side<1);
- assert.deepEqual(trafficInput(a,built,[a,b]),trafficInput(a,built,[]));
+// The old fixture's arc field was delta(t)*length. Its own s fields show
+// 56.54m, not97.41m: this is a nearby grade hazard, not a distant route leg.
+const archivedHermon=JSON.parse(readFileSync(fromRoot('evidence','2026-10-16','v1-bends-arc','parent-hermon-built.json'),'utf8'));
+for(const [name,built] of [['historical',archivedHermon.built],['current',buildTrack(getTrack('hermon'))]])for(const control of [aiInput,trafficInput]) {
+ test(`${control.name}: ${name} actual Hermon near-end grade traffic needs braking by measured arc`,()=>{
+  const observed=read('actual-fold.json')[0];
+  if(name==='historical'){
+   assert.equal(archivedHermon.sourceHead,'e853a54b073ecd807b2359854d4acbbf8ac806a2');
+   assert.deepEqual(built.samples[observed.i],observed.a);assert.deepEqual(built.samples[observed.j],observed.b);
+   assert.ok(observed.arc>90,'retain original incorrectly labelled parameter distance');
+  }
+  const a=new ArcadeCar(CARS[0],CARS[0].id),b=new ArcadeCar(CARS[0],CARS[0].id);
+  a.spawn(built,built.samples[observed.i].t,0);b.spawn(built,built.samples[observed.j].t,0);
+  assert.equal(a.sampleIndex,observed.i);assert.equal(b.sampleIndex,observed.j);
+  a.speed=50;a.vx=-Math.sin(a.yaw)*50;a.vz=-Math.cos(a.yaw)*50;b.speed=0;b.vx=b.vz=0;
+  const arc=built.samples[b.sampleIndex].s-built.samples[a.sampleIndex].s,dx=b.x-a.x,dz=b.z-a.z;
+  assert.ok(arc>50&&arc<60);assert.ok(Math.abs(a.y-b.y)>4);
+  assert.ok(dx*-Math.sin(a.yaw)+dz*-Math.cos(a.yaw)<65);
+  assert.ok(Math.abs(dx*Math.cos(a.yaw)-dz*Math.sin(a.yaw))<1);
+  const input=control===aiInput?control(a,built,undefined,[a,b]):control(a,built,[a,b]);
+  assert.equal(input.throttle,0);assert.ok(input.brake>0);assert.equal(input.nitro,false);assert.equal(input.drift,false);
+ });
+}
+for(const control of [aiInput,trafficInput])test(`${control.name}: actual Scopus overpass is far along its route despite x/z alignment`,()=>{
+ const built=buildTrack(getTrack('scopus')),a=new ArcadeCar(CARS[0],CARS[0].id),b=new ArcadeCar(CARS[0],CARS[0].id);
+ a.spawn(built,built.samples[30].t,0);b.spawn(built,built.samples[186].t,0);
+ a.speed=50;a.vx=-Math.sin(a.yaw)*50;a.vz=-Math.cos(a.yaw)*50;
+ const arc=built.samples[b.sampleIndex].s-built.samples[a.sampleIndex].s,dx=b.x-a.x,dz=b.z-a.z;
+ assert.ok(arc>600);assert.ok(Math.abs(a.y-b.y)>30);
+ assert.ok(dx*-Math.sin(a.yaw)+dz*-Math.cos(a.yaw)>0&&dx*-Math.sin(a.yaw)+dz*-Math.cos(a.yaw)<65);
+ assert.ok(Math.abs(dx*Math.cos(a.yaw)-dz*Math.sin(a.yaw))<1);
+ const drive=cars=>control===aiInput?control(a,built,undefined,cars):control(a,built,cars);
+ assert.deepEqual(drive([a,b]),drive([]));
 });

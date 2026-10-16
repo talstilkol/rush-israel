@@ -1,0 +1,113 @@
+{
+  "counts": {
+    "tracks": 56,
+    "flaggedTracks": 9,
+    "flaggedV1Tracks": 0
+  },
+  "flagged": [
+    {
+      "track": "timessquare",
+      "v1": false,
+      "routes": [
+        {
+          "side": -1,
+          "name": "asphalt edge",
+          "count": 31
+        },
+        {
+          "side": 1,
+          "name": "asphalt edge",
+          "count": 8
+        }
+      ]
+    },
+    {
+      "track": "brooklynbridge",
+      "v1": false,
+      "routes": [
+        {
+          "side": -1,
+          "name": "asphalt edge",
+          "count": 16
+        }
+      ]
+    },
+    {
+      "track": "manhattan",
+      "v1": false,
+      "routes": [
+        {
+          "side": -1,
+          "name": "asphalt edge",
+          "count": 12
+        }
+      ]
+    },
+    {
+      "track": "hanikra",
+      "v1": false,
+      "routes": [
+        {
+          "side": -1,
+          "name": "asphalt edge",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "track": "haifaport",
+      "v1": false,
+      "routes": [
+        {
+          "side": -1,
+          "name": "asphalt edge",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "track": "hw6",
+      "v1": false,
+      "routes": [
+        {
+          "side": -1,
+          "name": "asphalt edge",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "track": "hw2",
+      "v1": false,
+      "routes": [
+        {
+          "side": 1,
+          "name": "asphalt edge",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "track": "petah",
+      "v1": false,
+      "routes": [
+        {
+          "side": 1,
+          "name": "asphalt edge",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "track": "ramla",
+      "v1": false,
+      "routes": [
+        {
+          "side": 1,
+          "name": "asphalt edge",
+          "count": 2
+        }
+      ]
+    }
+  ]
+}
