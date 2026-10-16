@@ -1,0 +1,1689 @@
+
+> app-builder-workspace@0.0.0-private test
+> node scripts/test-suite.mjs
+
+CURRENT SOURCE UNIT TESTS: 25 files. Historical contracts and the 30-minute browser job are separate required CI jobs.
+TAP version 13
+# Subtest: Azrieli uses 3 InstancedMesh floor bands, no per-floor Mesh
+ok 1 - Azrieli uses 3 InstancedMesh floor bands, no per-floor Mesh
+  ---
+  duration_ms: 2.723083
+  type: 'test'
+  ...
+# Subtest: normalizes and hashes body text deterministically
+ok 2 - normalizes and hashes body text deterministically
+  ---
+  duration_ms: 0.64825
+  type: 'test'
+  ...
+# Subtest: identical verdicts do not diverge
+ok 3 - identical verdicts do not diverge
+  ---
+  duration_ms: 0.347875
+  type: 'test'
+  ...
+# Subtest: navigation, rendering and error regressions diverge
+ok 4 - navigation, rendering and error regressions diverge
+  ---
+  duration_ms: 0.185375
+  type: 'test'
+  ...
+# Subtest: body collapse and meaningful replacement diverge
+ok 5 - body collapse and meaningful replacement diverge
+  ---
+  duration_ms: 0.056042
+  type: 'test'
+  ...
+# Subtest: trivial body hash drift with the same prefix is tolerated
+ok 6 - trivial body hash drift with the same prefix is tolerated
+  ---
+  duration_ms: 0.04475
+  type: 'test'
+  ...
+# Subtest: missing viewport and degenerate current verdict fail closed
+ok 7 - missing viewport and degenerate current verdict fail closed
+  ---
+  duration_ms: 0.117584
+  type: 'test'
+  ...
+# Subtest: baseline JSON validation fails closed
+ok 8 - baseline JSON validation fails closed
+  ---
+  duration_ms: 0.104958
+  type: 'test'
+  ...
+# Subtest: parseSmokeArgs uses the actual repository root
+ok 9 - parseSmokeArgs uses the actual repository root
+  ---
+  duration_ms: 0.094792
+  type: 'test'
+  ...
+# Subtest: parseSmokeArgs handles baseline flags without shifting positionals
+ok 10 - parseSmokeArgs handles baseline flags without shifting positionals
+  ---
+  duration_ms: 0.299042
+  type: 'test'
+  ...
+# Subtest: environment baseline is supported and explicit flag wins
+ok 11 - environment baseline is supported and explicit flag wins
+  ---
+  duration_ms: 0.268458
+  type: 'test'
+  ...
+# Subtest: derivedPaths is extension-safe and root-agnostic
+ok 12 - derivedPaths is extension-safe and root-agnostic
+  ---
+  duration_ms: 0.146042
+  type: 'test'
+  ...
+# Subtest: exit codes distinguish navigation failure and page errors
+ok 13 - exit codes distinguish navigation failure and page errors
+  ---
+  duration_ms: 0.058667
+  type: 'test'
+  ...
+# Subtest: browser smoke source contains no fixed workspace root
+ok 14 - browser smoke source contains no fixed workspace root
+  ---
+  duration_ms: 0.175417
+  type: 'test'
+  ...
+# Subtest: RSH-019 gives every cloned car body per-engine geometry ownership
+ok 15 - RSH-019 gives every cloned car body per-engine geometry ownership
+  ---
+  duration_ms: 0.458375
+  type: 'test'
+  ...
+# Subtest: RSH-019 car disposal stays texture-safe and covers every visual family
+ok 16 - RSH-019 car disposal stays texture-safe and covers every visual family
+  ---
+  duration_ms: 0.467125
+  type: 'test'
+  ...
+# Subtest: current dependency policy keeps the exact 10-runtime/20-development package boundary
+ok 17 - current dependency policy keeps the exact 10-runtime/20-development package boundary
+  ---
+  duration_ms: 45.658541
+  type: 'test'
+  ...
+# Subtest: forbidden direct dependencies and backend scripts fail closed
+ok 18 - forbidden direct dependencies and backend scripts fail closed
+  ---
+  duration_ms: 92.561125
+  type: 'test'
+  ...
+# Subtest: QA build and server entry points cannot restore the removed app-env wrapper
+ok 19 - QA build and server entry points cannot restore the removed app-env wrapper
+  ---
+  duration_ms: 123.468084
+  type: 'test'
+  ...
+# Subtest: auth, DB, multiplayer and preview-host paths fail closed
+ok 20 - auth, DB, multiplayer and preview-host paths fail closed
+  ---
+  duration_ms: 156.526708
+  type: 'test'
+  ...
+# Subtest: retained PWA compatibility and Nitro pin fail closed
+ok 21 - retained PWA compatibility and Nitro pin fail closed
+  ---
+  duration_ms: 68.458833
+  type: 'test'
+  ...
+# Subtest: tracked build output and a missing ignore rule fail closed
+ok 22 - tracked build output and a missing ignore rule fail closed
+  ---
+  duration_ms: 103.342916
+  type: 'test'
+  ...
+# Subtest: RSH-034 precreation and every temporary RSH-020 transport fail closed
+ok 23 - RSH-034 precreation and every temporary RSH-020 transport fail closed
+  ---
+  duration_ms: 72.37725
+  type: 'test'
+  ...
+# Subtest: committed governance contract is internally valid
+ok 24 - committed governance contract is internally valid
+  ---
+  duration_ms: 0.949875
+  type: 'test'
+  ...
+# Subtest: desired ruleset requires the stable CI context and blocks destructive updates
+ok 25 - desired ruleset requires the stable CI context and blocks destructive updates
+  ---
+  duration_ms: 0.123625
+  type: 'test'
+  ...
+# Subtest: live claims fail closed while the administrative setting is unapplied
+ok 26 - live claims fail closed while the administrative setting is unapplied
+  ---
+  duration_ms: 0.152625
+  type: 'test'
+  ...
+# Subtest: workflow keeps diagnostics on success and failure
+ok 27 - workflow keeps diagnostics on success and failure
+  ---
+  duration_ms: 0.137708
+  type: 'test'
+  ...
+# Subtest: governance validator rejects a missing required check
+ok 28 - governance validator rejects a missing required check
+  ---
+  duration_ms: 0.133375
+  type: 'test'
+  ...
+# Subtest: workflow validator rejects failure suppression
+ok 29 - workflow validator rejects failure suppression
+  ---
+  duration_ms: 0.081958
+  type: 'test'
+  ...
+# Subtest: shipped public text and SVG files contain no secret-like values
+ok 30 - shipped public text and SVG files contain no secret-like values
+  ---
+  duration_ms: 48.851709
+  type: 'test'
+  ...
+# Subtest: public secret scanner fails closed on a planted leak
+ok 31 - public secret scanner fails closed on a planted leak
+  ---
+  duration_ms: 0.119042
+  type: 'test'
+  ...
+# Subtest: the real completion backlog is a complete acyclic dependency graph
+ok 32 - the real completion backlog is a complete acyclic dependency graph
+  ---
+  duration_ms: 1.06125
+  type: 'test'
+  ...
+# Subtest: all real RSH units and completion tasks have coverage without creating another acceptance ledger
+ok 33 - all real RSH units and completion tasks have coverage without creating another acceptance ledger
+  ---
+  duration_ms: 0.300333
+  type: 'test'
+  ...
+# Subtest: drop order planar → bloom → CSM → pixelScale
+ok 34 - drop order planar → bloom → CSM → pixelScale
+  ---
+  duration_ms: 0.545084
+  type: 'test'
+  ...
+# Subtest: 90 frames p95>20 drops one step; 5s under 16ms raises
+ok 35 - 90 frames p95>20 drops one step; 5s under 16ms raises
+  ---
+  duration_ms: 0.125708
+  type: 'test'
+  ...
+# Subtest: injects before </head>
+ok 36 - injects before </head>
+  ---
+  duration_ms: 1.099667
+  type: 'test'
+  ...
+# Subtest: injects the extensions script without a project id
+ok 37 - injects the extensions script without a project id
+  ---
+  duration_ms: 0.187833
+  type: 'test'
+  ...
+# Subtest: injects project id on the script and meta when provided
+ok 38 - injects project id on the script and meta when provided
+  ---
+  duration_ms: 0.145042
+  type: 'test'
+  ...
+# Subtest: does not duplicate grok:app_id
+ok 39 - does not duplicate grok:app_id
+  ---
+  duration_ms: 0.202875
+  type: 'test'
+  ...
+# Subtest: omits x:creator tags without both creator values
+ok 40 - omits x:creator tags without both creator values
+  ---
+  duration_ms: 0.348958
+  type: 'test'
+  ...
+# Subtest: injects x:creator tags when both creator values are set
+ok 41 - injects x:creator tags when both creator values are set
+  ---
+  duration_ms: 0.146042
+  type: 'test'
+  ...
+# Subtest: escapes x:creator values
+ok 42 - escapes x:creator values
+  ---
+  duration_ms: 0.044333
+  type: 'test'
+  ...
+# Subtest: does not duplicate x:creator tags
+ok 43 - does not duplicate x:creator tags
+  ---
+  duration_ms: 0.247916
+  type: 'test'
+  ...
+# Subtest: platform chrome overwrites share-card metas and always sets og:title
+ok 44 - platform chrome overwrites share-card metas and always sets og:title
+  ---
+  duration_ms: 0.264666
+  type: 'test'
+  ...
+# Subtest: does not duplicate twitter:card or og:title
+ok 45 - does not duplicate twitter:card or og:title
+  ---
+  duration_ms: 1.364958
+  type: 'test'
+  ...
+# Subtest: baked identity does not need a workspace filesystem
+ok 46 - baked identity does not need a workspace filesystem
+  ---
+  duration_ms: 0.416584
+  type: 'test'
+  ...
+# Subtest: a cwd custom card intentionally augments an explicit empty site
+ok 47 - a cwd custom card intentionally augments an explicit empty site
+  ---
+  duration_ms: 0.49025
+  type: 'test'
+  ...
+# Subtest: snapshotOgIdentity stamps card=custom from a public card file
+ok 48 - snapshotOgIdentity stamps card=custom from a public card file
+  ---
+  duration_ms: 0.263167
+  type: 'test'
+  ...
+# Subtest: snapshotOgIdentity stamps banner from public/x-banner.jpg
+ok 49 - snapshotOgIdentity stamps banner from public/x-banner.jpg
+  ---
+  duration_ms: 0.223375
+  type: 'test'
+  ...
+# Subtest: emits x:game:image for a public host when site.banner is set
+ok 50 - emits x:game:image for a public host when site.banner is set
+  ---
+  duration_ms: 0.096791
+  type: 'test'
+  ...
+# Subtest: does not emit x:game:image without a public host or banner
+ok 51 - does not emit x:game:image without a public host or banner
+  ---
+  duration_ms: 5.335916
+  type: 'test'
+  ...
+# Subtest: site title Grok App is a real name, not a sentinel
+ok 52 - site title Grok App is a real name, not a sentinel
+  ---
+  duration_ms: 0.160625
+  type: 'test'
+  ...
+# Subtest: published grok.me slug is still a title fallback
+ok 53 - published grok.me slug is still a title fallback
+  ---
+  duration_ms: 0.138667
+  type: 'test'
+  ...
+# Subtest: emits og:image for a public host and prefers a custom card
+ok 54 - emits og:image for a public host and prefers a custom card
+  ---
+  duration_ms: 0.097709
+  type: 'test'
+  ...
+# Subtest: placeholder og:image appends site.color when it is 6-digit hex
+ok 55 - placeholder og:image appends site.color when it is 6-digit hex
+  ---
+  duration_ms: 0.152375
+  type: 'test'
+  ...
+# Subtest: document title entities are not double-escaped on og:title
+ok 56 - document title entities are not double-escaped on og:title
+  ---
+  duration_ms: 0.064292
+  type: 'test'
+  ...
+# Subtest: site.json title wins over the host slug
+ok 57 - site.json title wins over the host slug
+  ---
+  duration_ms: 0.05075
+  type: 'test'
+  ...
+# Subtest: injects into documents with no head element
+ok 58 - injects into documents with no head element
+  ---
+  duration_ms: 0.099666
+  type: 'test'
+  ...
+# Subtest: streaming injector matches </HEAD> case-insensitively
+ok 59 - streaming injector matches </HEAD> case-insensitively
+  ---
+  duration_ms: 0.187208
+  type: 'test'
+  ...
+# Subtest: does not duplicate the extensions script
+ok 60 - does not duplicate the extensions script
+  ---
+  duration_ms: 0.098583
+  type: 'test'
+  ...
+# Subtest: is idempotent
+ok 61 - is idempotent
+  ---
+  duration_ms: 0.0795
+  type: 'test'
+  ...
+# Subtest: uses the app name in the injected title tag
+ok 62 - uses the app name in the injected title tag
+  ---
+  duration_ms: 0.0505
+  type: 'test'
+  ...
+# Subtest: streaming injector handles </head> split across chunks
+ok 63 - streaming injector handles </head> split across chunks
+  ---
+  duration_ms: 0.176125
+  type: 'test'
+  ...
+# Subtest: streaming injector passes post-head chunks through untouched
+ok 64 - streaming injector passes post-head chunks through untouched
+  ---
+  duration_ms: 0.107041
+  type: 'test'
+  ...
+# Subtest: streaming injector falls back when no </head> is seen
+ok 65 - streaming injector falls back when no </head> is seen
+  ---
+  duration_ms: 0.074208
+  type: 'test'
+  ...
+# Subtest: detects install query
+ok 66 - detects install query
+  ---
+  duration_ms: 0.127541
+  type: 'test'
+  ...
+# Subtest: filters non-document paths
+ok 67 - filters non-document paths
+  ---
+  duration_ms: 0.069667
+  type: 'test'
+  ...
+# Subtest: strips install params from the app link
+ok 68 - strips install params from the app link
+  ---
+  duration_ms: 0.047584
+  type: 'test'
+  ...
+# Subtest: names the install page from host slug
+ok 69 - names the install page from host slug
+  ---
+  duration_ms: 0.026791
+  type: 'test'
+  ...
+# Subtest: rejects hosts that are not plain slugs
+ok 70 - rejects hosts that are not plain slugs
+  ---
+  duration_ms: 0.022042
+  type: 'test'
+  ...
+# Subtest: renders install page markup
+ok 71 - renders install page markup
+  ---
+  duration_ms: 0.183625
+  type: 'test'
+  ...
+# Subtest: escapes host-derived values in the install page
+ok 72 - escapes host-derived values in the install page
+  ---
+  duration_ms: 0.079459
+  type: 'test'
+  ...
+# Subtest: renders the manifest with the per-app name
+ok 73 - renders the manifest with the per-app name
+  ---
+  duration_ms: 0.066792
+  type: 'test'
+  ...
+# Subtest: vite config keeps the nitro serverDir wiring
+ok 74 - vite config keeps the nitro serverDir wiring
+  ---
+  duration_ms: 0.078791
+  type: 'test'
+  ...
+# Subtest: nitro middleware and its bundled assets exist
+ok 75 - nitro middleware and its bundled assets exist
+  ---
+  duration_ms: 0.257584
+  type: 'test'
+  ...
+# Subtest: vite plugin bakes og identity as a virtual module
+ok 76 - vite plugin bakes og identity as a virtual module
+  ---
+  duration_ms: 0.074833
+  type: 'test'
+  ...
+# Subtest: padCurve deadzone and exponent 1.6
+ok 77 - padCurve deadzone and exponent 1.6
+  ---
+  duration_ms: 0.362
+  type: 'test'
+  ...
+# Subtest: fog table keys
+ok 78 - fog table keys
+  ---
+  duration_ms: 0.360875
+  type: 'test'
+  ...
+# Subtest: lookFromFlags
+ok 79 - lookFromFlags
+  ---
+  duration_ms: 0.06875
+  type: 'test'
+  ...
+# Subtest: actual V1 road layout keeps the Rothschild median separate from racing lanes
+ok 80 - actual V1 road layout keeps the Rothschild median separate from racing lanes
+  ---
+  duration_ms: 10.0465
+  type: 'test'
+  ...
+# Subtest: sabra: left carriageway survives eight seconds of straight acceleration
+ok 81 - sabra: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 17.196542
+  type: 'test'
+  ...
+# Subtest: sabra: left carriageway survives eight seconds of AI input
+ok 82 - sabra: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 9.731666
+  type: 'test'
+  ...
+# Subtest: sabra: right carriageway survives eight seconds of straight acceleration
+ok 83 - sabra: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 9.358375
+  type: 'test'
+  ...
+# Subtest: sabra: right carriageway survives eight seconds of AI input
+ok 84 - sabra: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 8.389292
+  type: 'test'
+  ...
+# Subtest: carmel: left carriageway survives eight seconds of straight acceleration
+ok 85 - carmel: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 4.586166
+  type: 'test'
+  ...
+# Subtest: carmel: left carriageway survives eight seconds of AI input
+ok 86 - carmel: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 5.921125
+  type: 'test'
+  ...
+# Subtest: carmel: right carriageway survives eight seconds of straight acceleration
+ok 87 - carmel: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.65125
+  type: 'test'
+  ...
+# Subtest: carmel: right carriageway survives eight seconds of AI input
+ok 88 - carmel: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 4.170375
+  type: 'test'
+  ...
+# Subtest: kfir: left carriageway survives eight seconds of straight acceleration
+ok 89 - kfir: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 6.721208
+  type: 'test'
+  ...
+# Subtest: kfir: left carriageway survives eight seconds of AI input
+ok 90 - kfir: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 5.722875
+  type: 'test'
+  ...
+# Subtest: kfir: right carriageway survives eight seconds of straight acceleration
+ok 91 - kfir: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 6.092625
+  type: 'test'
+  ...
+# Subtest: kfir: right carriageway survives eight seconds of AI input
+ok 92 - kfir: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 5.227541
+  type: 'test'
+  ...
+# Subtest: negev: left carriageway survives eight seconds of straight acceleration
+ok 93 - negev: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 4.631375
+  type: 'test'
+  ...
+# Subtest: negev: left carriageway survives eight seconds of AI input
+ok 94 - negev: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.920791
+  type: 'test'
+  ...
+# Subtest: negev: right carriageway survives eight seconds of straight acceleration
+ok 95 - negev: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 3.747583
+  type: 'test'
+  ...
+# Subtest: negev: right carriageway survives eight seconds of AI input
+ok 96 - negev: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 3.618959
+  type: 'test'
+  ...
+# Subtest: yam: left carriageway survives eight seconds of straight acceleration
+ok 97 - yam: left carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 4.278542
+  type: 'test'
+  ...
+# Subtest: yam: left carriageway survives eight seconds of AI input
+ok 98 - yam: left carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 5.342125
+  type: 'test'
+  ...
+# Subtest: yam: right carriageway survives eight seconds of straight acceleration
+ok 99 - yam: right carriageway survives eight seconds of straight acceleration
+  ---
+  duration_ms: 5.973708
+  type: 'test'
+  ...
+# Subtest: yam: right carriageway survives eight seconds of AI input
+ok 100 - yam: right carriageway survives eight seconds of AI input
+  ---
+  duration_ms: 6.127208
+  type: 'test'
+  ...
+# Subtest: actual Ramon cliff never crosses the driver path on either side of its faces
+ok 101 - actual Ramon cliff never crosses the driver path on either side of its faces
+  ---
+  duration_ms: 70.064791
+  type: 'test'
+  ...
+# Subtest: handwritten static JSX calls never pass a single element or string as children
+ok 102 - handwritten static JSX calls never pass a single element or string as children
+  ---
+  duration_ms: 63.19725
+  type: 'test'
+  ...
+# Subtest: old physicsVersion is rejected
+ok 103 - old physicsVersion is rejected
+  ---
+  duration_ms: 0.345083
+  type: 'test'
+  ...
+# Subtest: current physicsVersion is kept
+ok 104 - current physicsVersion is kept
+  ---
+  duration_ms: 0.242625
+  type: 'test'
+  ...
+# Subtest: payload + sha256
+ok 105 - payload + sha256
+  ---
+  duration_ms: 2.119916
+  type: 'test'
+  ...
+# Subtest: writeRecords replaces the whole key
+ok 106 - writeRecords replaces the whole key
+  ---
+  duration_ms: 0.188125
+  type: 'test'
+  ...
+# Subtest: read path drops malformed, unverified and stale records
+ok 107 - read path drops malformed, unverified and stale records
+  ---
+  duration_ms: 0.288458
+  type: 'test'
+  ...
+# Subtest: duplicate records are collapsed and the per-car cap is enforced
+ok 108 - duplicate records are collapsed and the per-car cap is enforced
+  ---
+  duration_ms: 1.282542
+  type: 'test'
+  ...
+# Subtest: serial persist verifies hashes, rejects duplicates and survives quota
+ok 109 - serial persist verifies hashes, rejects duplicates and survives quota
+  ---
+  duration_ms: 0.471042
+  type: 'test'
+  ...
+# Subtest: concurrent persist calls are serialised and do not drop the earlier write
+ok 110 - concurrent persist calls are serialised and do not drop the earlier write
+  ---
+  duration_ms: 0.60375
+  type: 'test'
+  ...
+# Subtest: canonical serialization is byte-stable
+ok 111 - canonical serialization is byte-stable
+  ---
+  duration_ms: 0.245541
+  type: 'test'
+  ...
+# Subtest: ResourceRegistry ref-counts and disposes in reverse creation order
+ok 112 - ResourceRegistry ref-counts and disposes in reverse creation order
+  ---
+  duration_ms: 0.662958
+  type: 'test'
+  ...
+# Subtest: ResourceRegistry rejects split ownership for one id
+ok 113 - ResourceRegistry rejects split ownership for one id
+  ---
+  duration_ms: 0.184125
+  type: 'test'
+  ...
+# Subtest: ResourceRegistry releases late resources and continues after disposal errors
+ok 114 - ResourceRegistry releases late resources and continues after disposal errors
+  ---
+  duration_ms: 0.129541
+  type: 'test'
+  ...
+# Subtest: hayarkon: actual asphalt surface is visible with front-face culling
+ok 115 - hayarkon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 10.496542
+  type: 'test'
+  ...
+# Subtest: oldjaffa: actual asphalt surface is visible with front-face culling
+ok 116 - oldjaffa: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 1.946375
+  type: 'test'
+  ...
+# Subtest: telaviv: actual asphalt surface is visible with front-face culling
+ok 117 - telaviv: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 1.079333
+  type: 'test'
+  ...
+# Subtest: namal: actual asphalt surface is visible with front-face culling
+ok 118 - namal: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 2.078208
+  type: 'test'
+  ...
+# Subtest: jerusalem: actual asphalt surface is visible with front-face culling
+ok 119 - jerusalem: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 1.002167
+  type: 'test'
+  ...
+# Subtest: haifa: actual asphalt surface is visible with front-face culling
+ok 120 - haifa: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.589833
+  type: 'test'
+  ...
+# Subtest: eilat: actual asphalt surface is visible with front-face culling
+ok 121 - eilat: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.702333
+  type: 'test'
+  ...
+# Subtest: rothschild: actual asphalt surface is visible with front-face culling
+ok 122 - rothschild: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.76425
+  type: 'test'
+  ...
+# Subtest: ayalon: actual asphalt surface is visible with front-face culling
+ok 123 - ayalon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 1.45825
+  type: 'test'
+  ...
+# Subtest: caesarea: actual asphalt surface is visible with front-face culling
+ok 124 - caesarea: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.861166
+  type: 'test'
+  ...
+# Subtest: deadsea: actual asphalt surface is visible with front-face culling
+ok 125 - deadsea: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.742583
+  type: 'test'
+  ...
+# Subtest: acre: actual asphalt surface is visible with front-face culling
+ok 126 - acre: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.394958
+  type: 'test'
+  ...
+# Subtest: centralpark: actual asphalt surface is visible with front-face culling
+ok 127 - centralpark: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.565
+  type: 'test'
+  ...
+# Subtest: timessquare: actual asphalt surface is visible with front-face culling
+ok 128 - timessquare: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.5
+  type: 'test'
+  ...
+# Subtest: brooklynbridge: actual asphalt surface is visible with front-face culling
+ok 129 - brooklynbridge: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.561416
+  type: 'test'
+  ...
+# Subtest: manhattan: actual asphalt surface is visible with front-face culling
+ok 130 - manhattan: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 1.071125
+  type: 'test'
+  ...
+# Subtest: beersheva: actual asphalt surface is visible with front-face culling
+ok 131 - beersheva: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.588166
+  type: 'test'
+  ...
+# Subtest: netanya: actual asphalt surface is visible with front-face culling
+ok 132 - netanya: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.442834
+  type: 'test'
+  ...
+# Subtest: hw1: actual asphalt surface is visible with front-face culling
+ok 133 - hw1: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.281417
+  type: 'test'
+  ...
+# Subtest: herzliya: actual asphalt surface is visible with front-face culling
+ok 134 - herzliya: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.421834
+  type: 'test'
+  ...
+# Subtest: hanikra: actual asphalt surface is visible with front-face culling
+ok 135 - hanikra: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.446125
+  type: 'test'
+  ...
+# Subtest: haifaport: actual asphalt surface is visible with front-face culling
+ok 136 - haifaport: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.558667
+  type: 'test'
+  ...
+# Subtest: stellamaris: actual asphalt surface is visible with front-face culling
+ok 137 - stellamaris: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.287542
+  type: 'test'
+  ...
+# Subtest: tiberias: actual asphalt surface is visible with front-face culling
+ok 138 - tiberias: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.58325
+  type: 'test'
+  ...
+# Subtest: golan: actual asphalt surface is visible with front-face culling
+ok 139 - golan: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.471708
+  type: 'test'
+  ...
+# Subtest: hermon: actual asphalt surface is visible with front-face culling
+ok 140 - hermon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.609542
+  type: 'test'
+  ...
+# Subtest: hw6: actual asphalt surface is visible with front-face culling
+ok 141 - hw6: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.527084
+  type: 'test'
+  ...
+# Subtest: hw2: actual asphalt surface is visible with front-face culling
+ok 142 - hw2: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.525583
+  type: 'test'
+  ...
+# Subtest: hw90: actual asphalt surface is visible with front-face culling
+ok 143 - hw90: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.447292
+  type: 'test'
+  ...
+# Subtest: petah: actual asphalt surface is visible with front-face culling
+ok 144 - petah: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.483875
+  type: 'test'
+  ...
+# Subtest: rishon: actual asphalt surface is visible with front-face culling
+ok 145 - rishon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.736417
+  type: 'test'
+  ...
+# Subtest: ashdod: actual asphalt surface is visible with front-face culling
+ok 146 - ashdod: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.414916
+  type: 'test'
+  ...
+# Subtest: ashkelon: actual asphalt surface is visible with front-face culling
+ok 147 - ashkelon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.375917
+  type: 'test'
+  ...
+# Subtest: scopus: actual asphalt surface is visible with front-face culling
+ok 148 - scopus: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.453708
+  type: 'test'
+  ...
+# Subtest: walls: actual asphalt surface is visible with front-face culling
+ok 149 - walls: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.534875
+  type: 'test'
+  ...
+# Subtest: modiin: actual asphalt surface is visible with front-face culling
+ok 150 - modiin: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.38425
+  type: 'test'
+  ...
+# Subtest: ramon: actual asphalt surface is visible with front-face culling
+ok 151 - ramon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.653208
+  type: 'test'
+  ...
+# Subtest: hw40: actual asphalt surface is visible with front-face culling
+ok 152 - hw40: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.447166
+  type: 'test'
+  ...
+# Subtest: eilatmtn: actual asphalt surface is visible with front-face culling
+ok 153 - eilatmtn: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.412666
+  type: 'test'
+  ...
+# Subtest: gushdan: actual asphalt surface is visible with front-face culling
+ok 154 - gushdan: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.383667
+  type: 'test'
+  ...
+# Subtest: nazareth: actual asphalt surface is visible with front-face culling
+ok 155 - nazareth: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.303667
+  type: 'test'
+  ...
+# Subtest: tzfat: actual asphalt surface is visible with front-face culling
+ok 156 - tzfat: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.257291
+  type: 'test'
+  ...
+# Subtest: masada: actual asphalt surface is visible with front-face culling
+ok 157 - masada: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.182375
+  type: 'test'
+  ...
+# Subtest: batyam: actual asphalt surface is visible with front-face culling
+ok 158 - batyam: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.244833
+  type: 'test'
+  ...
+# Subtest: rehovot: actual asphalt surface is visible with front-face culling
+ok 159 - rehovot: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.276458
+  type: 'test'
+  ...
+# Subtest: nahariya: actual asphalt surface is visible with front-face culling
+ok 160 - nahariya: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.255792
+  type: 'test'
+  ...
+# Subtest: ramla: actual asphalt surface is visible with front-face culling
+ok 161 - ramla: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.225458
+  type: 'test'
+  ...
+# Subtest: holon: actual asphalt surface is visible with front-face culling
+ok 162 - holon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.24
+  type: 'test'
+  ...
+# Subtest: beitshan: actual asphalt surface is visible with front-face culling
+ok 163 - beitshan: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.215541
+  type: 'test'
+  ...
+# Subtest: hadera: actual asphalt surface is visible with front-face culling
+ok 164 - hadera: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.243708
+  type: 'test'
+  ...
+# Subtest: lod: actual asphalt surface is visible with front-face culling
+ok 165 - lod: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.25625
+  type: 'test'
+  ...
+# Subtest: kshmona: actual asphalt surface is visible with front-face culling
+ok 166 - kshmona: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.221583
+  type: 'test'
+  ...
+# Subtest: raanana: actual asphalt surface is visible with front-face culling
+ok 167 - raanana: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.238625
+  type: 'test'
+  ...
+# Subtest: afula: actual asphalt surface is visible with front-face culling
+ok 168 - afula: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.237541
+  type: 'test'
+  ...
+# Subtest: ksaba: actual asphalt surface is visible with front-face culling
+ok 169 - ksaba: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.344708
+  type: 'test'
+  ...
+# Subtest: arad: actual asphalt surface is visible with front-face culling
+ok 170 - arad: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.51325
+  type: 'test'
+  ...
+# Subtest: actual Ayalon opposing carriageway is also visible from above
+ok 171 - actual Ayalon opposing carriageway is also visible from above
+  ---
+  duration_ms: 0.8175
+  type: 'test'
+  ...
+# Subtest: actual Rothschild sidewalk on side -1 faces pedestrians above it
+ok 172 - actual Rothschild sidewalk on side -1 faces pedestrians above it
+  ---
+  duration_ms: 1.564541
+  type: 'test'
+  ...
+# Subtest: actual Rothschild sidewalk on side 1 faces pedestrians above it
+ok 173 - actual Rothschild sidewalk on side 1 faces pedestrians above it
+  ---
+  duration_ms: 0.784417
+  type: 'test'
+  ...
+# Subtest: actual physical shader changes wetness without painting a second set of lanes
+ok 174 - actual physical shader changes wetness without painting a second set of lanes
+  ---
+  duration_ms: 0.48125
+  type: 'test'
+  ...
+# Subtest: real road material chains compile hooks and keeps the actual precompile weather state
+ok 175 - real road material chains compile hooks and keeps the actual precompile weather state
+  ---
+  duration_ms: 0.529292
+  type: 'test'
+  ...
+# Subtest: each actual baked road kit already contains the declared lane boundaries
+ok 176 - each actual baked road kit already contains the declared lane boundaries
+  ---
+  duration_ms: 23.789667
+  type: 'test'
+  ...
+# Subtest: requires a child command
+ok 177 - requires a child command
+  ---
+  duration_ms: 0.689917
+  type: 'test'
+  ...
+# Subtest: parses command and deterministic defaults
+ok 178 - parses command and deterministic defaults
+  ---
+  duration_ms: 0.097375
+  type: 'test'
+  ...
+# Subtest: parses explicit timeouts and reuse flag
+ok 179 - parses explicit timeouts and reuse flag
+  ---
+  duration_ms: 0.106916
+  type: 'test'
+  ...
+# Subtest: rejects malformed URL and timeout values
+ok 180 - rejects malformed URL and timeout values
+  ---
+  duration_ms: 0.103583
+  type: 'test'
+  ...
+# Subtest: self-start is restricted to the exact canonical IPv4 loopback URL
+ok 181 - self-start is restricted to the exact canonical IPv4 loopback URL
+  ---
+  duration_ms: 0.071625
+  type: 'test'
+  ...
+# Subtest: dev server uses the repository-local Vite binary directly
+ok 182 - dev server uses the repository-local Vite binary directly
+  ---
+  duration_ms: 0.099292
+  type: 'test'
+  ...
+# Subtest: signal exit codes follow 128 plus the platform signal number
+ok 183 - signal exit codes follow 128 plus the platform signal number
+  ---
+  duration_ms: 0.091708
+  type: 'test'
+  ...
+# Subtest: probeServer accepts healthy or redirect responses and rejects failures
+ok 184 - probeServer accepts healthy or redirect responses and rejects failures
+  ---
+  duration_ms: 0.179833
+  type: 'test'
+  ...
+# Subtest: waitForServer resolves after a successful probe
+ok 185 - waitForServer resolves after a successful probe
+  ---
+  duration_ms: 250.302334
+  type: 'test'
+  ...
+# Subtest: waitForServer fails when the child exits before readiness
+ok 186 - waitForServer fails when the child exits before readiness
+  ---
+  duration_ms: 0.533458
+  type: 'test'
+  ...
+# Subtest: waitForServer reports spawn errors instead of waiting for timeout
+ok 187 - waitForServer reports spawn errors instead of waiting for timeout
+  ---
+  duration_ms: 251.558083
+  type: 'test'
+  ...
+# Subtest: waitForExit cancels the losing timer and removes the exit listener
+ok 188 - waitForExit cancels the losing timer and removes the exit listener
+  ---
+  duration_ms: 0.233
+  type: 'test'
+  ...
+# Subtest: waitForExit removes the exit listener when the timeout wins
+ok 189 - waitForExit removes the exit listener when the timeout wins
+  ---
+  duration_ms: 0.060625
+  type: 'test'
+  ...
+# Subtest: main checks interrupts before starting a server and before spawning QA
+ok 190 - main checks interrupts before starting a server and before spawning QA
+  ---
+  duration_ms: 0.172708
+  type: 'test'
+  ...
+# Subtest: waitForCommandOutcome resolves normal exits and removes listeners
+ok 191 - waitForCommandOutcome resolves normal exits and removes listeners
+  ---
+  duration_ms: 0.600416
+  type: 'test'
+  ...
+# Subtest: waitForCommandOutcome rejects spawn errors and removes listeners
+ok 192 - waitForCommandOutcome rejects spawn errors and removes listeners
+  ---
+  duration_ms: 0.182875
+  type: 'test'
+  ...
+# Subtest: waitForCommandOutcome reports timeout and removes listeners
+ok 193 - waitForCommandOutcome reports timeout and removes listeners
+  ---
+  duration_ms: 6.48125
+  type: 'test'
+  ...
+# Subtest: restoring a real car snapshot reproduces its subsequent physics exactly
+ok 194 - restoring a real car snapshot reproduces its subsequent physics exactly
+  ---
+  duration_ms: 13.023291
+  type: 'test'
+  ...
+# Subtest: spawning again clears driving state and preserves the real accumulated player damage
+ok 195 - spawning again clears driving state and preserves the real accumulated player damage
+  ---
+  duration_ms: 9.703459
+  type: 'test'
+  ...
+# Subtest: cars on separated elevations cannot push each other sideways
+ok 196 - cars on separated elevations cannot push each other sideways
+  ---
+  duration_ms: 0.253
+  type: 'test'
+  ...
+# Subtest: automatic off-road rescue reports the recovery tick to the race engine
+ok 197 - automatic off-road rescue reports the recovery tick to the race engine
+  ---
+  duration_ms: 6.375417
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hayarkon
+ok 198 - actual track geometry stays finite: hayarkon
+  ---
+  duration_ms: 1.957833
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: oldjaffa
+ok 199 - actual track geometry stays finite: oldjaffa
+  ---
+  duration_ms: 1.070791
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: telaviv
+ok 200 - actual track geometry stays finite: telaviv
+  ---
+  duration_ms: 0.544666
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: namal
+ok 201 - actual track geometry stays finite: namal
+  ---
+  duration_ms: 0.5435
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: jerusalem
+ok 202 - actual track geometry stays finite: jerusalem
+  ---
+  duration_ms: 0.749458
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: haifa
+ok 203 - actual track geometry stays finite: haifa
+  ---
+  duration_ms: 0.623833
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: eilat
+ok 204 - actual track geometry stays finite: eilat
+  ---
+  duration_ms: 2.308042
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: rothschild
+ok 205 - actual track geometry stays finite: rothschild
+  ---
+  duration_ms: 0.43025
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: ayalon
+ok 206 - actual track geometry stays finite: ayalon
+  ---
+  duration_ms: 0.684792
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: caesarea
+ok 207 - actual track geometry stays finite: caesarea
+  ---
+  duration_ms: 0.347709
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: deadsea
+ok 208 - actual track geometry stays finite: deadsea
+  ---
+  duration_ms: 0.408916
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: acre
+ok 209 - actual track geometry stays finite: acre
+  ---
+  duration_ms: 0.287375
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: centralpark
+ok 210 - actual track geometry stays finite: centralpark
+  ---
+  duration_ms: 0.393166
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: timessquare
+ok 211 - actual track geometry stays finite: timessquare
+  ---
+  duration_ms: 0.310041
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: brooklynbridge
+ok 212 - actual track geometry stays finite: brooklynbridge
+  ---
+  duration_ms: 0.405625
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: manhattan
+ok 213 - actual track geometry stays finite: manhattan
+  ---
+  duration_ms: 1.09325
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: beersheva
+ok 214 - actual track geometry stays finite: beersheva
+  ---
+  duration_ms: 0.411208
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: netanya
+ok 215 - actual track geometry stays finite: netanya
+  ---
+  duration_ms: 0.226708
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hw1
+ok 216 - actual track geometry stays finite: hw1
+  ---
+  duration_ms: 0.144958
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: herzliya
+ok 217 - actual track geometry stays finite: herzliya
+  ---
+  duration_ms: 0.195334
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hanikra
+ok 218 - actual track geometry stays finite: hanikra
+  ---
+  duration_ms: 0.195125
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: haifaport
+ok 219 - actual track geometry stays finite: haifaport
+  ---
+  duration_ms: 0.250583
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: stellamaris
+ok 220 - actual track geometry stays finite: stellamaris
+  ---
+  duration_ms: 0.133
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: tiberias
+ok 221 - actual track geometry stays finite: tiberias
+  ---
+  duration_ms: 0.192125
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: golan
+ok 222 - actual track geometry stays finite: golan
+  ---
+  duration_ms: 0.17725
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hermon
+ok 223 - actual track geometry stays finite: hermon
+  ---
+  duration_ms: 0.376208
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hw6
+ok 224 - actual track geometry stays finite: hw6
+  ---
+  duration_ms: 0.217959
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hw2
+ok 225 - actual track geometry stays finite: hw2
+  ---
+  duration_ms: 0.243791
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hw90
+ok 226 - actual track geometry stays finite: hw90
+  ---
+  duration_ms: 0.245333
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: petah
+ok 227 - actual track geometry stays finite: petah
+  ---
+  duration_ms: 0.162917
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: rishon
+ok 228 - actual track geometry stays finite: rishon
+  ---
+  duration_ms: 0.118917
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: ashdod
+ok 229 - actual track geometry stays finite: ashdod
+  ---
+  duration_ms: 0.127459
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: ashkelon
+ok 230 - actual track geometry stays finite: ashkelon
+  ---
+  duration_ms: 0.128292
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: scopus
+ok 231 - actual track geometry stays finite: scopus
+  ---
+  duration_ms: 0.168542
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: walls
+ok 232 - actual track geometry stays finite: walls
+  ---
+  duration_ms: 0.180875
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: modiin
+ok 233 - actual track geometry stays finite: modiin
+  ---
+  duration_ms: 0.135084
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: ramon
+ok 234 - actual track geometry stays finite: ramon
+  ---
+  duration_ms: 0.278084
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hw40
+ok 235 - actual track geometry stays finite: hw40
+  ---
+  duration_ms: 0.540125
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: eilatmtn
+ok 236 - actual track geometry stays finite: eilatmtn
+  ---
+  duration_ms: 0.217875
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: gushdan
+ok 237 - actual track geometry stays finite: gushdan
+  ---
+  duration_ms: 0.214792
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: nazareth
+ok 238 - actual track geometry stays finite: nazareth
+  ---
+  duration_ms: 0.149208
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: tzfat
+ok 239 - actual track geometry stays finite: tzfat
+  ---
+  duration_ms: 0.133792
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: masada
+ok 240 - actual track geometry stays finite: masada
+  ---
+  duration_ms: 0.105292
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: batyam
+ok 241 - actual track geometry stays finite: batyam
+  ---
+  duration_ms: 0.144834
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: rehovot
+ok 242 - actual track geometry stays finite: rehovot
+  ---
+  duration_ms: 0.156708
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: nahariya
+ok 243 - actual track geometry stays finite: nahariya
+  ---
+  duration_ms: 0.161917
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: ramla
+ok 244 - actual track geometry stays finite: ramla
+  ---
+  duration_ms: 0.139334
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: holon
+ok 245 - actual track geometry stays finite: holon
+  ---
+  duration_ms: 0.1435
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: beitshan
+ok 246 - actual track geometry stays finite: beitshan
+  ---
+  duration_ms: 0.132166
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: hadera
+ok 247 - actual track geometry stays finite: hadera
+  ---
+  duration_ms: 0.1435
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: lod
+ok 248 - actual track geometry stays finite: lod
+  ---
+  duration_ms: 0.15525
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: kshmona
+ok 249 - actual track geometry stays finite: kshmona
+  ---
+  duration_ms: 0.130708
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: raanana
+ok 250 - actual track geometry stays finite: raanana
+  ---
+  duration_ms: 0.142208
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: afula
+ok 251 - actual track geometry stays finite: afula
+  ---
+  duration_ms: 0.142833
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: ksaba
+ok 252 - actual track geometry stays finite: ksaba
+  ---
+  duration_ms: 0.135958
+  type: 'test'
+  ...
+# Subtest: actual track geometry stays finite: arad
+ok 253 - actual track geometry stays finite: arad
+  ---
+  duration_ms: 0.15625
+  type: 'test'
+  ...
+# Subtest: Jaffa elevation has no vertical 3m discontinuity at the raised section
+ok 254 - Jaffa elevation has no vertical 3m discontinuity at the raised section
+  ---
+  duration_ms: 0.048459
+  type: 'test'
+  ...
+# Subtest: road loading and world building share the real track lane policy
+ok 255 - road loading and world building share the real track lane policy
+  ---
+  duration_ms: 0.065667
+  type: 'test'
+  ...
+# Subtest: performance upgrades and race conditions occupy separate record classes
+ok 256 - performance upgrades and race conditions occupy separate record classes
+  ---
+  duration_ms: 10.416667
+  type: 'test'
+  ...
+# Subtest: a recorded ruleset survives serialization and cannot be changed without breaking its hash
+ok 257 - a recorded ruleset survives serialization and cannot be changed without breaking its hash
+  ---
+  duration_ms: 0.408959
+  type: 'test'
+  ...
+# Subtest: readiness flags do not claim complete accessibility or offline support
+ok 258 - readiness flags do not claim complete accessibility or offline support
+  ---
+  duration_ms: 4.154958
+  type: 'test'
+  ...
+# Subtest: static nearest-road queries find the true geometric nearest sample throughout real tracks
+ok 259 - static nearest-road queries find the true geometric nearest sample throughout real tracks
+  ---
+  duration_ms: 3.97525
+  type: 'test'
+  ...
+# Subtest: open-track endpoint sampling cannot wrap a car back to the start
+ok 260 - open-track endpoint sampling cannot wrap a car back to the start
+  ---
+  duration_ms: 0.667458
+  type: 'test'
+  ...
+# Subtest: real simulated ghost trajectories stay in their own ruleset and corrupt storage is rejected
+ok 261 - real simulated ghost trajectories stay in their own ruleset and corrupt storage is rejected
+  ---
+  duration_ms: 6.874875
+  type: 'test'
+  ...
+# Subtest: src/game still has no secret-like values
+ok 262 - src/game still has no secret-like values
+  ---
+  duration_ms: 181.286333
+  type: 'test'
+  ...
+# Subtest: tracked product, script, server and workflow text has no secret-like values
+ok 263 - tracked product, script, server and workflow text has no secret-like values
+  ---
+  duration_ms: 104.555458
+  type: 'test'
+  ...
+# Subtest: secret scanning covers src, scripts, server and GitHub workflows
+ok 264 - secret scanning covers src, scripts, server and GitHub workflows
+  ---
+  duration_ms: 0.212833
+  type: 'test'
+  ...
+# Subtest: expanded patterns fail closed on representative secret-like fixtures
+ok 265 - expanded patterns fail closed on representative secret-like fixtures
+  ---
+  duration_ms: 0.847542
+  type: 'test'
+  ...
+# Subtest: SSGI stays off
+ok 266 - SSGI stays off
+  ---
+  duration_ms: 0.582042
+  type: 'test'
+  ...
+# Subtest: all tracked toolchain pins agree exactly
+ok 267 - all tracked toolchain pins agree exactly
+  ---
+  duration_ms: 0.971083
+  type: 'test'
+  ...
+# Subtest: package and lockfile root metadata remain synchronised
+ok 268 - package and lockfile root metadata remain synchronised
+  ---
+  duration_ms: 1.017042
+  type: 'test'
+  ...
+# Subtest: r185 Photo AA is SMAA, no hand-rolled TRAA
+ok 269 - r185 Photo AA is SMAA, no hand-rolled TRAA
+  ---
+  duration_ms: 0.490416
+  type: 'test'
+  ...
+# Subtest: hash01 is deterministic
+ok 270 - hash01 is deterministic
+  ---
+  duration_ms: 0.42975
+  type: 'test'
+  ...
+# Subtest: errorId is stable
+ok 271 - errorId is stable
+  ---
+  duration_ms: 0.109833
+  type: 'test'
+  ...
+# Subtest: hashStr is stable
+ok 272 - hashStr is stable
+  ---
+  duration_ms: 0.048875
+  type: 'test'
+  ...
+# Subtest: brake force is monotonic in 0-1 including 82-83%
+ok 273 - brake force is monotonic in 0-1 including 82-83%
+  ---
+  duration_ms: 0.080583
+  type: 'test'
+  ...
+# Subtest: pacejka is odd and peaks near 0.12
+ok 274 - pacejka is odd and peaks near 0.12
+  ---
+  duration_ms: 0.104125
+  type: 'test'
+  ...
+# Subtest: ABS reduces brake only when locked
+ok 275 - ABS reduces brake only when locked
+  ---
+  duration_ms: 0.052209
+  type: 'test'
+  ...
+# Subtest: TCS reduces throttle on spin
+ok 276 - TCS reduces throttle on spin
+  ---
+  duration_ms: 0.085584
+  type: 'test'
+  ...
+# Subtest: hydroplane only in wet high speed
+ok 277 - hydroplane only in wet high speed
+  ---
+  duration_ms: 0.043417
+  type: 'test'
+  ...
+# Subtest: physics rate is 120Hz
+ok 278 - physics rate is 120Hz
+  ---
+  duration_ms: 0.183083
+  type: 'test'
+  ...
+# Subtest: clamp helper still works
+ok 279 - clamp helper still works
+  ---
+  duration_ms: 0.246542
+  type: 'test'
+  ...
+1..279
+# tests 279
+# suites 0
+# pass 279
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1096.846458

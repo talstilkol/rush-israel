@@ -1,0 +1,1348 @@
+TAP version 13
+# Subtest: hayarkon: actual asphalt surface is visible with front-face culling
+not ok 1 - hayarkon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 6.886875
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: oldjaffa: actual asphalt surface is visible with front-face culling
+not ok 2 - oldjaffa: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 1.22125
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: telaviv: actual asphalt surface is visible with front-face culling
+not ok 3 - telaviv: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.620042
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: namal: actual asphalt surface is visible with front-face culling
+not ok 4 - namal: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.785625
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: jerusalem: actual asphalt surface is visible with front-face culling
+not ok 5 - jerusalem: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.688542
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa: actual asphalt surface is visible with front-face culling
+not ok 6 - haifa: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 1.484417
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: eilat: actual asphalt surface is visible with front-face culling
+not ok 7 - eilat: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.650208
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: rothschild: actual asphalt surface is visible with front-face culling
+not ok 8 - rothschild: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.675125
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ayalon: actual asphalt surface is visible with front-face culling
+not ok 9 - ayalon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 1.428459
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: caesarea: actual asphalt surface is visible with front-face culling
+not ok 10 - caesarea: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.75175
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: deadsea: actual asphalt surface is visible with front-face culling
+not ok 11 - deadsea: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.65825
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: acre: actual asphalt surface is visible with front-face culling
+not ok 12 - acre: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.312834
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: centralpark: actual asphalt surface is visible with front-face culling
+not ok 13 - centralpark: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.442375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: timessquare: actual asphalt surface is visible with front-face culling
+not ok 14 - timessquare: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.447208
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: brooklynbridge: actual asphalt surface is visible with front-face culling
+not ok 15 - brooklynbridge: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.471167
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: manhattan: actual asphalt surface is visible with front-face culling
+not ok 16 - manhattan: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.529542
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: beersheva: actual asphalt surface is visible with front-face culling
+not ok 17 - beersheva: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.446125
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: netanya: actual asphalt surface is visible with front-face culling
+not ok 18 - netanya: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.744166
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hw1: actual asphalt surface is visible with front-face culling
+not ok 19 - hw1: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.252833
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: herzliya: actual asphalt surface is visible with front-face culling
+not ok 20 - herzliya: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.317334
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hanikra: actual asphalt surface is visible with front-face culling
+not ok 21 - hanikra: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.33925
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifaport: actual asphalt surface is visible with front-face culling
+not ok 22 - haifaport: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.440792
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: stellamaris: actual asphalt surface is visible with front-face culling
+not ok 23 - stellamaris: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.221458
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: tiberias: actual asphalt surface is visible with front-face culling
+not ok 24 - tiberias: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.32775
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: golan: actual asphalt surface is visible with front-face culling
+not ok 25 - golan: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.298542
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon: actual asphalt surface is visible with front-face culling
+not ok 26 - hermon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.499416
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hw6: actual asphalt surface is visible with front-face culling
+not ok 27 - hw6: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.379292
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hw2: actual asphalt surface is visible with front-face culling
+not ok 28 - hw2: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.507375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hw90: actual asphalt surface is visible with front-face culling
+not ok 29 - hw90: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.343833
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: petah: actual asphalt surface is visible with front-face culling
+not ok 30 - petah: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.328208
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: rishon: actual asphalt surface is visible with front-face culling
+not ok 31 - rishon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.215167
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ashdod: actual asphalt surface is visible with front-face culling
+not ok 32 - ashdod: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.224208
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ashkelon: actual asphalt surface is visible with front-face culling
+not ok 33 - ashkelon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.2225
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: scopus: actual asphalt surface is visible with front-face culling
+not ok 34 - scopus: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.271542
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: walls: actual asphalt surface is visible with front-face culling
+not ok 35 - walls: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.312583
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: modiin: actual asphalt surface is visible with front-face culling
+not ok 36 - modiin: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.499583
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon: actual asphalt surface is visible with front-face culling
+not ok 37 - ramon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.455375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hw40: actual asphalt surface is visible with front-face culling
+not ok 38 - hw40: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.26325
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: eilatmtn: actual asphalt surface is visible with front-face culling
+not ok 39 - eilatmtn: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.281459
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: gushdan: actual asphalt surface is visible with front-face culling
+not ok 40 - gushdan: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.326417
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: nazareth: actual asphalt surface is visible with front-face culling
+not ok 41 - nazareth: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.243208
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: tzfat: actual asphalt surface is visible with front-face culling
+not ok 42 - tzfat: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.260625
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: masada: actual asphalt surface is visible with front-face culling
+not ok 43 - masada: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.18375
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: batyam: actual asphalt surface is visible with front-face culling
+not ok 44 - batyam: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.129125
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: rehovot: actual asphalt surface is visible with front-face culling
+not ok 45 - rehovot: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.127292
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: nahariya: actual asphalt surface is visible with front-face culling
+not ok 46 - nahariya: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.122208
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramla: actual asphalt surface is visible with front-face culling
+not ok 47 - ramla: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.122333
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: holon: actual asphalt surface is visible with front-face culling
+not ok 48 - holon: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.12675
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: beitshan: actual asphalt surface is visible with front-face culling
+not ok 49 - beitshan: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.114458
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hadera: actual asphalt surface is visible with front-face culling
+not ok 50 - hadera: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.126083
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: lod: actual asphalt surface is visible with front-face culling
+not ok 51 - lod: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.12775
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: kshmona: actual asphalt surface is visible with front-face culling
+not ok 52 - kshmona: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.109542
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: raanana: actual asphalt surface is visible with front-face culling
+not ok 53 - raanana: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.1225
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: afula: actual asphalt surface is visible with front-face culling
+not ok 54 - afula: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.119083
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ksaba: actual asphalt surface is visible with front-face culling
+not ok 55 - ksaba: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.125417
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: arad: actual asphalt surface is visible with front-face culling
+not ok 56 - arad: actual asphalt surface is visible with front-face culling
+  ---
+  duration_ms: 0.121333
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:29:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:31:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: actual Ayalon opposing carriageway is also visible from above
+not ok 57 - actual Ayalon opposing carriageway is also visible from above
+  ---
+  duration_ms: 0.51075
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:35:1'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:38:3)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: actual Rothschild sidewalk on side -1 faces pedestrians above it
+ok 58 - actual Rothschild sidewalk on side -1 faces pedestrians above it
+  ---
+  duration_ms: 2.26125
+  type: 'test'
+  ...
+# Subtest: actual Rothschild sidewalk on side 1 faces pedestrians above it
+not ok 59 - actual Rothschild sidewalk on side 1 faces pedestrians above it
+  ---
+  duration_ms: 0.49925
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:42:3'
+  failureType: 'testCodeFailure'
+  error: 'no front-facing road surface at actual route fraction 0.05'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    checkVisibleFromAbove (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:23:14)
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/road-facing.test.mjs:44:5)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..59
+# tests 59
+# suites 0
+# pass 1
+# fail 58
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 383.407958
