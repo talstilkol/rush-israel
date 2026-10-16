@@ -2,11 +2,11 @@ import type { BuiltTrack } from "./spline";
 import { sampleAtT } from "./spline";
 
 /** A real roadside point must also clear other nearby folds of the route. */
-export function clearRoadsidePoint(built: BuiltTrack, t: number, preferredSide: number, radius: number) {
+export function clearRoadsidePoint(built: BuiltTrack, t: number, preferredSide: number, radius: number, allowOpposite = true) {
   const s = sampleAtT(built.samples, t);
   const required = built.width / 2 + radius + 2;
   const count = built.closed ? built.samples.length : built.samples.length - 1;
-  for (let extra = 8; extra <= 80; extra += 6) for (const side of [preferredSide, -preferredSide]) {
+  for (let extra = 8; extra <= 80; extra += 6) for (const side of allowOpposite ? [preferredSide, -preferredSide] : [preferredSide]) {
     const distance = built.width / 2 + extra;
     const x = s.x + s.rx * distance * side, z = s.z + s.rz * distance * side;
     let clear = true;

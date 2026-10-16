@@ -227,7 +227,8 @@ export default function buildHaifa(context: TrackWorldBuilderContext): void {
       roof.rotation.y = Math.PI / 4;
       roof.position.set(p.x, c.h + 1.6, p.z);
       add(roof);
-      hit(p.x, p.z, 5);
+      const collider = hit(p.x, p.z, 5);
+      collider.maxY = roof.position.y + roof.geometry.parameters.height / 2;
     }
     const valleyX = def.water ? def.water.x : pt.x;
     const valleyZ = def.water ? def.water.z : pt.z;

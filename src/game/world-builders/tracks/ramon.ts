@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { buildRamonCliff } from "../ramon-cliff";
+import { clearRoadsidePoint } from "../../roadside";
 import { closestSample } from "../../spline";
 import { ram } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
@@ -136,17 +137,25 @@ export default function buildRamon(context: TrackWorldBuilderContext): void {
       add(post);
     }
     const cut = ram(30.5992, 34.806);
-    const nCut = ram(30.5964, 34.8044);
-    const cutYaw = Math.atan2(nCut.x - cut.x, nCut.z - cut.z);
-    const cutY = def.elevation(0.55);
+    const cutSample = built.samples[closestSample(built.samples, cut.x, cut.z).index];
+    cut.x = cutSample.x;
+    cut.z = cutSample.z;
+    const cutYaw = Math.atan2(cutSample.tx, cutSample.tz);
+    const cutY = cutSample.y;
     placeTunnel(cut.x, cut.z, cutYaw, 42, built.width * 0.62, 7.6, cutY);
-    const crx = Math.cos(cutYaw);
-    const crz = -Math.sin(cutYaw);
+    // Keep the full footprint outside the route, including adjacent hairpins.
+    const spurRadius = Math.hypot(22 / 2, 30 / 2);
+    const left = clearRoadsidePoint(built, cutSample.t, -1, spurRadius, false);
+    const right = clearRoadsidePoint(built, cutSample.t, 1, spurRadius, false);
     const spurL = new THREE.Mesh(new THREE.BoxGeometry(22, 36, 30), darkRock);
-    spurL.position.set(cut.x - crx * 28, cutY + 18, cut.z - crz * 28);
+    spurL.position.set(left.x, cutY + 18, left.z);
+    spurL.rotation.y = cutYaw;
+    spurL.name = "ramon-tunnel-spur-left";
     add(spurL);
     const spurR = new THREE.Mesh(new THREE.BoxGeometry(22, 32, 30), sand);
-    spurR.position.set(cut.x + crx * 28, cutY + 16, cut.z + crz * 28);
+    spurR.position.set(right.x, cutY + 16, right.z);
+    spurR.rotation.y = cutYaw;
+    spurR.name = "ramon-tunnel-spur-right";
     add(spurR);
     const bushM = new THREE.MeshStandardMaterial({ color: 6978104, roughness: 0.92, flatShading: true });
     bag.push(bushM);
@@ -157,7 +166,10 @@ export default function buildRamon(context: TrackWorldBuilderContext): void {
     }
     glowAt(lk.x, lookY + 5, lk.z, 16763e3, 24, 20);
     hit(lk.x, lk.z, 4);
-    hit(cut.x - crx * 28, cut.z - crz * 28, 8);
-    hit(cut.x + crx * 28, cut.z + crz * 28, 8);
+    for (const spur of [spurL, spurR]) {
+      const dimensions = spur.geometry.parameters;
+      const collider = hit(spur.position.x, spur.position.z, spurRadius, dimensions.width / 2, dimensions.depth / 2, spur.rotation.y);
+      collider.maxY = spur.position.y + dimensions.height / 2;
+    }
   /* RSH-016:END-LEGACY-TRACK-BODY */
 }

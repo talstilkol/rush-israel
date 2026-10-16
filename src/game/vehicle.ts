@@ -454,7 +454,8 @@ export class ArcadeCar {
       const vLat = wvx * wrx + wvz * wrz;
       const sa = Math.atan2(vLat, Math.max(2.2, Math.abs(vLong)));
       const Fy = -pacejka(sa, Math.max(0.08, grip * loads[i] * 4));
-      yawT += ox * wrz * Fy - oz * wrx * Fy;
+      // Cross product around +Y: r.z * F.x - r.x * F.z.
+      yawT += oz * wrx * Fy - ox * wrz * Fy;
     }
     const speedFactor = clamp(speedAbs / 7.5, 0, 1) * (1 - 0.4 * clamp(speedAbs / 38, 0, 1));
     const crawl = 1 - clamp((speedAbs - 4) / 6, 0, 1);
@@ -652,6 +653,8 @@ export class ArcadeCar {
   /** 5.5: resolve once per CCD cut. Not PhysX. */
   private hitColliders(colliders: Collider[]) {
     for (const c of colliders) {
+      // The vehicle base is entirely above this actual solid, so their volumes cannot meet.
+      if (c.maxY != null && this.y > c.maxY) continue;
       const carR = 1.05;
       let nx = 0;
       let nz = 0;

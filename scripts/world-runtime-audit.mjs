@@ -64,7 +64,7 @@ try {
         const inverse = mesh.matrixWorld.clone().invert();
         for (let index = 0; index < built.samples.length; index++) {
           const sample = built.samples[index];
-          for (const lane of [-0.5, 0, 0.5]) {
+          for (const lane of [-1, -0.5, 0, 0.5, 1]) {
             const offset = lane * built.width / 2;
             point.set(sample.x + sample.rx * offset, sample.y + 1.2, sample.z + sample.rz * offset).applyMatrix4(inverse);
             if (Math.abs(point.x) < size.width / 2 && Math.abs(point.y) < size.height / 2 && Math.abs(point.z) < size.depth / 2) {
@@ -85,7 +85,7 @@ try {
         try {
           const built = buildTrack(definition);
           world = await createWorld(definition, built, false, false, 'clear');
-          if (definition.id === 'oldjaffa') {
+          if (['oldjaffa', 'namal', 'haifa', 'rothschild', 'ayalon', 'hermon', 'scopus', 'ramon'].includes(definition.id)) {
             result.blockingRoadBuildings = blockingRoadBuildings(world, built);
             if (result.blockingRoadBuildings.length) throw new Error(`buildings occupy the actual driving path: ${JSON.stringify(result.blockingRoadBuildings)}`);
           }
@@ -148,6 +148,20 @@ try {
           const roadPuddles = world.group.getObjectByName('rush-road-puddles');
           if (!roadPuddles || roadPuddles.visible) throw new Error('clear night retained road puddles');
           result.roadMaterialWeather = { dryRoughness, clearNightRoughness: raceRoad.material.roughness, wetnessReset: true };
+          if (definition.id === 'haifa') {
+            const bounded = world.colliders.filter(collider => collider.maxY != null);
+            if (bounded.length !== 5 || bounded.some(collider => !Number.isFinite(collider.maxY))) throw new Error('Haifa house roofs lack their real collision height bounds');
+            const checks = [];
+            for (const definition of CARS) {
+              const car = new ArcadeCar(definition, definition.nameEn);
+              car.spawn(built, built.samples[138].t, -2.2);
+              for (let tick=0;tick<120*8;tick++) car.step(1/120,aiInput(car,built),built,true,world.colliders,world.streets,world.ramps);
+              const row = {car:definition.id,progress:car.progress,speed:car.speed,damage:car.damage};
+              if (car.progress <= built.samples[147].t || car.damage !== 0) throw new Error(`actual elevated Haifa route remains blocked: ${JSON.stringify(row)}`);
+              checks.push(row);
+            }
+            result.haifaHeightChecks = checks;
+          }
           if (definition.id === 'rothschild') {
             const lanes = [];
             for (const definition of CARS) for (const side of [-1, 1]) for (const follow of [false, true]) {

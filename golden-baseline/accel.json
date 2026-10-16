@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "physicsVersion": 9,
+  "physicsVersion": 10,
   "track": "ayalon",
   "gate": "current-behaviour regression",
   "claimGate": "RSH-033",
   "regressionToleranceSeconds": 0.1,
   "claimTolerance": 0.15,
-  "authority": "Physics 9 corrects median-aware steering and racer/traffic/police lane placement. All five target means and tolerances are unchanged from physics 8. Fifteen actual browser runs passed regression and claim gates; see evidence/2026-10-16/physics9-acceleration.json and physics9-median-fix.json for source hashes and limits.",
+  "authority": "Physics10 corrects the sign of tire yaw torque and bounds real lower-level house colliders by their actual roof height. All five target means, 0.1-second regression tolerance and15percent claim tolerance remain unchanged. A fresh15-run browser recheck passed after the torque correction; final exact-headCI must recheck the combined candidate.",
   "runs": [
     {
       "carId": "sabra",

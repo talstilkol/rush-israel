@@ -110,6 +110,8 @@
     "traa.test.mjs": "current-unit",
     "w-determinism.test.mjs": "current-unit",
     "terrain.test.mjs": "current-unit",
-    "terrain-height.test.mjs": "current-unit"
+    "terrain-height.test.mjs": "current-unit",
+    "steering-direction.test.mjs": "current-unit",
+    "collider-height.test.mjs": "current-unit"
   }
 }

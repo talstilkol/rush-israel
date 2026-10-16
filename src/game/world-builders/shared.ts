@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { closestSample } from "../spline";
 import { tlv } from "../tracks";
+import type { Collider } from "../types";
 import type { TrackWorldBuilderInput } from "./types";
 
 export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
@@ -49,7 +50,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     });
   };
   const hit = (x: number, z: number, r: number, hx?: number, hz?: number, yaw?: number) => {
-    colliders.push({
+    const collider: Collider = {
       x,
       z,
       r,
@@ -57,7 +58,9 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
       hz: hz ?? r * 0.72,
       yaw: yaw ?? 0,
       kind: "building"
-    });
+    };
+    colliders.push(collider);
+    return collider;
   };
   const roadYaw = (x: number, z: number) => {
     const s = built.samples[closestSample(built.samples, x, z).index];
