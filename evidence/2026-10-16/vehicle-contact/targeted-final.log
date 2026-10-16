@@ -1,0 +1,316 @@
+TAP version 13
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# THREE.Material: parameter 'roughnessMap' has value of undefined.
+# THREE.Material: parameter 'bumpMap' has value of undefined.
+# THREE.Material: parameter 'clearcoatNormalMap' has value of undefined.
+# Subtest: actual Namal 8.000s: resolve recorded body penetrations
+ok 1 - actual Namal 8.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 3.531542
+  type: 'test'
+  ...
+# Subtest: actual Namal 9.000s: resolve recorded body penetrations
+ok 2 - actual Namal 9.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 0.57825
+  type: 'test'
+  ...
+# Subtest: actual Namal 10.000s: resolve recorded body penetrations
+ok 3 - actual Namal 10.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 0.356042
+  type: 'test'
+  ...
+# Subtest: actual Namal 11.000s: resolve recorded body penetrations
+ok 4 - actual Namal 11.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 1.161333
+  type: 'test'
+  ...
+# Subtest: actual Namal 12.000s: resolve recorded body penetrations
+ok 5 - actual Namal 12.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 0.519291
+  type: 'test'
+  ...
+# Subtest: actual Namal 13.000s: resolve recorded body penetrations
+ok 6 - actual Namal 13.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 0.983625
+  type: 'test'
+  ...
+# Subtest: actual Namal 14.000s: resolve recorded body penetrations
+ok 7 - actual Namal 14.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 10.103958
+  type: 'test'
+  ...
+# Subtest: actual Namal 15.000s: resolve recorded body penetrations
+ok 8 - actual Namal 15.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 56.24275
+  type: 'test'
+  ...
+# Subtest: actual Namal 16.000s: resolve recorded body penetrations
+ok 9 - actual Namal 16.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 1.047417
+  type: 'test'
+  ...
+# Subtest: actual Namal 17.000s: resolve recorded body penetrations
+ok 10 - actual Namal 17.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 0.634042
+  type: 'test'
+  ...
+# Subtest: actual Namal 19.000s: resolve recorded body penetrations
+ok 11 - actual Namal 19.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 1.07525
+  type: 'test'
+  ...
+# Subtest: actual Namal 20.000s: resolve recorded body penetrations
+ok 12 - actual Namal 20.000s: resolve recorded body penetrations
+  ---
+  duration_ms: 0.376083
+  type: 'test'
+  ...
+# Subtest: actual measured bodies under controlled contact: coincident
+ok 13 - actual measured bodies under controlled contact: coincident
+  ---
+  duration_ms: 0.308958
+  type: 'test'
+  ...
+# Subtest: actual measured bodies under controlled contact: rear-end
+ok 14 - actual measured bodies under controlled contact: rear-end
+  ---
+  duration_ms: 0.058625
+  type: 'test'
+  ...
+# Subtest: actual measured bodies under controlled contact: side
+ok 15 - actual measured bodies under controlled contact: side
+  ---
+  duration_ms: 0.050375
+  type: 'test'
+  ...
+# Subtest: actual measured bodies under controlled contact: crossed
+ok 16 - actual measured bodies under controlled contact: crossed
+  ---
+  duration_ms: 0.044958
+  type: 'test'
+  ...
+# Subtest: actual measured bodies under controlled contact: separate elevation
+ok 17 - actual measured bodies under controlled contact: separate elevation
+  ---
+  duration_ms: 0.195833
+  type: 'test'
+  ...
+# Subtest: actual measured bodies under controlled contact: clear side lane
+ok 18 - actual measured bodies under controlled contact: clear side lane
+  ---
+  duration_ms: 0.036834
+  type: 'test'
+  ...
+# Subtest: eight actual measured bodies at the same position separate deterministically
+ok 19 - eight actual measured bodies at the same position separate deterministically
+  ---
+  duration_ms: 4.215167
+  type: 'test'
+  ...
+# Subtest: actual body head-on contact preserves momentum and charges one impact per pair
+ok 20 - actual body head-on contact preserves momentum and charges one impact per pair
+  ---
+  duration_ms: 0.207958
+  type: 'test'
+  ...
+# Subtest: sabra/1x1x1: contact bounds enclose the actual solid vertices
+ok 21 - sabra/1x1x1: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 18.038625
+  type: 'test'
+  ...
+# Subtest: sabra/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+ok 22 - sabra/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 4.942125
+  type: 'test'
+  ...
+# Subtest: sabra/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+ok 23 - sabra/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 4.490209
+  type: 'test'
+  ...
+# Subtest: carmel/1x1x1: contact bounds enclose the actual solid vertices
+ok 24 - carmel/1x1x1: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 5.713833
+  type: 'test'
+  ...
+# Subtest: carmel/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+ok 25 - carmel/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.919875
+  type: 'test'
+  ...
+# Subtest: carmel/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+ok 26 - carmel/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.721334
+  type: 'test'
+  ...
+# Subtest: kfir/1x1x1: contact bounds enclose the actual solid vertices
+ok 27 - kfir/1x1x1: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 6.433667
+  type: 'test'
+  ...
+# Subtest: kfir/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+ok 28 - kfir/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.58225
+  type: 'test'
+  ...
+# Subtest: kfir/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+ok 29 - kfir/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 3.605875
+  type: 'test'
+  ...
+# Subtest: negev/1x1x1: contact bounds enclose the actual solid vertices
+ok 30 - negev/1x1x1: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 5.470917
+  type: 'test'
+  ...
+# Subtest: negev/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+ok 31 - negev/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.598542
+  type: 'test'
+  ...
+# Subtest: negev/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+ok 32 - negev/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.007417
+  type: 'test'
+  ...
+# Subtest: yam/1x1x1: contact bounds enclose the actual solid vertices
+ok 33 - yam/1x1x1: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 4.464708
+  type: 'test'
+  ...
+# Subtest: yam/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+ok 34 - yam/1.12x1.22x1.38: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.168084
+  type: 'test'
+  ...
+# Subtest: yam/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+ok 35 - yam/1.18x1.28x1.42: contact bounds enclose the actual solid vertices
+  ---
+  duration_ms: 2.638791
+  type: 'test'
+  ...
+# Subtest: actual Haifa downhill approach: brake before different road heights converge
+ok 36 - actual Haifa downhill approach: brake before different road heights converge
+  ---
+  duration_ms: 3.365584
+  type: 'test'
+  ...
+1..36
+# tests 36
+# suites 0
+# pass 36
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 485.719625

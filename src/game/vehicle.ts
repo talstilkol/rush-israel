@@ -1,3 +1,4 @@
+import { contactProjection, vehicleContact, type VehicleContactBounds } from "./vehicle-contact";
 import { clamp, expSmooth, wrapPi, forwardDelta } from "./math";
 import {
   absModulate,
@@ -80,6 +81,7 @@ function probeRamp(x: number, z: number, ramps: Ramp[], yHint = 0) {
 }
 
 export class ArcadeCar {
+  contactBounds?: VehicleContactBounds;
   visualSteer = 0;
   visualBrake = 0;
   x = 0;
@@ -992,8 +994,7 @@ function pathInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): Input
   };
 }
 
-// Same contact envelope as separateCars; height filtering is shared as well.
-export const VEHICLE_CONTACT_DISTANCE = 2.45;
+// Avoidance uses the same measured, oriented envelope as contact resolution.
 
 function avoidVehicleContact(car: ArcadeCar, input: InputState, vehicles: readonly ArcadeCar[]): InputState {
   const fx = -Math.sin(car.yaw), fz = -Math.cos(car.yaw);
@@ -1001,17 +1002,22 @@ function avoidVehicleContact(car: ArcadeCar, input: InputState, vehicles: readon
   let brake = input.brake;
   let hazard = false;
   for (const other of vehicles) {
+    // Avoidance predicts future contact: on a grade, an approaching body is
+    // at another height before reaching us. Retain the existing four-metre
+    // forecast corridor; only actual contact uses tight solid height bounds.
     if (other === car || Math.abs(other.y - car.y) > 4) continue;
     const dx = other.x - car.x, dz = other.z - car.z;
     const along = dx * fx + dz * fz;
     if (along <= 0 || along > 72) continue;
-    if (Math.abs(dx * rx + dz * rz) > VEHICLE_CONTACT_DISTANCE + 0.35) continue;
+    const lateralA = contactProjection(car, rx, rz), lateralB = contactProjection(other, rx, rz);
+    if (Math.abs(lateralA.center - lateralB.center) > lateralA.radius + lateralB.radius + 0.35) continue;
     const closing = (car.vx - other.vx) * fx + (car.vz - other.vz) * fz;
     if (closing <= 0.5) continue;
     // A two-second closing horizon and one metre of free space prevent the
     // driver from waiting until an overlap before reacting. Receding vehicles
     // and adjacent lanes do not impose a speed cap or change race position.
-    const gap = Math.max(0, along - VEHICLE_CONTACT_DISTANCE - 1);
+    const longitudinalA = contactProjection(car, fx, fz), longitudinalB = contactProjection(other, fx, fz);
+    const gap = Math.max(0, longitudinalB.center - longitudinalA.center - longitudinalA.radius - longitudinalB.radius - 1);
     const safeClosing = gap / 2;
     if (closing <= safeClosing) continue;
     const wx = WEATHER_SPEC[car.weather] ?? WEATHER_SPEC.clear;
@@ -1093,54 +1099,58 @@ export function updateDrafting(player: ArcadeCar, others: ArcadeCar[]) {
 
 export function separateCars(cars: ArcadeCar[]): number {
   const n = cars.length;
-  const rad = VEHICLE_CONTACT_DISTANCE;
   let peak = 0;
-  for (let i = 0; i < n; i++) {
-    for (let j = i + 1; j < n; j++) {
-      const a = cars[i];
-      const b = cars[j];
-      if (Math.abs(a.y - b.y) > 4) continue;
-      const dx = a.x - b.x;
-      const dz = a.z - b.z;
-      const d = Math.hypot(dx, dz);
-      if (d >= rad || d < 1e-4) continue;
-      const nx = dx / d;
-      const nz = dz / d;
-      const ma = a.stats.mass || 1;
-      const mb = b.stats.mass || 1;
-      const m = ma + mb;
-      const push = rad - d;
-      a.x += nx * push * (mb / m);
-      a.z += nz * push * (mb / m);
-      b.x -= nx * push * (ma / m);
-      b.z -= nz * push * (ma / m);
-      const rel = (a.vx - b.vx) * nx + (a.vz - b.vz) * nz;
-      if (rel >= -3) continue;
-      const imp = (-1.42 * rel) / (1 / ma + 1 / mb);
-      a.vx += (imp / ma) * nx;
-      a.vz += (imp / ma) * nz;
-      b.vx -= (imp / mb) * nx;
-      b.vz -= (imp / mb) * nz;
-      const closing = -rel;
-      const afx = -Math.sin(a.yaw);
-      const afz = -Math.cos(a.yaw);
-      const bfx = -Math.sin(b.yaw);
-      const bfz = -Math.cos(b.yaw);
-      a.speed = a.vx * afx + a.vz * afz;
-      b.speed = b.vx * bfx + b.vz * bfz;
-      const loss = clamp(closing / 34, 0.04, 0.32);
-      a.speed *= 1 - loss * (mb / m) * 0.45;
-      b.speed *= 1 - loss * (ma / m) * 0.45;
-      const bump = closing > 6 ? closing * 0.006 : 0;
-      a.damage = clamp(a.damage + bump * (mb / m), 0, 1);
-      b.damage = clamp(b.damage + bump * (ma / m), 0, 1);
-      if (!a.isAi || !b.isAi) {
-        peak = Math.max(peak, closing);
-        const hit = Math.min(0.55, closing / 22);
-        if (!a.isAi) a.impact = Math.max(a.impact, hit);
-        if (!b.isAi) b.impact = Math.max(b.impact, hit);
+  const impulsed = new Set<number>();
+  // A correction in a pack can push a car back into an earlier neighbour.
+  // Revisit constraints, but charge each pair's impact only once per tick.
+  for (let pass = 0; pass < 96; pass++) {
+    let deepest = 0;
+    for (let i = 0; i < n; i++) {
+      for (let j = i + 1; j < n; j++) {
+        const a = cars[i], b = cars[j];
+        const contact = vehicleContact(a, b);
+        if (!contact) continue;
+        const { nx, nz, depth: push } = contact;
+        deepest = Math.max(deepest, push);
+        const ma = a.stats.mass || 1;
+        const mb = b.stats.mass || 1;
+        const m = ma + mb;
+        a.x += nx * push * (mb / m);
+        a.z += nz * push * (mb / m);
+        b.x -= nx * push * (ma / m);
+        b.z -= nz * push * (ma / m);
+        const pair = i * n + j;
+        if (impulsed.has(pair)) continue;
+        const rel = (a.vx - b.vx) * nx + (a.vz - b.vz) * nz;
+        if (rel >= -3) continue;
+        impulsed.add(pair);
+        const imp = (-1.42 * rel) / (1 / ma + 1 / mb);
+        a.vx += (imp / ma) * nx;
+        a.vz += (imp / ma) * nz;
+        b.vx -= (imp / mb) * nx;
+        b.vz -= (imp / mb) * nz;
+        const closing = -rel;
+        const afx = -Math.sin(a.yaw);
+        const afz = -Math.cos(a.yaw);
+        const bfx = -Math.sin(b.yaw);
+        const bfz = -Math.cos(b.yaw);
+        a.speed = a.vx * afx + a.vz * afz;
+        b.speed = b.vx * bfx + b.vz * bfz;
+        const loss = clamp(closing / 34, 0.04, 0.32);
+        a.speed *= 1 - loss * (mb / m) * 0.45;
+        b.speed *= 1 - loss * (ma / m) * 0.45;
+        const bump = closing > 6 ? closing * 0.006 : 0;
+        a.damage = clamp(a.damage + bump * (mb / m), 0, 1);
+        b.damage = clamp(b.damage + bump * (ma / m), 0, 1);
+        if (!a.isAi || !b.isAi) {
+          peak = Math.max(peak, closing);
+          const hit = Math.min(0.55, closing / 22);
+          if (!a.isAi) a.impact = Math.max(a.impact, hit);
+          if (!b.isAi) b.impact = Math.max(b.impact, hit);
+        }
       }
     }
+    if (deepest < 1e-6) break;
   }
   return peak;
 }

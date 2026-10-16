@@ -1,7 +1,7 @@
 // RSH-017: generated extraction from the accepted engine.ts.
 // Do not change behavior here without an explicit later authority.
 import * as THREE from "three";
-import { createCarVisual, setCarLights, applyDamage } from "../car-mesh";
+import { carContactBounds, createCarVisual, setCarLights, applyDamage } from "../car-mesh";
 import { finishLine, overtakeLine } from "../dialog";
 import { racePayout, timedSpan } from "../garage";
 import { CARS } from "../cars";
@@ -422,6 +422,7 @@ export function addCop(this: EngineAdapterHost, i: Parameters<RaceEngine["addCop
     cop.spawn(this.built, behindProgress(this.player.progress, 0.1 + i * 0.03, !!this.trackDef.open), cop.aiOffset);
     this.cops.push(cop);
     const vis = createCarVisual(color, accent, false, false, "gt", true);
+    cop.contactBounds = carContactBounds(vis);
     setCarLights(vis, this.world.night);
     this.scene.add(vis.group);
     this.copVis.push(vis);

@@ -1,0 +1,7 @@
+{
+  "kind": "actual-vehicle-contact",
+  "passed": false,
+  "scope": "Upright measured opaque vehicle bounds, loaded assets, controlled pair contacts and 20 simulated seconds of actual Namal engine driving. Not swept collision, suspension tilt, full race, device performance or calibrated rigid-body acceptance.",
+  "errors": [],
+  "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:8133/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:8133/\", waiting until \"networkidle\"\u001b[22m\n"
+}

@@ -122,6 +122,7 @@
     "terrain.test.mjs": "current-unit",
     "toolchain-metadata.test.mjs": "current-unit",
     "traa.test.mjs": "current-unit",
+    "vehicle-contact.test.mjs": "current-unit",
     "vehicle-visual-feedback.test.mjs": "current-unit",
     "w-determinism.test.mjs": "current-unit"
   },

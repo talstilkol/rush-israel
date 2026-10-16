@@ -1,0 +1,7 @@
+{
+  "kind": "actual-vehicle-contact",
+  "passed": false,
+  "scope": "Upright measured opaque vehicle bounds, loaded assets, controlled pair contacts and 20 simulated seconds of actual Namal engine driving. Not swept collision, suspension tilt, full race, device performance or calibrated rigid-body acceptance.",
+  "errors": [],
+  "error": "Error: page.evaluate: TypeError: Failed to resolve module specifier 'undefined'\n    at eval (eval at evaluate (:311:30), <anonymous>:5:28)\n    at async <anonymous>:337:30"
+}

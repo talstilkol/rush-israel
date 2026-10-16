@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { GameAudio, RADIO } from "./audio";
 // RSH-019-OVERLAY-BEGIN:engine-car-disposer-import
-import { createCarVisual, disposeCarVisual, pulsePolice, setCarLights, updateCarVisual, applyDamage, type CarVisual } from "./car-mesh";
+import { carContactBounds, createCarVisual, disposeCarVisual, pulsePolice, setCarLights, updateCarVisual, applyDamage, type CarVisual } from "./car-mesh";
 // RSH-019-OVERLAY-END:engine-car-disposer-import
 import { getEvent } from "./career";
 import { finishLine, introLine, overtakeLine } from "./dialog";
@@ -527,6 +527,7 @@ export class RaceEngine {
         r.stats.kit === "police",
         i === 0 ? this.opts.tune : undefined,
       );
+      r.contactBounds = carContactBounds(vis);
       setCarLights(vis, this.opts.night);
       if (i === 0) applyDamage(vis, this.player.damage, this.player.dirt);
       this.scene.add(vis.group);
@@ -757,6 +758,7 @@ export class RaceEngine {
       const vis = createCarVisual(color, accent, false, false, body);
       if (kind === "bus") vis.group.scale.set(1.12, 1.22, 1.38);
       if (kind === "truck") vis.group.scale.set(1.18, 1.28, 1.42);
+      cab.contactBounds = carContactBounds(vis);
       setCarLights(vis, this.opts.night);
       this.scene.add(vis.group);
       this.trafficVis.push(vis);
@@ -798,6 +800,7 @@ export class RaceEngine {
       cop.spawn(this.built, 0.002, cop.aiOffset);
       this.cops.push(cop);
       const vis = createCarVisual(color, accent, false, false, "gt", true);
+      cop.contactBounds = carContactBounds(vis);
       setCarLights(vis, this.opts.night);
       this.scene.add(vis.group);
       this.copVis.push(vis);

@@ -1,0 +1,15 @@
+{
+  "scope": "Current734-test suite checks all46 Markdown/JSON records;five plan/control hashes independently checked. No product acceptance.",
+  "tasks": 46,
+  "edges": 96,
+  "units": 67,
+  "acyclic": true,
+  "all_markdown_task_fields": "Verified by current completion-plan.test.mjs against all46 real canonical records.",
+  "files": {
+    "COMPLETION-PLAN.md": "9e39896f098beebdb67a69ab00d68e7a0085d7a2eb1e82a978a2ca5aa4d2f698",
+    "COMPLETION-BACKLOG.json": "dece79d78ea6ad2c6d60e0d388087c21eaa9db6479d0804ecb2b72576db9f0e9",
+    "COMPLETION-CROSSWALK.json": "f54a994e48b4675c1938058e4220bab81c6f3f97a06a796a46ef608885f5ff2f",
+    "QUALITY-TARGETS.md": "75d8485a47f8c4b5579a62890ccabe8461421fcf54f320e894db193631dea57c",
+    "PRODUCT-READINESS.json": "cae85eb54656ddb008fd341464b0dffb3349734cb909434b34e101cca76516b9"
+  }
+}

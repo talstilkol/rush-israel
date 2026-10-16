@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import type { VehicleContactBounds } from "./vehicle-contact";
 import type { CarDef, Tune } from "./types";
 import { cloneCarBody } from "./car-assets";
 import { fitCarWindows } from "./car-glazing";
@@ -633,6 +634,29 @@ export function createCarVisual(
     indL,
     indR,
   };
+}
+
+/** Measure opaque physical parts before suspension/steering animation. Effects
+ * (glass, headlight pools, exhaust and shadow planes) do not enlarge contacts.
+ * Root scale is retained, including the traffic bus/truck scale. */
+export function carContactBounds(vis: CarVisual): VehicleContactBounds {
+  const root = vis.group;
+  root.updateMatrixWorld(true);
+  const unpose = new THREE.Matrix4().compose(root.getWorldPosition(new THREE.Vector3()), root.getWorldQuaternion(new THREE.Quaternion()), new THREE.Vector3(1, 1, 1)).invert();
+  const bounds = new THREE.Box3();
+  root.traverse((object) => {
+    if (!(object instanceof THREE.Mesh)) return;
+    const materials = Array.isArray(object.material) ? object.material : [object.material];
+    if (materials.every(material => material.transparent)) return;
+    const positions = object.geometry.getAttribute("position");
+    if (!positions) return;
+    const matrix = new THREE.Matrix4().multiplyMatrices(unpose, object.matrixWorld);
+    const point = new THREE.Vector3();
+    for (let i = 0; i < positions.count; i++) bounds.expandByPoint(point.fromBufferAttribute(positions, i).applyMatrix4(matrix));
+  });
+  if (bounds.isEmpty() || ![...bounds.min.toArray(), ...bounds.max.toArray()].every(Number.isFinite)) throw new Error("Actual car solid bounds unavailable");
+  // Rendering faces yaw + PI; the physics frame faces yaw.
+  return { minX: -bounds.max.x, maxX: -bounds.min.x, minY: bounds.min.y, maxY: bounds.max.y, minZ: -bounds.max.z, maxZ: -bounds.min.z };
 }
 
 export function setIndicators(vis: CarVisual, left: boolean, right: boolean, t: number) {
