@@ -1,0 +1,7 @@
+
+> app-builder-workspace@0.0.0-private preinstall
+> node scripts/verify-toolchain.mjs
+
+toolchain ok — Node 22.16.0, npm 10.9.2
+
+added 274 packages in 1s

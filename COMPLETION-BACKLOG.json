@@ -75,7 +75,7 @@
       "acceptance": "finite checks בכל 56 הגדרות ונהיגה ברמון; רציפות בגבולות",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "כל 56 המסלולים finite; שמונת מסלולי V1 הושלמו בסימולציה בלבד.",
+      "verification_note": "כל 56 העולמות עוברים בדיקות finite. רמון מסיים מרוץ בדפדפן עם GL0 ואפס נזק ב־30a2c19. אין מכאן קבלה של אמנות או של כל וריאציות הנהיגה.",
       "external_evidence_required": false
     },
     {
@@ -90,7 +90,7 @@
       "acceptance": "42 ה-colliders שהוזזו בענף נבדקים מול meshes; אין collision מנותק",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "כל56העולמות והמסלולים נבדקו עלccaabd2; תוקנו כביש הפוך, overflowעלווה, קיר רמון ו4מבנים ביפו. קרקע ועיגון צמחייה עדיין בעבודה; אין קבלת מסלול.",
+      "verification_note": "תוקנו ארבעה מבנים ביפו, גבולות הגובה של חמישה בתי חיפה ובליטות המנהרה ברמון. בדיקת מבנים וקירות דקים בחמש שורות לרוחב כל שמונת מסלולי V1 עוברת; צורות mesh אחרות עדיין דורשות בדיקה.",
       "external_evidence_required": false
     },
     {
@@ -203,7 +203,7 @@
       "acceptance": "התאמה בין mesh ו-collider, מעבר מפלסים ללא קפיצה, נזק עקבי; סיוע ההיגוי אינו מושך רכב לאי תנועה.",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "Physics 9: בדיקה מבודדת נכשלת ב-20/20 מקרים עם הכוח הישן ועוברת אחרי תיקון; 20 מקרים עם colliders אמיתיים עברו ללא נזק. זו אינה קבלת כל ההתנגשויות.",
+      "verification_note": "בית שגגו כ־12 מטרים חסם רכב בגובה כ־62 מטרים בחיפה. maxY נגזר מהגג הקיים; מגע בגובה הבית נשמר. חמש המכוניות עוברות את הנקודה בלי נזק. גבולות הגובה נוספו לחמישה בתים ושתי בליטות בלבד; אין ביקורת 3D מלאה.",
       "external_evidence_required": false
     },
     {
@@ -266,7 +266,7 @@
       "acceptance": "חמש מכוניות, שני מצבי Handling, ארבעה סוגי מזג אוויר ו-stock/upgraded: תאוצה, בלימה, היגוי, משטח ודריפט; יעד ויחידה פיזיקלית מפורשים, ספים אינם נחלשים כדי להעביר בדיקה.",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "Physics 9: 15 ריצות תאוצה בדפדפן עברו מול אותם יעדים וסבילות; יתר מדדי Handling ואימות מכשיר עדיין פתוחים.",
+      "verification_note": "Physics 10 מתקן סימן הפוך במומנט הצמיגים: 20 מתוך 30 בדיקות כיוון היגוי נכשלו לפני התיקון, וכל 30 עוברות כעת. 15 ריצות תאוצה בשלב תיקון המומנט עברו מול אותם יעדים וסבילויות. כיול אחיזה, בלימה ודריפט רחב עדיין פתוח.",
       "external_evidence_required": false
     },
     {
@@ -282,7 +282,7 @@
       "acceptance": "כל יריב מסיים את שמונת מסלולי V1 ללא teleport או recovery loop; קו הנסיעה נמנע מאיי תנועה ומכשולים; נזק סטטי ועקיפות נמדדים; rubber-band מכובה ב-simcade ואינו עוקף חוקי אחיזה.",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "כל8מרוציV1 הסתיימו בccaabd2 עםGLerror0 וללא שיא רשמי בassisted; נזק.175–.774 נשאר כשל איכות. הימנעות AI ומהירות פנייה עדיין פתוחות.",
+      "verification_note": "כל שמונת מרוצי V1 מסתיימים ב־30a2c19. באיילון, בחרמון וברמון נמדד אפס נזק; בחמשת האחרים נותר נזק של 9.1%–36.7%. ניסויי שמירת מרחק ועקיפה שנעשו איטיים או נתקעו נדחו ואינם בקוד. הימנעות ותכנון מהירות של AI עדיין פתוחים.",
       "external_evidence_required": false
     },
     {
@@ -315,7 +315,7 @@
       "acceptance": "Namal cold load אינו משחרר asphalt shared; world.dispose אינו משחרר curtains shared",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "ccaabd2:20מחזורי כניסה/יציאה עם30textures/1086geometries יציבים; cached/duplicate disposals=0ב56עולמות. אלו מוני headless, לא הוכחת העדר כל דליפת GPU.",
+      "verification_note": "ב־56 העולמות של המועמד נמדדו אפס cached/duplicate disposals. 20 מחזורים בשלב שלפני תיקוני הגובה והמנהרות היו יציבים עם 30 טקסטורות ו־1,086 גאומטריות. הראש הסופי מחייב CI משלו; מוני headless אינם הוכחת היעדר כל דליפת GPU.",
       "external_evidence_required": false
     },
     {
@@ -348,7 +348,7 @@
       "acceptance": "Q-ART: סצנות יום/לילה/גשם מזוהות, חומרי כביש/רכב עקביים, ללא חדירת מצלמה או תמיכה לכביש; Playtest והשוואה חזותית אנושית מתועדים.",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "צילומיGPU אמיתי שלאיילון בccaabd2 נבדקו; הכביש פונה מעלה והסימונים תוקנו. אין אישור אמנות או הקפאה חדשה.",
+      "verification_note": "צילומי GPU אמיתי נבדקו, ובהם מנהרות הנמל ורמון אחרי תיקון חפיפת הקירות. העולם עדיין גס, המכוניות גנרטיביות והאמנות אינה מאושרת. אין golden או הקפאה חדשים.",
       "external_evidence_required": true
     },
     {
@@ -398,7 +398,7 @@
       "acceptance": "Q-PERF: מכשיר Windows ומובייל מזוהים, build זהה ונתוני frame-time גולמיים; יעדי p95/p99 מפורטים ב-QUALITY-TARGETS.md.",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "אין מדידה במכשירים פיזיים. p95 של SwiftShader נשאר אבחון בלבד.",
+      "verification_note": "אבחון של 138b91a מ־clone נקי: Mac M4 Max, גודל CSS של 1920×1080 וגודל render של 1632×918. במשך 60 שניות בעמידה נמדדו p95=8.9ms ו־p99=10.3ms. זו אינה קבלת Windows, מובייל, מסלול מלא או מבחן חום.",
       "external_evidence_required": true
     },
     {
@@ -446,7 +446,7 @@
       "acceptance": "mode laps weather tune handling assists content ו-physics אינם מעורבבים",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "שיאים ו-Ghosts מופרדים לפי תנאים ופיזיקה. נוסף דיווח חילוץ אוטומטי: before/after בדפדפן האמיתי מאמת assisted=false לפני התיקון ו-true אחריו באותו חילוץ. קבלת שיאים מלאה של מועמד השחרור עדיין פתוחה. cb3e95aעברCI מלא; smokeשלחילוץ אוטומטי הוכיחפסילת שיא, ולא רק ידני.",
+      "verification_note": "בדיקת UI אמיתי מאמתת ששינוי תנאים וחילוץ אוטומטי פוסלים שיא, ו־Restart מתחיל ריצה חדשה. ה־observer תוקן לשימוש במודול המנוע שה־UI טען בפועל, כולל HMR. מרוצי QA אינם שומרים שיא רשמי.",
       "external_evidence_required": false
     },
     {
@@ -479,7 +479,7 @@
       "acceptance": "finite samples; visual/collision parity ונהיגה בגבולות",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "קרקע חד-ערכית מחליפה רצועות שמתקפלות;8בדיקותמסלול ו4בדיקותגובה עוברות.56עולמות כוללים עיגון עצים ו32ברושים מחוץ לכביש. הגרפיקה עדיין גסה ואין אישור אמנות.",
+      "verification_note": "קרקע שאינה מתקפלת ועיגון עצים נבדקו ב־56 עולמות; 32 הברושים בהר הצופים נמצאים מחוץ לכביש. מנהרות הנמל ורמון הותאמו לרוחב, לפנייה ולגובה הדרך. צלליות, מפלסים וכל צורות ה־mesh עדיין דורשים ביקורת אמנות.",
       "external_evidence_required": false
     },
     {
@@ -496,7 +496,7 @@
       "acceptance": "Q-DRIVE ו-Q-ART בכל שמונת מסלולי V1: מרוץ מלא, גאומטריה ונתיבים בטוחים, בלי תקיעה/recovery אוטומטי, תיעוד נזק ומצלמות; קבלת נהיגה אנושית נפרדת מסיוע QA.",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "כל8מסלוליV1 מסיימים מרוץ עםGL0 לאחר תיקוני כביש/יפו/רמון/קרקע. נזק.175–.774 ללא שינוי; שיפור AI,Landmarks ואמנות עדייןפתוחים.",
+      "verification_note": "כל שמונת מסלולי V1 מגיעים לתוצאה עם GL0 וללא teleport. חיפה הסתיימה בכ־33.8 שניות ורמון בכ־97.3 שניות; איילון, חרמון ורמון ללא נזק. קבלת הנהיגה בחמשת המסלולים האחרים וקבלת האמנות נשארות פתוחות.",
       "external_evidence_required": true
     },
     {
@@ -595,7 +595,7 @@
       "acceptance": "66 רשומות unverified נפתרו עבור הנכסים שנשלחים; עדכונים עוברים gates",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "נוצר CSV מדויק של 66 תמונות לא מאומתות עם SHA-256. מקור/יוצר/רישיון עדיין חסרים.",
+      "verification_note": "ב־main נותרו שתי התראות Dependabot. בענף העבודה מותקנות js-yaml 4.3.2 ו־brace-expansion 5.0.12, העומדות בספי התיקון של ההתראות שנקראו. זכויות השימוש ב־66 נכסים לא אומתו; אין טענה לסריקת SCA כוללת.",
       "external_evidence_required": true
     },
     {
@@ -645,7 +645,7 @@
       "acceptance": "1800 שניות שעון אמיתיות על אותו candidate, השלמת מרוצים, דליפות/context recovery; דוח בלתי שלם נשאר נכשל; Q-RELIABILITY ואימות מכשיר נפרדים.",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "cb3e95a:כלCIעברכולל1800615ms סוק אמיתי,1מרוץ ואפס offRoad. מקורccaabd2 מחייבCI וסוק משלו;20מחזורים מקומיים שלו עברו. אין קבלת מכשיר או מוצר.",
+      "verification_note": "3a1208f עבר את כל CI, כולל סוק אמיתי של 1,800,524ms ושני מרוצים ללא offRoad. זו גרסת Physics 9 שלפני התיקונים החדשים. הראש של Physics 10 מחייב CI, סוק ו־20 מחזורים משלו; אין העברת קבלה.",
       "external_evidence_required": false
     },
     {
@@ -741,7 +741,7 @@
       "acceptance": "shader compile והשוואת pixels במכשירי יעד; אין שכבות lane כפולות",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "ccaabd2:סימוני נתיב ממפת צבע אחת בקנה מידה כ4.4מ, ללא shader/instancesכפולים. גשם ויובש נבדקו בחומר האמיתי;8מרוציםGL0. עדיין נדרשים מכשירי יעד ואמנות.",
+      "verification_note": "סימוני נתיב ממקור אחד, עם מקפים באורך כ־4.4 מטרים וללא שכבות כפולות. חומרי כביש יבש ורטוב נבדקו, שמונת המרוצים עברו עם GL0 וצילומי Metal נבדקו. נדרשים עדיין מכשירי יעד וקבלת חזות.",
       "external_evidence_required": false
     }
   ],
@@ -749,6 +749,10 @@
   "execution_authority": "Direct user authorization on 2026-10-16 to revise plans and implement all necessary game improvements. External facts, legal rights, hardware evidence and release acceptance still require real evidence.",
   "all_product_units_complete": false,
   "audited_pr83_sha": "6395474913c071cb25bc2720238a7b8072045288",
-  "last_verified_candidate_sha": "cb3e95aa6b39b945d04a672d4e78d3e37b7675d4",
-  "quality_contract": "QUALITY-TARGETS.md"
+  "quality_contract": "QUALITY-TARGETS.md",
+  "code_candidate_sha": "30a2c19fb379479955379223907858d40e18d0f1",
+  "candidate_sha_semantics": "candidate_sha is reserved for an accepted release candidate; code_candidate_sha is an implementation snapshot, not product acceptance.",
+  "verified_ci_reference_sha": "3a1208fe0b837cd3c4d8eb9a9db7f98041f78497",
+  "current_ci_authority": "GitHub required-ci for the actual Git HEAD. Immutable CI references in this document never assert the verdict of a future commit.",
+  "implementation_evidence": "evidence/2026-10-16/physics10/proof.json"
 }

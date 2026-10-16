@@ -1,0 +1,13 @@
+{"track":"oldjaffa","complete":false,"error":"Error: race did not finish: {\"track\":\"oldjaffa\",\"quality\":\"high\",\"weather\":\"clear\",\"night\":false,\"speed\":0.18,\"progress\":0.098,\"onTrack\":true,\"coordinates\":\"metres; x/z horizontal, y up; yaw radians\",\"position\":{\"x\":-685.1504344333807,\"y\":0.7846811474386839,\"z\":-1048.50532104129},\"countdown\":0,\"totalTime\":1223.9000000017784,\"lapTime\":299.5583333332252,\"lap\":1,\"checkpoints\":1,\"finished\":false,\"damage\":0,\"assisted\":true,\"timeVoided\":true,\"telem\":{\"n\":120,\"p50\":189.6,\"p95\":212,\"p99\":222.8,\"last\":185.3,\"backend\":\"webgl2\"},\"csm\":false,\"photo\":false,\"webgpuTried\":false,\"webgpuOk\":false,\"webgpuReason\":\"\",\"blobKtx2\":false,\"ssgiOff\":true,\"photoAa\":\"smaa\",\"maxJump\":0.017163419992387845,\"maxGroundedVerticalJump\":0.015252534009460028,\"offRoad\":0,\"steps\":100}","navigations":["http://127.0.0.1:8105/?qa=1","http://127.0.0.1:8105/?qa=1"],"consoleStacks":[]}
+{"track":"namal","complete":true,"resultUi":true,"lap":3,"seconds":393.5166666664731,"damage":0,"assisted":true,"glError":0}
+{"track":"haifa","complete":false,"error":"Error: page.evaluate: Target page, context or browser has been closed","navigations":["http://127.0.0.1:8105/?qa=1","http://127.0.0.1:8105/?qa=1"],"consoleStacks":[]}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+browser.newPage: Target page, context or browser has been closed
+    at /private/tmp/rush-ai-3a1208f/scripts/qa-v1-races.mjs:14:32 {
+  log: []
+}
+
+Node.js v22.16.0

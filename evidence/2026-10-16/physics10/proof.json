@@ -1,0 +1,303 @@
+{
+  "kind": "source-bound-physics10-and-route-collision-regression",
+  "source_sha": "30a2c19fb379479955379223907858d40e18d0f1",
+  "source_base": "3a1208fe0b837cd3c4d8eb9a9db7f98041f78497",
+  "physics_version": 10,
+  "source_files": [
+    {
+      "file": "src/game/vehicle.ts",
+      "sha256": "b978ed2adf15ba878e5f07a6fa94ad0eab27771396c6fb2c6e9c918cd480d10a"
+    },
+    {
+      "file": "src/game/physics.ts",
+      "sha256": "c3e0500300ea0d7db013b6c75d36d28c6ff4b5057fe507b46cd2d6d5cb5ae66f"
+    },
+    {
+      "file": "src/game/types.ts",
+      "sha256": "3e0ccb7982e1d76e3f6184a0cce211352fd6a741d1efe6dc2be3550b0302bce8"
+    },
+    {
+      "file": "src/game/roadside.ts",
+      "sha256": "69cf8c6a85916ae6485112d464aa17ebcf9ab7551e7a49f449faa53e62dd9411"
+    },
+    {
+      "file": "src/game/world.ts",
+      "sha256": "1d1bfaa8f0330b2a5a226e9ac0fbc786d9fa790510289a748cf8f9707e2dfecf"
+    },
+    {
+      "file": "src/game/world-builders/shared.ts",
+      "sha256": "6c06357f7288ffd98ac16a6abf03ab629f02d01daf7756393259499d52485307"
+    },
+    {
+      "file": "src/game/world-builders/tracks/haifa.ts",
+      "sha256": "bba0207634da526aec00291887f024dd41b261f0a2747790cca69759944bd2f3"
+    },
+    {
+      "file": "src/game/world-builders/tracks/namal.ts",
+      "sha256": "b60b762f4bb3bf509f60f94115baa80fd04d10d58ab11d7d9dffb917d4406c73"
+    },
+    {
+      "file": "src/game/world-builders/tracks/ramon.ts",
+      "sha256": "0d44957c32ae07e3b630ae6bf836cc6fbde7c0c166b39c0f997d3fa70b8a89d2"
+    },
+    {
+      "file": "scripts/steering-direction.test.mjs",
+      "sha256": "a7682c32fcf1d7b432f26c0936839ae4f7c49310ea3a6d7557d16289f47f754f"
+    },
+    {
+      "file": "scripts/collider-height.test.mjs",
+      "sha256": "49ae0f68ec8b120e6b8f8e48eaa4b026e031e7e2b89811ff525c538102e00505"
+    },
+    {
+      "file": "scripts/world-runtime-audit.mjs",
+      "sha256": "e39ca814be6c125c0383b1436890c97e7f97c95d11d600ed6f5315e7c6dbff7b"
+    },
+    {
+      "file": "scripts/race-condition-smoke.mjs",
+      "sha256": "3c82d39d6920ed7ca20a118ac53c8bb35327e3784c78adbdc93b27fde8fdbe98"
+    },
+    {
+      "file": "golden-baseline/accel.json",
+      "sha256": "bcd913f99a80647d4af205b0acfa974fadc39b33bb8d6dcaf92cfe4eb341b6cd"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "steering-before.log",
+      "sha256": "9cd811755cc8e3aec5880e960f3896418e116ad65890710f1758afb11d9cf5d0"
+    },
+    {
+      "file": "steering-after.log",
+      "sha256": "2ee1e46a2ddb0cdaf6e953507a92d907a103208fdfa55594533be4da130388ef"
+    },
+    {
+      "file": "height-before.log",
+      "sha256": "9a08dc68b0339358cab742ea50245e4f942cc2f6a1808d06b804e55b9a17c7ca"
+    },
+    {
+      "file": "height-after.log",
+      "sha256": "5f83ab60afd788faed0dda33295f147d941975fafea8307c66f0c770cfb9346f"
+    },
+    {
+      "file": "unit.log",
+      "sha256": "8973924e60f456dccca1ca064e8cb13e7a6da7069e48941930cd5d29e086f368"
+    },
+    {
+      "file": "typecheck.log",
+      "sha256": "602ec0d473a17c01dcdc2e92e85bf4ba1bdc73a68d0f14c2da2e4b2748e00204"
+    },
+    {
+      "file": "lint.log",
+      "sha256": "75ec7dc2e291581eeeb38bf4ba0535b6220ec7c990e8878fb27a4770c2a261b6"
+    },
+    {
+      "file": "worlds-races.log",
+      "sha256": "229642e079a224810a2ca93030445a2affec2b43993d9d5285ee600a2fdb72b8"
+    },
+    {
+      "file": "worlds.json",
+      "sha256": "258672d7199b80aa6cff759269ea2842c266310617c6985085bac50832936709"
+    },
+    {
+      "file": "races.json",
+      "sha256": "6920a6d7c4f86d98ea26c318310314d3cf81198633cd05cfbbdf68179a9b97f8"
+    },
+    {
+      "file": "save.log",
+      "sha256": "ff46ec2589cdf8c7b29c223fd54f3c14fde29bb8df97201b0d2569f064ae5762"
+    },
+    {
+      "file": "production.log",
+      "sha256": "5a9bbc009522dd044713f64abd6b56ff6dbe6c5ea41a22b870b50ea5fe62b106"
+    },
+    {
+      "file": "prior-torque-only-accel.json",
+      "sha256": "8c386a7bf6d671fb6001bc0210a2cef75ad935987ccde829cb4c2a2e29d2700a"
+    },
+    {
+      "file": "prior-torque-only-20cycles.json",
+      "sha256": "10100b75f015e9744ce21a5de2e286a838f2e529ba17ed2ae12d2c0bd62cb545"
+    },
+    {
+      "file": "clean-138b91a-install.log",
+      "sha256": "c2231c9048c27fc9518d9df2fae7914b28f6bd0c974ee62bfebb5be16ccacdf1"
+    },
+    {
+      "file": "clean-138b91a-unit.log",
+      "sha256": "09f37a07cba6644752543cec04e8e0c604cf9b097b07a20d71227f385819155e"
+    },
+    {
+      "file": "clean-138b91a-production.log",
+      "sha256": "77c565af0c36f23cea51c6a3a39ff6d3b1412562fb3c279c76e7a91272806943"
+    },
+    {
+      "file": "clean-138b91a-typecheck.log",
+      "sha256": "602ec0d473a17c01dcdc2e92e85bf4ba1bdc73a68d0f14c2da2e4b2748e00204"
+    },
+    {
+      "file": "native-138b91a-diagnostic.json",
+      "sha256": "e0d1accd6ad519c769431bbd2cf64b8b7436a50f2499f9a1dc6a0c11a54d4cf6"
+    },
+    {
+      "file": "keyboard-state.json",
+      "sha256": "aac9ec690a1fded7d4fe3825efcda2c9697edc5336c643625f87b3905633a4c7"
+    },
+    {
+      "file": "capture-generation.json",
+      "sha256": "48c80c103a9e6fdddb87257a4f7b0e4ca7414db40c04f5e97456408705d81dc9"
+    },
+    {
+      "file": "thin-walls-before.json",
+      "sha256": "197d20f2b3ae5dedd2042b2aceb86159ce14661c4035e3cbb7a0732db942504a"
+    },
+    {
+      "file": "rejected-ai-slow.log",
+      "sha256": "abe0a7b5c4b2f1a19a140483e1b7b30f9296c9d3180a58226836a1fea74bbd96"
+    },
+    {
+      "file": "rejected-ai-no-finish.log",
+      "sha256": "1bdb638e56758c469bfa6dd445ce4b14dee15b1b735a62f08ced71c9fe4da7d8"
+    },
+    {
+      "file": "rejected-ai-contact.log",
+      "sha256": "d9d3a2468e53496eef2dcee4e0c1cb0318ae498fa244a228747061c3f930f43d"
+    },
+    {
+      "file": "observed-damage-before.log",
+      "sha256": "fefe45e5bcbba03d438e30daaa081b82a6a9ac8cf5cd7ec6d66cea4e91f64df4"
+    },
+    {
+      "file": "failed-baseline-version.log",
+      "sha256": "f50a702a6204efdc7388ddd71611695a87b039e0abd8600d74974167d7a34e76"
+    },
+    {
+      "file": "failed-module-observer.log",
+      "sha256": "1d7fe4253543b2c89d6caa37b83cd063c57084844fd747c55a190bc4ac07633d"
+    },
+    {
+      "file": "module-observer-after.log",
+      "sha256": "62b0a36e9765b008e91073e4607a35c7b68f85efadfb7c9e21679fe9737eb610"
+    },
+    {
+      "file": "haifa-actual-gpu.jpg",
+      "sha256": "39872e4326b144a0524b6283dcc713bf46156700978c0d87608e708ad472c65f"
+    },
+    {
+      "file": "namal-actual-gpu.jpg",
+      "sha256": "c9244b9ccc828ee9d6c6ca2d24755e9ce99bcea9a187bd6211549769903360e1"
+    },
+    {
+      "file": "ramon-actual-gpu.jpg",
+      "sha256": "7899b48c30b23b77f22629fd9a21af0189e82a3c450d8da271f2932e5036d234"
+    },
+    {
+      "file": "prior-3a1208f-ci.json",
+      "sha256": "4b04647a022e31be065835c978d25a3b5c8e83db5cd1fb3a5ec26cf116338eef"
+    },
+    {
+      "file": "prior-3a1208f-soak.json",
+      "sha256": "8af3682cf26b79438a6b49050fe253bfb659e14ea448e4ea040822f53c3d2f5e"
+    }
+  ],
+  "comparison_baseline_sha": "ccaabd20d4247e3aac863af7982efa80aa33719e",
+  "comparison": [
+    {
+      "track": "oldjaffa",
+      "before_seconds": 107.32500000003148,
+      "before_damage": 0.49113908214704144,
+      "after_seconds": 110.50833333336735,
+      "after_damage": 0.36707217621985844
+    },
+    {
+      "track": "namal",
+      "before_seconds": 192.75833333332235,
+      "before_damage": 0.7736068416644294,
+      "after_seconds": 185.98333333332852,
+      "after_damage": 0.09086336586130714
+    },
+    {
+      "track": "haifa",
+      "before_seconds": 46.61666666666466,
+      "before_damage": 0.7160772440614093,
+      "after_seconds": 33.78333333333206,
+      "after_damage": 0.11651195518936609
+    },
+    {
+      "track": "rothschild",
+      "before_seconds": 179.45833333333445,
+      "before_damage": 0.6657122803111248,
+      "after_seconds": 197.0416666666518,
+      "after_damage": 0.2821324233203074
+    },
+    {
+      "track": "ayalon",
+      "before_seconds": 94.92500000002161,
+      "before_damage": 0.20608703314618038,
+      "after_seconds": 87.68333333334918,
+      "after_damage": 0
+    },
+    {
+      "track": "hermon",
+      "before_seconds": 133.20833333337652,
+      "before_damage": 0.17501158586524393,
+      "after_seconds": 137.09166666670632,
+      "after_damage": 0
+    },
+    {
+      "track": "scopus",
+      "before_seconds": 59.01666666666396,
+      "before_damage": 0.24313337187009304,
+      "after_seconds": 61.89999999999713,
+      "after_damage": 0.16539540566390942
+    },
+    {
+      "track": "ramon",
+      "before_seconds": 120.54166666670866,
+      "before_damage": 0.2574007284221326,
+      "after_seconds": 97.31666666669018,
+      "after_damage": 0
+    }
+  ],
+  "productAccepted": false,
+  "releaseReady": false,
+  "artAccepted": false,
+  "deviceAcceptance": false,
+  "verified": [
+    "323 current-source tests;30 actual-car steering-direction cases replace20 prior failures",
+    "Recorded Haifa height-overlap regression:1of2 fails before,2of2 pass after; collider still active below real roof",
+    "56 actual worlds and full-widthBoxGeometry checks including thin walls on all8V1 tracks; no duplicate/cached texture disposal",
+    "5 actual cars cross elevated Haifa case with real world colliders and damage0",
+    "8 actual assisted full races, resultUI, no official rewards,GLerror0;Ayalon/Hermon/Ramon damage0",
+    "Real UI Restart and automatic recovery disqualification via exact actual HMR engine module",
+    "Native3actualGPU collision-scene captures and keyboard screenshot/state inspected"
+  ],
+  "calibration": {
+    "numeric_baseline_unchanged": true,
+    "regression_tolerance_seconds": 0.1,
+    "claim_tolerance": 0.15,
+    "fresh15_runs": "Torque-only candidate passed; this combined source must be rechecked by its exact-headCI"
+  },
+  "limits": [
+    "Naive AI headway/overtaking experiments were rejected:896.875sJaffa and later stopped/contact cases. None of their control code ships.",
+    "Prior20cycles and15acceleration runs apply to the torque-only pre-height/tunnel stage; no silent transfer of complete acceptance.",
+    "Clean local clone/npmci274packages/323tests/production9JS prove138b91a; later tunnel/harness changes require the next exact-headCI.",
+    "NativeMac diagnostic proves138b91a, CSS1920x1080/render1632x918 and60seconds stationary only. No Windows/mobile/fullroute/thermal acceptance.",
+    "Upper collision bounds are linked only to5Haifa houses and2Ramon spurs; this is not a full3D collision audit.",
+    "Full-width obstacle checks cover actual BoxGeometryat5lateral positions; other mesh shapes and continuous full-volume sweeps remain open.",
+    "Current code still has substantial assisted race damage on5tracks, coarse art,66unverified asset rights and no human acceptance."
+  ],
+  "rejected_experiment_code_included": false,
+  "created_before_required_ci": true,
+  "evidence_sealed_utc": "2026-10-16 01:20:32 UTC",
+  "canonical_worlds_races_exit_code": 0,
+  "this_proof_includes_final_1800s_soak": false,
+  "current_ci_authority": "Read GitHub required-ci for the actual final Git HEAD; this sealed proof does not predict that verdict.",
+  "prior_immutable_ci_reference": {
+    "sha": "3a1208fe0b837cd3c4d8eb9a9db7f98041f78497",
+    "run": "https://github.com/talstilkol/rush-israel/actions/runs/38831422288",
+    "conclusion": "success",
+    "elapsedMs": 1800524,
+    "completedRaces": 2,
+    "accepts_physics10": false
+  }
+}

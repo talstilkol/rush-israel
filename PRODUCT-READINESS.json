@@ -450,5 +450,7 @@
     "conclusion": "success",
     "evidence": "evidence/2026-10-16/last-verified-ci-fa4630a.json",
     "scope": "Previous code candidate only; Physics 9 work requires fresh CI. Product and release remain unaccepted."
-  }
+  },
+  "implementation_evidence": "evidence/2026-10-16/physics10/proof.json",
+  "implementation_evidence_is_product_acceptance": false
 }

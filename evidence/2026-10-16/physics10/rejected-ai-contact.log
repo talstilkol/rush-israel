@@ -1,0 +1,90 @@
+TAP version 13
+# Subtest: sabra: real-route AI brakes for a stopped car ahead
+ok 1 - sabra: real-route AI brakes for a stopped car ahead
+  ---
+  duration_ms: 0.865542
+  type: 'test'
+  ...
+# Subtest: carmel: real-route AI brakes for a stopped car ahead
+ok 2 - carmel: real-route AI brakes for a stopped car ahead
+  ---
+  duration_ms: 0.077042
+  type: 'test'
+  ...
+# Subtest: kfir: real-route AI brakes for a stopped car ahead
+ok 3 - kfir: real-route AI brakes for a stopped car ahead
+  ---
+  duration_ms: 0.141083
+  type: 'test'
+  ...
+# Subtest: negev: real-route AI brakes for a stopped car ahead
+ok 4 - negev: real-route AI brakes for a stopped car ahead
+  ---
+  duration_ms: 0.060834
+  type: 'test'
+  ...
+# Subtest: yam: real-route AI brakes for a stopped car ahead
+ok 5 - yam: real-route AI brakes for a stopped car ahead
+  ---
+  duration_ms: 0.20875
+  type: 'test'
+  ...
+# Subtest: actual neighboring carriageway traffic does not stop a clear lane
+ok 6 - actual neighboring carriageway traffic does not stop a clear lane
+  ---
+  duration_ms: 0.345084
+  type: 'test'
+  ...
+# Subtest: a real-route car behind does not trigger front collision braking
+ok 7 - a real-route car behind does not trigger front collision braking
+  ---
+  duration_ms: 0.172625
+  type: 'test'
+  ...
+# Subtest: ayalon: passing target stays within the actual carriageway
+ok 8 - ayalon: passing target stays within the actual carriageway
+  ---
+  duration_ms: 1.389417
+  type: 'test'
+  ...
+# Subtest: rothschild: passing target stays within the actual carriageway
+ok 9 - rothschild: passing target stays within the actual carriageway
+  ---
+  duration_ms: 0.345958
+  type: 'test'
+  ...
+# Subtest: actual Ayalon vehicle passes a stopped real car without contact or a position push
+not ok 10 - actual Ayalon vehicle passes a stopped real car without contact or a position push
+  ---
+  duration_ms: 20.572625
+  type: 'test'
+  location: '/private/tmp/rush-ai-3a1208f/scripts/ai-passing.test.mjs:24:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/rush-ai-3a1208f/scripts/ai-passing.test.mjs:34:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 9
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 484.401292
