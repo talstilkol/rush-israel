@@ -6,11 +6,12 @@ import { mulberry32, lerp, clamp, hash01 } from "./math";
 import { closestSample, roadEdgeBarriers } from "./spline";
 import type { BuiltTrack } from "./spline";
 import type { Collider, Ramp, SkyPreset, TrackDef, Weather } from "./types";
-import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, her, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, ram, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
+import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
 import { scatterStreetBuildings } from "./buildings";
 import { generateStreets, nearestStreet } from "./streets";
 import { bindRoadCompile } from "./roadShader";
 import { ROAD_PAINT_REPEAT_METRES, ROAD_UV_METRES } from "./road-layout";
+import { buildTerrain } from "./terrain";
 import { getLaneArrow } from "./arrow-assets";
 import { getFlare0, getFlare1 } from "./flare-assets";
 import { getWaterNormal, getChecker } from "./water-assets";
@@ -387,6 +388,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     metalness: 0,
     envMapIntensity: 0.12
   })));
+  ground.name = "rush-base-ground";
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = -0.4;
   ground.receiveShadow = true;
@@ -402,6 +404,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   dome.position.y = -80;
   dome.frustumCulled = false;
   group.add(dome);
+  let terrainHeight: ((x: number, z: number) => number) | undefined;
   if (def.theme === "carmel" || def.theme === "snow" || def.id === "ramon" || def.id === "jerusalem" || def.id === "scopus" || def.id === "hw1" || def.id === "masada" || def.id === "eilatmtn" || def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" || def.id === "stellamaris") {
     const slopeMat = keep(new THREE.MeshStandardMaterial({
       color: def.id === "ramon" ? 11565642 : def.id === "hermon" ? 13950438 : def.id === "jerusalem" || def.id === "scopus" ? 12890250 : 4874808,
@@ -409,53 +412,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       envMapIntensity: 0.18,
       flatShading: true
     }));
-    const pos = [];
-    const idx = [];
-    const n = segsOf(built);
-    const outer = def.id === "ramon" ? 280 : def.id === "hermon" ? 250 : def.theme === "carmel" ? 160 : 78;
-    let valleyX = 0;
-    let valleyZ = 0;
-    let invertSide = false;
-    if (def.id === "ramon") {
-      const fl = ram(30.585, 34.802);
-      valleyX = fl.x;
-      valleyZ = fl.z;
-    } else if (def.id === "hermon") {
-      const pk = her(33.3112, 35.79);
-      valleyX = pk.x;
-      valleyZ = pk.z;
-      invertSide = true;
-    } else if (def.water) {
-      valleyX = def.water.x;
-      valleyZ = def.water.z;
-    } else {
-      valleyX = built.samples[built.samples.length - 1].x;
-      valleyZ = built.samples[built.samples.length - 1].z;
-    }
-    for (let i = 0; i <= n; i++) {
-      const s = samp(built, i);
-      const hw = built.width / 2 + 1.2;
-      let vs = s.rx * (valleyX - s.x) + s.rz * (valleyZ - s.z) >= 0 ? 1 : -1;
-      if (invertSide) vs = -vs;
-      const mountainY = def.id === "ramon" ? s.y + 180 + Math.min(110, s.y * 0.7) : def.id === "masada" ? s.y + 28 + s.y * 0.35 : def.id === "hermon" ? s.y + 148 + s.y * 0.6 : def.theme === "carmel" ? s.y + 78 : s.y + 8;
-      const valleyY = Math.max(-0.35, s.y * 0.05 - 2);
-      const leftY = vs === -1 ? valleyY : mountainY;
-      const rightY = vs === 1 ? valleyY : mountainY;
-      pos.push(s.x - s.rx * hw, s.y - 0.15, s.z - s.rz * hw);
-      pos.push(s.x - s.rx * outer, leftY, s.z - s.rz * outer);
-      pos.push(s.x + s.rx * hw, s.y - 0.15, s.z + s.rz * hw);
-      pos.push(s.x + s.rx * outer, rightY, s.z + s.rz * outer);
-    }
-    for (let i = 0; i < n; i++) {
-      const a = i * 4;
-      idx.push(a, a + 1, a + 4, a + 1, a + 5, a + 4);
-      idx.push(a + 2, a + 6, a + 3, a + 3, a + 6, a + 7);
-    }
-    const slope = new THREE.BufferGeometry();
-    slope.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-    slope.setIndex(idx);
-    slope.computeVertexNormals();
-    const slopeMesh = new THREE.Mesh(keep(slope), slopeMat);
+    const terrain = buildTerrain(def, built);
+    terrainHeight = terrain.heightAt;
+    const slopeMesh = new THREE.Mesh(keep(terrain.geometry), slopeMat);
+    slopeMesh.name = "rush-terrain";
     slopeMesh.receiveShadow = true;
     group.add(slopeMesh);
   }
@@ -1642,9 +1602,11 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       });
     }
   }
+  if (terrainHeight) for (const tree of treeSpots) tree.y = terrainHeight(tree.x, tree.z);
   const trunks = new THREE.InstancedMesh(trunkGeo, trunkMat, treeSpots.length);
   const pineLayers = pine ? 3 : 1;
   const crowns = new THREE.InstancedMesh(crownGeo, frondMat, pine || stoneHill || acacia ? treeSpots.length * pineLayers : treeSpots.length * (ficusStreet ? 6 : 5));
+  if (terrainHeight) trunks.name = "rush-terrain-tree-trunks";
   lodTrunks = trunks;
   lodCrowns = crowns;
   trunks.castShadow = shadows;
@@ -2095,6 +2057,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     ramps,
     streets,
     built,
+    terrainHeight,
     support: {
       _dummy,
       barkTexture,

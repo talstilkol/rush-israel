@@ -1,0 +1,16 @@
+{
+  "kind": "30-minute-driving",
+  "passed": true,
+  "completedRaces": 1,
+  "elapsedMs": 1800615,
+  "ticks": 1726,
+  "maxSpeed": 33.61,
+  "maxProgress": 0.982,
+  "offRoadRatio": 0,
+  "p95Worst": 14301.6,
+  "memoryHigh": {
+    "textures": 33,
+    "geometries": 1605
+  },
+  "deviceAcceptance": false
+}

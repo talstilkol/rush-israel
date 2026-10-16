@@ -105,6 +105,38 @@ try {
           const raceRoad = world.group.getObjectByName('rush-race-road');
           if (!raceRoad?.isMesh || raceRoad.material.side !== THREE.FrontSide) throw new Error('missing single-sided race road');
           if (raceRoad.geometry.attributes.normal.array.some((value, i) => i % 3 === 1 && value < -0.0001)) throw new Error('race road normals face below the surface');
+          const terrain = world.group.getObjectByName('rush-terrain');
+          if (terrain) {
+            if (terrain.geometry.attributes.normal.array.some((value, i) => i % 3 === 1 && value <= 0)) throw new Error('terrain folds below its surface');
+            world.group.updateMatrixWorld(true);
+            const ray = new THREE.Raycaster();
+            const matrix = new THREE.Matrix4();
+            const root = new THREE.Vector3();
+            let grounded = 0;
+            const checkSupport = (x,y,z) => {
+              ray.set(new THREE.Vector3(x, 2000, z), new THREE.Vector3(0,-1,0));
+              const hit = ray.intersectObjects([terrain, world.group.getObjectByName('rush-base-ground')])[0];
+              if (!hit || Math.abs(hit.point.y-y) > 0.015) throw new Error(`tree floats or sinks relative to actual terrain at ${x},${z}`);
+              grounded++;
+            };
+            const trunks = world.group.getObjectByName('rush-terrain-tree-trunks');
+            if (trunks) for (let i=0;i<trunks.count;i++) {
+              trunks.getMatrixAt(i,matrix); matrix.premultiply(trunks.matrixWorld);
+              root.setFromMatrixPosition(matrix); checkSupport(root.x,root.y,root.z);
+            }
+            const cypresses = [];
+            world.group.traverse(object => { if(object.name === 'scopus-grounded-cypress') cypresses.push(object); });
+            for (const tree of cypresses) {
+              tree.getWorldPosition(root); checkSupport(root.x,root.y-3.4,root.z);
+              for (let i=0;i<built.samples.length-1;i++) {
+                const a=built.samples[i], b=built.samples[i+1], dx=b.x-a.x, dz=b.z-a.z;
+                const t=Math.max(0,Math.min(1,((root.x-a.x)*dx+(root.z-a.z)*dz)/(dx*dx+dz*dz || 1)));
+                if(Math.hypot(root.x-a.x-dx*t,root.z-a.z-dz*t) < built.width/2+1.2) throw new Error('grounded cypress occupies driving corridor');
+              }
+            }
+            if (definition.id === 'scopus' && cypresses.length !== 32) throw new Error('Scopus cypresses were removed rather than grounded');
+            result.terrain = { vertices: terrain.geometry.attributes.position.count, groundedTrees: grounded, groundedCypresses: cypresses.length };
+          }
           const dryRoughness = raceRoad.material.roughness;
           if (raceRoad.material.map.repeat.y !== ROAD_UV_METRES / ROAD_PAINT_REPEAT_METRES || raceRoad.material.roughnessMap.repeat.y !== raceRoad.material.map.repeat.y) throw new Error('paint and paint roughness lost their actual metre scale');
           if (raceRoad.material.userData.roadWetness !== 0 || raceRoad.material.clearcoat !== 0) throw new Error('clear daylight road was initialized wet');

@@ -90,7 +90,7 @@
       "acceptance": "42 ה-colliders שהוזזו בענף נבדקים מול meshes; אין collision מנותק",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "חיפוש גאומטרי גלובלי ל-placement תוקן; התאמה חזותית מלאה עוד נדרשת.",
+      "verification_note": "כל56העולמות והמסלולים נבדקו עלccaabd2; תוקנו כביש הפוך, overflowעלווה, קיר רמון ו4מבנים ביפו. קרקע ועיגון צמחייה עדיין בעבודה; אין קבלת מסלול.",
       "external_evidence_required": false
     },
     {
@@ -282,7 +282,7 @@
       "acceptance": "כל יריב מסיים את שמונת מסלולי V1 ללא teleport או recovery loop; קו הנסיעה נמנע מאיי תנועה ומכשולים; נזק סטטי ועקיפות נמדדים; rubber-band מכובה ב-simcade ואינו עוקף חוקי אחיזה.",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "תוקן זינוק היריבים על אי התנועה ברוטשילד ויעד הסיוע הועבר לנתיב הנכון. מרוץ אמיתי של שלוש הקפות הגיע לנזק 0.569 לעומת 1 בבדיקה הקודמת: עדיין לא מתקבל.",
+      "verification_note": "כל8מרוציV1 הסתיימו בccaabd2 עםGLerror0 וללא שיא רשמי בassisted; נזק.175–.774 נשאר כשל איכות. הימנעות AI ומהירות פנייה עדיין פתוחות.",
       "external_evidence_required": false
     },
     {
@@ -315,7 +315,7 @@
       "acceptance": "Namal cold load אינו משחרר asphalt shared; world.dispose אינו משחרר curtains shared",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "מדיניות נתיבים אחת ל-loader ול-world; 56 עולמות: אפס dispose לטקסטורות cache ואפס dispose כפול.",
+      "verification_note": "ccaabd2:20מחזורי כניסה/יציאה עם30textures/1086geometries יציבים; cached/duplicate disposals=0ב56עולמות. אלו מוני headless, לא הוכחת העדר כל דליפת GPU.",
       "external_evidence_required": false
     },
     {
@@ -348,7 +348,7 @@
       "acceptance": "Q-ART: סצנות יום/לילה/גשם מזוהות, חומרי כביש/רכב עקביים, ללא חדירת מצלמה או תמיכה לכביש; Playtest והשוואה חזותית אנושית מתועדים.",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "40 בדיקות underpass עברו לפני שינוי זה וגם בבדיקת העולם החדשה; אין עדיין קבלת אמנות או השוואה התומכת בטענה הטוב בעולם.",
+      "verification_note": "צילומיGPU אמיתי שלאיילון בccaabd2 נבדקו; הכביש פונה מעלה והסימונים תוקנו. אין אישור אמנות או הקפאה חדשה.",
       "external_evidence_required": true
     },
     {
@@ -446,7 +446,7 @@
       "acceptance": "mode laps weather tune handling assists content ו-physics אינם מעורבבים",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "שיאים ו-Ghosts מופרדים לפי תנאים ופיזיקה. נוסף דיווח חילוץ אוטומטי: before/after בדפדפן האמיתי מאמת assisted=false לפני התיקון ו-true אחריו באותו חילוץ. קבלת שיאים מלאה של מועמד השחרור עדיין פתוחה.",
+      "verification_note": "שיאים ו-Ghosts מופרדים לפי תנאים ופיזיקה. נוסף דיווח חילוץ אוטומטי: before/after בדפדפן האמיתי מאמת assisted=false לפני התיקון ו-true אחריו באותו חילוץ. קבלת שיאים מלאה של מועמד השחרור עדיין פתוחה. cb3e95aעברCI מלא; smokeשלחילוץ אוטומטי הוכיחפסילת שיא, ולא רק ידני.",
       "external_evidence_required": false
     },
     {
@@ -479,7 +479,7 @@
       "acceptance": "finite samples; visual/collision parity ונהיגה בגבולות",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "מסלולים פתוחים אינם מתחברים בגדרות ובשוליים; רמפת יפו רציפה; endpoint אינו חוזר להתחלה.",
+      "verification_note": "קרקע חד-ערכית מחליפה רצועות שמתקפלות;8בדיקותמסלול ו4בדיקותגובה עוברות.56עולמות כוללים עיגון עצים ו32ברושים מחוץ לכביש. הגרפיקה עדיין גסה ואין אישור אמנות.",
       "external_evidence_required": false
     },
     {
@@ -496,7 +496,7 @@
       "acceptance": "Q-DRIVE ו-Q-ART בכל שמונת מסלולי V1: מרוץ מלא, גאומטריה ונתיבים בטוחים, בלי תקיעה/recovery אוטומטי, תיעוד נזק ומצלמות; קבלת נהיגה אנושית נפרדת מסיוע QA.",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "מרוצי V1 עברו על fa4630a. ברוטשילד חל שיפור עם Physics 9 אך הנזק עדיין גבוה; ביפו וביתר האמנות נותרה עבודה.",
+      "verification_note": "כל8מסלוליV1 מסיימים מרוץ עםGL0 לאחר תיקוני כביש/יפו/רמון/קרקע. נזק.175–.774 ללא שינוי; שיפור AI,Landmarks ואמנות עדייןפתוחים.",
       "external_evidence_required": true
     },
     {
@@ -645,7 +645,7 @@
       "acceptance": "1800 שניות שעון אמיתיות על אותו candidate, השלמת מרוצים, דליפות/context recovery; דוח בלתי שלם נשאר נכשל; Q-RELIABILITY ואימות מכשיר נפרדים.",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "fa4630a עבר סוק אמיתי: 1800304ms, שני מרוצים ו-offRoadRatio=0. אינו מועבר אוטומטית ל-Physics 9; נדרשת ריצה חדשה.",
+      "verification_note": "cb3e95a:כלCIעברכולל1800615ms סוק אמיתי,1מרוץ ואפס offRoad. מקורccaabd2 מחייבCI וסוק משלו;20מחזורים מקומיים שלו עברו. אין קבלת מכשיר או מוצר.",
       "external_evidence_required": false
     },
     {
@@ -741,7 +741,7 @@
       "acceptance": "shader compile והשוואת pixels במכשירי יעד; אין שכבות lane כפולות",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "smoothstep עם קצוות הפוכים תוקן ב-road/postFX; נדרשת קבלת pixels וקומפילציית GPU במכשירי יעד.",
+      "verification_note": "ccaabd2:סימוני נתיב ממפת צבע אחת בקנה מידה כ4.4מ, ללא shader/instancesכפולים. גשם ויובש נבדקו בחומר האמיתי;8מרוציםGL0. עדיין נדרשים מכשירי יעד ואמנות.",
       "external_evidence_required": false
     }
   ],
@@ -749,6 +749,6 @@
   "execution_authority": "Direct user authorization on 2026-10-16 to revise plans and implement all necessary game improvements. External facts, legal rights, hardware evidence and release acceptance still require real evidence.",
   "all_product_units_complete": false,
   "audited_pr83_sha": "6395474913c071cb25bc2720238a7b8072045288",
-  "last_verified_candidate_sha": "fa4630abbe216bac4b2b313bac8b1af747d6e796",
+  "last_verified_candidate_sha": "cb3e95aa6b39b945d04a672d4e78d3e37b7675d4",
   "quality_contract": "QUALITY-TARGETS.md"
 }

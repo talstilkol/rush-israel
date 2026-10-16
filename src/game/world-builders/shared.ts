@@ -17,6 +17,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     ramps,
     streets,
     built,
+    terrainHeight = (_x: number, _z: number) => -0.4,
     support: {
       _dummy,
       barkTexture,
@@ -938,6 +939,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     ramps,
     streets,
     built,
+    terrainHeight,
     add,
     glowAt,
     hit,

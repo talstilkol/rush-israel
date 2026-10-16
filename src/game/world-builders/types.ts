@@ -25,6 +25,7 @@ export type TrackWorldBuilderInput = {
   ramps: Ramp[];
   streets: unknown[];
   built: BuiltTrack;
+  terrainHeight?: (x: number, z: number) => number;
   support: {
     _dummy: THREE.Object3D;
     barkTexture: () => THREE.Texture;

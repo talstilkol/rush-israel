@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { closestSample } from "../../spline";
+import { clearRoadsidePoint } from "../../roadside";
 import { jer } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -8,6 +9,7 @@ export default function buildScopus(context: TrackWorldBuilderContext): void {
     def,
     bag,
     built,
+    terrainHeight,
     add,
     glowAt,
     hit,
@@ -91,11 +93,11 @@ export default function buildScopus(context: TrackWorldBuilderContext): void {
     }
     for (let i = 0; i < 32; i++) {
       const t = 0.06 + i / 32 * 0.85;
-      const p = jer(31.7866 + t * 5e-3, 35.2344 + t * 0.01 + Math.sin(i) * 18e-4);
-      const y = def.elevation(t);
       const side = i % 2 ? 1 : -1;
       const cyp = new THREE.Mesh(new THREE.ConeGeometry(1.2, 6.8, 7), pineM);
-      cyp.position.set(p.x + side * (13 + i % 4 * 3), y + 3.4, p.z + i % 3 * 3);
+      const { x, z } = clearRoadsidePoint(built, t, side, 1.2);
+      cyp.position.set(x, terrainHeight(x, z) + 3.4, z);
+      cyp.name = "scopus-grounded-cypress";
       add(cyp);
     }
     glowAt(sc.x, peakY + 4, sc.z, 16769184, 22, 18);

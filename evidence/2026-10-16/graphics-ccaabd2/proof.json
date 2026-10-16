@@ -1,0 +1,78 @@
+{
+  "kind": "source-bound-local-graphics-regression",
+  "source_sha": "ccaabd20d4247e3aac863af7982efa80aa33719e",
+  "source_base": "cb3e95aa6b39b945d04a672d4e78d3e37b7675d4",
+  "productAccepted": false,
+  "deviceAcceptance": false,
+  "graphicsAccepted": false,
+  "currentSourceSoak1800": false,
+  "files": [
+    {
+      "file": "worlds-races.log",
+      "sha256": "3e80f8f97ee7765139d2ac995ec857852758dd8ff6c26e49fef6b6f28bb0b975"
+    },
+    {
+      "file": "driving-lifecycle.log",
+      "sha256": "055fce14a79935075178a55525731d0d2aa2a2c9a6ec2de45741ecf277c7e478"
+    },
+    {
+      "file": "unit.log",
+      "sha256": "dfaae03bd3dd33792419fc6a921b2690a101a9fc962905d0fd253d153569d4aa"
+    },
+    {
+      "file": "lint.log",
+      "sha256": "bca02a6bdf9386cc92d6d35b2502656b4328dd793647dfcd4eabfba4b2811288"
+    },
+    {
+      "file": "world-scenes.json",
+      "sha256": "46ae40533d209c65864c822c4974858da9d18acddacd91000678aebac8198c7b"
+    },
+    {
+      "file": "cycles.json",
+      "sha256": "10100b75f015e9744ce21a5de2e286a838f2e529ba17ed2ae12d2c0bd62cb545"
+    },
+    {
+      "file": "races.json",
+      "sha256": "05812c22d31ef022d160e03736cd50af1831e2596c60bcaca4d6d80d5fa26669"
+    },
+    {
+      "file": "road-facing-before.log",
+      "sha256": "5d38abea62e16527d64cf0d2494898c6a80ddc8194e71f4c043ce76bd35b7b36"
+    },
+    {
+      "file": "ramon-cliff-before.log",
+      "sha256": "2dd4c0d81f050acf9914c47096eafb0c033e49fbd302b9d303ad036d2843ae19"
+    },
+    {
+      "file": "ramon-cliff-after.log",
+      "sha256": "62a3704db41788448e906608a6d18c8718e85c687316bef482a625c790631f57"
+    },
+    {
+      "file": "capture-generation.json",
+      "sha256": "44b40ce0abe6a71ce67fa6460340bebaeccfc6a42ea0ec043df0d562d097198f"
+    },
+    {
+      "file": "keyboard-state.json",
+      "sha256": "d8b227f61ebfc308bb61dbb2651432525fdbada48e0f2d951e1d32bfae6ab52f"
+    },
+    {
+      "file": "hosted-cb3e95a-soak.json",
+      "sha256": "4ac3e399c59c1ac5b81c5d5caf88b4bd97c8e5e4f806631911bd4e48f8e76afb"
+    }
+  ],
+  "verified": [
+    "279 current unit checks",
+    "56 actual world scenes without instance overflow or duplicate/cached texture disposal",
+    "8 actual accelerated assisted races; result UI, no official rewards, glError=0",
+    "20 measured allocation cycles, 30 textures and 1086 geometries each",
+    "Native Apple M4 Max captures for 8 tracks visually inspected; graphics still incomplete"
+  ],
+  "limitations": [
+    "A failed lifecycle invocation omitted SOAK_URL and used default8080; it is not a pass. Subsequent explicit8102 invocation completed all gates.",
+    "Native keyboard burst reached26.2m/s with damage0 but does not accept full driving.",
+    "Hosted cb3e95a fullCI success and1800615ms soak prove preceding source only.",
+    "Terrain folds, floating trees and substantial assisted race damage remain open;66 asset rights unknown."
+  ],
+  "hostedPriorCi": "https://github.com/talstilkol/rush-israel/actions/runs/38827355135",
+  "currentCi": "https://github.com/talstilkol/rush-israel/actions/runs/38830623769"
+}

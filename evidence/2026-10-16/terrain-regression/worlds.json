@@ -1,0 +1,969 @@
+{
+  "scope": "CPU scene assembly with actual TrackDefs, native Canvas and real committed assets; no GPU/device acceptance",
+  "results": [
+    {
+      "track": "hayarkon",
+      "meshes": 441,
+      "colliders": 968,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "oldjaffa",
+      "blockingRoadBuildings": [],
+      "meshes": 507,
+      "colliders": 412,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "telaviv",
+      "meshes": 262,
+      "colliders": 265,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "namal",
+      "meshes": 313,
+      "colliders": 357,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "jerusalem",
+      "meshes": 400,
+      "colliders": 298,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 10440,
+        "groundedTrees": 18,
+        "groundedCypresses": 0
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "haifa",
+      "meshes": 503,
+      "colliders": 209,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 6370,
+        "groundedTrees": 348,
+        "groundedCypresses": 0
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "eilat",
+      "meshes": 146,
+      "colliders": 266,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "rothschild",
+      "meshes": 330,
+      "colliders": 425,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "medianLaneChecks": [
+        {
+          "car": "sabra",
+          "side": -1,
+          "follow": false,
+          "minimumClearance": 4.811900265071823,
+          "damage": 0,
+          "speed": 26.455238095238077
+        },
+        {
+          "car": "sabra",
+          "side": -1,
+          "follow": true,
+          "minimumClearance": 4.857251992287234,
+          "damage": 0,
+          "speed": 28.13253480791403
+        },
+        {
+          "car": "sabra",
+          "side": 1,
+          "follow": false,
+          "minimumClearance": 4.709793207710654,
+          "damage": 0,
+          "speed": 26.455238095238077
+        },
+        {
+          "car": "sabra",
+          "side": 1,
+          "follow": true,
+          "minimumClearance": 4.79956711313173,
+          "damage": 0,
+          "speed": 28.13253480791403
+        },
+        {
+          "car": "carmel",
+          "side": -1,
+          "follow": false,
+          "minimumClearance": 4.8048408666413644,
+          "damage": 0,
+          "speed": 29.863707016031242
+        },
+        {
+          "car": "carmel",
+          "side": -1,
+          "follow": true,
+          "minimumClearance": 4.85139945242105,
+          "damage": 0,
+          "speed": 31.62978100022107
+        },
+        {
+          "car": "carmel",
+          "side": 1,
+          "follow": false,
+          "minimumClearance": 4.679673943429022,
+          "damage": 0,
+          "speed": 29.863707016031242
+        },
+        {
+          "car": "carmel",
+          "side": 1,
+          "follow": true,
+          "minimumClearance": 4.787151106564759,
+          "damage": 0,
+          "speed": 31.62978100022107
+        },
+        {
+          "car": "kfir",
+          "side": -1,
+          "follow": false,
+          "minimumClearance": 4.787908049313567,
+          "damage": 0,
+          "speed": 35.64563814504895
+        },
+        {
+          "car": "kfir",
+          "side": -1,
+          "follow": true,
+          "minimumClearance": 4.836772469769548,
+          "damage": 0,
+          "speed": 35.64563814504895
+        },
+        {
+          "car": "kfir",
+          "side": 1,
+          "follow": false,
+          "minimumClearance": 4.657991491444871,
+          "damage": 0,
+          "speed": 35.64563814504895
+        },
+        {
+          "car": "kfir",
+          "side": 1,
+          "follow": true,
+          "minimumClearance": 4.769255562783127,
+          "damage": 0,
+          "speed": 35.64563814504895
+        },
+        {
+          "car": "negev",
+          "side": -1,
+          "follow": false,
+          "minimumClearance": 4.791906403261431,
+          "damage": 0,
+          "speed": 31.93603853781757
+        },
+        {
+          "car": "negev",
+          "side": -1,
+          "follow": true,
+          "minimumClearance": 4.845829991675074,
+          "damage": 0,
+          "speed": 32.15703891233432
+        },
+        {
+          "car": "negev",
+          "side": 1,
+          "follow": false,
+          "minimumClearance": 4.660189040829974,
+          "damage": 0,
+          "speed": 31.93603853781757
+        },
+        {
+          "car": "negev",
+          "side": 1,
+          "follow": true,
+          "minimumClearance": 4.775919251302654,
+          "damage": 0,
+          "speed": 32.15703891233432
+        },
+        {
+          "car": "yam",
+          "side": -1,
+          "follow": false,
+          "minimumClearance": 4.676573141444805,
+          "damage": 0,
+          "speed": 45.80874602964659
+        },
+        {
+          "car": "yam",
+          "side": -1,
+          "follow": true,
+          "minimumClearance": 4.823464963311941,
+          "damage": 0,
+          "speed": 32.83576981952268
+        },
+        {
+          "car": "yam",
+          "side": 1,
+          "follow": false,
+          "minimumClearance": 4.608921594453837,
+          "damage": 0,
+          "speed": 45.80874602964659
+        },
+        {
+          "car": "yam",
+          "side": 1,
+          "follow": true,
+          "minimumClearance": 4.741363173914087,
+          "damage": 0,
+          "speed": 32.83576981952268
+        }
+      ],
+      "operations": "passed"
+    },
+    {
+      "track": "ayalon",
+      "meshes": 1045,
+      "colliders": 554,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "rampCrossingSamples": 200,
+      "rampPiers": 124,
+      "underpassChecks": 40,
+      "raceRoadClearance": "passed",
+      "operations": "passed"
+    },
+    {
+      "track": "caesarea",
+      "meshes": 394,
+      "colliders": 244,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "deadsea",
+      "meshes": 181,
+      "colliders": 305,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "acre",
+      "meshes": 276,
+      "colliders": 216,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "centralpark",
+      "meshes": 210,
+      "colliders": 361,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "timessquare",
+      "meshes": 233,
+      "colliders": 319,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "brooklynbridge",
+      "meshes": 233,
+      "colliders": 370,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "manhattan",
+      "meshes": 230,
+      "colliders": 431,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "beersheva",
+      "meshes": 120,
+      "colliders": 302,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "netanya",
+      "meshes": 266,
+      "colliders": 245,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "hw1",
+      "meshes": 326,
+      "colliders": 132,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 5487,
+        "groundedTrees": 795,
+        "groundedCypresses": 0
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "herzliya",
+      "meshes": 230,
+      "colliders": 226,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "hanikra",
+      "meshes": 186,
+      "colliders": 236,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 23625,
+        "groundedTrees": 368,
+        "groundedCypresses": 0
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "haifaport",
+      "meshes": 173,
+      "colliders": 325,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "stellamaris",
+      "meshes": 490,
+      "colliders": 144,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 8858,
+        "groundedTrees": 334,
+        "groundedCypresses": 0
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "tiberias",
+      "meshes": 178,
+      "colliders": 244,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "golan",
+      "meshes": 146,
+      "colliders": 222,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 3050,
+        "groundedTrees": 0,
+        "groundedCypresses": 0
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "hermon",
+      "meshes": 457,
+      "colliders": 324,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 21730,
+        "groundedTrees": 403,
+        "groundedCypresses": 0
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "hw6",
+      "meshes": 204,
+      "colliders": 296,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "hw2",
+      "meshes": 285,
+      "colliders": 300,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "hw90",
+      "meshes": 174,
+      "colliders": 261,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "petah",
+      "meshes": 186,
+      "colliders": 240,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "rishon",
+      "meshes": 178,
+      "colliders": 182,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "ashdod",
+      "meshes": 161,
+      "colliders": 202,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "ashkelon",
+      "meshes": 188,
+      "colliders": 201,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "scopus",
+      "meshes": 304,
+      "colliders": 229,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 3484,
+        "groundedTrees": 41,
+        "groundedCypresses": 32
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "walls",
+      "meshes": 311,
+      "colliders": 318,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "modiin",
+      "meshes": 134,
+      "colliders": 201,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "ramon",
+      "meshes": 1027,
+      "colliders": 353,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 24300,
+        "groundedTrees": 0,
+        "groundedCypresses": 0
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "hw40",
+      "meshes": 110,
+      "colliders": 222,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "eilatmtn",
+      "meshes": 117,
+      "colliders": 220,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 19251,
+        "groundedTrees": 96,
+        "groundedCypresses": 0
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "gushdan",
+      "meshes": 278,
+      "colliders": 296,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "nazareth",
+      "meshes": 227,
+      "colliders": 204,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 1911,
+        "groundedTrees": 50,
+        "groundedCypresses": 0
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "tzfat",
+      "meshes": 199,
+      "colliders": 191,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 1936,
+        "groundedTrees": 45,
+        "groundedCypresses": 0
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "masada",
+      "meshes": 134,
+      "colliders": 105,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "terrain": {
+        "vertices": 2451,
+        "groundedTrees": 44,
+        "groundedCypresses": 0
+      },
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "batyam",
+      "meshes": 190,
+      "colliders": 205,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "rehovot",
+      "meshes": 187,
+      "colliders": 225,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "nahariya",
+      "meshes": 203,
+      "colliders": 201,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "ramla",
+      "meshes": 178,
+      "colliders": 182,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "holon",
+      "meshes": 184,
+      "colliders": 204,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "beitshan",
+      "meshes": 186,
+      "colliders": 182,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "hadera",
+      "meshes": 136,
+      "colliders": 201,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "lod",
+      "meshes": 138,
+      "colliders": 222,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "kshmona",
+      "meshes": 158,
+      "colliders": 181,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "raanana",
+      "meshes": 167,
+      "colliders": 201,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "afula",
+      "meshes": 132,
+      "colliders": 201,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "ksaba",
+      "meshes": 179,
+      "colliders": 181,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    },
+    {
+      "track": "arad",
+      "meshes": 109,
+      "colliders": 205,
+      "nonFiniteGeometries": 0,
+      "invalidInstanceBuffers": [],
+      "roadMaterialWeather": {
+        "dryRoughness": 0.82,
+        "clearNightRoughness": 0.76,
+        "wetnessReset": true
+      },
+      "operations": "passed"
+    }
+  ],
+  "disposedTextures": [],
+  "duplicateDisposals": 0,
+  "buildingImpactVerified": true,
+  "pageErrors": []
+}

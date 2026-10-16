@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { reconstructRsh015WorldSource } from "./load-world-builders.mjs";
+import { readFileSync } from "node:fs";
+import { fromRoot } from "./project-root.mjs";
 
 test("Azrieli uses 3 InstancedMesh floor bands, no per-floor Mesh", () => {
-  const t = reconstructRsh015WorldSource();
+  const t = readFileSync(fromRoot("src", "game", "world-builders", "shared.ts"), "utf8");
   const start = t.indexOf("const placeAzrieli");
   const end = t.indexOf("const placeCityGate", start);
   const fn = t.slice(start, end > start ? end : start + 8000);
