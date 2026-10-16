@@ -3,7 +3,7 @@
 export const AYALON_FREEZE_GIS_CLAIM = false;
 export const AYALON_FREEZE_OWNER_SETTINGS = false;
 export const AYALON_FREEZE_PUBLIC_DISTRIBUTION = false;
-export const AYALON_FREEZE_GRANTED = true;
+export const AYALON_FREEZE_GRANTED = false;
 
 export const AYALON_LOCK_GENERATION = 11;
 export const AYALON_LOCK_HASH = "0c34b9d1f9ded36eaa8400c7aaba48a4f725033bfe25412a4648c36c73910d48";
@@ -50,7 +50,8 @@ export const TRANSITIVE_SOURCE_SHA256 = {
   "AYALON-OWNER-APPROVAL.json": "c735f363cbbeb3c30c5e7b44d5cf6bf1b3256e32548f434f46215560de6d7f84"
 } as const;
 
-export const FREEZE_APPROVAL = {
+/** Preserved historical instruction; it does not approve the modified source. */
+export const HISTORICAL_FREEZE_APPROVAL = {
   unit: "RSH-036",
   instruction: "המשך",
   freeze_granted: true,
@@ -62,6 +63,20 @@ export const FREEZE_APPROVAL = {
   approved_by: "owner",
   status: "granted",
   complete_dependency_closure: true,
+} as const;
+
+/** Current status: transitive hashes above describe the historical baseline only. */
+export const FREEZE_APPROVAL = {
+  unit: "RSH-036",
+  freeze_granted: false,
+  unique_pack_approved: false,
+  placeholders_are_unique_evidence: false,
+  gis_claim: false,
+  owner_settings_freeze: false,
+  public_distribution: false,
+  approved_by: null,
+  status: "unverified-current-source",
+  complete_dependency_closure: false,
 } as const;
 
 export function canonicalFreezeDigest() {
@@ -78,8 +93,8 @@ export function canonicalFreezeDigest() {
     "gis=false",
     "owner_settings_freeze=false",
     "public_distribution=false",
-    "freeze_granted=true",
-    "unique_pack_approved=true",
+    "freeze_granted=false",
+    "unique_pack_approved=false",
     "placeholders_are_unique_evidence=false",
     `sources=${sources}`,
   ].join("\n") + "\n";

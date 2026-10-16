@@ -1,3 +1,4 @@
+/** Historical RSH lock metadata; no current product/source freeze is granted. */
 /** Canonical RSH-064 Establish preview, staging, production and rollback lock. Honest: no GIS, no public distribution, no real-device baseline. */
 export const UNIT_ID = "RSH-064" as const;
 export const LOCK_DEFINED = true;
@@ -8,7 +9,7 @@ export const PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f2
 export const PREVIEW_CHANNEL_DEFINED = true;
 export const STAGING_CHANNEL_DEFINED = true;
 export const PRODUCTION_CHANNEL_DEFINED = true;
-export const ROLLBACK_PROCEDURE_LOCKED = true;
+export const ROLLBACK_PROCEDURE_LOCKED = false;
 
 export type LockReport = { claimedVerified: boolean; webgl2?: boolean };
 
@@ -23,6 +24,6 @@ export function evaluateLock(report: LockReport = { claimedVerified: false }) {
 }
 
 export function canonicalDigest(): string {
-  return "preview_channel_defined=true\nstaging_channel_defined=true\nproduction_channel_defined=true\nrollback_procedure_locked=true\npublic_distribution=false\ngis=false\nowner_freeze=false\npublic_distribution=false\n";
+  return "preview_channel_defined=true\nstaging_channel_defined=true\nproduction_channel_defined=true\nrollback_procedure_locked=false\npublic_distribution=false\ngis=false\nowner_freeze=false\npublic_distribution=false\n";
 }
 

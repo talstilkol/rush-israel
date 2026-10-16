@@ -113,6 +113,7 @@
     "terrain-height.test.mjs": "current-unit",
     "steering-direction.test.mjs": "current-unit",
     "collider-height.test.mjs": "current-unit",
-    "package-freeze-authority.test.mjs": "current-unit"
+    "package-freeze-authority.test.mjs": "current-unit",
+    "current-freeze-claims.test.mjs": "current-unit"
   }
 }

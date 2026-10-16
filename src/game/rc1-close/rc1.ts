@@ -5,7 +5,7 @@ export const GIS_CLAIM = false;
 export const OWNER_FREEZE = false;
 export const PUBLIC_DISTRIBUTION = false;
 export const PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
-export const RC1_PRODUCED = true;
+export const RC1_PRODUCED = false;
 export const BLOCKING_OWNER_SETTINGS_OPEN = true;
 export const UNVERIFIED_ASSETS = 66;
 export const V1_PUBLISHED = false;
@@ -23,6 +23,6 @@ export function evaluateLock(report: LockReport = { claimedVerified: false }) {
 }
 
 export function canonicalDigest(): string {
-  return "rc1_produced=true\nblocking_owner_settings_open=true\nunverified_assets=66\npublic_distribution=false\nv1_published=false\ngis=false\nowner_freeze=false\npublic_distribution=false\n";
+  return "rc1_produced=false\nblocking_owner_settings_open=true\nunverified_assets=66\npublic_distribution=false\nv1_published=false\ngis=false\nowner_freeze=false\npublic_distribution=false\n";
 }
 

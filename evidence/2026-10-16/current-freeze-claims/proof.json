@@ -1,0 +1,70 @@
+{
+  "source_base_sha": "bd8f20274737b9d5faf9f9a223d7412a92c3dce0",
+  "source_authority": "Hashes describe the corrected metadata and current guards, before the containing commit. Hosted CI verdict must be read for actual HEAD.",
+  "files": {
+    "src/game/ayalon-freeze/freeze.ts": "f6e31e2381a99fec596bdebcaf57f5e0cc4db71a4aa8f85a24cef91446849363",
+    "src/game/haifa-golden/golden.ts": "bbf0f30026fbde230264ef9644e2fdb244623094811770712d8e863f9abb475b",
+    "src/game/haifa/track.ts": "a73b3f3972bb0d5dcfb6d68668f8334cb13f25e96fbae9ddfbb6c2ff7d0def46",
+    "src/game/hermon-golden/golden.ts": "a961dfd328db2f107cb09dcdbb9beab8a90c25a01fcef3b9d49977e9129ca4c2",
+    "src/game/hermon/track.ts": "f4851048a828c0f601a65b088cca0aae20dc81d663ff47b589686fc5e5e10cb4",
+    "src/game/input-maps/maps.ts": "8d9979675599ce1d1d38241f0da841c711f2982f20f4820e6690bab742bf1931",
+    "src/game/namal-golden/golden.ts": "d9c0a398bf29ff250a1e7128072c62b731ca170916aaf5792c0e70ed6fb4196a",
+    "src/game/namal/track.ts": "15d9e527f990f5cd889d4234a2d2447fa07cd4393365f29f4fdec27ac2cadaf3",
+    "src/game/oldjaffa-golden/golden.ts": "062e574e7d479b29da818d361d6acfb2868747723d0980726c6031a35dcc3a53",
+    "src/game/oldjaffa/track.ts": "0bd44b2b799b9eb3800c9981005e07af501ab999b83d07ab4ed2a3d18f056843",
+    "src/game/preview-staging/channels.ts": "7a65991ba3d2840e1e9c4b497df569665a61cc0950ce7d3fa771cf2310177f77",
+    "src/game/ramon-golden/golden.ts": "ea543444637335b6d93c41de53a7064ac27dbe268215c0884bfc99b85f724a7e",
+    "src/game/ramon/track.ts": "d045d7ce130bab7160cdf3e4be48f1333c955b48f761852e9749d5769f9ee8de",
+    "src/game/rc1-close/rc1.ts": "a92e271bf707c8ece495b08546c10fb9f34e9089175185311d67e1a15930d195",
+    "src/game/rothschild-golden/golden.ts": "30b8413987f27a06065cfe16a11a04f7b7b72238ea19f7204da16feed31d92c4",
+    "src/game/rothschild/geometry.ts": "622ee3c9efa3de433bcb66e13e77e6c77328b4cec1c7e813a5ff3336f127117c",
+    "src/game/scopus-golden/golden.ts": "8aebbfa4e111678bbcdab48573e5f2656b7a963182835bdec8059f6cc3eef5ba",
+    "src/game/scopus/track.ts": "421a8b1ae2721dd9d190b55433072e7554b056aa70beb53de25190cc3c609422",
+    "src/game/v1-publish/v1.ts": "0317a0aeb6d98072096d823d28fcd3c2475ef5aef75f69e5ff497d18baaddd94",
+    "scripts/current-freeze-claims.test.mjs": "dc5563a646a26291d28f9332ac82df16b90cc3321d1c9df04ce2574f7980b3bb",
+    "TEST-CLASSIFICATION.json": "e2649273c627b6cbec662c591fc8b65007bc983cc671c62ebcffabe71c6416ae"
+  },
+  "cleared_metadata_modules": 17,
+  "ayalon_current_freeze": false,
+  "historical_ayalon_instruction_preserved": true,
+  "rc1_produced": false,
+  "local_tests": {
+    "passed": 327,
+    "failed": 0
+  },
+  "typecheck_exit": 0,
+  "lint_errors": 0,
+  "lint_existing_warnings": 111,
+  "gameplay_changes": false,
+  "product_accepted": false,
+  "artifacts": [
+    {
+      "path": "evidence/2026-10-16/current-freeze-claims/current-freeze-claims-before.log",
+      "sha256": "cb6763c439a5a891306d2a36fe84a609ab3d806f5d1e699a5e393993c01015e6"
+    },
+    {
+      "path": "evidence/2026-10-16/current-freeze-claims/current-rc-claim-before.log",
+      "sha256": "8c45b5a13edd7b26e908d3a85030fa57b147d5559289c1106c98251a3450ea77"
+    },
+    {
+      "path": "evidence/2026-10-16/current-freeze-claims/current-freeze-cleared.json",
+      "sha256": "17d95891603b98bc90722b43ed237167a0c2ec4651186206fe0ede8f9f4ddb2c"
+    },
+    {
+      "path": "evidence/2026-10-16/current-freeze-claims/current-freeze-claims-after.log",
+      "sha256": "f06f10bb7d9354a4b56e3f443ebe5634af144c681b5782fc0235c155cc813a1d"
+    },
+    {
+      "path": "evidence/2026-10-16/current-freeze-claims/current-freeze-full-unit.log",
+      "sha256": "e1a7bb3146118a3f4ce330a3802444ee207b4d7ba479d89cdc48eed40ac9cb63"
+    },
+    {
+      "path": "evidence/2026-10-16/current-freeze-claims/current-freeze-typecheck.log",
+      "sha256": "602ec0d473a17c01dcdc2e92e85bf4ba1bdc73a68d0f14c2da2e4b2748e00204"
+    },
+    {
+      "path": "evidence/2026-10-16/current-freeze-claims/current-freeze-lint.log",
+      "sha256": "75ec7dc2e291581eeeb38bf4ba0535b6220ec7c990e8878fb27a4770c2a261b6"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+/** Historical RSH lock metadata; no current product/source freeze is granted. */
 /** Canonical RSH-044 Unify keyboard, touch and gamepad input maps lock. Honest: no GIS, no public distribution, no RTL-scope (RSH-045). */
 export const UNIT_ID = "RSH-044" as const;
 export const LOCK_DEFINED = true;
@@ -7,9 +8,9 @@ export const PUBLIC_DISTRIBUTION = false;
 export const PACKAGE_SOURCE_SHA256 = "ae427c122d1e8f4a7b419fa83e7deaab7bfb5c88f200699182f8e3d85cf9df94";
 export const INPUT_MAPS_UNIFIED = true;
 export const TOUCH_ACTION = "none" as const;
-export const TOUCH_ACTION_LOCKED = true;
+export const TOUCH_ACTION_LOCKED = false;
 export const CANVAS_TOUCH_NONE = true;
-export const POINTER_CANCEL_LOCKED = true;
+export const POINTER_CANCEL_LOCKED = false;
 export const RTL_SCOPE_COMPLETE = false;
 export const UNIFIED_ACTION_COUNT = 7;
 export const PAUSE_KEYBOARD_ONLY = true;
@@ -83,7 +84,7 @@ export function canonicalDigest(): string {
     "input_maps_unified=true",
     "touch_action=none",
     "canvas_touch_none=true",
-    "pointer_cancel_locked=true",
+    "pointer_cancel_locked=false",
     "unified_action_count=7",
     "pause_keyboard_only=true",
     "rtl_scope_complete=false",

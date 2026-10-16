@@ -1,0 +1,127 @@
+[
+  {
+    "path": "src/game/haifa/track.ts",
+    "cleared_claims": [
+      "GEOMETRY_LOCKED",
+      "DRIVING_LOCKED"
+    ]
+  },
+  {
+    "path": "src/game/scopus/track.ts",
+    "cleared_claims": [
+      "GEOMETRY_LOCKED",
+      "DRIVING_LOCKED"
+    ]
+  },
+  {
+    "path": "src/game/ramon-golden/golden.ts",
+    "cleared_claims": [
+      "ART_GOLDEN_LOCKED",
+      "TRACK_SOURCE_FREEZE",
+      "AYALON_FREEZE_GRANTED"
+    ]
+  },
+  {
+    "path": "src/game/oldjaffa/track.ts",
+    "cleared_claims": [
+      "GEOMETRY_LOCKED",
+      "DRIVING_LOCKED"
+    ]
+  },
+  {
+    "path": "src/game/haifa-golden/golden.ts",
+    "cleared_claims": [
+      "ART_GOLDEN_LOCKED",
+      "TRACK_SOURCE_FREEZE",
+      "AYALON_FREEZE_GRANTED"
+    ]
+  },
+  {
+    "path": "src/game/hermon-golden/golden.ts",
+    "cleared_claims": [
+      "ART_GOLDEN_LOCKED",
+      "TRACK_SOURCE_FREEZE",
+      "AYALON_FREEZE_GRANTED"
+    ]
+  },
+  {
+    "path": "src/game/namal-golden/golden.ts",
+    "cleared_claims": [
+      "ART_GOLDEN_LOCKED",
+      "TRACK_SOURCE_FREEZE",
+      "AYALON_FREEZE_GRANTED"
+    ]
+  },
+  {
+    "path": "src/game/preview-staging/channels.ts",
+    "cleared_claims": [
+      "ROLLBACK_PROCEDURE_LOCKED"
+    ]
+  },
+  {
+    "path": "src/game/rothschild/geometry.ts",
+    "cleared_claims": [
+      "GEOMETRY_LOCKED",
+      "DRIVING_LOCKED"
+    ]
+  },
+  {
+    "path": "src/game/rothschild-golden/golden.ts",
+    "cleared_claims": [
+      "ART_GOLDEN_LOCKED",
+      "TRACK_SOURCE_FREEZE",
+      "AYALON_FREEZE_GRANTED"
+    ]
+  },
+  {
+    "path": "src/game/input-maps/maps.ts",
+    "cleared_claims": [
+      "TOUCH_ACTION_LOCKED",
+      "POINTER_CANCEL_LOCKED"
+    ]
+  },
+  {
+    "path": "src/game/namal/track.ts",
+    "cleared_claims": [
+      "GEOMETRY_LOCKED",
+      "DRIVING_LOCKED"
+    ]
+  },
+  {
+    "path": "src/game/hermon/track.ts",
+    "cleared_claims": [
+      "GEOMETRY_LOCKED",
+      "DRIVING_LOCKED"
+    ]
+  },
+  {
+    "path": "src/game/ramon/track.ts",
+    "cleared_claims": [
+      "GEOMETRY_LOCKED",
+      "DRIVING_LOCKED"
+    ]
+  },
+  {
+    "path": "src/game/v1-publish/v1.ts",
+    "cleared_claims": [
+      "DOSSIER_LOCKED",
+      "ROLLBACK_PROOF_LOCKED"
+    ]
+  },
+  {
+    "path": "src/game/scopus-golden/golden.ts",
+    "cleared_claims": [
+      "ART_GOLDEN_LOCKED",
+      "TRACK_SOURCE_FREEZE",
+      "AYALON_FREEZE_GRANTED"
+    ]
+  },
+  {
+    "path": "src/game/oldjaffa-golden/golden.ts",
+    "cleared_claims": [
+      "ART_GOLDEN_LOCKED",
+      "TRACK_SOURCE_FREEZE",
+      "AYALON_FREEZE_GRANTED"
+    ]
+  }
+]

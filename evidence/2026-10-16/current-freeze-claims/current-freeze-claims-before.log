@@ -1,0 +1,166 @@
+TAP version 13
+# Subtest: current source cannot assert a product freeze while its owner authority is false
+not ok 1 - current source cannot assert a product freeze while its owner authority is false
+  ---
+  duration_ms: 10.223417
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/current-freeze-claims.test.mjs:16:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    historical locks do not certify changed gameplay, art, input or release
+    + actual - expected
+    
+    + [
+    +   'src/game/haifa/track.ts: GEOMETRY_LOCKED',
+    +   'src/game/haifa/track.ts: DRIVING_LOCKED',
+    +   'src/game/haifa-golden/golden.ts: ART_GOLDEN_LOCKED',
+    +   'src/game/haifa-golden/golden.ts: TRACK_SOURCE_FREEZE',
+    +   'src/game/haifa-golden/golden.ts: AYALON_FREEZE_GRANTED',
+    +   'src/game/hermon/track.ts: GEOMETRY_LOCKED',
+    +   'src/game/hermon/track.ts: DRIVING_LOCKED',
+    +   'src/game/hermon-golden/golden.ts: ART_GOLDEN_LOCKED',
+    +   'src/game/hermon-golden/golden.ts: TRACK_SOURCE_FREEZE',
+    +   'src/game/hermon-golden/golden.ts: AYALON_FREEZE_GRANTED',
+    +   'src/game/input-maps/maps.ts: TOUCH_ACTION_LOCKED',
+    +   'src/game/input-maps/maps.ts: POINTER_CANCEL_LOCKED',
+    +   'src/game/namal/track.ts: GEOMETRY_LOCKED',
+    +   'src/game/namal/track.ts: DRIVING_LOCKED',
+    +   'src/game/namal-golden/golden.ts: ART_GOLDEN_LOCKED',
+    +   'src/game/namal-golden/golden.ts: TRACK_SOURCE_FREEZE',
+    +   'src/game/namal-golden/golden.ts: AYALON_FREEZE_GRANTED',
+    +   'src/game/oldjaffa/track.ts: GEOMETRY_LOCKED',
+    +   'src/game/oldjaffa/track.ts: DRIVING_LOCKED',
+    +   'src/game/oldjaffa-golden/golden.ts: ART_GOLDEN_LOCKED',
+    +   'src/game/oldjaffa-golden/golden.ts: TRACK_SOURCE_FREEZE',
+    +   'src/game/oldjaffa-golden/golden.ts: AYALON_FREEZE_GRANTED',
+    +   'src/game/preview-staging/channels.ts: ROLLBACK_PROCEDURE_LOCKED',
+    +   'src/game/ramon/track.ts: GEOMETRY_LOCKED',
+    +   'src/game/ramon/track.ts: DRIVING_LOCKED',
+    +   'src/game/ramon-golden/golden.ts: ART_GOLDEN_LOCKED',
+    +   'src/game/ramon-golden/golden.ts: TRACK_SOURCE_FREEZE',
+    +   'src/game/ramon-golden/golden.ts: AYALON_FREEZE_GRANTED',
+    +   'src/game/rothschild/geometry.ts: GEOMETRY_LOCKED',
+    +   'src/game/rothschild/geometry.ts: DRIVING_LOCKED',
+    +   'src/game/rothschild-golden/golden.ts: ART_GOLDEN_LOCKED',
+    +   'src/game/rothschild-golden/golden.ts: TRACK_SOURCE_FREEZE',
+    +   'src/game/rothschild-golden/golden.ts: AYALON_FREEZE_GRANTED',
+    +   'src/game/scopus/track.ts: GEOMETRY_LOCKED',
+    +   'src/game/scopus/track.ts: DRIVING_LOCKED',
+    +   'src/game/scopus-golden/golden.ts: ART_GOLDEN_LOCKED',
+    +   'src/game/scopus-golden/golden.ts: TRACK_SOURCE_FREEZE',
+    +   'src/game/scopus-golden/golden.ts: AYALON_FREEZE_GRANTED',
+    +   'src/game/v1-publish/v1.ts: DOSSIER_LOCKED',
+    +   'src/game/v1-publish/v1.ts: ROLLBACK_PROOF_LOCKED'
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0: 'src/game/haifa/track.ts: GEOMETRY_LOCKED'
+    1: 'src/game/haifa/track.ts: DRIVING_LOCKED'
+    2: 'src/game/haifa-golden/golden.ts: ART_GOLDEN_LOCKED'
+    3: 'src/game/haifa-golden/golden.ts: TRACK_SOURCE_FREEZE'
+    4: 'src/game/haifa-golden/golden.ts: AYALON_FREEZE_GRANTED'
+    5: 'src/game/hermon/track.ts: GEOMETRY_LOCKED'
+    6: 'src/game/hermon/track.ts: DRIVING_LOCKED'
+    7: 'src/game/hermon-golden/golden.ts: ART_GOLDEN_LOCKED'
+    8: 'src/game/hermon-golden/golden.ts: TRACK_SOURCE_FREEZE'
+    9: 'src/game/hermon-golden/golden.ts: AYALON_FREEZE_GRANTED'
+    10: 'src/game/input-maps/maps.ts: TOUCH_ACTION_LOCKED'
+    11: 'src/game/input-maps/maps.ts: POINTER_CANCEL_LOCKED'
+    12: 'src/game/namal/track.ts: GEOMETRY_LOCKED'
+    13: 'src/game/namal/track.ts: DRIVING_LOCKED'
+    14: 'src/game/namal-golden/golden.ts: ART_GOLDEN_LOCKED'
+    15: 'src/game/namal-golden/golden.ts: TRACK_SOURCE_FREEZE'
+    16: 'src/game/namal-golden/golden.ts: AYALON_FREEZE_GRANTED'
+    17: 'src/game/oldjaffa/track.ts: GEOMETRY_LOCKED'
+    18: 'src/game/oldjaffa/track.ts: DRIVING_LOCKED'
+    19: 'src/game/oldjaffa-golden/golden.ts: ART_GOLDEN_LOCKED'
+    20: 'src/game/oldjaffa-golden/golden.ts: TRACK_SOURCE_FREEZE'
+    21: 'src/game/oldjaffa-golden/golden.ts: AYALON_FREEZE_GRANTED'
+    22: 'src/game/preview-staging/channels.ts: ROLLBACK_PROCEDURE_LOCKED'
+    23: 'src/game/ramon/track.ts: GEOMETRY_LOCKED'
+    24: 'src/game/ramon/track.ts: DRIVING_LOCKED'
+    25: 'src/game/ramon-golden/golden.ts: ART_GOLDEN_LOCKED'
+    26: 'src/game/ramon-golden/golden.ts: TRACK_SOURCE_FREEZE'
+    27: 'src/game/ramon-golden/golden.ts: AYALON_FREEZE_GRANTED'
+    28: 'src/game/rothschild/geometry.ts: GEOMETRY_LOCKED'
+    29: 'src/game/rothschild/geometry.ts: DRIVING_LOCKED'
+    30: 'src/game/rothschild-golden/golden.ts: ART_GOLDEN_LOCKED'
+    31: 'src/game/rothschild-golden/golden.ts: TRACK_SOURCE_FREEZE'
+    32: 'src/game/rothschild-golden/golden.ts: AYALON_FREEZE_GRANTED'
+    33: 'src/game/scopus/track.ts: GEOMETRY_LOCKED'
+    34: 'src/game/scopus/track.ts: DRIVING_LOCKED'
+    35: 'src/game/scopus-golden/golden.ts: ART_GOLDEN_LOCKED'
+    36: 'src/game/scopus-golden/golden.ts: TRACK_SOURCE_FREEZE'
+    37: 'src/game/scopus-golden/golden.ts: AYALON_FREEZE_GRANTED'
+    38: 'src/game/v1-publish/v1.ts: DOSSIER_LOCKED'
+    39: 'src/game/v1-publish/v1.ts: ROLLBACK_PROOF_LOCKED'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/current-freeze-claims.test.mjs:25:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: an Ayalon freeze requires its exact transitive source bytes and current approval
+not ok 2 - an Ayalon freeze requires its exact transitive source bytes and current approval
+  ---
+  duration_ms: 1.672917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/current-freeze-claims.test.mjs:28:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    a historical owner instruction cannot freeze changed source
+    + actual - expected
+    
+    + [
+    +   'src/game/world-builders/tracks/ayalon.ts',
+    +   'src/game/world.ts',
+    +   'src/game/ayalon-asphalt/asphalt.ts',
+    +   'src/game/physics.ts',
+    +   'src/game/cars.ts',
+    +   'src/game/audio.ts',
+    +   'src/game/input.ts',
+    +   'src/components/game-app/hud.tsx',
+    +   'src/components/touch-controls.tsx',
+    +   'package.json'
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0: 'src/game/world-builders/tracks/ayalon.ts'
+    1: 'src/game/world.ts'
+    2: 'src/game/ayalon-asphalt/asphalt.ts'
+    3: 'src/game/physics.ts'
+    4: 'src/game/cars.ts'
+    5: 'src/game/audio.ts'
+    6: 'src/game/input.ts'
+    7: 'src/components/game-app/hud.tsx'
+    8: 'src/components/touch-controls.tsx'
+    9: 'package.json'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/current-freeze-claims.test.mjs:35:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 225.51275

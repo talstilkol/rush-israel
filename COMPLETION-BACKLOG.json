@@ -696,7 +696,7 @@
       "acceptance": "אין blockers; כל 13 השערים נבדקו על אותו commit; rollback בוצע",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "נמצא דגל package freeze שהצביע על hash היסטורי שונה מהקובץ בפועל וללא owner freeze. דגלי הנעילה בוטלו ונוסף guard מול הבייטים האמיתיים. 324 בדיקות עוברות; אין RC או תג חתום.",
+      "verification_note": "בוטלו דגלי נעילה לא מבוססים של נהיגה, אמנות, קלט ו־rollback ב־17 מודולים; הקפאת איילון הופרדה מהאישור ההיסטורי; RC1_PRODUCED=false. 327 בדיקות עוברות; אין RC או תג חתום.",
       "external_evidence_required": true
     },
     {
@@ -755,5 +755,6 @@
   "verified_ci_reference_sha": "3a1208fe0b837cd3c4d8eb9a9db7f98041f78497",
   "current_ci_authority": "GitHub required-ci for the actual Git HEAD. Immutable CI references in this document never assert the verdict of a future commit.",
   "implementation_evidence": "evidence/2026-10-16/physics10/proof.json",
-  "supplemental_implementation_evidence": "evidence/2026-10-16/package-freeze/proof.json"
+  "supplemental_implementation_evidence": "evidence/2026-10-16/package-freeze/proof.json",
+  "current_claim_authority_evidence": "evidence/2026-10-16/current-freeze-claims/proof.json"
 }
