@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: the current acceleration reference matches the record epoch without changing prior numerical targets
+not ok 1 - the current acceleration reference matches the record epoch without changing prior numerical targets
+  ---
+  duration_ms: 0.646208
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/accel-reference.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    update the reviewed reference epoch with the physics epoch
+    
+    14 !== 15
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 15
+  actual: 14
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/accel-reference.test.mjs:10:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 204.745167

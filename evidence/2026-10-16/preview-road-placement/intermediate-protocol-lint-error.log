@@ -1,0 +1,6 @@
+
+/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/preview-road-clearance-smoke.mjs
+  46:218  error  Unsafe usage of ThrowStatement  no-unsafe-finally
+
+✖ 1 problem (1 error, 0 warnings)
+

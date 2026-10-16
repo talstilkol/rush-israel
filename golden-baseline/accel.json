@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "physicsVersion": 14,
+  "physicsVersion": 15,
   "track": "ayalon",
   "gate": "current-behaviour regression",
   "claimGate": "RSH-033",
   "regressionToleranceSeconds": 0.1,
   "claimTolerance": 0.15,
-  "authority": "Landmark contact epoch14 corrects obelisk,hall andhighway support boxes using actual rendered geometry;the same helper retains existing tunnel geometry/quaternion behavior. All numerical means,claims,tolerances andoriginal generatedFromPhysicsVersion8 provenance remain unchanged from the archived epoch13 parent. New15-run browser andexact-head hosted CI are required;this is not independent physical calibration.",
+  "authority": "Record epoch15 reflects preview garden/gantry relocation. All numerical means,claims,tolerances andoriginal measured provenance remain unchanged;current acceleration/browser/CI evidence must be rerun separately.",
   "runs": [
     {
       "carId": "sabra",

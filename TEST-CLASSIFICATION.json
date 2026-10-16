@@ -105,6 +105,7 @@
     "median-driving.test.mjs": "current-unit",
     "milestone-register.test.mjs": "historical-contract",
     "package-freeze-authority.test.mjs": "current-unit",
+    "preview-road-overlap.test.mjs": "current-unit",
     "program-control.test.mjs": "historical-contract",
     "ramon-cliff.test.mjs": "current-unit",
     "react-static-children.test.mjs": "current-unit",

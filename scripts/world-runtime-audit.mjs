@@ -254,3 +254,5 @@ await import('./landmark-collider-smoke.mjs');
 await import('./tunnel-collider-smoke.mjs');
 
 await import('./landmark-footprint-smoke.mjs');
+
+await import('./preview-road-clearance-smoke.mjs');

@@ -1,0 +1,8 @@
+file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/preview-road-clearance-smoke.mjs:41
+const out=new URL('file://'+fromRoot('artifacts','preview-road-placement')+'/');await mkdir(out,{recursive:true});await writeFile(new URL('summary.json',out),JSON.stringify(report,null,2)+'\n');if(!report.passed)throw Error('Actual preview road or vegetation overlap persists');console.log(JSON.stringify({passed:report.passed,errors,rows:rows.map(r=>({track:r.track,solids:r.solids.map(s=>({name:s.name,gap:s.gap,...s.overlap}))}))}));
+                                                                                                                                                                                                                          ^
+
+Error: Actual preview road or vegetation overlap persists
+    at file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/preview-road-clearance-smoke.mjs:41:219
+
+Node.js v22.16.0
