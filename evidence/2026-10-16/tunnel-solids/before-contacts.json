@@ -1,0 +1,722 @@
+{
+  "sourceHead": "d6f8b6e8f52129199ba5cb7467fe03fe2245e60d",
+  "kind": "actual-tunnel-wall-contact-diagnostic",
+  "scope": "Actual rendered wall geometries and real ArcadeCar overlap/contact resolution at nine deterministic points per wall. All current-world colliders supplied. Source bytes equal metadata-only8d8fdd8. An undetected point is an observed missing contact at that pose,not a complete traversing-race proof. No product or full mapping acceptance.",
+  "rows": [
+    {
+      "track": "namal",
+      "wall": [
+        362.4269487313389,
+        4.800000000000001,
+        1434.195962836664
+      ],
+      "dimensions": {
+        "width": 0.85,
+        "height": 8.8,
+        "depth": 86,
+        "widthSegments": 1,
+        "heightSegments": 1,
+        "depthSegments": 1
+      },
+      "yaw": 0.6154248876587948,
+      "points": [
+        {
+          "u": 0.1,
+          "position": [
+            342.5676392852567,
+            1.4000000000000004,
+            1406.1073917031094
+          ],
+          "damage": 0,
+          "displacement": 0.9928571428574537,
+          "undetected": false
+        },
+        {
+          "u": 0.2,
+          "position": [
+            347.53246664677727,
+            1.4000000000000004,
+            1413.1295344864982
+          ],
+          "damage": 0.035,
+          "displacement": 1.1999999999998676,
+          "undetected": false
+        },
+        {
+          "u": 0.3,
+          "position": [
+            352.4972940082978,
+            1.4000000000000004,
+            1420.1516772698867
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.4,
+          "position": [
+            357.46212136981836,
+            1.4000000000000004,
+            1427.1738200532754
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.5,
+          "position": [
+            362.4269487313389,
+            1.4000000000000004,
+            1434.195962836664
+          ],
+          "damage": 0.035,
+          "displacement": 1.1999999999998676,
+          "undetected": false
+        },
+        {
+          "u": 0.6,
+          "position": [
+            367.3917760928594,
+            1.4000000000000004,
+            1441.2181056200525
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.7,
+          "position": [
+            372.35660345438,
+            1.4000000000000004,
+            1448.2402484034412
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.8,
+          "position": [
+            377.3214308159005,
+            1.4000000000000004,
+            1455.2623911868297
+          ],
+          "damage": 0.035,
+          "displacement": 1.199999999999914,
+          "undetected": false
+        },
+        {
+          "u": 0.9,
+          "position": [
+            382.2862581774211,
+            1.4000000000000004,
+            1462.2845339702185
+          ],
+          "damage": 0,
+          "displacement": 0.9928571428569839,
+          "undetected": false
+        }
+      ],
+      "undetectedPoints": 4
+    },
+    {
+      "track": "namal",
+      "wall": [
+        394.56197126823696,
+        4.800000000000001,
+        1411.475712896477
+      ],
+      "dimensions": {
+        "width": 0.85,
+        "height": 8.8,
+        "depth": 86,
+        "widthSegments": 1,
+        "heightSegments": 1,
+        "depthSegments": 1
+      },
+      "yaw": 0.6154248876587948,
+      "points": [
+        {
+          "u": 0.1,
+          "position": [
+            374.70266182215477,
+            1.4000000000000004,
+            1383.3871417629225
+          ],
+          "damage": 0,
+          "displacement": 0.9928571428569839,
+          "undetected": false
+        },
+        {
+          "u": 0.2,
+          "position": [
+            379.66748918367534,
+            1.4000000000000004,
+            1390.4092845463113
+          ],
+          "damage": 0,
+          "displacement": 1.199999999999914,
+          "undetected": false
+        },
+        {
+          "u": 0.3,
+          "position": [
+            384.63231654519586,
+            1.4000000000000004,
+            1397.4314273296998
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.4,
+          "position": [
+            389.59714390671644,
+            1.4000000000000004,
+            1404.4535701130885
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.5,
+          "position": [
+            394.56197126823696,
+            1.4000000000000004,
+            1411.475712896477
+          ],
+          "damage": 0,
+          "displacement": 1.1999999999998676,
+          "undetected": false
+        },
+        {
+          "u": 0.6,
+          "position": [
+            399.5267986297575,
+            1.4000000000000004,
+            1418.4978556798656
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.7,
+          "position": [
+            404.49162599127806,
+            1.4000000000000004,
+            1425.5199984632543
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.8,
+          "position": [
+            409.4564533527986,
+            1.4000000000000004,
+            1432.5421412466428
+          ],
+          "damage": 0,
+          "displacement": 1.1999999999998676,
+          "undetected": false
+        },
+        {
+          "u": 0.9,
+          "position": [
+            414.42128071431915,
+            1.4000000000000004,
+            1439.5642840300316
+          ],
+          "damage": 0,
+          "displacement": 0.9928571428574537,
+          "undetected": false
+        }
+      ],
+      "undetectedPoints": 4
+    },
+    {
+      "track": "hw1",
+      "wall": [
+        228.4180955921016,
+        31.09110521059339,
+        -87.74895922591917
+      ],
+      "dimensions": {
+        "width": 0.85,
+        "height": 9.2,
+        "depth": 28,
+        "widthSegments": 1,
+        "heightSegments": 1,
+        "depthSegments": 1
+      },
+      "yaw": 2.0866681441303214,
+      "points": [
+        {
+          "u": 0.1,
+          "position": [
+            218.67563009073922,
+            27.49110521059339,
+            -82.22407316783942
+          ],
+          "damage": 0.035,
+          "displacement": 1.2000000000000084,
+          "undetected": false
+        },
+        {
+          "u": 0.2,
+          "position": [
+            221.11124646607982,
+            27.49110521059339,
+            -83.60529468235936
+          ],
+          "damage": 0.035,
+          "displacement": 1.2000000000000084,
+          "undetected": false
+        },
+        {
+          "u": 0.3,
+          "position": [
+            223.5468628414204,
+            27.49110521059339,
+            -84.9865161968793
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.4,
+          "position": [
+            225.982479216761,
+            27.49110521059339,
+            -86.36773771139923
+          ],
+          "damage": 0,
+          "displacement": 0.6500000000000002,
+          "undetected": false
+        },
+        {
+          "u": 0.5,
+          "position": [
+            228.4180955921016,
+            27.49110521059339,
+            -87.74895922591917
+          ],
+          "damage": 0.035,
+          "displacement": 1.1999999999999962,
+          "undetected": false
+        },
+        {
+          "u": 0.6,
+          "position": [
+            230.8537119674422,
+            27.49110521059339,
+            -89.1301807404391
+          ],
+          "damage": 0,
+          "displacement": 0.6500000000000002,
+          "undetected": false
+        },
+        {
+          "u": 0.7,
+          "position": [
+            233.28932834278277,
+            27.49110521059339,
+            -90.51140225495904
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.8,
+          "position": [
+            235.72494471812337,
+            27.49110521059339,
+            -91.89262376947897
+          ],
+          "damage": 0.035,
+          "displacement": 1.1999999999999962,
+          "undetected": false
+        },
+        {
+          "u": 0.9,
+          "position": [
+            238.16056109346397,
+            27.49110521059339,
+            -93.27384528399891
+          ],
+          "damage": 0.035,
+          "displacement": 1.1999999999999962,
+          "undetected": false
+        }
+      ],
+      "undetectedPoints": 2
+    },
+    {
+      "track": "hw1",
+      "wall": [
+        214.3099044080765,
+        31.09110521059339,
+        -112.62704077404096
+      ],
+      "dimensions": {
+        "width": 0.85,
+        "height": 9.2,
+        "depth": 28,
+        "widthSegments": 1,
+        "heightSegments": 1,
+        "depthSegments": 1
+      },
+      "yaw": 2.0866681441303214,
+      "points": [
+        {
+          "u": 0.1,
+          "position": [
+            204.56743890671413,
+            27.49110521059339,
+            -107.10215471596122
+          ],
+          "damage": 0,
+          "displacement": 1.1999999999999962,
+          "undetected": false
+        },
+        {
+          "u": 0.2,
+          "position": [
+            207.00305528205473,
+            27.49110521059339,
+            -108.48337623048116
+          ],
+          "damage": 0,
+          "displacement": 1.1999999999999962,
+          "undetected": false
+        },
+        {
+          "u": 0.3,
+          "position": [
+            209.4386716573953,
+            27.49110521059339,
+            -109.86459774500109
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.4,
+          "position": [
+            211.8742880327359,
+            27.49110521059339,
+            -111.24581925952103
+          ],
+          "damage": 0,
+          "displacement": 0.6500000000000002,
+          "undetected": false
+        },
+        {
+          "u": 0.5,
+          "position": [
+            214.3099044080765,
+            27.49110521059339,
+            -112.62704077404096
+          ],
+          "damage": 0,
+          "displacement": 1.1999999999999962,
+          "undetected": false
+        },
+        {
+          "u": 0.6,
+          "position": [
+            216.7455207834171,
+            27.49110521059339,
+            -114.0082622885609
+          ],
+          "damage": 0,
+          "displacement": 0.6500000000000002,
+          "undetected": false
+        },
+        {
+          "u": 0.7,
+          "position": [
+            219.18113715875768,
+            27.49110521059339,
+            -115.38948380308084
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.8,
+          "position": [
+            221.61675353409828,
+            27.49110521059339,
+            -116.77070531760077
+          ],
+          "damage": 0,
+          "displacement": 1.2000000000000084,
+          "undetected": false
+        },
+        {
+          "u": 0.9,
+          "position": [
+            224.05236990943888,
+            27.49110521059339,
+            -118.15192683212071
+          ],
+          "damage": 0,
+          "displacement": 1.2000000000000084,
+          "undetected": false
+        }
+      ],
+      "undetectedPoints": 2
+    },
+    {
+      "track": "ramon",
+      "wall": [
+        212.0914349077379,
+        70.14327058366274,
+        -594.7259121651302
+      ],
+      "dimensions": {
+        "width": 0.85,
+        "height": 12.085228070441024,
+        "depth": 42,
+        "widthSegments": 1,
+        "heightSegments": 1,
+        "depthSegments": 1
+      },
+      "yaw": 2.8331169536539966,
+      "points": [
+        {
+          "u": 0.1,
+          "position": [
+            206.99084334761528,
+            65.10065654844223,
+            -578.7189147659674
+          ],
+          "damage": 0.035,
+          "displacement": 1.2000000000000182,
+          "undetected": false
+        },
+        {
+          "u": 0.2,
+          "position": [
+            208.26599123764595,
+            65.10065654844223,
+            -582.7206641157582
+          ],
+          "damage": 0,
+          "displacement": 0.29999999999990784,
+          "undetected": false
+        },
+        {
+          "u": 0.3,
+          "position": [
+            209.5411391276766,
+            65.10065654844223,
+            -586.7224134655488
+          ],
+          "damage": 0,
+          "displacement": 0.29999999999990784,
+          "undetected": false
+        },
+        {
+          "u": 0.4,
+          "position": [
+            210.81628701770725,
+            65.10065654844223,
+            -590.7241628153396
+          ],
+          "damage": 0.035,
+          "displacement": 1.2000000000000182,
+          "undetected": false
+        },
+        {
+          "u": 0.5,
+          "position": [
+            212.0914349077379,
+            65.10065654844223,
+            -594.7259121651302
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.6,
+          "position": [
+            213.36658279776853,
+            65.10065654844223,
+            -598.7276615149209
+          ],
+          "damage": 0.035,
+          "displacement": 1.2000000000000182,
+          "undetected": false
+        },
+        {
+          "u": 0.7,
+          "position": [
+            214.6417306877992,
+            65.10065654844223,
+            -602.7294108647117
+          ],
+          "damage": 0,
+          "displacement": 0.29999999999990784,
+          "undetected": false
+        },
+        {
+          "u": 0.8,
+          "position": [
+            215.91687857782983,
+            65.10065654844223,
+            -606.7311602145023
+          ],
+          "damage": 0,
+          "displacement": 0.29999999999990784,
+          "undetected": false
+        },
+        {
+          "u": 0.9,
+          "position": [
+            217.1920264678605,
+            65.10065654844223,
+            -610.7329095642931
+          ],
+          "damage": 0.035,
+          "displacement": 1.2000000000000182,
+          "undetected": false
+        }
+      ],
+      "undetectedPoints": 1
+    },
+    {
+      "track": "ramon",
+      "wall": [
+        171.9085650920493,
+        70.14327058366274,
+        -607.5300878348362
+      ],
+      "dimensions": {
+        "width": 0.85,
+        "height": 12.085228070441024,
+        "depth": 42,
+        "widthSegments": 1,
+        "heightSegments": 1,
+        "depthSegments": 1
+      },
+      "yaw": 2.8331169536539966,
+      "points": [
+        {
+          "u": 0.1,
+          "position": [
+            166.80797353192668,
+            65.10065654844223,
+            -591.5230904356733
+          ],
+          "damage": 0,
+          "displacement": 1.2000000000000182,
+          "undetected": false
+        },
+        {
+          "u": 0.2,
+          "position": [
+            168.08312142195734,
+            65.10065654844223,
+            -595.5248397854641
+          ],
+          "damage": 0,
+          "displacement": 0.29999999999990784,
+          "undetected": false
+        },
+        {
+          "u": 0.3,
+          "position": [
+            169.35826931198798,
+            65.10065654844223,
+            -599.5265891352548
+          ],
+          "damage": 0,
+          "displacement": 0.29999999999990784,
+          "undetected": false
+        },
+        {
+          "u": 0.4,
+          "position": [
+            170.63341720201865,
+            65.10065654844223,
+            -603.5283384850455
+          ],
+          "damage": 0,
+          "displacement": 1.2000000000000182,
+          "undetected": false
+        },
+        {
+          "u": 0.5,
+          "position": [
+            171.9085650920493,
+            65.10065654844223,
+            -607.5300878348362
+          ],
+          "damage": 0,
+          "displacement": 0,
+          "undetected": true
+        },
+        {
+          "u": 0.6,
+          "position": [
+            173.18371298207992,
+            65.10065654844223,
+            -611.5318371846269
+          ],
+          "damage": 0,
+          "displacement": 1.2000000000000182,
+          "undetected": false
+        },
+        {
+          "u": 0.7,
+          "position": [
+            174.4588608721106,
+            65.10065654844223,
+            -615.5335865344176
+          ],
+          "damage": 0,
+          "displacement": 0.29999999999990784,
+          "undetected": false
+        },
+        {
+          "u": 0.8,
+          "position": [
+            175.73400876214123,
+            65.10065654844223,
+            -619.5353358842083
+          ],
+          "damage": 0,
+          "displacement": 0.29999999999990784,
+          "undetected": false
+        },
+        {
+          "u": 0.9,
+          "position": [
+            177.0091566521719,
+            65.10065654844223,
+            -623.537085233999
+          ],
+          "damage": 0,
+          "displacement": 1.2000000000000182,
+          "undetected": false
+        }
+      ],
+      "undetectedPoints": 1
+    }
+  ],
+  "errors": []
+}

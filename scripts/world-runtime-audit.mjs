@@ -250,3 +250,5 @@ try {
 } finally { await browser.close(); }
 
 await import('./landmark-collider-smoke.mjs');
+
+await import('./tunnel-collider-smoke.mjs');

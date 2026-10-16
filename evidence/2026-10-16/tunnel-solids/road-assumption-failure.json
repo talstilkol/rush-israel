@@ -1,0 +1,7 @@
+{
+  "kind": "actual-tunnel-solid-regression",
+  "passed": false,
+  "errors": [],
+  "scope": "Four actual worlds;mesh-derived wall/lining/portal-post OBBs,contact integration,above-solid clearance and actual road-center samples. Ceiling/underside collision and full3D vehicle volumes remain outside this horizontal contact model. No full race,art or physical-device acceptance.",
+  "error": "Error: page.evaluate: Error: hw1: no actual road-center samples checked\n    at eval (eval at evaluate (:311:30), <anonymous>:81:27)\n    at async <anonymous>:337:30"
+}

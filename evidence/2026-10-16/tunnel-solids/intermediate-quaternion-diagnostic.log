@@ -1,0 +1,12 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.evaluate: Error: hw1/rush-tunnel-lining-right: missing contact 0.1/-1 {"point":[205.74147402965673,27.90510521059339,-105.94006800228742],"hit":{"damage":0,"displacement":0},"full":{"damage":0,"displacement":0},"collider":{"x":214.55655110709793,"z":-112.19210927844442,"r":13.440133927904142,"hx":0.06,"hz":13.44,"yaw":1.054924509459472,"kind":"building","maxY":31.965105210593393}}
+    at eval (eval at evaluate (:311:30), <anonymous>:50:77)
+    at async <anonymous>:337:30
+    at /Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/tunnel-collider-smoke.mjs:17:29 {
+  log: []
+}
+
+Node.js v22.16.0

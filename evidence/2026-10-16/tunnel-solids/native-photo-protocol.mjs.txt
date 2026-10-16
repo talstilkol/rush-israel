@@ -1,0 +1,25 @@
+import {chromium} from './rush-israel-pr83/node_modules/playwright/index.mjs';
+import {mkdir,writeFile} from 'node:fs/promises';
+import {captureWithVerdict} from './rush-israel-pr83/scripts/capture-verdict.mjs';
+const out='/Users/tal/Documents/Codex/2026-10-11/new-chat/work/tunnel-native-photo';await mkdir(out,{recursive:true});
+const summary={kind:'actual-native-tunnel-geometry-photo',sourceHead:null,sourceRole:'Isolated final tunnel snapshot;containing commit bound by runtime hashes externally',passed:false,errors:[],scope:'Actual Namal tunnel and current game render on Metal. Contact-only change;no new art/performance/device acceptance.'};
+const persist=()=>writeFile(out+'/summary.json',JSON.stringify(summary,null,2)+'\n');await persist();let browser;
+try{
+ browser=await chromium.launch({headless:false});const p=await browser.newPage({viewport:{width:1280,height:800}});
+ p.on('pageerror',e=>summary.errors.push(String(e)));p.on('console',m=>{if(m.type()==='error')summary.errors.push(m.text())});
+ await p.goto('http://127.0.0.1:8127/');await p.locator('[data-game-ready="true"]').waitFor();await p.getByRole('button',{name:/בחר מסלול/}).click();await p.locator('button').filter({hasText:/^הכל$/}).click();
+ const names=await p.locator('button').allTextContents();await writeFile(out+'/menu-buttons.json',JSON.stringify(names,null,2));
+ const namal=p.locator('button').filter({hasText:/נמל תל/});await namal.click();await p.waitForFunction(()=>!!window.__controlsTest?.resetStart,{timeout:40000});
+ summary.actual=await p.evaluate(async()=>{
+  const url=performance.getEntriesByType('resource').map(x=>x.name).findLast(x=>new URL(x).pathname.endsWith('/src/game/engine.ts'));
+  const{RaceEngine}=await import(url),restart=RaceEngine.prototype.restartRace;RaceEngine.prototype.restartRace=function(...args){window.__tunnelPhotoEngine=this;return restart.apply(this,args)};try{window.__controlsTest.resetStart()}finally{RaceEngine.prototype.restartRace=restart}
+  const e=window.__tunnelPhotoEngine;if(e.trackDef.id!=='namal')throw Error('Actual Namal required');e.renderer.setAnimationLoop(null);
+  const left=e.world.group.getObjectByName('rush-tunnel-wall-left'),right=e.world.group.getObjectByName('rush-tunnel-wall-right');if(!left||!right)throw Error('Actual tunnel solids missing');
+  const x=(left.position.x+right.position.x)/2,z=(left.position.z+right.position.z)/2,y=left.position.y-left.geometry.parameters.height/2,yaw=left.rotation.y,len=left.geometry.parameters.depth;
+  const fx=Math.sin(yaw),fz=Math.cos(yaw),rx=Math.cos(yaw),rz=-Math.sin(yaw);
+  e.world.setWeather('clear');e.clock=.5;e.applyClockSky(false);e.applyLook();e.enterPhoto();e.photoLock={px:x-fx*(len/2+18)+rx*4,py:y+5,pz:z-fz*(len/2+18)+rz*4,lx:x,ly:y+3,lz:z,fov:52};e.stepPhoto(0);e.world.tick(0,e.player.x,e.player.z);e.post.render();const gl=e.renderer.getContext();gl.finish();const ext=gl.getExtension('WEBGL_debug_renderer_info');
+  return{track:e.trackDef.id,camera:e.photoLock,solids:8,glError:gl.getError(),renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),render:[gl.drawingBufferWidth,gl.drawingBufferHeight]};
+ });
+ if(summary.actual.glError||summary.errors.length||!summary.actual.renderer.includes('Metal'))throw Error('Unexpected native capture');
+ summary.passed=true;await captureWithVerdict(summary,{persist,capture:()=>p.locator('canvas').screenshot({path:out+'/tunnel.png',timeout:30000}),cleanup:async()=>{await browser.close();browser=undefined}});console.log(JSON.stringify(summary));
+}catch(error){summary.passed=false;summary.error=String(error);await persist();throw error}finally{if(browser)await browser.close()}

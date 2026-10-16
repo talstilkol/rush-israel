@@ -214,3 +214,8 @@ Not done: a 30-minute soak, devices, the architecture locks, Alpha through relea
 - Current remote source remains2c365ba while itsCI/soak runs. This isolated runtime change needs its own clean clone and exact-headCI/1800s soak before current acceptance. No product units accepted.
 
 - Visual inspection then exposed floating/buried Hermon buildings. Actual terrain rays measured center gaps0.35–0.79m,burial7–23m,and5.9/7.4m gaps at the fort. Building Y came from a road sample or constant rather than its surface. Nine foundations now span the actual clipped-grid triangle height bounds under each axis-aligned footprint;roofs follow their bodies.225 rays verify continuous foundation/body/terrain support. An independent Float32 triangle-polygon clipping test checks bounds for the nine actual recorded footprints. No surveyed DEM,full art or arbitrary rotated-footprint claim. PHYSICS_VERSION12 separates records after changing the physical landmark layout. Final source needs a new isolated full verification; prior intermediate races are retained separately.
+
+##2026-10-16 tunnel contact continuation
+- Parent8d8fdd8;previous exact-head CI/soak remains separate and ongoing.
+- Actual frozen-parent54 contact poses at6 tunnel walls found14 unresponsive overlaps. Shared builder used short spaced proxies for continuous rendered walls.
+- Isolated change derives wall,lining andportal-post OBB/height from actual meshes;removes spaced proxies. No ceiling underside/full3D contact acceptance inferred. New actual contact/traversal/height/center-clearance tests required before publication.

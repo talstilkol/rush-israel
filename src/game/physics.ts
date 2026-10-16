@@ -9,8 +9,8 @@ export const PHYSICS_DT = 1 / PHYSICS_HZ;
 export const MAX_CATCHUP_STEPS = 24;
 export const MAX_ACCUMULATOR = 0.2;
 // RSH-033-OVERLAY-BEGIN:physics-version
-// Landmark collision placement changed; older times use a different ruleset.
-export const PHYSICS_VERSION = 12;
+// Continuous tunnel solids replace spaced proxies;older times use a different contact ruleset.
+export const PHYSICS_VERSION = 13;
 export const V100_MPS = 27.778;
 export const CLAIM_TOLERANCE = 0.15;
 export function claimAccel(zeroTo100: number) {

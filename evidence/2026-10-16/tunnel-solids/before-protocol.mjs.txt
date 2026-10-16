@@ -1,0 +1,66 @@
+import{chromium}from'./rush-israel-pr83/node_modules/playwright/index.mjs';
+import{readFile,writeFile,mkdir}from'node:fs/promises';
+const source='/Users/tal/Documents/Codex/2026-10-11/new-chat',out=source+'/work/collider-mapping-followup';await mkdir(out,{recursive:true});
+const input=JSON.parse(await readFile(source+'/outputs/RUSH-RAMON-CONTINUITY/collider-gap-inventory/trace.json','utf8')); const historical={rows:input.rows.filter(row=>!row.currentIdentity)};
+const browser=await chromium.launch({headless:true});
+try{const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+await page.goto('http://127.0.0.1:8124/',{waitUntil:'networkidle'});
+const rows=await page.evaluate(async historical=>{
+    const worldSource = await (await fetch('/src/game/world.ts')).text();
+    const imports = [...worldSource.matchAll(/from "([^"]+)"/g)].map(match => match[1]);
+    const dependency = name => imports.find(url => url.split('?')[0].endsWith(`/${name}`)) || `/src/game/${name}`;
+    const THREE = await import(dependency('three.js'));
+    const { TRACKS } = await import(dependency('tracks.ts'));
+    const { buildTrack, closestSample, sampleAtT } = await import(dependency('spline.ts'));
+    const { createWorld } = await import('/src/game/world.ts');
+    const { ArcadeCar, aiInput } = await import('/src/game/vehicle.ts');
+    const { roadLaneOffset, ROAD_UV_METRES, ROAD_PAINT_REPEAT_METRES } = await import('/src/game/road-layout.ts');
+    const { CARS } = await import('/src/game/cars.ts');
+    const modules = ['arrow', 'beam', 'blob', 'clock', 'curb', 'facade', 'flag', 'flake', 'flare', 'foam', 'ground', 'road', 'sign', 'sky', 'stone', 'tree', 'walk', 'water'];
+    const cachedTextures = new Set();
+    const collect = value => {
+      if (value?.isTexture) cachedTextures.add(value);
+      else if (value && typeof value === 'object') for (const item of Object.values(value)) if (item?.isTexture) cachedTextures.add(item);
+    };
+    const kinds = [undefined, 3, 4, 8, 'city', 'stone', 'dirt', 'sand', 'blue', 'teal', 'dark', 'gold', 'white', 'stop', 'yield', 'none', 'speed50', 'speed80', 'speed90', 'speed120'];
+    for (const name of modules) {
+      const module = await import(dependency(`${name}-assets.ts`));
+      for (const [key, load] of Object.entries(module)) {
+        if (key.startsWith('load') && key !== 'loadRoadFor') collect(await load());
+      }
+      for (const [key, get] of Object.entries(module)) if (key.startsWith('get')) for (const kind of kinds) collect(get(kind));
+    }
+
+ const results=[];
+ for(const definition of TRACKS.filter(d=>historical.rows.some(x=>x.track===d.id))){
+  const world=await createWorld(definition,buildTrack(definition),false,false,'clear');
+  try{
+   world.group.updateMatrixWorld(true);const meshes=[];
+   world.group.traverse(object=>{
+    if(!object.isMesh)return;object.geometry.computeBoundingBox();const local=object.geometry.boundingBox;if(!local||local.isEmpty())return;
+    const count=object.isInstancedMesh?object.count:1;
+    for(let index=0;index<count;index++){
+     const matrix=new THREE.Matrix4();if(object.isInstancedMesh){object.getMatrixAt(index,matrix);matrix.premultiply(object.matrixWorld)}else matrix.copy(object.matrixWorld);
+     const center=new THREE.Vector3().setFromMatrixPosition(matrix),bounds=local.clone().applyMatrix4(matrix),size=bounds.getSize(new THREE.Vector3());
+     if(Math.max(size.x,size.z)<.5||size.y<.5)continue;
+     meshes.push({name:object.name,type:object.geometry.type,instance:object.isInstancedMesh?index:null,center:center.toArray(),bounds:{min:bounds.min.toArray(),max:bounds.max.toArray()},size:size.toArray()});
+    }
+   });
+   const walls=[];world.group.traverse(mesh=>{if(mesh.isMesh&&mesh.geometry?.type==='BoxGeometry'&&mesh.geometry.parameters.width===.85&&mesh.geometry.parameters.depth>=28)walls.push(mesh)});
+   for(const wall of walls){
+    const p=wall.geometry.parameters,points=[];
+    for(const u of[.1,.2,.3,.4,.5,.6,.7,.8,.9]){
+     const local=new THREE.Vector3(0,-p.height/2+1,(u-.5)*p.depth),position=wall.localToWorld(local.clone());
+     const car=new ArcadeCar(CARS[0],CARS[0].nameEn);car.x=position.x;car.y=position.y;car.z=position.z;car.vx=-Math.cos(wall.rotation.y)*20;car.vz=Math.sin(wall.rotation.y)*20;car.speed=20;car.yaw=wall.rotation.y+Math.PI/2;car.hitColliders(world.colliders);
+     const displacement=Math.hypot(car.x-position.x,car.z-position.z);
+     points.push({u,position:position.toArray(),damage:car.damage,displacement,undetected:car.damage===0&&displacement===0});
+    }
+    results.push({track:definition.id,wall:wall.position.toArray(),dimensions:p,yaw:wall.rotation.y,points,undetectedPoints:points.filter(p=>p.undetected).length});
+   }
+  }finally{world.dispose()}
+ }
+ return results;
+},historical);
+const report={sourceHead:'d6f8b6e8f52129199ba5cb7467fe03fe2245e60d',kind:'actual-tunnel-wall-contact-diagnostic',scope:'Actual rendered wall geometries and real ArcadeCar overlap/contact resolution at nine deterministic points per wall. All current-world colliders supplied. Source bytes equal metadata-only8d8fdd8. An undetected point is an observed missing contact at that pose,not a complete traversing-race proof. No product or full mapping acceptance.',rows,errors};
+await writeFile(out+'/tunnel-wall-contacts.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({walls:rows.length,undetected:rows.reduce((n,r)=>n+r.undetectedPoints,0),errors}));if(errors.length||rows.length!==6)throw Error('Incomplete actual wall diagnostic');
+}finally{await browser.close()}

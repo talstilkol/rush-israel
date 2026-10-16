@@ -101,21 +101,32 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
       roughness: 0.4
     });
     bag.push(wallMat, tileMat, ceilMat, lampMat);
+    // Derive contact from the rendered solid, rather than spaced point proxies.
+    const addTunnelSolid = (mesh: THREE.Mesh<THREE.BoxGeometry>, name: string) => {
+      mesh.name = `rush-tunnel-${name}`;
+      add(mesh);
+      const { width, height, depth } = mesh.geometry.parameters;
+      // A cloned quaternion can represent the same yaw with Euler x/z = PI.
+      const forward = new THREE.Vector3(0, 0, 1).applyQuaternion(mesh.quaternion);
+      const yaw = Math.atan2(forward.x, forward.z);
+      const collider = hit(mesh.position.x, mesh.position.z, Math.hypot(width / 2, depth / 2), width / 2, depth / 2, yaw);
+      collider.maxY = mesh.position.y + height / 2;
+    };
     const wallL = new THREE.Mesh(new THREE.BoxGeometry(0.85, h, len), wallMat);
     wallL.position.set(cx - rx * half, y0 + h * 0.5, cz - rz * half);
     wallL.rotation.y = yaw;
-    add(wallL);
+    addTunnelSolid(wallL, "wall-left");
     const wallR = new THREE.Mesh(new THREE.BoxGeometry(0.85, h, len), wallMat);
     wallR.position.set(cx + rx * half, y0 + h * 0.5, cz + rz * half);
     wallR.rotation.y = yaw;
-    add(wallR);
+    addTunnelSolid(wallR, "wall-right");
     const tileL = new THREE.Mesh(new THREE.BoxGeometry(0.12, h * 0.55, len * 0.96), tileMat);
     tileL.position.set(cx - rx * (half - 0.5), y0 + h * 0.32, cz - rz * (half - 0.5));
     tileL.rotation.y = yaw;
-    add(tileL);
+    addTunnelSolid(tileL, "lining-left");
     const tileR = tileL.clone();
     tileR.position.set(cx + rx * (half - 0.5), y0 + h * 0.32, cz + rz * (half - 0.5));
-    add(tileR);
+    addTunnelSolid(tileR, "lining-right");
     const ceil = new THREE.Mesh(new THREE.BoxGeometry(half * 2 + 1.6, 0.7, len), ceilMat);
     ceil.position.set(cx, y0 + h + 0.15, cz);
     ceil.rotation.y = yaw;
@@ -127,7 +138,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
         const post = new THREE.Mesh(new THREE.BoxGeometry(1.15, h + 1.4, 1.35), tileMat);
         post.position.set(px + rx * half * side, y0 + (h + 1.4) * 0.5, pz + rz * half * side);
         post.rotation.y = yaw;
-        add(post);
+        addTunnelSolid(post, `post-${end}-${side}`);
       }
       const lintel = new THREE.Mesh(new THREE.BoxGeometry(half * 2 + 2.4, 1.5, 1.5), tileMat);
       lintel.position.set(px, y0 + h + 0.6, pz);
@@ -143,14 +154,6 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
       lamp.position.set(lx, y0 + h - 0.2, lz);
       lamp.rotation.y = yaw;
       add(lamp);
-    }
-    const nHit = Math.max(3, Math.round(len / 12));
-    for (let i = 0; i < nHit; i++) {
-      const t = (i + 0.5) / nHit - 0.5;
-      const wx = cx + fx * t * len;
-      const wz = cz + fz * t * len;
-      hit(wx - rx * (half + 0.4), wz - rz * (half + 0.4), 1.05, 0.55, 2.4, yaw);
-      hit(wx + rx * (half + 0.4), wz + rz * (half + 0.4), 1.05, 0.55, 2.4, yaw);
     }
   };
   const stone = new THREE.MeshStandardMaterial({

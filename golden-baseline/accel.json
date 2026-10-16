@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "physicsVersion": 12,
+  "physicsVersion": 13,
   "track": "ayalon",
   "gate": "current-behaviour regression",
   "claimGate": "RSH-033",
   "regressionToleranceSeconds": 0.1,
   "claimTolerance": 0.15,
-  "authority": "Record/collision epoch12 changes landmark placement and terrain support. This reference epoch is explicitly synchronized without changing any means,claims,tolerances or original generatedFromPhysicsVersion8 provenance. The version11 reference is archived under evidence/2026-10-16/accel-epoch. Actual15-run browser verification and exact-head CI are separate evidence; this is not new independent physical calibration.",
+  "authority": "Tunnel contact epoch13 replaces spaced collision proxies with actual wall,lining andportal-post solids. All numerical targets,claims,tolerances andoriginal generatedFromPhysicsVersion8 provenance remain unchanged. Actual parent epoch12 is archived in evidence/2026-10-16/tunnel-solids/before-accel.json. New15-run browser and exact-head CI verification are separate from independent physical calibration.",
   "runs": [
     {
       "carId": "sabra",
