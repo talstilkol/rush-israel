@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { buildRamonCliff } from "../ramon-cliff";
-import { clearRoadsidePoint } from "../../roadside";
+import { clearRoadsidePoint, fitRoadTunnel } from "../../roadside";
 import { closestSample } from "../../spline";
 import { ram } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
@@ -137,12 +137,13 @@ export default function buildRamon(context: TrackWorldBuilderContext): void {
       add(post);
     }
     const cut = ram(30.5992, 34.806);
-    const cutSample = built.samples[closestSample(built.samples, cut.x, cut.z).index];
+    const tunnel = fitRoadTunnel(built, cut.x, cut.z, 42, built.width * 0.62, 7.6);
+    const cutSample = tunnel.sample;
     cut.x = cutSample.x;
     cut.z = cutSample.z;
-    const cutYaw = Math.atan2(cutSample.tx, cutSample.tz);
+    const cutYaw = tunnel.yaw;
     const cutY = cutSample.y;
-    placeTunnel(cut.x, cut.z, cutYaw, 42, built.width * 0.62, 7.6, cutY);
+    placeTunnel(cut.x, cut.z, cutYaw, tunnel.length, tunnel.half, tunnel.height, tunnel.floor);
     // Keep the full footprint outside the route, including adjacent hairpins.
     const spurRadius = Math.hypot(22 / 2, 30 / 2);
     const left = clearRoadsidePoint(built, cutSample.t, -1, spurRadius, false);

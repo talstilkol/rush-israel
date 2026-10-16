@@ -12,17 +12,6 @@ try {
   page.on('pageerror', error => errors.push(String(error)));
   await page.goto(process.env.SMOKE_URL || 'http://127.0.0.1:8080/', { waitUntil: 'networkidle' });
   await page.locator('[data-game-ready="true"]').waitFor();
-  // Observe the real engine created by the UI, including the fresh engine on
-  // Restart. No alternate physics host, synthetic world or production API.
-  await page.evaluate(async () => {
-    const { RaceEngine } = await import('/src/game/engine.ts');
-    const assemble = RaceEngine.prototype.assemble;
-    RaceEngine.prototype.assemble = async function (...args) {
-      const result = await assemble.apply(this, args);
-      window.__observedConditionEngine = this;
-      return result;
-    };
-  });
   await page.getByRole('button', { name: /בחר מסלול/ }).click();
   await page.locator('button').filter({ hasText: /^הכל$/ }).click();
   await page.locator('button').filter({ hasText: /נתיבי איילון/ }).click();
@@ -41,6 +30,20 @@ try {
   });
   assert.equal(reset.assisted, true, 'an in-place reset must not erase changed-condition disqualification');
   await page.keyboard.press('Escape');
+  // Patch the exact engine module already loaded by the actual UI. Vite may
+  // attach an HMR version; importing a bare URL can observe a different class.
+  await page.evaluate(async () => {
+    const urls = performance.getEntriesByType('resource').map(entry => entry.name);
+    const engineUrl = urls.findLast(url => new URL(url).pathname.endsWith('/src/game/engine.ts'));
+    if (!engineUrl) throw new Error('Actual UI engine module was not observed');
+    const { RaceEngine } = await import(engineUrl);
+    const assemble = RaceEngine.prototype.assemble;
+    RaceEngine.prototype.assemble = async function (...args) {
+      const result = await assemble.apply(this, args);
+      window.__observedConditionEngine = this;
+      return result;
+    };
+  });
   await page.getByRole('button', { name: 'התחל מחדש', exact: true }).click();
   await page.waitForFunction(() => window.__controlsTest && window.__controlsTest !== window.__previousRaceControls, { timeout: 40000 });
   const restarted = await page.evaluate(() => JSON.parse(window.render_game_to_text()));

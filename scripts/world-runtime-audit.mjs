@@ -60,7 +60,7 @@ try {
       world.group.traverse(mesh => {
         if (!mesh.isMesh || mesh.isInstancedMesh || mesh.geometry.type !== 'BoxGeometry') return;
         const size = mesh.geometry.parameters;
-        if (size.width < 4 || size.height < 3 || size.depth < 4) return;
+        if (size.height < 3 || Math.max(size.width, size.depth) < 4) return;
         const inverse = mesh.matrixWorld.clone().invert();
         for (let index = 0; index < built.samples.length; index++) {
           const sample = built.samples[index];

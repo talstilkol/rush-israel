@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { fitRoadTunnel } from "../../roadside";
 import { closestSample } from "../../spline";
 import { tlv } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
@@ -108,7 +109,8 @@ export default function buildNamal(context: TrackWorldBuilderContext): void {
       roughness: 0.48
     });
     bag.push(ochre, ochreDark, conc, redBand, whiteBand);
-    placeTunnel(rs.x, rs.z, rdYaw, 86, built.width / 2 + 0.6, 8.8, rs.y);
+    const tunnel = fitRoadTunnel(built, rs.x, rs.z, 86, built.width / 2 + 0.6, 8.8);
+    placeTunnel(tunnel.sample.x, tunnel.sample.z, tunnel.yaw, tunnel.length, tunnel.half, tunnel.height, tunnel.floor);
     const rx = Math.cos(rdYaw);
     const rz = -Math.sin(rdYaw);
     const fx = Math.sin(rdYaw);

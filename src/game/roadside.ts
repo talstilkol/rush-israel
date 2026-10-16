@@ -1,5 +1,5 @@
 import type { BuiltTrack } from "./spline";
-import { sampleAtT } from "./spline";
+import { closestSample, sampleAtT } from "./spline";
 
 /** A real roadside point must also clear other nearby folds of the route. */
 export function clearRoadsidePoint(built: BuiltTrack, t: number, preferredSide: number, radius: number, allowOpposite = true) {
@@ -19,4 +19,24 @@ export function clearRoadsidePoint(built: BuiltTrack, t: number, preferredSide: 
     if (clear) return { x, z };
   }
   throw new Error(`No clear roadside point on route at ${t}`);
+}
+
+/** Bound the full curved road and its elevation range inside a straight tunnel. */
+export function fitRoadTunnel(built: BuiltTrack, x: number, z: number, length: number, minimumHalf: number, clearance: number) {
+  const sample = built.samples[closestSample(built.samples, x, z).index];
+  const yaw = Math.atan2(sample.tx, sample.tz);
+  const fx = Math.sin(yaw), fz = Math.cos(yaw), rx = Math.cos(yaw), rz = -Math.sin(yaw);
+  let half = minimumHalf, floor = sample.y, top = sample.y;
+  for (const road of built.samples) {
+    if (Math.abs(road.s - sample.s) > length / 2 + built.width) continue;
+    for (const side of [-1, 1]) {
+      const dx = road.x + road.rx * built.width / 2 * side - sample.x;
+      const dz = road.z + road.rz * built.width / 2 * side - sample.z;
+      if (Math.abs(dx * fx + dz * fz) > length / 2 + 2) continue;
+      half = Math.max(half, Math.abs(dx * rx + dz * rz) + 2);
+      floor = Math.min(floor, road.y);
+      top = Math.max(top, road.y);
+    }
+  }
+  return { sample, yaw, length, half, height: top - floor + clearance, floor };
 }
