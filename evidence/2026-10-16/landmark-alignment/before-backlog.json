@@ -1,0 +1,761 @@
+{
+  "document_type": "active_unified_completion_backlog",
+  "review_date": "2026-10-16",
+  "main_sha": "b2c0d46dd43c3bd8f27dc0009e4809c27c54c60e",
+  "candidate_sha": null,
+  "execution_authorized_by_this_document": false,
+  "tasks": [
+    {
+      "id": "MP-001",
+      "phase": "A",
+      "priority": "P0",
+      "title": "איחוד מצב מוצר ותוכנית",
+      "depends_on": [],
+      "deliverable": "מקור פעיל אחד ל-Scope, commit וראיות",
+      "acceptance": "התוכנית הפעילה מצביעה על quality contract, backlog ומצב מוצר עקביים; current HEAD נקרא מ-Git ולא מתווית היסטורית.",
+      "status": "locally-verified",
+      "assigned_person": null,
+      "verification_note": "איחוד התוכנית אומת: 46 מזהים, 96 תלויות ללא מעגלים, כיסוי 67 יחידות ושבע קבוצות איכות. מקור נוכחי נקרא מ-Git; ראיות היסטוריות וקבלת מוצר נפרדות. evidence/2026-10-16/grade-direction/plan-consistency.json. אין קבלת RSH או release.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-002",
+      "phase": "A",
+      "priority": "P0",
+      "title": "תיקון שגיאות TypeScript",
+      "depends_on": [
+        "MP-001"
+      ],
+      "deliverable": "imports וטיפוס HudState עקביים",
+      "acceptance": "typecheck מחזיר 0 diagnostics",
+      "status": "locally-verified",
+      "assigned_person": null,
+      "verification_note": "TypeScript עובר מקומית בגרסת העבודה. האבחונים הישנים כבר תוקנו ב-6395474.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-003",
+      "phase": "A",
+      "priority": "P0",
+      "title": "רגרסיית איילון 200 מטר",
+      "depends_on": [
+        "MP-002"
+      ],
+      "deliverable": "Root Cause ותיקון ממוקד",
+      "acceptance": "qa:drive עובר בענף ובבסיס המשולב עם אותה הגדרת מרוץ",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "qa:drive עבר: 200 מטר על הכביש ובדיקת היגוי; טרם מוזג ל-main.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-004",
+      "phase": "A",
+      "priority": "P0",
+      "title": "חריגת מים בתנאי העולם",
+      "depends_on": [
+        "MP-002"
+      ],
+      "deliverable": "קישור מפורש בין water material למקור צבע",
+      "acceptance": "שינוי יום לילה rain storm clear באיילון ללא exception",
+      "status": "locally-verified",
+      "assigned_person": null,
+      "verification_note": "תעלת איילון האמיתית נבדקה בשישה מעברי clear/day/night/rain/storm וחזרה ל־clear, ב־SwiftShader וב־Metal: ערכי material סופיים,GL0 וללא חריגות. הבדיקה נוספה לשער conditions המחייב. אין קבלת אמנות, חלקיקי מזג אוויר, ביצועים או מכשיר. evidence/2026-10-16/ramon-continuity/proof.json.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-005",
+      "phase": "A",
+      "priority": "P0",
+      "title": "גאומטריית רמון וגבולות elevation",
+      "depends_on": [
+        "MP-001"
+      ],
+      "deliverable": "samples וגאומטריה סופיים",
+      "acceptance": "finite checks בכל 56 הגדרות ונהיגה ברמון; רציפות בגבולות",
+      "status": "locally-verified",
+      "assigned_person": null,
+      "verification_note": "תוקנה אי־רציפות של1.2מטר בין הפלטו לירידת רמון: המשרעת היא top-floor. בדיקות תוואי אמיתי מאמתות ירידה ללא עלייה ורציפות בשני הגבולות. כל56 הגדרות העולם עוברות finite וניקוי; מרוץ רמון מסייע הסתיים ב־99.4833שניות סימולציה,GL0 ואפס נזק. אין קבלת כל וריאציות הנהיגה/אמנות/מכשיר. evidence/2026-10-16/ramon-continuity/proof.json.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-006",
+      "phase": "A",
+      "priority": "P0",
+      "title": "התאמת visual ו-collider",
+      "depends_on": [
+        "MP-001"
+      ],
+      "deliverable": "placement משותף ל-rendering ו-collision",
+      "acceptance": "42 ה-colliders שהוזזו בענף נבדקים מול meshes; אין collision מנותק",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "תוקנו ארבעה מבנים ביפו, גבולות הגובה של חמישה בתי חיפה ובליטות המנהרה ברמון. בדיקת מבנים וקירות דקים בחמש שורות לרוחב כל שמונת מסלולי V1 עוברת; צורות mesh אחרות עדיין דורשות בדיקה.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-007",
+      "phase": "A",
+      "priority": "P0",
+      "title": "מעבר חוזים מבוקר",
+      "depends_on": [
+        "MP-002",
+        "MP-003",
+        "MP-004",
+        "MP-005",
+        "MP-006"
+      ],
+      "deliverable": "סיווג 60 כשלי חוזים ומעבר baseline מתועד",
+      "acceptance": "חוזים חדשים מאומתים בהתנהגות; חוזים היסטוריים נשמרים",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "194 בדיקות קוד נוכחי ו-466 בדיקות היסטוריות הופרדו; סוק הוא job חובה מפורש. CI חי על הענף המתוקן טרם נמדד. Capture verdict hardening: a real20s diagnostic with EISDIR previously exited1 while passed stayedtrue; capture/cleanup now must finish before restoring the measured flag, errors forcefalse and initialization invalidates an older record before browser launch. Five real filesystem/process unit cases cover capture, cleanup, prior error and missing browser; they are not a30-minute run.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-008",
+      "phase": "A",
+      "priority": "P1",
+      "title": "Scope משותף ל-8 מסלולי V1",
+      "depends_on": [
+        "MP-001"
+      ],
+      "deliverable": "membership לכל בורר ואתגר והפעלת אירוע",
+      "acceptance": "quick race daily weekly career ו-engine entry מכבדים אותה רשימה",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "6395474 כולל רשימת 8 מסלולים ו-Career פעיל מסונן; נדרשת בדיקת כל מסלולי הכניסה.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-009",
+      "phase": "B",
+      "priority": "P1",
+      "title": "Grid שערים וסיום מרוץ",
+      "depends_on": [
+        "MP-003",
+        "MP-005"
+      ],
+      "deliverable": "חוקי RaceSession למסלול פתוח וסגור",
+      "acceptance": "אין finish לפני זינוק או ללא שערים; מקום נקבע לפי חוקי mode",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "תוקנו דגימת endpoint ומיקום sample במסלול פתוח; הושלמו 8 מסלולים בסימולציה, לא כל בדיקות השלילה בדפדפן.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-010",
+      "phase": "B",
+      "priority": "P1",
+      "title": "Reset מלא וכשלי boot",
+      "depends_on": [
+        "MP-002"
+      ],
+      "deliverable": "איפוס central ו-loading state עם Retry",
+      "acceptance": "Restart זהה ל-session חדש; rejected ready אינו משאיר overlay קבוע",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "איפוס מצב מרוץ וקלט הורחב; נפתרה לחיצה שאבדה לפני hydration. בדיקת parity מלאה עדיין פתוחה.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-011",
+      "phase": "B",
+      "priority": "P1",
+      "title": "זמן ואובדן simulation ticks",
+      "depends_on": [
+        "MP-009"
+      ],
+      "deliverable": "מדיניות clock ו-eligibility",
+      "acceptance": "stall מתועד ומטופל; תוצאה אינה מקבלת יתרון זמן שקט",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "טלמטריה מקבלת זמן frame לא חתוך; אובדן זמן פוסל שיא. אימות שעון במכשירים פתוח.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-012",
+      "phase": "B",
+      "priority": "P1",
+      "title": "Rewind עקבי",
+      "depends_on": [
+        "MP-009",
+        "MP-010",
+        "MP-011"
+      ],
+      "deliverable": "snapshot סיבתי מלא או Assisted ruleset",
+      "acceptance": "חציית lap checkpoint KO POI ו-reward אינה משאירה future state",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "Snapshot רכב כולל מצב חולף; Rewind משחזר lap/sectors/KO/POI ו-ledger. מרוץ עם סיוע אינו זכאי לשיא. בדיקות מעבר גבולות מלאות פתוחות.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-013",
+      "phase": "B",
+      "priority": "P1",
+      "title": "Collision בין מפלסים ונזק",
+      "depends_on": [
+        "MP-006",
+        "MP-009"
+      ],
+      "deliverable": "height filtering וסדר spawn/damage",
+      "acceptance": "התאמה בין mesh ו-collider, מעבר מפלסים ללא קפיצה, נזק עקבי; סיוע ההיגוי אינו מושך רכב לאי תנועה.",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "בית שגגו כ־12 מטרים חסם רכב בגובה כ־62 מטרים בחיפה. maxY נגזר מהגג הקיים; מגע בגובה הבית נשמר. חמש המכוניות עוברות את הנקודה בלי נזק. גבולות הגובה נוספו לחמישה בתים ושתי בליטות בלבד; אין ביקורת 3D מלאה.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-014",
+      "phase": "B",
+      "priority": "P1",
+      "title": "Ledger תגמולים וקנסות",
+      "depends_on": [
+        "MP-009",
+        "MP-012"
+      ],
+      "deliverable": "אירועי כסף מקומיים ו-commit פעם אחת",
+      "acceptance": "עקיפה חוזרת או rewind אינם מכפילים פרס; invalid result אינו משלם",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "פרס עקיפה משולם רק עבור מקום טוב יותר מהשיא במרוץ; אפס הוא סכום תקף; Finish כפול מאותו result אינו משלם שוב.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-015",
+      "phase": "C",
+      "priority": "P1",
+      "title": "Input Snapshot לפי tick",
+      "depends_on": [
+        "MP-011"
+      ],
+      "deliverable": "raw input ו-smoothing ב-fixed dt",
+      "acceptance": "rendering ו-QA אינם משנים input; input log עקבי באותה סביבה",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "הקלט נדגם ב-fixed tick; blur/pause/restart מאפסים מקלדת, מגע ו-overrides. נדרשים מכשירי מגע ובקר.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-016",
+      "phase": "C",
+      "priority": "P1",
+      "title": "Ghost Replay עם timestamps",
+      "depends_on": [
+        "MP-012",
+        "MP-015"
+      ],
+      "deliverable": "buffers עם tick או זמן אמיתי",
+      "acceptance": "10 שניות הקלטה נשארות 10 שניות playback; rolling windows עקביים",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "שארית זמן ההקלטה נשמרת; timestamps קיימים. נדרשת בדיקת Replay ארוך וגבולות rewind. Replay camera boundary correction: compare actual previous and next replay times rather than subtracting unscaled dt during slow motion. Controlled real-engine test uses a59-sample Ayalon driven clip and actual native frame intervals; before:two immediate camera switches, after:none before2.8s and one crossing; reduced-motion remains fixed. This does not accept complete Ghost/Replay or human/device behavior.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-017",
+      "phase": "C",
+      "priority": "P1",
+      "title": "כיול Handling ו-Tuning",
+      "depends_on": [
+        "MP-013",
+        "MP-015"
+      ],
+      "deliverable": "מבחני acceleration brake steering drift surface",
+      "acceptance": "חמש מכוניות, שני מצבי Handling, ארבעה סוגי מזג אוויר ו-stock/upgraded: תאוצה, בלימה, היגוי, משטח ודריפט; יעד ויחידה פיזיקלית מפורשים, ספים אינם נחלשים כדי להעביר בדיקה.",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "Physics11 grade/corner/traffic coverage remains partial. Added 16 real-route regressions across all eight V1 tracks: spawn must use the same supporting sample as the actual position; checkpoint and pre-checkpoint recovery must replace the old sample index. All 16 fail before and pass after the identity-based fix. Previous eight-race results are historical; this source needs its own browser races and soak. Physical calibration, full conditions, frame invariance, damage/pace and human acceptance remain open.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-018",
+      "phase": "C",
+      "priority": "P1",
+      "title": "AI לתחרות הוגנת",
+      "depends_on": [
+        "MP-009",
+        "MP-017"
+      ],
+      "deliverable": "speed plan avoidance ועקיפה במטרים",
+      "acceptance": "כל יריב מסיים את שמונת מסלולי V1 ללא teleport או recovery loop; קו הנסיעה נמנע מאיי תנועה ומכשולים; נזק סטטי ועקיפות נמדדים; rubber-band מכובה ב-simcade ואינו עוקף חוקי אחיזה.",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "Corner-entry braking plus real relative-speed vehicle awareness. Eight assisted browser races finish; six without damage, Rothschild20.7%/Scopus16.3% remain. Jaffa193s versus prior110s is an explicit pace tradeoff. 80 corner cases and60 vehicle-response cases are scoped regressions, not all-rival, overtaking or human acceptance.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-019",
+      "phase": "C",
+      "priority": "P1",
+      "title": "חוקי modes ו-countdown",
+      "depends_on": [
+        "MP-009",
+        "MP-014",
+        "MP-018"
+      ],
+      "deliverable": "flow לכל מצב קיים",
+      "acceptance": "GO תואם throttle; Circuit Time Drift Knockout Heat Roam נותנים תוצאה תקינה",
+      "status": "open",
+      "assigned_person": null,
+      "verification_note": "לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-020",
+      "phase": "D",
+      "priority": "P1",
+      "title": "בעלות משאבים ובחירת road kit",
+      "depends_on": [
+        "MP-004",
+        "MP-006"
+      ],
+      "deliverable": "cache ownership ו-source אחד ל-lanes/kit",
+      "acceptance": "Namal cold load אינו משחרר asphalt shared; world.dispose אינו משחרר curtains shared",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "ב־56 העולמות של המועמד נמדדו אפס cached/duplicate disposals. 20 מחזורים בשלב שלפני תיקוני הגובה והמנהרות היו יציבים עם 30 טקסטורות ו־1,086 גאומטריות. הראש הסופי מחייב CI משלו; מוני headless אינם הוכחת היעדר כל דליפת GPU.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-021",
+      "phase": "D",
+      "priority": "P1",
+      "title": "PostFX lifecycle ו-quality",
+      "depends_on": [
+        "MP-020"
+      ],
+      "deliverable": "dispose של passes ו-LOD עקבי",
+      "acceptance": "20 מחזורים ללא growth; low נשאר low אחרי tick/weather/photo",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "PostFX משחרר passes; low puddles נשמר. 20 מחזורים בתנוחת התחלה יציבה: 30 טקסטורות/1194 גאומטריות בכל מדידה; לא מדידת GPU פיזי.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-022",
+      "phase": "D",
+      "priority": "P1",
+      "title": "Art direction של איילון",
+      "depends_on": [
+        "MP-007",
+        "MP-017",
+        "MP-020",
+        "MP-045"
+      ],
+      "deliverable": "reference pack ו-road/sky/material composition",
+      "acceptance": "Q-ART: סצנות יום/לילה/גשם מזוהות, חומרי כביש/רכב עקביים, ללא חדירת מצלמה או תמיכה לכביש; Playtest והשוואה חזותית אנושית מתועדים.",
+      "status": "open",
+      "assigned_person": null,
+      "verification_note": "צילומי GPU אמיתי נבדקו, ובהם מנהרות הנמל ורמון אחרי תיקון חפיפת הקירות. העולם עדיין גס, המכוניות גנרטיביות והאמנות אינה מאושרת. אין golden או הקפאה חדשים. תוקנה חסימת מצלמת הפגוש על ידי דגם השחקן והצל. ארבע מצלמות ומבט לאחור נבדקו עם C/B אמיתיים, בצילומי לפני/אחרי וב־GPU פיזי; אין מכאן קבלת מצלמות מלאה. במצב Photo תוקן ערבוב זוויות roll/pitch; בדפדפן נשמרו תנוחת הרכב והגלגלים על שיפוע אמיתי של ירידת הכרמל. אין מכאן קבלת אמנות או Photo מלאה.",
+      "external_evidence_required": true
+    },
+    {
+      "id": "MP-023",
+      "phase": "D",
+      "priority": "P1",
+      "title": "Hero Car ואופי חמש המכוניות",
+      "depends_on": [
+        "MP-017",
+        "MP-020"
+      ],
+      "deliverable": "מודל ונכסים מתועדים ו-LODs",
+      "acceptance": "silhouette lights paint damage ו-LOD נבדקים; רכב אחד באיכות סופית",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "תוקנו ארבעת החלונות בכל אחד מחמשת הדגמים: התאמה גאומטרית למעטפת, מיקום גבוה יותר וזיגוג PBR כהה ואטום. חלונות הייצור נבדקו מול גוף GLB אמיתי; בעלות גאומטריה ופינוי נשמרו. זה אינו מודל Hero סופי, זכוכית מעבירת אור או קבלת אמנות. נדרשים עדיין מודל מפורט, LOD, זכויות וקבלה אנושית.",
+      "external_evidence_required": true
+    },
+    {
+      "id": "MP-024",
+      "phase": "D",
+      "priority": "P1",
+      "title": "Audio ו-feedback",
+      "depends_on": [
+        "MP-019",
+        "MP-023"
+      ],
+      "deliverable": "תגובות engine brake surface impact ומצבים",
+      "acceptance": "pause mute resume unlock עובדים; feedback מובן ב-Playtest",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "Last simulated steering/brake input is now captured per vehicle and restored with snapshots. Actual browser materials on rival, traffic and police cars pass brake/coast/restore checks; 20 production-vehicle tests cover snapshot compatibility and inactive states. This closes the missing visual control signal only. Engine/brake/surface/impact audio, pause/mute/unlock and human feedback acceptance remain open.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-025",
+      "phase": "D",
+      "priority": "P1",
+      "title": "Baseline וביצועים במכשיר יעד",
+      "depends_on": [
+        "MP-021",
+        "MP-022",
+        "MP-023",
+        "MP-046"
+      ],
+      "deliverable": "raw CPU/frame/GPU/bytes/loading metrics",
+      "acceptance": "Q-PERF: מכשיר Windows ומובייל מזוהים, build זהה ונתוני frame-time גולמיים; יעדי p95/p99 מפורטים ב-QUALITY-TARGETS.md.",
+      "status": "open",
+      "assigned_person": null,
+      "verification_note": "אבחון של 138b91a מ־clone נקי: Mac M4 Max, גודל CSS של 1920×1080 וגודל render של 1632×918. במשך 60 שניות בעמידה נמדדו p95=8.9ms ו־p99=10.3ms. זו אינה קבלת Windows, מובייל, מסלול מלא או מבחן חום.",
+      "external_evidence_required": true
+    },
+    {
+      "id": "MP-026",
+      "phase": "E",
+      "priority": "P1",
+      "title": "Career של V1",
+      "depends_on": [
+        "MP-008",
+        "MP-019"
+      ],
+      "deliverable": "אירועים ו-unlocks על מסלולי הגרסה",
+      "acceptance": "כל אירוע פעיל משתמש במסלול מאושר וניתן להשלמה",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "סינון אירועי V1 כבר קיים בענף; השלמת כל אירוע בדפדפן עדיין פתוחה.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-027",
+      "phase": "E",
+      "priority": "P1",
+      "title": "Champion ו-Challenge progression",
+      "depends_on": [
+        "MP-014",
+        "MP-026"
+      ],
+      "deliverable": "הפרדת career stars ו-daily/weekly",
+      "acceptance": "Challenge בלבד אינו מעניק Champion; achievement משולם פעם אחת",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "Champion נספר מכוכבי V1; נדרשת קבלת התקדמות מלאה ושמירת legacy.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-028",
+      "phase": "E",
+      "priority": "P1",
+      "title": "Ruleset לשיאים ו-Ghosts",
+      "depends_on": [
+        "MP-016",
+        "MP-019"
+      ],
+      "deliverable": "fingerprint של תנאי מרוץ וקטגוריות",
+      "acceptance": "mode laps weather tune handling assists content ו-physics אינם מעורבבים",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "בדיקת UI אמיתי מאמתת ששינוי תנאים וחילוץ אוטומטי פוסלים שיא, ו־Restart מתחיל ריצה חדשה. ה־observer תוקן לשימוש במודול המנוע שה־UI טען בפועל, כולל HMR. מרוצי QA אינם שומרים שיא רשמי.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-029",
+      "phase": "E",
+      "priority": "P1",
+      "title": "Save migration והגנת Legacy",
+      "depends_on": [
+        "MP-027",
+        "MP-028"
+      ],
+      "deliverable": "schema ותוכנית תאימות",
+      "acceptance": "load upgrade rejection recovery retry ו-rollback שומרים נתונים קיימים",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "בדיקות היסטוריות נשמרו בנפרד; נדרשת קבלת migration/recovery על הקוד הנוכחי ושמירה אמיתית של בעלים.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-030",
+      "phase": "F",
+      "priority": "P1",
+      "title": "Topology Placement ורציפות מסלולים",
+      "depends_on": [
+        "MP-005",
+        "MP-006",
+        "MP-020"
+      ],
+      "deliverable": "פתוחים ללא חיבור finish-start ו-Jaffa רציף",
+      "acceptance": "finite samples; visual/collision parity ונהיגה בגבולות",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "קרקע שאינה מתקפלת ועיגון עצים נבדקו ב־56 עולמות; 32 הברושים בהר הצופים נמצאים מחוץ לכביש. מנהרות הנמל ורמון הותאמו לרוחב, לפנייה ולגובה הדרך. צלליות, מפלסים וכל צורות ה־mesh עדיין דורשים ביקורת אמנות.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-031",
+      "phase": "F",
+      "priority": "P1",
+      "title": "השלמת שבעת מסלולי V1 הנותרים",
+      "depends_on": [
+        "MP-025",
+        "MP-026",
+        "MP-030"
+      ],
+      "deliverable": "7 מסלולים עם checklist זהה לאיילון",
+      "acceptance": "Q-DRIVE ו-Q-ART בכל שמונת מסלולי V1: מרוץ מלא, גאומטריה ונתיבים בטוחים, בלי תקיעה/recovery אוטומטי, תיעוד נזק ומצלמות; קבלת נהיגה אנושית נפרדת מסיוע QA.",
+      "status": "open",
+      "assigned_person": null,
+      "verification_note": "כל שמונת מסלולי V1 מגיעים לתוצאה עם GL0 וללא teleport. חיפה הסתיימה בכ־33.8 שניות ורמון בכ־97.3 שניות; איילון, חרמון ורמון ללא נזק. קבלת הנהיגה בחמשת המסלולים האחרים וקבלת האמנות נשארות פתוחות.",
+      "external_evidence_required": true
+    },
+    {
+      "id": "MP-032",
+      "phase": "F",
+      "priority": "P1",
+      "title": "קבלה של כל המכוניות והאירועים",
+      "depends_on": [
+        "MP-023",
+        "MP-029",
+        "MP-031"
+      ],
+      "deliverable": "טבלת vehicle/event acceptance",
+      "acceptance": "stock tuned repair וביצועי event נבדקו על launch content",
+      "status": "open",
+      "assigned_person": null,
+      "verification_note": "לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.",
+      "external_evidence_required": true
+    },
+    {
+      "id": "MP-033",
+      "phase": "G",
+      "priority": "P1",
+      "title": "Touch ומסך צר",
+      "depends_on": [
+        "MP-010",
+        "MP-015"
+      ],
+      "deliverable": "layout controls ו-pointer lifecycle",
+      "acceptance": "כל action נגיש במסך צר; cancel blur וריבוי מגעים אינם משאירים input",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "איפוס blur כולל מגע; קבלת ריבוי מגעים ומכשיר פיזי עדיין פתוחה.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-034",
+      "phase": "G",
+      "priority": "P1",
+      "title": "Gamepad ומקלדת לאורך כל ה-flow",
+      "depends_on": [
+        "MP-015",
+        "MP-019"
+      ],
+      "deliverable": "navigation pause reconnect",
+      "acceptance": "תפריט race photo result עובדים; disconnect ו-blur מטופלים",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "מקלדת והיגוי נבדקו בדפדפן; בקר פיזי ו-disconnect עדיין פתוחים.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-035",
+      "phase": "G",
+      "priority": "P1",
+      "title": "Onboarding שפה ונגישות",
+      "depends_on": [
+        "MP-024",
+        "MP-026",
+        "MP-033",
+        "MP-034"
+      ],
+      "deliverable": "הדרכת נהיגה קצרה ו-focus/lang/dir",
+      "acceptance": "משתתף חדש מסיים משימה; RTL text scale contrast reduced motion נבדקו",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "דגלי A11Y/RTL/onboarding הוחזרו ל-false. WCAG AA, RTL מלא, ניגודיות ו-onboarding אינם סגורים.",
+      "external_evidence_required": true
+    },
+    {
+      "id": "MP-036",
+      "phase": "G",
+      "priority": "P1",
+      "title": "PWA Offline ועדכון לפי הגדרה",
+      "depends_on": [
+        "MP-029",
+        "MP-035",
+        "MP-038"
+      ],
+      "deliverable": "Install/offline/update flows בהתאם להחלטת מוצר",
+      "acceptance": "הפעלה ללא רשת ועדכון עם save עובדים במסגרת scope שהוגדר",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "PWA_COMPLETE הוחזר ל-false; אין service worker ואין הוכחת offline/update.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-037",
+      "phase": "H",
+      "priority": "P1",
+      "title": "נכסים ותחזוקת תלויות",
+      "depends_on": [
+        "MP-001"
+      ],
+      "deliverable": "מקור שימוש ורישיון לכל shipping asset; עדכוני dependencies מבודדים",
+      "acceptance": "66 רשומות unverified נפתרו עבור הנכסים שנשלחים; עדכונים עוברים gates",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "ב־main נותרו שתי התראות Dependabot. בענף העבודה מותקנות js-yaml 4.3.2 ו־brace-expansion 5.0.12, העומדות בספי התיקון של ההתראות שנקראו. זכויות השימוש ב־66 נכסים לא אומתו; אין טענה לסריקת SCA כוללת.",
+      "external_evidence_required": true
+    },
+    {
+      "id": "MP-038",
+      "phase": "D",
+      "priority": "P1",
+      "title": "Assets עם content fingerprints",
+      "depends_on": [
+        "MP-020"
+      ],
+      "deliverable": "manifest URLs מזוהים בתוכן ו-cache policy",
+      "acceptance": "Build A אל B מקבל assets חדשים; rollback מקבל assets תואמים",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "הוסרה הוראת immutable לקבצי game/basis ללא טביעת תוכן; נדרשת בדיקת A→B ו-rollback וכן pipeline fingerprints.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-039",
+      "phase": "H",
+      "priority": "P1",
+      "title": "Production packaging ו-Staging",
+      "depends_on": [
+        "MP-007",
+        "MP-025",
+        "MP-037",
+        "MP-038"
+      ],
+      "deliverable": "build versioned פרטי ו-dossier",
+      "acceptance": "QA hook נעדר; smoke על ה-build הארוז; save/cache/headers תואמים",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "Production build עבר ובדיקה לא מצאה QA hooks; בדיקת staging פרטי ו-build ארוז נדרשת.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-040",
+      "phase": "H",
+      "priority": "P1",
+      "title": "Soak leak ו-context recovery אמיתיים",
+      "depends_on": [
+        "MP-021",
+        "MP-031",
+        "MP-039"
+      ],
+      "deliverable": "20 מחזורים ו-1800 שניות עם assertions",
+      "acceptance": "1800 שניות שעון אמיתיות על אותו candidate, השלמת מרוצים, דליפות/context recovery; דוח בלתי שלם נשאר נכשל; Q-RELIABILITY ואימות מכשיר נפרדים.",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "3a1208f עבר את כל CI, כולל סוק אמיתי של 1,800,524ms ושני מרוצים ללא offRoad. זו גרסת Physics 9 שלפני התיקונים החדשים. הראש של Physics 10 מחייב CI, סוק ו־20 מחזורים משלו; אין העברת קבלה.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-041",
+      "phase": "H",
+      "priority": "P1",
+      "title": "Browser ומכשירים פיזיים",
+      "depends_on": [
+        "MP-032",
+        "MP-035",
+        "MP-039"
+      ],
+      "deliverable": "מטריצה עם ראיות לכל יעד",
+      "acceptance": "Windows Chrome/Edge ושאר יעדים מאושרים; performance/input/audio/thermal נבדקו",
+      "status": "open",
+      "assigned_person": null,
+      "verification_note": "לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.",
+      "external_evidence_required": true
+    },
+    {
+      "id": "MP-042",
+      "phase": "H",
+      "priority": "P1",
+      "title": "Alpha ומשוב משחקנים",
+      "depends_on": [
+        "MP-036",
+        "MP-040",
+        "MP-041"
+      ],
+      "deliverable": "defect log ותוצאות Playtest אמיתיות",
+      "acceptance": "Q-PLAYTEST: שלושה בודקים אנושיים לפחות שאינם כותב השינוי, תרחישי נהיגה/מצלמה/שליטה מדווחים, כל blocker מתוקן ונבדק מחדש; השוואות איכות הן תוצאה מתועדת ולא סיסמה.",
+      "status": "open",
+      "assigned_person": null,
+      "verification_note": "לא קיים Playtest אנושי העומד ביעד זה; יעד מוצע לא הוצג כתוצאה.",
+      "external_evidence_required": true
+    },
+    {
+      "id": "MP-043",
+      "phase": "H",
+      "priority": "P1",
+      "title": "RC והוכחת rollback",
+      "depends_on": [
+        "MP-029",
+        "MP-039",
+        "MP-042"
+      ],
+      "deliverable": "release candidate עם artifacts ומדיניות upgrade",
+      "acceptance": "אין blockers; כל 13 השערים נבדקו על אותו commit; rollback בוצע",
+      "status": "open",
+      "assigned_person": null,
+      "verification_note": "בוטלו דגלי נעילה לא מבוססים של נהיגה, אמנות, קלט ו־rollback ב־17 מודולים; הקפאת איילון הופרדה מהאישור ההיסטורי; RC1_PRODUCED=false. 327 בדיקות עוברות; אין RC או תג חתום.",
+      "external_evidence_required": true
+    },
+    {
+      "id": "MP-044",
+      "phase": "H",
+      "priority": "P1",
+      "title": "שחרור לפי מדיניות הבעלים",
+      "depends_on": [
+        "MP-043"
+      ],
+      "deliverable": "הפצה פרטית מורשית עם tag חתום manifest artifacts changelog",
+      "acceptance": "שוחרר בפועל בהתאם להרשאה: tag חתום וקובץ build מזוהים קיימים; dossier ו-rollback trace נשמרו; הפצת הגרסה הפרטית אומתה",
+      "status": "open",
+      "assigned_person": null,
+      "verification_note": "לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.",
+      "external_evidence_required": true
+    },
+    {
+      "id": "MP-045",
+      "phase": "D",
+      "priority": "P2",
+      "title": "Deterministic content במקום seeded PRNG",
+      "depends_on": [
+        "MP-007"
+      ],
+      "deliverable": "מיפוי תוכן יציב ו-IDs מבוססי תוכן",
+      "acceptance": "אין יצירת IDs/סדר/תוכן באקראיות; topology/golden נשמרים או מאושרים מחדש",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "לא נוסף שימוש באקראיות. החלפת ה-PRNG הקיים בתוכן מפורש עדיין פתוחה.",
+      "external_evidence_required": false
+    },
+    {
+      "id": "MP-046",
+      "phase": "D",
+      "priority": "P2",
+      "title": "ניידות Shaders וסימוני כביש",
+      "depends_on": [
+        "MP-022"
+      ],
+      "deliverable": "smoothstep תקני וסימונים ממקור אחד",
+      "acceptance": "shader compile והשוואת pixels במכשירי יעד; אין שכבות lane כפולות",
+      "status": "partial",
+      "assigned_person": null,
+      "verification_note": "סימוני נתיב ממקור אחד, עם מקפים באורך כ־4.4 מטרים וללא שכבות כפולות. חומרי כביש יבש ורטוב נבדקו, שמונת המרוצים עברו עם GL0 וצילומי Metal נבדקו. נדרשים עדיין מכשירי יעד וקבלת חזות.",
+      "external_evidence_required": false
+    }
+  ],
+  "working_branch": "fix/rush-completion-2026-10-15",
+  "execution_authority": "Direct user authorization on 2026-10-16 to revise plans and implement all necessary game improvements. External facts, legal rights, hardware evidence and release acceptance still require real evidence.",
+  "all_product_units_complete": false,
+  "audited_pr83_sha": "6395474913c071cb25bc2720238a7b8072045288",
+  "quality_contract": "QUALITY-TARGETS.md",
+  "code_candidate_sha": "30a2c19fb379479955379223907858d40e18d0f1",
+  "candidate_sha_semantics": "candidate_sha is reserved for an accepted release candidate; code_candidate_sha is an implementation snapshot, not product acceptance.",
+  "verified_ci_reference_sha": "3a1208fe0b837cd3c4d8eb9a9db7f98041f78497",
+  "current_ci_authority": "GitHub required-ci for the actual Git HEAD. Immutable CI references in this document never assert the verdict of a future commit.",
+  "implementation_evidence": "evidence/2026-10-16/physics10/proof.json",
+  "supplemental_implementation_evidence": "evidence/2026-10-16/package-freeze/proof.json",
+  "current_claim_authority_evidence": "evidence/2026-10-16/current-freeze-claims/proof.json",
+  "camera_implementation_evidence": "evidence/2026-10-16/bumper-camera/proof.json"
+}

@@ -8,6 +8,23 @@ const backlog = read('COMPLETION-BACKLOG.json');
 const readiness = read('PRODUCT-READINESS.json');
 const crosswalk = read('COMPLETION-CROSSWALK.json');
 
+test('the human-readable completion plan agrees with all 46 canonical task records', () => {
+  const document = readFileSync(fromRoot('COMPLETION-PLAN.md'), 'utf8');
+  const sections = document.split(/\n(?=5\.\d+ \*\*MP-\d{3} —)/).slice(1);
+  assert.equal(sections.length, backlog.tasks.length, 'missing or duplicate task sections');
+  backlog.tasks.forEach((task, index) => {
+    const prefix = `5.${index + 1}`, section = sections[index];
+    const dependencies = task.depends_on.join(', ') || 'אין';
+    for (const line of [
+      `${prefix} **${task.id} — ${task.title}**`,
+      `${prefix}.1 מצב: ${task.status}; עדיפות ${task.priority}; תלוי ב־${dependencies}.`,
+      `${prefix}.2 תוצר: ${task.deliverable}.`,
+      `${prefix}.3 קבלה: ${task.acceptance}`,
+      `${prefix}.4 ראיה וחסר: ${task.verification_note}`,
+    ]) assert.ok(section.split('\n').includes(line), `${task.id} Markdown drift: ${line}`);
+  });
+});
+
 test('the real completion backlog is a complete acyclic dependency graph', () => {
   const tasks = new Map(backlog.tasks.map(task => [task.id, task]));
   assert.equal(tasks.size, backlog.tasks.length, 'duplicate completion tasks');

@@ -248,3 +248,5 @@ try {
   console.log(JSON.stringify({ count: report.results.length, failures, cachedTextureDisposals: report.disposedTextures.length, duplicateDisposals: report.duplicateDisposals, buildingImpactVerified: report.buildingImpactVerified, pageErrors: errors }, null, 2));
   if (failures.length || report.disposedTextures.length || report.duplicateDisposals || !report.buildingImpactVerified || errors.length) process.exitCode = 1;
 } finally { await browser.close(); }
+
+await import('./landmark-collider-smoke.mjs');

@@ -1,0 +1,33 @@
+{
+  "kind": "controlled-native-geometry-photo",
+  "sourceHead": "2c365ba1198c5b48cfaae3dde40cd1ce074c1d29",
+  "sourceRole": "Historical parent",
+  "scope": "Same actual terrain-derived Photo camera and primary clear/day settings. Static geometry diagnostic only; particles/wall-time are not controlled. No art,device performance or product acceptance.",
+  "passed": true,
+  "errors": [],
+  "actual": {
+    "camera": {
+      "px": 61.575698589411836,
+      "py": 41.411475050913076,
+      "pz": -442.72280989387394,
+      "lx": 29.69599999993079,
+      "ly": 26.411475050913076,
+      "lz": -427.4687999999529,
+      "fov": 45
+    },
+    "physicsVersion": 11,
+    "foundationCount": 0,
+    "foundations": [],
+    "glError": 0,
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+    "render": [
+      1280,
+      800
+    ],
+    "css": [
+      1280,
+      800
+    ]
+  },
+  "captureStatus": "captured"
+}

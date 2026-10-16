@@ -405,6 +405,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   dome.frustumCulled = false;
   group.add(dome);
   let terrainHeight: ((x: number, z: number) => number) | undefined;
+  let terrainBounds: ((x: number, z: number, hx: number, hz: number) => { min: number; max: number }) | undefined;
   if (def.theme === "carmel" || def.theme === "snow" || def.id === "ramon" || def.id === "jerusalem" || def.id === "scopus" || def.id === "hw1" || def.id === "masada" || def.id === "eilatmtn" || def.id === "golan" || def.id === "nazareth" || def.id === "tzfat" || def.id === "stellamaris") {
     const slopeMat = keep(new THREE.MeshStandardMaterial({
       color: def.id === "ramon" ? 11565642 : def.id === "hermon" ? 13950438 : def.id === "jerusalem" || def.id === "scopus" ? 12890250 : 4874808,
@@ -414,6 +415,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     }));
     const terrain = buildTerrain(def, built);
     terrainHeight = terrain.heightAt;
+    terrainBounds = terrain.boundsForBox;
     const slopeMesh = new THREE.Mesh(keep(terrain.geometry), slopeMat);
     slopeMesh.name = "rush-terrain";
     slopeMesh.receiveShadow = true;
@@ -2058,6 +2060,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     streets,
     built,
     terrainHeight,
+    terrainBounds,
     support: {
       _dummy,
       barkTexture,

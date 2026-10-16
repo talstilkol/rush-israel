@@ -45,7 +45,7 @@
       "acceptance": "qa:drive עובר בענף ובבסיס המשולב עם אותה הגדרת מרוץ",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "qa:drive עבר: 200 מטר על הכביש ובדיקת היגוי; טרם מוזג ל-main.",
+      "verification_note": "על2c365ba בדיקת איילון200מטר והיגוי עברה במועמד נקי ובעותק מיזוג מקומי אמיתי שלmain b2c0d46 עם המועמד; שני הורים ועץ זהה אומתו. לא בוצע מיזוג מרוחק. גורם השורש המדויק של כשל144.79מטר בענף ההיסטורי עדיין לא בודד; אין קבלת נהיגה מלאה.",
       "external_evidence_required": false
     },
     {
@@ -90,7 +90,7 @@
       "acceptance": "42 ה-colliders שהוזזו בענף נבדקים מול meshes; אין collision מנותק",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "תוקנו ארבעה מבנים ביפו, גבולות הגובה של חמישה בתי חיפה ובליטות המנהרה ברמון. בדיקת מבנים וקירות דקים בחמש שורות לרוחב כל שמונת מסלולי V1 עוברת; צורות mesh אחרות עדיין דורשות בדיקה.",
+      "verification_note": "שוחזרו42 זהויות היסטוריות ב־26 מסלולים. על2c365ba נמצאו34 זהויות מקור חד־משמעיות ו־32 מרכזיmesh תואמים;8 דורשות מיפוי מפורש. תוקנו התנגשות ריקה בחרמון ומיקום תאורת הבקתה,ובאשקלון preview הוחלפה התנגשות מרכז ריקה בחמש חומות ומגדל מעגלי לפי הגאומטריה. בדיקת16 מגעים אמיתיים מאמתת פגיעה בעצמים והיעדר פגיעה בריק/מעליהם. אין קבלת כל42 המעטפות,גובה,משטח או כל מסלוליpreview. evidence/2026-10-16/landmark-alignment/proof.json. תשעת מבני חרמון קיבלו בסיסים מגבולות הגובה של משולשי הקרקע תחת שטח המבנה;225 קרניים וחיתוך פוליגונים עצמאי מאמתים תמיכה. שיאים מופרדים באמצעותPHYSICS_VERSION12. אין קבלת אמנות סופית או כל מעטפות ההתנגשות.",
       "external_evidence_required": false
     },
     {
@@ -109,7 +109,7 @@
       "acceptance": "חוזים חדשים מאומתים בהתנהגות; חוזים היסטוריים נשמרים",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "194 בדיקות קוד נוכחי ו-466 בדיקות היסטוריות הופרדו; סוק הוא job חובה מפורש. CI חי על הענף המתוקן טרם נמדד. Capture verdict hardening: a real20s diagnostic with EISDIR previously exited1 while passed stayedtrue; capture/cleanup now must finish before restoring the measured flag, errors forcefalse and initialization invalidates an older record before browser launch. Five real filesystem/process unit cases cover capture, cleanup, prior error and missing browser; they are not a30-minute run.",
+      "verification_note": "TEST-CLASSIFICATION.json מפריד בדיקות קוד נוכחי מחוזים היסטוריים. סוק1800s הואjob חובה מפורש; npm test לבדו אינו קבלתסוק. דוח צילום/ניקוי/אתחול נכשל סגור ונבדק מול תקלותI/O אמיתיות. CI וסוק חייבים ראיות ל־SHA המדויק; תלויותMP003/006 עדיין פתוחות. אין קבלת מוצר מכוח PR או מספר בדיקות.",
       "external_evidence_required": false
     },
     {

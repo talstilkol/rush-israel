@@ -1,9 +1,55 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { readFileSync } from 'node:fs';
+import { fromRoot } from './project-root.mjs';
 import * as THREE from 'three';
 import { getTrack } from '../src/game/tracks.ts';
 import { buildTrack } from '../src/game/spline.ts';
 import { buildTerrain } from '../src/game/terrain.ts';
+
+test('Hermon support bounds match independently clipped terrain triangles under nine actual building footprints', () => {
+  const recorded = JSON.parse(readFileSync(fromRoot('evidence', '2026-10-16', 'landmark-alignment', 'prior-collider.json'), 'utf8'));
+  assert.equal(recorded.groundingFootprints.length, 9);
+  const definition = getTrack('hermon');
+  const terrain = buildTerrain(definition, buildTrack(definition));
+  // Independent polygon clipping uses actual rendered Float32 vertices, rather
+  // than the height-query/grid-intersection implementation being checked.
+  const clip = (vertices, axis, edge, sign) => {
+    const result = [];
+    for (let i = 0; i < vertices.length; i++) {
+      const a = vertices[i], b = vertices[(i + 1) % vertices.length];
+      const insideA = sign * (a[axis] - edge) >= 0;
+      const insideB = sign * (b[axis] - edge) >= 0;
+      if (insideA) result.push(a);
+      if (insideA !== insideB) {
+        const t = (edge - a[axis]) / (b[axis] - a[axis]);
+        result.push(a.map((value, index) => value + (b[index] - value) * t));
+      }
+    }
+    return result;
+  };
+  try {
+    const positions = terrain.geometry.getAttribute('position'), indices = terrain.geometry.index;
+    for (const footprint of recorded.groundingFootprints) {
+      const [x, , z] = footprint.position, hx = footprint.dimensions.width / 2, hz = footprint.dimensions.depth / 2;
+      let min = Infinity, max = -Infinity;
+      for (let i = 0; i < indices.count; i += 3) {
+        let polygon = [0, 1, 2].map(offset => {
+          const index = indices.getX(i + offset);
+          return [positions.getX(index), positions.getY(index), positions.getZ(index)];
+        });
+        if (Math.max(...polygon.map(p => p[0])) < x - hx || Math.min(...polygon.map(p => p[0])) > x + hx ||
+            Math.max(...polygon.map(p => p[2])) < z - hz || Math.min(...polygon.map(p => p[2])) > z + hz) continue;
+        for (const [axis, edge, sign] of [[0, x - hx, 1], [0, x + hx, -1], [2, z - hz, 1], [2, z + hz, -1]]) polygon = clip(polygon, axis, edge, sign);
+        for (const point of polygon) { min = Math.min(min, Math.max(-0.4, point[1])); max = Math.max(max, Math.max(-0.4, point[1])); }
+      }
+      if (!Number.isFinite(min)) min = max = -0.4; // Actual base plane beyond the terrain mesh.
+      const actual = terrain.boundsForBox(x, z, hx, hz);
+      assert.ok(Math.abs(actual.min - min) < 1e-5, `minimum differs at ${x},${z}: ${actual.min} vs ${min}`);
+      assert.ok(Math.abs(actual.max - max) < 1e-5, `maximum differs at ${x},${z}: ${actual.max} vs ${max}`);
+    }
+  } finally { terrain.geometry.dispose(); }
+});
 
 for (const id of ['haifa', 'hermon', 'scopus', 'ramon']) {
   const def = getTrack(id), built = buildTrack(def);

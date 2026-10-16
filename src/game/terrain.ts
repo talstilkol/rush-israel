@@ -91,5 +91,41 @@ export function buildTerrain(def: TrackDef, built: BuiltTrack) {
     return u + v <= 1 ? ya + (yb - ya) * u + (yc - ya) * v
       : yd + (yc - yd) * (1 - u) + (yb - yd) * (1 - v);
   }
-  return { geometry, heightAt };
+  /** Extrema of the rendered surface under an axis-aligned building footprint.
+   * A clipped linear triangle reaches its extrema at polygon vertices: box
+   * corners, grid crossings, and triangle-diagonal/box-edge intersections.
+   */
+  function boundsForBox(x: number, z: number, hx: number, hz: number) {
+    if (![x, z, hx, hz].every(Number.isFinite) || hx < 0 || hz < 0) {
+      throw new RangeError("Invalid terrain footprint");
+    }
+    const left = x - hx, right = x + hx, back = z - hz, front = z + hz;
+    const xs = new Set([left, right]), zs = new Set([back, front]);
+    for (let i = Math.max(0, Math.ceil((left - minX) / CELL)); i <= Math.min(nx, Math.floor((right - minX) / CELL)); i++) xs.add(minX + i * CELL);
+    for (let i = Math.max(0, Math.ceil((back - minZ) / CELL)); i <= Math.min(nz, Math.floor((front - minZ) / CELL)); i++) zs.add(minZ + i * CELL);
+    let min = Infinity, max = -Infinity;
+    const note = (px: number, pz: number) => {
+      const y = Math.max(BASE_FLOOR, heightAt(px, pz));
+      min = Math.min(min, y); max = Math.max(max, y);
+    };
+    for (const px of xs) for (const pz of zs) note(px, pz);
+    const firstX = Math.max(0, Math.floor((left - minX) / CELL));
+    const lastX = Math.min(nx - 1, Math.floor((right - minX) / CELL));
+    const firstZ = Math.max(0, Math.floor((back - minZ) / CELL));
+    const lastZ = Math.min(nz - 1, Math.floor((front - minZ) / CELL));
+    for (let ix = firstX; ix <= lastX; ix++) for (let iz = firstZ; iz <= lastZ; iz++) {
+      const cx = minX + ix * CELL, cz = minZ + iz * CELL;
+      const diagonal = cx + cz + CELL;
+      for (const px of [left, right]) {
+        const pz = diagonal - px;
+        if (px >= cx && px <= cx + CELL && pz >= cz && pz <= cz + CELL && pz >= back && pz <= front) note(px, pz);
+      }
+      for (const pz of [back, front]) {
+        const px = diagonal - pz;
+        if (pz >= cz && pz <= cz + CELL && px >= cx && px <= cx + CELL && px >= left && px <= right) note(px, pz);
+      }
+    }
+    return { min, max };
+  }
+  return { geometry, heightAt, boundsForBox };
 }

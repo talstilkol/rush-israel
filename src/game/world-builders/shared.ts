@@ -19,6 +19,10 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     streets,
     built,
     terrainHeight = (_x: number, _z: number) => -0.4,
+    terrainBounds = (x: number, z: number, _hx: number, _hz: number) => {
+      const y = terrainHeight(x, z);
+      return { min: y, max: y };
+    },
     support: {
       _dummy,
       barkTexture,
@@ -943,6 +947,7 @@ export function createTrackWorldBuilderContext(input: TrackWorldBuilderInput) {
     streets,
     built,
     terrainHeight,
+    terrainBounds,
     add,
     glowAt,
     hit,

@@ -32,6 +32,9 @@
 
 3.14 תוקנו חלונות חמש המכוניות בקוד המשחק, לאחר פיילוט נפרד. בדיקות לפני/אחרי, GLB ו־fallback, וכן משאבי רכב נשמרות ב־[car-glazing](evidence/2026-10-16/car-glazing/proof.json). אין שינוי בפיזיקה או בנכסי המקור ואין קבלת Hero Car או אמנות.
 
+3.15 תוקנו שתי התנגשויות מול חלל ריק: collider ותאורת בקתת חרמון נלקחים כעת ממיקום ה־mesh,והחומות והמגדל באשקלון preview מקבלים צורות מגע לפי הגאומטריה.16 בדיקות מגע אמיתיות ושש חומות/בקתה מאומתות בהיקפן; אין קבלת אמנות,קרקע,כל42 המקרים או נהיגתpreview. [ראיות](evidence/2026-10-16/landmark-alignment/proof.json). נוספו בסיסים לתשעה מבנים בחרמון לפי משולשי הקרקע בפועל;225 קרניים ובדיקת חיתוך פוליגונים בלתי תלויה מאמתות את התמיכה. PHYSICS_VERSION12 מפריד שיאים לאחר שינוי ההתנגשויות. בדיקת סנכרון חדשה מונעת פערי סטטוס/קריטריונים בין46 רשומותJSON לתוכנית זו. CI וסוק חדשים נדרשים על המועמד המכיל תיקונים אלה.
+
+
 4. **כללי הוכחה והמשך**
 4.1 ראיה כוללת SHA או hashes, פקודה, סביבה, פלט גולמי וטענה מוגבלת. כישלונות וריצות שנפסלו נשמרים. המסמך אינו מנבא CI של commit עתידי; GitHub required-ci של ה־HEAD הוא סמכות תוצאת הקוד.
 4.2 npm test בודק קוד נוכחי; test:historical משחזר עץ היסטורי; test:soak מפעיל 1,800 שניות שעון אמיתיות. 20 מחזורי headless מודדים הקצאות, ולא את כל זיכרון ה־GPU. סוק בזמן מואץ אינו נספר כ־30 דקות אמיתיות.
@@ -44,7 +47,7 @@
 5.1.1 מצב: locally-verified; עדיפות P0; תלוי ב־אין.
 5.1.2 תוצר: מקור פעיל אחד ל-Scope, commit וראיות.
 5.1.3 קבלה: התוכנית הפעילה מצביעה על quality contract, backlog ומצב מוצר עקביים; current HEAD נקרא מ-Git ולא מתווית היסטורית.
-5.1.4 ראיה: אומתו 46 מזהים, 96 תלויות ללא מעגלים, כיסוי כל 67 היחידות, חוזה האיכות ושערי המוצר. הסמכות למקור הנוכחי נלקחת מ־Git; צילומים היסטוריים מופרדים מקבלה. ראיה: evidence/2026-10-16/grade-direction/plan-consistency.json. זו השלמת איחוד התוכנית בלבד, ללא קבלת מוצר או שחרור. תצוגת הזמנים המקומית נמצאת בתיקיית outputs/RUSH-MASTER-PLAN של סביבת העבודה ונבנית מנתוני אותה תוכנית.
+5.1.4 ראיה וחסר: איחוד התוכנית אומת: 46 מזהים, 96 תלויות ללא מעגלים, כיסוי 67 יחידות ושבע קבוצות איכות. מקור נוכחי נקרא מ-Git; ראיות היסטוריות וקבלת מוצר נפרדות. evidence/2026-10-16/grade-direction/plan-consistency.json. אין קבלת RSH או release.
 
 5.2 **MP-002 — תיקון שגיאות TypeScript**
 5.2.1 מצב: locally-verified; עדיפות P0; תלוי ב־MP-001.
@@ -56,31 +59,31 @@
 5.3.1 מצב: partial; עדיפות P0; תלוי ב־MP-002.
 5.3.2 תוצר: Root Cause ותיקון ממוקד.
 5.3.3 קבלה: qa:drive עובר בענף ובבסיס המשולב עם אותה הגדרת מרוץ
-5.3.4 ראיה וחסר: qa:drive עבר: 200 מטר על הכביש ובדיקת היגוי; טרם מוזג ל-main.
+5.3.4 ראיה וחסר: על2c365ba בדיקת איילון200מטר והיגוי עברה במועמד נקי ובעותק מיזוג מקומי אמיתי שלmain b2c0d46 עם המועמד; שני הורים ועץ זהה אומתו. לא בוצע מיזוג מרוחק. גורם השורש המדויק של כשל144.79מטר בענף ההיסטורי עדיין לא בודד; אין קבלת נהיגה מלאה.
 
 5.4 **MP-004 — חריגת מים בתנאי העולם**
-5.4.1 מצב: partial; עדיפות P0; תלוי ב־MP-002.
+5.4.1 מצב: locally-verified; עדיפות P0; תלוי ב־MP-002.
 5.4.2 תוצר: קישור מפורש בין water material למקור צבע.
 5.4.3 קבלה: שינוי יום לילה rain storm clear באיילון ללא exception
-5.4.4 ראיה וחסר: 56 עולמות נבנו ונבדקו במצב יום/לילה/גשם ללא חריגה; אין קבלת אמנות.
+5.4.4 ראיה וחסר: תעלת איילון האמיתית נבדקה בשישה מעברי clear/day/night/rain/storm וחזרה ל־clear, ב־SwiftShader וב־Metal: ערכי material סופיים,GL0 וללא חריגות. הבדיקה נוספה לשער conditions המחייב. אין קבלת אמנות, חלקיקי מזג אוויר, ביצועים או מכשיר. evidence/2026-10-16/ramon-continuity/proof.json.
 
 5.5 **MP-005 — גאומטריית רמון וגבולות elevation**
-5.5.1 מצב: partial; עדיפות P0; תלוי ב־MP-001.
+5.5.1 מצב: locally-verified; עדיפות P0; תלוי ב־MP-001.
 5.5.2 תוצר: samples וגאומטריה סופיים.
 5.5.3 קבלה: finite checks בכל 56 הגדרות ונהיגה ברמון; רציפות בגבולות
-5.5.4 ראיה וחסר: כל 56 העולמות עוברים בדיקות finite. רמון מסיים מרוץ בדפדפן עם GL0 ואפס נזק ב־30a2c19. אין מכאן קבלה של אמנות או של כל וריאציות הנהיגה.
+5.5.4 ראיה וחסר: תוקנה אי־רציפות של1.2מטר בין הפלטו לירידת רמון: המשרעת היא top-floor. בדיקות תוואי אמיתי מאמתות ירידה ללא עלייה ורציפות בשני הגבולות. כל56 הגדרות העולם עוברות finite וניקוי; מרוץ רמון מסייע הסתיים ב־99.4833שניות סימולציה,GL0 ואפס נזק. אין קבלת כל וריאציות הנהיגה/אמנות/מכשיר. evidence/2026-10-16/ramon-continuity/proof.json.
 
 5.6 **MP-006 — התאמת visual ו-collider**
 5.6.1 מצב: partial; עדיפות P0; תלוי ב־MP-001.
 5.6.2 תוצר: placement משותף ל-rendering ו-collision.
 5.6.3 קבלה: 42 ה-colliders שהוזזו בענף נבדקים מול meshes; אין collision מנותק
-5.6.4 ראיה וחסר: תוקנו ארבעה מבנים ביפו, גבולות הגובה של חמישה בתי חיפה ובליטות המנהרה ברמון. בדיקת מבנים וקירות דקים בחמש שורות לרוחב כל שמונת מסלולי V1 עוברת; צורות mesh אחרות עדיין דורשות בדיקה.
+5.6.4 ראיה וחסר: שוחזרו42 זהויות היסטוריות ב־26 מסלולים. על2c365ba נמצאו34 זהויות מקור חד־משמעיות ו־32 מרכזיmesh תואמים;8 דורשות מיפוי מפורש. תוקנו התנגשות ריקה בחרמון ומיקום תאורת הבקתה,ובאשקלון preview הוחלפה התנגשות מרכז ריקה בחמש חומות ומגדל מעגלי לפי הגאומטריה. בדיקת16 מגעים אמיתיים מאמתת פגיעה בעצמים והיעדר פגיעה בריק/מעליהם. אין קבלת כל42 המעטפות,גובה,משטח או כל מסלוליpreview. evidence/2026-10-16/landmark-alignment/proof.json. תשעת מבני חרמון קיבלו בסיסים מגבולות הגובה של משולשי הקרקע תחת שטח המבנה;225 קרניים וחיתוך פוליגונים עצמאי מאמתים תמיכה. שיאים מופרדים באמצעותPHYSICS_VERSION12. אין קבלת אמנות סופית או כל מעטפות ההתנגשות.
 
 5.7 **MP-007 — מעבר חוזים מבוקר**
 5.7.1 מצב: partial; עדיפות P0; תלוי ב־MP-002, MP-003, MP-004, MP-005, MP-006.
 5.7.2 תוצר: סיווג 60 כשלי חוזים ומעבר baseline מתועד.
 5.7.3 קבלה: חוזים חדשים מאומתים בהתנהגות; חוזים היסטוריים נשמרים
-5.7.4 ראיה וחסר: 194 בדיקות קוד נוכחי ו-466 בדיקות היסטוריות הופרדו; סוק הוא job חובה מפורש. CI חי על הענף המתוקן טרם נמדד.
+5.7.4 ראיה וחסר: TEST-CLASSIFICATION.json מפריד בדיקות קוד נוכחי מחוזים היסטוריים. סוק1800s הואjob חובה מפורש; npm test לבדו אינו קבלתסוק. דוח צילום/ניקוי/אתחול נכשל סגור ונבדק מול תקלותI/O אמיתיות. CI וסוק חייבים ראיות ל־SHA המדויק; תלויותMP003/006 עדיין פתוחות. אין קבלת מוצר מכוח PR או מספר בדיקות.
 
 5.8 **MP-008 — Scope משותף ל-8 מסלולי V1**
 5.8.1 מצב: partial; עדיפות P1; תלוי ב־MP-001.
@@ -134,19 +137,19 @@
 5.16.1 מצב: partial; עדיפות P1; תלוי ב־MP-012, MP-015.
 5.16.2 תוצר: buffers עם tick או זמן אמיתי.
 5.16.3 קבלה: 10 שניות הקלטה נשארות 10 שניות playback; rolling windows עקביים
-5.16.4 ראיה וחסר: שארית זמן ההקלטה נשמרת; timestamps קיימים. נדרשת בדיקת Replay ארוך וגבולות rewind.
+5.16.4 ראיה וחסר: שארית זמן ההקלטה נשמרת; timestamps קיימים. נדרשת בדיקת Replay ארוך וגבולות rewind. Replay camera boundary correction: compare actual previous and next replay times rather than subtracting unscaled dt during slow motion. Controlled real-engine test uses a59-sample Ayalon driven clip and actual native frame intervals; before:two immediate camera switches, after:none before2.8s and one crossing; reduced-motion remains fixed. This does not accept complete Ghost/Replay or human/device behavior.
 
 5.17 **MP-017 — כיול Handling ו-Tuning**
 5.17.1 מצב: partial; עדיפות P1; תלוי ב־MP-013, MP-015.
 5.17.2 תוצר: מבחני acceleration brake steering drift surface.
 5.17.3 קבלה: חמש מכוניות, שני מצבי Handling, ארבעה סוגי מזג אוויר ו-stock/upgraded: תאוצה, בלימה, היגוי, משטח ודריפט; יעד ויחידה פיזיקלית מפורשים, ספים אינם נחלשים כדי להעביר בדיקה.
-5.17.4 ראיה וחסר: Physics 11 מתקן כוח שיפוע והטיית גוף לפי כיוון המכונית, גם בנסיעה לאחור. 160 מקרי מסלול וחמש מכוניות משחזרים את הכשל הישן; בדיקת הרמפות מוסיפה 80 שילובי עולם אמיתיים. יעדי התאוצה וספי 0.1s/15% נשמרו. שני ניסויי שיפוע שהחמירו נזק בהר הצופים נדחו; המועמד המשולב מוסיף תכנון בלימה והימנעות כלי רכב. כיול פיזיקלי רציף, בלימה, דריפט, frame-rate invariance וקבלה אנושית עדיין פתוחים. ראיות: evidence/2026-10-16/grade-direction/proof.json; CI של HEAD הוא סמכות המקור הנוכחי.
+5.17.4 ראיה וחסר: Physics11 grade/corner/traffic coverage remains partial. Added 16 real-route regressions across all eight V1 tracks: spawn must use the same supporting sample as the actual position; checkpoint and pre-checkpoint recovery must replace the old sample index. All 16 fail before and pass after the identity-based fix. Previous eight-race results are historical; this source needs its own browser races and soak. Physical calibration, full conditions, frame invariance, damage/pace and human acceptance remain open.
 
 5.18 **MP-018 — AI לתחרות הוגנת**
 5.18.1 מצב: partial; עדיפות P1; תלוי ב־MP-009, MP-017.
 5.18.2 תוצר: speed plan avoidance ועקיפה במטרים.
 5.18.3 קבלה: כל יריב מסיים את שמונת מסלולי V1 ללא teleport או recovery loop; קו הנסיעה נמנע מאיי תנועה ומכשולים; נזק סטטי ועקיפות נמדדים; rubber-band מכובה ב-simcade ואינו עוקף חוקי אחיזה.
-5.18.4 ראיה וחסר: במועמד המשולב נבדקו בלימה לפני פנייה חדה והימנעות לפי מהירות סגירה, מרחק, נתיב ומפלס. שמונה מרוצים הסתיימו, שישה ללא נזק; ברוטשילד נותר 20.7% ובהר הצופים 16.3%. יפו התארך מכ־110 ל־193 שניות; אין כאן קבלת קצב תחרותי או נהיגה אנושית. 80 מקרי פנייה ו־60 מקרי תגובת מכוניות מכסים יחידות צרות. השלמת כל היריבים, עקיפה, מכשולים סטטיים, 5 מכוניות ומטריצת התנאים המלאה עדיין פתוחים. ניסויים שהחמירו נזק נשמרו מחוץ לקוד המקובל.
+5.18.4 ראיה וחסר: Corner-entry braking plus real relative-speed vehicle awareness. Eight assisted browser races finish; six without damage, Rothschild20.7%/Scopus16.3% remain. Jaffa193s versus prior110s is an explicit pace tradeoff. 80 corner cases and60 vehicle-response cases are scoped regressions, not all-rival, overtaking or human acceptance.
 
 5.19 **MP-019 — חוקי modes ו-countdown**
 5.19.1 מצב: open; עדיפות P1; תלוי ב־MP-009, MP-014, MP-018.
@@ -182,7 +185,7 @@
 5.24.1 מצב: partial; עדיפות P1; תלוי ב־MP-019, MP-023.
 5.24.2 תוצר: תגובות engine brake surface impact ומצבים.
 5.24.3 קבלה: pause mute resume unlock עובדים; feedback מובן ב-Playtest
-5.24.4 ראיה וחסר: לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.
+5.24.4 ראיה וחסר: Last simulated steering/brake input is now captured per vehicle and restored with snapshots. Actual browser materials on rival, traffic and police cars pass brake/coast/restore checks; 20 production-vehicle tests cover snapshot compatibility and inactive states. This closes the missing visual control signal only. Engine/brake/surface/impact audio, pause/mute/unlock and human feedback acceptance remain open.
 
 5.25 **MP-025 — Baseline וביצועים במכשיר יעד**
 5.25.1 מצב: open; עדיפות P1; תלוי ב־MP-021, MP-022, MP-023, MP-046.
