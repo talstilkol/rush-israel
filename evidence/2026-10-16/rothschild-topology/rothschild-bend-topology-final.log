@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: Rothschild -1/lane center: every real route segment advances without folding
+ok 1 - Rothschild -1/lane center: every real route segment advances without folding
+  ---
+  duration_ms: 5.90625
+  type: 'test'
+  ...
+# Subtest: Rothschild -1/median edge: every real route segment advances without folding
+ok 2 - Rothschild -1/median edge: every real route segment advances without folding
+  ---
+  duration_ms: 4.800875
+  type: 'test'
+  ...
+# Subtest: Rothschild -1/road edge: every real route segment advances without folding
+ok 3 - Rothschild -1/road edge: every real route segment advances without folding
+  ---
+  duration_ms: 1.973583
+  type: 'test'
+  ...
+# Subtest: Rothschild -1/outer sidewalk edge: every real route segment advances without folding
+ok 4 - Rothschild -1/outer sidewalk edge: every real route segment advances without folding
+  ---
+  duration_ms: 1.921291
+  type: 'test'
+  ...
+# Subtest: Rothschild 1/lane center: every real route segment advances without folding
+ok 5 - Rothschild 1/lane center: every real route segment advances without folding
+  ---
+  duration_ms: 3.737167
+  type: 'test'
+  ...
+# Subtest: Rothschild 1/median edge: every real route segment advances without folding
+ok 6 - Rothschild 1/median edge: every real route segment advances without folding
+  ---
+  duration_ms: 3.71325
+  type: 'test'
+  ...
+# Subtest: Rothschild 1/road edge: every real route segment advances without folding
+ok 7 - Rothschild 1/road edge: every real route segment advances without folding
+  ---
+  duration_ms: 2.692375
+  type: 'test'
+  ...
+# Subtest: Rothschild 1/outer sidewalk edge: every real route segment advances without folding
+ok 8 - Rothschild 1/outer sidewalk edge: every real route segment advances without folding
+  ---
+  duration_ms: 1.740625
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 364.962041

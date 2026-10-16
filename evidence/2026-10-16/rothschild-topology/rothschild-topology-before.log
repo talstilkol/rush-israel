@@ -1,0 +1,356 @@
+TAP version 13
+# Subtest: Rothschild -1/lane center: every real route segment advances without folding
+not ok 1 - Rothschild -1/lane center: every real route segment advances without folding
+  ---
+  duration_ms: 1.253917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/rothschild-route-topology.test.mjs:17:5'
+  failureType: 'testCodeFailure'
+  error: |-
+    an offset route must not double back inside its own carriageway
+    + actual - expected
+    
+    + [
+    +   {
+    +     forward: -0.6198815065732834,
+    +     progress: 0.9375,
+    +     segment: 450
+    +   },
+    +   {
+    +     forward: -1.4201406981651585,
+    +     progress: 0.9395833333333333,
+    +     segment: 451
+    +   },
+    +   {
+    +     forward: -1.784206627482145,
+    +     progress: 0.9416666666666667,
+    +     segment: 452
+    +   },
+    +   {
+    +     forward: -1.8411692382267615,
+    +     progress: 0.94375,
+    +     segment: 453
+    +   },
+    +   {
+    +     forward: -1.5876014161930982,
+    +     progress: 0.9458333333333333,
+    +     segment: 454
+    +   },
+    +   {
+    +     forward: -1.1081604326470447,
+    +     progress: 0.9479166666666666,
+    +     segment: 455
+    +   },
+    +   {
+    +     forward: -0.5202252559101107,
+    +     progress: 0.95,
+    +     segment: 456
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      segment: 450
+      progress: 0.9375
+      forward: -0.6198815065732834
+    1:
+      segment: 451
+      progress: 0.9395833333333333
+      forward: -1.4201406981651585
+    2:
+      segment: 452
+      progress: 0.9416666666666667
+      forward: -1.784206627482145
+    3:
+      segment: 453
+      progress: 0.94375
+      forward: -1.8411692382267615
+    4:
+      segment: 454
+      progress: 0.9458333333333333
+      forward: -1.5876014161930982
+    5:
+      segment: 455
+      progress: 0.9479166666666666
+      forward: -1.1081604326470447
+    6:
+      segment: 456
+      progress: 0.95
+      forward: -0.5202252559101107
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/rothschild-route-topology.test.mjs:26:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: Rothschild -1/road edge: every real route segment advances without folding
+not ok 2 - Rothschild -1/road edge: every real route segment advances without folding
+  ---
+  duration_ms: 0.281791
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/rothschild-route-topology.test.mjs:17:5'
+  failureType: 'testCodeFailure'
+  error: |-
+    an offset route must not double back inside its own carriageway
+    + actual - expected
+    
+    + [
+    +   {
+    +     forward: -0.568390912462187,
+    +     progress: 0.9354166666666667,
+    +     segment: 449
+    +   },
+    +   {
+    +     forward: -1.8216806265477496,
+    +     progress: 0.9375,
+    +     segment: 450
+    +   },
+    +   {
+    +     forward: -2.8926913215025043,
+    +     progress: 0.9395833333333333,
+    +     segment: 451
+    +   },
+    +   {
+    +     forward: -3.3625413711497707,
+    +     progress: 0.9416666666666667,
+    +     segment: 452
+    +   },
+    +   {
+    +     forward: -3.4172899974468773,
+    +     progress: 0.94375,
+    +     segment: 453
+    +   },
+    +   {
+    +     forward: -3.04971231934873,
+    +     progress: 0.9458333333333333,
+    +     segment: 454
+    +   },
+    +   {
+    +     forward: -2.377319157655312,
+    +     progress: 0.9479166666666666,
+    +     segment: 455
+    +   },
+    +   {
+    +     forward: -1.5637898751031627,
+    +     progress: 0.95,
+    +     segment: 456
+    +   },
+    +   {
+    +     forward: -0.7390400010181125,
+    +     progress: 0.9520833333333333,
+    +     segment: 457
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      segment: 449
+      progress: 0.9354166666666667
+      forward: -0.568390912462187
+    1:
+      segment: 450
+      progress: 0.9375
+      forward: -1.8216806265477496
+    2:
+      segment: 451
+      progress: 0.9395833333333333
+      forward: -2.8926913215025043
+    3:
+      segment: 452
+      progress: 0.9416666666666667
+      forward: -3.3625413711497707
+    4:
+      segment: 453
+      progress: 0.94375
+      forward: -3.4172899974468773
+    5:
+      segment: 454
+      progress: 0.9458333333333333
+      forward: -3.04971231934873
+    6:
+      segment: 455
+      progress: 0.9479166666666666
+      forward: -2.377319157655312
+    7:
+      segment: 456
+      progress: 0.95
+      forward: -1.5637898751031627
+    8:
+      segment: 457
+      progress: 0.9520833333333333
+      forward: -0.7390400010181125
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/rothschild-route-topology.test.mjs:26:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: Rothschild -1/outer sidewalk edge: every real route segment advances without folding
+not ok 3 - Rothschild -1/outer sidewalk edge: every real route segment advances without folding
+  ---
+  duration_ms: 0.226292
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/rothschild-route-topology.test.mjs:17:5'
+  failureType: 'testCodeFailure'
+  error: |-
+    an offset route must not double back inside its own carriageway
+    + actual - expected
+    
+    + [
+    +   {
+    +     forward: -0.325914551812047,
+    +     progress: 0.9333333333333333,
+    +     segment: 448
+    +   },
+    +   {
+    +     forward: -1.2141396032025746,
+    +     progress: 0.9354166666666667,
+    +     segment: 449
+    +   },
+    +   {
+    +     forward: -2.70954038456971,
+    +     progress: 0.9375,
+    +     segment: 450
+    +   },
+    +   {
+    +     forward: -3.980575659559867,
+    +     progress: 0.9395833333333333,
+    +     segment: 451
+    +   },
+    +   {
+    +     forward: -4.528576426675503,
+    +     progress: 0.9416666666666667,
+    +     segment: 452
+    +   },
+    +   {
+    +     forward: -4.581689415483063,
+    +     progress: 0.94375,
+    +     segment: 453
+    +   },
+    +   {
+    +     forward: -4.129884047802584,
+    +     progress: 0.9458333333333333,
+    +     segment: 454
+    +   },
+    +   {
+    +     forward: -3.314942542253301,
+    +     progress: 0.9479166666666666,
+    +     segment: 455
+    +   },
+    +   {
+    +     forward: -2.3347498590785807,
+    +     progress: 0.95,
+    +     segment: 456
+    +   },
+    +   {
+    +     forward: -1.345926454866238,
+    +     progress: 0.9520833333333333,
+    +     segment: 457
+    +   },
+    +   {
+    +     forward: -0.4329745028789568,
+    +     progress: 0.9541666666666667,
+    +     segment: 458
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      segment: 448
+      progress: 0.9333333333333333
+      forward: -0.325914551812047
+    1:
+      segment: 449
+      progress: 0.9354166666666667
+      forward: -1.2141396032025746
+    2:
+      segment: 450
+      progress: 0.9375
+      forward: -2.70954038456971
+    3:
+      segment: 451
+      progress: 0.9395833333333333
+      forward: -3.980575659559867
+    4:
+      segment: 452
+      progress: 0.9416666666666667
+      forward: -4.528576426675503
+    5:
+      segment: 453
+      progress: 0.94375
+      forward: -4.581689415483063
+    6:
+      segment: 454
+      progress: 0.9458333333333333
+      forward: -4.129884047802584
+    7:
+      segment: 455
+      progress: 0.9479166666666666
+      forward: -3.314942542253301
+    8:
+      segment: 456
+      progress: 0.95
+      forward: -2.3347498590785807
+    9:
+      segment: 457
+      progress: 0.9520833333333333
+      forward: -1.345926454866238
+    10:
+      segment: 458
+      progress: 0.9541666666666667
+      forward: -0.4329745028789568
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/rothschild-route-topology.test.mjs:26:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Rothschild 1/lane center: every real route segment advances without folding
+ok 4 - Rothschild 1/lane center: every real route segment advances without folding
+  ---
+  duration_ms: 0.116
+  type: 'test'
+  ...
+# Subtest: Rothschild 1/road edge: every real route segment advances without folding
+ok 5 - Rothschild 1/road edge: every real route segment advances without folding
+  ---
+  duration_ms: 0.069958
+  type: 'test'
+  ...
+# Subtest: Rothschild 1/outer sidewalk edge: every real route segment advances without folding
+ok 6 - Rothschild 1/outer sidewalk edge: every real route segment advances without folding
+  ---
+  duration_ms: 0.072292
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 3
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 326.16525

@@ -126,7 +126,8 @@
     "traa.test.mjs": "current-unit",
     "vehicle-contact.test.mjs": "current-unit",
     "vehicle-visual-feedback.test.mjs": "current-unit",
-    "w-determinism.test.mjs": "current-unit"
+    "w-determinism.test.mjs": "current-unit",
+    "rothschild-route-topology.test.mjs": "current-unit"
   },
   "capture_initialization_recheck": "capture-verdict.test.mjs invokes soak-30min.mjs with a real empty browser cache to verify false initialization. This fails before browser startup/driving and is not a soak run. Only the separate current-long job can accept1800 seconds."
 }

@@ -35,7 +35,9 @@ export default defineTrack({
       tlv(32.0658, 34.7694),
       tlv(32.0638, 34.7688),
       tlv(32.0626, 34.7698),
-      tlv(32.0624, 34.7710),
+      // The extra southern control point made the inner carriageway fold
+      // back into the island. Close the fictional loop through the existing
+      // start point with room for the full road and both sidewalks.
     ],
     elevation: () => 0.4,
     streets: [

@@ -1,0 +1,12 @@
+import{readFile,writeFile}from'node:fs/promises';
+import{execFileSync}from'node:child_process';
+import{tlv}from'./rush-glazing-ci/src/game/tracks.ts';
+import{buildTrack,sampleAtT}from'./rush-glazing-ci/src/game/spline.ts';
+import{getTrack}from'./rush-glazing-ci/src/game/tracks.ts';
+import{wrapPi,clamp}from'./rush-glazing-ci/src/game/math.ts';
+const data=JSON.parse(await readFile(new URL('./rothschild-bend-parent/rothschild.json',import.meta.url))),source=execFileSync('git',['-C',new URL('./rush-glazing-ci/',import.meta.url).pathname,'show',data.sourceHead+':src/game/tracks/rothschild.ts'],{encoding:'utf8'}),points=[...source.split('points: [')[1].split('elevation:')[0].matchAll(/tlv\(([\d.]+),\s*([\d.]+)\)/g)].map(m=>tlv(Number(m[1]),Number(m[2]))),track=buildTrack({...getTrack('rothschild'),points});
+const rows=[];
+for(const group of data.damageGroups)for(const row of group.risk){const car=row.cars[0].state,here=track.samples[car.sampleIndex],nominal=24+clamp(car.speed,0,32)*.55,t=(car.progress+Math.min(.06,nominal/Math.max(200,track.length)))%1,a=sampleAtT(track.samples,t),offset=-11.1,tx=a.x+a.rx*offset,tz=a.z+a.rz*offset;
+const actualArc=(a.s-here.s+track.length)%track.length,err=wrapPi(Math.atan2(-(tx-car.x),-(tz-car.z))-car.yaw),lateral=(car.x-here.x)*here.rx+(car.z-here.z)*here.rz;
+rows.push({time:row.time,speed:car.speed,progress:car.progress,lateral,nominalLookMetres:nominal,actualCenterlineArcMetres:actualArc,chordMetres:Math.hypot(tx-car.x,tz-car.z),err,input:row.input});}
+const result={scope:'Read-only analysis of recorded actual parent states against unchanged Rothschild geometry; not current-head race acceptance',captureHead:data.sourceHead,trackLength:track.length,rows};await writeFile(new URL('./rothschild-bend-parent-lookahead.json',import.meta.url),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
