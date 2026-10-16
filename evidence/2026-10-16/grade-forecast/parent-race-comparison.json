@@ -1,0 +1,71 @@
+{
+  "parent_head": "dd1d3c79bb9d189ed8509ed4d7edba3a2fe43f49",
+  "current_authority": "grade-forecast-source.json runtime hashes;containing commit bound externally",
+  "scope": "Actual assisted browser simulation times/damage;UI/frame scheduling is not isolated. Observational comparison,not causal pace calibration oracceptance.",
+  "rows": [
+    {
+      "track": "oldjaffa",
+      "parent_seconds": 295.9999999998951,
+      "current_seconds": 295.9999999998951,
+      "ratio": 1.0,
+      "parent_damage": 0,
+      "current_damage": 0
+    },
+    {
+      "track": "namal",
+      "parent_seconds": 223.66666666662758,
+      "current_seconds": 223.66666666662758,
+      "ratio": 1.0,
+      "parent_damage": 0,
+      "current_damage": 0
+    },
+    {
+      "track": "haifa",
+      "parent_seconds": 61.74999999999714,
+      "current_seconds": 62.79999999999708,
+      "ratio": 1.0170040485829959,
+      "parent_damage": 0.02598519591302683,
+      "current_damage": 0
+    },
+    {
+      "track": "rothschild",
+      "parent_seconds": 297.6999999998936,
+      "current_seconds": 297.6999999998936,
+      "ratio": 1.0,
+      "parent_damage": 0.09495938364763545,
+      "current_damage": 0.09495938364763545
+    },
+    {
+      "track": "ayalon",
+      "parent_seconds": 88.53333333334986,
+      "current_seconds": 88.53333333334986,
+      "ratio": 1.0,
+      "parent_damage": 0,
+      "current_damage": 0
+    },
+    {
+      "track": "hermon",
+      "parent_seconds": 140.5500000000365,
+      "current_seconds": 140.56666666670316,
+      "ratio": 1.0001185817621248,
+      "parent_damage": 0,
+      "current_damage": 0
+    },
+    {
+      "track": "scopus",
+      "parent_seconds": 96.86666666668982,
+      "current_seconds": 96.94166666668988,
+      "ratio": 1.0007742601514114,
+      "parent_damage": 0.11542301376378872,
+      "current_damage": 0.11542301376378872
+    },
+    {
+      "track": "ramon",
+      "parent_seconds": 114.02500000003681,
+      "current_seconds": 114.02500000003681,
+      "ratio": 1.0,
+      "parent_damage": 0,
+      "current_damage": 0
+    }
+  ]
+}

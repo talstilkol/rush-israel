@@ -258,3 +258,5 @@ await import('./landmark-footprint-smoke.mjs');
 await import('./preview-road-clearance-smoke.mjs');
 
 await import('./vehicle-contact-smoke.mjs');
+
+await import('./grade-forecast-smoke.mjs');

@@ -11,7 +11,7 @@ test('the current acceleration reference matches the record epoch without changi
   assert.equal(prior.physicsVersion, 11, 'retain the actual parent reference');
   const { physicsVersion: currentEpoch, authority: currentAuthority, ...currentNumbers } = reference;
   const { physicsVersion: priorEpoch, authority: priorAuthority, ...priorNumbers } = prior;
-  assert.equal(currentEpoch, 16, 'a later calibration requires a new explicit reference review');
+  assert.equal(currentEpoch, 17, 'a later calibration requires a new explicit reference review');
   assert.equal(priorEpoch, 11);
   assert.ok(currentAuthority && priorAuthority);
   assert.deepEqual(currentNumbers, priorNumbers,

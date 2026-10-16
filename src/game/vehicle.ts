@@ -996,16 +996,26 @@ function pathInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar): Input
 
 // Avoidance uses the same measured, oriented envelope as contact resolution.
 
-function avoidVehicleContact(car: ArcadeCar, input: InputState, vehicles: readonly ArcadeCar[]): InputState {
+function sameForecastRoadLevel(car: ArcadeCar, other: ArcadeCar, track: BuiltTrack) {
+  if (!car.onTrack || !other.onTrack) return false;
+  const ahead = forwardDelta(car.progress, other.progress, track.closed) * track.length;
+  // Nearby in x/z need not mean nearby along a folded or elevated route.
+  if (ahead < 0 || ahead > 72) return false;
+  const here = track.samples[car.sampleIndex], there = track.samples[other.sampleIndex];
+  if (!here || !there) return false;
+  return Math.abs((other.y - there.y) - (car.y - here.y)) <= 4;
+}
+
+function avoidVehicleContact(car: ArcadeCar, input: InputState, vehicles: readonly ArcadeCar[], track: BuiltTrack): InputState {
   const fx = -Math.sin(car.yaw), fz = -Math.cos(car.yaw);
   const rx = Math.cos(car.yaw), rz = -Math.sin(car.yaw);
   let brake = input.brake;
   let hazard = false;
   for (const other of vehicles) {
-    // Avoidance predicts future contact: on a grade, an approaching body is
-    // at another height before reaching us. Retain the existing four-metre
-    // forecast corridor; only actual contact uses tight solid height bounds.
-    if (other === car || Math.abs(other.y - car.y) > 4) continue;
+    // On a grade compare each on-track vehicle with its own road sample.
+    // Keep the existing absolute-height corridor for other close contacts;
+    // never extend it to another route leg, incompatible height or off-road surface.
+    if (other === car || (Math.abs(other.y - car.y) > 4 && !sameForecastRoadLevel(car, other, track))) continue;
     const dx = other.x - car.x, dz = other.z - car.z;
     const along = dx * fx + dz * fz;
     if (along <= 0 || along > 72) continue;
@@ -1030,7 +1040,7 @@ function avoidVehicleContact(car: ArcadeCar, input: InputState, vehicles: readon
 }
 
 export function aiInput(car: ArcadeCar, track: BuiltTrack, player?: ArcadeCar, vehicles: readonly ArcadeCar[] = []): InputState {
-  return avoidVehicleContact(car, pathInput(car, track, player), vehicles);
+  return avoidVehicleContact(car, pathInput(car, track, player), vehicles, track);
 }
 
 export function trafficInput(car: ArcadeCar, track: BuiltTrack, vehicles: readonly ArcadeCar[] = []): InputState {
@@ -1048,7 +1058,7 @@ export function trafficInput(car: ArcadeCar, track: BuiltTrack, vehicles: readon
     brake: Math.abs(err) > 0.65 && car.speed > 11 ? 0.45 : 0,
     drift: false,
     nitro: false,
-  }, vehicles);
+  }, vehicles, track);
 }
 
 export function copInput(car: ArcadeCar, track: BuiltTrack, target: ArcadeCar, heat = 0.4): InputState {

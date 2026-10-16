@@ -1,0 +1,7 @@
+{
+  "kind": "actual-road-relative-grade-forecast",
+  "passed": false,
+  "scope": "Actual dd1 Haifa approach states and one full assisted Haifa race using actual engine/traffic. Clear weather/default setup only. Not calibrated braking,competitive pace,human driving,art,all conditions ordevice acceptance.",
+  "errors": [],
+  "error": "Error: page.evaluate: Error: Actual grade hazard ignored: 5.6500000000000705/aiInput\n    at eval (eval at evaluate (:311:30), <anonymous>:11:209)\n    at async <anonymous>:337:30"
+}

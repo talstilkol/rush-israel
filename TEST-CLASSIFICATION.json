@@ -9,6 +9,7 @@
   "tests": {
     "accel-reference.test.mjs": "current-unit",
     "ai-corner-speed.test.mjs": "current-unit",
+    "ai-grade-forecast.test.mjs": "current-unit",
     "ai-vehicle-avoidance.test.mjs": "current-unit",
     "audio-lock.test.mjs": "historical-contract",
     "azrieli-bands.test.mjs": "current-unit",
