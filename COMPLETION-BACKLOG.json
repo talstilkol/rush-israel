@@ -348,7 +348,7 @@
       "acceptance": "Q-ART: סצנות יום/לילה/גשם מזוהות, חומרי כביש/רכב עקביים, ללא חדירת מצלמה או תמיכה לכביש; Playtest והשוואה חזותית אנושית מתועדים.",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "צילומי GPU אמיתי נבדקו, ובהם מנהרות הנמל ורמון אחרי תיקון חפיפת הקירות. העולם עדיין גס, המכוניות גנרטיביות והאמנות אינה מאושרת. אין golden או הקפאה חדשים.",
+      "verification_note": "צילומי GPU אמיתי נבדקו, ובהם מנהרות הנמל ורמון אחרי תיקון חפיפת הקירות. העולם עדיין גס, המכוניות גנרטיביות והאמנות אינה מאושרת. אין golden או הקפאה חדשים. תוקנה חסימת מצלמת הפגוש על ידי דגם השחקן והצל. ארבע מצלמות ומבט לאחור נבדקו עם C/B אמיתיים, בצילומי לפני/אחרי וב־GPU פיזי; אין מכאן קבלת מצלמות מלאה.",
       "external_evidence_required": true
     },
     {
@@ -756,5 +756,6 @@
   "current_ci_authority": "GitHub required-ci for the actual Git HEAD. Immutable CI references in this document never assert the verdict of a future commit.",
   "implementation_evidence": "evidence/2026-10-16/physics10/proof.json",
   "supplemental_implementation_evidence": "evidence/2026-10-16/package-freeze/proof.json",
-  "current_claim_authority_evidence": "evidence/2026-10-16/current-freeze-claims/proof.json"
+  "current_claim_authority_evidence": "evidence/2026-10-16/current-freeze-claims/proof.json",
+  "camera_implementation_evidence": "evidence/2026-10-16/bumper-camera/proof.json"
 }

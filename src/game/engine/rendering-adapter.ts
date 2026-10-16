@@ -504,9 +504,9 @@ export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine["pres
         (blob.material as THREE.MeshBasicMaterial).opacity = (this.world.night ? 0.68 : 0.5) * (c.airborne ? 0.12 : 1);
       }
       if (i === 0) {
-        const cockpit = this.camMode === 1 && !this.lookBack && !this.replaying && !this.photo;
-        this.visuals[0].group.visible = !cockpit && !c.eliminated;
-        if (blob && cockpit) blob.visible = false;
+        const firstPerson = (this.camMode === 1 || this.camMode === 2) && !this.lookBack && !this.replaying && !this.photo;
+        this.visuals[0].group.visible = !firstPerson && !c.eliminated;
+        if (blob && firstPerson) blob.visible = false;
       }
     }
     for (let i = 0; i < this.traffic.length; i++) {

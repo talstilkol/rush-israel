@@ -1,0 +1,17 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: camera 2: the player's own exterior must not obstruct a first-person view
+
+true !== false
+
+    at file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-israel-pr83/scripts/race-condition-smoke.mjs:71:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: true,
+  expected: false,
+  operator: 'strictEqual'
+}
+
+Node.js v22.16.0

@@ -1,0 +1,73 @@
+{
+  "source_base_sha": "4036d79ae602294ddd30449cf26678d39ccbe7a2",
+  "source_authority": "Exact modified file hashes below; before the containing commit.",
+  "files": {
+    "src/game/engine/rendering-adapter.ts": "16cc7ccd7c27e51659efd081aa45c0b166b655fb88b7fc618b212744b01577e1",
+    "scripts/race-condition-smoke.mjs": "b496647b6827bfb9ea7fbd786cd740c2ccffb3ee07003503bbd5f4ae2a6cdf25"
+  },
+  "reproduced_before": "Actual UI camera 2 rendered the player exterior and failed the real-model visibility assertion.",
+  "after": "All four camera views, C input and first-person B look-back visibility transitions pass in actual headless and headed browser scenes. Player body and blob are hidden in bumper view.",
+  "unchanged": "Physics 10 equations, inputs, colliders and official record rules. This does not solve camera collision against every world mesh.",
+  "local_unit_pass": 327,
+  "typecheck_exit": 0,
+  "lint_errors": 0,
+  "lint_existing_warnings": 111,
+  "production_qa_hooks": "absent, nine JS files",
+  "native_hardware": "Apple M4 Max, Metal, macOS27.0 build26A428",
+  "product_accepted": false,
+  "hosted_ci_authority": "Actual Git HEAD required-ci, including a new full 1800-second soak.",
+  "artifacts": [
+    {
+      "path": "evidence/2026-10-16/bumper-camera/bumper-camera-before.log",
+      "sha256": "7980f4b6f5be3dc2a07a316b6e5ba43e676c951ada05c9bd50f57969bceb967a"
+    },
+    {
+      "path": "evidence/2026-10-16/bumper-camera/bumper-camera-after-lookback.log",
+      "sha256": "72d5a268bf4299a970b649990d31953e5b8f1a5f195518287fe3ae586ebb9a94"
+    },
+    {
+      "path": "evidence/2026-10-16/bumper-camera/bumper-camera-native.log",
+      "sha256": "e583f8d3243e62e88a0bc6bdb0fe7c867be862f0ca1b548316e49fa90b08bbbb"
+    },
+    {
+      "path": "evidence/2026-10-16/bumper-camera/bumper-camera-unit.log",
+      "sha256": "1069ee152e3002339fffc6545439589e04c4423a78eca309b3d5c24c23b9b5db"
+    },
+    {
+      "path": "evidence/2026-10-16/bumper-camera/bumper-camera-typecheck.log",
+      "sha256": "602ec0d473a17c01dcdc2e92e85bf4ba1bdc73a68d0f14c2da2e4b2748e00204"
+    },
+    {
+      "path": "evidence/2026-10-16/bumper-camera/bumper-camera-lint.log",
+      "sha256": "75ec7dc2e291581eeeb38bf4ba0535b6220ec7c990e8878fb27a4770c2a261b6"
+    },
+    {
+      "path": "evidence/2026-10-16/bumper-camera/bumper-camera-production.log",
+      "sha256": "34ae98f7b97db6dd8d38bd215e84ab0dc2b0bb43a7cac5c05473f66c0fb52cf0"
+    },
+    {
+      "path": "evidence/2026-10-16/bumper-camera/before.png",
+      "sha256": "293780fbc5eabc5785fe9b1c559d644ea07f1b29c822989ab392a49d3c039b61"
+    },
+    {
+      "path": "evidence/2026-10-16/bumper-camera/after.png",
+      "sha256": "1ca45fbb97284f469f979061ff4dab86e795e288fce84653170185e03e516539"
+    },
+    {
+      "path": "evidence/2026-10-16/bumper-camera/native-after.png",
+      "sha256": "36bf136e68ec3ef343bf31189b4bf90186061d1981dad5c32c968f5a1f6a3fee"
+    },
+    {
+      "path": "evidence/2026-10-16/bumper-camera/native-after.json",
+      "sha256": "8931fa2a239b261fb210fb69562298b66869f1b5f426008ba1281ae3f608391f"
+    },
+    {
+      "path": "evidence/2026-10-16/bumper-camera/skill-shot.png",
+      "sha256": "16c658d84d19b9fdd2e6b31e6d61b64bf9313c8015c0ba9e128a6a24c3084e43"
+    },
+    {
+      "path": "evidence/2026-10-16/bumper-camera/skill-state.json",
+      "sha256": "a959f7acf8b884ba09f66c91de7dec5babbac6e376b6cf056d91720355e9cb0a"
+    }
+  ]
+}
