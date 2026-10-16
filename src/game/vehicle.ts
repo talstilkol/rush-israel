@@ -25,6 +25,7 @@ type CarTransientState = Pick<ArcadeCar,
 > & { nitroHeld: boolean; holdSteer: number };
 
 export type CarSnap = {
+  visualInput?: Pick<InputState, "steer" | "brake">;
   transient?: CarTransientState;
   x: number;
   y: number;
@@ -79,6 +80,8 @@ function probeRamp(x: number, z: number, ramps: Ramp[], yHint = 0) {
 }
 
 export class ArcadeCar {
+  visualSteer = 0;
+  visualBrake = 0;
   x = 0;
   y = 0;
   z = 0;
@@ -154,6 +157,7 @@ export class ArcadeCar {
   }
 
   spawn(track: BuiltTrack, t: number, lateral: number) {
+    this.visualSteer = this.visualBrake = 0;
     const s = sampleAtT(track.samples, t);
     this.x = s.x + s.rx * lateral;
     this.z = s.z + s.rz * lateral;
@@ -205,6 +209,10 @@ export class ArcadeCar {
 
   /** Returns true only when this tick automatically rescues the car. */
   step(dt: number, input: InputState, track: BuiltTrack, racing: boolean, colliders: Collider[] = [], streets: StreetRibbon[] = [], ramps: Ramp[] = []): boolean {
+    // Presentation follows the last simulated control, including replay frames.
+    const active = racing && !this.finished && !this.eliminated;
+    this.visualSteer = active ? input.steer : 0;
+    this.visualBrake = active ? input.brake : 0;
     this.impact = 0;
     this.lastHit = "";
     this.nitroPulse = false;
@@ -788,6 +796,7 @@ export class ArcadeCar {
 
   snap(): CarSnap {
     return {
+      visualInput: { steer: this.visualSteer, brake: this.visualBrake },
       x: this.x,
       y: this.y,
       z: this.z,
@@ -849,6 +858,9 @@ export class ArcadeCar {
   }
 
   load(s: CarSnap) {
+    // Older replay frames have no control feedback; never retain a later frame's lights.
+    this.visualSteer = s.visualInput?.steer ?? 0;
+    this.visualBrake = s.visualInput?.brake ?? 0;
     if (s.transient) Object.assign(this, s.transient);
     this.x = s.x;
     this.y = s.y;

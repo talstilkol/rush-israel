@@ -348,7 +348,7 @@
       "acceptance": "Q-ART: סצנות יום/לילה/גשם מזוהות, חומרי כביש/רכב עקביים, ללא חדירת מצלמה או תמיכה לכביש; Playtest והשוואה חזותית אנושית מתועדים.",
       "status": "open",
       "assigned_person": null,
-      "verification_note": "צילומי GPU אמיתי נבדקו, ובהם מנהרות הנמל ורמון אחרי תיקון חפיפת הקירות. העולם עדיין גס, המכוניות גנרטיביות והאמנות אינה מאושרת. אין golden או הקפאה חדשים. תוקנה חסימת מצלמת הפגוש על ידי דגם השחקן והצל. ארבע מצלמות ומבט לאחור נבדקו עם C/B אמיתיים, בצילומי לפני/אחרי וב־GPU פיזי; אין מכאן קבלת מצלמות מלאה.",
+      "verification_note": "צילומי GPU אמיתי נבדקו, ובהם מנהרות הנמל ורמון אחרי תיקון חפיפת הקירות. העולם עדיין גס, המכוניות גנרטיביות והאמנות אינה מאושרת. אין golden או הקפאה חדשים. תוקנה חסימת מצלמת הפגוש על ידי דגם השחקן והצל. ארבע מצלמות ומבט לאחור נבדקו עם C/B אמיתיים, בצילומי לפני/אחרי וב־GPU פיזי; אין מכאן קבלת מצלמות מלאה. במצב Photo תוקן ערבוב זוויות roll/pitch; בדפדפן נשמרו תנוחת הרכב והגלגלים על שיפוע אמיתי של ירידת הכרמל. אין מכאן קבלת אמנות או Photo מלאה.",
       "external_evidence_required": true
     },
     {
@@ -378,9 +378,9 @@
       ],
       "deliverable": "תגובות engine brake surface impact ומצבים",
       "acceptance": "pause mute resume unlock עובדים; feedback מובן ב-Playtest",
-      "status": "open",
+      "status": "partial",
       "assigned_person": null,
-      "verification_note": "Known feedback gap: rendering-adapter.ts passes brake=0 for rival and traffic visuals. Their actual applied controls must be represented in snapshot/replay/render state before human acceptance of new AI braking. Existing engine/brake/surface/impact audio and full pause/mute/unlock flows also remain to verify.",
+      "verification_note": "Last simulated steering/brake input is now captured per vehicle and restored with snapshots. Actual browser materials on rival, traffic and police cars pass brake/coast/restore checks; 20 production-vehicle tests cover snapshot compatibility and inactive states. This closes the missing visual control signal only. Engine/brake/surface/impact audio, pause/mute/unlock and human feedback acceptance remain open.",
       "external_evidence_required": false
     },
     {

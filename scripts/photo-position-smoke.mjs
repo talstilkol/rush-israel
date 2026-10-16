@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /** Actual photo camera placement; this does not accept the art or freeze it. */
 import assert from 'node:assert/strict';
+import {verifyVehicleVisualFeedback} from './visual-feedback-smoke.mjs';
 import { chromium } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fromRoot } from './project-root.mjs';
@@ -43,3 +44,6 @@ try {
   await writeFile(`${output}/summary.json`, JSON.stringify({ kind: 'actual-route-photo-placement', cameraSource: 'frameWorld at g04/g05/g06 route positions; not canonical golden poses', ownerApproved: false, artFreeze: false, shots, pageErrors: errors }, null, 2) + '\n');
   console.log('photo-position-smoke ok', JSON.stringify(shots.map(shot => ({ id: shot.id, horizontalDistance: shot.horizontalDistance }))));
 } finally { await browser.close(); }
+
+// Same required photo gate also checks pose and vehicle-control feedback.
+await verifyVehicleVisualFeedback();

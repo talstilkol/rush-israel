@@ -1,0 +1,130 @@
+TAP version 13
+# Subtest: sabra: AI braking survives snapshots and clears on coast/spawn/old replay
+ok 1 - sabra: AI braking survives snapshots and clears on coast/spawn/old replay
+  ---
+  duration_ms: 1.830583
+  type: 'test'
+  ...
+# Subtest: sabra: countdown does not display inactive controls
+ok 2 - sabra: countdown does not display inactive controls
+  ---
+  duration_ms: 0.142167
+  type: 'test'
+  ...
+# Subtest: sabra: finished does not display inactive controls
+ok 3 - sabra: finished does not display inactive controls
+  ---
+  duration_ms: 0.11125
+  type: 'test'
+  ...
+# Subtest: sabra: eliminated does not display inactive controls
+ok 4 - sabra: eliminated does not display inactive controls
+  ---
+  duration_ms: 0.093417
+  type: 'test'
+  ...
+# Subtest: carmel: AI braking survives snapshots and clears on coast/spawn/old replay
+ok 5 - carmel: AI braking survives snapshots and clears on coast/spawn/old replay
+  ---
+  duration_ms: 0.558125
+  type: 'test'
+  ...
+# Subtest: carmel: countdown does not display inactive controls
+ok 6 - carmel: countdown does not display inactive controls
+  ---
+  duration_ms: 0.123083
+  type: 'test'
+  ...
+# Subtest: carmel: finished does not display inactive controls
+ok 7 - carmel: finished does not display inactive controls
+  ---
+  duration_ms: 0.209083
+  type: 'test'
+  ...
+# Subtest: carmel: eliminated does not display inactive controls
+ok 8 - carmel: eliminated does not display inactive controls
+  ---
+  duration_ms: 0.082125
+  type: 'test'
+  ...
+# Subtest: kfir: AI braking survives snapshots and clears on coast/spawn/old replay
+ok 9 - kfir: AI braking survives snapshots and clears on coast/spawn/old replay
+  ---
+  duration_ms: 0.573042
+  type: 'test'
+  ...
+# Subtest: kfir: countdown does not display inactive controls
+ok 10 - kfir: countdown does not display inactive controls
+  ---
+  duration_ms: 1.78025
+  type: 'test'
+  ...
+# Subtest: kfir: finished does not display inactive controls
+ok 11 - kfir: finished does not display inactive controls
+  ---
+  duration_ms: 0.130542
+  type: 'test'
+  ...
+# Subtest: kfir: eliminated does not display inactive controls
+ok 12 - kfir: eliminated does not display inactive controls
+  ---
+  duration_ms: 0.208541
+  type: 'test'
+  ...
+# Subtest: negev: AI braking survives snapshots and clears on coast/spawn/old replay
+ok 13 - negev: AI braking survives snapshots and clears on coast/spawn/old replay
+  ---
+  duration_ms: 0.168833
+  type: 'test'
+  ...
+# Subtest: negev: countdown does not display inactive controls
+ok 14 - negev: countdown does not display inactive controls
+  ---
+  duration_ms: 0.03425
+  type: 'test'
+  ...
+# Subtest: negev: finished does not display inactive controls
+ok 15 - negev: finished does not display inactive controls
+  ---
+  duration_ms: 0.023792
+  type: 'test'
+  ...
+# Subtest: negev: eliminated does not display inactive controls
+ok 16 - negev: eliminated does not display inactive controls
+  ---
+  duration_ms: 0.021291
+  type: 'test'
+  ...
+# Subtest: yam: AI braking survives snapshots and clears on coast/spawn/old replay
+ok 17 - yam: AI braking survives snapshots and clears on coast/spawn/old replay
+  ---
+  duration_ms: 0.083541
+  type: 'test'
+  ...
+# Subtest: yam: countdown does not display inactive controls
+ok 18 - yam: countdown does not display inactive controls
+  ---
+  duration_ms: 0.024125
+  type: 'test'
+  ...
+# Subtest: yam: finished does not display inactive controls
+ok 19 - yam: finished does not display inactive controls
+  ---
+  duration_ms: 0.018625
+  type: 'test'
+  ...
+# Subtest: yam: eliminated does not display inactive controls
+ok 20 - yam: eliminated does not display inactive controls
+  ---
+  duration_ms: 0.01875
+  type: 'test'
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 354.939958

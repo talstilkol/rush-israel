@@ -1,0 +1,106 @@
+{
+  "scope": "Controlled real engine/material integration. Actual route/vehicles, not human/device/art acceptance; braking response tested with production controller for each actual visual family.",
+  "rows": [
+    {
+      "family": "racer",
+      "input": {
+        "steer": 0.12306973849364627,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      },
+      "lit": [
+        4.6,
+        4.6,
+        4.6
+      ],
+      "coast": [
+        0.45,
+        0.45,
+        0.45
+      ],
+      "replay": [
+        4.6,
+        4.6,
+        4.6
+      ],
+      "passed": true
+    },
+    {
+      "family": "traffic",
+      "input": {
+        "steer": -0.049784016268877455,
+        "throttle": 0,
+        "brake": 1,
+        "drift": false,
+        "nitro": false
+      },
+      "lit": [
+        4.6,
+        4.6,
+        4.6
+      ],
+      "coast": [
+        0.45,
+        0.45,
+        0.45
+      ],
+      "replay": [
+        4.6,
+        4.6,
+        4.6
+      ],
+      "passed": true
+    },
+    {
+      "family": "cop",
+      "input": {
+        "steer": 0.010661579128318978,
+        "throttle": 0,
+        "brake": 0.9252232142857144,
+        "drift": false,
+        "nitro": false
+      },
+      "lit": [
+        4.6,
+        4.6,
+        4.6
+      ],
+      "coast": [
+        0.45,
+        0.45,
+        0.45
+      ],
+      "replay": [
+        4.6,
+        4.6,
+        4.6
+      ],
+      "passed": true
+    }
+  ],
+  "photo": {
+    "track": "haifa",
+    "roadGrade": -0.19993684653705138,
+    "pitch": 0.5188460045456011,
+    "roll": -0.04233116114320222,
+    "before": [
+      0.28536530250008063,
+      6.090364724834082,
+      -0.04233116114320222,
+      "YXZ"
+    ],
+    "after": [
+      0.28536530250008063,
+      6.090364724834082,
+      -0.04233116114320222,
+      "YXZ"
+    ],
+    "wheelsFrozen": true,
+    "carFrozen": true,
+    "passed": true
+  },
+  "errors": [],
+  "passed": true
+}

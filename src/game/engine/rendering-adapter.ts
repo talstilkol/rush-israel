@@ -469,7 +469,7 @@ export function stepPhoto(this: EngineAdapterHost, dt: Parameters<RaceEngine["st
     this.post.setFilter(this.photoFilter);
     for (let i = 0; i < this.racers.length; i++) {
       const c = this.racers[i];
-      updateCarVisual(this.visuals[i], c.yaw, 0, 0, 0, dt, c.x, c.y, c.z, c.pitch, 0);
+      updateCarVisual(this.visuals[i], c.yaw, c.speed, c.visualSteer, c.visualBrake, 0, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
     }
   }
 // RSH-017-BODY-END:stepPhoto
@@ -486,8 +486,7 @@ export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine["pres
     }
     for (let i = 0; i < this.racers.length; i++) {
       const c = this.racers[i];
-      const steer = i === 0 ? this.inputSnap.steer : clamp(c.roll * -3, -1, 1);
-      updateCarVisual(this.visuals[i], c.yaw, c.speed, steer, i === 0 ? this.inputSnap.brake : 0, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
+      updateCarVisual(this.visuals[i], c.yaw, c.speed, c.visualSteer, c.visualBrake, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
       if (i === 0) {
         setExhaust(this.visuals[i], c.boostT > 0, this.nowSec * 22);
         const steerNow = this.inputSnap.steer;
@@ -511,11 +510,11 @@ export function present(this: EngineAdapterHost, dt: Parameters<RaceEngine["pres
     }
     for (let i = 0; i < this.traffic.length; i++) {
       const c = this.traffic[i];
-      updateCarVisual(this.trafficVis[i], c.yaw, c.speed, 0, 0, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
+      updateCarVisual(this.trafficVis[i], c.yaw, c.speed, c.visualSteer, c.visualBrake, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
     }
     for (let i = 0; i < this.cops.length; i++) {
       const c = this.cops[i];
-      updateCarVisual(this.copVis[i], c.yaw, c.speed, 0, 0, dt, c.x, c.y, c.z, c.roll, c.pitch);
+      updateCarVisual(this.copVis[i], c.yaw, c.speed, c.visualSteer, c.visualBrake, dt, c.x, c.y, c.z, c.roll, c.pitch, c.surfaceKind);
       pulsePolice(this.copVis[i], this.nowSec + i * 0.17);
     }
 

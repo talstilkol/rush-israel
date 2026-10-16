@@ -117,6 +117,7 @@
     "current-freeze-claims.test.mjs": "current-unit",
     "grade-direction.test.mjs": "current-unit",
     "ai-corner-speed.test.mjs": "current-unit",
-    "ai-vehicle-avoidance.test.mjs": "current-unit"
+    "ai-vehicle-avoidance.test.mjs": "current-unit",
+    "vehicle-visual-feedback.test.mjs": "current-unit"
   }
 }
