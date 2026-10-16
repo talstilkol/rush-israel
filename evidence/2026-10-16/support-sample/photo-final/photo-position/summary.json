@@ -1,0 +1,168 @@
+{
+  "kind": "actual-route-photo-placement",
+  "cameraSource": "frameWorld at g04/g05/g06 route positions; not canonical golden poses",
+  "ownerApproved": false,
+  "artFreeze": false,
+  "shots": [
+    {
+      "id": "g04",
+      "horizontalDistance": 27.999999999999993,
+      "camera": {
+        "px": 1061.4374999999397,
+        "py": 22,
+        "pz": -88.11280000022862,
+        "lx": 1061.4374999999397,
+        "ly": 4.398442485760091,
+        "lz": -60.112800000228624,
+        "fov": 40
+      },
+      "state": {
+        "track": "ayalon",
+        "quality": "high",
+        "weather": "clear",
+        "night": false,
+        "speed": 0,
+        "progress": 0.419,
+        "onTrack": true,
+        "coordinates": "metres; x/z horizontal, y up; yaw radians",
+        "position": {
+          "x": 1061.4374999999397,
+          "y": 2.3984424857600906,
+          "z": -60.112800000228624
+        },
+        "countdown": 0,
+        "totalTime": 0,
+        "lapTime": 0,
+        "lap": 0,
+        "checkpoints": -1,
+        "finished": false,
+        "damage": 0,
+        "assisted": false,
+        "timeVoided": false,
+        "telem": {
+          "n": 1,
+          "p50": 4637.2,
+          "p95": 4637.2,
+          "p99": 4637.2,
+          "last": 4637.2,
+          "backend": "webgl2"
+        },
+        "csm": false,
+        "photo": true,
+        "webgpuTried": false,
+        "webgpuOk": false,
+        "webgpuReason": "",
+        "blobKtx2": false,
+        "ssgiOff": true,
+        "photoAa": "smaa"
+      }
+    },
+    {
+      "id": "g05",
+      "horizontalDistance": 28,
+      "camera": {
+        "px": 1061.4374999999397,
+        "py": 22,
+        "pz": 15.414799999874347,
+        "lx": 1061.4374999999397,
+        "ly": 4.865426055589632,
+        "lz": 43.41479999987435,
+        "fov": 40
+      },
+      "state": {
+        "track": "ayalon",
+        "quality": "high",
+        "weather": "clear",
+        "night": false,
+        "speed": 0,
+        "progress": 0.459,
+        "onTrack": true,
+        "coordinates": "metres; x/z horizontal, y up; yaw radians",
+        "position": {
+          "x": 1061.4374999999397,
+          "y": 2.8654260555896314,
+          "z": 43.41479999987435
+        },
+        "countdown": 0,
+        "totalTime": 0,
+        "lapTime": 0,
+        "lap": 0,
+        "checkpoints": -1,
+        "finished": false,
+        "damage": 0,
+        "assisted": false,
+        "timeVoided": false,
+        "telem": {
+          "n": 11,
+          "p50": 163.8,
+          "p95": 4637.2,
+          "p99": 4637.2,
+          "last": 166.1,
+          "backend": "webgl2"
+        },
+        "csm": false,
+        "photo": true,
+        "webgpuTried": false,
+        "webgpuOk": false,
+        "webgpuReason": "",
+        "blobKtx2": false,
+        "ssgiOff": true,
+        "photoAa": "smaa"
+      }
+    },
+    {
+      "id": "g06",
+      "horizontalDistance": 28,
+      "camera": {
+        "px": 1061.4374999999397,
+        "py": 22,
+        "pz": 172.37599999988893,
+        "lx": 1061.4374999999397,
+        "ly": 5.008411178711903,
+        "lz": 200.37599999988893,
+        "fov": 40
+      },
+      "state": {
+        "track": "ayalon",
+        "quality": "high",
+        "weather": "clear",
+        "night": false,
+        "speed": 0,
+        "progress": 0.519,
+        "onTrack": true,
+        "coordinates": "metres; x/z horizontal, y up; yaw radians",
+        "position": {
+          "x": 1061.4374999999397,
+          "y": 3.0084111787119032,
+          "z": 200.37599999988893
+        },
+        "countdown": 0,
+        "totalTime": 0,
+        "lapTime": 0,
+        "lap": 0,
+        "checkpoints": -1,
+        "finished": false,
+        "damage": 0,
+        "assisted": false,
+        "timeVoided": false,
+        "telem": {
+          "n": 25,
+          "p50": 118,
+          "p95": 1459.7,
+          "p99": 4637.2,
+          "last": 100.5,
+          "backend": "webgl2"
+        },
+        "csm": false,
+        "photo": true,
+        "webgpuTried": false,
+        "webgpuOk": false,
+        "webgpuReason": "",
+        "blobKtx2": false,
+        "ssgiOff": true,
+        "photoAa": "smaa"
+      }
+    }
+  ],
+  "pageErrors": []
+}

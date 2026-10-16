@@ -29,16 +29,27 @@ export async function verifyCarGlazing() {
    if(allVisible){
     for(let cycle=-2;cycle<20;cycle++){
      for(const def of CARS){const t=performance.now(),v=createCarVisual(def.color,def.accent,true,false,def.body);if(cycle>=0)construction.push(performance.now()-t);v.group.position.copy(e.visuals[0].group.position);v.group.rotation.copy(e.visuals[0].group.rotation);e.scene.add(v.group);e.post.render();e.scene.remove(v.group);disposeCarVisual(v);}
-     e.post.render();if(cycle>=0)samples.push({cycle:cycle+1,...e.renderer.info.memory,programs:e.renderer.info.programs.length});
+     // This is a resource-lifecycle test, not a frame-time benchmark. Drain
+     // each batch so software renderers cannot accumulate 22 queued scenes.
+     e.post.render();e.renderer.getContext().finish();if(cycle>=0)samples.push({cycle:cycle+1,...e.renderer.info.memory,programs:e.renderer.info.programs.length});
     }
    }
    const stable=samples.length===20&&samples.every(s=>s.geometries===samples[0].geometries&&s.textures===samples[0].textures&&s.programs===samples[0].programs);
    e.camMode=0;e.enterPhoto();e.photoYaw=e.player.yaw+Math.PI*.65;e.photoDist=5.4;e.photoPitch=.18;e.stepPhoto(0);e.post.render();
-   const gl=e.renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info');construction.sort((a,b)=>a-b);
+   const gl=e.renderer.getContext();gl.finish();const ext=gl.getExtension('WEBGL_debug_renderer_info');construction.sort((a,b)=>a-b);
    return{cars,allVisible,resourceScope:'20 measured cycles after 2 warmups, each creating/rendering/disposing all five actual car visuals in the actual scene. Not whole-race enter/exit or complete memory acceptance.',samples,stable,construction:{samples:construction.length,p95Ms:construction.length?construction[Math.ceil(construction.length*.95)-1]:null,scope:'Hot CPU createCarVisual duration only; not frame time or full load latency.'},graphics:{renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),render:[gl.drawingBufferWidth,gl.drawingBufferHeight]},passed:allVisible&&stable};
   });
-  await page.screenshot({path:output+'/hero.png'});await writeFile(output+'/text-state.json',await page.evaluate(()=>window.render_game_to_text()));
-  await writeFile(output+'/summary.json',JSON.stringify({kind:'loaded-car-glazing-and-resource-regression',scope:'Actual production models/materials. No human/art/device/performance acceptance.',...result,errors,passed:result.passed&&!errors.length},null,2)+'\n');
+  const summary={kind:'loaded-car-glazing-and-resource-regression',scope:'Actual production models/materials. GPU batches explicitly drained; no human/art/device/performance acceptance.',...result,errors,screenshot:{status:'pending'},passed:false};
+  const saveSummary=()=>writeFile(output+'/summary.json',JSON.stringify(summary,null,2)+'\n');
+  // Retain geometry/resource diagnostics even when screenshot capture fails.
+  await saveSummary();
+  await writeFile(output+'/text-state.json',await page.evaluate(()=>window.render_game_to_text()));
+  try{
+   await page.screenshot({path:output+'/hero.png',timeout:30000});
+   summary.screenshot.status='captured';summary.passed=result.passed&&!errors.length;await saveSummary();
+  }catch(error){
+   summary.screenshot={status:'failed',error:String(error)};await saveSummary();throw error;
+  }
   console.log(JSON.stringify({cars:result.cars.map(c=>({id:c.id,visible:c.windows.filter(w=>w.visibleBeforeBody).length})),stable:result.stable,samples:result.samples.length,construction:result.construction,graphics:result.graphics,errors}));
   if(!result.passed||errors.length)throw Error('Car glazing or car-resource regression; inspect artifacts/car-glazing/summary.json');
  }finally{await browser.close();}

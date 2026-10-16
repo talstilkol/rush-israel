@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { CARS } from '../src/game/cars.ts';
 import { ArcadeCar } from '../src/game/vehicle.ts';
-import { getTrack } from '../src/game/tracks.ts';
+import { getTrack, V1_TRACK_IDS } from '../src/game/tracks.ts';
 import { buildTrack } from '../src/game/spline.ts';
 import { PHYSICS_DT, WEATHER_SPEC } from '../src/game/physics.ts';
 
@@ -10,15 +10,37 @@ import { PHYSICS_DT, WEATHER_SPEC } from '../src/game/physics.ts';
 // Compare the same physical travel direction with the nose facing either way.
 // No world colliders, browser timing, vehicle measurements or human acceptance.
 const coast = { steer: 0, throttle: 0, brake: 0, drift: false, nitro: false };
+for (const id of V1_TRACK_IDS) {
+  const track = buildTrack(getTrack(id));
+  test(`${id}: spawning keeps the grade sample at the actual vehicle position`, () => {
+    const car = new ArcadeCar(CARS[0], CARS[0].nameEn);
+    for (const requested of track.samples) {
+      car.spawn(track, requested.t, 0);
+      const supporting = track.samples[car.sampleIndex];
+      assert.deepEqual([supporting.x,supporting.y,supporting.z], [car.x,car.y,car.z], `spawn t=${requested.t}`);
+    }
+  });
+  test(`${id}: recovery replaces the old grade sample with the actual checkpoint position`, () => {
+    const car = new ArcadeCar(CARS[0], CARS[0].nameEn);
+    for (let checkpoint = 0; checkpoint < track.checkpoints.length; checkpoint++) {
+      car.sampleIndex = track.samples.length - 2;
+      car.lastCheckpoint = checkpoint;
+      car.respawn(track);
+      const supporting = track.samples[car.sampleIndex];
+      assert.deepEqual([supporting.x,supporting.y,supporting.z], [car.x,car.y,car.z], `checkpoint=${checkpoint}`);
+    }
+    car.lastCheckpoint = -1;car.progress = track.samples[3].t;
+    car.sampleIndex = track.samples.length - 2;car.respawn(track);
+    const supporting = track.samples[car.sampleIndex];
+    assert.deepEqual([supporting.x,supporting.y,supporting.z], [car.x,car.y,car.z], 'recovery before first checkpoint');
+  });
+}
 for (const id of ['haifa', 'hermon', 'scopus', 'ramon']) {
   const track = buildTrack(getTrack(id));
   let index = 2;
   let maxGrade = 0;
   for (let i = 2; i < track.samples.length - 3; i++) {
     const s = track.samples[i], n = track.samples[i + 1];
-    // Choose a spawn whose existing floor-based index maps back to this sample.
-    const denominator = track.closed ? track.samples.length : track.samples.length - 1;
-    if (Math.floor(s.t * denominator) !== i) continue;
     const grade = (n.y - s.y) / Math.hypot(n.x - s.x, n.z - s.z);
     if (Math.abs(grade) > Math.abs(maxGrade)) { index = i; maxGrade = grade; }
   }

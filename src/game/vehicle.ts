@@ -168,9 +168,10 @@ export class ArcadeCar {
     this.vy = 0;
     this.speed = 0;
     this.progress = t;
-    this.sampleIndex = track.closed
-      ? Math.floor(s.t * track.samples.length) % track.samples.length
-      : Math.floor(s.t * (track.samples.length - 1));
+    // sampleAtT already selected the supporting sample. Re-quantizing its
+    // floating-point t can move the grade lookup one sample behind the car.
+    // Spawn/recovery are infrequent; identity lookup preserves the exact choice.
+    this.sampleIndex = track.samples.indexOf(s);
     this.nextCheckpoint = track.closed ? 1 : 0;
     this.lastCheckpoint = track.closed ? 0 : -1;
     this.lap = 0;
@@ -792,6 +793,7 @@ export class ArcadeCar {
     this.speed = 0;
     this.offTrackT = 0;
     this.progress = s.t;
+    this.sampleIndex = track.samples.indexOf(s);
   }
 
   snap(): CarSnap {

@@ -1,0 +1,375 @@
+{
+  "kind": "actual-v1-spawn-index-diagnosis",
+  "sourceBase": "8b5edd7ed649b2acae42409d17f82972eb6a6e83",
+  "runtimeUnchanged": true,
+  "results": [
+    {
+      "track": "oldjaffa",
+      "samples": 510,
+      "mismatches": 57,
+      "first": [
+        {
+          "requested": 49,
+          "actual": 49,
+          "assigned": 48,
+          "t": 0.09607843137254901
+        },
+        {
+          "requested": 50,
+          "actual": 50,
+          "assigned": 49,
+          "t": 0.0980392156862745
+        },
+        {
+          "requested": 51,
+          "actual": 51,
+          "assigned": 50,
+          "t": 0.09999999999999999
+        },
+        {
+          "requested": 53,
+          "actual": 53,
+          "assigned": 52,
+          "t": 0.10392156862745097
+        },
+        {
+          "requested": 57,
+          "actual": 57,
+          "assigned": 56,
+          "t": 0.11176470588235293
+        },
+        {
+          "requested": 61,
+          "actual": 61,
+          "assigned": 60,
+          "t": 0.1196078431372549
+        },
+        {
+          "requested": 99,
+          "actual": 98,
+          "assigned": 97,
+          "t": 0.1941176470588235
+        },
+        {
+          "requested": 100,
+          "actual": 99,
+          "assigned": 98,
+          "t": 0.19607843137254902
+        }
+      ]
+    },
+    {
+      "track": "namal",
+      "samples": 510,
+      "mismatches": 57,
+      "first": [
+        {
+          "requested": 49,
+          "actual": 49,
+          "assigned": 48,
+          "t": 0.09607843137254901
+        },
+        {
+          "requested": 50,
+          "actual": 50,
+          "assigned": 49,
+          "t": 0.0980392156862745
+        },
+        {
+          "requested": 51,
+          "actual": 51,
+          "assigned": 50,
+          "t": 0.09999999999999999
+        },
+        {
+          "requested": 53,
+          "actual": 53,
+          "assigned": 52,
+          "t": 0.10392156862745097
+        },
+        {
+          "requested": 57,
+          "actual": 57,
+          "assigned": 56,
+          "t": 0.11176470588235293
+        },
+        {
+          "requested": 61,
+          "actual": 61,
+          "assigned": 60,
+          "t": 0.1196078431372549
+        },
+        {
+          "requested": 99,
+          "actual": 98,
+          "assigned": 97,
+          "t": 0.1941176470588235
+        },
+        {
+          "requested": 100,
+          "actual": 99,
+          "assigned": 98,
+          "t": 0.19607843137254902
+        }
+      ]
+    },
+    {
+      "track": "haifa",
+      "samples": 301,
+      "mismatches": 6,
+      "first": [
+        {
+          "requested": 2,
+          "actual": 1,
+          "assigned": 0,
+          "t": 0.006666666666666666
+        },
+        {
+          "requested": 123,
+          "actual": 122,
+          "assigned": 121,
+          "t": 0.41
+        },
+        {
+          "requested": 169,
+          "actual": 168,
+          "assigned": 167,
+          "t": 0.5633333333333332
+        },
+        {
+          "requested": 221,
+          "actual": 220,
+          "assigned": 219,
+          "t": 0.7366666666666666
+        },
+        {
+          "requested": 244,
+          "actual": 243,
+          "assigned": 242,
+          "t": 0.8133333333333332
+        },
+        {
+          "requested": 247,
+          "actual": 246,
+          "assigned": 245,
+          "t": 0.8233333333333333
+        }
+      ]
+    },
+    {
+      "track": "rothschild",
+      "samples": 480,
+      "mismatches": 7,
+      "first": [
+        {
+          "requested": 50,
+          "actual": 50,
+          "assigned": 49,
+          "t": 0.10416666666666666
+        },
+        {
+          "requested": 51,
+          "actual": 50,
+          "assigned": 49,
+          "t": 0.10625
+        },
+        {
+          "requested": 123,
+          "actual": 123,
+          "assigned": 122,
+          "t": 0.25625
+        },
+        {
+          "requested": 124,
+          "actual": 123,
+          "assigned": 122,
+          "t": 0.25833333333333336
+        },
+        {
+          "requested": 246,
+          "actual": 245,
+          "assigned": 244,
+          "t": 0.5125
+        },
+        {
+          "requested": 247,
+          "actual": 247,
+          "assigned": 246,
+          "t": 0.5145833333333333
+        },
+        {
+          "requested": 248,
+          "actual": 247,
+          "assigned": 246,
+          "t": 0.5166666666666667
+        }
+      ]
+    },
+    {
+      "track": "ayalon",
+      "samples": 781,
+      "mismatches": 29,
+      "first": [
+        {
+          "requested": 57,
+          "actual": 56,
+          "assigned": 55,
+          "t": 0.07307692307692307
+        },
+        {
+          "requested": 107,
+          "actual": 106,
+          "assigned": 105,
+          "t": 0.13717948717948716
+        },
+        {
+          "requested": 113,
+          "actual": 112,
+          "assigned": 111,
+          "t": 0.14487179487179486
+        },
+        {
+          "requested": 114,
+          "actual": 113,
+          "assigned": 112,
+          "t": 0.14615384615384613
+        },
+        {
+          "requested": 213,
+          "actual": 212,
+          "assigned": 211,
+          "t": 0.27307692307692305
+        },
+        {
+          "requested": 225,
+          "actual": 224,
+          "assigned": 223,
+          "t": 0.28846153846153844
+        },
+        {
+          "requested": 226,
+          "actual": 225,
+          "assigned": 224,
+          "t": 0.2897435897435897
+        },
+        {
+          "requested": 227,
+          "actual": 226,
+          "assigned": 225,
+          "t": 0.291025641025641
+        }
+      ]
+    },
+    {
+      "track": "hermon",
+      "samples": 481,
+      "mismatches": 2,
+      "first": [
+        {
+          "requested": 246,
+          "actual": 245,
+          "assigned": 244,
+          "t": 0.5125
+        },
+        {
+          "requested": 247,
+          "actual": 246,
+          "assigned": 245,
+          "t": 0.5145833333333333
+        }
+      ]
+    },
+    {
+      "track": "scopus",
+      "samples": 331,
+      "mismatches": 5,
+      "first": [
+        {
+          "requested": 50,
+          "actual": 49,
+          "assigned": 48,
+          "t": 0.1515151515151515
+        },
+        {
+          "requested": 168,
+          "actual": 167,
+          "assigned": 166,
+          "t": 0.509090909090909
+        },
+        {
+          "requested": 191,
+          "actual": 190,
+          "assigned": 189,
+          "t": 0.5787878787878787
+        },
+        {
+          "requested": 246,
+          "actual": 245,
+          "assigned": 244,
+          "t": 0.7454545454545454
+        },
+        {
+          "requested": 247,
+          "actual": 246,
+          "assigned": 245,
+          "t": 0.7484848484848484
+        }
+      ]
+    },
+    {
+      "track": "ramon",
+      "samples": 511,
+      "mismatches": 36,
+      "first": [
+        {
+          "requested": 50,
+          "actual": 49,
+          "assigned": 48,
+          "t": 0.0980392156862745
+        },
+        {
+          "requested": 51,
+          "actual": 50,
+          "assigned": 49,
+          "t": 0.09999999999999999
+        },
+        {
+          "requested": 99,
+          "actual": 98,
+          "assigned": 97,
+          "t": 0.1941176470588235
+        },
+        {
+          "requested": 107,
+          "actual": 106,
+          "assigned": 105,
+          "t": 0.20980392156862743
+        },
+        {
+          "requested": 123,
+          "actual": 122,
+          "assigned": 121,
+          "t": 0.24117647058823527
+        },
+        {
+          "requested": 197,
+          "actual": 196,
+          "assigned": 195,
+          "t": 0.38627450980392153
+        },
+        {
+          "requested": 198,
+          "actual": 197,
+          "assigned": 196,
+          "t": 0.388235294117647
+        },
+        {
+          "requested": 199,
+          "actual": 198,
+          "assigned": 197,
+          "t": 0.3901960784313725
+        }
+      ]
+    }
+  ]
+}

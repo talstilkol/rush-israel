@@ -1,0 +1,7 @@
+
+> app-builder-workspace@0.0.0-private qa:photo:raw
+> node scripts/photo-position-smoke.mjs
+
+photo-position-smoke ok [{"id":"g04","horizontalDistance":27.999999999999993},{"id":"g05","horizontalDistance":28},{"id":"g06","horizontalDistance":28}]
+{"rows":[["racer",true],["traffic",true],["cop",true]],"photo":{"track":"haifa","roadGrade":-0.19993684653705138,"pitch":0.517949843050331,"roll":-0.042325280385191635,"before":[0.28487241367768207,6.090356620297539,-0.042325280385191635,"YXZ"],"after":[0.28487241367768207,6.090356620297539,-0.042325280385191635,"YXZ"],"wheelsFrozen":true,"carFrozen":true,"passed":true},"errors":[]}
+{"cars":[{"id":"sabra","visible":4},{"id":"carmel","visible":4},{"id":"kfir","visible":4},{"id":"negev","visible":4},{"id":"yam","visible":4}],"stable":true,"samples":20,"construction":{"samples":100,"p95Ms":1.399999976158142,"scope":"Hot CPU createCarVisual duration only; not frame time or full load latency."},"graphics":{"renderer":"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)","render":[1440,900]},"errors":[]}

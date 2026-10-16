@@ -266,7 +266,7 @@
       "acceptance": "חמש מכוניות, שני מצבי Handling, ארבעה סוגי מזג אוויר ו-stock/upgraded: תאוצה, בלימה, היגוי, משטח ודריפט; יעד ויחידה פיזיקלית מפורשים, ספים אינם נחלשים כדי להעביר בדיקה.",
       "status": "partial",
       "assigned_person": null,
-      "verification_note": "Physics11: 160 real-route body-relative grade cases and 80 real-world ramp combinations; unchanged acceleration means/tolerances. Full grade-only variants worsened Scopus damage and were rejected. Combined corner/vehicle-aware driving finished 8 races, 6 damage-free. Physical calibration, full conditions, frame invariance and human acceptance remain open.",
+      "verification_note": "Physics11 grade/corner/traffic coverage remains partial. Added 16 real-route regressions across all eight V1 tracks: spawn must use the same supporting sample as the actual position; checkpoint and pre-checkpoint recovery must replace the old sample index. All 16 fail before and pass after the identity-based fix. Previous eight-race results are historical; this source needs its own browser races and soak. Physical calibration, full conditions, frame invariance, damage/pace and human acceptance remain open.",
       "external_evidence_required": false
     },
     {
