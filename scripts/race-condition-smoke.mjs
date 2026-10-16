@@ -122,3 +122,5 @@ try {
   await writeFile(fromRoot('artifacts', 'race-conditions', 'summary.json'), JSON.stringify(report, null, 2) + '\n');
   console.log('race-condition-smoke ok', JSON.stringify(report));
 } finally { await browser.close(); }
+
+await import('./water-conditions-smoke.mjs');

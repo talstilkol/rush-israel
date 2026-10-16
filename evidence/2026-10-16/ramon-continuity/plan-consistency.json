@@ -1,0 +1,14 @@
+{
+  "scope": "Plan/control consistency only; no product acceptance.",
+  "tasks": 46,
+  "edges": 96,
+  "units": 67,
+  "acyclic": true,
+  "files": {
+    "COMPLETION-PLAN.md": "f12c23dbe8aba688860d5e624ebdd6c4b151b3eb86ac4e74868b182911443036",
+    "COMPLETION-BACKLOG.json": "9a341b68718fb33ab1059fd5fc14d17197feb88d829a13b143fa5848c93861e7",
+    "COMPLETION-CROSSWALK.json": "f54a994e48b4675c1938058e4220bab81c6f3f97a06a796a46ef608885f5ff2f",
+    "QUALITY-TARGETS.md": "75d8485a47f8c4b5579a62890ccabe8461421fcf54f320e894db193631dea57c",
+    "PRODUCT-READINESS.json": "cae85eb54656ddb008fd341464b0dffb3349734cb909434b34e101cca76516b9"
+  }
+}

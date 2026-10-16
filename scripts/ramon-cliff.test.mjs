@@ -29,3 +29,28 @@ test('actual Ramon cliff never crosses the driver path on either side of its fac
     }
   } finally { geometry.dispose(); material.dispose(); }
 });
+
+test('actual Ramon descent never climbs above its preceding road sample',()=>{
+ const built=buildTrack(getTrack('ramon'));
+ for(let i=1;i<built.samples.length;i++){
+  const a=built.samples[i-1],b=built.samples[i];
+  assert.ok(b.y<=a.y+Number.EPSILON*Math.max(1,Math.abs(a.y))*16,`actual segment ${i-1}->${i} climbs ${b.y-a.y}m`);
+ }
+});
+
+test('actual Ramon plateau boundaries meet the descent without height jumps',()=>{
+ const definition=getTrack('ramon'),built=buildTrack(definition),top=definition.elevation(built.samples[0].t);
+ const first=built.samples.findIndex(s=>s.y!==top);assert.ok(first>0,'real descent must follow the plateau');
+ let left=built.samples[first-1].t,right=built.samples[first].t;
+ // Locate the real plateau transition using its actual route samples.
+ for(let i=0;i<64;i++){const mid=(left+right)/2;if(mid===left||mid===right)break;if(definition.elevation(mid)===top)left=mid;else right=mid}
+ const gap=Math.abs(definition.elevation(right)-definition.elevation(left));
+ assert.ok(gap<=Number.EPSILON*Math.max(1,Math.abs(top))*16,`actual upper transition jumps ${gap}m`);
+ const floor=definition.elevation(built.samples.at(-1).t);
+ const firstFloor=built.samples.findIndex(s=>s.y===floor);
+ assert.ok(firstFloor>first,'actual descent must finish at the lower plateau');
+ left=built.samples[firstFloor-1].t;right=built.samples[firstFloor].t;
+ for(let i=0;i<64;i++){const mid=(left+right)/2;if(mid===left||mid===right)break;if(definition.elevation(mid)===floor)right=mid;else left=mid}
+ const lowerGap=Math.abs(definition.elevation(right)-definition.elevation(left));
+ assert.ok(lowerGap<=Number.EPSILON*Math.max(1,Math.abs(floor))*16,`actual lower transition jumps ${lowerGap}m`);
+});

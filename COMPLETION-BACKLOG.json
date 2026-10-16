@@ -58,9 +58,9 @@
       ],
       "deliverable": "קישור מפורש בין water material למקור צבע",
       "acceptance": "שינוי יום לילה rain storm clear באיילון ללא exception",
-      "status": "partial",
+      "status": "locally-verified",
       "assigned_person": null,
-      "verification_note": "56 עולמות נבנו ונבדקו במצב יום/לילה/גשם ללא חריגה; אין קבלת אמנות.",
+      "verification_note": "תעלת איילון האמיתית נבדקה בשישה מעברי clear/day/night/rain/storm וחזרה ל־clear, ב־SwiftShader וב־Metal: ערכי material סופיים,GL0 וללא חריגות. הבדיקה נוספה לשער conditions המחייב. אין קבלת אמנות, חלקיקי מזג אוויר, ביצועים או מכשיר. evidence/2026-10-16/ramon-continuity/proof.json.",
       "external_evidence_required": false
     },
     {
@@ -73,9 +73,9 @@
       ],
       "deliverable": "samples וגאומטריה סופיים",
       "acceptance": "finite checks בכל 56 הגדרות ונהיגה ברמון; רציפות בגבולות",
-      "status": "partial",
+      "status": "locally-verified",
       "assigned_person": null,
-      "verification_note": "כל 56 העולמות עוברים בדיקות finite. רמון מסיים מרוץ בדפדפן עם GL0 ואפס נזק ב־30a2c19. אין מכאן קבלה של אמנות או של כל וריאציות הנהיגה.",
+      "verification_note": "תוקנה אי־רציפות של1.2מטר בין הפלטו לירידת רמון: המשרעת היא top-floor. בדיקות תוואי אמיתי מאמתות ירידה ללא עלייה ורציפות בשני הגבולות. כל56 הגדרות העולם עוברות finite וניקוי; מרוץ רמון מסייע הסתיים ב־99.4833שניות סימולציה,GL0 ואפס נזק. אין קבלת כל וריאציות הנהיגה/אמנות/מכשיר. evidence/2026-10-16/ramon-continuity/proof.json.",
       "external_evidence_required": false
     },
     {
