@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { lerp } from "../../math";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { her } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -53,11 +53,11 @@ export default function buildHermon(context: TrackWorldBuilderContext): void {
     add(peakCone);
     const liftA = her(33.2924, 35.7802);
     const liftB = her(33.3084, 35.7876);
-    const nA = nearestIndex(built.samples, liftA.x, liftA.z, 0);
+    const nA = closestSample(built.samples, liftA.x, liftA.z);
     const sA = built.samples[nA.index];
     liftA.x = sA.x + sA.rx * (built.width / 2 + 20);
     liftA.z = sA.z + sA.rz * (built.width / 2 + 20);
-    const nB = nearestIndex(built.samples, liftB.x, liftB.z, 0);
+    const nB = closestSample(built.samples, liftB.x, liftB.z);
     const sB = built.samples[nB.index];
     liftB.x = sB.x + sB.rx * (built.width / 2 + 20);
     liftB.z = sB.z + sB.rz * (built.width / 2 + 20);
@@ -118,7 +118,7 @@ export default function buildHermon(context: TrackWorldBuilderContext): void {
     ];
     for (let i = 0; i < village.length; i++) {
       const p = her(village[i].lat, village[i].lon);
-      const n = nearestIndex(built.samples, p.x, p.z, 0);
+      const n = closestSample(built.samples, p.x, p.z);
       const extra = built.width / 2 + 22;
       if (n.dist < extra) {
         const s = built.samples[n.index];
@@ -135,7 +135,7 @@ export default function buildHermon(context: TrackWorldBuilderContext): void {
     }
     const lodgeY = def.elevation(0.9);
     {
-      const nL = nearestIndex(built.samples, peak.x, peak.z, 0);
+      const nL = closestSample(built.samples, peak.x, peak.z);
       const sL = built.samples[nL.index];
       const lx = sL.x + sL.rx * (built.width / 2 + 22);
       const lz = sL.z + sL.rz * (built.width / 2 + 22);

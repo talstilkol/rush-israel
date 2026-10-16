@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { hzl } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -21,7 +21,7 @@ export default function buildHerzliya(context: TrackWorldBuilderContext): void {
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const mar = hzl(32.1635, 34.7965);
     {
-      const n = nearestIndex(built.samples, mar.x, mar.z, 0);
+      const n = closestSample(built.samples, mar.x, mar.z);
       if (n.dist < built.width / 2 + 10) {
         const s = built.samples[n.index];
         mar.x = s.x + s.rx * (built.width / 2 + 26);

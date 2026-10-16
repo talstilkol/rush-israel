@@ -8,9 +8,9 @@ import type { BuiltTrack } from "./spline";
 import type { Collider, Ramp, SkyPreset, TrackDef, Weather } from "./types";
 import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, her, hol, hwy1, hwy2, hwy6, hwy40, hwy90, hzl, jer, ksb, ksm, lodp, mas, mod, naz, nah, net, nightAmt, nik, pth, raa, ram, rhv, rml, rsh, skyAt, skyFor, tib, tlv, tzf } from "./tracks";
 import { scatterStreetBuildings } from "./buildings";
-import { LOOKS, lookFromFlags } from "../rendering/EnvironmentState";
 import { generateStreets, nearestStreet } from "./streets";
 import { bindRoadCompile } from "./roadShader";
+import { ROAD_PAINT_REPEAT_METRES, ROAD_UV_METRES } from "./road-layout";
 import { getLaneArrow } from "./arrow-assets";
 import { getFlare0, getFlare1 } from "./flare-assets";
 import { getWaterNormal, getChecker } from "./water-assets";
@@ -25,7 +25,7 @@ import { getJaffaClock } from "./clock-assets";
 import { getIsraelFlag } from "./flag-assets";
 import { getFoliage, getBark } from "./tree-assets";
 import { getAyalonRoad, getBakedRoad } from "./road-assets";
-import { roadLaneCount } from "./road-layout";
+import { segsOf, samp, buildRoad, buildOffsetRoad, buildStrip, buildCenterLine, buildSidewalk, buildEdgeLine, laneCountFor, buildCurb, buildJersey, buildRail, buildShoulder } from "./road-geometry";
 import { getSkyDay, getSkyNight } from "./sky-assets";
 import { getBlob } from "./blob-assets";
 
@@ -107,274 +107,6 @@ function flareTex(size: number, ..._rest: unknown[]) {
   const baked = size >= 128 ? getFlare0() : getFlare1();
   if (!baked) throw new Error("flare texture missing");
   return baked;
-}
-function segsOf(built: BuiltTrack) {
-  return built.closed ? built.samples.length : Math.max(1, built.samples.length - 1);
-}
-function samp(built: BuiltTrack, i: number) {
-  const n = built.samples.length;
-  return built.samples[built.closed ? i % n : Math.min(i, n - 1)];
-}
-function buildRoad(built: BuiltTrack) {
-  const hw = built.width / 2;
-  const pos = [];
-  const uv = [];
-  const nrm = [];
-  const idx = [];
-  const n = segsOf(built);
-  for (let i = 0; i <= n; i++) {
-    const s = samp(built, i);
-    const v = (i === n ? built.length : s.s) / 6;
-    pos.push(s.x - s.rx * hw, s.y + 0.04, s.z - s.rz * hw);
-    pos.push(s.x + s.rx * hw, s.y + 0.04, s.z + s.rz * hw);
-    uv.push(0, v, 1, v);
-    nrm.push(0, 1, 0, 0, 1, 0);
-  }
-  for (let i = 0; i < n; i++) {
-    const a = i * 2;
-    idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
-  geo.setAttribute("normal", new THREE.Float32BufferAttribute(nrm, 3));
-  geo.setIndex(idx);
-  geo.computeVertexNormals();
-  return geo;
-}
-function buildOffsetRoad(built: BuiltTrack, offset: number) {
-  const hw = built.width / 2;
-  const pos = [];
-  const uv = [];
-  const nrm = [];
-  const idx = [];
-  const n = segsOf(built);
-  for (let i = 0; i <= n; i++) {
-    const s = samp(built, i);
-    const v = (i === n ? built.length : s.s) / 6;
-    const cx = s.x + s.rx * offset;
-    const cz = s.z + s.rz * offset;
-    pos.push(cx - s.rx * hw, s.y + 0.04, cz - s.rz * hw);
-    pos.push(cx + s.rx * hw, s.y + 0.04, cz + s.rz * hw);
-    uv.push(0, v, 1, v);
-    nrm.push(0, 1, 0, 0, 1, 0);
-  }
-  for (let i = 0; i < n; i++) {
-    const a = i * 2;
-    idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
-  geo.setAttribute("normal", new THREE.Float32BufferAttribute(nrm, 3));
-  geo.setIndex(idx);
-  geo.computeVertexNormals();
-  return geo;
-}
-function buildStrip(built: BuiltTrack, centerOff: number, half: number, y = 0.02) {
-  const pos = [];
-  const uv = [];
-  const idx = [];
-  const n = segsOf(built);
-  for (let i = 0; i <= n; i++) {
-    const s = samp(built, i);
-    const v = (i === n ? built.length : s.s) / 8;
-    const cx = s.x + s.rx * centerOff;
-    const cz = s.z + s.rz * centerOff;
-    pos.push(cx - s.rx * half, s.y + y, cz - s.rz * half);
-    pos.push(cx + s.rx * half, s.y + y, cz + s.rz * half);
-    uv.push(0, v, 1, v);
-  }
-  for (let i = 0; i < n; i++) {
-    const a = i * 2;
-    idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
-  geo.setIndex(idx);
-  geo.computeVertexNormals();
-  return geo;
-}
-function buildCenterLine(built: BuiltTrack) {
-  const hw = 0.22;
-  const pos = [];
-  const idx = [];
-  const n = segsOf(built);
-  for (let i = 0; i <= n; i++) {
-    const s = samp(built, i);
-    const w = Math.floor(s.s / 5) % 2 === 0 ? hw : 0.02;
-    pos.push(s.x - s.rx * w, s.y + 0.07, s.z - s.rz * w);
-    pos.push(s.x + s.rx * w, s.y + 0.07, s.z + s.rz * w);
-  }
-  for (let i = 0; i < n; i++) {
-    const a = i * 2;
-    idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-  geo.setIndex(idx);
-  geo.computeVertexNormals();
-  return geo;
-}
-function buildSidewalk(built: BuiltTrack, side: number) {
-  const d0 = built.width / 2 + 0.42;
-  const d1 = d0 + 3.2;
-  const pos = [];
-  const uv = [];
-  const idx = [];
-  const n = segsOf(built);
-  for (let i = 0; i <= n; i++) {
-    const s = samp(built, i);
-    const v = (i === n ? built.length : s.s) / 8;
-    const rx = s.rx * side;
-    const rz = s.rz * side;
-    pos.push(s.x + rx * d0, s.y + 0.18, s.z + rz * d0);
-    pos.push(s.x + rx * d1, s.y + 0.18, s.z + rz * d1);
-    uv.push(0, v, 1, v);
-  }
-  for (let i = 0; i < n; i++) {
-    const a = i * 2;
-    idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
-  geo.setIndex(idx);
-  geo.computeVertexNormals();
-  return geo;
-}
-function buildEdgeLine(built: BuiltTrack, side: number, inset = 0.28, hw = 0.28, yOff = 0.08, centerOff = 0) {
-  const d = built.width / 2 - inset;
-  const pos = [];
-  const idx = [];
-  const n = segsOf(built);
-  for (let i = 0; i <= n; i++) {
-    const s = samp(built, i);
-    const cx = s.x + s.rx * (d * side + centerOff);
-    const cz = s.z + s.rz * (d * side + centerOff);
-    pos.push(cx - s.rx * hw, s.y + yOff, cz - s.rz * hw);
-    pos.push(cx + s.rx * hw, s.y + yOff, cz + s.rz * hw);
-  }
-  for (let i = 0; i < n; i++) {
-    const a = i * 2;
-    idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-  geo.setIndex(idx);
-  geo.computeVertexNormals();
-  return geo;
-}
-function laneCountFor(def: TrackDef) {
-  return roadLaneCount(def);
-}
-function buildCurb(built: BuiltTrack, side: number, centerOff = 0) {
-  const d0 = built.width / 2;
-  const d1 = d0 + 0.55;
-  const pos = [];
-  const uv = [];
-  const idx = [];
-  const n = segsOf(built);
-  for (let i = 0; i <= n; i++) {
-    const s = samp(built, i);
-    const v = (i === n ? built.length : s.s) / 2.4;
-    const rx = s.rx * side;
-    const rz = s.rz * side;
-    pos.push(s.x + rx * d0 + s.rx * centerOff, s.y + 0.06, s.z + rz * d0 + s.rz * centerOff);
-    pos.push(s.x + rx * d1 + s.rx * centerOff, s.y + 0.58, s.z + rz * d1 + s.rz * centerOff);
-    uv.push(0, v, 1, v);
-  }
-  for (let i = 0; i < n; i++) {
-    const a = i * 2;
-    idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
-  geo.setIndex(idx);
-  geo.computeVertexNormals();
-  return geo;
-}
-function buildJersey(built: BuiltTrack, side: number, centerOff = 0) {
-  const d0 = built.width / 2 + 0.62;
-  const d1 = d0 + 0.42;
-  const pos = [];
-  const idx = [];
-  const uvs: number[] = [];
-  const n = segsOf(built);
-  for (let i = 0; i <= n; i++) {
-    const s = samp(built, i);
-    const rx = s.rx * side;
-    const rz = s.rz * side;
-    pos.push(s.x + rx * d0 + s.rx * centerOff, s.y + 0.08, s.z + rz * d0 + s.rz * centerOff);
-    pos.push(s.x + rx * d1 + s.rx * centerOff, s.y + 1.35, s.z + rz * d1 + s.rz * centerOff);
-    const v = i / n * (built.length / 2.4);
-    uvs.push(0, v, 1, v);
-  }
-  for (let i = 0; i < n; i++) {
-    const a = i * 2;
-    idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
-  geo.setIndex(idx);
-  geo.computeVertexNormals();
-  return geo;
-}
-function buildRail(built: BuiltTrack, side: number) {
-  const d = built.width / 2 + 0.48;
-  const pos = [];
-  const idx = [];
-  const uvs: number[] = [];
-  const n = segsOf(built);
-  for (let i = 0; i <= n; i++) {
-    const s = samp(built, i);
-    const rx = s.rx * side;
-    const rz = s.rz * side;
-    pos.push(s.x + rx * d, s.y + 0.22, s.z + rz * d);
-    pos.push(s.x + rx * d, s.y + 0.72, s.z + rz * d);
-    const v = i / n * (built.length / 3);
-    uvs.push(0, v, 1, v);
-  }
-  for (let i = 0; i < n; i++) {
-    const a = i * 2;
-    idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
-  geo.setIndex(idx);
-  geo.computeVertexNormals();
-  return geo;
-}
-function buildShoulder(built: BuiltTrack, side: number) {
-  const d0 = built.width / 2 + 3.95;
-  const d1 = d0 + 8.5;
-  const pos = [];
-  const uv = [];
-  const idx = [];
-  const n = segsOf(built);
-  for (let i = 0; i <= n; i++) {
-    const s = samp(built, i);
-    const v = (i === n ? built.length : s.s) / 10;
-    const rx = s.rx * side;
-    const rz = s.rz * side;
-    pos.push(s.x + rx * d0, s.y + 0.03, s.z + rz * d0);
-    pos.push(s.x + rx * d1, s.y + 0.01, s.z + rz * d1);
-    uv.push(0, v, 1, v);
-  }
-  for (let i = 0; i < n; i++) {
-    const a = i * 2;
-    idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
-  geo.setIndex(idx);
-  geo.computeVertexNormals();
-  return geo;
 }
 function applySky(sky: Sky, sun: THREE.Vector3, preset: SkyPreset) {
   const phi = THREE.MathUtils.degToRad(90 - preset.elevation);
@@ -730,82 +462,38 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const lanes = laneCountFor(def);
   const roadMaps = asphaltTexture(lanes);
   for (const texture of Object.values(roadMaps)) shared.add(texture);
+  // Own the paint transforms; shared bump detail keeps its original metre scale.
+  const roadMap = keep(roadMaps.map.clone());
+  const roadRoughness = keep(roadMaps.roughnessMap.clone());
+  roadMap.repeat.set(1, ROAD_UV_METRES / ROAD_PAINT_REPEAT_METRES);
+  roadRoughness.repeat.copy(roadMap.repeat);
   const roadMat = keep(new THREE.MeshPhysicalMaterial({
-    map: roadMaps.map,
-    roughnessMap: roadMaps.roughnessMap,
+    map: roadMap,
+    roughnessMap: roadRoughness,
     bumpMap: roadMaps.bumpMap,
-    bumpScale: 0.36,
+    bumpScale: 0.006,
     color: 0xffffff,
-    roughness: 0.48,
+    roughness: 0.82,
     metalness: 0,
-    envMapIntensity: 0.85,
-    clearcoat: 0.28,
+    envMapIntensity: 0.35,
+    clearcoat: 0,
     clearcoatRoughness: 0.4,
     reflectivity: 0.28
   }));
   roadMat.userData.lanes = lanes;
-  roadMat.customProgramCacheKey = () => `rush-road-${lanes}`;
+  roadMat.customProgramCacheKey = () => `rush-road-${lanes}-baked-marks-wetness-v1`;
   bindRoadCompile(roadMat);
   const road = new THREE.Mesh(keep(buildRoad(built)), roadMat);
+  road.name = "rush-race-road";
   road.receiveShadow = true;
   group.add(road);
-  const edgeMat = keep(new THREE.MeshBasicMaterial({
-    color: 0xffffff,
-    fog: false,
-    polygonOffset: true,
-    polygonOffsetFactor: -2,
-    polygonOffsetUnits: -2
-  }));
-  group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.16, 0.46)), edgeMat));
-  group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.16, 0.46)), edgeMat));
   {
-    const dashG = keep(new THREE.BoxGeometry(0.2, 0.045, 4.4));
-    const dashM = keep(new THREE.MeshBasicMaterial({ color: 0xf7f8f4, fog: false }));
-    const offs = def.id === "ayalon" ? [0, built.width + 18] : [0];
-    const nDash = Math.min(2800, Math.floor(built.samples.length / 2) * (lanes - 1) * offs.length);
-    const dashes = new THREE.InstancedMesh(dashG, dashM, Math.max(1, nDash));
-    let di = 0;
-    const hw = built.width / 2;
-    const lw = built.width / lanes;
-    const stepD = Math.max(2, Math.floor(built.samples.length / 140));
-    for (const off of offs) {
-      for (let i = 0; i < built.samples.length && di < nDash; i += stepD) {
-        const s = built.samples[i];
-        if (Math.floor(s.s / 9) % 2 === 0) continue;
-        for (let k = 1; k < lanes && di < nDash; k++) {
-          const lat = -hw + k * lw;
-          _dummy.position.set(s.x + s.rx * (off + lat), s.y + 0.09, s.z + s.rz * (off + lat));
-          _dummy.rotation.set(0, Math.atan2(s.tx, s.tz), 0);
-          _dummy.scale.set(1, 1, 1);
-          _dummy.updateMatrix();
-          dashes.setMatrixAt(di++, _dummy.matrix);
-        }
-      }
-    }
-    dashes.count = di;
-    dashes.instanceMatrix.needsUpdate = true;
-    group.add(dashes);
-  }
-  {
-    const yMat = keep(new THREE.MeshBasicMaterial({
-      color: 0xffc400,
-      fog: false,
-      polygonOffset: true,
-      polygonOffsetFactor: -2,
-      polygonOffsetUnits: -2
-    }));
-    group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.85, 0.1)), yMat));
-    group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.85, 0.1)), yMat));
     if (def.id === "ayalon") {
       const gap = 18;
       const oppOff = built.width + gap;
       const opp = new THREE.Mesh(keep(buildOffsetRoad(built, oppOff)), roadMat);
       opp.receiveShadow = true;
       group.add(opp);
-      group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.16, 0.46, 0.08, oppOff)), edgeMat));
-      group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.16, 0.46, 0.08, oppOff)), edgeMat));
-      group.add(new THREE.Mesh(keep(buildEdgeLine(built, 1, 0.62, 0.09, 0.08, oppOff)), yMat));
-      group.add(new THREE.Mesh(keep(buildEdgeLine(built, -1, 0.62, 0.09, 0.08, oppOff)), yMat));
       const midOff = built.width / 2 + gap * 0.5;
       const bedMap = keep(groundTexture(0));
       bedMap.wrapS = bedMap.wrapT = THREE.RepeatWrapping;
@@ -1268,7 +956,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     color: 0x9aa3aa,
     metalness: 0.82,
     roughness: 0.28,
-    roughnessMap: getBakedRoad(3)?.roughnessMap,
+    roughnessMap: getBakedRoad(3)?.roughnessMap ?? null,
     envMapIntensity: 1.25
   }));
   if (def.theme !== "desert" && def.theme !== "snow" && def.theme !== "carmel" && def.id !== "ayalon") {
@@ -1286,6 +974,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       textureHeight: PLANAR_RT,
       color: isNight ? 0x4a5568 : 0x8aa0b4
     });
+    mirror.name = "rush-wet-road-reflection";
     mirror.rotation.x = -Math.PI / 2;
     mirror.position.y = 0.026;
     const mmat = mirror.material as THREE.ShaderMaterial;
@@ -2353,7 +2042,8 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     _dummy.updateMatrix();
     puddles.setMatrixAt(i, _dummy.matrix);
   }
-  puddles.visible = isNight || wx !== "clear";
+  puddles.name = "rush-road-puddles";
+  puddles.visible = wx === "rain" || wx === "storm";
   group.add(puddles);
   lodPuddles = puddles;
   const neonGroup = new THREE.Group();
@@ -2513,11 +2203,12 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   };
   const followMirror = (x: number, y: number, z: number, yaw: number) => {
     if (!mirror || !planarOk) return;
-    mirror.visible = true;
+    const wet = wx === "rain" || wx === "storm";
+    mirror.visible = wet;
+    if (!wet) return;
     mirror.position.set(x, y + 0.03, z);
     mirror.rotation.set(-Math.PI / 2, yaw, 0);
     const col = mirror.material as THREE.ShaderMaterial;
-    const wet = wx === "rain" || wx === "storm";
     col.opacity = wet ? (isNight ? 0.58 : 0.38) : isNight ? 0.34 : 0.22;
     if (col.uniforms?.color) {
       const c = wet ? (isNight ? 0x6a7388 : 0x9aabbc) : isNight ? 0x3a4558 : 0x88a0b4;
@@ -2554,7 +2245,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       ambient.intensity = bolt ? n > 0.5 ? 1.8 : 1.2 : lerp(0.22, 0.34, n);
       hemi.intensity = bolt ? 1.4 : lerp(0.55, 0.52, n);
     }
-    const wetAmt = wx === "storm" ? 1 : wx === "rain" ? 0.82 : lerp(0.08, 0.42, nightAmt(clock));
+    const wetAmt = wx === "storm" ? 1 : wx === "rain" ? 0.82 : 0;
     puddles.visible = puddlesAllowed && wetAmt > 0.1;
     puddleMat.opacity = 0.32 + wetAmt * 0.58;
     const ripple = 1 + Math.sin(t * 2.2) * 0.035 * (wx === "clear" ? 0.4 : 1);
@@ -2586,7 +2277,10 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const walkStd = walkMat;
   const applyWet = () => {
     const n = nightAmt(clock);
-    puddles.visible = wx === "rain" || wx === "storm" || wx === "clear" && n > 0.35;
+    const wet = wx === "rain" || wx === "storm";
+    puddles.visible = puddlesAllowed && wet;
+    if (mirror) mirror.visible = planarOk && wet;
+    roadMat.userData.roadWetness = wet ? 1 : 0;
     if (wx === "rain" || wx === "storm") {
       roadMat.color.setHex(n > 0.5 ? 0xd0d4d8 : 0xe8ecee);
       roadMat.roughness = wx === "storm" ? 0.12 : 0.18;
@@ -2597,25 +2291,20 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
       puddleMat.opacity = wx === "storm" ? 0.9 : 0.78;
     } else if (n > 0.45) {
       roadMat.color.setHex(0xe8eaee);
-      roadMat.roughness = 0.26;
+      roadMat.roughness = 0.76;
       roadMat.metalness = 0;
-      roadMat.envMapIntensity = 1.12;
-      roadMat.clearcoat = 0.48;
-      roadMat.clearcoatRoughness = 0.2;
+      roadMat.envMapIntensity = 0.45;
+      roadMat.clearcoat = 0;
+      roadMat.clearcoatRoughness = 0.6;
     } else {
       roadMat.color.setHex(0xffffff);
-      roadMat.roughness = 0.28;
+      roadMat.roughness = 0.82;
       roadMat.metalness = 0;
-      roadMat.envMapIntensity = 1.05;
-      roadMat.clearcoat = 0.42;
-      roadMat.clearcoatRoughness = 0.28;
+      roadMat.envMapIntensity = 0.35;
+      roadMat.clearcoat = 0;
+      roadMat.clearcoatRoughness = 0.6;
     }
-    if (roadMat.userData.uWet) {
-      const n2 = nightAmt(clock);
-      const morning = n2 <= 0.5 && clock < 0.38;
-      const look = lookFromFlags(n2 > 0.5, wx, morning);
-      roadMat.userData.uWet.value = LOOKS[look].wetness;
-    }
+    if (roadMat.userData.uWet) roadMat.userData.uWet.value = roadMat.userData.roadWetness;
   };
   const _dayHemi = new THREE.Color(9356520);
   const _mornHemi = new THREE.Color(13162734);
@@ -2783,7 +2472,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     followMirror,
     setPlanar(on: boolean) {
       planarOk = !!on;
-      if (mirror) mirror.visible = planarOk;
+      if (mirror) mirror.visible = planarOk && (wx === "rain" || wx === "storm");
     },
     sunDir: lightAim,
     tick,

@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { buildRamonCliff } from "../ramon-cliff";
+import { closestSample } from "../../spline";
 import { ram } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -15,8 +16,6 @@ export default function buildRamon(context: TrackWorldBuilderContext): void {
     hit,
     placeTunnel,
     _dummy,
-    samp,
-    segsOf,
   } = context;
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const dust = new THREE.MeshStandardMaterial({
@@ -87,29 +86,10 @@ export default function buildRamon(context: TrackWorldBuilderContext): void {
     rocks.instanceMatrix.needsUpdate = true;
     group.add(rocks);
     {
-      const cPos = [];
-      const cIdx = [];
-      const nC = segsOf(built);
-      for (let i = 0; i <= nC; i++) {
-        const s = samp(built, i);
-        const vs = s.rx * (floor.x - s.x) + s.rz * (floor.z - s.z) >= 0 ? 1 : -1;
-        const ms = -vs;
-        const d = built.width / 2 + 9.5;
-        const y0 = s.y - 4;
-        const y1 = s.y + 150 + Math.min(90, s.y * 0.55);
-        cPos.push(s.x + s.rx * d * ms, y0, s.z + s.rz * d * ms);
-        cPos.push(s.x + s.rx * d * ms, y1, s.z + s.rz * d * ms);
-      }
-      for (let i = 0; i < nC; i++) {
-        const a = i * 2;
-        cIdx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-      }
-      const cGeo = new THREE.BufferGeometry();
-      cGeo.setAttribute("position", new THREE.Float32BufferAttribute(cPos, 3));
-      cGeo.setIndex(cIdx);
-      cGeo.computeVertexNormals();
+      const cGeo = buildRamonCliff(built, floor);
       bag.push(cGeo);
       const wall = new THREE.Mesh(cGeo, rust);
+      wall.name = "ramon-canyon-wall";
       wall.receiveShadow = true;
       add(wall);
     }
@@ -134,7 +114,7 @@ export default function buildRamon(context: TrackWorldBuilderContext): void {
     }
     const lk = ram(30.6132, 34.801);
     {
-      const n = nearestIndex(built.samples, lk.x, lk.z, 0);
+      const n = closestSample(built.samples, lk.x, lk.z);
       const s = built.samples[n.index];
       lk.x = s.x + s.rx * (built.width / 2 + 26);
       lk.z = s.z + s.rz * (built.width / 2 + 26);

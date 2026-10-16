@@ -358,7 +358,7 @@ export class RaceEngine {
     if (soft) this.lite = true;
     const shadows = !mobile && !soft;
     this.renderer.shadowMap.enabled = shadows;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.shadowMap.type = THREE.PCFShadowMap;
 
     this.scene = new THREE.Scene();
     const spec = FOG[fogKey(this.trackDef.theme, opts.trackId)];
@@ -1352,6 +1352,7 @@ declare global {
       getPhysicsVersion?: () => number;
       getVis?: () => number;
       exportTelemetry?: () => { n: number; p50: number; p95: number; p99: number; last: number; backend: string };
+      getGlError?: () => number;
       gotoGolden?: (id: string) => boolean;
       frameWorld?: (x: number, z: number, y?: number) => void;
       frameAzrieli?: () => void;

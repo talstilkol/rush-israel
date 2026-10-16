@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { acr } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -22,7 +22,7 @@ export default function buildAcre(context: TrackWorldBuilderContext): void {
     const ochreD = new THREE.MeshStandardMaterial({ color: 9398336, roughness: 0.9 });
     bag.push(ochreH, ochreD);
     const offAcre = (p: { x: number; z: number }, pad = 26) => {
-      const n = nearestIndex(built.samples, p.x, p.z, 0);
+      const n = closestSample(built.samples, p.x, p.z);
       if (n.dist < built.width / 2 + 10) {
         const s = built.samples[n.index];
         p.x = s.x + s.rx * (built.width / 2 + pad);
@@ -52,7 +52,7 @@ export default function buildAcre(context: TrackWorldBuilderContext): void {
       const lat = 32.9192 + (i % 7) * 0.00055;
       const lon = 35.0692 + Math.floor(i / 7) * 0.0007;
       const p = acr(lat, lon);
-      const near = nearestIndex(built.samples, p.x, p.z, 0);
+      const near = closestSample(built.samples, p.x, p.z);
       if (near.dist < built.width / 2 + 8) continue;
       const h = 5.2 + i % 4 * 0.9;
       const house = new THREE.Mesh(new THREE.BoxGeometry(6.8, h, 7.4), i % 3 === 0 ? stone : i % 3 === 1 ? ochreH : ochreD);

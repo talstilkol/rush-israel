@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { eil } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -17,7 +17,7 @@ export default function buildEilat(context: TrackWorldBuilderContext): void {
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const mar = eil(29.5482, 34.9542);
     {
-      const n = nearestIndex(built.samples, mar.x, mar.z, 0);
+      const n = closestSample(built.samples, mar.x, mar.z);
       if (n.dist < built.width / 2 + 10) {
         const s = built.samples[n.index];
         mar.x = s.x + s.rx * (built.width / 2 + 24);

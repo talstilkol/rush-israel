@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { dsea } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -26,7 +26,7 @@ export default function buildDeadsea(context: TrackWorldBuilderContext): void {
     const peach = new THREE.MeshStandardMaterial({ color: 15255720, roughness: 0.7 });
     bag.push(salt, peach);
     const offSea = (p: { x: number; z: number }, pad = 24) => {
-      const n = nearestIndex(built.samples, p.x, p.z, 0);
+      const n = closestSample(built.samples, p.x, p.z);
       if (n.dist < built.width / 2 + 10) {
         const s = built.samples[n.index];
         p.x = s.x + s.rx * (built.width / 2 + pad);

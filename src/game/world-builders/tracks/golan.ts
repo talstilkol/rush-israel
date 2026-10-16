@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { gol } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -26,7 +26,7 @@ export default function buildGolan(context: TrackWorldBuilderContext): void {
     bag.push(basalt, grass);
     const kz = gol(32.992, 35.689);
     {
-      const n = nearestIndex(built.samples, kz.x, kz.z, 0);
+      const n = closestSample(built.samples, kz.x, kz.z);
       if (n.dist < built.width / 2 + 16) {
         const s = built.samples[n.index];
         kz.x = s.x + s.rx * (built.width / 2 + 34);

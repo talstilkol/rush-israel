@@ -22,7 +22,7 @@ try {
     const { buildTrack, closestSample, sampleAtT } = await import(dependency('spline.ts'));
     const { createWorld } = await import('/src/game/world.ts');
     const { ArcadeCar, aiInput } = await import('/src/game/vehicle.ts');
-    const { roadLaneOffset } = await import('/src/game/road-layout.ts');
+    const { roadLaneOffset, ROAD_UV_METRES, ROAD_PAINT_REPEAT_METRES } = await import('/src/game/road-layout.ts');
     const { CARS } = await import('/src/game/cars.ts');
     const modules = ['arrow', 'beam', 'blob', 'clock', 'curb', 'facade', 'flag', 'flake', 'flare', 'foam', 'ground', 'road', 'sign', 'sky', 'stone', 'tree', 'walk', 'water'];
     const cachedTextures = new Set();
@@ -53,6 +53,29 @@ try {
         original.call(this);
       };
     }
+    const blockingRoadBuildings = (world, built) => {
+      const blockers = [];
+      const point = new THREE.Vector3();
+      world.group.updateMatrixWorld(true);
+      world.group.traverse(mesh => {
+        if (!mesh.isMesh || mesh.isInstancedMesh || mesh.geometry.type !== 'BoxGeometry') return;
+        const size = mesh.geometry.parameters;
+        if (size.width < 4 || size.height < 3 || size.depth < 4) return;
+        const inverse = mesh.matrixWorld.clone().invert();
+        for (let index = 0; index < built.samples.length; index++) {
+          const sample = built.samples[index];
+          for (const lane of [-0.5, 0, 0.5]) {
+            const offset = lane * built.width / 2;
+            point.set(sample.x + sample.rx * offset, sample.y + 1.2, sample.z + sample.rz * offset).applyMatrix4(inverse);
+            if (Math.abs(point.x) < size.width / 2 && Math.abs(point.y) < size.height / 2 && Math.abs(point.z) < size.depth / 2) {
+              blockers.push({ name: mesh.name, dimensions: size, position: mesh.position.toArray(), sampleIndex: index, lane });
+              return;
+            }
+          }
+        }
+      });
+      return blockers;
+    };
     const results = [];
     let buildingImpactVerified = false;
     try {
@@ -62,14 +85,37 @@ try {
         try {
           const built = buildTrack(definition);
           world = await createWorld(definition, built, false, false, 'clear');
+          if (definition.id === 'oldjaffa') {
+            result.blockingRoadBuildings = blockingRoadBuildings(world, built);
+            if (result.blockingRoadBuildings.length) throw new Error(`buildings occupy the actual driving path: ${JSON.stringify(result.blockingRoadBuildings)}`);
+          }
           let nonFiniteGeometries = 0;
           let meshes = 0;
+          const invalidInstanceBuffers = [];
           world.group.traverse(object => {
             if (object.isMesh) meshes++;
+            if (object.isInstancedMesh && (!Number.isInteger(object.count) || object.count < 0 || object.count > object.instanceMatrix.count || (object.instanceColor && object.count > object.instanceColor.count))) {
+              invalidInstanceBuffers.push({ name: object.name, instances: object.count, capacity: object.instanceMatrix.count, colorCapacity: object.instanceColor?.count });
+            }
             const positions = object.geometry?.attributes?.position?.array;
             if (positions?.some(value => !Number.isFinite(value))) nonFiniteGeometries++;
           });
-          Object.assign(result, { meshes, colliders: world.colliders.length, nonFiniteGeometries });
+          Object.assign(result, { meshes, colliders: world.colliders.length, nonFiniteGeometries, invalidInstanceBuffers });
+          if (invalidInstanceBuffers.length) throw new Error(`instance buffer overflow: ${JSON.stringify(invalidInstanceBuffers)}`);
+          const raceRoad = world.group.getObjectByName('rush-race-road');
+          if (!raceRoad?.isMesh || raceRoad.material.side !== THREE.FrontSide) throw new Error('missing single-sided race road');
+          if (raceRoad.geometry.attributes.normal.array.some((value, i) => i % 3 === 1 && value < -0.0001)) throw new Error('race road normals face below the surface');
+          const dryRoughness = raceRoad.material.roughness;
+          if (raceRoad.material.map.repeat.y !== ROAD_UV_METRES / ROAD_PAINT_REPEAT_METRES || raceRoad.material.roughnessMap.repeat.y !== raceRoad.material.map.repeat.y) throw new Error('paint and paint roughness lost their actual metre scale');
+          if (raceRoad.material.userData.roadWetness !== 0 || raceRoad.material.clearcoat !== 0) throw new Error('clear daylight road was initialized wet');
+          world.setWeather('rain');
+          if (raceRoad.material.userData.roadWetness !== 1 || raceRoad.material.roughness >= dryRoughness) throw new Error('rain did not change the real road material');
+          world.setWeather('clear');
+          world.setTime(true);
+          if (raceRoad.material.userData.roadWetness !== 0 || raceRoad.material.roughness <= 0.7) throw new Error('clear night retained wet road shading');
+          const roadPuddles = world.group.getObjectByName('rush-road-puddles');
+          if (!roadPuddles || roadPuddles.visible) throw new Error('clear night retained road puddles');
+          result.roadMaterialWeather = { dryRoughness, clearNightRoughness: raceRoad.material.roughness, wetnessReset: true };
           if (definition.id === 'rothschild') {
             const lanes = [];
             for (const definition of CARS) for (const side of [-1, 1]) for (const follow of [false, true]) {

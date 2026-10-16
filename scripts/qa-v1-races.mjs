@@ -61,13 +61,15 @@ try {
       await page.evaluate(() => window.__controlsTest.skipReplay());
       await page.getByRole('dialog').getByRole('heading', { level: 2 }).waitFor();
       if (errors.length) throw new Error(errors.join('\n'));
+      const glError = await page.evaluate(() => window.__controlsTest.getGlError());
+      if (glError !== 0) throw new Error(`WebGL reported GPU error ${glError} during the actual race`);
       const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('rush-v1')));
       if (stored && (Object.keys(stored.rules || {}).length || Object.values(stored.career?.stars || {}).some(value => value > 0))) throw new Error('assisted QA driving wrote an official record or stars');
       const before = await page.evaluate(() => localStorage.getItem('rush-v1'));
       await page.evaluate(() => window.__controlsTest.skipReplay());
       const after = await page.evaluate(() => localStorage.getItem('rush-v1'));
       if (before !== after) throw new Error('repeated finish changed persisted race rewards');
-      const row = { track: track.id, complete: true, resultUi: true, lap: result.lap, seconds: result.totalTime, damage: result.damage, assisted: result.assisted };
+      const row = { track: track.id, complete: true, resultUi: true, lap: result.lap, seconds: result.totalTime, damage: result.damage, assisted: result.assisted, glError };
       results.push(row);
       console.log(JSON.stringify(row));
     } catch (error) {

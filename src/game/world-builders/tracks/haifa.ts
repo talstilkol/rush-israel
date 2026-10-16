@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { hai } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -30,7 +30,7 @@ export default function buildHaifa(context: TrackWorldBuilderContext): void {
     let bx = bg.x + 26;
     let bz = bg.z + 18;
     {
-      const n = nearestIndex(built.samples, bx, bz, 0);
+      const n = closestSample(built.samples, bx, bz);
       if (n.dist < built.width / 2 + 36) {
         const s = built.samples[n.index];
         const off = built.width / 2 + 58;
@@ -154,7 +154,7 @@ export default function buildHaifa(context: TrackWorldBuilderContext): void {
     const craneM = new THREE.MeshStandardMaterial({ color: 12085288, metalness: 0.4, roughness: 0.45 });
     bag.push(craneM);
     for (let c = 0; c < 3; c++) {
-      const nP = nearestIndex(built.samples, pt.x, pt.z, 0);
+      const nP = closestSample(built.samples, pt.x, pt.z);
       const sP = built.samples[nP.index];
       const cx = sP.x + sP.rx * (built.width / 2 + 24 + c * 10);
       const cz = sP.z + sP.rz * (built.width / 2 + 24 + c * 10);
@@ -169,7 +169,7 @@ export default function buildHaifa(context: TrackWorldBuilderContext): void {
     let smx = sm.x;
     let smz = sm.z;
     {
-      const n = nearestIndex(built.samples, smx, smz, 0);
+      const n = closestSample(built.samples, smx, smz);
       if (n.dist < built.width / 2 + 16) {
         const s = built.samples[n.index];
         smx = s.x + s.rx * (built.width / 2 + 28);

@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { net } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -22,7 +22,7 @@ export default function buildNetanya(context: TrackWorldBuilderContext): void {
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const sq = net(32.3318, 34.8565);
     {
-      const n = nearestIndex(built.samples, sq.x, sq.z, 0);
+      const n = closestSample(built.samples, sq.x, sq.z);
       if (n.dist < built.width / 2 + 10) {
         const s = built.samples[n.index];
         sq.x = s.x + s.rx * (built.width / 2 + 22);

@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { tzf } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -17,7 +17,7 @@ export default function buildTzfat(context: TrackWorldBuilderContext): void {
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const ct = tzf(32.967, 35.495);
     {
-      const n = nearestIndex(built.samples, ct.x, ct.z, 0);
+      const n = closestSample(built.samples, ct.x, ct.z);
       if (n.dist < built.width / 2 + 14) {
         const s = built.samples[n.index];
         ct.x = s.x + s.rx * (built.width / 2 + 28);

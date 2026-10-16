@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { tlv } from "../../tracks";
 import { getIsraelFlag } from "../../flag-assets";
 import type { TrackWorldBuilderContext } from "../shared";
@@ -75,8 +75,8 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
     }
     for (let i = 0; i < n; i++) {
       const a = i * 2;
-      medIdx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
-      walkIdx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
+      medIdx.push(a, a + 2, a + 1, a + 1, a + 2, a + 3);
+      walkIdx.push(a, a + 2, a + 1, a + 1, a + 2, a + 3);
     }
     const mkRibbon = (pos: number[], idx: number[], mat: THREE.Material) => {
       const g = new THREE.BufferGeometry();
@@ -99,8 +99,22 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
     const trunkG = new THREE.CylinderGeometry(0.95, 1.52, 12.4, 12);
     const leafG = new THREE.SphereGeometry(4.2, 10, 8);
     bag.push(trunkG, leafG);
+    const leafOffsets = [
+      [0, 0.8, 0],
+      [2.8, 0.3, 0.9],
+      [-2.7, 0.4, 0.7],
+      [0.9, 0.7, -2.7],
+      [-1.0, 0.3, 2.6],
+      [2.0, 2.2, 1.4],
+      [-2.1, 2.1, -1.3],
+      [0.2, 3.2, 0.3],
+      [2.3, 1.6, -1.8],
+      [-2.2, 1.7, 1.9],
+      [1.4, 2.6, -0.8],
+      [-1.5, 2.5, 0.9],
+    ];
     const trunks = new THREE.InstancedMesh(trunkG, trunkM, ficusN);
-    const leaves = new THREE.InstancedMesh(leafG, leafM, 960);
+    const leaves = new THREE.InstancedMesh(leafG, leafM, ficusN * leafOffsets.length);
     trunks.castShadow = shadows;
     leaves.castShadow = shadows;
     let ti = 0;
@@ -117,22 +131,8 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
         _dummy.rotation.set(0, i * 0.7 % 6, 0);
         _dummy.updateMatrix();
         trunks.setMatrixAt(ti, _dummy.matrix);
-        const offs = [
-          [0, 0.8, 0],
-          [2.8, 0.3, 0.9],
-          [-2.7, 0.4, 0.7],
-          [0.9, 0.7, -2.7],
-          [-1.0, 0.3, 2.6],
-          [2.0, 2.2, 1.4],
-          [-2.1, 2.1, -1.3],
-          [0.2, 3.2, 0.3],
-          [2.3, 1.6, -1.8],
-          [-2.2, 1.7, 1.9],
-          [1.4, 2.6, -0.8],
-          [-1.5, 2.5, 0.9],
-        ];
-        for (let k = 0; k < 12; k++) {
-          _dummy.position.set(fx + offs[k][0], s.y + 13.4 + offs[k][1], fz + offs[k][2]);
+        for (let k = 0; k < leafOffsets.length; k++) {
+          _dummy.position.set(fx + leafOffsets[k][0], s.y + 13.4 + leafOffsets[k][1], fz + leafOffsets[k][2]);
           const sc = 1.12 + (k % 3) * 0.2;
           _dummy.scale.set(sc, sc * 0.88, sc);
           _dummy.updateMatrix();
@@ -266,7 +266,7 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
       }
     ]) {
       const p = tlv(uh.lat, uh.lon);
-      const nearH = nearestIndex(built.samples, p.x, p.z, 0);
+      const nearH = closestSample(built.samples, p.x, p.z);
       const sH = built.samples[nearH.index];
       const extraH = built.width / 2 + 18;
       if (nearH.dist < extraH) {
@@ -305,7 +305,7 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
     }
     const indy = tlv(32.0629, 34.7695);
     {
-      const nI = nearestIndex(built.samples, indy.x, indy.z, 0);
+      const nI = closestSample(built.samples, indy.x, indy.z);
       if (nI.dist < built.width / 2 + 12) {
         const sI = built.samples[nI.index];
         indy.x = sI.x + sI.rx * (built.width / 2 + 16);
@@ -325,7 +325,7 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
     }
     const pg = tlv(32.0648, 34.7752);
     {
-      const nP = nearestIndex(built.samples, pg.x, pg.z, 0);
+      const nP = closestSample(built.samples, pg.x, pg.z);
       if (nP.dist < built.width / 2 + 12) {
         const sP = built.samples[nP.index];
         pg.x = sP.x + sP.rx * (built.width / 2 + 18);
@@ -352,7 +352,7 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
     add(pgCap);
     const hb = tlv(32.0734, 34.7826);
     {
-      const nB = nearestIndex(built.samples, hb.x, hb.z, 0);
+      const nB = closestSample(built.samples, hb.x, hb.z);
       if (nB.dist < built.width / 2 + 16) {
         const sB = built.samples[nB.index];
         hb.x = sB.x + sB.rx * (built.width / 2 + 28);
@@ -402,7 +402,7 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
     add(hbLid);
     const ind = tlv(32.0624, 34.7682);
     {
-      const nN = nearestIndex(built.samples, ind.x, ind.z, 0);
+      const nN = closestSample(built.samples, ind.x, ind.z);
       if (nN.dist < built.width / 2 + 12) {
         const sN = built.samples[nN.index];
         ind.x = sN.x + sN.rx * (built.width / 2 + 18);
@@ -460,7 +460,7 @@ export default function buildRothschild(context: TrackWorldBuilderContext): void
     hit(hb.x, hb.z, 10);
     hit(ind.x, ind.z, 8);
     hit(me.x, me.z, 6);
-    const nearPg = nearestIndex(built.samples, pg.x, pg.z, 0);
+    const nearPg = closestSample(built.samples, pg.x, pg.z);
     if (nearPg.dist > built.width / 2 + 6) hit(pg.x, pg.z, 6);
   /* RSH-016:END-LEGACY-TRACK-BODY */
 }

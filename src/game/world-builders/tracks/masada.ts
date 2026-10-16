@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { mas } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -17,7 +17,7 @@ export default function buildMasada(context: TrackWorldBuilderContext): void {
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const ft = mas(31.3157, 35.3538);
     {
-      const n = nearestIndex(built.samples, ft.x, ft.z, 0);
+      const n = closestSample(built.samples, ft.x, ft.z);
       if (n.dist < built.width / 2 + 40) {
         const s = built.samples[n.index];
         ft.x = s.x + s.rx * (built.width / 2 + 58);

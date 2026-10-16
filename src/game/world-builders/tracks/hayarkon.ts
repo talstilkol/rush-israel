@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { tlv } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -26,7 +26,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const hi = tlv(32.0893, 34.7694);
     {
-      const n = nearestIndex(built.samples, hi.x, hi.z, 0);
+      const n = closestSample(built.samples, hi.x, hi.z);
       if (n.dist < built.width / 2 + 10) {
         const s = built.samples[n.index];
         hi.x = s.x + s.rx * (built.width / 2 + 30);
@@ -64,7 +64,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     group.add(hiltonWins);
     const op = tlv(32.0768, 34.7662);
     {
-      const n = nearestIndex(built.samples, op.x, op.z, 0);
+      const n = closestSample(built.samples, op.x, op.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         op.x = s.x + s.rx * (built.width / 2 + 22);
@@ -98,7 +98,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     add(crown);
     const danP = tlv(32.0814, 34.7672);
     {
-      const n = nearestIndex(built.samples, danP.x, danP.z, 0);
+      const n = closestSample(built.samples, danP.x, danP.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         danP.x = s.x + s.rx * (built.width / 2 + 20);
@@ -123,7 +123,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     add(danRoof);
     const carP = tlv(32.0866, 34.7678);
     {
-      const n = nearestIndex(built.samples, carP.x, carP.z, 0);
+      const n = closestSample(built.samples, carP.x, carP.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         carP.x = s.x + s.rx * (built.width / 2 + 20);
@@ -153,7 +153,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     add(poolHall);
     const mar = tlv(32.0938, 34.7688);
     {
-      const n = nearestIndex(built.samples, mar.x, mar.z, 0);
+      const n = closestSample(built.samples, mar.x, mar.z);
       if (n.dist < built.width / 2 + 10) {
         const s = built.samples[n.index];
         mar.x = s.x + s.rx * (built.width / 2 + 22);
@@ -195,7 +195,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     }
     const rd = tlv(32.1044, 34.7794);
     {
-      const n = nearestIndex(built.samples, rd.x, rd.z, 0);
+      const n = closestSample(built.samples, rd.x, rd.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         rd.x = s.x + s.rx * (built.width / 2 + 34);
@@ -272,7 +272,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     add(lawn);
     const carl = tlv(32.0865, 34.7688);
     {
-      const n = nearestIndex(built.samples, carl.x, carl.z, 0);
+      const n = closestSample(built.samples, carl.x, carl.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         carl.x = s.x + s.rx * (built.width / 2 + 22);
@@ -295,7 +295,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     add(skyb);
     const yam = tlv(32.0795, 34.7668);
     {
-      const n = nearestIndex(built.samples, yam.x, yam.z, 0);
+      const n = closestSample(built.samples, yam.x, yam.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         yam.x = s.x + s.rx * (built.width / 2 + 22);
@@ -310,7 +310,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     add(yamCap);
     const dav = tlv(32.0638, 34.7648);
     {
-      const n = nearestIndex(built.samples, dav.x, dav.z, 0);
+      const n = closestSample(built.samples, dav.x, dav.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         dav.x = s.x + s.rx * (built.width / 2 + 24);
@@ -328,7 +328,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     add(davidTop);
     const sher = tlv(32.083, 34.7674);
     {
-      const n = nearestIndex(built.samples, sher.x, sher.z, 0);
+      const n = closestSample(built.samples, sher.x, sher.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         sher.x = s.x + s.rx * (built.width / 2 + 22);
@@ -345,7 +345,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     }
     const dol = tlv(32.0648, 34.7618);
     {
-      const n = nearestIndex(built.samples, dol.x, dol.z, 0);
+      const n = closestSample(built.samples, dol.x, dol.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         dol.x = s.x + s.rx * (built.width / 2 + 26);
@@ -361,7 +361,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     add(dolInner);
     const smH = tlv(32.0639, 34.7688);
     {
-      const n = nearestIndex(built.samples, smH.x, smH.z, 0);
+      const n = closestSample(built.samples, smH.x, smH.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         smH.x = s.x + s.rx * (built.width / 2 + 24);
@@ -377,7 +377,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     glowAt(hi.x, 36, hi.z, 16769200, 38, 36);
     glowAt(op.x, 50, op.z, 16771264, 32, 32);
     const skipRoad = (x: number, z: number, r: number) => {
-      const n = nearestIndex(built.samples, x, z, 0);
+      const n = closestSample(built.samples, x, z);
       if (n.dist > built.width / 2 + 6) hit(x, z, r);
     };
     skipRoad(smH.x, smH.z, 8);
@@ -393,7 +393,7 @@ export default function buildHayarkon(context: TrackWorldBuilderContext): void {
     skipRoad(mar.x, mar.z, 10);
     const rdH = tlv(32.1044, 34.7776);
     {
-      const n = nearestIndex(built.samples, rdH.x, rdH.z, 0);
+      const n = closestSample(built.samples, rdH.x, rdH.z);
       const s = built.samples[n.index];
       placeTunnel(s.x, s.z, Math.atan2(s.tx, s.tz), 82, built.width * 0.72, 8.8, s.y);
       if (n.dist < built.width / 2 + 12) {

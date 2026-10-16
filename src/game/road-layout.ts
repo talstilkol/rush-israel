@@ -1,5 +1,10 @@
 import type { TrackDef } from "./types";
 
+export const ROAD_UV_METRES = 6;
+// The committed kit repeats its 48px paint cycle within a 512px image.
+// A 96m image repeat preserves the existing approximately 4.4m / 9m dash rhythm.
+export const ROAD_PAINT_REPEAT_METRES = 96;
+
 /** The landscaped island is not a racing lane. Shared by geometry and driving. */
 export function roadMedianHalfWidth(def: Pick<TrackDef, "id">): number {
   return def.id === "rothschild" ? 6.2 : 0;

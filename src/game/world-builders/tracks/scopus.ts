@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { jer } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -22,11 +22,11 @@ export default function buildScopus(context: TrackWorldBuilderContext): void {
     const uniP = jer(31.7938, 35.2452);
     const sc = jer(31.7912, 35.2454);
     {
-      const nU = nearestIndex(built.samples, uniP.x, uniP.z, 0);
+      const nU = closestSample(built.samples, uniP.x, uniP.z);
       const sU = built.samples[nU.index];
       uniP.x = sU.x + sU.rx * (built.width / 2 + 24);
       uniP.z = sU.z + sU.rz * (built.width / 2 + 24);
-      const nS = nearestIndex(built.samples, sc.x, sc.z, 0);
+      const nS = closestSample(built.samples, sc.x, sc.z);
       const sS = built.samples[nS.index];
       sc.x = sS.x + sS.rx * (built.width / 2 + 22);
       sc.z = sS.z + sS.rz * (built.width / 2 + 22);

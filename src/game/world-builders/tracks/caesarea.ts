@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { nearestIndex } from "../../spline";
+import { closestSample } from "../../spline";
 import { cae } from "../../tracks";
 import type { TrackWorldBuilderContext } from "../shared";
 
@@ -18,7 +18,7 @@ export default function buildCaesarea(context: TrackWorldBuilderContext): void {
   /* RSH-016:BEGIN-LEGACY-TRACK-BODY */
     const aq = cae(32.5078, 34.8976);
     {
-      const n = nearestIndex(built.samples, aq.x, aq.z, 0);
+      const n = closestSample(built.samples, aq.x, aq.z);
       if (n.dist < built.width / 2 + 12) {
         const s = built.samples[n.index];
         aq.x = s.x + s.rx * (built.width / 2 + 28);

@@ -167,6 +167,7 @@ export function exposeControls(this: EngineAdapterHost)
       getPhysicsVersion: () => PHYSICS_VERSION,
       getVis: () => WEATHER_SPEC[this.weather]?.vis ?? 1,
       exportTelemetry: () => this.telem.snapshot(),
+      getGlError: () => this.renderer.getContext().getError(),
       gotoGolden: (id: string) => {
         const g = AYALON_GOLDEN.find((c) => c.id === id);
         if (!g) return false;
