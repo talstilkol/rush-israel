@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "physicsVersion": 11,
+  "physicsVersion": 12,
   "track": "ayalon",
   "gate": "current-behaviour regression",
   "claimGate": "RSH-033",
   "regressionToleranceSeconds": 0.1,
   "claimTolerance": 0.15,
-  "authority": "Physics11 projects road/ramp grade and terrain pitch into the vehicle forward direction and applies uphill resistance against actual travel in either gear. AI corner braking and relative-speed vehicle avoidance change the driving policy without changing acceleration targets or damage rules. All existing means and 0.1-second/15-percent thresholds remain unchanged; exact-source browser acceleration and hosted CI are required.",
+  "authority": "Record/collision epoch12 changes landmark placement and terrain support. This reference epoch is explicitly synchronized without changing any means,claims,tolerances or original generatedFromPhysicsVersion8 provenance. The version11 reference is archived under evidence/2026-10-16/accel-epoch. Actual15-run browser verification and exact-head CI are separate evidence; this is not new independent physical calibration.",
   "runs": [
     {
       "carId": "sabra",
