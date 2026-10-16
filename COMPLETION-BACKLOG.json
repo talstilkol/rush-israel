@@ -362,9 +362,9 @@
       ],
       "deliverable": "מודל ונכסים מתועדים ו-LODs",
       "acceptance": "silhouette lights paint damage ו-LOD נבדקים; רכב אחד באיכות סופית",
-      "status": "open",
+      "status": "partial",
       "assigned_person": null,
-      "verification_note": "לא התקבלה ראיה חדשה לסגירת קריטריון הקבלה.",
+      "verification_note": "תוקנו ארבעת החלונות בכל אחד מחמשת הדגמים: התאמה גאומטרית למעטפת, מיקום גבוה יותר וזיגוג PBR כהה ואטום. חלונות הייצור נבדקו מול גוף GLB אמיתי; בעלות גאומטריה ופינוי נשמרו. זה אינו מודל Hero סופי, זכוכית מעבירת אור או קבלת אמנות. נדרשים עדיין מודל מפורט, LOD, זכויות וקבלה אנושית.",
       "external_evidence_required": true
     },
     {

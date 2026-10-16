@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import type { CarDef, Tune } from "./types";
 import { cloneCarBody } from "./car-assets";
+import { fitCarWindows } from "./car-glazing";
 import { getBeam } from "./beam-assets";
 import { getFlake } from "./flake-assets";
 import { disposeObject3D, type Object3DDisposalTracker } from "../rendering/disposeObject3D";
@@ -310,13 +311,16 @@ export function createCarVisual(
   const half = L.L / 2;
   const bodyY = L.wheelY + L.bodyH * 0.22;
   const baked = cloneCarBody(kind, color, shadows);
+  let shell: THREE.Mesh;
   if (baked) {
     const rich = paint(color);
     baked.material = rich;
     bodyMat = rich;
     group.add(baked);
+    shell = baked;
   } else {
-    put(bodyGeo(kind, L.W * 0.9), bodyMat, 0, 0, 0);
+    shell = put(bodyGeo(kind, L.W * 0.9), bodyMat, 0, 0, 0);
+    shell.name = "body";
   }
   addLivery(put, L, tune?.livery ?? 0);
 
@@ -368,10 +372,14 @@ export function createCarVisual(
 
   const glassW = L.W * 0.68;
   const pane = (w: number, h: number) => new THREE.BoxGeometry(w, h, 0.036);
-  put(pane(glassW, L.cabinH * 0.72), glass, 0, cabinY + 0.02, L.cabinZ + L.cabinL * 0.42, -0.62);
-  put(pane(glassW * 0.96, L.cabinH * 0.58), glass, 0, cabinY, L.cabinZ - L.cabinL * 0.42, 0.52);
-  put(pane(L.cabinL * 0.62, L.cabinH * 0.48), glass, -L.W * 0.445, cabinY, L.cabinZ, 0, Math.PI / 2);
-  put(pane(L.cabinL * 0.62, L.cabinH * 0.48), glass, L.W * 0.445, cabinY, L.cabinZ, 0, -Math.PI / 2);
+  const windows = [
+    put(pane(glassW, L.cabinH * 0.72), glass, 0, cabinY + 0.02, L.cabinZ + L.cabinL * 0.42, -0.62),
+    put(pane(glassW * 0.96, L.cabinH * 0.58), glass, 0, cabinY, L.cabinZ - L.cabinL * 0.42, 0.52),
+    put(pane(L.cabinL * 0.62, L.cabinH * 0.48), glass, -L.W * 0.445, cabinY, L.cabinZ, 0, Math.PI / 2),
+    put(pane(L.cabinL * 0.62, L.cabinH * 0.48), glass, L.W * 0.445, cabinY, L.cabinZ, 0, -Math.PI / 2),
+  ] as THREE.Mesh<THREE.BoxGeometry, THREE.MeshPhysicalMaterial>[];
+  for (const [i, window] of windows.entries()) window.name = `window-${["front", "rear", "left", "right"][i]}`;
+  group.userData.glazingFitted = fitCarWindows(shell, windows, L.cabinH);
 
   put(new THREE.BoxGeometry(0.18, 0.1, 0.14), black, -L.W * 0.48, cabinY + 0.01, L.cabinZ + L.cabinL * 0.18);
   put(new THREE.BoxGeometry(0.18, 0.1, 0.14), black, L.W * 0.48, cabinY + 0.01, L.cabinZ + L.cabinL * 0.18);

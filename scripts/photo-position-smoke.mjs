@@ -2,6 +2,7 @@
 /** Actual photo camera placement; this does not accept the art or freeze it. */
 import assert from 'node:assert/strict';
 import {verifyVehicleVisualFeedback} from './visual-feedback-smoke.mjs';
+import {verifyCarGlazing} from './car-glazing-smoke.mjs';
 import { chromium } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fromRoot } from './project-root.mjs';
@@ -47,3 +48,5 @@ try {
 
 // Same required photo gate also checks pose and vehicle-control feedback.
 await verifyVehicleVisualFeedback();
+
+await verifyCarGlazing();

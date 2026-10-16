@@ -1,0 +1,9 @@
+{"cars":[{"id":"sabra","visible":0},{"id":"carmel","visible":0},{"id":"kfir","visible":0},{"id":"negev","visible":0},{"id":"yam","visible":0}],"stable":false,"samples":0,"construction":{"samples":0,"p95Ms":null,"scope":"Hot CPU createCarVisual duration only; not frame time or full load latency."},"graphics":{"renderer":"ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)","render":[1440,900]},"errors":[]}
+file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing/scripts/car-glazing-smoke.mjs:43
+  if(!result.passed||errors.length)throw Error('Car glazing or car-resource regression; inspect artifacts/car-glazing/summary.json');
+                                         ^
+
+Error: Car glazing or car-resource regression; inspect artifacts/car-glazing/summary.json
+    at Module.verifyCarGlazing (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing/scripts/car-glazing-smoke.mjs:43:42)
+
+Node.js v22.16.0
