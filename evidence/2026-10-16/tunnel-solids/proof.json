@@ -1,6 +1,6 @@
 {
-  "observed_at": "2026-10-16T08:22:18.654672+00:00",
-  "base_head": "8d8fdd87e9f5aa2611b3bc88296d7e35b4a66161",
+  "observed_at": "2026-10-16T08:27:03.718107+00:00",
+  "base_head": "e96c04bc24e9e4b914df311195e0dc14ff968bed",
   "source_authority": "Final isolated runtime bytes below;containing commit and new hosted CI/1800-second soak bound externally.",
   "runtime_files": {
     "public/__grok/icon-180.png": "3cf5d17d294b51c6cca6c86070309b88554b7ad702b0412e8e2709a01990bc8a",
@@ -444,7 +444,9 @@
     "scripts/tunnel-collider-smoke.mjs": "f12cee7b4c814ab6ec06a1bed796e6c8595898b1e6bebc79177fe33fd741a743",
     "scripts/world-runtime-audit.mjs": "f82b480f66dbaa68271fc7edb0aa170dc1ede72262874a67efb045af432ba486",
     "scripts/accel-reference.test.mjs": "895f101a2014fd9ed585f5d7b2326c10945669df4a5c54f9f47e550de3bd4522",
-    "golden-baseline/accel.json": "d36ec037b760d7a58ae01be6086223e42e0089018dca349de238b3e954e6785c"
+    "golden-baseline/accel.json": "d36ec037b760d7a58ae01be6086223e42e0089018dca349de238b3e954e6785c",
+    "COMPLETION-BACKLOG.json": "4b8caabcfae1f107bfc776e51573bd9cf3c1b34fdd9f813da16529f286a5be77",
+    "COMPLETION-PLAN.md": "d73b024f5752841abbb42d269167123703557925239896a47223fdb42364537c"
   },
   "claims": {
     "current_unit_tests": 685,
@@ -471,7 +473,7 @@
     "actual-alignment/summary.json": "b5748f6805fa17c3e6332d68b09008b342bde5e1bfcfca8cb8adec2db2f33a4a",
     "actual-tunnels/summary.json": "188c0234b87b3d61f260e634fa3620eddfdb3af355727a28a7fdd959ec174d2b",
     "after-contacts.json": "0596273881490faae55e4466db9450e2e9e76f15733909e4c4b9b2a1ed570c88",
-    "all-unit.log": "9b001fa2ea19da8e0ea21be63c578dbb22193951ba30015fad34464ce36a8207",
+    "all-unit.log": "5adece3cf858ec8b39bd60e0922819bcb0d32e2db4329dafbbc961f6ade5f7c6",
     "before-accel.json": "7b9293c72c9973e7d2d34fc50f221b4ab5f8ab2e2c08d2a97ad4ba5763ad681a",
     "before-contacts.json": "d50e1987dedd7191c0c446f880271d5a167de2cadc8b5a19a5b5c5f784b698ef",
     "before-protocol.mjs.txt": "83a3df4289d618443e66885df2d38c9d05e0b9d9eb6d135b23cafa484367c579",
@@ -500,7 +502,7 @@
     "native-photo.log": "1cad7456591a6e24a6417de08d28105c0ae53b471646815923f78cf8fedd2128",
     "official-skill-client.mjs.txt": "e95c3bcbdc0d15eb08fd3a6021283ec32f715b51f1e5847d3db20df526be5996",
     "paths.log": "fd2480bde9033795e71241360d0d5a8f296497941ee38b843a1cff096d9943ec",
-    "plan-consistency.json": "3dd28e77e5ad9e1d0c6d03c67ce83bde849df9dd6a563f88a76b8322aae78cea",
+    "plan-consistency.json": "d3d5c98c61860a20c9f143bec37e141deb4482acf2cee10c001f39b52ccee76c",
     "production.log": "198477f36d650733cdcc1ccb8f67c73f312847c9c68ff855868d238fe7ed850e",
     "races/summary.json": "28f2151ba3de4846f0526e515efacf8c74361b6d060626979d47dba6566b4db8",
     "road-assumption-failure.json": "7b1441359cf363cab56ce282d57e7c621ca8b21a40fb1baf7eb913e9b816aca6",

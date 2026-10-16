@@ -6,8 +6,8 @@
   "acyclic": true,
   "all_markdown_task_fields": "Verified by current completion-plan.test.mjs against all46 real canonical records.",
   "files": {
-    "COMPLETION-PLAN.md": "1d5e1db056836fe73902a7206e0fe8b203f3d63c8f5818073d07c5346318ffaf",
-    "COMPLETION-BACKLOG.json": "dbfc3c3386928c2b0b343e53793e668165ebd479df59fcc6b5f40e656d9f1a75",
+    "COMPLETION-PLAN.md": "d73b024f5752841abbb42d269167123703557925239896a47223fdb42364537c",
+    "COMPLETION-BACKLOG.json": "4b8caabcfae1f107bfc776e51573bd9cf3c1b34fdd9f813da16529f286a5be77",
     "COMPLETION-CROSSWALK.json": "f54a994e48b4675c1938058e4220bab81c6f3f97a06a796a46ef608885f5ff2f",
     "QUALITY-TARGETS.md": "75d8485a47f8c4b5579a62890ccabe8461421fcf54f320e894db193631dea57c",
     "PRODUCT-READINESS.json": "cae85eb54656ddb008fd341464b0dffb3349734cb909434b34e101cca76516b9"
