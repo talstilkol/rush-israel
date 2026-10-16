@@ -112,6 +112,7 @@
     "react-static-children.test.mjs": "current-unit",
     "records.test.mjs": "current-unit",
     "resource-registry.test.mjs": "current-unit",
+    "road-edge-height.test.mjs": "current-unit",
     "road-facing.test.mjs": "current-unit",
     "road-shader.test.mjs": "current-unit",
     "run-with-server.test.mjs": "current-unit",

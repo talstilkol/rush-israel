@@ -1,0 +1,1284 @@
+TAP version 13
+# Subtest: Scopus 0: actual generated road edge retains finite vertical bounds
+not ok 1 - Scopus 0: actual generated road edge retains finite vertical bounds
+  ---
+  duration_ms: 2.834458
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:15:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(Number.isFinite(collider.minY)&&Number.isFinite(collider.maxY))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:16:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: Scopus 0: actual captured contact at another road level must not move or damage the car
+not ok 2 - Scopus 0: actual captured contact at another road level must not move or damage the car
+  ---
+  duration_ms: 1.314
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:18:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      {
+        boostT: -0.001666666666666627,
+    +   damage: 0.029159950084320072,
+    -   damage: 0,
+        driftCharge: 0,
+        driftScore: 0,
+        eliminated: false,
+        finished: false,
+        gear: 3,
+    ...
+        sampleIndex: 38,
+    +   speed: 10.437457113580866,
+    -   speed: 26.800869316193012,
+        transient: {
+          absActive: false,
+          airMs: 0,
+          airborne: false,
+          comboMul: 1,
+    ...
+          holdSteer: 0.0006606732153343842,
+    +     impact: 0.38,
+    -     impact: 0,
+          kinMix: 0,
+    +     lastHit: 'barrier',
+    -     lastHit: '',
+          nitroHeld: false,
+          nitroPulse: false,
+          onTrack: true,
+          reverseHold: 0,
+          rideCompress: 0,
+    ...
+          tcsActive: false,
+    +     wallDmgT: 0.55,
+    -     wallDmgT: 0,
+          wasCurb: false,
+          wheelsLocked: false
+        },
+        visualInput: {
+          brake: 0.2603219676060854,
+          steer: 0.0006606732153343842
+        },
+    +   vx: 19.28415212896428,
+    -   vx: 21.891585710162964,
+        vy: 0,
+    +   vz: -4.0482778062977705,
+    -   vz: 15.461218670003964,
+        wrongWayT: 0,
+    +   x: 456.08825217596933,
+    -   x: 456.09150968939815,
+        y: 10.929734859014072,
+        yaw: -2.188131527149586,
+        yawRate: -0.3840487951321905,
+    +   z: 595.1828582796373
+    -   z: 595.2072318426764
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    visualInput:
+      steer: 0.0006606732153343842
+      brake: 0.2603219676060854
+    x: 456.09150968939815
+    y: 10.929734859014072
+    z: 595.2072318426764
+    yaw: -2.188131527149586
+    vx: 21.891585710162964
+    vz: 15.461218670003964
+    vy: 0
+    speed: 26.800869316193012
+    progress: 0.11515151515151514
+    sampleIndex: 38
+    lap: 0
+    lastCheckpoint: -1
+    nextCheckpoint: 0
+    nitro: 0.39239999999998726
+    driftCharge: 0
+    driftScore: 0
+    damage: 0
+    pitch: -0.054056297429140684
+    boostT: -0.001666666666666627
+    finished: false
+    eliminated: false
+    offTrackT: 0
+    wrongWayT: 0
+    roll: 0.00268439528320923
+    gear: 3
+    yawRate: -0.3840487951321905
+    transient:
+      drifting: false
+      nitroPulse: false
+      impact: 0
+      lastHit: ''
+      onTrack: true
+      sideStreet: ''
+      sideStreetEn: ''
+      drafting: false
+      surfaceGrip: 0.8
+      slip: 0.0024418533103644845
+      rpm: 0.7023341506497044
+      kinMix: 0
+      surfaceKind: 'asphalt'
+      dirt: 0
+      airborne: false
+      airMs: 0
+      rideCompress: 0
+      wasCurb: false
+      comboMul: 1
+      wheelsLocked: false
+      driftAngle: 0
+      reverseHold: 0
+      absActive: false
+      tcsActive: false
+      escActive: false
+      slipRatio: 0
+      wallDmgT: 0
+      nitroHeld: false
+      holdSteer: 0.0006606732153343842
+  actual:
+    visualInput:
+      steer: 0.0006606732153343842
+      brake: 0.2603219676060854
+    x: 456.08825217596933
+    y: 10.929734859014072
+    z: 595.1828582796373
+    yaw: -2.188131527149586
+    vx: 19.28415212896428
+    vz: -4.0482778062977705
+    vy: 0
+    speed: 10.437457113580866
+    progress: 0.11515151515151514
+    sampleIndex: 38
+    lap: 0
+    lastCheckpoint: -1
+    nextCheckpoint: 0
+    nitro: 0.39239999999998726
+    driftCharge: 0
+    driftScore: 0
+    damage: 0.029159950084320072
+    pitch: -0.054056297429140684
+    boostT: -0.001666666666666627
+    finished: false
+    eliminated: false
+    offTrackT: 0
+    wrongWayT: 0
+    roll: 0.00268439528320923
+    gear: 3
+    yawRate: -0.3840487951321905
+    transient:
+      drifting: false
+      nitroPulse: false
+      impact: 0.38
+      lastHit: 'barrier'
+      onTrack: true
+      sideStreet: ''
+      sideStreetEn: ''
+      drafting: false
+      surfaceGrip: 0.8
+      slip: 0.0024418533103644845
+      rpm: 0.7023341506497044
+      kinMix: 0
+      surfaceKind: 'asphalt'
+      dirt: 0
+      airborne: false
+      airMs: 0
+      rideCompress: 0
+      wasCurb: false
+      comboMul: 1
+      wheelsLocked: false
+      driftAngle: 0
+      reverseHold: 0
+      absActive: false
+      tcsActive: false
+      escActive: false
+      slipRatio: 0
+      wallDmgT: 0.55
+      nitroHeld: false
+      holdSteer: 0.0006606732153343842
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:19:77)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: Scopus 0: captured horizontal contact still resolves at the guardrail's own level
+ok 3 - Scopus 0: captured horizontal contact still resolves at the guardrail's own level
+  ---
+  duration_ms: 0.084209
+  type: 'test'
+  ...
+# Subtest: Scopus 0: top of actual loaded body below an elevated edge has no contact
+not ok 4 - Scopus 0: top of actual loaded body below an elevated edge has no contact
+  ---
+  duration_ms: 0.247917
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:24:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      {
+        boostT: -0.001666666666666627,
+    +   damage: 0.029159950084320072,
+    -   damage: 0,
+        driftCharge: 0,
+        driftScore: 0,
+        eliminated: false,
+        finished: false,
+        gear: 3,
+    ...
+        sampleIndex: 38,
+    +   speed: 10.437457113580866,
+    -   speed: 26.800869316193012,
+        transient: {
+          absActive: false,
+          airMs: 0,
+          airborne: false,
+          comboMul: 1,
+    ...
+          holdSteer: 0.0006606732153343842,
+    +     impact: 0.38,
+    -     impact: 0,
+          kinMix: 0,
+    +     lastHit: 'barrier',
+    -     lastHit: '',
+          nitroHeld: false,
+          nitroPulse: false,
+          onTrack: true,
+          reverseHold: 0,
+          rideCompress: 0,
+    ...
+          tcsActive: false,
+    +     wallDmgT: 0.55,
+    -     wallDmgT: 0,
+          wasCurb: false,
+          wheelsLocked: false
+        },
+        visualInput: {
+          brake: 0.2603219676060854,
+          steer: 0.0006606732153343842
+        },
+    +   vx: 19.28415212896428,
+    -   vx: 21.891585710162964,
+        vy: 0,
+    +   vz: -4.0482778062977705,
+    -   vz: 15.461218670003964,
+        wrongWayT: 0,
+    +   x: 456.08825217596933,
+    -   x: 456.09150968939815,
+        y: NaN,
+        yaw: -2.188131527149586,
+        yawRate: -0.3840487951321905,
+    +   z: 595.1828582796373
+    -   z: 595.2072318426764
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    visualInput:
+      steer: 0.0006606732153343842
+      brake: 0.2603219676060854
+    x: 456.09150968939815
+    y: NaN
+    z: 595.2072318426764
+    yaw: -2.188131527149586
+    vx: 21.891585710162964
+    vz: 15.461218670003964
+    vy: 0
+    speed: 26.800869316193012
+    progress: 0.11515151515151514
+    sampleIndex: 38
+    lap: 0
+    lastCheckpoint: -1
+    nextCheckpoint: 0
+    nitro: 0.39239999999998726
+    driftCharge: 0
+    driftScore: 0
+    damage: 0
+    pitch: -0.054056297429140684
+    boostT: -0.001666666666666627
+    finished: false
+    eliminated: false
+    offTrackT: 0
+    wrongWayT: 0
+    roll: 0.00268439528320923
+    gear: 3
+    yawRate: -0.3840487951321905
+    transient:
+      drifting: false
+      nitroPulse: false
+      impact: 0
+      lastHit: ''
+      onTrack: true
+      sideStreet: ''
+      sideStreetEn: ''
+      drafting: false
+      surfaceGrip: 0.8
+      slip: 0.0024418533103644845
+      rpm: 0.7023341506497044
+      kinMix: 0
+      surfaceKind: 'asphalt'
+      dirt: 0
+      airborne: false
+      airMs: 0
+      rideCompress: 0
+      wasCurb: false
+      comboMul: 1
+      wheelsLocked: false
+      driftAngle: 0
+      reverseHold: 0
+      absActive: false
+      tcsActive: false
+      escActive: false
+      slipRatio: 0
+      wallDmgT: 0
+      nitroHeld: false
+      holdSteer: 0.0006606732153343842
+  actual:
+    visualInput:
+      steer: 0.0006606732153343842
+      brake: 0.2603219676060854
+    x: 456.08825217596933
+    y: NaN
+    z: 595.1828582796373
+    yaw: -2.188131527149586
+    vx: 19.28415212896428
+    vz: -4.0482778062977705
+    vy: 0
+    speed: 10.437457113580866
+    progress: 0.11515151515151514
+    sampleIndex: 38
+    lap: 0
+    lastCheckpoint: -1
+    nextCheckpoint: 0
+    nitro: 0.39239999999998726
+    driftCharge: 0
+    driftScore: 0
+    damage: 0.029159950084320072
+    pitch: -0.054056297429140684
+    boostT: -0.001666666666666627
+    finished: false
+    eliminated: false
+    offTrackT: 0
+    wrongWayT: 0
+    roll: 0.00268439528320923
+    gear: 3
+    yawRate: -0.3840487951321905
+    transient:
+      drifting: false
+      nitroPulse: false
+      impact: 0.38
+      lastHit: 'barrier'
+      onTrack: true
+      sideStreet: ''
+      sideStreetEn: ''
+      drafting: false
+      surfaceGrip: 0.8
+      slip: 0.0024418533103644845
+      rpm: 0.7023341506497044
+      kinMix: 0
+      surfaceKind: 'asphalt'
+      dirt: 0
+      airborne: false
+      airMs: 0
+      rideCompress: 0
+      wasCurb: false
+      comboMul: 1
+      wheelsLocked: false
+      driftAngle: 0
+      reverseHold: 0
+      absActive: false
+      tcsActive: false
+      escActive: false
+      slipRatio: 0
+      wallDmgT: 0.55
+      nitroHeld: false
+      holdSteer: 0.0006606732153343842
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:25:130)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Scopus 0: loaded body's top overlapping elevated edge still contacts
+ok 5 - Scopus 0: loaded body's top overlapping elevated edge still contacts
+  ---
+  duration_ms: 0.060041
+  type: 'test'
+  ...
+# Subtest: Scopus 0: bottom of actual body above a lower edge has no contact
+not ok 6 - Scopus 0: bottom of actual body above a lower edge has no contact
+  ---
+  duration_ms: 0.267958
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:30:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      {
+        boostT: -0.001666666666666627,
+    +   damage: 0.029159950084320072,
+    -   damage: 0,
+        driftCharge: 0,
+        driftScore: 0,
+        eliminated: false,
+        finished: false,
+        gear: 3,
+    ...
+        sampleIndex: 38,
+    +   speed: 10.437457113580866,
+    -   speed: 26.800869316193012,
+        transient: {
+          absActive: false,
+          airMs: 0,
+          airborne: false,
+          comboMul: 1,
+    ...
+          holdSteer: 0.0006606732153343842,
+    +     impact: 0.38,
+    -     impact: 0,
+          kinMix: 0,
+    +     lastHit: 'barrier',
+    -     lastHit: '',
+          nitroHeld: false,
+          nitroPulse: false,
+          onTrack: true,
+          reverseHold: 0,
+          rideCompress: 0,
+    ...
+          tcsActive: false,
+    +     wallDmgT: 0.55,
+    -     wallDmgT: 0,
+          wasCurb: false,
+          wheelsLocked: false
+        },
+        visualInput: {
+          brake: 0.2603219676060854,
+          steer: 0.0006606732153343842
+        },
+    +   vx: 19.28415212896428,
+    -   vx: 21.891585710162964,
+        vy: 0,
+    +   vz: -4.0482778062977705,
+    -   vz: 15.461218670003964,
+        wrongWayT: 0,
+    +   x: 456.08825217596933,
+    -   x: 456.09150968939815,
+        y: NaN,
+        yaw: -2.188131527149586,
+        yawRate: -0.3840487951321905,
+    +   z: 595.1828582796373
+    -   z: 595.2072318426764
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    visualInput:
+      steer: 0.0006606732153343842
+      brake: 0.2603219676060854
+    x: 456.09150968939815
+    y: NaN
+    z: 595.2072318426764
+    yaw: -2.188131527149586
+    vx: 21.891585710162964
+    vz: 15.461218670003964
+    vy: 0
+    speed: 26.800869316193012
+    progress: 0.11515151515151514
+    sampleIndex: 38
+    lap: 0
+    lastCheckpoint: -1
+    nextCheckpoint: 0
+    nitro: 0.39239999999998726
+    driftCharge: 0
+    driftScore: 0
+    damage: 0
+    pitch: -0.054056297429140684
+    boostT: -0.001666666666666627
+    finished: false
+    eliminated: false
+    offTrackT: 0
+    wrongWayT: 0
+    roll: 0.00268439528320923
+    gear: 3
+    yawRate: -0.3840487951321905
+    transient:
+      drifting: false
+      nitroPulse: false
+      impact: 0
+      lastHit: ''
+      onTrack: true
+      sideStreet: ''
+      sideStreetEn: ''
+      drafting: false
+      surfaceGrip: 0.8
+      slip: 0.0024418533103644845
+      rpm: 0.7023341506497044
+      kinMix: 0
+      surfaceKind: 'asphalt'
+      dirt: 0
+      airborne: false
+      airMs: 0
+      rideCompress: 0
+      wasCurb: false
+      comboMul: 1
+      wheelsLocked: false
+      driftAngle: 0
+      reverseHold: 0
+      absActive: false
+      tcsActive: false
+      escActive: false
+      slipRatio: 0
+      wallDmgT: 0
+      nitroHeld: false
+      holdSteer: 0.0006606732153343842
+  actual:
+    visualInput:
+      steer: 0.0006606732153343842
+      brake: 0.2603219676060854
+    x: 456.08825217596933
+    y: NaN
+    z: 595.1828582796373
+    yaw: -2.188131527149586
+    vx: 19.28415212896428
+    vz: -4.0482778062977705
+    vy: 0
+    speed: 10.437457113580866
+    progress: 0.11515151515151514
+    sampleIndex: 38
+    lap: 0
+    lastCheckpoint: -1
+    nextCheckpoint: 0
+    nitro: 0.39239999999998726
+    driftCharge: 0
+    driftScore: 0
+    damage: 0.029159950084320072
+    pitch: -0.054056297429140684
+    boostT: -0.001666666666666627
+    finished: false
+    eliminated: false
+    offTrackT: 0
+    wrongWayT: 0
+    roll: 0.00268439528320923
+    gear: 3
+    yawRate: -0.3840487951321905
+    transient:
+      drifting: false
+      nitroPulse: false
+      impact: 0.38
+      lastHit: 'barrier'
+      onTrack: true
+      sideStreet: ''
+      sideStreetEn: ''
+      drafting: false
+      surfaceGrip: 0.8
+      slip: 0.0024418533103644845
+      rpm: 0.7023341506497044
+      kinMix: 0
+      surfaceKind: 'asphalt'
+      dirt: 0
+      airborne: false
+      airMs: 0
+      rideCompress: 0
+      wasCurb: false
+      comboMul: 1
+      wheelsLocked: false
+      driftAngle: 0
+      reverseHold: 0
+      absActive: false
+      tcsActive: false
+      escActive: false
+      slipRatio: 0
+      wallDmgT: 0.55
+      nitroHeld: false
+      holdSteer: 0.0006606732153343842
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:31:130)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Scopus 1: actual generated road edge retains finite vertical bounds
+not ok 7 - Scopus 1: actual generated road edge retains finite vertical bounds
+  ---
+  duration_ms: 0.037667
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:15:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(Number.isFinite(collider.minY)&&Number.isFinite(collider.maxY))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:16:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Scopus 1: actual captured contact at another road level must not move or damage the car
+not ok 8 - Scopus 1: actual captured contact at another road level must not move or damage the car
+  ---
+  duration_ms: 0.210833
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:18:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      {
+        boostT: -0.001666666666666627,
+    +   damage: 0.11599180727595332,
+    -   damage: 0.07582193155260486,
+        driftCharge: 0,
+        driftScore: 0,
+        eliminated: false,
+        finished: false,
+        gear: 3,
+    ...
+        sampleIndex: 193,
+    +   speed: 2.2756962523058064,
+    -   speed: 27.788895554832653,
+        transient: {
+          absActive: false,
+          airMs: 0,
+          airborne: false,
+          comboMul: 1,
+    ...
+          holdSteer: 0.14724608127003974,
+    +     impact: 0.38,
+    -     impact: 0,
+          kinMix: 0,
+    +     lastHit: 'barrier',
+    -     lastHit: '',
+          nitroHeld: false,
+          nitroPulse: false,
+          onTrack: true,
+          reverseHold: 0,
+          rideCompress: 0.12,
+    ...
+          tcsActive: false,
+    +     wallDmgT: 0.55,
+    -     wallDmgT: 0,
+          wasCurb: false,
+          wheelsLocked: false
+        },
+        visualInput: {
+          brake: 0,
+          steer: 0.14724608127003974
+        },
+    +   vx: -6.558089305706876,
+    -   vx: 18.35987612922193,
+        vy: 0,
+    +   vz: 10.191127851480077,
+    -   vz: 20.88225113284181,
+        wrongWayT: 0,
+    +   x: 491.33105739410803,
+    -   x: 491.4146736334386,
+        y: 46.65025271464145,
+        yaw: -2.385728386180046,
+        yawRate: -0.17835720548292652,
+    +   z: 633.8656366946441
+    -   z: 633.9015124777349
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    visualInput:
+      steer: 0.14724608127003974
+      brake: 0
+    x: 491.4146736334386
+    y: 46.65025271464145
+    z: 633.9015124777349
+    yaw: -2.385728386180046
+    vx: 18.35987612922193
+    vz: 20.88225113284181
+    vy: 0
+    speed: 27.788895554832653
+    progress: 0.5848484848484848
+    sampleIndex: 193
+    lap: 0
+    lastCheckpoint: 3
+    nextCheckpoint: 4
+    nitro: 0.39779999999991883
+    driftCharge: 0
+    driftScore: 0
+    damage: 0.07582193155260486
+    pitch: -0.6301860062922596
+    boostT: -0.001666666666666627
+    finished: false
+    eliminated: false
+    offTrackT: 0
+    wrongWayT: 0
+    roll: -0.049346722952637354
+    gear: 3
+    yawRate: -0.17835720548292652
+    transient:
+      drifting: false
+      nitroPulse: false
+      impact: 0
+      lastHit: ''
+      onTrack: true
+      sideStreet: ''
+      sideStreetEn: ''
+      drafting: false
+      surfaceGrip: 0.8
+      slip: 0.03520102326972718
+      rpm: 0.8652654406988404
+      kinMix: 0
+      surfaceKind: 'asphalt'
+      dirt: 0
+      airborne: false
+      airMs: 0
+      rideCompress: 0.12
+      wasCurb: false
+      comboMul: 1
+      wheelsLocked: false
+      driftAngle: 0
+      reverseHold: 0
+      absActive: false
+      tcsActive: false
+      escActive: false
+      slipRatio: -1.278331150570087e-16
+      wallDmgT: 0
+      nitroHeld: false
+      holdSteer: 0.14724608127003974
+  actual:
+    visualInput:
+      steer: 0.14724608127003974
+      brake: 0
+    x: 491.33105739410803
+    y: 46.65025271464145
+    z: 633.8656366946441
+    yaw: -2.385728386180046
+    vx: -6.558089305706876
+    vz: 10.191127851480077
+    vy: 0
+    speed: 2.2756962523058064
+    progress: 0.5848484848484848
+    sampleIndex: 193
+    lap: 0
+    lastCheckpoint: 3
+    nextCheckpoint: 4
+    nitro: 0.39779999999991883
+    driftCharge: 0
+    driftScore: 0
+    damage: 0.11599180727595332
+    pitch: -0.6301860062922596
+    boostT: -0.001666666666666627
+    finished: false
+    eliminated: false
+    offTrackT: 0
+    wrongWayT: 0
+    roll: -0.049346722952637354
+    gear: 3
+    yawRate: -0.17835720548292652
+    transient:
+      drifting: false
+      nitroPulse: false
+      impact: 0.38
+      lastHit: 'barrier'
+      onTrack: true
+      sideStreet: ''
+      sideStreetEn: ''
+      drafting: false
+      surfaceGrip: 0.8
+      slip: 0.03520102326972718
+      rpm: 0.8652654406988404
+      kinMix: 0
+      surfaceKind: 'asphalt'
+      dirt: 0
+      airborne: false
+      airMs: 0
+      rideCompress: 0.12
+      wasCurb: false
+      comboMul: 1
+      wheelsLocked: false
+      driftAngle: 0
+      reverseHold: 0
+      absActive: false
+      tcsActive: false
+      escActive: false
+      slipRatio: -1.278331150570087e-16
+      wallDmgT: 0.55
+      nitroHeld: false
+      holdSteer: 0.14724608127003974
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:19:77)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Scopus 1: captured horizontal contact still resolves at the guardrail's own level
+ok 9 - Scopus 1: captured horizontal contact still resolves at the guardrail's own level
+  ---
+  duration_ms: 0.171709
+  type: 'test'
+  ...
+# Subtest: Scopus 1: top of actual loaded body below an elevated edge has no contact
+not ok 10 - Scopus 1: top of actual loaded body below an elevated edge has no contact
+  ---
+  duration_ms: 0.31175
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:24:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      {
+        boostT: -0.001666666666666627,
+    +   damage: 0.11599180727595332,
+    -   damage: 0.07582193155260486,
+        driftCharge: 0,
+        driftScore: 0,
+        eliminated: false,
+        finished: false,
+        gear: 3,
+    ...
+        sampleIndex: 193,
+    +   speed: 2.2756962523058064,
+    -   speed: 27.788895554832653,
+        transient: {
+          absActive: false,
+          airMs: 0,
+          airborne: false,
+          comboMul: 1,
+    ...
+          holdSteer: 0.14724608127003974,
+    +     impact: 0.38,
+    -     impact: 0,
+          kinMix: 0,
+    +     lastHit: 'barrier',
+    -     lastHit: '',
+          nitroHeld: false,
+          nitroPulse: false,
+          onTrack: true,
+          reverseHold: 0,
+          rideCompress: 0.12,
+    ...
+          tcsActive: false,
+    +     wallDmgT: 0.55,
+    -     wallDmgT: 0,
+          wasCurb: false,
+          wheelsLocked: false
+        },
+        visualInput: {
+          brake: 0,
+          steer: 0.14724608127003974
+        },
+    +   vx: -6.558089305706876,
+    -   vx: 18.35987612922193,
+        vy: 0,
+    +   vz: 10.191127851480077,
+    -   vz: 20.88225113284181,
+        wrongWayT: 0,
+    +   x: 491.33105739410803,
+    -   x: 491.4146736334386,
+        y: NaN,
+        yaw: -2.385728386180046,
+        yawRate: -0.17835720548292652,
+    +   z: 633.8656366946441
+    -   z: 633.9015124777349
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    visualInput:
+      steer: 0.14724608127003974
+      brake: 0
+    x: 491.4146736334386
+    y: NaN
+    z: 633.9015124777349
+    yaw: -2.385728386180046
+    vx: 18.35987612922193
+    vz: 20.88225113284181
+    vy: 0
+    speed: 27.788895554832653
+    progress: 0.5848484848484848
+    sampleIndex: 193
+    lap: 0
+    lastCheckpoint: 3
+    nextCheckpoint: 4
+    nitro: 0.39779999999991883
+    driftCharge: 0
+    driftScore: 0
+    damage: 0.07582193155260486
+    pitch: -0.6301860062922596
+    boostT: -0.001666666666666627
+    finished: false
+    eliminated: false
+    offTrackT: 0
+    wrongWayT: 0
+    roll: -0.049346722952637354
+    gear: 3
+    yawRate: -0.17835720548292652
+    transient:
+      drifting: false
+      nitroPulse: false
+      impact: 0
+      lastHit: ''
+      onTrack: true
+      sideStreet: ''
+      sideStreetEn: ''
+      drafting: false
+      surfaceGrip: 0.8
+      slip: 0.03520102326972718
+      rpm: 0.8652654406988404
+      kinMix: 0
+      surfaceKind: 'asphalt'
+      dirt: 0
+      airborne: false
+      airMs: 0
+      rideCompress: 0.12
+      wasCurb: false
+      comboMul: 1
+      wheelsLocked: false
+      driftAngle: 0
+      reverseHold: 0
+      absActive: false
+      tcsActive: false
+      escActive: false
+      slipRatio: -1.278331150570087e-16
+      wallDmgT: 0
+      nitroHeld: false
+      holdSteer: 0.14724608127003974
+  actual:
+    visualInput:
+      steer: 0.14724608127003974
+      brake: 0
+    x: 491.33105739410803
+    y: NaN
+    z: 633.8656366946441
+    yaw: -2.385728386180046
+    vx: -6.558089305706876
+    vz: 10.191127851480077
+    vy: 0
+    speed: 2.2756962523058064
+    progress: 0.5848484848484848
+    sampleIndex: 193
+    lap: 0
+    lastCheckpoint: 3
+    nextCheckpoint: 4
+    nitro: 0.39779999999991883
+    driftCharge: 0
+    driftScore: 0
+    damage: 0.11599180727595332
+    pitch: -0.6301860062922596
+    boostT: -0.001666666666666627
+    finished: false
+    eliminated: false
+    offTrackT: 0
+    wrongWayT: 0
+    roll: -0.049346722952637354
+    gear: 3
+    yawRate: -0.17835720548292652
+    transient:
+      drifting: false
+      nitroPulse: false
+      impact: 0.38
+      lastHit: 'barrier'
+      onTrack: true
+      sideStreet: ''
+      sideStreetEn: ''
+      drafting: false
+      surfaceGrip: 0.8
+      slip: 0.03520102326972718
+      rpm: 0.8652654406988404
+      kinMix: 0
+      surfaceKind: 'asphalt'
+      dirt: 0
+      airborne: false
+      airMs: 0
+      rideCompress: 0.12
+      wasCurb: false
+      comboMul: 1
+      wheelsLocked: false
+      driftAngle: 0
+      reverseHold: 0
+      absActive: false
+      tcsActive: false
+      escActive: false
+      slipRatio: -1.278331150570087e-16
+      wallDmgT: 0.55
+      nitroHeld: false
+      holdSteer: 0.14724608127003974
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:25:130)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Scopus 1: loaded body's top overlapping elevated edge still contacts
+ok 11 - Scopus 1: loaded body's top overlapping elevated edge still contacts
+  ---
+  duration_ms: 0.105708
+  type: 'test'
+  ...
+# Subtest: Scopus 1: bottom of actual body above a lower edge has no contact
+not ok 12 - Scopus 1: bottom of actual body above a lower edge has no contact
+  ---
+  duration_ms: 0.135
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:30:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      {
+        boostT: -0.001666666666666627,
+    +   damage: 0.11599180727595332,
+    -   damage: 0.07582193155260486,
+        driftCharge: 0,
+        driftScore: 0,
+        eliminated: false,
+        finished: false,
+        gear: 3,
+    ...
+        sampleIndex: 193,
+    +   speed: 2.2756962523058064,
+    -   speed: 27.788895554832653,
+        transient: {
+          absActive: false,
+          airMs: 0,
+          airborne: false,
+          comboMul: 1,
+    ...
+          holdSteer: 0.14724608127003974,
+    +     impact: 0.38,
+    -     impact: 0,
+          kinMix: 0,
+    +     lastHit: 'barrier',
+    -     lastHit: '',
+          nitroHeld: false,
+          nitroPulse: false,
+          onTrack: true,
+          reverseHold: 0,
+          rideCompress: 0.12,
+    ...
+          tcsActive: false,
+    +     wallDmgT: 0.55,
+    -     wallDmgT: 0,
+          wasCurb: false,
+          wheelsLocked: false
+        },
+        visualInput: {
+          brake: 0,
+          steer: 0.14724608127003974
+        },
+    +   vx: -6.558089305706876,
+    -   vx: 18.35987612922193,
+        vy: 0,
+    +   vz: 10.191127851480077,
+    -   vz: 20.88225113284181,
+        wrongWayT: 0,
+    +   x: 491.33105739410803,
+    -   x: 491.4146736334386,
+        y: NaN,
+        yaw: -2.385728386180046,
+        yawRate: -0.17835720548292652,
+    +   z: 633.8656366946441
+    -   z: 633.9015124777349
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    visualInput:
+      steer: 0.14724608127003974
+      brake: 0
+    x: 491.4146736334386
+    y: NaN
+    z: 633.9015124777349
+    yaw: -2.385728386180046
+    vx: 18.35987612922193
+    vz: 20.88225113284181
+    vy: 0
+    speed: 27.788895554832653
+    progress: 0.5848484848484848
+    sampleIndex: 193
+    lap: 0
+    lastCheckpoint: 3
+    nextCheckpoint: 4
+    nitro: 0.39779999999991883
+    driftCharge: 0
+    driftScore: 0
+    damage: 0.07582193155260486
+    pitch: -0.6301860062922596
+    boostT: -0.001666666666666627
+    finished: false
+    eliminated: false
+    offTrackT: 0
+    wrongWayT: 0
+    roll: -0.049346722952637354
+    gear: 3
+    yawRate: -0.17835720548292652
+    transient:
+      drifting: false
+      nitroPulse: false
+      impact: 0
+      lastHit: ''
+      onTrack: true
+      sideStreet: ''
+      sideStreetEn: ''
+      drafting: false
+      surfaceGrip: 0.8
+      slip: 0.03520102326972718
+      rpm: 0.8652654406988404
+      kinMix: 0
+      surfaceKind: 'asphalt'
+      dirt: 0
+      airborne: false
+      airMs: 0
+      rideCompress: 0.12
+      wasCurb: false
+      comboMul: 1
+      wheelsLocked: false
+      driftAngle: 0
+      reverseHold: 0
+      absActive: false
+      tcsActive: false
+      escActive: false
+      slipRatio: -1.278331150570087e-16
+      wallDmgT: 0
+      nitroHeld: false
+      holdSteer: 0.14724608127003974
+  actual:
+    visualInput:
+      steer: 0.14724608127003974
+      brake: 0
+    x: 491.33105739410803
+    y: NaN
+    z: 633.8656366946441
+    yaw: -2.385728386180046
+    vx: -6.558089305706876
+    vz: 10.191127851480077
+    vy: 0
+    speed: 2.2756962523058064
+    progress: 0.5848484848484848
+    sampleIndex: 193
+    lap: 0
+    lastCheckpoint: 3
+    nextCheckpoint: 4
+    nitro: 0.39779999999991883
+    driftCharge: 0
+    driftScore: 0
+    damage: 0.11599180727595332
+    pitch: -0.6301860062922596
+    boostT: -0.001666666666666627
+    finished: false
+    eliminated: false
+    offTrackT: 0
+    wrongWayT: 0
+    roll: -0.049346722952637354
+    gear: 3
+    yawRate: -0.17835720548292652
+    transient:
+      drifting: false
+      nitroPulse: false
+      impact: 0.38
+      lastHit: 'barrier'
+      onTrack: true
+      sideStreet: ''
+      sideStreetEn: ''
+      drafting: false
+      surfaceGrip: 0.8
+      slip: 0.03520102326972718
+      rpm: 0.8652654406988404
+      kinMix: 0
+      surfaceKind: 'asphalt'
+      dirt: 0
+      airborne: false
+      airMs: 0
+      rideCompress: 0.12
+      wasCurb: false
+      comboMul: 1
+      wheelsLocked: false
+      driftAngle: 0
+      reverseHold: 0
+      absActive: false
+      tcsActive: false
+      escActive: false
+      slipRatio: -1.278331150570087e-16
+      wallDmgT: 0.55
+      nitroHeld: false
+      holdSteer: 0.14724608127003974
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:31:130)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 4
+# fail 8
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 365.78925

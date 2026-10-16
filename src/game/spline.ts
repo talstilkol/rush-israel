@@ -1,5 +1,5 @@
 import { catmullRom } from "./math";
-import { roadMedianHalfWidth } from "./road-layout";
+import { roadMedianHalfWidth, roadEdgeHeightRange } from "./road-layout";
 import type { Collider, Sample, TrackDef, Vec2 } from "./types";
 
 export type BuiltTrack = {
@@ -9,6 +9,7 @@ export type BuiltTrack = {
   checkpoints: number[];
   closed: boolean;
   medianHalfWidth?: number;
+  edgeHeightRange?: { minY: number; maxY: number };
 };
 
 export function sampleSpline(points: Vec2[], stepsPerSeg = 28, open = false): { x: number; z: number; t: number }[] {
@@ -90,7 +91,7 @@ export function buildTrack(def: TrackDef): BuiltTrack {
     checkpoints.push(closed ? i / def.checkpointCount : (i + 1) / (def.checkpointCount + 0.15));
   }
 
-  return { samples, length, width: Math.max(18.5, def.width), checkpoints, closed, medianHalfWidth: roadMedianHalfWidth(def) };
+  return { samples, length, width: Math.max(18.5, def.width), checkpoints, closed, medianHalfWidth: roadMedianHalfWidth(def), edgeHeightRange: roadEdgeHeightRange(def) };
 }
 
 export function nearestIndex(samples: Sample[], x: number, z: number, hint: number, closed = true) {
@@ -153,7 +154,10 @@ export function roadEdgeBarriers(
     ];
     for (const c of pair) {
       if (nearestIndex(built.samples, c.x, c.z, i).dist < keepOut) continue;
-      out.push(c);
+      // Preserve the actual rendered rail/jersey range at this road level.
+      // Legacy guards without a rendered structure retain their old envelope.
+      const range = built.edgeHeightRange;
+      out.push(range ? { ...c, minY: s.y + range.minY, maxY: s.y + range.maxY } : c);
     }
   }
   return out;

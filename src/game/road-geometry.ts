@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import type { BuiltTrack } from "./spline";
 import type { TrackDef } from "./types";
-import { ROAD_UV_METRES, roadLaneCount } from "./road-layout";
+import { ROAD_UV_METRES, roadLaneCount, ROAD_EDGE_RAIL, ROAD_EDGE_JERSEY } from "./road-layout";
 
 /** Keep surface faces upward even where a wide inner offset folds at a bend.
  * This changes winding only; overlapping route topology needs separate review.
@@ -221,8 +221,8 @@ export function buildJersey(built: BuiltTrack, side: number, centerOff = 0) {
     const s = samp(built, i);
     const rx = s.rx * side;
     const rz = s.rz * side;
-    pos.push(s.x + rx * d0 + s.rx * centerOff, s.y + 0.08, s.z + rz * d0 + s.rz * centerOff);
-    pos.push(s.x + rx * d1 + s.rx * centerOff, s.y + 1.35, s.z + rz * d1 + s.rz * centerOff);
+    pos.push(s.x + rx * d0 + s.rx * centerOff, s.y + ROAD_EDGE_JERSEY.bottom, s.z + rz * d0 + s.rz * centerOff);
+    pos.push(s.x + rx * d1 + s.rx * centerOff, s.y + ROAD_EDGE_JERSEY.top, s.z + rz * d1 + s.rz * centerOff);
     const v = i / n * (built.length / 2.4);
     uvs.push(0, v, 1, v);
   }
@@ -248,8 +248,8 @@ export function buildRail(built: BuiltTrack, side: number) {
     const s = samp(built, i);
     const rx = s.rx * side;
     const rz = s.rz * side;
-    pos.push(s.x + rx * d, s.y + 0.22, s.z + rz * d);
-    pos.push(s.x + rx * d, s.y + 0.72, s.z + rz * d);
+    pos.push(s.x + rx * d, s.y + ROAD_EDGE_RAIL.bottom, s.z + rz * d);
+    pos.push(s.x + rx * d, s.y + ROAD_EDGE_RAIL.top, s.z + rz * d);
     const v = i / n * (built.length / 3);
     uvs.push(0, v, 1, v);
   }

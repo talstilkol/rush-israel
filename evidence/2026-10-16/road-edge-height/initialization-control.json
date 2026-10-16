@@ -1,0 +1,12 @@
+{
+  "kind": "actual-closed-local-port-control",
+  "observed_at": "2026-10-16T11:41:00.822567+00:00",
+  "port": 8133,
+  "connect_errno": 61,
+  "prior_passed": true,
+  "prior_sha256": "73ed6bd074beaa34e57756053f0bfaa3cd85111e1870e88173e18146da99eba8",
+  "source_hashes_sha256": "0c38ae087921e0ee51a62aef116d679a3a11d1e60c70941decec4a79d52d3e81",
+  "exit": 1,
+  "failed_report_sha256": "787d625c56b668d5589b1e8f28811f52862a54acf4909442efce622926ee7002",
+  "failed_verdict": false
+}

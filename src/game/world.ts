@@ -10,7 +10,7 @@ import { acr, afl, ard, asd, ask, bsn, bsv, bym, cae, dsea, eil, gol, hai, hdr, 
 import { scatterStreetBuildings } from "./buildings";
 import { generateStreets, nearestStreet } from "./streets";
 import { bindRoadCompile } from "./roadShader";
-import { ROAD_PAINT_REPEAT_METRES, ROAD_UV_METRES } from "./road-layout";
+import { ROAD_PAINT_REPEAT_METRES, ROAD_UV_METRES, ROAD_EDGE_RAIL, roadHasRail, roadHasJersey } from "./road-layout";
 import { buildTerrain } from "./terrain";
 import { getLaneArrow } from "./arrow-assets";
 import { getFlare0, getFlare1 } from "./flare-assets";
@@ -792,7 +792,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     metalness: 0.06,
     envMapIntensity: 0.4
   }));
-  if (def.theme !== "desert" && def.theme !== "snow" && def.id !== "rothschild" && def.theme !== "stone" && def.theme !== "jaffa" && def.theme !== "carmel") {
+  if (roadHasJersey(def)) {
     group.add(new THREE.Mesh(keep(buildJersey(built, 1)), jerseyMat));
     group.add(new THREE.Mesh(keep(buildJersey(built, -1)), jerseyMat));
     const capMat = keep(new THREE.MeshBasicMaterial({ color: 0xf4f0ea, fog: false }));
@@ -921,7 +921,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
     roughnessMap: getBakedRoad(3)?.roughnessMap ?? null,
     envMapIntensity: 1.25
   }));
-  if (def.theme !== "desert" && def.theme !== "snow" && def.theme !== "carmel" && def.id !== "ayalon") {
+  if (roadHasRail(def)) {
     group.add(new THREE.Mesh(keep(buildRail(built, 1)), railMat));
     group.add(new THREE.Mesh(keep(buildRail(built, -1)), railMat));
   }
@@ -952,15 +952,15 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const bodies = def.waters?.length ? def.waters : def.water ? [def.water] : [];
   const streets = generateStreets(def, built, bodies);
   const ramps: Ramp[] = [];
-  const railPostGeo = keep(new THREE.CylinderGeometry(0.08, 0.1, 0.78, 5));
-  railPostGeo.translate(0, 0.4, 0);
+  const railPostGeo = keep(new THREE.CylinderGeometry(0.08, 0.1, ROAD_EDGE_RAIL.postHeight, 5));
+  railPostGeo.translate(0, ROAD_EDGE_RAIL.postCenterY, 0);
   const railPostMat = keep(new THREE.MeshStandardMaterial({
     color: 3027510,
     metalness: 0.55,
     roughness: 0.42
   }));
   const postSpots = [];
-  if (def.theme !== "desert" && def.theme !== "snow" && def.theme !== "carmel" && def.id !== "ayalon") for (let i = 0; i < built.samples.length; i += 5) {
+  if (roadHasRail(def)) for (let i = 0; i < built.samples.length; i += 5) {
     const s = built.samples[i];
     const alley = nearestStreet(s.x, s.z, streets);
     if (alley && alley.dist < alley.street.half + 5) continue;
@@ -2078,9 +2078,7 @@ export async function createWorld(def: TrackDef, built: BuiltTrack, shadows: boo
   const edgeStep = Math.max(3, Math.floor(built.samples.length / 360));
   const wallD = built.width / 2 + 1.55;
   for (const barrier of roadEdgeBarriers(built, edgeStep, wallD)) {
-    colliders.push(barrier.r > 0.8
-      ? { x: barrier.x, z: barrier.z, r: 1.05, kind: "barrier" }
-      : { x: barrier.x, z: barrier.z, r: 0.62, kind: "barrier" });
+    colliders.push(barrier);
   }
   let bHits = 0;
   for (const p of placements) {

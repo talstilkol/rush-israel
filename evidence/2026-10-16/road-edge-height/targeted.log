@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: Scopus 0: actual generated road edge retains finite vertical bounds
+ok 1 - Scopus 0: actual generated road edge retains finite vertical bounds
+  ---
+  duration_ms: 0.382625
+  type: 'test'
+  ...
+# Subtest: Scopus 0: actual captured contact at another road level must not move or damage the car
+ok 2 - Scopus 0: actual captured contact at another road level must not move or damage the car
+  ---
+  duration_ms: 0.690667
+  type: 'test'
+  ...
+# Subtest: Scopus 0: captured horizontal contact still resolves at the guardrail's own level
+ok 3 - Scopus 0: captured horizontal contact still resolves at the guardrail's own level
+  ---
+  duration_ms: 0.129958
+  type: 'test'
+  ...
+# Subtest: Scopus 0: top of actual loaded body below an elevated edge has no contact
+ok 4 - Scopus 0: top of actual loaded body below an elevated edge has no contact
+  ---
+  duration_ms: 0.075375
+  type: 'test'
+  ...
+# Subtest: Scopus 0: loaded body's top overlapping elevated edge still contacts
+ok 5 - Scopus 0: loaded body's top overlapping elevated edge still contacts
+  ---
+  duration_ms: 0.098958
+  type: 'test'
+  ...
+# Subtest: Scopus 0: legacy CPU body without loaded dimensions retains same-level contact
+ok 6 - Scopus 0: legacy CPU body without loaded dimensions retains same-level contact
+  ---
+  duration_ms: 0.16425
+  type: 'test'
+  ...
+# Subtest: Scopus 0: bottom of actual body above a lower edge has no contact
+ok 7 - Scopus 0: bottom of actual body above a lower edge has no contact
+  ---
+  duration_ms: 0.112916
+  type: 'test'
+  ...
+# Subtest: Scopus 1: actual generated road edge retains finite vertical bounds
+ok 8 - Scopus 1: actual generated road edge retains finite vertical bounds
+  ---
+  duration_ms: 0.025792
+  type: 'test'
+  ...
+# Subtest: Scopus 1: actual captured contact at another road level must not move or damage the car
+ok 9 - Scopus 1: actual captured contact at another road level must not move or damage the car
+  ---
+  duration_ms: 0.22725
+  type: 'test'
+  ...
+# Subtest: Scopus 1: captured horizontal contact still resolves at the guardrail's own level
+ok 10 - Scopus 1: captured horizontal contact still resolves at the guardrail's own level
+  ---
+  duration_ms: 0.248125
+  type: 'test'
+  ...
+# Subtest: Scopus 1: top of actual loaded body below an elevated edge has no contact
+ok 11 - Scopus 1: top of actual loaded body below an elevated edge has no contact
+  ---
+  duration_ms: 0.128208
+  type: 'test'
+  ...
+# Subtest: Scopus 1: loaded body's top overlapping elevated edge still contacts
+ok 12 - Scopus 1: loaded body's top overlapping elevated edge still contacts
+  ---
+  duration_ms: 0.052417
+  type: 'test'
+  ...
+# Subtest: Scopus 1: legacy CPU body without loaded dimensions retains same-level contact
+ok 13 - Scopus 1: legacy CPU body without loaded dimensions retains same-level contact
+  ---
+  duration_ms: 0.0235
+  type: 'test'
+  ...
+# Subtest: Scopus 1: bottom of actual body above a lower edge has no contact
+ok 14 - Scopus 1: bottom of actual body above a lower edge has no contact
+  ---
+  duration_ms: 0.022834
+  type: 'test'
+  ...
+# Subtest: Ayalon generated edge interval agrees with its actual jersey vertices
+ok 15 - Ayalon generated edge interval agrees with its actual jersey vertices
+  ---
+  duration_ms: 1.915875
+  type: 'test'
+  ...
+# Subtest: Ayalon loaded body still hits the actual upper jersey region above regular-post height
+ok 16 - Ayalon loaded body still hits the actual upper jersey region above regular-post height
+  ---
+  duration_ms: 0.039166
+  type: 'test'
+  ...
+# Subtest: haifa: legacy edge with no rendered rail orjersey does not invent a post-height interval
+ok 17 - haifa: legacy edge with no rendered rail orjersey does not invent a post-height interval
+  ---
+  duration_ms: 0.347708
+  type: 'test'
+  ...
+# Subtest: hermon: legacy edge with no rendered rail orjersey does not invent a post-height interval
+ok 18 - hermon: legacy edge with no rendered rail orjersey does not invent a post-height interval
+  ---
+  duration_ms: 0.496333
+  type: 'test'
+  ...
+# Subtest: ramon: legacy edge with no rendered rail orjersey does not invent a post-height interval
+ok 19 - ramon: legacy edge with no rendered rail orjersey does not invent a post-height interval
+  ---
+  duration_ms: 0.473875
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 405.584375

@@ -1,0 +1,224 @@
+TAP version 13
+# Subtest: Scopus 0: actual generated road edge retains finite vertical bounds
+ok 1 - Scopus 0: actual generated road edge retains finite vertical bounds
+  ---
+  duration_ms: 0.413083
+  type: 'test'
+  ...
+# Subtest: Scopus 0: actual captured contact at another road level must not move or damage the car
+ok 2 - Scopus 0: actual captured contact at another road level must not move or damage the car
+  ---
+  duration_ms: 0.701292
+  type: 'test'
+  ...
+# Subtest: Scopus 0: captured horizontal contact still resolves at the guardrail's own level
+ok 3 - Scopus 0: captured horizontal contact still resolves at the guardrail's own level
+  ---
+  duration_ms: 0.129875
+  type: 'test'
+  ...
+# Subtest: Scopus 0: top of actual loaded body below an elevated edge has no contact
+ok 4 - Scopus 0: top of actual loaded body below an elevated edge has no contact
+  ---
+  duration_ms: 0.081917
+  type: 'test'
+  ...
+# Subtest: Scopus 0: loaded body's top overlapping elevated edge still contacts
+ok 5 - Scopus 0: loaded body's top overlapping elevated edge still contacts
+  ---
+  duration_ms: 0.10175
+  type: 'test'
+  ...
+# Subtest: Scopus 0: legacy CPU body without loaded dimensions retains same-level contact
+ok 6 - Scopus 0: legacy CPU body without loaded dimensions retains same-level contact
+  ---
+  duration_ms: 0.139
+  type: 'test'
+  ...
+# Subtest: Scopus 0: bottom of actual body above a lower edge has no contact
+ok 7 - Scopus 0: bottom of actual body above a lower edge has no contact
+  ---
+  duration_ms: 0.121292
+  type: 'test'
+  ...
+# Subtest: Scopus 1: actual generated road edge retains finite vertical bounds
+ok 8 - Scopus 1: actual generated road edge retains finite vertical bounds
+  ---
+  duration_ms: 0.026209
+  type: 'test'
+  ...
+# Subtest: Scopus 1: actual captured contact at another road level must not move or damage the car
+ok 9 - Scopus 1: actual captured contact at another road level must not move or damage the car
+  ---
+  duration_ms: 0.237417
+  type: 'test'
+  ...
+# Subtest: Scopus 1: captured horizontal contact still resolves at the guardrail's own level
+ok 10 - Scopus 1: captured horizontal contact still resolves at the guardrail's own level
+  ---
+  duration_ms: 0.228292
+  type: 'test'
+  ...
+# Subtest: Scopus 1: top of actual loaded body below an elevated edge has no contact
+ok 11 - Scopus 1: top of actual loaded body below an elevated edge has no contact
+  ---
+  duration_ms: 0.111875
+  type: 'test'
+  ...
+# Subtest: Scopus 1: loaded body's top overlapping elevated edge still contacts
+ok 12 - Scopus 1: loaded body's top overlapping elevated edge still contacts
+  ---
+  duration_ms: 0.052917
+  type: 'test'
+  ...
+# Subtest: Scopus 1: legacy CPU body without loaded dimensions retains same-level contact
+ok 13 - Scopus 1: legacy CPU body without loaded dimensions retains same-level contact
+  ---
+  duration_ms: 0.0235
+  type: 'test'
+  ...
+# Subtest: Scopus 1: bottom of actual body above a lower edge has no contact
+ok 14 - Scopus 1: bottom of actual body above a lower edge has no contact
+  ---
+  duration_ms: 0.024875
+  type: 'test'
+  ...
+# Subtest: Ayalon generated edge interval agrees with its actual jersey vertices
+not ok 15 - Ayalon generated edge interval agrees with its actual jersey vertices
+  ---
+  duration_ms: 6.100875
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:44:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(Math.abs(highwayEdge.minY-p.getY(highwayIndex*2))<1e-5)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:46:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Ayalon loaded body still hits the actual upper jersey region above regular-post height
+not ok 16 - Ayalon loaded body still hits the actual upper jersey region above regular-post height
+  ---
+  duration_ms: 2.016708
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:48:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(car.damage>0)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:49:258)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: haifa: legacy edge with no rendered rail orjersey does not invent a post-height interval
+not ok 17 - haifa: legacy edge with no rendered rail orjersey does not invent a post-height interval
+  ---
+  duration_ms: 0.9155
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:51:44'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(edges.every(c=>c.minY===undefined&&c.maxY===undefined))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:52:90)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hermon: legacy edge with no rendered rail orjersey does not invent a post-height interval
+not ok 18 - hermon: legacy edge with no rendered rail orjersey does not invent a post-height interval
+  ---
+  duration_ms: 0.53
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:51:44'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(edges.every(c=>c.minY===undefined&&c.maxY===undefined))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:52:90)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ramon: legacy edge with no rendered rail orjersey does not invent a post-height interval
+not ok 19 - ramon: legacy edge with no rendered rail orjersey does not invent a post-height interval
+  ---
+  duration_ms: 0.50175
+  type: 'test'
+  location: '/Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:51:44'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(edges.every(c=>c.minY===undefined&&c.maxY===undefined))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tal/Documents/Codex/2026-10-11/new-chat/work/rush-glazing-ci/scripts/road-edge-height.test.mjs:52:90)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 14
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 408.330708

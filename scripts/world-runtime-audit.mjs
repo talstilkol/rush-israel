@@ -19,7 +19,7 @@ try {
     const dependency = name => imports.find(url => url.split('?')[0].endsWith(`/${name}`)) || `/src/game/${name}`;
     const THREE = await import(dependency('three.js'));
     const { TRACKS } = await import(dependency('tracks.ts'));
-    const { buildTrack, closestSample, sampleAtT } = await import(dependency('spline.ts'));
+    const { buildTrack, closestSample, sampleAtT, roadEdgeBarriers } = await import(dependency('spline.ts'));
     const { createWorld } = await import('/src/game/world.ts');
     const { ArcadeCar, aiInput } = await import('/src/game/vehicle.ts');
     const { roadLaneOffset, ROAD_UV_METRES, ROAD_PAINT_REPEAT_METRES } = await import('/src/game/road-layout.ts');
@@ -148,8 +148,15 @@ try {
           const roadPuddles = world.group.getObjectByName('rush-road-puddles');
           if (!roadPuddles || roadPuddles.visible) throw new Error('clear night retained road puddles');
           result.roadMaterialWeather = { dryRoughness, clearNightRoughness: raceRoad.material.roughness, wetnessReset: true };
+          const generatedEdges = roadEdgeBarriers(built);
+          for (const edge of generatedEdges) {
+            const actual = world.colliders.find(collider => collider.kind === 'barrier' && collider.r === edge.r && Math.hypot(collider.x - edge.x, collider.z - edge.z) < 1e-7);
+            if (!actual || actual.minY !== edge.minY || actual.maxY !== edge.maxY) throw new Error('Loaded world lost its actual edge-height profile');
+          }
+          result.roadEdgeHeightChecks = { count: generatedEdges.length, profile: built.edgeHeightRange ?? null };
+          if (world.colliders.some(collider => (collider.minY != null && !Number.isFinite(collider.minY)) || (collider.maxY != null && !Number.isFinite(collider.maxY)) || (collider.minY != null && collider.maxY != null && collider.minY > collider.maxY))) throw new Error('Invalid actual world collider height interval');
           if (definition.id === 'haifa') {
-            const bounded = world.colliders.filter(collider => collider.maxY != null);
+            const bounded = world.colliders.filter(collider => collider.kind === 'building' && collider.maxY != null);
             if (bounded.length !== 5 || bounded.some(collider => !Number.isFinite(collider.maxY))) throw new Error('Haifa house roofs lack their real collision height bounds');
             const checks = [];
             for (const definition of CARS) {
@@ -260,3 +267,5 @@ await import('./preview-road-clearance-smoke.mjs');
 await import('./vehicle-contact-smoke.mjs');
 
 await import('./grade-forecast-smoke.mjs');
+
+await import('./road-edge-height-smoke.mjs');

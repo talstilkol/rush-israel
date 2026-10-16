@@ -660,8 +660,10 @@ export class ArcadeCar {
   /** 5.5: resolve once per CCD cut. Not PhysX. */
   private hitColliders(colliders: Collider[]) {
     for (const c of colliders) {
-      // The vehicle base is entirely above this actual solid, so their volumes cannot meet.
-      if (c.maxY != null && this.y > c.maxY) continue;
+      // Loaded upright bounds preserve real contact at either interval edge.
+      // Unknown legacy body height must not be interpreted as zero height.
+      if (c.maxY != null && this.y + (this.contactBounds?.minY ?? 0) > c.maxY) continue;
+      if (c.minY != null && this.contactBounds && this.y + this.contactBounds.maxY < c.minY) continue;
       const carR = 1.05;
       let nx = 0;
       let nz = 0;
