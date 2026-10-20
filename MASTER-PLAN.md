@@ -211,3 +211,78 @@ Current verified live result: **8/13** (gates 2, 3, 4, 5, 6, 7, 10 and 11). Froz
 RSH-021 through RSH-036 are accepted on validated merge. Save schema version 3 and the deterministic 0→1→2→3 migration graph remain unchanged. Production builds stay exactly `vite build`. Ayalon V1 remains a fictional one-carriageway highway (id `ayalon`, width 28, 8 lanes of 3.5, 27 hashed spline samples, 50 interchange ramps, 8 open checkpoints, 9 inspired POIs, baked 8-lane asphalt, no sidewalks, 6 gantries). Daylight stays the live `summer14` look with baked `sky-day.png` and tiny non-HDRI PMREM. Night stays look `night` with baked `sky-night.png`, two headlight spots, ten street lamps and four weather specs. Default boot stays day / clear. Driving physics version 7 matches the five fictional 0–100 claims inside a ±15% band without rewriting `cars.ts`. Audio stays Web Audio oscillators with four radio stations; HUD speed is integer km/h from `speed * 3.6`; keyboard/touch/gamepad maps stay the live Version 1 lock. The unique Ayalon golden pack is the 20 non-placeholder frames with owner approval recorded; the four byte-identical HaShalom placeholders stay non-authority. Ayalon freeze is granted with 36 transitive SHA-256 hashes at `src/game/ayalon-freeze/`. Historical unique-pack `freeze_granted` stays false. GIS claims and public distribution remain forbidden. Live GitHub now requires `required-ci / validate` on `main` via ruleset `23177340`; the repository is private.
 
 Ghosts remain byte-preserved and remain assigned outside this unit. The 30-minute soak contract is locked at `src/game/thirty-soak/` with duration 1800 s; required-CI soak-smoke stays 2 cycles and does not substitute. P1-12 stays OPEN. The RSH-067 one-unit authority is consumed on merge. none remains deferred and cannot start without a new explicit owner instruction after this merge. Keyboard/touch/gamepad maps stay unified at `src/game/input-maps/`; Hebrew RTL / English LTR / Arabic-scope stay locked at `src/game/rtl-scope/`. Onboarding is title-boot plus settings and save-recovery UX at `src/game/onboarding/`; there is no first-run wizard. PWA is the live `__grok` standalone manifest at `src/game/pwa/` with no service worker, offline cache, update prompt or public install. Accessibility is live aria controls, live regions and reduced-motion at `src/game/a11y/` with no WCAG AA, canvas a11y, privacy policy, telemetry or crash reporting. Rothschild geometry remains RSH-049.
+
+## 10. Live GitHub reconciliation — 2026-10-20
+
+Observed read-only via the GitHub REST API on 2026-10-20. Nothing below changes program
+counts, release-gate acceptance, queue authority or any frozen manifest. Live GitHub
+remains the authority; this section is a dated observation.
+
+### 10.1 Branch and pull-request map
+
+| Item | Live value on 2026-10-20 |
+|---|---|
+| `main` head | `b2c0d46` — "Run the 1800s wall-clock soak inside npm test" (merged PR #81, 2026-09-16) |
+| Repository `pushed_at` | 2026-10-19T17:30:54Z (Dependabot branch push, not `main`) |
+| Branches total / fully merged into `main` / ahead of `main` | 104 / 76 / 27 (computed with `compare/main...<branch>`) |
+| Releases / tags on GitHub | 0 / 0 (RSH-067 recorded `signed_tag_created = False`; unchanged) |
+| Open pull requests | 5 (#85, #84, #83, #82, #47) |
+| Pull requests merged since RSH-067 | #73–#81 (2026-09-13 to 2026-09-16); none merged after 2026-09-16 |
+| `main` protection | ruleset `rush-main-protection` (`23177340`) active; required check `required-ci / validate` |
+| Secret scanning | not reported for this private repository (`security_and_analysis` = null); companion text scan in `npm test` is the only secret check |
+
+Open pull requests, with the exact-head `required-ci / validate` result:
+
+| PR | Branch @ head | Opened / updated | Draft | Ahead of `main` | Exact-head CI | Mergeable state |
+|---|---|---|---|---:|---|---|
+| #84 "Fix racing physics, vehicle rendering and source-bound release gates" | `fix/rush-completion-2026-10-15` @ `1fd3091` | 2026-10-15 / 2026-10-16 | yes | 91 commits, 1,271 files (1,064 under `evidence/`) | **success** (2026-10-16; 6 jobs incl. real 1800 s soak) | clean |
+| #83 "Playable race loop: career, HUD, weather, photo frames" | `agent/playable-session` @ `6395474` | 2026-10-11 / 2026-10-15 | no | 50 commits, 55 files | **failure** — step "Run complete unit-test suite" (2026-10-15) | blocked |
+| #85 Dependabot `@tanstack/start-server-core`, `@tanstack/react-start` | `dependabot/npm_and_yarn/multi-35b09b6de7` @ `e2d4f6d` | 2026-10-19 | no | 1 | **failure** — unit-test suite | blocked |
+| #82 Dependabot `brace-expansion` | `dependabot/npm_and_yarn/multi-05c505ab13` @ `ed83336` | 2026-10-07 | no | 1 | **failure** | blocked |
+| #47 Dependabot `js-yaml` 4.3.1 → 4.3.2 | `dependabot/npm_and_yarn/js-yaml-4.3.2` @ `6a51415` | 2026-09-13 | no | 1 (80 behind) | **failure** | behind |
+
+Notes that follow from the data, not from the PR descriptions:
+
+- PR #83's head `6395474` is an ancestor of PR #84's head `1fd3091`; PR #84 contains everything in PR #83 plus 41 further commits. Merging #84 would make #83 redundant.
+- Dependabot PRs cannot pass `required-ci` as submitted: `scripts/check-dependency-boundary.mjs` pins `package-lock.json` to `EXPECTED_PACKAGE_LOCK_SHA256` ("package-lock identity changed"), so any lockfile bump needs a matching pin update in the same PR. Whether the pin should move is an owner decision.
+- The remaining 22 branches ahead of `main` are `agent/rsh-036-r62…r616-*` investigation/validation branches dated 2026-09-05 to 2026-09-12 (26–316 commits ahead, 97 behind, diverged). RSH-036 itself is accepted on `main`; these branches are historical evidence. `REPOSITORY-GOVERNANCE.md` §3 keeps historical branches until an explicit cleanup decision, so none were touched.
+
+### 10.2 What PR #84 proposes for the plan (unmerged — not canonical)
+
+PR #84 adds `COMPLETION-PLAN.md`, `COMPLETION-BACKLOG.json`, `COMPLETION-CROSSWALK.json`,
+`PRODUCT-READINESS.json`, `QUALITY-TARGETS.md` and `TEST-CLASSIFICATION.json`, and rewrites
+this file's §5–§8 and `TASKS.md`. Counts measured on its head `1fd3091`:
+
+| Measure in PR #84 | Value |
+|---|---:|
+| MP tasks in `COMPLETION-PLAN.md` / `COMPLETION-BACKLOG.json` | 46 (status: 33 `partial`, 9 `open`, 4 `locally-verified`; priority: 7 P0, 37 P1, 2 P2) |
+| `PRODUCT-READINESS.json` — RSH units accepted as product | 0 / 67 (`release_ready: false`; per-unit status 47 `partial`, 20 `not-done`) |
+| `PRODUCT-READINESS.json` — release gates | 13: 6 `not-done`, 6 `partial`, 1 `verified-settings` (gate 2) |
+| Hour estimates for the 46 tasks | none recorded in the PR (UNKNOWN) |
+
+This is a different accounting model from §5 above (67/67 artifact acceptances, 8/13 live
+gates). Both are preserved here; which model governs is the owner's merge decision. Until
+PR #84 merges, §5–§8 remain the canonical state and `COMPLETION-PLAN.md` does not exist on `main`.
+
+### 10.3 Plan consolidation — which root file is which
+
+| File | Role on `main` today | Proposal (no file was moved or deleted) |
+|---|---|---|
+| `MASTER-PLAN.md` (this file) | **Canonical** plan and status (§1 "Authority"; `REPOSITORY-GOVERNANCE.md` §1) | keep |
+| `CURRENT-STATE.json`, `QUEUE.json`, `NEXT-CONTRACT.md`, `FINDINGS-REGISTER.md`, `BASELINE-REGISTER.json`, `MILESTONE-REGISTER.md` | Canonical machine/registers named in §1; validated by `scripts/program-control.test.mjs` | keep |
+| `LIVE-GITHUB-STATUS.json` | Live-settings authority (its `authority` field: live GitHub supersedes the `CURRENT-STATE.json` snapshot); last `observed_at` 2026-09-16 | keep; refresh only through a validated PR (tested by `scripts/check-live-github-status.test.mjs`) |
+| `REPOSITORY-SETTINGS-STATUS.json` | Historical settings observation (2026-08-29, protection `false`) superseded by `LIVE-GITHUB-STATUS.json`, but still read by `scripts/check-governance-contract.mjs` in required CI | keep in place; do not archive |
+| `EXECUTION_PLAN.md` | Historical Codex numbered plan (Hebrew, 6,767 lines, "~13%", links to `/workspace/…`); predates the RSH program | historical evidence — candidate for `docs/history/` after owner approval |
+| `MASTER_PLAN_AUDIT.md` | Audit of `EXECUTION_PLAN.md`, 26 Aug 2026 | historical evidence — same candidate move |
+| `PLAN.md` | Honest audit snapshot, 26 Aug 2026 | historical evidence — same candidate move |
+| `TASKS.md` | Task reset of 27 Aug 2026 that names `EXECUTION_PLAN.md` as its source of truth; PR #84 rewrites it | historical evidence until PR #84 is decided |
+| `progress.md` | "~13%, gates 0/13" — contradicts §5/§8 | historical evidence — same candidate move |
+
+### 10.4 מה טל צריך לעשות (לפי סדר)
+
+1. **להכריע על PR #84** (`fix/rush-completion-2026-10-15`, draft, CI ירוק על ה-head המדויק `1fd3091`, מצב clean): https://github.com/talstilkol/rush-israel/pull/84 — זהו ה-PR היחיד עם CI ירוק, והוא מכיל את כל PR #83. מיזוג מחליף את מודל הסטטוס (0/67 מוצר, 0/13 שערים מאומתים) במקום 67/67 ו-8/13. בלי מיזוג — הקוד של אוקטובר אינו על `main`.
+2. **PR #83** (https://github.com/talstilkol/rush-israel/pull/83): CI אדום (unit-test suite) ומוכל כולו ב-#84 — לסגור כעודף או למזג את #84 במקומו.
+3. **Dependabot #85, #82, #47** (https://github.com/talstilkol/rush-israel/pull/85, https://github.com/talstilkol/rush-israel/pull/82, https://github.com/talstilkol/rush-israel/pull/47): CI אדום בגלל נעילת `package-lock.json` ב-`check-dependency-boundary.mjs`. להחליט אם לעדכן את ה-pin בתוך אותו PR או לסגור.
+4. **22 ענפי `agent/rsh-036-r6*`** (09/2026, לא ממוזגים): החלטת ניקוי מפורשת לפי `REPOSITORY-GOVERNANCE.md` §3; עד אז נשארים.
+5. **ארכוב קובצי התכנון ההיסטוריים** לפי §10.3 (EXECUTION_PLAN, MASTER_PLAN_AUDIT, PLAN, TASKS, progress) — דורש אישור בעלים; לא בוצע כאן.
+6. **שערים שדורשים ראיה אמיתית ולא קוד:** זכויות ל-66 נכסים (שער 1/12), מכשירים פיזיים ל-p95 (שערים 8–9), WCAG AA (שער 12), תג חתום/rollback (שער 13). ללא אלה 13/13 אינו אפשרי בשום ענף.
